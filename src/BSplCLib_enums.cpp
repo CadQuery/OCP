@@ -1,0 +1,80 @@
+
+// pybind 11 related includes
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
+
+namespace py = pybind11;
+
+// Standard Handle
+#include <Standard_Handle.hxx>
+
+// user-defined inclusion per module before includes
+
+// includes to resolve forward declarations
+#include <math_Matrix.hxx>
+
+// module includes
+#include <BSplCLib.hxx>
+#include <BSplCLib_Cache.hxx>
+#include <BSplCLib_EvaluatorFunction.hxx>
+#include <BSplCLib_KnotDistribution.hxx>
+#include <BSplCLib_MultDistribution.hxx>
+
+// template related includes
+
+
+// user-defined pre
+#include "OCP_specific.inc"
+
+// user-defined inclusion per module
+
+// Module definiiton
+void register_BSplCLib_enums(py::module &main_module) {
+
+
+py::module m = main_module.def_submodule("BSplCLib", R"#()#");
+
+// user-defined inclusion per module in the body
+
+// enums
+    py::enum_<BSplCLib_MultDistribution>(m, "BSplCLib_MultDistribution",R"#(This enumeration describes the form of the sequence of mutiplicities. MultDistribution is :)#")
+        .value("BSplCLib_NonConstant",BSplCLib_MultDistribution::BSplCLib_NonConstant)
+        .value("BSplCLib_Constant",BSplCLib_MultDistribution::BSplCLib_Constant)
+        .value("BSplCLib_QuasiConstant",BSplCLib_MultDistribution::BSplCLib_QuasiConstant).export_values();
+    py::enum_<BSplCLib_KnotDistribution>(m, "BSplCLib_KnotDistribution",R"#(This enumeration describes the repartition of the knots sequence. If all the knots differ by the same positive constant from the preceding knot the "KnotDistribution" is <Uniform> else it is <NonUniform>)#")
+        .value("BSplCLib_NonUniform",BSplCLib_KnotDistribution::BSplCLib_NonUniform)
+        .value("BSplCLib_Uniform",BSplCLib_KnotDistribution::BSplCLib_Uniform).export_values();
+
+//Python trampoline classes
+    class Py_BSplCLib_EvaluatorFunction : public BSplCLib_EvaluatorFunction{
+    public:
+        using BSplCLib_EvaluatorFunction::BSplCLib_EvaluatorFunction;
+        
+        // public pure virtual
+        void Evaluate(const Standard_Integer theDerivativeRequest,const Standard_Real * theStartEnd,const Standard_Real theParameter,Standard_Real & theResult,Standard_Integer & theErrorCode) const  override { PYBIND11_OVERLOAD_PURE(void,BSplCLib_EvaluatorFunction,Evaluate,theDerivativeRequest,theStartEnd,theParameter,theResult,theErrorCode) };
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
+
+// classes forward declarations only
+    py::class_<BSplCLib_Cache ,opencascade::handle<BSplCLib_Cache>  , Standard_Transient >(m,"BSplCLib_Cache",R"#(A cache class for Bezier and B-spline curves.A cache class for Bezier and B-spline curves.)#");
+    py::class_<BSplCLib_EvaluatorFunction ,std::unique_ptr<BSplCLib_EvaluatorFunction> ,Py_BSplCLib_EvaluatorFunction >(m,"BSplCLib_EvaluatorFunction",R"#(None)#");
+    py::class_<BSplCLib ,std::unique_ptr<BSplCLib>  >(m,"BSplCLib",R"#(BSplCLib B-spline curve Library.)#");
+
+// pre-register typdefs
+// ./opencascade/BSplCLib_MultDistribution.hxx
+// ./opencascade/BSplCLib_Cache.hxx
+// ./opencascade/BSplCLib.hxx
+// ./opencascade/BSplCLib_KnotDistribution.hxx
+// ./opencascade/BSplCLib_EvaluatorFunction.hxx
+
+};
+
+// user-defined post-inclusion per module
+
+// user-defined post
