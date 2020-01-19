@@ -11,12 +11,13 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <PrsMgr_PresentableObject.hxx>
 #include <Prs3d_Drawer.hxx>
 #include <PrsMgr_PresentableObject.hxx>
 #include <PrsMgr_Presentation.hxx>
 #include <V3d_Viewer.hxx>
 #include <PrsMgr_Presentation.hxx>
+#include <PrsMgr_Presentation.hxx>
+#include <PrsMgr_PresentableObject.hxx>
 #include <PrsMgr_PresentationManager.hxx>
 #include <PrsMgr_Prs.hxx>
 #include <PrsMgr_PresentableObject.hxx>
@@ -28,7 +29,6 @@ namespace py = pybind11;
 #include <Graphic3d_DataStructureManager.hxx>
 #include <Prs3d_Projector.hxx>
 #include <PrsMgr_PresentableObject.hxx>
-#include <PrsMgr_Presentation.hxx>
 #include <Graphic3d_StructureManager.hxx>
 #include <Graphic3d_DataStructureManager.hxx>
 
@@ -52,9 +52,9 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/PrsMgr_ListOfPresentableObjects.hxx
 #include "NCollection.hxx"
-// ./opencascade/PrsMgr_Presentations.hxx
-#include "NCollection.hxx"
 // ./opencascade/PrsMgr_ListOfPresentations.hxx
+#include "NCollection.hxx"
+// ./opencascade/PrsMgr_Presentations.hxx
 #include "NCollection.hxx"
 
 
@@ -78,30 +78,17 @@ py::module m = main_module.def_submodule("PrsMgr", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+    preregister_template_NCollection_List<opencascade::handle<PrsMgr_PresentableObject> >(m,"PrsMgr_ListOfPresentableObjects");  
+    preregister_template_NCollection_List<opencascade::handle<Prs3d_Presentation> >(m,"PrsMgr_ListOfPresentations");  
+    preregister_template_NCollection_Sequence<PrsMgr_ModedPresentation>(m,"PrsMgr_Presentations");  
+
 // classes forward declarations only
-    py::class_<PrsMgr_PresentationManager ,opencascade::handle<PrsMgr_PresentationManager>  , Standard_Transient >(m,"PrsMgr_PresentationManager",R"#(A framework to manage 3D displays, graphic entities and their updates. Used in the AIS package (Application Interactive Services), to enable the advanced user to define the default display mode of a new interactive object which extends the list of signatures and types. Definition of new display types is handled by calling the presentation algorithms provided by the StdPrs package.A framework to manage 3D displays, graphic entities and their updates. Used in the AIS package (Application Interactive Services), to enable the advanced user to define the default display mode of a new interactive object which extends the list of signatures and types. Definition of new display types is handled by calling the presentation algorithms provided by the StdPrs package.)#");
-    py::class_<PrsMgr_ModedPresentation ,std::unique_ptr<PrsMgr_ModedPresentation>  >(m,"PrsMgr_ModedPresentation",R"#(None)#");
+    py::class_<PrsMgr_ModedPresentation , shared_ptr<PrsMgr_ModedPresentation>  >(m,"PrsMgr_ModedPresentation",R"#(None)#");
     py::class_<PrsMgr_PresentableObject ,opencascade::handle<PrsMgr_PresentableObject>  , Standard_Transient >(m,"PrsMgr_PresentableObject",R"#(A framework to supply the Graphic3d structure of the object to be presented. On the first display request, this structure is created by calling the appropriate algorithm and retaining this frameworkfor further display. This abstract framework is inherited in Application Interactive Services (AIS), notably in: - AIS_InteractiveObject - AIS_ConnectedInteractive - AIS_MultipleConnectedInteractive - AIS_Shape Consequently, 3D presentation should be handled by the relevant daughter classes and their member functions in AIS. This is particularly true in the creation of new interactive objects.A framework to supply the Graphic3d structure of the object to be presented. On the first display request, this structure is created by calling the appropriate algorithm and retaining this frameworkfor further display. This abstract framework is inherited in Application Interactive Services (AIS), notably in: - AIS_InteractiveObject - AIS_ConnectedInteractive - AIS_MultipleConnectedInteractive - AIS_Shape Consequently, 3D presentation should be handled by the relevant daughter classes and their member functions in AIS. This is particularly true in the creation of new interactive objects.)#");
     py::class_<PrsMgr_Presentation ,opencascade::handle<PrsMgr_Presentation>  , Standard_Transient >(m,"PrsMgr_Presentation",R"#()#");
+    py::class_<PrsMgr_PresentationManager ,opencascade::handle<PrsMgr_PresentationManager>  , Standard_Transient >(m,"PrsMgr_PresentationManager",R"#(A framework to manage 3D displays, graphic entities and their updates. Used in the AIS package (Application Interactive Services), to enable the advanced user to define the default display mode of a new interactive object which extends the list of signatures and types. Definition of new display types is handled by calling the presentation algorithms provided by the StdPrs package.A framework to manage 3D displays, graphic entities and their updates. Used in the AIS package (Application Interactive Services), to enable the advanced user to define the default display mode of a new interactive object which extends the list of signatures and types. Definition of new display types is handled by calling the presentation algorithms provided by the StdPrs package.)#");
     py::class_<PrsMgr_Prs ,opencascade::handle<PrsMgr_Prs>  , Prs3d_Presentation >(m,"PrsMgr_Prs",R"#()#");
-
-// pre-register typdefs
-// ./opencascade/PrsMgr_ListOfPresentableObjects.hxx
-    preregister_template_NCollection_List<opencascade::handle<PrsMgr_PresentableObject> >(m,"PrsMgr_ListOfPresentableObjects");  
-// ./opencascade/PrsMgr_PresentationManager.hxx
-// ./opencascade/PrsMgr_Presentations.hxx
-    preregister_template_NCollection_Sequence<PrsMgr_ModedPresentation>(m,"PrsMgr_Presentations");  
-// ./opencascade/PrsMgr_PresentationPointer.hxx
-// ./opencascade/PrsMgr_Presentation.hxx
-// ./opencascade/PrsMgr_ListOfPresentations.hxx
-    preregister_template_NCollection_List<opencascade::handle<Prs3d_Presentation> >(m,"PrsMgr_ListOfPresentations");  
-// ./opencascade/PrsMgr_PresentableObjectPointer.hxx
-// ./opencascade/PrsMgr_ModedPresentation.hxx
-// ./opencascade/PrsMgr_TypeOfPresentation3d.hxx
-// ./opencascade/PrsMgr_PresentationManager3d.hxx
-// ./opencascade/PrsMgr_Prs.hxx
-// ./opencascade/PrsMgr_PresentableObject.hxx
-// ./opencascade/PrsMgr_Presentation3d.hxx
 
 };
 

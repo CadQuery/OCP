@@ -11,11 +11,8 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <TCollection_ExtendedString.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <Message_Messenger.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TCollection_ExtendedString.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
 #include <Message_Messenger.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Message_Msg.hxx>
@@ -28,7 +25,10 @@ namespace py = pybind11;
 #include <Message_ProgressScale.hxx>
 #include <Message_ProgressSentry.hxx>
 #include <Message_Messenger.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TCollection_ExtendedString.hxx>
 
 // module includes
 #include <Message.hxx>
@@ -57,15 +57,15 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/Message_ListOfAlert.hxx
 #include "NCollection.hxx"
-// ./opencascade/Message_HArrayOfMsg.hxx
-#include "NCollection.hxx"
-// ./opencascade/Message_ListOfMsg.hxx
-#include "NCollection.hxx"
-// ./opencascade/Message_ListOfMsg.hxx
+// ./opencascade/Message_SequenceOfPrinters.hxx
 #include "NCollection.hxx"
 // ./opencascade/Message_SequenceOfProgressScale.hxx
 #include "NCollection.hxx"
-// ./opencascade/Message_SequenceOfPrinters.hxx
+// ./opencascade/Message_ListOfMsg.hxx
+#include "NCollection.hxx"
+// ./opencascade/Message_ListOfMsg.hxx
+#include "NCollection.hxx"
+// ./opencascade/Message_HArrayOfMsg.hxx
 #include "NCollection.hxx"
 
 
@@ -213,17 +213,17 @@ py::module m = main_module.def_submodule("Message", R"#()#");
         .value("Message_Fail30",Message_Status::Message_Fail30)
         .value("Message_Fail31",Message_Status::Message_Fail31)
         .value("Message_Fail32",Message_Status::Message_Fail32).export_values();
-    py::enum_<Message_StatusType>(m, "Message_StatusType",R"#(Definition of types of execution status supported by the class Message_ExecStatus)#")
-        .value("Message_DONE",Message_StatusType::Message_DONE)
-        .value("Message_WARN",Message_StatusType::Message_WARN)
-        .value("Message_ALARM",Message_StatusType::Message_ALARM)
-        .value("Message_FAIL",Message_StatusType::Message_FAIL).export_values();
     py::enum_<Message_Gravity>(m, "Message_Gravity",R"#(Defines gravity level of messages - Trace: low-level details on algorithm execution (usually for debug purposes) - Info: informative message - Warning: warning message - Alarm: non-critical error - Fail: fatal error)#")
         .value("Message_Trace",Message_Gravity::Message_Trace)
         .value("Message_Info",Message_Gravity::Message_Info)
         .value("Message_Warning",Message_Gravity::Message_Warning)
         .value("Message_Alarm",Message_Gravity::Message_Alarm)
         .value("Message_Fail",Message_Gravity::Message_Fail).export_values();
+    py::enum_<Message_StatusType>(m, "Message_StatusType",R"#(Definition of types of execution status supported by the class Message_ExecStatus)#")
+        .value("Message_DONE",Message_StatusType::Message_DONE)
+        .value("Message_WARN",Message_StatusType::Message_WARN)
+        .value("Message_ALARM",Message_StatusType::Message_ALARM)
+        .value("Message_FAIL",Message_StatusType::Message_FAIL).export_values();
 
 //Python trampoline classes
     class Py_Message_Printer : public Message_Printer{
@@ -255,49 +255,27 @@ py::module m = main_module.def_submodule("Message", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<Message_Printer ,opencascade::handle<Message_Printer> ,Py_Message_Printer , Standard_Transient >(m,"Message_Printer",R"#(Abstract interface class defining printer as output context for text messagesAbstract interface class defining printer as output context for text messagesAbstract interface class defining printer as output context for text messages)#");
-    py::class_<Message_ProgressSentry ,std::unique_ptr<Message_ProgressSentry>  >(m,"Message_ProgressSentry",R"#(This class is a tool allowing to manage opening/closing scopes in the ProgressIndicator in convenient and safe way.)#");
-    py::class_<Message_MsgFile ,std::unique_ptr<Message_MsgFile>  >(m,"Message_MsgFile",R"#(A tool providing facility to load definitions of message strings from resource file(s).)#");
-    py::class_<Message_Algorithm ,opencascade::handle<Message_Algorithm>  , Standard_Transient >(m,"Message_Algorithm",R"#(Class Message_Algorithm is intended to be the base class for classes implementing algorithms or any operations that need to provide extended information on its execution to the caller / user.Class Message_Algorithm is intended to be the base class for classes implementing algorithms or any operations that need to provide extended information on its execution to the caller / user.Class Message_Algorithm is intended to be the base class for classes implementing algorithms or any operations that need to provide extended information on its execution to the caller / user.)#");
-    py::class_<Message_ExecStatus ,std::unique_ptr<Message_ExecStatus>  >(m,"Message_ExecStatus",R"#(Tiny class for extended handling of error / execution status of algorithm in universal way.)#");
-    py::class_<Message_Alert ,opencascade::handle<Message_Alert>  , Standard_Transient >(m,"Message_Alert",R"#(Base class of the hierarchy of classes describing various situations occurring during execution of some algorithm or procedure.Base class of the hierarchy of classes describing various situations occurring during execution of some algorithm or procedure.Base class of the hierarchy of classes describing various situations occurring during execution of some algorithm or procedure.)#");
-    py::class_<Message_ProgressIndicator ,opencascade::handle<Message_ProgressIndicator> ,Py_Message_ProgressIndicator , Standard_Transient >(m,"Message_ProgressIndicator",R"#(Defines abstract interface from program to the "user". This includes progress indication and user break mechanisms.Defines abstract interface from program to the "user". This includes progress indication and user break mechanisms.Defines abstract interface from program to the "user". This includes progress indication and user break mechanisms.)#");
-    py::class_<Message_Messenger ,opencascade::handle<Message_Messenger>  , Standard_Transient >(m,"Message_Messenger",R"#(Messenger is API class providing general-purpose interface for libraries that may issue text messages without knowledge of how these messages will be further processed.Messenger is API class providing general-purpose interface for libraries that may issue text messages without knowledge of how these messages will be further processed.Messenger is API class providing general-purpose interface for libraries that may issue text messages without knowledge of how these messages will be further processed.)#");
-    py::class_<Message ,std::unique_ptr<Message>  >(m,"Message",R"#(Defines - tools to work with messages - basic tools intended for progress indication)#");
-    py::class_<Message_Msg ,std::unique_ptr<Message_Msg>  >(m,"Message_Msg",R"#(This class provides a tool for constructing the parametrized message basing on resources loaded by Message_MsgFile tool.)#");
-    py::class_<Message_Report ,opencascade::handle<Message_Report>  , Standard_Transient >(m,"Message_Report",R"#(Container for alert messages, sorted according to their gravity.Container for alert messages, sorted according to their gravity.Container for alert messages, sorted according to their gravity.)#");
-    py::class_<Message_ProgressScale ,std::unique_ptr<Message_ProgressScale>  >(m,"Message_ProgressScale",R"#(Internal data structure for scale in ProgressIndicator)#");
-    py::class_<Message_PrinterOStream ,opencascade::handle<Message_PrinterOStream>  , Message_Printer >(m,"Message_PrinterOStream",R"#(Implementation of a message printer associated with an ostream The ostream may be either externally defined one (e.g. cout), or file stream maintained internally (depending on constructor).Implementation of a message printer associated with an ostream The ostream may be either externally defined one (e.g. cout), or file stream maintained internally (depending on constructor).Implementation of a message printer associated with an ostream The ostream may be either externally defined one (e.g. cout), or file stream maintained internally (depending on constructor).)#");
-
 // pre-register typdefs
-// ./opencascade/Message_ListOfAlert.hxx
     preregister_template_NCollection_List<opencascade::handle<Message_Alert> >(m,"Message_ListOfAlert");  
-// ./opencascade/Message_Status.hxx
-// ./opencascade/Message_ListIteratorOfListOfMsg.hxx
-// ./opencascade/Message_Printer.hxx
-// ./opencascade/Message_StatusType.hxx
-// ./opencascade/Message_Messenger.hxx
-// ./opencascade/Message_Gravity.hxx
-// ./opencascade/Message_ProgressSentry.hxx
-// ./opencascade/Message_Report.hxx
-// ./opencascade/Message_HArrayOfMsg.hxx
-    preregister_template_NCollection_Array1<NCollection_Handle<Message_Msg> >(m,"Message_ArrayOfMsg");  
-// ./opencascade/Message_ListOfMsg.hxx
-    preregister_template_NCollection_List<Message_Msg>(m,"Message_ListOfMsg");  
-// ./opencascade/Message_MsgFile.hxx
-// ./opencascade/Message_SequenceOfProgressScale.hxx
-    preregister_template_NCollection_Sequence<Message_ProgressScale>(m,"Message_SequenceOfProgressScale");  
-// ./opencascade/Message.hxx
-// ./opencascade/Message_Algorithm.hxx
-// ./opencascade/Message_PrinterOStream.hxx
-// ./opencascade/Message_ExecStatus.hxx
-// ./opencascade/Message_SequenceOfPrinters.hxx
     preregister_template_NCollection_Sequence<opencascade::handle<Message_Printer> >(m,"Message_SequenceOfPrinters");  
-// ./opencascade/Message_Msg.hxx
-// ./opencascade/Message_Alert.hxx
-// ./opencascade/Message_ProgressScale.hxx
-// ./opencascade/Message_ProgressIndicator.hxx
+    preregister_template_NCollection_Sequence<Message_ProgressScale>(m,"Message_SequenceOfProgressScale");  
+    preregister_template_NCollection_List<Message_Msg>(m,"Message_ListOfMsg");  
+    preregister_template_NCollection_Array1<NCollection_Handle<Message_Msg> >(m,"Message_ArrayOfMsg");  
+
+// classes forward declarations only
+    py::class_<Message , shared_ptr<Message>  >(m,"Message",R"#(Defines - tools to work with messages - basic tools intended for progress indication)#");
+    py::class_<Message_Alert ,opencascade::handle<Message_Alert>  , Standard_Transient >(m,"Message_Alert",R"#(Base class of the hierarchy of classes describing various situations occurring during execution of some algorithm or procedure.Base class of the hierarchy of classes describing various situations occurring during execution of some algorithm or procedure.Base class of the hierarchy of classes describing various situations occurring during execution of some algorithm or procedure.)#");
+    py::class_<Message_Algorithm ,opencascade::handle<Message_Algorithm>  , Standard_Transient >(m,"Message_Algorithm",R"#(Class Message_Algorithm is intended to be the base class for classes implementing algorithms or any operations that need to provide extended information on its execution to the caller / user.Class Message_Algorithm is intended to be the base class for classes implementing algorithms or any operations that need to provide extended information on its execution to the caller / user.Class Message_Algorithm is intended to be the base class for classes implementing algorithms or any operations that need to provide extended information on its execution to the caller / user.)#");
+    py::class_<Message_ExecStatus , shared_ptr<Message_ExecStatus>  >(m,"Message_ExecStatus",R"#(Tiny class for extended handling of error / execution status of algorithm in universal way.)#");
+    py::class_<Message_Messenger ,opencascade::handle<Message_Messenger>  , Standard_Transient >(m,"Message_Messenger",R"#(Messenger is API class providing general-purpose interface for libraries that may issue text messages without knowledge of how these messages will be further processed.Messenger is API class providing general-purpose interface for libraries that may issue text messages without knowledge of how these messages will be further processed.Messenger is API class providing general-purpose interface for libraries that may issue text messages without knowledge of how these messages will be further processed.)#");
+    py::class_<Message_Msg , shared_ptr<Message_Msg>  >(m,"Message_Msg",R"#(This class provides a tool for constructing the parametrized message basing on resources loaded by Message_MsgFile tool.)#");
+    py::class_<Message_MsgFile , shared_ptr<Message_MsgFile>  >(m,"Message_MsgFile",R"#(A tool providing facility to load definitions of message strings from resource file(s).)#");
+    py::class_<Message_Printer ,opencascade::handle<Message_Printer> ,Py_Message_Printer , Standard_Transient >(m,"Message_Printer",R"#(Abstract interface class defining printer as output context for text messagesAbstract interface class defining printer as output context for text messagesAbstract interface class defining printer as output context for text messages)#");
+    py::class_<Message_ProgressIndicator ,opencascade::handle<Message_ProgressIndicator> ,Py_Message_ProgressIndicator , Standard_Transient >(m,"Message_ProgressIndicator",R"#(Defines abstract interface from program to the "user". This includes progress indication and user break mechanisms.Defines abstract interface from program to the "user". This includes progress indication and user break mechanisms.Defines abstract interface from program to the "user". This includes progress indication and user break mechanisms.)#");
+    py::class_<Message_ProgressScale , shared_ptr<Message_ProgressScale>  >(m,"Message_ProgressScale",R"#(Internal data structure for scale in ProgressIndicator)#");
+    py::class_<Message_ProgressSentry , shared_ptr<Message_ProgressSentry>  >(m,"Message_ProgressSentry",R"#(This class is a tool allowing to manage opening/closing scopes in the ProgressIndicator in convenient and safe way.)#");
+    py::class_<Message_Report ,opencascade::handle<Message_Report>  , Standard_Transient >(m,"Message_Report",R"#(Container for alert messages, sorted according to their gravity.Container for alert messages, sorted according to their gravity.Container for alert messages, sorted according to their gravity.)#");
+    py::class_<Message_PrinterOStream ,opencascade::handle<Message_PrinterOStream>  , Message_Printer >(m,"Message_PrinterOStream",R"#(Implementation of a message printer associated with an ostream The ostream may be either externally defined one (e.g. cout), or file stream maintained internally (depending on constructor).Implementation of a message printer associated with an ostream The ostream may be either externally defined one (e.g. cout), or file stream maintained internally (depending on constructor).Implementation of a message printer associated with an ostream The ostream may be either externally defined one (e.g. cout), or file stream maintained internally (depending on constructor).)#");
 
 };
 

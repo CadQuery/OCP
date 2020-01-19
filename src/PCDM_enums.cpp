@@ -13,14 +13,10 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <PCDM_DriverError.hxx>
 #include <CDM_Document.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <CDM_Document.hxx>
-#include <PCDM_StorageDriver.hxx>
-#include <TCollection_AsciiString.hxx>
+#include <CDM_Application.hxx>
 #include <PCDM_DriverError.hxx>
 #include <CDM_Document.hxx>
-#include <CDM_Application.hxx>
+#include <Storage_Schema.hxx>
 #include <Message_Messenger.hxx>
 #include <CDM_Document.hxx>
 #include <CDM_MetaData.hxx>
@@ -29,16 +25,20 @@ namespace py = pybind11;
 #include <Storage_Data.hxx>
 #include <CDM_Document.hxx>
 #include <Message_Messenger.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Storage_Data.hxx>
-#include <CDM_Document.hxx>
-#include <Message_Messenger.hxx>
 #include <Storage_BaseDriver.hxx>
+#include <CDM_Document.hxx>
+#include <PCDM_StorageDriver.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <CDM_MetaData.hxx>
 #include <Message_Messenger.hxx>
 #include <PCDM_DriverError.hxx>
 #include <CDM_Document.hxx>
 #include <TCollection_ExtendedString.hxx>
+#include <Storage_BaseDriver.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Storage_Data.hxx>
+#include <CDM_Document.hxx>
+#include <Message_Messenger.hxx>
 
 // module includes
 #include <PCDM.hxx>
@@ -81,11 +81,6 @@ py::module m = main_module.def_submodule("PCDM", R"#()#");
 // user-defined inclusion per module in the body
 
 // enums
-    py::enum_<PCDM_TypeOfFileDriver>(m, "PCDM_TypeOfFileDriver",R"#(None)#")
-        .value("PCDM_TOFD_File",PCDM_TypeOfFileDriver::PCDM_TOFD_File)
-        .value("PCDM_TOFD_CmpFile",PCDM_TypeOfFileDriver::PCDM_TOFD_CmpFile)
-        .value("PCDM_TOFD_XmlFile",PCDM_TypeOfFileDriver::PCDM_TOFD_XmlFile)
-        .value("PCDM_TOFD_Unknown",PCDM_TypeOfFileDriver::PCDM_TOFD_Unknown).export_values();
     py::enum_<PCDM_StoreStatus>(m, "PCDM_StoreStatus",R"#(None)#")
         .value("PCDM_SS_OK",PCDM_StoreStatus::PCDM_SS_OK)
         .value("PCDM_SS_DriverFailure",PCDM_StoreStatus::PCDM_SS_DriverFailure)
@@ -117,24 +112,13 @@ py::module m = main_module.def_submodule("PCDM", R"#()#");
         .value("PCDM_RS_WrongResource",PCDM_ReaderStatus::PCDM_RS_WrongResource)
         .value("PCDM_RS_ReaderException",PCDM_ReaderStatus::PCDM_RS_ReaderException)
         .value("PCDM_RS_NoModel",PCDM_ReaderStatus::PCDM_RS_NoModel).export_values();
+    py::enum_<PCDM_TypeOfFileDriver>(m, "PCDM_TypeOfFileDriver",R"#(None)#")
+        .value("PCDM_TOFD_File",PCDM_TypeOfFileDriver::PCDM_TOFD_File)
+        .value("PCDM_TOFD_CmpFile",PCDM_TypeOfFileDriver::PCDM_TOFD_CmpFile)
+        .value("PCDM_TOFD_XmlFile",PCDM_TypeOfFileDriver::PCDM_TOFD_XmlFile)
+        .value("PCDM_TOFD_Unknown",PCDM_TypeOfFileDriver::PCDM_TOFD_Unknown).export_values();
 
 //Python trampoline classes
-    class Py_PCDM_Reader : public PCDM_Reader{
-    public:
-        using PCDM_Reader::PCDM_Reader;
-        
-        // public pure virtual
-        opencascade::handle<CDM_Document> CreateDocument() override { PYBIND11_OVERLOAD_PURE(opencascade::handle<CDM_Document>,PCDM_Reader,CreateDocument,) };
-        void Read(const TCollection_ExtendedString & aFileName,const opencascade::handle<CDM_Document> & aNewDocument,const opencascade::handle<CDM_Application> & anApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,aFileName,aNewDocument,anApplication) };
-        void Read(std::istream & theIStream,const opencascade::handle<Storage_Data> & theStorageData,const opencascade::handle<CDM_Document> & theDoc,const opencascade::handle<CDM_Application> & theApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,theIStream,theStorageData,theDoc,theApplication) };
-        
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
     class Py_PCDM_ReadWriter : public PCDM_ReadWriter{
     public:
         using PCDM_ReadWriter::PCDM_ReadWriter;
@@ -149,6 +133,22 @@ py::module m = main_module.def_submodule("PCDM", R"#()#");
         void ReadReferences(const TCollection_ExtendedString & aFileName,NCollection_Sequence<PCDM_Reference> & theReferences,const opencascade::handle<Message_Messenger> & theMsgDriver) const  override { PYBIND11_OVERLOAD_PURE(void,PCDM_ReadWriter,ReadReferences,aFileName,theReferences,theMsgDriver) };
         void ReadExtensions(const TCollection_ExtendedString & aFileName,NCollection_Sequence<TCollection_ExtendedString> & theExtensions,const opencascade::handle<Message_Messenger> & theMsgDriver) const  override { PYBIND11_OVERLOAD_PURE(void,PCDM_ReadWriter,ReadExtensions,aFileName,theExtensions,theMsgDriver) };
         Standard_Integer ReadDocumentVersion(const TCollection_ExtendedString & aFileName,const opencascade::handle<Message_Messenger> & theMsgDriver) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,PCDM_ReadWriter,ReadDocumentVersion,aFileName,theMsgDriver) };
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
+    class Py_PCDM_Reader : public PCDM_Reader{
+    public:
+        using PCDM_Reader::PCDM_Reader;
+        
+        // public pure virtual
+        opencascade::handle<CDM_Document> CreateDocument() override { PYBIND11_OVERLOAD_PURE(opencascade::handle<CDM_Document>,PCDM_Reader,CreateDocument,) };
+        void Read(const TCollection_ExtendedString & aFileName,const opencascade::handle<CDM_Document> & aNewDocument,const opencascade::handle<CDM_Application> & anApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,aFileName,aNewDocument,anApplication) };
+        void Read(std::istream & theIStream,const opencascade::handle<Storage_Data> & theStorageData,const opencascade::handle<CDM_Document> & theDoc,const opencascade::handle<CDM_Application> & theApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,theIStream,theStorageData,theDoc,theApplication) };
         
         
         // protected pure virtual
@@ -189,40 +189,22 @@ py::module m = main_module.def_submodule("PCDM", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<PCDM_DOMHeaderParser ,std::unique_ptr<PCDM_DOMHeaderParser>  >(m,"PCDM_DOMHeaderParser",R"#(None)#");
-    py::class_<PCDM ,std::unique_ptr<PCDM>  >(m,"PCDM",R"#(None)#");
-    py::class_<PCDM_Reader ,opencascade::handle<PCDM_Reader> ,Py_PCDM_Reader , Standard_Transient >(m,"PCDM_Reader",R"#()#");
-    py::class_<PCDM_ReadWriter ,opencascade::handle<PCDM_ReadWriter> ,Py_PCDM_ReadWriter , Standard_Transient >(m,"PCDM_ReadWriter",R"#()#");
-    py::class_<PCDM_Writer ,opencascade::handle<PCDM_Writer> ,Py_PCDM_Writer , Standard_Transient >(m,"PCDM_Writer",R"#()#");
-    py::class_<PCDM_Reference ,std::unique_ptr<PCDM_Reference>  >(m,"PCDM_Reference",R"#(None)#");
-    py::class_<PCDM_StorageDriver ,opencascade::handle<PCDM_StorageDriver>  , PCDM_Writer >(m,"PCDM_StorageDriver",R"#(persistent implemention of storage.persistent implemention of storage.persistent implemention of storage.)#");
-    py::class_<PCDM_ReferenceIterator ,opencascade::handle<PCDM_ReferenceIterator>  , Standard_Transient >(m,"PCDM_ReferenceIterator",R"#()#");
-    py::class_<PCDM_RetrievalDriver ,opencascade::handle<PCDM_RetrievalDriver> ,Py_PCDM_RetrievalDriver , PCDM_Reader >(m,"PCDM_RetrievalDriver",R"#()#");
-    py::class_<PCDM_Document ,opencascade::handle<PCDM_Document>  , Standard_Persistent >(m,"PCDM_Document",R"#()#");
-    py::class_<PCDM_ReadWriter_1 ,opencascade::handle<PCDM_ReadWriter_1>  , PCDM_ReadWriter >(m,"PCDM_ReadWriter_1",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/PCDM_DOMHeaderParser.hxx
-// ./opencascade/PCDM_StorageDriver.hxx
-// ./opencascade/PCDM_SequenceOfReference.hxx
     preregister_template_NCollection_Sequence<PCDM_Reference>(m,"PCDM_SequenceOfReference");  
-// ./opencascade/PCDM_BaseDriverPointer.hxx
-// ./opencascade/PCDM.hxx
-// ./opencascade/PCDM_Document.hxx
-// ./opencascade/PCDM_Reader.hxx
-// ./opencascade/PCDM_ReferenceIterator.hxx
-// ./opencascade/PCDM_TypeOfFileDriver.hxx
-// ./opencascade/PCDM_ReadWriter_1.hxx
-// ./opencascade/PCDM_StoreStatus.hxx
-// ./opencascade/PCDM_ReadWriter.hxx
-// ./opencascade/PCDM_RetrievalDriver.hxx
-// ./opencascade/PCDM_SequenceOfDocument.hxx
     preregister_template_NCollection_Sequence<opencascade::handle<PCDM_Document> >(m,"PCDM_SequenceOfDocument");  
-// ./opencascade/PCDM_Writer.hxx
-// ./opencascade/PCDM_DriverError.hxx
-// ./opencascade/PCDM_ReaderStatus.hxx
-// ./opencascade/PCDM_Reference.hxx
+
+// classes forward declarations only
+    py::class_<PCDM , shared_ptr<PCDM>  >(m,"PCDM",R"#(None)#");
+    py::class_<PCDM_DOMHeaderParser , shared_ptr<PCDM_DOMHeaderParser>  >(m,"PCDM_DOMHeaderParser",R"#(None)#");
+    py::class_<PCDM_Document ,opencascade::handle<PCDM_Document>  , Standard_Persistent >(m,"PCDM_Document",R"#()#");
+    py::class_<PCDM_ReadWriter ,opencascade::handle<PCDM_ReadWriter> ,Py_PCDM_ReadWriter , Standard_Transient >(m,"PCDM_ReadWriter",R"#()#");
+    py::class_<PCDM_Reader ,opencascade::handle<PCDM_Reader> ,Py_PCDM_Reader , Standard_Transient >(m,"PCDM_Reader",R"#()#");
+    py::class_<PCDM_Reference , shared_ptr<PCDM_Reference>  >(m,"PCDM_Reference",R"#(None)#");
+    py::class_<PCDM_ReferenceIterator ,opencascade::handle<PCDM_ReferenceIterator>  , Standard_Transient >(m,"PCDM_ReferenceIterator",R"#()#");
+    py::class_<PCDM_Writer ,opencascade::handle<PCDM_Writer> ,Py_PCDM_Writer , Standard_Transient >(m,"PCDM_Writer",R"#()#");
+    py::class_<PCDM_ReadWriter_1 ,opencascade::handle<PCDM_ReadWriter_1>  , PCDM_ReadWriter >(m,"PCDM_ReadWriter_1",R"#()#");
+    py::class_<PCDM_RetrievalDriver ,opencascade::handle<PCDM_RetrievalDriver> ,Py_PCDM_RetrievalDriver , PCDM_Reader >(m,"PCDM_RetrievalDriver",R"#()#");
+    py::class_<PCDM_StorageDriver ,opencascade::handle<PCDM_StorageDriver>  , PCDM_Writer >(m,"PCDM_StorageDriver",R"#(persistent implemention of storage.persistent implemention of storage.persistent implemention of storage.)#");
 
 };
 

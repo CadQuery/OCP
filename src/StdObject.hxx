@@ -13,11 +13,11 @@ namespace py = pybind11;
 
 // module includes
 #include <StdObject_Location.hxx>
+#include <StdObject_gp_Axes.hxx>
+#include <StdObject_gp_Curves.hxx>
 #include <StdObject_gp_Surfaces.hxx>
 #include <StdObject_gp_Vectors.hxx>
 #include <StdObject_Shape.hxx>
-#include <StdObject_gp_Curves.hxx>
-#include <StdObject_gp_Axes.hxx>
 #include <StdObject_gp_Trsfs.hxx>
 
 // user-defined pre
@@ -25,11 +25,11 @@ namespace py = pybind11;
 
 // Class template handling functions
 // ./opencascade/StdObject_Location.hxx
+// ./opencascade/StdObject_gp_Axes.hxx
+// ./opencascade/StdObject_gp_Curves.hxx
 // ./opencascade/StdObject_gp_Surfaces.hxx
 // ./opencascade/StdObject_gp_Vectors.hxx
 // ./opencascade/StdObject_Shape.hxx
-// ./opencascade/StdObject_gp_Curves.hxx
-// ./opencascade/StdObject_gp_Axes.hxx
 // ./opencascade/StdObject_gp_Trsfs.hxx
 
 // user-defined post

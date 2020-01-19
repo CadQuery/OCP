@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -38,9 +41,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomProjLib"));
 
 // classes
 
-    register_default_constructor<GeomProjLib ,std::unique_ptr<GeomProjLib>>(m,"GeomProjLib");
+    register_default_constructor<GeomProjLib , shared_ptr<GeomProjLib>>(m,"GeomProjLib");
 
-    static_cast<py::class_<GeomProjLib ,std::unique_ptr<GeomProjLib>  >>(m.attr("GeomProjLib"))
+    static_cast<py::class_<GeomProjLib , shared_ptr<GeomProjLib>  >>(m.attr("GeomProjLib"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Curve2d_s",
                     (opencascade::handle<Geom2d_Curve> (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) ) static_cast<opencascade::handle<Geom2d_Curve> (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) >(&GeomProjLib::Curve2d),
                     R"#(gives the 2d-curve of a 3d-curve lying on a surface ( uses GeomProjLib_ProjectedCurve ) The 3dCurve is taken between the parametrization range [First, Last] <Tolerance> is used as input if the projection needs an approximation. In this case, the reached tolerance is set in <Tolerance> as output. WARNING : if the projection has failed, this method returns a null Handle.)#"  , py::arg("C"),  py::arg("First"),  py::arg("Last"),  py::arg("S"),  py::arg("UFirst"),  py::arg("ULast"),  py::arg("VFirst"),  py::arg("VLast"),  py::arg("Tolerance"))
@@ -65,6 +71,9 @@ py::module m = static_cast<py::module>(main_module.attr("GeomProjLib"));
         .def_static("ProjectOnPlane_s",
                     (opencascade::handle<Geom_Curve> (*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Plane> & ,  const gp_Dir & ,  const Standard_Boolean  ) ) static_cast<opencascade::handle<Geom_Curve> (*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Plane> & ,  const gp_Dir & ,  const Standard_Boolean  ) >(&GeomProjLib::ProjectOnPlane),
                     R"#(Constructs the 3d-curves from the projection of the curve <Curve> on the plane <Plane> along the direction <Dir>. If <KeepParametrization> is true, the parametrization of the Projected Curve <PC> will be the same as the parametrization of the initial curve <C>. It meens: proj(C(u)) = PC(u) for each u. Otherwize, the parametrization may change.)#"  , py::arg("Curve"),  py::arg("Plane"),  py::arg("Dir"),  py::arg("KeepParametrization"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -73,7 +82,6 @@ py::module m = static_cast<py::module>(main_module.attr("GeomProjLib"));
 // operators
 
 // register typdefs
-// ./opencascade/GeomProjLib.hxx
 
 
 // exceptions

@@ -11,14 +11,6 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_Point.hxx>
-#include <TopOpeBRepDS_Curve.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_Surface.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
@@ -26,48 +18,9 @@ namespace py = pybind11;
 #include <Geom2d_BSplineCurve.hxx>
 #include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopOpeBRepDS_Interference.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_CurveIterator.hxx>
-#include <TopOpeBRepDS_PointIterator.hxx>
-#include <TopOpeBRepDS_SurfaceIterator.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepDS_Curve.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <Geom2d_Curve.hxx>
-#include <TopOpeBRepDS_Interference.hxx>
-#include <TopOpeBRepDS_Curve.hxx>
-#include <TopOpeBRepDS_SurfaceExplorer.hxx>
-#include <TopOpeBRepDS_CurveExplorer.hxx>
-#include <TopOpeBRepDS_PointExplorer.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopOpeBRepDS_GapTool.hxx>
-#include <TopOpeBRepDS_Association.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_Curve.hxx>
 #include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
 #include <TopOpeBRepDS_InterferenceIterator.hxx>
@@ -114,14 +67,61 @@ namespace py = pybind11;
 #include <TopOpeBRepDS_ListOfShapeOn1State.hxx>
 #include <TopOpeBRepDS_Explorer.hxx>
 #include <TopOpeBRepDS_ShapeWithState.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <Geom_Curve.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopOpeBRepDS_SurfaceExplorer.hxx>
+#include <TopOpeBRepDS_CurveExplorer.hxx>
+#include <TopOpeBRepDS_PointExplorer.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TopOpeBRepDS_Curve.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
 #include <Geom_Surface.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
+#include <TopOpeBRepDS_Curve.hxx>
+#include <TopOpeBRepDS_Point.hxx>
+#include <TopOpeBRepDS_Curve.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TopOpeBRepDS_Surface.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
-#include <TopOpeBRepDS_Point.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TopOpeBRepDS_CurveIterator.hxx>
+#include <TopOpeBRepDS_PointIterator.hxx>
+#include <TopOpeBRepDS_SurfaceIterator.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
 #include <TopOpeBRepDS_Transition.hxx>
 #include <Geom2d_Curve.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_GapTool.hxx>
+#include <TopOpeBRepDS_Association.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
+#include <TopOpeBRepDS_Point.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
 
 // module includes
 #include <TopOpeBRepDS.hxx>
@@ -214,15 +214,9 @@ namespace py = pybind11;
 #include <TopOpeBRepDS_Transition.hxx>
 
 // template related includes
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
+// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfShapeData.hxx
+// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
 #include "NCollection.hxx"
@@ -230,47 +224,53 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_ShapeSurface.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_IndexedDataMapOfShapeWithState.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
-#include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_IndexedDataMapOfVertexPoint.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_IndexedDataMapOfShapeWithState.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfShapeData.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_ShapeSurface.hxx
 #include "NCollection.hxx"
 
 
@@ -288,6 +288,13 @@ py::module m = main_module.def_submodule("TopOpeBRepDS", R"#()#");
 // user-defined inclusion per module in the body
 
 // enums
+    py::enum_<TopOpeBRepDS_Config>(m, "TopOpeBRepDS_Config",R"#(None)#")
+        .value("TopOpeBRepDS_UNSHGEOMETRY",TopOpeBRepDS_Config::TopOpeBRepDS_UNSHGEOMETRY)
+        .value("TopOpeBRepDS_SAMEORIENTED",TopOpeBRepDS_Config::TopOpeBRepDS_SAMEORIENTED)
+        .value("TopOpeBRepDS_DIFFORIENTED",TopOpeBRepDS_Config::TopOpeBRepDS_DIFFORIENTED).export_values();
+    py::enum_<TopOpeBRepDS_CheckStatus>(m, "TopOpeBRepDS_CheckStatus",R"#(None)#")
+        .value("TopOpeBRepDS_OK",TopOpeBRepDS_CheckStatus::TopOpeBRepDS_OK)
+        .value("TopOpeBRepDS_NOK",TopOpeBRepDS_CheckStatus::TopOpeBRepDS_NOK).export_values();
     py::enum_<TopOpeBRepDS_Kind>(m, "TopOpeBRepDS_Kind",R"#(different types of objects in DataStructure)#")
         .value("TopOpeBRepDS_POINT",TopOpeBRepDS_Kind::TopOpeBRepDS_POINT)
         .value("TopOpeBRepDS_CURVE",TopOpeBRepDS_Kind::TopOpeBRepDS_CURVE)
@@ -301,170 +308,75 @@ py::module m = main_module.def_submodule("TopOpeBRepDS", R"#()#");
         .value("TopOpeBRepDS_COMPSOLID",TopOpeBRepDS_Kind::TopOpeBRepDS_COMPSOLID)
         .value("TopOpeBRepDS_COMPOUND",TopOpeBRepDS_Kind::TopOpeBRepDS_COMPOUND)
         .value("TopOpeBRepDS_UNKNOWN",TopOpeBRepDS_Kind::TopOpeBRepDS_UNKNOWN).export_values();
-    py::enum_<TopOpeBRepDS_CheckStatus>(m, "TopOpeBRepDS_CheckStatus",R"#(None)#")
-        .value("TopOpeBRepDS_OK",TopOpeBRepDS_CheckStatus::TopOpeBRepDS_OK)
-        .value("TopOpeBRepDS_NOK",TopOpeBRepDS_CheckStatus::TopOpeBRepDS_NOK).export_values();
-    py::enum_<TopOpeBRepDS_Config>(m, "TopOpeBRepDS_Config",R"#(None)#")
-        .value("TopOpeBRepDS_UNSHGEOMETRY",TopOpeBRepDS_Config::TopOpeBRepDS_UNSHGEOMETRY)
-        .value("TopOpeBRepDS_SAMEORIENTED",TopOpeBRepDS_Config::TopOpeBRepDS_SAMEORIENTED)
-        .value("TopOpeBRepDS_DIFFORIENTED",TopOpeBRepDS_Config::TopOpeBRepDS_DIFFORIENTED).export_values();
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TopOpeBRepDS_InterferenceIterator ,std::unique_ptr<TopOpeBRepDS_InterferenceIterator>  >(m,"TopOpeBRepDS_InterferenceIterator",R"#(Iterate on interferences of a list, matching conditions on interferences. Nota : inheritance of ListIteratorOfListOfInterference from TopOpeBRepDS has not been done because of the impossibility of naming the classical More, Next methods which are declared as static in TCollection_ListIteratorOfList ... . ListIteratorOfList has benn placed as a field of InterferenceIterator.)#");
-    py::class_<TopOpeBRepDS_GeometryData ,std::unique_ptr<TopOpeBRepDS_GeometryData>  >(m,"TopOpeBRepDS_GeometryData",R"#(mother-class of SurfaceData, CurveData, PointData)#");
-    py::class_<TopOpeBRepDS_SurfaceExplorer ,std::unique_ptr<TopOpeBRepDS_SurfaceExplorer>  >(m,"TopOpeBRepDS_SurfaceExplorer",R"#(None)#");
-    py::class_<TopOpeBRepDS_BuildTool ,std::unique_ptr<TopOpeBRepDS_BuildTool>  >(m,"TopOpeBRepDS_BuildTool",R"#(Provides a Tool to build topologies. Used to instantiate the Builder algorithm.)#");
-    py::class_<TopOpeBRepDS_TKI ,std::unique_ptr<TopOpeBRepDS_TKI>  >(m,"TopOpeBRepDS_TKI",R"#(None)#");
-    py::class_<TopOpeBRepDS_ShapeData ,std::unique_ptr<TopOpeBRepDS_ShapeData>  >(m,"TopOpeBRepDS_ShapeData",R"#(None)#");
-    py::class_<TopOpeBRepDS_Curve ,std::unique_ptr<TopOpeBRepDS_Curve>  >(m,"TopOpeBRepDS_Curve",R"#(A Geom curve and a tolerance.)#");
-    py::class_<TopOpeBRepDS_Association ,opencascade::handle<TopOpeBRepDS_Association>  , Standard_Transient >(m,"TopOpeBRepDS_Association",R"#()#");
-    py::class_<TopOpeBRepDS_Marker ,opencascade::handle<TopOpeBRepDS_Marker>  , Standard_Transient >(m,"TopOpeBRepDS_Marker",R"#()#");
-    py::class_<TopOpeBRepDS_Interference ,opencascade::handle<TopOpeBRepDS_Interference>  , Standard_Transient >(m,"TopOpeBRepDS_Interference",R"#(An interference is the description of the attachment of a new geometry on a geometry. For example an intersection point on an Edge or on a Curve.An interference is the description of the attachment of a new geometry on a geometry. For example an intersection point on an Edge or on a Curve.An interference is the description of the attachment of a new geometry on a geometry. For example an intersection point on an Edge or on a Curve.)#");
-    py::class_<TopOpeBRepDS_CurveData ,std::unique_ptr<TopOpeBRepDS_CurveData>  , TopOpeBRepDS_GeometryData >(m,"TopOpeBRepDS_CurveData",R"#(None)#");
-    py::class_<TopOpeBRepDS_SurfaceData ,std::unique_ptr<TopOpeBRepDS_SurfaceData>  , TopOpeBRepDS_GeometryData >(m,"TopOpeBRepDS_SurfaceData",R"#(None)#");
-    py::class_<TopOpeBRepDS_SurfaceCurveInterference ,opencascade::handle<TopOpeBRepDS_SurfaceCurveInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_SurfaceCurveInterference",R"#(an interference with a 2d curvean interference with a 2d curvean interference with a 2d curve)#");
-    py::class_<TopOpeBRepDS_FaceInterferenceTool ,std::unique_ptr<TopOpeBRepDS_FaceInterferenceTool>  >(m,"TopOpeBRepDS_FaceInterferenceTool",R"#(a tool computing complex transition on Face.)#");
-    py::class_<TopOpeBRepDS_SolidSurfaceInterference ,opencascade::handle<TopOpeBRepDS_SolidSurfaceInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_SolidSurfaceInterference",R"#(InterferenceInterferenceInterference)#");
-    py::class_<TopOpeBRepDS_SurfaceIterator ,std::unique_ptr<TopOpeBRepDS_SurfaceIterator>  , TopOpeBRepDS_InterferenceIterator >(m,"TopOpeBRepDS_SurfaceIterator",R"#(None)#");
-    py::class_<TopOpeBRepDS_Point ,std::unique_ptr<TopOpeBRepDS_Point>  >(m,"TopOpeBRepDS_Point",R"#(A Geom point and a tolerance.)#");
-    py::class_<TopOpeBRepDS_Filter ,std::unique_ptr<TopOpeBRepDS_Filter>  >(m,"TopOpeBRepDS_Filter",R"#(None)#");
-    py::class_<TopOpeBRepDS_EIR ,std::unique_ptr<TopOpeBRepDS_EIR>  >(m,"TopOpeBRepDS_EIR",R"#(EdgeInterferenceReducer)#");
-    py::class_<TopOpeBRepDS_ShapeWithState ,std::unique_ptr<TopOpeBRepDS_ShapeWithState>  >(m,"TopOpeBRepDS_ShapeWithState",R"#(None)#");
-    py::class_<TopOpeBRepDS_CurvePointInterference ,opencascade::handle<TopOpeBRepDS_CurvePointInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_CurvePointInterference",R"#(An interference with a parameter.An interference with a parameter.An interference with a parameter.)#");
-    py::class_<TopOpeBRepDS_PointData ,std::unique_ptr<TopOpeBRepDS_PointData>  , TopOpeBRepDS_GeometryData >(m,"TopOpeBRepDS_PointData",R"#(None)#");
-    py::class_<TopOpeBRepDS ,std::unique_ptr<TopOpeBRepDS>  >(m,"TopOpeBRepDS",R"#(This package provides services used by the TopOpeBRepBuild package performing topological operations on the BRep data structure.)#");
-    py::class_<TopOpeBRepDS_Surface ,std::unique_ptr<TopOpeBRepDS_Surface>  >(m,"TopOpeBRepDS_Surface",R"#(A Geom surface and a tolerance.)#");
-    py::class_<TopOpeBRepDS_InterferenceTool ,std::unique_ptr<TopOpeBRepDS_InterferenceTool>  >(m,"TopOpeBRepDS_InterferenceTool",R"#(None)#");
-    py::class_<TopOpeBRepDS_Transition ,std::unique_ptr<TopOpeBRepDS_Transition>  >(m,"TopOpeBRepDS_Transition",R"#(None)#");
-    py::class_<TopOpeBRepDS_Dumper ,std::unique_ptr<TopOpeBRepDS_Dumper>  >(m,"TopOpeBRepDS_Dumper",R"#(None)#");
-    py::class_<TopOpeBRepDS_PointExplorer ,std::unique_ptr<TopOpeBRepDS_PointExplorer>  >(m,"TopOpeBRepDS_PointExplorer",R"#(None)#");
-    py::class_<TopOpeBRepDS_CurveIterator ,std::unique_ptr<TopOpeBRepDS_CurveIterator>  , TopOpeBRepDS_InterferenceIterator >(m,"TopOpeBRepDS_CurveIterator",R"#(None)#");
-    py::class_<TopOpeBRepDS_GapTool ,opencascade::handle<TopOpeBRepDS_GapTool>  , Standard_Transient >(m,"TopOpeBRepDS_GapTool",R"#()#");
-    py::class_<TopOpeBRepDS_PointIterator ,std::unique_ptr<TopOpeBRepDS_PointIterator>  , TopOpeBRepDS_InterferenceIterator >(m,"TopOpeBRepDS_PointIterator",R"#(None)#");
-    py::class_<TopOpeBRepDS_ListOfShapeOn1State ,std::unique_ptr<TopOpeBRepDS_ListOfShapeOn1State>  >(m,"TopOpeBRepDS_ListOfShapeOn1State",R"#(represent a list of shape)#");
-    py::class_<TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference ,std::unique_ptr<TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference>  >(m,"TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference",R"#()#");
-    py::class_<TopOpeBRepDS_FIR ,std::unique_ptr<TopOpeBRepDS_FIR>  >(m,"TopOpeBRepDS_FIR",R"#(FaceInterferenceReducer)#");
-    py::class_<TopOpeBRepDS_CurveExplorer ,std::unique_ptr<TopOpeBRepDS_CurveExplorer>  >(m,"TopOpeBRepDS_CurveExplorer",R"#(None)#");
-    py::class_<TopOpeBRepDS_EdgeInterferenceTool ,std::unique_ptr<TopOpeBRepDS_EdgeInterferenceTool>  >(m,"TopOpeBRepDS_EdgeInterferenceTool",R"#(a tool computing complex transition on Edge.)#");
-    py::class_<TopOpeBRepDS_Check ,opencascade::handle<TopOpeBRepDS_Check>  , Standard_Transient >(m,"TopOpeBRepDS_Check",R"#(a tool verifing integrity and structure of DSa tool verifing integrity and structure of DSa tool verifing integrity and structure of DS)#");
-    py::class_<TopOpeBRepDS_HDataStructure ,opencascade::handle<TopOpeBRepDS_HDataStructure>  , Standard_Transient >(m,"TopOpeBRepDS_HDataStructure",R"#()#");
-    py::class_<TopOpeBRepDS_Reducer ,std::unique_ptr<TopOpeBRepDS_Reducer>  >(m,"TopOpeBRepDS_Reducer",R"#(reduce interferences of a data structure (HDS) used in topological operations.)#");
-    py::class_<TopOpeBRepDS_DataStructure ,std::unique_ptr<TopOpeBRepDS_DataStructure>  >(m,"TopOpeBRepDS_DataStructure",R"#(The DataStructure stores :)#");
-    py::class_<TopOpeBRepDS_GapFiller ,std::unique_ptr<TopOpeBRepDS_GapFiller>  >(m,"TopOpeBRepDS_GapFiller",R"#(None)#");
-    py::class_<TopOpeBRepDS_Edge3dInterferenceTool ,std::unique_ptr<TopOpeBRepDS_Edge3dInterferenceTool>  >(m,"TopOpeBRepDS_Edge3dInterferenceTool",R"#(a tool computing edge / face complex transition, Interferences of edge reference are given by I = (T on face, G = point or vertex, S = edge))#");
-    py::class_<TopOpeBRepDS_TOOL ,std::unique_ptr<TopOpeBRepDS_TOOL>  >(m,"TopOpeBRepDS_TOOL",R"#(None)#");
-    py::class_<TopOpeBRepDS_ShapeShapeInterference ,opencascade::handle<TopOpeBRepDS_ShapeShapeInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_ShapeShapeInterference",R"#(InterferenceInterferenceInterference)#");
-    py::class_<TopOpeBRepDS_Explorer ,std::unique_ptr<TopOpeBRepDS_Explorer>  >(m,"TopOpeBRepDS_Explorer",R"#(None)#");
-    py::class_<TopOpeBRepDS_FaceEdgeInterference ,opencascade::handle<TopOpeBRepDS_FaceEdgeInterference>  , TopOpeBRepDS_ShapeShapeInterference >(m,"TopOpeBRepDS_FaceEdgeInterference",R"#(ShapeShapeInterferenceShapeShapeInterferenceShapeShapeInterference)#");
-    py::class_<TopOpeBRepDS_EdgeVertexInterference ,opencascade::handle<TopOpeBRepDS_EdgeVertexInterference>  , TopOpeBRepDS_ShapeShapeInterference >(m,"TopOpeBRepDS_EdgeVertexInterference",R"#(An interference with a parameter (ShapeShapeInterference).An interference with a parameter (ShapeShapeInterference).An interference with a parameter (ShapeShapeInterference).)#");
-
 // pre-register typdefs
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
-    preregister_template_NCollection_DataMap<TopoDS_Shape, TopAbs_State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeState");  
-// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ShapeData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfIntegerShapeData");  
-// ./opencascade/TopOpeBRepDS_SurfaceExplorer.hxx
-// ./opencascade/TopOpeBRepDS_Transition.hxx
-// ./opencascade/TopOpeBRepDS_BuildTool.hxx
-// ./opencascade/TopOpeBRepDS_Check.hxx
-// ./opencascade/TopOpeBRepDS_Kind.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfSurface.hxx
-// ./opencascade/TopOpeBRepDS_TKI.hxx
-// ./opencascade/TopOpeBRepDS_Dumper.hxx
-// ./opencascade/TopOpeBRepDS_ShapeData.hxx
-// ./opencascade/TopOpeBRepDS_TOOL.hxx
-// ./opencascade/TopOpeBRepDS_Curve.hxx
-// ./opencascade/TopOpeBRepDS_PointExplorer.hxx
-// ./opencascade/TopOpeBRepDS_Association.hxx
-// ./opencascade/TopOpeBRepDS_MapOfShapeData.hxx
-    preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_ShapeData, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_MapOfShapeData");  
-// ./opencascade/TopOpeBRepDS_HDataStructure.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
-    preregister_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State");  
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_Marker.hxx
-// ./opencascade/TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx
-    preregister_template_NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference>(m,"TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference");  
-// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ListOfInterference, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_DataMapOfIntegerListOfInterference");  
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfIntegerListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfIntegerShapeData.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
-    preregister_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopOpeBRepDS_ListOfInterference, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceListOfInterference");  
-// ./opencascade/TopOpeBRepDS_repvg.hxx
-// ./opencascade/TopOpeBRepDS_DRAW.hxx
-// ./opencascade/TopOpeBRepDS_EXPORT.hxx
-// ./opencascade/TopOpeBRepDS_CurveIterator.hxx
-// ./opencascade/TopOpeBRepDS_Interference.hxx
-// ./opencascade/TopOpeBRepDS_Explorer.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceShape.hxx
-// ./opencascade/TopOpeBRepDS_CurveData.hxx
-// ./opencascade/TopOpeBRepDS_GapTool.hxx
-// ./opencascade/TopOpeBRepDS_SurfaceData.hxx
-// ./opencascade/TopOpeBRepDS_Reducer.hxx
-// ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_PointData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfPoint");  
-// ./opencascade/TopOpeBRepDS_ShapeSurface.hxx
-// ./opencascade/TopOpeBRepDS_GeometryData.hxx
-// ./opencascade/TopOpeBRepDS_SurfaceCurveInterference.hxx
-// ./opencascade/TopOpeBRepDS_PointIterator.hxx
-// ./opencascade/TopOpeBRepDS_FaceInterferenceTool.hxx
-// ./opencascade/TopOpeBRepDS_connex.hxx
-// ./opencascade/TopOpeBRepDS_EdgeVertexInterference.hxx
-// ./opencascade/TopOpeBRepDS_SolidSurfaceInterference.hxx
-// ./opencascade/TopOpeBRepDS_ListOfShapeOn1State.hxx
-// ./opencascade/TopOpeBRepDS_SurfaceIterator.hxx
-// ./opencascade/TopOpeBRepDS_ListIteratorOfListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_DoubleMapIteratorOfDoubleMapOfIntegerShape.hxx
-// ./opencascade/TopOpeBRepDS_DataStructure.hxx
-// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CurveData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfCurve");  
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfShapeSurface.hxx
-// ./opencascade/TopOpeBRepDS_define.hxx
-// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
     preregister_template_NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> >(m,"TopOpeBRepDS_ListOfInterference");  
-// ./opencascade/TopOpeBRepDS_Point.hxx
-// ./opencascade/TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_IndexedDataMapOfShapeWithState.hxx
-    preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_ShapeWithState, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_IndexedDataMapOfShapeWithState");  
-// ./opencascade/TopOpeBRepDS_Filter.hxx
-// ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_SurfaceData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfSurface");  
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfShapeState.hxx
-// ./opencascade/TopOpeBRepDS_ShapeShapeInterference.hxx
-// ./opencascade/TopOpeBRepDS_EIR.hxx
-// ./opencascade/TopOpeBRepDS_FIR.hxx
-// ./opencascade/TopOpeBRepDS_ShapeWithState.hxx
-// ./opencascade/TopOpeBRepDS_GapFiller.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfCurve.hxx
-// ./opencascade/TopOpeBRepDS_CurvePointInterference.hxx
-// ./opencascade/TopOpeBRepDS_FaceEdgeInterference.hxx
-// ./opencascade/TopOpeBRepDS_ProcessInterferencesTool.hxx
-// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
-    preregister_template_NCollection_DoubleMap<Standard_Integer, TopoDS_Shape, TColStd_MapIntegerHasher, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DoubleMapOfIntegerShape");  
-// ./opencascade/TopOpeBRepDS_CheckStatus.hxx
-// ./opencascade/TopOpeBRepDS_PointData.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
-    preregister_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceShape");  
-// ./opencascade/TopOpeBRepDS_IndexedDataMapOfVertexPoint.hxx
+    preregister_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State");  
+    preregister_template_NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference>(m,"TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference");  
     preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_Point, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_IndexedDataMapOfVertexPoint");  
-// ./opencascade/TopOpeBRepDS_CurveExplorer.hxx
-// ./opencascade/TopOpeBRepDS_samdom.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfPoint.hxx
-// ./opencascade/TopOpeBRepDS_PDataStructure.hxx
-// ./opencascade/TopOpeBRepDS.hxx
-// ./opencascade/TopOpeBRepDS_Edge3dInterferenceTool.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfShapeListOfShapeOn1State.hxx
-// ./opencascade/TopOpeBRepDS_Surface.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfCheckStatus.hxx
-// ./opencascade/TopOpeBRepDS_Config.hxx
-// ./opencascade/TopOpeBRepDS_InterferenceIterator.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
     preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CheckStatus, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_DataMapOfCheckStatus");  
-// ./opencascade/TopOpeBRepDS_EdgeInterferenceTool.hxx
-// ./opencascade/TopOpeBRepDS_InterferenceTool.hxx
+    preregister_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopOpeBRepDS_ListOfInterference, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceListOfInterference");  
+    preregister_template_NCollection_DataMap<TopoDS_Shape, TopAbs_State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeState");  
+    preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_ShapeWithState, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_IndexedDataMapOfShapeWithState");  
+    preregister_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceShape");  
+    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_PointData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfPoint");  
+    preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_ShapeData, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_MapOfShapeData");  
+    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ShapeData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfIntegerShapeData");  
+    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ListOfInterference, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_DataMapOfIntegerListOfInterference");  
+    preregister_template_NCollection_DoubleMap<Standard_Integer, TopoDS_Shape, TColStd_MapIntegerHasher, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DoubleMapOfIntegerShape");  
+    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CurveData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfCurve");  
+    preregister_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_SurfaceData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfSurface");  
+
+// classes forward declarations only
+    py::class_<TopOpeBRepDS , shared_ptr<TopOpeBRepDS>  >(m,"TopOpeBRepDS",R"#(This package provides services used by the TopOpeBRepBuild package performing topological operations on the BRep data structure.)#");
+    py::class_<TopOpeBRepDS_Association ,opencascade::handle<TopOpeBRepDS_Association>  , Standard_Transient >(m,"TopOpeBRepDS_Association",R"#()#");
+    py::class_<TopOpeBRepDS_BuildTool , shared_ptr<TopOpeBRepDS_BuildTool>  >(m,"TopOpeBRepDS_BuildTool",R"#(Provides a Tool to build topologies. Used to instantiate the Builder algorithm.)#");
+    py::class_<TopOpeBRepDS_Check ,opencascade::handle<TopOpeBRepDS_Check>  , Standard_Transient >(m,"TopOpeBRepDS_Check",R"#(a tool verifing integrity and structure of DSa tool verifing integrity and structure of DSa tool verifing integrity and structure of DS)#");
+    py::class_<TopOpeBRepDS_Curve , shared_ptr<TopOpeBRepDS_Curve>  >(m,"TopOpeBRepDS_Curve",R"#(A Geom curve and a tolerance.)#");
+    py::class_<TopOpeBRepDS_CurveExplorer , shared_ptr<TopOpeBRepDS_CurveExplorer>  >(m,"TopOpeBRepDS_CurveExplorer",R"#(None)#");
+    py::class_<TopOpeBRepDS_DataStructure , shared_ptr<TopOpeBRepDS_DataStructure>  >(m,"TopOpeBRepDS_DataStructure",R"#(The DataStructure stores :)#");
+    py::class_<TopOpeBRepDS_Dumper , shared_ptr<TopOpeBRepDS_Dumper>  >(m,"TopOpeBRepDS_Dumper",R"#(None)#");
+    py::class_<TopOpeBRepDS_EIR , shared_ptr<TopOpeBRepDS_EIR>  >(m,"TopOpeBRepDS_EIR",R"#(EdgeInterferenceReducer)#");
+    py::class_<TopOpeBRepDS_Edge3dInterferenceTool , shared_ptr<TopOpeBRepDS_Edge3dInterferenceTool>  >(m,"TopOpeBRepDS_Edge3dInterferenceTool",R"#(a tool computing edge / face complex transition, Interferences of edge reference are given by I = (T on face, G = point or vertex, S = edge))#");
+    py::class_<TopOpeBRepDS_EdgeInterferenceTool , shared_ptr<TopOpeBRepDS_EdgeInterferenceTool>  >(m,"TopOpeBRepDS_EdgeInterferenceTool",R"#(a tool computing complex transition on Edge.)#");
+    py::class_<TopOpeBRepDS_Explorer , shared_ptr<TopOpeBRepDS_Explorer>  >(m,"TopOpeBRepDS_Explorer",R"#(None)#");
+    py::class_<TopOpeBRepDS_FIR , shared_ptr<TopOpeBRepDS_FIR>  >(m,"TopOpeBRepDS_FIR",R"#(FaceInterferenceReducer)#");
+    py::class_<TopOpeBRepDS_FaceInterferenceTool , shared_ptr<TopOpeBRepDS_FaceInterferenceTool>  >(m,"TopOpeBRepDS_FaceInterferenceTool",R"#(a tool computing complex transition on Face.)#");
+    py::class_<TopOpeBRepDS_Filter , shared_ptr<TopOpeBRepDS_Filter>  >(m,"TopOpeBRepDS_Filter",R"#(None)#");
+    py::class_<TopOpeBRepDS_GapFiller , shared_ptr<TopOpeBRepDS_GapFiller>  >(m,"TopOpeBRepDS_GapFiller",R"#(None)#");
+    py::class_<TopOpeBRepDS_GapTool ,opencascade::handle<TopOpeBRepDS_GapTool>  , Standard_Transient >(m,"TopOpeBRepDS_GapTool",R"#()#");
+    py::class_<TopOpeBRepDS_GeometryData , shared_ptr<TopOpeBRepDS_GeometryData>  >(m,"TopOpeBRepDS_GeometryData",R"#(mother-class of SurfaceData, CurveData, PointData)#");
+    py::class_<TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference ,opencascade::handle<TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference>  , TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference , Standard_Transient >(m,"TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference",R"#()#");
+    py::class_<TopOpeBRepDS_HDataStructure ,opencascade::handle<TopOpeBRepDS_HDataStructure>  , Standard_Transient >(m,"TopOpeBRepDS_HDataStructure",R"#()#");
+    py::class_<TopOpeBRepDS_Interference ,opencascade::handle<TopOpeBRepDS_Interference>  , Standard_Transient >(m,"TopOpeBRepDS_Interference",R"#(An interference is the description of the attachment of a new geometry on a geometry. For example an intersection point on an Edge or on a Curve.An interference is the description of the attachment of a new geometry on a geometry. For example an intersection point on an Edge or on a Curve.An interference is the description of the attachment of a new geometry on a geometry. For example an intersection point on an Edge or on a Curve.)#");
+    py::class_<TopOpeBRepDS_InterferenceIterator , shared_ptr<TopOpeBRepDS_InterferenceIterator>  >(m,"TopOpeBRepDS_InterferenceIterator",R"#(Iterate on interferences of a list, matching conditions on interferences. Nota : inheritance of ListIteratorOfListOfInterference from TopOpeBRepDS has not been done because of the impossibility of naming the classical More, Next methods which are declared as static in TCollection_ListIteratorOfList ... . ListIteratorOfList has benn placed as a field of InterferenceIterator.)#");
+    py::class_<TopOpeBRepDS_InterferenceTool , shared_ptr<TopOpeBRepDS_InterferenceTool>  >(m,"TopOpeBRepDS_InterferenceTool",R"#(None)#");
+    py::class_<TopOpeBRepDS_ListOfShapeOn1State , shared_ptr<TopOpeBRepDS_ListOfShapeOn1State>  >(m,"TopOpeBRepDS_ListOfShapeOn1State",R"#(represent a list of shape)#");
+    py::class_<TopOpeBRepDS_Marker ,opencascade::handle<TopOpeBRepDS_Marker>  , Standard_Transient >(m,"TopOpeBRepDS_Marker",R"#()#");
+    py::class_<TopOpeBRepDS_Point , shared_ptr<TopOpeBRepDS_Point>  >(m,"TopOpeBRepDS_Point",R"#(A Geom point and a tolerance.)#");
+    py::class_<TopOpeBRepDS_PointExplorer , shared_ptr<TopOpeBRepDS_PointExplorer>  >(m,"TopOpeBRepDS_PointExplorer",R"#(None)#");
+    py::class_<TopOpeBRepDS_Reducer , shared_ptr<TopOpeBRepDS_Reducer>  >(m,"TopOpeBRepDS_Reducer",R"#(reduce interferences of a data structure (HDS) used in topological operations.)#");
+    py::class_<TopOpeBRepDS_ShapeData , shared_ptr<TopOpeBRepDS_ShapeData>  >(m,"TopOpeBRepDS_ShapeData",R"#(None)#");
+    py::class_<TopOpeBRepDS_ShapeWithState , shared_ptr<TopOpeBRepDS_ShapeWithState>  >(m,"TopOpeBRepDS_ShapeWithState",R"#(None)#");
+    py::class_<TopOpeBRepDS_Surface , shared_ptr<TopOpeBRepDS_Surface>  >(m,"TopOpeBRepDS_Surface",R"#(A Geom surface and a tolerance.)#");
+    py::class_<TopOpeBRepDS_SurfaceExplorer , shared_ptr<TopOpeBRepDS_SurfaceExplorer>  >(m,"TopOpeBRepDS_SurfaceExplorer",R"#(None)#");
+    py::class_<TopOpeBRepDS_TKI , shared_ptr<TopOpeBRepDS_TKI>  >(m,"TopOpeBRepDS_TKI",R"#(None)#");
+    py::class_<TopOpeBRepDS_TOOL , shared_ptr<TopOpeBRepDS_TOOL>  >(m,"TopOpeBRepDS_TOOL",R"#(None)#");
+    py::class_<TopOpeBRepDS_Transition , shared_ptr<TopOpeBRepDS_Transition>  >(m,"TopOpeBRepDS_Transition",R"#(None)#");
+    py::class_<TopOpeBRepDS_CurveData , shared_ptr<TopOpeBRepDS_CurveData>  , TopOpeBRepDS_GeometryData >(m,"TopOpeBRepDS_CurveData",R"#(None)#");
+    py::class_<TopOpeBRepDS_CurveIterator , shared_ptr<TopOpeBRepDS_CurveIterator>  , TopOpeBRepDS_InterferenceIterator >(m,"TopOpeBRepDS_CurveIterator",R"#(None)#");
+    py::class_<TopOpeBRepDS_CurvePointInterference ,opencascade::handle<TopOpeBRepDS_CurvePointInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_CurvePointInterference",R"#(An interference with a parameter.An interference with a parameter.An interference with a parameter.)#");
+    py::class_<TopOpeBRepDS_PointData , shared_ptr<TopOpeBRepDS_PointData>  , TopOpeBRepDS_GeometryData >(m,"TopOpeBRepDS_PointData",R"#(None)#");
+    py::class_<TopOpeBRepDS_PointIterator , shared_ptr<TopOpeBRepDS_PointIterator>  , TopOpeBRepDS_InterferenceIterator >(m,"TopOpeBRepDS_PointIterator",R"#(None)#");
+    py::class_<TopOpeBRepDS_ShapeShapeInterference ,opencascade::handle<TopOpeBRepDS_ShapeShapeInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_ShapeShapeInterference",R"#(InterferenceInterferenceInterference)#");
+    py::class_<TopOpeBRepDS_SolidSurfaceInterference ,opencascade::handle<TopOpeBRepDS_SolidSurfaceInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_SolidSurfaceInterference",R"#(InterferenceInterferenceInterference)#");
+    py::class_<TopOpeBRepDS_SurfaceCurveInterference ,opencascade::handle<TopOpeBRepDS_SurfaceCurveInterference>  , TopOpeBRepDS_Interference >(m,"TopOpeBRepDS_SurfaceCurveInterference",R"#(an interference with a 2d curvean interference with a 2d curvean interference with a 2d curve)#");
+    py::class_<TopOpeBRepDS_SurfaceData , shared_ptr<TopOpeBRepDS_SurfaceData>  , TopOpeBRepDS_GeometryData >(m,"TopOpeBRepDS_SurfaceData",R"#(None)#");
+    py::class_<TopOpeBRepDS_SurfaceIterator , shared_ptr<TopOpeBRepDS_SurfaceIterator>  , TopOpeBRepDS_InterferenceIterator >(m,"TopOpeBRepDS_SurfaceIterator",R"#(None)#");
+    py::class_<TopOpeBRepDS_EdgeVertexInterference ,opencascade::handle<TopOpeBRepDS_EdgeVertexInterference>  , TopOpeBRepDS_ShapeShapeInterference >(m,"TopOpeBRepDS_EdgeVertexInterference",R"#(An interference with a parameter (ShapeShapeInterference).An interference with a parameter (ShapeShapeInterference).An interference with a parameter (ShapeShapeInterference).)#");
+    py::class_<TopOpeBRepDS_FaceEdgeInterference ,opencascade::handle<TopOpeBRepDS_FaceEdgeInterference>  , TopOpeBRepDS_ShapeShapeInterference >(m,"TopOpeBRepDS_FaceEdgeInterference",R"#(ShapeShapeInterferenceShapeShapeInterferenceShapeShapeInterference)#");
 
 };
 

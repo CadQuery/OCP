@@ -41,11 +41,9 @@ py::module m = main_module.def_submodule("IntImp", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-
 // pre-register typdefs
-// ./opencascade/IntImp_ConstIsoparametric.hxx
-// ./opencascade/IntImp_ComputeTangence.hxx
+
+// classes forward declarations only
 
 };
 

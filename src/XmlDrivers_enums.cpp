@@ -19,9 +19,9 @@ namespace py = pybind11;
 #include <TDocStd_Application.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
+#include <XmlMDF_ADriver.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
-#include <XmlMDF_ADriver.hxx>
 
 // module includes
 #include <XmlDrivers.hxx>
@@ -48,15 +48,12 @@ py::module m = main_module.def_submodule("XmlDrivers", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
-    py::class_<XmlDrivers ,std::unique_ptr<XmlDrivers>  >(m,"XmlDrivers",R"#(None)#");
+    py::class_<XmlDrivers , shared_ptr<XmlDrivers>  >(m,"XmlDrivers",R"#(None)#");
     py::class_<XmlDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlDrivers_DocumentRetrievalDriver>  , XmlLDrivers_DocumentRetrievalDriver >(m,"XmlDrivers_DocumentRetrievalDriver",R"#()#");
     py::class_<XmlDrivers_DocumentStorageDriver ,opencascade::handle<XmlDrivers_DocumentStorageDriver>  , XmlLDrivers_DocumentStorageDriver >(m,"XmlDrivers_DocumentStorageDriver",R"#()#");
-
-// pre-register typdefs
-// ./opencascade/XmlDrivers.hxx
-// ./opencascade/XmlDrivers_DocumentStorageDriver.hxx
-// ./opencascade/XmlDrivers_DocumentRetrievalDriver.hxx
 
 };
 

@@ -35,11 +35,10 @@ py::module m = main_module.def_submodule("TopCnx", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TopCnx_EdgeFaceTransition ,std::unique_ptr<TopCnx_EdgeFaceTransition>  >(m,"TopCnx_EdgeFaceTransition",R"#(TheEdgeFaceTransition is an algorithm to compute the cumulated transition for interferences on an edge.)#");
-
 // pre-register typdefs
-// ./opencascade/TopCnx_EdgeFaceTransition.hxx
+
+// classes forward declarations only
+    py::class_<TopCnx_EdgeFaceTransition , shared_ptr<TopCnx_EdgeFaceTransition>  >(m,"TopCnx_EdgeFaceTransition",R"#(TheEdgeFaceTransition is an algorithm to compute the cumulated transition for interferences on an edge.)#");
 
 };
 

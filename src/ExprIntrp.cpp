@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,6 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Expr_GeneralRelation.hxx>
+#include <ExprIntrp_Generator.hxx>
 #include <ExprIntrp_Generator.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <ExprIntrp_Generator.hxx>
@@ -17,8 +22,6 @@ namespace py = pybind11;
 #include <ExprIntrp_GenFct.hxx>
 #include <ExprIntrp_GenRel.hxx>
 #include <ExprIntrp_Analysis.hxx>
-#include <ExprIntrp_Generator.hxx>
-#include <Expr_GeneralRelation.hxx>
 
 // module includes
 #include <ExprIntrp.hxx>
@@ -40,12 +43,6 @@ namespace py = pybind11;
 #include <ExprIntrp_yaccintrf.hxx>
 
 // template related includes
-// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
-#include "NCollection.hxx"
-// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
-#include "NCollection.hxx"
-// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
-#include "NCollection.hxx"
 // ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
 #include "NCollection.hxx"
 // ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
@@ -55,6 +52,12 @@ namespace py = pybind11;
 // ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
 #include "NCollection.hxx"
 // ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
+#include "NCollection.hxx"
+// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
+#include "NCollection.hxx"
+// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
+#include "NCollection.hxx"
+// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
 #include "NCollection.hxx"
 
 
@@ -74,46 +77,21 @@ py::module m = static_cast<py::module>(main_module.attr("ExprIntrp"));
 
 // classes
 
-    register_default_constructor<ExprIntrp ,std::unique_ptr<ExprIntrp>>(m,"ExprIntrp");
+    register_default_constructor<ExprIntrp , shared_ptr<ExprIntrp>>(m,"ExprIntrp");
 
-    static_cast<py::class_<ExprIntrp ,std::unique_ptr<ExprIntrp>  >>(m.attr("ExprIntrp"))
-;
-
-    register_default_constructor<ExprIntrp_Generator ,opencascade::handle<ExprIntrp_Generator>>(m,"ExprIntrp_Generator");
-
-    static_cast<py::class_<ExprIntrp_Generator ,opencascade::handle<ExprIntrp_Generator>  , Standard_Transient >>(m.attr("ExprIntrp_Generator"))
-        .def("Use",
-             (void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedFunction> &  ) ) static_cast<void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedFunction> &  ) >(&ExprIntrp_Generator::Use),
-             R"#(None)#"  , py::arg("func"))
-        .def("Use",
-             (void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedExpression> &  ) ) static_cast<void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedExpression> &  ) >(&ExprIntrp_Generator::Use),
-             R"#(None)#"  , py::arg("named"))
-        .def("GetNamed",
-             (const ExprIntrp_SequenceOfNamedExpression & (ExprIntrp_Generator::*)() const) static_cast<const ExprIntrp_SequenceOfNamedExpression & (ExprIntrp_Generator::*)() const>(&ExprIntrp_Generator::GetNamed),
-             R"#(None)#" )
-        .def("GetFunctions",
-             (const ExprIntrp_SequenceOfNamedFunction & (ExprIntrp_Generator::*)() const) static_cast<const ExprIntrp_SequenceOfNamedFunction & (ExprIntrp_Generator::*)() const>(&ExprIntrp_Generator::GetFunctions),
-             R"#(None)#" )
-        .def("GetNamed",
-             (opencascade::handle<Expr_NamedExpression> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const) static_cast<opencascade::handle<Expr_NamedExpression> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const>(&ExprIntrp_Generator::GetNamed),
-             R"#(Returns NamedExpression with name <name> already interpreted if it exists. Returns a null handle if not.)#"  , py::arg("name"))
-        .def("GetFunction",
-             (opencascade::handle<Expr_NamedFunction> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const) static_cast<opencascade::handle<Expr_NamedFunction> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const>(&ExprIntrp_Generator::GetFunction),
-             R"#(Returns NamedFunction with name <name> already interpreted if it exists. Returns a null handle if not.)#"  , py::arg("name"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ExprIntrp_Generator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ExprIntrp_Generator::*)() const>(&ExprIntrp_Generator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ExprIntrp_Generator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ExprIntrp_Generator::get_type_descriptor),
-                    R"#(None)#" )
+    static_cast<py::class_<ExprIntrp , shared_ptr<ExprIntrp>  >>(m.attr("ExprIntrp"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ExprIntrp_Analysis ,std::unique_ptr<ExprIntrp_Analysis>  >>(m.attr("ExprIntrp_Analysis"))
+    static_cast<py::class_<ExprIntrp_Analysis , shared_ptr<ExprIntrp_Analysis>  >>(m.attr("ExprIntrp_Analysis"))
         .def(py::init<  >()  )
+    // methods
         .def("SetMaster",
              (void (ExprIntrp_Analysis::*)( const opencascade::handle<ExprIntrp_Generator> &  ) ) static_cast<void (ExprIntrp_Analysis::*)( const opencascade::handle<ExprIntrp_Generator> &  ) >(&ExprIntrp_Analysis::SetMaster),
              R"#(None)#"  , py::arg("agen"))
@@ -168,34 +146,53 @@ py::module m = static_cast<py::module>(main_module.attr("ExprIntrp"));
         .def("GetFunction",
              (opencascade::handle<Expr_NamedFunction> (ExprIntrp_Analysis::*)( const TCollection_AsciiString &  ) ) static_cast<opencascade::handle<Expr_NamedFunction> (ExprIntrp_Analysis::*)( const TCollection_AsciiString &  ) >(&ExprIntrp_Analysis::GetFunction),
              R"#(None)#"  , py::arg("name"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<ExprIntrp_GenFct ,opencascade::handle<ExprIntrp_GenFct>>(m,"ExprIntrp_GenFct");
 
-    static_cast<py::class_<ExprIntrp_GenFct ,opencascade::handle<ExprIntrp_GenFct>  , ExprIntrp_Generator >>(m.attr("ExprIntrp_GenFct"))
-        .def("Process",
-             (void (ExprIntrp_GenFct::*)( const TCollection_AsciiString &  ) ) static_cast<void (ExprIntrp_GenFct::*)( const TCollection_AsciiString &  ) >(&ExprIntrp_GenFct::Process),
-             R"#(None)#"  , py::arg("str"))
-        .def("IsDone",
-             (Standard_Boolean (ExprIntrp_GenFct::*)() const) static_cast<Standard_Boolean (ExprIntrp_GenFct::*)() const>(&ExprIntrp_GenFct::IsDone),
+    static_cast<py::class_<ExprIntrp_Generator ,opencascade::handle<ExprIntrp_Generator>  , Standard_Transient >>(m.attr("ExprIntrp_Generator"))
+    // methods
+        .def("Use",
+             (void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedFunction> &  ) ) static_cast<void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedFunction> &  ) >(&ExprIntrp_Generator::Use),
+             R"#(None)#"  , py::arg("func"))
+        .def("Use",
+             (void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedExpression> &  ) ) static_cast<void (ExprIntrp_Generator::*)( const opencascade::handle<Expr_NamedExpression> &  ) >(&ExprIntrp_Generator::Use),
+             R"#(None)#"  , py::arg("named"))
+        .def("GetNamed",
+             (const ExprIntrp_SequenceOfNamedExpression & (ExprIntrp_Generator::*)() const) static_cast<const ExprIntrp_SequenceOfNamedExpression & (ExprIntrp_Generator::*)() const>(&ExprIntrp_Generator::GetNamed),
              R"#(None)#" )
+        .def("GetFunctions",
+             (const ExprIntrp_SequenceOfNamedFunction & (ExprIntrp_Generator::*)() const) static_cast<const ExprIntrp_SequenceOfNamedFunction & (ExprIntrp_Generator::*)() const>(&ExprIntrp_Generator::GetFunctions),
+             R"#(None)#" )
+        .def("GetNamed",
+             (opencascade::handle<Expr_NamedExpression> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const) static_cast<opencascade::handle<Expr_NamedExpression> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const>(&ExprIntrp_Generator::GetNamed),
+             R"#(Returns NamedExpression with name <name> already interpreted if it exists. Returns a null handle if not.)#"  , py::arg("name"))
+        .def("GetFunction",
+             (opencascade::handle<Expr_NamedFunction> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const) static_cast<opencascade::handle<Expr_NamedFunction> (ExprIntrp_Generator::*)( const TCollection_AsciiString &  ) const>(&ExprIntrp_Generator::GetFunction),
+             R"#(Returns NamedFunction with name <name> already interpreted if it exists. Returns a null handle if not.)#"  , py::arg("name"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ExprIntrp_GenFct::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ExprIntrp_GenFct::*)() const>(&ExprIntrp_GenFct::DynamicType),
+             (const opencascade::handle<Standard_Type> & (ExprIntrp_Generator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ExprIntrp_Generator::*)() const>(&ExprIntrp_Generator::DynamicType),
              R"#(None)#" )
-        .def_static("Create_s",
-                    (opencascade::handle<ExprIntrp_GenFct> (*)() ) static_cast<opencascade::handle<ExprIntrp_GenFct> (*)() >(&ExprIntrp_GenFct::Create),
-                    R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ExprIntrp_GenFct::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ExprIntrp_Generator::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ExprIntrp_GenFct::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ExprIntrp_Generator::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<ExprIntrp_GenExp ,opencascade::handle<ExprIntrp_GenExp>>(m,"ExprIntrp_GenExp");
 
     static_cast<py::class_<ExprIntrp_GenExp ,opencascade::handle<ExprIntrp_GenExp>  , ExprIntrp_Generator >>(m.attr("ExprIntrp_GenExp"))
+    // methods
         .def("Process",
              (void (ExprIntrp_GenExp::*)( const TCollection_AsciiString &  ) ) static_cast<void (ExprIntrp_GenExp::*)( const TCollection_AsciiString &  ) >(&ExprIntrp_GenExp::Process),
              R"#(Processes given string.)#"  , py::arg("str"))
@@ -208,6 +205,8 @@ py::module m = static_cast<py::module>(main_module.attr("ExprIntrp"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ExprIntrp_GenExp::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ExprIntrp_GenExp::*)() const>(&ExprIntrp_GenExp::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Create_s",
                     (opencascade::handle<ExprIntrp_GenExp> (*)() ) static_cast<opencascade::handle<ExprIntrp_GenExp> (*)() >(&ExprIntrp_GenExp::Create),
                     R"#(None)#" )
@@ -217,11 +216,42 @@ py::module m = static_cast<py::module>(main_module.attr("ExprIntrp"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ExprIntrp_GenExp::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<ExprIntrp_GenRel ,opencascade::handle<ExprIntrp_GenRel>>(m,"ExprIntrp_GenRel");
+
+    static_cast<py::class_<ExprIntrp_GenFct ,opencascade::handle<ExprIntrp_GenFct>  , ExprIntrp_Generator >>(m.attr("ExprIntrp_GenFct"))
+    // methods
+        .def("Process",
+             (void (ExprIntrp_GenFct::*)( const TCollection_AsciiString &  ) ) static_cast<void (ExprIntrp_GenFct::*)( const TCollection_AsciiString &  ) >(&ExprIntrp_GenFct::Process),
+             R"#(None)#"  , py::arg("str"))
+        .def("IsDone",
+             (Standard_Boolean (ExprIntrp_GenFct::*)() const) static_cast<Standard_Boolean (ExprIntrp_GenFct::*)() const>(&ExprIntrp_GenFct::IsDone),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ExprIntrp_GenFct::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ExprIntrp_GenFct::*)() const>(&ExprIntrp_GenFct::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Create_s",
+                    (opencascade::handle<ExprIntrp_GenFct> (*)() ) static_cast<opencascade::handle<ExprIntrp_GenFct> (*)() >(&ExprIntrp_GenFct::Create),
+                    R"#(None)#" )
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ExprIntrp_GenFct::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ExprIntrp_GenFct::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
 
     static_cast<py::class_<ExprIntrp_GenRel ,opencascade::handle<ExprIntrp_GenRel>  , ExprIntrp_Generator >>(m.attr("ExprIntrp_GenRel"))
+    // methods
         .def("Process",
              (void (ExprIntrp_GenRel::*)( const TCollection_AsciiString &  ) ) static_cast<void (ExprIntrp_GenRel::*)( const TCollection_AsciiString &  ) >(&ExprIntrp_GenRel::Process),
              R"#(Processes given string.)#"  , py::arg("str"))
@@ -234,6 +264,8 @@ py::module m = static_cast<py::module>(main_module.attr("ExprIntrp"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ExprIntrp_GenRel::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ExprIntrp_GenRel::*)() const>(&ExprIntrp_GenRel::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Create_s",
                     (opencascade::handle<ExprIntrp_GenRel> (*)() ) static_cast<opencascade::handle<ExprIntrp_GenRel> (*)() >(&ExprIntrp_GenRel::Create),
                     R"#(None)#" )
@@ -243,11 +275,26 @@ py::module m = static_cast<py::module>(main_module.attr("ExprIntrp"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ExprIntrp_GenRel::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/ExprIntrp.hxx
+// ./opencascade/ExprIntrp_GenExp.hxx
 // ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralRelation.hxx
+// ./opencascade/ExprIntrp_yaccanal.hxx
+// ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
+// ./opencascade/ExprIntrp_SequenceOfNamedExpression.hxx
+// ./opencascade/ExprIntrp_GenRel.hxx
+// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralExpression.hxx
+// ./opencascade/ExprIntrp_Analysis.hxx
+// ./opencascade/ExprIntrp_SyntaxError.hxx
+// ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
+// ./opencascade/ExprIntrp.hxx
+// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
+// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralFunction.hxx
+// ./opencascade/ExprIntrp_GenFct.hxx
 // ./opencascade/ExprIntrp_yaccintrf.hxx
     m.def("ExprIntrp_GetResult", 
           (const TCollection_AsciiString & (*)())  static_cast<const TCollection_AsciiString & (*)()>(&ExprIntrp_GetResult),
@@ -255,46 +302,17 @@ py::module m = static_cast<py::module>(main_module.attr("ExprIntrp"));
     m.def("ExprIntrp_GetDegree", 
           (int (*)())  static_cast<int (*)()>(&ExprIntrp_GetDegree),
           R"#(None)#" );
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralExpression.hxx
-// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
-// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
-// ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralFunction.hxx
-// ./opencascade/ExprIntrp_Analysis.hxx
-// ./opencascade/ExprIntrp_SequenceOfNamedExpression.hxx
-// ./opencascade/ExprIntrp_GenExp.hxx
-// ./opencascade/ExprIntrp_yaccanal.hxx
-// ./opencascade/ExprIntrp_GenFct.hxx
 // ./opencascade/ExprIntrp_Generator.hxx
-// ./opencascade/ExprIntrp_GenRel.hxx
-// ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
-// ./opencascade/ExprIntrp_SyntaxError.hxx
+// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ExprIntrp.hxx
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralRelation.hxx
-// ./opencascade/ExprIntrp_yaccintrf.hxx
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralExpression.hxx
-// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
-    register_template_NCollection_Sequence<opencascade::handle<Expr_NamedFunction> >(m,"ExprIntrp_SequenceOfNamedFunction");  
-// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
-    register_template_NCollection_List<opencascade::handle<Expr_GeneralExpression> >(m,"ExprIntrp_StackOfGeneralExpression");  
-// ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
     register_template_NCollection_List<opencascade::handle<Expr_GeneralRelation> >(m,"ExprIntrp_StackOfGeneralRelation");  
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralFunction.hxx
-// ./opencascade/ExprIntrp_Analysis.hxx
-// ./opencascade/ExprIntrp_SequenceOfNamedExpression.hxx
     register_template_NCollection_Sequence<opencascade::handle<Expr_NamedExpression> >(m,"ExprIntrp_SequenceOfNamedExpression");  
-// ./opencascade/ExprIntrp_GenExp.hxx
-// ./opencascade/ExprIntrp_yaccanal.hxx
-// ./opencascade/ExprIntrp_GenFct.hxx
-// ./opencascade/ExprIntrp_Generator.hxx
-// ./opencascade/ExprIntrp_GenRel.hxx
-// ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
     register_template_NCollection_List<opencascade::handle<Expr_GeneralFunction> >(m,"ExprIntrp_StackOfGeneralFunction");  
-// ./opencascade/ExprIntrp_SyntaxError.hxx
+    register_template_NCollection_List<opencascade::handle<Expr_GeneralExpression> >(m,"ExprIntrp_StackOfGeneralExpression");  
+    register_template_NCollection_Sequence<opencascade::handle<Expr_NamedFunction> >(m,"ExprIntrp_SequenceOfNamedFunction");  
 
 
 // exceptions

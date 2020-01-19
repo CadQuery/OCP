@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -43,32 +46,76 @@ py::module m = static_cast<py::module>(main_module.attr("BinTObjDrivers"));
 
 // classes
 
+    register_default_constructor<BinTObjDrivers , shared_ptr<BinTObjDrivers>>(m,"BinTObjDrivers");
 
-    static_cast<py::class_<BinTObjDrivers_ReferenceDriver ,opencascade::handle<BinTObjDrivers_ReferenceDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_ReferenceDriver"))
-        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (BinTObjDrivers_ReferenceDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_ReferenceDriver::*)() const>(&BinTObjDrivers_ReferenceDriver::NewEmpty),
-             R"#(None)#" )
-        .def("Paste",
-             (Standard_Boolean (BinTObjDrivers_ReferenceDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (BinTObjDrivers_ReferenceDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const>(&BinTObjDrivers_ReferenceDriver::Paste),
-             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
-        .def("Paste",
-             (void (BinTObjDrivers_ReferenceDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (BinTObjDrivers_ReferenceDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&BinTObjDrivers_ReferenceDriver::Paste),
-             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
+    static_cast<py::class_<BinTObjDrivers , shared_ptr<BinTObjDrivers>  >>(m.attr("BinTObjDrivers"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Factory_s",
+                    (const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) ) static_cast<const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) >(&BinTObjDrivers::Factory),
+                    R"#(None)#"  , py::arg("aGUID"))
+        .def_static("DefineFormat_s",
+                    (void (*)( const opencascade::handle<TDocStd_Application> &  ) ) static_cast<void (*)( const opencascade::handle<TDocStd_Application> &  ) >(&BinTObjDrivers::DefineFormat),
+                    R"#(Defines format "TObjBin" and registers its read and write drivers in the specified application)#"  , py::arg("theApp"))
+        .def_static("AddDrivers_s",
+                    (void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) >(&BinTObjDrivers::AddDrivers),
+                    R"#(None)#"  , py::arg("aDriverTable"),  py::arg("aMsgDrv"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BinTObjDrivers_DocumentRetrievalDriver ,opencascade::handle<BinTObjDrivers_DocumentRetrievalDriver>  , BinLDrivers_DocumentRetrievalDriver >>(m.attr("BinTObjDrivers_DocumentRetrievalDriver"))
+        .def(py::init<  >()  )
+    // methods
+        .def("AttributeDrivers",
+             (opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinTObjDrivers_DocumentRetrievalDriver::AttributeDrivers),
+             R"#(None)#"  , py::arg("theMsgDriver"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_ReferenceDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_ReferenceDriver::*)() const>(&BinTObjDrivers_ReferenceDriver::DynamicType),
+             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentRetrievalDriver::*)() const>(&BinTObjDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_ReferenceDriver::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_DocumentRetrievalDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_ReferenceDriver::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_DocumentRetrievalDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BinTObjDrivers_DocumentStorageDriver ,opencascade::handle<BinTObjDrivers_DocumentStorageDriver>  , BinLDrivers_DocumentStorageDriver >>(m.attr("BinTObjDrivers_DocumentStorageDriver"))
+        .def(py::init<  >()  )
+    // methods
+        .def("AttributeDrivers",
+             (opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinTObjDrivers_DocumentStorageDriver::AttributeDrivers),
+             R"#(None)#"  , py::arg("theMsgDriver"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentStorageDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentStorageDriver::*)() const>(&BinTObjDrivers_DocumentStorageDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_DocumentStorageDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_DocumentStorageDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BinTObjDrivers_IntSparseArrayDriver ,opencascade::handle<BinTObjDrivers_IntSparseArrayDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_IntSparseArrayDriver"))
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinTObjDrivers_IntSparseArrayDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_IntSparseArrayDriver::*)() const>(&BinTObjDrivers_IntSparseArrayDriver::NewEmpty),
              R"#(None)#" )
@@ -81,97 +128,23 @@ py::module m = static_cast<py::module>(main_module.attr("BinTObjDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BinTObjDrivers_IntSparseArrayDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_IntSparseArrayDriver::*)() const>(&BinTObjDrivers_IntSparseArrayDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_IntSparseArrayDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_IntSparseArrayDriver::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BinTObjDrivers_DocumentStorageDriver ,opencascade::handle<BinTObjDrivers_DocumentStorageDriver>  , BinLDrivers_DocumentStorageDriver >>(m.attr("BinTObjDrivers_DocumentStorageDriver"))
-        .def(py::init<  >()  )
-        .def("AttributeDrivers",
-             (opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinTObjDrivers_DocumentStorageDriver::AttributeDrivers),
-             R"#(None)#"  , py::arg("theMsgDriver"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentStorageDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentStorageDriver::*)() const>(&BinTObjDrivers_DocumentStorageDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_DocumentStorageDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_DocumentStorageDriver::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BinTObjDrivers_XYZDriver ,opencascade::handle<BinTObjDrivers_XYZDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_XYZDriver"))
-        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (BinTObjDrivers_XYZDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_XYZDriver::*)() const>(&BinTObjDrivers_XYZDriver::NewEmpty),
-             R"#(None)#" )
-        .def("Paste",
-             (Standard_Boolean (BinTObjDrivers_XYZDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (BinTObjDrivers_XYZDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const>(&BinTObjDrivers_XYZDriver::Paste),
-             R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
-        .def("Paste",
-             (void (BinTObjDrivers_XYZDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (BinTObjDrivers_XYZDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&BinTObjDrivers_XYZDriver::Paste),
-             R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_XYZDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_XYZDriver::*)() const>(&BinTObjDrivers_XYZDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_XYZDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_XYZDriver::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BinTObjDrivers_DocumentRetrievalDriver ,opencascade::handle<BinTObjDrivers_DocumentRetrievalDriver>  , BinLDrivers_DocumentRetrievalDriver >>(m.attr("BinTObjDrivers_DocumentRetrievalDriver"))
-        .def(py::init<  >()  )
-        .def("AttributeDrivers",
-             (opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinTObjDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinTObjDrivers_DocumentRetrievalDriver::AttributeDrivers),
-             R"#(None)#"  , py::arg("theMsgDriver"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_DocumentRetrievalDriver::*)() const>(&BinTObjDrivers_DocumentRetrievalDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_DocumentRetrievalDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_DocumentRetrievalDriver::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BinTObjDrivers_ObjectDriver ,opencascade::handle<BinTObjDrivers_ObjectDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_ObjectDriver"))
-        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (BinTObjDrivers_ObjectDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_ObjectDriver::*)() const>(&BinTObjDrivers_ObjectDriver::NewEmpty),
-             R"#(None)#" )
-        .def("Paste",
-             (Standard_Boolean (BinTObjDrivers_ObjectDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (BinTObjDrivers_ObjectDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const>(&BinTObjDrivers_ObjectDriver::Paste),
-             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
-        .def("Paste",
-             (void (BinTObjDrivers_ObjectDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (BinTObjDrivers_ObjectDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&BinTObjDrivers_ObjectDriver::Paste),
-             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_ObjectDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_ObjectDriver::*)() const>(&BinTObjDrivers_ObjectDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_ObjectDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_ObjectDriver::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BinTObjDrivers_ModelDriver ,opencascade::handle<BinTObjDrivers_ModelDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_ModelDriver"))
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinTObjDrivers_ModelDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_ModelDriver::*)() const>(&BinTObjDrivers_ModelDriver::NewEmpty),
              R"#(None)#" )
@@ -184,35 +157,119 @@ py::module m = static_cast<py::module>(main_module.attr("BinTObjDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BinTObjDrivers_ModelDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_ModelDriver::*)() const>(&BinTObjDrivers_ModelDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_ModelDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_ModelDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BinTObjDrivers_ObjectDriver ,opencascade::handle<BinTObjDrivers_ObjectDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_ObjectDriver"))
+        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (BinTObjDrivers_ObjectDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_ObjectDriver::*)() const>(&BinTObjDrivers_ObjectDriver::NewEmpty),
+             R"#(None)#" )
+        .def("Paste",
+             (Standard_Boolean (BinTObjDrivers_ObjectDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (BinTObjDrivers_ObjectDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const>(&BinTObjDrivers_ObjectDriver::Paste),
+             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
+        .def("Paste",
+             (void (BinTObjDrivers_ObjectDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (BinTObjDrivers_ObjectDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&BinTObjDrivers_ObjectDriver::Paste),
+             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_ObjectDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_ObjectDriver::*)() const>(&BinTObjDrivers_ObjectDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_ObjectDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_ObjectDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BinTObjDrivers_ReferenceDriver ,opencascade::handle<BinTObjDrivers_ReferenceDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_ReferenceDriver"))
+        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (BinTObjDrivers_ReferenceDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_ReferenceDriver::*)() const>(&BinTObjDrivers_ReferenceDriver::NewEmpty),
+             R"#(None)#" )
+        .def("Paste",
+             (Standard_Boolean (BinTObjDrivers_ReferenceDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (BinTObjDrivers_ReferenceDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const>(&BinTObjDrivers_ReferenceDriver::Paste),
+             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
+        .def("Paste",
+             (void (BinTObjDrivers_ReferenceDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (BinTObjDrivers_ReferenceDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&BinTObjDrivers_ReferenceDriver::Paste),
+             R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_ReferenceDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_ReferenceDriver::*)() const>(&BinTObjDrivers_ReferenceDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_ReferenceDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_ReferenceDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BinTObjDrivers_XYZDriver ,opencascade::handle<BinTObjDrivers_XYZDriver>  , BinMDF_ADriver >>(m.attr("BinTObjDrivers_XYZDriver"))
+        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (BinTObjDrivers_XYZDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinTObjDrivers_XYZDriver::*)() const>(&BinTObjDrivers_XYZDriver::NewEmpty),
+             R"#(None)#" )
+        .def("Paste",
+             (Standard_Boolean (BinTObjDrivers_XYZDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (BinTObjDrivers_XYZDriver::*)( const BinObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_RRelocationTable &  ) const>(&BinTObjDrivers_XYZDriver::Paste),
+             R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
+        .def("Paste",
+             (void (BinTObjDrivers_XYZDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (BinTObjDrivers_XYZDriver::*)( const opencascade::handle<TDF_Attribute> & ,  BinObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&BinTObjDrivers_XYZDriver::Paste),
+             R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BinTObjDrivers_XYZDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinTObjDrivers_XYZDriver::*)() const>(&BinTObjDrivers_XYZDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BinTObjDrivers_XYZDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinTObjDrivers_XYZDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BinTObjDrivers_ReferenceDriver.hxx
-// ./opencascade/BinTObjDrivers_XYZDriver.hxx
 // ./opencascade/BinTObjDrivers_IntSparseArrayDriver.hxx
-// ./opencascade/BinTObjDrivers_ObjectDriver.hxx
+// ./opencascade/BinTObjDrivers_ReferenceDriver.hxx
 // ./opencascade/BinTObjDrivers.hxx
-// ./opencascade/BinTObjDrivers_DocumentRetrievalDriver.hxx
 // ./opencascade/BinTObjDrivers_DocumentStorageDriver.hxx
+// ./opencascade/BinTObjDrivers_DocumentRetrievalDriver.hxx
 // ./opencascade/BinTObjDrivers_ModelDriver.hxx
+// ./opencascade/BinTObjDrivers_XYZDriver.hxx
+// ./opencascade/BinTObjDrivers_ObjectDriver.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BinTObjDrivers_ReferenceDriver.hxx
-// ./opencascade/BinTObjDrivers_XYZDriver.hxx
-// ./opencascade/BinTObjDrivers_IntSparseArrayDriver.hxx
-// ./opencascade/BinTObjDrivers_ObjectDriver.hxx
-// ./opencascade/BinTObjDrivers.hxx
-// ./opencascade/BinTObjDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/BinTObjDrivers_DocumentStorageDriver.hxx
-// ./opencascade/BinTObjDrivers_ModelDriver.hxx
 
 
 // exceptions

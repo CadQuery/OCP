@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -50,18 +53,24 @@ py::module m = static_cast<py::module>(main_module.attr("IntStart"));
 
 
     static_cast<py::class_<IntStart_SITopolTool ,opencascade::handle<IntStart_SITopolTool> ,Py_IntStart_SITopolTool , Standard_Transient >>(m.attr("IntStart_SITopolTool"))
+    // methods
         .def("Classify",
              (TopAbs_State (IntStart_SITopolTool::*)( const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<TopAbs_State (IntStart_SITopolTool::*)( const gp_Pnt2d & ,  const Standard_Real  ) >(&IntStart_SITopolTool::Classify),
              R"#(None)#"  , py::arg("P"),  py::arg("Tol"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IntStart_SITopolTool::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IntStart_SITopolTool::*)() const>(&IntStart_SITopolTool::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&IntStart_SITopolTool::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&IntStart_SITopolTool::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -70,7 +79,6 @@ py::module m = static_cast<py::module>(main_module.attr("IntStart"));
 // operators
 
 // register typdefs
-// ./opencascade/IntStart_SITopolTool.hxx
 
 
 // exceptions

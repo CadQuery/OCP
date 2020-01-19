@@ -15,19 +15,19 @@ namespace py = pybind11;
 
 // module includes
 #include <CSLib_DerivativeStatus.hxx>
+#include <CSLib_NormalStatus.hxx>
 #include <CSLib.hxx>
 #include <CSLib_NormalPolyDef.hxx>
 #include <CSLib_Class2d.hxx>
-#include <CSLib_NormalStatus.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
 // ./opencascade/CSLib_DerivativeStatus.hxx
+// ./opencascade/CSLib_NormalStatus.hxx
 // ./opencascade/CSLib.hxx
 // ./opencascade/CSLib_NormalPolyDef.hxx
 // ./opencascade/CSLib_Class2d.hxx
-// ./opencascade/CSLib_NormalStatus.hxx
 
 // user-defined post

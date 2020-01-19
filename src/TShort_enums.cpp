@@ -21,11 +21,11 @@ namespace py = pybind11;
 #include <TShort_SequenceOfShortReal.hxx>
 
 // template related includes
+// ./opencascade/TShort_Array1OfShortReal.hxx
+#include "NCollection.hxx"
 // ./opencascade/TShort_SequenceOfShortReal.hxx
 #include "NCollection.hxx"
 // ./opencascade/TShort_Array2OfShortReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TShort_Array1OfShortReal.hxx
 #include "NCollection.hxx"
 
 
@@ -46,21 +46,15 @@ py::module m = main_module.def_submodule("TShort", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TShort_HSequenceOfShortReal ,std::unique_ptr<TShort_HSequenceOfShortReal>  >(m,"TShort_HSequenceOfShortReal",R"#()#");
-    py::class_<TShort_HArray1OfShortReal ,std::unique_ptr<TShort_HArray1OfShortReal>  >(m,"TShort_HArray1OfShortReal",R"#()#");
-    py::class_<TShort_HArray2OfShortReal ,std::unique_ptr<TShort_HArray2OfShortReal>  >(m,"TShort_HArray2OfShortReal",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/TShort_SequenceOfShortReal.hxx
-    preregister_template_NCollection_Sequence<Standard_ShortReal>(m,"TShort_SequenceOfShortReal");  
-// ./opencascade/TShort_HSequenceOfShortReal.hxx
-// ./opencascade/TShort_Array2OfShortReal.hxx
-    preregister_template_NCollection_Array2<Standard_ShortReal>(m,"TShort_Array2OfShortReal");  
-// ./opencascade/TShort_Array1OfShortReal.hxx
     preregister_template_NCollection_Array1<Standard_ShortReal>(m,"TShort_Array1OfShortReal");  
-// ./opencascade/TShort_HArray2OfShortReal.hxx
-// ./opencascade/TShort_HArray1OfShortReal.hxx
+    preregister_template_NCollection_Sequence<Standard_ShortReal>(m,"TShort_SequenceOfShortReal");  
+    preregister_template_NCollection_Array2<Standard_ShortReal>(m,"TShort_Array2OfShortReal");  
+
+// classes forward declarations only
+    py::class_<TShort_HArray1OfShortReal ,opencascade::handle<TShort_HArray1OfShortReal>  , TShort_Array1OfShortReal , Standard_Transient >(m,"TShort_HArray1OfShortReal",R"#()#");
+    py::class_<TShort_HArray2OfShortReal ,opencascade::handle<TShort_HArray2OfShortReal>  , TShort_Array2OfShortReal , Standard_Transient >(m,"TShort_HArray2OfShortReal",R"#()#");
+    py::class_<TShort_HSequenceOfShortReal ,opencascade::handle<TShort_HSequenceOfShortReal>  , TShort_SequenceOfShortReal , Standard_Transient >(m,"TShort_HSequenceOfShortReal",R"#()#");
 
 };
 

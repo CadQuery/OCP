@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,10 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IGESData_IGESEntity.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Face.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopoDS_Vertex.hxx>
@@ -28,6 +27,10 @@ namespace py = pybind11;
 #include <TopoDS_Solid.hxx>
 #include <TopoDS_CompSolid.hxx>
 #include <TopoDS_Compound.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Shell.hxx>
+#include <TopoDS_Face.hxx>
 #include <IGESData_IGESModel.hxx>
 #include <Transfer_FinderProcess.hxx>
 #include <IGESData_IGESEntity.hxx>
@@ -59,8 +62,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
 // classes
 
 
-    static_cast<py::class_<BRepToIGES_BREntity ,std::unique_ptr<BRepToIGES_BREntity>  >>(m.attr("BRepToIGES_BREntity"))
+    static_cast<py::class_<BRepToIGES_BREntity , shared_ptr<BRepToIGES_BREntity>  >>(m.attr("BRepToIGES_BREntity"))
         .def(py::init<  >()  )
+    // methods
         .def("Init",
              (void (BRepToIGES_BREntity::*)() ) static_cast<void (BRepToIGES_BREntity::*)() >(&BRepToIGES_BREntity::Init),
              R"#(Initializes the field of the tool BREntity with default creating values.)#" )
@@ -118,12 +122,18 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
         .def("GetPCurveMode",
              (Standard_Boolean (BRepToIGES_BREntity::*)() const) static_cast<Standard_Boolean (BRepToIGES_BREntity::*)() const>(&BRepToIGES_BREntity::GetPCurveMode),
              R"#(Returns mode for writing pcurves (value of parameter write.surfacecurve.mode))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepToIGES_BRShell ,std::unique_ptr<BRepToIGES_BRShell>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRShell"))
+    static_cast<py::class_<BRepToIGES_BRShell , shared_ptr<BRepToIGES_BRShell>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRShell"))
         .def(py::init<  >()  )
         .def(py::init< const BRepToIGES_BREntity & >()  , py::arg("BR") )
+    // methods
         .def("TransferShell",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRShell::*)( const TopoDS_Shape &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRShell::*)( const TopoDS_Shape &  ) >(&BRepToIGES_BRShell::TransferShell),
              R"#(Transfert an Shape entity from TopoDS to IGES This entity must be a Face or a Shell. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
@@ -133,12 +143,18 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
         .def("TransferFace",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRShell::*)( const TopoDS_Face &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRShell::*)( const TopoDS_Face &  ) >(&BRepToIGES_BRShell::TransferFace),
              R"#(Transfert a Face entity from TopoDS to IGES If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepToIGES_BRSolid ,std::unique_ptr<BRepToIGES_BRSolid>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRSolid"))
+    static_cast<py::class_<BRepToIGES_BRSolid , shared_ptr<BRepToIGES_BRSolid>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRSolid"))
         .def(py::init<  >()  )
         .def(py::init< const BRepToIGES_BREntity & >()  , py::arg("BR") )
+    // methods
         .def("TransferSolid",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRSolid::*)( const TopoDS_Shape &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRSolid::*)( const TopoDS_Shape &  ) >(&BRepToIGES_BRSolid::TransferSolid),
              R"#(Transfert a Shape entity from TopoDS to IGES this entity must be a Solid or a CompSolid or a Compound. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
@@ -151,12 +167,18 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
         .def("TransferCompound",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRSolid::*)( const TopoDS_Compound &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRSolid::*)( const TopoDS_Compound &  ) >(&BRepToIGES_BRSolid::TransferCompound),
              R"#(Transfert a Compound entity from TopoDS to IGES If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepToIGES_BRWire ,std::unique_ptr<BRepToIGES_BRWire>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRWire"))
+    static_cast<py::class_<BRepToIGES_BRWire , shared_ptr<BRepToIGES_BRWire>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRWire"))
         .def(py::init<  >()  )
         .def(py::init< const BRepToIGES_BREntity & >()  , py::arg("BR") )
+    // methods
         .def("TransferWire",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRWire::*)( const TopoDS_Shape &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRWire::*)( const TopoDS_Shape &  ) >(&BRepToIGES_BRWire::TransferWire),
              R"#(Transfert a Shape entity from TopoDS to IGES this entity must be a Vertex or an Edge or a Wire. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
@@ -187,21 +209,22 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
         .def("TransferWire",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRWire::*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRWire::*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real  ) >(&BRepToIGES_BRWire::TransferWire),
              R"#(Transfert a Wire entity from TopoDS to IGES. Returns the curve associated to mywire in the parametric space of myface. If this Entity could not be converted, this member returns a NullEntity. Parameter IsRevol is not used anymore)#"  , py::arg("mywire"),  py::arg("myface"),  py::arg("mycurve2d"),  py::arg("length"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BRepToIGES_BRShell.hxx
 // ./opencascade/BRepToIGES_BRWire.hxx
 // ./opencascade/BRepToIGES_BRSolid.hxx
+// ./opencascade/BRepToIGES_BRShell.hxx
 // ./opencascade/BRepToIGES_BREntity.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepToIGES_BRShell.hxx
-// ./opencascade/BRepToIGES_BRWire.hxx
-// ./opencascade/BRepToIGES_BRSolid.hxx
-// ./opencascade/BRepToIGES_BREntity.hxx
 
 
 // exceptions

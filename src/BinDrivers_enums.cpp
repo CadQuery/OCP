@@ -52,16 +52,12 @@ py::module m = main_module.def_submodule("BinDrivers", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
-    py::class_<BinDrivers ,std::unique_ptr<BinDrivers>  >(m,"BinDrivers",R"#(None)#");
+    py::class_<BinDrivers , shared_ptr<BinDrivers>  >(m,"BinDrivers",R"#(None)#");
     py::class_<BinDrivers_DocumentRetrievalDriver ,opencascade::handle<BinDrivers_DocumentRetrievalDriver>  , BinLDrivers_DocumentRetrievalDriver >(m,"BinDrivers_DocumentRetrievalDriver",R"#()#");
     py::class_<BinDrivers_DocumentStorageDriver ,opencascade::handle<BinDrivers_DocumentStorageDriver>  , BinLDrivers_DocumentStorageDriver >(m,"BinDrivers_DocumentStorageDriver",R"#(persistent implemention of storage a document in a binary filepersistent implemention of storage a document in a binary filepersistent implemention of storage a document in a binary file)#");
-
-// pre-register typdefs
-// ./opencascade/BinDrivers.hxx
-// ./opencascade/BinDrivers_Marker.hxx
-// ./opencascade/BinDrivers_DocumentStorageDriver.hxx
-// ./opencascade/BinDrivers_DocumentRetrievalDriver.hxx
 
 };
 

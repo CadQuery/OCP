@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -42,28 +45,19 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAbs"));
 // classes
 
 // functions
+// ./opencascade/GeomAbs_JoinType.hxx
+// ./opencascade/GeomAbs_SurfaceForm.hxx
 // ./opencascade/GeomAbs_SurfaceType.hxx
 // ./opencascade/GeomAbs_Shape.hxx
 // ./opencascade/GeomAbs_CurveForm.hxx
-// ./opencascade/GeomAbs_JoinType.hxx
 // ./opencascade/GeomAbs_UVSense.hxx
-// ./opencascade/GeomAbs_CurveType.hxx
-// ./opencascade/GeomAbs_IsoType.hxx
-// ./opencascade/GeomAbs_SurfaceForm.hxx
 // ./opencascade/GeomAbs_BSplKnotDistribution.hxx
+// ./opencascade/GeomAbs_IsoType.hxx
+// ./opencascade/GeomAbs_CurveType.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/GeomAbs_SurfaceType.hxx
-// ./opencascade/GeomAbs_Shape.hxx
-// ./opencascade/GeomAbs_CurveForm.hxx
-// ./opencascade/GeomAbs_JoinType.hxx
-// ./opencascade/GeomAbs_UVSense.hxx
-// ./opencascade/GeomAbs_CurveType.hxx
-// ./opencascade/GeomAbs_IsoType.hxx
-// ./opencascade/GeomAbs_SurfaceForm.hxx
-// ./opencascade/GeomAbs_BSplKnotDistribution.hxx
 
 
 // exceptions

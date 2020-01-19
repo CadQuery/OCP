@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,6 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_Representation.hxx>
 #include <StepBasic_Action.hxx>
 #include <StepBasic_Address.hxx>
 #include <StepBasic_ApplicationContext.hxx>
@@ -38,8 +43,6 @@ namespace py = pybind11;
 #include <StepRepr_PropertyDefinitionRelationship.hxx>
 #include <StepRepr_ShapeAspect.hxx>
 #include <StepRepr_ShapeAspectRelationship.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepRepr_Representation.hxx>
 #include <TCollection_HAsciiString.hxx>
 
 // module includes
@@ -70,8 +73,44 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP242"));
 // classes
 
 
-    static_cast<py::class_<StepAP242_IdAttributeSelect ,std::unique_ptr<StepAP242_IdAttributeSelect>  , StepData_SelectType >>(m.attr("StepAP242_IdAttributeSelect"))
+    static_cast<py::class_<StepAP242_IdAttribute ,opencascade::handle<StepAP242_IdAttribute>  , Standard_Transient >>(m.attr("StepAP242_IdAttribute"))
         .def(py::init<  >()  )
+    // methods
+        .def("Init",
+             (void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepAP242_IdAttributeSelect &  ) ) static_cast<void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepAP242_IdAttributeSelect &  ) >(&StepAP242_IdAttribute::Init),
+             R"#(Init all field own and inherited)#"  , py::arg("theAttributeValue"),  py::arg("theIdentifiedItem"))
+        .def("SetAttributeValue",
+             (void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepAP242_IdAttribute::SetAttributeValue),
+             R"#(None)#"  , py::arg("theAttributeValue"))
+        .def("AttributeValue",
+             (opencascade::handle<TCollection_HAsciiString> (StepAP242_IdAttribute::*)() const) static_cast<opencascade::handle<TCollection_HAsciiString> (StepAP242_IdAttribute::*)() const>(&StepAP242_IdAttribute::AttributeValue),
+             R"#(Returns field AttributeValue)#" )
+        .def("SetIdentifiedItem",
+             (void (StepAP242_IdAttribute::*)( const StepAP242_IdAttributeSelect &  ) ) static_cast<void (StepAP242_IdAttribute::*)( const StepAP242_IdAttributeSelect &  ) >(&StepAP242_IdAttribute::SetIdentifiedItem),
+             R"#(Set field IdentifiedItem)#"  , py::arg("theIdentifiedItem"))
+        .def("IdentifiedItem",
+             (StepAP242_IdAttributeSelect (StepAP242_IdAttribute::*)() const) static_cast<StepAP242_IdAttributeSelect (StepAP242_IdAttribute::*)() const>(&StepAP242_IdAttribute::IdentifiedItem),
+             R"#(Returns IdentifiedItem)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP242_IdAttribute::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP242_IdAttribute::*)() const>(&StepAP242_IdAttribute::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP242_IdAttribute::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP242_IdAttribute::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<StepAP242_IdAttributeSelect , shared_ptr<StepAP242_IdAttributeSelect>  , StepData_SelectType >>(m.attr("StepAP242_IdAttributeSelect"))
+        .def(py::init<  >()  )
+    // methods
         .def("CaseNum",
              (Standard_Integer (StepAP242_IdAttributeSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepAP242_IdAttributeSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepAP242_IdAttributeSelect::CaseNum),
              R"#(Recognizes a IdAttributeSelect Kind Entity that is : 1 -> Action 2 -> Address 3 -> ApplicationContext 4 -> DimensionalSize 5 -> GeometricTolerance 6 -> Group 7 -> Reserved for OrganizatonalProject (not implemented in OCCT) 8 -> ProductCategory 9 -> PropertyDefinition 10 -> Representation 11 -> ShapeAspect 12 -> ShapeAspectRelationship 0 else)#"  , py::arg("ent"))
@@ -108,11 +147,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP242"));
         .def("ShapeAspectRelationship",
              (opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP242_IdAttributeSelect::*)() const) static_cast<opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP242_IdAttributeSelect::*)() const>(&StepAP242_IdAttributeSelect::ShapeAspectRelationship),
              R"#(returns Value as a ShapeAspectRelationship (Null if another type))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<StepAP242_ItemIdentifiedRepresentationUsage ,opencascade::handle<StepAP242_ItemIdentifiedRepresentationUsage>  , Standard_Transient >>(m.attr("StepAP242_ItemIdentifiedRepresentationUsage"))
         .def(py::init<  >()  )
+    // methods
         .def("Init",
              (void (StepAP242_ItemIdentifiedRepresentationUsage::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepAP242_ItemIdentifiedRepresentationUsageDefinition & ,  const opencascade::handle<StepRepr_Representation> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> &  ) ) static_cast<void (StepAP242_ItemIdentifiedRepresentationUsage::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepAP242_ItemIdentifiedRepresentationUsageDefinition & ,  const opencascade::handle<StepRepr_Representation> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> &  ) >(&StepAP242_ItemIdentifiedRepresentationUsage::Init),
              R"#(Init all fields own and inherited)#"  , py::arg("theName"),  py::arg("theDescription"),  py::arg("theDefinition"),  py::arg("theUsedRepresentation"),  py::arg("theIdentifiedItem"))
@@ -158,74 +203,23 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP242"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepAP242_ItemIdentifiedRepresentationUsage::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP242_ItemIdentifiedRepresentationUsage::*)() const>(&StepAP242_ItemIdentifiedRepresentationUsage::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&StepAP242_ItemIdentifiedRepresentationUsage::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP242_ItemIdentifiedRepresentationUsage::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<StepAP242_DraughtingModelItemAssociation ,opencascade::handle<StepAP242_DraughtingModelItemAssociation>  , StepAP242_ItemIdentifiedRepresentationUsage >>(m.attr("StepAP242_DraughtingModelItemAssociation"))
+    static_cast<py::class_<StepAP242_ItemIdentifiedRepresentationUsageDefinition , shared_ptr<StepAP242_ItemIdentifiedRepresentationUsageDefinition>  , StepData_SelectType >>(m.attr("StepAP242_ItemIdentifiedRepresentationUsageDefinition"))
         .def(py::init<  >()  )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (StepAP242_DraughtingModelItemAssociation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP242_DraughtingModelItemAssociation::*)() const>(&StepAP242_DraughtingModelItemAssociation::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP242_DraughtingModelItemAssociation::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP242_DraughtingModelItemAssociation::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<StepAP242_GeometricItemSpecificUsage ,opencascade::handle<StepAP242_GeometricItemSpecificUsage>  , StepAP242_ItemIdentifiedRepresentationUsage >>(m.attr("StepAP242_GeometricItemSpecificUsage"))
-        .def(py::init<  >()  )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (StepAP242_GeometricItemSpecificUsage::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP242_GeometricItemSpecificUsage::*)() const>(&StepAP242_GeometricItemSpecificUsage::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP242_GeometricItemSpecificUsage::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP242_GeometricItemSpecificUsage::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<StepAP242_IdAttribute ,opencascade::handle<StepAP242_IdAttribute>  , Standard_Transient >>(m.attr("StepAP242_IdAttribute"))
-        .def(py::init<  >()  )
-        .def("Init",
-             (void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepAP242_IdAttributeSelect &  ) ) static_cast<void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepAP242_IdAttributeSelect &  ) >(&StepAP242_IdAttribute::Init),
-             R"#(Init all field own and inherited)#"  , py::arg("theAttributeValue"),  py::arg("theIdentifiedItem"))
-        .def("SetAttributeValue",
-             (void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepAP242_IdAttribute::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepAP242_IdAttribute::SetAttributeValue),
-             R"#(None)#"  , py::arg("theAttributeValue"))
-        .def("AttributeValue",
-             (opencascade::handle<TCollection_HAsciiString> (StepAP242_IdAttribute::*)() const) static_cast<opencascade::handle<TCollection_HAsciiString> (StepAP242_IdAttribute::*)() const>(&StepAP242_IdAttribute::AttributeValue),
-             R"#(Returns field AttributeValue)#" )
-        .def("SetIdentifiedItem",
-             (void (StepAP242_IdAttribute::*)( const StepAP242_IdAttributeSelect &  ) ) static_cast<void (StepAP242_IdAttribute::*)( const StepAP242_IdAttributeSelect &  ) >(&StepAP242_IdAttribute::SetIdentifiedItem),
-             R"#(Set field IdentifiedItem)#"  , py::arg("theIdentifiedItem"))
-        .def("IdentifiedItem",
-             (StepAP242_IdAttributeSelect (StepAP242_IdAttribute::*)() const) static_cast<StepAP242_IdAttributeSelect (StepAP242_IdAttribute::*)() const>(&StepAP242_IdAttribute::IdentifiedItem),
-             R"#(Returns IdentifiedItem)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (StepAP242_IdAttribute::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP242_IdAttribute::*)() const>(&StepAP242_IdAttribute::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP242_IdAttribute::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP242_IdAttribute::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<StepAP242_ItemIdentifiedRepresentationUsageDefinition ,std::unique_ptr<StepAP242_ItemIdentifiedRepresentationUsageDefinition>  , StepData_SelectType >>(m.attr("StepAP242_ItemIdentifiedRepresentationUsageDefinition"))
-        .def(py::init<  >()  )
+    // methods
         .def("CaseNum",
              (Standard_Integer (StepAP242_ItemIdentifiedRepresentationUsageDefinition::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepAP242_ItemIdentifiedRepresentationUsageDefinition::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepAP242_ItemIdentifiedRepresentationUsageDefinition::CaseNum),
              R"#(Recognizes a ItemIdentifiedRepresentationUsageDefinition Kind Entity that is : 1 -> AppliedApprovalAssignment 2 -> AppliedDateAndTimeAssignment 3 -> AppliedDateAssignment 4 -> AppliedDocumentReference 5 -> AppliedExternalIdentificationAssignment 6 -> AppliedGroupAssignment 7 -> AppliedOrganizationAssignment 8 -> AppliedPersonAndOrganizationAssignment 9 -> AppliedSecurityClassificationAssignment 10 -> DimensionalSize 11 -> GeneralProperty 12 -> GeometricTolerance 13 -> ProductDefinitionRelationship 14 -> PropertyDefinition 15 -> PropertyDefinitionRelationship 16 -> ShapeAspect 17 -> ShapeAspectRelationship 0 else)#"  , py::arg("ent"))
@@ -280,25 +274,64 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP242"));
         .def("ShapeAspectRelationship",
              (opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP242_ItemIdentifiedRepresentationUsageDefinition::*)() const) static_cast<opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP242_ItemIdentifiedRepresentationUsageDefinition::*)() const>(&StepAP242_ItemIdentifiedRepresentationUsageDefinition::ShapeAspectRelationship),
              R"#(returns Value as a ShapeAspectRelationship (Null if another type))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<StepAP242_DraughtingModelItemAssociation ,opencascade::handle<StepAP242_DraughtingModelItemAssociation>  , StepAP242_ItemIdentifiedRepresentationUsage >>(m.attr("StepAP242_DraughtingModelItemAssociation"))
+        .def(py::init<  >()  )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP242_DraughtingModelItemAssociation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP242_DraughtingModelItemAssociation::*)() const>(&StepAP242_DraughtingModelItemAssociation::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP242_DraughtingModelItemAssociation::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP242_DraughtingModelItemAssociation::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<StepAP242_GeometricItemSpecificUsage ,opencascade::handle<StepAP242_GeometricItemSpecificUsage>  , StepAP242_ItemIdentifiedRepresentationUsage >>(m.attr("StepAP242_GeometricItemSpecificUsage"))
+        .def(py::init<  >()  )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP242_GeometricItemSpecificUsage::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP242_GeometricItemSpecificUsage::*)() const>(&StepAP242_GeometricItemSpecificUsage::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP242_GeometricItemSpecificUsage::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP242_GeometricItemSpecificUsage::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/StepAP242_GeometricItemSpecificUsage.hxx
+// ./opencascade/StepAP242_ItemIdentifiedRepresentationUsage.hxx
+// ./opencascade/StepAP242_DraughtingModelItemAssociation.hxx
 // ./opencascade/StepAP242_IdAttributeSelect.hxx
 // ./opencascade/StepAP242_ItemIdentifiedRepresentationUsageDefinition.hxx
-// ./opencascade/StepAP242_ItemIdentifiedRepresentationUsage.hxx
 // ./opencascade/StepAP242_IdAttribute.hxx
-// ./opencascade/StepAP242_DraughtingModelItemAssociation.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/StepAP242_GeometricItemSpecificUsage.hxx
-// ./opencascade/StepAP242_IdAttributeSelect.hxx
-// ./opencascade/StepAP242_ItemIdentifiedRepresentationUsageDefinition.hxx
-// ./opencascade/StepAP242_ItemIdentifiedRepresentationUsage.hxx
-// ./opencascade/StepAP242_IdAttribute.hxx
-// ./opencascade/StepAP242_DraughtingModelItemAssociation.hxx
 
 
 // exceptions

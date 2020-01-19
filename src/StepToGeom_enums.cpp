@@ -110,11 +110,10 @@ py::module m = main_module.def_submodule("StepToGeom", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<StepToGeom ,std::unique_ptr<StepToGeom>  >(m,"StepToGeom",R"#(This class provides static methods to convert STEP geometric entities to OCCT. The methods returning handles will return null handle in case of error. The methods returning boolean will return True if succeeded and False if error.)#");
-
 // pre-register typdefs
-// ./opencascade/StepToGeom.hxx
+
+// classes forward declarations only
+    py::class_<StepToGeom , shared_ptr<StepToGeom>  >(m,"StepToGeom",R"#(This class provides static methods to convert STEP geometric entities to OCCT. The methods returning handles will return null handle in case of error. The methods returning boolean will return True if succeeded and False if error.)#");
 
 };
 

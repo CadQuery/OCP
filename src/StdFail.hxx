@@ -12,20 +12,20 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
+#include <StdFail_UndefinedValue.hxx>
+#include <StdFail_InfiniteSolutions.hxx>
 #include <StdFail_UndefinedDerivative.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StdFail_Undefined.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
-#include <StdFail_UndefinedValue.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/StdFail_UndefinedValue.hxx
+// ./opencascade/StdFail_InfiniteSolutions.hxx
 // ./opencascade/StdFail_UndefinedDerivative.hxx
 // ./opencascade/StdFail_NotDone.hxx
 // ./opencascade/StdFail_Undefined.hxx
-// ./opencascade/StdFail_InfiniteSolutions.hxx
-// ./opencascade/StdFail_UndefinedValue.hxx
 
 // user-defined post

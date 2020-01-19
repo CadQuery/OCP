@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -35,18 +38,24 @@ py::module m = static_cast<py::module>(main_module.attr("Hermit"));
 
 // classes
 
-    register_default_constructor<Hermit ,std::unique_ptr<Hermit>>(m,"Hermit");
+    register_default_constructor<Hermit , shared_ptr<Hermit>>(m,"Hermit");
 
-    static_cast<py::class_<Hermit ,std::unique_ptr<Hermit>  >>(m.attr("Hermit"))
+    static_cast<py::class_<Hermit , shared_ptr<Hermit>  >>(m.attr("Hermit"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Solution_s",
                     (opencascade::handle<Geom2d_BSplineCurve> (*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<Geom2d_BSplineCurve> (*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&Hermit::Solution),
                     R"#(returns the correct spline a(u) which will be multiplicated with BS later.)#"  , py::arg("BS"),  py::arg("TolPoles")=static_cast<const Standard_Real>(0.000001),  py::arg("TolKnots")=static_cast<const Standard_Real>(0.000001))
         .def_static("Solution_s",
                     (opencascade::handle<Geom2d_BSplineCurve> (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<Geom2d_BSplineCurve> (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&Hermit::Solution),
                     R"#(returns the correct spline a(u) which will be multiplicated with BS later.)#"  , py::arg("BS"),  py::arg("TolPoles")=static_cast<const Standard_Real>(0.000001),  py::arg("TolKnots")=static_cast<const Standard_Real>(0.000001))
+    // static methods using call by reference i.s.o. return
         .def_static("Solutionbis_s",
-                    (void (*)( const opencascade::handle<Geom_BSplineCurve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (*)( const opencascade::handle<Geom_BSplineCurve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real  ) >(&Hermit::Solutionbis),
-                    R"#(returns the knots to insert to a(u) to stay with a constant sign and in the tolerances.)#"  , py::arg("BS"),  py::arg("Knotmin"),  py::arg("Knotmax"),  py::arg("TolPoles")=static_cast<const Standard_Real>(0.000001),  py::arg("TolKnots")=static_cast<const Standard_Real>(0.000001))
+                    []( const opencascade::handle<Geom_BSplineCurve> & BS,const Standard_Real TolPoles,const Standard_Real TolKnots ){ Standard_Real  Knotmin; Standard_Real  Knotmax; Hermit::Solutionbis(BS,Knotmin,Knotmax,TolPoles,TolKnots); return std::make_tuple(Knotmin,Knotmax); },
+                    R"#(returns the knots to insert to a(u) to stay with a constant sign and in the tolerances.)#"  , py::arg("BS"),  py::arg("TolPoles")=static_cast<const Standard_Real>(0.000001),  py::arg("TolKnots")=static_cast<const Standard_Real>(0.000001))
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -55,7 +64,6 @@ py::module m = static_cast<py::module>(main_module.attr("Hermit"));
 // operators
 
 // register typdefs
-// ./opencascade/Hermit.hxx
 
 
 // exceptions

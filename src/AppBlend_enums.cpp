@@ -41,7 +41,6 @@ py::module m = main_module.def_submodule("AppBlend", R"#()#");
         
         // public pure virtual
         Standard_Boolean IsDone() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,AppBlend_Approx,IsDone,) };
-        void SurfShape(Standard_Integer & UDegree,Standard_Integer & VDegree,Standard_Integer & NbUPoles,Standard_Integer & NbVPoles,Standard_Integer & NbUKnots,Standard_Integer & NbVKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,SurfShape,UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots) };
         void Surface(NCollection_Array2<gp_Pnt> & TPoles,NCollection_Array2<Standard_Real> & TWeights,NCollection_Array1<Standard_Real> & TUKnots,NCollection_Array1<Standard_Real> & TVKnots,NCollection_Array1<Standard_Integer> & TUMults,NCollection_Array1<Standard_Integer> & TVMults) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Surface,TPoles,TWeights,TUKnots,TVKnots,TUMults,TVMults) };
         Standard_Integer UDegree() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,UDegree,) };
         Standard_Integer VDegree() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,VDegree,) };
@@ -52,14 +51,15 @@ py::module m = main_module.def_submodule("AppBlend", R"#()#");
         const TColStd_Array1OfInteger & SurfUMults() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfInteger &,AppBlend_Approx,SurfUMults,) };
         const TColStd_Array1OfInteger & SurfVMults() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfInteger &,AppBlend_Approx,SurfVMults,) };
         Standard_Integer NbCurves2d() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,NbCurves2d,) };
-        void Curves2dShape(Standard_Integer & Degree,Standard_Integer & NbPoles,Standard_Integer & NbKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Curves2dShape,Degree,NbPoles,NbKnots) };
         void Curve2d(const Standard_Integer Index,NCollection_Array1<gp_Pnt2d> & TPoles,NCollection_Array1<Standard_Real> & TKnots,NCollection_Array1<Standard_Integer> & TMults) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Curve2d,Index,TPoles,TKnots,TMults) };
         Standard_Integer Curves2dDegree() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,Curves2dDegree,) };
         const TColgp_Array1OfPnt2d & Curve2dPoles(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(const TColgp_Array1OfPnt2d &,AppBlend_Approx,Curve2dPoles,Index) };
         const TColStd_Array1OfReal & Curves2dKnots() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfReal &,AppBlend_Approx,Curves2dKnots,) };
         const TColStd_Array1OfInteger & Curves2dMults() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfInteger &,AppBlend_Approx,Curves2dMults,) };
-        void TolReached(Standard_Real & Tol3d,Standard_Real & Tol2d) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,TolReached,Tol3d,Tol2d) };
         Standard_Real TolCurveOnSurf(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,AppBlend_Approx,TolCurveOnSurf,Index) };
+        void SurfShape(Standard_Integer & UDegree,Standard_Integer & VDegree,Standard_Integer & NbUPoles,Standard_Integer & NbVPoles,Standard_Integer & NbUKnots,Standard_Integer & NbVKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,SurfShape,UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots) };
+        void Curves2dShape(Standard_Integer & Degree,Standard_Integer & NbPoles,Standard_Integer & NbKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Curves2dShape,Degree,NbPoles,NbKnots) };
+        void TolReached(Standard_Real & Tol3d,Standard_Real & Tol2d) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,TolReached,Tol3d,Tol2d) };
         
         
         // protected pure virtual
@@ -69,11 +69,10 @@ py::module m = main_module.def_submodule("AppBlend", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<AppBlend_Approx ,std::unique_ptr<AppBlend_Approx> ,Py_AppBlend_Approx >(m,"AppBlend_Approx",R"#(Bspline approximation of a surface.)#");
-
 // pre-register typdefs
-// ./opencascade/AppBlend_Approx.hxx
+
+// classes forward declarations only
+    py::class_<AppBlend_Approx , shared_ptr<AppBlend_Approx> ,Py_AppBlend_Approx >(m,"AppBlend_Approx",R"#(Bspline approximation of a surface.)#");
 
 };
 

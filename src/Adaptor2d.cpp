@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,29 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Vec2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <Geom2d_BezierCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <gp_Lin2d.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <Geom2d_BezierCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Adaptor2d_Curve2d.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Standard_TypeMismatch.hxx>
@@ -45,6 +25,29 @@ namespace py = pybind11;
 #include <gp_Parab2d.hxx>
 #include <Geom2d_BezierCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+#include <gp_Lin2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <Geom2d_BezierCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <gp_Lin2d.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <Geom2d_BezierCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Adaptor2d_Curve2d.hxx>
 
 // module includes
 #include <Adaptor2d_Curve2d.hxx>
@@ -88,9 +91,10 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
 
 // classes
 
-    register_default_constructor<Adaptor2d_Curve2d ,std::unique_ptr<Adaptor2d_Curve2d>>(m,"Adaptor2d_Curve2d");
+    register_default_constructor<Adaptor2d_Curve2d , shared_ptr<Adaptor2d_Curve2d>>(m,"Adaptor2d_Curve2d");
 
-    static_cast<py::class_<Adaptor2d_Curve2d ,std::unique_ptr<Adaptor2d_Curve2d>  >>(m.attr("Adaptor2d_Curve2d"))
+    static_cast<py::class_<Adaptor2d_Curve2d , shared_ptr<Adaptor2d_Curve2d>  >>(m.attr("Adaptor2d_Curve2d"))
+    // methods
         .def("FirstParameter",
              (Standard_Real (Adaptor2d_Curve2d::*)() const) static_cast<Standard_Real (Adaptor2d_Curve2d::*)() const>(&Adaptor2d_Curve2d::FirstParameter),
              R"#(None)#" )
@@ -178,10 +182,16 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
         .def("BSpline",
              (opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_Curve2d::*)() const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_Curve2d::*)() const>(&Adaptor2d_Curve2d::BSpline),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Adaptor2d_HCurve2d ,opencascade::handle<Adaptor2d_HCurve2d> ,Py_Adaptor2d_HCurve2d , Standard_Transient >>(m.attr("Adaptor2d_HCurve2d"))
+    // methods
         .def("Curve2d",
              (const Adaptor2d_Curve2d & (Adaptor2d_HCurve2d::*)() const) static_cast<const Adaptor2d_Curve2d & (Adaptor2d_HCurve2d::*)() const>(&Adaptor2d_HCurve2d::Curve2d),
              R"#(Returns a reference to the Curve2d inside the HCurve2d.)#" )
@@ -356,18 +366,24 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
         .def("BSpline",
              (opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_HCurve2d::*)() const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_HCurve2d::*)() const>(&Adaptor2d_HCurve2d::BSpline),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Adaptor2d_HCurve2d::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Adaptor2d_HCurve2d::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Adaptor2d_HLine2d ,opencascade::handle<Adaptor2d_HLine2d>  , Adaptor2d_HCurve2d >>(m.attr("Adaptor2d_HLine2d"))
         .def(py::init<  >()  )
         .def(py::init< const Adaptor2d_Line2d & >()  , py::arg("C") )
+    // methods
         .def("Set",
              (void (Adaptor2d_HLine2d::*)( const Adaptor2d_Line2d &  ) ) static_cast<void (Adaptor2d_HLine2d::*)( const Adaptor2d_Line2d &  ) >(&Adaptor2d_HLine2d::Set),
              R"#(Sets the field of the GenHCurve2d.)#"  , py::arg("C"))
@@ -380,20 +396,158 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Adaptor2d_HLine2d::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Adaptor2d_HLine2d::*)() const>(&Adaptor2d_HLine2d::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Adaptor2d_HLine2d::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Adaptor2d_HLine2d::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Adaptor2d_OffsetCurve ,std::unique_ptr<Adaptor2d_OffsetCurve>  , Adaptor2d_Curve2d >>(m.attr("Adaptor2d_OffsetCurve"))
+    static_cast<py::class_<Adaptor2d_HOffsetCurve ,opencascade::handle<Adaptor2d_HOffsetCurve>  , Adaptor2d_HCurve2d >>(m.attr("Adaptor2d_HOffsetCurve"))
+        .def(py::init<  >()  )
+        .def(py::init< const Adaptor2d_OffsetCurve & >()  , py::arg("C") )
+    // methods
+        .def("Set",
+             (void (Adaptor2d_HOffsetCurve::*)( const Adaptor2d_OffsetCurve &  ) ) static_cast<void (Adaptor2d_HOffsetCurve::*)( const Adaptor2d_OffsetCurve &  ) >(&Adaptor2d_HOffsetCurve::Set),
+             R"#(Sets the field of the GenHCurve2d.)#"  , py::arg("C"))
+        .def("Curve2d",
+             (const Adaptor2d_Curve2d & (Adaptor2d_HOffsetCurve::*)() const) static_cast<const Adaptor2d_Curve2d & (Adaptor2d_HOffsetCurve::*)() const>(&Adaptor2d_HOffsetCurve::Curve2d),
+             R"#(Returns the curve used to create the GenHCurve2d. This is redefined from HCurve2d, cannot be inline.)#" )
+        .def("ChangeCurve2d",
+             (Adaptor2d_OffsetCurve & (Adaptor2d_HOffsetCurve::*)() ) static_cast<Adaptor2d_OffsetCurve & (Adaptor2d_HOffsetCurve::*)() >(&Adaptor2d_HOffsetCurve::ChangeCurve2d),
+             R"#(Returns the curve used to create the GenHCurve.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Adaptor2d_HOffsetCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Adaptor2d_HOffsetCurve::*)() const>(&Adaptor2d_HOffsetCurve::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Adaptor2d_HOffsetCurve::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Adaptor2d_HOffsetCurve::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Adaptor2d_Line2d , shared_ptr<Adaptor2d_Line2d>  , Adaptor2d_Curve2d >>(m.attr("Adaptor2d_Line2d"))
+        .def(py::init<  >()  )
+        .def(py::init< const gp_Pnt2d &,const gp_Dir2d &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("D"),  py::arg("UFirst"),  py::arg("ULast") )
+    // methods
+        .def("Load",
+             (void (Adaptor2d_Line2d::*)( const gp_Lin2d &  ) ) static_cast<void (Adaptor2d_Line2d::*)( const gp_Lin2d &  ) >(&Adaptor2d_Line2d::Load),
+             R"#(None)#"  , py::arg("L"))
+        .def("Load",
+             (void (Adaptor2d_Line2d::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Adaptor2d_Line2d::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) >(&Adaptor2d_Line2d::Load),
+             R"#(None)#"  , py::arg("L"),  py::arg("UFirst"),  py::arg("ULast"))
+        .def("FirstParameter",
+             (Standard_Real (Adaptor2d_Line2d::*)() const) static_cast<Standard_Real (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::FirstParameter),
+             R"#(None)#" )
+        .def("LastParameter",
+             (Standard_Real (Adaptor2d_Line2d::*)() const) static_cast<Standard_Real (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::LastParameter),
+             R"#(None)#" )
+        .def("Continuity",
+             (GeomAbs_Shape (Adaptor2d_Line2d::*)() const) static_cast<GeomAbs_Shape (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Continuity),
+             R"#(None)#" )
+        .def("NbIntervals",
+             (Standard_Integer (Adaptor2d_Line2d::*)( const GeomAbs_Shape  ) const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)( const GeomAbs_Shape  ) const>(&Adaptor2d_Line2d::NbIntervals),
+             R"#(If necessary, breaks the curve in intervals of continuity <S>. And returns the number of intervals.)#"  , py::arg("S"))
+        .def("Intervals",
+             (void (Adaptor2d_Line2d::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const) static_cast<void (Adaptor2d_Line2d::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const>(&Adaptor2d_Line2d::Intervals),
+             R"#(Stores in <T> the parameters bounding the intervals of continuity <S>.)#"  , py::arg("T"),  py::arg("S"))
+        .def("Trim",
+             (opencascade::handle<Adaptor2d_HCurve2d> (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Adaptor2d_HCurve2d> (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&Adaptor2d_Line2d::Trim),
+             R"#(Returns a curve equivalent of <me> between parameters <First> and <Last>. <Tol> is used to test for 3d points confusion. If <First> >= <Last>)#"  , py::arg("First"),  py::arg("Last"),  py::arg("Tol"))
+        .def("IsClosed",
+             (Standard_Boolean (Adaptor2d_Line2d::*)() const) static_cast<Standard_Boolean (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::IsClosed),
+             R"#(None)#" )
+        .def("IsPeriodic",
+             (Standard_Boolean (Adaptor2d_Line2d::*)() const) static_cast<Standard_Boolean (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::IsPeriodic),
+             R"#(None)#" )
+        .def("Period",
+             (Standard_Real (Adaptor2d_Line2d::*)() const) static_cast<Standard_Real (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Period),
+             R"#(None)#" )
+        .def("Value",
+             (gp_Pnt2d (Adaptor2d_Line2d::*)( const Standard_Real  ) const) static_cast<gp_Pnt2d (Adaptor2d_Line2d::*)( const Standard_Real  ) const>(&Adaptor2d_Line2d::Value),
+             R"#(None)#"  , py::arg("X"))
+        .def("D0",
+             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d &  ) const>(&Adaptor2d_Line2d::D0),
+             R"#(None)#"  , py::arg("X"),  py::arg("P"))
+        .def("D1",
+             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d &  ) const>(&Adaptor2d_Line2d::D1),
+             R"#(None)#"  , py::arg("X"),  py::arg("P"),  py::arg("V"))
+        .def("D2",
+             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const>(&Adaptor2d_Line2d::D2),
+             R"#(None)#"  , py::arg("X"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"))
+        .def("D3",
+             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const>(&Adaptor2d_Line2d::D3),
+             R"#(None)#"  , py::arg("X"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"),  py::arg("V3"))
+        .def("DN",
+             (gp_Vec2d (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Integer  ) const) static_cast<gp_Vec2d (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Integer  ) const>(&Adaptor2d_Line2d::DN),
+             R"#(None)#"  , py::arg("U"),  py::arg("N"))
+        .def("Resolution",
+             (Standard_Real (Adaptor2d_Line2d::*)( const Standard_Real  ) const) static_cast<Standard_Real (Adaptor2d_Line2d::*)( const Standard_Real  ) const>(&Adaptor2d_Line2d::Resolution),
+             R"#(None)#"  , py::arg("R3d"))
+        .def("GetType",
+             (GeomAbs_CurveType (Adaptor2d_Line2d::*)() const) static_cast<GeomAbs_CurveType (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::GetType),
+             R"#(None)#" )
+        .def("Line",
+             (gp_Lin2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Lin2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Line),
+             R"#(None)#" )
+        .def("Circle",
+             (gp_Circ2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Circ2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Circle),
+             R"#(None)#" )
+        .def("Ellipse",
+             (gp_Elips2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Elips2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Ellipse),
+             R"#(None)#" )
+        .def("Hyperbola",
+             (gp_Hypr2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Hypr2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Hyperbola),
+             R"#(None)#" )
+        .def("Parabola",
+             (gp_Parab2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Parab2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Parabola),
+             R"#(None)#" )
+        .def("Degree",
+             (Standard_Integer (Adaptor2d_Line2d::*)() const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Degree),
+             R"#(None)#" )
+        .def("IsRational",
+             (Standard_Boolean (Adaptor2d_Line2d::*)() const) static_cast<Standard_Boolean (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::IsRational),
+             R"#(None)#" )
+        .def("NbPoles",
+             (Standard_Integer (Adaptor2d_Line2d::*)() const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::NbPoles),
+             R"#(None)#" )
+        .def("NbKnots",
+             (Standard_Integer (Adaptor2d_Line2d::*)() const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::NbKnots),
+             R"#(None)#" )
+        .def("Bezier",
+             (opencascade::handle<Geom2d_BezierCurve> (Adaptor2d_Line2d::*)() const) static_cast<opencascade::handle<Geom2d_BezierCurve> (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Bezier),
+             R"#(None)#" )
+        .def("BSpline",
+             (opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_Line2d::*)() const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::BSpline),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Adaptor2d_OffsetCurve , shared_ptr<Adaptor2d_OffsetCurve>  , Adaptor2d_Curve2d >>(m.attr("Adaptor2d_OffsetCurve"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> & >()  , py::arg("C") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real >()  , py::arg("C"),  py::arg("Offset") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Offset"),  py::arg("WFirst"),  py::arg("WLast") )
+    // methods
         .def("Load",
              (void (Adaptor2d_OffsetCurve::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (Adaptor2d_OffsetCurve::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&Adaptor2d_OffsetCurve::Load),
              R"#(Changes the curve. The Offset is reset to 0.)#"  , py::arg("S"))
@@ -505,147 +659,25 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
         .def("LastParameter",
              (Standard_Real (Adaptor2d_OffsetCurve::*)() const) static_cast<Standard_Real (Adaptor2d_OffsetCurve::*)() const>(&Adaptor2d_OffsetCurve::LastParameter),
              R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Adaptor2d_HOffsetCurve ,opencascade::handle<Adaptor2d_HOffsetCurve>  , Adaptor2d_HCurve2d >>(m.attr("Adaptor2d_HOffsetCurve"))
-        .def(py::init<  >()  )
-        .def(py::init< const Adaptor2d_OffsetCurve & >()  , py::arg("C") )
-        .def("Set",
-             (void (Adaptor2d_HOffsetCurve::*)( const Adaptor2d_OffsetCurve &  ) ) static_cast<void (Adaptor2d_HOffsetCurve::*)( const Adaptor2d_OffsetCurve &  ) >(&Adaptor2d_HOffsetCurve::Set),
-             R"#(Sets the field of the GenHCurve2d.)#"  , py::arg("C"))
-        .def("Curve2d",
-             (const Adaptor2d_Curve2d & (Adaptor2d_HOffsetCurve::*)() const) static_cast<const Adaptor2d_Curve2d & (Adaptor2d_HOffsetCurve::*)() const>(&Adaptor2d_HOffsetCurve::Curve2d),
-             R"#(Returns the curve used to create the GenHCurve2d. This is redefined from HCurve2d, cannot be inline.)#" )
-        .def("ChangeCurve2d",
-             (Adaptor2d_OffsetCurve & (Adaptor2d_HOffsetCurve::*)() ) static_cast<Adaptor2d_OffsetCurve & (Adaptor2d_HOffsetCurve::*)() >(&Adaptor2d_HOffsetCurve::ChangeCurve2d),
-             R"#(Returns the curve used to create the GenHCurve.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Adaptor2d_HOffsetCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Adaptor2d_HOffsetCurve::*)() const>(&Adaptor2d_HOffsetCurve::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Adaptor2d_HOffsetCurve::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Adaptor2d_HOffsetCurve::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Adaptor2d_Line2d ,std::unique_ptr<Adaptor2d_Line2d>  , Adaptor2d_Curve2d >>(m.attr("Adaptor2d_Line2d"))
-        .def(py::init<  >()  )
-        .def(py::init< const gp_Pnt2d &,const gp_Dir2d &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("D"),  py::arg("UFirst"),  py::arg("ULast") )
-        .def("Load",
-             (void (Adaptor2d_Line2d::*)( const gp_Lin2d &  ) ) static_cast<void (Adaptor2d_Line2d::*)( const gp_Lin2d &  ) >(&Adaptor2d_Line2d::Load),
-             R"#(None)#"  , py::arg("L"))
-        .def("Load",
-             (void (Adaptor2d_Line2d::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Adaptor2d_Line2d::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) >(&Adaptor2d_Line2d::Load),
-             R"#(None)#"  , py::arg("L"),  py::arg("UFirst"),  py::arg("ULast"))
-        .def("FirstParameter",
-             (Standard_Real (Adaptor2d_Line2d::*)() const) static_cast<Standard_Real (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::FirstParameter),
-             R"#(None)#" )
-        .def("LastParameter",
-             (Standard_Real (Adaptor2d_Line2d::*)() const) static_cast<Standard_Real (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::LastParameter),
-             R"#(None)#" )
-        .def("Continuity",
-             (GeomAbs_Shape (Adaptor2d_Line2d::*)() const) static_cast<GeomAbs_Shape (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Continuity),
-             R"#(None)#" )
-        .def("NbIntervals",
-             (Standard_Integer (Adaptor2d_Line2d::*)( const GeomAbs_Shape  ) const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)( const GeomAbs_Shape  ) const>(&Adaptor2d_Line2d::NbIntervals),
-             R"#(If necessary, breaks the curve in intervals of continuity <S>. And returns the number of intervals.)#"  , py::arg("S"))
-        .def("Intervals",
-             (void (Adaptor2d_Line2d::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const) static_cast<void (Adaptor2d_Line2d::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const>(&Adaptor2d_Line2d::Intervals),
-             R"#(Stores in <T> the parameters bounding the intervals of continuity <S>.)#"  , py::arg("T"),  py::arg("S"))
-        .def("Trim",
-             (opencascade::handle<Adaptor2d_HCurve2d> (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Adaptor2d_HCurve2d> (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&Adaptor2d_Line2d::Trim),
-             R"#(Returns a curve equivalent of <me> between parameters <First> and <Last>. <Tol> is used to test for 3d points confusion. If <First> >= <Last>)#"  , py::arg("First"),  py::arg("Last"),  py::arg("Tol"))
-        .def("IsClosed",
-             (Standard_Boolean (Adaptor2d_Line2d::*)() const) static_cast<Standard_Boolean (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::IsClosed),
-             R"#(None)#" )
-        .def("IsPeriodic",
-             (Standard_Boolean (Adaptor2d_Line2d::*)() const) static_cast<Standard_Boolean (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::IsPeriodic),
-             R"#(None)#" )
-        .def("Period",
-             (Standard_Real (Adaptor2d_Line2d::*)() const) static_cast<Standard_Real (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Period),
-             R"#(None)#" )
-        .def("Value",
-             (gp_Pnt2d (Adaptor2d_Line2d::*)( const Standard_Real  ) const) static_cast<gp_Pnt2d (Adaptor2d_Line2d::*)( const Standard_Real  ) const>(&Adaptor2d_Line2d::Value),
-             R"#(None)#"  , py::arg("X"))
-        .def("D0",
-             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d &  ) const>(&Adaptor2d_Line2d::D0),
-             R"#(None)#"  , py::arg("X"),  py::arg("P"))
-        .def("D1",
-             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d &  ) const>(&Adaptor2d_Line2d::D1),
-             R"#(None)#"  , py::arg("X"),  py::arg("P"),  py::arg("V"))
-        .def("D2",
-             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const>(&Adaptor2d_Line2d::D2),
-             R"#(None)#"  , py::arg("X"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"))
-        .def("D3",
-             (void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const) static_cast<void (Adaptor2d_Line2d::*)( const Standard_Real ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) const>(&Adaptor2d_Line2d::D3),
-             R"#(None)#"  , py::arg("X"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"),  py::arg("V3"))
-        .def("DN",
-             (gp_Vec2d (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Integer  ) const) static_cast<gp_Vec2d (Adaptor2d_Line2d::*)( const Standard_Real ,  const Standard_Integer  ) const>(&Adaptor2d_Line2d::DN),
-             R"#(None)#"  , py::arg("U"),  py::arg("N"))
-        .def("Resolution",
-             (Standard_Real (Adaptor2d_Line2d::*)( const Standard_Real  ) const) static_cast<Standard_Real (Adaptor2d_Line2d::*)( const Standard_Real  ) const>(&Adaptor2d_Line2d::Resolution),
-             R"#(None)#"  , py::arg("R3d"))
-        .def("GetType",
-             (GeomAbs_CurveType (Adaptor2d_Line2d::*)() const) static_cast<GeomAbs_CurveType (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::GetType),
-             R"#(None)#" )
-        .def("Line",
-             (gp_Lin2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Lin2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Line),
-             R"#(None)#" )
-        .def("Circle",
-             (gp_Circ2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Circ2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Circle),
-             R"#(None)#" )
-        .def("Ellipse",
-             (gp_Elips2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Elips2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Ellipse),
-             R"#(None)#" )
-        .def("Hyperbola",
-             (gp_Hypr2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Hypr2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Hyperbola),
-             R"#(None)#" )
-        .def("Parabola",
-             (gp_Parab2d (Adaptor2d_Line2d::*)() const) static_cast<gp_Parab2d (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Parabola),
-             R"#(None)#" )
-        .def("Degree",
-             (Standard_Integer (Adaptor2d_Line2d::*)() const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Degree),
-             R"#(None)#" )
-        .def("IsRational",
-             (Standard_Boolean (Adaptor2d_Line2d::*)() const) static_cast<Standard_Boolean (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::IsRational),
-             R"#(None)#" )
-        .def("NbPoles",
-             (Standard_Integer (Adaptor2d_Line2d::*)() const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::NbPoles),
-             R"#(None)#" )
-        .def("NbKnots",
-             (Standard_Integer (Adaptor2d_Line2d::*)() const) static_cast<Standard_Integer (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::NbKnots),
-             R"#(None)#" )
-        .def("Bezier",
-             (opencascade::handle<Geom2d_BezierCurve> (Adaptor2d_Line2d::*)() const) static_cast<opencascade::handle<Geom2d_BezierCurve> (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::Bezier),
-             R"#(None)#" )
-        .def("BSpline",
-             (opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_Line2d::*)() const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_Line2d::*)() const>(&Adaptor2d_Line2d::BSpline),
-             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/Adaptor2d_HCurve2d.hxx
-// ./opencascade/Adaptor2d_HOffsetCurve.hxx
-// ./opencascade/Adaptor2d_HLine2d.hxx
+// ./opencascade/Adaptor2d_OffsetCurve.hxx
 // ./opencascade/Adaptor2d_Curve2d.hxx
+// ./opencascade/Adaptor2d_HLine2d.hxx
+// ./opencascade/Adaptor2d_HOffsetCurve.hxx
 // ./opencascade/Adaptor2d_Line2d.hxx
 // ./opencascade/Adaptor2d_Curve2dPtr.hxx
-// ./opencascade/Adaptor2d_OffsetCurve.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Adaptor2d_HCurve2d.hxx
-// ./opencascade/Adaptor2d_HOffsetCurve.hxx
-// ./opencascade/Adaptor2d_HLine2d.hxx
-// ./opencascade/Adaptor2d_Curve2d.hxx
-// ./opencascade/Adaptor2d_Line2d.hxx
-// ./opencascade/Adaptor2d_Curve2dPtr.hxx
-// ./opencascade/Adaptor2d_OffsetCurve.hxx
 
 
 // exceptions

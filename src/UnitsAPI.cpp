@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -35,9 +38,12 @@ py::module m = static_cast<py::module>(main_module.attr("UnitsAPI"));
 
 // classes
 
-    register_default_constructor<UnitsAPI ,std::unique_ptr<UnitsAPI>>(m,"UnitsAPI");
+    register_default_constructor<UnitsAPI , shared_ptr<UnitsAPI>>(m,"UnitsAPI");
 
-    static_cast<py::class_<UnitsAPI ,std::unique_ptr<UnitsAPI>  >>(m.attr("UnitsAPI"))
+    static_cast<py::class_<UnitsAPI , shared_ptr<UnitsAPI>  >>(m.attr("UnitsAPI"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("CurrentToLS_s",
                     (Standard_Real (*)( const Standard_Real ,  const Standard_CString  ) ) static_cast<Standard_Real (*)( const Standard_Real ,  const Standard_CString  ) >(&UnitsAPI::CurrentToLS),
                     R"#(Converts the current unit value to the local system units value. Example: CurrentToLS(1.,"LENGTH") returns 1000. if the current length unit is meter and LocalSystem is MDTV.)#"  , py::arg("aData"),  py::arg("aQuantity"))
@@ -137,17 +143,18 @@ py::module m = static_cast<py::module>(main_module.attr("UnitsAPI"));
         .def_static("Check_s",
                     (Standard_Boolean (*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  const Standard_CString  ) >(&UnitsAPI::Check),
                     R"#(Checks the coherence between the quantity <aQuantity> and the unit <aUnits> in the current system and returns FALSE when it's WRONG.)#"  , py::arg("aQuantity"),  py::arg("aUnit"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/UnitsAPI_SystemUnits.hxx
 // ./opencascade/UnitsAPI.hxx
+// ./opencascade/UnitsAPI_SystemUnits.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/UnitsAPI_SystemUnits.hxx
-// ./opencascade/UnitsAPI.hxx
 
 
 // exceptions

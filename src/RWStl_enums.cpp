@@ -51,13 +51,11 @@ py::module m = main_module.def_submodule("RWStl", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<RWStl ,std::unique_ptr<RWStl>  >(m,"RWStl",R"#(This class provides methods to read and write triangulation from / to the STL files.)#");
-    py::class_<RWStl_Reader ,opencascade::handle<RWStl_Reader> ,Py_RWStl_Reader , Standard_Transient >(m,"RWStl_Reader",R"#(An abstract class implementing procedure to read STL file.)#");
-
 // pre-register typdefs
-// ./opencascade/RWStl.hxx
-// ./opencascade/RWStl_Reader.hxx
+
+// classes forward declarations only
+    py::class_<RWStl , shared_ptr<RWStl>  >(m,"RWStl",R"#(This class provides methods to read and write triangulation from / to the STL files.)#");
+    py::class_<RWStl_Reader ,opencascade::handle<RWStl_Reader> ,Py_RWStl_Reader , Standard_Transient >(m,"RWStl_Reader",R"#(An abstract class implementing procedure to read STL file.)#");
 
 };
 

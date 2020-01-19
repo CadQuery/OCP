@@ -35,10 +35,9 @@ py::module m = main_module.def_submodule("MMgt", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-
 // pre-register typdefs
-// ./opencascade/MMgt_TShared.hxx
+
+// classes forward declarations only
 
 };
 

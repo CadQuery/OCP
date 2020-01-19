@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,26 +13,26 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <BOPAlgo_ArgumentAnalyzer.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
+#include <BOPDS_CommonBlock.hxx>
+#include <IntTools_Context.hxx>
+#include <BOPAlgo_Section.hxx>
+#include <BOPAlgo_WireEdgeSet.hxx>
 #include <IntTools_Context.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
-#include <BOPAlgo_ArgumentAnalyzer.hxx>
-#include <BOPAlgo_WireEdgeSet.hxx>
+#include <BOPAlgo_PaveFiller.hxx>
+#include <BOPAlgo_PaveFiller.hxx>
 #include <IntTools_Context.hxx>
 #include <BOPDS_DS.hxx>
 #include <BOPDS_CommonBlock.hxx>
 #include <TopoDS_Face.hxx>
-#include <BOPAlgo_PaveFiller.hxx>
-#include <BOPAlgo_PaveFiller.hxx>
+#include <BOPAlgo_Builder.hxx>
+#include <Message_ProgressIndicator.hxx>
 #include <BOPAlgo_WireEdgeSet.hxx>
 #include <BOPAlgo_BOP.hxx>
-#include <Message_ProgressIndicator.hxx>
-#include <BOPAlgo_Section.hxx>
 #include <IntTools_Context.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
-#include <BOPAlgo_Builder.hxx>
-#include <BOPDS_CommonBlock.hxx>
-#include <IntTools_Context.hxx>
 
 // module includes
 #include <BOPAlgo_Alerts.hxx>
@@ -103,20 +106,6 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         // private pure virtual
         
     };
-    class Py_BOPAlgo_BuilderShape : public BOPAlgo_BuilderShape{
-    public:
-        using BOPAlgo_BuilderShape::BOPAlgo_BuilderShape;
-        
-        // public pure virtual
-        
-        void Perform() override { PYBIND11_OVERLOAD_PURE(void,BOPAlgo_Algo,Perform,) };
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
     class Py_BOPAlgo_BuilderArea : public BOPAlgo_BuilderArea{
     public:
         using BOPAlgo_BuilderArea::BOPAlgo_BuilderArea;
@@ -135,13 +124,708 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         // private pure virtual
         
     };
+    class Py_BOPAlgo_BuilderShape : public BOPAlgo_BuilderShape{
+    public:
+        using BOPAlgo_BuilderShape::BOPAlgo_BuilderShape;
+        
+        // public pure virtual
+        
+        void Perform() override { PYBIND11_OVERLOAD_PURE(void,BOPAlgo_Algo,Perform,) };
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
 
 // classes
 
 
-    static_cast<py::class_<BOPAlgo_Options ,std::unique_ptr<BOPAlgo_Options>  >>(m.attr("BOPAlgo_Options"))
+    static_cast<py::class_<BOPAlgo_AlertAcquiredSelfIntersection ,opencascade::handle<BOPAlgo_AlertAcquiredSelfIntersection>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertAcquiredSelfIntersection"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertAcquiredSelfIntersection::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertAcquiredSelfIntersection::*)() const>(&BOPAlgo_AlertAcquiredSelfIntersection::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertAcquiredSelfIntersection::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertAcquiredSelfIntersection::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertBOPNotAllowed ,opencascade::handle<BOPAlgo_AlertBOPNotAllowed>>(m,"BOPAlgo_AlertBOPNotAllowed");
+
+    static_cast<py::class_<BOPAlgo_AlertBOPNotAllowed ,opencascade::handle<BOPAlgo_AlertBOPNotAllowed>  , Message_Alert >>(m.attr("BOPAlgo_AlertBOPNotAllowed"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotAllowed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotAllowed::*)() const>(&BOPAlgo_AlertBOPNotAllowed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBOPNotAllowed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBOPNotAllowed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertBOPNotSet ,opencascade::handle<BOPAlgo_AlertBOPNotSet>>(m,"BOPAlgo_AlertBOPNotSet");
+
+    static_cast<py::class_<BOPAlgo_AlertBOPNotSet ,opencascade::handle<BOPAlgo_AlertBOPNotSet>  , Message_Alert >>(m.attr("BOPAlgo_AlertBOPNotSet"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotSet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotSet::*)() const>(&BOPAlgo_AlertBOPNotSet::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBOPNotSet::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBOPNotSet::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertBadPositioning ,opencascade::handle<BOPAlgo_AlertBadPositioning>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertBadPositioning"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBadPositioning::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBadPositioning::*)() const>(&BOPAlgo_AlertBadPositioning::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBadPositioning::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBadPositioning::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertBuilderFailed ,opencascade::handle<BOPAlgo_AlertBuilderFailed>>(m,"BOPAlgo_AlertBuilderFailed");
+
+    static_cast<py::class_<BOPAlgo_AlertBuilderFailed ,opencascade::handle<BOPAlgo_AlertBuilderFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertBuilderFailed"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuilderFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuilderFailed::*)() const>(&BOPAlgo_AlertBuilderFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBuilderFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBuilderFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertBuildingPCurveFailed ,opencascade::handle<BOPAlgo_AlertBuildingPCurveFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertBuildingPCurveFailed"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuildingPCurveFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuildingPCurveFailed::*)() const>(&BOPAlgo_AlertBuildingPCurveFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBuildingPCurveFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBuildingPCurveFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertEmptyShape ,opencascade::handle<BOPAlgo_AlertEmptyShape>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertEmptyShape"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertEmptyShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertEmptyShape::*)() const>(&BOPAlgo_AlertEmptyShape::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertEmptyShape::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertEmptyShape::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertIntersectionFailed ,opencascade::handle<BOPAlgo_AlertIntersectionFailed>>(m,"BOPAlgo_AlertIntersectionFailed");
+
+    static_cast<py::class_<BOPAlgo_AlertIntersectionFailed ,opencascade::handle<BOPAlgo_AlertIntersectionFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertIntersectionFailed"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionFailed::*)() const>(&BOPAlgo_AlertIntersectionFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertIntersectionFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertIntersectionFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertIntersectionOfPairOfShapesFailed ,opencascade::handle<BOPAlgo_AlertIntersectionOfPairOfShapesFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertIntersectionOfPairOfShapesFailed"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionOfPairOfShapesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionOfPairOfShapesFailed::*)() const>(&BOPAlgo_AlertIntersectionOfPairOfShapesFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertIntersectionOfPairOfShapesFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertIntersectionOfPairOfShapesFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertMultipleArguments ,opencascade::handle<BOPAlgo_AlertMultipleArguments>>(m,"BOPAlgo_AlertMultipleArguments");
+
+    static_cast<py::class_<BOPAlgo_AlertMultipleArguments ,opencascade::handle<BOPAlgo_AlertMultipleArguments>  , Message_Alert >>(m.attr("BOPAlgo_AlertMultipleArguments"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertMultipleArguments::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertMultipleArguments::*)() const>(&BOPAlgo_AlertMultipleArguments::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertMultipleArguments::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertMultipleArguments::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertNoFacesToRemove ,opencascade::handle<BOPAlgo_AlertNoFacesToRemove>>(m,"BOPAlgo_AlertNoFacesToRemove");
+
+    static_cast<py::class_<BOPAlgo_AlertNoFacesToRemove ,opencascade::handle<BOPAlgo_AlertNoFacesToRemove>  , Message_Alert >>(m.attr("BOPAlgo_AlertNoFacesToRemove"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFacesToRemove::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFacesToRemove::*)() const>(&BOPAlgo_AlertNoFacesToRemove::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNoFacesToRemove::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNoFacesToRemove::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertNoFiller ,opencascade::handle<BOPAlgo_AlertNoFiller>>(m,"BOPAlgo_AlertNoFiller");
+
+    static_cast<py::class_<BOPAlgo_AlertNoFiller ,opencascade::handle<BOPAlgo_AlertNoFiller>  , Message_Alert >>(m.attr("BOPAlgo_AlertNoFiller"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFiller::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFiller::*)() const>(&BOPAlgo_AlertNoFiller::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNoFiller::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNoFiller::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertNotSplittableEdge ,opencascade::handle<BOPAlgo_AlertNotSplittableEdge>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertNotSplittableEdge"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNotSplittableEdge::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNotSplittableEdge::*)() const>(&BOPAlgo_AlertNotSplittableEdge::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNotSplittableEdge::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNotSplittableEdge::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertNullInputShapes ,opencascade::handle<BOPAlgo_AlertNullInputShapes>>(m,"BOPAlgo_AlertNullInputShapes");
+
+    static_cast<py::class_<BOPAlgo_AlertNullInputShapes ,opencascade::handle<BOPAlgo_AlertNullInputShapes>  , Message_Alert >>(m.attr("BOPAlgo_AlertNullInputShapes"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNullInputShapes::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNullInputShapes::*)() const>(&BOPAlgo_AlertNullInputShapes::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNullInputShapes::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNullInputShapes::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertPostTreatFF ,opencascade::handle<BOPAlgo_AlertPostTreatFF>>(m,"BOPAlgo_AlertPostTreatFF");
+
+    static_cast<py::class_<BOPAlgo_AlertPostTreatFF ,opencascade::handle<BOPAlgo_AlertPostTreatFF>  , Message_Alert >>(m.attr("BOPAlgo_AlertPostTreatFF"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertPostTreatFF::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertPostTreatFF::*)() const>(&BOPAlgo_AlertPostTreatFF::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertPostTreatFF::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertPostTreatFF::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForEdgesFailed ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForEdgesFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForEdgesFailed"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForEdgesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForEdgesFailed::*)() const>(&BOPAlgo_AlertRemovalOfIBForEdgesFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForEdgesFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForEdgesFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForFacesFailed ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForFacesFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForFacesFailed"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForFacesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForFacesFailed::*)() const>(&BOPAlgo_AlertRemovalOfIBForFacesFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForFacesFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForFacesFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForMDimShapes ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForMDimShapes>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForMDimShapes"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForMDimShapes::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForMDimShapes::*)() const>(&BOPAlgo_AlertRemovalOfIBForMDimShapes::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForMDimShapes::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForMDimShapes::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForSolidsFailed ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForSolidsFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForSolidsFailed"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForSolidsFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForSolidsFailed::*)() const>(&BOPAlgo_AlertRemovalOfIBForSolidsFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForSolidsFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForSolidsFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertRemoveFeaturesFailed ,opencascade::handle<BOPAlgo_AlertRemoveFeaturesFailed>>(m,"BOPAlgo_AlertRemoveFeaturesFailed");
+
+    static_cast<py::class_<BOPAlgo_AlertRemoveFeaturesFailed ,opencascade::handle<BOPAlgo_AlertRemoveFeaturesFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertRemoveFeaturesFailed"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemoveFeaturesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemoveFeaturesFailed::*)() const>(&BOPAlgo_AlertRemoveFeaturesFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemoveFeaturesFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemoveFeaturesFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertSelfInterferingShape ,opencascade::handle<BOPAlgo_AlertSelfInterferingShape>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertSelfInterferingShape"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSelfInterferingShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSelfInterferingShape::*)() const>(&BOPAlgo_AlertSelfInterferingShape::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertSelfInterferingShape::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertSelfInterferingShape::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertShellSplitterFailed ,opencascade::handle<BOPAlgo_AlertShellSplitterFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertShellSplitterFailed"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertShellSplitterFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertShellSplitterFailed::*)() const>(&BOPAlgo_AlertShellSplitterFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertShellSplitterFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertShellSplitterFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertSolidBuilderFailed ,opencascade::handle<BOPAlgo_AlertSolidBuilderFailed>>(m,"BOPAlgo_AlertSolidBuilderFailed");
+
+    static_cast<py::class_<BOPAlgo_AlertSolidBuilderFailed ,opencascade::handle<BOPAlgo_AlertSolidBuilderFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertSolidBuilderFailed"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderFailed::*)() const>(&BOPAlgo_AlertSolidBuilderFailed::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertSolidBuilderFailed::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertSolidBuilderFailed::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertSolidBuilderUnusedFaces ,opencascade::handle<BOPAlgo_AlertSolidBuilderUnusedFaces>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertSolidBuilderUnusedFaces"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderUnusedFaces::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderUnusedFaces::*)() const>(&BOPAlgo_AlertSolidBuilderUnusedFaces::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertSolidBuilderUnusedFaces::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertSolidBuilderUnusedFaces::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_AlertTooFewArguments ,opencascade::handle<BOPAlgo_AlertTooFewArguments>>(m,"BOPAlgo_AlertTooFewArguments");
+
+    static_cast<py::class_<BOPAlgo_AlertTooFewArguments ,opencascade::handle<BOPAlgo_AlertTooFewArguments>  , Message_Alert >>(m.attr("BOPAlgo_AlertTooFewArguments"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooFewArguments::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooFewArguments::*)() const>(&BOPAlgo_AlertTooFewArguments::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertTooFewArguments::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertTooFewArguments::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertTooSmallEdge ,opencascade::handle<BOPAlgo_AlertTooSmallEdge>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertTooSmallEdge"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooSmallEdge::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooSmallEdge::*)() const>(&BOPAlgo_AlertTooSmallEdge::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertTooSmallEdge::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertTooSmallEdge::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertUnableToOrientTheShape ,opencascade::handle<BOPAlgo_AlertUnableToOrientTheShape>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertUnableToOrientTheShape"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToOrientTheShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToOrientTheShape::*)() const>(&BOPAlgo_AlertUnableToOrientTheShape::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertUnableToOrientTheShape::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertUnableToOrientTheShape::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertUnableToRemoveTheFeature ,opencascade::handle<BOPAlgo_AlertUnableToRemoveTheFeature>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertUnableToRemoveTheFeature"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToRemoveTheFeature::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToRemoveTheFeature::*)() const>(&BOPAlgo_AlertUnableToRemoveTheFeature::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertUnableToRemoveTheFeature::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertUnableToRemoveTheFeature::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_AlertUnsupportedType ,opencascade::handle<BOPAlgo_AlertUnsupportedType>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertUnsupportedType"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnsupportedType::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnsupportedType::*)() const>(&BOPAlgo_AlertUnsupportedType::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertUnsupportedType::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertUnsupportedType::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_CheckResult , shared_ptr<BOPAlgo_CheckResult>  >>(m.attr("BOPAlgo_CheckResult"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetShape1",
+             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::SetShape1),
+             R"#(sets ancestor shape (object) for faulty sub-shapes)#"  , py::arg("TheShape"))
+        .def("AddFaultyShape1",
+             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::AddFaultyShape1),
+             R"#(adds faulty sub-shapes from object to a list)#"  , py::arg("TheShape"))
+        .def("SetShape2",
+             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::SetShape2),
+             R"#(sets ancestor shape (tool) for faulty sub-shapes)#"  , py::arg("TheShape"))
+        .def("AddFaultyShape2",
+             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::AddFaultyShape2),
+             R"#(adds faulty sub-shapes from tool to a list)#"  , py::arg("TheShape"))
+        .def("GetShape1",
+             (const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetShape1),
+             R"#(returns ancestor shape (object) for faulties)#" )
+        .def("GetShape2",
+             (const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetShape2),
+             R"#(returns ancestor shape (tool) for faulties)#" )
+        .def("GetFaultyShapes1",
+             (const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetFaultyShapes1),
+             R"#(returns list of faulty shapes for object)#" )
+        .def("GetFaultyShapes2",
+             (const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetFaultyShapes2),
+             R"#(returns list of faulty shapes for tool)#" )
+        .def("SetCheckStatus",
+             (void (BOPAlgo_CheckResult::*)( const BOPAlgo_CheckStatus  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const BOPAlgo_CheckStatus  ) >(&BOPAlgo_CheckResult::SetCheckStatus),
+             R"#(set status of faulty)#"  , py::arg("TheStatus"))
+        .def("GetCheckStatus",
+             (BOPAlgo_CheckStatus (BOPAlgo_CheckResult::*)() const) static_cast<BOPAlgo_CheckStatus (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetCheckStatus),
+             R"#(gets status of faulty)#" )
+        .def("SetMaxDistance1",
+             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxDistance1),
+             R"#(Sets max distance for the first shape)#"  , py::arg("theDist"))
+        .def("SetMaxDistance2",
+             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxDistance2),
+             R"#(Sets max distance for the second shape)#"  , py::arg("theDist"))
+        .def("SetMaxParameter1",
+             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxParameter1),
+             R"#(Sets the parameter for the first shape)#"  , py::arg("thePar"))
+        .def("SetMaxParameter2",
+             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxParameter2),
+             R"#(Sets the parameter for the second shape)#"  , py::arg("thePar"))
+        .def("GetMaxDistance1",
+             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxDistance1),
+             R"#(Returns the distance for the first shape)#" )
+        .def("GetMaxDistance2",
+             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxDistance2),
+             R"#(Returns the distance for the second shape)#" )
+        .def("GetMaxParameter1",
+             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxParameter1),
+             R"#(Returns the parameter for the fircst shape)#" )
+        .def("GetMaxParameter2",
+             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxParameter2),
+             R"#(Returns the parameter for the second shape)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_EdgeInfo , shared_ptr<BOPAlgo_EdgeInfo>  >>(m.attr("BOPAlgo_EdgeInfo"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetEdge",
+             (void (BOPAlgo_EdgeInfo::*)( const TopoDS_Edge &  ) ) static_cast<void (BOPAlgo_EdgeInfo::*)( const TopoDS_Edge &  ) >(&BOPAlgo_EdgeInfo::SetEdge),
+             R"#(None)#"  , py::arg("theE"))
+        .def("Edge",
+             (const TopoDS_Edge & (BOPAlgo_EdgeInfo::*)() const) static_cast<const TopoDS_Edge & (BOPAlgo_EdgeInfo::*)() const>(&BOPAlgo_EdgeInfo::Edge),
+             R"#(None)#" )
+        .def("SetPassed",
+             (void (BOPAlgo_EdgeInfo::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_EdgeInfo::*)( const Standard_Boolean  ) >(&BOPAlgo_EdgeInfo::SetPassed),
+             R"#(None)#"  , py::arg("theFlag"))
+        .def("Passed",
+             (Standard_Boolean (BOPAlgo_EdgeInfo::*)() const) static_cast<Standard_Boolean (BOPAlgo_EdgeInfo::*)() const>(&BOPAlgo_EdgeInfo::Passed),
+             R"#(None)#" )
+        .def("SetInFlag",
+             (void (BOPAlgo_EdgeInfo::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_EdgeInfo::*)( const Standard_Boolean  ) >(&BOPAlgo_EdgeInfo::SetInFlag),
+             R"#(None)#"  , py::arg("theFlag"))
+        .def("IsIn",
+             (Standard_Boolean (BOPAlgo_EdgeInfo::*)() const) static_cast<Standard_Boolean (BOPAlgo_EdgeInfo::*)() const>(&BOPAlgo_EdgeInfo::IsIn),
+             R"#(None)#" )
+        .def("SetAngle",
+             (void (BOPAlgo_EdgeInfo::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_EdgeInfo::*)( const Standard_Real  ) >(&BOPAlgo_EdgeInfo::SetAngle),
+             R"#(None)#"  , py::arg("theAngle"))
+        .def("Angle",
+             (Standard_Real (BOPAlgo_EdgeInfo::*)() const) static_cast<Standard_Real (BOPAlgo_EdgeInfo::*)() const>(&BOPAlgo_EdgeInfo::Angle),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_Options , shared_ptr<BOPAlgo_Options>  >>(m.attr("BOPAlgo_Options"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
         .def("Allocator",
              (const opencascade::handle<NCollection_BaseAllocator> & (BOPAlgo_Options::*)() const) static_cast<const opencascade::handle<NCollection_BaseAllocator> & (BOPAlgo_Options::*)() const>(&BOPAlgo_Options::Allocator),
              R"#(Returns allocator)#" )
@@ -199,359 +883,193 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         .def("UseOBB",
              (Standard_Boolean (BOPAlgo_Options::*)() const) static_cast<Standard_Boolean (BOPAlgo_Options::*)() const>(&BOPAlgo_Options::UseOBB),
              R"#(Returns the flag defining usage of OBB)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("GetParallelMode_s",
                     (Standard_Boolean (*)() ) static_cast<Standard_Boolean (*)() >(&BOPAlgo_Options::GetParallelMode),
                     R"#(Gets the global parallel mode)#" )
         .def_static("SetParallelMode_s",
                     (void (*)( const Standard_Boolean  ) ) static_cast<void (*)( const Standard_Boolean  ) >(&BOPAlgo_Options::SetParallelMode),
                     R"#(Sets the global parallel mode)#"  , py::arg("theNewMode"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<BOPAlgo_AlertBOPNotAllowed ,opencascade::handle<BOPAlgo_AlertBOPNotAllowed>>(m,"BOPAlgo_AlertBOPNotAllowed");
 
-    static_cast<py::class_<BOPAlgo_AlertBOPNotAllowed ,opencascade::handle<BOPAlgo_AlertBOPNotAllowed>  , Message_Alert >>(m.attr("BOPAlgo_AlertBOPNotAllowed"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotAllowed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotAllowed::*)() const>(&BOPAlgo_AlertBOPNotAllowed::DynamicType),
+    static_cast<py::class_<BOPAlgo_SectionAttribute , shared_ptr<BOPAlgo_SectionAttribute>  >>(m.attr("BOPAlgo_SectionAttribute"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("theAproximation"),  py::arg("thePCurveOnS1"),  py::arg("thePCurveOnS2") )
+    // methods
+        .def("Approximation",
+             (void (BOPAlgo_SectionAttribute::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_SectionAttribute::*)( const Standard_Boolean  ) >(&BOPAlgo_SectionAttribute::Approximation),
+             R"#(Sets the Approximation flag)#"  , py::arg("theApprox"))
+        .def("PCurveOnS1",
+             (void (BOPAlgo_SectionAttribute::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_SectionAttribute::*)( const Standard_Boolean  ) >(&BOPAlgo_SectionAttribute::PCurveOnS1),
+             R"#(Sets the PCurveOnS1 flag)#"  , py::arg("thePCurveOnS1"))
+        .def("PCurveOnS2",
+             (void (BOPAlgo_SectionAttribute::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_SectionAttribute::*)( const Standard_Boolean  ) >(&BOPAlgo_SectionAttribute::PCurveOnS2),
+             R"#(Sets the PCurveOnS2 flag)#"  , py::arg("thePCurveOnS2"))
+        .def("Approximation",
+             (Standard_Boolean (BOPAlgo_SectionAttribute::*)() const) static_cast<Standard_Boolean (BOPAlgo_SectionAttribute::*)() const>(&BOPAlgo_SectionAttribute::Approximation),
+             R"#(Returns the Approximation flag)#" )
+        .def("PCurveOnS1",
+             (Standard_Boolean (BOPAlgo_SectionAttribute::*)() const) static_cast<Standard_Boolean (BOPAlgo_SectionAttribute::*)() const>(&BOPAlgo_SectionAttribute::PCurveOnS1),
+             R"#(Returns the PCurveOnS1 flag)#" )
+        .def("PCurveOnS2",
+             (Standard_Boolean (BOPAlgo_SectionAttribute::*)() const) static_cast<Standard_Boolean (BOPAlgo_SectionAttribute::*)() const>(&BOPAlgo_SectionAttribute::PCurveOnS2),
+             R"#(Returns the PCurveOnS2 flag)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPAlgo_Tools , shared_ptr<BOPAlgo_Tools>>(m,"BOPAlgo_Tools");
+
+    static_cast<py::class_<BOPAlgo_Tools , shared_ptr<BOPAlgo_Tools>  >>(m.attr("BOPAlgo_Tools"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("FillMap_s",
+                    (void (*)( const opencascade::handle<BOPDS_PaveBlock> & ,  const Standard_Integer ,  NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_ListOfInteger, TColStd_MapTransientHasher> & ,  const opencascade::handle<NCollection_BaseAllocator> &  ) ) static_cast<void (*)( const opencascade::handle<BOPDS_PaveBlock> & ,  const Standard_Integer ,  NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_ListOfInteger, TColStd_MapTransientHasher> & ,  const opencascade::handle<NCollection_BaseAllocator> &  ) >(&BOPAlgo_Tools::FillMap),
+                    R"#(None)#"  , py::arg("thePB1"),  py::arg("theF"),  py::arg("theMILI"),  py::arg("theAllocator"))
+        .def_static("ComputeToleranceOfCB_s",
+                    (Standard_Real (*)( const opencascade::handle<BOPDS_CommonBlock> & ,  const BOPDS_PDS ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Real (*)( const opencascade::handle<BOPDS_CommonBlock> & ,  const BOPDS_PDS ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPAlgo_Tools::ComputeToleranceOfCB),
+                    R"#(None)#"  , py::arg("theCB"),  py::arg("theDS"),  py::arg("theContext"))
+        .def_static("EdgesToWires_s",
+                    (Standard_Integer (*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<Standard_Integer (*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Real  ) >(&BOPAlgo_Tools::EdgesToWires),
+                    R"#(Creates planar wires from the given edges. The input edges are expected to be planar. And for the performance sake the method does not check if the edges are really planar. Thus, the result wires will also be not planar if the input edges are not planar. The edges may be not shared, but the resulting wires will be sharing the coinciding parts and intersecting parts. The output wires may be non-manifold and contain free and multi-connected vertices. Parameters: <theEdges> - input edges; <theWires> - output wires; <theShared> - boolean flag which defines whether the input edges are already shared or have to be intersected; <theAngTol> - the angular tolerance which will be used for distinguishing the planes in which the edges are located. Default value is 1.e-8 which is used for intersection of planes in IntTools_FaceFace. Method returns the following error statuses: 0 - in case of success (at least one wire has been built); 1 - in case there are no edges in the given shape; 2 - sharing of the edges has failed.)#"  , py::arg("theEdges"),  py::arg("theWires"),  py::arg("theShared")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theAngTol")=static_cast<const Standard_Real>(1.e-8))
+        .def_static("WiresToFaces_s",
+                    (Standard_Boolean (*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Real  ) >(&BOPAlgo_Tools::WiresToFaces),
+                    R"#(Creates planar faces from given planar wires. The method does not check if the wires are really planar. The input wires may be non-manifold but should be shared. The wires located in the same planes and included into other wires will create holes in the faces built from outer wires. The tolerance values of the input shapes may be modified during the operation due to projection of the edges on the planes for creation of 2D curves. Parameters: <theWires> - the given wires; <theFaces> - the output faces; <theAngTol> - the angular tolerance for distinguishing the planes in which the wires are located. Default value is 1.e-8 which is used for intersection of planes in IntTools_FaceFace. Method returns TRUE in case of success, i.e. at least one face has been built.)#"  , py::arg("theWires"),  py::arg("theFaces"),  py::arg("theAngTol")=static_cast<const Standard_Real>(1.e-8))
+        .def_static("IntersectVertices_s",
+                    (void (*)(  const NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher> & ,  const Standard_Boolean ,  const Standard_Real ,  NCollection_List<TopTools_ListOfShape> &  ) ) static_cast<void (*)(  const NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher> & ,  const Standard_Boolean ,  const Standard_Real ,  NCollection_List<TopTools_ListOfShape> &  ) >(&BOPAlgo_Tools::IntersectVertices),
+                    R"#(Finds chains of intersecting vertices)#"  , py::arg("theVertices"),  py::arg("theRunParallel"),  py::arg("theFuzzyValue"),  py::arg("theChains"))
+        .def_static("TreatCompound_s",
+                    (void (*)( const TopoDS_Shape & ,  NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher> & ,  NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (*)( const TopoDS_Shape & ,  NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher> & ,  NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_Tools::TreatCompound),
+                    R"#(Collect in the output list recursively all non-compound subshapes of the first level of the given shape theS. If a shape presents in the map theMFence it is skipped. All shapes put in the output are also added into theMFence.)#"  , py::arg("theS"),  py::arg("theMFence"),  py::arg("theLS"))
+        .def_static("ClassifyFaces_s",
+                    (void (*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Boolean ,  opencascade::handle<IntTools_Context> & ,  NCollection_IndexedDataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> & ,   const NCollection_DataMap<TopoDS_Shape, Bnd_Box, TopTools_ShapeMapHasher> & ,   const NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> &  ) ) static_cast<void (*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Boolean ,  opencascade::handle<IntTools_Context> & ,  NCollection_IndexedDataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> & ,   const NCollection_DataMap<TopoDS_Shape, Bnd_Box, TopTools_ShapeMapHasher> & ,   const NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> &  ) >(&BOPAlgo_Tools::ClassifyFaces),
+                    R"#(Classifies the faces <theFaces> relatively solids <theSolids>. The IN faces for solids are stored into output data map <theInParts>.)#"  , py::arg("theFaces"),  py::arg("theSolids"),  py::arg("theRunParallel"),  py::arg("theContext"),  py::arg("theInParts"),  py::arg("theShapeBoxMap")=static_cast< const NCollection_DataMap<TopoDS_Shape, Bnd_Box, TopTools_ShapeMapHasher> &>(TopTools_DataMapOfShapeBox ( )),  py::arg("theSolidsIF")=static_cast< const NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> &>(TopTools_DataMapOfShapeListOfShape ( )))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_WireEdgeSet , shared_ptr<BOPAlgo_WireEdgeSet>  >>(m.attr("BOPAlgo_WireEdgeSet"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("Clear",
+             (void (BOPAlgo_WireEdgeSet::*)() ) static_cast<void (BOPAlgo_WireEdgeSet::*)() >(&BOPAlgo_WireEdgeSet::Clear),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBOPNotAllowed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBOPNotAllowed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertBuilderFailed ,opencascade::handle<BOPAlgo_AlertBuilderFailed>>(m,"BOPAlgo_AlertBuilderFailed");
-
-    static_cast<py::class_<BOPAlgo_AlertBuilderFailed ,opencascade::handle<BOPAlgo_AlertBuilderFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertBuilderFailed"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuilderFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuilderFailed::*)() const>(&BOPAlgo_AlertBuilderFailed::DynamicType),
+        .def("SetFace",
+             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) >(&BOPAlgo_WireEdgeSet::SetFace),
+             R"#(None)#"  , py::arg("aF"))
+        .def("Face",
+             (const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Face),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBuilderFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBuilderFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertMultipleArguments ,opencascade::handle<BOPAlgo_AlertMultipleArguments>>(m,"BOPAlgo_AlertMultipleArguments");
-
-    static_cast<py::class_<BOPAlgo_AlertMultipleArguments ,opencascade::handle<BOPAlgo_AlertMultipleArguments>  , Message_Alert >>(m.attr("BOPAlgo_AlertMultipleArguments"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertMultipleArguments::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertMultipleArguments::*)() const>(&BOPAlgo_AlertMultipleArguments::DynamicType),
+        .def("AddStartElement",
+             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddStartElement),
+             R"#(None)#"  , py::arg("sS"))
+        .def("StartElements",
+             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::StartElements),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertMultipleArguments::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertMultipleArguments::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertNullInputShapes ,opencascade::handle<BOPAlgo_AlertNullInputShapes>>(m,"BOPAlgo_AlertNullInputShapes");
-
-    static_cast<py::class_<BOPAlgo_AlertNullInputShapes ,opencascade::handle<BOPAlgo_AlertNullInputShapes>  , Message_Alert >>(m.attr("BOPAlgo_AlertNullInputShapes"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNullInputShapes::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNullInputShapes::*)() const>(&BOPAlgo_AlertNullInputShapes::DynamicType),
+        .def("AddShape",
+             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddShape),
+             R"#(None)#"  , py::arg("sS"))
+        .def("Shapes",
+             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Shapes),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNullInputShapes::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNullInputShapes::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertSolidBuilderFailed ,opencascade::handle<BOPAlgo_AlertSolidBuilderFailed>>(m,"BOPAlgo_AlertSolidBuilderFailed");
-
-    static_cast<py::class_<BOPAlgo_AlertSolidBuilderFailed ,opencascade::handle<BOPAlgo_AlertSolidBuilderFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertSolidBuilderFailed"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderFailed::*)() const>(&BOPAlgo_AlertSolidBuilderFailed::DynamicType),
+        .def("Clear",
+             (void (BOPAlgo_WireEdgeSet::*)() ) static_cast<void (BOPAlgo_WireEdgeSet::*)() >(&BOPAlgo_WireEdgeSet::Clear),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertSolidBuilderFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertSolidBuilderFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertBadPositioning ,opencascade::handle<BOPAlgo_AlertBadPositioning>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertBadPositioning"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBadPositioning::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBadPositioning::*)() const>(&BOPAlgo_AlertBadPositioning::DynamicType),
+        .def("SetFace",
+             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) >(&BOPAlgo_WireEdgeSet::SetFace),
+             R"#(None)#"  , py::arg("aF"))
+        .def("Face",
+             (const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Face),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBadPositioning::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBadPositioning::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertNotSplittableEdge ,opencascade::handle<BOPAlgo_AlertNotSplittableEdge>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertNotSplittableEdge"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNotSplittableEdge::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNotSplittableEdge::*)() const>(&BOPAlgo_AlertNotSplittableEdge::DynamicType),
+        .def("AddStartElement",
+             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddStartElement),
+             R"#(None)#"  , py::arg("aE"))
+        .def("StartElements",
+             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::StartElements),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNotSplittableEdge::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNotSplittableEdge::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForFacesFailed ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForFacesFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForFacesFailed"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForFacesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForFacesFailed::*)() const>(&BOPAlgo_AlertRemovalOfIBForFacesFailed::DynamicType),
+        .def("AddShape",
+             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddShape),
+             R"#(None)#"  , py::arg("aW"))
+        .def("Shapes",
+             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Shapes),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForFacesFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForFacesFailed::get_type_descriptor),
-                    R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForSolidsFailed ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForSolidsFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForSolidsFailed"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForSolidsFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForSolidsFailed::*)() const>(&BOPAlgo_AlertRemovalOfIBForSolidsFailed::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForSolidsFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForSolidsFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertShellSplitterFailed ,opencascade::handle<BOPAlgo_AlertShellSplitterFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertShellSplitterFailed"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertShellSplitterFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertShellSplitterFailed::*)() const>(&BOPAlgo_AlertShellSplitterFailed::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertShellSplitterFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertShellSplitterFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertIntersectionOfPairOfShapesFailed ,opencascade::handle<BOPAlgo_AlertIntersectionOfPairOfShapesFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertIntersectionOfPairOfShapesFailed"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionOfPairOfShapesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionOfPairOfShapesFailed::*)() const>(&BOPAlgo_AlertIntersectionOfPairOfShapesFailed::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertIntersectionOfPairOfShapesFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertIntersectionOfPairOfShapesFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertAcquiredSelfIntersection ,opencascade::handle<BOPAlgo_AlertAcquiredSelfIntersection>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertAcquiredSelfIntersection"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertAcquiredSelfIntersection::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertAcquiredSelfIntersection::*)() const>(&BOPAlgo_AlertAcquiredSelfIntersection::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertAcquiredSelfIntersection::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertAcquiredSelfIntersection::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertNoFacesToRemove ,opencascade::handle<BOPAlgo_AlertNoFacesToRemove>>(m,"BOPAlgo_AlertNoFacesToRemove");
-
-    static_cast<py::class_<BOPAlgo_AlertNoFacesToRemove ,opencascade::handle<BOPAlgo_AlertNoFacesToRemove>  , Message_Alert >>(m.attr("BOPAlgo_AlertNoFacesToRemove"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFacesToRemove::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFacesToRemove::*)() const>(&BOPAlgo_AlertNoFacesToRemove::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNoFacesToRemove::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNoFacesToRemove::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertRemoveFeaturesFailed ,opencascade::handle<BOPAlgo_AlertRemoveFeaturesFailed>>(m,"BOPAlgo_AlertRemoveFeaturesFailed");
-
-    static_cast<py::class_<BOPAlgo_AlertRemoveFeaturesFailed ,opencascade::handle<BOPAlgo_AlertRemoveFeaturesFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertRemoveFeaturesFailed"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemoveFeaturesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemoveFeaturesFailed::*)() const>(&BOPAlgo_AlertRemoveFeaturesFailed::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemoveFeaturesFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemoveFeaturesFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertUnableToOrientTheShape ,opencascade::handle<BOPAlgo_AlertUnableToOrientTheShape>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertUnableToOrientTheShape"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToOrientTheShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToOrientTheShape::*)() const>(&BOPAlgo_AlertUnableToOrientTheShape::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertUnableToOrientTheShape::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertUnableToOrientTheShape::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_Algo ,std::unique_ptr<BOPAlgo_Algo, py::nodelete> ,Py_BOPAlgo_Algo , BOPAlgo_Options >>(m.attr("BOPAlgo_Algo"))
+    static_cast<py::class_<BOPAlgo_Algo , shared_ptr_nodelete<BOPAlgo_Algo> ,Py_BOPAlgo_Algo , BOPAlgo_Options >>(m.attr("BOPAlgo_Algo"))
+    // methods
         .def("Perform",
              (void (BOPAlgo_Algo::*)() ) static_cast<void (BOPAlgo_Algo::*)() >(&BOPAlgo_Algo::Perform),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_BuilderShape ,std::unique_ptr<BOPAlgo_BuilderShape, py::nodelete> ,Py_BOPAlgo_BuilderShape , BOPAlgo_Algo >>(m.attr("BOPAlgo_BuilderShape"))
+    static_cast<py::class_<BOPAlgo_RemoveFeatures , shared_ptr<BOPAlgo_RemoveFeatures>  , BOPAlgo_Options >>(m.attr("BOPAlgo_RemoveFeatures"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetShape",
+             (void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) >(&BOPAlgo_RemoveFeatures::SetShape),
+             R"#(Sets the shape for processing.)#"  , py::arg("theShape"))
+        .def("InputShape",
+             (const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const>(&BOPAlgo_RemoveFeatures::InputShape),
+             R"#(Returns the input shape)#" )
+        .def("AddFaceToRemove",
+             (void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) >(&BOPAlgo_RemoveFeatures::AddFaceToRemove),
+             R"#(Adds the face to remove from the input shape.)#"  , py::arg("theFace"))
+        .def("AddFacesToRemove",
+             (void (BOPAlgo_RemoveFeatures::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_RemoveFeatures::AddFacesToRemove),
+             R"#(Adds the faces to remove from the input shape.)#"  , py::arg("theFaces"))
+        .def("FacesToRemove",
+             (const TopTools_ListOfShape & (BOPAlgo_RemoveFeatures::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_RemoveFeatures::*)() const>(&BOPAlgo_RemoveFeatures::FacesToRemove),
+             R"#(Returns the list of faces which have been requested for removal from the input shape.)#" )
+        .def("Perform",
+             (void (BOPAlgo_RemoveFeatures::*)() ) static_cast<void (BOPAlgo_RemoveFeatures::*)() >(&BOPAlgo_RemoveFeatures::Perform),
+             R"#(Performs the operation)#" )
+        .def("Clear",
+             (void (BOPAlgo_RemoveFeatures::*)() ) static_cast<void (BOPAlgo_RemoveFeatures::*)() >(&BOPAlgo_RemoveFeatures::Clear),
+             R"#(Clears the contents of the algorithm from previous run, allowing reusing it for following removals.)#" )
+        .def("TrackHistory",
+             (void (BOPAlgo_RemoveFeatures::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)( const Standard_Boolean  ) >(&BOPAlgo_RemoveFeatures::TrackHistory),
+             R"#(Defines whether to track the modification of the shapes or not)#"  , py::arg("theFlag"))
+        .def("History",
+             (opencascade::handle<BRepTools_History> (BOPAlgo_RemoveFeatures::*)() ) static_cast<opencascade::handle<BRepTools_History> (BOPAlgo_RemoveFeatures::*)() >(&BOPAlgo_RemoveFeatures::History),
+             R"#(Gets the History object)#" )
         .def("Shape",
-             (const TopoDS_Shape & (BOPAlgo_BuilderShape::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::Shape),
-             R"#(Returns the result of algorithm)#" )
-        .def("Generated",
-             (const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) >(&BOPAlgo_BuilderShape::Generated),
-             R"#(Returns the list of shapes generated from the shape theS.)#"  , py::arg("theS"))
-        .def("Modified",
-             (const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) >(&BOPAlgo_BuilderShape::Modified),
-             R"#(Returns the list of shapes modified from the shape theS.)#"  , py::arg("theS"))
-        .def("IsDeleted",
-             (Standard_Boolean (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) >(&BOPAlgo_BuilderShape::IsDeleted),
-             R"#(Returns true if the shape theS has been deleted.)#"  , py::arg("theS"))
-        .def("HasDeleted",
-             (Standard_Boolean (BOPAlgo_BuilderShape::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::HasDeleted),
-             R"#(Returns true if the at least one shape(or subshape) of arguments has been deleted.)#" )
-        .def("HasGenerated",
-             (Standard_Boolean (BOPAlgo_BuilderShape::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::HasGenerated),
-             R"#(Returns true if the at least one shape(or subshape) of arguments has generated shapes.)#" )
-        .def("HasModified",
-             (Standard_Boolean (BOPAlgo_BuilderShape::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::HasModified),
-             R"#(Returns true if the at least one shape(or subshape) of arguments has modified shapes.)#" )
-        .def("ImagesResult",
-             (const TopTools_IndexedDataMapOfShapeListOfShape & (BOPAlgo_BuilderShape::*)() const) static_cast<const TopTools_IndexedDataMapOfShapeListOfShape & (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::ImagesResult),
-             R"#(None)#" )
+             (const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const>(&BOPAlgo_RemoveFeatures::Shape),
+             R"#(Returns the resulting shape)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_BuilderArea ,std::unique_ptr<BOPAlgo_BuilderArea, py::nodelete> ,Py_BOPAlgo_BuilderArea , BOPAlgo_Algo >>(m.attr("BOPAlgo_BuilderArea"))
-        .def("SetContext",
-             (void (BOPAlgo_BuilderArea::*)( const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (BOPAlgo_BuilderArea::*)( const opencascade::handle<IntTools_Context> &  ) >(&BOPAlgo_BuilderArea::SetContext),
-             R"#(Sets the context for the algorithms)#"  , py::arg("theContext"))
-        .def("Shapes",
-             (const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::Shapes),
-             R"#(Returns the input shapes)#" )
-        .def("SetShapes",
-             (void (BOPAlgo_BuilderArea::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_BuilderArea::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_BuilderArea::SetShapes),
-             R"#(Sets the shapes for building areas)#"  , py::arg("theLS"))
-        .def("Loops",
-             (const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::Loops),
-             R"#(Returns the found loops)#" )
-        .def("Areas",
-             (const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::Areas),
-             R"#(Returns the found areas)#" )
-        .def("SetAvoidInternalShapes",
-             (void (BOPAlgo_BuilderArea::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_BuilderArea::*)( const Standard_Boolean  ) >(&BOPAlgo_BuilderArea::SetAvoidInternalShapes),
-             R"#(Defines the preventing of addition of internal parts into result. The default value is FALSE, i.e. the internal parts are added into result.)#"  , py::arg("theAvoidInternal"))
-        .def("IsAvoidInternalShapes",
-             (Standard_Boolean (BOPAlgo_BuilderArea::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::IsAvoidInternalShapes),
-             R"#(Returns the AvoidInternalShapes flag)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_WireSplitter ,std::unique_ptr<BOPAlgo_WireSplitter>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_WireSplitter"))
+    static_cast<py::class_<BOPAlgo_ArgumentAnalyzer , shared_ptr<BOPAlgo_ArgumentAnalyzer>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_ArgumentAnalyzer"))
         .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("SetWES",
-             (void (BOPAlgo_WireSplitter::*)( const BOPAlgo_WireEdgeSet &  ) ) static_cast<void (BOPAlgo_WireSplitter::*)( const BOPAlgo_WireEdgeSet &  ) >(&BOPAlgo_WireSplitter::SetWES),
-             R"#(None)#"  , py::arg("theWES"))
-        .def("WES",
-             (BOPAlgo_WireEdgeSet & (BOPAlgo_WireSplitter::*)() ) static_cast<BOPAlgo_WireEdgeSet & (BOPAlgo_WireSplitter::*)() >(&BOPAlgo_WireSplitter::WES),
-             R"#(None)#" )
-        .def("SetContext",
-             (void (BOPAlgo_WireSplitter::*)( const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (BOPAlgo_WireSplitter::*)( const opencascade::handle<IntTools_Context> &  ) >(&BOPAlgo_WireSplitter::SetContext),
-             R"#(Sets the context for the algorithm)#"  , py::arg("theContext"))
-        .def("Context",
-             (const opencascade::handle<IntTools_Context> & (BOPAlgo_WireSplitter::*)() ) static_cast<const opencascade::handle<IntTools_Context> & (BOPAlgo_WireSplitter::*)() >(&BOPAlgo_WireSplitter::Context),
-             R"#(Returns the context)#" )
-        .def("Perform",
-             (void (BOPAlgo_WireSplitter::*)() ) static_cast<void (BOPAlgo_WireSplitter::*)() >(&BOPAlgo_WireSplitter::Perform),
-             R"#(None)#" )
-        .def_static("MakeWire_s",
-                    (void (*)( NCollection_List<TopoDS_Shape> & ,  TopoDS_Wire &  ) ) static_cast<void (*)( NCollection_List<TopoDS_Shape> & ,  TopoDS_Wire &  ) >(&BOPAlgo_WireSplitter::MakeWire),
-                    R"#(None)#"  , py::arg("theLE"),  py::arg("theW"))
-        .def_static("SplitBlock_s",
-                    (void (*)( const TopoDS_Face & ,  BOPTools_ConnexityBlock & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Face & ,  BOPTools_ConnexityBlock & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPAlgo_WireSplitter::SplitBlock),
-                    R"#(None)#"  , py::arg("theF"),  py::arg("theCB"),  py::arg("theContext"))
-;
-
-
-    static_cast<py::class_<BOPAlgo_PaveFiller ,std::unique_ptr<BOPAlgo_PaveFiller>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_PaveFiller"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("DS",
-             (const BOPDS_DS & (BOPAlgo_PaveFiller::*)() ) static_cast<const BOPDS_DS & (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::DS),
-             R"#(None)#" )
-        .def("PDS",
-             (BOPDS_PDS (BOPAlgo_PaveFiller::*)() ) static_cast<BOPDS_PDS (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::PDS),
-             R"#(None)#" )
-        .def("SetArguments",
-             (void (BOPAlgo_PaveFiller::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_PaveFiller::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_PaveFiller::SetArguments),
-             R"#(None)#"  , py::arg("theLS"))
-        .def("Arguments",
-             (const TopTools_ListOfShape & (BOPAlgo_PaveFiller::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::Arguments),
-             R"#(None)#" )
-        .def("Context",
-             (const opencascade::handle<IntTools_Context> & (BOPAlgo_PaveFiller::*)() ) static_cast<const opencascade::handle<IntTools_Context> & (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::Context),
-             R"#(None)#" )
-        .def("SetSectionAttribute",
-             (void (BOPAlgo_PaveFiller::*)( const BOPAlgo_SectionAttribute &  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const BOPAlgo_SectionAttribute &  ) >(&BOPAlgo_PaveFiller::SetSectionAttribute),
-             R"#(None)#"  , py::arg("theSecAttr"))
-        .def("SetNonDestructive",
-             (void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) >(&BOPAlgo_PaveFiller::SetNonDestructive),
-             R"#(Sets the flag that defines the mode of treatment. In non-destructive mode the argument shapes are not modified. Instead a copy of a sub-shape is created in the result if it is needed to be updated.)#"  , py::arg("theFlag"))
-        .def("NonDestructive",
-             (Standard_Boolean (BOPAlgo_PaveFiller::*)() const) static_cast<Standard_Boolean (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::NonDestructive),
-             R"#(Returns the flag that defines the mode of treatment. In non-destructive mode the argument shapes are not modified. Instead a copy of a sub-shape is created in the result if it is needed to be updated.)#" )
-        .def("Perform",
-             (void (BOPAlgo_PaveFiller::*)() ) static_cast<void (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::Perform),
-             R"#(None)#" )
-        .def("SetGlue",
-             (void (BOPAlgo_PaveFiller::*)( const BOPAlgo_GlueEnum  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const BOPAlgo_GlueEnum  ) >(&BOPAlgo_PaveFiller::SetGlue),
-             R"#(Sets the glue option for the algorithm)#"  , py::arg("theGlue"))
-        .def("Glue",
-             (BOPAlgo_GlueEnum (BOPAlgo_PaveFiller::*)() const) static_cast<BOPAlgo_GlueEnum (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::Glue),
-             R"#(Returns the glue option of the algorithm)#" )
-        .def("SetAvoidBuildPCurve",
-             (void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) >(&BOPAlgo_PaveFiller::SetAvoidBuildPCurve),
-             R"#(Sets the flag to avoid building of p-curves of edges on faces)#"  , py::arg("theValue"))
-        .def("IsAvoidBuildPCurve",
-             (Standard_Boolean (BOPAlgo_PaveFiller::*)() const) static_cast<Standard_Boolean (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::IsAvoidBuildPCurve),
-             R"#(Returns the flag to avoid building of p-curves of edges on faces)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_ArgumentAnalyzer ,std::unique_ptr<BOPAlgo_ArgumentAnalyzer>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_ArgumentAnalyzer"))
-        .def(py::init<  >()  )
+    // methods
         .def("SetShape1",
              (void (BOPAlgo_ArgumentAnalyzer::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_ArgumentAnalyzer::*)( const TopoDS_Shape &  ) >(&BOPAlgo_ArgumentAnalyzer::SetShape1),
              R"#(sets object shape)#"  , py::arg("TheShape"))
@@ -633,12 +1151,194 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         .def("CurveOnSurfaceMode",
              (Standard_Boolean & (BOPAlgo_ArgumentAnalyzer::*)() ) static_cast<Standard_Boolean & (BOPAlgo_ArgumentAnalyzer::*)() >(&BOPAlgo_ArgumentAnalyzer::CurveOnSurfaceMode),
              R"#(Returns (modifiable) mode that means checking of problem of invalid curve on surface.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_Builder ,std::unique_ptr<BOPAlgo_Builder>  , BOPAlgo_BuilderShape >>(m.attr("BOPAlgo_Builder"))
+    static_cast<py::class_<BOPAlgo_BuilderArea , shared_ptr_nodelete<BOPAlgo_BuilderArea> ,Py_BOPAlgo_BuilderArea , BOPAlgo_Algo >>(m.attr("BOPAlgo_BuilderArea"))
+    // methods
+        .def("SetContext",
+             (void (BOPAlgo_BuilderArea::*)( const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (BOPAlgo_BuilderArea::*)( const opencascade::handle<IntTools_Context> &  ) >(&BOPAlgo_BuilderArea::SetContext),
+             R"#(Sets the context for the algorithms)#"  , py::arg("theContext"))
+        .def("Shapes",
+             (const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::Shapes),
+             R"#(Returns the input shapes)#" )
+        .def("SetShapes",
+             (void (BOPAlgo_BuilderArea::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_BuilderArea::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_BuilderArea::SetShapes),
+             R"#(Sets the shapes for building areas)#"  , py::arg("theLS"))
+        .def("Loops",
+             (const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::Loops),
+             R"#(Returns the found loops)#" )
+        .def("Areas",
+             (const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::Areas),
+             R"#(Returns the found areas)#" )
+        .def("SetAvoidInternalShapes",
+             (void (BOPAlgo_BuilderArea::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_BuilderArea::*)( const Standard_Boolean  ) >(&BOPAlgo_BuilderArea::SetAvoidInternalShapes),
+             R"#(Defines the preventing of addition of internal parts into result. The default value is FALSE, i.e. the internal parts are added into result.)#"  , py::arg("theAvoidInternal"))
+        .def("IsAvoidInternalShapes",
+             (Standard_Boolean (BOPAlgo_BuilderArea::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderArea::*)() const>(&BOPAlgo_BuilderArea::IsAvoidInternalShapes),
+             R"#(Returns the AvoidInternalShapes flag)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_BuilderShape , shared_ptr_nodelete<BOPAlgo_BuilderShape> ,Py_BOPAlgo_BuilderShape , BOPAlgo_Algo >>(m.attr("BOPAlgo_BuilderShape"))
+    // methods
+        .def("Shape",
+             (const TopoDS_Shape & (BOPAlgo_BuilderShape::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::Shape),
+             R"#(Returns the result of algorithm)#" )
+        .def("Generated",
+             (const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) >(&BOPAlgo_BuilderShape::Generated),
+             R"#(Returns the list of shapes generated from the shape theS.)#"  , py::arg("theS"))
+        .def("Modified",
+             (const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) >(&BOPAlgo_BuilderShape::Modified),
+             R"#(Returns the list of shapes modified from the shape theS.)#"  , py::arg("theS"))
+        .def("IsDeleted",
+             (Standard_Boolean (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)( const TopoDS_Shape &  ) >(&BOPAlgo_BuilderShape::IsDeleted),
+             R"#(Returns true if the shape theS has been deleted.)#"  , py::arg("theS"))
+        .def("HasDeleted",
+             (Standard_Boolean (BOPAlgo_BuilderShape::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::HasDeleted),
+             R"#(Returns true if the at least one shape(or subshape) of arguments has been deleted.)#" )
+        .def("HasGenerated",
+             (Standard_Boolean (BOPAlgo_BuilderShape::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::HasGenerated),
+             R"#(Returns true if the at least one shape(or subshape) of arguments has generated shapes.)#" )
+        .def("HasModified",
+             (Standard_Boolean (BOPAlgo_BuilderShape::*)() const) static_cast<Standard_Boolean (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::HasModified),
+             R"#(Returns true if the at least one shape(or subshape) of arguments has modified shapes.)#" )
+        .def("ImagesResult",
+             (const TopTools_IndexedDataMapOfShapeListOfShape & (BOPAlgo_BuilderShape::*)() const) static_cast<const TopTools_IndexedDataMapOfShapeListOfShape & (BOPAlgo_BuilderShape::*)() const>(&BOPAlgo_BuilderShape::ImagesResult),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_PaveFiller , shared_ptr<BOPAlgo_PaveFiller>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_PaveFiller"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("DS",
+             (const BOPDS_DS & (BOPAlgo_PaveFiller::*)() ) static_cast<const BOPDS_DS & (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::DS),
+             R"#(None)#" )
+        .def("PDS",
+             (BOPDS_PDS (BOPAlgo_PaveFiller::*)() ) static_cast<BOPDS_PDS (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::PDS),
+             R"#(None)#" )
+        .def("SetArguments",
+             (void (BOPAlgo_PaveFiller::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_PaveFiller::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_PaveFiller::SetArguments),
+             R"#(None)#"  , py::arg("theLS"))
+        .def("Arguments",
+             (const TopTools_ListOfShape & (BOPAlgo_PaveFiller::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::Arguments),
+             R"#(None)#" )
+        .def("Context",
+             (const opencascade::handle<IntTools_Context> & (BOPAlgo_PaveFiller::*)() ) static_cast<const opencascade::handle<IntTools_Context> & (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::Context),
+             R"#(None)#" )
+        .def("SetSectionAttribute",
+             (void (BOPAlgo_PaveFiller::*)( const BOPAlgo_SectionAttribute &  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const BOPAlgo_SectionAttribute &  ) >(&BOPAlgo_PaveFiller::SetSectionAttribute),
+             R"#(None)#"  , py::arg("theSecAttr"))
+        .def("SetNonDestructive",
+             (void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) >(&BOPAlgo_PaveFiller::SetNonDestructive),
+             R"#(Sets the flag that defines the mode of treatment. In non-destructive mode the argument shapes are not modified. Instead a copy of a sub-shape is created in the result if it is needed to be updated.)#"  , py::arg("theFlag"))
+        .def("NonDestructive",
+             (Standard_Boolean (BOPAlgo_PaveFiller::*)() const) static_cast<Standard_Boolean (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::NonDestructive),
+             R"#(Returns the flag that defines the mode of treatment. In non-destructive mode the argument shapes are not modified. Instead a copy of a sub-shape is created in the result if it is needed to be updated.)#" )
+        .def("Perform",
+             (void (BOPAlgo_PaveFiller::*)() ) static_cast<void (BOPAlgo_PaveFiller::*)() >(&BOPAlgo_PaveFiller::Perform),
+             R"#(None)#" )
+        .def("SetGlue",
+             (void (BOPAlgo_PaveFiller::*)( const BOPAlgo_GlueEnum  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const BOPAlgo_GlueEnum  ) >(&BOPAlgo_PaveFiller::SetGlue),
+             R"#(Sets the glue option for the algorithm)#"  , py::arg("theGlue"))
+        .def("Glue",
+             (BOPAlgo_GlueEnum (BOPAlgo_PaveFiller::*)() const) static_cast<BOPAlgo_GlueEnum (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::Glue),
+             R"#(Returns the glue option of the algorithm)#" )
+        .def("SetAvoidBuildPCurve",
+             (void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_PaveFiller::*)( const Standard_Boolean  ) >(&BOPAlgo_PaveFiller::SetAvoidBuildPCurve),
+             R"#(Sets the flag to avoid building of p-curves of edges on faces)#"  , py::arg("theValue"))
+        .def("IsAvoidBuildPCurve",
+             (Standard_Boolean (BOPAlgo_PaveFiller::*)() const) static_cast<Standard_Boolean (BOPAlgo_PaveFiller::*)() const>(&BOPAlgo_PaveFiller::IsAvoidBuildPCurve),
+             R"#(Returns the flag to avoid building of p-curves of edges on faces)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_ShellSplitter , shared_ptr<BOPAlgo_ShellSplitter>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_ShellSplitter"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("AddStartElement",
+             (void (BOPAlgo_ShellSplitter::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_ShellSplitter::*)( const TopoDS_Shape &  ) >(&BOPAlgo_ShellSplitter::AddStartElement),
+             R"#(adds a face <theS> to process)#"  , py::arg("theS"))
+        .def("StartElements",
+             (const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const>(&BOPAlgo_ShellSplitter::StartElements),
+             R"#(return the faces to process)#" )
+        .def("Perform",
+             (void (BOPAlgo_ShellSplitter::*)() ) static_cast<void (BOPAlgo_ShellSplitter::*)() >(&BOPAlgo_ShellSplitter::Perform),
+             R"#(performs the algorithm)#" )
+        .def("Shells",
+             (const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const>(&BOPAlgo_ShellSplitter::Shells),
+             R"#(returns the loops)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("SplitBlock_s",
+                    (void (*)( BOPTools_ConnexityBlock &  ) ) static_cast<void (*)( BOPTools_ConnexityBlock &  ) >(&BOPAlgo_ShellSplitter::SplitBlock),
+                    R"#(None)#"  , py::arg("theCB"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_WireSplitter , shared_ptr<BOPAlgo_WireSplitter>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_WireSplitter"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("SetWES",
+             (void (BOPAlgo_WireSplitter::*)( const BOPAlgo_WireEdgeSet &  ) ) static_cast<void (BOPAlgo_WireSplitter::*)( const BOPAlgo_WireEdgeSet &  ) >(&BOPAlgo_WireSplitter::SetWES),
+             R"#(None)#"  , py::arg("theWES"))
+        .def("WES",
+             (BOPAlgo_WireEdgeSet & (BOPAlgo_WireSplitter::*)() ) static_cast<BOPAlgo_WireEdgeSet & (BOPAlgo_WireSplitter::*)() >(&BOPAlgo_WireSplitter::WES),
+             R"#(None)#" )
+        .def("SetContext",
+             (void (BOPAlgo_WireSplitter::*)( const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (BOPAlgo_WireSplitter::*)( const opencascade::handle<IntTools_Context> &  ) >(&BOPAlgo_WireSplitter::SetContext),
+             R"#(Sets the context for the algorithm)#"  , py::arg("theContext"))
+        .def("Context",
+             (const opencascade::handle<IntTools_Context> & (BOPAlgo_WireSplitter::*)() ) static_cast<const opencascade::handle<IntTools_Context> & (BOPAlgo_WireSplitter::*)() >(&BOPAlgo_WireSplitter::Context),
+             R"#(Returns the context)#" )
+        .def("Perform",
+             (void (BOPAlgo_WireSplitter::*)() ) static_cast<void (BOPAlgo_WireSplitter::*)() >(&BOPAlgo_WireSplitter::Perform),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("MakeWire_s",
+                    (void (*)( NCollection_List<TopoDS_Shape> & ,  TopoDS_Wire &  ) ) static_cast<void (*)( NCollection_List<TopoDS_Shape> & ,  TopoDS_Wire &  ) >(&BOPAlgo_WireSplitter::MakeWire),
+                    R"#(None)#"  , py::arg("theLE"),  py::arg("theW"))
+        .def_static("SplitBlock_s",
+                    (void (*)( const TopoDS_Face & ,  BOPTools_ConnexityBlock & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Face & ,  BOPTools_ConnexityBlock & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPAlgo_WireSplitter::SplitBlock),
+                    R"#(None)#"  , py::arg("theF"),  py::arg("theCB"),  py::arg("theContext"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_Builder , shared_ptr<BOPAlgo_Builder>  , BOPAlgo_BuilderShape >>(m.attr("BOPAlgo_Builder"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
         .def("Clear",
              (void (BOPAlgo_Builder::*)() ) static_cast<void (BOPAlgo_Builder::*)() >(&BOPAlgo_Builder::Clear),
              R"#(Clears the content of the algorithm.)#" )
@@ -702,244 +1402,113 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         .def("ShapesSD",
              (const TopTools_DataMapOfShapeShape & (BOPAlgo_Builder::*)() const) static_cast<const TopTools_DataMapOfShapeShape & (BOPAlgo_Builder::*)() const>(&BOPAlgo_Builder::ShapesSD),
              R"#(Returns the map of Same Domain (SD) shapes - coinciding shapes from different arguments.)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertBOPNotSet ,opencascade::handle<BOPAlgo_AlertBOPNotSet>>(m,"BOPAlgo_AlertBOPNotSet");
-
-    static_cast<py::class_<BOPAlgo_AlertBOPNotSet ,opencascade::handle<BOPAlgo_AlertBOPNotSet>  , Message_Alert >>(m.attr("BOPAlgo_AlertBOPNotSet"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotSet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBOPNotSet::*)() const>(&BOPAlgo_AlertBOPNotSet::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBOPNotSet::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBOPNotSet::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertNoFiller ,opencascade::handle<BOPAlgo_AlertNoFiller>>(m,"BOPAlgo_AlertNoFiller");
-
-    static_cast<py::class_<BOPAlgo_AlertNoFiller ,opencascade::handle<BOPAlgo_AlertNoFiller>  , Message_Alert >>(m.attr("BOPAlgo_AlertNoFiller"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFiller::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertNoFiller::*)() const>(&BOPAlgo_AlertNoFiller::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertNoFiller::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertNoFiller::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertTooFewArguments ,opencascade::handle<BOPAlgo_AlertTooFewArguments>>(m,"BOPAlgo_AlertTooFewArguments");
-
-    static_cast<py::class_<BOPAlgo_AlertTooFewArguments ,opencascade::handle<BOPAlgo_AlertTooFewArguments>  , Message_Alert >>(m.attr("BOPAlgo_AlertTooFewArguments"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooFewArguments::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooFewArguments::*)() const>(&BOPAlgo_AlertTooFewArguments::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertTooFewArguments::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertTooFewArguments::get_type_descriptor),
-                    R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForEdgesFailed ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForEdgesFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForEdgesFailed"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForEdgesFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForEdgesFailed::*)() const>(&BOPAlgo_AlertRemovalOfIBForEdgesFailed::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForEdgesFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForEdgesFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertSelfInterferingShape ,opencascade::handle<BOPAlgo_AlertSelfInterferingShape>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertSelfInterferingShape"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSelfInterferingShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSelfInterferingShape::*)() const>(&BOPAlgo_AlertSelfInterferingShape::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertSelfInterferingShape::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertSelfInterferingShape::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertBuildingPCurveFailed ,opencascade::handle<BOPAlgo_AlertBuildingPCurveFailed>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertBuildingPCurveFailed"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuildingPCurveFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertBuildingPCurveFailed::*)() const>(&BOPAlgo_AlertBuildingPCurveFailed::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertBuildingPCurveFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertBuildingPCurveFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertUnableToRemoveTheFeature ,opencascade::handle<BOPAlgo_AlertUnableToRemoveTheFeature>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertUnableToRemoveTheFeature"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToRemoveTheFeature::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnableToRemoveTheFeature::*)() const>(&BOPAlgo_AlertUnableToRemoveTheFeature::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertUnableToRemoveTheFeature::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertUnableToRemoveTheFeature::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_CheckResult ,std::unique_ptr<BOPAlgo_CheckResult>  >>(m.attr("BOPAlgo_CheckResult"))
-        .def(py::init<  >()  )
-        .def("SetShape1",
-             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::SetShape1),
-             R"#(sets ancestor shape (object) for faulty sub-shapes)#"  , py::arg("TheShape"))
-        .def("AddFaultyShape1",
-             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::AddFaultyShape1),
-             R"#(adds faulty sub-shapes from object to a list)#"  , py::arg("TheShape"))
-        .def("SetShape2",
-             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::SetShape2),
-             R"#(sets ancestor shape (tool) for faulty sub-shapes)#"  , py::arg("TheShape"))
-        .def("AddFaultyShape2",
-             (void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const TopoDS_Shape &  ) >(&BOPAlgo_CheckResult::AddFaultyShape2),
-             R"#(adds faulty sub-shapes from tool to a list)#"  , py::arg("TheShape"))
-        .def("GetShape1",
-             (const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetShape1),
-             R"#(returns ancestor shape (object) for faulties)#" )
-        .def("GetShape2",
-             (const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetShape2),
-             R"#(returns ancestor shape (tool) for faulties)#" )
-        .def("GetFaultyShapes1",
-             (const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetFaultyShapes1),
-             R"#(returns list of faulty shapes for object)#" )
-        .def("GetFaultyShapes2",
-             (const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetFaultyShapes2),
-             R"#(returns list of faulty shapes for tool)#" )
-        .def("SetCheckStatus",
-             (void (BOPAlgo_CheckResult::*)( const BOPAlgo_CheckStatus  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const BOPAlgo_CheckStatus  ) >(&BOPAlgo_CheckResult::SetCheckStatus),
-             R"#(set status of faulty)#"  , py::arg("TheStatus"))
-        .def("GetCheckStatus",
-             (BOPAlgo_CheckStatus (BOPAlgo_CheckResult::*)() const) static_cast<BOPAlgo_CheckStatus (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetCheckStatus),
-             R"#(gets status of faulty)#" )
-        .def("SetMaxDistance1",
-             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxDistance1),
-             R"#(Sets max distance for the first shape)#"  , py::arg("theDist"))
-        .def("SetMaxDistance2",
-             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxDistance2),
-             R"#(Sets max distance for the second shape)#"  , py::arg("theDist"))
-        .def("SetMaxParameter1",
-             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxParameter1),
-             R"#(Sets the parameter for the first shape)#"  , py::arg("thePar"))
-        .def("SetMaxParameter2",
-             (void (BOPAlgo_CheckResult::*)( const Standard_Real  ) ) static_cast<void (BOPAlgo_CheckResult::*)( const Standard_Real  ) >(&BOPAlgo_CheckResult::SetMaxParameter2),
-             R"#(Sets the parameter for the second shape)#"  , py::arg("thePar"))
-        .def("GetMaxDistance1",
-             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxDistance1),
-             R"#(Returns the distance for the first shape)#" )
-        .def("GetMaxDistance2",
-             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxDistance2),
-             R"#(Returns the distance for the second shape)#" )
-        .def("GetMaxParameter1",
-             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxParameter1),
-             R"#(Returns the parameter for the fircst shape)#" )
-        .def("GetMaxParameter2",
-             (Standard_Real (BOPAlgo_CheckResult::*)() const) static_cast<Standard_Real (BOPAlgo_CheckResult::*)() const>(&BOPAlgo_CheckResult::GetMaxParameter2),
-             R"#(Returns the parameter for the second shape)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_WireEdgeSet ,std::unique_ptr<BOPAlgo_WireEdgeSet>  >>(m.attr("BOPAlgo_WireEdgeSet"))
+    static_cast<py::class_<BOPAlgo_BuilderFace , shared_ptr<BOPAlgo_BuilderFace>  , BOPAlgo_BuilderArea >>(m.attr("BOPAlgo_BuilderFace"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("Clear",
-             (void (BOPAlgo_WireEdgeSet::*)() ) static_cast<void (BOPAlgo_WireEdgeSet::*)() >(&BOPAlgo_WireEdgeSet::Clear),
-             R"#(None)#" )
+    // methods
         .def("SetFace",
-             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) >(&BOPAlgo_WireEdgeSet::SetFace),
-             R"#(None)#"  , py::arg("aF"))
+             (void (BOPAlgo_BuilderFace::*)( const TopoDS_Face &  ) ) static_cast<void (BOPAlgo_BuilderFace::*)( const TopoDS_Face &  ) >(&BOPAlgo_BuilderFace::SetFace),
+             R"#(Sets the face generatix)#"  , py::arg("theFace"))
         .def("Face",
-             (const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Face),
-             R"#(None)#" )
-        .def("AddStartElement",
-             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddStartElement),
-             R"#(None)#"  , py::arg("sS"))
-        .def("StartElements",
-             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::StartElements),
-             R"#(None)#" )
-        .def("AddShape",
-             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddShape),
-             R"#(None)#"  , py::arg("sS"))
-        .def("Shapes",
-             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Shapes),
-             R"#(None)#" )
-        .def("Clear",
-             (void (BOPAlgo_WireEdgeSet::*)() ) static_cast<void (BOPAlgo_WireEdgeSet::*)() >(&BOPAlgo_WireEdgeSet::Clear),
-             R"#(None)#" )
-        .def("SetFace",
-             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Face &  ) >(&BOPAlgo_WireEdgeSet::SetFace),
-             R"#(None)#"  , py::arg("aF"))
-        .def("Face",
-             (const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopoDS_Face & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Face),
-             R"#(None)#" )
-        .def("AddStartElement",
-             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddStartElement),
-             R"#(None)#"  , py::arg("aE"))
-        .def("StartElements",
-             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::StartElements),
-             R"#(None)#" )
-        .def("AddShape",
-             (void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_WireEdgeSet::*)( const TopoDS_Shape &  ) >(&BOPAlgo_WireEdgeSet::AddShape),
-             R"#(None)#"  , py::arg("aW"))
-        .def("Shapes",
-             (const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_WireEdgeSet::*)() const>(&BOPAlgo_WireEdgeSet::Shapes),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_ShellSplitter ,std::unique_ptr<BOPAlgo_ShellSplitter>  , BOPAlgo_Algo >>(m.attr("BOPAlgo_ShellSplitter"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("AddStartElement",
-             (void (BOPAlgo_ShellSplitter::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_ShellSplitter::*)( const TopoDS_Shape &  ) >(&BOPAlgo_ShellSplitter::AddStartElement),
-             R"#(adds a face <theS> to process)#"  , py::arg("theS"))
-        .def("StartElements",
-             (const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const>(&BOPAlgo_ShellSplitter::StartElements),
-             R"#(return the faces to process)#" )
+             (const TopoDS_Face & (BOPAlgo_BuilderFace::*)() const) static_cast<const TopoDS_Face & (BOPAlgo_BuilderFace::*)() const>(&BOPAlgo_BuilderFace::Face),
+             R"#(Returns the face generatix)#" )
         .def("Perform",
-             (void (BOPAlgo_ShellSplitter::*)() ) static_cast<void (BOPAlgo_ShellSplitter::*)() >(&BOPAlgo_ShellSplitter::Perform),
-             R"#(performs the algorithm)#" )
-        .def("Shells",
-             (const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_ShellSplitter::*)() const>(&BOPAlgo_ShellSplitter::Shells),
-             R"#(returns the loops)#" )
-        .def_static("SplitBlock_s",
-                    (void (*)( BOPTools_ConnexityBlock &  ) ) static_cast<void (*)( BOPTools_ConnexityBlock &  ) >(&BOPAlgo_ShellSplitter::SplitBlock),
-                    R"#(None)#"  , py::arg("theCB"))
+             (void (BOPAlgo_BuilderFace::*)() ) static_cast<void (BOPAlgo_BuilderFace::*)() >(&BOPAlgo_BuilderFace::Perform),
+             R"#(Performs the algorithm)#" )
+        .def("Orientation",
+             (TopAbs_Orientation (BOPAlgo_BuilderFace::*)() const) static_cast<TopAbs_Orientation (BOPAlgo_BuilderFace::*)() const>(&BOPAlgo_BuilderFace::Orientation),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_Section ,std::unique_ptr<BOPAlgo_Section>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_Section"))
+    static_cast<py::class_<BOPAlgo_BuilderSolid , shared_ptr<BOPAlgo_BuilderSolid>  , BOPAlgo_BuilderArea >>(m.attr("BOPAlgo_BuilderSolid"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("Perform",
+             (void (BOPAlgo_BuilderSolid::*)() ) static_cast<void (BOPAlgo_BuilderSolid::*)() >(&BOPAlgo_BuilderSolid::Perform),
+             R"#(Performs the construction of the solids from the given faces)#" )
+        .def("GetBoxesMap",
+             (const TopTools_DataMapOfShapeBox & (BOPAlgo_BuilderSolid::*)() const) static_cast<const TopTools_DataMapOfShapeBox & (BOPAlgo_BuilderSolid::*)() const>(&BOPAlgo_BuilderSolid::GetBoxesMap),
+             R"#(For classification purposes the algorithm builds the bounding boxes for all created solids. This method returns the data map of solid - box pairs.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_MakerVolume ,std::unique_ptr<BOPAlgo_MakerVolume>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_MakerVolume"))
+    static_cast<py::class_<BOPAlgo_CheckerSI , shared_ptr<BOPAlgo_CheckerSI>  , BOPAlgo_PaveFiller >>(m.attr("BOPAlgo_CheckerSI"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Perform",
+             (void (BOPAlgo_CheckerSI::*)() ) static_cast<void (BOPAlgo_CheckerSI::*)() >(&BOPAlgo_CheckerSI::Perform),
+             R"#(None)#" )
+        .def("SetLevelOfCheck",
+             (void (BOPAlgo_CheckerSI::*)( const Standard_Integer  ) ) static_cast<void (BOPAlgo_CheckerSI::*)( const Standard_Integer  ) >(&BOPAlgo_CheckerSI::SetLevelOfCheck),
+             R"#(Sets the level of checking shape on self-interference. It defines which interferences will be checked: 0 - only V/V; 1 - V/V and V/E; 2 - V/V, V/E and E/E; 3 - V/V, V/E, E/E and V/F; 4 - V/V, V/E, E/E, V/F and E/F; 5 - V/V, V/E, E/E, V/F, E/F and F/F; 6 - V/V, V/E, E/E, V/F, E/F, F/F and V/S; 7 - V/V, V/E, E/E, V/F, E/F, F/F, V/S and E/S; 8 - V/V, V/E, E/E, V/F, E/F, F/F, V/S, E/S and F/S; 9 - V/V, V/E, E/E, V/F, E/F, F/F, V/S, E/S, F/S and S/S - all interferences (Default value))#"  , py::arg("theLevel"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_CellsBuilder , shared_ptr<BOPAlgo_CellsBuilder>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_CellsBuilder"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("Clear",
+             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::Clear),
+             R"#(Redefined method Clear - clears the contents.)#" )
+        .def("AddToResult",
+             (void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&BOPAlgo_CellsBuilder::AddToResult),
+             R"#(Adding the parts to result. The parts are defined by two lists of shapes: <theLSToTake> defines the arguments which parts should be taken into result; <theLSToAvoid> defines the arguments which parts should not be taken into result; To be taken into result the part must be IN for all shapes from the list <theLSToTake> and must be OUT of all shapes from the list <theLSToAvoid>.)#"  , py::arg("theLSToTake"),  py::arg("theLSToAvoid"),  py::arg("theMaterial")=static_cast<const Standard_Integer>(0),  py::arg("theUpdate")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("AddAllToResult",
+             (void (BOPAlgo_CellsBuilder::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (BOPAlgo_CellsBuilder::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&BOPAlgo_CellsBuilder::AddAllToResult),
+             R"#(Add all split parts to result. <theMaterial> defines the removal of internal boundaries; <theUpdate> parameter defines whether to remove boundaries now or not.)#"  , py::arg("theMaterial")=static_cast<const Standard_Integer>(0),  py::arg("theUpdate")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("RemoveFromResult",
+             (void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_CellsBuilder::RemoveFromResult),
+             R"#(Removing the parts from result. The parts are defined by two lists of shapes: <theLSToTake> defines the arguments which parts should be removed from result; <theLSToAvoid> defines the arguments which parts should not be removed from result. To be removed from the result the part must be IN for all shapes from the list <theLSToTake> and must be OUT of all shapes from the list <theLSToAvoid>.)#"  , py::arg("theLSToTake"),  py::arg("theLSToAvoid"))
+        .def("RemoveAllFromResult",
+             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::RemoveAllFromResult),
+             R"#(Remove all parts from result.)#" )
+        .def("RemoveInternalBoundaries",
+             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::RemoveInternalBoundaries),
+             R"#(Removes internal boundaries between cells with the same material. If the result contains the cells with same material but of different dimension the removal of internal boundaries between these cells will not be performed. In case of some errors during the removal the method will set the appropriate warning status - use GetReport() to access them.)#" )
+        .def("GetAllParts",
+             (const TopoDS_Shape & (BOPAlgo_CellsBuilder::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_CellsBuilder::*)() const>(&BOPAlgo_CellsBuilder::GetAllParts),
+             R"#(Get all split parts.)#" )
+        .def("MakeContainers",
+             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::MakeContainers),
+             R"#(Makes the Containers of proper type from the parts added to result.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPAlgo_MakerVolume , shared_ptr<BOPAlgo_MakerVolume>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_MakerVolume"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
         .def("Clear",
              (void (BOPAlgo_MakerVolume::*)() ) static_cast<void (BOPAlgo_MakerVolume::*)() >(&BOPAlgo_MakerVolume::Clear),
              R"#(Clears the data.)#" )
@@ -979,84 +1548,30 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         .def("Faces",
              (const TopTools_ListOfShape & (BOPAlgo_MakerVolume::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_MakerVolume::*)() const>(&BOPAlgo_MakerVolume::Faces),
              R"#(Returns the processed faces <myFaces>.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_CellsBuilder ,std::unique_ptr<BOPAlgo_CellsBuilder>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_CellsBuilder"))
+    static_cast<py::class_<BOPAlgo_Section , shared_ptr<BOPAlgo_Section>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_Section"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("Clear",
-             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::Clear),
-             R"#(Redefined method Clear - clears the contents.)#" )
-        .def("AddToResult",
-             (void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&BOPAlgo_CellsBuilder::AddToResult),
-             R"#(Adding the parts to result. The parts are defined by two lists of shapes: <theLSToTake> defines the arguments which parts should be taken into result; <theLSToAvoid> defines the arguments which parts should not be taken into result; To be taken into result the part must be IN for all shapes from the list <theLSToTake> and must be OUT of all shapes from the list <theLSToAvoid>.)#"  , py::arg("theLSToTake"),  py::arg("theLSToAvoid"),  py::arg("theMaterial")=static_cast<const Standard_Integer>(0),  py::arg("theUpdate")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("AddAllToResult",
-             (void (BOPAlgo_CellsBuilder::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (BOPAlgo_CellsBuilder::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&BOPAlgo_CellsBuilder::AddAllToResult),
-             R"#(Add all split parts to result. <theMaterial> defines the removal of internal boundaries; <theUpdate> parameter defines whether to remove boundaries now or not.)#"  , py::arg("theMaterial")=static_cast<const Standard_Integer>(0),  py::arg("theUpdate")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("RemoveFromResult",
-             (void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_CellsBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_CellsBuilder::RemoveFromResult),
-             R"#(Removing the parts from result. The parts are defined by two lists of shapes: <theLSToTake> defines the arguments which parts should be removed from result; <theLSToAvoid> defines the arguments which parts should not be removed from result. To be removed from the result the part must be IN for all shapes from the list <theLSToTake> and must be OUT of all shapes from the list <theLSToAvoid>.)#"  , py::arg("theLSToTake"),  py::arg("theLSToAvoid"))
-        .def("RemoveAllFromResult",
-             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::RemoveAllFromResult),
-             R"#(Remove all parts from result.)#" )
-        .def("RemoveInternalBoundaries",
-             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::RemoveInternalBoundaries),
-             R"#(Removes internal boundaries between cells with the same material. If the result contains the cells with same material but of different dimension the removal of internal boundaries between these cells will not be performed. In case of some errors during the removal the method will set the appropriate warning status - use GetReport() to access them.)#" )
-        .def("GetAllParts",
-             (const TopoDS_Shape & (BOPAlgo_CellsBuilder::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_CellsBuilder::*)() const>(&BOPAlgo_CellsBuilder::GetAllParts),
-             R"#(Get all split parts.)#" )
-        .def("MakeContainers",
-             (void (BOPAlgo_CellsBuilder::*)() ) static_cast<void (BOPAlgo_CellsBuilder::*)() >(&BOPAlgo_CellsBuilder::MakeContainers),
-             R"#(Makes the Containers of proper type from the parts added to result.)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertPostTreatFF ,opencascade::handle<BOPAlgo_AlertPostTreatFF>>(m,"BOPAlgo_AlertPostTreatFF");
-
-    static_cast<py::class_<BOPAlgo_AlertPostTreatFF ,opencascade::handle<BOPAlgo_AlertPostTreatFF>  , Message_Alert >>(m.attr("BOPAlgo_AlertPostTreatFF"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertPostTreatFF::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertPostTreatFF::*)() const>(&BOPAlgo_AlertPostTreatFF::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertPostTreatFF::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertPostTreatFF::get_type_descriptor),
-                    R"#(None)#" )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_AlertRemovalOfIBForMDimShapes ,opencascade::handle<BOPAlgo_AlertRemovalOfIBForMDimShapes>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertRemovalOfIBForMDimShapes"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForMDimShapes::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertRemovalOfIBForMDimShapes::*)() const>(&BOPAlgo_AlertRemovalOfIBForMDimShapes::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertRemovalOfIBForMDimShapes::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertRemovalOfIBForMDimShapes::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertUnsupportedType ,opencascade::handle<BOPAlgo_AlertUnsupportedType>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertUnsupportedType"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnsupportedType::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertUnsupportedType::*)() const>(&BOPAlgo_AlertUnsupportedType::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertUnsupportedType::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertUnsupportedType::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_ToolsProvider ,std::unique_ptr<BOPAlgo_ToolsProvider>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_ToolsProvider"))
+    static_cast<py::class_<BOPAlgo_ToolsProvider , shared_ptr<BOPAlgo_ToolsProvider>  , BOPAlgo_Builder >>(m.attr("BOPAlgo_ToolsProvider"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
         .def("Clear",
              (void (BOPAlgo_ToolsProvider::*)() ) static_cast<void (BOPAlgo_ToolsProvider::*)() >(&BOPAlgo_ToolsProvider::Clear),
              R"#(Clears internal fields and arguments)#" )
@@ -1069,107 +1584,18 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         .def("Tools",
              (const TopTools_ListOfShape & (BOPAlgo_ToolsProvider::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_ToolsProvider::*)() const>(&BOPAlgo_ToolsProvider::Tools),
              R"#(Returns the Tool arguments of the operation)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_RemoveFeatures ,std::unique_ptr<BOPAlgo_RemoveFeatures>  , BOPAlgo_Options >>(m.attr("BOPAlgo_RemoveFeatures"))
-        .def(py::init<  >()  )
-        .def("SetShape",
-             (void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) >(&BOPAlgo_RemoveFeatures::SetShape),
-             R"#(Sets the shape for processing.)#"  , py::arg("theShape"))
-        .def("InputShape",
-             (const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const>(&BOPAlgo_RemoveFeatures::InputShape),
-             R"#(Returns the input shape)#" )
-        .def("AddFaceToRemove",
-             (void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)( const TopoDS_Shape &  ) >(&BOPAlgo_RemoveFeatures::AddFaceToRemove),
-             R"#(Adds the face to remove from the input shape.)#"  , py::arg("theFace"))
-        .def("AddFacesToRemove",
-             (void (BOPAlgo_RemoveFeatures::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BOPAlgo_RemoveFeatures::AddFacesToRemove),
-             R"#(Adds the faces to remove from the input shape.)#"  , py::arg("theFaces"))
-        .def("FacesToRemove",
-             (const TopTools_ListOfShape & (BOPAlgo_RemoveFeatures::*)() const) static_cast<const TopTools_ListOfShape & (BOPAlgo_RemoveFeatures::*)() const>(&BOPAlgo_RemoveFeatures::FacesToRemove),
-             R"#(Returns the list of faces which have been requested for removal from the input shape.)#" )
-        .def("Perform",
-             (void (BOPAlgo_RemoveFeatures::*)() ) static_cast<void (BOPAlgo_RemoveFeatures::*)() >(&BOPAlgo_RemoveFeatures::Perform),
-             R"#(Performs the operation)#" )
-        .def("Clear",
-             (void (BOPAlgo_RemoveFeatures::*)() ) static_cast<void (BOPAlgo_RemoveFeatures::*)() >(&BOPAlgo_RemoveFeatures::Clear),
-             R"#(Clears the contents of the algorithm from previous run, allowing reusing it for following removals.)#" )
-        .def("TrackHistory",
-             (void (BOPAlgo_RemoveFeatures::*)( const Standard_Boolean  ) ) static_cast<void (BOPAlgo_RemoveFeatures::*)( const Standard_Boolean  ) >(&BOPAlgo_RemoveFeatures::TrackHistory),
-             R"#(Defines whether to track the modification of the shapes or not)#"  , py::arg("theFlag"))
-        .def("History",
-             (opencascade::handle<BRepTools_History> (BOPAlgo_RemoveFeatures::*)() ) static_cast<opencascade::handle<BRepTools_History> (BOPAlgo_RemoveFeatures::*)() >(&BOPAlgo_RemoveFeatures::History),
-             R"#(Gets the History object)#" )
-        .def("Shape",
-             (const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const) static_cast<const TopoDS_Shape & (BOPAlgo_RemoveFeatures::*)() const>(&BOPAlgo_RemoveFeatures::Shape),
-             R"#(Returns the resulting shape)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_BuilderSolid ,std::unique_ptr<BOPAlgo_BuilderSolid>  , BOPAlgo_BuilderArea >>(m.attr("BOPAlgo_BuilderSolid"))
+    static_cast<py::class_<BOPAlgo_BOP , shared_ptr<BOPAlgo_BOP>  , BOPAlgo_ToolsProvider >>(m.attr("BOPAlgo_BOP"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("Perform",
-             (void (BOPAlgo_BuilderSolid::*)() ) static_cast<void (BOPAlgo_BuilderSolid::*)() >(&BOPAlgo_BuilderSolid::Perform),
-             R"#(Performs the construction of the solids from the given faces)#" )
-        .def("GetBoxesMap",
-             (const TopTools_DataMapOfShapeBox & (BOPAlgo_BuilderSolid::*)() const) static_cast<const TopTools_DataMapOfShapeBox & (BOPAlgo_BuilderSolid::*)() const>(&BOPAlgo_BuilderSolid::GetBoxesMap),
-             R"#(For classification purposes the algorithm builds the bounding boxes for all created solids. This method returns the data map of solid - box pairs.)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_Splitter ,std::unique_ptr<BOPAlgo_Splitter>  , BOPAlgo_ToolsProvider >>(m.attr("BOPAlgo_Splitter"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("Perform",
-             (void (BOPAlgo_Splitter::*)() ) static_cast<void (BOPAlgo_Splitter::*)() >(&BOPAlgo_Splitter::Perform),
-             R"#(Performs the operation)#" )
-;
-
-    register_default_constructor<BOPAlgo_AlertIntersectionFailed ,opencascade::handle<BOPAlgo_AlertIntersectionFailed>>(m,"BOPAlgo_AlertIntersectionFailed");
-
-    static_cast<py::class_<BOPAlgo_AlertIntersectionFailed ,opencascade::handle<BOPAlgo_AlertIntersectionFailed>  , Message_Alert >>(m.attr("BOPAlgo_AlertIntersectionFailed"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionFailed::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertIntersectionFailed::*)() const>(&BOPAlgo_AlertIntersectionFailed::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertIntersectionFailed::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertIntersectionFailed::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertTooSmallEdge ,opencascade::handle<BOPAlgo_AlertTooSmallEdge>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertTooSmallEdge"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooSmallEdge::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertTooSmallEdge::*)() const>(&BOPAlgo_AlertTooSmallEdge::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertTooSmallEdge::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertTooSmallEdge::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_CheckerSI ,std::unique_ptr<BOPAlgo_CheckerSI>  , BOPAlgo_PaveFiller >>(m.attr("BOPAlgo_CheckerSI"))
-        .def(py::init<  >()  )
-        .def("Perform",
-             (void (BOPAlgo_CheckerSI::*)() ) static_cast<void (BOPAlgo_CheckerSI::*)() >(&BOPAlgo_CheckerSI::Perform),
-             R"#(None)#" )
-        .def("SetLevelOfCheck",
-             (void (BOPAlgo_CheckerSI::*)( const Standard_Integer  ) ) static_cast<void (BOPAlgo_CheckerSI::*)( const Standard_Integer  ) >(&BOPAlgo_CheckerSI::SetLevelOfCheck),
-             R"#(Sets the level of checking shape on self-interference. It defines which interferences will be checked: 0 - only V/V; 1 - V/V and V/E; 2 - V/V, V/E and E/E; 3 - V/V, V/E, E/E and V/F; 4 - V/V, V/E, E/E, V/F and E/F; 5 - V/V, V/E, E/E, V/F, E/F and F/F; 6 - V/V, V/E, E/E, V/F, E/F, F/F and V/S; 7 - V/V, V/E, E/E, V/F, E/F, F/F, V/S and E/S; 8 - V/V, V/E, E/E, V/F, E/F, F/F, V/S, E/S and F/S; 9 - V/V, V/E, E/E, V/F, E/F, F/F, V/S, E/S, F/S and S/S - all interferences (Default value))#"  , py::arg("theLevel"))
-;
-
-
-    static_cast<py::class_<BOPAlgo_BOP ,std::unique_ptr<BOPAlgo_BOP>  , BOPAlgo_ToolsProvider >>(m.attr("BOPAlgo_BOP"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
         .def("Clear",
              (void (BOPAlgo_BOP::*)() ) static_cast<void (BOPAlgo_BOP::*)() >(&BOPAlgo_BOP::Clear),
              R"#(Clears internal fields and arguments)#" )
@@ -1182,130 +1608,70 @@ py::module m = static_cast<py::module>(main_module.attr("BOPAlgo"));
         .def("Perform",
              (void (BOPAlgo_BOP::*)() ) static_cast<void (BOPAlgo_BOP::*)() >(&BOPAlgo_BOP::Perform),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPAlgo_AlertEmptyShape ,opencascade::handle<BOPAlgo_AlertEmptyShape>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertEmptyShape"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertEmptyShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertEmptyShape::*)() const>(&BOPAlgo_AlertEmptyShape::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertEmptyShape::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertEmptyShape::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_BuilderFace ,std::unique_ptr<BOPAlgo_BuilderFace>  , BOPAlgo_BuilderArea >>(m.attr("BOPAlgo_BuilderFace"))
+    static_cast<py::class_<BOPAlgo_Splitter , shared_ptr<BOPAlgo_Splitter>  , BOPAlgo_ToolsProvider >>(m.attr("BOPAlgo_Splitter"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("SetFace",
-             (void (BOPAlgo_BuilderFace::*)( const TopoDS_Face &  ) ) static_cast<void (BOPAlgo_BuilderFace::*)( const TopoDS_Face &  ) >(&BOPAlgo_BuilderFace::SetFace),
-             R"#(Sets the face generatix)#"  , py::arg("theFace"))
-        .def("Face",
-             (const TopoDS_Face & (BOPAlgo_BuilderFace::*)() const) static_cast<const TopoDS_Face & (BOPAlgo_BuilderFace::*)() const>(&BOPAlgo_BuilderFace::Face),
-             R"#(Returns the face generatix)#" )
+    // methods
         .def("Perform",
-             (void (BOPAlgo_BuilderFace::*)() ) static_cast<void (BOPAlgo_BuilderFace::*)() >(&BOPAlgo_BuilderFace::Perform),
-             R"#(Performs the algorithm)#" )
-        .def("Orientation",
-             (TopAbs_Orientation (BOPAlgo_BuilderFace::*)() const) static_cast<TopAbs_Orientation (BOPAlgo_BuilderFace::*)() const>(&BOPAlgo_BuilderFace::Orientation),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPAlgo_AlertSolidBuilderUnusedFaces ,opencascade::handle<BOPAlgo_AlertSolidBuilderUnusedFaces>  , TopoDS_AlertWithShape >>(m.attr("BOPAlgo_AlertSolidBuilderUnusedFaces"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderUnusedFaces::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPAlgo_AlertSolidBuilderUnusedFaces::*)() const>(&BOPAlgo_AlertSolidBuilderUnusedFaces::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPAlgo_AlertSolidBuilderUnusedFaces::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPAlgo_AlertSolidBuilderUnusedFaces::get_type_descriptor),
-                    R"#(None)#" )
+             (void (BOPAlgo_Splitter::*)() ) static_cast<void (BOPAlgo_Splitter::*)() >(&BOPAlgo_Splitter::Perform),
+             R"#(Performs the operation)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BOPAlgo_GlueEnum.hxx
-// ./opencascade/BOPAlgo_Section.hxx
-// ./opencascade/BOPAlgo_BuilderArea.hxx
-// ./opencascade/BOPAlgo_BuilderSolid.hxx
-// ./opencascade/BOPAlgo_BOP.hxx
+// ./opencascade/BOPAlgo_CheckerSI.hxx
 // ./opencascade/BOPAlgo_PArgumentAnalyzer.hxx
-// ./opencascade/BOPAlgo_Operation.hxx
-// ./opencascade/BOPAlgo_WireSplitter.hxx
+// ./opencascade/BOPAlgo_RemoveFeatures.hxx
+// ./opencascade/BOPAlgo_BOP.hxx
+// ./opencascade/BOPAlgo_BuilderShape.hxx
 // ./opencascade/BOPAlgo_Splitter.hxx
-// ./opencascade/BOPAlgo_PaveFiller.hxx
-// ./opencascade/BOPAlgo_PPaveFiller.hxx
-// ./opencascade/BOPAlgo_MakerVolume.hxx
-// ./opencascade/BOPAlgo_PWireEdgeSet.hxx
-// ./opencascade/BOPAlgo_CheckStatus.hxx
-// ./opencascade/BOPAlgo_PBOP.hxx
-// ./opencascade/BOPAlgo_ArgumentAnalyzer.hxx
-// ./opencascade/BOPAlgo_Options.hxx
-// ./opencascade/BOPAlgo_SectionAttribute.hxx
-// ./opencascade/BOPAlgo_BuilderFace.hxx
-// ./opencascade/BOPAlgo_PSection.hxx
-// ./opencascade/BOPAlgo_Builder.hxx
+// ./opencascade/BOPAlgo_Tools.hxx
 // ./opencascade/BOPAlgo_CellsBuilder.hxx
 // ./opencascade/BOPAlgo_Alerts.hxx
-// ./opencascade/BOPAlgo_PBuilder.hxx
-// ./opencascade/BOPAlgo_CheckResult.hxx
-// ./opencascade/BOPAlgo_ToolsProvider.hxx
-// ./opencascade/BOPAlgo_Tools.hxx
 // ./opencascade/BOPAlgo_WireEdgeSet.hxx
+// ./opencascade/BOPAlgo_PSection.hxx
+// ./opencascade/BOPAlgo_ToolsProvider.hxx
+// ./opencascade/BOPAlgo_Operation.hxx
+// ./opencascade/BOPAlgo_WireSplitter.hxx
+// ./opencascade/BOPAlgo_GlueEnum.hxx
 // ./opencascade/BOPAlgo_ListOfCheckResult.hxx
-// ./opencascade/BOPAlgo_CheckerSI.hxx
+// ./opencascade/BOPAlgo_CheckResult.hxx
+// ./opencascade/BOPAlgo_BuilderArea.hxx
+// ./opencascade/BOPAlgo_CheckStatus.hxx
+// ./opencascade/BOPAlgo_ArgumentAnalyzer.hxx
+// ./opencascade/BOPAlgo_BuilderSolid.hxx
+// ./opencascade/BOPAlgo_MakerVolume.hxx
+// ./opencascade/BOPAlgo_PPaveFiller.hxx
+// ./opencascade/BOPAlgo_Section.hxx
 // ./opencascade/BOPAlgo_ShellSplitter.hxx
+// ./opencascade/BOPAlgo_PaveFiller.hxx
+// ./opencascade/BOPAlgo_PBuilder.hxx
 // ./opencascade/BOPAlgo_Algo.hxx
-// ./opencascade/BOPAlgo_RemoveFeatures.hxx
-// ./opencascade/BOPAlgo_BuilderShape.hxx
+// ./opencascade/BOPAlgo_BuilderFace.hxx
+// ./opencascade/BOPAlgo_Options.hxx
+// ./opencascade/BOPAlgo_PWireEdgeSet.hxx
+// ./opencascade/BOPAlgo_PBOP.hxx
+// ./opencascade/BOPAlgo_Builder.hxx
+// ./opencascade/BOPAlgo_SectionAttribute.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BOPAlgo_GlueEnum.hxx
-// ./opencascade/BOPAlgo_Section.hxx
-// ./opencascade/BOPAlgo_BuilderArea.hxx
-// ./opencascade/BOPAlgo_BuilderSolid.hxx
-// ./opencascade/BOPAlgo_BOP.hxx
-// ./opencascade/BOPAlgo_PArgumentAnalyzer.hxx
-// ./opencascade/BOPAlgo_Operation.hxx
-// ./opencascade/BOPAlgo_WireSplitter.hxx
     register_template_NCollection_List<BOPAlgo_EdgeInfo>(m,"BOPAlgo_ListOfEdgeInfo");  
     register_template_NCollection_IndexedDataMap<TopoDS_Shape, BOPAlgo_ListOfEdgeInfo, TopTools_ShapeMapHasher>(m,"BOPAlgo_IndexedDataMapOfShapeListOfEdgeInfo");  
-// ./opencascade/BOPAlgo_Splitter.hxx
-// ./opencascade/BOPAlgo_PaveFiller.hxx
-// ./opencascade/BOPAlgo_PPaveFiller.hxx
-// ./opencascade/BOPAlgo_MakerVolume.hxx
-// ./opencascade/BOPAlgo_PWireEdgeSet.hxx
-// ./opencascade/BOPAlgo_CheckStatus.hxx
-// ./opencascade/BOPAlgo_PBOP.hxx
-// ./opencascade/BOPAlgo_ArgumentAnalyzer.hxx
-// ./opencascade/BOPAlgo_Options.hxx
-// ./opencascade/BOPAlgo_SectionAttribute.hxx
-// ./opencascade/BOPAlgo_BuilderFace.hxx
-// ./opencascade/BOPAlgo_PSection.hxx
-// ./opencascade/BOPAlgo_Builder.hxx
-// ./opencascade/BOPAlgo_CellsBuilder.hxx
-// ./opencascade/BOPAlgo_Alerts.hxx
-// ./opencascade/BOPAlgo_PBuilder.hxx
-// ./opencascade/BOPAlgo_CheckResult.hxx
-// ./opencascade/BOPAlgo_ToolsProvider.hxx
-// ./opencascade/BOPAlgo_Tools.hxx
-// ./opencascade/BOPAlgo_WireEdgeSet.hxx
-// ./opencascade/BOPAlgo_ListOfCheckResult.hxx
     register_template_NCollection_List<BOPAlgo_CheckResult>(m,"BOPAlgo_ListOfCheckResult");  
-// ./opencascade/BOPAlgo_CheckerSI.hxx
-// ./opencascade/BOPAlgo_ShellSplitter.hxx
-// ./opencascade/BOPAlgo_Algo.hxx
-// ./opencascade/BOPAlgo_RemoveFeatures.hxx
-// ./opencascade/BOPAlgo_BuilderShape.hxx
 
 
 // exceptions

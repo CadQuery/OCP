@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -29,17 +32,17 @@ namespace py = pybind11;
 #include <Units_Lexicon.hxx>
 #include <Units_UnitsLexicon.hxx>
 #include <Units_Measurement.hxx>
-#include <Units_NoSuchUnit.hxx>
-#include <Units_NoSuchType.hxx>
-#include <Units_Quantity.hxx>
 #include <Units_Token.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Units_Lexicon.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <Units_UnitsSystem.hxx>
 #include <Units_UnitsDictionary.hxx>
+#include <Units_Lexicon.hxx>
+#include <Units_NoSuchUnit.hxx>
+#include <Units_NoSuchType.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <Units_Quantity.hxx>
 #include <Units_Token.hxx>
+#include <Units_Quantity.hxx>
 #include <Units_Token.hxx>
 
 // module includes
@@ -70,11 +73,11 @@ namespace py = pybind11;
 #include <Units_UtsSequence.hxx>
 
 // template related includes
+// ./opencascade/Units_QtsSequence.hxx
+#include "NCollection.hxx"
 // ./opencascade/Units_TksSequence.hxx
 #include "NCollection.hxx"
 // ./opencascade/Units_UtsSequence.hxx
-#include "NCollection.hxx"
-// ./opencascade/Units_QtsSequence.hxx
 #include "NCollection.hxx"
 
 
@@ -94,44 +97,12 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
 
 // classes
 
+    register_default_constructor<Units , shared_ptr<Units>>(m,"Units");
 
-    static_cast<py::class_<Units_Sentence ,std::unique_ptr<Units_Sentence>  >>(m.attr("Units_Sentence"))
-        .def(py::init< const opencascade::handle<Units_Lexicon> &,const Standard_CString >()  , py::arg("alexicon"),  py::arg("astring") )
-        .def("SetConstants",
-             (void (Units_Sentence::*)() ) static_cast<void (Units_Sentence::*)() >(&Units_Sentence::SetConstants),
-             R"#(For each constant encountered, sets the value.)#" )
-        .def("Sequence",
-             (opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const) static_cast<opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const>(&Units_Sentence::Sequence),
-             R"#(Returns <thesequenceoftokens>.)#" )
-        .def("Sequence",
-             (void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) ) static_cast<void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) >(&Units_Sentence::Sequence),
-             R"#(Sets the field <thesequenceoftokens> to <asequenceoftokens>.)#"  , py::arg("asequenceoftokens"))
-        .def("Evaluate",
-             (opencascade::handle<Units_Token> (Units_Sentence::*)() ) static_cast<opencascade::handle<Units_Token> (Units_Sentence::*)() >(&Units_Sentence::Evaluate),
-             R"#(Computes and returns in a token the result of the expression.)#" )
-        .def("IsDone",
-             (Standard_Boolean (Units_Sentence::*)() const) static_cast<Standard_Boolean (Units_Sentence::*)() const>(&Units_Sentence::IsDone),
-             R"#(Return True if number of created tokens > 0 (i.e creation of sentence is succesfull))#" )
-        .def("Dump",
-             (void (Units_Sentence::*)() const) static_cast<void (Units_Sentence::*)() const>(&Units_Sentence::Dump),
-             R"#(Useful for debugging.)#" )
-        .def("Sequence",
-             (opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const) static_cast<opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const>(&Units_Sentence::Sequence),
-             R"#(Returns <thesequenceoftokens>.)#" )
-        .def("Sequence",
-             (void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) ) static_cast<void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) >(&Units_Sentence::Sequence),
-             R"#(Sets the field <thesequenceoftokens> to <asequenceoftokens>.)#"  , py::arg("asequenceoftokens"))
-        .def("IsDone",
-             (Standard_Boolean (Units_Sentence::*)() const) static_cast<Standard_Boolean (Units_Sentence::*)() const>(&Units_Sentence::IsDone),
-             R"#(Return True if number of created tokens > 0 (i.e creation of sentence is succesfull))#" )
-        .def("Dump",
-             (void (Units_Sentence::*)() const) static_cast<void (Units_Sentence::*)() const>(&Units_Sentence::Dump),
-             R"#(Useful for debugging.)#" )
-;
-
-    register_default_constructor<Units ,std::unique_ptr<Units>>(m,"Units");
-
-    static_cast<py::class_<Units ,std::unique_ptr<Units>  >>(m.attr("Units"))
+    static_cast<py::class_<Units , shared_ptr<Units>  >>(m.attr("Units"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("UnitsFile_s",
                     (void (*)( const Standard_CString  ) ) static_cast<void (*)( const Standard_CString  ) >(&Units::UnitsFile),
                     R"#(Defines the location of the file containing all the information useful in creating the dictionary of all the units known to the system.)#"  , py::arg("afile"))
@@ -174,358 +145,15 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
         .def_static("Dimensions_s",
                     (opencascade::handle<Units_Dimensions> (*)( const Standard_CString  ) ) static_cast<opencascade::handle<Units_Dimensions> (*)( const Standard_CString  ) >(&Units::Dimensions),
                     R"#(return the dimension associated to the Type)#"  , py::arg("aType"))
-;
-
-
-    static_cast<py::class_<Units_UnitsSystem ,opencascade::handle<Units_UnitsSystem>  , Standard_Transient >>(m.attr("Units_UnitsSystem"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_CString,const Standard_Boolean >()  , py::arg("aName"),  py::arg("Verbose")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def("QuantitiesSequence",
-             (opencascade::handle<Units_QuantitiesSequence> (Units_UnitsSystem::*)() const) static_cast<opencascade::handle<Units_QuantitiesSequence> (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::QuantitiesSequence),
-             R"#(Returns the sequence of refined quantities.)#" )
-        .def("ActiveUnitsSequence",
-             (opencascade::handle<TColStd_HSequenceOfInteger> (Units_UnitsSystem::*)() const) static_cast<opencascade::handle<TColStd_HSequenceOfInteger> (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::ActiveUnitsSequence),
-             R"#(Returns a sequence of integer in correspondance with the sequence of quantities, which indicates, for each redefined quantity, the index into the sequence of units, of the active unit.)#" )
-        .def("Specify",
-             (void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) >(&Units_UnitsSystem::Specify),
-             R"#(Specifies for <aquantity> the unit <aunit> used.)#"  , py::arg("aquantity"),  py::arg("aunit"))
-        .def("Remove",
-             (void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) >(&Units_UnitsSystem::Remove),
-             R"#(Removes for <aquantity> the unit <aunit> used.)#"  , py::arg("aquantity"),  py::arg("aunit"))
-        .def("Activate",
-             (void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) >(&Units_UnitsSystem::Activate),
-             R"#(Specifies for <aquantity> the unit <aunit> used.)#"  , py::arg("aquantity"),  py::arg("aunit"))
-        .def("Activates",
-             (void (Units_UnitsSystem::*)() ) static_cast<void (Units_UnitsSystem::*)() >(&Units_UnitsSystem::Activates),
-             R"#(Activates the first unit of all defined system quantities)#" )
-        .def("ActiveUnit",
-             (TCollection_AsciiString (Units_UnitsSystem::*)( const Standard_CString  ) const) static_cast<TCollection_AsciiString (Units_UnitsSystem::*)( const Standard_CString  ) const>(&Units_UnitsSystem::ActiveUnit),
-             R"#(Returns for <aquantity> the active unit.)#"  , py::arg("aquantity"))
-        .def("ConvertValueToUserSystem",
-             (Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real ,  const Standard_CString  ) const) static_cast<Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real ,  const Standard_CString  ) const>(&Units_UnitsSystem::ConvertValueToUserSystem),
-             R"#(Converts a real value <avalue> from the unit <aunit> belonging to the physical dimensions <aquantity> to the corresponding unit of the user system.)#"  , py::arg("aquantity"),  py::arg("avalue"),  py::arg("aunit"))
-        .def("ConvertSIValueToUserSystem",
-             (Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const) static_cast<Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const>(&Units_UnitsSystem::ConvertSIValueToUserSystem),
-             R"#(Converts the real value <avalue> from the S.I. system of units to the user system of units. <aquantity> is the physical dimensions of the measurement.)#"  , py::arg("aquantity"),  py::arg("avalue"))
-        .def("ConvertUserSystemValueToSI",
-             (Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const) static_cast<Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const>(&Units_UnitsSystem::ConvertUserSystemValueToSI),
-             R"#(Converts the real value <avalue> from the user system of units to the S.I. system of units. <aquantity> is the physical dimensions of the measurement.)#"  , py::arg("aquantity"),  py::arg("avalue"))
-        .def("Dump",
-             (void (Units_UnitsSystem::*)() const) static_cast<void (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::Dump),
-             R"#(None)#" )
-        .def("IsEmpty",
-             (Standard_Boolean (Units_UnitsSystem::*)() const) static_cast<Standard_Boolean (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::IsEmpty),
-             R"#(Returns TRUE if no units has been defined in the system.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_UnitsSystem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsSystem::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsSystem::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Units_Unit ,opencascade::handle<Units_Unit>  , Standard_Transient >>(m.attr("Units_Unit"))
-        .def(py::init< const Standard_CString,const Standard_CString,const Standard_Real,const opencascade::handle<Units_Quantity> & >()  , py::arg("aname"),  py::arg("asymbol"),  py::arg("avalue"),  py::arg("aquantity") )
-        .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("aname"),  py::arg("asymbol") )
-        .def(py::init< const Standard_CString >()  , py::arg("aname") )
-        .def("Name",
-             (TCollection_AsciiString (Units_Unit::*)() const) static_cast<TCollection_AsciiString (Units_Unit::*)() const>(&Units_Unit::Name),
-             R"#(Returns the name of the unit <thename>)#" )
-        .def("Symbol",
-             (void (Units_Unit::*)( const Standard_CString  ) ) static_cast<void (Units_Unit::*)( const Standard_CString  ) >(&Units_Unit::Symbol),
-             R"#(Adds a new symbol <asymbol> attached to <me>.)#"  , py::arg("asymbol"))
-        .def("Value",
-             (Standard_Real (Units_Unit::*)() const) static_cast<Standard_Real (Units_Unit::*)() const>(&Units_Unit::Value),
-             R"#(Returns the value in relation with the International System of Units.)#" )
-        .def("Quantity",
-             (opencascade::handle<Units_Quantity> (Units_Unit::*)() const) static_cast<opencascade::handle<Units_Quantity> (Units_Unit::*)() const>(&Units_Unit::Quantity),
-             R"#(Returns <thequantity> contained in <me>.)#" )
-        .def("SymbolsSequence",
-             (opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const) static_cast<opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const>(&Units_Unit::SymbolsSequence),
-             R"#(Returns the sequence of symbols <thesymbolssequence>)#" )
-        .def("Value",
-             (void (Units_Unit::*)( const Standard_Real  ) ) static_cast<void (Units_Unit::*)( const Standard_Real  ) >(&Units_Unit::Value),
-             R"#(Sets the value <avalue> to <me>.)#"  , py::arg("avalue"))
-        .def("Quantity",
-             (void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) ) static_cast<void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) >(&Units_Unit::Quantity),
-             R"#(Sets the physical Quantity <aquantity> to <me>.)#"  , py::arg("aquantity"))
-        .def("Token",
-             (opencascade::handle<Units_Token> (Units_Unit::*)() const) static_cast<opencascade::handle<Units_Token> (Units_Unit::*)() const>(&Units_Unit::Token),
-             R"#(Starting with <me>, returns a new Token object.)#" )
-        .def("IsEqual",
-             (Standard_Boolean (Units_Unit::*)( const Standard_CString  ) const) static_cast<Standard_Boolean (Units_Unit::*)( const Standard_CString  ) const>(&Units_Unit::IsEqual),
-             R"#(Compares all the symbols linked within <me> with the name of <atoken>, and returns True if there is one symbol equal to the name, False otherwise.)#"  , py::arg("astring"))
-        .def("Dump",
-             (void (Units_Unit::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (Units_Unit::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Units_Unit::Dump),
-             R"#(Useful for debugging)#"  , py::arg("ashift"),  py::arg("alevel"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_Unit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_Unit::*)() const>(&Units_Unit::DynamicType),
-             R"#(None)#" )
-        .def("Name",
-             (TCollection_AsciiString (Units_Unit::*)() const) static_cast<TCollection_AsciiString (Units_Unit::*)() const>(&Units_Unit::Name),
-             R"#(Returns the name of the unit <thename>)#" )
-        .def("Value",
-             (Standard_Real (Units_Unit::*)() const) static_cast<Standard_Real (Units_Unit::*)() const>(&Units_Unit::Value),
-             R"#(Returns the value in relation with the International System of Units.)#" )
-        .def("Quantity",
-             (opencascade::handle<Units_Quantity> (Units_Unit::*)() const) static_cast<opencascade::handle<Units_Quantity> (Units_Unit::*)() const>(&Units_Unit::Quantity),
-             R"#(Returns <thequantity> contained in <me>.)#" )
-        .def("SymbolsSequence",
-             (opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const) static_cast<opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const>(&Units_Unit::SymbolsSequence),
-             R"#(Returns the sequence of symbols <thesymbolssequence>)#" )
-        .def("Value",
-             (void (Units_Unit::*)( const Standard_Real  ) ) static_cast<void (Units_Unit::*)( const Standard_Real  ) >(&Units_Unit::Value),
-             R"#(Sets the value <avalue> to <me>.)#"  , py::arg("avalue"))
-        .def("Quantity",
-             (void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) ) static_cast<void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) >(&Units_Unit::Quantity),
-             R"#(Sets the physical Quantity <aquantity> to <me>.)#"  , py::arg("aquantity"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_Unit::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_Unit::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Units_Quantity ,opencascade::handle<Units_Quantity>  , Standard_Transient >>(m.attr("Units_Quantity"))
-        .def(py::init< const Standard_CString,const opencascade::handle<Units_Dimensions> &,const opencascade::handle<Units_UnitsSequence> & >()  , py::arg("aname"),  py::arg("adimensions"),  py::arg("aunitssequence") )
-        .def("Name",
-             (TCollection_AsciiString (Units_Quantity::*)() const) static_cast<TCollection_AsciiString (Units_Quantity::*)() const>(&Units_Quantity::Name),
-             R"#(Returns in a AsciiString from TCollection the name of the quantity.)#" )
-        .def("Dimensions",
-             (opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const>(&Units_Quantity::Dimensions),
-             R"#(Returns the physical dimensions of the quantity.)#" )
-        .def("Sequence",
-             (opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const>(&Units_Quantity::Sequence),
-             R"#(Returns <theunitssequence>, which is the sequence of all the units stored for this physical quantity.)#" )
-        .def("IsEqual",
-             (Standard_Boolean (Units_Quantity::*)( const Standard_CString  ) const) static_cast<Standard_Boolean (Units_Quantity::*)( const Standard_CString  ) const>(&Units_Quantity::IsEqual),
-             R"#(Returns True if the name of the Quantity <me> is equal to <astring>, False otherwise.)#"  , py::arg("astring"))
-        .def("Dump",
-             (void (Units_Quantity::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (Units_Quantity::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Units_Quantity::Dump),
-             R"#(Useful for debugging.)#"  , py::arg("ashift"),  py::arg("alevel"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_Quantity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_Quantity::*)() const>(&Units_Quantity::DynamicType),
-             R"#(None)#" )
-        .def("Name",
-             (TCollection_AsciiString (Units_Quantity::*)() const) static_cast<TCollection_AsciiString (Units_Quantity::*)() const>(&Units_Quantity::Name),
-             R"#(Returns in a AsciiString from TCollection the name of the quantity.)#" )
-        .def("Dimensions",
-             (opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const>(&Units_Quantity::Dimensions),
-             R"#(Returns the physical dimensions of the quantity.)#" )
-        .def("Sequence",
-             (opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const>(&Units_Quantity::Sequence),
-             R"#(Returns <theunitssequence>, which is the sequence of all the units stored for this physical quantity.)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_Quantity::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_Quantity::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Units_MathSentence ,std::unique_ptr<Units_MathSentence>  , Units_Sentence >>(m.attr("Units_MathSentence"))
-        .def(py::init< const Standard_CString >()  , py::arg("astring") )
-;
-
-
-    static_cast<py::class_<Units_Explorer ,std::unique_ptr<Units_Explorer>  >>(m.attr("Units_Explorer"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<Units_UnitsSystem> & >()  , py::arg("aunitssystem") )
-        .def(py::init< const opencascade::handle<Units_UnitsDictionary> & >()  , py::arg("aunitsdictionary") )
-        .def(py::init< const opencascade::handle<Units_UnitsSystem> &,const Standard_CString >()  , py::arg("aunitssystem"),  py::arg("aquantity") )
-        .def(py::init< const opencascade::handle<Units_UnitsDictionary> &,const Standard_CString >()  , py::arg("aunitsdictionary"),  py::arg("aquantity") )
-        .def("Init",
-             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> &  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> &  ) >(&Units_Explorer::Init),
-             R"#(Initializes the instance of the class with the UnitsSystem <aunitssystem>.)#"  , py::arg("aunitssystem"))
-        .def("Init",
-             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> &  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> &  ) >(&Units_Explorer::Init),
-             R"#(Initializes the instance of the class with the UnitsDictionary <aunitsdictionary>.)#"  , py::arg("aunitsdictionary"))
-        .def("Init",
-             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> & ,  const Standard_CString  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> & ,  const Standard_CString  ) >(&Units_Explorer::Init),
-             R"#(Initializes the instance of the class with the UnitsSystem <aunitssystem> and positioned at the quantity <aquantity>.)#"  , py::arg("aunitssystem"),  py::arg("aquantity"))
-        .def("Init",
-             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> & ,  const Standard_CString  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> & ,  const Standard_CString  ) >(&Units_Explorer::Init),
-             R"#(Initializes the instance of the class with the UnitsDictionary <aunitsdictionary> and positioned at the quantity <aquantity>.)#"  , py::arg("aunitsdictionary"),  py::arg("aquantity"))
-        .def("MoreQuantity",
-             (Standard_Boolean (Units_Explorer::*)() const) static_cast<Standard_Boolean (Units_Explorer::*)() const>(&Units_Explorer::MoreQuantity),
-             R"#(Returns True if there is another Quantity to explore, False otherwise.)#" )
-        .def("NextQuantity",
-             (void (Units_Explorer::*)() ) static_cast<void (Units_Explorer::*)() >(&Units_Explorer::NextQuantity),
-             R"#(Sets the next Quantity current.)#" )
-        .def("Quantity",
-             (TCollection_AsciiString (Units_Explorer::*)() const) static_cast<TCollection_AsciiString (Units_Explorer::*)() const>(&Units_Explorer::Quantity),
-             R"#(Returns the name of the current Quantity.)#" )
-        .def("MoreUnit",
-             (Standard_Boolean (Units_Explorer::*)() const) static_cast<Standard_Boolean (Units_Explorer::*)() const>(&Units_Explorer::MoreUnit),
-             R"#(Returns True if there is another Unit to explore, False otherwise.)#" )
-        .def("NextUnit",
-             (void (Units_Explorer::*)() ) static_cast<void (Units_Explorer::*)() >(&Units_Explorer::NextUnit),
-             R"#(Sets the next Unit current.)#" )
-        .def("Unit",
-             (TCollection_AsciiString (Units_Explorer::*)() const) static_cast<TCollection_AsciiString (Units_Explorer::*)() const>(&Units_Explorer::Unit),
-             R"#(Returns the name of the current unit.)#" )
-        .def("IsActive",
-             (Standard_Boolean (Units_Explorer::*)() const) static_cast<Standard_Boolean (Units_Explorer::*)() const>(&Units_Explorer::IsActive),
-             R"#(If the units system to explore is a user system, returns True if the current unit is active, False otherwise.)#" )
-;
-
-
-    static_cast<py::class_<Units_TokensSequence ,std::unique_ptr<Units_TokensSequence>  >>(m.attr("Units_TokensSequence"))
-        .def(py::init<  >()  )
-        .def(py::init<  const NCollection_Sequence<opencascade::handle<Units_Token> > & >()  , py::arg("theOther") )
-        .def("Sequence",
-             (const Units_TksSequence & (Units_TokensSequence::*)() const) static_cast<const Units_TksSequence & (Units_TokensSequence::*)() const>(&Units_TokensSequence::Sequence),
-             R"#(None)#" )
-        .def("Append",
-             (void (Units_TokensSequence::*)(  const opencascade::handle<Units_Token> &  ) ) static_cast<void (Units_TokensSequence::*)(  const opencascade::handle<Units_Token> &  ) >(&Units_TokensSequence::Append),
-             R"#(None)#"  , py::arg("theItem"))
-        .def("Append",
-             (void (Units_TokensSequence::*)( NCollection_Sequence<opencascade::handle<Units_Token> > &  ) ) static_cast<void (Units_TokensSequence::*)( NCollection_Sequence<opencascade::handle<Units_Token> > &  ) >(&Units_TokensSequence::Append),
-             R"#(None)#"  , py::arg("theSequence"))
-        .def("ChangeSequence",
-             (Units_TksSequence & (Units_TokensSequence::*)() ) static_cast<Units_TksSequence & (Units_TokensSequence::*)() >(&Units_TokensSequence::ChangeSequence),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_TokensSequence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_TokensSequence::*)() const>(&Units_TokensSequence::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_TokensSequence::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_TokensSequence::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Units_Measurement ,std::unique_ptr<Units_Measurement>  >>(m.attr("Units_Measurement"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Real,const opencascade::handle<Units_Token> & >()  , py::arg("avalue"),  py::arg("atoken") )
-        .def(py::init< const Standard_Real,const Standard_CString >()  , py::arg("avalue"),  py::arg("aunit") )
-        .def("Convert",
-             (void (Units_Measurement::*)( const Standard_CString  ) ) static_cast<void (Units_Measurement::*)( const Standard_CString  ) >(&Units_Measurement::Convert),
-             R"#(Converts (if possible) the measurement object into another unit. <aunit> must have the same dimensionality as the unit contained in the token <thetoken>.)#"  , py::arg("aunit"))
-        .def("Integer",
-             (Units_Measurement (Units_Measurement::*)() const) static_cast<Units_Measurement (Units_Measurement::*)() const>(&Units_Measurement::Integer),
-             R"#(Returns a Measurement object with the integer value of the measurement contained in <me>.)#" )
-        .def("Fractional",
-             (Units_Measurement (Units_Measurement::*)() const) static_cast<Units_Measurement (Units_Measurement::*)() const>(&Units_Measurement::Fractional),
-             R"#(Returns a Measurement object with the fractional value of the measurement contained in <me>.)#" )
-        .def("Measurement",
-             (Standard_Real (Units_Measurement::*)() const) static_cast<Standard_Real (Units_Measurement::*)() const>(&Units_Measurement::Measurement),
-             R"#(Returns the value of the measurement.)#" )
-        .def("Token",
-             (opencascade::handle<Units_Token> (Units_Measurement::*)() const) static_cast<opencascade::handle<Units_Token> (Units_Measurement::*)() const>(&Units_Measurement::Token),
-             R"#(Returns the token contained in <me>.)#" )
-        .def("Add",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Add),
-             R"#(Returns (if it is possible) a measurement which is the addition of <me> and <ameasurement>. The chosen returned unit is the unit of <me>.)#"  , py::arg("ameasurement"))
-        .def("Subtract",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Subtract),
-             R"#(Returns (if it is possible) a measurement which is the subtraction of <me> and <ameasurement>. The chosen returned unit is the unit of <me>.)#"  , py::arg("ameasurement"))
-        .def("Multiply",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Multiply),
-             R"#(Returns a measurement which is the multiplication of <me> and <ameasurement>.)#"  , py::arg("ameasurement"))
-        .def("Multiply",
-             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::Multiply),
-             R"#(Returns a measurement which is the multiplication of <me> with the value <avalue>.)#"  , py::arg("avalue"))
-        .def("Divide",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Divide),
-             R"#(Returns a measurement which is the division of <me> by <ameasurement>.)#"  , py::arg("ameasurement"))
-        .def("Divide",
-             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::Divide),
-             R"#(Returns a measurement which is the division of <me> by the constant <avalue>.)#"  , py::arg("avalue"))
-        .def("Power",
-             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::Power),
-             R"#(Returns a measurement which is <me> powered <anexponent>.)#"  , py::arg("anexponent"))
-        .def("HasToken",
-             (Standard_Boolean (Units_Measurement::*)() const) static_cast<Standard_Boolean (Units_Measurement::*)() const>(&Units_Measurement::HasToken),
-             R"#(None)#" )
-        .def("Dump",
-             (void (Units_Measurement::*)() const) static_cast<void (Units_Measurement::*)() const>(&Units_Measurement::Dump),
-             R"#(Useful for debugging.)#" )
-        .def("__add__",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator+),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("ameasurement"))
-        .def("__sub__",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator-),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("ameasurement"))
-        .def("__mul__",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator*),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("ameasurement"))
-        .def("__rmul__",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator*),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("ameasurement"))
-        .def("__mul__",
-             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::operator*),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("avalue"))
-        .def("__rmul__",
-             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::operator*),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("avalue"))
-        .def("__truediv__",
-             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator/),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("ameasurement"))
-        .def("__truediv__",
-             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::operator/),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("avalue"))
-;
-
-
-    static_cast<py::class_<Units_QuantitiesSequence ,std::unique_ptr<Units_QuantitiesSequence>  >>(m.attr("Units_QuantitiesSequence"))
-        .def(py::init<  >()  )
-        .def(py::init<  const NCollection_Sequence<opencascade::handle<Units_Quantity> > & >()  , py::arg("theOther") )
-        .def("Sequence",
-             (const Units_QtsSequence & (Units_QuantitiesSequence::*)() const) static_cast<const Units_QtsSequence & (Units_QuantitiesSequence::*)() const>(&Units_QuantitiesSequence::Sequence),
-             R"#(None)#" )
-        .def("Append",
-             (void (Units_QuantitiesSequence::*)(  const opencascade::handle<Units_Quantity> &  ) ) static_cast<void (Units_QuantitiesSequence::*)(  const opencascade::handle<Units_Quantity> &  ) >(&Units_QuantitiesSequence::Append),
-             R"#(None)#"  , py::arg("theItem"))
-        .def("Append",
-             (void (Units_QuantitiesSequence::*)( NCollection_Sequence<opencascade::handle<Units_Quantity> > &  ) ) static_cast<void (Units_QuantitiesSequence::*)( NCollection_Sequence<opencascade::handle<Units_Quantity> > &  ) >(&Units_QuantitiesSequence::Append),
-             R"#(None)#"  , py::arg("theSequence"))
-        .def("ChangeSequence",
-             (Units_QtsSequence & (Units_QuantitiesSequence::*)() ) static_cast<Units_QtsSequence & (Units_QuantitiesSequence::*)() >(&Units_QuantitiesSequence::ChangeSequence),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_QuantitiesSequence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_QuantitiesSequence::*)() const>(&Units_QuantitiesSequence::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_QuantitiesSequence::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_QuantitiesSequence::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Units_UnitSentence ,std::unique_ptr<Units_UnitSentence>  , Units_Sentence >>(m.attr("Units_UnitSentence"))
-        .def(py::init< const Standard_CString >()  , py::arg("astring") )
-        .def(py::init< const Standard_CString,const opencascade::handle<Units_QuantitiesSequence> & >()  , py::arg("astring"),  py::arg("aquantitiessequence") )
-        .def("Analyse",
-             (void (Units_UnitSentence::*)() ) static_cast<void (Units_UnitSentence::*)() >(&Units_UnitSentence::Analyse),
-             R"#(Analyzes the sequence of tokens created by the constructor to find the true significance of each token.)#" )
-        .def("SetUnits",
-             (void (Units_UnitSentence::*)( const opencascade::handle<Units_QuantitiesSequence> &  ) ) static_cast<void (Units_UnitSentence::*)( const opencascade::handle<Units_QuantitiesSequence> &  ) >(&Units_UnitSentence::SetUnits),
-             R"#(For each token which represents a unit, finds in the sequence of physical quantities all the characteristics of the unit found.)#"  , py::arg("aquantitiessequence"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Units_Dimensions ,opencascade::handle<Units_Dimensions>  , Standard_Transient >>(m.attr("Units_Dimensions"))
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("amass"),  py::arg("alength"),  py::arg("atime"),  py::arg("anelectriccurrent"),  py::arg("athermodynamictemperature"),  py::arg("anamountofsubstance"),  py::arg("aluminousintensity"),  py::arg("aplaneangle"),  py::arg("asolidangle") )
+    // methods
         .def("Mass",
              (Standard_Real (Units_Dimensions::*)() const) static_cast<Standard_Real (Units_Dimensions::*)() const>(&Units_Dimensions::Mass),
              R"#(Returns the power of mass stored in the dimensions.)#" )
@@ -604,6 +232,8 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
         .def("SolidAngle",
              (Standard_Real (Units_Dimensions::*)() const) static_cast<Standard_Real (Units_Dimensions::*)() const>(&Units_Dimensions::SolidAngle),
              R"#(Returns the power of solid angle stored in the dimensions.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("ALess_s",
                     (opencascade::handle<Units_Dimensions> (*)() ) static_cast<opencascade::handle<Units_Dimensions> (*)() >(&Units_Dimensions::ALess),
                     R"#(None)#" )
@@ -640,11 +270,63 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_Dimensions::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_Explorer , shared_ptr<Units_Explorer>  >>(m.attr("Units_Explorer"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<Units_UnitsSystem> & >()  , py::arg("aunitssystem") )
+        .def(py::init< const opencascade::handle<Units_UnitsDictionary> & >()  , py::arg("aunitsdictionary") )
+        .def(py::init< const opencascade::handle<Units_UnitsSystem> &,const Standard_CString >()  , py::arg("aunitssystem"),  py::arg("aquantity") )
+        .def(py::init< const opencascade::handle<Units_UnitsDictionary> &,const Standard_CString >()  , py::arg("aunitsdictionary"),  py::arg("aquantity") )
+    // methods
+        .def("Init",
+             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> &  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> &  ) >(&Units_Explorer::Init),
+             R"#(Initializes the instance of the class with the UnitsSystem <aunitssystem>.)#"  , py::arg("aunitssystem"))
+        .def("Init",
+             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> &  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> &  ) >(&Units_Explorer::Init),
+             R"#(Initializes the instance of the class with the UnitsDictionary <aunitsdictionary>.)#"  , py::arg("aunitsdictionary"))
+        .def("Init",
+             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> & ,  const Standard_CString  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsSystem> & ,  const Standard_CString  ) >(&Units_Explorer::Init),
+             R"#(Initializes the instance of the class with the UnitsSystem <aunitssystem> and positioned at the quantity <aquantity>.)#"  , py::arg("aunitssystem"),  py::arg("aquantity"))
+        .def("Init",
+             (void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> & ,  const Standard_CString  ) ) static_cast<void (Units_Explorer::*)( const opencascade::handle<Units_UnitsDictionary> & ,  const Standard_CString  ) >(&Units_Explorer::Init),
+             R"#(Initializes the instance of the class with the UnitsDictionary <aunitsdictionary> and positioned at the quantity <aquantity>.)#"  , py::arg("aunitsdictionary"),  py::arg("aquantity"))
+        .def("MoreQuantity",
+             (Standard_Boolean (Units_Explorer::*)() const) static_cast<Standard_Boolean (Units_Explorer::*)() const>(&Units_Explorer::MoreQuantity),
+             R"#(Returns True if there is another Quantity to explore, False otherwise.)#" )
+        .def("NextQuantity",
+             (void (Units_Explorer::*)() ) static_cast<void (Units_Explorer::*)() >(&Units_Explorer::NextQuantity),
+             R"#(Sets the next Quantity current.)#" )
+        .def("Quantity",
+             (TCollection_AsciiString (Units_Explorer::*)() const) static_cast<TCollection_AsciiString (Units_Explorer::*)() const>(&Units_Explorer::Quantity),
+             R"#(Returns the name of the current Quantity.)#" )
+        .def("MoreUnit",
+             (Standard_Boolean (Units_Explorer::*)() const) static_cast<Standard_Boolean (Units_Explorer::*)() const>(&Units_Explorer::MoreUnit),
+             R"#(Returns True if there is another Unit to explore, False otherwise.)#" )
+        .def("NextUnit",
+             (void (Units_Explorer::*)() ) static_cast<void (Units_Explorer::*)() >(&Units_Explorer::NextUnit),
+             R"#(Sets the next Unit current.)#" )
+        .def("Unit",
+             (TCollection_AsciiString (Units_Explorer::*)() const) static_cast<TCollection_AsciiString (Units_Explorer::*)() const>(&Units_Explorer::Unit),
+             R"#(Returns the name of the current unit.)#" )
+        .def("IsActive",
+             (Standard_Boolean (Units_Explorer::*)() const) static_cast<Standard_Boolean (Units_Explorer::*)() const>(&Units_Explorer::IsActive),
+             R"#(If the units system to explore is a user system, returns True if the current unit is active, False otherwise.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Units_Lexicon ,opencascade::handle<Units_Lexicon>  , Standard_Transient >>(m.attr("Units_Lexicon"))
         .def(py::init<  >()  )
+    // methods
         .def("Creates",
              (void (Units_Lexicon::*)() ) static_cast<void (Units_Lexicon::*)() >(&Units_Lexicon::Creates),
              R"#(Reads the file <afilename> to create a sequence of tokens stored in <thesequenceoftokens>.)#" )
@@ -666,128 +348,222 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
         .def("Dump",
              (void (Units_Lexicon::*)() const) static_cast<void (Units_Lexicon::*)() const>(&Units_Lexicon::Dump),
              R"#(Useful for debugging.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Units_Lexicon::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_Lexicon::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Units_UnitsSequence ,std::unique_ptr<Units_UnitsSequence>  >>(m.attr("Units_UnitsSequence"))
+    static_cast<py::class_<Units_Measurement , shared_ptr<Units_Measurement>  >>(m.attr("Units_Measurement"))
         .def(py::init<  >()  )
-        .def(py::init<  const NCollection_Sequence<opencascade::handle<Units_Unit> > & >()  , py::arg("theOther") )
+        .def(py::init< const Standard_Real,const opencascade::handle<Units_Token> & >()  , py::arg("avalue"),  py::arg("atoken") )
+        .def(py::init< const Standard_Real,const Standard_CString >()  , py::arg("avalue"),  py::arg("aunit") )
+    // methods
+        .def("Convert",
+             (void (Units_Measurement::*)( const Standard_CString  ) ) static_cast<void (Units_Measurement::*)( const Standard_CString  ) >(&Units_Measurement::Convert),
+             R"#(Converts (if possible) the measurement object into another unit. <aunit> must have the same dimensionality as the unit contained in the token <thetoken>.)#"  , py::arg("aunit"))
+        .def("Integer",
+             (Units_Measurement (Units_Measurement::*)() const) static_cast<Units_Measurement (Units_Measurement::*)() const>(&Units_Measurement::Integer),
+             R"#(Returns a Measurement object with the integer value of the measurement contained in <me>.)#" )
+        .def("Fractional",
+             (Units_Measurement (Units_Measurement::*)() const) static_cast<Units_Measurement (Units_Measurement::*)() const>(&Units_Measurement::Fractional),
+             R"#(Returns a Measurement object with the fractional value of the measurement contained in <me>.)#" )
+        .def("Measurement",
+             (Standard_Real (Units_Measurement::*)() const) static_cast<Standard_Real (Units_Measurement::*)() const>(&Units_Measurement::Measurement),
+             R"#(Returns the value of the measurement.)#" )
+        .def("Token",
+             (opencascade::handle<Units_Token> (Units_Measurement::*)() const) static_cast<opencascade::handle<Units_Token> (Units_Measurement::*)() const>(&Units_Measurement::Token),
+             R"#(Returns the token contained in <me>.)#" )
+        .def("Add",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Add),
+             R"#(Returns (if it is possible) a measurement which is the addition of <me> and <ameasurement>. The chosen returned unit is the unit of <me>.)#"  , py::arg("ameasurement"))
+        .def("Subtract",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Subtract),
+             R"#(Returns (if it is possible) a measurement which is the subtraction of <me> and <ameasurement>. The chosen returned unit is the unit of <me>.)#"  , py::arg("ameasurement"))
+        .def("Multiply",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Multiply),
+             R"#(Returns a measurement which is the multiplication of <me> and <ameasurement>.)#"  , py::arg("ameasurement"))
+        .def("Multiply",
+             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::Multiply),
+             R"#(Returns a measurement which is the multiplication of <me> with the value <avalue>.)#"  , py::arg("avalue"))
+        .def("Divide",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::Divide),
+             R"#(Returns a measurement which is the division of <me> by <ameasurement>.)#"  , py::arg("ameasurement"))
+        .def("Divide",
+             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::Divide),
+             R"#(Returns a measurement which is the division of <me> by the constant <avalue>.)#"  , py::arg("avalue"))
+        .def("Power",
+             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::Power),
+             R"#(Returns a measurement which is <me> powered <anexponent>.)#"  , py::arg("anexponent"))
+        .def("HasToken",
+             (Standard_Boolean (Units_Measurement::*)() const) static_cast<Standard_Boolean (Units_Measurement::*)() const>(&Units_Measurement::HasToken),
+             R"#(None)#" )
+        .def("Dump",
+             (void (Units_Measurement::*)() const) static_cast<void (Units_Measurement::*)() const>(&Units_Measurement::Dump),
+             R"#(Useful for debugging.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+        .def("__add__",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator+),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("ameasurement"))
+        .def("__sub__",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator-),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("ameasurement"))
+        .def("__mul__",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator*),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("ameasurement"))
+        .def("__rmul__",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator*),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("ameasurement"))
+        .def("__mul__",
+             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::operator*),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("avalue"))
+        .def("__rmul__",
+             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::operator*),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("avalue"))
+        .def("__truediv__",
+             (Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Units_Measurement &  ) const>(&Units_Measurement::operator/),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("ameasurement"))
+        .def("__truediv__",
+             (Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const) static_cast<Units_Measurement (Units_Measurement::*)( const Standard_Real  ) const>(&Units_Measurement::operator/),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("avalue"))
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_QuantitiesSequence ,opencascade::handle<Units_QuantitiesSequence>  , Units_QtsSequence , Standard_Transient >>(m.attr("Units_QuantitiesSequence"))
+        .def(py::init<  >()  )
+        .def(py::init<  const NCollection_Sequence<opencascade::handle<Units_Quantity> > & >()  , py::arg("theOther") )
+    // methods
         .def("Sequence",
-             (const Units_UtsSequence & (Units_UnitsSequence::*)() const) static_cast<const Units_UtsSequence & (Units_UnitsSequence::*)() const>(&Units_UnitsSequence::Sequence),
+             (const Units_QtsSequence & (Units_QuantitiesSequence::*)() const) static_cast<const Units_QtsSequence & (Units_QuantitiesSequence::*)() const>(&Units_QuantitiesSequence::Sequence),
              R"#(None)#" )
         .def("Append",
-             (void (Units_UnitsSequence::*)(  const opencascade::handle<Units_Unit> &  ) ) static_cast<void (Units_UnitsSequence::*)(  const opencascade::handle<Units_Unit> &  ) >(&Units_UnitsSequence::Append),
+             (void (Units_QuantitiesSequence::*)(  const opencascade::handle<Units_Quantity> &  ) ) static_cast<void (Units_QuantitiesSequence::*)(  const opencascade::handle<Units_Quantity> &  ) >(&Units_QuantitiesSequence::Append),
              R"#(None)#"  , py::arg("theItem"))
         .def("Append",
-             (void (Units_UnitsSequence::*)( NCollection_Sequence<opencascade::handle<Units_Unit> > &  ) ) static_cast<void (Units_UnitsSequence::*)( NCollection_Sequence<opencascade::handle<Units_Unit> > &  ) >(&Units_UnitsSequence::Append),
+             (void (Units_QuantitiesSequence::*)( NCollection_Sequence<opencascade::handle<Units_Quantity> > &  ) ) static_cast<void (Units_QuantitiesSequence::*)( NCollection_Sequence<opencascade::handle<Units_Quantity> > &  ) >(&Units_QuantitiesSequence::Append),
              R"#(None)#"  , py::arg("theSequence"))
         .def("ChangeSequence",
-             (Units_UtsSequence & (Units_UnitsSequence::*)() ) static_cast<Units_UtsSequence & (Units_UnitsSequence::*)() >(&Units_UnitsSequence::ChangeSequence),
+             (Units_QtsSequence & (Units_QuantitiesSequence::*)() ) static_cast<Units_QtsSequence & (Units_QuantitiesSequence::*)() >(&Units_QuantitiesSequence::ChangeSequence),
              R"#(None)#" )
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_UnitsSequence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsSequence::*)() const>(&Units_UnitsSequence::DynamicType),
+             (const opencascade::handle<Standard_Type> & (Units_QuantitiesSequence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_QuantitiesSequence::*)() const>(&Units_QuantitiesSequence::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsSequence::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_QuantitiesSequence::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsSequence::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_QuantitiesSequence::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Units_UnitsDictionary ,opencascade::handle<Units_UnitsDictionary>  , Standard_Transient >>(m.attr("Units_UnitsDictionary"))
-        .def(py::init<  >()  )
-        .def("Creates",
-             (void (Units_UnitsDictionary::*)() ) static_cast<void (Units_UnitsDictionary::*)() >(&Units_UnitsDictionary::Creates),
-             R"#(Returns a UnitsDictionary object which contains the sequence of all the units you want to consider, physical quantity by physical quantity.)#" )
+    static_cast<py::class_<Units_Quantity ,opencascade::handle<Units_Quantity>  , Standard_Transient >>(m.attr("Units_Quantity"))
+        .def(py::init< const Standard_CString,const opencascade::handle<Units_Dimensions> &,const opencascade::handle<Units_UnitsSequence> & >()  , py::arg("aname"),  py::arg("adimensions"),  py::arg("aunitssequence") )
+    // methods
+        .def("Name",
+             (TCollection_AsciiString (Units_Quantity::*)() const) static_cast<TCollection_AsciiString (Units_Quantity::*)() const>(&Units_Quantity::Name),
+             R"#(Returns in a AsciiString from TCollection the name of the quantity.)#" )
+        .def("Dimensions",
+             (opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const>(&Units_Quantity::Dimensions),
+             R"#(Returns the physical dimensions of the quantity.)#" )
         .def("Sequence",
-             (opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const) static_cast<opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const>(&Units_UnitsDictionary::Sequence),
-             R"#(Returns the head of the sequence of physical quantities.)#" )
-        .def("ActiveUnit",
-             (TCollection_AsciiString (Units_UnitsDictionary::*)( const Standard_CString  ) const) static_cast<TCollection_AsciiString (Units_UnitsDictionary::*)( const Standard_CString  ) const>(&Units_UnitsDictionary::ActiveUnit),
-             R"#(Returns for <aquantity> the active unit.)#"  , py::arg("aquantity"))
+             (opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const>(&Units_Quantity::Sequence),
+             R"#(Returns <theunitssequence>, which is the sequence of all the units stored for this physical quantity.)#" )
+        .def("IsEqual",
+             (Standard_Boolean (Units_Quantity::*)( const Standard_CString  ) const) static_cast<Standard_Boolean (Units_Quantity::*)( const Standard_CString  ) const>(&Units_Quantity::IsEqual),
+             R"#(Returns True if the name of the Quantity <me> is equal to <astring>, False otherwise.)#"  , py::arg("astring"))
         .def("Dump",
-             (void (Units_UnitsDictionary::*)( const Standard_Integer  ) const) static_cast<void (Units_UnitsDictionary::*)( const Standard_Integer  ) const>(&Units_UnitsDictionary::Dump),
-             R"#(Dumps only the sequence of quantities without the units if <alevel> is equal to zero, and for each quantity all the units stored if <alevel> is equal to one.)#"  , py::arg("alevel"))
-        .def("Dump",
-             (void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const) static_cast<void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const>(&Units_UnitsDictionary::Dump),
-             R"#(Dumps for a designated physical dimensions <adimensions> all the previously stored units.)#"  , py::arg("adimensions"))
+             (void (Units_Quantity::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (Units_Quantity::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Units_Quantity::Dump),
+             R"#(Useful for debugging.)#"  , py::arg("ashift"),  py::arg("alevel"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_UnitsDictionary::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsDictionary::*)() const>(&Units_UnitsDictionary::DynamicType),
+             (const opencascade::handle<Standard_Type> & (Units_Quantity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_Quantity::*)() const>(&Units_Quantity::DynamicType),
              R"#(None)#" )
+        .def("Name",
+             (TCollection_AsciiString (Units_Quantity::*)() const) static_cast<TCollection_AsciiString (Units_Quantity::*)() const>(&Units_Quantity::Name),
+             R"#(Returns in a AsciiString from TCollection the name of the quantity.)#" )
+        .def("Dimensions",
+             (opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_Dimensions> (Units_Quantity::*)() const>(&Units_Quantity::Dimensions),
+             R"#(Returns the physical dimensions of the quantity.)#" )
         .def("Sequence",
-             (opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const) static_cast<opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const>(&Units_UnitsDictionary::Sequence),
-             R"#(Returns the head of the sequence of physical quantities.)#" )
-        .def("Dump",
-             (void (Units_UnitsDictionary::*)( const Standard_Integer  ) const) static_cast<void (Units_UnitsDictionary::*)( const Standard_Integer  ) const>(&Units_UnitsDictionary::Dump),
-             R"#(Dumps only the sequence of quantities without the units if <alevel> is equal to zero, and for each quantity all the units stored if <alevel> is equal to one.)#"  , py::arg("alevel"))
-        .def("Dump",
-             (void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const) static_cast<void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const>(&Units_UnitsDictionary::Dump),
-             R"#(Dumps for a designated physical dimensions <adimensions> all the previously stored units.)#"  , py::arg("adimensions"))
+             (opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const) static_cast<opencascade::handle<Units_UnitsSequence> (Units_Quantity::*)() const>(&Units_Quantity::Sequence),
+             R"#(Returns <theunitssequence>, which is the sequence of all the units stored for this physical quantity.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsDictionary::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_Quantity::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsDictionary::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_Quantity::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Units_UnitsLexicon ,opencascade::handle<Units_UnitsLexicon>  , Units_Lexicon >>(m.attr("Units_UnitsLexicon"))
-        .def(py::init<  >()  )
-        .def("Creates",
-             (void (Units_UnitsLexicon::*)( const Standard_Boolean  ) ) static_cast<void (Units_UnitsLexicon::*)( const Standard_Boolean  ) >(&Units_UnitsLexicon::Creates),
-             R"#(Reads the files <afilename1> and <afilename2> to create a sequence of tokens stored in <thesequenceoftokens>.)#"  , py::arg("amode")=static_cast<const Standard_Boolean>(Standard_True))
+    static_cast<py::class_<Units_Sentence , shared_ptr<Units_Sentence>  >>(m.attr("Units_Sentence"))
+        .def(py::init< const opencascade::handle<Units_Lexicon> &,const Standard_CString >()  , py::arg("alexicon"),  py::arg("astring") )
+    // methods
+        .def("SetConstants",
+             (void (Units_Sentence::*)() ) static_cast<void (Units_Sentence::*)() >(&Units_Sentence::SetConstants),
+             R"#(For each constant encountered, sets the value.)#" )
+        .def("Sequence",
+             (opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const) static_cast<opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const>(&Units_Sentence::Sequence),
+             R"#(Returns <thesequenceoftokens>.)#" )
+        .def("Sequence",
+             (void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) ) static_cast<void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) >(&Units_Sentence::Sequence),
+             R"#(Sets the field <thesequenceoftokens> to <asequenceoftokens>.)#"  , py::arg("asequenceoftokens"))
+        .def("Evaluate",
+             (opencascade::handle<Units_Token> (Units_Sentence::*)() ) static_cast<opencascade::handle<Units_Token> (Units_Sentence::*)() >(&Units_Sentence::Evaluate),
+             R"#(Computes and returns in a token the result of the expression.)#" )
+        .def("IsDone",
+             (Standard_Boolean (Units_Sentence::*)() const) static_cast<Standard_Boolean (Units_Sentence::*)() const>(&Units_Sentence::IsDone),
+             R"#(Return True if number of created tokens > 0 (i.e creation of sentence is succesfull))#" )
         .def("Dump",
-             (void (Units_UnitsLexicon::*)() const) static_cast<void (Units_UnitsLexicon::*)() const>(&Units_UnitsLexicon::Dump),
+             (void (Units_Sentence::*)() const) static_cast<void (Units_Sentence::*)() const>(&Units_Sentence::Dump),
              R"#(Useful for debugging.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_UnitsLexicon::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsLexicon::*)() const>(&Units_UnitsLexicon::DynamicType),
-             R"#(None)#" )
+        .def("Sequence",
+             (opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const) static_cast<opencascade::handle<Units_TokensSequence> (Units_Sentence::*)() const>(&Units_Sentence::Sequence),
+             R"#(Returns <thesequenceoftokens>.)#" )
+        .def("Sequence",
+             (void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) ) static_cast<void (Units_Sentence::*)( const opencascade::handle<Units_TokensSequence> &  ) >(&Units_Sentence::Sequence),
+             R"#(Sets the field <thesequenceoftokens> to <asequenceoftokens>.)#"  , py::arg("asequenceoftokens"))
+        .def("IsDone",
+             (Standard_Boolean (Units_Sentence::*)() const) static_cast<Standard_Boolean (Units_Sentence::*)() const>(&Units_Sentence::IsDone),
+             R"#(Return True if number of created tokens > 0 (i.e creation of sentence is succesfull))#" )
         .def("Dump",
-             (void (Units_UnitsLexicon::*)() const) static_cast<void (Units_UnitsLexicon::*)() const>(&Units_UnitsLexicon::Dump),
+             (void (Units_Sentence::*)() const) static_cast<void (Units_Sentence::*)() const>(&Units_Sentence::Dump),
              R"#(Useful for debugging.)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsLexicon::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsLexicon::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Units_ShiftedUnit ,opencascade::handle<Units_ShiftedUnit>  , Units_Unit >>(m.attr("Units_ShiftedUnit"))
-        .def(py::init< const Standard_CString,const Standard_CString,const Standard_Real,const Standard_Real,const opencascade::handle<Units_Quantity> & >()  , py::arg("aname"),  py::arg("asymbol"),  py::arg("avalue"),  py::arg("amove"),  py::arg("aquantity") )
-        .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("aname"),  py::arg("asymbol") )
-        .def(py::init< const Standard_CString >()  , py::arg("aname") )
-        .def("Move",
-             (void (Units_ShiftedUnit::*)( const Standard_Real  ) ) static_cast<void (Units_ShiftedUnit::*)( const Standard_Real  ) >(&Units_ShiftedUnit::Move),
-             R"#(Sets the field <themove> to <amove>)#"  , py::arg("amove"))
-        .def("Move",
-             (Standard_Real (Units_ShiftedUnit::*)() const) static_cast<Standard_Real (Units_ShiftedUnit::*)() const>(&Units_ShiftedUnit::Move),
-             R"#(Returns the shifted value <themove>.)#" )
-        .def("Token",
-             (opencascade::handle<Units_Token> (Units_ShiftedUnit::*)() const) static_cast<opencascade::handle<Units_Token> (Units_ShiftedUnit::*)() const>(&Units_ShiftedUnit::Token),
-             R"#(This redefined method returns a ShiftedToken object.)#" )
-        .def("Dump",
-             (void (Units_ShiftedUnit::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (Units_ShiftedUnit::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Units_ShiftedUnit::Dump),
-             R"#(None)#"  , py::arg("ashift"),  py::arg("alevel"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Units_ShiftedUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_ShiftedUnit::*)() const>(&Units_ShiftedUnit::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_ShiftedUnit::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_ShiftedUnit::get_type_descriptor),
-                    R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
@@ -798,6 +574,7 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("aword"),  py::arg("amean") )
         .def(py::init< const Standard_CString,const Standard_CString,const Standard_Real >()  , py::arg("aword"),  py::arg("amean"),  py::arg("avalue") )
         .def(py::init< const Standard_CString,const Standard_CString,const Standard_Real,const opencascade::handle<Units_Dimensions> & >()  , py::arg("aword"),  py::arg("amean"),  py::arg("avalue"),  py::arg("adimension") )
+    // methods
         .def("Creates",
              (opencascade::handle<Units_Token> (Units_Token::*)() const) static_cast<opencascade::handle<Units_Token> (Units_Token::*)() const>(&Units_Token::Creates),
              R"#(Creates and returns a token, which is a ShiftedToken.)#" )
@@ -927,17 +704,271 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
         .def("IsGreaterOrEqual",
              (Standard_Boolean (Units_Token::*)( const opencascade::handle<Units_Token> &  ) const) static_cast<Standard_Boolean (Units_Token::*)( const opencascade::handle<Units_Token> &  ) const>(&Units_Token::IsGreaterOrEqual),
              R"#(Returns true if the string <astring> is strictly contained at the beginning of the field <theword> false otherwise.)#"  , py::arg("atoken"))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Units_Token::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_Token::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_TokensSequence ,opencascade::handle<Units_TokensSequence>  , Units_TksSequence , Standard_Transient >>(m.attr("Units_TokensSequence"))
+        .def(py::init<  >()  )
+        .def(py::init<  const NCollection_Sequence<opencascade::handle<Units_Token> > & >()  , py::arg("theOther") )
+    // methods
+        .def("Sequence",
+             (const Units_TksSequence & (Units_TokensSequence::*)() const) static_cast<const Units_TksSequence & (Units_TokensSequence::*)() const>(&Units_TokensSequence::Sequence),
+             R"#(None)#" )
+        .def("Append",
+             (void (Units_TokensSequence::*)(  const opencascade::handle<Units_Token> &  ) ) static_cast<void (Units_TokensSequence::*)(  const opencascade::handle<Units_Token> &  ) >(&Units_TokensSequence::Append),
+             R"#(None)#"  , py::arg("theItem"))
+        .def("Append",
+             (void (Units_TokensSequence::*)( NCollection_Sequence<opencascade::handle<Units_Token> > &  ) ) static_cast<void (Units_TokensSequence::*)( NCollection_Sequence<opencascade::handle<Units_Token> > &  ) >(&Units_TokensSequence::Append),
+             R"#(None)#"  , py::arg("theSequence"))
+        .def("ChangeSequence",
+             (Units_TksSequence & (Units_TokensSequence::*)() ) static_cast<Units_TksSequence & (Units_TokensSequence::*)() >(&Units_TokensSequence::ChangeSequence),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Units_TokensSequence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_TokensSequence::*)() const>(&Units_TokensSequence::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_TokensSequence::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_TokensSequence::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_Unit ,opencascade::handle<Units_Unit>  , Standard_Transient >>(m.attr("Units_Unit"))
+        .def(py::init< const Standard_CString,const Standard_CString,const Standard_Real,const opencascade::handle<Units_Quantity> & >()  , py::arg("aname"),  py::arg("asymbol"),  py::arg("avalue"),  py::arg("aquantity") )
+        .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("aname"),  py::arg("asymbol") )
+        .def(py::init< const Standard_CString >()  , py::arg("aname") )
+    // methods
+        .def("Name",
+             (TCollection_AsciiString (Units_Unit::*)() const) static_cast<TCollection_AsciiString (Units_Unit::*)() const>(&Units_Unit::Name),
+             R"#(Returns the name of the unit <thename>)#" )
+        .def("Symbol",
+             (void (Units_Unit::*)( const Standard_CString  ) ) static_cast<void (Units_Unit::*)( const Standard_CString  ) >(&Units_Unit::Symbol),
+             R"#(Adds a new symbol <asymbol> attached to <me>.)#"  , py::arg("asymbol"))
+        .def("Value",
+             (Standard_Real (Units_Unit::*)() const) static_cast<Standard_Real (Units_Unit::*)() const>(&Units_Unit::Value),
+             R"#(Returns the value in relation with the International System of Units.)#" )
+        .def("Quantity",
+             (opencascade::handle<Units_Quantity> (Units_Unit::*)() const) static_cast<opencascade::handle<Units_Quantity> (Units_Unit::*)() const>(&Units_Unit::Quantity),
+             R"#(Returns <thequantity> contained in <me>.)#" )
+        .def("SymbolsSequence",
+             (opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const) static_cast<opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const>(&Units_Unit::SymbolsSequence),
+             R"#(Returns the sequence of symbols <thesymbolssequence>)#" )
+        .def("Value",
+             (void (Units_Unit::*)( const Standard_Real  ) ) static_cast<void (Units_Unit::*)( const Standard_Real  ) >(&Units_Unit::Value),
+             R"#(Sets the value <avalue> to <me>.)#"  , py::arg("avalue"))
+        .def("Quantity",
+             (void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) ) static_cast<void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) >(&Units_Unit::Quantity),
+             R"#(Sets the physical Quantity <aquantity> to <me>.)#"  , py::arg("aquantity"))
+        .def("Token",
+             (opencascade::handle<Units_Token> (Units_Unit::*)() const) static_cast<opencascade::handle<Units_Token> (Units_Unit::*)() const>(&Units_Unit::Token),
+             R"#(Starting with <me>, returns a new Token object.)#" )
+        .def("IsEqual",
+             (Standard_Boolean (Units_Unit::*)( const Standard_CString  ) const) static_cast<Standard_Boolean (Units_Unit::*)( const Standard_CString  ) const>(&Units_Unit::IsEqual),
+             R"#(Compares all the symbols linked within <me> with the name of <atoken>, and returns True if there is one symbol equal to the name, False otherwise.)#"  , py::arg("astring"))
+        .def("Dump",
+             (void (Units_Unit::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (Units_Unit::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Units_Unit::Dump),
+             R"#(Useful for debugging)#"  , py::arg("ashift"),  py::arg("alevel"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Units_Unit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_Unit::*)() const>(&Units_Unit::DynamicType),
+             R"#(None)#" )
+        .def("Name",
+             (TCollection_AsciiString (Units_Unit::*)() const) static_cast<TCollection_AsciiString (Units_Unit::*)() const>(&Units_Unit::Name),
+             R"#(Returns the name of the unit <thename>)#" )
+        .def("Value",
+             (Standard_Real (Units_Unit::*)() const) static_cast<Standard_Real (Units_Unit::*)() const>(&Units_Unit::Value),
+             R"#(Returns the value in relation with the International System of Units.)#" )
+        .def("Quantity",
+             (opencascade::handle<Units_Quantity> (Units_Unit::*)() const) static_cast<opencascade::handle<Units_Quantity> (Units_Unit::*)() const>(&Units_Unit::Quantity),
+             R"#(Returns <thequantity> contained in <me>.)#" )
+        .def("SymbolsSequence",
+             (opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const) static_cast<opencascade::handle<TColStd_HSequenceOfHAsciiString> (Units_Unit::*)() const>(&Units_Unit::SymbolsSequence),
+             R"#(Returns the sequence of symbols <thesymbolssequence>)#" )
+        .def("Value",
+             (void (Units_Unit::*)( const Standard_Real  ) ) static_cast<void (Units_Unit::*)( const Standard_Real  ) >(&Units_Unit::Value),
+             R"#(Sets the value <avalue> to <me>.)#"  , py::arg("avalue"))
+        .def("Quantity",
+             (void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) ) static_cast<void (Units_Unit::*)( const opencascade::handle<Units_Quantity> &  ) >(&Units_Unit::Quantity),
+             R"#(Sets the physical Quantity <aquantity> to <me>.)#"  , py::arg("aquantity"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_Unit::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_Unit::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_UnitsDictionary ,opencascade::handle<Units_UnitsDictionary>  , Standard_Transient >>(m.attr("Units_UnitsDictionary"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Creates",
+             (void (Units_UnitsDictionary::*)() ) static_cast<void (Units_UnitsDictionary::*)() >(&Units_UnitsDictionary::Creates),
+             R"#(Returns a UnitsDictionary object which contains the sequence of all the units you want to consider, physical quantity by physical quantity.)#" )
+        .def("Sequence",
+             (opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const) static_cast<opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const>(&Units_UnitsDictionary::Sequence),
+             R"#(Returns the head of the sequence of physical quantities.)#" )
+        .def("ActiveUnit",
+             (TCollection_AsciiString (Units_UnitsDictionary::*)( const Standard_CString  ) const) static_cast<TCollection_AsciiString (Units_UnitsDictionary::*)( const Standard_CString  ) const>(&Units_UnitsDictionary::ActiveUnit),
+             R"#(Returns for <aquantity> the active unit.)#"  , py::arg("aquantity"))
+        .def("Dump",
+             (void (Units_UnitsDictionary::*)( const Standard_Integer  ) const) static_cast<void (Units_UnitsDictionary::*)( const Standard_Integer  ) const>(&Units_UnitsDictionary::Dump),
+             R"#(Dumps only the sequence of quantities without the units if <alevel> is equal to zero, and for each quantity all the units stored if <alevel> is equal to one.)#"  , py::arg("alevel"))
+        .def("Dump",
+             (void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const) static_cast<void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const>(&Units_UnitsDictionary::Dump),
+             R"#(Dumps for a designated physical dimensions <adimensions> all the previously stored units.)#"  , py::arg("adimensions"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Units_UnitsDictionary::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsDictionary::*)() const>(&Units_UnitsDictionary::DynamicType),
+             R"#(None)#" )
+        .def("Sequence",
+             (opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const) static_cast<opencascade::handle<Units_QuantitiesSequence> (Units_UnitsDictionary::*)() const>(&Units_UnitsDictionary::Sequence),
+             R"#(Returns the head of the sequence of physical quantities.)#" )
+        .def("Dump",
+             (void (Units_UnitsDictionary::*)( const Standard_Integer  ) const) static_cast<void (Units_UnitsDictionary::*)( const Standard_Integer  ) const>(&Units_UnitsDictionary::Dump),
+             R"#(Dumps only the sequence of quantities without the units if <alevel> is equal to zero, and for each quantity all the units stored if <alevel> is equal to one.)#"  , py::arg("alevel"))
+        .def("Dump",
+             (void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const) static_cast<void (Units_UnitsDictionary::*)( const opencascade::handle<Units_Dimensions> &  ) const>(&Units_UnitsDictionary::Dump),
+             R"#(Dumps for a designated physical dimensions <adimensions> all the previously stored units.)#"  , py::arg("adimensions"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsDictionary::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsDictionary::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_UnitsSequence ,opencascade::handle<Units_UnitsSequence>  , Units_UtsSequence , Standard_Transient >>(m.attr("Units_UnitsSequence"))
+        .def(py::init<  >()  )
+        .def(py::init<  const NCollection_Sequence<opencascade::handle<Units_Unit> > & >()  , py::arg("theOther") )
+    // methods
+        .def("Sequence",
+             (const Units_UtsSequence & (Units_UnitsSequence::*)() const) static_cast<const Units_UtsSequence & (Units_UnitsSequence::*)() const>(&Units_UnitsSequence::Sequence),
+             R"#(None)#" )
+        .def("Append",
+             (void (Units_UnitsSequence::*)(  const opencascade::handle<Units_Unit> &  ) ) static_cast<void (Units_UnitsSequence::*)(  const opencascade::handle<Units_Unit> &  ) >(&Units_UnitsSequence::Append),
+             R"#(None)#"  , py::arg("theItem"))
+        .def("Append",
+             (void (Units_UnitsSequence::*)( NCollection_Sequence<opencascade::handle<Units_Unit> > &  ) ) static_cast<void (Units_UnitsSequence::*)( NCollection_Sequence<opencascade::handle<Units_Unit> > &  ) >(&Units_UnitsSequence::Append),
+             R"#(None)#"  , py::arg("theSequence"))
+        .def("ChangeSequence",
+             (Units_UtsSequence & (Units_UnitsSequence::*)() ) static_cast<Units_UtsSequence & (Units_UnitsSequence::*)() >(&Units_UnitsSequence::ChangeSequence),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Units_UnitsSequence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsSequence::*)() const>(&Units_UnitsSequence::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsSequence::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsSequence::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_UnitsSystem ,opencascade::handle<Units_UnitsSystem>  , Standard_Transient >>(m.attr("Units_UnitsSystem"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_CString,const Standard_Boolean >()  , py::arg("aName"),  py::arg("Verbose")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
+        .def("QuantitiesSequence",
+             (opencascade::handle<Units_QuantitiesSequence> (Units_UnitsSystem::*)() const) static_cast<opencascade::handle<Units_QuantitiesSequence> (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::QuantitiesSequence),
+             R"#(Returns the sequence of refined quantities.)#" )
+        .def("ActiveUnitsSequence",
+             (opencascade::handle<TColStd_HSequenceOfInteger> (Units_UnitsSystem::*)() const) static_cast<opencascade::handle<TColStd_HSequenceOfInteger> (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::ActiveUnitsSequence),
+             R"#(Returns a sequence of integer in correspondance with the sequence of quantities, which indicates, for each redefined quantity, the index into the sequence of units, of the active unit.)#" )
+        .def("Specify",
+             (void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) >(&Units_UnitsSystem::Specify),
+             R"#(Specifies for <aquantity> the unit <aunit> used.)#"  , py::arg("aquantity"),  py::arg("aunit"))
+        .def("Remove",
+             (void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) >(&Units_UnitsSystem::Remove),
+             R"#(Removes for <aquantity> the unit <aunit> used.)#"  , py::arg("aquantity"),  py::arg("aunit"))
+        .def("Activate",
+             (void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<void (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_CString  ) >(&Units_UnitsSystem::Activate),
+             R"#(Specifies for <aquantity> the unit <aunit> used.)#"  , py::arg("aquantity"),  py::arg("aunit"))
+        .def("Activates",
+             (void (Units_UnitsSystem::*)() ) static_cast<void (Units_UnitsSystem::*)() >(&Units_UnitsSystem::Activates),
+             R"#(Activates the first unit of all defined system quantities)#" )
+        .def("ActiveUnit",
+             (TCollection_AsciiString (Units_UnitsSystem::*)( const Standard_CString  ) const) static_cast<TCollection_AsciiString (Units_UnitsSystem::*)( const Standard_CString  ) const>(&Units_UnitsSystem::ActiveUnit),
+             R"#(Returns for <aquantity> the active unit.)#"  , py::arg("aquantity"))
+        .def("ConvertValueToUserSystem",
+             (Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real ,  const Standard_CString  ) const) static_cast<Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real ,  const Standard_CString  ) const>(&Units_UnitsSystem::ConvertValueToUserSystem),
+             R"#(Converts a real value <avalue> from the unit <aunit> belonging to the physical dimensions <aquantity> to the corresponding unit of the user system.)#"  , py::arg("aquantity"),  py::arg("avalue"),  py::arg("aunit"))
+        .def("ConvertSIValueToUserSystem",
+             (Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const) static_cast<Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const>(&Units_UnitsSystem::ConvertSIValueToUserSystem),
+             R"#(Converts the real value <avalue> from the S.I. system of units to the user system of units. <aquantity> is the physical dimensions of the measurement.)#"  , py::arg("aquantity"),  py::arg("avalue"))
+        .def("ConvertUserSystemValueToSI",
+             (Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const) static_cast<Standard_Real (Units_UnitsSystem::*)( const Standard_CString ,  const Standard_Real  ) const>(&Units_UnitsSystem::ConvertUserSystemValueToSI),
+             R"#(Converts the real value <avalue> from the user system of units to the S.I. system of units. <aquantity> is the physical dimensions of the measurement.)#"  , py::arg("aquantity"),  py::arg("avalue"))
+        .def("Dump",
+             (void (Units_UnitsSystem::*)() const) static_cast<void (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::Dump),
+             R"#(None)#" )
+        .def("IsEmpty",
+             (Standard_Boolean (Units_UnitsSystem::*)() const) static_cast<Standard_Boolean (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::IsEmpty),
+             R"#(Returns TRUE if no units has been defined in the system.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Units_UnitsSystem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsSystem::*)() const>(&Units_UnitsSystem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsSystem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsSystem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_MathSentence , shared_ptr<Units_MathSentence>  , Units_Sentence >>(m.attr("Units_MathSentence"))
+        .def(py::init< const Standard_CString >()  , py::arg("astring") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Units_ShiftedToken ,opencascade::handle<Units_ShiftedToken>  , Units_Token >>(m.attr("Units_ShiftedToken"))
         .def(py::init< const Standard_CString,const Standard_CString,const Standard_Real,const Standard_Real,const opencascade::handle<Units_Dimensions> & >()  , py::arg("aword"),  py::arg("amean"),  py::arg("avalue"),  py::arg("amove"),  py::arg("adimensions") )
+    // methods
         .def("Creates",
              (opencascade::handle<Units_Token> (Units_ShiftedToken::*)() const) static_cast<opencascade::handle<Units_Token> (Units_ShiftedToken::*)() const>(&Units_ShiftedToken::Creates),
              R"#(Creates and returns a token, which is a ShiftedToken.)#" )
@@ -956,36 +987,118 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Units_ShiftedToken::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_ShiftedToken::*)() const>(&Units_ShiftedToken::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Units_ShiftedToken::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_ShiftedToken::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_ShiftedUnit ,opencascade::handle<Units_ShiftedUnit>  , Units_Unit >>(m.attr("Units_ShiftedUnit"))
+        .def(py::init< const Standard_CString,const Standard_CString,const Standard_Real,const Standard_Real,const opencascade::handle<Units_Quantity> & >()  , py::arg("aname"),  py::arg("asymbol"),  py::arg("avalue"),  py::arg("amove"),  py::arg("aquantity") )
+        .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("aname"),  py::arg("asymbol") )
+        .def(py::init< const Standard_CString >()  , py::arg("aname") )
+    // methods
+        .def("Move",
+             (void (Units_ShiftedUnit::*)( const Standard_Real  ) ) static_cast<void (Units_ShiftedUnit::*)( const Standard_Real  ) >(&Units_ShiftedUnit::Move),
+             R"#(Sets the field <themove> to <amove>)#"  , py::arg("amove"))
+        .def("Move",
+             (Standard_Real (Units_ShiftedUnit::*)() const) static_cast<Standard_Real (Units_ShiftedUnit::*)() const>(&Units_ShiftedUnit::Move),
+             R"#(Returns the shifted value <themove>.)#" )
+        .def("Token",
+             (opencascade::handle<Units_Token> (Units_ShiftedUnit::*)() const) static_cast<opencascade::handle<Units_Token> (Units_ShiftedUnit::*)() const>(&Units_ShiftedUnit::Token),
+             R"#(This redefined method returns a ShiftedToken object.)#" )
+        .def("Dump",
+             (void (Units_ShiftedUnit::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (Units_ShiftedUnit::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Units_ShiftedUnit::Dump),
+             R"#(None)#"  , py::arg("ashift"),  py::arg("alevel"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Units_ShiftedUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_ShiftedUnit::*)() const>(&Units_ShiftedUnit::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_ShiftedUnit::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_ShiftedUnit::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_UnitSentence , shared_ptr<Units_UnitSentence>  , Units_Sentence >>(m.attr("Units_UnitSentence"))
+        .def(py::init< const Standard_CString >()  , py::arg("astring") )
+        .def(py::init< const Standard_CString,const opencascade::handle<Units_QuantitiesSequence> & >()  , py::arg("astring"),  py::arg("aquantitiessequence") )
+    // methods
+        .def("Analyse",
+             (void (Units_UnitSentence::*)() ) static_cast<void (Units_UnitSentence::*)() >(&Units_UnitSentence::Analyse),
+             R"#(Analyzes the sequence of tokens created by the constructor to find the true significance of each token.)#" )
+        .def("SetUnits",
+             (void (Units_UnitSentence::*)( const opencascade::handle<Units_QuantitiesSequence> &  ) ) static_cast<void (Units_UnitSentence::*)( const opencascade::handle<Units_QuantitiesSequence> &  ) >(&Units_UnitSentence::SetUnits),
+             R"#(For each token which represents a unit, finds in the sequence of physical quantities all the characteristics of the unit found.)#"  , py::arg("aquantitiessequence"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Units_UnitsLexicon ,opencascade::handle<Units_UnitsLexicon>  , Units_Lexicon >>(m.attr("Units_UnitsLexicon"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Creates",
+             (void (Units_UnitsLexicon::*)( const Standard_Boolean  ) ) static_cast<void (Units_UnitsLexicon::*)( const Standard_Boolean  ) >(&Units_UnitsLexicon::Creates),
+             R"#(Reads the files <afilename1> and <afilename2> to create a sequence of tokens stored in <thesequenceoftokens>.)#"  , py::arg("amode")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("Dump",
+             (void (Units_UnitsLexicon::*)() const) static_cast<void (Units_UnitsLexicon::*)() const>(&Units_UnitsLexicon::Dump),
+             R"#(Useful for debugging.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Units_UnitsLexicon::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Units_UnitsLexicon::*)() const>(&Units_UnitsLexicon::DynamicType),
+             R"#(None)#" )
+        .def("Dump",
+             (void (Units_UnitsLexicon::*)() const) static_cast<void (Units_UnitsLexicon::*)() const>(&Units_UnitsLexicon::Dump),
+             R"#(Useful for debugging.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Units_UnitsLexicon::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Units_UnitsLexicon::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Units_TksSequence.hxx
-// ./opencascade/Units_UtsSequence.hxx
 // ./opencascade/Units.hxx
+// ./opencascade/Units_QuantitiesSequence.hxx
+// ./opencascade/Units_NoSuchUnit.hxx
+// ./opencascade/Units_Measurement.hxx
+// ./opencascade/Units_TokensSequence.hxx
 // ./opencascade/Units_UnitSentence.hxx
-// ./opencascade/Units_UnitsSystem.hxx
-// ./opencascade/Units_UnitsDictionary.hxx
-// ./opencascade/Units_Unit.hxx
-// ./opencascade/Units_Dimensions.hxx
-// ./opencascade/Units_Quantity.hxx
-// ./opencascade/Units_Token.hxx
-// ./opencascade/Units_UnitsLexicon.hxx
-// ./opencascade/Units_ShiftedToken.hxx
+// ./opencascade/Units_Explorer.hxx
 // ./opencascade/Units_MathSentence.hxx
 // ./opencascade/Units_Sentence.hxx
-// ./opencascade/Units_Lexicon.hxx
-// ./opencascade/Units_Explorer.hxx
-// ./opencascade/Units_ShiftedUnit.hxx
-// ./opencascade/Units_TokensSequence.hxx
+// ./opencascade/Units_UnitsSystem.hxx
 // ./opencascade/Units_NoSuchType.hxx
-// ./opencascade/Units_Measurement.hxx
 // ./opencascade/Units_QtsSequence.hxx
+// ./opencascade/Units_Lexicon.hxx
+// ./opencascade/Units_UnitsDictionary.hxx
+// ./opencascade/Units_ShiftedToken.hxx
+// ./opencascade/Units_UnitsLexicon.hxx
+// ./opencascade/Units_Quantity.hxx
 // ./opencascade/Units_Operators.hxx
     m.def("pow", 
           (opencascade::handle<Units_Dimensions> (*)( const opencascade::handle<Units_Dimensions> & ,  const Standard_Real  ))  static_cast<opencascade::handle<Units_Dimensions> (*)( const opencascade::handle<Units_Dimensions> & ,  const Standard_Real  )>(&pow),
@@ -996,9 +1109,13 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
     m.def("pow", 
           (opencascade::handle<Units_Token> (*)( const opencascade::handle<Units_Token> & ,  const Standard_Real  ))  static_cast<opencascade::handle<Units_Token> (*)( const opencascade::handle<Units_Token> & ,  const Standard_Real  )>(&pow),
           R"#(None)#"  , py::arg(""),  py::arg(""));
-// ./opencascade/Units_NoSuchUnit.hxx
-// ./opencascade/Units_QuantitiesSequence.hxx
 // ./opencascade/Units_UnitsSequence.hxx
+// ./opencascade/Units_Dimensions.hxx
+// ./opencascade/Units_TksSequence.hxx
+// ./opencascade/Units_UtsSequence.hxx
+// ./opencascade/Units_ShiftedUnit.hxx
+// ./opencascade/Units_Token.hxx
+// ./opencascade/Units_Unit.hxx
 
 // operators
     m.def("__mul__", 
@@ -1039,34 +1156,9 @@ py::module m = static_cast<py::module>(main_module.attr("Units"));
           R"#(None)#"  , py::arg(""),  py::arg(""));
 
 // register typdefs
-// ./opencascade/Units_TksSequence.hxx
-    register_template_NCollection_Sequence<opencascade::handle<Units_Token> >(m,"Units_TksSequence");  
-// ./opencascade/Units_UtsSequence.hxx
-    register_template_NCollection_Sequence<opencascade::handle<Units_Unit> >(m,"Units_UtsSequence");  
-// ./opencascade/Units.hxx
-// ./opencascade/Units_UnitSentence.hxx
-// ./opencascade/Units_UnitsSystem.hxx
-// ./opencascade/Units_UnitsDictionary.hxx
-// ./opencascade/Units_Unit.hxx
-// ./opencascade/Units_Dimensions.hxx
-// ./opencascade/Units_Quantity.hxx
-// ./opencascade/Units_Token.hxx
-// ./opencascade/Units_UnitsLexicon.hxx
-// ./opencascade/Units_ShiftedToken.hxx
-// ./opencascade/Units_MathSentence.hxx
-// ./opencascade/Units_Sentence.hxx
-// ./opencascade/Units_Lexicon.hxx
-// ./opencascade/Units_Explorer.hxx
-// ./opencascade/Units_ShiftedUnit.hxx
-// ./opencascade/Units_TokensSequence.hxx
-// ./opencascade/Units_NoSuchType.hxx
-// ./opencascade/Units_Measurement.hxx
-// ./opencascade/Units_QtsSequence.hxx
     register_template_NCollection_Sequence<opencascade::handle<Units_Quantity> >(m,"Units_QtsSequence");  
-// ./opencascade/Units_Operators.hxx
-// ./opencascade/Units_NoSuchUnit.hxx
-// ./opencascade/Units_QuantitiesSequence.hxx
-// ./opencascade/Units_UnitsSequence.hxx
+    register_template_NCollection_Sequence<opencascade::handle<Units_Token> >(m,"Units_TksSequence");  
+    register_template_NCollection_Sequence<opencascade::handle<Units_Unit> >(m,"Units_UtsSequence");  
 
 
 // exceptions

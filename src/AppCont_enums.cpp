@@ -54,14 +54,11 @@ py::module m = main_module.def_submodule("AppCont", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<AppCont_Function ,std::unique_ptr<AppCont_Function> ,Py_AppCont_Function >(m,"AppCont_Function",R"#(Class describing a continous 3d and/or function f(u). This class must be provided by the user to use the approximation algorithm FittingCurve.)#");
-    py::class_<AppCont_LeastSquare ,std::unique_ptr<AppCont_LeastSquare>  >(m,"AppCont_LeastSquare",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/AppCont_Function.hxx
-// ./opencascade/AppCont_ContMatrices.hxx
-// ./opencascade/AppCont_LeastSquare.hxx
+
+// classes forward declarations only
+    py::class_<AppCont_Function , shared_ptr<AppCont_Function> ,Py_AppCont_Function >(m,"AppCont_Function",R"#(Class describing a continous 3d and/or function f(u). This class must be provided by the user to use the approximation algorithm FittingCurve.)#");
+    py::class_<AppCont_LeastSquare , shared_ptr<AppCont_LeastSquare>  >(m,"AppCont_LeastSquare",R"#(None)#");
 
 };
 

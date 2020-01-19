@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -11,45 +14,13 @@ namespace py = pybind11;
 #include <TColStd_HArray1OfReal.hxx>
 
 // includes to resolve forward declarations
-#include <ShapeConstruct_ProjectCurveOnSurface.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <ShapeAnalysis_Surface.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <ShapeFix_Edge.hxx>
-#include <Geom_Surface.hxx>
-#include <ShapeAnalysis_WireOrder.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Face.hxx>
-#include <ShapeExtend_WireData.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Shell.hxx>
 #include <ShapeFix_Shell.hxx>
 #include <TopoDS_Solid.hxx>
 #include <Message_ProgressIndicator.hxx>
 #include <TopoDS_Shell.hxx>
-#include <TopoDS_Wire.hxx>
-#include <ShapeExtend_WireData.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Compound.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <Message_Msg.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Face.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <TopoDS_Edge.hxx>
-#include <ShapeExtend_WireData.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Edge.hxx>
+#include <ShapeFix_Edge.hxx>
+#include <Geom_Surface.hxx>
+#include <ShapeAnalysis_WireOrder.hxx>
 #include <TopoDS_Shape.hxx>
 #include <ShapeBuild_ReShape.hxx>
 #include <ShapeFix_Root.hxx>
@@ -73,20 +44,52 @@ namespace py = pybind11;
 #include <ShapeFix_WireSegment.hxx>
 #include <ShapeFix_IntersectionTool.hxx>
 #include <ShapeFix_SplitTool.hxx>
+#include <ShapeFix_Face.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <ShapeExtend_WireData.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Edge.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <Message_Msg.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Compound.hxx>
+#include <ShapeExtend_CompositeSurface.hxx>
+#include <ShapeAnalysis_TransferParameters.hxx>
+#include <ShapeExtend_WireData.hxx>
+#include <gp_Lin2d.hxx>
+#include <Geom_Surface.hxx>
+#include <ShapeConstruct_ProjectCurveOnSurface.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <ShapeAnalysis_Surface.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Wire.hxx>
+#include <ShapeExtend_WireData.hxx>
+#include <ShapeFix_Edge.hxx>
+#include <Geom2d_Curve.hxx>
 #include <ShapeAnalysis_Surface.hxx>
 #include <ShapeFix_Wire.hxx>
 #include <Geom_Surface.hxx>
 #include <TopoDS_Wire.hxx>
 #include <ShapeExtend_WireData.hxx>
 #include <TopoDS_Vertex.hxx>
-#include <ShapeExtend_CompositeSurface.hxx>
-#include <ShapeAnalysis_TransferParameters.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Shell.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
 #include <ShapeExtend_WireData.hxx>
-#include <gp_Lin2d.hxx>
-#include <Geom_Surface.hxx>
-#include <ShapeFix_Face.hxx>
+#include <Geom2d_Curve.hxx>
 #include <TopoDS_Shape.hxx>
-#include <ShapeFix_Edge.hxx>
 
 // module includes
 #include <ShapeFix.hxx>
@@ -116,11 +119,11 @@ namespace py = pybind11;
 #include <ShapeFix_WireVertex.hxx>
 
 // template related includes
+// ./opencascade/ShapeFix_DataMapOfShapeBox2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/ShapeFix_DataMapOfShapeBox2d.hxx
+#include "NCollection.hxx"
 // ./opencascade/ShapeFix_SequenceOfWireSegment.hxx
-#include "NCollection.hxx"
-// ./opencascade/ShapeFix_DataMapOfShapeBox2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/ShapeFix_DataMapOfShapeBox2d.hxx
 #include "NCollection.hxx"
 
 
@@ -140,9 +143,36 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
 
 // classes
 
+    register_default_constructor<ShapeFix , shared_ptr<ShapeFix>>(m,"ShapeFix");
+
+    static_cast<py::class_<ShapeFix , shared_ptr<ShapeFix>  >>(m.attr("ShapeFix"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("SameParameter_s",
+                    (Standard_Boolean (*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> & ,  const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> & ,  const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) >(&ShapeFix::SameParameter),
+                    R"#(Runs SameParameter from BRepLib with these adaptations : <enforce> forces computations, else they are made only on Edges with flag SameParameter false <preci>, if not precised, is taken for each EDge as its own Tolerance Returns True when done, False if an exception has been raised In case of exception anyway, as many edges as possible have been processed. The passed progress indicator allows user to consult the current progress stage and abort algorithm if needed.)#"  , py::arg("shape"),  py::arg("enforce"),  py::arg("preci")=static_cast<const Standard_Real>(0.0),  py::arg("theProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(0),  py::arg("theMsgReg")=static_cast<const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &>(0))
+        .def_static("EncodeRegularity_s",
+                    (void (*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&ShapeFix::EncodeRegularity),
+                    R"#(Runs EncodeRegularity from BRepLib taking into account shared components of assemblies, so that each component is processed only once)#"  , py::arg("shape"),  py::arg("tolang")=static_cast<const Standard_Real>(1.0e-10))
+        .def_static("RemoveSmallEdges_s",
+                    (TopoDS_Shape (*)( TopoDS_Shape & ,  const Standard_Real ,  opencascade::handle<ShapeBuild_ReShape> &  ) ) static_cast<TopoDS_Shape (*)( TopoDS_Shape & ,  const Standard_Real ,  opencascade::handle<ShapeBuild_ReShape> &  ) >(&ShapeFix::RemoveSmallEdges),
+                    R"#(Removes edges which are less than given tolerance from shape with help of ShapeFix_Wire::FixSmall())#"  , py::arg("shape"),  py::arg("Tolerance"),  py::arg("context"))
+        .def_static("FixVertexPosition_s",
+                    (Standard_Boolean (*)( TopoDS_Shape & ,  const Standard_Real ,  const opencascade::handle<ShapeBuild_ReShape> &  ) ) static_cast<Standard_Boolean (*)( TopoDS_Shape & ,  const Standard_Real ,  const opencascade::handle<ShapeBuild_ReShape> &  ) >(&ShapeFix::FixVertexPosition),
+                    R"#(Fix position of the vertices having tolerance more tnan specified one.;)#"  , py::arg("theshape"),  py::arg("theTolerance"),  py::arg("thecontext"))
+        .def_static("LeastEdgeSize_s",
+                    (Standard_Real (*)( TopoDS_Shape &  ) ) static_cast<Standard_Real (*)( TopoDS_Shape &  ) >(&ShapeFix::LeastEdgeSize),
+                    R"#(Calculate size of least edge;)#"  , py::arg("theshape"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
 
     static_cast<py::class_<ShapeFix_Edge ,opencascade::handle<ShapeFix_Edge>  , Standard_Transient >>(m.attr("ShapeFix_Edge"))
         .def(py::init<  >()  )
+    // methods
         .def("Projector",
              (opencascade::handle<ShapeConstruct_ProjectCurveOnSurface> (ShapeFix_Edge::*)() ) static_cast<opencascade::handle<ShapeConstruct_ProjectCurveOnSurface> (ShapeFix_Edge::*)() >(&ShapeFix_Edge::Projector),
              R"#(Returns the projector used for recomputing missing pcurves Can be used for adjusting parameters of projector)#" )
@@ -197,17 +227,139 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ShapeFix_Edge::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_Edge::*)() const>(&ShapeFix_Edge::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Edge::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Edge::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeFix_IntersectionTool ,std::unique_ptr<ShapeFix_IntersectionTool>  >>(m.attr("ShapeFix_IntersectionTool"))
+    static_cast<py::class_<ShapeFix_EdgeConnect , shared_ptr<ShapeFix_EdgeConnect>  >>(m.attr("ShapeFix_EdgeConnect"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Add",
+             (void (ShapeFix_EdgeConnect::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) ) static_cast<void (ShapeFix_EdgeConnect::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) >(&ShapeFix_EdgeConnect::Add),
+             R"#(Adds information on connectivity between start vertex of second edge and end vertex of first edge, taking edges orientation into account)#"  , py::arg("aFirst"),  py::arg("aSecond"))
+        .def("Add",
+             (void (ShapeFix_EdgeConnect::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeFix_EdgeConnect::*)( const TopoDS_Shape &  ) >(&ShapeFix_EdgeConnect::Add),
+             R"#(Adds connectivity information for the whole shape. Note: edges in wires must be well ordered Note: flag Closed should be set for closed wires)#"  , py::arg("aShape"))
+        .def("Build",
+             (void (ShapeFix_EdgeConnect::*)() ) static_cast<void (ShapeFix_EdgeConnect::*)() >(&ShapeFix_EdgeConnect::Build),
+             R"#(Builds shared vertices, updates their positions and tolerances)#" )
+        .def("Clear",
+             (void (ShapeFix_EdgeConnect::*)() ) static_cast<void (ShapeFix_EdgeConnect::*)() >(&ShapeFix_EdgeConnect::Clear),
+             R"#(Clears internal data structure)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_EdgeProjAux ,opencascade::handle<ShapeFix_EdgeProjAux>  , Standard_Transient >>(m.attr("ShapeFix_EdgeProjAux"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Face &,const TopoDS_Edge & >()  , py::arg("F"),  py::arg("E") )
+    // methods
+        .def("Init",
+             (void (ShapeFix_EdgeProjAux::*)( const TopoDS_Face & ,  const TopoDS_Edge &  ) ) static_cast<void (ShapeFix_EdgeProjAux::*)( const TopoDS_Face & ,  const TopoDS_Edge &  ) >(&ShapeFix_EdgeProjAux::Init),
+             R"#(None)#"  , py::arg("F"),  py::arg("E"))
+        .def("Compute",
+             (void (ShapeFix_EdgeProjAux::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_EdgeProjAux::*)( const Standard_Real  ) >(&ShapeFix_EdgeProjAux::Compute),
+             R"#(None)#"  , py::arg("preci"))
+        .def("IsFirstDone",
+             (Standard_Boolean (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Boolean (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::IsFirstDone),
+             R"#(None)#" )
+        .def("IsLastDone",
+             (Standard_Boolean (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Boolean (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::IsLastDone),
+             R"#(None)#" )
+        .def("FirstParam",
+             (Standard_Real (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Real (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::FirstParam),
+             R"#(None)#" )
+        .def("LastParam",
+             (Standard_Real (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Real (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::LastParam),
+             R"#(None)#" )
+        .def("IsIso",
+             (Standard_Boolean (ShapeFix_EdgeProjAux::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<Standard_Boolean (ShapeFix_EdgeProjAux::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&ShapeFix_EdgeProjAux::IsIso),
+             R"#(None)#"  , py::arg("C"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeFix_EdgeProjAux::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_EdgeProjAux::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_EdgeProjAux::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_FaceConnect , shared_ptr<ShapeFix_FaceConnect>  >>(m.attr("ShapeFix_FaceConnect"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Add",
+             (Standard_Boolean (ShapeFix_FaceConnect::*)( const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<Standard_Boolean (ShapeFix_FaceConnect::*)( const TopoDS_Face & ,  const TopoDS_Face &  ) >(&ShapeFix_FaceConnect::Add),
+             R"#(None)#"  , py::arg("aFirst"),  py::arg("aSecond"))
+        .def("Build",
+             (TopoDS_Shell (ShapeFix_FaceConnect::*)( const TopoDS_Shell & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<TopoDS_Shell (ShapeFix_FaceConnect::*)( const TopoDS_Shell & ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeFix_FaceConnect::Build),
+             R"#(None)#"  , py::arg("shell"),  py::arg("sewtoler"),  py::arg("fixtoler"))
+        .def("Clear",
+             (void (ShapeFix_FaceConnect::*)() ) static_cast<void (ShapeFix_FaceConnect::*)() >(&ShapeFix_FaceConnect::Clear),
+             R"#(Clears internal data structure)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_FreeBounds , shared_ptr<ShapeFix_FreeBounds>  >>(m.attr("ShapeFix_FreeBounds"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("sewtoler"),  py::arg("closetoler"),  py::arg("splitclosed"),  py::arg("splitopen") )
+        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("closetoler"),  py::arg("splitclosed"),  py::arg("splitopen") )
+    // methods
+        .def("GetClosedWires",
+             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetClosedWires),
+             R"#(Returns compound of closed wires out of free edges.)#" )
+        .def("GetOpenWires",
+             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetOpenWires),
+             R"#(Returns compound of open wires out of free edges.)#" )
+        .def("GetShape",
+             (const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetShape),
+             R"#(Returns modified source shape.)#" )
+        .def("GetClosedWires",
+             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetClosedWires),
+             R"#(Returns compound of closed wires out of free edges.)#" )
+        .def("GetOpenWires",
+             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetOpenWires),
+             R"#(Returns compound of open wires out of free edges.)#" )
+        .def("GetShape",
+             (const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetShape),
+             R"#(Returns modified source shape.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_IntersectionTool , shared_ptr<ShapeFix_IntersectionTool>  >>(m.attr("ShapeFix_IntersectionTool"))
         .def(py::init< const opencascade::handle<ShapeBuild_ReShape> &,const Standard_Real,const Standard_Real >()  , py::arg("context"),  py::arg("preci"),  py::arg("maxtol")=static_cast<const Standard_Real>(1.0) )
+    // methods
         .def("Context",
              (opencascade::handle<ShapeBuild_ReShape> (ShapeFix_IntersectionTool::*)() const) static_cast<opencascade::handle<ShapeBuild_ReShape> (ShapeFix_IntersectionTool::*)() const>(&ShapeFix_IntersectionTool::Context),
              R"#(Returns context)#" )
@@ -226,65 +378,17 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("Context",
              (opencascade::handle<ShapeBuild_ReShape> (ShapeFix_IntersectionTool::*)() const) static_cast<opencascade::handle<ShapeBuild_ReShape> (ShapeFix_IntersectionTool::*)() const>(&ShapeFix_IntersectionTool::Context),
              R"#(Returns context)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_FreeBounds ,std::unique_ptr<ShapeFix_FreeBounds>  >>(m.attr("ShapeFix_FreeBounds"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("sewtoler"),  py::arg("closetoler"),  py::arg("splitclosed"),  py::arg("splitopen") )
-        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("closetoler"),  py::arg("splitclosed"),  py::arg("splitopen") )
-        .def("GetClosedWires",
-             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetClosedWires),
-             R"#(Returns compound of closed wires out of free edges.)#" )
-        .def("GetOpenWires",
-             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetOpenWires),
-             R"#(Returns compound of open wires out of free edges.)#" )
-        .def("GetShape",
-             (const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetShape),
-             R"#(Returns modified source shape.)#" )
-        .def("GetClosedWires",
-             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetClosedWires),
-             R"#(Returns compound of closed wires out of free edges.)#" )
-        .def("GetOpenWires",
-             (const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetOpenWires),
-             R"#(Returns compound of open wires out of free edges.)#" )
-        .def("GetShape",
-             (const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const) static_cast<const TopoDS_Shape & (ShapeFix_FreeBounds::*)() const>(&ShapeFix_FreeBounds::GetShape),
-             R"#(Returns modified source shape.)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_WireVertex ,std::unique_ptr<ShapeFix_WireVertex>  >>(m.attr("ShapeFix_WireVertex"))
-        .def(py::init<  >()  )
-        .def("Init",
-             (void (ShapeFix_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) ) static_cast<void (ShapeFix_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) >(&ShapeFix_WireVertex::Init),
-             R"#(Loads the wire, ininializes internal analyzer (ShapeAnalysis_WireVertex) with the given precision, and performs analysis)#"  , py::arg("wire"),  py::arg("preci"))
-        .def("Init",
-             (void (ShapeFix_WireVertex::*)( const opencascade::handle<ShapeExtend_WireData> & ,  const Standard_Real  ) ) static_cast<void (ShapeFix_WireVertex::*)( const opencascade::handle<ShapeExtend_WireData> & ,  const Standard_Real  ) >(&ShapeFix_WireVertex::Init),
-             R"#(Loads the wire, ininializes internal analyzer (ShapeAnalysis_WireVertex) with the given precision, and performs analysis)#"  , py::arg("sbwd"),  py::arg("preci"))
-        .def("Init",
-             (void (ShapeFix_WireVertex::*)( const ShapeAnalysis_WireVertex &  ) ) static_cast<void (ShapeFix_WireVertex::*)( const ShapeAnalysis_WireVertex &  ) >(&ShapeFix_WireVertex::Init),
-             R"#(Loads all the data on wire, already analysed by ShapeAnalysis_WireVertex)#"  , py::arg("sawv"))
-        .def("Analyzer",
-             (const ShapeAnalysis_WireVertex & (ShapeFix_WireVertex::*)() const) static_cast<const ShapeAnalysis_WireVertex & (ShapeFix_WireVertex::*)() const>(&ShapeFix_WireVertex::Analyzer),
-             R"#(returns internal analyzer)#" )
-        .def("WireData",
-             (const opencascade::handle<ShapeExtend_WireData> & (ShapeFix_WireVertex::*)() const) static_cast<const opencascade::handle<ShapeExtend_WireData> & (ShapeFix_WireVertex::*)() const>(&ShapeFix_WireVertex::WireData),
-             R"#(returns data on wire (fixed))#" )
-        .def("Wire",
-             (TopoDS_Wire (ShapeFix_WireVertex::*)() const) static_cast<TopoDS_Wire (ShapeFix_WireVertex::*)() const>(&ShapeFix_WireVertex::Wire),
-             R"#(returns resulting wire (fixed))#" )
-        .def("FixSame",
-             (Standard_Integer (ShapeFix_WireVertex::*)() ) static_cast<Standard_Integer (ShapeFix_WireVertex::*)() >(&ShapeFix_WireVertex::FixSame),
-             R"#(Fixes "Same" or "Close" status (same vertex may be set, without changing parameters) Returns the count of fixed vertices, 0 if none)#" )
-        .def("Fix",
-             (Standard_Integer (ShapeFix_WireVertex::*)() ) static_cast<Standard_Integer (ShapeFix_WireVertex::*)() >(&ShapeFix_WireVertex::Fix),
-             R"#(Fixes all statuses except "Disjoined", i.e. the cases in which a common value has been set, with or without changing parameters Returns the count of fixed vertices, 0 if none)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeFix_Root ,opencascade::handle<ShapeFix_Root>  , Standard_Transient >>(m.attr("ShapeFix_Root"))
         .def(py::init<  >()  )
+    // methods
         .def("Set",
              (void (ShapeFix_Root::*)( const opencascade::handle<ShapeFix_Root> &  ) ) static_cast<void (ShapeFix_Root::*)( const opencascade::handle<ShapeFix_Root> &  ) >(&ShapeFix_Root::Set),
              R"#(Copy all fields from another Root object)#"  , py::arg("Root"))
@@ -375,64 +479,64 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("SendFail",
              (void (ShapeFix_Root::*)( const Message_Msg &  ) const) static_cast<void (ShapeFix_Root::*)( const Message_Msg &  ) const>(&ShapeFix_Root::SendFail),
              R"#(Calls previous method for myShape.)#"  , py::arg("message"))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Root::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Root::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeFix_FixSmallSolid ,opencascade::handle<ShapeFix_FixSmallSolid>  , ShapeFix_Root >>(m.attr("ShapeFix_FixSmallSolid"))
+    static_cast<py::class_<ShapeFix_ShapeTolerance , shared_ptr<ShapeFix_ShapeTolerance>  >>(m.attr("ShapeFix_ShapeTolerance"))
         .def(py::init<  >()  )
-        .def("SetFixMode",
-             (void (ShapeFix_FixSmallSolid::*)( const Standard_Integer  ) ) static_cast<void (ShapeFix_FixSmallSolid::*)( const Standard_Integer  ) >(&ShapeFix_FixSmallSolid::SetFixMode),
-             R"#(Set working mode for operator: - theMode = 0 use both WidthFactorThreshold and VolumeThreshold parameters - theMode = 1 use only WidthFactorThreshold parameter - theMode = 2 use only VolumeThreshold parameter)#"  , py::arg("theMode"))
-        .def("SetVolumeThreshold",
-             (void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) >(&ShapeFix_FixSmallSolid::SetVolumeThreshold),
-             R"#(Set or clear volume threshold for small solids)#"  , py::arg("theThreshold")=static_cast<const Standard_Real>(- 1.0))
-        .def("SetWidthFactorThreshold",
-             (void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) >(&ShapeFix_FixSmallSolid::SetWidthFactorThreshold),
-             R"#(Set or clear width factor threshold for small solids)#"  , py::arg("theThreshold")=static_cast<const Standard_Real>(- 1.0))
-        .def("Remove",
-             (TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const) static_cast<TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const>(&ShapeFix_FixSmallSolid::Remove),
-             R"#(Remove small solids from the given shape)#"  , py::arg("theShape"),  py::arg("theContext"))
-        .def("Merge",
-             (TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const) static_cast<TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const>(&ShapeFix_FixSmallSolid::Merge),
-             R"#(Merge small solids in the given shape to adjacent non-small ones)#"  , py::arg("theShape"),  py::arg("theContext"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallSolid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallSolid::*)() const>(&ShapeFix_FixSmallSolid::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_FixSmallSolid::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_FixSmallSolid::get_type_descriptor),
-                    R"#(None)#" )
+    // methods
+        .def("LimitTolerance",
+             (Standard_Boolean (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const) static_cast<Standard_Boolean (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const>(&ShapeFix_ShapeTolerance::LimitTolerance),
+             R"#(Limits tolerances in a shape as follows : tmin = tmax -> as SetTolerance (forces) tmin = 0 -> maximum tolerance will be <tmax> tmax = 0 or not given (more generally, tmax < tmin) -> <tmax> ignored, minimum will be <tmin> else, maximum will be <max> and minimum will be <min> styp = VERTEX : only vertices are set styp = EDGE : only edges are set styp = FACE : only faces are set styp = WIRE : to have edges and their vertices set styp = other value : all (vertices,edges,faces) are set Returns True if at least one tolerance of the sub-shape has been modified)#"  , py::arg("shape"),  py::arg("tmin"),  py::arg("tmax")=static_cast<const Standard_Real>(0.0),  py::arg("styp")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE))
+        .def("SetTolerance",
+             (void (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const) static_cast<void (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const>(&ShapeFix_ShapeTolerance::SetTolerance),
+             R"#(Sets (enforces) tolerances in a shape to the given value styp = VERTEX : only vertices are set styp = EDGE : only edges are set styp = FACE : only faces are set styp = WIRE : to have edges and their vertices set styp = other value : all (vertices,edges,faces) are set)#"  , py::arg("shape"),  py::arg("preci"),  py::arg("styp")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeFix_EdgeConnect ,std::unique_ptr<ShapeFix_EdgeConnect>  >>(m.attr("ShapeFix_EdgeConnect"))
+    static_cast<py::class_<ShapeFix_SplitTool , shared_ptr<ShapeFix_SplitTool>  >>(m.attr("ShapeFix_SplitTool"))
         .def(py::init<  >()  )
-        .def("Add",
-             (void (ShapeFix_EdgeConnect::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) ) static_cast<void (ShapeFix_EdgeConnect::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) >(&ShapeFix_EdgeConnect::Add),
-             R"#(Adds information on connectivity between start vertex of second edge and end vertex of first edge, taking edges orientation into account)#"  , py::arg("aFirst"),  py::arg("aSecond"))
-        .def("Add",
-             (void (ShapeFix_EdgeConnect::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeFix_EdgeConnect::*)( const TopoDS_Shape &  ) >(&ShapeFix_EdgeConnect::Add),
-             R"#(Adds connectivity information for the whole shape. Note: edges in wires must be well ordered Note: flag Closed should be set for closed wires)#"  , py::arg("aShape"))
-        .def("Build",
-             (void (ShapeFix_EdgeConnect::*)() ) static_cast<void (ShapeFix_EdgeConnect::*)() >(&ShapeFix_EdgeConnect::Build),
-             R"#(Builds shared vertices, updates their positions and tolerances)#" )
-        .def("Clear",
-             (void (ShapeFix_EdgeConnect::*)() ) static_cast<void (ShapeFix_EdgeConnect::*)() >(&ShapeFix_EdgeConnect::Clear),
-             R"#(Clears internal data structure)#" )
+    // methods
+        .def("SplitEdge",
+             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeFix_SplitTool::SplitEdge),
+             R"#(Split edge on two new edges using new vertex "vert" and "param" - parameter for splitting The "face" is necessary for pcurves and using TransferParameterProj)#"  , py::arg("edge"),  py::arg("param"),  py::arg("vert"),  py::arg("face"),  py::arg("newE1"),  py::arg("newE2"),  py::arg("tol3d"),  py::arg("tol2d"))
+        .def("SplitEdge",
+             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeFix_SplitTool::SplitEdge),
+             R"#(Split edge on two new edges using new vertex "vert" and "param1" and "param2" - parameter for splitting and cutting The "face" is necessary for pcurves and using TransferParameterProj)#"  , py::arg("edge"),  py::arg("param1"),  py::arg("param2"),  py::arg("vert"),  py::arg("face"),  py::arg("newE1"),  py::arg("newE2"),  py::arg("tol3d"),  py::arg("tol2d"))
+        .def("CutEdge",
+             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face & ,  Standard_Boolean &  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face & ,  Standard_Boolean &  ) const>(&ShapeFix_SplitTool::CutEdge),
+             R"#(Cut edge by parameters pend and cut)#"  , py::arg("edge"),  py::arg("pend"),  py::arg("cut"),  py::arg("face"),  py::arg("iscutline"))
+        .def("SplitEdge",
+             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  NCollection_Sequence<TopoDS_Shape> & ,  Standard_Integer & ,  const opencascade::handle<ShapeBuild_ReShape> & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  NCollection_Sequence<TopoDS_Shape> & ,  Standard_Integer & ,  const opencascade::handle<ShapeBuild_ReShape> & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeFix_SplitTool::SplitEdge),
+             R"#(Split edge on two new edges using two new vertex V1 and V2 and two parameters for splitting - fp and lp correspondingly The "face" is necessary for pcurves and using TransferParameterProj aNum - number of edge in SeqE which corresponding to [fp,lp])#"  , py::arg("edge"),  py::arg("fp"),  py::arg("V1"),  py::arg("lp"),  py::arg("V2"),  py::arg("face"),  py::arg("SeqE"),  py::arg("aNum"),  py::arg("context"),  py::arg("tol3d"),  py::arg("tol2d"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeFix_WireSegment ,std::unique_ptr<ShapeFix_WireSegment>  >>(m.attr("ShapeFix_WireSegment"))
+    static_cast<py::class_<ShapeFix_WireSegment , shared_ptr<ShapeFix_WireSegment>  >>(m.attr("ShapeFix_WireSegment"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<ShapeExtend_WireData> &,const TopAbs_Orientation >()  , py::arg("wire"),  py::arg("ori")=static_cast<const TopAbs_Orientation>(TopAbs_EXTERNAL) )
+    // methods
         .def("Clear",
              (void (ShapeFix_WireSegment::*)() ) static_cast<void (ShapeFix_WireSegment::*)() >(&ShapeFix_WireSegment::Clear),
              R"#(Clears all fields.)#" )
@@ -487,9 +591,6 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("DefineIVMax",
              (void (ShapeFix_WireSegment::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (ShapeFix_WireSegment::*)( const Standard_Integer ,  const Standard_Integer  ) >(&ShapeFix_WireSegment::DefineIVMax),
              R"#(Modify minimal or maximal patch index for edge i. The corresponding patch index for that edge is modified so as to satisfy eq. iumin <= myIUMin(i) <= myIUMax(i) <= iumax)#"  , py::arg("i"),  py::arg("ivmax"))
-        .def("GetPatchIndex",
-             (void (ShapeFix_WireSegment::*)( const Standard_Integer ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (ShapeFix_WireSegment::*)( const Standard_Integer ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const>(&ShapeFix_WireSegment::GetPatchIndex),
-             R"#(Returns patch indices for edge i.)#"  , py::arg("i"),  py::arg("iumin"),  py::arg("iumax"),  py::arg("ivmin"),  py::arg("ivmax"))
         .def("CheckPatchIndex",
              (Standard_Boolean (ShapeFix_WireSegment::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (ShapeFix_WireSegment::*)( const Standard_Integer  ) const>(&ShapeFix_WireSegment::CheckPatchIndex),
              R"#(Checks patch indices for edge i to satisfy equations IUMin(i) <= IUMax(i) <= IUMin(i)+1)#"  , py::arg("i"))
@@ -502,12 +603,103 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("IsVertex",
              (Standard_Boolean (ShapeFix_WireSegment::*)() const) static_cast<Standard_Boolean (ShapeFix_WireSegment::*)() const>(&ShapeFix_WireSegment::IsVertex),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("GetPatchIndex",
+             []( ShapeFix_WireSegment &self , const Standard_Integer i ){ Standard_Integer  iumin; Standard_Integer  iumax; Standard_Integer  ivmin; Standard_Integer  ivmax; self.GetPatchIndex(i,iumin,iumax,ivmin,ivmax); return std::make_tuple(iumin,iumax,ivmin,ivmax); },
+             R"#(Returns patch indices for edge i.)#"  , py::arg("i"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_WireVertex , shared_ptr<ShapeFix_WireVertex>  >>(m.attr("ShapeFix_WireVertex"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Init",
+             (void (ShapeFix_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) ) static_cast<void (ShapeFix_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) >(&ShapeFix_WireVertex::Init),
+             R"#(Loads the wire, ininializes internal analyzer (ShapeAnalysis_WireVertex) with the given precision, and performs analysis)#"  , py::arg("wire"),  py::arg("preci"))
+        .def("Init",
+             (void (ShapeFix_WireVertex::*)( const opencascade::handle<ShapeExtend_WireData> & ,  const Standard_Real  ) ) static_cast<void (ShapeFix_WireVertex::*)( const opencascade::handle<ShapeExtend_WireData> & ,  const Standard_Real  ) >(&ShapeFix_WireVertex::Init),
+             R"#(Loads the wire, ininializes internal analyzer (ShapeAnalysis_WireVertex) with the given precision, and performs analysis)#"  , py::arg("sbwd"),  py::arg("preci"))
+        .def("Init",
+             (void (ShapeFix_WireVertex::*)( const ShapeAnalysis_WireVertex &  ) ) static_cast<void (ShapeFix_WireVertex::*)( const ShapeAnalysis_WireVertex &  ) >(&ShapeFix_WireVertex::Init),
+             R"#(Loads all the data on wire, already analysed by ShapeAnalysis_WireVertex)#"  , py::arg("sawv"))
+        .def("Analyzer",
+             (const ShapeAnalysis_WireVertex & (ShapeFix_WireVertex::*)() const) static_cast<const ShapeAnalysis_WireVertex & (ShapeFix_WireVertex::*)() const>(&ShapeFix_WireVertex::Analyzer),
+             R"#(returns internal analyzer)#" )
+        .def("WireData",
+             (const opencascade::handle<ShapeExtend_WireData> & (ShapeFix_WireVertex::*)() const) static_cast<const opencascade::handle<ShapeExtend_WireData> & (ShapeFix_WireVertex::*)() const>(&ShapeFix_WireVertex::WireData),
+             R"#(returns data on wire (fixed))#" )
+        .def("Wire",
+             (TopoDS_Wire (ShapeFix_WireVertex::*)() const) static_cast<TopoDS_Wire (ShapeFix_WireVertex::*)() const>(&ShapeFix_WireVertex::Wire),
+             R"#(returns resulting wire (fixed))#" )
+        .def("FixSame",
+             (Standard_Integer (ShapeFix_WireVertex::*)() ) static_cast<Standard_Integer (ShapeFix_WireVertex::*)() >(&ShapeFix_WireVertex::FixSame),
+             R"#(Fixes "Same" or "Close" status (same vertex may be set, without changing parameters) Returns the count of fixed vertices, 0 if none)#" )
+        .def("Fix",
+             (Standard_Integer (ShapeFix_WireVertex::*)() ) static_cast<Standard_Integer (ShapeFix_WireVertex::*)() >(&ShapeFix_WireVertex::Fix),
+             R"#(Fixes all statuses except "Disjoined", i.e. the cases in which a common value has been set, with or without changing parameters Returns the count of fixed vertices, 0 if none)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_ComposeShell ,opencascade::handle<ShapeFix_ComposeShell>  , ShapeFix_Root >>(m.attr("ShapeFix_ComposeShell"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Init",
+             (void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeExtend_CompositeSurface> & ,  const TopLoc_Location & ,  const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeExtend_CompositeSurface> & ,  const TopLoc_Location & ,  const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeFix_ComposeShell::Init),
+             R"#(Initializes with composite surface, face and precision. Here face defines both set of wires and way of getting pcurves. Precision is used (together with tolerance of edges) for handling subtle cases, such as tangential intersections.)#"  , py::arg("Grid"),  py::arg("L"),  py::arg("Face"),  py::arg("Prec"))
+        .def("ClosedMode",
+             (Standard_Boolean & (ShapeFix_ComposeShell::*)() ) static_cast<Standard_Boolean & (ShapeFix_ComposeShell::*)() >(&ShapeFix_ComposeShell::ClosedMode),
+             R"#(Returns (modifiable) flag for special 'closed' mode which forces ComposeShell to consider all pcurves on closed surface as modulo period. This can reduce reliability, but allows to deal with wires closed in 3d but open in 2d (missing seam) Default is False)#" )
+        .def("Perform",
+             (Standard_Boolean (ShapeFix_ComposeShell::*)() ) static_cast<Standard_Boolean (ShapeFix_ComposeShell::*)() >(&ShapeFix_ComposeShell::Perform),
+             R"#(Performs the work on already loaded data.)#" )
+        .def("SplitEdges",
+             (void (ShapeFix_ComposeShell::*)() ) static_cast<void (ShapeFix_ComposeShell::*)() >(&ShapeFix_ComposeShell::SplitEdges),
+             R"#(Splits edges in the original shape by grid. This is a part of Perform() which does not produce any resulting shape; the only result is filled context where splittings are recorded.)#" )
+        .def("Result",
+             (const TopoDS_Shape & (ShapeFix_ComposeShell::*)() const) static_cast<const TopoDS_Shape & (ShapeFix_ComposeShell::*)() const>(&ShapeFix_ComposeShell::Result),
+             R"#(Returns resulting shell or face (or Null shape if not done))#" )
+        .def("Status",
+             (Standard_Boolean (ShapeFix_ComposeShell::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeFix_ComposeShell::*)( const ShapeExtend_Status  ) const>(&ShapeFix_ComposeShell::Status),
+             R"#(Queries status of last call to Perform() OK : nothing done (some kind of error) DONE1: splitting is done, at least one new face created DONE2: splitting is done, several new faces obtained FAIL1: misoriented wire encountered (handled) FAIL2: recoverable parity error FAIL3: edge with no pcurve on supporting face FAIL4: unrecoverable algorithm error (parity check))#"  , py::arg("status"))
+        .def("DispatchWires",
+             (void (ShapeFix_ComposeShell::*)( NCollection_Sequence<TopoDS_Shape> & ,  NCollection_Sequence<ShapeFix_WireSegment> &  ) const) static_cast<void (ShapeFix_ComposeShell::*)( NCollection_Sequence<TopoDS_Shape> & ,  NCollection_Sequence<ShapeFix_WireSegment> &  ) const>(&ShapeFix_ComposeShell::DispatchWires),
+             R"#(Creates new faces from the set of (closed) wires. Each wire is put on corresponding patch in the composite surface, and all pcurves on the initial (pseudo)face are reassigned to that surface. If several wires are one inside another, single face is created.)#"  , py::arg("faces"),  py::arg("wires"))
+        .def("SetTransferParamTool",
+             (void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeAnalysis_TransferParameters> &  ) ) static_cast<void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeAnalysis_TransferParameters> &  ) >(&ShapeFix_ComposeShell::SetTransferParamTool),
+             R"#(Sets tool for transfer parameters from 3d to 2d and vice versa.)#"  , py::arg("TransferParam"))
+        .def("GetTransferParamTool",
+             (opencascade::handle<ShapeAnalysis_TransferParameters> (ShapeFix_ComposeShell::*)() const) static_cast<opencascade::handle<ShapeAnalysis_TransferParameters> (ShapeFix_ComposeShell::*)() const>(&ShapeFix_ComposeShell::GetTransferParamTool),
+             R"#(Gets tool for transfer parameters from 3d to 2d and vice versa.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeFix_ComposeShell::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_ComposeShell::*)() const>(&ShapeFix_ComposeShell::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_ComposeShell::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_ComposeShell::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeFix_Face ,opencascade::handle<ShapeFix_Face>  , ShapeFix_Root >>(m.attr("ShapeFix_Face"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("face") )
+    // methods
         .def("ClearModes",
              (void (ShapeFix_Face::*)() ) static_cast<void (ShapeFix_Face::*)() >(&ShapeFix_Face::ClearModes),
              R"#(Sets all modes to default)#" )
@@ -661,90 +853,124 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("FixWireTool",
              (opencascade::handle<ShapeFix_Wire> (ShapeFix_Face::*)() ) static_cast<opencascade::handle<ShapeFix_Wire> (ShapeFix_Face::*)() >(&ShapeFix_Face::FixWireTool),
              R"#(Returns tool for fixing wires.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Face::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Face::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeFix_Shell ,opencascade::handle<ShapeFix_Shell>  , ShapeFix_Root >>(m.attr("ShapeFix_Shell"))
+    static_cast<py::class_<ShapeFix_FixSmallFace ,opencascade::handle<ShapeFix_FixSmallFace>  , ShapeFix_Root >>(m.attr("ShapeFix_FixSmallFace"))
         .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shell & >()  , py::arg("shape") )
+    // methods
         .def("Init",
-             (void (ShapeFix_Shell::*)( const TopoDS_Shell &  ) ) static_cast<void (ShapeFix_Shell::*)( const TopoDS_Shell &  ) >(&ShapeFix_Shell::Init),
-             R"#(Initializes by shell.)#"  , py::arg("shell"))
+             (void (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) >(&ShapeFix_FixSmallFace::Init),
+             R"#(None)#"  , py::arg("S"))
         .def("Perform",
-             (Standard_Boolean (ShapeFix_Shell::*)( const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<Standard_Boolean (ShapeFix_Shell::*)( const opencascade::handle<Message_ProgressIndicator> &  ) >(&ShapeFix_Shell::Perform),
-             R"#(Iterates on subshapes and performs fixes (for each face calls ShapeFix_Face::Perform and then calls FixFaceOrientation). The passed progress indicator allows user to consult the current progress stage and abort algorithm if needed.)#"  , py::arg("theProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(0))
-        .def("FixFaceOrientation",
-             (Standard_Boolean (ShapeFix_Shell::*)( const TopoDS_Shell & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (ShapeFix_Shell::*)( const TopoDS_Shell & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeFix_Shell::FixFaceOrientation),
-             R"#(Fixes orientation of faces in shell. Changes orientation of face in the shell, if it is oriented opposite to neigbouring faces. If it is not possible to orient all faces in the shell (like in case of mebious band), this method orients only subset of faces. Other faces are stored in Error compound. Modes : isAccountMultiConex - mode for account cases of multiconnexity. If this mode is equal to Standard_True, separate shells will be created in the cases of multiconnexity. If this mode is equal to Standard_False, one shell will be created without account of multiconnexity.By defautt - Standard_True; NonManifold - mode for creation of non-manifold shells. If this mode is equal to Standard_True one non-manifold will be created from shell contains multishared edges. Else if this mode is equal to Standard_False only manifold shells will be created. By default - Standard_False.)#"  , py::arg("shell"),  py::arg("isAccountMultiConex")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("NonManifold")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("Shell",
-             (TopoDS_Shell (ShapeFix_Shell::*)() ) static_cast<TopoDS_Shell (ShapeFix_Shell::*)() >(&ShapeFix_Shell::Shell),
-             R"#(Returns fixed shell (or subset of oriented faces).)#" )
-        .def("Shape",
-             (TopoDS_Shape (ShapeFix_Shell::*)() ) static_cast<TopoDS_Shape (ShapeFix_Shell::*)() >(&ShapeFix_Shell::Shape),
-             R"#(In case of multiconnexity returns compound of fixed shells else returns one shell..)#" )
-        .def("NbShells",
-             (Standard_Integer (ShapeFix_Shell::*)() const) static_cast<Standard_Integer (ShapeFix_Shell::*)() const>(&ShapeFix_Shell::NbShells),
-             R"#(Returns Number of obtainrd shells;)#" )
-        .def("ErrorFaces",
-             (TopoDS_Compound (ShapeFix_Shell::*)() const) static_cast<TopoDS_Compound (ShapeFix_Shell::*)() const>(&ShapeFix_Shell::ErrorFaces),
-             R"#(Returns not oriented subset of faces.)#" )
-        .def("Status",
-             (Standard_Boolean (ShapeFix_Shell::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeFix_Shell::*)( const ShapeExtend_Status  ) const>(&ShapeFix_Shell::Status),
-             R"#(Returns the status of the last Fix.)#"  , py::arg("status"))
-        .def("FixFaceTool",
-             (opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() ) static_cast<opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceTool),
-             R"#(Returns tool for fixing faces.)#" )
-        .def("SetMsgRegistrator",
-             (void (ShapeFix_Shell::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) ) static_cast<void (ShapeFix_Shell::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) >(&ShapeFix_Shell::SetMsgRegistrator),
-             R"#(Sets message registrator)#"  , py::arg("msgreg"))
-        .def("SetPrecision",
-             (void (ShapeFix_Shell::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Real  ) >(&ShapeFix_Shell::SetPrecision),
-             R"#(Sets basic precision value (also to FixWireTool))#"  , py::arg("preci"))
-        .def("SetMinTolerance",
-             (void (ShapeFix_Shell::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Real  ) >(&ShapeFix_Shell::SetMinTolerance),
-             R"#(Sets minimal allowed tolerance (also to FixWireTool))#"  , py::arg("mintol"))
-        .def("SetMaxTolerance",
-             (void (ShapeFix_Shell::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Real  ) >(&ShapeFix_Shell::SetMaxTolerance),
-             R"#(Sets maximal allowed tolerance (also to FixWireTool))#"  , py::arg("maxtol"))
-        .def("FixFaceMode",
-             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceMode),
-             R"#(Returns (modifiable) the mode for applying fixes of ShapeFix_Face, by default True.)#" )
-        .def("FixOrientationMode",
-             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixOrientationMode),
-             R"#(Returns (modifiable) the mode for applying FixFaceOrientation, by default True.)#" )
-        .def("SetNonManifoldFlag",
-             (void (ShapeFix_Shell::*)( const Standard_Boolean  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Boolean  ) >(&ShapeFix_Shell::SetNonManifoldFlag),
-             R"#(Sets NonManifold flag)#"  , py::arg("isNonManifold"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeFix_Shell::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_Shell::*)() const>(&ShapeFix_Shell::DynamicType),
+             (void (ShapeFix_FixSmallFace::*)() ) static_cast<void (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::Perform),
+             R"#(Fixing case of spot face)#" )
+        .def("FixSpotFace",
+             (TopoDS_Shape (ShapeFix_FixSmallFace::*)() ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::FixSpotFace),
+             R"#(Fixing case of spot face, if tol = -1 used local tolerance.)#" )
+        .def("ReplaceVerticesInCaseOfSpot",
+             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  const Standard_Real  ) const>(&ShapeFix_FixSmallFace::ReplaceVerticesInCaseOfSpot),
+             R"#(Compute average vertex and replacing vertices by new one.)#"  , py::arg("F"),  py::arg("tol"))
+        .def("RemoveFacesInCaseOfSpot",
+             (Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const>(&ShapeFix_FixSmallFace::RemoveFacesInCaseOfSpot),
+             R"#(Remove spot face from compound)#"  , py::arg("F"))
+        .def("FixStripFace",
+             (TopoDS_Shape (ShapeFix_FixSmallFace::*)( const Standard_Boolean  ) ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)( const Standard_Boolean  ) >(&ShapeFix_FixSmallFace::FixStripFace),
+             R"#(Fixing case of strip face, if tol = -1 used local tolerance)#"  , py::arg("wasdone")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("ReplaceInCaseOfStrip",
+             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) const>(&ShapeFix_FixSmallFace::ReplaceInCaseOfStrip),
+             R"#(Replace veretces and edges.)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol"))
+        .def("RemoveFacesInCaseOfStrip",
+             (Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const>(&ShapeFix_FixSmallFace::RemoveFacesInCaseOfStrip),
+             R"#(Remove strip face from compound.)#"  , py::arg("F"))
+        .def("ComputeSharedEdgeForStripFace",
+             (TopoDS_Edge (ShapeFix_FixSmallFace::*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real  ) const) static_cast<TopoDS_Edge (ShapeFix_FixSmallFace::*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real  ) const>(&ShapeFix_FixSmallFace::ComputeSharedEdgeForStripFace),
+             R"#(Compute average edge for strip face)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("F1"),  py::arg("tol"))
+        .def("FixSplitFace",
+             (TopoDS_Shape (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) >(&ShapeFix_FixSmallFace::FixSplitFace),
+             R"#(None)#"  , py::arg("S"))
+        .def("SplitOneFace",
+             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Compound &  ) ) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Compound &  ) >(&ShapeFix_FixSmallFace::SplitOneFace),
+             R"#(Compute data for face splitting.)#"  , py::arg("F"),  py::arg("theSplittedFaces"))
+        .def("FixFace",
+             (TopoDS_Face (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) ) static_cast<TopoDS_Face (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) >(&ShapeFix_FixSmallFace::FixFace),
+             R"#(None)#"  , py::arg("F"))
+        .def("FixShape",
+             (TopoDS_Shape (ShapeFix_FixSmallFace::*)() ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::FixShape),
              R"#(None)#" )
-        .def("FixFaceTool",
-             (opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() ) static_cast<opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceTool),
-             R"#(Returns tool for fixing faces.)#" )
-        .def("FixFaceMode",
-             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceMode),
-             R"#(Returns (modifiable) the mode for applying fixes of ShapeFix_Face, by default True.)#" )
-        .def("FixOrientationMode",
-             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixOrientationMode),
-             R"#(Returns (modifiable) the mode for applying FixFaceOrientation, by default True.)#" )
+        .def("Shape",
+             (TopoDS_Shape (ShapeFix_FixSmallFace::*)() ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::Shape),
+             R"#(None)#" )
+        .def("FixPinFace",
+             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face &  ) ) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face &  ) >(&ShapeFix_FixSmallFace::FixPinFace),
+             R"#(None)#"  , py::arg("F"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallFace::*)() const>(&ShapeFix_FixSmallFace::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Shell::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_FixSmallFace::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Shell::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_FixSmallFace::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_FixSmallSolid ,opencascade::handle<ShapeFix_FixSmallSolid>  , ShapeFix_Root >>(m.attr("ShapeFix_FixSmallSolid"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetFixMode",
+             (void (ShapeFix_FixSmallSolid::*)( const Standard_Integer  ) ) static_cast<void (ShapeFix_FixSmallSolid::*)( const Standard_Integer  ) >(&ShapeFix_FixSmallSolid::SetFixMode),
+             R"#(Set working mode for operator: - theMode = 0 use both WidthFactorThreshold and VolumeThreshold parameters - theMode = 1 use only WidthFactorThreshold parameter - theMode = 2 use only VolumeThreshold parameter)#"  , py::arg("theMode"))
+        .def("SetVolumeThreshold",
+             (void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) >(&ShapeFix_FixSmallSolid::SetVolumeThreshold),
+             R"#(Set or clear volume threshold for small solids)#"  , py::arg("theThreshold")=static_cast<const Standard_Real>(- 1.0))
+        .def("SetWidthFactorThreshold",
+             (void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_FixSmallSolid::*)( const Standard_Real  ) >(&ShapeFix_FixSmallSolid::SetWidthFactorThreshold),
+             R"#(Set or clear width factor threshold for small solids)#"  , py::arg("theThreshold")=static_cast<const Standard_Real>(- 1.0))
+        .def("Remove",
+             (TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const) static_cast<TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const>(&ShapeFix_FixSmallSolid::Remove),
+             R"#(Remove small solids from the given shape)#"  , py::arg("theShape"),  py::arg("theContext"))
+        .def("Merge",
+             (TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const) static_cast<TopoDS_Shape (ShapeFix_FixSmallSolid::*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeBuild_ReShape> &  ) const>(&ShapeFix_FixSmallSolid::Merge),
+             R"#(Merge small solids in the given shape to adjacent non-small ones)#"  , py::arg("theShape"),  py::arg("theContext"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallSolid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallSolid::*)() const>(&ShapeFix_FixSmallSolid::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_FixSmallSolid::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_FixSmallSolid::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeFix_Shape ,opencascade::handle<ShapeFix_Shape>  , ShapeFix_Root >>(m.attr("ShapeFix_Shape"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("shape") )
+    // methods
         .def("Init",
              (void (ShapeFix_Shape::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeFix_Shape::*)( const TopoDS_Shape &  ) >(&ShapeFix_Shape::Init),
              R"#(Initislises by shape.)#"  , py::arg("shape"))
@@ -844,18 +1070,194 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("FixVertexTolMode",
              (Standard_Integer & (ShapeFix_Shape::*)() ) static_cast<Standard_Integer & (ShapeFix_Shape::*)() >(&ShapeFix_Shape::FixVertexTolMode),
              R"#(Returns (modifiable) the mode for fixing tolerances of vertices on whole shape after performing all fixes)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Shape::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Shape::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_Shell ,opencascade::handle<ShapeFix_Shell>  , ShapeFix_Root >>(m.attr("ShapeFix_Shell"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shell & >()  , py::arg("shape") )
+    // methods
+        .def("Init",
+             (void (ShapeFix_Shell::*)( const TopoDS_Shell &  ) ) static_cast<void (ShapeFix_Shell::*)( const TopoDS_Shell &  ) >(&ShapeFix_Shell::Init),
+             R"#(Initializes by shell.)#"  , py::arg("shell"))
+        .def("Perform",
+             (Standard_Boolean (ShapeFix_Shell::*)( const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<Standard_Boolean (ShapeFix_Shell::*)( const opencascade::handle<Message_ProgressIndicator> &  ) >(&ShapeFix_Shell::Perform),
+             R"#(Iterates on subshapes and performs fixes (for each face calls ShapeFix_Face::Perform and then calls FixFaceOrientation). The passed progress indicator allows user to consult the current progress stage and abort algorithm if needed.)#"  , py::arg("theProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(0))
+        .def("FixFaceOrientation",
+             (Standard_Boolean (ShapeFix_Shell::*)( const TopoDS_Shell & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (ShapeFix_Shell::*)( const TopoDS_Shell & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeFix_Shell::FixFaceOrientation),
+             R"#(Fixes orientation of faces in shell. Changes orientation of face in the shell, if it is oriented opposite to neigbouring faces. If it is not possible to orient all faces in the shell (like in case of mebious band), this method orients only subset of faces. Other faces are stored in Error compound. Modes : isAccountMultiConex - mode for account cases of multiconnexity. If this mode is equal to Standard_True, separate shells will be created in the cases of multiconnexity. If this mode is equal to Standard_False, one shell will be created without account of multiconnexity.By defautt - Standard_True; NonManifold - mode for creation of non-manifold shells. If this mode is equal to Standard_True one non-manifold will be created from shell contains multishared edges. Else if this mode is equal to Standard_False only manifold shells will be created. By default - Standard_False.)#"  , py::arg("shell"),  py::arg("isAccountMultiConex")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("NonManifold")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("Shell",
+             (TopoDS_Shell (ShapeFix_Shell::*)() ) static_cast<TopoDS_Shell (ShapeFix_Shell::*)() >(&ShapeFix_Shell::Shell),
+             R"#(Returns fixed shell (or subset of oriented faces).)#" )
+        .def("Shape",
+             (TopoDS_Shape (ShapeFix_Shell::*)() ) static_cast<TopoDS_Shape (ShapeFix_Shell::*)() >(&ShapeFix_Shell::Shape),
+             R"#(In case of multiconnexity returns compound of fixed shells else returns one shell..)#" )
+        .def("NbShells",
+             (Standard_Integer (ShapeFix_Shell::*)() const) static_cast<Standard_Integer (ShapeFix_Shell::*)() const>(&ShapeFix_Shell::NbShells),
+             R"#(Returns Number of obtainrd shells;)#" )
+        .def("ErrorFaces",
+             (TopoDS_Compound (ShapeFix_Shell::*)() const) static_cast<TopoDS_Compound (ShapeFix_Shell::*)() const>(&ShapeFix_Shell::ErrorFaces),
+             R"#(Returns not oriented subset of faces.)#" )
+        .def("Status",
+             (Standard_Boolean (ShapeFix_Shell::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeFix_Shell::*)( const ShapeExtend_Status  ) const>(&ShapeFix_Shell::Status),
+             R"#(Returns the status of the last Fix.)#"  , py::arg("status"))
+        .def("FixFaceTool",
+             (opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() ) static_cast<opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceTool),
+             R"#(Returns tool for fixing faces.)#" )
+        .def("SetMsgRegistrator",
+             (void (ShapeFix_Shell::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) ) static_cast<void (ShapeFix_Shell::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) >(&ShapeFix_Shell::SetMsgRegistrator),
+             R"#(Sets message registrator)#"  , py::arg("msgreg"))
+        .def("SetPrecision",
+             (void (ShapeFix_Shell::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Real  ) >(&ShapeFix_Shell::SetPrecision),
+             R"#(Sets basic precision value (also to FixWireTool))#"  , py::arg("preci"))
+        .def("SetMinTolerance",
+             (void (ShapeFix_Shell::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Real  ) >(&ShapeFix_Shell::SetMinTolerance),
+             R"#(Sets minimal allowed tolerance (also to FixWireTool))#"  , py::arg("mintol"))
+        .def("SetMaxTolerance",
+             (void (ShapeFix_Shell::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Real  ) >(&ShapeFix_Shell::SetMaxTolerance),
+             R"#(Sets maximal allowed tolerance (also to FixWireTool))#"  , py::arg("maxtol"))
+        .def("FixFaceMode",
+             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceMode),
+             R"#(Returns (modifiable) the mode for applying fixes of ShapeFix_Face, by default True.)#" )
+        .def("FixOrientationMode",
+             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixOrientationMode),
+             R"#(Returns (modifiable) the mode for applying FixFaceOrientation, by default True.)#" )
+        .def("SetNonManifoldFlag",
+             (void (ShapeFix_Shell::*)( const Standard_Boolean  ) ) static_cast<void (ShapeFix_Shell::*)( const Standard_Boolean  ) >(&ShapeFix_Shell::SetNonManifoldFlag),
+             R"#(Sets NonManifold flag)#"  , py::arg("isNonManifold"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeFix_Shell::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_Shell::*)() const>(&ShapeFix_Shell::DynamicType),
+             R"#(None)#" )
+        .def("FixFaceTool",
+             (opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() ) static_cast<opencascade::handle<ShapeFix_Face> (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceTool),
+             R"#(Returns tool for fixing faces.)#" )
+        .def("FixFaceMode",
+             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixFaceMode),
+             R"#(Returns (modifiable) the mode for applying fixes of ShapeFix_Face, by default True.)#" )
+        .def("FixOrientationMode",
+             (Standard_Integer & (ShapeFix_Shell::*)() ) static_cast<Standard_Integer & (ShapeFix_Shell::*)() >(&ShapeFix_Shell::FixOrientationMode),
+             R"#(Returns (modifiable) the mode for applying FixFaceOrientation, by default True.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Shell::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Shell::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_Solid ,opencascade::handle<ShapeFix_Solid>  , ShapeFix_Root >>(m.attr("ShapeFix_Solid"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Solid & >()  , py::arg("solid") )
+    // methods
+        .def("Init",
+             (void (ShapeFix_Solid::*)( const TopoDS_Solid &  ) ) static_cast<void (ShapeFix_Solid::*)( const TopoDS_Solid &  ) >(&ShapeFix_Solid::Init),
+             R"#(Initializes by solid .)#"  , py::arg("solid"))
+        .def("Perform",
+             (Standard_Boolean (ShapeFix_Solid::*)( const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<Standard_Boolean (ShapeFix_Solid::*)( const opencascade::handle<Message_ProgressIndicator> &  ) >(&ShapeFix_Solid::Perform),
+             R"#(Iterates on shells and performs fixes (calls ShapeFix_Shell for each subshell). The passed progress indicator allows user to consult the current progress stage and abort algorithm if needed.)#"  , py::arg("theProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(0))
+        .def("SolidFromShell",
+             (TopoDS_Solid (ShapeFix_Solid::*)( const TopoDS_Shell &  ) ) static_cast<TopoDS_Solid (ShapeFix_Solid::*)( const TopoDS_Shell &  ) >(&ShapeFix_Solid::SolidFromShell),
+             R"#(Calls MakeSolid and orients the solid to be "not infinite")#"  , py::arg("shell"))
+        .def("Status",
+             (Standard_Boolean (ShapeFix_Solid::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeFix_Solid::*)( const ShapeExtend_Status  ) const>(&ShapeFix_Solid::Status),
+             R"#(Returns the status of the last Fix.)#"  , py::arg("status"))
+        .def("Solid",
+             (TopoDS_Shape (ShapeFix_Solid::*)() const) static_cast<TopoDS_Shape (ShapeFix_Solid::*)() const>(&ShapeFix_Solid::Solid),
+             R"#(Returns resulting solid.)#" )
+        .def("FixShellTool",
+             (opencascade::handle<ShapeFix_Shell> (ShapeFix_Solid::*)() const) static_cast<opencascade::handle<ShapeFix_Shell> (ShapeFix_Solid::*)() const>(&ShapeFix_Solid::FixShellTool),
+             R"#(Returns tool for fixing shells.)#" )
+        .def("SetMsgRegistrator",
+             (void (ShapeFix_Solid::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) ) static_cast<void (ShapeFix_Solid::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) >(&ShapeFix_Solid::SetMsgRegistrator),
+             R"#(Sets message registrator)#"  , py::arg("msgreg"))
+        .def("SetPrecision",
+             (void (ShapeFix_Solid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Solid::*)( const Standard_Real  ) >(&ShapeFix_Solid::SetPrecision),
+             R"#(Sets basic precision value (also to FixShellTool))#"  , py::arg("preci"))
+        .def("SetMinTolerance",
+             (void (ShapeFix_Solid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Solid::*)( const Standard_Real  ) >(&ShapeFix_Solid::SetMinTolerance),
+             R"#(Sets minimal allowed tolerance (also to FixShellTool))#"  , py::arg("mintol"))
+        .def("SetMaxTolerance",
+             (void (ShapeFix_Solid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Solid::*)( const Standard_Real  ) >(&ShapeFix_Solid::SetMaxTolerance),
+             R"#(Sets maximal allowed tolerance (also to FixShellTool))#"  , py::arg("maxtol"))
+        .def("FixShellMode",
+             (Standard_Integer & (ShapeFix_Solid::*)() ) static_cast<Standard_Integer & (ShapeFix_Solid::*)() >(&ShapeFix_Solid::FixShellMode),
+             R"#(Returns (modifiable) the mode for applying fixes of ShapeFix_Shell, by default True.)#" )
+        .def("FixShellOrientationMode",
+             (Standard_Integer & (ShapeFix_Solid::*)() ) static_cast<Standard_Integer & (ShapeFix_Solid::*)() >(&ShapeFix_Solid::FixShellOrientationMode),
+             R"#(Returns (modifiable) the mode for applying analysis and fixes of orientation of shells in the solid; by default True.)#" )
+        .def("CreateOpenSolidMode",
+             (Standard_Boolean & (ShapeFix_Solid::*)() ) static_cast<Standard_Boolean & (ShapeFix_Solid::*)() >(&ShapeFix_Solid::CreateOpenSolidMode),
+             R"#(Returns (modifiable) the mode for creation of solids. If mode myCreateOpenSolidMode is equal to true solids are created from open shells else solids are created from closed shells only. ShapeFix_Shell, by default False.)#" )
+        .def("Shape",
+             (TopoDS_Shape (ShapeFix_Solid::*)() ) static_cast<TopoDS_Shape (ShapeFix_Solid::*)() >(&ShapeFix_Solid::Shape),
+             R"#(In case of multiconnexity returns compound of fixed solids else returns one solid.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeFix_Solid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_Solid::*)() const>(&ShapeFix_Solid::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Solid::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Solid::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeFix_SplitCommonVertex ,opencascade::handle<ShapeFix_SplitCommonVertex>  , ShapeFix_Root >>(m.attr("ShapeFix_SplitCommonVertex"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Init",
+             (void (ShapeFix_SplitCommonVertex::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeFix_SplitCommonVertex::*)( const TopoDS_Shape &  ) >(&ShapeFix_SplitCommonVertex::Init),
+             R"#(None)#"  , py::arg("S"))
+        .def("Perform",
+             (void (ShapeFix_SplitCommonVertex::*)() ) static_cast<void (ShapeFix_SplitCommonVertex::*)() >(&ShapeFix_SplitCommonVertex::Perform),
+             R"#(None)#" )
+        .def("Shape",
+             (TopoDS_Shape (ShapeFix_SplitCommonVertex::*)() ) static_cast<TopoDS_Shape (ShapeFix_SplitCommonVertex::*)() >(&ShapeFix_SplitCommonVertex::Shape),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeFix_SplitCommonVertex::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_SplitCommonVertex::*)() const>(&ShapeFix_SplitCommonVertex::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_SplitCommonVertex::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_SplitCommonVertex::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeFix_Wire ,opencascade::handle<ShapeFix_Wire>  , ShapeFix_Root >>(m.attr("ShapeFix_Wire"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const TopoDS_Face &,const Standard_Real >()  , py::arg("wire"),  py::arg("face"),  py::arg("prec") )
+    // methods
         .def("ClearModes",
              (void (ShapeFix_Wire::*)() ) static_cast<void (ShapeFix_Wire::*)() >(&ShapeFix_Wire::ClearModes),
              R"#(Sets all modes to default)#" )
@@ -1279,196 +1681,24 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("StatusRemovedSegment",
              (Standard_Boolean (ShapeFix_Wire::*)() const) static_cast<Standard_Boolean (ShapeFix_Wire::*)() const>(&ShapeFix_Wire::StatusRemovedSegment),
              R"#(Querying the status of perfomed API fixing procedures Each Status..() methods gives information about the last call to the corresponding Fix..() method of API level: OK : no problems detected; nothing done DONE: some problem(s) was(were) detected and successfully fixed FAIL: some problem(s) cannot be fixed)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Wire::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Wire::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_Solid ,opencascade::handle<ShapeFix_Solid>  , ShapeFix_Root >>(m.attr("ShapeFix_Solid"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Solid & >()  , py::arg("solid") )
-        .def("Init",
-             (void (ShapeFix_Solid::*)( const TopoDS_Solid &  ) ) static_cast<void (ShapeFix_Solid::*)( const TopoDS_Solid &  ) >(&ShapeFix_Solid::Init),
-             R"#(Initializes by solid .)#"  , py::arg("solid"))
-        .def("Perform",
-             (Standard_Boolean (ShapeFix_Solid::*)( const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<Standard_Boolean (ShapeFix_Solid::*)( const opencascade::handle<Message_ProgressIndicator> &  ) >(&ShapeFix_Solid::Perform),
-             R"#(Iterates on shells and performs fixes (calls ShapeFix_Shell for each subshell). The passed progress indicator allows user to consult the current progress stage and abort algorithm if needed.)#"  , py::arg("theProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(0))
-        .def("SolidFromShell",
-             (TopoDS_Solid (ShapeFix_Solid::*)( const TopoDS_Shell &  ) ) static_cast<TopoDS_Solid (ShapeFix_Solid::*)( const TopoDS_Shell &  ) >(&ShapeFix_Solid::SolidFromShell),
-             R"#(Calls MakeSolid and orients the solid to be "not infinite")#"  , py::arg("shell"))
-        .def("Status",
-             (Standard_Boolean (ShapeFix_Solid::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeFix_Solid::*)( const ShapeExtend_Status  ) const>(&ShapeFix_Solid::Status),
-             R"#(Returns the status of the last Fix.)#"  , py::arg("status"))
-        .def("Solid",
-             (TopoDS_Shape (ShapeFix_Solid::*)() const) static_cast<TopoDS_Shape (ShapeFix_Solid::*)() const>(&ShapeFix_Solid::Solid),
-             R"#(Returns resulting solid.)#" )
-        .def("FixShellTool",
-             (opencascade::handle<ShapeFix_Shell> (ShapeFix_Solid::*)() const) static_cast<opencascade::handle<ShapeFix_Shell> (ShapeFix_Solid::*)() const>(&ShapeFix_Solid::FixShellTool),
-             R"#(Returns tool for fixing shells.)#" )
-        .def("SetMsgRegistrator",
-             (void (ShapeFix_Solid::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) ) static_cast<void (ShapeFix_Solid::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) >(&ShapeFix_Solid::SetMsgRegistrator),
-             R"#(Sets message registrator)#"  , py::arg("msgreg"))
-        .def("SetPrecision",
-             (void (ShapeFix_Solid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Solid::*)( const Standard_Real  ) >(&ShapeFix_Solid::SetPrecision),
-             R"#(Sets basic precision value (also to FixShellTool))#"  , py::arg("preci"))
-        .def("SetMinTolerance",
-             (void (ShapeFix_Solid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Solid::*)( const Standard_Real  ) >(&ShapeFix_Solid::SetMinTolerance),
-             R"#(Sets minimal allowed tolerance (also to FixShellTool))#"  , py::arg("mintol"))
-        .def("SetMaxTolerance",
-             (void (ShapeFix_Solid::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_Solid::*)( const Standard_Real  ) >(&ShapeFix_Solid::SetMaxTolerance),
-             R"#(Sets maximal allowed tolerance (also to FixShellTool))#"  , py::arg("maxtol"))
-        .def("FixShellMode",
-             (Standard_Integer & (ShapeFix_Solid::*)() ) static_cast<Standard_Integer & (ShapeFix_Solid::*)() >(&ShapeFix_Solid::FixShellMode),
-             R"#(Returns (modifiable) the mode for applying fixes of ShapeFix_Shell, by default True.)#" )
-        .def("FixShellOrientationMode",
-             (Standard_Integer & (ShapeFix_Solid::*)() ) static_cast<Standard_Integer & (ShapeFix_Solid::*)() >(&ShapeFix_Solid::FixShellOrientationMode),
-             R"#(Returns (modifiable) the mode for applying analysis and fixes of orientation of shells in the solid; by default True.)#" )
-        .def("CreateOpenSolidMode",
-             (Standard_Boolean & (ShapeFix_Solid::*)() ) static_cast<Standard_Boolean & (ShapeFix_Solid::*)() >(&ShapeFix_Solid::CreateOpenSolidMode),
-             R"#(Returns (modifiable) the mode for creation of solids. If mode myCreateOpenSolidMode is equal to true solids are created from open shells else solids are created from closed shells only. ShapeFix_Shell, by default False.)#" )
-        .def("Shape",
-             (TopoDS_Shape (ShapeFix_Solid::*)() ) static_cast<TopoDS_Shape (ShapeFix_Solid::*)() >(&ShapeFix_Solid::Shape),
-             R"#(In case of multiconnexity returns compound of fixed solids else returns one solid.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeFix_Solid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_Solid::*)() const>(&ShapeFix_Solid::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Solid::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Solid::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_FixSmallFace ,opencascade::handle<ShapeFix_FixSmallFace>  , ShapeFix_Root >>(m.attr("ShapeFix_FixSmallFace"))
-        .def(py::init<  >()  )
-        .def("Init",
-             (void (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) >(&ShapeFix_FixSmallFace::Init),
-             R"#(None)#"  , py::arg("S"))
-        .def("Perform",
-             (void (ShapeFix_FixSmallFace::*)() ) static_cast<void (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::Perform),
-             R"#(Fixing case of spot face)#" )
-        .def("FixSpotFace",
-             (TopoDS_Shape (ShapeFix_FixSmallFace::*)() ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::FixSpotFace),
-             R"#(Fixing case of spot face, if tol = -1 used local tolerance.)#" )
-        .def("ReplaceVerticesInCaseOfSpot",
-             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  const Standard_Real  ) const>(&ShapeFix_FixSmallFace::ReplaceVerticesInCaseOfSpot),
-             R"#(Compute average vertex and replacing vertices by new one.)#"  , py::arg("F"),  py::arg("tol"))
-        .def("RemoveFacesInCaseOfSpot",
-             (Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const>(&ShapeFix_FixSmallFace::RemoveFacesInCaseOfSpot),
-             R"#(Remove spot face from compound)#"  , py::arg("F"))
-        .def("FixStripFace",
-             (TopoDS_Shape (ShapeFix_FixSmallFace::*)( const Standard_Boolean  ) ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)( const Standard_Boolean  ) >(&ShapeFix_FixSmallFace::FixStripFace),
-             R"#(Fixing case of strip face, if tol = -1 used local tolerance)#"  , py::arg("wasdone")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("ReplaceInCaseOfStrip",
-             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) const>(&ShapeFix_FixSmallFace::ReplaceInCaseOfStrip),
-             R"#(Replace veretces and edges.)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol"))
-        .def("RemoveFacesInCaseOfStrip",
-             (Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) const>(&ShapeFix_FixSmallFace::RemoveFacesInCaseOfStrip),
-             R"#(Remove strip face from compound.)#"  , py::arg("F"))
-        .def("ComputeSharedEdgeForStripFace",
-             (TopoDS_Edge (ShapeFix_FixSmallFace::*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real  ) const) static_cast<TopoDS_Edge (ShapeFix_FixSmallFace::*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real  ) const>(&ShapeFix_FixSmallFace::ComputeSharedEdgeForStripFace),
-             R"#(Compute average edge for strip face)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("F1"),  py::arg("tol"))
-        .def("FixSplitFace",
-             (TopoDS_Shape (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)( const TopoDS_Shape &  ) >(&ShapeFix_FixSmallFace::FixSplitFace),
-             R"#(None)#"  , py::arg("S"))
-        .def("SplitOneFace",
-             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Compound &  ) ) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face & ,  TopoDS_Compound &  ) >(&ShapeFix_FixSmallFace::SplitOneFace),
-             R"#(Compute data for face splitting.)#"  , py::arg("F"),  py::arg("theSplittedFaces"))
-        .def("FixFace",
-             (TopoDS_Face (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) ) static_cast<TopoDS_Face (ShapeFix_FixSmallFace::*)( const TopoDS_Face &  ) >(&ShapeFix_FixSmallFace::FixFace),
-             R"#(None)#"  , py::arg("F"))
-        .def("FixShape",
-             (TopoDS_Shape (ShapeFix_FixSmallFace::*)() ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::FixShape),
-             R"#(None)#" )
-        .def("Shape",
-             (TopoDS_Shape (ShapeFix_FixSmallFace::*)() ) static_cast<TopoDS_Shape (ShapeFix_FixSmallFace::*)() >(&ShapeFix_FixSmallFace::Shape),
-             R"#(None)#" )
-        .def("FixPinFace",
-             (Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face &  ) ) static_cast<Standard_Boolean (ShapeFix_FixSmallFace::*)( TopoDS_Face &  ) >(&ShapeFix_FixSmallFace::FixPinFace),
-             R"#(None)#"  , py::arg("F"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_FixSmallFace::*)() const>(&ShapeFix_FixSmallFace::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_FixSmallFace::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_FixSmallFace::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_SplitTool ,std::unique_ptr<ShapeFix_SplitTool>  >>(m.attr("ShapeFix_SplitTool"))
-        .def(py::init<  >()  )
-        .def("SplitEdge",
-             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeFix_SplitTool::SplitEdge),
-             R"#(Split edge on two new edges using new vertex "vert" and "param" - parameter for splitting The "face" is necessary for pcurves and using TransferParameterProj)#"  , py::arg("edge"),  py::arg("param"),  py::arg("vert"),  py::arg("face"),  py::arg("newE1"),  py::arg("newE2"),  py::arg("tol3d"),  py::arg("tol2d"))
-        .def("SplitEdge",
-             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeFix_SplitTool::SplitEdge),
-             R"#(Split edge on two new edges using new vertex "vert" and "param1" and "param2" - parameter for splitting and cutting The "face" is necessary for pcurves and using TransferParameterProj)#"  , py::arg("edge"),  py::arg("param1"),  py::arg("param2"),  py::arg("vert"),  py::arg("face"),  py::arg("newE1"),  py::arg("newE2"),  py::arg("tol3d"),  py::arg("tol2d"))
-        .def("CutEdge",
-             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face & ,  Standard_Boolean &  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face & ,  Standard_Boolean &  ) const>(&ShapeFix_SplitTool::CutEdge),
-             R"#(Cut edge by parameters pend and cut)#"  , py::arg("edge"),  py::arg("pend"),  py::arg("cut"),  py::arg("face"),  py::arg("iscutline"))
-        .def("SplitEdge",
-             (Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  NCollection_Sequence<TopoDS_Shape> & ,  Standard_Integer & ,  const opencascade::handle<ShapeBuild_ReShape> & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeFix_SplitTool::*)( const TopoDS_Edge & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Face & ,  NCollection_Sequence<TopoDS_Shape> & ,  Standard_Integer & ,  const opencascade::handle<ShapeBuild_ReShape> & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeFix_SplitTool::SplitEdge),
-             R"#(Split edge on two new edges using two new vertex V1 and V2 and two parameters for splitting - fp and lp correspondingly The "face" is necessary for pcurves and using TransferParameterProj aNum - number of edge in SeqE which corresponding to [fp,lp])#"  , py::arg("edge"),  py::arg("fp"),  py::arg("V1"),  py::arg("lp"),  py::arg("V2"),  py::arg("face"),  py::arg("SeqE"),  py::arg("aNum"),  py::arg("context"),  py::arg("tol3d"),  py::arg("tol2d"))
-;
-
-    register_default_constructor<ShapeFix ,std::unique_ptr<ShapeFix>>(m,"ShapeFix");
-
-    static_cast<py::class_<ShapeFix ,std::unique_ptr<ShapeFix>  >>(m.attr("ShapeFix"))
-        .def_static("SameParameter_s",
-                    (Standard_Boolean (*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> & ,  const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> & ,  const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) >(&ShapeFix::SameParameter),
-                    R"#(Runs SameParameter from BRepLib with these adaptations : <enforce> forces computations, else they are made only on Edges with flag SameParameter false <preci>, if not precised, is taken for each EDge as its own Tolerance Returns True when done, False if an exception has been raised In case of exception anyway, as many edges as possible have been processed. The passed progress indicator allows user to consult the current progress stage and abort algorithm if needed.)#"  , py::arg("shape"),  py::arg("enforce"),  py::arg("preci")=static_cast<const Standard_Real>(0.0),  py::arg("theProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(0),  py::arg("theMsgReg")=static_cast<const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &>(0))
-        .def_static("EncodeRegularity_s",
-                    (void (*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&ShapeFix::EncodeRegularity),
-                    R"#(Runs EncodeRegularity from BRepLib taking into account shared components of assemblies, so that each component is processed only once)#"  , py::arg("shape"),  py::arg("tolang")=static_cast<const Standard_Real>(1.0e-10))
-        .def_static("RemoveSmallEdges_s",
-                    (TopoDS_Shape (*)( TopoDS_Shape & ,  const Standard_Real ,  opencascade::handle<ShapeBuild_ReShape> &  ) ) static_cast<TopoDS_Shape (*)( TopoDS_Shape & ,  const Standard_Real ,  opencascade::handle<ShapeBuild_ReShape> &  ) >(&ShapeFix::RemoveSmallEdges),
-                    R"#(Removes edges which are less than given tolerance from shape with help of ShapeFix_Wire::FixSmall())#"  , py::arg("shape"),  py::arg("Tolerance"),  py::arg("context"))
-        .def_static("FixVertexPosition_s",
-                    (Standard_Boolean (*)( TopoDS_Shape & ,  const Standard_Real ,  const opencascade::handle<ShapeBuild_ReShape> &  ) ) static_cast<Standard_Boolean (*)( TopoDS_Shape & ,  const Standard_Real ,  const opencascade::handle<ShapeBuild_ReShape> &  ) >(&ShapeFix::FixVertexPosition),
-                    R"#(Fix position of the vertices having tolerance more tnan specified one.;)#"  , py::arg("theshape"),  py::arg("theTolerance"),  py::arg("thecontext"))
-        .def_static("LeastEdgeSize_s",
-                    (Standard_Real (*)( TopoDS_Shape &  ) ) static_cast<Standard_Real (*)( TopoDS_Shape &  ) >(&ShapeFix::LeastEdgeSize),
-                    R"#(Calculate size of least edge;)#"  , py::arg("theshape"))
-;
-
-
-    static_cast<py::class_<ShapeFix_ShapeTolerance ,std::unique_ptr<ShapeFix_ShapeTolerance>  >>(m.attr("ShapeFix_ShapeTolerance"))
-        .def(py::init<  >()  )
-        .def("LimitTolerance",
-             (Standard_Boolean (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const) static_cast<Standard_Boolean (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const>(&ShapeFix_ShapeTolerance::LimitTolerance),
-             R"#(Limits tolerances in a shape as follows : tmin = tmax -> as SetTolerance (forces) tmin = 0 -> maximum tolerance will be <tmax> tmax = 0 or not given (more generally, tmax < tmin) -> <tmax> ignored, minimum will be <tmin> else, maximum will be <max> and minimum will be <min> styp = VERTEX : only vertices are set styp = EDGE : only edges are set styp = FACE : only faces are set styp = WIRE : to have edges and their vertices set styp = other value : all (vertices,edges,faces) are set Returns True if at least one tolerance of the sub-shape has been modified)#"  , py::arg("shape"),  py::arg("tmin"),  py::arg("tmax")=static_cast<const Standard_Real>(0.0),  py::arg("styp")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE))
-        .def("SetTolerance",
-             (void (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const) static_cast<void (ShapeFix_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Real ,  const TopAbs_ShapeEnum  ) const>(&ShapeFix_ShapeTolerance::SetTolerance),
-             R"#(Sets (enforces) tolerances in a shape to the given value styp = VERTEX : only vertices are set styp = EDGE : only edges are set styp = FACE : only faces are set styp = WIRE : to have edges and their vertices set styp = other value : all (vertices,edges,faces) are set)#"  , py::arg("shape"),  py::arg("preci"),  py::arg("styp")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE))
-;
-
-
-    static_cast<py::class_<ShapeFix_FaceConnect ,std::unique_ptr<ShapeFix_FaceConnect>  >>(m.attr("ShapeFix_FaceConnect"))
-        .def(py::init<  >()  )
-        .def("Add",
-             (Standard_Boolean (ShapeFix_FaceConnect::*)( const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<Standard_Boolean (ShapeFix_FaceConnect::*)( const TopoDS_Face & ,  const TopoDS_Face &  ) >(&ShapeFix_FaceConnect::Add),
-             R"#(None)#"  , py::arg("aFirst"),  py::arg("aSecond"))
-        .def("Build",
-             (TopoDS_Shell (ShapeFix_FaceConnect::*)( const TopoDS_Shell & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<TopoDS_Shell (ShapeFix_FaceConnect::*)( const TopoDS_Shell & ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeFix_FaceConnect::Build),
-             R"#(None)#"  , py::arg("shell"),  py::arg("sewtoler"),  py::arg("fixtoler"))
-        .def("Clear",
-             (void (ShapeFix_FaceConnect::*)() ) static_cast<void (ShapeFix_FaceConnect::*)() >(&ShapeFix_FaceConnect::Clear),
-             R"#(Clears internal data structure)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeFix_Wireframe ,opencascade::handle<ShapeFix_Wireframe>  , ShapeFix_Root >>(m.attr("ShapeFix_Wireframe"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("shape") )
+    // methods
         .def("ClearStatuses",
              (void (ShapeFix_Wireframe::*)() ) static_cast<void (ShapeFix_Wireframe::*)() >(&ShapeFix_Wireframe::ClearStatuses),
              R"#(Clears all statuses)#" )
@@ -1526,171 +1756,51 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeFix"));
         .def("LimitAngle",
              (Standard_Real (ShapeFix_Wireframe::*)() const) static_cast<Standard_Real (ShapeFix_Wireframe::*)() const>(&ShapeFix_Wireframe::LimitAngle),
              R"#(Get limit angle for merging edges.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_Wireframe::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_Wireframe::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_ComposeShell ,opencascade::handle<ShapeFix_ComposeShell>  , ShapeFix_Root >>(m.attr("ShapeFix_ComposeShell"))
-        .def(py::init<  >()  )
-        .def("Init",
-             (void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeExtend_CompositeSurface> & ,  const TopLoc_Location & ,  const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeExtend_CompositeSurface> & ,  const TopLoc_Location & ,  const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeFix_ComposeShell::Init),
-             R"#(Initializes with composite surface, face and precision. Here face defines both set of wires and way of getting pcurves. Precision is used (together with tolerance of edges) for handling subtle cases, such as tangential intersections.)#"  , py::arg("Grid"),  py::arg("L"),  py::arg("Face"),  py::arg("Prec"))
-        .def("ClosedMode",
-             (Standard_Boolean & (ShapeFix_ComposeShell::*)() ) static_cast<Standard_Boolean & (ShapeFix_ComposeShell::*)() >(&ShapeFix_ComposeShell::ClosedMode),
-             R"#(Returns (modifiable) flag for special 'closed' mode which forces ComposeShell to consider all pcurves on closed surface as modulo period. This can reduce reliability, but allows to deal with wires closed in 3d but open in 2d (missing seam) Default is False)#" )
-        .def("Perform",
-             (Standard_Boolean (ShapeFix_ComposeShell::*)() ) static_cast<Standard_Boolean (ShapeFix_ComposeShell::*)() >(&ShapeFix_ComposeShell::Perform),
-             R"#(Performs the work on already loaded data.)#" )
-        .def("SplitEdges",
-             (void (ShapeFix_ComposeShell::*)() ) static_cast<void (ShapeFix_ComposeShell::*)() >(&ShapeFix_ComposeShell::SplitEdges),
-             R"#(Splits edges in the original shape by grid. This is a part of Perform() which does not produce any resulting shape; the only result is filled context where splittings are recorded.)#" )
-        .def("Result",
-             (const TopoDS_Shape & (ShapeFix_ComposeShell::*)() const) static_cast<const TopoDS_Shape & (ShapeFix_ComposeShell::*)() const>(&ShapeFix_ComposeShell::Result),
-             R"#(Returns resulting shell or face (or Null shape if not done))#" )
-        .def("Status",
-             (Standard_Boolean (ShapeFix_ComposeShell::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeFix_ComposeShell::*)( const ShapeExtend_Status  ) const>(&ShapeFix_ComposeShell::Status),
-             R"#(Queries status of last call to Perform() OK : nothing done (some kind of error) DONE1: splitting is done, at least one new face created DONE2: splitting is done, several new faces obtained FAIL1: misoriented wire encountered (handled) FAIL2: recoverable parity error FAIL3: edge with no pcurve on supporting face FAIL4: unrecoverable algorithm error (parity check))#"  , py::arg("status"))
-        .def("DispatchWires",
-             (void (ShapeFix_ComposeShell::*)( NCollection_Sequence<TopoDS_Shape> & ,  NCollection_Sequence<ShapeFix_WireSegment> &  ) const) static_cast<void (ShapeFix_ComposeShell::*)( NCollection_Sequence<TopoDS_Shape> & ,  NCollection_Sequence<ShapeFix_WireSegment> &  ) const>(&ShapeFix_ComposeShell::DispatchWires),
-             R"#(Creates new faces from the set of (closed) wires. Each wire is put on corresponding patch in the composite surface, and all pcurves on the initial (pseudo)face are reassigned to that surface. If several wires are one inside another, single face is created.)#"  , py::arg("faces"),  py::arg("wires"))
-        .def("SetTransferParamTool",
-             (void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeAnalysis_TransferParameters> &  ) ) static_cast<void (ShapeFix_ComposeShell::*)( const opencascade::handle<ShapeAnalysis_TransferParameters> &  ) >(&ShapeFix_ComposeShell::SetTransferParamTool),
-             R"#(Sets tool for transfer parameters from 3d to 2d and vice versa.)#"  , py::arg("TransferParam"))
-        .def("GetTransferParamTool",
-             (opencascade::handle<ShapeAnalysis_TransferParameters> (ShapeFix_ComposeShell::*)() const) static_cast<opencascade::handle<ShapeAnalysis_TransferParameters> (ShapeFix_ComposeShell::*)() const>(&ShapeFix_ComposeShell::GetTransferParamTool),
-             R"#(Gets tool for transfer parameters from 3d to 2d and vice versa.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeFix_ComposeShell::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_ComposeShell::*)() const>(&ShapeFix_ComposeShell::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_ComposeShell::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_ComposeShell::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_EdgeProjAux ,opencascade::handle<ShapeFix_EdgeProjAux>  , Standard_Transient >>(m.attr("ShapeFix_EdgeProjAux"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Face &,const TopoDS_Edge & >()  , py::arg("F"),  py::arg("E") )
-        .def("Init",
-             (void (ShapeFix_EdgeProjAux::*)( const TopoDS_Face & ,  const TopoDS_Edge &  ) ) static_cast<void (ShapeFix_EdgeProjAux::*)( const TopoDS_Face & ,  const TopoDS_Edge &  ) >(&ShapeFix_EdgeProjAux::Init),
-             R"#(None)#"  , py::arg("F"),  py::arg("E"))
-        .def("Compute",
-             (void (ShapeFix_EdgeProjAux::*)( const Standard_Real  ) ) static_cast<void (ShapeFix_EdgeProjAux::*)( const Standard_Real  ) >(&ShapeFix_EdgeProjAux::Compute),
-             R"#(None)#"  , py::arg("preci"))
-        .def("IsFirstDone",
-             (Standard_Boolean (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Boolean (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::IsFirstDone),
-             R"#(None)#" )
-        .def("IsLastDone",
-             (Standard_Boolean (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Boolean (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::IsLastDone),
-             R"#(None)#" )
-        .def("FirstParam",
-             (Standard_Real (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Real (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::FirstParam),
-             R"#(None)#" )
-        .def("LastParam",
-             (Standard_Real (ShapeFix_EdgeProjAux::*)() const) static_cast<Standard_Real (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::LastParam),
-             R"#(None)#" )
-        .def("IsIso",
-             (Standard_Boolean (ShapeFix_EdgeProjAux::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<Standard_Boolean (ShapeFix_EdgeProjAux::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&ShapeFix_EdgeProjAux::IsIso),
-             R"#(None)#"  , py::arg("C"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeFix_EdgeProjAux::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_EdgeProjAux::*)() const>(&ShapeFix_EdgeProjAux::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_EdgeProjAux::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_EdgeProjAux::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ShapeFix_SplitCommonVertex ,opencascade::handle<ShapeFix_SplitCommonVertex>  , ShapeFix_Root >>(m.attr("ShapeFix_SplitCommonVertex"))
-        .def(py::init<  >()  )
-        .def("Init",
-             (void (ShapeFix_SplitCommonVertex::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeFix_SplitCommonVertex::*)( const TopoDS_Shape &  ) >(&ShapeFix_SplitCommonVertex::Init),
-             R"#(None)#"  , py::arg("S"))
-        .def("Perform",
-             (void (ShapeFix_SplitCommonVertex::*)() ) static_cast<void (ShapeFix_SplitCommonVertex::*)() >(&ShapeFix_SplitCommonVertex::Perform),
-             R"#(None)#" )
-        .def("Shape",
-             (TopoDS_Shape (ShapeFix_SplitCommonVertex::*)() ) static_cast<TopoDS_Shape (ShapeFix_SplitCommonVertex::*)() >(&ShapeFix_SplitCommonVertex::Shape),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeFix_SplitCommonVertex::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeFix_SplitCommonVertex::*)() const>(&ShapeFix_SplitCommonVertex::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeFix_SplitCommonVertex::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeFix_SplitCommonVertex::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/ShapeFix_Edge.hxx
-// ./opencascade/ShapeFix_Wire.hxx
-// ./opencascade/ShapeFix_SequenceOfWireSegment.hxx
-// ./opencascade/ShapeFix_IntersectionTool.hxx
-// ./opencascade/ShapeFix_FaceConnect.hxx
-// ./opencascade/ShapeFix_FreeBounds.hxx
+// ./opencascade/ShapeFix_DataMapOfShapeBox2d.hxx
 // ./opencascade/ShapeFix_Solid.hxx
-// ./opencascade/ShapeFix_WireVertex.hxx
-// ./opencascade/ShapeFix_EdgeProjAux.hxx
-// ./opencascade/ShapeFix_FixSmallFace.hxx
-// ./opencascade/ShapeFix_Root.hxx
-// ./opencascade/ShapeFix_Wireframe.hxx
+// ./opencascade/ShapeFix_Wire.hxx
+// ./opencascade/ShapeFix.hxx
+// ./opencascade/ShapeFix_Shell.hxx
 // ./opencascade/ShapeFix_FixSmallSolid.hxx
 // ./opencascade/ShapeFix_SplitTool.hxx
-// ./opencascade/ShapeFix_EdgeConnect.hxx
-// ./opencascade/ShapeFix_DataMapIteratorOfDataMapOfShapeBox2d.hxx
-// ./opencascade/ShapeFix_DataMapOfShapeBox2d.hxx
-// ./opencascade/ShapeFix_SplitCommonVertex.hxx
 // ./opencascade/ShapeFix_WireSegment.hxx
-// ./opencascade/ShapeFix.hxx
-// ./opencascade/ShapeFix_Face.hxx
+// ./opencascade/ShapeFix_Root.hxx
+// ./opencascade/ShapeFix_SplitCommonVertex.hxx
+// ./opencascade/ShapeFix_FixSmallFace.hxx
+// ./opencascade/ShapeFix_DataMapIteratorOfDataMapOfShapeBox2d.hxx
 // ./opencascade/ShapeFix_ComposeShell.hxx
-// ./opencascade/ShapeFix_Shell.hxx
-// ./opencascade/ShapeFix_ShapeTolerance.hxx
+// ./opencascade/ShapeFix_Edge.hxx
+// ./opencascade/ShapeFix_EdgeConnect.hxx
+// ./opencascade/ShapeFix_WireVertex.hxx
 // ./opencascade/ShapeFix_Shape.hxx
+// ./opencascade/ShapeFix_EdgeProjAux.hxx
+// ./opencascade/ShapeFix_Face.hxx
+// ./opencascade/ShapeFix_FaceConnect.hxx
+// ./opencascade/ShapeFix_FreeBounds.hxx
+// ./opencascade/ShapeFix_SequenceOfWireSegment.hxx
+// ./opencascade/ShapeFix_IntersectionTool.hxx
+// ./opencascade/ShapeFix_ShapeTolerance.hxx
+// ./opencascade/ShapeFix_Wireframe.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ShapeFix_Edge.hxx
-// ./opencascade/ShapeFix_Wire.hxx
-// ./opencascade/ShapeFix_SequenceOfWireSegment.hxx
-    register_template_NCollection_Sequence<ShapeFix_WireSegment>(m,"ShapeFix_SequenceOfWireSegment");  
-// ./opencascade/ShapeFix_IntersectionTool.hxx
-// ./opencascade/ShapeFix_FaceConnect.hxx
-// ./opencascade/ShapeFix_FreeBounds.hxx
-// ./opencascade/ShapeFix_Solid.hxx
-// ./opencascade/ShapeFix_WireVertex.hxx
-// ./opencascade/ShapeFix_EdgeProjAux.hxx
-// ./opencascade/ShapeFix_FixSmallFace.hxx
-// ./opencascade/ShapeFix_Root.hxx
-// ./opencascade/ShapeFix_Wireframe.hxx
-// ./opencascade/ShapeFix_FixSmallSolid.hxx
-// ./opencascade/ShapeFix_SplitTool.hxx
-// ./opencascade/ShapeFix_EdgeConnect.hxx
-// ./opencascade/ShapeFix_DataMapIteratorOfDataMapOfShapeBox2d.hxx
-// ./opencascade/ShapeFix_DataMapOfShapeBox2d.hxx
     register_template_NCollection_DataMap<TopoDS_Shape, Bnd_Box2d, TopTools_ShapeMapHasher>(m,"ShapeFix_DataMapOfShapeBox2d");  
-// ./opencascade/ShapeFix_SplitCommonVertex.hxx
-// ./opencascade/ShapeFix_WireSegment.hxx
-// ./opencascade/ShapeFix.hxx
-// ./opencascade/ShapeFix_Face.hxx
-// ./opencascade/ShapeFix_ComposeShell.hxx
-// ./opencascade/ShapeFix_Shell.hxx
-// ./opencascade/ShapeFix_ShapeTolerance.hxx
-// ./opencascade/ShapeFix_Shape.hxx
+    register_template_NCollection_Sequence<ShapeFix_WireSegment>(m,"ShapeFix_SequenceOfWireSegment");  
 
 
 // exceptions

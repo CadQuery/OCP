@@ -11,9 +11,6 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <StdFail_NotDone.hxx>
-#include <Geom_Curve.hxx>
-#include <GeomLProp_CLProps.hxx>
 #include <LocalAnalysis_SurfaceContinuity.hxx>
 #include <LocalAnalysis_CurveContinuity.hxx>
 #include <LocalAnalysis_SurfaceContinuity.hxx>
@@ -22,6 +19,9 @@ namespace py = pybind11;
 #include <Geom_Surface.hxx>
 #include <Geom2d_Curve.hxx>
 #include <GeomLProp_SLProps.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom_Curve.hxx>
+#include <GeomLProp_CLProps.hxx>
 
 // module includes
 #include <LocalAnalysis.hxx>
@@ -55,16 +55,12 @@ py::module m = main_module.def_submodule("LocalAnalysis", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<LocalAnalysis_CurveContinuity ,std::unique_ptr<LocalAnalysis_CurveContinuity>  >(m,"LocalAnalysis_CurveContinuity",R"#(This class gives tools to check local continuity C0 C1 C2 G1 G2 between two points situated on two curves)#");
-    py::class_<LocalAnalysis_SurfaceContinuity ,std::unique_ptr<LocalAnalysis_SurfaceContinuity>  >(m,"LocalAnalysis_SurfaceContinuity",R"#(This class gives tools to check local continuity C0 C1 C2 G1 G2 between two points situated on two surfaces)#");
-    py::class_<LocalAnalysis ,std::unique_ptr<LocalAnalysis>  >(m,"LocalAnalysis",R"#(This package gives tools to check the local continuity between two points situated on two curves or two surfaces.)#");
-
 // pre-register typdefs
-// ./opencascade/LocalAnalysis_CurveContinuity.hxx
-// ./opencascade/LocalAnalysis.hxx
-// ./opencascade/LocalAnalysis_SurfaceContinuity.hxx
-// ./opencascade/LocalAnalysis_StatusErrorType.hxx
+
+// classes forward declarations only
+    py::class_<LocalAnalysis , shared_ptr<LocalAnalysis>  >(m,"LocalAnalysis",R"#(This package gives tools to check the local continuity between two points situated on two curves or two surfaces.)#");
+    py::class_<LocalAnalysis_CurveContinuity , shared_ptr<LocalAnalysis_CurveContinuity>  >(m,"LocalAnalysis_CurveContinuity",R"#(This class gives tools to check local continuity C0 C1 C2 G1 G2 between two points situated on two curves)#");
+    py::class_<LocalAnalysis_SurfaceContinuity , shared_ptr<LocalAnalysis_SurfaceContinuity>  >(m,"LocalAnalysis_SurfaceContinuity",R"#(This class gives tools to check local continuity C0 C1 C2 G1 G2 between two points situated on two surfaces)#");
 
 };
 

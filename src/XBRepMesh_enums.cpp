@@ -35,11 +35,10 @@ py::module m = main_module.def_submodule("XBRepMesh", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<XBRepMesh ,std::unique_ptr<XBRepMesh>  >(m,"XBRepMesh",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/XBRepMesh.hxx
+
+// classes forward declarations only
+    py::class_<XBRepMesh , shared_ptr<XBRepMesh>  >(m,"XBRepMesh",R"#(None)#");
 
 };
 

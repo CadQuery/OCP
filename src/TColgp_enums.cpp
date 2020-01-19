@@ -73,63 +73,63 @@ namespace py = pybind11;
 #include <TColgp_SequenceOfXYZ.hxx>
 
 // template related includes
-// ./opencascade/TColgp_Array1OfPnt2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfPnt.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfVec.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfDir2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfXYZ.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfLin2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfDir.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfXY.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfXYZ.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfDir.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfXYZ.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfXY.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColgp_Array2OfDir2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfPnt2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfVec2d.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfCirc2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfPnt.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfAx1.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfLin2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfDir.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfXY.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColgp_Array1OfVec.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfVec2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfDir2d.hxx
+// ./opencascade/TColgp_Array2OfPnt.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfVec.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_Array1OfPnt.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfPnt2d.hxx
+// ./opencascade/TColgp_SequenceOfPnt.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfPnt2d.hxx
+// ./opencascade/TColgp_Array2OfVec2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfXYZ.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfXY.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfDir.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfXYZ.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfDir.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfVec.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfDir2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_Array1OfVec2d.hxx
 #include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfPnt2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfCirc2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfLin2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfDir2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfLin2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfAx1.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfXYZ.hxx
+#include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfArray1OfPnt2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfXY.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfXY.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfDir.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfPnt2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_Array2OfCirc2d.hxx
 #include "NCollection.hxx"
@@ -152,125 +152,67 @@ py::module m = main_module.def_submodule("TColgp", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TColgp_HArray1OfVec ,std::unique_ptr<TColgp_HArray1OfVec>  >(m,"TColgp_HArray1OfVec",R"#()#");
-    py::class_<TColgp_HArray2OfDir2d ,std::unique_ptr<TColgp_HArray2OfDir2d>  >(m,"TColgp_HArray2OfDir2d",R"#()#");
-    py::class_<TColgp_HSequenceOfDir ,std::unique_ptr<TColgp_HSequenceOfDir>  >(m,"TColgp_HSequenceOfDir",R"#()#");
-    py::class_<TColgp_HArray1OfXY ,std::unique_ptr<TColgp_HArray1OfXY>  >(m,"TColgp_HArray1OfXY",R"#()#");
-    py::class_<TColgp_HSequenceOfVec2d ,std::unique_ptr<TColgp_HSequenceOfVec2d>  >(m,"TColgp_HSequenceOfVec2d",R"#()#");
-    py::class_<TColgp_HArray2OfDir ,std::unique_ptr<TColgp_HArray2OfDir>  >(m,"TColgp_HArray2OfDir",R"#()#");
-    py::class_<TColgp_HArray2OfPnt2d ,std::unique_ptr<TColgp_HArray2OfPnt2d>  >(m,"TColgp_HArray2OfPnt2d",R"#()#");
-    py::class_<TColgp_HArray2OfXY ,std::unique_ptr<TColgp_HArray2OfXY>  >(m,"TColgp_HArray2OfXY",R"#()#");
-    py::class_<TColgp_HArray2OfVec2d ,std::unique_ptr<TColgp_HArray2OfVec2d>  >(m,"TColgp_HArray2OfVec2d",R"#()#");
-    py::class_<TColgp_HArray1OfPnt2d ,std::unique_ptr<TColgp_HArray1OfPnt2d>  >(m,"TColgp_HArray1OfPnt2d",R"#()#");
-    py::class_<TColgp_HArray2OfCirc2d ,std::unique_ptr<TColgp_HArray2OfCirc2d>  >(m,"TColgp_HArray2OfCirc2d",R"#()#");
-    py::class_<TColgp_HArray1OfCirc2d ,std::unique_ptr<TColgp_HArray1OfCirc2d>  >(m,"TColgp_HArray1OfCirc2d",R"#()#");
-    py::class_<TColgp_HSequenceOfVec ,std::unique_ptr<TColgp_HSequenceOfVec>  >(m,"TColgp_HSequenceOfVec",R"#()#");
-    py::class_<TColgp_HSequenceOfXY ,std::unique_ptr<TColgp_HSequenceOfXY>  >(m,"TColgp_HSequenceOfXY",R"#()#");
-    py::class_<TColgp_HArray1OfDir ,std::unique_ptr<TColgp_HArray1OfDir>  >(m,"TColgp_HArray1OfDir",R"#()#");
-    py::class_<TColgp_HArray1OfDir2d ,std::unique_ptr<TColgp_HArray1OfDir2d>  >(m,"TColgp_HArray1OfDir2d",R"#()#");
-    py::class_<TColgp_HArray1OfXYZ ,std::unique_ptr<TColgp_HArray1OfXYZ>  >(m,"TColgp_HArray1OfXYZ",R"#()#");
-    py::class_<TColgp_HArray2OfXYZ ,std::unique_ptr<TColgp_HArray2OfXYZ>  >(m,"TColgp_HArray2OfXYZ",R"#()#");
-    py::class_<TColgp_HArray1OfLin2d ,std::unique_ptr<TColgp_HArray1OfLin2d>  >(m,"TColgp_HArray1OfLin2d",R"#()#");
-    py::class_<TColgp_HArray2OfLin2d ,std::unique_ptr<TColgp_HArray2OfLin2d>  >(m,"TColgp_HArray2OfLin2d",R"#()#");
-    py::class_<TColgp_HArray2OfPnt ,std::unique_ptr<TColgp_HArray2OfPnt>  >(m,"TColgp_HArray2OfPnt",R"#()#");
-    py::class_<TColgp_HSequenceOfPnt ,std::unique_ptr<TColgp_HSequenceOfPnt>  >(m,"TColgp_HSequenceOfPnt",R"#()#");
-    py::class_<TColgp_HSequenceOfDir2d ,std::unique_ptr<TColgp_HSequenceOfDir2d>  >(m,"TColgp_HSequenceOfDir2d",R"#()#");
-    py::class_<TColgp_HSequenceOfXYZ ,std::unique_ptr<TColgp_HSequenceOfXYZ>  >(m,"TColgp_HSequenceOfXYZ",R"#()#");
-    py::class_<TColgp_HArray1OfVec2d ,std::unique_ptr<TColgp_HArray1OfVec2d>  >(m,"TColgp_HArray1OfVec2d",R"#()#");
-    py::class_<TColgp_HSequenceOfPnt2d ,std::unique_ptr<TColgp_HSequenceOfPnt2d>  >(m,"TColgp_HSequenceOfPnt2d",R"#()#");
-    py::class_<TColgp_HArray1OfPnt ,std::unique_ptr<TColgp_HArray1OfPnt>  >(m,"TColgp_HArray1OfPnt",R"#()#");
-    py::class_<TColgp_HArray2OfVec ,std::unique_ptr<TColgp_HArray2OfVec>  >(m,"TColgp_HArray2OfVec",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/TColgp_HArray1OfVec.hxx
-// ./opencascade/TColgp_Array1OfPnt2d.hxx
-    preregister_template_NCollection_Array1<gp_Pnt2d>(m,"TColgp_Array1OfPnt2d");  
-// ./opencascade/TColgp_Array2OfPnt.hxx
-    preregister_template_NCollection_Array2<gp_Pnt>(m,"TColgp_Array2OfPnt");  
-// ./opencascade/TColgp_HArray1OfDir.hxx
-// ./opencascade/TColgp_Array2OfVec.hxx
-    preregister_template_NCollection_Array2<gp_Vec>(m,"TColgp_Array2OfVec");  
-// ./opencascade/TColgp_SequenceOfDir2d.hxx
-    preregister_template_NCollection_Sequence<gp_Dir2d>(m,"TColgp_SequenceOfDir2d");  
-// ./opencascade/TColgp_SequenceOfXYZ.hxx
-    preregister_template_NCollection_Sequence<gp_XYZ>(m,"TColgp_SequenceOfXYZ");  
-// ./opencascade/TColgp_HArray2OfDir2d.hxx
-// ./opencascade/TColgp_HSequenceOfPnt.hxx
-// ./opencascade/TColgp_Array1OfLin2d.hxx
-    preregister_template_NCollection_Array1<gp_Lin2d>(m,"TColgp_Array1OfLin2d");  
-// ./opencascade/TColgp_HSequenceOfDir.hxx
-// ./opencascade/TColgp_HArray1OfDir2d.hxx
-// ./opencascade/TColgp_SequenceOfDir.hxx
-    preregister_template_NCollection_Sequence<gp_Dir>(m,"TColgp_SequenceOfDir");  
-// ./opencascade/TColgp_Array2OfXY.hxx
-    preregister_template_NCollection_Array2<gp_XY>(m,"TColgp_Array2OfXY");  
-// ./opencascade/TColgp_HArray1OfXY.hxx
-// ./opencascade/TColgp_Array2OfXYZ.hxx
-    preregister_template_NCollection_Array2<gp_XYZ>(m,"TColgp_Array2OfXYZ");  
-// ./opencascade/TColgp_HSequenceOfPnt2d.hxx
-// ./opencascade/TColgp_HSequenceOfVec2d.hxx
-// ./opencascade/TColgp_Array1OfDir.hxx
-    preregister_template_NCollection_Array1<gp_Dir>(m,"TColgp_Array1OfDir");  
-// ./opencascade/TColgp_Array1OfXYZ.hxx
-    preregister_template_NCollection_Array1<gp_XYZ>(m,"TColgp_Array1OfXYZ");  
-// ./opencascade/TColgp_Array1OfXY.hxx
-    preregister_template_NCollection_Array1<gp_XY>(m,"TColgp_Array1OfXY");  
-// ./opencascade/TColgp_HArray1OfXYZ.hxx
-// ./opencascade/TColgp_Array2OfDir2d.hxx
     preregister_template_NCollection_Array2<gp_Dir2d>(m,"TColgp_Array2OfDir2d");  
-// ./opencascade/TColgp_HArray2OfDir.hxx
-// ./opencascade/TColgp_HSequenceOfDir2d.hxx
-// ./opencascade/TColgp_SequenceOfVec2d.hxx
+    preregister_template_NCollection_Array1<gp_Pnt2d>(m,"TColgp_Array1OfPnt2d");  
     preregister_template_NCollection_Sequence<gp_Vec2d>(m,"TColgp_SequenceOfVec2d");  
-// ./opencascade/TColgp_HArray2OfPnt2d.hxx
-// ./opencascade/TColgp_HArray2OfXYZ.hxx
-// ./opencascade/TColgp_Array1OfCirc2d.hxx
-    preregister_template_NCollection_Array1<gp_Circ2d>(m,"TColgp_Array1OfCirc2d");  
-// ./opencascade/TColgp_HArray2OfXY.hxx
-// ./opencascade/TColgp_SequenceOfPnt.hxx
-    preregister_template_NCollection_Sequence<gp_Pnt>(m,"TColgp_SequenceOfPnt");  
-// ./opencascade/TColgp_SequenceOfAx1.hxx
-    preregister_template_NCollection_Sequence<gp_Ax1>(m,"TColgp_SequenceOfAx1");  
-// ./opencascade/TColgp_HArray2OfVec.hxx
-// ./opencascade/TColgp_HArray2OfVec2d.hxx
-// ./opencascade/TColgp_HArray1OfLin2d.hxx
-// ./opencascade/TColgp_HArray1OfPnt2d.hxx
-// ./opencascade/TColgp_Array2OfLin2d.hxx
-    preregister_template_NCollection_Array2<gp_Lin2d>(m,"TColgp_Array2OfLin2d");  
-// ./opencascade/TColgp_HSequenceOfXYZ.hxx
-// ./opencascade/TColgp_Array2OfDir.hxx
-    preregister_template_NCollection_Array2<gp_Dir>(m,"TColgp_Array2OfDir");  
-// ./opencascade/TColgp_SequenceOfXY.hxx
-    preregister_template_NCollection_Sequence<gp_XY>(m,"TColgp_SequenceOfXY");  
-// ./opencascade/TColgp_Array1OfVec.hxx
     preregister_template_NCollection_Array1<gp_Vec>(m,"TColgp_Array1OfVec");  
-// ./opencascade/TColgp_Array2OfVec2d.hxx
-    preregister_template_NCollection_Array2<gp_Vec2d>(m,"TColgp_Array2OfVec2d");  
-// ./opencascade/TColgp_HArray2OfCirc2d.hxx
-// ./opencascade/TColgp_HArray2OfLin2d.hxx
-// ./opencascade/TColgp_Array1OfDir2d.hxx
-    preregister_template_NCollection_Array1<gp_Dir2d>(m,"TColgp_Array1OfDir2d");  
-// ./opencascade/TColgp_HArray1OfCirc2d.hxx
-// ./opencascade/TColgp_HArray1OfPnt.hxx
-// ./opencascade/TColgp_HSequenceOfVec.hxx
-// ./opencascade/TColgp_SequenceOfVec.hxx
+    preregister_template_NCollection_Array2<gp_Pnt>(m,"TColgp_Array2OfPnt");  
     preregister_template_NCollection_Sequence<gp_Vec>(m,"TColgp_SequenceOfVec");  
-// ./opencascade/TColgp_Array1OfPnt.hxx
     preregister_template_NCollection_Array1<gp_Pnt>(m,"TColgp_Array1OfPnt");  
-// ./opencascade/TColgp_Array2OfPnt2d.hxx
-    preregister_template_NCollection_Array2<gp_Pnt2d>(m,"TColgp_Array2OfPnt2d");  
-// ./opencascade/TColgp_HArray2OfPnt.hxx
-// ./opencascade/TColgp_SequenceOfPnt2d.hxx
-    preregister_template_NCollection_Sequence<gp_Pnt2d>(m,"TColgp_SequenceOfPnt2d");  
-// ./opencascade/TColgp_Array1OfVec2d.hxx
+    preregister_template_NCollection_Sequence<gp_Pnt>(m,"TColgp_SequenceOfPnt");  
+    preregister_template_NCollection_Array2<gp_Vec2d>(m,"TColgp_Array2OfVec2d");  
+    preregister_template_NCollection_Array1<gp_XYZ>(m,"TColgp_Array1OfXYZ");  
+    preregister_template_NCollection_Array2<gp_XY>(m,"TColgp_Array2OfXY");  
+    preregister_template_NCollection_Array2<gp_Dir>(m,"TColgp_Array2OfDir");  
+    preregister_template_NCollection_Array2<gp_XYZ>(m,"TColgp_Array2OfXYZ");  
+    preregister_template_NCollection_Array1<gp_Dir>(m,"TColgp_Array1OfDir");  
+    preregister_template_NCollection_Array2<gp_Vec>(m,"TColgp_Array2OfVec");  
+    preregister_template_NCollection_Array1<gp_Dir2d>(m,"TColgp_Array1OfDir2d");  
     preregister_template_NCollection_Array1<gp_Vec2d>(m,"TColgp_Array1OfVec2d");  
-// ./opencascade/TColgp_SequenceOfArray1OfPnt2d.hxx
+    preregister_template_NCollection_Array2<gp_Pnt2d>(m,"TColgp_Array2OfPnt2d");  
+    preregister_template_NCollection_Array1<gp_Circ2d>(m,"TColgp_Array1OfCirc2d");  
+    preregister_template_NCollection_Array2<gp_Lin2d>(m,"TColgp_Array2OfLin2d");  
+    preregister_template_NCollection_Sequence<gp_Dir2d>(m,"TColgp_SequenceOfDir2d");  
+    preregister_template_NCollection_Array1<gp_Lin2d>(m,"TColgp_Array1OfLin2d");  
+    preregister_template_NCollection_Sequence<gp_Ax1>(m,"TColgp_SequenceOfAx1");  
+    preregister_template_NCollection_Sequence<gp_XYZ>(m,"TColgp_SequenceOfXYZ");  
     preregister_template_NCollection_Sequence<opencascade::handle<TColgp_HArray1OfPnt2d> >(m,"TColgp_SequenceOfArray1OfPnt2d");  
-// ./opencascade/TColgp_HSequenceOfXY.hxx
-// ./opencascade/TColgp_Array2OfCirc2d.hxx
+    preregister_template_NCollection_Sequence<gp_XY>(m,"TColgp_SequenceOfXY");  
+    preregister_template_NCollection_Array1<gp_XY>(m,"TColgp_Array1OfXY");  
+    preregister_template_NCollection_Sequence<gp_Dir>(m,"TColgp_SequenceOfDir");  
+    preregister_template_NCollection_Sequence<gp_Pnt2d>(m,"TColgp_SequenceOfPnt2d");  
     preregister_template_NCollection_Array2<gp_Circ2d>(m,"TColgp_Array2OfCirc2d");  
-// ./opencascade/TColgp_HArray1OfVec2d.hxx
+
+// classes forward declarations only
+    py::class_<TColgp_HArray1OfCirc2d ,opencascade::handle<TColgp_HArray1OfCirc2d>  , TColgp_Array1OfCirc2d , Standard_Transient >(m,"TColgp_HArray1OfCirc2d",R"#()#");
+    py::class_<TColgp_HArray1OfDir ,opencascade::handle<TColgp_HArray1OfDir>  , TColgp_Array1OfDir , Standard_Transient >(m,"TColgp_HArray1OfDir",R"#()#");
+    py::class_<TColgp_HArray1OfDir2d ,opencascade::handle<TColgp_HArray1OfDir2d>  , TColgp_Array1OfDir2d , Standard_Transient >(m,"TColgp_HArray1OfDir2d",R"#()#");
+    py::class_<TColgp_HArray1OfLin2d ,opencascade::handle<TColgp_HArray1OfLin2d>  , TColgp_Array1OfLin2d , Standard_Transient >(m,"TColgp_HArray1OfLin2d",R"#()#");
+    py::class_<TColgp_HArray1OfPnt ,opencascade::handle<TColgp_HArray1OfPnt>  , TColgp_Array1OfPnt , Standard_Transient >(m,"TColgp_HArray1OfPnt",R"#()#");
+    py::class_<TColgp_HArray1OfPnt2d ,opencascade::handle<TColgp_HArray1OfPnt2d>  , TColgp_Array1OfPnt2d , Standard_Transient >(m,"TColgp_HArray1OfPnt2d",R"#()#");
+    py::class_<TColgp_HArray1OfVec ,opencascade::handle<TColgp_HArray1OfVec>  , TColgp_Array1OfVec , Standard_Transient >(m,"TColgp_HArray1OfVec",R"#()#");
+    py::class_<TColgp_HArray1OfVec2d ,opencascade::handle<TColgp_HArray1OfVec2d>  , TColgp_Array1OfVec2d , Standard_Transient >(m,"TColgp_HArray1OfVec2d",R"#()#");
+    py::class_<TColgp_HArray1OfXY ,opencascade::handle<TColgp_HArray1OfXY>  , TColgp_Array1OfXY , Standard_Transient >(m,"TColgp_HArray1OfXY",R"#()#");
+    py::class_<TColgp_HArray1OfXYZ ,opencascade::handle<TColgp_HArray1OfXYZ>  , TColgp_Array1OfXYZ , Standard_Transient >(m,"TColgp_HArray1OfXYZ",R"#()#");
+    py::class_<TColgp_HArray2OfCirc2d ,opencascade::handle<TColgp_HArray2OfCirc2d>  , TColgp_Array2OfCirc2d , Standard_Transient >(m,"TColgp_HArray2OfCirc2d",R"#()#");
+    py::class_<TColgp_HArray2OfDir ,opencascade::handle<TColgp_HArray2OfDir>  , TColgp_Array2OfDir , Standard_Transient >(m,"TColgp_HArray2OfDir",R"#()#");
+    py::class_<TColgp_HArray2OfDir2d ,opencascade::handle<TColgp_HArray2OfDir2d>  , TColgp_Array2OfDir2d , Standard_Transient >(m,"TColgp_HArray2OfDir2d",R"#()#");
+    py::class_<TColgp_HArray2OfLin2d ,opencascade::handle<TColgp_HArray2OfLin2d>  , TColgp_Array2OfLin2d , Standard_Transient >(m,"TColgp_HArray2OfLin2d",R"#()#");
+    py::class_<TColgp_HArray2OfPnt ,opencascade::handle<TColgp_HArray2OfPnt>  , TColgp_Array2OfPnt , Standard_Transient >(m,"TColgp_HArray2OfPnt",R"#()#");
+    py::class_<TColgp_HArray2OfPnt2d ,opencascade::handle<TColgp_HArray2OfPnt2d>  , TColgp_Array2OfPnt2d , Standard_Transient >(m,"TColgp_HArray2OfPnt2d",R"#()#");
+    py::class_<TColgp_HArray2OfVec ,opencascade::handle<TColgp_HArray2OfVec>  , TColgp_Array2OfVec , Standard_Transient >(m,"TColgp_HArray2OfVec",R"#()#");
+    py::class_<TColgp_HArray2OfVec2d ,opencascade::handle<TColgp_HArray2OfVec2d>  , TColgp_Array2OfVec2d , Standard_Transient >(m,"TColgp_HArray2OfVec2d",R"#()#");
+    py::class_<TColgp_HArray2OfXY ,opencascade::handle<TColgp_HArray2OfXY>  , TColgp_Array2OfXY , Standard_Transient >(m,"TColgp_HArray2OfXY",R"#()#");
+    py::class_<TColgp_HArray2OfXYZ ,opencascade::handle<TColgp_HArray2OfXYZ>  , TColgp_Array2OfXYZ , Standard_Transient >(m,"TColgp_HArray2OfXYZ",R"#()#");
+    py::class_<TColgp_HSequenceOfDir ,opencascade::handle<TColgp_HSequenceOfDir>  , TColgp_SequenceOfDir , Standard_Transient >(m,"TColgp_HSequenceOfDir",R"#()#");
+    py::class_<TColgp_HSequenceOfDir2d ,opencascade::handle<TColgp_HSequenceOfDir2d>  , TColgp_SequenceOfDir2d , Standard_Transient >(m,"TColgp_HSequenceOfDir2d",R"#()#");
+    py::class_<TColgp_HSequenceOfPnt ,opencascade::handle<TColgp_HSequenceOfPnt>  , TColgp_SequenceOfPnt , Standard_Transient >(m,"TColgp_HSequenceOfPnt",R"#()#");
+    py::class_<TColgp_HSequenceOfPnt2d ,opencascade::handle<TColgp_HSequenceOfPnt2d>  , TColgp_SequenceOfPnt2d , Standard_Transient >(m,"TColgp_HSequenceOfPnt2d",R"#()#");
+    py::class_<TColgp_HSequenceOfVec ,opencascade::handle<TColgp_HSequenceOfVec>  , TColgp_SequenceOfVec , Standard_Transient >(m,"TColgp_HSequenceOfVec",R"#()#");
+    py::class_<TColgp_HSequenceOfVec2d ,opencascade::handle<TColgp_HSequenceOfVec2d>  , TColgp_SequenceOfVec2d , Standard_Transient >(m,"TColgp_HSequenceOfVec2d",R"#()#");
+    py::class_<TColgp_HSequenceOfXY ,opencascade::handle<TColgp_HSequenceOfXY>  , TColgp_SequenceOfXY , Standard_Transient >(m,"TColgp_HSequenceOfXY",R"#()#");
+    py::class_<TColgp_HSequenceOfXYZ ,opencascade::handle<TColgp_HSequenceOfXYZ>  , TColgp_SequenceOfXYZ , Standard_Transient >(m,"TColgp_HSequenceOfXYZ",R"#()#");
 
 };
 

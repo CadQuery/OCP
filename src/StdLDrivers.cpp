@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,11 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StdObjMgt_MapOfInstantiators.hxx>
-#include <StdObjMgt_Persistent.hxx>
 #include <Standard_GUID.hxx>
 #include <StdObjMgt_MapOfInstantiators.hxx>
 #include <TDocStd_Application.hxx>
+#include <StdObjMgt_MapOfInstantiators.hxx>
+#include <StdObjMgt_Persistent.hxx>
 
 // module includes
 #include <StdLDrivers.hxx>
@@ -40,9 +43,30 @@ py::module m = static_cast<py::module>(main_module.attr("StdLDrivers"));
 
 // classes
 
+    register_default_constructor<StdLDrivers , shared_ptr<StdLDrivers>>(m,"StdLDrivers");
+
+    static_cast<py::class_<StdLDrivers , shared_ptr<StdLDrivers>  >>(m.attr("StdLDrivers"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Factory_s",
+                    (opencascade::handle<Standard_Transient> (*)( const Standard_GUID &  ) ) static_cast<opencascade::handle<Standard_Transient> (*)( const Standard_GUID &  ) >(&StdLDrivers::Factory),
+                    R"#(Depending from the ID, returns a list of storage or retrieval attribute drivers. Used for plugin)#"  , py::arg("aGUID"))
+        .def_static("DefineFormat_s",
+                    (void (*)( const opencascade::handle<TDocStd_Application> &  ) ) static_cast<void (*)( const opencascade::handle<TDocStd_Application> &  ) >(&StdLDrivers::DefineFormat),
+                    R"#(Defines format "OCC-StdLite" and registers its retrieval driver in the specified application)#"  , py::arg("theApp"))
+        .def_static("BindTypes_s",
+                    (void (*)( StdObjMgt_MapOfInstantiators &  ) ) static_cast<void (*)( StdObjMgt_MapOfInstantiators &  ) >(&StdLDrivers::BindTypes),
+                    R"#(Register types.)#"  , py::arg("theMap"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
     register_default_constructor<StdLDrivers_DocumentRetrievalDriver ,opencascade::handle<StdLDrivers_DocumentRetrievalDriver>>(m,"StdLDrivers_DocumentRetrievalDriver");
 
     static_cast<py::class_<StdLDrivers_DocumentRetrievalDriver ,opencascade::handle<StdLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >>(m.attr("StdLDrivers_DocumentRetrievalDriver"))
+    // methods
         .def("CreateDocument",
              (opencascade::handle<CDM_Document> (StdLDrivers_DocumentRetrievalDriver::*)() ) static_cast<opencascade::handle<CDM_Document> (StdLDrivers_DocumentRetrievalDriver::*)() >(&StdLDrivers_DocumentRetrievalDriver::CreateDocument),
              R"#(Create an empty TDocStd_Document.)#" )
@@ -55,23 +79,26 @@ py::module m = static_cast<py::module>(main_module.attr("StdLDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdLDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdLDrivers_DocumentRetrievalDriver::*)() const>(&StdLDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&StdLDrivers_DocumentRetrievalDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StdLDrivers_DocumentRetrievalDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/StdLDrivers_DocumentRetrievalDriver.hxx
 // ./opencascade/StdLDrivers.hxx
+// ./opencascade/StdLDrivers_DocumentRetrievalDriver.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/StdLDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/StdLDrivers.hxx
 
 
 // exceptions

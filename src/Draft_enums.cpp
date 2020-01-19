@@ -11,18 +11,18 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
 #include <gp_Dir.hxx>
 #include <Draft_Modification.hxx>
 #include <Draft_FaceInfo.hxx>
 #include <Draft_EdgeInfo.hxx>
 #include <Draft_VertexInfo.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <TopoDS_Edge.hxx>
 #include <StdFail_NotDone.hxx>
 #include <gp_Pln.hxx>
 #include <Geom_Surface.hxx>
@@ -43,9 +43,9 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/Draft_IndexedDataMapOfEdgeEdgeInfo.hxx
 #include "NCollection.hxx"
-// ./opencascade/Draft_IndexedDataMapOfVertexVertexInfo.hxx
-#include "NCollection.hxx"
 // ./opencascade/Draft_IndexedDataMapOfFaceFaceInfo.hxx
+#include "NCollection.hxx"
+// ./opencascade/Draft_IndexedDataMapOfVertexVertexInfo.hxx
 #include "NCollection.hxx"
 
 
@@ -71,26 +71,17 @@ py::module m = main_module.def_submodule("Draft", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Draft_FaceInfo ,std::unique_ptr<Draft_FaceInfo>  >(m,"Draft_FaceInfo",R"#(None)#");
-    py::class_<Draft_VertexInfo ,std::unique_ptr<Draft_VertexInfo>  >(m,"Draft_VertexInfo",R"#(None)#");
-    py::class_<Draft_Modification ,opencascade::handle<Draft_Modification>  , BRepTools_Modification >(m,"Draft_Modification",R"#()#");
-    py::class_<Draft_EdgeInfo ,std::unique_ptr<Draft_EdgeInfo>  >(m,"Draft_EdgeInfo",R"#(None)#");
-    py::class_<Draft ,std::unique_ptr<Draft>  >(m,"Draft",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/Draft_FaceInfo.hxx
-// ./opencascade/Draft_IndexedDataMapOfEdgeEdgeInfo.hxx
     preregister_template_NCollection_IndexedDataMap<TopoDS_Edge, Draft_EdgeInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfEdgeEdgeInfo");  
-// ./opencascade/Draft_ErrorStatus.hxx
-// ./opencascade/Draft_EdgeInfo.hxx
-// ./opencascade/Draft_IndexedDataMapOfVertexVertexInfo.hxx
-    preregister_template_NCollection_IndexedDataMap<TopoDS_Vertex, Draft_VertexInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfVertexVertexInfo");  
-// ./opencascade/Draft_VertexInfo.hxx
-// ./opencascade/Draft.hxx
-// ./opencascade/Draft_IndexedDataMapOfFaceFaceInfo.hxx
     preregister_template_NCollection_IndexedDataMap<TopoDS_Face, Draft_FaceInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfFaceFaceInfo");  
-// ./opencascade/Draft_Modification.hxx
+    preregister_template_NCollection_IndexedDataMap<TopoDS_Vertex, Draft_VertexInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfVertexVertexInfo");  
+
+// classes forward declarations only
+    py::class_<Draft , shared_ptr<Draft>  >(m,"Draft",R"#(None)#");
+    py::class_<Draft_EdgeInfo , shared_ptr<Draft_EdgeInfo>  >(m,"Draft_EdgeInfo",R"#(None)#");
+    py::class_<Draft_FaceInfo , shared_ptr<Draft_FaceInfo>  >(m,"Draft_FaceInfo",R"#(None)#");
+    py::class_<Draft_Modification ,opencascade::handle<Draft_Modification>  , BRepTools_Modification >(m,"Draft_Modification",R"#()#");
+    py::class_<Draft_VertexInfo , shared_ptr<Draft_VertexInfo>  >(m,"Draft_VertexInfo",R"#(None)#");
 
 };
 

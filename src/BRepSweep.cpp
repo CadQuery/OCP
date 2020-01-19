@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -102,7 +105,81 @@ py::module m = static_cast<py::module>(main_module.attr("BRepSweep"));
 // classes
 
 
-    static_cast<py::class_<BRepSweep_NumLinearRegularSweep ,std::unique_ptr<BRepSweep_NumLinearRegularSweep> ,Py_BRepSweep_NumLinearRegularSweep >>(m.attr("BRepSweep_NumLinearRegularSweep"))
+    static_cast<py::class_<BRepSweep_Builder , shared_ptr<BRepSweep_Builder>  >>(m.attr("BRepSweep_Builder"))
+        .def(py::init< const BRep_Builder & >()  , py::arg("aBuilder") )
+    // methods
+        .def("Builder",
+             (const BRep_Builder & (BRepSweep_Builder::*)() const) static_cast<const BRep_Builder & (BRepSweep_Builder::*)() const>(&BRepSweep_Builder::Builder),
+             R"#(None)#" )
+        .def("MakeCompound",
+             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeCompound),
+             R"#(Returns an empty Compound.)#"  , py::arg("aCompound"))
+        .def("MakeCompSolid",
+             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeCompSolid),
+             R"#(Returns an empty CompSolid.)#"  , py::arg("aCompSolid"))
+        .def("MakeSolid",
+             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeSolid),
+             R"#(Returns an empty Solid.)#"  , py::arg("aSolid"))
+        .def("MakeShell",
+             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeShell),
+             R"#(Returns an empty Shell.)#"  , py::arg("aShell"))
+        .def("MakeWire",
+             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeWire),
+             R"#(Returns an empty Wire.)#"  , py::arg("aWire"))
+        .def("Add",
+             (void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape & ,  const TopAbs_Orientation  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape & ,  const TopAbs_Orientation  ) const>(&BRepSweep_Builder::Add),
+             R"#(Adds the Shape 1 in the Shape 2, set to <Orient> orientation.)#"  , py::arg("aShape1"),  py::arg("aShape2"),  py::arg("Orient"))
+        .def("Add",
+             (void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const>(&BRepSweep_Builder::Add),
+             R"#(Adds the Shape 1 in the Shape 2.)#"  , py::arg("aShape1"),  py::arg("aShape2"))
+        .def("Builder",
+             (const BRep_Builder & (BRepSweep_Builder::*)() const) static_cast<const BRep_Builder & (BRepSweep_Builder::*)() const>(&BRepSweep_Builder::Builder),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepSweep_Iterator , shared_ptr<BRepSweep_Iterator>  >>(m.attr("BRepSweep_Iterator"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Init",
+             (void (BRepSweep_Iterator::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepSweep_Iterator::*)( const TopoDS_Shape &  ) >(&BRepSweep_Iterator::Init),
+             R"#(Resest the Iterator on sub-shapes of <aShape>.)#"  , py::arg("aShape"))
+        .def("More",
+             (Standard_Boolean (BRepSweep_Iterator::*)() const) static_cast<Standard_Boolean (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::More),
+             R"#(Returns True if there is a current sub-shape.)#" )
+        .def("Next",
+             (void (BRepSweep_Iterator::*)() ) static_cast<void (BRepSweep_Iterator::*)() >(&BRepSweep_Iterator::Next),
+             R"#(Moves to the next sub-shape.)#" )
+        .def("Value",
+             (const TopoDS_Shape & (BRepSweep_Iterator::*)() const) static_cast<const TopoDS_Shape & (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Value),
+             R"#(Returns the current sub-shape.)#" )
+        .def("Orientation",
+             (TopAbs_Orientation (BRepSweep_Iterator::*)() const) static_cast<TopAbs_Orientation (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Orientation),
+             R"#(Returns the orientation of the current sub-shape.)#" )
+        .def("More",
+             (Standard_Boolean (BRepSweep_Iterator::*)() const) static_cast<Standard_Boolean (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::More),
+             R"#(Returns True if there is a current sub-shape.)#" )
+        .def("Value",
+             (const TopoDS_Shape & (BRepSweep_Iterator::*)() const) static_cast<const TopoDS_Shape & (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Value),
+             R"#(Returns the current sub-shape.)#" )
+        .def("Orientation",
+             (TopAbs_Orientation (BRepSweep_Iterator::*)() const) static_cast<TopAbs_Orientation (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Orientation),
+             R"#(Returns the orientation of the current sub-shape.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepSweep_NumLinearRegularSweep , shared_ptr<BRepSweep_NumLinearRegularSweep> ,Py_BRepSweep_NumLinearRegularSweep >>(m.attr("BRepSweep_NumLinearRegularSweep"))
+    // methods
         .def("MakeEmptyVertex",
              (TopoDS_Shape (BRepSweep_NumLinearRegularSweep::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) ) static_cast<TopoDS_Shape (BRepSweep_NumLinearRegularSweep::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) >(&BRepSweep_NumLinearRegularSweep::MakeEmptyVertex),
              R"#(Builds the vertex addressed by [aGenV,aDirV], with its geometric part, but without subcomponents.)#"  , py::arg("aGenV"),  py::arg("aDirV"))
@@ -178,12 +255,51 @@ py::module m = static_cast<py::module>(main_module.attr("BRepSweep"));
         .def("Closed",
              (Standard_Boolean (BRepSweep_NumLinearRegularSweep::*)() const) static_cast<Standard_Boolean (BRepSweep_NumLinearRegularSweep::*)() const>(&BRepSweep_NumLinearRegularSweep::Closed),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepSweep_Revol ,std::unique_ptr<BRepSweep_Revol>  >>(m.attr("BRepSweep_Revol"))
+    static_cast<py::class_<BRepSweep_Prism , shared_ptr<BRepSweep_Prism>  >>(m.attr("BRepSweep_Prism"))
+        .def(py::init< const TopoDS_Shape &,const gp_Vec &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("V"),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Canonize")=static_cast<const Standard_Boolean>(Standard_True) )
+        .def(py::init< const TopoDS_Shape &,const gp_Dir &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("D"),  py::arg("Inf")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Canonize")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
+        .def("Shape",
+             (TopoDS_Shape (BRepSweep_Prism::*)() ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)() >(&BRepSweep_Prism::Shape),
+             R"#(Returns the TopoDS Shape attached to the prism.)#" )
+        .def("Shape",
+             (TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) >(&BRepSweep_Prism::Shape),
+             R"#(Returns the TopoDS Shape generated with aGenS (subShape of the generating shape).)#"  , py::arg("aGenS"))
+        .def("FirstShape",
+             (TopoDS_Shape (BRepSweep_Prism::*)() ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)() >(&BRepSweep_Prism::FirstShape),
+             R"#(Returns the TopoDS Shape of the bottom of the prism.)#" )
+        .def("FirstShape",
+             (TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) >(&BRepSweep_Prism::FirstShape),
+             R"#(Returns the TopoDS Shape of the bottom of the prism. generated with aGenS (subShape of the generating shape).)#"  , py::arg("aGenS"))
+        .def("LastShape",
+             (TopoDS_Shape (BRepSweep_Prism::*)() ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)() >(&BRepSweep_Prism::LastShape),
+             R"#(Returns the TopoDS Shape of the top of the prism.)#" )
+        .def("LastShape",
+             (TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) >(&BRepSweep_Prism::LastShape),
+             R"#(Returns the TopoDS Shape of the top of the prism. generated with aGenS (subShape of the generating shape).)#"  , py::arg("aGenS"))
+        .def("Vec",
+             (gp_Vec (BRepSweep_Prism::*)() const) static_cast<gp_Vec (BRepSweep_Prism::*)() const>(&BRepSweep_Prism::Vec),
+             R"#(Returns the Vector of the Prism, if it is an infinite prism the Vec is unitar.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepSweep_Revol , shared_ptr<BRepSweep_Revol>  >>(m.attr("BRepSweep_Revol"))
         .def(py::init< const TopoDS_Shape &,const gp_Ax1 &,const Standard_Real,const Standard_Boolean >()  , py::arg("S"),  py::arg("A"),  py::arg("D"),  py::arg("C")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Shape &,const gp_Ax1 &,const Standard_Boolean >()  , py::arg("S"),  py::arg("A"),  py::arg("C")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
         .def("Shape",
              (TopoDS_Shape (BRepSweep_Revol::*)() ) static_cast<TopoDS_Shape (BRepSweep_Revol::*)() >(&BRepSweep_Revol::Shape),
              R"#(Returns the TopoDS Shape attached to the Revol.)#" )
@@ -208,11 +324,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepSweep"));
         .def("Angle",
              (Standard_Real (BRepSweep_Revol::*)() const) static_cast<Standard_Real (BRepSweep_Revol::*)() const>(&BRepSweep_Revol::Angle),
              R"#(returns the angle.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepSweep_Tool ,std::unique_ptr<BRepSweep_Tool>  >>(m.attr("BRepSweep_Tool"))
+    static_cast<py::class_<BRepSweep_Tool , shared_ptr<BRepSweep_Tool>  >>(m.attr("BRepSweep_Tool"))
         .def(py::init< const TopoDS_Shape & >()  , py::arg("aShape") )
+    // methods
         .def("NbShapes",
              (Standard_Integer (BRepSweep_Tool::*)() const) static_cast<Standard_Integer (BRepSweep_Tool::*)() const>(&BRepSweep_Tool::NbShapes),
              R"#(Returns the number of subshapes in the shape.)#" )
@@ -231,37 +353,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepSweep"));
         .def("SetOrientation",
              (void (BRepSweep_Tool::*)( TopoDS_Shape & ,  const TopAbs_Orientation  ) const) static_cast<void (BRepSweep_Tool::*)( TopoDS_Shape & ,  const TopAbs_Orientation  ) const>(&BRepSweep_Tool::SetOrientation),
              R"#(Set the Orientation of <aShape> with Or.)#"  , py::arg("aShape"),  py::arg("Or"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepSweep_Prism ,std::unique_ptr<BRepSweep_Prism>  >>(m.attr("BRepSweep_Prism"))
-        .def(py::init< const TopoDS_Shape &,const gp_Vec &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("V"),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Canonize")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def(py::init< const TopoDS_Shape &,const gp_Dir &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("D"),  py::arg("Inf")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Canonize")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def("Shape",
-             (TopoDS_Shape (BRepSweep_Prism::*)() ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)() >(&BRepSweep_Prism::Shape),
-             R"#(Returns the TopoDS Shape attached to the prism.)#" )
-        .def("Shape",
-             (TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) >(&BRepSweep_Prism::Shape),
-             R"#(Returns the TopoDS Shape generated with aGenS (subShape of the generating shape).)#"  , py::arg("aGenS"))
-        .def("FirstShape",
-             (TopoDS_Shape (BRepSweep_Prism::*)() ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)() >(&BRepSweep_Prism::FirstShape),
-             R"#(Returns the TopoDS Shape of the bottom of the prism.)#" )
-        .def("FirstShape",
-             (TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) >(&BRepSweep_Prism::FirstShape),
-             R"#(Returns the TopoDS Shape of the bottom of the prism. generated with aGenS (subShape of the generating shape).)#"  , py::arg("aGenS"))
-        .def("LastShape",
-             (TopoDS_Shape (BRepSweep_Prism::*)() ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)() >(&BRepSweep_Prism::LastShape),
-             R"#(Returns the TopoDS Shape of the top of the prism.)#" )
-        .def("LastShape",
-             (TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Prism::*)( const TopoDS_Shape &  ) >(&BRepSweep_Prism::LastShape),
-             R"#(Returns the TopoDS Shape of the top of the prism. generated with aGenS (subShape of the generating shape).)#"  , py::arg("aGenS"))
-        .def("Vec",
-             (gp_Vec (BRepSweep_Prism::*)() const) static_cast<gp_Vec (BRepSweep_Prism::*)() const>(&BRepSweep_Prism::Vec),
-             R"#(Returns the Vector of the Prism, if it is an infinite prism the Vec is unitar.)#" )
-;
-
-
-    static_cast<py::class_<BRepSweep_Trsf ,std::unique_ptr<BRepSweep_Trsf> ,Py_BRepSweep_Trsf , BRepSweep_NumLinearRegularSweep >>(m.attr("BRepSweep_Trsf"))
+    static_cast<py::class_<BRepSweep_Trsf , shared_ptr<BRepSweep_Trsf> ,Py_BRepSweep_Trsf , BRepSweep_NumLinearRegularSweep >>(m.attr("BRepSweep_Trsf"))
+    // methods
         .def("Init",
              (void (BRepSweep_Trsf::*)() ) static_cast<void (BRepSweep_Trsf::*)() >(&BRepSweep_Trsf::Init),
              R"#(ends the construction of the swept primitive calling the virtual geometric functions that can't be called in the initialize.)#" )
@@ -316,11 +417,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepSweep"));
         .def("SetContinuity",
              (void (BRepSweep_Trsf::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) ) static_cast<void (BRepSweep_Trsf::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) >(&BRepSweep_Trsf::SetContinuity),
              R"#(Called to propagate the continuity of every vertex between two edges of the generating wire aGenS on the generated edge and faces.)#"  , py::arg("aGenS"),  py::arg("aDirS"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepSweep_Rotation ,std::unique_ptr<BRepSweep_Rotation>  , BRepSweep_Trsf >>(m.attr("BRepSweep_Rotation"))
+    static_cast<py::class_<BRepSweep_Rotation , shared_ptr<BRepSweep_Rotation>  , BRepSweep_Trsf >>(m.attr("BRepSweep_Rotation"))
         .def(py::init< const TopoDS_Shape &,const Sweep_NumShape &,const TopLoc_Location &,const gp_Ax1 &,const Standard_Real,const Standard_Boolean >()  , py::arg("S"),  py::arg("N"),  py::arg("L"),  py::arg("A"),  py::arg("D"),  py::arg("C") )
+    // methods
         .def("MakeEmptyVertex",
              (TopoDS_Shape (BRepSweep_Rotation::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Rotation::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) >(&BRepSweep_Rotation::MakeEmptyVertex),
              R"#(Builds the vertex addressed by [aGenV,aDirV], with its geometric part, but without subcomponents.)#"  , py::arg("aGenV"),  py::arg("aDirV"))
@@ -378,72 +485,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepSweep"));
         .def("Angle",
              (Standard_Real (BRepSweep_Rotation::*)() const) static_cast<Standard_Real (BRepSweep_Rotation::*)() const>(&BRepSweep_Rotation::Angle),
              R"#(returns the angle.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepSweep_Builder ,std::unique_ptr<BRepSweep_Builder>  >>(m.attr("BRepSweep_Builder"))
-        .def(py::init< const BRep_Builder & >()  , py::arg("aBuilder") )
-        .def("Builder",
-             (const BRep_Builder & (BRepSweep_Builder::*)() const) static_cast<const BRep_Builder & (BRepSweep_Builder::*)() const>(&BRepSweep_Builder::Builder),
-             R"#(None)#" )
-        .def("MakeCompound",
-             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeCompound),
-             R"#(Returns an empty Compound.)#"  , py::arg("aCompound"))
-        .def("MakeCompSolid",
-             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeCompSolid),
-             R"#(Returns an empty CompSolid.)#"  , py::arg("aCompSolid"))
-        .def("MakeSolid",
-             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeSolid),
-             R"#(Returns an empty Solid.)#"  , py::arg("aSolid"))
-        .def("MakeShell",
-             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeShell),
-             R"#(Returns an empty Shell.)#"  , py::arg("aShell"))
-        .def("MakeWire",
-             (void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape &  ) const>(&BRepSweep_Builder::MakeWire),
-             R"#(Returns an empty Wire.)#"  , py::arg("aWire"))
-        .def("Add",
-             (void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape & ,  const TopAbs_Orientation  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape & ,  const TopAbs_Orientation  ) const>(&BRepSweep_Builder::Add),
-             R"#(Adds the Shape 1 in the Shape 2, set to <Orient> orientation.)#"  , py::arg("aShape1"),  py::arg("aShape2"),  py::arg("Orient"))
-        .def("Add",
-             (void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const) static_cast<void (BRepSweep_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const>(&BRepSweep_Builder::Add),
-             R"#(Adds the Shape 1 in the Shape 2.)#"  , py::arg("aShape1"),  py::arg("aShape2"))
-        .def("Builder",
-             (const BRep_Builder & (BRepSweep_Builder::*)() const) static_cast<const BRep_Builder & (BRepSweep_Builder::*)() const>(&BRepSweep_Builder::Builder),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepSweep_Iterator ,std::unique_ptr<BRepSweep_Iterator>  >>(m.attr("BRepSweep_Iterator"))
-        .def(py::init<  >()  )
-        .def("Init",
-             (void (BRepSweep_Iterator::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepSweep_Iterator::*)( const TopoDS_Shape &  ) >(&BRepSweep_Iterator::Init),
-             R"#(Resest the Iterator on sub-shapes of <aShape>.)#"  , py::arg("aShape"))
-        .def("More",
-             (Standard_Boolean (BRepSweep_Iterator::*)() const) static_cast<Standard_Boolean (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::More),
-             R"#(Returns True if there is a current sub-shape.)#" )
-        .def("Next",
-             (void (BRepSweep_Iterator::*)() ) static_cast<void (BRepSweep_Iterator::*)() >(&BRepSweep_Iterator::Next),
-             R"#(Moves to the next sub-shape.)#" )
-        .def("Value",
-             (const TopoDS_Shape & (BRepSweep_Iterator::*)() const) static_cast<const TopoDS_Shape & (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Value),
-             R"#(Returns the current sub-shape.)#" )
-        .def("Orientation",
-             (TopAbs_Orientation (BRepSweep_Iterator::*)() const) static_cast<TopAbs_Orientation (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Orientation),
-             R"#(Returns the orientation of the current sub-shape.)#" )
-        .def("More",
-             (Standard_Boolean (BRepSweep_Iterator::*)() const) static_cast<Standard_Boolean (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::More),
-             R"#(Returns True if there is a current sub-shape.)#" )
-        .def("Value",
-             (const TopoDS_Shape & (BRepSweep_Iterator::*)() const) static_cast<const TopoDS_Shape & (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Value),
-             R"#(Returns the current sub-shape.)#" )
-        .def("Orientation",
-             (TopAbs_Orientation (BRepSweep_Iterator::*)() const) static_cast<TopAbs_Orientation (BRepSweep_Iterator::*)() const>(&BRepSweep_Iterator::Orientation),
-             R"#(Returns the orientation of the current sub-shape.)#" )
-;
-
-
-    static_cast<py::class_<BRepSweep_Translation ,std::unique_ptr<BRepSweep_Translation>  , BRepSweep_Trsf >>(m.attr("BRepSweep_Translation"))
+    static_cast<py::class_<BRepSweep_Translation , shared_ptr<BRepSweep_Translation>  , BRepSweep_Trsf >>(m.attr("BRepSweep_Translation"))
         .def(py::init< const TopoDS_Shape &,const Sweep_NumShape &,const TopLoc_Location &,const gp_Vec &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("N"),  py::arg("L"),  py::arg("V"),  py::arg("C"),  py::arg("Canonize")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
         .def("MakeEmptyVertex",
              (TopoDS_Shape (BRepSweep_Translation::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) ) static_cast<TopoDS_Shape (BRepSweep_Translation::*)( const TopoDS_Shape & ,  const Sweep_NumShape &  ) >(&BRepSweep_Translation::MakeEmptyVertex),
              R"#(Builds the vertex addressed by [aGenV,aDirV], with its geometric part, but without subcomponents.)#"  , py::arg("aGenV"),  py::arg("aDirV"))
@@ -495,31 +547,27 @@ py::module m = static_cast<py::module>(main_module.attr("BRepSweep"));
         .def("Vec",
              (gp_Vec (BRepSweep_Translation::*)() const) static_cast<gp_Vec (BRepSweep_Translation::*)() const>(&BRepSweep_Translation::Vec),
              R"#(Returns the Vector of the Prism, if it is an infinite prism the Vec is unitar.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BRepSweep_Revol.hxx
-// ./opencascade/BRepSweep_Rotation.hxx
-// ./opencascade/BRepSweep_Tool.hxx
-// ./opencascade/BRepSweep_NumLinearRegularSweep.hxx
-// ./opencascade/BRepSweep_Iterator.hxx
-// ./opencascade/BRepSweep_Prism.hxx
 // ./opencascade/BRepSweep_Builder.hxx
-// ./opencascade/BRepSweep_Translation.hxx
+// ./opencascade/BRepSweep_Iterator.hxx
 // ./opencascade/BRepSweep_Trsf.hxx
+// ./opencascade/BRepSweep_Rotation.hxx
+// ./opencascade/BRepSweep_Revol.hxx
+// ./opencascade/BRepSweep_Translation.hxx
+// ./opencascade/BRepSweep_NumLinearRegularSweep.hxx
+// ./opencascade/BRepSweep_Tool.hxx
+// ./opencascade/BRepSweep_Prism.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepSweep_Revol.hxx
-// ./opencascade/BRepSweep_Rotation.hxx
-// ./opencascade/BRepSweep_Tool.hxx
-// ./opencascade/BRepSweep_NumLinearRegularSweep.hxx
-// ./opencascade/BRepSweep_Iterator.hxx
-// ./opencascade/BRepSweep_Prism.hxx
-// ./opencascade/BRepSweep_Builder.hxx
-// ./opencascade/BRepSweep_Translation.hxx
-// ./opencascade/BRepSweep_Trsf.hxx
 
 
 // exceptions

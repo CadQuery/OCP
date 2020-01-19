@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -23,9 +26,9 @@ namespace py = pybind11;
 #include <Hatch_SequenceOfParameter.hxx>
 
 // template related includes
-// ./opencascade/Hatch_SequenceOfLine.hxx
-#include "NCollection.hxx"
 // ./opencascade/Hatch_SequenceOfParameter.hxx
+#include "NCollection.hxx"
+// ./opencascade/Hatch_SequenceOfLine.hxx
 #include "NCollection.hxx"
 
 
@@ -46,8 +49,9 @@ py::module m = static_cast<py::module>(main_module.attr("Hatch"));
 // classes
 
 
-    static_cast<py::class_<Hatch_Hatcher ,std::unique_ptr<Hatch_Hatcher>  >>(m.attr("Hatch_Hatcher"))
+    static_cast<py::class_<Hatch_Hatcher , shared_ptr<Hatch_Hatcher>  >>(m.attr("Hatch_Hatcher"))
         .def(py::init< const Standard_Real,const Standard_Boolean >()  , py::arg("Tol"),  py::arg("Oriented")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
         .def("Tolerance",
              (void (Hatch_Hatcher::*)( const Standard_Real  ) ) static_cast<void (Hatch_Hatcher::*)( const Standard_Real  ) >(&Hatch_Hatcher::Tolerance),
              R"#(None)#"  , py::arg("Tol"))
@@ -102,15 +106,9 @@ py::module m = static_cast<py::module>(main_module.attr("Hatch"));
         .def("Start",
              (Standard_Real (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Hatch_Hatcher::Start),
              R"#(Returns the first parameter of interval <J> on line <I>.)#"  , py::arg("I"),  py::arg("J"))
-        .def("StartIndex",
-             (void (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Integer & ,  Standard_Real &  ) const) static_cast<void (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Integer & ,  Standard_Real &  ) const>(&Hatch_Hatcher::StartIndex),
-             R"#(Returns the first Index and Par2 of interval <J> on line <I>.)#"  , py::arg("I"),  py::arg("J"),  py::arg("Index"),  py::arg("Par2"))
         .def("End",
              (Standard_Real (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Hatch_Hatcher::End),
              R"#(Returns the last parameter of interval <J> on line <I>.)#"  , py::arg("I"),  py::arg("J"))
-        .def("EndIndex",
-             (void (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Integer & ,  Standard_Real &  ) const) static_cast<void (Hatch_Hatcher::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Integer & ,  Standard_Real &  ) const>(&Hatch_Hatcher::EndIndex),
-             R"#(Returns the last Index and Par2 of interval <J> on line <I>.)#"  , py::arg("I"),  py::arg("J"),  py::arg("Index"),  py::arg("Par2"))
         .def("Tolerance",
              (void (Hatch_Hatcher::*)( const Standard_Real  ) ) static_cast<void (Hatch_Hatcher::*)( const Standard_Real  ) >(&Hatch_Hatcher::Tolerance),
              R"#(None)#"  , py::arg("Tol"))
@@ -123,42 +121,59 @@ py::module m = static_cast<py::module>(main_module.attr("Hatch"));
         .def("IsYLine",
              (Standard_Boolean (Hatch_Hatcher::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (Hatch_Hatcher::*)( const Standard_Integer  ) const>(&Hatch_Hatcher::IsYLine),
              R"#(Returns True if the line of index <I> has a constant Y value.)#"  , py::arg("I"))
+    // methods using call by reference i.s.o. return
+        .def("StartIndex",
+             []( Hatch_Hatcher &self , const Standard_Integer I,const Standard_Integer J ){ Standard_Integer  Index; Standard_Real  Par2; self.StartIndex(I,J,Index,Par2); return std::make_tuple(Index,Par2); },
+             R"#(Returns the first Index and Par2 of interval <J> on line <I>.)#"  , py::arg("I"),  py::arg("J"))
+        .def("EndIndex",
+             []( Hatch_Hatcher &self , const Standard_Integer I,const Standard_Integer J ){ Standard_Integer  Index; Standard_Real  Par2; self.EndIndex(I,J,Index,Par2); return std::make_tuple(Index,Par2); },
+             R"#(Returns the last Index and Par2 of interval <J> on line <I>.)#"  , py::arg("I"),  py::arg("J"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Hatch_Line ,std::unique_ptr<Hatch_Line>  >>(m.attr("Hatch_Line"))
+    static_cast<py::class_<Hatch_Line , shared_ptr<Hatch_Line>  >>(m.attr("Hatch_Line"))
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin2d &,const Hatch_LineForm >()  , py::arg("L"),  py::arg("T") )
+    // methods
         .def("AddIntersection",
              (void (Hatch_Line::*)( const Standard_Real ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Hatch_Line::*)( const Standard_Real ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&Hatch_Line::AddIntersection),
              R"#(Insert a new intersection in the sorted list.)#"  , py::arg("Par1"),  py::arg("Start"),  py::arg("Index"),  py::arg("Par2"),  py::arg("theToler"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Hatch_Parameter ,std::unique_ptr<Hatch_Parameter>  >>(m.attr("Hatch_Parameter"))
+    static_cast<py::class_<Hatch_Parameter , shared_ptr<Hatch_Parameter>  >>(m.attr("Hatch_Parameter"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Boolean,const Standard_Integer,const Standard_Real >()  , py::arg("Par1"),  py::arg("Start"),  py::arg("Index")=static_cast<const Standard_Integer>(0),  py::arg("Par2")=static_cast<const Standard_Real>(0) )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Hatch_Hatcher.hxx
-// ./opencascade/Hatch_SequenceOfLine.hxx
-// ./opencascade/Hatch_Parameter.hxx
 // ./opencascade/Hatch_SequenceOfParameter.hxx
-// ./opencascade/Hatch_Line.hxx
+// ./opencascade/Hatch_Hatcher.hxx
+// ./opencascade/Hatch_Parameter.hxx
 // ./opencascade/Hatch_LineForm.hxx
+// ./opencascade/Hatch_SequenceOfLine.hxx
+// ./opencascade/Hatch_Line.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Hatch_Hatcher.hxx
-// ./opencascade/Hatch_SequenceOfLine.hxx
-    register_template_NCollection_Sequence<Hatch_Line>(m,"Hatch_SequenceOfLine");  
-// ./opencascade/Hatch_Parameter.hxx
-// ./opencascade/Hatch_SequenceOfParameter.hxx
     register_template_NCollection_Sequence<Hatch_Parameter>(m,"Hatch_SequenceOfParameter");  
-// ./opencascade/Hatch_Line.hxx
-// ./opencascade/Hatch_LineForm.hxx
+    register_template_NCollection_Sequence<Hatch_Line>(m,"Hatch_SequenceOfLine");  
 
 
 // exceptions

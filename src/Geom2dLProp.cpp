@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -11,16 +14,16 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Geom2d_Curve.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <Geom2dLProp_Curve2dTool.hxx>
-#include <Geom2d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Vec2d.hxx>
 #include <Geom2d_Curve.hxx>
-#include <LProp_CurAndInf.hxx>
 #include <Geom2d_Curve.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <Geom2dLProp_Curve2dTool.hxx>
+#include <Geom2d_Curve.hxx>
+#include <LProp_CurAndInf.hxx>
 #include <Geom2d_Curve.hxx>
 
 // module includes
@@ -51,10 +54,11 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
 // classes
 
 
-    static_cast<py::class_<Geom2dLProp_CLProps2d ,std::unique_ptr<Geom2dLProp_CLProps2d>  >>(m.attr("Geom2dLProp_CLProps2d"))
+    static_cast<py::class_<Geom2dLProp_CLProps2d , shared_ptr<Geom2dLProp_CLProps2d>  >>(m.attr("Geom2dLProp_CLProps2d"))
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("U"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // methods
         .def("SetParameter",
              (void (Geom2dLProp_CLProps2d::*)( const Standard_Real  ) ) static_cast<void (Geom2dLProp_CLProps2d::*)( const Standard_Real  ) >(&Geom2dLProp_CLProps2d::SetParameter),
              R"#(Initializes the local properties of the curve for the parameter value <U>.)#"  , py::arg("U"))
@@ -88,11 +92,42 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
         .def("CentreOfCurvature",
              (void (Geom2dLProp_CLProps2d::*)( gp_Pnt2d &  ) ) static_cast<void (Geom2dLProp_CLProps2d::*)( gp_Pnt2d &  ) >(&Geom2dLProp_CLProps2d::CentreOfCurvature),
              R"#(Returns the centre of curvature <P>.)#"  , py::arg("P"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<Geom2dLProp_Curve2dTool ,std::unique_ptr<Geom2dLProp_Curve2dTool>>(m,"Geom2dLProp_Curve2dTool");
 
-    static_cast<py::class_<Geom2dLProp_Curve2dTool ,std::unique_ptr<Geom2dLProp_Curve2dTool>  >>(m.attr("Geom2dLProp_Curve2dTool"))
+    static_cast<py::class_<Geom2dLProp_CurAndInf2d , shared_ptr<Geom2dLProp_CurAndInf2d>  , LProp_CurAndInf >>(m.attr("Geom2dLProp_CurAndInf2d"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Perform",
+             (void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_CurAndInf2d::Perform),
+             R"#(For the curve C, Computes both the inflection points and the maximum and minimum curvatures.)#"  , py::arg("C"))
+        .def("PerformCurExt",
+             (void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_CurAndInf2d::PerformCurExt),
+             R"#(For the curve C, Computes the locals extremas of curvature.)#"  , py::arg("C"))
+        .def("PerformInf",
+             (void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_CurAndInf2d::PerformInf),
+             R"#(For the curve C, Computes the inflections. After computation, the following functions can be used: - IsDone to check if the computation was successful - NbPoints to obtain the number of computed particular points - Parameter to obtain the parameter on the curve for each particular point - Type to check if the point is an inflection point or an extremum of curvature of the curve C. Warning These functions can be used to analyze a series of curves, however it is necessary to clear the table of results between each computation.)#"  , py::arg("C"))
+        .def("IsDone",
+             (Standard_Boolean (Geom2dLProp_CurAndInf2d::*)() const) static_cast<Standard_Boolean (Geom2dLProp_CurAndInf2d::*)() const>(&Geom2dLProp_CurAndInf2d::IsDone),
+             R"#(True if the solutions are found.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<Geom2dLProp_Curve2dTool , shared_ptr<Geom2dLProp_Curve2dTool>>(m,"Geom2dLProp_Curve2dTool");
+
+    static_cast<py::class_<Geom2dLProp_Curve2dTool , shared_ptr<Geom2dLProp_Curve2dTool>  >>(m.attr("Geom2dLProp_Curve2dTool"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Value_s",
                     (void (*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  gp_Pnt2d &  ) ) static_cast<void (*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  gp_Pnt2d &  ) >(&Geom2dLProp_Curve2dTool::Value),
                     R"#(Computes the point <P> of parameter <U> on the curve <C>.)#"  , py::arg("C"),  py::arg("U"),  py::arg("P"))
@@ -114,42 +149,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
         .def_static("LastParameter_s",
                     (Standard_Real (*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<Standard_Real (*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_Curve2dTool::LastParameter),
                     R"#(returns the last parameter bound of the curve. FirstParameter must be less than LastParameter.)#"  , py::arg("C"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Geom2dLProp_FuncCurNul ,std::unique_ptr<Geom2dLProp_FuncCurNul>  , math_FunctionWithDerivative >>(m.attr("Geom2dLProp_FuncCurNul"))
-        .def(py::init< const opencascade::handle<Geom2d_Curve> & >()  , py::arg("C") )
-        .def("Value",
-             (Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurNul::Value),
-             R"#(Returns the value for the variable <X>.)#"  , py::arg("X"),  py::arg("F"))
-        .def("Derivative",
-             (Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurNul::Derivative),
-             R"#(Returns the derivative for the variable <X>)#"  , py::arg("X"),  py::arg("D"))
-        .def("Values",
-             (Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurNul::Values),
-             R"#(Returns the value of the function and the derivative for the variable <X>.)#"  , py::arg("X"),  py::arg("F"),  py::arg("D"))
-;
-
-
-    static_cast<py::class_<Geom2dLProp_CurAndInf2d ,std::unique_ptr<Geom2dLProp_CurAndInf2d>  , LProp_CurAndInf >>(m.attr("Geom2dLProp_CurAndInf2d"))
-        .def(py::init<  >()  )
-        .def("Perform",
-             (void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_CurAndInf2d::Perform),
-             R"#(For the curve C, Computes both the inflection points and the maximum and minimum curvatures.)#"  , py::arg("C"))
-        .def("PerformCurExt",
-             (void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_CurAndInf2d::PerformCurExt),
-             R"#(For the curve C, Computes the locals extremas of curvature.)#"  , py::arg("C"))
-        .def("PerformInf",
-             (void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_CurAndInf2d::PerformInf),
-             R"#(For the curve C, Computes the inflections. After computation, the following functions can be used: - IsDone to check if the computation was successful - NbPoints to obtain the number of computed particular points - Parameter to obtain the parameter on the curve for each particular point - Type to check if the point is an inflection point or an extremum of curvature of the curve C. Warning These functions can be used to analyze a series of curves, however it is necessary to clear the table of results between each computation.)#"  , py::arg("C"))
-        .def("IsDone",
-             (Standard_Boolean (Geom2dLProp_CurAndInf2d::*)() const) static_cast<Standard_Boolean (Geom2dLProp_CurAndInf2d::*)() const>(&Geom2dLProp_CurAndInf2d::IsDone),
-             R"#(True if the solutions are found.)#" )
-;
-
-
-    static_cast<py::class_<Geom2dLProp_FuncCurExt ,std::unique_ptr<Geom2dLProp_FuncCurExt>  , math_FunctionWithDerivative >>(m.attr("Geom2dLProp_FuncCurExt"))
+    static_cast<py::class_<Geom2dLProp_FuncCurExt , shared_ptr<Geom2dLProp_FuncCurExt>  , math_FunctionWithDerivative >>(m.attr("Geom2dLProp_FuncCurExt"))
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real >()  , py::arg("C"),  py::arg("Tol") )
+    // methods
         .def("Value",
              (Standard_Boolean (Geom2dLProp_FuncCurExt::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurExt::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurExt::Value),
              R"#(Returns the value for the variable <X>.)#"  , py::arg("X"),  py::arg("F"))
@@ -162,11 +170,37 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
         .def("IsMinKC",
              (Standard_Boolean (Geom2dLProp_FuncCurExt::*)( const Standard_Real  ) const) static_cast<Standard_Boolean (Geom2dLProp_FuncCurExt::*)( const Standard_Real  ) const>(&Geom2dLProp_FuncCurExt::IsMinKC),
              R"#(True if Param corresponds to a minus of the radius of curvature.)#"  , py::arg("Param"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Geom2dLProp_NumericCurInf2d ,std::unique_ptr<Geom2dLProp_NumericCurInf2d>  >>(m.attr("Geom2dLProp_NumericCurInf2d"))
+    static_cast<py::class_<Geom2dLProp_FuncCurNul , shared_ptr<Geom2dLProp_FuncCurNul>  , math_FunctionWithDerivative >>(m.attr("Geom2dLProp_FuncCurNul"))
+        .def(py::init< const opencascade::handle<Geom2d_Curve> & >()  , py::arg("C") )
+    // methods
+        .def("Value",
+             (Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurNul::Value),
+             R"#(Returns the value for the variable <X>.)#"  , py::arg("X"),  py::arg("F"))
+        .def("Derivative",
+             (Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurNul::Derivative),
+             R"#(Returns the derivative for the variable <X>)#"  , py::arg("X"),  py::arg("D"))
+        .def("Values",
+             (Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurNul::Values),
+             R"#(Returns the value of the function and the derivative for the variable <X>.)#"  , py::arg("X"),  py::arg("F"),  py::arg("D"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Geom2dLProp_NumericCurInf2d , shared_ptr<Geom2dLProp_NumericCurInf2d>  >>(m.attr("Geom2dLProp_NumericCurInf2d"))
         .def(py::init<  >()  )
+    // methods
         .def("PerformCurExt",
              (void (Geom2dLProp_NumericCurInf2d::*)( const opencascade::handle<Geom2d_Curve> & ,  LProp_CurAndInf &  ) ) static_cast<void (Geom2dLProp_NumericCurInf2d::*)( const opencascade::handle<Geom2d_Curve> & ,  LProp_CurAndInf &  ) >(&Geom2dLProp_NumericCurInf2d::PerformCurExt),
              R"#(Computes the locals extremas of curvature.)#"  , py::arg("C"),  py::arg("Result"))
@@ -182,25 +216,24 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
         .def("IsDone",
              (Standard_Boolean (Geom2dLProp_NumericCurInf2d::*)() const) static_cast<Standard_Boolean (Geom2dLProp_NumericCurInf2d::*)() const>(&Geom2dLProp_NumericCurInf2d::IsDone),
              R"#(True if the solutions are found.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Geom2dLProp_CLProps2d.hxx
 // ./opencascade/Geom2dLProp_CurAndInf2d.hxx
 // ./opencascade/Geom2dLProp_Curve2dTool.hxx
-// ./opencascade/Geom2dLProp_NumericCurInf2d.hxx
 // ./opencascade/Geom2dLProp_FuncCurNul.hxx
+// ./opencascade/Geom2dLProp_CLProps2d.hxx
+// ./opencascade/Geom2dLProp_NumericCurInf2d.hxx
 // ./opencascade/Geom2dLProp_FuncCurExt.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Geom2dLProp_CLProps2d.hxx
-// ./opencascade/Geom2dLProp_CurAndInf2d.hxx
-// ./opencascade/Geom2dLProp_Curve2dTool.hxx
-// ./opencascade/Geom2dLProp_NumericCurInf2d.hxx
-// ./opencascade/Geom2dLProp_FuncCurNul.hxx
-// ./opencascade/Geom2dLProp_FuncCurExt.hxx
 
 
 // exceptions

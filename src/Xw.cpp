@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -40,6 +43,7 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
     static_cast<py::class_<Xw_Window ,opencascade::handle<Xw_Window>  , Aspect_Window >>(m.attr("Xw_Window"))
         .def(py::init< const opencascade::handle<Aspect_DisplayConnection> &,const Standard_CString,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Aspect_FBConfig >()  , py::arg("theXDisplay"),  py::arg("theTitle"),  py::arg("thePxLeft"),  py::arg("thePxTop"),  py::arg("thePxWidth"),  py::arg("thePxHeight"),  py::arg("theFBConfig")=static_cast<const Aspect_FBConfig>(NULL) )
         .def(py::init< const opencascade::handle<Aspect_DisplayConnection> &,const Window,const Aspect_FBConfig >()  , py::arg("theXDisplay"),  py::arg("theXWin"),  py::arg("theFBConfig")=static_cast<const Aspect_FBConfig>(NULL) )
+    // methods
         .def("Map",
              (void (Xw_Window::*)() const) static_cast<void (Xw_Window::*)() const>(&Xw_Window::Map),
              R"#(Opens the window <me>)#" )
@@ -58,12 +62,6 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
         .def("Ratio",
              (Standard_Real (Xw_Window::*)() const) static_cast<Standard_Real (Xw_Window::*)() const>(&Xw_Window::Ratio),
              R"#(Returns The Window RATIO equal to the physical WIDTH/HEIGHT dimensions)#" )
-        .def("Position",
-             (void (Xw_Window::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (Xw_Window::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const>(&Xw_Window::Position),
-             R"#(Returns The Window POSITION in PIXEL)#"  , py::arg("X1"),  py::arg("Y1"),  py::arg("X2"),  py::arg("Y2"))
-        .def("Size",
-             (void (Xw_Window::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (Xw_Window::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&Xw_Window::Size),
-             R"#(Returns The Window SIZE in PIXEL)#"  , py::arg("theWidth"),  py::arg("theHeight"))
         .def("XWindow",
              (Window (Xw_Window::*)() const) static_cast<Window (Xw_Window::*)() const>(&Xw_Window::XWindow),
              R"#(Returns native Window handle)#" )
@@ -79,12 +77,23 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Xw_Window::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Xw_Window::*)() const>(&Xw_Window::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Position",
+             []( Xw_Window &self   ){ Standard_Integer  X1; Standard_Integer  Y1; Standard_Integer  X2; Standard_Integer  Y2; self.Position(X1,Y1,X2,Y2); return std::make_tuple(X1,Y1,X2,Y2); },
+             R"#(Returns The Window POSITION in PIXEL)#" )
+        .def("Size",
+             []( Xw_Window &self   ){ Standard_Integer  theWidth; Standard_Integer  theHeight; self.Size(theWidth,theHeight); return std::make_tuple(theWidth,theHeight); },
+             R"#(Returns The Window SIZE in PIXEL)#" )
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Xw_Window::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Xw_Window::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -93,7 +102,6 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
 // operators
 
 // register typdefs
-// ./opencascade/Xw_Window.hxx
 
 
 // exceptions

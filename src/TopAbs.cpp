@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -36,9 +39,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopAbs"));
 
 // classes
 
-    register_default_constructor<TopAbs ,std::unique_ptr<TopAbs>>(m,"TopAbs");
+    register_default_constructor<TopAbs , shared_ptr<TopAbs>>(m,"TopAbs");
 
-    static_cast<py::class_<TopAbs ,std::unique_ptr<TopAbs>  >>(m.attr("TopAbs"))
+    static_cast<py::class_<TopAbs , shared_ptr<TopAbs>  >>(m.attr("TopAbs"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Compose_s",
                     (TopAbs_Orientation (*)( const TopAbs_Orientation ,  const TopAbs_Orientation  ) ) static_cast<TopAbs_Orientation (*)( const TopAbs_Orientation ,  const TopAbs_Orientation  ) >(&TopAbs::Compose),
                     R"#(Compose the Orientation <Or1> and <Or2>. This composition is not symmetric (if you switch <Or1> and <Or2> the result is different). It assumes that <Or1> is the Orientation of a Shape S1 containing a Shape S2 of Orientation Or2. The result is the cumulated orientation of S2 in S1. The composition law is :)#"  , py::arg("Or1"),  py::arg("Or2"))
@@ -75,21 +81,20 @@ py::module m = static_cast<py::module>(main_module.attr("TopAbs"));
         .def_static("ShapeOrientationFromString_s",
                     (Standard_Boolean (*)( const Standard_CString ,  TopAbs_Orientation &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  TopAbs_Orientation &  ) >(&TopAbs::ShapeOrientationFromString),
                     R"#(Determines the shape orientation from the given string identifier (using case-insensitive comparison).)#"  , py::arg("theOrientationString"),  py::arg("theOrientation"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/TopAbs_Orientation.hxx
+// ./opencascade/TopAbs.hxx
 // ./opencascade/TopAbs_ShapeEnum.hxx
 // ./opencascade/TopAbs_State.hxx
-// ./opencascade/TopAbs.hxx
+// ./opencascade/TopAbs_Orientation.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/TopAbs_Orientation.hxx
-// ./opencascade/TopAbs_ShapeEnum.hxx
-// ./opencascade/TopAbs_State.hxx
-// ./opencascade/TopAbs.hxx
 
 
 // exceptions

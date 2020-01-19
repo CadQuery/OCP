@@ -44,14 +44,11 @@ py::module m = main_module.def_submodule("IntImpParGen", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<IntImpParGen_ImpTool ,std::unique_ptr<IntImpParGen_ImpTool>  >(m,"IntImpParGen_ImpTool",R"#(Template class for an implicit curve.)#");
-    py::class_<IntImpParGen ,std::unique_ptr<IntImpParGen>  >(m,"IntImpParGen",R"#(Gives a generic algorithm to intersect Implicit Curves and Bounded Parametric Curves.)#");
-
 // pre-register typdefs
-// ./opencascade/IntImpParGen_Tool.hxx
-// ./opencascade/IntImpParGen_ImpTool.hxx
-// ./opencascade/IntImpParGen.hxx
+
+// classes forward declarations only
+    py::class_<IntImpParGen , shared_ptr<IntImpParGen>  >(m,"IntImpParGen",R"#(Gives a generic algorithm to intersect Implicit Curves and Bounded Parametric Curves.)#");
+    py::class_<IntImpParGen_ImpTool , shared_ptr<IntImpParGen_ImpTool>  >(m,"IntImpParGen_ImpTool",R"#(Template class for an implicit curve.)#");
 
 };
 

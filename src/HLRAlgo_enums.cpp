@@ -12,9 +12,9 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <HLRAlgo_EdgeStatus.hxx>
-#include <HLRAlgo_EdgeStatus.hxx>
 #include <gp_Ax2.hxx>
 #include <gp_Lin.hxx>
+#include <HLRAlgo_EdgeStatus.hxx>
 
 // module includes
 #include <HLRAlgo.hxx>
@@ -50,21 +50,21 @@ namespace py = pybind11;
 #include <HLRAlgo_WiresBlock.hxx>
 
 // template related includes
-// ./opencascade/HLRAlgo_ListOfBPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRAlgo_ListOfBPoint.hxx
-#include "NCollection.hxx"
 // ./opencascade/HLRAlgo_InterferenceList.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRAlgo_InterferenceList.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRAlgo_Array1OfPHDat.hxx
+// ./opencascade/HLRAlgo_Array1OfPISeg.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRAlgo_Array1OfPINod.hxx
 #include "NCollection.hxx"
+// ./opencascade/HLRAlgo_ListOfBPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRAlgo_ListOfBPoint.hxx
+#include "NCollection.hxx"
 // ./opencascade/HLRAlgo_Array1OfTData.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRAlgo_Array1OfPISeg.hxx
+// ./opencascade/HLRAlgo_Array1OfPHDat.hxx
 #include "NCollection.hxx"
 
 
@@ -99,66 +99,35 @@ py::module m = main_module.def_submodule("HLRAlgo", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+    preregister_template_NCollection_List<HLRAlgo_Interference>(m,"HLRAlgo_InterferenceList");  
+    preregister_template_NCollection_Array1<HLRAlgo_PolyInternalSegment>(m,"HLRAlgo_Array1OfPISeg");  
+    preregister_template_NCollection_Array1<opencascade::handle<HLRAlgo_PolyInternalNode> >(m,"HLRAlgo_Array1OfPINod");  
+    preregister_template_NCollection_List<HLRAlgo_BiPoint>(m,"HLRAlgo_ListOfBPoint");  
+    preregister_template_NCollection_Array1<HLRAlgo_TriangleData>(m,"HLRAlgo_Array1OfTData");  
+    preregister_template_NCollection_Array1<HLRAlgo_PolyHidingData>(m,"HLRAlgo_Array1OfPHDat");  
+
 // classes forward declarations only
-    py::class_<HLRAlgo_EdgeIterator ,std::unique_ptr<HLRAlgo_EdgeIterator>  >(m,"HLRAlgo_EdgeIterator",R"#(None)#");
-    py::class_<HLRAlgo_EdgeStatus ,std::unique_ptr<HLRAlgo_EdgeStatus>  >(m,"HLRAlgo_EdgeStatus",R"#(This class describes the Hidden Line status of an Edge. It contains :)#");
-    py::class_<HLRAlgo_HArray1OfPHDat ,std::unique_ptr<HLRAlgo_HArray1OfPHDat>  >(m,"HLRAlgo_HArray1OfPHDat",R"#()#");
+    py::class_<HLRAlgo , shared_ptr<HLRAlgo>  >(m,"HLRAlgo",R"#(In order to have the precision required in industrial design, drawings need to offer the possibility of removing lines, which are hidden in a given projection. To do this, the Hidden Line Removal component provides two algorithms: HLRBRep_Algo and HLRBRep_PolyAlgo. These algorithms remove or indicate lines hidden by surfaces. For a given projection, they calculate a set of lines characteristic of the object being represented. They are also used in conjunction with extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the lines of the visualized shape in a plane. This plane is the projection plane. HLRBRep_Algo takes into account the shape itself. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments.)#");
+    py::class_<HLRAlgo_BiPoint , shared_ptr<HLRAlgo_BiPoint>  >(m,"HLRAlgo_BiPoint",R"#(None)#");
+    py::class_<HLRAlgo_Coincidence , shared_ptr<HLRAlgo_Coincidence>  >(m,"HLRAlgo_Coincidence",R"#(The Coincidence class is used in an Inteference to store informations on the "hiding" edge.)#");
+    py::class_<HLRAlgo_EdgeIterator , shared_ptr<HLRAlgo_EdgeIterator>  >(m,"HLRAlgo_EdgeIterator",R"#(None)#");
+    py::class_<HLRAlgo_EdgeStatus , shared_ptr<HLRAlgo_EdgeStatus>  >(m,"HLRAlgo_EdgeStatus",R"#(This class describes the Hidden Line status of an Edge. It contains :)#");
+    py::class_<HLRAlgo_EdgesBlock ,opencascade::handle<HLRAlgo_EdgesBlock>  , Standard_Transient >(m,"HLRAlgo_EdgesBlock",R"#(An EdgesBlock is a set of Edges. It is used by the DataStructure to structure the Edges.An EdgesBlock is a set of Edges. It is used by the DataStructure to structure the Edges.An EdgesBlock is a set of Edges. It is used by the DataStructure to structure the Edges.)#");
+    py::class_<HLRAlgo_HArray1OfPHDat ,opencascade::handle<HLRAlgo_HArray1OfPHDat>  , HLRAlgo_Array1OfPHDat , Standard_Transient >(m,"HLRAlgo_HArray1OfPHDat",R"#()#");
+    py::class_<HLRAlgo_HArray1OfPINod ,opencascade::handle<HLRAlgo_HArray1OfPINod>  , HLRAlgo_Array1OfPINod , Standard_Transient >(m,"HLRAlgo_HArray1OfPINod",R"#()#");
+    py::class_<HLRAlgo_HArray1OfPISeg ,opencascade::handle<HLRAlgo_HArray1OfPISeg>  , HLRAlgo_Array1OfPISeg , Standard_Transient >(m,"HLRAlgo_HArray1OfPISeg",R"#()#");
+    py::class_<HLRAlgo_HArray1OfTData ,opencascade::handle<HLRAlgo_HArray1OfTData>  , HLRAlgo_Array1OfTData , Standard_Transient >(m,"HLRAlgo_HArray1OfTData",R"#()#");
+    py::class_<HLRAlgo_Interference , shared_ptr<HLRAlgo_Interference>  >(m,"HLRAlgo_Interference",R"#(None)#");
+    py::class_<HLRAlgo_Intersection , shared_ptr<HLRAlgo_Intersection>  >(m,"HLRAlgo_Intersection",R"#(Describes an intersection on an edge to hide. Contains a parameter and a state (ON = on the face, OUT = above the face, IN = under the Face))#");
     py::class_<HLRAlgo_PolyAlgo ,opencascade::handle<HLRAlgo_PolyAlgo>  , Standard_Transient >(m,"HLRAlgo_PolyAlgo",R"#(to remove Hidden lines on Triangulations.to remove Hidden lines on Triangulations.to remove Hidden lines on Triangulations.)#");
     py::class_<HLRAlgo_PolyData ,opencascade::handle<HLRAlgo_PolyData>  , Standard_Transient >(m,"HLRAlgo_PolyData",R"#(Data structure of a set of Triangles.Data structure of a set of Triangles.Data structure of a set of Triangles.)#");
-    py::class_<HLRAlgo_Interference ,std::unique_ptr<HLRAlgo_Interference>  >(m,"HLRAlgo_Interference",R"#(None)#");
-    py::class_<HLRAlgo_HArray1OfPINod ,std::unique_ptr<HLRAlgo_HArray1OfPINod>  >(m,"HLRAlgo_HArray1OfPINod",R"#()#");
-    py::class_<HLRAlgo_EdgesBlock ,opencascade::handle<HLRAlgo_EdgesBlock>  , Standard_Transient >(m,"HLRAlgo_EdgesBlock",R"#(An EdgesBlock is a set of Edges. It is used by the DataStructure to structure the Edges.An EdgesBlock is a set of Edges. It is used by the DataStructure to structure the Edges.An EdgesBlock is a set of Edges. It is used by the DataStructure to structure the Edges.)#");
-    py::class_<HLRAlgo_HArray1OfTData ,std::unique_ptr<HLRAlgo_HArray1OfTData>  >(m,"HLRAlgo_HArray1OfTData",R"#()#");
-    py::class_<HLRAlgo ,std::unique_ptr<HLRAlgo>  >(m,"HLRAlgo",R"#(In order to have the precision required in industrial design, drawings need to offer the possibility of removing lines, which are hidden in a given projection. To do this, the Hidden Line Removal component provides two algorithms: HLRBRep_Algo and HLRBRep_PolyAlgo. These algorithms remove or indicate lines hidden by surfaces. For a given projection, they calculate a set of lines characteristic of the object being represented. They are also used in conjunction with extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the lines of the visualized shape in a plane. This plane is the projection plane. HLRBRep_Algo takes into account the shape itself. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments.)#");
-    py::class_<HLRAlgo_PolyShellData ,opencascade::handle<HLRAlgo_PolyShellData>  , Standard_Transient >(m,"HLRAlgo_PolyShellData",R"#(All the PolyData of a ShellAll the PolyData of a ShellAll the PolyData of a Shell)#");
-    py::class_<HLRAlgo_HArray1OfPISeg ,std::unique_ptr<HLRAlgo_HArray1OfPISeg>  >(m,"HLRAlgo_HArray1OfPISeg",R"#()#");
-    py::class_<HLRAlgo_Projector ,std::unique_ptr<HLRAlgo_Projector>  >(m,"HLRAlgo_Projector",R"#(Implements a projector object. To transform and project Points and Planes. This object is designed to be used in the removal of hidden lines and is returned by the Prs3d_Projector::Projector function. You define the projection of the selected shape by calling one of the following functions: - HLRBRep_Algo::Projector, or - HLRBRep_PolyAlgo::Projector The choice depends on the algorithm, which you are using. The parameters of the view are defined at the time of construction of a Prs3d_Projector object.)#");
-    py::class_<HLRAlgo_PolyInternalNode ,opencascade::handle<HLRAlgo_PolyInternalNode>  , Standard_Transient >(m,"HLRAlgo_PolyInternalNode",R"#(to Update OutLines.to Update OutLines.to Update OutLines.)#");
-    py::class_<HLRAlgo_PolyHidingData ,std::unique_ptr<HLRAlgo_PolyHidingData>  >(m,"HLRAlgo_PolyHidingData",R"#(Data structure of a set of Hiding Triangles.)#");
-    py::class_<HLRAlgo_WiresBlock ,opencascade::handle<HLRAlgo_WiresBlock>  , Standard_Transient >(m,"HLRAlgo_WiresBlock",R"#(A WiresBlock is a set of Blocks. It is used by the DataStructure to structure the Edges.A WiresBlock is a set of Blocks. It is used by the DataStructure to structure the Edges.A WiresBlock is a set of Blocks. It is used by the DataStructure to structure the Edges.)#");
-    py::class_<HLRAlgo_Coincidence ,std::unique_ptr<HLRAlgo_Coincidence>  >(m,"HLRAlgo_Coincidence",R"#(The Coincidence class is used in an Inteference to store informations on the "hiding" edge.)#");
+    py::class_<HLRAlgo_PolyHidingData , shared_ptr<HLRAlgo_PolyHidingData>  >(m,"HLRAlgo_PolyHidingData",R"#(Data structure of a set of Hiding Triangles.)#");
     py::class_<HLRAlgo_PolyInternalData ,opencascade::handle<HLRAlgo_PolyInternalData>  , Standard_Transient >(m,"HLRAlgo_PolyInternalData",R"#(to Update OutLines.to Update OutLines.to Update OutLines.)#");
-    py::class_<HLRAlgo_Intersection ,std::unique_ptr<HLRAlgo_Intersection>  >(m,"HLRAlgo_Intersection",R"#(Describes an intersection on an edge to hide. Contains a parameter and a state (ON = on the face, OUT = above the face, IN = under the Face))#");
-    py::class_<HLRAlgo_BiPoint ,std::unique_ptr<HLRAlgo_BiPoint>  >(m,"HLRAlgo_BiPoint",R"#(None)#");
-
-// pre-register typdefs
-// ./opencascade/HLRAlgo_EdgeIterator.hxx
-// ./opencascade/HLRAlgo_PolyShellData.hxx
-// ./opencascade/HLRAlgo_ListOfBPoint.hxx
-    preregister_template_NCollection_List<HLRAlgo_BiPoint>(m,"HLRAlgo_ListOfBPoint");  
-// ./opencascade/HLRAlgo_EdgeStatus.hxx
-// ./opencascade/HLRAlgo_ListIteratorOfListOfBPoint.hxx
-// ./opencascade/HLRAlgo_InterferenceList.hxx
-    preregister_template_NCollection_List<HLRAlgo_Interference>(m,"HLRAlgo_InterferenceList");  
-// ./opencascade/HLRAlgo_WiresBlock.hxx
-// ./opencascade/HLRAlgo_HArray1OfPHDat.hxx
-// ./opencascade/HLRAlgo_ListIteratorOfInterferenceList.hxx
-// ./opencascade/HLRAlgo_HArray1OfPISeg.hxx
-// ./opencascade/HLRAlgo_PolyAlgo.hxx
-// ./opencascade/HLRAlgo_Intersection.hxx
-// ./opencascade/HLRAlgo_PolyData.hxx
-// ./opencascade/HLRAlgo_Projector.hxx
-// ./opencascade/HLRAlgo_Interference.hxx
-// ./opencascade/HLRAlgo_TriangleData.hxx
-// ./opencascade/HLRAlgo_Coincidence.hxx
-// ./opencascade/HLRAlgo_HArray1OfPINod.hxx
-// ./opencascade/HLRAlgo_PolyMask.hxx
-// ./opencascade/HLRAlgo_PolyInternalNode.hxx
-// ./opencascade/HLRAlgo_EdgesBlock.hxx
-// ./opencascade/HLRAlgo_BiPoint.hxx
-// ./opencascade/HLRAlgo_Array1OfPHDat.hxx
-    preregister_template_NCollection_Array1<HLRAlgo_PolyHidingData>(m,"HLRAlgo_Array1OfPHDat");  
-// ./opencascade/HLRAlgo_HArray1OfTData.hxx
-// ./opencascade/HLRAlgo_PolyHidingData.hxx
-// ./opencascade/HLRAlgo_Array1OfPINod.hxx
-    preregister_template_NCollection_Array1<opencascade::handle<HLRAlgo_PolyInternalNode> >(m,"HLRAlgo_Array1OfPINod");  
-// ./opencascade/HLRAlgo_Array1OfTData.hxx
-    preregister_template_NCollection_Array1<HLRAlgo_TriangleData>(m,"HLRAlgo_Array1OfTData");  
-// ./opencascade/HLRAlgo_Array1OfPISeg.hxx
-    preregister_template_NCollection_Array1<HLRAlgo_PolyInternalSegment>(m,"HLRAlgo_Array1OfPISeg");  
-// ./opencascade/HLRAlgo.hxx
-// ./opencascade/HLRAlgo_PolyInternalSegment.hxx
-// ./opencascade/HLRAlgo_PolyInternalData.hxx
+    py::class_<HLRAlgo_PolyInternalNode ,opencascade::handle<HLRAlgo_PolyInternalNode>  , Standard_Transient >(m,"HLRAlgo_PolyInternalNode",R"#(to Update OutLines.to Update OutLines.to Update OutLines.)#");
+    py::class_<HLRAlgo_PolyShellData ,opencascade::handle<HLRAlgo_PolyShellData>  , Standard_Transient >(m,"HLRAlgo_PolyShellData",R"#(All the PolyData of a ShellAll the PolyData of a ShellAll the PolyData of a Shell)#");
+    py::class_<HLRAlgo_Projector , shared_ptr<HLRAlgo_Projector>  >(m,"HLRAlgo_Projector",R"#(Implements a projector object. To transform and project Points and Planes. This object is designed to be used in the removal of hidden lines and is returned by the Prs3d_Projector::Projector function. You define the projection of the selected shape by calling one of the following functions: - HLRBRep_Algo::Projector, or - HLRBRep_PolyAlgo::Projector The choice depends on the algorithm, which you are using. The parameters of the view are defined at the time of construction of a Prs3d_Projector object.)#");
+    py::class_<HLRAlgo_WiresBlock ,opencascade::handle<HLRAlgo_WiresBlock>  , Standard_Transient >(m,"HLRAlgo_WiresBlock",R"#(A WiresBlock is a set of Blocks. It is used by the DataStructure to structure the Edges.A WiresBlock is a set of Blocks. It is used by the DataStructure to structure the Edges.A WiresBlock is a set of Blocks. It is used by the DataStructure to structure the Edges.)#");
 
 };
 

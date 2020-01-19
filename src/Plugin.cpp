@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -41,21 +44,30 @@ py::module m = static_cast<py::module>(main_module.attr("Plugin"));
 
 // classes
 
+    register_default_constructor<Plugin , shared_ptr<Plugin>>(m,"Plugin");
+
+    static_cast<py::class_<Plugin , shared_ptr<Plugin>  >>(m.attr("Plugin"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Load_s",
+                    (opencascade::handle<Standard_Transient> (*)( const Standard_GUID & ,  const Standard_Boolean  ) ) static_cast<opencascade::handle<Standard_Transient> (*)( const Standard_GUID & ,  const Standard_Boolean  ) >(&Plugin::Load),
+                    R"#(None)#"  , py::arg("aGUID"),  py::arg("theVerbose")=static_cast<const Standard_Boolean>(Standard_True))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
 // functions
-// ./opencascade/Plugin_MapOfFunctions.hxx
 // ./opencascade/Plugin_DataMapIteratorOfMapOfFunctions.hxx
-// ./opencascade/Plugin.hxx
 // ./opencascade/Plugin_Macro.hxx
+// ./opencascade/Plugin_MapOfFunctions.hxx
+// ./opencascade/Plugin.hxx
 // ./opencascade/Plugin_Failure.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Plugin_MapOfFunctions.hxx
-// ./opencascade/Plugin_DataMapIteratorOfMapOfFunctions.hxx
-// ./opencascade/Plugin.hxx
-// ./opencascade/Plugin_Macro.hxx
-// ./opencascade/Plugin_Failure.hxx
 
 
 // exceptions

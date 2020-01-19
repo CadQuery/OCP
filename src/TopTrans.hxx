@@ -13,15 +13,15 @@ namespace py = pybind11;
 
 // module includes
 #include <TopTrans_SurfaceTransition.hxx>
-#include <TopTrans_Array2OfOrientation.hxx>
 #include <TopTrans_CurveTransition.hxx>
+#include <TopTrans_Array2OfOrientation.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
 // ./opencascade/TopTrans_SurfaceTransition.hxx
-// ./opencascade/TopTrans_Array2OfOrientation.hxx
 // ./opencascade/TopTrans_CurveTransition.hxx
+// ./opencascade/TopTrans_Array2OfOrientation.hxx
 
 // user-defined post

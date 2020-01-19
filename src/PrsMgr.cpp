@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,12 +13,13 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <PrsMgr_PresentableObject.hxx>
 #include <Prs3d_Drawer.hxx>
 #include <PrsMgr_PresentableObject.hxx>
 #include <PrsMgr_Presentation.hxx>
 #include <V3d_Viewer.hxx>
 #include <PrsMgr_Presentation.hxx>
+#include <PrsMgr_Presentation.hxx>
+#include <PrsMgr_PresentableObject.hxx>
 #include <PrsMgr_PresentationManager.hxx>
 #include <PrsMgr_Prs.hxx>
 #include <PrsMgr_PresentableObject.hxx>
@@ -27,7 +31,6 @@ namespace py = pybind11;
 #include <Graphic3d_DataStructureManager.hxx>
 #include <Prs3d_Projector.hxx>
 #include <PrsMgr_PresentableObject.hxx>
-#include <PrsMgr_Presentation.hxx>
 #include <Graphic3d_StructureManager.hxx>
 #include <Graphic3d_DataStructureManager.hxx>
 
@@ -51,9 +54,9 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/PrsMgr_ListOfPresentableObjects.hxx
 #include "NCollection.hxx"
-// ./opencascade/PrsMgr_Presentations.hxx
-#include "NCollection.hxx"
 // ./opencascade/PrsMgr_ListOfPresentations.hxx
+#include "NCollection.hxx"
+// ./opencascade/PrsMgr_Presentations.hxx
 #include "NCollection.hxx"
 
 
@@ -74,111 +77,26 @@ py::module m = static_cast<py::module>(main_module.attr("PrsMgr"));
 // classes
 
 
-    static_cast<py::class_<PrsMgr_PresentationManager ,opencascade::handle<PrsMgr_PresentationManager>  , Standard_Transient >>(m.attr("PrsMgr_PresentationManager"))
-        .def(py::init< const opencascade::handle<Graphic3d_StructureManager> & >()  , py::arg("theStructureManager") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (PrsMgr_PresentationManager::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PrsMgr_PresentationManager::*)() const>(&PrsMgr_PresentationManager::DynamicType),
-             R"#(None)#" )
-        .def("Display",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Display),
-             R"#(Displays the presentation of the object in the given Presentation manager with the given mode. The mode should be enumerated by the object which inherits PresentableObject.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("Erase",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Erase),
-             R"#(erases the presentation of the object in the given Presentation manager with the given mode. If is -1, then erases all presentations of the object.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("Clear",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Clear),
-             R"#(Clears the presentation of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("SetVisibility",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&PrsMgr_PresentationManager::SetVisibility),
-             R"#(Sets the visibility of presentable object.)#"  , py::arg("thePrsObject"),  py::arg("theMode"),  py::arg("theValue"))
-        .def("Unhighlight",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) >(&PrsMgr_PresentationManager::Unhighlight),
-             R"#(Removes highlighting from the presentation of the presentable object.)#"  , py::arg("thePrsObject"))
-        .def("Unhighlight",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Unhighlight),
-             R"#(None)#"  , py::arg("thePrsObject"),  py::arg("theMode"))
-        .def("SetDisplayPriority",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::SetDisplayPriority),
-             R"#(Sets the display priority theNewPrior of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode"),  py::arg("theNewPrior"))
-        .def("DisplayPriority",
-             (Standard_Integer (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Integer (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::DisplayPriority),
-             R"#(Returns the display priority of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode"))
-        .def("SetZLayer",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) >(&PrsMgr_PresentationManager::SetZLayer),
-             R"#(Set Z layer ID for all presentations of the object.)#"  , py::arg("thePrsObject"),  py::arg("theLayerId"))
-        .def("GetZLayer",
-             (Graphic3d_ZLayerId (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) const) static_cast<Graphic3d_ZLayerId (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) const>(&PrsMgr_PresentationManager::GetZLayer),
-             R"#(Get Z layer ID assigned to all presentations of the object. Method returns -1 value if object has no presentations and is impossible to get layer index.)#"  , py::arg("thePrsObject"))
-        .def("IsDisplayed",
-             (Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::IsDisplayed),
-             R"#(None)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("IsHighlighted",
-             (Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::IsHighlighted),
-             R"#(Returns true if the presentation of the presentable object thePrsObject in this framework with the display mode theMode is highlighted.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("Update",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::Update),
-             R"#(Updates the presentation of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("BeginImmediateDraw",
-             (void (PrsMgr_PresentationManager::*)() ) static_cast<void (PrsMgr_PresentationManager::*)() >(&PrsMgr_PresentationManager::BeginImmediateDraw),
-             R"#(Resets the transient list of presentations previously displayed in immediate mode and begins accumulation of new list by following AddToImmediateList()/Color()/Highlight() calls.)#" )
-        .def("ClearImmediateDraw",
-             (void (PrsMgr_PresentationManager::*)() ) static_cast<void (PrsMgr_PresentationManager::*)() >(&PrsMgr_PresentationManager::ClearImmediateDraw),
-             R"#(Resets the transient list of presentations previously displayed in immediate mode.)#" )
-        .def("AddToImmediateList",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<Prs3d_Presentation> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<Prs3d_Presentation> &  ) >(&PrsMgr_PresentationManager::AddToImmediateList),
-             R"#(Stores thePrs in the transient list of presentations to be displayed in immediate mode. Will be taken in account in EndImmediateDraw method.)#"  , py::arg("thePrs"))
-        .def("EndImmediateDraw",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) >(&PrsMgr_PresentationManager::EndImmediateDraw),
-             R"#(Allows rapid drawing of the each view in theViewer by avoiding an update of the whole background.)#"  , py::arg("theViewer"))
-        .def("RedrawImmediate",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) >(&PrsMgr_PresentationManager::RedrawImmediate),
-             R"#(Clears and redisplays immediate structures of the viewer taking into account its affinity.)#"  , py::arg("theViewer"))
-        .def("IsImmediateModeOn",
-             (Standard_Boolean (PrsMgr_PresentationManager::*)() const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)() const>(&PrsMgr_PresentationManager::IsImmediateModeOn),
-             R"#(Returns true if Presentation Manager is accumulating transient list of presentations to be displayed in immediate mode.)#" )
-        .def("Color",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) >(&PrsMgr_PresentationManager::Color),
-             R"#(Highlights the graphic object thePrsObject in the color theColor. thePrsObject has the display mode theMode; this has the default value of 0, that is, the wireframe display mode.)#"  , py::arg("thePrsObject"),  py::arg("theStyle"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theSelObj")=static_cast<const opencascade::handle<PrsMgr_PresentableObject> &>(NULL),  py::arg("theImmediateStructLayerId")=static_cast<const Graphic3d_ZLayerId>(Graphic3d_ZLayerId_Topmost))
-        .def("Connect",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Connect),
-             R"#(None)#"  , py::arg("thePrsObject"),  py::arg("theOtherObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theOtherMode")=static_cast<const Standard_Integer>(0))
-        .def("Transform",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Geom_Transformation> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Geom_Transformation> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Transform),
-             R"#(Sets the transformation theTransformation for the presentable object thePrsObject. thePrsObject has the display mode theMode; this has the default value of 0, that is, the wireframe display mode.)#"  , py::arg("thePrsObject"),  py::arg("theTransformation"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("StructureManager",
-             (const opencascade::handle<Graphic3d_StructureManager> & (PrsMgr_PresentationManager::*)() const) static_cast<const opencascade::handle<Graphic3d_StructureManager> & (PrsMgr_PresentationManager::*)() const>(&PrsMgr_PresentationManager::StructureManager),
-             R"#(Returns the structure manager.)#" )
-        .def("HasPresentation",
-             (Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::HasPresentation),
-             R"#(Returns true if there is a presentation of the presentable object thePrsObject in this framework, thePrsObject having the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("Presentation",
-             (opencascade::handle<PrsMgr_Presentation> (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) const) static_cast<opencascade::handle<PrsMgr_Presentation> (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) const>(&PrsMgr_PresentationManager::Presentation),
-             R"#(Returns the presentation Presentation of the presentable object thePrsObject in this framework. When theToCreate is true - automatically creates presentation for specified mode when not exist. Optional argument theSelObj specifies parent decomposed object to inherit its view affinity.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theToCreate")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theSelObj")=static_cast<const opencascade::handle<PrsMgr_PresentableObject> &>(NULL))
-        .def("UpdateHighlightTrsf",
-             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) >(&PrsMgr_PresentationManager::UpdateHighlightTrsf),
-             R"#(Allows to apply location transformation to shadow highlight presentation immediately.)#"  , py::arg("theViewer"),  py::arg("theObj"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theSelObj")=static_cast<const opencascade::handle<PrsMgr_PresentableObject> &>(NULL))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&PrsMgr_PresentationManager::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PrsMgr_PresentationManager::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<PrsMgr_ModedPresentation ,std::unique_ptr<PrsMgr_ModedPresentation>  >>(m.attr("PrsMgr_ModedPresentation"))
+    static_cast<py::class_<PrsMgr_ModedPresentation , shared_ptr<PrsMgr_ModedPresentation>  >>(m.attr("PrsMgr_ModedPresentation"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<PrsMgr_Presentation> &,const Standard_Integer >()  , py::arg("thePrs"),  py::arg("theMode") )
+    // methods
         .def("Presentation",
              (const opencascade::handle<PrsMgr_Presentation> & (PrsMgr_ModedPresentation::*)() const) static_cast<const opencascade::handle<PrsMgr_Presentation> & (PrsMgr_ModedPresentation::*)() const>(&PrsMgr_ModedPresentation::Presentation),
              R"#(None)#" )
         .def("Mode",
              (Standard_Integer (PrsMgr_ModedPresentation::*)() const) static_cast<Standard_Integer (PrsMgr_ModedPresentation::*)() const>(&PrsMgr_ModedPresentation::Mode),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<PrsMgr_PresentableObject ,opencascade::handle<PrsMgr_PresentableObject>  , Standard_Transient >>(m.attr("PrsMgr_PresentableObject"))
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (PrsMgr_PresentableObject::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PrsMgr_PresentableObject::*)() const>(&PrsMgr_PresentableObject::DynamicType),
              R"#(None)#" )
@@ -314,17 +232,22 @@ py::module m = static_cast<py::module>(main_module.attr("PrsMgr"));
         .def("UnsetHilightAttributes",
              (void (PrsMgr_PresentableObject::*)() ) static_cast<void (PrsMgr_PresentableObject::*)() >(&PrsMgr_PresentableObject::UnsetHilightAttributes),
              R"#(Clears settings provided by the hilight drawing tool theDrawer.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&PrsMgr_PresentableObject::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PrsMgr_PresentableObject::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<PrsMgr_Presentation ,opencascade::handle<PrsMgr_Presentation>>(m,"PrsMgr_Presentation");
 
     static_cast<py::class_<PrsMgr_Presentation ,opencascade::handle<PrsMgr_Presentation>  , Standard_Transient >>(m.attr("PrsMgr_Presentation"))
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (PrsMgr_Presentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PrsMgr_Presentation::*)() const>(&PrsMgr_Presentation::DynamicType),
              R"#(None)#" )
@@ -340,16 +263,120 @@ py::module m = static_cast<py::module>(main_module.attr("PrsMgr"));
         .def("MustBeUpdated",
              (Standard_Boolean (PrsMgr_Presentation::*)() const) static_cast<Standard_Boolean (PrsMgr_Presentation::*)() const>(&PrsMgr_Presentation::MustBeUpdated),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&PrsMgr_Presentation::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PrsMgr_Presentation::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<PrsMgr_PresentationManager ,opencascade::handle<PrsMgr_PresentationManager>  , Standard_Transient >>(m.attr("PrsMgr_PresentationManager"))
+        .def(py::init< const opencascade::handle<Graphic3d_StructureManager> & >()  , py::arg("theStructureManager") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (PrsMgr_PresentationManager::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PrsMgr_PresentationManager::*)() const>(&PrsMgr_PresentationManager::DynamicType),
+             R"#(None)#" )
+        .def("Display",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Display),
+             R"#(Displays the presentation of the object in the given Presentation manager with the given mode. The mode should be enumerated by the object which inherits PresentableObject.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("Erase",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Erase),
+             R"#(erases the presentation of the object in the given Presentation manager with the given mode. If is -1, then erases all presentations of the object.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("Clear",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Clear),
+             R"#(Clears the presentation of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("SetVisibility",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&PrsMgr_PresentationManager::SetVisibility),
+             R"#(Sets the visibility of presentable object.)#"  , py::arg("thePrsObject"),  py::arg("theMode"),  py::arg("theValue"))
+        .def("Unhighlight",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) >(&PrsMgr_PresentationManager::Unhighlight),
+             R"#(Removes highlighting from the presentation of the presentable object.)#"  , py::arg("thePrsObject"))
+        .def("Unhighlight",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Unhighlight),
+             R"#(None)#"  , py::arg("thePrsObject"),  py::arg("theMode"))
+        .def("SetDisplayPriority",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::SetDisplayPriority),
+             R"#(Sets the display priority theNewPrior of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode"),  py::arg("theNewPrior"))
+        .def("DisplayPriority",
+             (Standard_Integer (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Integer (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::DisplayPriority),
+             R"#(Returns the display priority of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode"))
+        .def("SetZLayer",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) >(&PrsMgr_PresentationManager::SetZLayer),
+             R"#(Set Z layer ID for all presentations of the object.)#"  , py::arg("thePrsObject"),  py::arg("theLayerId"))
+        .def("GetZLayer",
+             (Graphic3d_ZLayerId (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) const) static_cast<Graphic3d_ZLayerId (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> &  ) const>(&PrsMgr_PresentationManager::GetZLayer),
+             R"#(Get Z layer ID assigned to all presentations of the object. Method returns -1 value if object has no presentations and is impossible to get layer index.)#"  , py::arg("thePrsObject"))
+        .def("IsDisplayed",
+             (Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::IsDisplayed),
+             R"#(None)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("IsHighlighted",
+             (Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::IsHighlighted),
+             R"#(Returns true if the presentation of the presentable object thePrsObject in this framework with the display mode theMode is highlighted.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("Update",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::Update),
+             R"#(Updates the presentation of the presentable object thePrsObject in this framework with the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("BeginImmediateDraw",
+             (void (PrsMgr_PresentationManager::*)() ) static_cast<void (PrsMgr_PresentationManager::*)() >(&PrsMgr_PresentationManager::BeginImmediateDraw),
+             R"#(Resets the transient list of presentations previously displayed in immediate mode and begins accumulation of new list by following AddToImmediateList()/Color()/Highlight() calls.)#" )
+        .def("ClearImmediateDraw",
+             (void (PrsMgr_PresentationManager::*)() ) static_cast<void (PrsMgr_PresentationManager::*)() >(&PrsMgr_PresentationManager::ClearImmediateDraw),
+             R"#(Resets the transient list of presentations previously displayed in immediate mode.)#" )
+        .def("AddToImmediateList",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<Prs3d_Presentation> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<Prs3d_Presentation> &  ) >(&PrsMgr_PresentationManager::AddToImmediateList),
+             R"#(Stores thePrs in the transient list of presentations to be displayed in immediate mode. Will be taken in account in EndImmediateDraw method.)#"  , py::arg("thePrs"))
+        .def("EndImmediateDraw",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) >(&PrsMgr_PresentationManager::EndImmediateDraw),
+             R"#(Allows rapid drawing of the each view in theViewer by avoiding an update of the whole background.)#"  , py::arg("theViewer"))
+        .def("RedrawImmediate",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> &  ) >(&PrsMgr_PresentationManager::RedrawImmediate),
+             R"#(Clears and redisplays immediate structures of the viewer taking into account its affinity.)#"  , py::arg("theViewer"))
+        .def("IsImmediateModeOn",
+             (Standard_Boolean (PrsMgr_PresentationManager::*)() const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)() const>(&PrsMgr_PresentationManager::IsImmediateModeOn),
+             R"#(Returns true if Presentation Manager is accumulating transient list of presentations to be displayed in immediate mode.)#" )
+        .def("Color",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Graphic3d_ZLayerId  ) >(&PrsMgr_PresentationManager::Color),
+             R"#(Highlights the graphic object thePrsObject in the color theColor. thePrsObject has the display mode theMode; this has the default value of 0, that is, the wireframe display mode.)#"  , py::arg("thePrsObject"),  py::arg("theStyle"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theSelObj")=static_cast<const opencascade::handle<PrsMgr_PresentableObject> &>(NULL),  py::arg("theImmediateStructLayerId")=static_cast<const Graphic3d_ZLayerId>(Graphic3d_ZLayerId_Topmost))
+        .def("Connect",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Connect),
+             R"#(None)#"  , py::arg("thePrsObject"),  py::arg("theOtherObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theOtherMode")=static_cast<const Standard_Integer>(0))
+        .def("Transform",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Geom_Transformation> & ,  const Standard_Integer  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const opencascade::handle<Geom_Transformation> & ,  const Standard_Integer  ) >(&PrsMgr_PresentationManager::Transform),
+             R"#(Sets the transformation theTransformation for the presentable object thePrsObject. thePrsObject has the display mode theMode; this has the default value of 0, that is, the wireframe display mode.)#"  , py::arg("thePrsObject"),  py::arg("theTransformation"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("StructureManager",
+             (const opencascade::handle<Graphic3d_StructureManager> & (PrsMgr_PresentationManager::*)() const) static_cast<const opencascade::handle<Graphic3d_StructureManager> & (PrsMgr_PresentationManager::*)() const>(&PrsMgr_PresentationManager::StructureManager),
+             R"#(Returns the structure manager.)#" )
+        .def("HasPresentation",
+             (Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer  ) const>(&PrsMgr_PresentationManager::HasPresentation),
+             R"#(Returns true if there is a presentation of the presentable object thePrsObject in this framework, thePrsObject having the display mode theMode.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("Presentation",
+             (opencascade::handle<PrsMgr_Presentation> (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) const) static_cast<opencascade::handle<PrsMgr_Presentation> (PrsMgr_PresentationManager::*)( const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const Standard_Boolean ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) const>(&PrsMgr_PresentationManager::Presentation),
+             R"#(Returns the presentation Presentation of the presentable object thePrsObject in this framework. When theToCreate is true - automatically creates presentation for specified mode when not exist. Optional argument theSelObj specifies parent decomposed object to inherit its view affinity.)#"  , py::arg("thePrsObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theToCreate")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theSelObj")=static_cast<const opencascade::handle<PrsMgr_PresentableObject> &>(NULL))
+        .def("UpdateHighlightTrsf",
+             (void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) ) static_cast<void (PrsMgr_PresentationManager::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentableObject> & ,  const Standard_Integer ,  const opencascade::handle<PrsMgr_PresentableObject> &  ) >(&PrsMgr_PresentationManager::UpdateHighlightTrsf),
+             R"#(Allows to apply location transformation to shadow highlight presentation immediately.)#"  , py::arg("theViewer"),  py::arg("theObj"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theSelObj")=static_cast<const opencascade::handle<PrsMgr_PresentableObject> &>(NULL))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&PrsMgr_PresentationManager::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PrsMgr_PresentationManager::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<PrsMgr_Prs ,opencascade::handle<PrsMgr_Prs>  , Prs3d_Presentation >>(m.attr("PrsMgr_Prs"))
+    // methods
         .def("Compute",
              (void (PrsMgr_Prs::*)() ) static_cast<void (PrsMgr_Prs::*)() >(&PrsMgr_Prs::Compute),
              R"#(None)#" )
@@ -368,48 +395,40 @@ py::module m = static_cast<py::module>(main_module.attr("PrsMgr"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (PrsMgr_Prs::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PrsMgr_Prs::*)() const>(&PrsMgr_Prs::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&PrsMgr_Prs::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PrsMgr_Prs::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/PrsMgr_ListOfPresentableObjects.hxx
-// ./opencascade/PrsMgr_PresentationManager.hxx
-// ./opencascade/PrsMgr_Presentations.hxx
-// ./opencascade/PrsMgr_PresentationPointer.hxx
-// ./opencascade/PrsMgr_Presentation.hxx
-// ./opencascade/PrsMgr_ListOfPresentations.hxx
-// ./opencascade/PrsMgr_PresentableObjectPointer.hxx
-// ./opencascade/PrsMgr_ModedPresentation.hxx
 // ./opencascade/PrsMgr_TypeOfPresentation3d.hxx
+// ./opencascade/PrsMgr_PresentationManager.hxx
+// ./opencascade/PrsMgr_ModedPresentation.hxx
+// ./opencascade/PrsMgr_PresentationPointer.hxx
+// ./opencascade/PrsMgr_PresentableObjectPointer.hxx
+// ./opencascade/PrsMgr_Presentation.hxx
 // ./opencascade/PrsMgr_PresentationManager3d.hxx
-// ./opencascade/PrsMgr_Prs.hxx
 // ./opencascade/PrsMgr_PresentableObject.hxx
+// ./opencascade/PrsMgr_ListOfPresentableObjects.hxx
+// ./opencascade/PrsMgr_ListOfPresentations.hxx
+// ./opencascade/PrsMgr_Presentations.hxx
+// ./opencascade/PrsMgr_Prs.hxx
 // ./opencascade/PrsMgr_Presentation3d.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/PrsMgr_ListOfPresentableObjects.hxx
     register_template_NCollection_List<opencascade::handle<PrsMgr_PresentableObject> >(m,"PrsMgr_ListOfPresentableObjects");  
-// ./opencascade/PrsMgr_PresentationManager.hxx
-// ./opencascade/PrsMgr_Presentations.hxx
-    register_template_NCollection_Sequence<PrsMgr_ModedPresentation>(m,"PrsMgr_Presentations");  
-// ./opencascade/PrsMgr_PresentationPointer.hxx
-// ./opencascade/PrsMgr_Presentation.hxx
-// ./opencascade/PrsMgr_ListOfPresentations.hxx
     register_template_NCollection_List<opencascade::handle<Prs3d_Presentation> >(m,"PrsMgr_ListOfPresentations");  
-// ./opencascade/PrsMgr_PresentableObjectPointer.hxx
-// ./opencascade/PrsMgr_ModedPresentation.hxx
-// ./opencascade/PrsMgr_TypeOfPresentation3d.hxx
-// ./opencascade/PrsMgr_PresentationManager3d.hxx
-// ./opencascade/PrsMgr_Prs.hxx
-// ./opencascade/PrsMgr_PresentableObject.hxx
-// ./opencascade/PrsMgr_Presentation3d.hxx
+    register_template_NCollection_Sequence<PrsMgr_ModedPresentation>(m,"PrsMgr_Presentations");  
 
 
 // exceptions

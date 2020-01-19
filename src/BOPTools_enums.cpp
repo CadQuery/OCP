@@ -11,16 +11,6 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <BOPTools_Set.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
-#include <gp_Dir.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Pnt.hxx>
-#include <IntTools_Context.hxx>
-#include <gp_Pnt2d.hxx>
-#include <TopoDS_Shape.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
 #include <gp_Vec.hxx>
@@ -38,6 +28,16 @@ namespace py = pybind11;
 #include <IntTools_Range.hxx>
 #include <TopoDS_Shell.hxx>
 #include <Message_Report.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Face.hxx>
+#include <gp_Dir.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
+#include <gp_Pnt.hxx>
+#include <IntTools_Context.hxx>
+#include <gp_Pnt2d.hxx>
+#include <TopoDS_Shape.hxx>
+#include <BOPTools_Set.hxx>
 
 // module includes
 #include <BOPTools_AlgoTools.hxx>
@@ -56,16 +56,16 @@ namespace py = pybind11;
 #include <BOPTools_SetMapHasher.hxx>
 
 // template related includes
-// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
-#include "NCollection.hxx"
 // ./opencascade/BOPTools_MapOfSet.hxx
 #include "NCollection.hxx"
 // ./opencascade/BOPTools_BoxBndTree.hxx
 #include "BOPTools.hxx"
+// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
+#include "NCollection.hxx"
 
 
 // user-defined pre
@@ -85,35 +85,21 @@ py::module m = main_module.def_submodule("BOPTools", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BOPTools_SetMapHasher ,std::unique_ptr<BOPTools_SetMapHasher>  >(m,"BOPTools_SetMapHasher",R"#(None)#");
-    py::class_<BOPTools_AlgoTools3D ,std::unique_ptr<BOPTools_AlgoTools3D>  >(m,"BOPTools_AlgoTools3D",R"#(The class contains handy static functions dealing with the topology This is the copy of BOPTools_AlgoTools3D.cdl file)#");
-    py::class_<BOPTools_Set ,std::unique_ptr<BOPTools_Set>  >(m,"BOPTools_Set",R"#(None)#");
-    py::class_<BOPTools_AlgoTools ,std::unique_ptr<BOPTools_AlgoTools>  >(m,"BOPTools_AlgoTools",R"#(Provides tools used in Boolean Operations algorithm: - Vertices intersection; - Vertex construction; - Edge construction; - Classification algorithms; - Making connexity blocks; - Shape validation.)#");
-    py::class_<BOPTools_ConnexityBlock ,std::unique_ptr<BOPTools_ConnexityBlock>  >(m,"BOPTools_ConnexityBlock",R"#(None)#");
-    py::class_<BOPTools_AlgoTools2D ,std::unique_ptr<BOPTools_AlgoTools2D>  >(m,"BOPTools_AlgoTools2D",R"#(The class contains handy static functions dealing with the topology This is the copy of the BOPTools_AlgoTools2D.cdl)#");
-    py::class_<BOPTools_CoupleOfShape ,std::unique_ptr<BOPTools_CoupleOfShape>  >(m,"BOPTools_CoupleOfShape",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/BOPTools_SetMapHasher.hxx
-// ./opencascade/BOPTools_ConnexityBlock.hxx
-// ./opencascade/BOPTools_AlgoTools3D.hxx
-// ./opencascade/BOPTools_Parallel.hxx
-// ./opencascade/BOPTools_CoupleOfShape.hxx
-// ./opencascade/BOPTools_Set.hxx
-// ./opencascade/BOPTools_BoxSelector.hxx
-// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
-    preregister_template_NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape, BOPTools_SetMapHasher>(m,"BOPTools_IndexedDataMapOfSetShape");  
-// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
-    preregister_template_NCollection_List<BOPTools_ConnexityBlock>(m,"BOPTools_ListOfConnexityBlock");  
-// ./opencascade/BOPTools_AlgoTools2D.hxx
-// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
-    preregister_template_NCollection_List<BOPTools_CoupleOfShape>(m,"BOPTools_ListOfCoupleOfShape");  
-// ./opencascade/BOPTools_MapOfSet.hxx
     preregister_template_NCollection_Map<BOPTools_Set, BOPTools_SetMapHasher>(m,"BOPTools_MapOfSet");  
-// ./opencascade/BOPTools_BoxBndTree.hxx
     preregister_template_BOPTools_BoxSelector<Bnd_Box>(m,"BOPTools_BoxBndTreeSelector");  
-// ./opencascade/BOPTools_AlgoTools.hxx
+    preregister_template_NCollection_List<BOPTools_CoupleOfShape>(m,"BOPTools_ListOfCoupleOfShape");  
+    preregister_template_NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape, BOPTools_SetMapHasher>(m,"BOPTools_IndexedDataMapOfSetShape");  
+    preregister_template_NCollection_List<BOPTools_ConnexityBlock>(m,"BOPTools_ListOfConnexityBlock");  
+
+// classes forward declarations only
+    py::class_<BOPTools_AlgoTools , shared_ptr<BOPTools_AlgoTools>  >(m,"BOPTools_AlgoTools",R"#(Provides tools used in Boolean Operations algorithm: - Vertices intersection; - Vertex construction; - Edge construction; - Classification algorithms; - Making connexity blocks; - Shape validation.)#");
+    py::class_<BOPTools_AlgoTools2D , shared_ptr<BOPTools_AlgoTools2D>  >(m,"BOPTools_AlgoTools2D",R"#(The class contains handy static functions dealing with the topology This is the copy of the BOPTools_AlgoTools2D.cdl)#");
+    py::class_<BOPTools_AlgoTools3D , shared_ptr<BOPTools_AlgoTools3D>  >(m,"BOPTools_AlgoTools3D",R"#(The class contains handy static functions dealing with the topology This is the copy of BOPTools_AlgoTools3D.cdl file)#");
+    py::class_<BOPTools_ConnexityBlock , shared_ptr<BOPTools_ConnexityBlock>  >(m,"BOPTools_ConnexityBlock",R"#(None)#");
+    py::class_<BOPTools_CoupleOfShape , shared_ptr<BOPTools_CoupleOfShape>  >(m,"BOPTools_CoupleOfShape",R"#(None)#");
+    py::class_<BOPTools_Set , shared_ptr<BOPTools_Set>  >(m,"BOPTools_Set",R"#(None)#");
+    py::class_<BOPTools_SetMapHasher , shared_ptr<BOPTools_SetMapHasher>  >(m,"BOPTools_SetMapHasher",R"#(None)#");
 
 };
 

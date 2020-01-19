@@ -12,22 +12,21 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <StdFail_NotDone.hxx>
-#include <StepShape_Edge.hxx>
+#include <StepShape_PolyLoop.hxx>
 #include <StepToTopoDS_Tool.hxx>
-#include <StepToTopoDS_NMTool.hxx>
-#include <StepGeom_Curve.hxx>
-#include <StepShape_EdgeCurve.hxx>
-#include <StepShape_Vertex.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Geom2d_Curve.hxx>
-#include <StepGeom_Pcurve.hxx>
 #include <Geom_Surface.hxx>
+#include <TopoDS_Face.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StepShape_ConnectedFaceSet.hxx>
+#include <StepShape_FaceBound.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <StepGeom_Surface.hxx>
 #include <StepToTopoDS_Tool.hxx>
 #include <StepToTopoDS_NMTool.hxx>
-#include <StepGeom_CurveBoundedSurface.hxx>
+#include <StepGeom_Axis2Placement3d.hxx>
+#include <StepGeom_CartesianTransformationOperator3d.hxx>
+#include <TopoDS_Shape.hxx>
+#include <StepRepr_MappedItem.hxx>
 #include <Transfer_TransientProcess.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepToTopoDS_Root.hxx>
@@ -48,23 +47,48 @@ namespace py = pybind11;
 #include <StepToTopoDS_PointPair.hxx>
 #include <StepToTopoDS_PointPairHasher.hxx>
 #include <StepToTopoDS_NMTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StepShape_VertexLoop.hxx>
-#include <StepToTopoDS_Tool.hxx>
-#include <StepToTopoDS_NMTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StepShape_FaceSurface.hxx>
-#include <StepToTopoDS_Tool.hxx>
-#include <StepToTopoDS_NMTool.hxx>
 #include <StepGeom_CompositeCurve.hxx>
 #include <Transfer_TransientProcess.hxx>
 #include <StepGeom_Surface.hxx>
 #include <Geom_Surface.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepGeom_CurveBoundedSurface.hxx>
+#include <Transfer_TransientProcess.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StepShape_Vertex.hxx>
 #include <StepToTopoDS_Tool.hxx>
 #include <StepToTopoDS_NMTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StepShape_Edge.hxx>
+#include <StepToTopoDS_Tool.hxx>
+#include <StepToTopoDS_NMTool.hxx>
+#include <StepGeom_Curve.hxx>
+#include <StepShape_EdgeCurve.hxx>
+#include <StepShape_Vertex.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Geom2d_Curve.hxx>
+#include <StepGeom_Pcurve.hxx>
+#include <Geom_Surface.hxx>
+#include <StepToTopoDS_PointPair.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StepShape_FaceSurface.hxx>
+#include <StepToTopoDS_Tool.hxx>
+#include <StepToTopoDS_NMTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StepShape_ConnectedFaceSet.hxx>
+#include <StepToTopoDS_Tool.hxx>
+#include <StepToTopoDS_NMTool.hxx>
 #include <StepGeom_CartesianPoint.hxx>
+#include <StepToTopoDS_PointPairHasher.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StepShape_VertexLoop.hxx>
+#include <StepToTopoDS_Tool.hxx>
+#include <StepToTopoDS_NMTool.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StepShape_ManifoldSolidBrep.hxx>
 #include <Transfer_TransientProcess.hxx>
@@ -77,36 +101,12 @@ namespace py = pybind11;
 #include <StepShape_EdgeBasedWireframeModel.hxx>
 #include <StepShape_FaceBasedSurfaceModel.hxx>
 #include <Transfer_ActorOfTransientProcess.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepToTopoDS_PointPairHasher.hxx>
-#include <StepToTopoDS_PointPair.hxx>
-#include <StepGeom_Axis2Placement3d.hxx>
-#include <StepGeom_CartesianTransformationOperator3d.hxx>
-#include <TopoDS_Shape.hxx>
-#include <StepRepr_MappedItem.hxx>
-#include <Transfer_TransientProcess.hxx>
 #include <StepGeom_SurfaceCurve.hxx>
 #include <StepGeom_Surface.hxx>
 #include <StepGeom_Pcurve.hxx>
 #include <StepShape_Edge.hxx>
 #include <StepShape_EdgeLoop.hxx>
 #include <Geom_Curve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StepShape_FaceBound.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <StepGeom_Surface.hxx>
-#include <StepToTopoDS_Tool.hxx>
-#include <StepToTopoDS_NMTool.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StepShape_PolyLoop.hxx>
-#include <StepToTopoDS_Tool.hxx>
-#include <Geom_Surface.hxx>
-#include <TopoDS_Face.hxx>
 
 // module includes
 #include <StepToTopoDS.hxx>
@@ -149,25 +149,25 @@ namespace py = pybind11;
 #include <StepToTopoDS_TranslateVertexLoopError.hxx>
 
 // template related includes
-// ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
+// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_PointEdgeMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_PointEdgeMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_PointVertexMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_PointVertexMap.hxx
+// ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepToTopoDS_DataMapOfRI.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepToTopoDS_DataMapOfRI.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
+// ./opencascade/StepToTopoDS_PointVertexMap.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
+// ./opencascade/StepToTopoDS_PointVertexMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepToTopoDS_PointEdgeMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepToTopoDS_PointEdgeMap.hxx
 #include "NCollection.hxx"
 
 
@@ -185,27 +185,24 @@ py::module m = main_module.def_submodule("StepToTopoDS", R"#()#");
 // user-defined inclusion per module in the body
 
 // enums
-    py::enum_<StepToTopoDS_TranslateEdgeLoopError>(m, "StepToTopoDS_TranslateEdgeLoopError",R"#(None)#")
-        .value("StepToTopoDS_TranslateEdgeLoopDone",StepToTopoDS_TranslateEdgeLoopError::StepToTopoDS_TranslateEdgeLoopDone)
-        .value("StepToTopoDS_TranslateEdgeLoopOther",StepToTopoDS_TranslateEdgeLoopError::StepToTopoDS_TranslateEdgeLoopOther).export_values();
-    py::enum_<StepToTopoDS_TranslatePolyLoopError>(m, "StepToTopoDS_TranslatePolyLoopError",R"#(None)#")
-        .value("StepToTopoDS_TranslatePolyLoopDone",StepToTopoDS_TranslatePolyLoopError::StepToTopoDS_TranslatePolyLoopDone)
-        .value("StepToTopoDS_TranslatePolyLoopOther",StepToTopoDS_TranslatePolyLoopError::StepToTopoDS_TranslatePolyLoopOther).export_values();
-    py::enum_<StepToTopoDS_TranslateVertexError>(m, "StepToTopoDS_TranslateVertexError",R"#(None)#")
-        .value("StepToTopoDS_TranslateVertexDone",StepToTopoDS_TranslateVertexError::StepToTopoDS_TranslateVertexDone)
-        .value("StepToTopoDS_TranslateVertexOther",StepToTopoDS_TranslateVertexError::StepToTopoDS_TranslateVertexOther).export_values();
-    py::enum_<StepToTopoDS_TranslateFaceError>(m, "StepToTopoDS_TranslateFaceError",R"#(None)#")
-        .value("StepToTopoDS_TranslateFaceDone",StepToTopoDS_TranslateFaceError::StepToTopoDS_TranslateFaceDone)
-        .value("StepToTopoDS_TranslateFaceOther",StepToTopoDS_TranslateFaceError::StepToTopoDS_TranslateFaceOther).export_values();
-    py::enum_<StepToTopoDS_TranslateEdgeError>(m, "StepToTopoDS_TranslateEdgeError",R"#(None)#")
-        .value("StepToTopoDS_TranslateEdgeDone",StepToTopoDS_TranslateEdgeError::StepToTopoDS_TranslateEdgeDone)
-        .value("StepToTopoDS_TranslateEdgeOther",StepToTopoDS_TranslateEdgeError::StepToTopoDS_TranslateEdgeOther).export_values();
-    py::enum_<StepToTopoDS_BuilderError>(m, "StepToTopoDS_BuilderError",R"#(None)#")
-        .value("StepToTopoDS_BuilderDone",StepToTopoDS_BuilderError::StepToTopoDS_BuilderDone)
-        .value("StepToTopoDS_BuilderOther",StepToTopoDS_BuilderError::StepToTopoDS_BuilderOther).export_values();
     py::enum_<StepToTopoDS_TranslateShellError>(m, "StepToTopoDS_TranslateShellError",R"#(None)#")
         .value("StepToTopoDS_TranslateShellDone",StepToTopoDS_TranslateShellError::StepToTopoDS_TranslateShellDone)
         .value("StepToTopoDS_TranslateShellOther",StepToTopoDS_TranslateShellError::StepToTopoDS_TranslateShellOther).export_values();
+    py::enum_<StepToTopoDS_TranslateEdgeError>(m, "StepToTopoDS_TranslateEdgeError",R"#(None)#")
+        .value("StepToTopoDS_TranslateEdgeDone",StepToTopoDS_TranslateEdgeError::StepToTopoDS_TranslateEdgeDone)
+        .value("StepToTopoDS_TranslateEdgeOther",StepToTopoDS_TranslateEdgeError::StepToTopoDS_TranslateEdgeOther).export_values();
+    py::enum_<StepToTopoDS_TranslateVertexError>(m, "StepToTopoDS_TranslateVertexError",R"#(None)#")
+        .value("StepToTopoDS_TranslateVertexDone",StepToTopoDS_TranslateVertexError::StepToTopoDS_TranslateVertexDone)
+        .value("StepToTopoDS_TranslateVertexOther",StepToTopoDS_TranslateVertexError::StepToTopoDS_TranslateVertexOther).export_values();
+    py::enum_<StepToTopoDS_BuilderError>(m, "StepToTopoDS_BuilderError",R"#(None)#")
+        .value("StepToTopoDS_BuilderDone",StepToTopoDS_BuilderError::StepToTopoDS_BuilderDone)
+        .value("StepToTopoDS_BuilderOther",StepToTopoDS_BuilderError::StepToTopoDS_BuilderOther).export_values();
+    py::enum_<StepToTopoDS_TranslatePolyLoopError>(m, "StepToTopoDS_TranslatePolyLoopError",R"#(None)#")
+        .value("StepToTopoDS_TranslatePolyLoopDone",StepToTopoDS_TranslatePolyLoopError::StepToTopoDS_TranslatePolyLoopDone)
+        .value("StepToTopoDS_TranslatePolyLoopOther",StepToTopoDS_TranslatePolyLoopError::StepToTopoDS_TranslatePolyLoopOther).export_values();
+    py::enum_<StepToTopoDS_TranslateEdgeLoopError>(m, "StepToTopoDS_TranslateEdgeLoopError",R"#(None)#")
+        .value("StepToTopoDS_TranslateEdgeLoopDone",StepToTopoDS_TranslateEdgeLoopError::StepToTopoDS_TranslateEdgeLoopDone)
+        .value("StepToTopoDS_TranslateEdgeLoopOther",StepToTopoDS_TranslateEdgeLoopError::StepToTopoDS_TranslateEdgeLoopOther).export_values();
     py::enum_<StepToTopoDS_GeometricToolError>(m, "StepToTopoDS_GeometricToolError",R"#(None)#")
         .value("StepToTopoDS_GeometricToolDone",StepToTopoDS_GeometricToolError::StepToTopoDS_GeometricToolDone)
         .value("StepToTopoDS_GeometricToolIsDegenerated",StepToTopoDS_GeometricToolError::StepToTopoDS_GeometricToolIsDegenerated)
@@ -213,77 +210,42 @@ py::module m = main_module.def_submodule("StepToTopoDS", R"#()#");
         .value("StepToTopoDS_GeometricToolWrong3dParameters",StepToTopoDS_GeometricToolError::StepToTopoDS_GeometricToolWrong3dParameters)
         .value("StepToTopoDS_GeometricToolNoProjectiOnCurve",StepToTopoDS_GeometricToolError::StepToTopoDS_GeometricToolNoProjectiOnCurve)
         .value("StepToTopoDS_GeometricToolOther",StepToTopoDS_GeometricToolError::StepToTopoDS_GeometricToolOther).export_values();
+    py::enum_<StepToTopoDS_TranslateFaceError>(m, "StepToTopoDS_TranslateFaceError",R"#(None)#")
+        .value("StepToTopoDS_TranslateFaceDone",StepToTopoDS_TranslateFaceError::StepToTopoDS_TranslateFaceDone)
+        .value("StepToTopoDS_TranslateFaceOther",StepToTopoDS_TranslateFaceError::StepToTopoDS_TranslateFaceOther).export_values();
     py::enum_<StepToTopoDS_TranslateVertexLoopError>(m, "StepToTopoDS_TranslateVertexLoopError",R"#(None)#")
         .value("StepToTopoDS_TranslateVertexLoopDone",StepToTopoDS_TranslateVertexLoopError::StepToTopoDS_TranslateVertexLoopDone)
         .value("StepToTopoDS_TranslateVertexLoopOther",StepToTopoDS_TranslateVertexLoopError::StepToTopoDS_TranslateVertexLoopOther).export_values();
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<StepToTopoDS_Root ,std::unique_ptr<StepToTopoDS_Root>  >(m,"StepToTopoDS_Root",R"#(This class implements the common services for all classes of StepToTopoDS which report error and sets and returns precision.)#");
-    py::class_<StepToTopoDS_TranslateEdge ,std::unique_ptr<StepToTopoDS_TranslateEdge>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateEdge",R"#(None)#");
-    py::class_<StepToTopoDS_TranslateCurveBoundedSurface ,std::unique_ptr<StepToTopoDS_TranslateCurveBoundedSurface>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateCurveBoundedSurface",R"#(Translate curve_bounded_surface into TopoDS_Face)#");
-    py::class_<StepToTopoDS_TranslateVertexLoop ,std::unique_ptr<StepToTopoDS_TranslateVertexLoop>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateVertexLoop",R"#(None)#");
-    py::class_<StepToTopoDS_TranslateCompositeCurve ,std::unique_ptr<StepToTopoDS_TranslateCompositeCurve>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateCompositeCurve",R"#(Translate STEP entity composite_curve to TopoDS_Wire If surface is given, the curve is assumed to lie on that surface and in case if any segment of it is a curve_on_surface, the pcurve for that segment will be taken. Note: a segment of composite_curve may be itself composite_curve. Only one-level protection against cyclic references is implemented.)#");
-    py::class_<StepToTopoDS_CartesianPointHasher ,std::unique_ptr<StepToTopoDS_CartesianPointHasher>  >(m,"StepToTopoDS_CartesianPointHasher",R"#(None)#");
-    py::class_<StepToTopoDS_PointPair ,std::unique_ptr<StepToTopoDS_PointPair>  >(m,"StepToTopoDS_PointPair",R"#(Stores a pair of Points from step)#");
-    py::class_<StepToTopoDS_MakeTransformed ,std::unique_ptr<StepToTopoDS_MakeTransformed>  , StepToTopoDS_Root >(m,"StepToTopoDS_MakeTransformed",R"#(Produces instances by Transformation of a basic item)#");
-    py::class_<StepToTopoDS_NMTool ,std::unique_ptr<StepToTopoDS_NMTool>  >(m,"StepToTopoDS_NMTool",R"#(Provides data to process non-manifold topology when reading from STEP.)#");
-    py::class_<StepToTopoDS_Tool ,std::unique_ptr<StepToTopoDS_Tool>  >(m,"StepToTopoDS_Tool",R"#(This Tool Class provides Information to build a Cas.Cad BRep from a ProSTEP Shape model.)#");
-    py::class_<StepToTopoDS_TranslateShell ,std::unique_ptr<StepToTopoDS_TranslateShell>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateShell",R"#(None)#");
-    py::class_<StepToTopoDS_TranslateFace ,std::unique_ptr<StepToTopoDS_TranslateFace>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateFace",R"#(None)#");
-    py::class_<StepToTopoDS_Builder ,std::unique_ptr<StepToTopoDS_Builder>  , StepToTopoDS_Root >(m,"StepToTopoDS_Builder",R"#(None)#");
-    py::class_<StepToTopoDS_GeometricTool ,std::unique_ptr<StepToTopoDS_GeometricTool>  >(m,"StepToTopoDS_GeometricTool",R"#(This class contains some algorithmic services specific to the mapping STEP to CAS.CADE)#");
-    py::class_<StepToTopoDS_TranslatePolyLoop ,std::unique_ptr<StepToTopoDS_TranslatePolyLoop>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslatePolyLoop",R"#(None)#");
-    py::class_<StepToTopoDS ,std::unique_ptr<StepToTopoDS>  >(m,"StepToTopoDS",R"#(This package implements the mapping between AP214 Shape representation and CAS.CAD Shape Representation. The source schema is Part42 (which is included in AP214))#");
-    py::class_<StepToTopoDS_PointPairHasher ,std::unique_ptr<StepToTopoDS_PointPairHasher>  >(m,"StepToTopoDS_PointPairHasher",R"#(None)#");
-    py::class_<StepToTopoDS_TranslateVertex ,std::unique_ptr<StepToTopoDS_TranslateVertex>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateVertex",R"#(None)#");
-    py::class_<StepToTopoDS_TranslateEdgeLoop ,std::unique_ptr<StepToTopoDS_TranslateEdgeLoop>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateEdgeLoop",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/StepToTopoDS_TranslateEdge.hxx
-// ./opencascade/StepToTopoDS_TranslateShell.hxx
-// ./opencascade/StepToTopoDS_TranslateEdgeLoopError.hxx
-// ./opencascade/StepToTopoDS_Root.hxx
-// ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
-    preregister_template_NCollection_DataMap<TCollection_AsciiString, TopoDS_Shape, TCollection_AsciiString>(m,"StepToTopoDS_DataMapOfRINames");  
-// ./opencascade/StepToTopoDS_TranslatePolyLoopError.hxx
-// ./opencascade/StepToTopoDS_TranslateCurveBoundedSurface.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfPointVertexMap.hxx
-// ./opencascade/StepToTopoDS.hxx
-// ./opencascade/StepToTopoDS_TranslateVertexError.hxx
-// ./opencascade/StepToTopoDS_TranslateVertexLoop.hxx
-// ./opencascade/StepToTopoDS_TranslateFaceError.hxx
-// ./opencascade/StepToTopoDS_TranslateFace.hxx
-// ./opencascade/StepToTopoDS_TranslateCompositeCurve.hxx
-// ./opencascade/StepToTopoDS_PointEdgeMap.hxx
-    preregister_template_NCollection_DataMap<StepToTopoDS_PointPair, TopoDS_Edge, StepToTopoDS_PointPairHasher>(m,"StepToTopoDS_PointEdgeMap");  
-// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfTRI.hxx
-// ./opencascade/StepToTopoDS_TranslateVertex.hxx
-// ./opencascade/StepToTopoDS_PointVertexMap.hxx
-    preregister_template_NCollection_DataMap<opencascade::handle<StepGeom_CartesianPoint>, TopoDS_Vertex, StepToTopoDS_CartesianPointHasher>(m,"StepToTopoDS_PointVertexMap");  
-// ./opencascade/StepToTopoDS_CartesianPointHasher.hxx
-// ./opencascade/StepToTopoDS_TranslateEdgeError.hxx
-// ./opencascade/StepToTopoDS_Builder.hxx
-// ./opencascade/StepToTopoDS_DataMapOfRI.hxx
-    preregister_template_NCollection_DataMap<opencascade::handle<StepRepr_RepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"StepToTopoDS_DataMapOfRI");  
-// ./opencascade/StepToTopoDS_BuilderError.hxx
-// ./opencascade/StepToTopoDS_TranslateShellError.hxx
-// ./opencascade/StepToTopoDS_PointPair.hxx
-// ./opencascade/StepToTopoDS_PointPairHasher.hxx
-// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
     preregister_template_NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"StepToTopoDS_DataMapOfTRI");  
-// ./opencascade/StepToTopoDS_MakeTransformed.hxx
-// ./opencascade/StepToTopoDS_GeometricTool.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfRINames.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfPointEdgeMap.hxx
-// ./opencascade/StepToTopoDS_NMTool.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfRI.hxx
-// ./opencascade/StepToTopoDS_TranslateEdgeLoop.hxx
-// ./opencascade/StepToTopoDS_GeometricToolError.hxx
-// ./opencascade/StepToTopoDS_Tool.hxx
-// ./opencascade/StepToTopoDS_TranslatePolyLoop.hxx
-// ./opencascade/StepToTopoDS_TranslateVertexLoopError.hxx
+    preregister_template_NCollection_DataMap<TCollection_AsciiString, TopoDS_Shape, TCollection_AsciiString>(m,"StepToTopoDS_DataMapOfRINames");  
+    preregister_template_NCollection_DataMap<opencascade::handle<StepRepr_RepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"StepToTopoDS_DataMapOfRI");  
+    preregister_template_NCollection_DataMap<opencascade::handle<StepGeom_CartesianPoint>, TopoDS_Vertex, StepToTopoDS_CartesianPointHasher>(m,"StepToTopoDS_PointVertexMap");  
+    preregister_template_NCollection_DataMap<StepToTopoDS_PointPair, TopoDS_Edge, StepToTopoDS_PointPairHasher>(m,"StepToTopoDS_PointEdgeMap");  
+
+// classes forward declarations only
+    py::class_<StepToTopoDS , shared_ptr<StepToTopoDS>  >(m,"StepToTopoDS",R"#(This package implements the mapping between AP214 Shape representation and CAS.CAD Shape Representation. The source schema is Part42 (which is included in AP214))#");
+    py::class_<StepToTopoDS_CartesianPointHasher , shared_ptr<StepToTopoDS_CartesianPointHasher>  >(m,"StepToTopoDS_CartesianPointHasher",R"#(None)#");
+    py::class_<StepToTopoDS_GeometricTool , shared_ptr<StepToTopoDS_GeometricTool>  >(m,"StepToTopoDS_GeometricTool",R"#(This class contains some algorithmic services specific to the mapping STEP to CAS.CADE)#");
+    py::class_<StepToTopoDS_NMTool , shared_ptr<StepToTopoDS_NMTool>  >(m,"StepToTopoDS_NMTool",R"#(Provides data to process non-manifold topology when reading from STEP.)#");
+    py::class_<StepToTopoDS_PointPair , shared_ptr<StepToTopoDS_PointPair>  >(m,"StepToTopoDS_PointPair",R"#(Stores a pair of Points from step)#");
+    py::class_<StepToTopoDS_PointPairHasher , shared_ptr<StepToTopoDS_PointPairHasher>  >(m,"StepToTopoDS_PointPairHasher",R"#(None)#");
+    py::class_<StepToTopoDS_Root , shared_ptr<StepToTopoDS_Root>  >(m,"StepToTopoDS_Root",R"#(This class implements the common services for all classes of StepToTopoDS which report error and sets and returns precision.)#");
+    py::class_<StepToTopoDS_Tool , shared_ptr<StepToTopoDS_Tool>  >(m,"StepToTopoDS_Tool",R"#(This Tool Class provides Information to build a Cas.Cad BRep from a ProSTEP Shape model.)#");
+    py::class_<StepToTopoDS_Builder , shared_ptr<StepToTopoDS_Builder>  , StepToTopoDS_Root >(m,"StepToTopoDS_Builder",R"#(None)#");
+    py::class_<StepToTopoDS_MakeTransformed , shared_ptr<StepToTopoDS_MakeTransformed>  , StepToTopoDS_Root >(m,"StepToTopoDS_MakeTransformed",R"#(Produces instances by Transformation of a basic item)#");
+    py::class_<StepToTopoDS_TranslateCompositeCurve , shared_ptr<StepToTopoDS_TranslateCompositeCurve>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateCompositeCurve",R"#(Translate STEP entity composite_curve to TopoDS_Wire If surface is given, the curve is assumed to lie on that surface and in case if any segment of it is a curve_on_surface, the pcurve for that segment will be taken. Note: a segment of composite_curve may be itself composite_curve. Only one-level protection against cyclic references is implemented.)#");
+    py::class_<StepToTopoDS_TranslateCurveBoundedSurface , shared_ptr<StepToTopoDS_TranslateCurveBoundedSurface>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateCurveBoundedSurface",R"#(Translate curve_bounded_surface into TopoDS_Face)#");
+    py::class_<StepToTopoDS_TranslateEdge , shared_ptr<StepToTopoDS_TranslateEdge>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateEdge",R"#(None)#");
+    py::class_<StepToTopoDS_TranslateEdgeLoop , shared_ptr<StepToTopoDS_TranslateEdgeLoop>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateEdgeLoop",R"#(None)#");
+    py::class_<StepToTopoDS_TranslateFace , shared_ptr<StepToTopoDS_TranslateFace>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateFace",R"#(None)#");
+    py::class_<StepToTopoDS_TranslatePolyLoop , shared_ptr<StepToTopoDS_TranslatePolyLoop>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslatePolyLoop",R"#(None)#");
+    py::class_<StepToTopoDS_TranslateShell , shared_ptr<StepToTopoDS_TranslateShell>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateShell",R"#(None)#");
+    py::class_<StepToTopoDS_TranslateVertex , shared_ptr<StepToTopoDS_TranslateVertex>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateVertex",R"#(None)#");
+    py::class_<StepToTopoDS_TranslateVertexLoop , shared_ptr<StepToTopoDS_TranslateVertexLoop>  , StepToTopoDS_Root >(m,"StepToTopoDS_TranslateVertexLoop",R"#(None)#");
 
 };
 

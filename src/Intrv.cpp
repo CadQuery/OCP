@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -39,10 +42,11 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
 // classes
 
 
-    static_cast<py::class_<Intrv_Interval ,std::unique_ptr<Intrv_Interval>  >>(m.attr("Intrv_Interval"))
+    static_cast<py::class_<Intrv_Interval , shared_ptr<Intrv_Interval>  >>(m.attr("Intrv_Interval"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Start"),  py::arg("End") )
         .def(py::init< const Standard_Real,const Standard_ShortReal,const Standard_Real,const Standard_ShortReal >()  , py::arg("Start"),  py::arg("TolStart"),  py::arg("End"),  py::arg("TolEnd") )
+    // methods
         .def("Start",
              (Standard_Real (Intrv_Interval::*)() const) static_cast<Standard_Real (Intrv_Interval::*)() const>(&Intrv_Interval::Start),
              R"#(None)#" )
@@ -55,9 +59,6 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
         .def("TolEnd",
              (Standard_ShortReal (Intrv_Interval::*)() const) static_cast<Standard_ShortReal (Intrv_Interval::*)() const>(&Intrv_Interval::TolEnd),
              R"#(None)#" )
-        .def("Bounds",
-             (void (Intrv_Interval::*)( Standard_Real & ,  Standard_ShortReal & ,  Standard_Real & ,  Standard_ShortReal &  ) const) static_cast<void (Intrv_Interval::*)( Standard_Real & ,  Standard_ShortReal & ,  Standard_Real & ,  Standard_ShortReal &  ) const>(&Intrv_Interval::Bounds),
-             R"#(None)#"  , py::arg("Start"),  py::arg("TolStart"),  py::arg("End"),  py::arg("TolEnd"))
         .def("SetStart",
              (void (Intrv_Interval::*)( const Standard_Real ,  const Standard_ShortReal  ) ) static_cast<void (Intrv_Interval::*)( const Standard_Real ,  const Standard_ShortReal  ) >(&Intrv_Interval::SetStart),
              R"#(None)#"  , py::arg("Start"),  py::arg("TolStart"))
@@ -133,9 +134,6 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
         .def("TolEnd",
              (Standard_ShortReal (Intrv_Interval::*)() const) static_cast<Standard_ShortReal (Intrv_Interval::*)() const>(&Intrv_Interval::TolEnd),
              R"#(None)#" )
-        .def("Bounds",
-             (void (Intrv_Interval::*)( Standard_Real & ,  Standard_ShortReal & ,  Standard_Real & ,  Standard_ShortReal &  ) const) static_cast<void (Intrv_Interval::*)( Standard_Real & ,  Standard_ShortReal & ,  Standard_Real & ,  Standard_ShortReal &  ) const>(&Intrv_Interval::Bounds),
-             R"#(None)#"  , py::arg("Start"),  py::arg("TolStart"),  py::arg("End"),  py::arg("TolEnd"))
         .def("SetStart",
              (void (Intrv_Interval::*)( const Standard_Real ,  const Standard_ShortReal  ) ) static_cast<void (Intrv_Interval::*)( const Standard_Real ,  const Standard_ShortReal  ) >(&Intrv_Interval::SetStart),
              R"#(None)#"  , py::arg("Start"),  py::arg("TolStart"))
@@ -196,13 +194,25 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
         .def("IsSimilar",
              (Standard_Boolean (Intrv_Interval::*)( const Intrv_Interval &  ) const) static_cast<Standard_Boolean (Intrv_Interval::*)( const Intrv_Interval &  ) const>(&Intrv_Interval::IsSimilar),
              R"#(True if me and Other have the same bounds *----------------*** me ***-----------------** Other)#"  , py::arg("Other"))
+    // methods using call by reference i.s.o. return
+        .def("Bounds",
+             []( Intrv_Interval &self , Standard_ShortReal & TolStart,Standard_ShortReal & TolEnd ){ Standard_Real  Start; Standard_Real  End; self.Bounds(Start,TolStart,End,TolEnd); return std::make_tuple(Start,End); },
+             R"#(None)#"  , py::arg("TolStart"),  py::arg("TolEnd"))
+        .def("Bounds",
+             []( Intrv_Interval &self , Standard_ShortReal & TolStart,Standard_ShortReal & TolEnd ){ Standard_Real  Start; Standard_Real  End; self.Bounds(Start,TolStart,End,TolEnd); return std::make_tuple(Start,End); },
+             R"#(None)#"  , py::arg("TolStart"),  py::arg("TolEnd"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Intrv_Intervals ,std::unique_ptr<Intrv_Intervals>  >>(m.attr("Intrv_Intervals"))
+    static_cast<py::class_<Intrv_Intervals , shared_ptr<Intrv_Intervals>  >>(m.attr("Intrv_Intervals"))
         .def(py::init<  >()  )
         .def(py::init< const Intrv_Interval & >()  , py::arg("Int") )
         .def(py::init< const Intrv_Intervals & >()  , py::arg("Int") )
+    // methods
         .def("Intersect",
              (void (Intrv_Intervals::*)( const Intrv_Interval &  ) ) static_cast<void (Intrv_Intervals::*)( const Intrv_Interval &  ) >(&Intrv_Intervals::Intersect),
              R"#(Intersects the intervals with the interval <Tool>.)#"  , py::arg("Tool"))
@@ -239,25 +249,26 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
         .def("Value",
              (const Intrv_Interval & (Intrv_Intervals::*)( const Standard_Integer  ) const) static_cast<const Intrv_Interval & (Intrv_Intervals::*)( const Standard_Integer  ) const>(&Intrv_Intervals::Value),
              R"#(None)#"  , py::arg("Index"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/Intrv_SequenceOfInterval.hxx
+// ./opencascade/Intrv_Intervals.hxx
+// ./opencascade/Intrv_Position.hxx
 // ./opencascade/Intrv_Interval.hxx
     m.def("AreFused", 
           (Standard_Boolean (*)( const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  ))  static_cast<Standard_Boolean (*)( const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  )>(&AreFused),
           R"#(None)#"  , py::arg("c1"),  py::arg("t1"),  py::arg("c2"),  py::arg("t2"));
-// ./opencascade/Intrv_Position.hxx
-// ./opencascade/Intrv_SequenceOfInterval.hxx
-// ./opencascade/Intrv_Intervals.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Intrv_Interval.hxx
-// ./opencascade/Intrv_Position.hxx
-// ./opencascade/Intrv_SequenceOfInterval.hxx
     register_template_NCollection_Sequence<Intrv_Interval>(m,"Intrv_SequenceOfInterval");  
-// ./opencascade/Intrv_Intervals.hxx
 
 
 // exceptions

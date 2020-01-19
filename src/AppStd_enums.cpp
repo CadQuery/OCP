@@ -35,11 +35,10 @@ py::module m = main_module.def_submodule("AppStd", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
     py::class_<AppStd_Application ,opencascade::handle<AppStd_Application>  , TDocStd_Application >(m,"AppStd_Application",R"#(Legacy class defining resources name for standard OCAF documentsLegacy class defining resources name for standard OCAF documentsLegacy class defining resources name for standard OCAF documents)#");
-
-// pre-register typdefs
-// ./opencascade/AppStd_Application.hxx
 
 };
 

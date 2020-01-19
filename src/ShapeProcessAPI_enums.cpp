@@ -36,11 +36,10 @@ py::module m = main_module.def_submodule("ShapeProcessAPI", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<ShapeProcessAPI_ApplySequence ,std::unique_ptr<ShapeProcessAPI_ApplySequence>  >(m,"ShapeProcessAPI_ApplySequence",R"#(Applies one of the sequence read from resource file.)#");
-
 // pre-register typdefs
-// ./opencascade/ShapeProcessAPI_ApplySequence.hxx
+
+// classes forward declarations only
+    py::class_<ShapeProcessAPI_ApplySequence , shared_ptr<ShapeProcessAPI_ApplySequence>  >(m,"ShapeProcessAPI_ApplySequence",R"#(Applies one of the sequence read from resource file.)#");
 
 };
 

@@ -12,6 +12,10 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Geom_Curve.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <GeomLProp_CurveTool.hxx>
+#include <Geom_Curve.hxx>
 #include <GeomLProp_CurveTool.hxx>
 #include <GeomLProp_SurfaceTool.hxx>
 #include <GeomLProp_CLProps.hxx>
@@ -19,10 +23,6 @@ namespace py = pybind11;
 #include <Geom_Curve.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
-#include <Geom_Curve.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <GeomLProp_CurveTool.hxx>
 #include <Geom_Surface.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
@@ -58,19 +58,14 @@ py::module m = main_module.def_submodule("GeomLProp", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<GeomLProp ,std::unique_ptr<GeomLProp>  >(m,"GeomLProp",R"#(These global functions compute the degree of continuity of a 3D curve built by concatenation of two other curves (or portions of curves) at their junction point.)#");
-    py::class_<GeomLProp_CLProps ,std::unique_ptr<GeomLProp_CLProps>  >(m,"GeomLProp_CLProps",R"#(None)#");
-    py::class_<GeomLProp_SLProps ,std::unique_ptr<GeomLProp_SLProps>  >(m,"GeomLProp_SLProps",R"#(None)#");
-    py::class_<GeomLProp_CurveTool ,std::unique_ptr<GeomLProp_CurveTool>  >(m,"GeomLProp_CurveTool",R"#(None)#");
-    py::class_<GeomLProp_SurfaceTool ,std::unique_ptr<GeomLProp_SurfaceTool>  >(m,"GeomLProp_SurfaceTool",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/GeomLProp.hxx
-// ./opencascade/GeomLProp_CurveTool.hxx
-// ./opencascade/GeomLProp_CLProps.hxx
-// ./opencascade/GeomLProp_SurfaceTool.hxx
-// ./opencascade/GeomLProp_SLProps.hxx
+
+// classes forward declarations only
+    py::class_<GeomLProp , shared_ptr<GeomLProp>  >(m,"GeomLProp",R"#(These global functions compute the degree of continuity of a 3D curve built by concatenation of two other curves (or portions of curves) at their junction point.)#");
+    py::class_<GeomLProp_CLProps , shared_ptr<GeomLProp_CLProps>  >(m,"GeomLProp_CLProps",R"#(None)#");
+    py::class_<GeomLProp_CurveTool , shared_ptr<GeomLProp_CurveTool>  >(m,"GeomLProp_CurveTool",R"#(None)#");
+    py::class_<GeomLProp_SLProps , shared_ptr<GeomLProp_SLProps>  >(m,"GeomLProp_SLProps",R"#(None)#");
+    py::class_<GeomLProp_SurfaceTool , shared_ptr<GeomLProp_SurfaceTool>  >(m,"GeomLProp_SurfaceTool",R"#(None)#");
 
 };
 

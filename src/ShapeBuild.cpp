@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -50,35 +53,24 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeBuild"));
 
 // classes
 
+    register_default_constructor<ShapeBuild , shared_ptr<ShapeBuild>>(m,"ShapeBuild");
 
-    static_cast<py::class_<ShapeBuild_ReShape ,opencascade::handle<ShapeBuild_ReShape>  , BRepTools_ReShape >>(m.attr("ShapeBuild_ReShape"))
-        .def(py::init<  >()  )
-        .def("Apply",
-             (TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const Standard_Integer  ) ) static_cast<TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const Standard_Integer  ) >(&ShapeBuild_ReShape::Apply),
-             R"#(Applies the substitutions requests to a shape)#"  , py::arg("shape"),  py::arg("until"),  py::arg("buildmode"))
-        .def("Apply",
-             (TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) ) static_cast<TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) >(&ShapeBuild_ReShape::Apply),
-             R"#(Applies the substitutions requests to a shape.)#"  , py::arg("shape"),  py::arg("until")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE))
-        .def("Status",
-             (Standard_Integer (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Boolean  ) ) static_cast<Standard_Integer (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Boolean  ) >(&ShapeBuild_ReShape::Status),
-             R"#(Returns a complete substitution status for a shape 0 : not recorded, <newsh> = original <shape> < 0: to be removed, <newsh> is NULL > 0: to be replaced, <newsh> is a new item If <last> is False, returns status and new shape recorded in the map directly for the shape, if True and status > 0 then recursively searches for the last status and new shape.)#"  , py::arg("shape"),  py::arg("newsh"),  py::arg("last")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("Status",
-             (Standard_Boolean (ShapeBuild_ReShape::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeBuild_ReShape::*)( const ShapeExtend_Status  ) const>(&ShapeBuild_ReShape::Status),
-             R"#(Queries the status of last call to Apply(shape,enum) OK : no (sub)shapes replaced or removed DONE1: source (starting) shape replaced DONE2: source (starting) shape removed DONE3: some subshapes replaced DONE4: some subshapes removed FAIL1: some replacements not done because of bad type of subshape)#"  , py::arg("status"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeBuild_ReShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeBuild_ReShape::*)() const>(&ShapeBuild_ReShape::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeBuild_ReShape::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeBuild_ReShape::get_type_descriptor),
-                    R"#(None)#" )
+    static_cast<py::class_<ShapeBuild , shared_ptr<ShapeBuild>  >>(m.attr("ShapeBuild"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("PlaneXOY_s",
+                    (opencascade::handle<Geom_Plane> (*)() ) static_cast<opencascade::handle<Geom_Plane> (*)() >(&ShapeBuild::PlaneXOY),
+                    R"#(Rebuilds a shape with substitution of some components Returns a Geom_Surface which is the Plane XOY (Z positive) This allows to consider an UV space homologous to a 3D space, with this support surface)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<ShapeBuild_Edge ,std::unique_ptr<ShapeBuild_Edge>>(m,"ShapeBuild_Edge");
+    register_default_constructor<ShapeBuild_Edge , shared_ptr<ShapeBuild_Edge>>(m,"ShapeBuild_Edge");
 
-    static_cast<py::class_<ShapeBuild_Edge ,std::unique_ptr<ShapeBuild_Edge>  >>(m.attr("ShapeBuild_Edge"))
+    static_cast<py::class_<ShapeBuild_Edge , shared_ptr<ShapeBuild_Edge>  >>(m.attr("ShapeBuild_Edge"))
+    // methods
         .def("CopyReplaceVertices",
              (TopoDS_Edge (ShapeBuild_Edge::*)( const TopoDS_Edge & ,  const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) const) static_cast<TopoDS_Edge (ShapeBuild_Edge::*)( const TopoDS_Edge & ,  const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) const>(&ShapeBuild_Edge::CopyReplaceVertices),
              R"#(Copy edge and replace one or both its vertices to a given one(s). Vertex V1 replaces FORWARD vertex, and V2 - REVERSED, as they are found by TopoDS_Iterator. If V1 or V2 is NULL, the original vertex is taken)#"  , py::arg("edge"),  py::arg("V1"),  py::arg("V2"))
@@ -136,40 +128,71 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeBuild"));
         .def("MakeEdge",
              (void (ShapeBuild_Edge::*)( TopoDS_Edge & ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom_Surface> & ,  const TopLoc_Location & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<void (ShapeBuild_Edge::*)( TopoDS_Edge & ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom_Surface> & ,  const TopLoc_Location & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeBuild_Edge::MakeEdge),
              R"#(Makes edge with pcurve, surface, location and range [p1, p2])#"  , py::arg("edge"),  py::arg("pcurve"),  py::arg("S"),  py::arg("L"),  py::arg("p1"),  py::arg("p2"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<ShapeBuild ,std::unique_ptr<ShapeBuild>>(m,"ShapeBuild");
 
-    static_cast<py::class_<ShapeBuild ,std::unique_ptr<ShapeBuild>  >>(m.attr("ShapeBuild"))
-        .def_static("PlaneXOY_s",
-                    (opencascade::handle<Geom_Plane> (*)() ) static_cast<opencascade::handle<Geom_Plane> (*)() >(&ShapeBuild::PlaneXOY),
-                    R"#(Rebuilds a shape with substitution of some components Returns a Geom_Surface which is the Plane XOY (Z positive) This allows to consider an UV space homologous to a 3D space, with this support surface)#" )
+    static_cast<py::class_<ShapeBuild_ReShape ,opencascade::handle<ShapeBuild_ReShape>  , BRepTools_ReShape >>(m.attr("ShapeBuild_ReShape"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Apply",
+             (TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const Standard_Integer  ) ) static_cast<TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const Standard_Integer  ) >(&ShapeBuild_ReShape::Apply),
+             R"#(Applies the substitutions requests to a shape)#"  , py::arg("shape"),  py::arg("until"),  py::arg("buildmode"))
+        .def("Apply",
+             (TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) ) static_cast<TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) >(&ShapeBuild_ReShape::Apply),
+             R"#(Applies the substitutions requests to a shape.)#"  , py::arg("shape"),  py::arg("until")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE))
+        .def("Status",
+             (Standard_Integer (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Boolean  ) ) static_cast<Standard_Integer (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  TopoDS_Shape & ,  const Standard_Boolean  ) >(&ShapeBuild_ReShape::Status),
+             R"#(Returns a complete substitution status for a shape 0 : not recorded, <newsh> = original <shape> < 0: to be removed, <newsh> is NULL > 0: to be replaced, <newsh> is a new item If <last> is False, returns status and new shape recorded in the map directly for the shape, if True and status > 0 then recursively searches for the last status and new shape.)#"  , py::arg("shape"),  py::arg("newsh"),  py::arg("last")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("Status",
+             (Standard_Boolean (ShapeBuild_ReShape::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeBuild_ReShape::*)( const ShapeExtend_Status  ) const>(&ShapeBuild_ReShape::Status),
+             R"#(Queries the status of last call to Apply(shape,enum) OK : no (sub)shapes replaced or removed DONE1: source (starting) shape replaced DONE2: source (starting) shape removed DONE3: some subshapes replaced DONE4: some subshapes removed FAIL1: some replacements not done because of bad type of subshape)#"  , py::arg("status"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeBuild_ReShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeBuild_ReShape::*)() const>(&ShapeBuild_ReShape::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeBuild_ReShape::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeBuild_ReShape::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<ShapeBuild_Vertex ,std::unique_ptr<ShapeBuild_Vertex>>(m,"ShapeBuild_Vertex");
+    register_default_constructor<ShapeBuild_Vertex , shared_ptr<ShapeBuild_Vertex>>(m,"ShapeBuild_Vertex");
 
-    static_cast<py::class_<ShapeBuild_Vertex ,std::unique_ptr<ShapeBuild_Vertex>  >>(m.attr("ShapeBuild_Vertex"))
+    static_cast<py::class_<ShapeBuild_Vertex , shared_ptr<ShapeBuild_Vertex>  >>(m.attr("ShapeBuild_Vertex"))
+    // methods
         .def("CombineVertex",
              (TopoDS_Vertex (ShapeBuild_Vertex::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex & ,  const Standard_Real  ) const) static_cast<TopoDS_Vertex (ShapeBuild_Vertex::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex & ,  const Standard_Real  ) const>(&ShapeBuild_Vertex::CombineVertex),
              R"#(Combines new vertex from two others. This new one is the smallest vertex which comprises both of the source vertices. The function takes into account the positions and tolerances of the source vertices. The tolerance of the new vertex will be equal to the minimal tolerance that is required to comprise source vertices multiplied by tolFactor (in order to avoid errors because of discreteness of calculations).)#"  , py::arg("V1"),  py::arg("V2"),  py::arg("tolFactor")=static_cast<const Standard_Real>(1.0001))
         .def("CombineVertex",
              (TopoDS_Vertex (ShapeBuild_Vertex::*)( const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<TopoDS_Vertex (ShapeBuild_Vertex::*)( const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeBuild_Vertex::CombineVertex),
              R"#(The same function as above, except that it accepts two points and two tolerances instead of vertices)#"  , py::arg("pnt1"),  py::arg("pnt2"),  py::arg("tol1"),  py::arg("tol2"),  py::arg("tolFactor")=static_cast<const Standard_Real>(1.0001))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/ShapeBuild_ReShape.hxx
 // ./opencascade/ShapeBuild.hxx
 // ./opencascade/ShapeBuild_Edge.hxx
 // ./opencascade/ShapeBuild_Vertex.hxx
+// ./opencascade/ShapeBuild_ReShape.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ShapeBuild_ReShape.hxx
-// ./opencascade/ShapeBuild.hxx
-// ./opencascade/ShapeBuild_Edge.hxx
-// ./opencascade/ShapeBuild_Vertex.hxx
 
 
 // exceptions

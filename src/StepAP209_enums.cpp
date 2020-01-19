@@ -44,11 +44,10 @@ py::module m = main_module.def_submodule("StepAP209", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<StepAP209_Construct ,std::unique_ptr<StepAP209_Construct>  , STEPConstruct_Tool >(m,"StepAP209_Construct",R"#(Basic tool for working with AP209 model)#");
-
 // pre-register typdefs
-// ./opencascade/StepAP209_Construct.hxx
+
+// classes forward declarations only
+    py::class_<StepAP209_Construct , shared_ptr<StepAP209_Construct>  , STEPConstruct_Tool >(m,"StepAP209_Construct",R"#(Basic tool for working with AP209 model)#");
 
 };
 

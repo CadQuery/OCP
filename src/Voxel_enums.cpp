@@ -34,9 +34,9 @@ py::module m = main_module.def_submodule("Voxel", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-
 // pre-register typdefs
+
+// classes forward declarations only
 
 };
 

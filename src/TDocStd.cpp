@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,25 +13,19 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TDocStd_Document.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <TDocStd_Document.hxx>
-#include <Resource_Manager.hxx>
-#include <TDocStd_Document.hxx>
-#include <TDF_DataSet.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_Label.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDocStd_XLinkIterator.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Data.hxx>
-#include <TDF_RelocationTable.hxx>
 #include <TDocStd_XLinkRoot.hxx>
 #include <TDocStd_XLinkIterator.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_Reference.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_AttributeDelta.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDocStd_XLinkIterator.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Data.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDocStd_XLink.hxx>
 #include <TDocStd_Application.hxx>
@@ -44,12 +41,18 @@ namespace py = pybind11;
 #include <TDocStd_CompoundDelta.hxx>
 #include <TDocStd_ApplicationDelta.hxx>
 #include <TDocStd_MultiTransactionManager.hxx>
+#include <TDocStd_CompoundDelta.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
 #include <TDocStd_Document.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Data.hxx>
 #include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <Resource_Manager.hxx>
 #include <TDocStd_Document.hxx>
-#include <TDocStd_CompoundDelta.hxx>
 
 // module includes
 #include <TDocStd.hxx>
@@ -73,9 +76,9 @@ namespace py = pybind11;
 #include <TDocStd_XLinkTool.hxx>
 
 // template related includes
-// ./opencascade/TDocStd_SequenceOfDocument.hxx
-#include "NCollection.hxx"
 // ./opencascade/TDocStd_SequenceOfApplicationDelta.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDocStd_SequenceOfDocument.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDocStd_LabelIDMapDataMap.hxx
 #include "NCollection.hxx"
@@ -101,33 +104,24 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
 
 // classes
 
+    register_default_constructor<TDocStd , shared_ptr<TDocStd>>(m,"TDocStd");
 
-    static_cast<py::class_<TDocStd_XLinkIterator ,std::unique_ptr<TDocStd_XLinkIterator>  >>(m.attr("TDocStd_XLinkIterator"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<TDocStd_Document> & >()  , py::arg("D") )
-        .def("Initialize",
-             (void (TDocStd_XLinkIterator::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_XLinkIterator::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_XLinkIterator::Initialize),
-             R"#(Restarts an iteration with <D>.)#"  , py::arg("D"))
-        .def("More",
-             (Standard_Boolean (TDocStd_XLinkIterator::*)() const) static_cast<Standard_Boolean (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::More),
-             R"#(Returns True if there is a current Item in the iteration.)#" )
-        .def("Next",
-             (void (TDocStd_XLinkIterator::*)() ) static_cast<void (TDocStd_XLinkIterator::*)() >(&TDocStd_XLinkIterator::Next),
-             R"#(Move to the next item; raises if there is no more item.)#" )
-        .def("Value",
-             (TDocStd_XLinkPtr (TDocStd_XLinkIterator::*)() const) static_cast<TDocStd_XLinkPtr (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::Value),
-             R"#(Returns the current item; a null handle if there is none.)#" )
-        .def("More",
-             (Standard_Boolean (TDocStd_XLinkIterator::*)() const) static_cast<Standard_Boolean (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::More),
-             R"#(Returns True if there is a current Item in the iteration.)#" )
-        .def("Value",
-             (TDocStd_XLink * (TDocStd_XLinkIterator::*)() const) static_cast<TDocStd_XLink * (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::Value),
-             R"#(Returns the current item; a null handle if there is none.)#" )
+    static_cast<py::class_<TDocStd , shared_ptr<TDocStd>  >>(m.attr("TDocStd"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("IDList_s",
+                    (void (*)( NCollection_List<Standard_GUID> &  ) ) static_cast<void (*)( NCollection_List<Standard_GUID> &  ) >(&TDocStd::IDList),
+                    R"#(specific GUID of this package ============================= Appends to <anIDList> the list of the attributes IDs of this package. CAUTION: <anIDList> is NOT cleared before use.)#"  , py::arg("anIDList"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TDocStd_Application ,opencascade::handle<TDocStd_Application>  , CDF_Application >>(m.attr("TDocStd_Application"))
         .def(py::init<  >()  )
+    // methods
         .def("IsDriverLoaded",
              (Standard_Boolean (TDocStd_Application::*)() const) static_cast<Standard_Boolean (TDocStd_Application::*)() const>(&TDocStd_Application::IsDriverLoaded),
              R"#(Check if meta data driver was successfully loaded by the application constructor)#" )
@@ -203,333 +197,101 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDocStd_Application::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_Application::*)() const>(&TDocStd_Application::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_Application::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_Application::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TDocStd_XLinkTool ,std::unique_ptr<TDocStd_XLinkTool>  >>(m.attr("TDocStd_XLinkTool"))
+    static_cast<py::class_<TDocStd_ApplicationDelta ,opencascade::handle<TDocStd_ApplicationDelta>  , Standard_Transient >>(m.attr("TDocStd_ApplicationDelta"))
         .def(py::init<  >()  )
-        .def("CopyWithLink",
-             (void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TDocStd_XLinkTool::CopyWithLink),
-             R"#(Copies the content of the label <fromsource> to the label <intarget>. The link is registred with an XLink attribute by <intarget> label. if the content of <fromsource> is not self-contained, and/or <intarget> has already an XLink attribute, an exception is raised.)#"  , py::arg("intarget"),  py::arg("fromsource"))
-        .def("UpdateLink",
-             (void (TDocStd_XLinkTool::*)( const TDF_Label &  ) ) static_cast<void (TDocStd_XLinkTool::*)( const TDF_Label &  ) >(&TDocStd_XLinkTool::UpdateLink),
-             R"#(Update the external reference set at <L>. Example Handle(TDocStd_Document) aDoc; if (!OCAFTest::GetDocument(1,aDoc)) return 1; Handle(TDataStd_Reference) aRef; TDocStd_XLinkTool xlinktool; if (!OCAFTest::Find(aDoc,2),TDataStd_Reference::GetID(),aRef) return 1; xlinktool.UpdateLink(aRef->Label()); Exceptions Standard_DomainError if <L> has no XLink attribute.)#"  , py::arg("L"))
-        .def("Copy",
-             (void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TDocStd_XLinkTool::Copy),
-             R"#(Copy the content of <fromsource> under <intarget>. Noone link is registred. noone check is done. Example Handle(TDocStd_Document) DOC, XDOC; TDF_Label L, XL; TDocStd_XLinkTool xlinktool; xlinktool.Copy(L,XL); Exceptions: Standard_DomainError if the contents of fromsource are not entirely in the scope of this label, in other words, are not self-contained. !!! ==> Warning: If the document manages shapes use the next way: TDocStd_XLinkTool xlinktool; xlinktool.Copy(L,XL); TopTools_DataMapOfShapeShape M; TNaming::ChangeShapes(target,M);)#"  , py::arg("intarget"),  py::arg("fromsource"))
-        .def("IsDone",
-             (Standard_Boolean (TDocStd_XLinkTool::*)() const) static_cast<Standard_Boolean (TDocStd_XLinkTool::*)() const>(&TDocStd_XLinkTool::IsDone),
+    // methods
+        .def("GetDocuments",
+             (TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() ) static_cast<TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() >(&TDocStd_ApplicationDelta::GetDocuments),
              R"#(None)#" )
-        .def("DataSet",
-             (opencascade::handle<TDF_DataSet> (TDocStd_XLinkTool::*)() const) static_cast<opencascade::handle<TDF_DataSet> (TDocStd_XLinkTool::*)() const>(&TDocStd_XLinkTool::DataSet),
+        .def("GetName",
+             (const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const) static_cast<const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const>(&TDocStd_ApplicationDelta::GetName),
              R"#(None)#" )
-        .def("RelocationTable",
-             (opencascade::handle<TDF_RelocationTable> (TDocStd_XLinkTool::*)() const) static_cast<opencascade::handle<TDF_RelocationTable> (TDocStd_XLinkTool::*)() const>(&TDocStd_XLinkTool::RelocationTable),
-             R"#(None)#" )
-;
-
-    register_default_constructor<TDocStd_XLinkRoot ,opencascade::handle<TDocStd_XLinkRoot>>(m,"TDocStd_XLinkRoot");
-
-    static_cast<py::class_<TDocStd_XLinkRoot ,opencascade::handle<TDocStd_XLinkRoot>  , TDF_Attribute >>(m.attr("TDocStd_XLinkRoot"))
-        .def("ID",
-             (const Standard_GUID & (TDocStd_XLinkRoot::*)() const) static_cast<const Standard_GUID & (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::ID),
-             R"#(Returns the ID of the attribute.)#" )
-        .def("BackupCopy",
-             (opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::BackupCopy),
-             R"#(Returns a null handle.)#" )
-        .def("Restore",
-             (void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TDocStd_XLinkRoot::Restore),
-             R"#(Does nothing.)#"  , py::arg("anAttribute"))
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::NewEmpty),
-             R"#(Returns a null handle.)#" )
-        .def("Paste",
-             (void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TDocStd_XLinkRoot::Paste),
-             R"#(Does nothing.)#"  , py::arg("intoAttribute"),  py::arg("aRelocationTable"))
+        .def("SetName",
+             (void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) >(&TDocStd_ApplicationDelta::SetName),
+             R"#(None)#"  , py::arg("theName"))
         .def("Dump",
-             (Standard_OStream & (TDocStd_XLinkRoot::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TDocStd_XLinkRoot::*)( std::ostream &  ) const>(&TDocStd_XLinkRoot::Dump),
-             R"#(Dumps the attribute on <aStream>.)#"  , py::arg("anOS"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TDocStd_XLinkRoot::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::DynamicType),
-             R"#(None)#" )
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TDocStd_XLinkRoot::GetID),
-                    R"#(Returns the ID: 2a96b61d-ec8b-11d0-bee7-080009dc3333)#" )
-        .def_static("Set_s",
-                    (opencascade::handle<TDocStd_XLinkRoot> (*)( const opencascade::handle<TDF_Data> &  ) ) static_cast<opencascade::handle<TDocStd_XLinkRoot> (*)( const opencascade::handle<TDF_Data> &  ) >(&TDocStd_XLinkRoot::Set),
-                    R"#(Sets an empty XLinkRoot to Root or gets the existing one. Only one attribute per TDF_Data.)#"  , py::arg("aDF"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_XLinkRoot::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_XLinkRoot::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TDocStd_PathParser ,std::unique_ptr<TDocStd_PathParser>  >>(m.attr("TDocStd_PathParser"))
-        .def(py::init< const TCollection_ExtendedString & >()  , py::arg("path") )
-        .def("Parse",
-             (void (TDocStd_PathParser::*)() ) static_cast<void (TDocStd_PathParser::*)() >(&TDocStd_PathParser::Parse),
-             R"#(None)#" )
-        .def("Trek",
-             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Trek),
-             R"#(None)#" )
-        .def("Name",
-             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Name),
-             R"#(None)#" )
-        .def("Extension",
-             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Extension),
-             R"#(None)#" )
-        .def("Path",
-             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Path),
-             R"#(None)#" )
-        .def("Length",
-             (Standard_Integer (TDocStd_PathParser::*)() const) static_cast<Standard_Integer (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Length),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TDocStd_Owner ,opencascade::handle<TDocStd_Owner>  , TDF_Attribute >>(m.attr("TDocStd_Owner"))
-        .def(py::init<  >()  )
-        .def("SetDocument",
-             (void (TDocStd_Owner::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_Owner::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_Owner::SetDocument),
-             R"#(None)#"  , py::arg("document"))
-        .def("GetDocument",
-             (opencascade::handle<TDocStd_Document> (TDocStd_Owner::*)() const) static_cast<opencascade::handle<TDocStd_Document> (TDocStd_Owner::*)() const>(&TDocStd_Owner::GetDocument),
-             R"#(None)#" )
-        .def("ID",
-             (const Standard_GUID & (TDocStd_Owner::*)() const) static_cast<const Standard_GUID & (TDocStd_Owner::*)() const>(&TDocStd_Owner::ID),
-             R"#(None)#" )
-        .def("Restore",
-             (void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TDocStd_Owner::Restore),
-             R"#(None)#"  , py::arg("With"))
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TDocStd_Owner::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_Owner::*)() const>(&TDocStd_Owner::NewEmpty),
-             R"#(None)#" )
-        .def("Paste",
-             (void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TDocStd_Owner::Paste),
-             R"#(None)#"  , py::arg("Into"),  py::arg("RT"))
-        .def("Dump",
-             (Standard_OStream & (TDocStd_Owner::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TDocStd_Owner::*)( std::ostream &  ) const>(&TDocStd_Owner::Dump),
+             (void (TDocStd_ApplicationDelta::*)( std::ostream &  ) const) static_cast<void (TDocStd_ApplicationDelta::*)( std::ostream &  ) const>(&TDocStd_ApplicationDelta::Dump),
              R"#(None)#"  , py::arg("anOS"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TDocStd_Owner::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_Owner::*)() const>(&TDocStd_Owner::DynamicType),
+             (const opencascade::handle<Standard_Type> & (TDocStd_ApplicationDelta::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_ApplicationDelta::*)() const>(&TDocStd_ApplicationDelta::DynamicType),
              R"#(None)#" )
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TDocStd_Owner::GetID),
-                    R"#(class methods =============)#" )
-        .def_static("SetDocument_s",
-                    (void (*)( const opencascade::handle<TDF_Data> & ,  const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (*)( const opencascade::handle<TDF_Data> & ,  const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_Owner::SetDocument),
-                    R"#(None)#"  , py::arg("indata"),  py::arg("doc"))
-        .def_static("GetDocument_s",
-                    (opencascade::handle<TDocStd_Document> (*)( const opencascade::handle<TDF_Data> &  ) ) static_cast<opencascade::handle<TDocStd_Document> (*)( const opencascade::handle<TDF_Data> &  ) >(&TDocStd_Owner::GetDocument),
-                    R"#(Owner methods ===============)#"  , py::arg("ofdata"))
+        .def("GetDocuments",
+             (TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() ) static_cast<TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() >(&TDocStd_ApplicationDelta::GetDocuments),
+             R"#(None)#" )
+        .def("GetName",
+             (const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const) static_cast<const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const>(&TDocStd_ApplicationDelta::GetName),
+             R"#(None)#" )
+        .def("SetName",
+             (void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) >(&TDocStd_ApplicationDelta::SetName),
+             R"#(None)#"  , py::arg("theName"))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_Owner::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_ApplicationDelta::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_Owner::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_ApplicationDelta::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TDocStd_CompoundDelta ,opencascade::handle<TDocStd_CompoundDelta>  , TDF_Delta >>(m.attr("TDocStd_CompoundDelta"))
         .def(py::init<  >()  )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDocStd_CompoundDelta::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_CompoundDelta::*)() const>(&TDocStd_CompoundDelta::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_CompoundDelta::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_CompoundDelta::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TDocStd_MultiTransactionManager ,opencascade::handle<TDocStd_MultiTransactionManager>  , Standard_Transient >>(m.attr("TDocStd_MultiTransactionManager"))
+    static_cast<py::class_<TDocStd_Context , shared_ptr<TDocStd_Context>  >>(m.attr("TDocStd_Context"))
         .def(py::init<  >()  )
-        .def("SetUndoLimit",
-             (void (TDocStd_MultiTransactionManager::*)( const Standard_Integer  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const Standard_Integer  ) >(&TDocStd_MultiTransactionManager::SetUndoLimit),
-             R"#(Sets undo limit for the manager and all documents.)#"  , py::arg("theLimit"))
-        .def("GetUndoLimit",
-             (Standard_Integer (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Integer (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetUndoLimit),
-             R"#(Returns undo limit for the manager.)#" )
-        .def("Undo",
-             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::Undo),
-             R"#(Undoes the current transaction of the manager. It calls the Undo () method of the document being on top of the manager list of undos (list.First()) and moves the list item to the top of the list of manager redos (list.Prepend(item)).)#" )
-        .def("Redo",
-             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::Redo),
-             R"#(Redoes the current transaction of the application. It calls the Redo () method of the document being on top of the manager list of redos (list.First()) and moves the list item to the top of the list of manager undos (list.Prepend(item)).)#" )
-        .def("GetAvailableUndos",
-             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableUndos),
-             R"#(Returns available manager undos.)#" )
-        .def("GetAvailableRedos",
-             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableRedos),
-             R"#(Returns available manager redos.)#" )
-        .def("OpenCommand",
-             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::OpenCommand),
-             R"#(Opens transaction in each document and sets the flag that transaction is opened. If there are already opened transactions in the documents, these transactions will be aborted before openning new ones.)#" )
-        .def("AbortCommand",
-             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::AbortCommand),
-             R"#(Unsets the flag of started manager transaction and aborts transaction in each document.)#" )
-        .def("CommitCommand",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() ) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::CommitCommand),
-             R"#(Commits transaction in all documents and fills the transaction manager with the documents that have been changed during the transaction. Returns True if new data has been added to myUndos. NOTE: All nested transactions in the documents will be commited.)#" )
-        .def("CommitCommand",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)( const TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)( const TCollection_ExtendedString &  ) >(&TDocStd_MultiTransactionManager::CommitCommand),
-             R"#(Makes the same steps as the previous function but defines the name for transaction. Returns True if new data has been added to myUndos.)#"  , py::arg("theName"))
-        .def("HasOpenCommand",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::HasOpenCommand),
-             R"#(Returns true if a transaction is opened.)#" )
-        .def("RemoveLastUndo",
-             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::RemoveLastUndo),
-             R"#(Removes undo information from the list of undos of the manager and all documents which have been modified during the transaction.)#" )
-        .def("DumpTransaction",
-             (void (TDocStd_MultiTransactionManager::*)( std::ostream &  ) const) static_cast<void (TDocStd_MultiTransactionManager::*)( std::ostream &  ) const>(&TDocStd_MultiTransactionManager::DumpTransaction),
-             R"#(Dumps transactions in undos and redos)#"  , py::arg("theOS"))
-        .def("AddDocument",
-             (void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_MultiTransactionManager::AddDocument),
-             R"#(Adds the document to the transaction manager and checks if it has been already added)#"  , py::arg("theDoc"))
-        .def("RemoveDocument",
-             (void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_MultiTransactionManager::RemoveDocument),
-             R"#(Removes the document from the transaction manager.)#"  , py::arg("theDoc"))
-        .def("Documents",
-             (const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::Documents),
-             R"#(Returns the added documents to the transaction manager.)#" )
-        .def("SetNestedTransactionMode",
-             (void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) >(&TDocStd_MultiTransactionManager::SetNestedTransactionMode),
-             R"#(Sets nested transaction mode if isAllowed == Standard_True NOTE: field myIsNestedTransactionMode exists only for synchronization between several documents and has no effect on transactions of multitransaction manager.)#"  , py::arg("isAllowed")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("IsNestedTransactionMode",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::IsNestedTransactionMode),
-             R"#(Returns Standard_True if NestedTransaction mode is set. Methods for protection of changes outside transactions)#" )
-        .def("SetModificationMode",
-             (void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) >(&TDocStd_MultiTransactionManager::SetModificationMode),
-             R"#(If theTransactionOnly is True, denies all changes outside transactions.)#"  , py::arg("theTransactionOnly"))
-        .def("ModificationMode",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::ModificationMode),
-             R"#(Returns True if changes are allowed only inside transactions.)#" )
-        .def("ClearUndos",
-             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::ClearUndos),
-             R"#(Clears undos in the manager and in documents.)#" )
-        .def("ClearRedos",
-             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::ClearRedos),
-             R"#(Clears redos in the manager and in documents.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TDocStd_MultiTransactionManager::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::DynamicType),
+    // methods
+        .def("SetModifiedReferences",
+             (void (TDocStd_Context::*)( const Standard_Boolean  ) ) static_cast<void (TDocStd_Context::*)( const Standard_Boolean  ) >(&TDocStd_Context::SetModifiedReferences),
+             R"#(None)#"  , py::arg("Mod"))
+        .def("ModifiedReferences",
+             (Standard_Boolean (TDocStd_Context::*)() const) static_cast<Standard_Boolean (TDocStd_Context::*)() const>(&TDocStd_Context::ModifiedReferences),
              R"#(None)#" )
-        .def("GetUndoLimit",
-             (Standard_Integer (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Integer (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetUndoLimit),
-             R"#(Returns undo limit for the manager.)#" )
-        .def("GetAvailableUndos",
-             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableUndos),
-             R"#(Returns available manager undos.)#" )
-        .def("GetAvailableRedos",
-             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableRedos),
-             R"#(Returns available manager redos.)#" )
-        .def("Documents",
-             (const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::Documents),
-             R"#(Returns the added documents to the transaction manager.)#" )
-        .def("IsNestedTransactionMode",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::IsNestedTransactionMode),
-             R"#(Returns Standard_True if NestedTransaction mode is set. Methods for protection of changes outside transactions)#" )
-        .def("HasOpenCommand",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::HasOpenCommand),
-             R"#(Returns true if a transaction is opened.)#" )
-        .def("ModificationMode",
-             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::ModificationMode),
-             R"#(Returns True if changes are allowed only inside transactions.)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_MultiTransactionManager::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_MultiTransactionManager::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TDocStd_Modified ,opencascade::handle<TDocStd_Modified>  , TDF_Attribute >>(m.attr("TDocStd_Modified"))
-        .def(py::init<  >()  )
-        .def("IsEmpty",
-             (Standard_Boolean (TDocStd_Modified::*)() const) static_cast<Standard_Boolean (TDocStd_Modified::*)() const>(&TDocStd_Modified::IsEmpty),
-             R"#(None)#" )
-        .def("Clear",
-             (void (TDocStd_Modified::*)() ) static_cast<void (TDocStd_Modified::*)() >(&TDocStd_Modified::Clear),
-             R"#(None)#" )
-        .def("AddLabel",
-             (Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) >(&TDocStd_Modified::AddLabel),
-             R"#(add <L> as modified)#"  , py::arg("L"))
-        .def("RemoveLabel",
-             (Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) >(&TDocStd_Modified::RemoveLabel),
-             R"#(remove <L> as modified)#"  , py::arg("L"))
-        .def("Get",
-             (const TDF_LabelMap & (TDocStd_Modified::*)() const) static_cast<const TDF_LabelMap & (TDocStd_Modified::*)() const>(&TDocStd_Modified::Get),
-             R"#(returns modified label map)#" )
-        .def("ID",
-             (const Standard_GUID & (TDocStd_Modified::*)() const) static_cast<const Standard_GUID & (TDocStd_Modified::*)() const>(&TDocStd_Modified::ID),
-             R"#(None)#" )
-        .def("Restore",
-             (void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TDocStd_Modified::Restore),
-             R"#(None)#"  , py::arg("With"))
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TDocStd_Modified::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_Modified::*)() const>(&TDocStd_Modified::NewEmpty),
-             R"#(None)#" )
-        .def("Paste",
-             (void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TDocStd_Modified::Paste),
-             R"#(None)#"  , py::arg("Into"),  py::arg("RT"))
-        .def("Dump",
-             (Standard_OStream & (TDocStd_Modified::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TDocStd_Modified::*)( std::ostream &  ) const>(&TDocStd_Modified::Dump),
-             R"#(None)#"  , py::arg("anOS"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TDocStd_Modified::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_Modified::*)() const>(&TDocStd_Modified::DynamicType),
-             R"#(None)#" )
-        .def_static("IsEmpty_s",
-                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::IsEmpty),
-                    R"#(API class methods =================)#"  , py::arg("access"))
-        .def_static("Add_s",
-                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::Add),
-                    R"#(None)#"  , py::arg("alabel"))
-        .def_static("Remove_s",
-                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::Remove),
-                    R"#(None)#"  , py::arg("alabel"))
-        .def_static("Contains_s",
-                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::Contains),
-                    R"#(None)#"  , py::arg("alabel"))
-        .def_static("Get_s",
-                    (const TDF_LabelMap & (*)( const TDF_Label &  ) ) static_cast<const TDF_LabelMap & (*)( const TDF_Label &  ) >(&TDocStd_Modified::Get),
-                    R"#(if <IsEmpty> raise an exception.)#"  , py::arg("access"))
-        .def_static("Clear_s",
-                    (void (*)( const TDF_Label &  ) ) static_cast<void (*)( const TDF_Label &  ) >(&TDocStd_Modified::Clear),
-                    R"#(remove all modified labels. becomes empty)#"  , py::arg("access"))
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TDocStd_Modified::GetID),
-                    R"#(Modified methods ================)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_Modified::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_Modified::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<TDocStd ,std::unique_ptr<TDocStd>>(m,"TDocStd");
-
-    static_cast<py::class_<TDocStd ,std::unique_ptr<TDocStd>  >>(m.attr("TDocStd"))
-        .def_static("IDList_s",
-                    (void (*)( NCollection_List<Standard_GUID> &  ) ) static_cast<void (*)( NCollection_List<Standard_GUID> &  ) >(&TDocStd::IDList),
-                    R"#(specific GUID of this package ============================= Appends to <anIDList> the list of the attributes IDs of this package. CAUTION: <anIDList> is NOT cleared before use.)#"  , py::arg("anIDList"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TDocStd_Document ,opencascade::handle<TDocStd_Document>  , CDM_Document >>(m.attr("TDocStd_Document"))
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("astorageformat") )
+    // methods
         .def("IsSaved",
              (Standard_Boolean (TDocStd_Document::*)() const) static_cast<Standard_Boolean (TDocStd_Document::*)() const>(&TDocStd_Document::IsSaved),
              R"#(the document is saved in a file.)#" )
@@ -698,6 +460,8 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
         .def("EmptyLabelsSavingMode",
              (Standard_Boolean (TDocStd_Document::*)() const) static_cast<Standard_Boolean (TDocStd_Document::*)() const>(&TDocStd_Document::EmptyLabelsSavingMode),
              R"#(Returns saving mode for empty labels.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Get_s",
                     (opencascade::handle<TDocStd_Document> (*)( const TDF_Label &  ) ) static_cast<opencascade::handle<TDocStd_Document> (*)( const TDF_Label &  ) >(&TDocStd_Document::Get),
                     R"#(Will Abort any execution, clear fields returns the document which contains <L>. raises an exception if the document is not found.)#"  , py::arg("L"))
@@ -707,57 +471,272 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_Document::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TDocStd_Context ,std::unique_ptr<TDocStd_Context>  >>(m.attr("TDocStd_Context"))
+    static_cast<py::class_<TDocStd_Modified ,opencascade::handle<TDocStd_Modified>  , TDF_Attribute >>(m.attr("TDocStd_Modified"))
         .def(py::init<  >()  )
-        .def("SetModifiedReferences",
-             (void (TDocStd_Context::*)( const Standard_Boolean  ) ) static_cast<void (TDocStd_Context::*)( const Standard_Boolean  ) >(&TDocStd_Context::SetModifiedReferences),
-             R"#(None)#"  , py::arg("Mod"))
-        .def("ModifiedReferences",
-             (Standard_Boolean (TDocStd_Context::*)() const) static_cast<Standard_Boolean (TDocStd_Context::*)() const>(&TDocStd_Context::ModifiedReferences),
+    // methods
+        .def("IsEmpty",
+             (Standard_Boolean (TDocStd_Modified::*)() const) static_cast<Standard_Boolean (TDocStd_Modified::*)() const>(&TDocStd_Modified::IsEmpty),
              R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TDocStd_ApplicationDelta ,opencascade::handle<TDocStd_ApplicationDelta>  , Standard_Transient >>(m.attr("TDocStd_ApplicationDelta"))
-        .def(py::init<  >()  )
-        .def("GetDocuments",
-             (TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() ) static_cast<TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() >(&TDocStd_ApplicationDelta::GetDocuments),
+        .def("Clear",
+             (void (TDocStd_Modified::*)() ) static_cast<void (TDocStd_Modified::*)() >(&TDocStd_Modified::Clear),
              R"#(None)#" )
-        .def("GetName",
-             (const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const) static_cast<const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const>(&TDocStd_ApplicationDelta::GetName),
+        .def("AddLabel",
+             (Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) >(&TDocStd_Modified::AddLabel),
+             R"#(add <L> as modified)#"  , py::arg("L"))
+        .def("RemoveLabel",
+             (Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (TDocStd_Modified::*)( const TDF_Label &  ) >(&TDocStd_Modified::RemoveLabel),
+             R"#(remove <L> as modified)#"  , py::arg("L"))
+        .def("Get",
+             (const TDF_LabelMap & (TDocStd_Modified::*)() const) static_cast<const TDF_LabelMap & (TDocStd_Modified::*)() const>(&TDocStd_Modified::Get),
+             R"#(returns modified label map)#" )
+        .def("ID",
+             (const Standard_GUID & (TDocStd_Modified::*)() const) static_cast<const Standard_GUID & (TDocStd_Modified::*)() const>(&TDocStd_Modified::ID),
              R"#(None)#" )
-        .def("SetName",
-             (void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) >(&TDocStd_ApplicationDelta::SetName),
-             R"#(None)#"  , py::arg("theName"))
+        .def("Restore",
+             (void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TDocStd_Modified::Restore),
+             R"#(None)#"  , py::arg("With"))
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TDocStd_Modified::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_Modified::*)() const>(&TDocStd_Modified::NewEmpty),
+             R"#(None)#" )
+        .def("Paste",
+             (void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TDocStd_Modified::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TDocStd_Modified::Paste),
+             R"#(None)#"  , py::arg("Into"),  py::arg("RT"))
         .def("Dump",
-             (void (TDocStd_ApplicationDelta::*)( std::ostream &  ) const) static_cast<void (TDocStd_ApplicationDelta::*)( std::ostream &  ) const>(&TDocStd_ApplicationDelta::Dump),
+             (Standard_OStream & (TDocStd_Modified::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TDocStd_Modified::*)( std::ostream &  ) const>(&TDocStd_Modified::Dump),
              R"#(None)#"  , py::arg("anOS"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TDocStd_ApplicationDelta::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_ApplicationDelta::*)() const>(&TDocStd_ApplicationDelta::DynamicType),
+             (const opencascade::handle<Standard_Type> & (TDocStd_Modified::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_Modified::*)() const>(&TDocStd_Modified::DynamicType),
              R"#(None)#" )
-        .def("GetDocuments",
-             (TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() ) static_cast<TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() >(&TDocStd_ApplicationDelta::GetDocuments),
-             R"#(None)#" )
-        .def("GetName",
-             (const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const) static_cast<const TCollection_ExtendedString & (TDocStd_ApplicationDelta::*)() const>(&TDocStd_ApplicationDelta::GetName),
-             R"#(None)#" )
-        .def("SetName",
-             (void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TDocStd_ApplicationDelta::*)( const TCollection_ExtendedString &  ) >(&TDocStd_ApplicationDelta::SetName),
-             R"#(None)#"  , py::arg("theName"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("IsEmpty_s",
+                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::IsEmpty),
+                    R"#(API class methods =================)#"  , py::arg("access"))
+        .def_static("Add_s",
+                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::Add),
+                    R"#(None)#"  , py::arg("alabel"))
+        .def_static("Remove_s",
+                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::Remove),
+                    R"#(None)#"  , py::arg("alabel"))
+        .def_static("Contains_s",
+                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TDocStd_Modified::Contains),
+                    R"#(None)#"  , py::arg("alabel"))
+        .def_static("Get_s",
+                    (const TDF_LabelMap & (*)( const TDF_Label &  ) ) static_cast<const TDF_LabelMap & (*)( const TDF_Label &  ) >(&TDocStd_Modified::Get),
+                    R"#(if <IsEmpty> raise an exception.)#"  , py::arg("access"))
+        .def_static("Clear_s",
+                    (void (*)( const TDF_Label &  ) ) static_cast<void (*)( const TDF_Label &  ) >(&TDocStd_Modified::Clear),
+                    R"#(remove all modified labels. becomes empty)#"  , py::arg("access"))
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TDocStd_Modified::GetID),
+                    R"#(Modified methods ================)#" )
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_ApplicationDelta::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_Modified::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_ApplicationDelta::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_Modified::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TDocStd_MultiTransactionManager ,opencascade::handle<TDocStd_MultiTransactionManager>  , Standard_Transient >>(m.attr("TDocStd_MultiTransactionManager"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetUndoLimit",
+             (void (TDocStd_MultiTransactionManager::*)( const Standard_Integer  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const Standard_Integer  ) >(&TDocStd_MultiTransactionManager::SetUndoLimit),
+             R"#(Sets undo limit for the manager and all documents.)#"  , py::arg("theLimit"))
+        .def("GetUndoLimit",
+             (Standard_Integer (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Integer (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetUndoLimit),
+             R"#(Returns undo limit for the manager.)#" )
+        .def("Undo",
+             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::Undo),
+             R"#(Undoes the current transaction of the manager. It calls the Undo () method of the document being on top of the manager list of undos (list.First()) and moves the list item to the top of the list of manager redos (list.Prepend(item)).)#" )
+        .def("Redo",
+             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::Redo),
+             R"#(Redoes the current transaction of the application. It calls the Redo () method of the document being on top of the manager list of redos (list.First()) and moves the list item to the top of the list of manager undos (list.Prepend(item)).)#" )
+        .def("GetAvailableUndos",
+             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableUndos),
+             R"#(Returns available manager undos.)#" )
+        .def("GetAvailableRedos",
+             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableRedos),
+             R"#(Returns available manager redos.)#" )
+        .def("OpenCommand",
+             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::OpenCommand),
+             R"#(Opens transaction in each document and sets the flag that transaction is opened. If there are already opened transactions in the documents, these transactions will be aborted before openning new ones.)#" )
+        .def("AbortCommand",
+             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::AbortCommand),
+             R"#(Unsets the flag of started manager transaction and aborts transaction in each document.)#" )
+        .def("CommitCommand",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() ) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::CommitCommand),
+             R"#(Commits transaction in all documents and fills the transaction manager with the documents that have been changed during the transaction. Returns True if new data has been added to myUndos. NOTE: All nested transactions in the documents will be commited.)#" )
+        .def("CommitCommand",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)( const TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)( const TCollection_ExtendedString &  ) >(&TDocStd_MultiTransactionManager::CommitCommand),
+             R"#(Makes the same steps as the previous function but defines the name for transaction. Returns True if new data has been added to myUndos.)#"  , py::arg("theName"))
+        .def("HasOpenCommand",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::HasOpenCommand),
+             R"#(Returns true if a transaction is opened.)#" )
+        .def("RemoveLastUndo",
+             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::RemoveLastUndo),
+             R"#(Removes undo information from the list of undos of the manager and all documents which have been modified during the transaction.)#" )
+        .def("DumpTransaction",
+             (void (TDocStd_MultiTransactionManager::*)( std::ostream &  ) const) static_cast<void (TDocStd_MultiTransactionManager::*)( std::ostream &  ) const>(&TDocStd_MultiTransactionManager::DumpTransaction),
+             R"#(Dumps transactions in undos and redos)#"  , py::arg("theOS"))
+        .def("AddDocument",
+             (void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_MultiTransactionManager::AddDocument),
+             R"#(Adds the document to the transaction manager and checks if it has been already added)#"  , py::arg("theDoc"))
+        .def("RemoveDocument",
+             (void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_MultiTransactionManager::RemoveDocument),
+             R"#(Removes the document from the transaction manager.)#"  , py::arg("theDoc"))
+        .def("Documents",
+             (const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::Documents),
+             R"#(Returns the added documents to the transaction manager.)#" )
+        .def("SetNestedTransactionMode",
+             (void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) >(&TDocStd_MultiTransactionManager::SetNestedTransactionMode),
+             R"#(Sets nested transaction mode if isAllowed == Standard_True NOTE: field myIsNestedTransactionMode exists only for synchronization between several documents and has no effect on transactions of multitransaction manager.)#"  , py::arg("isAllowed")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("IsNestedTransactionMode",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::IsNestedTransactionMode),
+             R"#(Returns Standard_True if NestedTransaction mode is set. Methods for protection of changes outside transactions)#" )
+        .def("SetModificationMode",
+             (void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const Standard_Boolean  ) >(&TDocStd_MultiTransactionManager::SetModificationMode),
+             R"#(If theTransactionOnly is True, denies all changes outside transactions.)#"  , py::arg("theTransactionOnly"))
+        .def("ModificationMode",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::ModificationMode),
+             R"#(Returns True if changes are allowed only inside transactions.)#" )
+        .def("ClearUndos",
+             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::ClearUndos),
+             R"#(Clears undos in the manager and in documents.)#" )
+        .def("ClearRedos",
+             (void (TDocStd_MultiTransactionManager::*)() ) static_cast<void (TDocStd_MultiTransactionManager::*)() >(&TDocStd_MultiTransactionManager::ClearRedos),
+             R"#(Clears redos in the manager and in documents.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TDocStd_MultiTransactionManager::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::DynamicType),
+             R"#(None)#" )
+        .def("GetUndoLimit",
+             (Standard_Integer (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Integer (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetUndoLimit),
+             R"#(Returns undo limit for the manager.)#" )
+        .def("GetAvailableUndos",
+             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableUndos),
+             R"#(Returns available manager undos.)#" )
+        .def("GetAvailableRedos",
+             (const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfApplicationDelta & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::GetAvailableRedos),
+             R"#(Returns available manager redos.)#" )
+        .def("Documents",
+             (const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const) static_cast<const TDocStd_SequenceOfDocument & (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::Documents),
+             R"#(Returns the added documents to the transaction manager.)#" )
+        .def("IsNestedTransactionMode",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::IsNestedTransactionMode),
+             R"#(Returns Standard_True if NestedTransaction mode is set. Methods for protection of changes outside transactions)#" )
+        .def("HasOpenCommand",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::HasOpenCommand),
+             R"#(Returns true if a transaction is opened.)#" )
+        .def("ModificationMode",
+             (Standard_Boolean (TDocStd_MultiTransactionManager::*)() const) static_cast<Standard_Boolean (TDocStd_MultiTransactionManager::*)() const>(&TDocStd_MultiTransactionManager::ModificationMode),
+             R"#(Returns True if changes are allowed only inside transactions.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_MultiTransactionManager::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_MultiTransactionManager::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TDocStd_Owner ,opencascade::handle<TDocStd_Owner>  , TDF_Attribute >>(m.attr("TDocStd_Owner"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetDocument",
+             (void (TDocStd_Owner::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_Owner::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_Owner::SetDocument),
+             R"#(None)#"  , py::arg("document"))
+        .def("GetDocument",
+             (opencascade::handle<TDocStd_Document> (TDocStd_Owner::*)() const) static_cast<opencascade::handle<TDocStd_Document> (TDocStd_Owner::*)() const>(&TDocStd_Owner::GetDocument),
+             R"#(None)#" )
+        .def("ID",
+             (const Standard_GUID & (TDocStd_Owner::*)() const) static_cast<const Standard_GUID & (TDocStd_Owner::*)() const>(&TDocStd_Owner::ID),
+             R"#(None)#" )
+        .def("Restore",
+             (void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TDocStd_Owner::Restore),
+             R"#(None)#"  , py::arg("With"))
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TDocStd_Owner::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_Owner::*)() const>(&TDocStd_Owner::NewEmpty),
+             R"#(None)#" )
+        .def("Paste",
+             (void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TDocStd_Owner::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TDocStd_Owner::Paste),
+             R"#(None)#"  , py::arg("Into"),  py::arg("RT"))
+        .def("Dump",
+             (Standard_OStream & (TDocStd_Owner::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TDocStd_Owner::*)( std::ostream &  ) const>(&TDocStd_Owner::Dump),
+             R"#(None)#"  , py::arg("anOS"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TDocStd_Owner::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_Owner::*)() const>(&TDocStd_Owner::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TDocStd_Owner::GetID),
+                    R"#(class methods =============)#" )
+        .def_static("SetDocument_s",
+                    (void (*)( const opencascade::handle<TDF_Data> & ,  const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (*)( const opencascade::handle<TDF_Data> & ,  const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_Owner::SetDocument),
+                    R"#(None)#"  , py::arg("indata"),  py::arg("doc"))
+        .def_static("GetDocument_s",
+                    (opencascade::handle<TDocStd_Document> (*)( const opencascade::handle<TDF_Data> &  ) ) static_cast<opencascade::handle<TDocStd_Document> (*)( const opencascade::handle<TDF_Data> &  ) >(&TDocStd_Owner::GetDocument),
+                    R"#(Owner methods ===============)#"  , py::arg("ofdata"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_Owner::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_Owner::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TDocStd_PathParser , shared_ptr<TDocStd_PathParser>  >>(m.attr("TDocStd_PathParser"))
+        .def(py::init< const TCollection_ExtendedString & >()  , py::arg("path") )
+    // methods
+        .def("Parse",
+             (void (TDocStd_PathParser::*)() ) static_cast<void (TDocStd_PathParser::*)() >(&TDocStd_PathParser::Parse),
+             R"#(None)#" )
+        .def("Trek",
+             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Trek),
+             R"#(None)#" )
+        .def("Name",
+             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Name),
+             R"#(None)#" )
+        .def("Extension",
+             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Extension),
+             R"#(None)#" )
+        .def("Path",
+             (TCollection_ExtendedString (TDocStd_PathParser::*)() const) static_cast<TCollection_ExtendedString (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Path),
+             R"#(None)#" )
+        .def("Length",
+             (Standard_Integer (TDocStd_PathParser::*)() const) static_cast<Standard_Integer (TDocStd_PathParser::*)() const>(&TDocStd_PathParser::Length),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TDocStd_XLink ,opencascade::handle<TDocStd_XLink>  , TDF_Attribute >>(m.attr("TDocStd_XLink"))
         .def(py::init<  >()  )
+    // methods
         .def("Update",
              (opencascade::handle<TDF_Reference> (TDocStd_XLink::*)() ) static_cast<opencascade::handle<TDF_Reference> (TDocStd_XLink::*)() >(&TDocStd_XLink::Update),
              R"#(Updates the data referenced in this external link attribute.)#" )
@@ -809,6 +788,8 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDocStd_XLink::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_XLink::*)() const>(&TDocStd_XLink::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Set_s",
                     (opencascade::handle<TDocStd_XLink> (*)( const TDF_Label &  ) ) static_cast<opencascade::handle<TDocStd_XLink> (*)( const TDF_Label &  ) >(&TDocStd_XLink::Set),
                     R"#(Sets an empty external reference, at the label aLabel.)#"  , py::arg("atLabel"))
@@ -821,53 +802,139 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_XLink::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TDocStd_XLinkIterator , shared_ptr<TDocStd_XLinkIterator>  >>(m.attr("TDocStd_XLinkIterator"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<TDocStd_Document> & >()  , py::arg("D") )
+    // methods
+        .def("Initialize",
+             (void (TDocStd_XLinkIterator::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_XLinkIterator::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_XLinkIterator::Initialize),
+             R"#(Restarts an iteration with <D>.)#"  , py::arg("D"))
+        .def("More",
+             (Standard_Boolean (TDocStd_XLinkIterator::*)() const) static_cast<Standard_Boolean (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::More),
+             R"#(Returns True if there is a current Item in the iteration.)#" )
+        .def("Next",
+             (void (TDocStd_XLinkIterator::*)() ) static_cast<void (TDocStd_XLinkIterator::*)() >(&TDocStd_XLinkIterator::Next),
+             R"#(Move to the next item; raises if there is no more item.)#" )
+        .def("Value",
+             (TDocStd_XLinkPtr (TDocStd_XLinkIterator::*)() const) static_cast<TDocStd_XLinkPtr (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::Value),
+             R"#(Returns the current item; a null handle if there is none.)#" )
+        .def("More",
+             (Standard_Boolean (TDocStd_XLinkIterator::*)() const) static_cast<Standard_Boolean (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::More),
+             R"#(Returns True if there is a current Item in the iteration.)#" )
+        .def("Value",
+             (TDocStd_XLink * (TDocStd_XLinkIterator::*)() const) static_cast<TDocStd_XLink * (TDocStd_XLinkIterator::*)() const>(&TDocStd_XLinkIterator::Value),
+             R"#(Returns the current item; a null handle if there is none.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TDocStd_XLinkRoot ,opencascade::handle<TDocStd_XLinkRoot>  , TDF_Attribute >>(m.attr("TDocStd_XLinkRoot"))
+    // methods
+        .def("ID",
+             (const Standard_GUID & (TDocStd_XLinkRoot::*)() const) static_cast<const Standard_GUID & (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::ID),
+             R"#(Returns the ID of the attribute.)#" )
+        .def("BackupCopy",
+             (opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::BackupCopy),
+             R"#(Returns a null handle.)#" )
+        .def("Restore",
+             (void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TDocStd_XLinkRoot::Restore),
+             R"#(Does nothing.)#"  , py::arg("anAttribute"))
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::NewEmpty),
+             R"#(Returns a null handle.)#" )
+        .def("Paste",
+             (void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TDocStd_XLinkRoot::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TDocStd_XLinkRoot::Paste),
+             R"#(Does nothing.)#"  , py::arg("intoAttribute"),  py::arg("aRelocationTable"))
+        .def("Dump",
+             (Standard_OStream & (TDocStd_XLinkRoot::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TDocStd_XLinkRoot::*)( std::ostream &  ) const>(&TDocStd_XLinkRoot::Dump),
+             R"#(Dumps the attribute on <aStream>.)#"  , py::arg("anOS"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TDocStd_XLinkRoot::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TDocStd_XLinkRoot::GetID),
+                    R"#(Returns the ID: 2a96b61d-ec8b-11d0-bee7-080009dc3333)#" )
+        .def_static("Set_s",
+                    (opencascade::handle<TDocStd_XLinkRoot> (*)( const opencascade::handle<TDF_Data> &  ) ) static_cast<opencascade::handle<TDocStd_XLinkRoot> (*)( const opencascade::handle<TDF_Data> &  ) >(&TDocStd_XLinkRoot::Set),
+                    R"#(Sets an empty XLinkRoot to Root or gets the existing one. Only one attribute per TDF_Data.)#"  , py::arg("aDF"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TDocStd_XLinkRoot::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TDocStd_XLinkRoot::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TDocStd_XLinkTool , shared_ptr<TDocStd_XLinkTool>  >>(m.attr("TDocStd_XLinkTool"))
+        .def(py::init<  >()  )
+    // methods
+        .def("CopyWithLink",
+             (void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TDocStd_XLinkTool::CopyWithLink),
+             R"#(Copies the content of the label <fromsource> to the label <intarget>. The link is registred with an XLink attribute by <intarget> label. if the content of <fromsource> is not self-contained, and/or <intarget> has already an XLink attribute, an exception is raised.)#"  , py::arg("intarget"),  py::arg("fromsource"))
+        .def("UpdateLink",
+             (void (TDocStd_XLinkTool::*)( const TDF_Label &  ) ) static_cast<void (TDocStd_XLinkTool::*)( const TDF_Label &  ) >(&TDocStd_XLinkTool::UpdateLink),
+             R"#(Update the external reference set at <L>. Example Handle(TDocStd_Document) aDoc; if (!OCAFTest::GetDocument(1,aDoc)) return 1; Handle(TDataStd_Reference) aRef; TDocStd_XLinkTool xlinktool; if (!OCAFTest::Find(aDoc,2),TDataStd_Reference::GetID(),aRef) return 1; xlinktool.UpdateLink(aRef->Label()); Exceptions Standard_DomainError if <L> has no XLink attribute.)#"  , py::arg("L"))
+        .def("Copy",
+             (void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TDocStd_XLinkTool::Copy),
+             R"#(Copy the content of <fromsource> under <intarget>. Noone link is registred. noone check is done. Example Handle(TDocStd_Document) DOC, XDOC; TDF_Label L, XL; TDocStd_XLinkTool xlinktool; xlinktool.Copy(L,XL); Exceptions: Standard_DomainError if the contents of fromsource are not entirely in the scope of this label, in other words, are not self-contained. !!! ==> Warning: If the document manages shapes use the next way: TDocStd_XLinkTool xlinktool; xlinktool.Copy(L,XL); TopTools_DataMapOfShapeShape M; TNaming::ChangeShapes(target,M);)#"  , py::arg("intarget"),  py::arg("fromsource"))
+        .def("IsDone",
+             (Standard_Boolean (TDocStd_XLinkTool::*)() const) static_cast<Standard_Boolean (TDocStd_XLinkTool::*)() const>(&TDocStd_XLinkTool::IsDone),
+             R"#(None)#" )
+        .def("DataSet",
+             (opencascade::handle<TDF_DataSet> (TDocStd_XLinkTool::*)() const) static_cast<opencascade::handle<TDF_DataSet> (TDocStd_XLinkTool::*)() const>(&TDocStd_XLinkTool::DataSet),
+             R"#(None)#" )
+        .def("RelocationTable",
+             (opencascade::handle<TDF_RelocationTable> (TDocStd_XLinkTool::*)() const) static_cast<opencascade::handle<TDF_RelocationTable> (TDocStd_XLinkTool::*)() const>(&TDocStd_XLinkTool::RelocationTable),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/TDocStd_XLinkIterator.hxx
-// ./opencascade/TDocStd_MultiTransactionManager.hxx
-// ./opencascade/TDocStd_Application.hxx
-// ./opencascade/TDocStd_Context.hxx
-// ./opencascade/TDocStd_XLinkTool.hxx
-// ./opencascade/TDocStd_SequenceOfDocument.hxx
-// ./opencascade/TDocStd_Modified.hxx
-// ./opencascade/TDocStd_XLinkRoot.hxx
-// ./opencascade/TDocStd_XLink.hxx
-// ./opencascade/TDocStd_XLinkPtr.hxx
-// ./opencascade/TDocStd_PathParser.hxx
-// ./opencascade/TDocStd_DataMapIteratorOfLabelIDMapDataMap.hxx
-// ./opencascade/TDocStd.hxx
-// ./opencascade/TDocStd_Owner.hxx
-// ./opencascade/TDocStd_SequenceOfApplicationDelta.hxx
-// ./opencascade/TDocStd_ApplicationDelta.hxx
 // ./opencascade/TDocStd_CompoundDelta.hxx
+// ./opencascade/TDocStd_MultiTransactionManager.hxx
+// ./opencascade/TDocStd_XLinkIterator.hxx
+// ./opencascade/TDocStd_XLink.hxx
+// ./opencascade/TDocStd_PathParser.hxx
+// ./opencascade/TDocStd_XLinkRoot.hxx
+// ./opencascade/TDocStd_XLinkPtr.hxx
+// ./opencascade/TDocStd_SequenceOfApplicationDelta.hxx
+// ./opencascade/TDocStd.hxx
+// ./opencascade/TDocStd_SequenceOfDocument.hxx
 // ./opencascade/TDocStd_Document.hxx
+// ./opencascade/TDocStd_Modified.hxx
+// ./opencascade/TDocStd_ApplicationDelta.hxx
+// ./opencascade/TDocStd_Context.hxx
+// ./opencascade/TDocStd_DataMapIteratorOfLabelIDMapDataMap.hxx
+// ./opencascade/TDocStd_Owner.hxx
+// ./opencascade/TDocStd_XLinkTool.hxx
 // ./opencascade/TDocStd_LabelIDMapDataMap.hxx
+// ./opencascade/TDocStd_Application.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/TDocStd_XLinkIterator.hxx
-// ./opencascade/TDocStd_MultiTransactionManager.hxx
-// ./opencascade/TDocStd_Application.hxx
-// ./opencascade/TDocStd_Context.hxx
-// ./opencascade/TDocStd_XLinkTool.hxx
-// ./opencascade/TDocStd_SequenceOfDocument.hxx
-    register_template_NCollection_Sequence<opencascade::handle<TDocStd_Document> >(m,"TDocStd_SequenceOfDocument");  
-// ./opencascade/TDocStd_Modified.hxx
-// ./opencascade/TDocStd_XLinkRoot.hxx
-// ./opencascade/TDocStd_XLink.hxx
-// ./opencascade/TDocStd_XLinkPtr.hxx
-// ./opencascade/TDocStd_PathParser.hxx
-// ./opencascade/TDocStd_DataMapIteratorOfLabelIDMapDataMap.hxx
-// ./opencascade/TDocStd.hxx
-// ./opencascade/TDocStd_Owner.hxx
-// ./opencascade/TDocStd_SequenceOfApplicationDelta.hxx
     register_template_NCollection_Sequence<opencascade::handle<TDocStd_ApplicationDelta> >(m,"TDocStd_SequenceOfApplicationDelta");  
-// ./opencascade/TDocStd_ApplicationDelta.hxx
-// ./opencascade/TDocStd_CompoundDelta.hxx
-// ./opencascade/TDocStd_Document.hxx
-// ./opencascade/TDocStd_LabelIDMapDataMap.hxx
+    register_template_NCollection_Sequence<opencascade::handle<TDocStd_Document> >(m,"TDocStd_SequenceOfDocument");  
     register_template_NCollection_DataMap<TDF_Label, TDF_IDMap, TDF_LabelMapHasher>(m,"TDocStd_LabelIDMapDataMap");  
 
 

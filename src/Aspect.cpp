@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,12 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Aspect_WindowDefinitionError.hxx>
-#include <Aspect_WindowError.hxx>
-#include <Aspect_IdentDefinitionError.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <Standard_NullValue.hxx>
 #include <Standard_NumericError.hxx>
+#include <Aspect_IdentDefinitionError.hxx>
+#include <Aspect_WindowDefinitionError.hxx>
+#include <Aspect_WindowError.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <Standard_NullValue.hxx>
 #include <Standard_NumericError.hxx>
@@ -88,6 +91,25 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
 
 
 //Python trampoline classes
+    class Py_Aspect_Grid : public Aspect_Grid{
+    public:
+        using Aspect_Grid::Aspect_Grid;
+        
+        // public pure virtual
+        void Display() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Display,) };
+        void Erase() const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Erase,) };
+        Standard_Boolean IsDisplayed() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Aspect_Grid,IsDisplayed,) };
+        void Init() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Init,) };
+        void Compute(const Standard_Real X,const Standard_Real Y,Standard_Real & gridX,Standard_Real & gridY) const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Compute,X,Y,gridX,gridY) };
+        
+        
+        // protected pure virtual
+        void UpdateDisplay() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,UpdateDisplay,) };
+        
+        
+        // private pure virtual
+        
+    };
     class Py_Aspect_Window : public Aspect_Window{
     public:
         using Aspect_Window::Aspect_Window;
@@ -99,32 +121,13 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         Standard_Boolean DoMapping() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Aspect_Window,DoMapping,) };
         Standard_Boolean IsMapped() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Aspect_Window,IsMapped,) };
         Standard_Real Ratio() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Aspect_Window,Ratio,) };
-        void Position(Standard_Integer & X1,Standard_Integer & Y1,Standard_Integer & X2,Standard_Integer & Y2) const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Window,Position,X1,Y1,X2,Y2) };
-        void Size(Standard_Integer & Width,Standard_Integer & Height) const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Window,Size,Width,Height) };
         Aspect_Drawable NativeHandle() const  override { PYBIND11_OVERLOAD_PURE(Aspect_Drawable,Aspect_Window,NativeHandle,) };
         Aspect_Drawable NativeParentHandle() const  override { PYBIND11_OVERLOAD_PURE(Aspect_Drawable,Aspect_Window,NativeParentHandle,) };
+        void Position(Standard_Integer & X1,Standard_Integer & Y1,Standard_Integer & X2,Standard_Integer & Y2) const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Window,Position,X1,Y1,X2,Y2) };
+        void Size(Standard_Integer & Width,Standard_Integer & Height) const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Window,Size,Width,Height) };
         
         
         // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
-    class Py_Aspect_Grid : public Aspect_Grid{
-    public:
-        using Aspect_Grid::Aspect_Grid;
-        
-        // public pure virtual
-        void Compute(const Standard_Real X,const Standard_Real Y,Standard_Real & gridX,Standard_Real & gridY) const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Compute,X,Y,gridX,gridY) };
-        void Display() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Display,) };
-        void Erase() const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Erase,) };
-        Standard_Boolean IsDisplayed() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Aspect_Grid,IsDisplayed,) };
-        void Init() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Init,) };
-        
-        
-        // protected pure virtual
-        void UpdateDisplay() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,UpdateDisplay,) };
         
         
         // private pure virtual
@@ -168,21 +171,52 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
 // classes
 
 
-    static_cast<py::class_<Aspect_Background ,std::unique_ptr<Aspect_Background>  >>(m.attr("Aspect_Background"))
+    static_cast<py::class_<Aspect_Background , shared_ptr<Aspect_Background>  >>(m.attr("Aspect_Background"))
         .def(py::init<  >()  )
         .def(py::init< const Quantity_Color & >()  , py::arg("AColor") )
+    // methods
         .def("SetColor",
              (void (Aspect_Background::*)( const Quantity_Color &  ) ) static_cast<void (Aspect_Background::*)( const Quantity_Color &  ) >(&Aspect_Background::SetColor),
              R"#(Modifies the colour of the window background <me>.)#"  , py::arg("AColor"))
         .def("Color",
              (Quantity_Color (Aspect_Background::*)() const) static_cast<Quantity_Color (Aspect_Background::*)() const>(&Aspect_Background::Color),
              R"#(Returns the colour of the window background <me>.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Aspect_GenId ,std::unique_ptr<Aspect_GenId>  >>(m.attr("Aspect_GenId"))
+    static_cast<py::class_<Aspect_DisplayConnection ,opencascade::handle<Aspect_DisplayConnection>  , Standard_Transient >>(m.attr("Aspect_DisplayConnection"))
+        .def(py::init<  >()  )
+        .def(py::init< const TCollection_AsciiString & >()  , py::arg("theDisplayName") )
+    // methods
+        .def("GetAtom",
+             (Atom (Aspect_DisplayConnection::*)( const Aspect_XAtom  ) const) static_cast<Atom (Aspect_DisplayConnection::*)( const Aspect_XAtom  ) const>(&Aspect_DisplayConnection::GetAtom),
+             R"#(Returns identifier(atom) for custom named property associated with windows that use current connection to X server.)#"  , py::arg("theAtom"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Aspect_DisplayConnection::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_DisplayConnection::*)() const>(&Aspect_DisplayConnection::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_DisplayConnection::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_DisplayConnection::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Aspect_GenId , shared_ptr<Aspect_GenId>  >>(m.attr("Aspect_GenId"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLow"),  py::arg("theUpper") )
+    // methods
         .def("Free",
              (void (Aspect_GenId::*)() ) static_cast<void (Aspect_GenId::*)() >(&Aspect_GenId::Free),
              R"#(Free all identifiers - make the whole range available again.)#" )
@@ -204,25 +238,98 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("Upper",
              (Standard_Integer (Aspect_GenId::*)() const) static_cast<Standard_Integer (Aspect_GenId::*)() const>(&Aspect_GenId::Upper),
              R"#(Returns the upper identifier in range.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Aspect_GradientBackground ,std::unique_ptr<Aspect_GradientBackground>  , Aspect_Background >>(m.attr("Aspect_GradientBackground"))
-        .def(py::init<  >()  )
-        .def(py::init< const Quantity_Color &,const Quantity_Color &,const Aspect_GradientFillMethod >()  , py::arg("AColor1"),  py::arg("AColor2"),  py::arg("AMethod")=static_cast<const Aspect_GradientFillMethod>(Aspect_GFM_HOR) )
+    static_cast<py::class_<Aspect_Grid ,opencascade::handle<Aspect_Grid> ,Py_Aspect_Grid , Standard_Transient >>(m.attr("Aspect_Grid"))
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Aspect_Grid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_Grid::*)() const>(&Aspect_Grid::DynamicType),
+             R"#(None)#" )
+        .def("SetXOrigin",
+             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::SetXOrigin),
+             R"#(defines the x Origin of the grid.)#"  , py::arg("anOrigin"))
+        .def("SetYOrigin",
+             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::SetYOrigin),
+             R"#(defines the y Origin of the grid.)#"  , py::arg("anOrigin"))
+        .def("SetRotationAngle",
+             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::SetRotationAngle),
+             R"#(defines the orientation of the grid.)#"  , py::arg("anAngle"))
+        .def("Rotate",
+             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::Rotate),
+             R"#(Rotate the grid from a relative angle.)#"  , py::arg("anAngle"))
+        .def("Translate",
+             (void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real  ) >(&Aspect_Grid::Translate),
+             R"#(Translate the grid from a relative distance.)#"  , py::arg("aDx"),  py::arg("aDy"))
         .def("SetColors",
-             (void (Aspect_GradientBackground::*)( const Quantity_Color & ,  const Quantity_Color & ,  const Aspect_GradientFillMethod  ) ) static_cast<void (Aspect_GradientBackground::*)( const Quantity_Color & ,  const Quantity_Color & ,  const Aspect_GradientFillMethod  ) >(&Aspect_GradientBackground::SetColors),
-             R"#(Modifies the colours of the window gradient background <me>.)#"  , py::arg("AColor1"),  py::arg("AColor2"),  py::arg("AMethod")=static_cast<const Aspect_GradientFillMethod>(Aspect_GFM_HOR))
+             (void (Aspect_Grid::*)( const Quantity_Color & ,  const Quantity_Color &  ) ) static_cast<void (Aspect_Grid::*)( const Quantity_Color & ,  const Quantity_Color &  ) >(&Aspect_Grid::SetColors),
+             R"#(Change the colors of the grid)#"  , py::arg("aColor"),  py::arg("aTenthColor"))
+        .def("Activate",
+             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Activate),
+             R"#(activates the grid. The Hit method will return gridx and gridx computed according to the steps of the grid.)#" )
+        .def("Deactivate",
+             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Deactivate),
+             R"#(deactivates the grid. The hit method will return gridx and gridx as the enter value X & Y.)#" )
+        .def("XOrigin",
+             (Standard_Real (Aspect_Grid::*)() const) static_cast<Standard_Real (Aspect_Grid::*)() const>(&Aspect_Grid::XOrigin),
+             R"#(returns the x Origin of the grid.)#" )
+        .def("YOrigin",
+             (Standard_Real (Aspect_Grid::*)() const) static_cast<Standard_Real (Aspect_Grid::*)() const>(&Aspect_Grid::YOrigin),
+             R"#(returns the x Origin of the grid.)#" )
+        .def("RotationAngle",
+             (Standard_Real (Aspect_Grid::*)() const) static_cast<Standard_Real (Aspect_Grid::*)() const>(&Aspect_Grid::RotationAngle),
+             R"#(returns the x Angle of the grid.)#" )
+        .def("IsActive",
+             (Standard_Boolean (Aspect_Grid::*)() const) static_cast<Standard_Boolean (Aspect_Grid::*)() const>(&Aspect_Grid::IsActive),
+             R"#(Returns TRUE when the grid is active.)#" )
         .def("Colors",
-             (void (Aspect_GradientBackground::*)( Quantity_Color & ,  Quantity_Color &  ) const) static_cast<void (Aspect_GradientBackground::*)( Quantity_Color & ,  Quantity_Color &  ) const>(&Aspect_GradientBackground::Colors),
-             R"#(Returns colours of the window gradient background <me>.)#"  , py::arg("AColor1"),  py::arg("AColor2"))
-        .def("BgGradientFillMethod",
-             (Aspect_GradientFillMethod (Aspect_GradientBackground::*)() const) static_cast<Aspect_GradientFillMethod (Aspect_GradientBackground::*)() const>(&Aspect_GradientBackground::BgGradientFillMethod),
-             R"#(Returns the current gradient background fill mode.)#" )
+             (void (Aspect_Grid::*)( Quantity_Color & ,  Quantity_Color &  ) const) static_cast<void (Aspect_Grid::*)( Quantity_Color & ,  Quantity_Color &  ) const>(&Aspect_Grid::Colors),
+             R"#(Returns the colors of the grid.)#"  , py::arg("aColor"),  py::arg("aTenthColor"))
+        .def("SetDrawMode",
+             (void (Aspect_Grid::*)( const Aspect_GridDrawMode  ) ) static_cast<void (Aspect_Grid::*)( const Aspect_GridDrawMode  ) >(&Aspect_Grid::SetDrawMode),
+             R"#(Change the grid aspect.)#"  , py::arg("aDrawMode"))
+        .def("DrawMode",
+             (Aspect_GridDrawMode (Aspect_Grid::*)() const) static_cast<Aspect_GridDrawMode (Aspect_Grid::*)() const>(&Aspect_Grid::DrawMode),
+             R"#(Returns the grid aspect.)#" )
+        .def("Display",
+             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Display),
+             R"#(Display the grid at screen.)#" )
+        .def("Erase",
+             (void (Aspect_Grid::*)() const) static_cast<void (Aspect_Grid::*)() const>(&Aspect_Grid::Erase),
+             R"#(Erase the grid from screen.)#" )
+        .def("IsDisplayed",
+             (Standard_Boolean (Aspect_Grid::*)() const) static_cast<Standard_Boolean (Aspect_Grid::*)() const>(&Aspect_Grid::IsDisplayed),
+             R"#(Returns TRUE when the grid is displayed at screen.)#" )
+        .def("Init",
+             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Init),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Hit",
+             []( Aspect_Grid &self , const Standard_Real X,const Standard_Real Y ){ Standard_Real  gridX; Standard_Real  gridY; self.Hit(X,Y,gridX,gridY); return std::make_tuple(gridX,gridY); },
+             R"#(returns the point of the grid the closest to the point X,Y if the grid is active. If the grid is not active returns X,Y.)#"  , py::arg("X"),  py::arg("Y"))
+        .def("Compute",
+             []( Aspect_Grid &self , const Standard_Real X,const Standard_Real Y ){ Standard_Real  gridX; Standard_Real  gridY; self.Compute(X,Y,gridX,gridY); return std::make_tuple(gridX,gridY); },
+             R"#(returns the point of the grid the closest to the point X,Y)#"  , py::arg("X"),  py::arg("Y"))
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_Grid::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_Grid::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Aspect_Window ,opencascade::handle<Aspect_Window> ,Py_Aspect_Window , Standard_Transient >>(m.attr("Aspect_Window"))
+    // methods
         .def("SetBackground",
              (void (Aspect_Window::*)( const Aspect_Background &  ) ) static_cast<void (Aspect_Window::*)( const Aspect_Background &  ) >(&Aspect_Window::SetBackground),
              R"#(Modifies the window background.)#"  , py::arg("ABack"))
@@ -268,12 +375,6 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("Ratio",
              (Standard_Real (Aspect_Window::*)() const) static_cast<Standard_Real (Aspect_Window::*)() const>(&Aspect_Window::Ratio),
              R"#(Returns The Window RATIO equal to the physical WIDTH/HEIGHT dimensions)#" )
-        .def("Position",
-             (void (Aspect_Window::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (Aspect_Window::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const>(&Aspect_Window::Position),
-             R"#(Returns The Window POSITION in PIXEL)#"  , py::arg("X1"),  py::arg("Y1"),  py::arg("X2"),  py::arg("Y2"))
-        .def("Size",
-             (void (Aspect_Window::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (Aspect_Window::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&Aspect_Window::Size),
-             R"#(Returns The Window SIZE in PIXEL)#"  , py::arg("Width"),  py::arg("Height"))
         .def("NativeHandle",
              (Aspect_Drawable (Aspect_Window::*)() const) static_cast<Aspect_Drawable (Aspect_Window::*)() const>(&Aspect_Window::NativeHandle),
              R"#(Returns native Window handle (HWND on Windows, Window with Xlib, and so on))#" )
@@ -283,93 +384,91 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_Window::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_Window::*)() const>(&Aspect_Window::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Position",
+             []( Aspect_Window &self   ){ Standard_Integer  X1; Standard_Integer  Y1; Standard_Integer  X2; Standard_Integer  Y2; self.Position(X1,Y1,X2,Y2); return std::make_tuple(X1,Y1,X2,Y2); },
+             R"#(Returns The Window POSITION in PIXEL)#" )
+        .def("Size",
+             []( Aspect_Window &self   ){ Standard_Integer  Width; Standard_Integer  Height; self.Size(Width,Height); return std::make_tuple(Width,Height); },
+             R"#(Returns The Window SIZE in PIXEL)#" )
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_Window::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_Window::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Aspect_Grid ,opencascade::handle<Aspect_Grid> ,Py_Aspect_Grid , Standard_Transient >>(m.attr("Aspect_Grid"))
+    static_cast<py::class_<Aspect_CircularGrid ,opencascade::handle<Aspect_CircularGrid> ,Py_Aspect_CircularGrid , Aspect_Grid >>(m.attr("Aspect_CircularGrid"))
+        .def(py::init< const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("aRadiusStep"),  py::arg("aDivisionNumber"),  py::arg("XOrigin")=static_cast<const Standard_Real>(0),  py::arg("anYOrigin")=static_cast<const Standard_Real>(0),  py::arg("aRotationAngle")=static_cast<const Standard_Real>(0) )
+    // methods
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Aspect_Grid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_Grid::*)() const>(&Aspect_Grid::DynamicType),
+             (const opencascade::handle<Standard_Type> & (Aspect_CircularGrid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_CircularGrid::*)() const>(&Aspect_CircularGrid::DynamicType),
              R"#(None)#" )
-        .def("SetXOrigin",
-             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::SetXOrigin),
-             R"#(defines the x Origin of the grid.)#"  , py::arg("anOrigin"))
-        .def("SetYOrigin",
-             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::SetYOrigin),
-             R"#(defines the y Origin of the grid.)#"  , py::arg("anOrigin"))
-        .def("SetRotationAngle",
-             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::SetRotationAngle),
-             R"#(defines the orientation of the grid.)#"  , py::arg("anAngle"))
-        .def("Rotate",
-             (void (Aspect_Grid::*)( const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real  ) >(&Aspect_Grid::Rotate),
-             R"#(Rotate the grid from a relative angle.)#"  , py::arg("anAngle"))
-        .def("Translate",
-             (void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real  ) >(&Aspect_Grid::Translate),
-             R"#(Translate the grid from a relative distance.)#"  , py::arg("aDx"),  py::arg("aDy"))
-        .def("SetColors",
-             (void (Aspect_Grid::*)( const Quantity_Color & ,  const Quantity_Color &  ) ) static_cast<void (Aspect_Grid::*)( const Quantity_Color & ,  const Quantity_Color &  ) >(&Aspect_Grid::SetColors),
-             R"#(Change the colors of the grid)#"  , py::arg("aColor"),  py::arg("aTenthColor"))
-        .def("Hit",
-             (void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const>(&Aspect_Grid::Hit),
-             R"#(returns the point of the grid the closest to the point X,Y if the grid is active. If the grid is not active returns X,Y.)#"  , py::arg("X"),  py::arg("Y"),  py::arg("gridX"),  py::arg("gridY"))
-        .def("Compute",
-             (void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (Aspect_Grid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const>(&Aspect_Grid::Compute),
-             R"#(returns the point of the grid the closest to the point X,Y)#"  , py::arg("X"),  py::arg("Y"),  py::arg("gridX"),  py::arg("gridY"))
-        .def("Activate",
-             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Activate),
-             R"#(activates the grid. The Hit method will return gridx and gridx computed according to the steps of the grid.)#" )
-        .def("Deactivate",
-             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Deactivate),
-             R"#(deactivates the grid. The hit method will return gridx and gridx as the enter value X & Y.)#" )
-        .def("XOrigin",
-             (Standard_Real (Aspect_Grid::*)() const) static_cast<Standard_Real (Aspect_Grid::*)() const>(&Aspect_Grid::XOrigin),
-             R"#(returns the x Origin of the grid.)#" )
-        .def("YOrigin",
-             (Standard_Real (Aspect_Grid::*)() const) static_cast<Standard_Real (Aspect_Grid::*)() const>(&Aspect_Grid::YOrigin),
-             R"#(returns the x Origin of the grid.)#" )
-        .def("RotationAngle",
-             (Standard_Real (Aspect_Grid::*)() const) static_cast<Standard_Real (Aspect_Grid::*)() const>(&Aspect_Grid::RotationAngle),
-             R"#(returns the x Angle of the grid.)#" )
-        .def("IsActive",
-             (Standard_Boolean (Aspect_Grid::*)() const) static_cast<Standard_Boolean (Aspect_Grid::*)() const>(&Aspect_Grid::IsActive),
-             R"#(Returns TRUE when the grid is active.)#" )
-        .def("Colors",
-             (void (Aspect_Grid::*)( Quantity_Color & ,  Quantity_Color &  ) const) static_cast<void (Aspect_Grid::*)( Quantity_Color & ,  Quantity_Color &  ) const>(&Aspect_Grid::Colors),
-             R"#(Returns the colors of the grid.)#"  , py::arg("aColor"),  py::arg("aTenthColor"))
-        .def("SetDrawMode",
-             (void (Aspect_Grid::*)( const Aspect_GridDrawMode  ) ) static_cast<void (Aspect_Grid::*)( const Aspect_GridDrawMode  ) >(&Aspect_Grid::SetDrawMode),
-             R"#(Change the grid aspect.)#"  , py::arg("aDrawMode"))
-        .def("DrawMode",
-             (Aspect_GridDrawMode (Aspect_Grid::*)() const) static_cast<Aspect_GridDrawMode (Aspect_Grid::*)() const>(&Aspect_Grid::DrawMode),
-             R"#(Returns the grid aspect.)#" )
-        .def("Display",
-             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Display),
-             R"#(Display the grid at screen.)#" )
-        .def("Erase",
-             (void (Aspect_Grid::*)() const) static_cast<void (Aspect_Grid::*)() const>(&Aspect_Grid::Erase),
-             R"#(Erase the grid from screen.)#" )
-        .def("IsDisplayed",
-             (Standard_Boolean (Aspect_Grid::*)() const) static_cast<Standard_Boolean (Aspect_Grid::*)() const>(&Aspect_Grid::IsDisplayed),
-             R"#(Returns TRUE when the grid is displayed at screen.)#" )
+        .def("SetRadiusStep",
+             (void (Aspect_CircularGrid::*)( const Standard_Real  ) ) static_cast<void (Aspect_CircularGrid::*)( const Standard_Real  ) >(&Aspect_CircularGrid::SetRadiusStep),
+             R"#(defines the x step of the grid.)#"  , py::arg("aStep"))
+        .def("SetDivisionNumber",
+             (void (Aspect_CircularGrid::*)( const Standard_Integer  ) ) static_cast<void (Aspect_CircularGrid::*)( const Standard_Integer  ) >(&Aspect_CircularGrid::SetDivisionNumber),
+             R"#(defines the step of the grid.)#"  , py::arg("aNumber"))
+        .def("SetGridValues",
+             (void (Aspect_CircularGrid::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (Aspect_CircularGrid::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Real  ) >(&Aspect_CircularGrid::SetGridValues),
+             R"#(None)#"  , py::arg("XOrigin"),  py::arg("YOrigin"),  py::arg("RadiusStep"),  py::arg("DivisionNumber"),  py::arg("RotationAngle"))
+        .def("RadiusStep",
+             (Standard_Real (Aspect_CircularGrid::*)() const) static_cast<Standard_Real (Aspect_CircularGrid::*)() const>(&Aspect_CircularGrid::RadiusStep),
+             R"#(returns the x step of the grid.)#" )
+        .def("DivisionNumber",
+             (Standard_Integer (Aspect_CircularGrid::*)() const) static_cast<Standard_Integer (Aspect_CircularGrid::*)() const>(&Aspect_CircularGrid::DivisionNumber),
+             R"#(returns the x step of the grid.)#" )
         .def("Init",
-             (void (Aspect_Grid::*)() ) static_cast<void (Aspect_Grid::*)() >(&Aspect_Grid::Init),
+             (void (Aspect_CircularGrid::*)() ) static_cast<void (Aspect_CircularGrid::*)() >(&Aspect_CircularGrid::Init),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Compute",
+             []( Aspect_CircularGrid &self , const Standard_Real X,const Standard_Real Y ){ Standard_Real  gridX; Standard_Real  gridY; self.Compute(X,Y,gridX,gridY); return std::make_tuple(gridX,gridY); },
+             R"#(returns the point of the grid the closest to the point X,Y)#"  , py::arg("X"),  py::arg("Y"))
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_Grid::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_CircularGrid::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_Grid::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_CircularGrid::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Aspect_GradientBackground , shared_ptr<Aspect_GradientBackground>  , Aspect_Background >>(m.attr("Aspect_GradientBackground"))
+        .def(py::init<  >()  )
+        .def(py::init< const Quantity_Color &,const Quantity_Color &,const Aspect_GradientFillMethod >()  , py::arg("AColor1"),  py::arg("AColor2"),  py::arg("AMethod")=static_cast<const Aspect_GradientFillMethod>(Aspect_GFM_HOR) )
+    // methods
+        .def("SetColors",
+             (void (Aspect_GradientBackground::*)( const Quantity_Color & ,  const Quantity_Color & ,  const Aspect_GradientFillMethod  ) ) static_cast<void (Aspect_GradientBackground::*)( const Quantity_Color & ,  const Quantity_Color & ,  const Aspect_GradientFillMethod  ) >(&Aspect_GradientBackground::SetColors),
+             R"#(Modifies the colours of the window gradient background <me>.)#"  , py::arg("AColor1"),  py::arg("AColor2"),  py::arg("AMethod")=static_cast<const Aspect_GradientFillMethod>(Aspect_GFM_HOR))
+        .def("Colors",
+             (void (Aspect_GradientBackground::*)( Quantity_Color & ,  Quantity_Color &  ) const) static_cast<void (Aspect_GradientBackground::*)( Quantity_Color & ,  Quantity_Color &  ) const>(&Aspect_GradientBackground::Colors),
+             R"#(Returns colours of the window gradient background <me>.)#"  , py::arg("AColor1"),  py::arg("AColor2"))
+        .def("BgGradientFillMethod",
+             (Aspect_GradientFillMethod (Aspect_GradientBackground::*)() const) static_cast<Aspect_GradientFillMethod (Aspect_GradientBackground::*)() const>(&Aspect_GradientBackground::BgGradientFillMethod),
+             R"#(Returns the current gradient background fill mode.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Aspect_NeutralWindow ,opencascade::handle<Aspect_NeutralWindow>  , Aspect_Window >>(m.attr("Aspect_NeutralWindow"))
         .def(py::init<  >()  )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_NeutralWindow::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_NeutralWindow::*)() const>(&Aspect_NeutralWindow::DynamicType),
              R"#(None)#" )
@@ -400,85 +499,38 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("Ratio",
              (Standard_Real (Aspect_NeutralWindow::*)() const) static_cast<Standard_Real (Aspect_NeutralWindow::*)() const>(&Aspect_NeutralWindow::Ratio),
              R"#(Returns window ratio equal to the physical width/height dimensions.)#" )
-        .def("Position",
-             (void (Aspect_NeutralWindow::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (Aspect_NeutralWindow::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const>(&Aspect_NeutralWindow::Position),
-             R"#(Return the window position.)#"  , py::arg("theX1"),  py::arg("theY1"),  py::arg("theX2"),  py::arg("theY2"))
         .def("SetPosition",
              (Standard_Boolean (Aspect_NeutralWindow::*)( Standard_Integer ,  Standard_Integer  ) ) static_cast<Standard_Boolean (Aspect_NeutralWindow::*)( Standard_Integer ,  Standard_Integer  ) >(&Aspect_NeutralWindow::SetPosition),
              R"#(Set the window position.)#"  , py::arg("theX1"),  py::arg("theY1"))
         .def("SetPosition",
              (Standard_Boolean (Aspect_NeutralWindow::*)( Standard_Integer ,  Standard_Integer ,  Standard_Integer ,  Standard_Integer  ) ) static_cast<Standard_Boolean (Aspect_NeutralWindow::*)( Standard_Integer ,  Standard_Integer ,  Standard_Integer ,  Standard_Integer  ) >(&Aspect_NeutralWindow::SetPosition),
              R"#(Set the window position.)#"  , py::arg("theX1"),  py::arg("theY1"),  py::arg("theX2"),  py::arg("theY2"))
-        .def("Size",
-             (void (Aspect_NeutralWindow::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (Aspect_NeutralWindow::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&Aspect_NeutralWindow::Size),
-             R"#(Return the window size.)#"  , py::arg("theWidth"),  py::arg("theHeight"))
         .def("SetSize",
              (Standard_Boolean (Aspect_NeutralWindow::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<Standard_Boolean (Aspect_NeutralWindow::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Aspect_NeutralWindow::SetSize),
              R"#(Set the window size.)#"  , py::arg("theWidth"),  py::arg("theHeight"))
+    // methods using call by reference i.s.o. return
+        .def("Position",
+             []( Aspect_NeutralWindow &self   ){ Standard_Integer  theX1; Standard_Integer  theY1; Standard_Integer  theX2; Standard_Integer  theY2; self.Position(theX1,theY1,theX2,theY2); return std::make_tuple(theX1,theY1,theX2,theY2); },
+             R"#(Return the window position.)#" )
+        .def("Size",
+             []( Aspect_NeutralWindow &self   ){ Standard_Integer  theWidth; Standard_Integer  theHeight; self.Size(theWidth,theHeight); return std::make_tuple(theWidth,theHeight); },
+             R"#(Return the window size.)#" )
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_NeutralWindow::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_NeutralWindow::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Aspect_DisplayConnection ,opencascade::handle<Aspect_DisplayConnection>  , Standard_Transient >>(m.attr("Aspect_DisplayConnection"))
-        .def(py::init<  >()  )
-        .def(py::init< const TCollection_AsciiString & >()  , py::arg("theDisplayName") )
-        .def("GetAtom",
-             (Atom (Aspect_DisplayConnection::*)( const Aspect_XAtom  ) const) static_cast<Atom (Aspect_DisplayConnection::*)( const Aspect_XAtom  ) const>(&Aspect_DisplayConnection::GetAtom),
-             R"#(Returns identifier(atom) for custom named property associated with windows that use current connection to X server.)#"  , py::arg("theAtom"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Aspect_DisplayConnection::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_DisplayConnection::*)() const>(&Aspect_DisplayConnection::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_DisplayConnection::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_DisplayConnection::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Aspect_CircularGrid ,opencascade::handle<Aspect_CircularGrid> ,Py_Aspect_CircularGrid , Aspect_Grid >>(m.attr("Aspect_CircularGrid"))
-        .def(py::init< const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("aRadiusStep"),  py::arg("aDivisionNumber"),  py::arg("XOrigin")=static_cast<const Standard_Real>(0),  py::arg("anYOrigin")=static_cast<const Standard_Real>(0),  py::arg("aRotationAngle")=static_cast<const Standard_Real>(0) )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Aspect_CircularGrid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_CircularGrid::*)() const>(&Aspect_CircularGrid::DynamicType),
-             R"#(None)#" )
-        .def("SetRadiusStep",
-             (void (Aspect_CircularGrid::*)( const Standard_Real  ) ) static_cast<void (Aspect_CircularGrid::*)( const Standard_Real  ) >(&Aspect_CircularGrid::SetRadiusStep),
-             R"#(defines the x step of the grid.)#"  , py::arg("aStep"))
-        .def("SetDivisionNumber",
-             (void (Aspect_CircularGrid::*)( const Standard_Integer  ) ) static_cast<void (Aspect_CircularGrid::*)( const Standard_Integer  ) >(&Aspect_CircularGrid::SetDivisionNumber),
-             R"#(defines the step of the grid.)#"  , py::arg("aNumber"))
-        .def("SetGridValues",
-             (void (Aspect_CircularGrid::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (Aspect_CircularGrid::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Real  ) >(&Aspect_CircularGrid::SetGridValues),
-             R"#(None)#"  , py::arg("XOrigin"),  py::arg("YOrigin"),  py::arg("RadiusStep"),  py::arg("DivisionNumber"),  py::arg("RotationAngle"))
-        .def("Compute",
-             (void (Aspect_CircularGrid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (Aspect_CircularGrid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const>(&Aspect_CircularGrid::Compute),
-             R"#(returns the point of the grid the closest to the point X,Y)#"  , py::arg("X"),  py::arg("Y"),  py::arg("gridX"),  py::arg("gridY"))
-        .def("RadiusStep",
-             (Standard_Real (Aspect_CircularGrid::*)() const) static_cast<Standard_Real (Aspect_CircularGrid::*)() const>(&Aspect_CircularGrid::RadiusStep),
-             R"#(returns the x step of the grid.)#" )
-        .def("DivisionNumber",
-             (Standard_Integer (Aspect_CircularGrid::*)() const) static_cast<Standard_Integer (Aspect_CircularGrid::*)() const>(&Aspect_CircularGrid::DivisionNumber),
-             R"#(returns the x step of the grid.)#" )
-        .def("Init",
-             (void (Aspect_CircularGrid::*)() ) static_cast<void (Aspect_CircularGrid::*)() >(&Aspect_CircularGrid::Init),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_CircularGrid::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_CircularGrid::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Aspect_RectangularGrid ,opencascade::handle<Aspect_RectangularGrid> ,Py_Aspect_RectangularGrid , Aspect_Grid >>(m.attr("Aspect_RectangularGrid"))
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("aXStep"),  py::arg("aYStep"),  py::arg("anXOrigin")=static_cast<const Standard_Real>(0),  py::arg("anYOrigin")=static_cast<const Standard_Real>(0),  py::arg("aFirstAngle")=static_cast<const Standard_Real>(0),  py::arg("aSecondAngle")=static_cast<const Standard_Real>(0),  py::arg("aRotationAngle")=static_cast<const Standard_Real>(0) )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_RectangularGrid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_RectangularGrid::*)() const>(&Aspect_RectangularGrid::DynamicType),
              R"#(None)#" )
@@ -494,9 +546,6 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("SetGridValues",
              (void (Aspect_RectangularGrid::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Aspect_RectangularGrid::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Aspect_RectangularGrid::SetGridValues),
              R"#(None)#"  , py::arg("XOrigin"),  py::arg("YOrigin"),  py::arg("XStep"),  py::arg("YStep"),  py::arg("RotationAngle"))
-        .def("Compute",
-             (void (Aspect_RectangularGrid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (Aspect_RectangularGrid::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) const>(&Aspect_RectangularGrid::Compute),
-             R"#(returns the point of the grid the closest to the point X,Y)#"  , py::arg("X"),  py::arg("Y"),  py::arg("gridX"),  py::arg("gridY"))
         .def("XStep",
              (Standard_Real (Aspect_RectangularGrid::*)() const) static_cast<Standard_Real (Aspect_RectangularGrid::*)() const>(&Aspect_RectangularGrid::XStep),
              R"#(returns the x step of the grid.)#" )
@@ -512,125 +561,86 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("Init",
              (void (Aspect_RectangularGrid::*)() ) static_cast<void (Aspect_RectangularGrid::*)() >(&Aspect_RectangularGrid::Init),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Compute",
+             []( Aspect_RectangularGrid &self , const Standard_Real X,const Standard_Real Y ){ Standard_Real  gridX; Standard_Real  gridY; self.Compute(X,Y,gridX,gridY); return std::make_tuple(gridX,gridY); },
+             R"#(returns the point of the grid the closest to the point X,Y)#"  , py::arg("X"),  py::arg("Y"))
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Aspect_RectangularGrid::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Aspect_RectangularGrid::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Aspect_GridDrawMode.hxx
-// ./opencascade/Aspect_Convert.hxx
-// ./opencascade/Aspect_InteriorStyle.hxx
-// ./opencascade/Aspect_TypeOfTriedronPosition.hxx
-// ./opencascade/Aspect_AspectLineDefinitionError.hxx
-// ./opencascade/Aspect_Window.hxx
-// ./opencascade/Aspect_TypeOfStyleText.hxx
-// ./opencascade/Aspect_GenId.hxx
-// ./opencascade/Aspect_TypeOfDeflection.hxx
-// ./opencascade/Aspect_TypeOfDisplayText.hxx
-// ./opencascade/Aspect_RenderingContext.hxx
-// ./opencascade/Aspect_DisplayConnection.hxx
-// ./opencascade/Aspect_GradientFillMethod.hxx
-// ./opencascade/Aspect_Handle.hxx
-// ./opencascade/Aspect_Units.hxx
-// ./opencascade/Aspect_FBConfig.hxx
-// ./opencascade/Aspect_WidthOfLine.hxx
-// ./opencascade/Aspect_TypeOfColorScaleData.hxx
-// ./opencascade/Aspect_DisplayConnectionDefinitionError.hxx
-// ./opencascade/Aspect_TypeOfResize.hxx
-// ./opencascade/Aspect_Grid.hxx
-// ./opencascade/Aspect_GradientBackground.hxx
-// ./opencascade/Aspect_CircularGrid.hxx
-// ./opencascade/Aspect_FillMethod.hxx
-// ./opencascade/Aspect_TypeOfLine.hxx
-// ./opencascade/Aspect_Drawable.hxx
-// ./opencascade/Aspect_HatchStyle.hxx
-// ./opencascade/Aspect_WindowDefinitionError.hxx
-// ./opencascade/Aspect_XAtom.hxx
-// ./opencascade/Aspect_Display.hxx
-// ./opencascade/Aspect_AspectFillAreaDefinitionError.hxx
-// ./opencascade/Aspect_Background.hxx
-// ./opencascade/Aspect_XWD.hxx
-// ./opencascade/Aspect_WindowError.hxx
-// ./opencascade/Aspect_TypeOfFacingModel.hxx
-// ./opencascade/Aspect_IdentDefinitionError.hxx
-// ./opencascade/Aspect_AspectMarkerDefinitionError.hxx
-// ./opencascade/Aspect_NeutralWindow.hxx
-// ./opencascade/Aspect_GraphicDeviceDefinitionError.hxx
-// ./opencascade/Aspect_SequenceOfColor.hxx
-// ./opencascade/Aspect_RectangularGrid.hxx
-// ./opencascade/Aspect_TypeOfColorScaleOrientation.hxx
-// ./opencascade/Aspect_TypeOfMarker.hxx
-// ./opencascade/Aspect_TypeOfColorScalePosition.hxx
 // ./opencascade/Aspect_PolygonOffsetMode.hxx
-// ./opencascade/Aspect_GridType.hxx
+// ./opencascade/Aspect_InteriorStyle.hxx
 // ./opencascade/Aspect_TypeOfHighlightMethod.hxx
+// ./opencascade/Aspect_TypeOfFacingModel.hxx
+// ./opencascade/Aspect_DisplayConnection.hxx
+// ./opencascade/Aspect_FillMethod.hxx
+// ./opencascade/Aspect_SequenceOfColor.hxx
+// ./opencascade/Aspect_TypeOfColorScalePosition.hxx
+// ./opencascade/Aspect_TypeOfTriedronPosition.hxx
+// ./opencascade/Aspect_GridDrawMode.hxx
+// ./opencascade/Aspect_AspectMarkerDefinitionError.hxx
+// ./opencascade/Aspect_GradientBackground.hxx
+// ./opencascade/Aspect_Grid.hxx
+// ./opencascade/Aspect_WidthOfLine.hxx
+// ./opencascade/Aspect_XWD.hxx
+// ./opencascade/Aspect_GradientFillMethod.hxx
+// ./opencascade/Aspect_NeutralWindow.hxx
+// ./opencascade/Aspect_TypeOfLine.hxx
+// ./opencascade/Aspect_CircularGrid.hxx
+// ./opencascade/Aspect_TypeOfResize.hxx
+// ./opencascade/Aspect_XAtom.hxx
+// ./opencascade/Aspect_TypeOfColorScaleData.hxx
+// ./opencascade/Aspect_RenderingContext.hxx
+// ./opencascade/Aspect_GraphicDeviceDefinitionError.hxx
+// ./opencascade/Aspect_DisplayConnectionDefinitionError.hxx
+// ./opencascade/Aspect_Units.hxx
+// ./opencascade/Aspect_Drawable.hxx
+// ./opencascade/Aspect_WindowError.hxx
+// ./opencascade/Aspect_WindowDefinitionError.hxx
+// ./opencascade/Aspect_AspectFillAreaDefinitionError.hxx
+// ./opencascade/Aspect_Handle.hxx
+// ./opencascade/Aspect_TypeOfMarker.hxx
+// ./opencascade/Aspect_TypeOfDeflection.hxx
+// ./opencascade/Aspect_IdentDefinitionError.hxx
+// ./opencascade/Aspect_HatchStyle.hxx
+// ./opencascade/Aspect_TypeOfDisplayText.hxx
+// ./opencascade/Aspect_GenId.hxx
+// ./opencascade/Aspect_Display.hxx
+// ./opencascade/Aspect_TypeOfStyleText.hxx
+// ./opencascade/Aspect_Window.hxx
+// ./opencascade/Aspect_Convert.hxx
+// ./opencascade/Aspect_Background.hxx
+// ./opencascade/Aspect_AspectLineDefinitionError.hxx
+// ./opencascade/Aspect_FBConfig.hxx
+// ./opencascade/Aspect_TypeOfColorScaleOrientation.hxx
+// ./opencascade/Aspect_RectangularGrid.hxx
+// ./opencascade/Aspect_GridType.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Aspect_GridDrawMode.hxx
-// ./opencascade/Aspect_Convert.hxx
-// ./opencascade/Aspect_InteriorStyle.hxx
-// ./opencascade/Aspect_TypeOfTriedronPosition.hxx
-// ./opencascade/Aspect_AspectLineDefinitionError.hxx
-// ./opencascade/Aspect_Window.hxx
-// ./opencascade/Aspect_TypeOfStyleText.hxx
-// ./opencascade/Aspect_GenId.hxx
-// ./opencascade/Aspect_TypeOfDeflection.hxx
-// ./opencascade/Aspect_TypeOfDisplayText.hxx
-// ./opencascade/Aspect_RenderingContext.hxx
-// ./opencascade/Aspect_DisplayConnection.hxx
-// ./opencascade/Aspect_GradientFillMethod.hxx
-// ./opencascade/Aspect_Handle.hxx
-// ./opencascade/Aspect_Units.hxx
-// ./opencascade/Aspect_FBConfig.hxx
-// ./opencascade/Aspect_WidthOfLine.hxx
-// ./opencascade/Aspect_TypeOfColorScaleData.hxx
-// ./opencascade/Aspect_DisplayConnectionDefinitionError.hxx
-// ./opencascade/Aspect_TypeOfResize.hxx
-// ./opencascade/Aspect_Grid.hxx
-// ./opencascade/Aspect_GradientBackground.hxx
-// ./opencascade/Aspect_CircularGrid.hxx
-// ./opencascade/Aspect_FillMethod.hxx
-// ./opencascade/Aspect_TypeOfLine.hxx
-// ./opencascade/Aspect_Drawable.hxx
-// ./opencascade/Aspect_HatchStyle.hxx
-// ./opencascade/Aspect_WindowDefinitionError.hxx
-// ./opencascade/Aspect_XAtom.hxx
-// ./opencascade/Aspect_Display.hxx
-// ./opencascade/Aspect_AspectFillAreaDefinitionError.hxx
-// ./opencascade/Aspect_Background.hxx
-// ./opencascade/Aspect_XWD.hxx
-// ./opencascade/Aspect_WindowError.hxx
-// ./opencascade/Aspect_TypeOfFacingModel.hxx
-// ./opencascade/Aspect_IdentDefinitionError.hxx
-// ./opencascade/Aspect_AspectMarkerDefinitionError.hxx
-// ./opencascade/Aspect_NeutralWindow.hxx
-// ./opencascade/Aspect_GraphicDeviceDefinitionError.hxx
-// ./opencascade/Aspect_SequenceOfColor.hxx
     register_template_NCollection_Sequence<Quantity_Color>(m,"Aspect_SequenceOfColor");  
-// ./opencascade/Aspect_RectangularGrid.hxx
-// ./opencascade/Aspect_TypeOfColorScaleOrientation.hxx
-// ./opencascade/Aspect_TypeOfMarker.hxx
-// ./opencascade/Aspect_TypeOfColorScalePosition.hxx
-// ./opencascade/Aspect_PolygonOffsetMode.hxx
-// ./opencascade/Aspect_GridType.hxx
-// ./opencascade/Aspect_TypeOfHighlightMethod.hxx
 
 
 // exceptions
+register_occ_exception<Aspect_AspectFillAreaDefinitionError>(m, "Aspect_AspectFillAreaDefinitionError");
 register_occ_exception<Aspect_AspectLineDefinitionError>(m, "Aspect_AspectLineDefinitionError");
+register_occ_exception<Aspect_AspectMarkerDefinitionError>(m, "Aspect_AspectMarkerDefinitionError");
 register_occ_exception<Aspect_DisplayConnectionDefinitionError>(m, "Aspect_DisplayConnectionDefinitionError");
+register_occ_exception<Aspect_GraphicDeviceDefinitionError>(m, "Aspect_GraphicDeviceDefinitionError");
+register_occ_exception<Aspect_IdentDefinitionError>(m, "Aspect_IdentDefinitionError");
 register_occ_exception<Aspect_WindowDefinitionError>(m, "Aspect_WindowDefinitionError");
 register_occ_exception<Aspect_WindowError>(m, "Aspect_WindowError");
-register_occ_exception<Aspect_AspectMarkerDefinitionError>(m, "Aspect_AspectMarkerDefinitionError");
-register_occ_exception<Aspect_GraphicDeviceDefinitionError>(m, "Aspect_GraphicDeviceDefinitionError");
-register_occ_exception<Aspect_AspectFillAreaDefinitionError>(m, "Aspect_AspectFillAreaDefinitionError");
-register_occ_exception<Aspect_IdentDefinitionError>(m, "Aspect_IdentDefinitionError");
 
 // user-defined post-inclusion per module in the body
 

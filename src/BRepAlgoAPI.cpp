@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,14 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <BOPAlgo_PaveFiller.hxx>
 #include <Message_ProgressIndicator.hxx>
+#include <BOPAlgo_PaveFiller.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
 #include <gp_Pln.hxx>
 #include <Geom_Surface.hxx>
-#include <BOPAlgo_PaveFiller.hxx>
-#include <BOPAlgo_PaveFiller.hxx>
 #include <BOPAlgo_PaveFiller.hxx>
 
 // module includes
@@ -53,10 +56,24 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgoAPI"));
 // classes
 
 
-    static_cast<py::class_<BRepAlgoAPI_Check ,std::unique_ptr<BRepAlgoAPI_Check>  , BOPAlgo_Options >>(m.attr("BRepAlgoAPI_Check"))
+    static_cast<py::class_<BRepAlgoAPI_Algo , shared_ptr_nodelete<BRepAlgoAPI_Algo>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepAlgoAPI_Algo"))
+    // methods
+        .def("Shape",
+             (const TopoDS_Shape & (BRepAlgoAPI_Algo::*)() ) static_cast<const TopoDS_Shape & (BRepAlgoAPI_Algo::*)() >(&BRepAlgoAPI_Algo::Shape),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAlgoAPI_Check , shared_ptr<BRepAlgoAPI_Check>  , BOPAlgo_Options >>(m.attr("BRepAlgoAPI_Check"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("theS"),  py::arg("bTestSE")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("bTestSI")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const BOPAlgo_Operation,const Standard_Boolean,const Standard_Boolean >()  , py::arg("theS1"),  py::arg("theS2"),  py::arg("theOp")=static_cast<const BOPAlgo_Operation>(BOPAlgo_UNKNOWN),  py::arg("bTestSE")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("bTestSI")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
         .def("SetData",
              (void (BRepAlgoAPI_Check::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (BRepAlgoAPI_Check::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&BRepAlgoAPI_Check::SetData),
              R"#(Initializes the algorithm with single shape.)#"  , py::arg("theS"),  py::arg("bTestSE")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("bTestSI")=static_cast<const Standard_Boolean>(Standard_True))
@@ -72,60 +89,18 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgoAPI"));
         .def("Result",
              (const BOPAlgo_ListOfCheckResult & (BRepAlgoAPI_Check::*)() ) static_cast<const BOPAlgo_ListOfCheckResult & (BRepAlgoAPI_Check::*)() >(&BRepAlgoAPI_Check::Result),
              R"#(Returns faulty shapes.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepAlgoAPI_Algo ,std::unique_ptr<BRepAlgoAPI_Algo, py::nodelete>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepAlgoAPI_Algo"))
-        .def("Shape",
-             (const TopoDS_Shape & (BRepAlgoAPI_Algo::*)() ) static_cast<const TopoDS_Shape & (BRepAlgoAPI_Algo::*)() >(&BRepAlgoAPI_Algo::Shape),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepAlgoAPI_Defeaturing ,std::unique_ptr<BRepAlgoAPI_Defeaturing>  , BRepAlgoAPI_Algo >>(m.attr("BRepAlgoAPI_Defeaturing"))
-        .def(py::init<  >()  )
-        .def("SetShape",
-             (void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::SetShape),
-             R"#(Sets the shape for processing.)#"  , py::arg("theShape"))
-        .def("InputShape",
-             (const TopoDS_Shape & (BRepAlgoAPI_Defeaturing::*)() const) static_cast<const TopoDS_Shape & (BRepAlgoAPI_Defeaturing::*)() const>(&BRepAlgoAPI_Defeaturing::InputShape),
-             R"#(Returns the input shape)#" )
-        .def("AddFaceToRemove",
-             (void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::AddFaceToRemove),
-             R"#(Adds the features to remove from the input shape.)#"  , py::arg("theFace"))
-        .def("AddFacesToRemove",
-             (void (BRepAlgoAPI_Defeaturing::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BRepAlgoAPI_Defeaturing::AddFacesToRemove),
-             R"#(Adds the faces to remove from the input shape.)#"  , py::arg("theFaces"))
-        .def("FacesToRemove",
-             (const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)() const) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)() const>(&BRepAlgoAPI_Defeaturing::FacesToRemove),
-             R"#(Returns the list of faces which have been requested for removal from the input shape.)#" )
-        .def("Build",
-             (void (BRepAlgoAPI_Defeaturing::*)() ) static_cast<void (BRepAlgoAPI_Defeaturing::*)() >(&BRepAlgoAPI_Defeaturing::Build),
-             R"#(Performs the operation)#" )
-        .def("TrackHistory",
-             (void (BRepAlgoAPI_Defeaturing::*)( const Standard_Boolean  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)( const Standard_Boolean  ) >(&BRepAlgoAPI_Defeaturing::TrackHistory),
-             R"#(Defines whether to track the modification of the shapes or not.)#"  , py::arg("theFlag"))
-        .def("HasHistory",
-             (Standard_Boolean (BRepAlgoAPI_Defeaturing::*)() const) static_cast<Standard_Boolean (BRepAlgoAPI_Defeaturing::*)() const>(&BRepAlgoAPI_Defeaturing::HasHistory),
-             R"#(Returns whether the history was requested or not.)#" )
-        .def("Modified",
-             (const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::Modified),
-             R"#(Returns the list of shapes modified from the shape <theS> during the operation.)#"  , py::arg("theS"))
-        .def("Generated",
-             (const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::Generated),
-             R"#(Returns the list of shapes generated from the shape <theS> during the operation.)#"  , py::arg("theS"))
-        .def("IsDeleted",
-             (Standard_Boolean (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::IsDeleted),
-             R"#(Returns true if the shape <theS> has been deleted during the operation. It means that the shape has no any trace in the result. Otherwise it returns false.)#"  , py::arg("theS"))
-        .def("GetHistory",
-             (opencascade::handle<BRepTools_History> (BRepAlgoAPI_Defeaturing::*)() ) static_cast<opencascade::handle<BRepTools_History> (BRepAlgoAPI_Defeaturing::*)() >(&BRepAlgoAPI_Defeaturing::GetHistory),
-             R"#(Returns the History of shapes modifications)#" )
-;
-
-
-    static_cast<py::class_<BRepAlgoAPI_BuilderAlgo ,std::unique_ptr<BRepAlgoAPI_BuilderAlgo>  , BRepAlgoAPI_Algo >>(m.attr("BRepAlgoAPI_BuilderAlgo"))
+    static_cast<py::class_<BRepAlgoAPI_BuilderAlgo , shared_ptr<BRepAlgoAPI_BuilderAlgo>  , BRepAlgoAPI_Algo >>(m.attr("BRepAlgoAPI_BuilderAlgo"))
         .def(py::init<  >()  )
         .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("thePF") )
+    // methods
         .def("SetNonDestructive",
              (void (BRepAlgoAPI_BuilderAlgo::*)( const Standard_Boolean  ) ) static_cast<void (BRepAlgoAPI_BuilderAlgo::*)( const Standard_Boolean  ) >(&BRepAlgoAPI_BuilderAlgo::SetNonDestructive),
              R"#(Sets the flag that defines the mode of treatment. In non-destructive mode the argument shapes are not modified. Instead a copy of a sub-shape is created in the result if it is needed to be updated.)#"  , py::arg("theFlag"))
@@ -174,10 +149,63 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgoAPI"));
         .def("DSFiller",
              (const BOPAlgo_PPaveFiller & (BRepAlgoAPI_BuilderAlgo::*)() const) static_cast<const BOPAlgo_PPaveFiller & (BRepAlgoAPI_BuilderAlgo::*)() const>(&BRepAlgoAPI_BuilderAlgo::DSFiller),
              R"#(Returns the Intersection tool)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepAlgoAPI_BooleanOperation ,std::unique_ptr<BRepAlgoAPI_BooleanOperation>  , BRepAlgoAPI_BuilderAlgo >>(m.attr("BRepAlgoAPI_BooleanOperation"))
+    static_cast<py::class_<BRepAlgoAPI_Defeaturing , shared_ptr<BRepAlgoAPI_Defeaturing>  , BRepAlgoAPI_Algo >>(m.attr("BRepAlgoAPI_Defeaturing"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetShape",
+             (void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::SetShape),
+             R"#(Sets the shape for processing.)#"  , py::arg("theShape"))
+        .def("InputShape",
+             (const TopoDS_Shape & (BRepAlgoAPI_Defeaturing::*)() const) static_cast<const TopoDS_Shape & (BRepAlgoAPI_Defeaturing::*)() const>(&BRepAlgoAPI_Defeaturing::InputShape),
+             R"#(Returns the input shape)#" )
+        .def("AddFaceToRemove",
+             (void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::AddFaceToRemove),
+             R"#(Adds the features to remove from the input shape.)#"  , py::arg("theFace"))
+        .def("AddFacesToRemove",
+             (void (BRepAlgoAPI_Defeaturing::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BRepAlgoAPI_Defeaturing::AddFacesToRemove),
+             R"#(Adds the faces to remove from the input shape.)#"  , py::arg("theFaces"))
+        .def("FacesToRemove",
+             (const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)() const) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)() const>(&BRepAlgoAPI_Defeaturing::FacesToRemove),
+             R"#(Returns the list of faces which have been requested for removal from the input shape.)#" )
+        .def("Build",
+             (void (BRepAlgoAPI_Defeaturing::*)() ) static_cast<void (BRepAlgoAPI_Defeaturing::*)() >(&BRepAlgoAPI_Defeaturing::Build),
+             R"#(Performs the operation)#" )
+        .def("TrackHistory",
+             (void (BRepAlgoAPI_Defeaturing::*)( const Standard_Boolean  ) ) static_cast<void (BRepAlgoAPI_Defeaturing::*)( const Standard_Boolean  ) >(&BRepAlgoAPI_Defeaturing::TrackHistory),
+             R"#(Defines whether to track the modification of the shapes or not.)#"  , py::arg("theFlag"))
+        .def("HasHistory",
+             (Standard_Boolean (BRepAlgoAPI_Defeaturing::*)() const) static_cast<Standard_Boolean (BRepAlgoAPI_Defeaturing::*)() const>(&BRepAlgoAPI_Defeaturing::HasHistory),
+             R"#(Returns whether the history was requested or not.)#" )
+        .def("Modified",
+             (const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::Modified),
+             R"#(Returns the list of shapes modified from the shape <theS> during the operation.)#"  , py::arg("theS"))
+        .def("Generated",
+             (const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::Generated),
+             R"#(Returns the list of shapes generated from the shape <theS> during the operation.)#"  , py::arg("theS"))
+        .def("IsDeleted",
+             (Standard_Boolean (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepAlgoAPI_Defeaturing::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Defeaturing::IsDeleted),
+             R"#(Returns true if the shape <theS> has been deleted during the operation. It means that the shape has no any trace in the result. Otherwise it returns false.)#"  , py::arg("theS"))
+        .def("GetHistory",
+             (opencascade::handle<BRepTools_History> (BRepAlgoAPI_Defeaturing::*)() ) static_cast<opencascade::handle<BRepTools_History> (BRepAlgoAPI_Defeaturing::*)() >(&BRepAlgoAPI_Defeaturing::GetHistory),
+             R"#(Returns the History of shapes modifications)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAlgoAPI_BooleanOperation , shared_ptr<BRepAlgoAPI_BooleanOperation>  , BRepAlgoAPI_BuilderAlgo >>(m.attr("BRepAlgoAPI_BooleanOperation"))
+    // methods
         .def("Shape1",
              (const TopoDS_Shape & (BRepAlgoAPI_BooleanOperation::*)() const) static_cast<const TopoDS_Shape & (BRepAlgoAPI_BooleanOperation::*)() const>(&BRepAlgoAPI_BooleanOperation::Shape1),
              R"#(Returns the first argument involved in this Boolean operation. Obsolete)#" )
@@ -229,26 +257,78 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgoAPI"));
         .def("HasDeleted",
              (Standard_Boolean (BRepAlgoAPI_BooleanOperation::*)() const) static_cast<Standard_Boolean (BRepAlgoAPI_BooleanOperation::*)() const>(&BRepAlgoAPI_BooleanOperation::HasDeleted),
              R"#(Returns true if there is at least one deleted shape. For use in BRepNaming.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepAlgoAPI_Common ,std::unique_ptr<BRepAlgoAPI_Common>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Common"))
+    static_cast<py::class_<BRepAlgoAPI_Splitter , shared_ptr<BRepAlgoAPI_Splitter>  , BRepAlgoAPI_BuilderAlgo >>(m.attr("BRepAlgoAPI_Splitter"))
+        .def(py::init<  >()  )
+        .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("thePF") )
+    // methods
+        .def("Build",
+             (void (BRepAlgoAPI_Splitter::*)() ) static_cast<void (BRepAlgoAPI_Splitter::*)() >(&BRepAlgoAPI_Splitter::Build),
+             R"#(Performs the algorithm. Performs the intersection of the objects with tools and build the result of the operation.)#" )
+        .def("SetTools",
+             (void (BRepAlgoAPI_Splitter::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepAlgoAPI_Splitter::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BRepAlgoAPI_Splitter::SetTools),
+             R"#(Sets the tools)#"  , py::arg("theLS"))
+        .def("Tools",
+             (const TopTools_ListOfShape & (BRepAlgoAPI_Splitter::*)() const) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Splitter::*)() const>(&BRepAlgoAPI_Splitter::Tools),
+             R"#(Gets the tools)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAlgoAPI_Common , shared_ptr<BRepAlgoAPI_Common>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Common"))
         .def(py::init<  >()  )
         .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("PF") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("S1"),  py::arg("S2") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const BOPAlgo_PaveFiller & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("PF") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepAlgoAPI_Fuse ,std::unique_ptr<BRepAlgoAPI_Fuse>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Fuse"))
+    static_cast<py::class_<BRepAlgoAPI_Cut , shared_ptr<BRepAlgoAPI_Cut>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Cut"))
+        .def(py::init<  >()  )
+        .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("PF") )
+        .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("S1"),  py::arg("S2") )
+        .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const BOPAlgo_PaveFiller &,const Standard_Boolean >()  , py::arg("S1"),  py::arg("S2"),  py::arg("aDSF"),  py::arg("bFWD")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAlgoAPI_Fuse , shared_ptr<BRepAlgoAPI_Fuse>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Fuse"))
         .def(py::init<  >()  )
         .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("PF") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("S1"),  py::arg("S2") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const BOPAlgo_PaveFiller & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("aDSF") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepAlgoAPI_Section ,std::unique_ptr<BRepAlgoAPI_Section>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Section"))
+    static_cast<py::class_<BRepAlgoAPI_Section , shared_ptr<BRepAlgoAPI_Section>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Section"))
         .def(py::init<  >()  )
         .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("PF") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("S1"),  py::arg("S2"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
@@ -257,6 +337,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgoAPI"));
         .def(py::init< const TopoDS_Shape &,const opencascade::handle<Geom_Surface> &,const Standard_Boolean >()  , py::arg("S1"),  py::arg("Sf"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("Sf"),  py::arg("S2"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> &,const Standard_Boolean >()  , py::arg("Sf1"),  py::arg("Sf2"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
         .def("Init1",
              (void (BRepAlgoAPI_Section::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgoAPI_Section::*)( const TopoDS_Shape &  ) >(&BRepAlgoAPI_Section::Init1),
              R"#(initialize the argument <S1> - argument Obsolete)#"  , py::arg("S1"))
@@ -293,56 +374,28 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgoAPI"));
         .def("HasAncestorFaceOn2",
              (Standard_Boolean (BRepAlgoAPI_Section::*)( const TopoDS_Shape & ,  TopoDS_Shape &  ) const) static_cast<Standard_Boolean (BRepAlgoAPI_Section::*)( const TopoDS_Shape & ,  TopoDS_Shape &  ) const>(&BRepAlgoAPI_Section::HasAncestorFaceOn2),
              R"#(Identifies the ancestor faces of the intersection edge E resulting from the last computation performed in this framework, that is, the faces of the two original shapes on which the edge E lies: - HasAncestorFaceOn1 gives the ancestor face in the first shape, and - HasAncestorFaceOn2 gives the ancestor face in the second shape. These functions return true if an ancestor face F is found, or false if not. An ancestor face is identifiable for the edge E if the following conditions are satisfied: - the first part on which this algorithm performed its last computation is a shape, that is, it was not given as a surface or a plane at the time of construction of this algorithm or at a later time by the Init1 function, - E is one of the elementary edges built by the last computation of this section algorithm. To use these functions properly, you have to test the returned Boolean value before using the ancestor face: F is significant only if the returned Boolean value equals true. Obsolete)#"  , py::arg("E"),  py::arg("F"))
-;
-
-
-    static_cast<py::class_<BRepAlgoAPI_Cut ,std::unique_ptr<BRepAlgoAPI_Cut>  , BRepAlgoAPI_BooleanOperation >>(m.attr("BRepAlgoAPI_Cut"))
-        .def(py::init<  >()  )
-        .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("PF") )
-        .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("S1"),  py::arg("S2") )
-        .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const BOPAlgo_PaveFiller &,const Standard_Boolean >()  , py::arg("S1"),  py::arg("S2"),  py::arg("aDSF"),  py::arg("bFWD")=static_cast<const Standard_Boolean>(Standard_True) )
-;
-
-
-    static_cast<py::class_<BRepAlgoAPI_Splitter ,std::unique_ptr<BRepAlgoAPI_Splitter>  , BRepAlgoAPI_BuilderAlgo >>(m.attr("BRepAlgoAPI_Splitter"))
-        .def(py::init<  >()  )
-        .def(py::init< const BOPAlgo_PaveFiller & >()  , py::arg("thePF") )
-        .def("Build",
-             (void (BRepAlgoAPI_Splitter::*)() ) static_cast<void (BRepAlgoAPI_Splitter::*)() >(&BRepAlgoAPI_Splitter::Build),
-             R"#(Performs the algorithm. Performs the intersection of the objects with tools and build the result of the operation.)#" )
-        .def("SetTools",
-             (void (BRepAlgoAPI_Splitter::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepAlgoAPI_Splitter::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&BRepAlgoAPI_Splitter::SetTools),
-             R"#(Sets the tools)#"  , py::arg("theLS"))
-        .def("Tools",
-             (const TopTools_ListOfShape & (BRepAlgoAPI_Splitter::*)() const) static_cast<const TopTools_ListOfShape & (BRepAlgoAPI_Splitter::*)() const>(&BRepAlgoAPI_Splitter::Tools),
-             R"#(Gets the tools)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BRepAlgoAPI_Check.hxx
-// ./opencascade/BRepAlgoAPI_Algo.hxx
 // ./opencascade/BRepAlgoAPI_Fuse.hxx
-// ./opencascade/BRepAlgoAPI_Cut.hxx
-// ./opencascade/BRepAlgoAPI_Defeaturing.hxx
-// ./opencascade/BRepAlgoAPI_Section.hxx
-// ./opencascade/BRepAlgoAPI_BooleanOperation.hxx
+// ./opencascade/BRepAlgoAPI_Algo.hxx
 // ./opencascade/BRepAlgoAPI_Splitter.hxx
-// ./opencascade/BRepAlgoAPI_BuilderAlgo.hxx
+// ./opencascade/BRepAlgoAPI_Cut.hxx
+// ./opencascade/BRepAlgoAPI_BooleanOperation.hxx
+// ./opencascade/BRepAlgoAPI_Defeaturing.hxx
 // ./opencascade/BRepAlgoAPI_Common.hxx
+// ./opencascade/BRepAlgoAPI_Check.hxx
+// ./opencascade/BRepAlgoAPI_Section.hxx
+// ./opencascade/BRepAlgoAPI_BuilderAlgo.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepAlgoAPI_Check.hxx
-// ./opencascade/BRepAlgoAPI_Algo.hxx
-// ./opencascade/BRepAlgoAPI_Fuse.hxx
-// ./opencascade/BRepAlgoAPI_Cut.hxx
-// ./opencascade/BRepAlgoAPI_Defeaturing.hxx
-// ./opencascade/BRepAlgoAPI_Section.hxx
-// ./opencascade/BRepAlgoAPI_BooleanOperation.hxx
-// ./opencascade/BRepAlgoAPI_Splitter.hxx
-// ./opencascade/BRepAlgoAPI_BuilderAlgo.hxx
-// ./opencascade/BRepAlgoAPI_Common.hxx
 
 
 // exceptions

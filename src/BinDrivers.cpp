@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -47,9 +50,33 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
 
 // classes
 
+    register_default_constructor<BinDrivers , shared_ptr<BinDrivers>>(m,"BinDrivers");
+
+    static_cast<py::class_<BinDrivers , shared_ptr<BinDrivers>  >>(m.attr("BinDrivers"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Factory_s",
+                    (const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) ) static_cast<const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) >(&BinDrivers::Factory),
+                    R"#(None)#"  , py::arg("theGUID"))
+        .def_static("DefineFormat_s",
+                    (void (*)( const opencascade::handle<TDocStd_Application> &  ) ) static_cast<void (*)( const opencascade::handle<TDocStd_Application> &  ) >(&BinDrivers::DefineFormat),
+                    R"#(Defines format "BinOcaf" and registers its read and write drivers in the specified application)#"  , py::arg("theApp"))
+        .def_static("AttributeDrivers_s",
+                    (opencascade::handle<BinMDF_ADriverTable> (*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (*)( const opencascade::handle<Message_Messenger> &  ) >(&BinDrivers::AttributeDrivers),
+                    R"#(Creates the table of drivers of types supported)#"  , py::arg("MsgDrv"))
+        .def_static("StorageVersion_s",
+                    (TCollection_AsciiString (*)() ) static_cast<TCollection_AsciiString (*)() >(&BinDrivers::StorageVersion),
+                    R"#(returns "1")#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
 
     static_cast<py::class_<BinDrivers_DocumentRetrievalDriver ,opencascade::handle<BinDrivers_DocumentRetrievalDriver>  , BinLDrivers_DocumentRetrievalDriver >>(m.attr("BinDrivers_DocumentRetrievalDriver"))
         .def(py::init<  >()  )
+    // methods
         .def("AttributeDrivers",
              (opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinDrivers_DocumentRetrievalDriver::AttributeDrivers),
              R"#(None)#"  , py::arg("theMsgDriver"))
@@ -68,17 +95,23 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BinDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinDrivers_DocumentRetrievalDriver::*)() const>(&BinDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BinDrivers_DocumentRetrievalDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinDrivers_DocumentRetrievalDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BinDrivers_DocumentStorageDriver ,opencascade::handle<BinDrivers_DocumentStorageDriver>  , BinLDrivers_DocumentStorageDriver >>(m.attr("BinDrivers_DocumentStorageDriver"))
         .def(py::init<  >()  )
+    // methods
         .def("AttributeDrivers",
              (opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinDrivers_DocumentStorageDriver::AttributeDrivers),
              R"#(None)#"  , py::arg("theMsgDriver"))
@@ -94,12 +127,17 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BinDrivers_DocumentStorageDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinDrivers_DocumentStorageDriver::*)() const>(&BinDrivers_DocumentStorageDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BinDrivers_DocumentStorageDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinDrivers_DocumentStorageDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -111,10 +149,6 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
 // operators
 
 // register typdefs
-// ./opencascade/BinDrivers.hxx
-// ./opencascade/BinDrivers_Marker.hxx
-// ./opencascade/BinDrivers_DocumentStorageDriver.hxx
-// ./opencascade/BinDrivers_DocumentRetrievalDriver.hxx
 
 
 // exceptions

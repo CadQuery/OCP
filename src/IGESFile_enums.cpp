@@ -35,10 +35,9 @@ py::module m = main_module.def_submodule("IGESFile", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-
 // pre-register typdefs
-// ./opencascade/IGESFile_Read.hxx
+
+// classes forward declarations only
 
 };
 

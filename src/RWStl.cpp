@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -49,8 +52,38 @@ py::module m = static_cast<py::module>(main_module.attr("RWStl"));
 
 // classes
 
+    register_default_constructor<RWStl , shared_ptr<RWStl>>(m,"RWStl");
+
+    static_cast<py::class_<RWStl , shared_ptr<RWStl>  >>(m.attr("RWStl"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("WriteBinary_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Poly_Triangulation> & ,  const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Poly_Triangulation> & ,  const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&RWStl::WriteBinary),
+                    R"#(Write triangulation to binary STL file. binary format of an STL file. Returns false if the cannot be opened;)#"  , py::arg("theMesh"),  py::arg("thePath"),  py::arg("theProgInd")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
+        .def_static("WriteAscii_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Poly_Triangulation> & ,  const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Poly_Triangulation> & ,  const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&RWStl::WriteAscii),
+                    R"#(write the meshing in a file following the Ascii format of an STL file. Returns false if the cannot be opened;)#"  , py::arg("theMesh"),  py::arg("thePath"),  py::arg("theProgInd")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
+        .def_static("ReadFile_s",
+                    (opencascade::handle<Poly_Triangulation> (*)( const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<opencascade::handle<Poly_Triangulation> (*)( const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&RWStl::ReadFile),
+                    R"#(Read specified STL file and returns its content as triangulation. In case of error, returns Null handle.)#"  , py::arg("theFile"),  py::arg("aProgInd")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
+        .def_static("ReadFile_s",
+                    (opencascade::handle<Poly_Triangulation> (*)( const Standard_CString ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<opencascade::handle<Poly_Triangulation> (*)( const Standard_CString ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&RWStl::ReadFile),
+                    R"#(Read specified STL file and returns its content as triangulation. In case of error, returns Null handle.)#"  , py::arg("theFile"),  py::arg("aProgInd")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
+        .def_static("ReadBinary_s",
+                    (opencascade::handle<Poly_Triangulation> (*)( const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<opencascade::handle<Poly_Triangulation> (*)( const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&RWStl::ReadBinary),
+                    R"#(Read triangulation from a binary STL file In case of error, returns Null handle.)#"  , py::arg("thePath"),  py::arg("theProgInd")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
+        .def_static("ReadAscii_s",
+                    (opencascade::handle<Poly_Triangulation> (*)( const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<opencascade::handle<Poly_Triangulation> (*)( const OSD_Path & ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&RWStl::ReadAscii),
+                    R"#(Read triangulation from an Ascii STL file In case of error, returns Null handle.)#"  , py::arg("thePath"),  py::arg("theProgInd")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
 
     static_cast<py::class_<RWStl_Reader ,opencascade::handle<RWStl_Reader> ,Py_RWStl_Reader , Standard_Transient >>(m.attr("RWStl_Reader"))
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (RWStl_Reader::*)() const) static_cast<const opencascade::handle<Standard_Type> & (RWStl_Reader::*)() const>(&RWStl_Reader::DynamicType),
              R"#(None)#" )
@@ -69,23 +102,26 @@ py::module m = static_cast<py::module>(main_module.attr("RWStl"));
         .def("AddTriangle",
              (void (RWStl_Reader::*)( Standard_Integer ,  Standard_Integer ,  Standard_Integer  ) ) static_cast<void (RWStl_Reader::*)( Standard_Integer ,  Standard_Integer ,  Standard_Integer  ) >(&RWStl_Reader::AddTriangle),
              R"#(Callback function to be implemented in descendant. Should create new triangle built on specified nodes in the target model.)#"  , py::arg("theN1"),  py::arg("theN2"),  py::arg("theN3"))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&RWStl_Reader::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&RWStl_Reader::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/RWStl.hxx
 // ./opencascade/RWStl_Reader.hxx
+// ./opencascade/RWStl.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/RWStl.hxx
-// ./opencascade/RWStl_Reader.hxx
 
 
 // exceptions

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,16 +13,16 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IntPolyh_Triangle.hxx>
+#include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <IntPolyh_Triangle.hxx>
-#include <IntPolyh_MaillageAffinage.hxx>
-#include <IntPolyh_Triangle.hxx>
-#include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <IntPolyh_StartPoint.hxx>
+#include <IntPolyh_MaillageAffinage.hxx>
+#include <IntPolyh_Triangle.hxx>
 #include <Adaptor3d_HSurface.hxx>
+#include <IntPolyh_Triangle.hxx>
 
 // module includes
 #include <IntPolyh_Array.hxx>
@@ -44,9 +47,9 @@ namespace py = pybind11;
 #include <IntPolyh_Triangle.hxx>
 
 // template related includes
-// ./opencascade/IntPolyh_ListOfCouples.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntPolyh_SeqOfStartPoints.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntPolyh_ListOfCouples.hxx
 #include "NCollection.hxx"
 
 
@@ -67,9 +70,142 @@ py::module m = static_cast<py::module>(main_module.attr("IntPolyh"));
 // classes
 
 
-    static_cast<py::class_<IntPolyh_MaillageAffinage ,std::unique_ptr<IntPolyh_MaillageAffinage>  >>(m.attr("IntPolyh_MaillageAffinage"))
+    static_cast<py::class_<IntPolyh_Couple , shared_ptr<IntPolyh_Couple>  >>(m.attr("IntPolyh_Couple"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real >()  , py::arg("theTriangle1"),  py::arg("theTriangle2"),  py::arg("theAngle")=static_cast<const Standard_Real>(- 2.0) )
+    // methods
+        .def("FirstValue",
+             (Standard_Integer (IntPolyh_Couple::*)() const) static_cast<Standard_Integer (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::FirstValue),
+             R"#(Returns the first index)#" )
+        .def("SecondValue",
+             (Standard_Integer (IntPolyh_Couple::*)() const) static_cast<Standard_Integer (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::SecondValue),
+             R"#(Returns the second index)#" )
+        .def("IsAnalyzed",
+             (Standard_Boolean (IntPolyh_Couple::*)() const) static_cast<Standard_Boolean (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::IsAnalyzed),
+             R"#(Returns TRUE if the couple has been analyzed)#" )
+        .def("Angle",
+             (Standard_Real (IntPolyh_Couple::*)() const) static_cast<Standard_Real (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::Angle),
+             R"#(Returns the angle)#" )
+        .def("SetCoupleValue",
+             (void (IntPolyh_Couple::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IntPolyh_Couple::*)( const Standard_Integer ,  const Standard_Integer  ) >(&IntPolyh_Couple::SetCoupleValue),
+             R"#(Sets the triangles)#"  , py::arg("theInd1"),  py::arg("theInd2"))
+        .def("SetAnalyzed",
+             (void (IntPolyh_Couple::*)( const Standard_Boolean  ) ) static_cast<void (IntPolyh_Couple::*)( const Standard_Boolean  ) >(&IntPolyh_Couple::SetAnalyzed),
+             R"#(Sets the analyzed flag)#"  , py::arg("theAnalyzed"))
+        .def("SetAngle",
+             (void (IntPolyh_Couple::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Couple::*)( const Standard_Real  ) >(&IntPolyh_Couple::SetAngle),
+             R"#(Sets the angle)#"  , py::arg("theAngle"))
+        .def("IsEqual",
+             (Standard_Boolean (IntPolyh_Couple::*)( const IntPolyh_Couple &  ) const) static_cast<Standard_Boolean (IntPolyh_Couple::*)( const IntPolyh_Couple &  ) const>(&IntPolyh_Couple::IsEqual),
+             R"#(Returns true if the Couple is equal to <theOther>)#"  , py::arg("theOther"))
+        .def("HashCode",
+             (Standard_Integer (IntPolyh_Couple::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (IntPolyh_Couple::*)( const Standard_Integer  ) const>(&IntPolyh_Couple::HashCode),
+             R"#(Returns hash code)#"  , py::arg("theUpper"))
+        .def("Dump",
+             (void (IntPolyh_Couple::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_Couple::*)( const Standard_Integer  ) const>(&IntPolyh_Couple::Dump),
+             R"#(None)#"  , py::arg("v"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<IntPolyh_CoupleMapHasher , shared_ptr<IntPolyh_CoupleMapHasher>>(m,"IntPolyh_CoupleMapHasher");
+
+    static_cast<py::class_<IntPolyh_CoupleMapHasher , shared_ptr<IntPolyh_CoupleMapHasher>  >>(m.attr("IntPolyh_CoupleMapHasher"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("HashCode_s",
+                    (Standard_Integer (*)( const IntPolyh_Couple & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const IntPolyh_Couple & ,  const Standard_Integer  ) >(&IntPolyh_CoupleMapHasher::HashCode),
+                    R"#(None)#"  , py::arg("theCouple"),  py::arg("Upper"))
+        .def_static("IsEqual_s",
+                    (Standard_Boolean (*)( const IntPolyh_Couple & ,  const IntPolyh_Couple &  ) ) static_cast<Standard_Boolean (*)( const IntPolyh_Couple & ,  const IntPolyh_Couple &  ) >(&IntPolyh_CoupleMapHasher::IsEqual),
+                    R"#(None)#"  , py::arg("theCouple1"),  py::arg("theCouple2"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IntPolyh_Edge , shared_ptr<IntPolyh_Edge>  >>(m.attr("IntPolyh_Edge"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("thePoint1"),  py::arg("thePoint2"),  py::arg("theTriangle1"),  py::arg("theTriangle2") )
+    // methods
+        .def("FirstPoint",
+             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::FirstPoint),
+             R"#(Returns the first point)#" )
+        .def("SecondPoint",
+             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::SecondPoint),
+             R"#(Returns the second point)#" )
+        .def("FirstTriangle",
+             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::FirstTriangle),
+             R"#(Returns the first triangle)#" )
+        .def("SecondTriangle",
+             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::SecondTriangle),
+             R"#(Returns the second triangle)#" )
+        .def("SetFirstPoint",
+             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetFirstPoint),
+             R"#(Sets the first point)#"  , py::arg("thePoint"))
+        .def("SetSecondPoint",
+             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetSecondPoint),
+             R"#(Sets the second point)#"  , py::arg("thePoint"))
+        .def("SetFirstTriangle",
+             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetFirstTriangle),
+             R"#(Sets the first triangle)#"  , py::arg("theTriangle"))
+        .def("SetSecondTriangle",
+             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetSecondTriangle),
+             R"#(Sets the second triangle)#"  , py::arg("theTriangle"))
+        .def("Dump",
+             (void (IntPolyh_Edge::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) const>(&IntPolyh_Edge::Dump),
+             R"#(None)#"  , py::arg("v"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IntPolyh_Intersection , shared_ptr<IntPolyh_Intersection>  >>(m.attr("IntPolyh_Intersection"))
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("theS1"),  py::arg("theS2") )
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer >()  , py::arg("theS1"),  py::arg("theNbSU1"),  py::arg("theNbSV1"),  py::arg("theS2"),  py::arg("theNbSU2"),  py::arg("theNbSV2") )
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &,const opencascade::handle<Adaptor3d_HSurface> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("theS1"),  py::arg("theUPars1"),  py::arg("theVPars1"),  py::arg("theS2"),  py::arg("theUPars2"),  py::arg("theVPars2") )
+    // methods
+        .def("IsDone",
+             (Standard_Boolean (IntPolyh_Intersection::*)() const) static_cast<Standard_Boolean (IntPolyh_Intersection::*)() const>(&IntPolyh_Intersection::IsDone),
+             R"#(Returns state of the operation)#" )
+        .def("NbSectionLines",
+             (Standard_Integer (IntPolyh_Intersection::*)() const) static_cast<Standard_Integer (IntPolyh_Intersection::*)() const>(&IntPolyh_Intersection::NbSectionLines),
+             R"#(Returns the number of section lines)#" )
+        .def("NbPointsInLine",
+             (Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const>(&IntPolyh_Intersection::NbPointsInLine),
+             R"#(Returns the number of points in the given line)#"  , py::arg("IndexLine"))
+        .def("NbTangentZones",
+             (Standard_Integer (IntPolyh_Intersection::*)() const) static_cast<Standard_Integer (IntPolyh_Intersection::*)() const>(&IntPolyh_Intersection::NbTangentZones),
+             R"#(None)#" )
+        .def("NbPointsInTangentZone",
+             (Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const>(&IntPolyh_Intersection::NbPointsInTangentZone),
+             R"#(Returns number of points in tangent zone)#"  , py::arg(""))
+    // methods using call by reference i.s.o. return
+        .def("GetLinePoint",
+             []( IntPolyh_Intersection &self , const Standard_Integer IndexLine,const Standard_Integer IndexPoint ){ Standard_Real  x; Standard_Real  y; Standard_Real  z; Standard_Real  u1; Standard_Real  v1; Standard_Real  u2; Standard_Real  v2; Standard_Real  incidence; self.GetLinePoint(IndexLine,IndexPoint,x,y,z,u1,v1,u2,v2,incidence); return std::make_tuple(x,y,z,u1,v1,u2,v2,incidence); },
+             R"#(Gets the parameters of the point in section line)#"  , py::arg("IndexLine"),  py::arg("IndexPoint"))
+        .def("GetTangentZonePoint",
+             []( IntPolyh_Intersection &self , const Standard_Integer IndexLine,const Standard_Integer IndexPoint ){ Standard_Real  x; Standard_Real  y; Standard_Real  z; Standard_Real  u1; Standard_Real  v1; Standard_Real  u2; Standard_Real  v2; self.GetTangentZonePoint(IndexLine,IndexPoint,x,y,z,u1,v1,u2,v2); return std::make_tuple(x,y,z,u1,v1,u2,v2); },
+             R"#(Gets the parameters of the point in tangent zone)#"  , py::arg("IndexLine"),  py::arg("IndexPoint"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IntPolyh_MaillageAffinage , shared_ptr<IntPolyh_MaillageAffinage>  >>(m.attr("IntPolyh_MaillageAffinage"))
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("S1"),  py::arg("NbSU1"),  py::arg("NbSV1"),  py::arg("S2"),  py::arg("NbSU2"),  py::arg("NbSV2"),  py::arg("PRINT") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer >()  , py::arg("S1"),  py::arg("S2"),  py::arg("PRINT") )
+    // methods
         .def("MakeSampling",
              (void (IntPolyh_MaillageAffinage::*)( const Standard_Integer ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<void (IntPolyh_MaillageAffinage::*)( const Standard_Integer ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&IntPolyh_MaillageAffinage::MakeSampling),
              R"#(Makes the sampling of the surface - Fills the arrays with the parametric values of the sampling points (triangulation nodes).)#"  , py::arg("SurfID"),  py::arg("theUPars"),  py::arg("theVPars"))
@@ -91,9 +227,6 @@ py::module m = static_cast<py::module>(main_module.attr("IntPolyh"));
         .def("CommonBox",
              (void (IntPolyh_MaillageAffinage::*)() ) static_cast<void (IntPolyh_MaillageAffinage::*)() >(&IntPolyh_MaillageAffinage::CommonBox),
              R"#(Looks for the common box of the surfaces and marks the points of the surfaces inside that common box for possible intersection)#" )
-        .def("CommonBox",
-             (void (IntPolyh_MaillageAffinage::*)( const Bnd_Box & ,  const Bnd_Box & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (IntPolyh_MaillageAffinage::*)( const Bnd_Box & ,  const Bnd_Box & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) >(&IntPolyh_MaillageAffinage::CommonBox),
-             R"#(Compute the common box witch is the intersection of the two bounding boxes, and mark the points of the two surfaces that are inside.)#"  , py::arg("B1"),  py::arg("B2"),  py::arg("xMin"),  py::arg("yMin"),  py::arg("zMin"),  py::arg("xMax"),  py::arg("yMax"),  py::arg("zMax"))
         .def("FillArrayOfEdges",
              (void (IntPolyh_MaillageAffinage::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_MaillageAffinage::*)( const Standard_Integer  ) >(&IntPolyh_MaillageAffinage::FillArrayOfEdges),
              R"#(Compute edges from the array of points)#"  , py::arg("SurfID"))
@@ -160,12 +293,176 @@ py::module m = static_cast<py::module>(main_module.attr("IntPolyh"));
         .def("GetMaxDeflection",
              (Standard_Real (IntPolyh_MaillageAffinage::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntPolyh_MaillageAffinage::*)( const Standard_Integer  ) const>(&IntPolyh_MaillageAffinage::GetMaxDeflection),
              R"#(returns FlecheMax)#"  , py::arg("SurfID"))
+    // methods using call by reference i.s.o. return
+        .def("CommonBox",
+             []( IntPolyh_MaillageAffinage &self , const Bnd_Box & B1,const Bnd_Box & B2 ){ Standard_Real  xMin; Standard_Real  yMin; Standard_Real  zMin; Standard_Real  xMax; Standard_Real  yMax; Standard_Real  zMax; self.CommonBox(B1,B2,xMin,yMin,zMin,xMax,yMax,zMax); return std::make_tuple(xMin,yMin,zMin,xMax,yMax,zMax); },
+             R"#(Compute the common box witch is the intersection of the two bounding boxes, and mark the points of the two surfaces that are inside.)#"  , py::arg("B1"),  py::arg("B2"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IntPolyh_StartPoint ,std::unique_ptr<IntPolyh_StartPoint>  >>(m.attr("IntPolyh_StartPoint"))
+    static_cast<py::class_<IntPolyh_Point , shared_ptr<IntPolyh_Point>  >>(m.attr("IntPolyh_Point"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("x"),  py::arg("y"),  py::arg("z"),  py::arg("u"),  py::arg("v") )
+    // methods
+        .def("X",
+             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::X),
+             R"#(Returns X coordinate of the 3D point)#" )
+        .def("Y",
+             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::Y),
+             R"#(Returns Y coordinate of the 3D point)#" )
+        .def("Z",
+             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::Z),
+             R"#(Returns the Z coordinate of the 3D point)#" )
+        .def("U",
+             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::U),
+             R"#(Returns the U coordinate of the 2D point)#" )
+        .def("V",
+             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::V),
+             R"#(Returns the V coordinate of the 2D point)#" )
+        .def("PartOfCommon",
+             (Standard_Integer (IntPolyh_Point::*)() const) static_cast<Standard_Integer (IntPolyh_Point::*)() const>(&IntPolyh_Point::PartOfCommon),
+             R"#(Returns 0 if the point is not common with the other surface)#" )
+        .def("Equal",
+             (void (IntPolyh_Point::*)( const IntPolyh_Point &  ) ) static_cast<void (IntPolyh_Point::*)( const IntPolyh_Point &  ) >(&IntPolyh_Point::Equal),
+             R"#(Assignment operator)#"  , py::arg("Pt"))
+        .def("Set",
+             (void (IntPolyh_Point::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&IntPolyh_Point::Set),
+             R"#(Sets the point)#"  , py::arg("x"),  py::arg("y"),  py::arg("z"),  py::arg("u"),  py::arg("v"),  py::arg("II")=static_cast<const Standard_Integer>(1))
+        .def("SetX",
+             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetX),
+             R"#(Sets the X coordinate for the 3D point)#"  , py::arg("x"))
+        .def("SetY",
+             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetY),
+             R"#(Sets the Y coordinate for the 3D point)#"  , py::arg("y"))
+        .def("SetZ",
+             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetZ),
+             R"#(Sets the Z coordinate for the 3D point)#"  , py::arg("z"))
+        .def("SetU",
+             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetU),
+             R"#(Sets the U coordinate for the 2D point)#"  , py::arg("u"))
+        .def("SetV",
+             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetV),
+             R"#(Sets the V coordinate for the 2D point)#"  , py::arg("v"))
+        .def("SetPartOfCommon",
+             (void (IntPolyh_Point::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Integer  ) >(&IntPolyh_Point::SetPartOfCommon),
+             R"#(Sets the part of common)#"  , py::arg("ii"))
+        .def("Middle",
+             (void (IntPolyh_Point::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPolyh_Point & ,  const IntPolyh_Point &  ) ) static_cast<void (IntPolyh_Point::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPolyh_Point & ,  const IntPolyh_Point &  ) >(&IntPolyh_Point::Middle),
+             R"#(Creates middle point from P1 and P2 and stores it to this)#"  , py::arg("MySurface"),  py::arg("P1"),  py::arg("P2"))
+        .def("Add",
+             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::Add),
+             R"#(Addition)#"  , py::arg("P1"))
+        .def("Sub",
+             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::Sub),
+             R"#(Subtraction)#"  , py::arg("P1"))
+        .def("Divide",
+             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::Divide),
+             R"#(Division)#"  , py::arg("rr"))
+        .def("Multiplication",
+             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::Multiplication),
+             R"#(Multiplication)#"  , py::arg("rr"))
+        .def("SquareModulus",
+             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::SquareModulus),
+             R"#(Square modulus)#" )
+        .def("SquareDistance",
+             (Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::SquareDistance),
+             R"#(Square distance to the other point)#"  , py::arg("P2"))
+        .def("Dot",
+             (Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::Dot),
+             R"#(Dot)#"  , py::arg("P2"))
+        .def("Cross",
+             (void (IntPolyh_Point::*)( const IntPolyh_Point & ,  const IntPolyh_Point &  ) ) static_cast<void (IntPolyh_Point::*)( const IntPolyh_Point & ,  const IntPolyh_Point &  ) >(&IntPolyh_Point::Cross),
+             R"#(Cross)#"  , py::arg("P1"),  py::arg("P2"))
+        .def("Dump",
+             (void (IntPolyh_Point::*)() const) static_cast<void (IntPolyh_Point::*)() const>(&IntPolyh_Point::Dump),
+             R"#(Dump)#" )
+        .def("Dump",
+             (void (IntPolyh_Point::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_Point::*)( const Standard_Integer  ) const>(&IntPolyh_Point::Dump),
+             R"#(Dump)#"  , py::arg("i"))
+        .def("SetDegenerated",
+             (void (IntPolyh_Point::*)( const Standard_Boolean  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Boolean  ) >(&IntPolyh_Point::SetDegenerated),
+             R"#(Sets the degenerated flag)#"  , py::arg("theFlag"))
+        .def("Degenerated",
+             (Standard_Boolean (IntPolyh_Point::*)() const) static_cast<Standard_Boolean (IntPolyh_Point::*)() const>(&IntPolyh_Point::Degenerated),
+             R"#(Returns the degenerated flag)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+        .def("__add__",
+             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::operator+),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("P1"))
+        .def("__sub__",
+             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::operator-),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("P1"))
+        .def("__truediv__",
+             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::operator/),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("rr"))
+        .def("__mul__",
+             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::operator*),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("rr"))
+        .def("__rmul__",
+             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::operator*),
+             py::is_operator(),
+             R"#(None)#"  , py::arg("rr"))
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IntPolyh_SectionLine , shared_ptr<IntPolyh_SectionLine>  >>(m.attr("IntPolyh_SectionLine"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer >()  , py::arg("nn") )
+    // methods
+        .def("Init",
+             (void (IntPolyh_SectionLine::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_SectionLine::*)( const Standard_Integer  ) >(&IntPolyh_SectionLine::Init),
+             R"#(None)#"  , py::arg("nn"))
+        .def("Value",
+             (const IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) const) static_cast<const IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) const>(&IntPolyh_SectionLine::Value),
+             R"#(None)#"  , py::arg("nn"))
+        .def("ChangeValue",
+             (IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) ) static_cast<IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) >(&IntPolyh_SectionLine::ChangeValue),
+             R"#(None)#"  , py::arg("nn"))
+        .def("Copy",
+             (IntPolyh_SectionLine & (IntPolyh_SectionLine::*)( const IntPolyh_SectionLine &  ) ) static_cast<IntPolyh_SectionLine & (IntPolyh_SectionLine::*)( const IntPolyh_SectionLine &  ) >(&IntPolyh_SectionLine::Copy),
+             R"#(None)#"  , py::arg("Other"))
+        .def("GetN",
+             (Standard_Integer (IntPolyh_SectionLine::*)() const) static_cast<Standard_Integer (IntPolyh_SectionLine::*)() const>(&IntPolyh_SectionLine::GetN),
+             R"#(None)#" )
+        .def("NbStartPoints",
+             (Standard_Integer (IntPolyh_SectionLine::*)() const) static_cast<Standard_Integer (IntPolyh_SectionLine::*)() const>(&IntPolyh_SectionLine::NbStartPoints),
+             R"#(None)#" )
+        .def("IncrementNbStartPoints",
+             (void (IntPolyh_SectionLine::*)() ) static_cast<void (IntPolyh_SectionLine::*)() >(&IntPolyh_SectionLine::IncrementNbStartPoints),
+             R"#(None)#" )
+        .def("Destroy",
+             (void (IntPolyh_SectionLine::*)() ) static_cast<void (IntPolyh_SectionLine::*)() >(&IntPolyh_SectionLine::Destroy),
+             R"#(None)#" )
+        .def("Dump",
+             (void (IntPolyh_SectionLine::*)() const) static_cast<void (IntPolyh_SectionLine::*)() const>(&IntPolyh_SectionLine::Dump),
+             R"#(None)#" )
+        .def("Prepend",
+             (void (IntPolyh_SectionLine::*)( const IntPolyh_StartPoint &  ) ) static_cast<void (IntPolyh_SectionLine::*)( const IntPolyh_StartPoint &  ) >(&IntPolyh_SectionLine::Prepend),
+             R"#(None)#"  , py::arg("SP"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IntPolyh_StartPoint , shared_ptr<IntPolyh_StartPoint>  >>(m.attr("IntPolyh_StartPoint"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Integer >()  , py::arg("xx"),  py::arg("yy"),  py::arg("zz"),  py::arg("uu1"),  py::arg("vv1"),  py::arg("uu2"),  py::arg("vv2"),  py::arg("T1"),  py::arg("E1"),  py::arg("LAM1"),  py::arg("T2"),  py::arg("E2"),  py::arg("LAM2"),  py::arg("List") )
+    // methods
         .def("X",
              (Standard_Real (IntPolyh_StartPoint::*)() const) static_cast<Standard_Real (IntPolyh_StartPoint::*)() const>(&IntPolyh_StartPoint::X),
              R"#(None)#" )
@@ -253,252 +550,41 @@ py::module m = static_cast<py::module>(main_module.attr("IntPolyh"));
         .def("Dump",
              (void (IntPolyh_StartPoint::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_StartPoint::*)( const Standard_Integer  ) const>(&IntPolyh_StartPoint::Dump),
              R"#(None)#"  , py::arg("i"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<IntPolyh_Tools , shared_ptr<IntPolyh_Tools>>(m,"IntPolyh_Tools");
+
+    static_cast<py::class_<IntPolyh_Tools , shared_ptr<IntPolyh_Tools>  >>(m.attr("IntPolyh_Tools"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("MakeSampling_s",
+                    (void (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<void (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&IntPolyh_Tools::MakeSampling),
+                    R"#(Makes the sampling of the given surface <theSurf> making the net of <theNbSU> x <theNbSV> sampling points. The flag <theEnlargeZone> controls the enlargement of the sampling zone on the surface. The parameters of the sampling points are stored into <theUPars> and <theVPars> arrays.)#"  , py::arg("theSurf"),  py::arg("theNbSU"),  py::arg("theNbSV"),  py::arg("theEnlargeZone"),  py::arg("theUPars"),  py::arg("theVPars"))
+        .def_static("ComputeDeflection_s",
+                    (Standard_Real (*)( const opencascade::handle<Adaptor3d_HSurface> & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Real (*)( const opencascade::handle<Adaptor3d_HSurface> & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<Standard_Real> &  ) >(&IntPolyh_Tools::ComputeDeflection),
+                    R"#(Computes the deflection tolerance on the surface for the given sampling.)#"  , py::arg("theSurf"),  py::arg("theUPars"),  py::arg("theVPars"))
+        .def_static("FillArrayOfPointNormal_s",
+                    (void (*)( const opencascade::handle<Adaptor3d_HSurface> & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<Standard_Real> & ,  IntPolyh_Array<IntPolyh_PointNormal> &  ) ) static_cast<void (*)( const opencascade::handle<Adaptor3d_HSurface> & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<Standard_Real> & ,  IntPolyh_Array<IntPolyh_PointNormal> &  ) >(&IntPolyh_Tools::FillArrayOfPointNormal),
+                    R"#(Fills the array <thePoints> with the points (triangulation nodes) on the surface and normal directions of the surface in these points.)#"  , py::arg("theSurf"),  py::arg("theUPars"),  py::arg("theVPars"),  py::arg("thePoints"))
+    // static methods using call by reference i.s.o. return
+        .def_static("IsEnlargePossible_s",
+                    []( const opencascade::handle<Adaptor3d_HSurface> & theSurf ){ Standard_Boolean  theUEnlarge; Standard_Boolean  theVEnlarge; IntPolyh_Tools::IsEnlargePossible(theSurf,theUEnlarge,theVEnlarge); return std::make_tuple(theUEnlarge,theVEnlarge); },
+                    R"#(Checks if the surface can be enlarged in U or V direction.)#"  , py::arg("theSurf"))
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IntPolyh_Intersection ,std::unique_ptr<IntPolyh_Intersection>  >>(m.attr("IntPolyh_Intersection"))
-        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("theS1"),  py::arg("theS2") )
-        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer >()  , py::arg("theS1"),  py::arg("theNbSU1"),  py::arg("theNbSV1"),  py::arg("theS2"),  py::arg("theNbSU2"),  py::arg("theNbSV2") )
-        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &,const opencascade::handle<Adaptor3d_HSurface> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("theS1"),  py::arg("theUPars1"),  py::arg("theVPars1"),  py::arg("theS2"),  py::arg("theUPars2"),  py::arg("theVPars2") )
-        .def("IsDone",
-             (Standard_Boolean (IntPolyh_Intersection::*)() const) static_cast<Standard_Boolean (IntPolyh_Intersection::*)() const>(&IntPolyh_Intersection::IsDone),
-             R"#(Returns state of the operation)#" )
-        .def("NbSectionLines",
-             (Standard_Integer (IntPolyh_Intersection::*)() const) static_cast<Standard_Integer (IntPolyh_Intersection::*)() const>(&IntPolyh_Intersection::NbSectionLines),
-             R"#(Returns the number of section lines)#" )
-        .def("NbPointsInLine",
-             (Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const>(&IntPolyh_Intersection::NbPointsInLine),
-             R"#(Returns the number of points in the given line)#"  , py::arg("IndexLine"))
-        .def("NbTangentZones",
-             (Standard_Integer (IntPolyh_Intersection::*)() const) static_cast<Standard_Integer (IntPolyh_Intersection::*)() const>(&IntPolyh_Intersection::NbTangentZones),
-             R"#(None)#" )
-        .def("NbPointsInTangentZone",
-             (Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (IntPolyh_Intersection::*)( const Standard_Integer  ) const>(&IntPolyh_Intersection::NbPointsInTangentZone),
-             R"#(Returns number of points in tangent zone)#"  , py::arg(""))
-        .def("GetLinePoint",
-             (void (IntPolyh_Intersection::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntPolyh_Intersection::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&IntPolyh_Intersection::GetLinePoint),
-             R"#(Gets the parameters of the point in section line)#"  , py::arg("IndexLine"),  py::arg("IndexPoint"),  py::arg("x"),  py::arg("y"),  py::arg("z"),  py::arg("u1"),  py::arg("v1"),  py::arg("u2"),  py::arg("v2"),  py::arg("incidence"))
-        .def("GetTangentZonePoint",
-             (void (IntPolyh_Intersection::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntPolyh_Intersection::*)( const Standard_Integer ,  const Standard_Integer ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&IntPolyh_Intersection::GetTangentZonePoint),
-             R"#(Gets the parameters of the point in tangent zone)#"  , py::arg("IndexLine"),  py::arg("IndexPoint"),  py::arg("x"),  py::arg("y"),  py::arg("z"),  py::arg("u1"),  py::arg("v1"),  py::arg("u2"),  py::arg("v2"))
-;
-
-
-    static_cast<py::class_<IntPolyh_Point ,std::unique_ptr<IntPolyh_Point>  >>(m.attr("IntPolyh_Point"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("x"),  py::arg("y"),  py::arg("z"),  py::arg("u"),  py::arg("v") )
-        .def("X",
-             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::X),
-             R"#(Returns X coordinate of the 3D point)#" )
-        .def("Y",
-             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::Y),
-             R"#(Returns Y coordinate of the 3D point)#" )
-        .def("Z",
-             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::Z),
-             R"#(Returns the Z coordinate of the 3D point)#" )
-        .def("U",
-             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::U),
-             R"#(Returns the U coordinate of the 2D point)#" )
-        .def("V",
-             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::V),
-             R"#(Returns the V coordinate of the 2D point)#" )
-        .def("PartOfCommon",
-             (Standard_Integer (IntPolyh_Point::*)() const) static_cast<Standard_Integer (IntPolyh_Point::*)() const>(&IntPolyh_Point::PartOfCommon),
-             R"#(Returns 0 if the point is not common with the other surface)#" )
-        .def("Equal",
-             (void (IntPolyh_Point::*)( const IntPolyh_Point &  ) ) static_cast<void (IntPolyh_Point::*)( const IntPolyh_Point &  ) >(&IntPolyh_Point::Equal),
-             R"#(Assignment operator)#"  , py::arg("Pt"))
-        .def("Set",
-             (void (IntPolyh_Point::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&IntPolyh_Point::Set),
-             R"#(Sets the point)#"  , py::arg("x"),  py::arg("y"),  py::arg("z"),  py::arg("u"),  py::arg("v"),  py::arg("II")=static_cast<const Standard_Integer>(1))
-        .def("SetX",
-             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetX),
-             R"#(Sets the X coordinate for the 3D point)#"  , py::arg("x"))
-        .def("SetY",
-             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetY),
-             R"#(Sets the Y coordinate for the 3D point)#"  , py::arg("y"))
-        .def("SetZ",
-             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetZ),
-             R"#(Sets the Z coordinate for the 3D point)#"  , py::arg("z"))
-        .def("SetU",
-             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetU),
-             R"#(Sets the U coordinate for the 2D point)#"  , py::arg("u"))
-        .def("SetV",
-             (void (IntPolyh_Point::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Real  ) >(&IntPolyh_Point::SetV),
-             R"#(Sets the V coordinate for the 2D point)#"  , py::arg("v"))
-        .def("SetPartOfCommon",
-             (void (IntPolyh_Point::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Integer  ) >(&IntPolyh_Point::SetPartOfCommon),
-             R"#(Sets the part of common)#"  , py::arg("ii"))
-        .def("Middle",
-             (void (IntPolyh_Point::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPolyh_Point & ,  const IntPolyh_Point &  ) ) static_cast<void (IntPolyh_Point::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPolyh_Point & ,  const IntPolyh_Point &  ) >(&IntPolyh_Point::Middle),
-             R"#(Creates middle point from P1 and P2 and stores it to this)#"  , py::arg("MySurface"),  py::arg("P1"),  py::arg("P2"))
-        .def("Add",
-             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::Add),
-             R"#(Addition)#"  , py::arg("P1"))
-        .def("Sub",
-             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::Sub),
-             R"#(Subtraction)#"  , py::arg("P1"))
-        .def("Divide",
-             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::Divide),
-             R"#(Division)#"  , py::arg("rr"))
-        .def("Multiplication",
-             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::Multiplication),
-             R"#(Multiplication)#"  , py::arg("rr"))
-        .def("SquareModulus",
-             (Standard_Real (IntPolyh_Point::*)() const) static_cast<Standard_Real (IntPolyh_Point::*)() const>(&IntPolyh_Point::SquareModulus),
-             R"#(Square modulus)#" )
-        .def("SquareDistance",
-             (Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::SquareDistance),
-             R"#(Square distance to the other point)#"  , py::arg("P2"))
-        .def("Dot",
-             (Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<Standard_Real (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::Dot),
-             R"#(Dot)#"  , py::arg("P2"))
-        .def("Cross",
-             (void (IntPolyh_Point::*)( const IntPolyh_Point & ,  const IntPolyh_Point &  ) ) static_cast<void (IntPolyh_Point::*)( const IntPolyh_Point & ,  const IntPolyh_Point &  ) >(&IntPolyh_Point::Cross),
-             R"#(Cross)#"  , py::arg("P1"),  py::arg("P2"))
-        .def("Dump",
-             (void (IntPolyh_Point::*)() const) static_cast<void (IntPolyh_Point::*)() const>(&IntPolyh_Point::Dump),
-             R"#(Dump)#" )
-        .def("Dump",
-             (void (IntPolyh_Point::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_Point::*)( const Standard_Integer  ) const>(&IntPolyh_Point::Dump),
-             R"#(Dump)#"  , py::arg("i"))
-        .def("SetDegenerated",
-             (void (IntPolyh_Point::*)( const Standard_Boolean  ) ) static_cast<void (IntPolyh_Point::*)( const Standard_Boolean  ) >(&IntPolyh_Point::SetDegenerated),
-             R"#(Sets the degenerated flag)#"  , py::arg("theFlag"))
-        .def("Degenerated",
-             (Standard_Boolean (IntPolyh_Point::*)() const) static_cast<Standard_Boolean (IntPolyh_Point::*)() const>(&IntPolyh_Point::Degenerated),
-             R"#(Returns the degenerated flag)#" )
-        .def("__add__",
-             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::operator+),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("P1"))
-        .def("__sub__",
-             (IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const IntPolyh_Point &  ) const>(&IntPolyh_Point::operator-),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("P1"))
-        .def("__truediv__",
-             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::operator/),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("rr"))
-        .def("__mul__",
-             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::operator*),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("rr"))
-        .def("__rmul__",
-             (IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const) static_cast<IntPolyh_Point (IntPolyh_Point::*)( const Standard_Real  ) const>(&IntPolyh_Point::operator*),
-             py::is_operator(),
-             R"#(None)#"  , py::arg("rr"))
-;
-
-
-    static_cast<py::class_<IntPolyh_SectionLine ,std::unique_ptr<IntPolyh_SectionLine>  >>(m.attr("IntPolyh_SectionLine"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Integer >()  , py::arg("nn") )
-        .def("Init",
-             (void (IntPolyh_SectionLine::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_SectionLine::*)( const Standard_Integer  ) >(&IntPolyh_SectionLine::Init),
-             R"#(None)#"  , py::arg("nn"))
-        .def("Value",
-             (const IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) const) static_cast<const IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) const>(&IntPolyh_SectionLine::Value),
-             R"#(None)#"  , py::arg("nn"))
-        .def("ChangeValue",
-             (IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) ) static_cast<IntPolyh_StartPoint & (IntPolyh_SectionLine::*)( const Standard_Integer  ) >(&IntPolyh_SectionLine::ChangeValue),
-             R"#(None)#"  , py::arg("nn"))
-        .def("Copy",
-             (IntPolyh_SectionLine & (IntPolyh_SectionLine::*)( const IntPolyh_SectionLine &  ) ) static_cast<IntPolyh_SectionLine & (IntPolyh_SectionLine::*)( const IntPolyh_SectionLine &  ) >(&IntPolyh_SectionLine::Copy),
-             R"#(None)#"  , py::arg("Other"))
-        .def("GetN",
-             (Standard_Integer (IntPolyh_SectionLine::*)() const) static_cast<Standard_Integer (IntPolyh_SectionLine::*)() const>(&IntPolyh_SectionLine::GetN),
-             R"#(None)#" )
-        .def("NbStartPoints",
-             (Standard_Integer (IntPolyh_SectionLine::*)() const) static_cast<Standard_Integer (IntPolyh_SectionLine::*)() const>(&IntPolyh_SectionLine::NbStartPoints),
-             R"#(None)#" )
-        .def("IncrementNbStartPoints",
-             (void (IntPolyh_SectionLine::*)() ) static_cast<void (IntPolyh_SectionLine::*)() >(&IntPolyh_SectionLine::IncrementNbStartPoints),
-             R"#(None)#" )
-        .def("Destroy",
-             (void (IntPolyh_SectionLine::*)() ) static_cast<void (IntPolyh_SectionLine::*)() >(&IntPolyh_SectionLine::Destroy),
-             R"#(None)#" )
-        .def("Dump",
-             (void (IntPolyh_SectionLine::*)() const) static_cast<void (IntPolyh_SectionLine::*)() const>(&IntPolyh_SectionLine::Dump),
-             R"#(None)#" )
-        .def("Prepend",
-             (void (IntPolyh_SectionLine::*)( const IntPolyh_StartPoint &  ) ) static_cast<void (IntPolyh_SectionLine::*)( const IntPolyh_StartPoint &  ) >(&IntPolyh_SectionLine::Prepend),
-             R"#(None)#"  , py::arg("SP"))
-;
-
-
-    static_cast<py::class_<IntPolyh_Couple ,std::unique_ptr<IntPolyh_Couple>  >>(m.attr("IntPolyh_Couple"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real >()  , py::arg("theTriangle1"),  py::arg("theTriangle2"),  py::arg("theAngle")=static_cast<const Standard_Real>(- 2.0) )
-        .def("FirstValue",
-             (Standard_Integer (IntPolyh_Couple::*)() const) static_cast<Standard_Integer (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::FirstValue),
-             R"#(Returns the first index)#" )
-        .def("SecondValue",
-             (Standard_Integer (IntPolyh_Couple::*)() const) static_cast<Standard_Integer (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::SecondValue),
-             R"#(Returns the second index)#" )
-        .def("IsAnalyzed",
-             (Standard_Boolean (IntPolyh_Couple::*)() const) static_cast<Standard_Boolean (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::IsAnalyzed),
-             R"#(Returns TRUE if the couple has been analyzed)#" )
-        .def("Angle",
-             (Standard_Real (IntPolyh_Couple::*)() const) static_cast<Standard_Real (IntPolyh_Couple::*)() const>(&IntPolyh_Couple::Angle),
-             R"#(Returns the angle)#" )
-        .def("SetCoupleValue",
-             (void (IntPolyh_Couple::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IntPolyh_Couple::*)( const Standard_Integer ,  const Standard_Integer  ) >(&IntPolyh_Couple::SetCoupleValue),
-             R"#(Sets the triangles)#"  , py::arg("theInd1"),  py::arg("theInd2"))
-        .def("SetAnalyzed",
-             (void (IntPolyh_Couple::*)( const Standard_Boolean  ) ) static_cast<void (IntPolyh_Couple::*)( const Standard_Boolean  ) >(&IntPolyh_Couple::SetAnalyzed),
-             R"#(Sets the analyzed flag)#"  , py::arg("theAnalyzed"))
-        .def("SetAngle",
-             (void (IntPolyh_Couple::*)( const Standard_Real  ) ) static_cast<void (IntPolyh_Couple::*)( const Standard_Real  ) >(&IntPolyh_Couple::SetAngle),
-             R"#(Sets the angle)#"  , py::arg("theAngle"))
-        .def("IsEqual",
-             (Standard_Boolean (IntPolyh_Couple::*)( const IntPolyh_Couple &  ) const) static_cast<Standard_Boolean (IntPolyh_Couple::*)( const IntPolyh_Couple &  ) const>(&IntPolyh_Couple::IsEqual),
-             R"#(Returns true if the Couple is equal to <theOther>)#"  , py::arg("theOther"))
-        .def("HashCode",
-             (Standard_Integer (IntPolyh_Couple::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (IntPolyh_Couple::*)( const Standard_Integer  ) const>(&IntPolyh_Couple::HashCode),
-             R"#(Returns hash code)#"  , py::arg("theUpper"))
-        .def("Dump",
-             (void (IntPolyh_Couple::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_Couple::*)( const Standard_Integer  ) const>(&IntPolyh_Couple::Dump),
-             R"#(None)#"  , py::arg("v"))
-;
-
-
-    static_cast<py::class_<IntPolyh_Edge ,std::unique_ptr<IntPolyh_Edge>  >>(m.attr("IntPolyh_Edge"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("thePoint1"),  py::arg("thePoint2"),  py::arg("theTriangle1"),  py::arg("theTriangle2") )
-        .def("FirstPoint",
-             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::FirstPoint),
-             R"#(Returns the first point)#" )
-        .def("SecondPoint",
-             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::SecondPoint),
-             R"#(Returns the second point)#" )
-        .def("FirstTriangle",
-             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::FirstTriangle),
-             R"#(Returns the first triangle)#" )
-        .def("SecondTriangle",
-             (Standard_Integer (IntPolyh_Edge::*)() const) static_cast<Standard_Integer (IntPolyh_Edge::*)() const>(&IntPolyh_Edge::SecondTriangle),
-             R"#(Returns the second triangle)#" )
-        .def("SetFirstPoint",
-             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetFirstPoint),
-             R"#(Sets the first point)#"  , py::arg("thePoint"))
-        .def("SetSecondPoint",
-             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetSecondPoint),
-             R"#(Sets the second point)#"  , py::arg("thePoint"))
-        .def("SetFirstTriangle",
-             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetFirstTriangle),
-             R"#(Sets the first triangle)#"  , py::arg("theTriangle"))
-        .def("SetSecondTriangle",
-             (void (IntPolyh_Edge::*)( const Standard_Integer  ) ) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) >(&IntPolyh_Edge::SetSecondTriangle),
-             R"#(Sets the second triangle)#"  , py::arg("theTriangle"))
-        .def("Dump",
-             (void (IntPolyh_Edge::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_Edge::*)( const Standard_Integer  ) const>(&IntPolyh_Edge::Dump),
-             R"#(None)#"  , py::arg("v"))
-;
-
-
-    static_cast<py::class_<IntPolyh_Triangle ,std::unique_ptr<IntPolyh_Triangle>  >>(m.attr("IntPolyh_Triangle"))
+    static_cast<py::class_<IntPolyh_Triangle , shared_ptr<IntPolyh_Triangle>  >>(m.attr("IntPolyh_Triangle"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("thePoint1"),  py::arg("thePoint2"),  py::arg("thePoint3") )
+    // methods
         .def("FirstPoint",
              (Standard_Integer (IntPolyh_Triangle::*)() const) static_cast<Standard_Integer (IntPolyh_Triangle::*)() const>(&IntPolyh_Triangle::FirstPoint),
              R"#(Returns the first point)#" )
@@ -604,55 +690,40 @@ py::module m = static_cast<py::module>(main_module.attr("IntPolyh"));
         .def("Dump",
              (void (IntPolyh_Triangle::*)( const Standard_Integer  ) const) static_cast<void (IntPolyh_Triangle::*)( const Standard_Integer  ) const>(&IntPolyh_Triangle::Dump),
              R"#(Dumps the contents of the triangle.)#"  , py::arg("v"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/IntPolyh_ArrayOfTangentZones.hxx
-// ./opencascade/IntPolyh_ArrayOfPointNormal.hxx
-// ./opencascade/IntPolyh_ArrayOfTriangles.hxx
+// ./opencascade/IntPolyh_Point.hxx
 // ./opencascade/IntPolyh_MaillageAffinage.hxx
 // ./opencascade/IntPolyh_Couple.hxx
-// ./opencascade/IntPolyh_ArrayOfSectionLines.hxx
-// ./opencascade/IntPolyh_ListOfCouples.hxx
-// ./opencascade/IntPolyh_PMaillageAffinage.hxx
-// ./opencascade/IntPolyh_StartPoint.hxx
-// ./opencascade/IntPolyh_CoupleMapHasher.hxx
-// ./opencascade/IntPolyh_SeqOfStartPoints.hxx
-// ./opencascade/IntPolyh_Intersection.hxx
 // ./opencascade/IntPolyh_Edge.hxx
-// ./opencascade/IntPolyh_Point.hxx
-// ./opencascade/IntPolyh_Triangle.hxx
-// ./opencascade/IntPolyh_Array.hxx
-// ./opencascade/IntPolyh_SectionLine.hxx
 // ./opencascade/IntPolyh_Tools.hxx
+// ./opencascade/IntPolyh_Triangle.hxx
+// ./opencascade/IntPolyh_PMaillageAffinage.hxx
+// ./opencascade/IntPolyh_SectionLine.hxx
+// ./opencascade/IntPolyh_ArrayOfPointNormal.hxx
+// ./opencascade/IntPolyh_CoupleMapHasher.hxx
+// ./opencascade/IntPolyh_ArrayOfSectionLines.hxx
+// ./opencascade/IntPolyh_SeqOfStartPoints.hxx
+// ./opencascade/IntPolyh_Array.hxx
+// ./opencascade/IntPolyh_ListOfCouples.hxx
+// ./opencascade/IntPolyh_StartPoint.hxx
+// ./opencascade/IntPolyh_Intersection.hxx
 // ./opencascade/IntPolyh_ArrayOfEdges.hxx
 // ./opencascade/IntPolyh_ArrayOfPoints.hxx
+// ./opencascade/IntPolyh_ArrayOfTriangles.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/IntPolyh_ArrayOfTangentZones.hxx
-// ./opencascade/IntPolyh_ArrayOfPointNormal.hxx
-// ./opencascade/IntPolyh_ArrayOfTriangles.hxx
-// ./opencascade/IntPolyh_MaillageAffinage.hxx
-// ./opencascade/IntPolyh_Couple.hxx
-// ./opencascade/IntPolyh_ArrayOfSectionLines.hxx
-// ./opencascade/IntPolyh_ListOfCouples.hxx
-    register_template_NCollection_List<IntPolyh_Couple>(m,"IntPolyh_ListOfCouples");  
-// ./opencascade/IntPolyh_PMaillageAffinage.hxx
-// ./opencascade/IntPolyh_StartPoint.hxx
-// ./opencascade/IntPolyh_CoupleMapHasher.hxx
-// ./opencascade/IntPolyh_SeqOfStartPoints.hxx
     register_template_NCollection_Sequence<IntPolyh_StartPoint>(m,"IntPolyh_SeqOfStartPoints");  
-// ./opencascade/IntPolyh_Intersection.hxx
-// ./opencascade/IntPolyh_Edge.hxx
-// ./opencascade/IntPolyh_Point.hxx
-// ./opencascade/IntPolyh_Triangle.hxx
-// ./opencascade/IntPolyh_Array.hxx
-// ./opencascade/IntPolyh_SectionLine.hxx
-// ./opencascade/IntPolyh_Tools.hxx
-// ./opencascade/IntPolyh_ArrayOfEdges.hxx
-// ./opencascade/IntPolyh_ArrayOfPoints.hxx
+    register_template_NCollection_List<IntPolyh_Couple>(m,"IntPolyh_ListOfCouples");  
 
 
 // exceptions

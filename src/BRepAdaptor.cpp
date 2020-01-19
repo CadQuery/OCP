@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,18 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Adaptor3d_HCurveOnSurface.hxx>
-#include <TopoDS_Face.hxx>
-#include <Adaptor3d_CurveOnSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Parab.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_OffsetCurve.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Circ.hxx>
@@ -40,6 +31,18 @@ namespace py = pybind11;
 #include <Geom_BSplineSurface.hxx>
 #include <gp_Ax1.hxx>
 #include <Adaptor3d_HCurve.hxx>
+#include <Adaptor3d_HCurveOnSurface.hxx>
+#include <TopoDS_Face.hxx>
+#include <Adaptor3d_CurveOnSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Hypr.hxx>
+#include <gp_Parab.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_OffsetCurve.hxx>
 
 // module includes
 #include <BRepAdaptor_Array1OfCurve.hxx>
@@ -75,34 +78,11 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
 // classes
 
 
-    static_cast<py::class_<BRepAdaptor_HSurface ,opencascade::handle<BRepAdaptor_HSurface>  , Adaptor3d_HSurface >>(m.attr("BRepAdaptor_HSurface"))
-        .def(py::init<  >()  )
-        .def(py::init< const BRepAdaptor_Surface & >()  , py::arg("S") )
-        .def("Set",
-             (void (BRepAdaptor_HSurface::*)( const BRepAdaptor_Surface &  ) ) static_cast<void (BRepAdaptor_HSurface::*)( const BRepAdaptor_Surface &  ) >(&BRepAdaptor_HSurface::Set),
-             R"#(Sets the field of the GenHSurface.)#"  , py::arg("S"))
-        .def("Surface",
-             (const Adaptor3d_Surface & (BRepAdaptor_HSurface::*)() const) static_cast<const Adaptor3d_Surface & (BRepAdaptor_HSurface::*)() const>(&BRepAdaptor_HSurface::Surface),
-             R"#(Returns a reference to the Surface inside the HSurface. This is redefined from HSurface, cannot be inline.)#" )
-        .def("ChangeSurface",
-             (BRepAdaptor_Surface & (BRepAdaptor_HSurface::*)() ) static_cast<BRepAdaptor_Surface & (BRepAdaptor_HSurface::*)() >(&BRepAdaptor_HSurface::ChangeSurface),
-             R"#(Returns the surface used to create the GenHSurface.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HSurface::*)() const>(&BRepAdaptor_HSurface::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HSurface::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HSurface::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepAdaptor_CompCurve ,std::unique_ptr<BRepAdaptor_CompCurve>  , Adaptor3d_Curve >>(m.attr("BRepAdaptor_CompCurve"))
+    static_cast<py::class_<BRepAdaptor_CompCurve , shared_ptr<BRepAdaptor_CompCurve>  , Adaptor3d_Curve >>(m.attr("BRepAdaptor_CompCurve"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const Standard_Boolean >()  , py::arg("W"),  py::arg("KnotByCurvilinearAbcissa")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Wire &,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("W"),  py::arg("KnotByCurvilinearAbcissa"),  py::arg("First"),  py::arg("Last"),  py::arg("Tol") )
+    // methods
         .def("Initialize",
              (void (BRepAdaptor_CompCurve::*)( const TopoDS_Wire & ,  const Standard_Boolean  ) ) static_cast<void (BRepAdaptor_CompCurve::*)( const TopoDS_Wire & ,  const Standard_Boolean  ) >(&BRepAdaptor_CompCurve::Initialize),
              R"#(Sets the wire <W>.)#"  , py::arg("W"),  py::arg("KnotByCurvilinearAbcissa"))
@@ -112,9 +92,6 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
         .def("Wire",
              (const TopoDS_Wire & (BRepAdaptor_CompCurve::*)() const) static_cast<const TopoDS_Wire & (BRepAdaptor_CompCurve::*)() const>(&BRepAdaptor_CompCurve::Wire),
              R"#(Returns the wire.)#" )
-        .def("Edge",
-             (void (BRepAdaptor_CompCurve::*)( const Standard_Real ,  TopoDS_Edge & ,  Standard_Real &  ) const) static_cast<void (BRepAdaptor_CompCurve::*)( const Standard_Real ,  TopoDS_Edge & ,  Standard_Real &  ) const>(&BRepAdaptor_CompCurve::Edge),
-             R"#(returns an edge and one parameter on them corresponding to the parameter U.)#"  , py::arg("U"),  py::arg("E"),  py::arg("UonE"))
         .def("FirstParameter",
              (Standard_Real (BRepAdaptor_CompCurve::*)() const) static_cast<Standard_Real (BRepAdaptor_CompCurve::*)() const>(&BRepAdaptor_CompCurve::FirstParameter),
              R"#(None)#" )
@@ -199,12 +176,323 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
         .def("BSpline",
              (opencascade::handle<Geom_BSplineCurve> (BRepAdaptor_CompCurve::*)() const) static_cast<opencascade::handle<Geom_BSplineCurve> (BRepAdaptor_CompCurve::*)() const>(&BRepAdaptor_CompCurve::BSpline),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Edge",
+             []( BRepAdaptor_CompCurve &self , const Standard_Real U,TopoDS_Edge & E ){ Standard_Real  UonE; self.Edge(U,E,UonE); return std::make_tuple(UonE); },
+             R"#(returns an edge and one parameter on them corresponding to the parameter U.)#"  , py::arg("U"),  py::arg("E"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepAdaptor_Surface ,std::unique_ptr<BRepAdaptor_Surface>  , Adaptor3d_Surface >>(m.attr("BRepAdaptor_Surface"))
+    static_cast<py::class_<BRepAdaptor_Curve , shared_ptr<BRepAdaptor_Curve>  , Adaptor3d_Curve >>(m.attr("BRepAdaptor_Curve"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Edge & >()  , py::arg("E") )
+        .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // methods
+        .def("Initialize",
+             (void (BRepAdaptor_Curve::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepAdaptor_Curve::*)( const TopoDS_Edge &  ) >(&BRepAdaptor_Curve::Initialize),
+             R"#(Sets the Curve <me> to acces to the geometry of edge <E>.)#"  , py::arg("E"))
+        .def("Initialize",
+             (void (BRepAdaptor_Curve::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepAdaptor_Curve::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepAdaptor_Curve::Initialize),
+             R"#(Sets the Curve <me> to acces to the geometry of edge <E>. The geometry will be computed using the parametric curve of <E> on the face <F>. An Error is raised if the edge does not have a pcurve on the face.)#"  , py::arg("E"),  py::arg("F"))
+        .def("Trsf",
+             (const gp_Trsf & (BRepAdaptor_Curve::*)() const) static_cast<const gp_Trsf & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Trsf),
+             R"#(Returns the coordinate system of the curve.)#" )
+        .def("Is3DCurve",
+             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Is3DCurve),
+             R"#(Returns True if the edge geometry is computed from a 3D curve.)#" )
+        .def("IsCurveOnSurface",
+             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsCurveOnSurface),
+             R"#(Returns True if the edge geometry is computed from a pcurve on a surface.)#" )
+        .def("Curve",
+             (const GeomAdaptor_Curve & (BRepAdaptor_Curve::*)() const) static_cast<const GeomAdaptor_Curve & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Curve),
+             R"#(Returns the Curve of the edge.)#" )
+        .def("CurveOnSurface",
+             (const Adaptor3d_CurveOnSurface & (BRepAdaptor_Curve::*)() const) static_cast<const Adaptor3d_CurveOnSurface & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::CurveOnSurface),
+             R"#(Returns the CurveOnSurface of the edge.)#" )
+        .def("Edge",
+             (const TopoDS_Edge & (BRepAdaptor_Curve::*)() const) static_cast<const TopoDS_Edge & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Edge),
+             R"#(Returns the edge.)#" )
+        .def("Tolerance",
+             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Tolerance),
+             R"#(Returns the edge tolerance.)#" )
+        .def("FirstParameter",
+             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::FirstParameter),
+             R"#(None)#" )
+        .def("LastParameter",
+             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::LastParameter),
+             R"#(None)#" )
+        .def("Continuity",
+             (GeomAbs_Shape (BRepAdaptor_Curve::*)() const) static_cast<GeomAbs_Shape (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Continuity),
+             R"#(None)#" )
+        .def("NbIntervals",
+             (Standard_Integer (BRepAdaptor_Curve::*)( const GeomAbs_Shape  ) const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)( const GeomAbs_Shape  ) const>(&BRepAdaptor_Curve::NbIntervals),
+             R"#(Returns the number of intervals for continuity <S>. May be one if Continuity(me) >= <S>)#"  , py::arg("S"))
+        .def("Intervals",
+             (void (BRepAdaptor_Curve::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const) static_cast<void (BRepAdaptor_Curve::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const>(&BRepAdaptor_Curve::Intervals),
+             R"#(Stores in <T> the parameters bounding the intervals of continuity <S>.)#"  , py::arg("T"),  py::arg("S"))
+        .def("Trim",
+             (opencascade::handle<Adaptor3d_HCurve> (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Adaptor3d_HCurve> (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&BRepAdaptor_Curve::Trim),
+             R"#(Returns a curve equivalent of <me> between parameters <First> and <Last>. <Tol> is used to test for 3d points confusion. If <First> >= <Last>)#"  , py::arg("First"),  py::arg("Last"),  py::arg("Tol"))
+        .def("IsClosed",
+             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsClosed),
+             R"#(None)#" )
+        .def("IsPeriodic",
+             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsPeriodic),
+             R"#(None)#" )
+        .def("Period",
+             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Period),
+             R"#(None)#" )
+        .def("Value",
+             (gp_Pnt (BRepAdaptor_Curve::*)( const Standard_Real  ) const) static_cast<gp_Pnt (BRepAdaptor_Curve::*)( const Standard_Real  ) const>(&BRepAdaptor_Curve::Value),
+             R"#(Computes the point of parameter U on the curve)#"  , py::arg("U"))
+        .def("D0",
+             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt &  ) const>(&BRepAdaptor_Curve::D0),
+             R"#(Computes the point of parameter U.)#"  , py::arg("U"),  py::arg("P"))
+        .def("D1",
+             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) const>(&BRepAdaptor_Curve::D1),
+             R"#(Computes the point of parameter U on the curve with its first derivative. Raised if the continuity of the current interval is not C1.)#"  , py::arg("U"),  py::arg("P"),  py::arg("V"))
+        .def("D2",
+             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) const>(&BRepAdaptor_Curve::D2),
+             R"#(Returns the point P of parameter U, the first and second derivatives V1 and V2. Raised if the continuity of the current interval is not C2.)#"  , py::arg("U"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"))
+        .def("D3",
+             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const>(&BRepAdaptor_Curve::D3),
+             R"#(Returns the point P of parameter U, the first, the second and the third derivative. Raised if the continuity of the current interval is not C3.)#"  , py::arg("U"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"),  py::arg("V3"))
+        .def("DN",
+             (gp_Vec (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Integer  ) const) static_cast<gp_Vec (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Integer  ) const>(&BRepAdaptor_Curve::DN),
+             R"#(The returned vector gives the value of the derivative for the order of derivation N. Raised if the continuity of the current interval is not CN. Raised if N < 1.)#"  , py::arg("U"),  py::arg("N"))
+        .def("Resolution",
+             (Standard_Real (BRepAdaptor_Curve::*)( const Standard_Real  ) const) static_cast<Standard_Real (BRepAdaptor_Curve::*)( const Standard_Real  ) const>(&BRepAdaptor_Curve::Resolution),
+             R"#(returns the parametric resolution)#"  , py::arg("R3d"))
+        .def("GetType",
+             (GeomAbs_CurveType (BRepAdaptor_Curve::*)() const) static_cast<GeomAbs_CurveType (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::GetType),
+             R"#(None)#" )
+        .def("Line",
+             (gp_Lin (BRepAdaptor_Curve::*)() const) static_cast<gp_Lin (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Line),
+             R"#(None)#" )
+        .def("Circle",
+             (gp_Circ (BRepAdaptor_Curve::*)() const) static_cast<gp_Circ (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Circle),
+             R"#(None)#" )
+        .def("Ellipse",
+             (gp_Elips (BRepAdaptor_Curve::*)() const) static_cast<gp_Elips (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Ellipse),
+             R"#(None)#" )
+        .def("Hyperbola",
+             (gp_Hypr (BRepAdaptor_Curve::*)() const) static_cast<gp_Hypr (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Hyperbola),
+             R"#(None)#" )
+        .def("Parabola",
+             (gp_Parab (BRepAdaptor_Curve::*)() const) static_cast<gp_Parab (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Parabola),
+             R"#(None)#" )
+        .def("Degree",
+             (Standard_Integer (BRepAdaptor_Curve::*)() const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Degree),
+             R"#(None)#" )
+        .def("IsRational",
+             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsRational),
+             R"#(None)#" )
+        .def("NbPoles",
+             (Standard_Integer (BRepAdaptor_Curve::*)() const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::NbPoles),
+             R"#(None)#" )
+        .def("NbKnots",
+             (Standard_Integer (BRepAdaptor_Curve::*)() const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::NbKnots),
+             R"#(None)#" )
+        .def("Bezier",
+             (opencascade::handle<Geom_BezierCurve> (BRepAdaptor_Curve::*)() const) static_cast<opencascade::handle<Geom_BezierCurve> (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Bezier),
+             R"#(Warning : This will make a copy of the Bezier Curve since it applies to it myTsrf . Be carefull when using this method)#" )
+        .def("BSpline",
+             (opencascade::handle<Geom_BSplineCurve> (BRepAdaptor_Curve::*)() const) static_cast<opencascade::handle<Geom_BSplineCurve> (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::BSpline),
+             R"#(Warning : This will make a copy of the BSpline Curve since it applies to it myTsrf . Be carefull when using this method)#" )
+        .def("OffsetCurve",
+             (opencascade::handle<Geom_OffsetCurve> (BRepAdaptor_Curve::*)() const) static_cast<opencascade::handle<Geom_OffsetCurve> (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::OffsetCurve),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAdaptor_Curve2d , shared_ptr<BRepAdaptor_Curve2d>  , Geom2dAdaptor_Curve >>(m.attr("BRepAdaptor_Curve2d"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // methods
+        .def("Initialize",
+             (void (BRepAdaptor_Curve2d::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepAdaptor_Curve2d::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepAdaptor_Curve2d::Initialize),
+             R"#(Initialize with the pcurve of <E> on <F>.)#"  , py::arg("E"),  py::arg("F"))
+        .def("Edge",
+             (const TopoDS_Edge & (BRepAdaptor_Curve2d::*)() const) static_cast<const TopoDS_Edge & (BRepAdaptor_Curve2d::*)() const>(&BRepAdaptor_Curve2d::Edge),
+             R"#(Returns the Edge.)#" )
+        .def("Face",
+             (const TopoDS_Face & (BRepAdaptor_Curve2d::*)() const) static_cast<const TopoDS_Face & (BRepAdaptor_Curve2d::*)() const>(&BRepAdaptor_Curve2d::Face),
+             R"#(Returns the Face.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAdaptor_HArray1OfCurve ,opencascade::handle<BRepAdaptor_HArray1OfCurve>  , BRepAdaptor_Array1OfCurve , Standard_Transient >>(m.attr("BRepAdaptor_HArray1OfCurve"))
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const BRepAdaptor_Curve & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<BRepAdaptor_Curve> & >()  , py::arg("theOther") )
+    // methods
+        .def("Array1",
+             (const BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() const) static_cast<const BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() const>(&BRepAdaptor_HArray1OfCurve::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() ) static_cast<BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() >(&BRepAdaptor_HArray1OfCurve::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HArray1OfCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HArray1OfCurve::*)() const>(&BRepAdaptor_HArray1OfCurve::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HArray1OfCurve::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HArray1OfCurve::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAdaptor_HCompCurve ,opencascade::handle<BRepAdaptor_HCompCurve>  , Adaptor3d_HCurve >>(m.attr("BRepAdaptor_HCompCurve"))
+        .def(py::init<  >()  )
+        .def(py::init< const BRepAdaptor_CompCurve & >()  , py::arg("C") )
+    // methods
+        .def("Set",
+             (void (BRepAdaptor_HCompCurve::*)( const BRepAdaptor_CompCurve &  ) ) static_cast<void (BRepAdaptor_HCompCurve::*)( const BRepAdaptor_CompCurve &  ) >(&BRepAdaptor_HCompCurve::Set),
+             R"#(Sets the field of the GenHCurve.)#"  , py::arg("C"))
+        .def("Curve",
+             (const Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() const) static_cast<const Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() const>(&BRepAdaptor_HCompCurve::Curve),
+             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
+        .def("GetCurve",
+             (Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() ) static_cast<Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() >(&BRepAdaptor_HCompCurve::GetCurve),
+             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
+        .def("ChangeCurve",
+             (BRepAdaptor_CompCurve & (BRepAdaptor_HCompCurve::*)() ) static_cast<BRepAdaptor_CompCurve & (BRepAdaptor_HCompCurve::*)() >(&BRepAdaptor_HCompCurve::ChangeCurve),
+             R"#(Returns the curve used to create the GenHCurve.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HCompCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HCompCurve::*)() const>(&BRepAdaptor_HCompCurve::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HCompCurve::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HCompCurve::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAdaptor_HCurve ,opencascade::handle<BRepAdaptor_HCurve>  , Adaptor3d_HCurve >>(m.attr("BRepAdaptor_HCurve"))
+        .def(py::init<  >()  )
+        .def(py::init< const BRepAdaptor_Curve & >()  , py::arg("C") )
+    // methods
+        .def("Set",
+             (void (BRepAdaptor_HCurve::*)( const BRepAdaptor_Curve &  ) ) static_cast<void (BRepAdaptor_HCurve::*)( const BRepAdaptor_Curve &  ) >(&BRepAdaptor_HCurve::Set),
+             R"#(Sets the field of the GenHCurve.)#"  , py::arg("C"))
+        .def("Curve",
+             (const Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() const) static_cast<const Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() const>(&BRepAdaptor_HCurve::Curve),
+             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
+        .def("GetCurve",
+             (Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() ) static_cast<Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() >(&BRepAdaptor_HCurve::GetCurve),
+             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
+        .def("ChangeCurve",
+             (BRepAdaptor_Curve & (BRepAdaptor_HCurve::*)() ) static_cast<BRepAdaptor_Curve & (BRepAdaptor_HCurve::*)() >(&BRepAdaptor_HCurve::ChangeCurve),
+             R"#(Returns the curve used to create the GenHCurve.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve::*)() const>(&BRepAdaptor_HCurve::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HCurve::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HCurve::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAdaptor_HCurve2d ,opencascade::handle<BRepAdaptor_HCurve2d>  , Adaptor2d_HCurve2d >>(m.attr("BRepAdaptor_HCurve2d"))
+        .def(py::init<  >()  )
+        .def(py::init< const BRepAdaptor_Curve2d & >()  , py::arg("C") )
+    // methods
+        .def("Set",
+             (void (BRepAdaptor_HCurve2d::*)( const BRepAdaptor_Curve2d &  ) ) static_cast<void (BRepAdaptor_HCurve2d::*)( const BRepAdaptor_Curve2d &  ) >(&BRepAdaptor_HCurve2d::Set),
+             R"#(Sets the field of the GenHCurve2d.)#"  , py::arg("C"))
+        .def("Curve2d",
+             (const Adaptor2d_Curve2d & (BRepAdaptor_HCurve2d::*)() const) static_cast<const Adaptor2d_Curve2d & (BRepAdaptor_HCurve2d::*)() const>(&BRepAdaptor_HCurve2d::Curve2d),
+             R"#(Returns the curve used to create the GenHCurve2d. This is redefined from HCurve2d, cannot be inline.)#" )
+        .def("ChangeCurve2d",
+             (BRepAdaptor_Curve2d & (BRepAdaptor_HCurve2d::*)() ) static_cast<BRepAdaptor_Curve2d & (BRepAdaptor_HCurve2d::*)() >(&BRepAdaptor_HCurve2d::ChangeCurve2d),
+             R"#(Returns the curve used to create the GenHCurve.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve2d::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve2d::*)() const>(&BRepAdaptor_HCurve2d::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HCurve2d::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HCurve2d::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAdaptor_HSurface ,opencascade::handle<BRepAdaptor_HSurface>  , Adaptor3d_HSurface >>(m.attr("BRepAdaptor_HSurface"))
+        .def(py::init<  >()  )
+        .def(py::init< const BRepAdaptor_Surface & >()  , py::arg("S") )
+    // methods
+        .def("Set",
+             (void (BRepAdaptor_HSurface::*)( const BRepAdaptor_Surface &  ) ) static_cast<void (BRepAdaptor_HSurface::*)( const BRepAdaptor_Surface &  ) >(&BRepAdaptor_HSurface::Set),
+             R"#(Sets the field of the GenHSurface.)#"  , py::arg("S"))
+        .def("Surface",
+             (const Adaptor3d_Surface & (BRepAdaptor_HSurface::*)() const) static_cast<const Adaptor3d_Surface & (BRepAdaptor_HSurface::*)() const>(&BRepAdaptor_HSurface::Surface),
+             R"#(Returns a reference to the Surface inside the HSurface. This is redefined from HSurface, cannot be inline.)#" )
+        .def("ChangeSurface",
+             (BRepAdaptor_Surface & (BRepAdaptor_HSurface::*)() ) static_cast<BRepAdaptor_Surface & (BRepAdaptor_HSurface::*)() >(&BRepAdaptor_HSurface::ChangeSurface),
+             R"#(Returns the surface used to create the GenHSurface.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HSurface::*)() const>(&BRepAdaptor_HSurface::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HSurface::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HSurface::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepAdaptor_Surface , shared_ptr<BRepAdaptor_Surface>  , Adaptor3d_Surface >>(m.attr("BRepAdaptor_Surface"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,const Standard_Boolean >()  , py::arg("F"),  py::arg("R")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
         .def("Initialize",
              (void (BRepAdaptor_Surface::*)( const TopoDS_Face & ,  const Standard_Boolean  ) ) static_cast<void (BRepAdaptor_Surface::*)( const TopoDS_Face & ,  const Standard_Boolean  ) >(&BRepAdaptor_Surface::Initialize),
              R"#(Sets the surface to the geometry of <F>.)#"  , py::arg("F"),  py::arg("Restriction")=static_cast<const Standard_Boolean>(Standard_True))
@@ -439,269 +727,28 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
         .def("IsVRational",
              (Standard_Boolean (BRepAdaptor_Surface::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Surface::*)() const>(&BRepAdaptor_Surface::IsVRational),
              R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepAdaptor_HCompCurve ,opencascade::handle<BRepAdaptor_HCompCurve>  , Adaptor3d_HCurve >>(m.attr("BRepAdaptor_HCompCurve"))
-        .def(py::init<  >()  )
-        .def(py::init< const BRepAdaptor_CompCurve & >()  , py::arg("C") )
-        .def("Set",
-             (void (BRepAdaptor_HCompCurve::*)( const BRepAdaptor_CompCurve &  ) ) static_cast<void (BRepAdaptor_HCompCurve::*)( const BRepAdaptor_CompCurve &  ) >(&BRepAdaptor_HCompCurve::Set),
-             R"#(Sets the field of the GenHCurve.)#"  , py::arg("C"))
-        .def("Curve",
-             (const Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() const) static_cast<const Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() const>(&BRepAdaptor_HCompCurve::Curve),
-             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
-        .def("GetCurve",
-             (Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() ) static_cast<Adaptor3d_Curve & (BRepAdaptor_HCompCurve::*)() >(&BRepAdaptor_HCompCurve::GetCurve),
-             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
-        .def("ChangeCurve",
-             (BRepAdaptor_CompCurve & (BRepAdaptor_HCompCurve::*)() ) static_cast<BRepAdaptor_CompCurve & (BRepAdaptor_HCompCurve::*)() >(&BRepAdaptor_HCompCurve::ChangeCurve),
-             R"#(Returns the curve used to create the GenHCurve.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HCompCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HCompCurve::*)() const>(&BRepAdaptor_HCompCurve::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HCompCurve::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HCompCurve::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepAdaptor_Curve2d ,std::unique_ptr<BRepAdaptor_Curve2d>  , Geom2dAdaptor_Curve >>(m.attr("BRepAdaptor_Curve2d"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
-        .def("Initialize",
-             (void (BRepAdaptor_Curve2d::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepAdaptor_Curve2d::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepAdaptor_Curve2d::Initialize),
-             R"#(Initialize with the pcurve of <E> on <F>.)#"  , py::arg("E"),  py::arg("F"))
-        .def("Edge",
-             (const TopoDS_Edge & (BRepAdaptor_Curve2d::*)() const) static_cast<const TopoDS_Edge & (BRepAdaptor_Curve2d::*)() const>(&BRepAdaptor_Curve2d::Edge),
-             R"#(Returns the Edge.)#" )
-        .def("Face",
-             (const TopoDS_Face & (BRepAdaptor_Curve2d::*)() const) static_cast<const TopoDS_Face & (BRepAdaptor_Curve2d::*)() const>(&BRepAdaptor_Curve2d::Face),
-             R"#(Returns the Face.)#" )
-;
-
-
-    static_cast<py::class_<BRepAdaptor_Curve ,std::unique_ptr<BRepAdaptor_Curve>  , Adaptor3d_Curve >>(m.attr("BRepAdaptor_Curve"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Edge & >()  , py::arg("E") )
-        .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
-        .def("Initialize",
-             (void (BRepAdaptor_Curve::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepAdaptor_Curve::*)( const TopoDS_Edge &  ) >(&BRepAdaptor_Curve::Initialize),
-             R"#(Sets the Curve <me> to acces to the geometry of edge <E>.)#"  , py::arg("E"))
-        .def("Initialize",
-             (void (BRepAdaptor_Curve::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepAdaptor_Curve::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepAdaptor_Curve::Initialize),
-             R"#(Sets the Curve <me> to acces to the geometry of edge <E>. The geometry will be computed using the parametric curve of <E> on the face <F>. An Error is raised if the edge does not have a pcurve on the face.)#"  , py::arg("E"),  py::arg("F"))
-        .def("Trsf",
-             (const gp_Trsf & (BRepAdaptor_Curve::*)() const) static_cast<const gp_Trsf & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Trsf),
-             R"#(Returns the coordinate system of the curve.)#" )
-        .def("Is3DCurve",
-             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Is3DCurve),
-             R"#(Returns True if the edge geometry is computed from a 3D curve.)#" )
-        .def("IsCurveOnSurface",
-             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsCurveOnSurface),
-             R"#(Returns True if the edge geometry is computed from a pcurve on a surface.)#" )
-        .def("Curve",
-             (const GeomAdaptor_Curve & (BRepAdaptor_Curve::*)() const) static_cast<const GeomAdaptor_Curve & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Curve),
-             R"#(Returns the Curve of the edge.)#" )
-        .def("CurveOnSurface",
-             (const Adaptor3d_CurveOnSurface & (BRepAdaptor_Curve::*)() const) static_cast<const Adaptor3d_CurveOnSurface & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::CurveOnSurface),
-             R"#(Returns the CurveOnSurface of the edge.)#" )
-        .def("Edge",
-             (const TopoDS_Edge & (BRepAdaptor_Curve::*)() const) static_cast<const TopoDS_Edge & (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Edge),
-             R"#(Returns the edge.)#" )
-        .def("Tolerance",
-             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Tolerance),
-             R"#(Returns the edge tolerance.)#" )
-        .def("FirstParameter",
-             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::FirstParameter),
-             R"#(None)#" )
-        .def("LastParameter",
-             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::LastParameter),
-             R"#(None)#" )
-        .def("Continuity",
-             (GeomAbs_Shape (BRepAdaptor_Curve::*)() const) static_cast<GeomAbs_Shape (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Continuity),
-             R"#(None)#" )
-        .def("NbIntervals",
-             (Standard_Integer (BRepAdaptor_Curve::*)( const GeomAbs_Shape  ) const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)( const GeomAbs_Shape  ) const>(&BRepAdaptor_Curve::NbIntervals),
-             R"#(Returns the number of intervals for continuity <S>. May be one if Continuity(me) >= <S>)#"  , py::arg("S"))
-        .def("Intervals",
-             (void (BRepAdaptor_Curve::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const) static_cast<void (BRepAdaptor_Curve::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const>(&BRepAdaptor_Curve::Intervals),
-             R"#(Stores in <T> the parameters bounding the intervals of continuity <S>.)#"  , py::arg("T"),  py::arg("S"))
-        .def("Trim",
-             (opencascade::handle<Adaptor3d_HCurve> (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Adaptor3d_HCurve> (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&BRepAdaptor_Curve::Trim),
-             R"#(Returns a curve equivalent of <me> between parameters <First> and <Last>. <Tol> is used to test for 3d points confusion. If <First> >= <Last>)#"  , py::arg("First"),  py::arg("Last"),  py::arg("Tol"))
-        .def("IsClosed",
-             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsClosed),
-             R"#(None)#" )
-        .def("IsPeriodic",
-             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsPeriodic),
-             R"#(None)#" )
-        .def("Period",
-             (Standard_Real (BRepAdaptor_Curve::*)() const) static_cast<Standard_Real (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Period),
-             R"#(None)#" )
-        .def("Value",
-             (gp_Pnt (BRepAdaptor_Curve::*)( const Standard_Real  ) const) static_cast<gp_Pnt (BRepAdaptor_Curve::*)( const Standard_Real  ) const>(&BRepAdaptor_Curve::Value),
-             R"#(Computes the point of parameter U on the curve)#"  , py::arg("U"))
-        .def("D0",
-             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt &  ) const>(&BRepAdaptor_Curve::D0),
-             R"#(Computes the point of parameter U.)#"  , py::arg("U"),  py::arg("P"))
-        .def("D1",
-             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) const>(&BRepAdaptor_Curve::D1),
-             R"#(Computes the point of parameter U on the curve with its first derivative. Raised if the continuity of the current interval is not C1.)#"  , py::arg("U"),  py::arg("P"),  py::arg("V"))
-        .def("D2",
-             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) const>(&BRepAdaptor_Curve::D2),
-             R"#(Returns the point P of parameter U, the first and second derivatives V1 and V2. Raised if the continuity of the current interval is not C2.)#"  , py::arg("U"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"))
-        .def("D3",
-             (void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const) static_cast<void (BRepAdaptor_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const>(&BRepAdaptor_Curve::D3),
-             R"#(Returns the point P of parameter U, the first, the second and the third derivative. Raised if the continuity of the current interval is not C3.)#"  , py::arg("U"),  py::arg("P"),  py::arg("V1"),  py::arg("V2"),  py::arg("V3"))
-        .def("DN",
-             (gp_Vec (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Integer  ) const) static_cast<gp_Vec (BRepAdaptor_Curve::*)( const Standard_Real ,  const Standard_Integer  ) const>(&BRepAdaptor_Curve::DN),
-             R"#(The returned vector gives the value of the derivative for the order of derivation N. Raised if the continuity of the current interval is not CN. Raised if N < 1.)#"  , py::arg("U"),  py::arg("N"))
-        .def("Resolution",
-             (Standard_Real (BRepAdaptor_Curve::*)( const Standard_Real  ) const) static_cast<Standard_Real (BRepAdaptor_Curve::*)( const Standard_Real  ) const>(&BRepAdaptor_Curve::Resolution),
-             R"#(returns the parametric resolution)#"  , py::arg("R3d"))
-        .def("GetType",
-             (GeomAbs_CurveType (BRepAdaptor_Curve::*)() const) static_cast<GeomAbs_CurveType (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::GetType),
-             R"#(None)#" )
-        .def("Line",
-             (gp_Lin (BRepAdaptor_Curve::*)() const) static_cast<gp_Lin (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Line),
-             R"#(None)#" )
-        .def("Circle",
-             (gp_Circ (BRepAdaptor_Curve::*)() const) static_cast<gp_Circ (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Circle),
-             R"#(None)#" )
-        .def("Ellipse",
-             (gp_Elips (BRepAdaptor_Curve::*)() const) static_cast<gp_Elips (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Ellipse),
-             R"#(None)#" )
-        .def("Hyperbola",
-             (gp_Hypr (BRepAdaptor_Curve::*)() const) static_cast<gp_Hypr (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Hyperbola),
-             R"#(None)#" )
-        .def("Parabola",
-             (gp_Parab (BRepAdaptor_Curve::*)() const) static_cast<gp_Parab (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Parabola),
-             R"#(None)#" )
-        .def("Degree",
-             (Standard_Integer (BRepAdaptor_Curve::*)() const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Degree),
-             R"#(None)#" )
-        .def("IsRational",
-             (Standard_Boolean (BRepAdaptor_Curve::*)() const) static_cast<Standard_Boolean (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::IsRational),
-             R"#(None)#" )
-        .def("NbPoles",
-             (Standard_Integer (BRepAdaptor_Curve::*)() const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::NbPoles),
-             R"#(None)#" )
-        .def("NbKnots",
-             (Standard_Integer (BRepAdaptor_Curve::*)() const) static_cast<Standard_Integer (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::NbKnots),
-             R"#(None)#" )
-        .def("Bezier",
-             (opencascade::handle<Geom_BezierCurve> (BRepAdaptor_Curve::*)() const) static_cast<opencascade::handle<Geom_BezierCurve> (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::Bezier),
-             R"#(Warning : This will make a copy of the Bezier Curve since it applies to it myTsrf . Be carefull when using this method)#" )
-        .def("BSpline",
-             (opencascade::handle<Geom_BSplineCurve> (BRepAdaptor_Curve::*)() const) static_cast<opencascade::handle<Geom_BSplineCurve> (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::BSpline),
-             R"#(Warning : This will make a copy of the BSpline Curve since it applies to it myTsrf . Be carefull when using this method)#" )
-        .def("OffsetCurve",
-             (opencascade::handle<Geom_OffsetCurve> (BRepAdaptor_Curve::*)() const) static_cast<opencascade::handle<Geom_OffsetCurve> (BRepAdaptor_Curve::*)() const>(&BRepAdaptor_Curve::OffsetCurve),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepAdaptor_HArray1OfCurve ,std::unique_ptr<BRepAdaptor_HArray1OfCurve>  >>(m.attr("BRepAdaptor_HArray1OfCurve"))
-        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
-        .def(py::init< const Standard_Integer,const Standard_Integer, const BRepAdaptor_Curve & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
-        .def(py::init<  const NCollection_Array1<BRepAdaptor_Curve> & >()  , py::arg("theOther") )
-        .def("Array1",
-             (const BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() const) static_cast<const BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() const>(&BRepAdaptor_HArray1OfCurve::Array1),
-             R"#(None)#" )
-        .def("ChangeArray1",
-             (BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() ) static_cast<BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() >(&BRepAdaptor_HArray1OfCurve::ChangeArray1),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HArray1OfCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HArray1OfCurve::*)() const>(&BRepAdaptor_HArray1OfCurve::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HArray1OfCurve::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HArray1OfCurve::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepAdaptor_HCurve ,opencascade::handle<BRepAdaptor_HCurve>  , Adaptor3d_HCurve >>(m.attr("BRepAdaptor_HCurve"))
-        .def(py::init<  >()  )
-        .def(py::init< const BRepAdaptor_Curve & >()  , py::arg("C") )
-        .def("Set",
-             (void (BRepAdaptor_HCurve::*)( const BRepAdaptor_Curve &  ) ) static_cast<void (BRepAdaptor_HCurve::*)( const BRepAdaptor_Curve &  ) >(&BRepAdaptor_HCurve::Set),
-             R"#(Sets the field of the GenHCurve.)#"  , py::arg("C"))
-        .def("Curve",
-             (const Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() const) static_cast<const Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() const>(&BRepAdaptor_HCurve::Curve),
-             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
-        .def("GetCurve",
-             (Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() ) static_cast<Adaptor3d_Curve & (BRepAdaptor_HCurve::*)() >(&BRepAdaptor_HCurve::GetCurve),
-             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
-        .def("ChangeCurve",
-             (BRepAdaptor_Curve & (BRepAdaptor_HCurve::*)() ) static_cast<BRepAdaptor_Curve & (BRepAdaptor_HCurve::*)() >(&BRepAdaptor_HCurve::ChangeCurve),
-             R"#(Returns the curve used to create the GenHCurve.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve::*)() const>(&BRepAdaptor_HCurve::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HCurve::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HCurve::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepAdaptor_HCurve2d ,opencascade::handle<BRepAdaptor_HCurve2d>  , Adaptor2d_HCurve2d >>(m.attr("BRepAdaptor_HCurve2d"))
-        .def(py::init<  >()  )
-        .def(py::init< const BRepAdaptor_Curve2d & >()  , py::arg("C") )
-        .def("Set",
-             (void (BRepAdaptor_HCurve2d::*)( const BRepAdaptor_Curve2d &  ) ) static_cast<void (BRepAdaptor_HCurve2d::*)( const BRepAdaptor_Curve2d &  ) >(&BRepAdaptor_HCurve2d::Set),
-             R"#(Sets the field of the GenHCurve2d.)#"  , py::arg("C"))
-        .def("Curve2d",
-             (const Adaptor2d_Curve2d & (BRepAdaptor_HCurve2d::*)() const) static_cast<const Adaptor2d_Curve2d & (BRepAdaptor_HCurve2d::*)() const>(&BRepAdaptor_HCurve2d::Curve2d),
-             R"#(Returns the curve used to create the GenHCurve2d. This is redefined from HCurve2d, cannot be inline.)#" )
-        .def("ChangeCurve2d",
-             (BRepAdaptor_Curve2d & (BRepAdaptor_HCurve2d::*)() ) static_cast<BRepAdaptor_Curve2d & (BRepAdaptor_HCurve2d::*)() >(&BRepAdaptor_HCurve2d::ChangeCurve2d),
-             R"#(Returns the curve used to create the GenHCurve.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve2d::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAdaptor_HCurve2d::*)() const>(&BRepAdaptor_HCurve2d::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAdaptor_HCurve2d::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAdaptor_HCurve2d::get_type_descriptor),
-                    R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/BRepAdaptor_HSurface.hxx
-// ./opencascade/BRepAdaptor_Curve.hxx
-// ./opencascade/BRepAdaptor_CompCurve.hxx
-// ./opencascade/BRepAdaptor_HCurve.hxx
-// ./opencascade/BRepAdaptor_Surface.hxx
 // ./opencascade/BRepAdaptor_HArray1OfCurve.hxx
+// ./opencascade/BRepAdaptor_CompCurve.hxx
+// ./opencascade/BRepAdaptor_Surface.hxx
+// ./opencascade/BRepAdaptor_Array1OfCurve.hxx
 // ./opencascade/BRepAdaptor_HCompCurve.hxx
 // ./opencascade/BRepAdaptor_HCurve2d.hxx
 // ./opencascade/BRepAdaptor_Curve2d.hxx
-// ./opencascade/BRepAdaptor_Array1OfCurve.hxx
+// ./opencascade/BRepAdaptor_HCurve.hxx
+// ./opencascade/BRepAdaptor_Curve.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepAdaptor_HSurface.hxx
-// ./opencascade/BRepAdaptor_Curve.hxx
-// ./opencascade/BRepAdaptor_CompCurve.hxx
-// ./opencascade/BRepAdaptor_HCurve.hxx
-// ./opencascade/BRepAdaptor_Surface.hxx
-// ./opencascade/BRepAdaptor_HArray1OfCurve.hxx
-// ./opencascade/BRepAdaptor_HCompCurve.hxx
-// ./opencascade/BRepAdaptor_HCurve2d.hxx
-// ./opencascade/BRepAdaptor_Curve2d.hxx
-// ./opencascade/BRepAdaptor_Array1OfCurve.hxx
     register_template_NCollection_Array1<BRepAdaptor_Curve>(m,"BRepAdaptor_Array1OfCurve");  
 
 

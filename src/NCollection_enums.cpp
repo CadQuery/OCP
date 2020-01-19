@@ -134,93 +134,31 @@ py::module m = main_module.def_submodule("NCollection", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<NCollection_UtfStringTool ,std::unique_ptr<NCollection_UtfStringTool>  >(m,"NCollection_UtfStringTool",R"#(Auxiliary convertion tool.)#");
-    py::class_<NCollection_StdAllocator<void> ,std::unique_ptr<NCollection_StdAllocator<void>>  >(m,"NCollection_StdAllocator_void",R"#(Implements specialization NCollection_StdAllocator<void>. Specialization is of low value and should normally be avoided in favor of a typed specialization.)#");
-    py::class_<NCollection_BaseList ,std::unique_ptr<NCollection_BaseList>  >(m,"NCollection_BaseList",R"#(None)#");
-    py::class_<NCollection_BaseMap ,std::unique_ptr<NCollection_BaseMap, py::nodelete>  >(m,"NCollection_BaseMap",R"#(Purpose: This is a base class for all Maps: Map DataMap DoubleMap IndexedMap IndexedDataMap Provides utilitites for managing the buckets.)#");
-    py::class_<NCollection_SparseArrayBase ,std::unique_ptr<NCollection_SparseArrayBase, py::nodelete> ,Py_NCollection_SparseArrayBase >(m,"NCollection_SparseArrayBase",R"#(Base class for NCollection_SparseArray; provides non-template implementation of general mechanics of block allocation, items creation / deletion etc.)#");
-    py::class_<NCollection_Buffer ,opencascade::handle<NCollection_Buffer>  , Standard_Transient >(m,"NCollection_Buffer",R"#(Low-level buffer object.Low-level buffer object.)#");
-    py::class_<NCollection_BaseSequence ,std::unique_ptr<NCollection_BaseSequence, py::nodelete>  >(m,"NCollection_BaseSequence",R"#(Purpose: This is a base class for the Sequence. It deals with an indexed bidirectional list of NCollection_SeqNode's.)#");
-    py::class_<NCollection_BaseAllocator ,opencascade::handle<NCollection_BaseAllocator>  , Standard_Transient >(m,"NCollection_BaseAllocator",R"#(Purpose: Basic class for memory allocation wizards. Defines the interface for devising different allocators firstly to be used by collections of NCollection, though it it is not deferred. It allocates/frees the memory through Standard procedures, thus it is unnecessary (and sometimes injurious) to have more than one such allocator. To avoid creation of multiple objects the constructors were maid inaccessible. To create the BaseAllocator use the method CommonBaseAllocator. Note that this object is managed by Handle.Purpose: Basic class for memory allocation wizards. Defines the interface for devising different allocators firstly to be used by collections of NCollection, though it it is not deferred. It allocates/frees the memory through Standard procedures, thus it is unnecessary (and sometimes injurious) to have more than one such allocator. To avoid creation of multiple objects the constructors were maid inaccessible. To create the BaseAllocator use the method CommonBaseAllocator. Note that this object is managed by Handle.)#");
-    py::class_<NCollection_BaseVector ,std::unique_ptr<NCollection_BaseVector, py::nodelete>  >(m,"NCollection_BaseVector",R"#(Class NCollection_BaseVector - base for NCollection_Vector template)#");
-    py::class_<NCollection_IncAllocator ,opencascade::handle<NCollection_IncAllocator>  , NCollection_BaseAllocator >(m,"NCollection_IncAllocator",R"#(Class NCollection_IncAllocator - incremental memory allocator. This class allocates memory on request returning the pointer to an allocated block. This memory is never returned to the system until the allocator is destroyed.Class NCollection_IncAllocator - incremental memory allocator. This class allocates memory on request returning the pointer to an allocated block. This memory is never returned to the system until the allocator is destroyed.)#");
-    py::class_<NCollection_WinHeapAllocator ,opencascade::handle<NCollection_WinHeapAllocator>  , NCollection_BaseAllocator >(m,"NCollection_WinHeapAllocator",R"#(This memory allocator creates dedicated heap for allocations. This technics available only on Windows platform (no alternative on Unix systems). It may be used to take control over memory fragmentation because on destruction ALL allocated memory will be released to the system.This memory allocator creates dedicated heap for allocations. This technics available only on Windows platform (no alternative on Unix systems). It may be used to take control over memory fragmentation because on destruction ALL allocated memory will be released to the system.)#");
-    py::class_<NCollection_HeapAllocator ,opencascade::handle<NCollection_HeapAllocator>  , NCollection_BaseAllocator >(m,"NCollection_HeapAllocator",R"#(Allocator that uses the global dynamic heap (malloc / free).Allocator that uses the global dynamic heap (malloc / free).)#");
-    py::class_<NCollection_AccAllocator ,opencascade::handle<NCollection_AccAllocator>  , NCollection_BaseAllocator >(m,"NCollection_AccAllocator",R"#(Class NCollection_AccAllocator - accumulating memory allocator. This class allocates memory on request returning the pointer to the allocated space. The allocation units are grouped in blocks requested from the system as required. This memory is returned to the system when all allocations in a block are freed.Class NCollection_AccAllocator - accumulating memory allocator. This class allocates memory on request returning the pointer to the allocated space. The allocation units are grouped in blocks requested from the system as required. This memory is returned to the system when all allocations in a block are freed.)#");
-    py::class_<NCollection_AlignedAllocator ,opencascade::handle<NCollection_AlignedAllocator>  , NCollection_BaseAllocator >(m,"NCollection_AlignedAllocator",R"#(NCollection allocator with managed memory alignment capabilities.NCollection allocator with managed memory alignment capabilities.)#");
-
 // pre-register typdefs
-// ./opencascade/NCollection_UtfString.hxx
     preregister_template_NCollection_UtfString<Standard_Utf8Char>(m,"NCollection_Utf8String");  
     preregister_template_NCollection_UtfString<Standard_Utf16Char>(m,"NCollection_Utf16String");  
     preregister_template_NCollection_UtfString<Standard_Utf32Char>(m,"NCollection_Utf32String");  
     preregister_template_NCollection_UtfString<Standard_WideChar>(m,"NCollection_UtfWideString");  
-// ./opencascade/NCollection_DefineIndexedDataMap.hxx
-// ./opencascade/NCollection_Buffer.hxx
-// ./opencascade/NCollection_DefineVector.hxx
-// ./opencascade/NCollection_Map.hxx
-// ./opencascade/NCollection_StlIterator.hxx
-// ./opencascade/NCollection_EBTree.hxx
-// ./opencascade/NCollection_DefineAlloc.hxx
-// ./opencascade/NCollection_StdAllocator.hxx
-// ./opencascade/NCollection_SparseArray.hxx
-// ./opencascade/NCollection_BaseVector.hxx
-// ./opencascade/NCollection_IndexedDataMap.hxx
-// ./opencascade/NCollection_DefineSequence.hxx
-// ./opencascade/NCollection_Mat4.hxx
-// ./opencascade/NCollection_DefineList.hxx
-// ./opencascade/NCollection_DefineDataMap.hxx
-// ./opencascade/NCollection_BaseSequence.hxx
-// ./opencascade/NCollection_HArray1.hxx
-// ./opencascade/NCollection_UtfIterator.hxx
     preregister_template_NCollection_UtfIterator<Standard_Utf8Char>(m,"NCollection_Utf8Iter");  
     preregister_template_NCollection_UtfIterator<Standard_Utf16Char>(m,"NCollection_Utf16Iter");  
     preregister_template_NCollection_UtfIterator<Standard_Utf32Char>(m,"NCollection_Utf32Iter");  
     preregister_template_NCollection_UtfIterator<Standard_WideChar>(m,"NCollection_UtfWideIter");  
-// ./opencascade/NCollection_DefineHSequence.hxx
-// ./opencascade/NCollection_BaseList.hxx
-// ./opencascade/NCollection_HeapAllocator.hxx
-// ./opencascade/NCollection_Vector.hxx
-// ./opencascade/NCollection_Array1.hxx
-// ./opencascade/NCollection_IncAllocator.hxx
-// ./opencascade/NCollection_BaseMap.hxx
-// ./opencascade/NCollection_Lerp.hxx
-// ./opencascade/NCollection_DefineIndexedMap.hxx
-// ./opencascade/NCollection_DefaultHasher.hxx
-// ./opencascade/NCollection_DefineMap.hxx
-// ./opencascade/NCollection_Comparator.hxx
-// ./opencascade/NCollection_CellFilter.hxx
-// ./opencascade/NCollection_AlignedAllocator.hxx
-// ./opencascade/NCollection_IndexedMap.hxx
-// ./opencascade/NCollection_ListNode.hxx
-// ./opencascade/NCollection_Handle.hxx
-// ./opencascade/NCollection_TypeDef.hxx
-// ./opencascade/NCollection_DefineHArray2.hxx
-// ./opencascade/NCollection_TListNode.hxx
-// ./opencascade/NCollection_HArray2.hxx
-// ./opencascade/NCollection_Sequence.hxx
-// ./opencascade/NCollection_Vec2.hxx
-// ./opencascade/NCollection_Vec3.hxx
-// ./opencascade/NCollection_DataMap.hxx
-// ./opencascade/NCollection_DoubleMap.hxx
-// ./opencascade/NCollection_UBTreeFiller.hxx
-// ./opencascade/NCollection_LocalArray.hxx
-// ./opencascade/NCollection_DefineDoubleMap.hxx
-// ./opencascade/NCollection_List.hxx
-// ./opencascade/NCollection_Array2.hxx
-// ./opencascade/NCollection_DefineArray1.hxx
-// ./opencascade/NCollection_WinHeapAllocator.hxx
-// ./opencascade/NCollection_Vec4.hxx
-// ./opencascade/NCollection_HSequence.hxx
-// ./opencascade/NCollection_DefineHArray1.hxx
-// ./opencascade/NCollection_String.hxx
-// ./opencascade/NCollection_SparseArrayBase.hxx
-// ./opencascade/NCollection_BaseAllocator.hxx
-// ./opencascade/NCollection_DefineArray2.hxx
-// ./opencascade/NCollection_UBTree.hxx
-// ./opencascade/NCollection_AccAllocator.hxx
-// ./opencascade/NCollection_TListIterator.hxx
+
+// classes forward declarations only
+    py::class_<NCollection_BaseAllocator ,opencascade::handle<NCollection_BaseAllocator>  , Standard_Transient >(m,"NCollection_BaseAllocator",R"#(Purpose: Basic class for memory allocation wizards. Defines the interface for devising different allocators firstly to be used by collections of NCollection, though it it is not deferred. It allocates/frees the memory through Standard procedures, thus it is unnecessary (and sometimes injurious) to have more than one such allocator. To avoid creation of multiple objects the constructors were maid inaccessible. To create the BaseAllocator use the method CommonBaseAllocator. Note that this object is managed by Handle.Purpose: Basic class for memory allocation wizards. Defines the interface for devising different allocators firstly to be used by collections of NCollection, though it it is not deferred. It allocates/frees the memory through Standard procedures, thus it is unnecessary (and sometimes injurious) to have more than one such allocator. To avoid creation of multiple objects the constructors were maid inaccessible. To create the BaseAllocator use the method CommonBaseAllocator. Note that this object is managed by Handle.)#");
+    py::class_<NCollection_BaseList , shared_ptr<NCollection_BaseList>  >(m,"NCollection_BaseList",R"#(None)#");
+    py::class_<NCollection_BaseMap , shared_ptr_nodelete<NCollection_BaseMap>  >(m,"NCollection_BaseMap",R"#(Purpose: This is a base class for all Maps: Map DataMap DoubleMap IndexedMap IndexedDataMap Provides utilitites for managing the buckets.)#");
+    py::class_<NCollection_BaseSequence , shared_ptr_nodelete<NCollection_BaseSequence>  >(m,"NCollection_BaseSequence",R"#(Purpose: This is a base class for the Sequence. It deals with an indexed bidirectional list of NCollection_SeqNode's.)#");
+    py::class_<NCollection_BaseVector , shared_ptr_nodelete<NCollection_BaseVector>  >(m,"NCollection_BaseVector",R"#(Class NCollection_BaseVector - base for NCollection_Vector template)#");
+    py::class_<NCollection_Buffer ,opencascade::handle<NCollection_Buffer>  , Standard_Transient >(m,"NCollection_Buffer",R"#(Low-level buffer object.Low-level buffer object.)#");
+    py::class_<NCollection_SparseArrayBase , shared_ptr_nodelete<NCollection_SparseArrayBase> ,Py_NCollection_SparseArrayBase >(m,"NCollection_SparseArrayBase",R"#(Base class for NCollection_SparseArray; provides non-template implementation of general mechanics of block allocation, items creation / deletion etc.)#");
+    py::class_<NCollection_StdAllocator<void> , shared_ptr<NCollection_StdAllocator<void>>  >(m,"NCollection_StdAllocator_void",R"#(Implements specialization NCollection_StdAllocator<void>. Specialization is of low value and should normally be avoided in favor of a typed specialization.)#");
+    py::class_<NCollection_UtfStringTool , shared_ptr<NCollection_UtfStringTool>  >(m,"NCollection_UtfStringTool",R"#(Auxiliary convertion tool.)#");
+    py::class_<NCollection_AccAllocator ,opencascade::handle<NCollection_AccAllocator>  , NCollection_BaseAllocator >(m,"NCollection_AccAllocator",R"#(Class NCollection_AccAllocator - accumulating memory allocator. This class allocates memory on request returning the pointer to the allocated space. The allocation units are grouped in blocks requested from the system as required. This memory is returned to the system when all allocations in a block are freed.Class NCollection_AccAllocator - accumulating memory allocator. This class allocates memory on request returning the pointer to the allocated space. The allocation units are grouped in blocks requested from the system as required. This memory is returned to the system when all allocations in a block are freed.)#");
+    py::class_<NCollection_AlignedAllocator ,opencascade::handle<NCollection_AlignedAllocator>  , NCollection_BaseAllocator >(m,"NCollection_AlignedAllocator",R"#(NCollection allocator with managed memory alignment capabilities.NCollection allocator with managed memory alignment capabilities.)#");
+    py::class_<NCollection_HeapAllocator ,opencascade::handle<NCollection_HeapAllocator>  , NCollection_BaseAllocator >(m,"NCollection_HeapAllocator",R"#(Allocator that uses the global dynamic heap (malloc / free).Allocator that uses the global dynamic heap (malloc / free).)#");
+    py::class_<NCollection_IncAllocator ,opencascade::handle<NCollection_IncAllocator>  , NCollection_BaseAllocator >(m,"NCollection_IncAllocator",R"#(Class NCollection_IncAllocator - incremental memory allocator. This class allocates memory on request returning the pointer to an allocated block. This memory is never returned to the system until the allocator is destroyed.Class NCollection_IncAllocator - incremental memory allocator. This class allocates memory on request returning the pointer to an allocated block. This memory is never returned to the system until the allocator is destroyed.)#");
+    py::class_<NCollection_WinHeapAllocator ,opencascade::handle<NCollection_WinHeapAllocator>  , NCollection_BaseAllocator >(m,"NCollection_WinHeapAllocator",R"#(This memory allocator creates dedicated heap for allocations. This technics available only on Windows platform (no alternative on Unix systems). It may be used to take control over memory fragmentation because on destruction ALL allocated memory will be released to the system.This memory allocator creates dedicated heap for allocations. This technics available only on Windows platform (no alternative on Unix systems). It may be used to take control over memory fragmentation because on destruction ALL allocated memory will be released to the system.)#");
 
 };
 

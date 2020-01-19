@@ -17,11 +17,6 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepAP242_IdAttribute.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
 #include <StepAP242_GeometricItemSpecificUsage.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
@@ -30,20 +25,25 @@ namespace py = pybind11;
 #include <StepAP242_DraughtingModelItemAssociation.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepAP242_IdAttribute.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
 
 // module includes
 #include <RWStepAP242_RWItemIdentifiedRepresentationUsage.hxx>
-#include <RWStepAP242_RWIdAttribute.hxx>
 #include <RWStepAP242_RWGeometricItemSpecificUsage.hxx>
 #include <RWStepAP242_RWDraughtingModelItemAssociation.hxx>
+#include <RWStepAP242_RWIdAttribute.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
 // ./opencascade/RWStepAP242_RWItemIdentifiedRepresentationUsage.hxx
-// ./opencascade/RWStepAP242_RWIdAttribute.hxx
 // ./opencascade/RWStepAP242_RWGeometricItemSpecificUsage.hxx
 // ./opencascade/RWStepAP242_RWDraughtingModelItemAssociation.hxx
+// ./opencascade/RWStepAP242_RWIdAttribute.hxx
 
 // user-defined post

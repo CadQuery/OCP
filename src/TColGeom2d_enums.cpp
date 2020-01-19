@@ -28,13 +28,13 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/TColGeom2d_Array1OfCurve.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColGeom2d_SequenceOfBoundedCurve.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColGeom2d_Array1OfBezierCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColGeom2d_Array1OfBSplineCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColGeom2d_SequenceOfGeometry.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColGeom2d_Array1OfBSplineCurve.hxx
+// ./opencascade/TColGeom2d_SequenceOfBoundedCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColGeom2d_SequenceOfCurve.hxx
 #include "NCollection.hxx"
@@ -57,31 +57,20 @@ py::module m = main_module.def_submodule("TColGeom2d", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TColGeom2d_HSequenceOfBoundedCurve ,std::unique_ptr<TColGeom2d_HSequenceOfBoundedCurve>  >(m,"TColGeom2d_HSequenceOfBoundedCurve",R"#()#");
-    py::class_<TColGeom2d_HArray1OfBSplineCurve ,std::unique_ptr<TColGeom2d_HArray1OfBSplineCurve>  >(m,"TColGeom2d_HArray1OfBSplineCurve",R"#()#");
-    py::class_<TColGeom2d_HArray1OfBezierCurve ,std::unique_ptr<TColGeom2d_HArray1OfBezierCurve>  >(m,"TColGeom2d_HArray1OfBezierCurve",R"#()#");
-    py::class_<TColGeom2d_HSequenceOfCurve ,std::unique_ptr<TColGeom2d_HSequenceOfCurve>  >(m,"TColGeom2d_HSequenceOfCurve",R"#()#");
-    py::class_<TColGeom2d_HArray1OfCurve ,std::unique_ptr<TColGeom2d_HArray1OfCurve>  >(m,"TColGeom2d_HArray1OfCurve",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/TColGeom2d_Array1OfCurve.hxx
     preregister_template_NCollection_Array1<opencascade::handle<Geom2d_Curve> >(m,"TColGeom2d_Array1OfCurve");  
-// ./opencascade/TColGeom2d_SequenceOfBoundedCurve.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<Geom2d_BoundedCurve> >(m,"TColGeom2d_SequenceOfBoundedCurve");  
-// ./opencascade/TColGeom2d_Array1OfBezierCurve.hxx
     preregister_template_NCollection_Array1<opencascade::handle<Geom2d_BezierCurve> >(m,"TColGeom2d_Array1OfBezierCurve");  
-// ./opencascade/TColGeom2d_HSequenceOfBoundedCurve.hxx
-// ./opencascade/TColGeom2d_HSequenceOfCurve.hxx
-// ./opencascade/TColGeom2d_HArray1OfBSplineCurve.hxx
-// ./opencascade/TColGeom2d_SequenceOfGeometry.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<Geom2d_Geometry> >(m,"TColGeom2d_SequenceOfGeometry");  
-// ./opencascade/TColGeom2d_HArray1OfCurve.hxx
-// ./opencascade/TColGeom2d_HArray1OfBezierCurve.hxx
-// ./opencascade/TColGeom2d_Array1OfBSplineCurve.hxx
     preregister_template_NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> >(m,"TColGeom2d_Array1OfBSplineCurve");  
-// ./opencascade/TColGeom2d_SequenceOfCurve.hxx
+    preregister_template_NCollection_Sequence<opencascade::handle<Geom2d_Geometry> >(m,"TColGeom2d_SequenceOfGeometry");  
+    preregister_template_NCollection_Sequence<opencascade::handle<Geom2d_BoundedCurve> >(m,"TColGeom2d_SequenceOfBoundedCurve");  
     preregister_template_NCollection_Sequence<opencascade::handle<Geom2d_Curve> >(m,"TColGeom2d_SequenceOfCurve");  
+
+// classes forward declarations only
+    py::class_<TColGeom2d_HArray1OfBSplineCurve ,opencascade::handle<TColGeom2d_HArray1OfBSplineCurve>  , TColGeom2d_Array1OfBSplineCurve , Standard_Transient >(m,"TColGeom2d_HArray1OfBSplineCurve",R"#()#");
+    py::class_<TColGeom2d_HArray1OfBezierCurve ,opencascade::handle<TColGeom2d_HArray1OfBezierCurve>  , TColGeom2d_Array1OfBezierCurve , Standard_Transient >(m,"TColGeom2d_HArray1OfBezierCurve",R"#()#");
+    py::class_<TColGeom2d_HArray1OfCurve ,opencascade::handle<TColGeom2d_HArray1OfCurve>  , TColGeom2d_Array1OfCurve , Standard_Transient >(m,"TColGeom2d_HArray1OfCurve",R"#()#");
+    py::class_<TColGeom2d_HSequenceOfBoundedCurve ,opencascade::handle<TColGeom2d_HSequenceOfBoundedCurve>  , TColGeom2d_SequenceOfBoundedCurve , Standard_Transient >(m,"TColGeom2d_HSequenceOfBoundedCurve",R"#()#");
+    py::class_<TColGeom2d_HSequenceOfCurve ,opencascade::handle<TColGeom2d_HSequenceOfCurve>  , TColGeom2d_SequenceOfCurve , Standard_Transient >(m,"TColGeom2d_HSequenceOfCurve",R"#()#");
 
 };
 

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -12,9 +15,9 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <Storage_StreamFormatError.hxx>
 #include <Storage_StreamWriteError.hxx>
+#include <Storage_HeaderData.hxx>
 #include <Storage_StreamFormatError.hxx>
 #include <Storage_StreamWriteError.hxx>
-#include <Storage_HeaderData.hxx>
 
 // module includes
 #include <FSD_BinaryFile.hxx>
@@ -44,285 +47,9 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
 // classes
 
 
-    static_cast<py::class_<FSD_File ,std::unique_ptr<FSD_File>  , Storage_BaseDriver >>(m.attr("FSD_File"))
+    static_cast<py::class_<FSD_BinaryFile , shared_ptr<FSD_BinaryFile>  , Storage_BaseDriver >>(m.attr("FSD_BinaryFile"))
         .def(py::init<  >()  )
-        .def("Open",
-             (Storage_Error (FSD_File::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_File::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_File::Open),
-             R"#(Assigns as aName the name of the file to be driven by this driver. aMode precises if the file is opened in read or write mode. The function returns Storage_VSOk if the file is opened correctly, or any other value of the Storage_Error enumeration which specifies the problem encountered.)#"  , py::arg("aName"),  py::arg("aMode"))
-        .def("IsEnd",
-             (Standard_Boolean (FSD_File::*)() ) static_cast<Standard_Boolean (FSD_File::*)() >(&FSD_File::IsEnd),
-             R"#(None)#" )
-        .def("Tell",
-             (Storage_Position (FSD_File::*)() ) static_cast<Storage_Position (FSD_File::*)() >(&FSD_File::Tell),
-             R"#(return position in the file. Return -1 upon error.)#" )
-        .def("BeginWriteInfoSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteInfoSection),
-             R"#(None)#" )
-        .def("WriteInfo",
-             (void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,   const NCollection_Sequence<TCollection_AsciiString> &  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,   const NCollection_Sequence<TCollection_AsciiString> &  ) >(&FSD_File::WriteInfo),
-             R"#(None)#"  , py::arg("nbObj"),  py::arg("dbVersion"),  py::arg("date"),  py::arg("schemaName"),  py::arg("schemaVersion"),  py::arg("appName"),  py::arg("appVersion"),  py::arg("objectType"),  py::arg("userInfo"))
-        .def("EndWriteInfoSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteInfoSection),
-             R"#(None)#" )
-        .def("BeginReadInfoSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadInfoSection),
-             R"#(None)#" )
-        .def("ReadInfo",
-             (void (FSD_File::*)( Standard_Integer & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_AsciiString> &  ) ) static_cast<void (FSD_File::*)( Standard_Integer & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_AsciiString> &  ) >(&FSD_File::ReadInfo),
-             R"#(None)#"  , py::arg("nbObj"),  py::arg("dbVersion"),  py::arg("date"),  py::arg("schemaName"),  py::arg("schemaVersion"),  py::arg("appName"),  py::arg("appVersion"),  py::arg("objectType"),  py::arg("userInfo"))
-        .def("ReadCompleteInfo",
-             (void (FSD_File::*)( std::istream & ,  opencascade::handle<Storage_Data> &  ) ) static_cast<void (FSD_File::*)( std::istream & ,  opencascade::handle<Storage_Data> &  ) >(&FSD_File::ReadCompleteInfo),
-             R"#(None)#"  , py::arg("theIStream"),  py::arg("theData"))
-        .def("EndReadInfoSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadInfoSection),
-             R"#(None)#" )
-        .def("BeginWriteCommentSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteCommentSection),
-             R"#(None)#" )
-        .def("WriteComment",
-             (void (FSD_File::*)(  const NCollection_Sequence<TCollection_ExtendedString> &  ) ) static_cast<void (FSD_File::*)(  const NCollection_Sequence<TCollection_ExtendedString> &  ) >(&FSD_File::WriteComment),
-             R"#(None)#"  , py::arg("userComments"))
-        .def("EndWriteCommentSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteCommentSection),
-             R"#(None)#" )
-        .def("BeginReadCommentSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadCommentSection),
-             R"#(None)#" )
-        .def("ReadComment",
-             (void (FSD_File::*)( NCollection_Sequence<TCollection_ExtendedString> &  ) ) static_cast<void (FSD_File::*)( NCollection_Sequence<TCollection_ExtendedString> &  ) >(&FSD_File::ReadComment),
-             R"#(None)#"  , py::arg("userComments"))
-        .def("EndReadCommentSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadCommentSection),
-             R"#(None)#" )
-        .def("BeginWriteTypeSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteTypeSection),
-             R"#(None)#" )
-        .def("SetTypeSectionSize",
-             (void (FSD_File::*)( const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::SetTypeSectionSize),
-             R"#(None)#"  , py::arg("aSize"))
-        .def("WriteTypeInformations",
-             (void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString &  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString &  ) >(&FSD_File::WriteTypeInformations),
-             R"#(None)#"  , py::arg("typeNum"),  py::arg("typeName"))
-        .def("EndWriteTypeSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteTypeSection),
-             R"#(None)#" )
-        .def("BeginReadTypeSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadTypeSection),
-             R"#(None)#" )
-        .def("TypeSectionSize",
-             (Standard_Integer (FSD_File::*)() ) static_cast<Standard_Integer (FSD_File::*)() >(&FSD_File::TypeSectionSize),
-             R"#(None)#" )
-        .def("ReadTypeInformations",
-             (void (FSD_File::*)( Standard_Integer & ,  TCollection_AsciiString &  ) ) static_cast<void (FSD_File::*)( Standard_Integer & ,  TCollection_AsciiString &  ) >(&FSD_File::ReadTypeInformations),
-             R"#(None)#"  , py::arg("typeNum"),  py::arg("typeName"))
-        .def("EndReadTypeSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadTypeSection),
-             R"#(None)#" )
-        .def("BeginWriteRootSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteRootSection),
-             R"#(None)#" )
-        .def("SetRootSectionSize",
-             (void (FSD_File::*)( const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::SetRootSectionSize),
-             R"#(None)#"  , py::arg("aSize"))
-        .def("WriteRoot",
-             (void (FSD_File::*)( const TCollection_AsciiString & ,  const Standard_Integer ,  const TCollection_AsciiString &  ) ) static_cast<void (FSD_File::*)( const TCollection_AsciiString & ,  const Standard_Integer ,  const TCollection_AsciiString &  ) >(&FSD_File::WriteRoot),
-             R"#(None)#"  , py::arg("rootName"),  py::arg("aRef"),  py::arg("aType"))
-        .def("EndWriteRootSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteRootSection),
-             R"#(None)#" )
-        .def("BeginReadRootSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadRootSection),
-             R"#(None)#" )
-        .def("RootSectionSize",
-             (Standard_Integer (FSD_File::*)() ) static_cast<Standard_Integer (FSD_File::*)() >(&FSD_File::RootSectionSize),
-             R"#(None)#" )
-        .def("ReadRoot",
-             (void (FSD_File::*)( TCollection_AsciiString & ,  Standard_Integer & ,  TCollection_AsciiString &  ) ) static_cast<void (FSD_File::*)( TCollection_AsciiString & ,  Standard_Integer & ,  TCollection_AsciiString &  ) >(&FSD_File::ReadRoot),
-             R"#(None)#"  , py::arg("rootName"),  py::arg("aRef"),  py::arg("aType"))
-        .def("EndReadRootSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadRootSection),
-             R"#(None)#" )
-        .def("BeginWriteRefSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteRefSection),
-             R"#(None)#" )
-        .def("SetRefSectionSize",
-             (void (FSD_File::*)( const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::SetRefSectionSize),
-             R"#(None)#"  , py::arg("aSize"))
-        .def("WriteReferenceType",
-             (void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) >(&FSD_File::WriteReferenceType),
-             R"#(None)#"  , py::arg("reference"),  py::arg("typeNum"))
-        .def("EndWriteRefSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteRefSection),
-             R"#(None)#" )
-        .def("BeginReadRefSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadRefSection),
-             R"#(None)#" )
-        .def("RefSectionSize",
-             (Standard_Integer (FSD_File::*)() ) static_cast<Standard_Integer (FSD_File::*)() >(&FSD_File::RefSectionSize),
-             R"#(None)#" )
-        .def("ReadReferenceType",
-             (void (FSD_File::*)( Standard_Integer & ,  Standard_Integer &  ) ) static_cast<void (FSD_File::*)( Standard_Integer & ,  Standard_Integer &  ) >(&FSD_File::ReadReferenceType),
-             R"#(None)#"  , py::arg("reference"),  py::arg("typeNum"))
-        .def("EndReadRefSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadRefSection),
-             R"#(None)#" )
-        .def("BeginWriteDataSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteDataSection),
-             R"#(None)#" )
-        .def("WritePersistentObjectHeader",
-             (void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) >(&FSD_File::WritePersistentObjectHeader),
-             R"#(None)#"  , py::arg("aRef"),  py::arg("aType"))
-        .def("BeginWritePersistentObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginWritePersistentObjectData),
-             R"#(None)#" )
-        .def("BeginWriteObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginWriteObjectData),
-             R"#(None)#" )
-        .def("EndWriteObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndWriteObjectData),
-             R"#(None)#" )
-        .def("EndWritePersistentObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndWritePersistentObjectData),
-             R"#(None)#" )
-        .def("EndWriteDataSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteDataSection),
-             R"#(None)#" )
-        .def("BeginReadDataSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadDataSection),
-             R"#(None)#" )
-        .def("ReadPersistentObjectHeader",
-             (void (FSD_File::*)( Standard_Integer & ,  Standard_Integer &  ) ) static_cast<void (FSD_File::*)( Standard_Integer & ,  Standard_Integer &  ) >(&FSD_File::ReadPersistentObjectHeader),
-             R"#(None)#"  , py::arg("aRef"),  py::arg("aType"))
-        .def("BeginReadPersistentObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginReadPersistentObjectData),
-             R"#(None)#" )
-        .def("BeginReadObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginReadObjectData),
-             R"#(None)#" )
-        .def("EndReadObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndReadObjectData),
-             R"#(None)#" )
-        .def("EndReadPersistentObjectData",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndReadPersistentObjectData),
-             R"#(None)#" )
-        .def("EndReadDataSection",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadDataSection),
-             R"#(None)#" )
-        .def("SkipObject",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::SkipObject),
-             R"#(None)#" )
-        .def("PutReference",
-             (Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::PutReference),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("PutCharacter",
-             (Storage_BaseDriver & (FSD_File::*)( const Standard_Character  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Character  ) >(&FSD_File::PutCharacter),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("PutExtCharacter",
-             (Storage_BaseDriver & (FSD_File::*)( const Standard_ExtCharacter  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_ExtCharacter  ) >(&FSD_File::PutExtCharacter),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("PutInteger",
-             (Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::PutInteger),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("PutBoolean",
-             (Storage_BaseDriver & (FSD_File::*)( const Standard_Boolean  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Boolean  ) >(&FSD_File::PutBoolean),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("PutReal",
-             (Storage_BaseDriver & (FSD_File::*)( const Standard_Real  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Real  ) >(&FSD_File::PutReal),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("PutShortReal",
-             (Storage_BaseDriver & (FSD_File::*)( const Standard_ShortReal  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_ShortReal  ) >(&FSD_File::PutShortReal),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("GetReference",
-             (Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) >(&FSD_File::GetReference),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("GetCharacter",
-             (Storage_BaseDriver & (FSD_File::*)( Standard_Character &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Character &  ) >(&FSD_File::GetCharacter),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("GetExtCharacter",
-             (Storage_BaseDriver & (FSD_File::*)( Standard_ExtCharacter &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_ExtCharacter &  ) >(&FSD_File::GetExtCharacter),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("GetInteger",
-             (Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) >(&FSD_File::GetInteger),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("GetBoolean",
-             (Storage_BaseDriver & (FSD_File::*)( Standard_Boolean &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Boolean &  ) >(&FSD_File::GetBoolean),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("GetReal",
-             (Storage_BaseDriver & (FSD_File::*)( Standard_Real &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Real &  ) >(&FSD_File::GetReal),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("GetShortReal",
-             (Storage_BaseDriver & (FSD_File::*)( Standard_ShortReal &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_ShortReal &  ) >(&FSD_File::GetShortReal),
-             R"#(None)#"  , py::arg("aValue"))
-        .def("Close",
-             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::Close),
-             R"#(Closes the file driven by this driver. This file was opened by the last call to the function Open. The function returns Storage_VSOk if the closure is correctly done, or any other value of the Storage_Error enumeration which specifies the problem encountered.)#" )
-        .def("Destroy",
-             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::Destroy),
-             R"#(None)#" )
-        .def_static("IsGoodFileType_s",
-                    (Storage_Error (*)( const TCollection_AsciiString &  ) ) static_cast<Storage_Error (*)( const TCollection_AsciiString &  ) >(&FSD_File::IsGoodFileType),
-                    R"#(None)#"  , py::arg("aName"))
-        .def_static("MagicNumber_s",
-                    (Standard_CString (*)() ) static_cast<Standard_CString (*)() >(&FSD_File::MagicNumber),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<FSD_CmpFile ,std::unique_ptr<FSD_CmpFile>  , FSD_File >>(m.attr("FSD_CmpFile"))
-        .def(py::init<  >()  )
-        .def("Open",
-             (Storage_Error (FSD_CmpFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_CmpFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_CmpFile::Open),
-             R"#(None)#"  , py::arg("aName"),  py::arg("aMode"))
-        .def("BeginWriteInfoSection",
-             (Storage_Error (FSD_CmpFile::*)() ) static_cast<Storage_Error (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginWriteInfoSection),
-             R"#(None)#" )
-        .def("BeginReadInfoSection",
-             (Storage_Error (FSD_CmpFile::*)() ) static_cast<Storage_Error (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginReadInfoSection),
-             R"#(None)#" )
-        .def("WritePersistentObjectHeader",
-             (void (FSD_CmpFile::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (FSD_CmpFile::*)( const Standard_Integer ,  const Standard_Integer  ) >(&FSD_CmpFile::WritePersistentObjectHeader),
-             R"#(None)#"  , py::arg("aRef"),  py::arg("aType"))
-        .def("BeginWritePersistentObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginWritePersistentObjectData),
-             R"#(None)#" )
-        .def("BeginWriteObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginWriteObjectData),
-             R"#(None)#" )
-        .def("EndWriteObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndWriteObjectData),
-             R"#(None)#" )
-        .def("EndWritePersistentObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndWritePersistentObjectData),
-             R"#(None)#" )
-        .def("ReadPersistentObjectHeader",
-             (void (FSD_CmpFile::*)( Standard_Integer & ,  Standard_Integer &  ) ) static_cast<void (FSD_CmpFile::*)( Standard_Integer & ,  Standard_Integer &  ) >(&FSD_CmpFile::ReadPersistentObjectHeader),
-             R"#(None)#"  , py::arg("aRef"),  py::arg("aType"))
-        .def("BeginReadPersistentObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginReadPersistentObjectData),
-             R"#(None)#" )
-        .def("BeginReadObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginReadObjectData),
-             R"#(None)#" )
-        .def("EndReadObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndReadObjectData),
-             R"#(None)#" )
-        .def("EndReadPersistentObjectData",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndReadPersistentObjectData),
-             R"#(None)#" )
-        .def("Destroy",
-             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::Destroy),
-             R"#(None)#" )
-        .def_static("IsGoodFileType_s",
-                    (Storage_Error (*)( const TCollection_AsciiString &  ) ) static_cast<Storage_Error (*)( const TCollection_AsciiString &  ) >(&FSD_CmpFile::IsGoodFileType),
-                    R"#(None)#"  , py::arg("aName"))
-        .def_static("MagicNumber_s",
-                    (Standard_CString (*)() ) static_cast<Standard_CString (*)() >(&FSD_CmpFile::MagicNumber),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<FSD_BinaryFile ,std::unique_ptr<FSD_BinaryFile>  , Storage_BaseDriver >>(m.attr("FSD_BinaryFile"))
-        .def(py::init<  >()  )
+    // methods
         .def("Open",
              (Storage_Error (FSD_BinaryFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_BinaryFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_BinaryFile::Open),
              R"#(None)#"  , py::arg("aName"),  py::arg("aMode"))
@@ -347,9 +74,6 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def("BeginReadInfoSection",
              (Storage_Error (FSD_BinaryFile::*)() ) static_cast<Storage_Error (FSD_BinaryFile::*)() >(&FSD_BinaryFile::BeginReadInfoSection),
              R"#(None)#" )
-        .def("ReadInfo",
-             (void (FSD_BinaryFile::*)( Standard_Integer & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_AsciiString> &  ) ) static_cast<void (FSD_BinaryFile::*)( Standard_Integer & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  TCollection_AsciiString & ,  TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_AsciiString> &  ) >(&FSD_BinaryFile::ReadInfo),
-             R"#(None)#"  , py::arg("nbObj"),  py::arg("dbVersion"),  py::arg("date"),  py::arg("schemaName"),  py::arg("schemaVersion"),  py::arg("appName"),  py::arg("appVersion"),  py::arg("objectType"),  py::arg("userInfo"))
         .def("ReadCompleteInfo",
              (void (FSD_BinaryFile::*)( std::istream & ,  opencascade::handle<Storage_Data> &  ) ) static_cast<void (FSD_BinaryFile::*)( std::istream & ,  opencascade::handle<Storage_Data> &  ) >(&FSD_BinaryFile::ReadCompleteInfo),
              R"#(None)#"  , py::arg("theIStream"),  py::arg("theData"))
@@ -398,9 +122,6 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def("TypeSectionSize",
              (Standard_Integer (FSD_BinaryFile::*)() ) static_cast<Standard_Integer (FSD_BinaryFile::*)() >(&FSD_BinaryFile::TypeSectionSize),
              R"#(None)#" )
-        .def("ReadTypeInformations",
-             (void (FSD_BinaryFile::*)( Standard_Integer & ,  TCollection_AsciiString &  ) ) static_cast<void (FSD_BinaryFile::*)( Standard_Integer & ,  TCollection_AsciiString &  ) >(&FSD_BinaryFile::ReadTypeInformations),
-             R"#(None)#"  , py::arg("typeNum"),  py::arg("typeName"))
         .def("EndReadTypeSection",
              (Storage_Error (FSD_BinaryFile::*)() ) static_cast<Storage_Error (FSD_BinaryFile::*)() >(&FSD_BinaryFile::EndReadTypeSection),
              R"#(None)#" )
@@ -422,9 +143,6 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def("RootSectionSize",
              (Standard_Integer (FSD_BinaryFile::*)() ) static_cast<Standard_Integer (FSD_BinaryFile::*)() >(&FSD_BinaryFile::RootSectionSize),
              R"#(None)#" )
-        .def("ReadRoot",
-             (void (FSD_BinaryFile::*)( TCollection_AsciiString & ,  Standard_Integer & ,  TCollection_AsciiString &  ) ) static_cast<void (FSD_BinaryFile::*)( TCollection_AsciiString & ,  Standard_Integer & ,  TCollection_AsciiString &  ) >(&FSD_BinaryFile::ReadRoot),
-             R"#(None)#"  , py::arg("rootName"),  py::arg("aRef"),  py::arg("aType"))
         .def("EndReadRootSection",
              (Storage_Error (FSD_BinaryFile::*)() ) static_cast<Storage_Error (FSD_BinaryFile::*)() >(&FSD_BinaryFile::EndReadRootSection),
              R"#(None)#" )
@@ -446,9 +164,6 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def("RefSectionSize",
              (Standard_Integer (FSD_BinaryFile::*)() ) static_cast<Standard_Integer (FSD_BinaryFile::*)() >(&FSD_BinaryFile::RefSectionSize),
              R"#(None)#" )
-        .def("ReadReferenceType",
-             (void (FSD_BinaryFile::*)( Standard_Integer & ,  Standard_Integer &  ) ) static_cast<void (FSD_BinaryFile::*)( Standard_Integer & ,  Standard_Integer &  ) >(&FSD_BinaryFile::ReadReferenceType),
-             R"#(None)#"  , py::arg("reference"),  py::arg("typeNum"))
         .def("EndReadRefSection",
              (Storage_Error (FSD_BinaryFile::*)() ) static_cast<Storage_Error (FSD_BinaryFile::*)() >(&FSD_BinaryFile::EndReadRefSection),
              R"#(None)#" )
@@ -476,9 +191,6 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def("BeginReadDataSection",
              (Storage_Error (FSD_BinaryFile::*)() ) static_cast<Storage_Error (FSD_BinaryFile::*)() >(&FSD_BinaryFile::BeginReadDataSection),
              R"#(None)#" )
-        .def("ReadPersistentObjectHeader",
-             (void (FSD_BinaryFile::*)( Standard_Integer & ,  Standard_Integer &  ) ) static_cast<void (FSD_BinaryFile::*)( Standard_Integer & ,  Standard_Integer &  ) >(&FSD_BinaryFile::ReadPersistentObjectHeader),
-             R"#(None)#"  , py::arg("aRef"),  py::arg("aType"))
         .def("BeginReadPersistentObjectData",
              (void (FSD_BinaryFile::*)() ) static_cast<void (FSD_BinaryFile::*)() >(&FSD_BinaryFile::BeginReadPersistentObjectData),
              R"#(None)#" )
@@ -545,6 +257,23 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def("Destroy",
              (void (FSD_BinaryFile::*)() ) static_cast<void (FSD_BinaryFile::*)() >(&FSD_BinaryFile::Destroy),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("ReadInfo",
+             []( FSD_BinaryFile &self , TCollection_AsciiString & dbVersion,TCollection_AsciiString & date,TCollection_AsciiString & schemaName,TCollection_AsciiString & schemaVersion,TCollection_ExtendedString & appName,TCollection_AsciiString & appVersion,TCollection_ExtendedString & objectType,NCollection_Sequence<TCollection_AsciiString> & userInfo ){ Standard_Integer  nbObj; self.ReadInfo(nbObj,dbVersion,date,schemaName,schemaVersion,appName,appVersion,objectType,userInfo); return std::make_tuple(nbObj); },
+             R"#(None)#"  , py::arg("dbVersion"),  py::arg("date"),  py::arg("schemaName"),  py::arg("schemaVersion"),  py::arg("appName"),  py::arg("appVersion"),  py::arg("objectType"),  py::arg("userInfo"))
+        .def("ReadTypeInformations",
+             []( FSD_BinaryFile &self , TCollection_AsciiString & typeName ){ Standard_Integer  typeNum; self.ReadTypeInformations(typeNum,typeName); return std::make_tuple(typeNum); },
+             R"#(None)#"  , py::arg("typeName"))
+        .def("ReadRoot",
+             []( FSD_BinaryFile &self , TCollection_AsciiString & rootName,TCollection_AsciiString & aType ){ Standard_Integer  aRef; self.ReadRoot(rootName,aRef,aType); return std::make_tuple(aRef); },
+             R"#(None)#"  , py::arg("rootName"),  py::arg("aType"))
+        .def("ReadReferenceType",
+             []( FSD_BinaryFile &self   ){ Standard_Integer  reference; Standard_Integer  typeNum; self.ReadReferenceType(reference,typeNum); return std::make_tuple(reference,typeNum); },
+             R"#(None)#" )
+        .def("ReadPersistentObjectHeader",
+             []( FSD_BinaryFile &self   ){ Standard_Integer  aRef; Standard_Integer  aType; self.ReadPersistentObjectHeader(aRef,aType); return std::make_tuple(aRef,aType); },
+             R"#(None)#" )
+    // static methods
         .def_static("IsGoodFileType_s",
                     (Storage_Error (*)( const TCollection_AsciiString &  ) ) static_cast<Storage_Error (*)( const TCollection_AsciiString &  ) >(&FSD_BinaryFile::IsGoodFileType),
                     R"#(None)#"  , py::arg("aName"))
@@ -560,30 +289,15 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def_static("TypeSectionSize_s",
                     (Standard_Integer (*)( std::istream &  ) ) static_cast<Standard_Integer (*)( std::istream &  ) >(&FSD_BinaryFile::TypeSectionSize),
                     R"#(None)#"  , py::arg("theIStream"))
-        .def_static("ReadTypeInformations_s",
-                    (void (*)( std::istream & ,  Standard_Integer & ,  TCollection_AsciiString &  ) ) static_cast<void (*)( std::istream & ,  Standard_Integer & ,  TCollection_AsciiString &  ) >(&FSD_BinaryFile::ReadTypeInformations),
-                    R"#(None)#"  , py::arg("theIStream"),  py::arg("typeNum"),  py::arg("typeName"))
         .def_static("RootSectionSize_s",
                     (Standard_Integer (*)( std::istream &  ) ) static_cast<Standard_Integer (*)( std::istream &  ) >(&FSD_BinaryFile::RootSectionSize),
                     R"#(None)#"  , py::arg("theIStream"))
-        .def_static("ReadRoot_s",
-                    (void (*)( std::istream & ,  TCollection_AsciiString & ,  Standard_Integer & ,  TCollection_AsciiString &  ) ) static_cast<void (*)( std::istream & ,  TCollection_AsciiString & ,  Standard_Integer & ,  TCollection_AsciiString &  ) >(&FSD_BinaryFile::ReadRoot),
-                    R"#(None)#"  , py::arg("theIStream"),  py::arg("rootName"),  py::arg("aRef"),  py::arg("aType"))
         .def_static("RefSectionSize_s",
                     (Standard_Integer (*)( std::istream &  ) ) static_cast<Standard_Integer (*)( std::istream &  ) >(&FSD_BinaryFile::RefSectionSize),
                     R"#(None)#"  , py::arg("theIStream"))
-        .def_static("ReadReferenceType_s",
-                    (void (*)( std::istream & ,  Standard_Integer & ,  Standard_Integer &  ) ) static_cast<void (*)( std::istream & ,  Standard_Integer & ,  Standard_Integer &  ) >(&FSD_BinaryFile::ReadReferenceType),
-                    R"#(None)#"  , py::arg("theIStream"),  py::arg("reference"),  py::arg("typeNum"))
         .def_static("PutInteger_s",
                     (Standard_Integer (*)( std::ostream & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<Standard_Integer (*)( std::ostream & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&FSD_BinaryFile::PutInteger),
                     R"#(None)#"  , py::arg("theOStream"),  py::arg("aValue"),  py::arg("theOnlyCount")=static_cast<const Standard_Boolean>(Standard_False))
-        .def_static("GetReference_s",
-                    (void (*)( std::istream & ,  Standard_Integer &  ) ) static_cast<void (*)( std::istream & ,  Standard_Integer &  ) >(&FSD_BinaryFile::GetReference),
-                    R"#(None)#"  , py::arg("theIStream"),  py::arg("aValue"))
-        .def_static("GetInteger_s",
-                    (void (*)( std::istream & ,  Standard_Integer &  ) ) static_cast<void (*)( std::istream & ,  Standard_Integer &  ) >(&FSD_BinaryFile::GetInteger),
-                    R"#(None)#"  , py::arg("theIStream"),  py::arg("aValue"))
         .def_static("InverseInt_s",
                     (Standard_Integer (*)( const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const Standard_Integer  ) >(&FSD_BinaryFile::InverseInt),
                     R"#(Inverse bytes in integer value)#"  , py::arg("theValue"))
@@ -620,25 +334,326 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
         .def_static("MagicNumber_s",
                     (Standard_CString (*)() ) static_cast<Standard_CString (*)() >(&FSD_BinaryFile::MagicNumber),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+        .def_static("ReadTypeInformations_s",
+                    []( std::istream & theIStream,TCollection_AsciiString & typeName ){ Standard_Integer  typeNum; FSD_BinaryFile::ReadTypeInformations(theIStream,typeNum,typeName); return std::make_tuple(typeNum); },
+                    R"#(None)#"  , py::arg("theIStream"),  py::arg("typeName"))
+        .def_static("ReadRoot_s",
+                    []( std::istream & theIStream,TCollection_AsciiString & rootName,TCollection_AsciiString & aType ){ Standard_Integer  aRef; FSD_BinaryFile::ReadRoot(theIStream,rootName,aRef,aType); return std::make_tuple(aRef); },
+                    R"#(None)#"  , py::arg("theIStream"),  py::arg("rootName"),  py::arg("aType"))
+        .def_static("ReadReferenceType_s",
+                    []( std::istream & theIStream ){ Standard_Integer  reference; Standard_Integer  typeNum; FSD_BinaryFile::ReadReferenceType(theIStream,reference,typeNum); return std::make_tuple(reference,typeNum); },
+                    R"#(None)#"  , py::arg("theIStream"))
+        .def_static("GetReference_s",
+                    []( std::istream & theIStream ){ Standard_Integer  aValue; FSD_BinaryFile::GetReference(theIStream,aValue); return std::make_tuple(aValue); },
+                    R"#(None)#"  , py::arg("theIStream"))
+        .def_static("GetInteger_s",
+                    []( std::istream & theIStream ){ Standard_Integer  aValue; FSD_BinaryFile::GetInteger(theIStream,aValue); return std::make_tuple(aValue); },
+                    R"#(None)#"  , py::arg("theIStream"))
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FSD_File , shared_ptr<FSD_File>  , Storage_BaseDriver >>(m.attr("FSD_File"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Open",
+             (Storage_Error (FSD_File::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_File::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_File::Open),
+             R"#(Assigns as aName the name of the file to be driven by this driver. aMode precises if the file is opened in read or write mode. The function returns Storage_VSOk if the file is opened correctly, or any other value of the Storage_Error enumeration which specifies the problem encountered.)#"  , py::arg("aName"),  py::arg("aMode"))
+        .def("IsEnd",
+             (Standard_Boolean (FSD_File::*)() ) static_cast<Standard_Boolean (FSD_File::*)() >(&FSD_File::IsEnd),
+             R"#(None)#" )
+        .def("Tell",
+             (Storage_Position (FSD_File::*)() ) static_cast<Storage_Position (FSD_File::*)() >(&FSD_File::Tell),
+             R"#(return position in the file. Return -1 upon error.)#" )
+        .def("BeginWriteInfoSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteInfoSection),
+             R"#(None)#" )
+        .def("WriteInfo",
+             (void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,   const NCollection_Sequence<TCollection_AsciiString> &  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,  const TCollection_AsciiString & ,  const TCollection_ExtendedString & ,   const NCollection_Sequence<TCollection_AsciiString> &  ) >(&FSD_File::WriteInfo),
+             R"#(None)#"  , py::arg("nbObj"),  py::arg("dbVersion"),  py::arg("date"),  py::arg("schemaName"),  py::arg("schemaVersion"),  py::arg("appName"),  py::arg("appVersion"),  py::arg("objectType"),  py::arg("userInfo"))
+        .def("EndWriteInfoSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteInfoSection),
+             R"#(None)#" )
+        .def("BeginReadInfoSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadInfoSection),
+             R"#(None)#" )
+        .def("ReadCompleteInfo",
+             (void (FSD_File::*)( std::istream & ,  opencascade::handle<Storage_Data> &  ) ) static_cast<void (FSD_File::*)( std::istream & ,  opencascade::handle<Storage_Data> &  ) >(&FSD_File::ReadCompleteInfo),
+             R"#(None)#"  , py::arg("theIStream"),  py::arg("theData"))
+        .def("EndReadInfoSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadInfoSection),
+             R"#(None)#" )
+        .def("BeginWriteCommentSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteCommentSection),
+             R"#(None)#" )
+        .def("WriteComment",
+             (void (FSD_File::*)(  const NCollection_Sequence<TCollection_ExtendedString> &  ) ) static_cast<void (FSD_File::*)(  const NCollection_Sequence<TCollection_ExtendedString> &  ) >(&FSD_File::WriteComment),
+             R"#(None)#"  , py::arg("userComments"))
+        .def("EndWriteCommentSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteCommentSection),
+             R"#(None)#" )
+        .def("BeginReadCommentSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadCommentSection),
+             R"#(None)#" )
+        .def("ReadComment",
+             (void (FSD_File::*)( NCollection_Sequence<TCollection_ExtendedString> &  ) ) static_cast<void (FSD_File::*)( NCollection_Sequence<TCollection_ExtendedString> &  ) >(&FSD_File::ReadComment),
+             R"#(None)#"  , py::arg("userComments"))
+        .def("EndReadCommentSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadCommentSection),
+             R"#(None)#" )
+        .def("BeginWriteTypeSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteTypeSection),
+             R"#(None)#" )
+        .def("SetTypeSectionSize",
+             (void (FSD_File::*)( const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::SetTypeSectionSize),
+             R"#(None)#"  , py::arg("aSize"))
+        .def("WriteTypeInformations",
+             (void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString &  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const TCollection_AsciiString &  ) >(&FSD_File::WriteTypeInformations),
+             R"#(None)#"  , py::arg("typeNum"),  py::arg("typeName"))
+        .def("EndWriteTypeSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteTypeSection),
+             R"#(None)#" )
+        .def("BeginReadTypeSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadTypeSection),
+             R"#(None)#" )
+        .def("TypeSectionSize",
+             (Standard_Integer (FSD_File::*)() ) static_cast<Standard_Integer (FSD_File::*)() >(&FSD_File::TypeSectionSize),
+             R"#(None)#" )
+        .def("EndReadTypeSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadTypeSection),
+             R"#(None)#" )
+        .def("BeginWriteRootSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteRootSection),
+             R"#(None)#" )
+        .def("SetRootSectionSize",
+             (void (FSD_File::*)( const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::SetRootSectionSize),
+             R"#(None)#"  , py::arg("aSize"))
+        .def("WriteRoot",
+             (void (FSD_File::*)( const TCollection_AsciiString & ,  const Standard_Integer ,  const TCollection_AsciiString &  ) ) static_cast<void (FSD_File::*)( const TCollection_AsciiString & ,  const Standard_Integer ,  const TCollection_AsciiString &  ) >(&FSD_File::WriteRoot),
+             R"#(None)#"  , py::arg("rootName"),  py::arg("aRef"),  py::arg("aType"))
+        .def("EndWriteRootSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteRootSection),
+             R"#(None)#" )
+        .def("BeginReadRootSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadRootSection),
+             R"#(None)#" )
+        .def("RootSectionSize",
+             (Standard_Integer (FSD_File::*)() ) static_cast<Standard_Integer (FSD_File::*)() >(&FSD_File::RootSectionSize),
+             R"#(None)#" )
+        .def("EndReadRootSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadRootSection),
+             R"#(None)#" )
+        .def("BeginWriteRefSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteRefSection),
+             R"#(None)#" )
+        .def("SetRefSectionSize",
+             (void (FSD_File::*)( const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::SetRefSectionSize),
+             R"#(None)#"  , py::arg("aSize"))
+        .def("WriteReferenceType",
+             (void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) >(&FSD_File::WriteReferenceType),
+             R"#(None)#"  , py::arg("reference"),  py::arg("typeNum"))
+        .def("EndWriteRefSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteRefSection),
+             R"#(None)#" )
+        .def("BeginReadRefSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadRefSection),
+             R"#(None)#" )
+        .def("RefSectionSize",
+             (Standard_Integer (FSD_File::*)() ) static_cast<Standard_Integer (FSD_File::*)() >(&FSD_File::RefSectionSize),
+             R"#(None)#" )
+        .def("EndReadRefSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadRefSection),
+             R"#(None)#" )
+        .def("BeginWriteDataSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginWriteDataSection),
+             R"#(None)#" )
+        .def("WritePersistentObjectHeader",
+             (void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (FSD_File::*)( const Standard_Integer ,  const Standard_Integer  ) >(&FSD_File::WritePersistentObjectHeader),
+             R"#(None)#"  , py::arg("aRef"),  py::arg("aType"))
+        .def("BeginWritePersistentObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginWritePersistentObjectData),
+             R"#(None)#" )
+        .def("BeginWriteObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginWriteObjectData),
+             R"#(None)#" )
+        .def("EndWriteObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndWriteObjectData),
+             R"#(None)#" )
+        .def("EndWritePersistentObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndWritePersistentObjectData),
+             R"#(None)#" )
+        .def("EndWriteDataSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndWriteDataSection),
+             R"#(None)#" )
+        .def("BeginReadDataSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::BeginReadDataSection),
+             R"#(None)#" )
+        .def("BeginReadPersistentObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginReadPersistentObjectData),
+             R"#(None)#" )
+        .def("BeginReadObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::BeginReadObjectData),
+             R"#(None)#" )
+        .def("EndReadObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndReadObjectData),
+             R"#(None)#" )
+        .def("EndReadPersistentObjectData",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::EndReadPersistentObjectData),
+             R"#(None)#" )
+        .def("EndReadDataSection",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::EndReadDataSection),
+             R"#(None)#" )
+        .def("SkipObject",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::SkipObject),
+             R"#(None)#" )
+        .def("PutReference",
+             (Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::PutReference),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("PutCharacter",
+             (Storage_BaseDriver & (FSD_File::*)( const Standard_Character  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Character  ) >(&FSD_File::PutCharacter),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("PutExtCharacter",
+             (Storage_BaseDriver & (FSD_File::*)( const Standard_ExtCharacter  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_ExtCharacter  ) >(&FSD_File::PutExtCharacter),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("PutInteger",
+             (Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Integer  ) >(&FSD_File::PutInteger),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("PutBoolean",
+             (Storage_BaseDriver & (FSD_File::*)( const Standard_Boolean  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Boolean  ) >(&FSD_File::PutBoolean),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("PutReal",
+             (Storage_BaseDriver & (FSD_File::*)( const Standard_Real  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_Real  ) >(&FSD_File::PutReal),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("PutShortReal",
+             (Storage_BaseDriver & (FSD_File::*)( const Standard_ShortReal  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( const Standard_ShortReal  ) >(&FSD_File::PutShortReal),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("GetReference",
+             (Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) >(&FSD_File::GetReference),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("GetCharacter",
+             (Storage_BaseDriver & (FSD_File::*)( Standard_Character &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Character &  ) >(&FSD_File::GetCharacter),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("GetExtCharacter",
+             (Storage_BaseDriver & (FSD_File::*)( Standard_ExtCharacter &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_ExtCharacter &  ) >(&FSD_File::GetExtCharacter),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("GetInteger",
+             (Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Integer &  ) >(&FSD_File::GetInteger),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("GetBoolean",
+             (Storage_BaseDriver & (FSD_File::*)( Standard_Boolean &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Boolean &  ) >(&FSD_File::GetBoolean),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("GetReal",
+             (Storage_BaseDriver & (FSD_File::*)( Standard_Real &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_Real &  ) >(&FSD_File::GetReal),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("GetShortReal",
+             (Storage_BaseDriver & (FSD_File::*)( Standard_ShortReal &  ) ) static_cast<Storage_BaseDriver & (FSD_File::*)( Standard_ShortReal &  ) >(&FSD_File::GetShortReal),
+             R"#(None)#"  , py::arg("aValue"))
+        .def("Close",
+             (Storage_Error (FSD_File::*)() ) static_cast<Storage_Error (FSD_File::*)() >(&FSD_File::Close),
+             R"#(Closes the file driven by this driver. This file was opened by the last call to the function Open. The function returns Storage_VSOk if the closure is correctly done, or any other value of the Storage_Error enumeration which specifies the problem encountered.)#" )
+        .def("Destroy",
+             (void (FSD_File::*)() ) static_cast<void (FSD_File::*)() >(&FSD_File::Destroy),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("ReadInfo",
+             []( FSD_File &self , TCollection_AsciiString & dbVersion,TCollection_AsciiString & date,TCollection_AsciiString & schemaName,TCollection_AsciiString & schemaVersion,TCollection_ExtendedString & appName,TCollection_AsciiString & appVersion,TCollection_ExtendedString & objectType,NCollection_Sequence<TCollection_AsciiString> & userInfo ){ Standard_Integer  nbObj; self.ReadInfo(nbObj,dbVersion,date,schemaName,schemaVersion,appName,appVersion,objectType,userInfo); return std::make_tuple(nbObj); },
+             R"#(None)#"  , py::arg("dbVersion"),  py::arg("date"),  py::arg("schemaName"),  py::arg("schemaVersion"),  py::arg("appName"),  py::arg("appVersion"),  py::arg("objectType"),  py::arg("userInfo"))
+        .def("ReadTypeInformations",
+             []( FSD_File &self , TCollection_AsciiString & typeName ){ Standard_Integer  typeNum; self.ReadTypeInformations(typeNum,typeName); return std::make_tuple(typeNum); },
+             R"#(None)#"  , py::arg("typeName"))
+        .def("ReadRoot",
+             []( FSD_File &self , TCollection_AsciiString & rootName,TCollection_AsciiString & aType ){ Standard_Integer  aRef; self.ReadRoot(rootName,aRef,aType); return std::make_tuple(aRef); },
+             R"#(None)#"  , py::arg("rootName"),  py::arg("aType"))
+        .def("ReadReferenceType",
+             []( FSD_File &self   ){ Standard_Integer  reference; Standard_Integer  typeNum; self.ReadReferenceType(reference,typeNum); return std::make_tuple(reference,typeNum); },
+             R"#(None)#" )
+        .def("ReadPersistentObjectHeader",
+             []( FSD_File &self   ){ Standard_Integer  aRef; Standard_Integer  aType; self.ReadPersistentObjectHeader(aRef,aType); return std::make_tuple(aRef,aType); },
+             R"#(None)#" )
+    // static methods
+        .def_static("IsGoodFileType_s",
+                    (Storage_Error (*)( const TCollection_AsciiString &  ) ) static_cast<Storage_Error (*)( const TCollection_AsciiString &  ) >(&FSD_File::IsGoodFileType),
+                    R"#(None)#"  , py::arg("aName"))
+        .def_static("MagicNumber_s",
+                    (Standard_CString (*)() ) static_cast<Standard_CString (*)() >(&FSD_File::MagicNumber),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FSD_CmpFile , shared_ptr<FSD_CmpFile>  , FSD_File >>(m.attr("FSD_CmpFile"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Open",
+             (Storage_Error (FSD_CmpFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_CmpFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_CmpFile::Open),
+             R"#(None)#"  , py::arg("aName"),  py::arg("aMode"))
+        .def("BeginWriteInfoSection",
+             (Storage_Error (FSD_CmpFile::*)() ) static_cast<Storage_Error (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginWriteInfoSection),
+             R"#(None)#" )
+        .def("BeginReadInfoSection",
+             (Storage_Error (FSD_CmpFile::*)() ) static_cast<Storage_Error (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginReadInfoSection),
+             R"#(None)#" )
+        .def("WritePersistentObjectHeader",
+             (void (FSD_CmpFile::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (FSD_CmpFile::*)( const Standard_Integer ,  const Standard_Integer  ) >(&FSD_CmpFile::WritePersistentObjectHeader),
+             R"#(None)#"  , py::arg("aRef"),  py::arg("aType"))
+        .def("BeginWritePersistentObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginWritePersistentObjectData),
+             R"#(None)#" )
+        .def("BeginWriteObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginWriteObjectData),
+             R"#(None)#" )
+        .def("EndWriteObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndWriteObjectData),
+             R"#(None)#" )
+        .def("EndWritePersistentObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndWritePersistentObjectData),
+             R"#(None)#" )
+        .def("BeginReadPersistentObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginReadPersistentObjectData),
+             R"#(None)#" )
+        .def("BeginReadObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::BeginReadObjectData),
+             R"#(None)#" )
+        .def("EndReadObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndReadObjectData),
+             R"#(None)#" )
+        .def("EndReadPersistentObjectData",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::EndReadPersistentObjectData),
+             R"#(None)#" )
+        .def("Destroy",
+             (void (FSD_CmpFile::*)() ) static_cast<void (FSD_CmpFile::*)() >(&FSD_CmpFile::Destroy),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("ReadPersistentObjectHeader",
+             []( FSD_CmpFile &self   ){ Standard_Integer  aRef; Standard_Integer  aType; self.ReadPersistentObjectHeader(aRef,aType); return std::make_tuple(aRef,aType); },
+             R"#(None)#" )
+    // static methods
+        .def_static("IsGoodFileType_s",
+                    (Storage_Error (*)( const TCollection_AsciiString &  ) ) static_cast<Storage_Error (*)( const TCollection_AsciiString &  ) >(&FSD_CmpFile::IsGoodFileType),
+                    R"#(None)#"  , py::arg("aName"))
+        .def_static("MagicNumber_s",
+                    (Standard_CString (*)() ) static_cast<Standard_CString (*)() >(&FSD_CmpFile::MagicNumber),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/FSD_CmpFile.hxx
-// ./opencascade/FSD_File.hxx
+// ./opencascade/FSD_BStream.hxx
 // ./opencascade/FSD_FStream.hxx
 // ./opencascade/FSD_BinaryFile.hxx
+// ./opencascade/FSD_CmpFile.hxx
 // ./opencascade/FSD_FileHeader.hxx
-// ./opencascade/FSD_BStream.hxx
+// ./opencascade/FSD_File.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/FSD_CmpFile.hxx
-// ./opencascade/FSD_File.hxx
-// ./opencascade/FSD_FStream.hxx
-// ./opencascade/FSD_BinaryFile.hxx
-// ./opencascade/FSD_FileHeader.hxx
-// ./opencascade/FSD_BStream.hxx
 
 
 // exceptions

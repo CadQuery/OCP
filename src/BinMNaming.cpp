@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,12 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMNaming_NamedShapeDriver.hxx>
 #include <BinMNaming_NamingDriver.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
 
@@ -43,9 +46,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinMNaming"));
 
 // classes
 
-    register_default_constructor<BinMNaming ,std::unique_ptr<BinMNaming>>(m,"BinMNaming");
+    register_default_constructor<BinMNaming , shared_ptr<BinMNaming>>(m,"BinMNaming");
 
-    static_cast<py::class_<BinMNaming ,std::unique_ptr<BinMNaming>  >>(m.attr("BinMNaming"))
+    static_cast<py::class_<BinMNaming , shared_ptr<BinMNaming>  >>(m.attr("BinMNaming"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("AddDrivers_s",
                     (void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) >(&BinMNaming::AddDrivers),
                     R"#(Adds the attribute drivers to <theDriverTable>.)#"  , py::arg("theDriverTable"),  py::arg("aMsgDrv"))
@@ -55,11 +61,15 @@ py::module m = static_cast<py::module>(main_module.attr("BinMNaming"));
         .def_static("DocumentVersion_s",
                     (Standard_Integer (*)() ) static_cast<Standard_Integer (*)() >(&BinMNaming::DocumentVersion),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BinMNaming_NamedShapeDriver ,opencascade::handle<BinMNaming_NamedShapeDriver>  , BinMDF_ADriver >>(m.attr("BinMNaming_NamedShapeDriver"))
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMNaming_NamedShapeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMNaming_NamedShapeDriver::*)() const>(&BinMNaming_NamedShapeDriver::NewEmpty),
              R"#(None)#" )
@@ -108,17 +118,23 @@ py::module m = static_cast<py::module>(main_module.attr("BinMNaming"));
         .def("GetShapesLocations",
              (BinTools_LocationSet & (BinMNaming_NamedShapeDriver::*)() ) static_cast<BinTools_LocationSet & (BinMNaming_NamedShapeDriver::*)() >(&BinMNaming_NamedShapeDriver::GetShapesLocations),
              R"#(get the format of topology)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BinMNaming_NamedShapeDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinMNaming_NamedShapeDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BinMNaming_NamingDriver ,opencascade::handle<BinMNaming_NamingDriver>  , BinMDF_ADriver >>(m.attr("BinMNaming_NamingDriver"))
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMNaming_NamingDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMNaming_NamingDriver::*)() const>(&BinMNaming_NamingDriver::NewEmpty),
              R"#(None)#" )
@@ -131,25 +147,27 @@ py::module m = static_cast<py::module>(main_module.attr("BinMNaming"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BinMNaming_NamingDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinMNaming_NamingDriver::*)() const>(&BinMNaming_NamingDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BinMNaming_NamingDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinMNaming_NamingDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/BinMNaming_NamedShapeDriver.hxx
 // ./opencascade/BinMNaming.hxx
 // ./opencascade/BinMNaming_NamingDriver.hxx
-// ./opencascade/BinMNaming_NamedShapeDriver.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BinMNaming.hxx
-// ./opencascade/BinMNaming_NamingDriver.hxx
-// ./opencascade/BinMNaming_NamedShapeDriver.hxx
 
 
 // exceptions

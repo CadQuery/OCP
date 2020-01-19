@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,19 +13,19 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <CDM_Document.hxx>
-#include <CDM_Application.hxx>
-#include <CDM_MetaData.hxx>
-#include <CDM_MetaData.hxx>
-#include <CDM_Application.hxx>
-#include <CDM_ReferenceIterator.hxx>
-#include <Resource_Manager.hxx>
 #include <CDM_Reference.hxx>
 #include <CDM_MetaData.hxx>
 #include <CDM_Document.hxx>
 #include <Resource_Manager.hxx>
 #include <Message_Messenger.hxx>
 #include <CDM_Document.hxx>
+#include <CDM_MetaData.hxx>
+#include <CDM_Application.hxx>
+#include <CDM_ReferenceIterator.hxx>
+#include <Resource_Manager.hxx>
+#include <CDM_Document.hxx>
+#include <CDM_Application.hxx>
+#include <CDM_MetaData.hxx>
 #include <CDM_Document.hxx>
 
 // module includes
@@ -47,21 +50,21 @@ namespace py = pybind11;
 #include <CDM_ReferenceIterator.hxx>
 
 // template related includes
-// ./opencascade/CDM_DocumentHasher.hxx
-#include "NCollection.hxx"
 // ./opencascade/CDM_PresentationDirectory.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_ListOfReferences.hxx
+// ./opencascade/CDM_MapOfDocument.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_ListOfReferences.hxx
+// ./opencascade/CDM_MapOfDocument.hxx
 #include "NCollection.hxx"
 // ./opencascade/CDM_ListOfDocument.hxx
 #include "NCollection.hxx"
 // ./opencascade/CDM_ListOfDocument.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_MapOfDocument.hxx
+// ./opencascade/CDM_ListOfReferences.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_MapOfDocument.hxx
+// ./opencascade/CDM_ListOfReferences.hxx
+#include "NCollection.hxx"
+// ./opencascade/CDM_DocumentHasher.hxx
 #include "NCollection.hxx"
 
 
@@ -78,20 +81,6 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
 
 
 //Python trampoline classes
-    class Py_CDM_Document : public CDM_Document{
-    public:
-        using CDM_Document::CDM_Document;
-        
-        // public pure virtual
-        TCollection_ExtendedString StorageFormat() const  override { PYBIND11_OVERLOAD_PURE(TCollection_ExtendedString,CDM_Document,StorageFormat,) };
-        
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
     class Py_CDM_Application : public CDM_Application{
     public:
         using CDM_Application::CDM_Application;
@@ -108,40 +97,66 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
         Standard_Integer DocumentVersion(const opencascade::handle<CDM_MetaData> & aMetaData) override { PYBIND11_OVERLOAD_PURE(Standard_Integer,CDM_Application,DocumentVersion,aMetaData) };
         
     };
+    class Py_CDM_Document : public CDM_Document{
+    public:
+        using CDM_Document::CDM_Document;
+        
+        // public pure virtual
+        TCollection_ExtendedString StorageFormat() const  override { PYBIND11_OVERLOAD_PURE(TCollection_ExtendedString,CDM_Document,StorageFormat,) };
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
 
 // classes
 
-    register_default_constructor<CDM_Reference ,opencascade::handle<CDM_Reference>>(m,"CDM_Reference");
 
-    static_cast<py::class_<CDM_Reference ,opencascade::handle<CDM_Reference>  , Standard_Transient >>(m.attr("CDM_Reference"))
-        .def("FromDocument",
-             (opencascade::handle<CDM_Document> (CDM_Reference::*)() ) static_cast<opencascade::handle<CDM_Document> (CDM_Reference::*)() >(&CDM_Reference::FromDocument),
-             R"#(None)#" )
-        .def("ToDocument",
-             (opencascade::handle<CDM_Document> (CDM_Reference::*)() ) static_cast<opencascade::handle<CDM_Document> (CDM_Reference::*)() >(&CDM_Reference::ToDocument),
-             R"#(None)#" )
-        .def("ReferenceIdentifier",
-             (Standard_Integer (CDM_Reference::*)() ) static_cast<Standard_Integer (CDM_Reference::*)() >(&CDM_Reference::ReferenceIdentifier),
-             R"#(None)#" )
-        .def("DocumentVersion",
-             (Standard_Integer (CDM_Reference::*)() const) static_cast<Standard_Integer (CDM_Reference::*)() const>(&CDM_Reference::DocumentVersion),
-             R"#(None)#" )
-        .def("IsReadOnly",
-             (Standard_Boolean (CDM_Reference::*)() const) static_cast<Standard_Boolean (CDM_Reference::*)() const>(&CDM_Reference::IsReadOnly),
-             R"#(None)#" )
+    static_cast<py::class_<CDM_Application ,opencascade::handle<CDM_Application> ,Py_CDM_Application , Standard_Transient >>(m.attr("CDM_Application"))
+    // methods
+        .def("Resources",
+             (opencascade::handle<Resource_Manager> (CDM_Application::*)() ) static_cast<opencascade::handle<Resource_Manager> (CDM_Application::*)() >(&CDM_Application::Resources),
+             R"#(The manager returned by this virtual method will be used to search for Format.Retrieval resource items.)#" )
+        .def("MessageDriver",
+             (opencascade::handle<Message_Messenger> (CDM_Application::*)() ) static_cast<opencascade::handle<Message_Messenger> (CDM_Application::*)() >(&CDM_Application::MessageDriver),
+             R"#(Returns default messenger;)#" )
+        .def("BeginOfUpdate",
+             (void (CDM_Application::*)( const opencascade::handle<CDM_Document> &  ) ) static_cast<void (CDM_Application::*)( const opencascade::handle<CDM_Document> &  ) >(&CDM_Application::BeginOfUpdate),
+             R"#(this method is called before the update of a document. By default, writes in MessageDriver().)#"  , py::arg("aDocument"))
+        .def("EndOfUpdate",
+             (void (CDM_Application::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Boolean ,  const TCollection_ExtendedString &  ) ) static_cast<void (CDM_Application::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Boolean ,  const TCollection_ExtendedString &  ) >(&CDM_Application::EndOfUpdate),
+             R"#(this method is called affter the update of a document. By default, writes in MessageDriver().)#"  , py::arg("aDocument"),  py::arg("theStatus"),  py::arg("ErrorString"))
+        .def("Write",
+             (void (CDM_Application::*)( const Standard_ExtString  ) ) static_cast<void (CDM_Application::*)( const Standard_ExtString  ) >(&CDM_Application::Write),
+             R"#(writes the string in the application MessagerDriver.)#"  , py::arg("aString"))
+        .def("Name",
+             (TCollection_ExtendedString (CDM_Application::*)() const) static_cast<TCollection_ExtendedString (CDM_Application::*)() const>(&CDM_Application::Name),
+             R"#(Returns the application name.)#" )
+        .def("Version",
+             (TCollection_AsciiString (CDM_Application::*)() const) static_cast<TCollection_AsciiString (CDM_Application::*)() const>(&CDM_Application::Version),
+             R"#(Returns the application version.)#" )
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (CDM_Reference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (CDM_Reference::*)() const>(&CDM_Reference::DynamicType),
+             (const opencascade::handle<Standard_Type> & (CDM_Application::*)() const) static_cast<const opencascade::handle<Standard_Type> & (CDM_Application::*)() const>(&CDM_Application::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&CDM_Reference::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&CDM_Application::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&CDM_Reference::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&CDM_Application::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<CDM_Document ,opencascade::handle<CDM_Document> ,Py_CDM_Document , Standard_Transient >>(m.attr("CDM_Document"))
+    // methods
         .def("Update",
              (void (CDM_Document::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Integer ,  const Standard_Address  ) ) static_cast<void (CDM_Document::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Integer ,  const Standard_Address  ) >(&CDM_Document::Update),
              R"#(The Update method will be called once for each reference, but it should not perform any computation, to avoid multiple computation of a same document.)#"  , py::arg("aToDocument"),  py::arg("aReferenceIdentifier"),  py::arg("aModifContext"))
@@ -361,6 +376,8 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (CDM_Document::*)() const) static_cast<const opencascade::handle<Standard_Type> & (CDM_Document::*)() const>(&CDM_Document::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("FindFromPresentation_s",
                     (opencascade::handle<CDM_Document> (*)( const TCollection_ExtendedString &  ) ) static_cast<opencascade::handle<CDM_Document> (*)( const TCollection_ExtendedString &  ) >(&CDM_Document::FindFromPresentation),
                     R"#(returns the document having the given alphanumeric presentation.)#"  , py::arg("aPresentation"))
@@ -373,31 +390,14 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&CDM_Document::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-
-    static_cast<py::class_<CDM_ReferenceIterator ,std::unique_ptr<CDM_ReferenceIterator>  >>(m.attr("CDM_ReferenceIterator"))
-        .def(py::init< const opencascade::handle<CDM_Document> & >()  , py::arg("aDocument") )
-        .def("More",
-             (Standard_Boolean (CDM_ReferenceIterator::*)() const) static_cast<Standard_Boolean (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::More),
-             R"#(None)#" )
-        .def("Next",
-             (void (CDM_ReferenceIterator::*)() ) static_cast<void (CDM_ReferenceIterator::*)() >(&CDM_ReferenceIterator::Next),
-             R"#(None)#" )
-        .def("Document",
-             (opencascade::handle<CDM_Document> (CDM_ReferenceIterator::*)() const) static_cast<opencascade::handle<CDM_Document> (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::Document),
-             R"#(None)#" )
-        .def("ReferenceIdentifier",
-             (Standard_Integer (CDM_ReferenceIterator::*)() const) static_cast<Standard_Integer (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::ReferenceIdentifier),
-             R"#(None)#" )
-        .def("DocumentVersion",
-             (Standard_Integer (CDM_ReferenceIterator::*)() const) static_cast<Standard_Integer (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::DocumentVersion),
-             R"#(returns the Document Version in the reference.)#" )
-;
-
-    register_default_constructor<CDM_MetaData ,opencascade::handle<CDM_MetaData>>(m,"CDM_MetaData");
 
     static_cast<py::class_<CDM_MetaData ,opencascade::handle<CDM_MetaData>  , Standard_Transient >>(m.attr("CDM_MetaData"))
+    // methods
         .def("IsRetrieved",
              (Standard_Boolean (CDM_MetaData::*)() const) static_cast<Standard_Boolean (CDM_MetaData::*)() const>(&CDM_MetaData::IsRetrieved),
              R"#(None)#" )
@@ -440,6 +440,8 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (CDM_MetaData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (CDM_MetaData::*)() const>(&CDM_MetaData::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("LookUp_s",
                     (opencascade::handle<CDM_MetaData> (*)( const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const Standard_Boolean  ) ) static_cast<opencascade::handle<CDM_MetaData> (*)( const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const Standard_Boolean  ) >(&CDM_MetaData::LookUp),
                     R"#(None)#"  , py::arg("aFolder"),  py::arg("aName"),  py::arg("aPath"),  py::arg("aFileName"),  py::arg("ReadOnly"))
@@ -452,89 +454,99 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&CDM_MetaData::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<CDM_Application ,opencascade::handle<CDM_Application> ,Py_CDM_Application , Standard_Transient >>(m.attr("CDM_Application"))
-        .def("Resources",
-             (opencascade::handle<Resource_Manager> (CDM_Application::*)() ) static_cast<opencascade::handle<Resource_Manager> (CDM_Application::*)() >(&CDM_Application::Resources),
-             R"#(The manager returned by this virtual method will be used to search for Format.Retrieval resource items.)#" )
-        .def("MessageDriver",
-             (opencascade::handle<Message_Messenger> (CDM_Application::*)() ) static_cast<opencascade::handle<Message_Messenger> (CDM_Application::*)() >(&CDM_Application::MessageDriver),
-             R"#(Returns default messenger;)#" )
-        .def("BeginOfUpdate",
-             (void (CDM_Application::*)( const opencascade::handle<CDM_Document> &  ) ) static_cast<void (CDM_Application::*)( const opencascade::handle<CDM_Document> &  ) >(&CDM_Application::BeginOfUpdate),
-             R"#(this method is called before the update of a document. By default, writes in MessageDriver().)#"  , py::arg("aDocument"))
-        .def("EndOfUpdate",
-             (void (CDM_Application::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Boolean ,  const TCollection_ExtendedString &  ) ) static_cast<void (CDM_Application::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Boolean ,  const TCollection_ExtendedString &  ) >(&CDM_Application::EndOfUpdate),
-             R"#(this method is called affter the update of a document. By default, writes in MessageDriver().)#"  , py::arg("aDocument"),  py::arg("theStatus"),  py::arg("ErrorString"))
-        .def("Write",
-             (void (CDM_Application::*)( const Standard_ExtString  ) ) static_cast<void (CDM_Application::*)( const Standard_ExtString  ) >(&CDM_Application::Write),
-             R"#(writes the string in the application MessagerDriver.)#"  , py::arg("aString"))
-        .def("Name",
-             (TCollection_ExtendedString (CDM_Application::*)() const) static_cast<TCollection_ExtendedString (CDM_Application::*)() const>(&CDM_Application::Name),
-             R"#(Returns the application name.)#" )
-        .def("Version",
-             (TCollection_AsciiString (CDM_Application::*)() const) static_cast<TCollection_AsciiString (CDM_Application::*)() const>(&CDM_Application::Version),
-             R"#(Returns the application version.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (CDM_Application::*)() const) static_cast<const opencascade::handle<Standard_Type> & (CDM_Application::*)() const>(&CDM_Application::DynamicType),
+    static_cast<py::class_<CDM_Reference ,opencascade::handle<CDM_Reference>  , Standard_Transient >>(m.attr("CDM_Reference"))
+    // methods
+        .def("FromDocument",
+             (opencascade::handle<CDM_Document> (CDM_Reference::*)() ) static_cast<opencascade::handle<CDM_Document> (CDM_Reference::*)() >(&CDM_Reference::FromDocument),
              R"#(None)#" )
+        .def("ToDocument",
+             (opencascade::handle<CDM_Document> (CDM_Reference::*)() ) static_cast<opencascade::handle<CDM_Document> (CDM_Reference::*)() >(&CDM_Reference::ToDocument),
+             R"#(None)#" )
+        .def("ReferenceIdentifier",
+             (Standard_Integer (CDM_Reference::*)() ) static_cast<Standard_Integer (CDM_Reference::*)() >(&CDM_Reference::ReferenceIdentifier),
+             R"#(None)#" )
+        .def("DocumentVersion",
+             (Standard_Integer (CDM_Reference::*)() const) static_cast<Standard_Integer (CDM_Reference::*)() const>(&CDM_Reference::DocumentVersion),
+             R"#(None)#" )
+        .def("IsReadOnly",
+             (Standard_Boolean (CDM_Reference::*)() const) static_cast<Standard_Boolean (CDM_Reference::*)() const>(&CDM_Reference::IsReadOnly),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (CDM_Reference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (CDM_Reference::*)() const>(&CDM_Reference::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&CDM_Application::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&CDM_Reference::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&CDM_Application::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&CDM_Reference::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<CDM_ReferenceIterator , shared_ptr<CDM_ReferenceIterator>  >>(m.attr("CDM_ReferenceIterator"))
+        .def(py::init< const opencascade::handle<CDM_Document> & >()  , py::arg("aDocument") )
+    // methods
+        .def("More",
+             (Standard_Boolean (CDM_ReferenceIterator::*)() const) static_cast<Standard_Boolean (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::More),
+             R"#(None)#" )
+        .def("Next",
+             (void (CDM_ReferenceIterator::*)() ) static_cast<void (CDM_ReferenceIterator::*)() >(&CDM_ReferenceIterator::Next),
+             R"#(None)#" )
+        .def("Document",
+             (opencascade::handle<CDM_Document> (CDM_ReferenceIterator::*)() const) static_cast<opencascade::handle<CDM_Document> (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::Document),
+             R"#(None)#" )
+        .def("ReferenceIdentifier",
+             (Standard_Integer (CDM_ReferenceIterator::*)() const) static_cast<Standard_Integer (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::ReferenceIdentifier),
+             R"#(None)#" )
+        .def("DocumentVersion",
+             (Standard_Integer (CDM_ReferenceIterator::*)() const) static_cast<Standard_Integer (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::DocumentVersion),
+             R"#(returns the Document Version in the reference.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/CDM_CanCloseStatus.hxx
+// ./opencascade/CDM_Application.hxx
+// ./opencascade/CDM_PresentationDirectory.hxx
+// ./opencascade/CDM_MetaData.hxx
+// ./opencascade/CDM_ReferenceIterator.hxx
+// ./opencascade/CDM_MapOfDocument.hxx
+// ./opencascade/CDM_MetaDataLookUpTable.hxx
+// ./opencascade/CDM_ListOfDocument.hxx
+// ./opencascade/CDM_ListOfReferences.hxx
+// ./opencascade/CDM_DocumentHasher.hxx
+// ./opencascade/CDM_DataMapIteratorOfPresentationDirectory.hxx
+// ./opencascade/CDM_Document.hxx
 // ./opencascade/CDM_DataMapIteratorOfMetaDataLookUpTable.hxx
 // ./opencascade/CDM_MapIteratorOfMapOfDocument.hxx
-// ./opencascade/CDM_DataMapIteratorOfPresentationDirectory.hxx
-// ./opencascade/CDM_NamesDirectory.hxx
-// ./opencascade/CDM_DocumentHasher.hxx
-// ./opencascade/CDM_PresentationDirectory.hxx
-// ./opencascade/CDM_Reference.hxx
-// ./opencascade/CDM_MetaDataLookUpTable.hxx
-// ./opencascade/CDM_MetaData.hxx
-// ./opencascade/CDM_Document.hxx
-// ./opencascade/CDM_Application.hxx
-// ./opencascade/CDM_ListOfReferences.hxx
-// ./opencascade/CDM_ListIteratorOfListOfReferences.hxx
-// ./opencascade/CDM_ListOfDocument.hxx
-// ./opencascade/CDM_MapOfDocument.hxx
-// ./opencascade/CDM_DocumentPointer.hxx
 // ./opencascade/CDM_ListIteratorOfListOfDocument.hxx
-// ./opencascade/CDM_ReferenceIterator.hxx
+// ./opencascade/CDM_NamesDirectory.hxx
+// ./opencascade/CDM_Reference.hxx
+// ./opencascade/CDM_DocumentPointer.hxx
+// ./opencascade/CDM_ListIteratorOfListOfReferences.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/CDM_CanCloseStatus.hxx
-// ./opencascade/CDM_DataMapIteratorOfMetaDataLookUpTable.hxx
-// ./opencascade/CDM_MapIteratorOfMapOfDocument.hxx
-// ./opencascade/CDM_DataMapIteratorOfPresentationDirectory.hxx
-// ./opencascade/CDM_NamesDirectory.hxx
-// ./opencascade/CDM_DocumentHasher.hxx
-    register_template_NCollection_DefaultHasher<opencascade::handle<CDM_Document> >(m,"CDM_DocumentHasher");  
-// ./opencascade/CDM_PresentationDirectory.hxx
-// ./opencascade/CDM_Reference.hxx
-// ./opencascade/CDM_MetaDataLookUpTable.hxx
-// ./opencascade/CDM_MetaData.hxx
-// ./opencascade/CDM_Document.hxx
-// ./opencascade/CDM_Application.hxx
-// ./opencascade/CDM_ListOfReferences.hxx
-    register_template_NCollection_List<opencascade::handle<CDM_Reference> >(m,"CDM_ListOfReferences");  
-// ./opencascade/CDM_ListIteratorOfListOfReferences.hxx
-// ./opencascade/CDM_ListOfDocument.hxx
-    register_template_NCollection_List<opencascade::handle<CDM_Document> >(m,"CDM_ListOfDocument");  
-// ./opencascade/CDM_MapOfDocument.hxx
     register_template_NCollection_Map<opencascade::handle<CDM_Document>, CDM_DocumentHasher>(m,"CDM_MapOfDocument");  
-// ./opencascade/CDM_DocumentPointer.hxx
-// ./opencascade/CDM_ListIteratorOfListOfDocument.hxx
-// ./opencascade/CDM_ReferenceIterator.hxx
+    register_template_NCollection_List<opencascade::handle<CDM_Document> >(m,"CDM_ListOfDocument");  
+    register_template_NCollection_List<opencascade::handle<CDM_Reference> >(m,"CDM_ListOfReferences");  
+    register_template_NCollection_DefaultHasher<opencascade::handle<CDM_Document> >(m,"CDM_DocumentHasher");  
 
 
 // exceptions

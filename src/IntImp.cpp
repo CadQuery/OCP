@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -35,7 +38,6 @@ py::module m = static_cast<py::module>(main_module.attr("IntImp"));
 // classes
 
 // functions
-// ./opencascade/IntImp_ConstIsoparametric.hxx
 // ./opencascade/IntImp_ComputeTangence.hxx
     m.def("ChoixRef", 
           (IntImp_ConstIsoparametric (*)( Standard_Integer  ))  static_cast<IntImp_ConstIsoparametric (*)( Standard_Integer  )>(&ChoixRef),
@@ -43,12 +45,11 @@ py::module m = static_cast<py::module>(main_module.attr("IntImp"));
     m.def("IntImp_ComputeTangence", 
           (Standard_Boolean (*)( const gp_Vec [] ,  const Standard_Real [] ,  Standard_Real [] ,  IntImp_ConstIsoparametric []  ))  static_cast<Standard_Boolean (*)( const gp_Vec [] ,  const Standard_Real [] ,  Standard_Real [] ,  IntImp_ConstIsoparametric []  )>(&IntImp_ComputeTangence),
           R"#(None)#"  , py::arg("DPuv"),  py::arg("EpsUV"),  py::arg("Tgduv"),  py::arg("TabIso"));
+// ./opencascade/IntImp_ConstIsoparametric.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/IntImp_ConstIsoparametric.hxx
-// ./opencascade/IntImp_ComputeTangence.hxx
 
 
 // exceptions

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,19 +13,19 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <SelectMgr_SelectableObject.hxx>
+#include <V3d_Viewer.hxx>
 #include <SelectMgr_EntityOwner.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <SelectMgr_SelectionManager.hxx>
 #include <SelectMgr_SelectionManager.hxx>
 #include <SelectMgr_SensitiveEntitySet.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 #include <SelectMgr_EntityOwner.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <SelectMgr_SelectionManager.hxx>
-#include <V3d_Viewer.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 #include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_EntityOwner.hxx>
+#include <SelectMgr_SelectableObject.hxx>
 
 // module includes
 #include <SelectMgr_AndFilter.hxx>
@@ -65,11 +68,9 @@ namespace py = pybind11;
 #include <SelectMgr_ViewerSelector.hxx>
 
 // template related includes
-// ./opencascade/SelectMgr_ViewerSelector.hxx
-#include "NCollection.hxx"
 // ./opencascade/SelectMgr_SequenceOfFilter.hxx
 #include "NCollection.hxx"
-// ./opencascade/SelectMgr_SequenceOfSelection.hxx
+// ./opencascade/SelectMgr_IndexedDataMapOfOwnerCriterion.hxx
 #include "NCollection.hxx"
 // ./opencascade/SelectMgr_DataMapOfObjectSelectors.hxx
 #include "NCollection.hxx"
@@ -77,17 +78,21 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/SelectMgr_SequenceOfSelector.hxx
 #include "NCollection.hxx"
-// ./opencascade/SelectMgr_ListOfFilter.hxx
+// ./opencascade/SelectMgr_ViewerSelector.hxx
 #include "NCollection.hxx"
-// ./opencascade/SelectMgr_ListOfFilter.hxx
+// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
 #include "NCollection.hxx"
-// ./opencascade/SelectMgr_IndexedDataMapOfOwnerCriterion.hxx
+// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
 #include "NCollection.hxx"
 // ./opencascade/SelectMgr_SequenceOfOwner.hxx
 #include "NCollection.hxx"
-// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
+// ./opencascade/SelectMgr_ListOfFilter.hxx
 #include "NCollection.hxx"
-// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
+// ./opencascade/SelectMgr_ListOfFilter.hxx
+#include "NCollection.hxx"
+// ./opencascade/SelectMgr_VectorTypes.hxx
+#include "NCollection.hxx"
+// ./opencascade/SelectMgr_SequenceOfSelection.hxx
 #include "NCollection.hxx"
 
 
@@ -104,13 +109,12 @@ py::module m = static_cast<py::module>(main_module.attr("SelectMgr"));
 
 
 //Python trampoline classes
-    class Py_SelectMgr_SelectableObject : public SelectMgr_SelectableObject{
+    class Py_SelectMgr_Filter : public SelectMgr_Filter{
     public:
-        using SelectMgr_SelectableObject::SelectMgr_SelectableObject;
+        using SelectMgr_Filter::SelectMgr_Filter;
         
         // public pure virtual
-        void ComputeSelection(const opencascade::handle<SelectMgr_Selection> & aSelection,const Standard_Integer aMode) override { PYBIND11_OVERLOAD_PURE(void,SelectMgr_SelectableObject,ComputeSelection,aSelection,aMode) };
-        void BoundingBox(Bnd_Box & theBndBox) override { PYBIND11_OVERLOAD_PURE(void,SelectMgr_SelectableObject,BoundingBox,theBndBox) };
+        Standard_Boolean IsOk(const opencascade::handle<SelectMgr_EntityOwner> & anObj) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,SelectMgr_Filter,IsOk,anObj) };
         
         
         // protected pure virtual
@@ -119,12 +123,13 @@ py::module m = static_cast<py::module>(main_module.attr("SelectMgr"));
         // private pure virtual
         
     };
-    class Py_SelectMgr_Filter : public SelectMgr_Filter{
+    class Py_SelectMgr_SelectableObject : public SelectMgr_SelectableObject{
     public:
-        using SelectMgr_Filter::SelectMgr_Filter;
+        using SelectMgr_SelectableObject::SelectMgr_SelectableObject;
         
         // public pure virtual
-        Standard_Boolean IsOk(const opencascade::handle<SelectMgr_EntityOwner> & anObj) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,SelectMgr_Filter,IsOk,anObj) };
+        void ComputeSelection(const opencascade::handle<SelectMgr_Selection> & aSelection,const Standard_Integer aMode) override { PYBIND11_OVERLOAD_PURE(void,SelectMgr_SelectableObject,ComputeSelection,aSelection,aMode) };
+        void BoundingBox(Bnd_Box & theBndBox) override { PYBIND11_OVERLOAD_PURE(void,SelectMgr_SelectableObject,BoundingBox,theBndBox) };
         
         
         // protected pure virtual
@@ -151,89 +156,355 @@ py::module m = static_cast<py::module>(main_module.attr("SelectMgr"));
 // classes
 
 
-    static_cast<py::class_<SelectMgr_Selection ,opencascade::handle<SelectMgr_Selection>  , Standard_Transient >>(m.attr("SelectMgr_Selection"))
-        .def(py::init< const Standard_Integer >()  , py::arg("theModeIdx")=static_cast<const Standard_Integer>(0) )
+    static_cast<py::class_<SelectMgr_BaseFrustum ,opencascade::handle<SelectMgr_BaseFrustum>  , Standard_Transient >>(m.attr("SelectMgr_BaseFrustum"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Camera",
+             (const opencascade::handle<Graphic3d_Camera> & (SelectMgr_BaseFrustum::*)() const) static_cast<const opencascade::handle<Graphic3d_Camera> & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::Camera),
+             R"#(Return camera definition.)#" )
+        .def("SetCamera",
+             (void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_Camera> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_Camera> &  ) >(&SelectMgr_BaseFrustum::SetCamera),
+             R"#(Passes camera projection and orientation matrices to builder)#"  , py::arg("theCamera"))
+        .def("SetCamera",
+             (void (SelectMgr_BaseFrustum::*)(  const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Standard_Boolean ,  const Graphic3d_WorldViewProjState &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)(  const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Standard_Boolean ,  const Graphic3d_WorldViewProjState &  ) >(&SelectMgr_BaseFrustum::SetCamera),
+             R"#(Passes camera projection and orientation matrices to builder)#"  , py::arg("theProjection"),  py::arg("theWorldView"),  py::arg("theIsOrthographic"),  py::arg("theWVPState")=static_cast<const Graphic3d_WorldViewProjState &>(Graphic3d_WorldViewProjState ( )))
+        .def("ProjectionMatrix",
+             (const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::ProjectionMatrix),
+             R"#(Returns current camera projection transformation common for all selecting volumes)#" )
+        .def("WorldViewMatrix",
+             (const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::WorldViewMatrix),
+             R"#(Returns current camera world view transformation common for all selecting volumes)#" )
+        .def("WorldViewProjState",
+             (const Graphic3d_WorldViewProjState & (SelectMgr_BaseFrustum::*)() const) static_cast<const Graphic3d_WorldViewProjState & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::WorldViewProjState),
+             R"#(Returns current camera world view projection transformation state)#" )
+        .def("SetPixelTolerance",
+             (void (SelectMgr_BaseFrustum::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const Standard_Integer  ) >(&SelectMgr_BaseFrustum::SetPixelTolerance),
+             R"#(None)#"  , py::arg("theTol"))
+        .def("SetWindowSize",
+             (void (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_BaseFrustum::SetWindowSize),
+             R"#(None)#"  , py::arg("theWidth"),  py::arg("theHeight"))
+        .def("SetViewport",
+             (void (SelectMgr_BaseFrustum::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&SelectMgr_BaseFrustum::SetViewport),
+             R"#(Passes viewport parameters to builder)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theWidth"),  py::arg("theHeight"))
+        .def("SetBuilder",
+             (void (SelectMgr_BaseFrustum::*)( const opencascade::handle<SelectMgr_FrustumBuilder> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const opencascade::handle<SelectMgr_FrustumBuilder> &  ) >(&SelectMgr_BaseFrustum::SetBuilder),
+             R"#(Nullifies the builder created in the constructor and copies the pointer given)#"  , py::arg("theBuilder"))
+        .def("Build",
+             (void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d &  ) >(&SelectMgr_BaseFrustum::Build),
+             R"#(Builds volume according to the point and given pixel tolerance)#"  , py::arg(""))
+        .def("Build",
+             (void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&SelectMgr_BaseFrustum::Build),
+             R"#(Builds volume according to the selected rectangle)#"  , py::arg(""),  py::arg(""))
+        .def("Build",
+             (void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&SelectMgr_BaseFrustum::Build),
+             R"#(Builds volume according to the triangle given)#"  , py::arg(""),  py::arg(""),  py::arg(""))
+        .def("Build",
+             (void (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt2d> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt2d> &  ) >(&SelectMgr_BaseFrustum::Build),
+             R"#(Builds selecting volumes set according to polyline points)#"  , py::arg(""))
+        .def("ScaleAndTransform",
+             (opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const) static_cast<opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const>(&SelectMgr_BaseFrustum::ScaleAndTransform),
+             R"#(IMPORTANT: Scaling makes sense only for frustum built on a single point! Note that this method does not perform any checks on type of the frustum. Returns a copy of the frustum resized according to the scale factor given and transforms it using the matrix given. There are no default parameters, but in case if: - transformation only is needed: must be initialized as any negative value; - scale only is needed: must be set to gp_Identity.)#"  , py::arg(""),  py::arg(""))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given axis-aligned box)#"  , py::arg("theBoxMin"),  py::arg("theBoxMax"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             R"#(Returns true if selecting volume is overlapped by axis-aligned bounding box with minimum corner at point theMinPt and maximum at point theMaxPt)#"  , py::arg("theBoxMin"),  py::arg("theBoxMax"),  py::arg("theInside")=static_cast<Standard_Boolean *>(NULL))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             R"#(Intersection test between defined volume and given point)#"  , py::arg("thePnt"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             R"#(Intersection test between defined volume and given point Does not perform depth calculation, so this method is defined as helper function for inclusion test. Therefore, its implementation makes sense only for rectangular frustum with box selection mode activated.)#"  , py::arg("thePnt"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given ordered set of points, representing line segments. The test may be considered of interior part or boundary line defined by segments depending on given sensitivity type)#"  , py::arg("theArrayOfPnts"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             R"#(Checks if line segment overlaps selecting frustum)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given triangle. The test may be considered of interior part or boundary line defined by triangle vertices depending on given sensitivity type)#"  , py::arg("thePt1"),  py::arg("thePt2"),  py::arg("thePt3"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("DistToGeometryCenter",
+             (Standard_Real (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) ) static_cast<Standard_Real (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) >(&SelectMgr_BaseFrustum::DistToGeometryCenter),
+             R"#(Measures distance between 3d projection of user-picked screen point and given point theCOG)#"  , py::arg("theCOG"))
+        .def("DetectedPoint",
+             (gp_Pnt (SelectMgr_BaseFrustum::*)( const Standard_Real  ) const) static_cast<gp_Pnt (SelectMgr_BaseFrustum::*)( const Standard_Real  ) const>(&SelectMgr_BaseFrustum::DetectedPoint),
+             R"#(None)#"  , py::arg("theDepth"))
+        .def("IsClipped",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real  ) >(&SelectMgr_BaseFrustum::IsClipped),
+             R"#(Checks if the point of sensitive in which selection was detected belongs to the region defined by clipping planes)#"  , py::arg("thePlanes"),  py::arg("theDepth"))
+        .def("SetViewClipping",
+             (void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) >(&SelectMgr_BaseFrustum::SetViewClipping),
+             R"#(Valid for point selection only! Computes depth range for global (defined for the whole view) clipping planes.)#"  , py::arg(""))
+        .def("SetViewClippingEnabled",
+             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const Standard_Boolean  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const Standard_Boolean  ) >(&SelectMgr_BaseFrustum::SetViewClippingEnabled),
+             R"#(Set if view clipping plane is enabled or not.)#"  , py::arg(""))
+        .def("GetPlanes",
+             (void (SelectMgr_BaseFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const) static_cast<void (SelectMgr_BaseFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const>(&SelectMgr_BaseFrustum::GetPlanes),
+             R"#(Stores plane equation coefficients (in the following form: Ax + By + Cz + D = 0) to the given vector)#"  , py::arg("thePlaneEquations"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_Selection::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::DynamicType),
+             (const opencascade::handle<Standard_Type> & (SelectMgr_BaseFrustum::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::DynamicType),
              R"#(None)#" )
-        .def("Destroy",
-             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Destroy),
+    // methods using call by reference i.s.o. return
+        .def("WindowSize",
+             []( SelectMgr_BaseFrustum &self   ){ Standard_Integer  theWidth; Standard_Integer  theHeight; self.WindowSize(theWidth,theHeight); return std::make_tuple(theWidth,theHeight); },
              R"#(None)#" )
-        .def("Add",
-             (void (SelectMgr_Selection::*)( const opencascade::handle<SelectBasics_SensitiveEntity> &  ) ) static_cast<void (SelectMgr_Selection::*)( const opencascade::handle<SelectBasics_SensitiveEntity> &  ) >(&SelectMgr_Selection::Add),
-             R"#(Adds the sensitive primitive to the list of stored entities in this object. Raises NullObject if the primitive is a null handle.)#"  , py::arg("theSensitive"))
-        .def("Clear",
-             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Clear),
-             R"#(empties the selection from all the stored entities)#" )
-        .def("IsEmpty",
-             (Standard_Boolean (SelectMgr_Selection::*)() const) static_cast<Standard_Boolean (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::IsEmpty),
-             R"#(returns true if no sensitive entity is stored.)#" )
-        .def("Mode",
-             (Standard_Integer (SelectMgr_Selection::*)() const) static_cast<Standard_Integer (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Mode),
-             R"#(returns the selection mode represented by this selection)#" )
-        .def("Entities",
-             (const NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() const) static_cast<const NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Entities),
-             R"#(Return entities.)#" )
-        .def("ChangeEntities",
-             (NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() ) static_cast<NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() >(&SelectMgr_Selection::ChangeEntities),
-             R"#(Return entities.)#" )
-        .def("Init",
-             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Init),
-             R"#(Begins an iteration scanning for sensitive primitives.)#" )
-        .def("More",
-             (Standard_Boolean (SelectMgr_Selection::*)() const) static_cast<Standard_Boolean (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::More),
-             R"#(Continues the iteration scanning for sensitive primitives with the mode defined in this framework.)#" )
-        .def("Next",
-             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Next),
-             R"#(Returns the next sensitive primitive found in the iteration. This is a scan for entities with the mode defined in this framework.)#" )
-        .def("Sensitive",
-             (const opencascade::handle<SelectMgr_SensitiveEntity> & (SelectMgr_Selection::*)() const) static_cast<const opencascade::handle<SelectMgr_SensitiveEntity> & (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Sensitive),
-             R"#(Returns any sensitive primitive in this framework.)#" )
-        .def("UpdateStatus",
-             (SelectMgr_TypeOfUpdate (SelectMgr_Selection::*)() const) static_cast<SelectMgr_TypeOfUpdate (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::UpdateStatus),
-             R"#(Returns the flag UpdateFlag. This flage gives the update status of this framework in a ViewerSelector object: - full - partial, or - none.)#" )
-        .def("UpdateStatus",
-             (void (SelectMgr_Selection::*)( const SelectMgr_TypeOfUpdate  ) ) static_cast<void (SelectMgr_Selection::*)( const SelectMgr_TypeOfUpdate  ) >(&SelectMgr_Selection::UpdateStatus),
-             R"#(None)#"  , py::arg("theStatus"))
-        .def("UpdateBVHStatus",
-             (void (SelectMgr_Selection::*)( const SelectMgr_TypeOfBVHUpdate  ) ) static_cast<void (SelectMgr_Selection::*)( const SelectMgr_TypeOfBVHUpdate  ) >(&SelectMgr_Selection::UpdateBVHStatus),
-             R"#(None)#"  , py::arg("theStatus"))
-        .def("BVHUpdateStatus",
-             (SelectMgr_TypeOfBVHUpdate (SelectMgr_Selection::*)() const) static_cast<SelectMgr_TypeOfBVHUpdate (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::BVHUpdateStatus),
-             R"#(None)#" )
-        .def("GetSelectionState",
-             (SelectMgr_StateOfSelection (SelectMgr_Selection::*)() const) static_cast<SelectMgr_StateOfSelection (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::GetSelectionState),
-             R"#(Returns status of selection)#" )
-        .def("SetSelectionState",
-             (void (SelectMgr_Selection::*)( const SelectMgr_StateOfSelection  ) const) static_cast<void (SelectMgr_Selection::*)( const SelectMgr_StateOfSelection  ) const>(&SelectMgr_Selection::SetSelectionState),
-             R"#(Sets status of selection)#"  , py::arg("theState"))
-        .def("Sensitivity",
-             (Standard_Integer (SelectMgr_Selection::*)() const) static_cast<Standard_Integer (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Sensitivity),
-             R"#(Returns sensitivity of the selection)#" )
-        .def("SetSensitivity",
-             (void (SelectMgr_Selection::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_Selection::*)( const Standard_Integer  ) >(&SelectMgr_Selection::SetSensitivity),
-             R"#(Changes sensitivity of the selection and all its entities to the given value. IMPORTANT: This method does not update any outer selection structures, so for proper updates use SelectMgr_SelectionManager::SetSelectionSensitivity method.)#"  , py::arg("theNewSens"))
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_Selection::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_BaseFrustum::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_Selection::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_BaseFrustum::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<SelectMgr_SortCriterion ,std::unique_ptr<SelectMgr_SortCriterion>  >>(m.attr("SelectMgr_SortCriterion"))
+    static_cast<py::class_<SelectMgr_EntityOwner ,opencascade::handle<SelectMgr_EntityOwner>  , SelectBasics_EntityOwner >>(m.attr("SelectMgr_EntityOwner"))
+        .def(py::init< const Standard_Integer >()  , py::arg("aPriority")=static_cast<const Standard_Integer>(0) )
+        .def(py::init< const opencascade::handle<SelectMgr_SelectableObject> &,const Standard_Integer >()  , py::arg("aSO"),  py::arg("aPriority")=static_cast<const Standard_Integer>(0) )
+        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &,const Standard_Integer >()  , py::arg("theOwner"),  py::arg("aPriority")=static_cast<const Standard_Integer>(0) )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_EntityOwner::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::DynamicType),
+             R"#(None)#" )
+        .def("HasSelectable",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::HasSelectable),
+             R"#(Returns true if there is a selectable object to serve as an owner.)#" )
+        .def("Selectable",
+             (opencascade::handle<SelectMgr_SelectableObject> (SelectMgr_EntityOwner::*)() const) static_cast<opencascade::handle<SelectMgr_SelectableObject> (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::Selectable),
+             R"#(Returns a selectable object detected in the working context.)#" )
+        .def("SetSelectable",
+             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_EntityOwner::SetSelectable),
+             R"#(Sets the selectable object.)#"  , py::arg("theSelObj"))
+        .def("IsHilighted",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) const>(&SelectMgr_EntityOwner::IsHilighted),
+             R"#(Returns true if the presentation manager aPM highlights selections corresponding to the selection mode aMode.)#"  , py::arg("aPM"),  py::arg("aMode")=static_cast<const Standard_Integer>(0))
+        .def("HilightWithColor",
+             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::HilightWithColor),
+             R"#(Highlights selectable object's presentation with mode theMode in presentation manager with given highlight style. Also a check for auto-highlight is performed - if selectable object manages highlighting on its own, execution will be passed to SelectMgr_SelectableObject::HilightOwnerWithColor method)#"  , py::arg("thePM"),  py::arg("theStyle"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("Unhilight",
+             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::Unhilight),
+             R"#(Removes highlighting from the owner of a detected selectable object in the presentation manager. This object could be the owner of a sensitive primitive.)#"  , py::arg("thePrsMgr"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
+        .def("Clear",
+             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::Clear),
+             R"#(Clears the owners matching the value of the selection mode aMode from the presentation manager object aPM.)#"  , py::arg("aPM"),  py::arg("aMode")=static_cast<const Standard_Integer>(0))
+        .def("HasLocation",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::HasLocation),
+             R"#(None)#" )
+        .def("SetLocation",
+             (void (SelectMgr_EntityOwner::*)( const TopLoc_Location &  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const TopLoc_Location &  ) >(&SelectMgr_EntityOwner::SetLocation),
+             R"#(None)#"  , py::arg("aLoc"))
+        .def("ResetLocation",
+             (void (SelectMgr_EntityOwner::*)() ) static_cast<void (SelectMgr_EntityOwner::*)() >(&SelectMgr_EntityOwner::ResetLocation),
+             R"#(None)#" )
+        .def("Location",
+             (TopLoc_Location (SelectMgr_EntityOwner::*)() const) static_cast<TopLoc_Location (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::Location),
+             R"#(None)#" )
+        .def("SetSelected",
+             (void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) >(&SelectMgr_EntityOwner::SetSelected),
+             R"#(Set the state of the owner.)#"  , py::arg("theIsSelected"))
+        .def("IsSelected",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::IsSelected),
+             R"#(Returns Standard_True if the owner is selected.)#" )
+        .def("State",
+             (void (SelectMgr_EntityOwner::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Standard_Integer  ) >(&SelectMgr_EntityOwner::State),
+             R"#(Set the state of the owner. The method is deprecated. Use SetSelected() instead.)#"  , py::arg("theStatus"))
+        .def("State",
+             (Standard_Integer (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Integer (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::State),
+             R"#(None)#" )
+        .def("IsAutoHilight",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::IsAutoHilight),
+             R"#(if owner is not auto hilighted, for group contains many such owners will be called one method HilightSelected of SelectableObject)#" )
+        .def("IsForcedHilight",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::IsForcedHilight),
+             R"#(if this method returns TRUE the owner will allways call method Hilight for SelectableObject when the owner is detected. By default it always return FALSE.)#" )
+        .def("SetZLayer",
+             (void (SelectMgr_EntityOwner::*)( const Graphic3d_ZLayerId  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Graphic3d_ZLayerId  ) >(&SelectMgr_EntityOwner::SetZLayer),
+             R"#(Set Z layer ID and update all presentations.)#"  , py::arg("theLayerId"))
+        .def("UpdateHighlightTrsf",
+             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::UpdateHighlightTrsf),
+             R"#(Implements immediate application of location transformation of parent object to dynamic highlight structure)#"  , py::arg("theViewer"),  py::arg("theManager"),  py::arg("theDispMode"))
+        .def("IsSameSelectable",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const>(&SelectMgr_EntityOwner::IsSameSelectable),
+             R"#(Returns true if pointer to selectable object of this owner is equal to the given one)#"  , py::arg("theOther"))
+        .def("ComesFromDecomposition",
+             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::ComesFromDecomposition),
+             R"#(Returns TRUE if this owner points to a part of object and FALSE for entire object.)#" )
+        .def("SetComesFromDecomposition",
+             (void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) >(&SelectMgr_EntityOwner::SetComesFromDecomposition),
+             R"#(Sets flag indicating this owner points to a part of object (TRUE) or to entire object (FALSE).)#"  , py::arg("theIsFromDecomposition"))
+        .def("Set",
+             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_EntityOwner::Set),
+             R"#(Sets the selectable object.)#"  , py::arg("theSelObj"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_EntityOwner::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_EntityOwner::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_Filter ,opencascade::handle<SelectMgr_Filter> ,Py_SelectMgr_Filter , Standard_Transient >>(m.attr("SelectMgr_Filter"))
+    // methods
+        .def("IsOk",
+             (Standard_Boolean (SelectMgr_Filter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const) static_cast<Standard_Boolean (SelectMgr_Filter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const>(&SelectMgr_Filter::IsOk),
+             R"#(Indicates that the selected Interactive Object passes the filter. The owner, anObj, can be either direct or user. A direct owner is the corresponding construction element, whereas a user is the compound shape of which the entity forms a part. When an object is detected by the mouse - in AIS, this is done through a context selector - its owner is passed to the filter as an argument. If the object returns Standard_True, it is kept; if not, it is rejected. If you are creating a filter class inheriting this framework, and the daughter class is to be used in an AIS local context, you will need to implement the virtual function ActsOn.)#"  , py::arg("anObj"))
+        .def("ActsOn",
+             (Standard_Boolean (SelectMgr_Filter::*)( const TopAbs_ShapeEnum  ) const) static_cast<Standard_Boolean (SelectMgr_Filter::*)( const TopAbs_ShapeEnum  ) const>(&SelectMgr_Filter::ActsOn),
+             R"#(Returns true in an AIS local context, if this filter operates on a type of subshape defined in a filter class inheriting this framework. This function completes IsOk in an AIS local context.)#"  , py::arg("aStandardMode"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_Filter::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_Filter::*)() const>(&SelectMgr_Filter::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_Filter::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_Filter::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_FrustumBuilder ,opencascade::handle<SelectMgr_FrustumBuilder>  , Standard_Transient >>(m.attr("SelectMgr_FrustumBuilder"))
         .def(py::init<  >()  )
-        .def("IsGreater",
-             (bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const) static_cast<bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const>(&SelectMgr_SortCriterion::IsGreater),
-             R"#(Compare with another item.)#"  , py::arg("theOther"))
-        .def("IsLower",
-             (bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const) static_cast<bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const>(&SelectMgr_SortCriterion::IsLower),
-             R"#(Compare with another item.)#"  , py::arg("theOther"))
+    // methods
+        .def("SetWorldViewMatrix",
+             (void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) >(&SelectMgr_FrustumBuilder::SetWorldViewMatrix),
+             R"#(Stores current world view transformation matrix)#"  , py::arg("theWorldViewMatrix"))
+        .def("WorldViewMatrix",
+             (const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::WorldViewMatrix),
+             R"#(Returns current world view transformation matrix)#" )
+        .def("SetProjectionMatrix",
+             (void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) >(&SelectMgr_FrustumBuilder::SetProjectionMatrix),
+             R"#(Stores current projection matrix)#"  , py::arg("theProjection"))
+        .def("ProjectionMatrix",
+             (const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::ProjectionMatrix),
+             R"#(Returns current projection matrix)#" )
+        .def("SetWorldViewProjState",
+             (void (SelectMgr_FrustumBuilder::*)( const Graphic3d_WorldViewProjState &  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)( const Graphic3d_WorldViewProjState &  ) >(&SelectMgr_FrustumBuilder::SetWorldViewProjState),
+             R"#(Stores current world view projection matrix state for the orientation and projection matrices)#"  , py::arg("theState"))
+        .def("WorldViewProjState",
+             (const Graphic3d_WorldViewProjState & (SelectMgr_FrustumBuilder::*)() const) static_cast<const Graphic3d_WorldViewProjState & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::WorldViewProjState),
+             R"#(Returns current world view projection state)#" )
+        .def("SetWindowSize",
+             (void (SelectMgr_FrustumBuilder::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)( const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_FrustumBuilder::SetWindowSize),
+             R"#(Stores current window width and height)#"  , py::arg("theWidth"),  py::arg("theHeight"))
+        .def("SetViewport",
+             (void (SelectMgr_FrustumBuilder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&SelectMgr_FrustumBuilder::SetViewport),
+             R"#(Stores current viewport coordinates)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theWidth"),  py::arg("theHeight"))
+        .def("InvalidateViewport",
+             (void (SelectMgr_FrustumBuilder::*)() ) static_cast<void (SelectMgr_FrustumBuilder::*)() >(&SelectMgr_FrustumBuilder::InvalidateViewport),
+             R"#(None)#" )
+        .def("SignedPlanePntDist",
+             (Standard_Real (SelectMgr_FrustumBuilder::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> &  ) const) static_cast<Standard_Real (SelectMgr_FrustumBuilder::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> &  ) const>(&SelectMgr_FrustumBuilder::SignedPlanePntDist),
+             R"#(Calculates signed distance between plane with equation theEq and point thePnt)#"  , py::arg("theEq"),  py::arg("thePnt"))
+        .def("ProjectPntOnViewPlane",
+             (gp_Pnt (SelectMgr_FrustumBuilder::*)( const Standard_Real & ,  const Standard_Real & ,  const Standard_Real &  ) const) static_cast<gp_Pnt (SelectMgr_FrustumBuilder::*)( const Standard_Real & ,  const Standard_Real & ,  const Standard_Real &  ) const>(&SelectMgr_FrustumBuilder::ProjectPntOnViewPlane),
+             R"#(Projects 2d screen point onto view frustum plane: theZ = 0 - near plane, theZ = 1 - far plane)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theZ"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_FrustumBuilder::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("WindowSize",
+             []( SelectMgr_FrustumBuilder &self   ){ Standard_Integer  theWidth; Standard_Integer  theHeight; self.WindowSize(theWidth,theHeight); return std::make_tuple(theWidth,theHeight); },
+             R"#(None)#" )
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_FrustumBuilder::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_FrustumBuilder::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_RectangularFrustum , shared_ptr<SelectMgr_RectangularFrustum>  >>(m.attr("SelectMgr_RectangularFrustum"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Build",
+             (void (SelectMgr_RectangularFrustum::*)( const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_RectangularFrustum::*)( const gp_Pnt2d &  ) >(&SelectMgr_RectangularFrustum::Build),
+             R"#(Builds volume according to the point and given pixel tolerance)#"  , py::arg("thePoint"))
+        .def("Build",
+             (void (SelectMgr_RectangularFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_RectangularFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&SelectMgr_RectangularFrustum::Build),
+             R"#(Builds volume according to the selected rectangle)#"  , py::arg("theMinPnt"),  py::arg("theMaxPnt"))
+        .def("ScaleAndTransform",
+             (opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_RectangularFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const) static_cast<opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_RectangularFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const>(&SelectMgr_RectangularFrustum::ScaleAndTransform),
+             R"#(IMPORTANT: Scaling makes sense only for frustum built on a single point! Note that this method does not perform any checks on type of the frustum. Returns a copy of the frustum resized according to the scale factor given and transforms it using the matrix given. There are no default parameters, but in case if: - transformation only is needed: must be initialized as any negative value; - scale only is needed: must be set to gp_Identity.)#"  , py::arg("theScaleFactor"),  py::arg("theTrsf"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) >(&SelectMgr_RectangularFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given axis-aligned box)#"  , py::arg("theBoxMin"),  py::arg("theBoxMax"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) >(&SelectMgr_RectangularFrustum::Overlaps),
+             R"#(Returns true if selecting volume is overlapped by axis-aligned bounding box with minimum corner at point theMinPt and maximum at point theMaxPt)#"  , py::arg("theBoxMin"),  py::arg("theBoxMax"),  py::arg("theInside")=static_cast<Standard_Boolean *>(NULL))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_RectangularFrustum::Overlaps),
+             R"#(Intersection test between defined volume and given point)#"  , py::arg("thePnt"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt &  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt &  ) >(&SelectMgr_RectangularFrustum::Overlaps),
+             R"#(Intersection test between defined volume and given point)#"  , py::arg("thePnt"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_RectangularFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given ordered set of points, representing line segments. The test may be considered of interior part or boundary line defined by segments depending on given sensitivity type)#"  , py::arg("theArrayOfPnts"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_RectangularFrustum::Overlaps),
+             R"#(Checks if line segment overlaps selecting frustum)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_RectangularFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given triangle. The test may be considered of interior part or boundary line defined by triangle vertices depending on given sensitivity type)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("thePnt3"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("DistToGeometryCenter",
+             (Standard_Real (SelectMgr_RectangularFrustum::*)( const gp_Pnt &  ) ) static_cast<Standard_Real (SelectMgr_RectangularFrustum::*)( const gp_Pnt &  ) >(&SelectMgr_RectangularFrustum::DistToGeometryCenter),
+             R"#(Measures distance between 3d projection of user-picked screen point and given point theCOG)#"  , py::arg("theCOG"))
+        .def("DetectedPoint",
+             (gp_Pnt (SelectMgr_RectangularFrustum::*)( const Standard_Real  ) const) static_cast<gp_Pnt (SelectMgr_RectangularFrustum::*)( const Standard_Real  ) const>(&SelectMgr_RectangularFrustum::DetectedPoint),
+             R"#(Calculates the point on a view ray that was detected during the run of selection algo by given depth)#"  , py::arg("theDepth"))
+        .def("IsClipped",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real  ) >(&SelectMgr_RectangularFrustum::IsClipped),
+             R"#(Checks if the point of sensitive in which selection was detected belongs to the region defined by clipping planes)#"  , py::arg("thePlanes"),  py::arg("theDepth"))
+        .def("SetViewClipping",
+             (void (SelectMgr_RectangularFrustum::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) ) static_cast<void (SelectMgr_RectangularFrustum::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) >(&SelectMgr_RectangularFrustum::SetViewClipping),
+             R"#(Valid for point selection only! Computes depth range for global (defined for the whole view) clipping planes.)#"  , py::arg("thePlanes"))
+        .def("SetViewClippingEnabled",
+             (Standard_Boolean (SelectMgr_RectangularFrustum::*)( const Standard_Boolean  ) ) static_cast<Standard_Boolean (SelectMgr_RectangularFrustum::*)( const Standard_Boolean  ) >(&SelectMgr_RectangularFrustum::SetViewClippingEnabled),
+             R"#(Set if view clipping plane is enabled or not.)#"  , py::arg("theToEnable"))
+        .def("GetVertices",
+             (const gp_Pnt * (SelectMgr_RectangularFrustum::*)() const) static_cast<const gp_Pnt * (SelectMgr_RectangularFrustum::*)() const>(&SelectMgr_RectangularFrustum::GetVertices),
+             R"#(A set of helper functions that return rectangular selecting frustum data)#" )
+        .def("GetNearPnt",
+             (const gp_Pnt & (SelectMgr_RectangularFrustum::*)() const) static_cast<const gp_Pnt & (SelectMgr_RectangularFrustum::*)() const>(&SelectMgr_RectangularFrustum::GetNearPnt),
+             R"#(Returns projection of 2d mouse picked point or projection of center of 2d rectangle (for point and rectangular selection correspondingly) onto near view frustum plane)#" )
+        .def("GetFarPnt",
+             (const gp_Pnt & (SelectMgr_RectangularFrustum::*)() const) static_cast<const gp_Pnt & (SelectMgr_RectangularFrustum::*)() const>(&SelectMgr_RectangularFrustum::GetFarPnt),
+             R"#(Returns projection of 2d mouse picked point or projection of center of 2d rectangle (for point and rectangular selection correspondingly) onto far view frustum plane)#" )
+        .def("GetPlanes",
+             (void (SelectMgr_RectangularFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const) static_cast<void (SelectMgr_RectangularFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const>(&SelectMgr_RectangularFrustum::GetPlanes),
+             R"#(Stores plane equation coefficients (in the following form: Ax + By + Cz + D = 0) to the given vector)#"  , py::arg("thePlaneEquations"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<SelectMgr_SelectableObject ,opencascade::handle<SelectMgr_SelectableObject> ,Py_SelectMgr_SelectableObject , PrsMgr_PresentableObject >>(m.attr("SelectMgr_SelectableObject"))
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (SelectMgr_SelectableObject::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_SelectableObject::*)() const>(&SelectMgr_SelectableObject::DynamicType),
              R"#(None)#" )
@@ -333,234 +604,549 @@ py::module m = static_cast<py::module>(main_module.attr("SelectMgr"));
         .def("GetAssemblyOwner",
              (const opencascade::handle<SelectMgr_EntityOwner> & (SelectMgr_SelectableObject::*)() const) static_cast<const opencascade::handle<SelectMgr_EntityOwner> & (SelectMgr_SelectableObject::*)() const>(&SelectMgr_SelectableObject::GetAssemblyOwner),
              R"#(Returns common entity owner if the object is an assembly)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_SelectableObject::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_SelectableObject::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<SelectMgr_EntityOwner ,opencascade::handle<SelectMgr_EntityOwner>  , SelectBasics_EntityOwner >>(m.attr("SelectMgr_EntityOwner"))
-        .def(py::init< const Standard_Integer >()  , py::arg("aPriority")=static_cast<const Standard_Integer>(0) )
-        .def(py::init< const opencascade::handle<SelectMgr_SelectableObject> &,const Standard_Integer >()  , py::arg("aSO"),  py::arg("aPriority")=static_cast<const Standard_Integer>(0) )
-        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &,const Standard_Integer >()  , py::arg("theOwner"),  py::arg("aPriority")=static_cast<const Standard_Integer>(0) )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_EntityOwner::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::DynamicType),
-             R"#(None)#" )
-        .def("HasSelectable",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::HasSelectable),
-             R"#(Returns true if there is a selectable object to serve as an owner.)#" )
-        .def("Selectable",
-             (opencascade::handle<SelectMgr_SelectableObject> (SelectMgr_EntityOwner::*)() const) static_cast<opencascade::handle<SelectMgr_SelectableObject> (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::Selectable),
-             R"#(Returns a selectable object detected in the working context.)#" )
-        .def("SetSelectable",
-             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_EntityOwner::SetSelectable),
-             R"#(Sets the selectable object.)#"  , py::arg("theSelObj"))
-        .def("IsHilighted",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) const>(&SelectMgr_EntityOwner::IsHilighted),
-             R"#(Returns true if the presentation manager aPM highlights selections corresponding to the selection mode aMode.)#"  , py::arg("aPM"),  py::arg("aMode")=static_cast<const Standard_Integer>(0))
-        .def("HilightWithColor",
-             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::HilightWithColor),
-             R"#(Highlights selectable object's presentation with mode theMode in presentation manager with given highlight style. Also a check for auto-highlight is performed - if selectable object manages highlighting on its own, execution will be passed to SelectMgr_SelectableObject::HilightOwnerWithColor method)#"  , py::arg("thePM"),  py::arg("theStyle"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("Unhilight",
-             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::Unhilight),
-             R"#(Removes highlighting from the owner of a detected selectable object in the presentation manager. This object could be the owner of a sensitive primitive.)#"  , py::arg("thePrsMgr"),  py::arg("theMode")=static_cast<const Standard_Integer>(0))
-        .def("Clear",
-             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<PrsMgr_PresentationManager> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::Clear),
-             R"#(Clears the owners matching the value of the selection mode aMode from the presentation manager object aPM.)#"  , py::arg("aPM"),  py::arg("aMode")=static_cast<const Standard_Integer>(0))
-        .def("HasLocation",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::HasLocation),
-             R"#(None)#" )
-        .def("SetLocation",
-             (void (SelectMgr_EntityOwner::*)( const TopLoc_Location &  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const TopLoc_Location &  ) >(&SelectMgr_EntityOwner::SetLocation),
-             R"#(None)#"  , py::arg("aLoc"))
-        .def("ResetLocation",
-             (void (SelectMgr_EntityOwner::*)() ) static_cast<void (SelectMgr_EntityOwner::*)() >(&SelectMgr_EntityOwner::ResetLocation),
-             R"#(None)#" )
-        .def("Location",
-             (TopLoc_Location (SelectMgr_EntityOwner::*)() const) static_cast<TopLoc_Location (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::Location),
-             R"#(None)#" )
-        .def("SetSelected",
-             (void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) >(&SelectMgr_EntityOwner::SetSelected),
-             R"#(Set the state of the owner.)#"  , py::arg("theIsSelected"))
-        .def("IsSelected",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::IsSelected),
-             R"#(Returns Standard_True if the owner is selected.)#" )
-        .def("State",
-             (void (SelectMgr_EntityOwner::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Standard_Integer  ) >(&SelectMgr_EntityOwner::State),
-             R"#(Set the state of the owner. The method is deprecated. Use SetSelected() instead.)#"  , py::arg("theStatus"))
-        .def("State",
-             (Standard_Integer (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Integer (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::State),
-             R"#(None)#" )
-        .def("IsAutoHilight",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::IsAutoHilight),
-             R"#(if owner is not auto hilighted, for group contains many such owners will be called one method HilightSelected of SelectableObject)#" )
-        .def("IsForcedHilight",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::IsForcedHilight),
-             R"#(if this method returns TRUE the owner will allways call method Hilight for SelectableObject when the owner is detected. By default it always return FALSE.)#" )
-        .def("SetZLayer",
-             (void (SelectMgr_EntityOwner::*)( const Graphic3d_ZLayerId  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Graphic3d_ZLayerId  ) >(&SelectMgr_EntityOwner::SetZLayer),
-             R"#(Set Z layer ID and update all presentations.)#"  , py::arg("theLayerId"))
-        .def("UpdateHighlightTrsf",
-             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const Standard_Integer  ) >(&SelectMgr_EntityOwner::UpdateHighlightTrsf),
-             R"#(Implements immediate application of location transformation of parent object to dynamic highlight structure)#"  , py::arg("theViewer"),  py::arg("theManager"),  py::arg("theDispMode"))
-        .def("IsSameSelectable",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const>(&SelectMgr_EntityOwner::IsSameSelectable),
-             R"#(Returns true if pointer to selectable object of this owner is equal to the given one)#"  , py::arg("theOther"))
-        .def("ComesFromDecomposition",
-             (Standard_Boolean (SelectMgr_EntityOwner::*)() const) static_cast<Standard_Boolean (SelectMgr_EntityOwner::*)() const>(&SelectMgr_EntityOwner::ComesFromDecomposition),
-             R"#(Returns TRUE if this owner points to a part of object and FALSE for entire object.)#" )
-        .def("SetComesFromDecomposition",
-             (void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const Standard_Boolean  ) >(&SelectMgr_EntityOwner::SetComesFromDecomposition),
-             R"#(Sets flag indicating this owner points to a part of object (TRUE) or to entire object (FALSE).)#"  , py::arg("theIsFromDecomposition"))
-        .def("Set",
-             (void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_EntityOwner::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_EntityOwner::Set),
-             R"#(Sets the selectable object.)#"  , py::arg("theSelObj"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_EntityOwner::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_EntityOwner::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<SelectMgr_BaseFrustum ,opencascade::handle<SelectMgr_BaseFrustum>  , Standard_Transient >>(m.attr("SelectMgr_BaseFrustum"))
+    static_cast<py::class_<SelectMgr_SelectableObjectSet , shared_ptr<SelectMgr_SelectableObjectSet>  >>(m.attr("SelectMgr_SelectableObjectSet"))
         .def(py::init<  >()  )
-        .def("Camera",
-             (const opencascade::handle<Graphic3d_Camera> & (SelectMgr_BaseFrustum::*)() const) static_cast<const opencascade::handle<Graphic3d_Camera> & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::Camera),
-             R"#(Return camera definition.)#" )
-        .def("SetCamera",
-             (void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_Camera> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_Camera> &  ) >(&SelectMgr_BaseFrustum::SetCamera),
-             R"#(Passes camera projection and orientation matrices to builder)#"  , py::arg("theCamera"))
-        .def("SetCamera",
-             (void (SelectMgr_BaseFrustum::*)(  const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Standard_Boolean ,  const Graphic3d_WorldViewProjState &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)(  const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Standard_Boolean ,  const Graphic3d_WorldViewProjState &  ) >(&SelectMgr_BaseFrustum::SetCamera),
-             R"#(Passes camera projection and orientation matrices to builder)#"  , py::arg("theProjection"),  py::arg("theWorldView"),  py::arg("theIsOrthographic"),  py::arg("theWVPState")=static_cast<const Graphic3d_WorldViewProjState &>(Graphic3d_WorldViewProjState ( )))
-        .def("ProjectionMatrix",
-             (const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::ProjectionMatrix),
-             R"#(Returns current camera projection transformation common for all selecting volumes)#" )
-        .def("WorldViewMatrix",
-             (const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::WorldViewMatrix),
-             R"#(Returns current camera world view transformation common for all selecting volumes)#" )
-        .def("WorldViewProjState",
-             (const Graphic3d_WorldViewProjState & (SelectMgr_BaseFrustum::*)() const) static_cast<const Graphic3d_WorldViewProjState & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::WorldViewProjState),
-             R"#(Returns current camera world view projection transformation state)#" )
-        .def("SetPixelTolerance",
-             (void (SelectMgr_BaseFrustum::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const Standard_Integer  ) >(&SelectMgr_BaseFrustum::SetPixelTolerance),
-             R"#(None)#"  , py::arg("theTol"))
-        .def("SetWindowSize",
-             (void (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_BaseFrustum::SetWindowSize),
-             R"#(None)#"  , py::arg("theWidth"),  py::arg("theHeight"))
-        .def("WindowSize",
-             (void (SelectMgr_BaseFrustum::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (SelectMgr_BaseFrustum::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&SelectMgr_BaseFrustum::WindowSize),
-             R"#(None)#"  , py::arg("theWidth"),  py::arg("theHeight"))
-        .def("SetViewport",
-             (void (SelectMgr_BaseFrustum::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&SelectMgr_BaseFrustum::SetViewport),
-             R"#(Passes viewport parameters to builder)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theWidth"),  py::arg("theHeight"))
-        .def("SetBuilder",
-             (void (SelectMgr_BaseFrustum::*)( const opencascade::handle<SelectMgr_FrustumBuilder> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const opencascade::handle<SelectMgr_FrustumBuilder> &  ) >(&SelectMgr_BaseFrustum::SetBuilder),
-             R"#(Nullifies the builder created in the constructor and copies the pointer given)#"  , py::arg("theBuilder"))
-        .def("Build",
-             (void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d &  ) >(&SelectMgr_BaseFrustum::Build),
-             R"#(Builds volume according to the point and given pixel tolerance)#"  , py::arg(""))
-        .def("Build",
-             (void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&SelectMgr_BaseFrustum::Build),
-             R"#(Builds volume according to the selected rectangle)#"  , py::arg(""),  py::arg(""))
-        .def("Build",
-             (void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&SelectMgr_BaseFrustum::Build),
-             R"#(Builds volume according to the triangle given)#"  , py::arg(""),  py::arg(""),  py::arg(""))
-        .def("Build",
-             (void (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt2d> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt2d> &  ) >(&SelectMgr_BaseFrustum::Build),
-             R"#(Builds selecting volumes set according to polyline points)#"  , py::arg(""))
+    // methods
+        .def("Append",
+             (Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_SelectableObjectSet::Append),
+             R"#(Adds the new selectable object to the set. The selectable object is placed into one of the predefined subsets depending on its persistence type. After adding an object, this method marks the corresponding BVH tree for rebuild.)#"  , py::arg("theObject"))
+        .def("Remove",
+             (Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_SelectableObjectSet::Remove),
+             R"#(Removes the selectable object from the set. The selectable object is removed from the subset it has been placed into. After removing an object, this method marks the corresponding BVH tree for rebuild.)#"  , py::arg("theObject"))
+        .def("ChangeSubset",
+             (void (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_SelectableObjectSet::ChangeSubset),
+             R"#(Performs necessary updates when object's persistence types changes. This method should be called right after changing transformation persistence flags of the objects and before updating BVH tree - to provide up-to-date state of the object set.)#"  , py::arg("theObject"))
+        .def("UpdateBVH",
+             (void (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<Graphic3d_Camera> & ,   const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Graphic3d_WorldViewProjState & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<Graphic3d_Camera> & ,   const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Graphic3d_WorldViewProjState & ,  const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_SelectableObjectSet::UpdateBVH),
+             R"#(Updates outdated BVH trees and remembers the last state of the camera view-projection matrices and viewport (window) dimensions.)#"  , py::arg("theCamera"),  py::arg("theProjectionMat"),  py::arg("theWorldViewMat"),  py::arg("theViewState"),  py::arg("theViewportWidth"),  py::arg("theViewportHeight"))
+        .def("MarkDirty",
+             (void (SelectMgr_SelectableObjectSet::*)() ) static_cast<void (SelectMgr_SelectableObjectSet::*)() >(&SelectMgr_SelectableObjectSet::MarkDirty),
+             R"#(Marks every BVH subset for update.)#" )
+        .def("Contains",
+             (Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const) static_cast<Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const>(&SelectMgr_SelectableObjectSet::Contains),
+             R"#(Returns true if this objects set contains theObject given.)#"  , py::arg("theObject"))
+        .def("IsEmpty",
+             (Standard_Boolean (SelectMgr_SelectableObjectSet::*)() const) static_cast<Standard_Boolean (SelectMgr_SelectableObjectSet::*)() const>(&SelectMgr_SelectableObjectSet::IsEmpty),
+             R"#(Returns true if the object set does not contain any selectable objects.)#" )
+        .def("IsEmpty",
+             (Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const SelectMgr_SelectableObjectSet::BVHSubset  ) const) static_cast<Standard_Boolean (SelectMgr_SelectableObjectSet::*)( const SelectMgr_SelectableObjectSet::BVHSubset  ) const>(&SelectMgr_SelectableObjectSet::IsEmpty),
+             R"#(Returns true if the specified object subset is empty.)#"  , py::arg("theSubset"))
+        .def("GetObjectById",
+             (const opencascade::handle<SelectMgr_SelectableObject> & (SelectMgr_SelectableObjectSet::*)( const SelectMgr_SelectableObjectSet::BVHSubset ,  const Standard_Integer  ) const) static_cast<const opencascade::handle<SelectMgr_SelectableObject> & (SelectMgr_SelectableObjectSet::*)( const SelectMgr_SelectableObjectSet::BVHSubset ,  const Standard_Integer  ) const>(&SelectMgr_SelectableObjectSet::GetObjectById),
+             R"#(Returns object from subset theSubset by theIndex given. The method allows to get selectable object referred by the index of an element of the subset's BVH tree.)#"  , py::arg("theSubset"),  py::arg("theIndex"))
+        .def("BVH",
+             (const opencascade::handle<BVH_Tree<Standard_Real, 3> > & (SelectMgr_SelectableObjectSet::*)( const SelectMgr_SelectableObjectSet::BVHSubset  ) const) static_cast<const opencascade::handle<BVH_Tree<Standard_Real, 3> > & (SelectMgr_SelectableObjectSet::*)( const SelectMgr_SelectableObjectSet::BVHSubset  ) const>(&SelectMgr_SelectableObjectSet::BVH),
+             R"#(Returns computed BVH for the theSubset given.)#"  , py::arg("theSubset"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_SelectingVolumeManager , shared_ptr<SelectMgr_SelectingVolumeManager>  , SelectBasics_SelectingVolumeManager >>(m.attr("SelectMgr_SelectingVolumeManager"))
+        .def(py::init< Standard_Boolean >()  , py::arg("theToAllocateFrustums")=static_cast<Standard_Boolean>(Standard_True) )
+    // methods
         .def("ScaleAndTransform",
-             (opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const) static_cast<opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_BaseFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const>(&SelectMgr_BaseFrustum::ScaleAndTransform),
-             R"#(IMPORTANT: Scaling makes sense only for frustum built on a single point! Note that this method does not perform any checks on type of the frustum. Returns a copy of the frustum resized according to the scale factor given and transforms it using the matrix given. There are no default parameters, but in case if: - transformation only is needed: must be initialized as any negative value; - scale only is needed: must be set to gp_Identity.)#"  , py::arg(""),  py::arg(""))
+             (SelectMgr_SelectingVolumeManager (SelectMgr_SelectingVolumeManager::*)( const Standard_Integer ,  const gp_GTrsf & ,  const opencascade::handle<SelectMgr_FrustumBuilder> &  ) const) static_cast<SelectMgr_SelectingVolumeManager (SelectMgr_SelectingVolumeManager::*)( const Standard_Integer ,  const gp_GTrsf & ,  const opencascade::handle<SelectMgr_FrustumBuilder> &  ) const>(&SelectMgr_SelectingVolumeManager::ScaleAndTransform),
+             R"#(IMPORTANT: Scaling makes sense only for frustum built on a single point! Note that this method does not perform any checks on type of the frustum.)#"  , py::arg("theScaleFactor"),  py::arg("theTrsf"),  py::arg("theBuilder")=static_cast<const opencascade::handle<SelectMgr_FrustumBuilder> &>(NULL))
+        .def("GetActiveSelectionType",
+             (Standard_Integer (SelectMgr_SelectingVolumeManager::*)() const) static_cast<Standard_Integer (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::GetActiveSelectionType),
+             R"#(None)#" )
+        .def("SetActiveSelectionType",
+             (void (SelectMgr_SelectingVolumeManager::*)( const SelectBasics_SelectingVolumeManager::SelectionType &  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const SelectBasics_SelectingVolumeManager::SelectionType &  ) >(&SelectMgr_SelectingVolumeManager::SetActiveSelectionType),
+             R"#(None)#"  , py::arg("theType"))
+        .def("Camera",
+             (const opencascade::handle<Graphic3d_Camera> & (SelectMgr_SelectingVolumeManager::*)() const) static_cast<const opencascade::handle<Graphic3d_Camera> & (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::Camera),
+             R"#(Returns current camera definition.)#" )
+        .def("SetCamera",
+             (void (SelectMgr_SelectingVolumeManager::*)( const opencascade::handle<Graphic3d_Camera>  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const opencascade::handle<Graphic3d_Camera>  ) >(&SelectMgr_SelectingVolumeManager::SetCamera),
+             R"#(Updates camera projection and orientation matrices in all selecting volumes)#"  , py::arg("theCamera"))
+        .def("SetCamera",
+             (void (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Standard_Boolean ,  const Graphic3d_WorldViewProjState &  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Mat4<Standard_Real> & ,   const NCollection_Mat4<Standard_Real> & ,  const Standard_Boolean ,  const Graphic3d_WorldViewProjState &  ) >(&SelectMgr_SelectingVolumeManager::SetCamera),
+             R"#(Updates camera projection and orientation matrices in all selecting volumes)#"  , py::arg("theProjection"),  py::arg("theWorldView"),  py::arg("theIsOrthographic"),  py::arg("theWVPState")=static_cast<const Graphic3d_WorldViewProjState &>(Graphic3d_WorldViewProjState ( )))
+        .def("ProjectionMatrix",
+             (const Graphic3d_Mat4d & (SelectMgr_SelectingVolumeManager::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::ProjectionMatrix),
+             R"#(Returns current projection transformation common for all selecting volumes)#" )
+        .def("WorldViewMatrix",
+             (const Graphic3d_Mat4d & (SelectMgr_SelectingVolumeManager::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::WorldViewMatrix),
+             R"#(Returns current world view transformation common for all selecting volumes)#" )
+        .def("WorldViewProjState",
+             (const Graphic3d_WorldViewProjState & (SelectMgr_SelectingVolumeManager::*)() const) static_cast<const Graphic3d_WorldViewProjState & (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::WorldViewProjState),
+             R"#(Returns current camera world view projection transformation state common for all selecting volumes)#" )
+        .def("SetViewport",
+             (void (SelectMgr_SelectingVolumeManager::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&SelectMgr_SelectingVolumeManager::SetViewport),
+             R"#(Updates viewport in all selecting volumes)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theWidth"),  py::arg("theHeight"))
+        .def("SetPixelTolerance",
+             (void (SelectMgr_SelectingVolumeManager::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const Standard_Integer  ) >(&SelectMgr_SelectingVolumeManager::SetPixelTolerance),
+             R"#(Updates pixel tolerance in all selecting volumes)#"  , py::arg("theTolerance"))
+        .def("SetWindowSize",
+             (void (SelectMgr_SelectingVolumeManager::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_SelectingVolumeManager::SetWindowSize),
+             R"#(Updates window size in all selecting volumes)#"  , py::arg("theWidth"),  py::arg("theHeight"))
+        .def("BuildSelectingVolume",
+             (void (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt2d &  ) >(&SelectMgr_SelectingVolumeManager::BuildSelectingVolume),
+             R"#(Builds rectangular selecting frustum for point selection)#"  , py::arg("thePoint"))
+        .def("BuildSelectingVolume",
+             (void (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&SelectMgr_SelectingVolumeManager::BuildSelectingVolume),
+             R"#(Builds rectangular selecting frustum for box selection)#"  , py::arg("theMinPt"),  py::arg("theMaxPt"))
+        .def("BuildSelectingVolume",
+             (void (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Array1<gp_Pnt2d> &  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Array1<gp_Pnt2d> &  ) >(&SelectMgr_SelectingVolumeManager::BuildSelectingVolume),
+             R"#(Builds set of triangular selecting frustums for polyline selection)#"  , py::arg("thePoints"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
              R"#(SAT intersection test between defined volume and given axis-aligned box)#"  , py::arg("theBoxMin"),  py::arg("theBoxMax"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
              R"#(Returns true if selecting volume is overlapped by axis-aligned bounding box with minimum corner at point theMinPt and maximum at point theMaxPt)#"  , py::arg("theBoxMin"),  py::arg("theBoxMax"),  py::arg("theInside")=static_cast<Standard_Boolean *>(NULL))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
              R"#(Intersection test between defined volume and given point)#"  , py::arg("thePnt"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) >(&SelectMgr_BaseFrustum::Overlaps),
-             R"#(Intersection test between defined volume and given point Does not perform depth calculation, so this method is defined as helper function for inclusion test. Therefore, its implementation makes sense only for rectangular frustum with box selection mode activated.)#"  , py::arg("thePnt"))
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt &  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
+             R"#(Intersection test between defined volume and given point)#"  , py::arg("thePnt"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
-             R"#(SAT intersection test between defined volume and given ordered set of points, representing line segments. The test may be considered of interior part or boundary line defined by segments depending on given sensitivity type)#"  , py::arg("theArrayOfPnts"),  py::arg("theSensType"),  py::arg("theDepth"))
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const opencascade::handle<TColgp_HArray1OfPnt> & ,  Standard_Integer ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const opencascade::handle<TColgp_HArray1OfPnt> & ,  Standard_Integer ,  Standard_Real &  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
+             R"#(SAT intersection test between defined volume and given ordered set of points, representing line segments. The test may be considered of interior part or boundary line defined by segments depending on given sensitivity type)#"  , py::arg("theArrayOfPts"),  py::arg("theSensType"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Array1<gp_Pnt> & ,  Standard_Integer ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)(  const NCollection_Array1<gp_Pnt> & ,  Standard_Integer ,  Standard_Real &  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
+             R"#(SAT intersection test between defined volume and given ordered set of points, representing line segments. The test may be considered of interior part or boundary line defined by segments depending on given sensitivity type)#"  , py::arg("theArrayOfPts"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
              R"#(Checks if line segment overlaps selecting frustum)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_BaseFrustum::Overlaps),
-             R"#(SAT intersection test between defined volume and given triangle. The test may be considered of interior part or boundary line defined by triangle vertices depending on given sensitivity type)#"  , py::arg("thePt1"),  py::arg("thePt2"),  py::arg("thePt3"),  py::arg("theSensType"),  py::arg("theDepth"))
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Standard_Integer ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Standard_Integer ,  Standard_Real &  ) >(&SelectMgr_SelectingVolumeManager::Overlaps),
+             R"#(SAT intersection test between defined volume and given triangle. The test may be considered of interior part or boundary line defined by triangle vertices depending on given sensitivity type)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("thePnt3"),  py::arg("theSensType"),  py::arg("theDepth"))
         .def("DistToGeometryCenter",
-             (Standard_Real (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) ) static_cast<Standard_Real (SelectMgr_BaseFrustum::*)( const gp_Pnt &  ) >(&SelectMgr_BaseFrustum::DistToGeometryCenter),
+             (Standard_Real (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt &  ) ) static_cast<Standard_Real (SelectMgr_SelectingVolumeManager::*)( const gp_Pnt &  ) >(&SelectMgr_SelectingVolumeManager::DistToGeometryCenter),
              R"#(Measures distance between 3d projection of user-picked screen point and given point theCOG)#"  , py::arg("theCOG"))
         .def("DetectedPoint",
-             (gp_Pnt (SelectMgr_BaseFrustum::*)( const Standard_Real  ) const) static_cast<gp_Pnt (SelectMgr_BaseFrustum::*)( const Standard_Real  ) const>(&SelectMgr_BaseFrustum::DetectedPoint),
-             R"#(None)#"  , py::arg("theDepth"))
+             (gp_Pnt (SelectMgr_SelectingVolumeManager::*)( const Standard_Real  ) const) static_cast<gp_Pnt (SelectMgr_SelectingVolumeManager::*)( const Standard_Real  ) const>(&SelectMgr_SelectingVolumeManager::DetectedPoint),
+             R"#(Calculates the point on a view ray that was detected during the run of selection algo by given depth. Throws exception if active selection type is not Point.)#"  , py::arg("theDepth"))
         .def("IsClipped",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real  ) >(&SelectMgr_BaseFrustum::IsClipped),
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const Graphic3d_SequenceOfHClipPlane & ,  const Standard_Real &  ) >(&SelectMgr_SelectingVolumeManager::IsClipped),
              R"#(Checks if the point of sensitive in which selection was detected belongs to the region defined by clipping planes)#"  , py::arg("thePlanes"),  py::arg("theDepth"))
-        .def("SetViewClipping",
-             (void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) ) static_cast<void (SelectMgr_BaseFrustum::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) >(&SelectMgr_BaseFrustum::SetViewClipping),
-             R"#(Valid for point selection only! Computes depth range for global (defined for the whole view) clipping planes.)#"  , py::arg(""))
-        .def("SetViewClippingEnabled",
-             (Standard_Boolean (SelectMgr_BaseFrustum::*)( const Standard_Boolean  ) ) static_cast<Standard_Boolean (SelectMgr_BaseFrustum::*)( const Standard_Boolean  ) >(&SelectMgr_BaseFrustum::SetViewClippingEnabled),
-             R"#(Set if view clipping plane is enabled or not.)#"  , py::arg(""))
-        .def("GetPlanes",
-             (void (SelectMgr_BaseFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const) static_cast<void (SelectMgr_BaseFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const>(&SelectMgr_BaseFrustum::GetPlanes),
-             R"#(Stores plane equation coefficients (in the following form: Ax + By + Cz + D = 0) to the given vector)#"  , py::arg("thePlaneEquations"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_BaseFrustum::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_BaseFrustum::*)() const>(&SelectMgr_BaseFrustum::DynamicType),
+        .def("AllowOverlapDetection",
+             (void (SelectMgr_SelectingVolumeManager::*)( const Standard_Boolean  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const Standard_Boolean  ) >(&SelectMgr_SelectingVolumeManager::AllowOverlapDetection),
+             R"#(Is used for rectangular selection only If theIsToAllow is false, only fully included sensitives will be detected, otherwise the algorithm will mark both included and overlapped entities as matched)#"  , py::arg("theIsToAllow"))
+        .def("IsOverlapAllowed",
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)() const) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::IsOverlapAllowed),
              R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_BaseFrustum::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_BaseFrustum::get_type_descriptor),
-                    R"#(None)#" )
+        .def("ViewClipping",
+             (const opencascade::handle<Graphic3d_SequenceOfHClipPlane> & (SelectMgr_SelectingVolumeManager::*)() const) static_cast<const opencascade::handle<Graphic3d_SequenceOfHClipPlane> & (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::ViewClipping),
+             R"#(Return view clipping planes.)#" )
+        .def("SetViewClipping",
+             (void (SelectMgr_SelectingVolumeManager::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) ) static_cast<void (SelectMgr_SelectingVolumeManager::*)( const opencascade::handle<Graphic3d_SequenceOfHClipPlane> &  ) >(&SelectMgr_SelectingVolumeManager::SetViewClipping),
+             R"#(Valid for point selection only! Computes depth range for global (defined for the whole view) clipping planes.)#"  , py::arg("thePlanes"))
+        .def("SetViewClippingEnabled",
+             (Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const Standard_Boolean  ) ) static_cast<Standard_Boolean (SelectMgr_SelectingVolumeManager::*)( const Standard_Boolean  ) >(&SelectMgr_SelectingVolumeManager::SetViewClippingEnabled),
+             R"#(Set if view clipping plane is enabled or not.)#"  , py::arg("theToEnable"))
+        .def("GetVertices",
+             (const gp_Pnt * (SelectMgr_SelectingVolumeManager::*)() const) static_cast<const gp_Pnt * (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::GetVertices),
+             R"#(A set of helper functions that return rectangular selecting frustum data)#" )
+        .def("GetNearPickedPnt",
+             (gp_Pnt (SelectMgr_SelectingVolumeManager::*)() const) static_cast<gp_Pnt (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::GetNearPickedPnt),
+             R"#(Valid only for point and rectangular selection. Returns projection of 2d mouse picked point or projection of center of 2d rectangle (for point and rectangular selection correspondingly) onto near view frustum plane)#" )
+        .def("GetFarPickedPnt",
+             (gp_Pnt (SelectMgr_SelectingVolumeManager::*)() const) static_cast<gp_Pnt (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::GetFarPickedPnt),
+             R"#(Valid only for point and rectangular selection. Returns projection of 2d mouse picked point or projection of center of 2d rectangle (for point and rectangular selection correspondingly) onto far view frustum plane)#" )
+        .def("ActiveVolume",
+             (opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_SelectingVolumeManager::*)() const) static_cast<opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_SelectingVolumeManager::*)() const>(&SelectMgr_SelectingVolumeManager::ActiveVolume),
+             R"#(Returns active selecting volume that was built during last run of OCCT selection mechanism)#" )
+        .def("GetPlanes",
+             (void (SelectMgr_SelectingVolumeManager::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const) static_cast<void (SelectMgr_SelectingVolumeManager::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const>(&SelectMgr_SelectingVolumeManager::GetPlanes),
+             R"#(Stores plane equation coefficients (in the following form: Ax + By + Cz + D = 0) to the given vector)#"  , py::arg("thePlaneEquations"))
+    // methods using call by reference i.s.o. return
+        .def("WindowSize",
+             []( SelectMgr_SelectingVolumeManager &self   ){ Standard_Integer  theWidth; Standard_Integer  theHeight; self.WindowSize(theWidth,theHeight); return std::make_tuple(theWidth,theHeight); },
+             R"#(None)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<SelectMgr_TriangularFrustumSet ,opencascade::handle<SelectMgr_TriangularFrustumSet>  , SelectMgr_BaseFrustum >>(m.attr("SelectMgr_TriangularFrustumSet"))
+    static_cast<py::class_<SelectMgr_Selection ,opencascade::handle<SelectMgr_Selection>  , Standard_Transient >>(m.attr("SelectMgr_Selection"))
+        .def(py::init< const Standard_Integer >()  , py::arg("theModeIdx")=static_cast<const Standard_Integer>(0) )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_Selection::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::DynamicType),
+             R"#(None)#" )
+        .def("Destroy",
+             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Destroy),
+             R"#(None)#" )
+        .def("Add",
+             (void (SelectMgr_Selection::*)( const opencascade::handle<SelectBasics_SensitiveEntity> &  ) ) static_cast<void (SelectMgr_Selection::*)( const opencascade::handle<SelectBasics_SensitiveEntity> &  ) >(&SelectMgr_Selection::Add),
+             R"#(Adds the sensitive primitive to the list of stored entities in this object. Raises NullObject if the primitive is a null handle.)#"  , py::arg("theSensitive"))
+        .def("Clear",
+             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Clear),
+             R"#(empties the selection from all the stored entities)#" )
+        .def("IsEmpty",
+             (Standard_Boolean (SelectMgr_Selection::*)() const) static_cast<Standard_Boolean (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::IsEmpty),
+             R"#(returns true if no sensitive entity is stored.)#" )
+        .def("Mode",
+             (Standard_Integer (SelectMgr_Selection::*)() const) static_cast<Standard_Integer (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Mode),
+             R"#(returns the selection mode represented by this selection)#" )
+        .def("Entities",
+             (const NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() const) static_cast<const NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Entities),
+             R"#(Return entities.)#" )
+        .def("ChangeEntities",
+             (NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() ) static_cast<NCollection_Vector<opencascade::handle<SelectMgr_SensitiveEntity> > & (SelectMgr_Selection::*)() >(&SelectMgr_Selection::ChangeEntities),
+             R"#(Return entities.)#" )
+        .def("Init",
+             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Init),
+             R"#(Begins an iteration scanning for sensitive primitives.)#" )
+        .def("More",
+             (Standard_Boolean (SelectMgr_Selection::*)() const) static_cast<Standard_Boolean (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::More),
+             R"#(Continues the iteration scanning for sensitive primitives with the mode defined in this framework.)#" )
+        .def("Next",
+             (void (SelectMgr_Selection::*)() ) static_cast<void (SelectMgr_Selection::*)() >(&SelectMgr_Selection::Next),
+             R"#(Returns the next sensitive primitive found in the iteration. This is a scan for entities with the mode defined in this framework.)#" )
+        .def("Sensitive",
+             (const opencascade::handle<SelectMgr_SensitiveEntity> & (SelectMgr_Selection::*)() const) static_cast<const opencascade::handle<SelectMgr_SensitiveEntity> & (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Sensitive),
+             R"#(Returns any sensitive primitive in this framework.)#" )
+        .def("UpdateStatus",
+             (SelectMgr_TypeOfUpdate (SelectMgr_Selection::*)() const) static_cast<SelectMgr_TypeOfUpdate (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::UpdateStatus),
+             R"#(Returns the flag UpdateFlag. This flage gives the update status of this framework in a ViewerSelector object: - full - partial, or - none.)#" )
+        .def("UpdateStatus",
+             (void (SelectMgr_Selection::*)( const SelectMgr_TypeOfUpdate  ) ) static_cast<void (SelectMgr_Selection::*)( const SelectMgr_TypeOfUpdate  ) >(&SelectMgr_Selection::UpdateStatus),
+             R"#(None)#"  , py::arg("theStatus"))
+        .def("UpdateBVHStatus",
+             (void (SelectMgr_Selection::*)( const SelectMgr_TypeOfBVHUpdate  ) ) static_cast<void (SelectMgr_Selection::*)( const SelectMgr_TypeOfBVHUpdate  ) >(&SelectMgr_Selection::UpdateBVHStatus),
+             R"#(None)#"  , py::arg("theStatus"))
+        .def("BVHUpdateStatus",
+             (SelectMgr_TypeOfBVHUpdate (SelectMgr_Selection::*)() const) static_cast<SelectMgr_TypeOfBVHUpdate (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::BVHUpdateStatus),
+             R"#(None)#" )
+        .def("GetSelectionState",
+             (SelectMgr_StateOfSelection (SelectMgr_Selection::*)() const) static_cast<SelectMgr_StateOfSelection (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::GetSelectionState),
+             R"#(Returns status of selection)#" )
+        .def("SetSelectionState",
+             (void (SelectMgr_Selection::*)( const SelectMgr_StateOfSelection  ) const) static_cast<void (SelectMgr_Selection::*)( const SelectMgr_StateOfSelection  ) const>(&SelectMgr_Selection::SetSelectionState),
+             R"#(Sets status of selection)#"  , py::arg("theState"))
+        .def("Sensitivity",
+             (Standard_Integer (SelectMgr_Selection::*)() const) static_cast<Standard_Integer (SelectMgr_Selection::*)() const>(&SelectMgr_Selection::Sensitivity),
+             R"#(Returns sensitivity of the selection)#" )
+        .def("SetSensitivity",
+             (void (SelectMgr_Selection::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_Selection::*)( const Standard_Integer  ) >(&SelectMgr_Selection::SetSensitivity),
+             R"#(Changes sensitivity of the selection and all its entities to the given value. IMPORTANT: This method does not update any outer selection structures, so for proper updates use SelectMgr_SelectionManager::SetSelectionSensitivity method.)#"  , py::arg("theNewSens"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_Selection::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_Selection::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_SelectionManager ,opencascade::handle<SelectMgr_SelectionManager>  , Standard_Transient >>(m.attr("SelectMgr_SelectionManager"))
         .def(py::init<  >()  )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_SelectionManager::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_SelectionManager::*)() const>(&SelectMgr_SelectionManager::DynamicType),
+             R"#(None)#" )
+        .def("Add",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Add),
+             R"#(Adds the viewer selector theSelector to the list of known items.)#"  , py::arg("theSelector"))
+        .def("Remove",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Remove),
+             R"#(Removes viewer selector theSelector from the list of known items.)#"  , py::arg("theSelector"))
+        .def("Contains",
+             (Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) const) static_cast<Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) const>(&SelectMgr_SelectionManager::Contains),
+             R"#(Returns true if the manager contains the viewer selector theSelector in a list of known items.)#"  , py::arg("theSelector"))
+        .def("Contains",
+             (Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const) static_cast<Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const>(&SelectMgr_SelectionManager::Contains),
+             R"#(Returns true if the manager contains the selectable object theObject.)#"  , py::arg("theObject"))
+        .def("Load",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::Load),
+             R"#(Loads and computes selection mode theMode (if it is not equal to -1) in global context and adds selectable object to BVH tree. If the object theObject has an already calculated selection with mode theMode and it was removed, the selection will be recalculated.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1))
+        .def("Load",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::Load),
+             R"#(Loads and computes selection mode theMode (if it is not equal to -1) and adds selectable object to BVH tree. Does not perform check of existence of theObject in global context before addition, but adds theSelector to local context.)#"  , py::arg("theObject"),  py::arg("theSelector"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1))
+        .def("Remove",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_SelectionManager::Remove),
+             R"#(Removes selectable object theObject from all viewer selectors it was added to previously, removes it from all contexts and clears all computed selections of theObject.)#"  , py::arg("theObject"))
+        .def("Remove",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Remove),
+             R"#(Removes theObject from theSelector, does not clear selections and unbind theObject from context maps.)#"  , py::arg("theObject"),  py::arg("theSelector"))
+        .def("Activate",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Activate),
+             R"#(Activates the selection mode theMode in the selector theSelector for the selectable object anObject. By default, theMode is equal to 0. If theSelector is set to default (NULL), the selection with the mode theMode will be activated in all the viewers available.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
+        .def("Deactivate",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Deactivate),
+             R"#(Deactivates mode theMode of theObject in theSelector. If theMode value is set to default (-1), all active selection modes will be deactivated. Likewise, if theSelector value is set to default (NULL), theMode will be deactivated in all viewer selectors.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
+        .def("IsActivated",
+             (Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) const) static_cast<Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) const>(&SelectMgr_SelectionManager::IsActivated),
+             R"#(Returns true if the selection with theMode is active for the selectable object theObject and selector theSelector. If all parameters are set to default values, it returns it there is any active selection in any known viewer selector for object theObject.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
+        .def("ClearSelectionStructures",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::ClearSelectionStructures),
+             R"#(Removes sensitive entities from all viewer selectors after method Clear() was called to the selection they belonged to or it was recomputed somehow.)#"  , py::arg("theObj"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
+        .def("RestoreSelectionStructures",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::RestoreSelectionStructures),
+             R"#(Re-adds newly calculated sensitive entities of recomputed selection defined by mode theMode to all viewer selectors contained that selection.)#"  , py::arg("theObj"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
+        .def("RecomputeSelection",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::RecomputeSelection),
+             R"#(Recomputes activated selections of theObject for all known viewer selectors according to theMode specified. If theMode is set to default (-1), then all activated selections will be recomputed. If theIsForce is set to true, then selection mode theMode for object theObject will be recomputed regardless of its activation status.)#"  , py::arg("theObject"),  py::arg("theIsForce")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1))
+        .def("Update",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean  ) >(&SelectMgr_SelectionManager::Update),
+             R"#(Updates all selections of theObject in all viewer selectors according to its current update status. If theIsForce is set to true, the call is equal to recomputation.)#"  , py::arg("theObject"),  py::arg("theIsForce")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("Update",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Boolean  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Boolean  ) >(&SelectMgr_SelectionManager::Update),
+             R"#(Updates all selections of theObject in specified viewer selector according to its current update status. If theIsForce is set to true, the call is equal to recomputation.)#"  , py::arg("theObject"),  py::arg("theSelector"),  py::arg("theIsForce")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("SetUpdateMode",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const SelectMgr_TypeOfUpdate  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const SelectMgr_TypeOfUpdate  ) >(&SelectMgr_SelectionManager::SetUpdateMode),
+             R"#(Sets type of update of all selections of theObject to the given theType.)#"  , py::arg("theObject"),  py::arg("theType"))
+        .def("SetUpdateMode",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const SelectMgr_TypeOfUpdate  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const SelectMgr_TypeOfUpdate  ) >(&SelectMgr_SelectionManager::SetUpdateMode),
+             R"#(Sets type of update of selection with theMode of theObject to the given theType.)#"  , py::arg("theObject"),  py::arg("theMode"),  py::arg("theType"))
+        .def("SetSelectionSensitivity",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::SetSelectionSensitivity),
+             R"#(Allows to manage sensitivity of a particular selection of interactive object theObject and changes previous sensitivity value of all sensitive entities in selection with theMode to the given theNewSensitivity.)#"  , py::arg("theObject"),  py::arg("theMode"),  py::arg("theNewSens"))
+        .def("UpdateSelection",
+             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_SelectionManager::UpdateSelection),
+             R"#(Re-adds selectable object in BVHs in all viewer selectors.)#"  , py::arg("theObj"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_SelectionManager::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_SelectionManager::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_SensitiveEntity ,opencascade::handle<SelectMgr_SensitiveEntity>  , Standard_Transient >>(m.attr("SelectMgr_SensitiveEntity"))
+        .def(py::init< const opencascade::handle<SelectBasics_SensitiveEntity> & >()  , py::arg("theEntity") )
+    // methods
+        .def("Clear",
+             (void (SelectMgr_SensitiveEntity::*)() ) static_cast<void (SelectMgr_SensitiveEntity::*)() >(&SelectMgr_SensitiveEntity::Clear),
+             R"#(Clears up all resources and memory)#" )
+        .def("BaseSensitive",
+             (const opencascade::handle<SelectBasics_SensitiveEntity> & (SelectMgr_SensitiveEntity::*)() const) static_cast<const opencascade::handle<SelectBasics_SensitiveEntity> & (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::BaseSensitive),
+             R"#(Returns related instance of SelectBasics class)#" )
+        .def("IsActiveForSelection",
+             (Standard_Boolean (SelectMgr_SensitiveEntity::*)() const) static_cast<Standard_Boolean (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::IsActiveForSelection),
+             R"#(Returns true if this entity belongs to the active selection mode of parent object)#" )
+        .def("ResetSelectionActiveStatus",
+             (void (SelectMgr_SensitiveEntity::*)() const) static_cast<void (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::ResetSelectionActiveStatus),
+             R"#(Marks entity as inactive for selection)#" )
+        .def("SetActiveForSelection",
+             (void (SelectMgr_SensitiveEntity::*)() const) static_cast<void (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::SetActiveForSelection),
+             R"#(Marks entity as active for selection)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_SensitiveEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_SensitiveEntity::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_SensitiveEntity::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_SensitiveEntitySet , shared_ptr<SelectMgr_SensitiveEntitySet>  >>(m.attr("SelectMgr_SensitiveEntitySet"))
+        .def(py::init< const opencascade::handle<Select3D_BVHBuilder3d> & >()  , py::arg("theBuilder") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_SensitiveEntitySet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_SensitiveEntitySet::*)() const>(&SelectMgr_SensitiveEntitySet::DynamicType),
+             R"#(None)#" )
+        .def("Append",
+             (void (SelectMgr_SensitiveEntitySet::*)( const opencascade::handle<SelectMgr_SensitiveEntity> &  ) ) static_cast<void (SelectMgr_SensitiveEntitySet::*)( const opencascade::handle<SelectMgr_SensitiveEntity> &  ) >(&SelectMgr_SensitiveEntitySet::Append),
+             R"#(Adds new entity to the set and marks BVH tree for rebuild)#"  , py::arg("theEntity"))
+        .def("Append",
+             (void (SelectMgr_SensitiveEntitySet::*)( const opencascade::handle<SelectMgr_Selection> &  ) ) static_cast<void (SelectMgr_SensitiveEntitySet::*)( const opencascade::handle<SelectMgr_Selection> &  ) >(&SelectMgr_SensitiveEntitySet::Append),
+             R"#(Adds every entity of selection theSelection to the set and marks BVH tree for rebuild)#"  , py::arg("theSelection"))
+        .def("Remove",
+             (void (SelectMgr_SensitiveEntitySet::*)( const opencascade::handle<SelectMgr_Selection> &  ) ) static_cast<void (SelectMgr_SensitiveEntitySet::*)( const opencascade::handle<SelectMgr_Selection> &  ) >(&SelectMgr_SensitiveEntitySet::Remove),
+             R"#(Removes every entity of selection theSelection from the set and marks BVH tree for rebuild)#"  , py::arg("theSelection"))
+        .def("Box",
+             (Select3D_BndBox3d (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer  ) const) static_cast<Select3D_BndBox3d (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer  ) const>(&SelectMgr_SensitiveEntitySet::Box),
+             R"#(Returns bounding box of entity with index theIdx)#"  , py::arg("theIndex"))
+        .def("Center",
+             (Standard_Real (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&SelectMgr_SensitiveEntitySet::Center),
+             R"#(Returns geometry center of sensitive entity index theIdx along the given axis theAxis)#"  , py::arg("theIndex"),  py::arg("theAxis"))
+        .def("Swap",
+             (void (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_SensitiveEntitySet::Swap),
+             R"#(Swaps items with indexes theIdx1 and theIdx2)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
+        .def("Size",
+             (Standard_Integer (SelectMgr_SensitiveEntitySet::*)() const) static_cast<Standard_Integer (SelectMgr_SensitiveEntitySet::*)() const>(&SelectMgr_SensitiveEntitySet::Size),
+             R"#(Returns the amount of entities)#" )
+        .def("GetSensitiveById",
+             (const opencascade::handle<SelectMgr_SensitiveEntity> & (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer  ) const) static_cast<const opencascade::handle<SelectMgr_SensitiveEntity> & (SelectMgr_SensitiveEntitySet::*)( const Standard_Integer  ) const>(&SelectMgr_SensitiveEntitySet::GetSensitiveById),
+             R"#(Returns the entity with index theIndex in the set)#"  , py::arg("theIndex"))
+        .def("Sensitives",
+             (const SelectMgr_IndexedMapOfHSensitive & (SelectMgr_SensitiveEntitySet::*)() const) static_cast<const SelectMgr_IndexedMapOfHSensitive & (SelectMgr_SensitiveEntitySet::*)() const>(&SelectMgr_SensitiveEntitySet::Sensitives),
+             R"#(Returns map of entities.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_SensitiveEntitySet::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_SensitiveEntitySet::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_SortCriterion , shared_ptr<SelectMgr_SortCriterion>  >>(m.attr("SelectMgr_SortCriterion"))
+        .def(py::init<  >()  )
+    // methods
+        .def("IsGreater",
+             (bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const) static_cast<bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const>(&SelectMgr_SortCriterion::IsGreater),
+             R"#(Compare with another item.)#"  , py::arg("theOther"))
+        .def("IsLower",
+             (bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const) static_cast<bool (SelectMgr_SortCriterion::*)( const SelectMgr_SortCriterion &  ) const>(&SelectMgr_SortCriterion::IsLower),
+             R"#(Compare with another item.)#"  , py::arg("theOther"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_ToleranceMap , shared_ptr<SelectMgr_ToleranceMap>  >>(m.attr("SelectMgr_ToleranceMap"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Add",
+             (void (SelectMgr_ToleranceMap::*)( const Standard_Integer &  ) ) static_cast<void (SelectMgr_ToleranceMap::*)( const Standard_Integer &  ) >(&SelectMgr_ToleranceMap::Add),
+             R"#(Adds the value given to map, checks if the current tolerance value should be replaced by theTolerance)#"  , py::arg("theTolerance"))
+        .def("Decrement",
+             (void (SelectMgr_ToleranceMap::*)( const Standard_Integer &  ) ) static_cast<void (SelectMgr_ToleranceMap::*)( const Standard_Integer &  ) >(&SelectMgr_ToleranceMap::Decrement),
+             R"#(Decrements a counter of the tolerance given, checks if the current tolerance value should be recalculated)#"  , py::arg("theTolerance"))
+        .def("Tolerance",
+             (Standard_Integer (SelectMgr_ToleranceMap::*)() const) static_cast<Standard_Integer (SelectMgr_ToleranceMap::*)() const>(&SelectMgr_ToleranceMap::Tolerance),
+             R"#(Returns a current tolerance that must be applied)#" )
+        .def("SetCustomTolerance",
+             (void (SelectMgr_ToleranceMap::*)( const Standard_Integer  ) ) static_cast<void (SelectMgr_ToleranceMap::*)( const Standard_Integer  ) >(&SelectMgr_ToleranceMap::SetCustomTolerance),
+             R"#(Sets tolerance to the given one and disables adaptive checks)#"  , py::arg("theTolerance"))
+        .def("ResetDefaults",
+             (void (SelectMgr_ToleranceMap::*)() ) static_cast<void (SelectMgr_ToleranceMap::*)() >(&SelectMgr_ToleranceMap::ResetDefaults),
+             R"#(Unsets a custom tolerance and enables adaptive checks)#" )
+        .def("CustomTolerance",
+             (Standard_Integer (SelectMgr_ToleranceMap::*)() const) static_cast<Standard_Integer (SelectMgr_ToleranceMap::*)() const>(&SelectMgr_ToleranceMap::CustomTolerance),
+             R"#(Returns the value of custom tolerance regardless of it validity)#" )
+        .def("IsCustomTolSet",
+             (Standard_Boolean (SelectMgr_ToleranceMap::*)() const) static_cast<Standard_Boolean (SelectMgr_ToleranceMap::*)() const>(&SelectMgr_ToleranceMap::IsCustomTolSet),
+             R"#(Returns true if custom tolerance value is greater than zero)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_TriangularFrustum , shared_ptr<SelectMgr_TriangularFrustum>  >>(m.attr("SelectMgr_TriangularFrustum"))
+        .def(py::init<  >()  )
+    // methods
         .def("Build",
-             (void (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt2d> &  ) ) static_cast<void (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt2d> &  ) >(&SelectMgr_TriangularFrustumSet::Build),
-             R"#(Meshes polygon bounded by polyline. Than organizes a set of triangular frustums, where each triangle's projection onto near and far view frustum planes is considered as a frustum base)#"  , py::arg("thePoints"))
+             (void (SelectMgr_TriangularFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (SelectMgr_TriangularFrustum::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&SelectMgr_TriangularFrustum::Build),
+             R"#(Creates new triangular frustum with bases of triangles with vertices theP1, theP2 and theP3 projections onto near and far view frustum planes (only for triangular frustums))#"  , py::arg("theP1"),  py::arg("theP2"),  py::arg("theP3"))
         .def("ScaleAndTransform",
-             (opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_TriangularFrustumSet::*)( const Standard_Integer ,  const gp_GTrsf &  ) const) static_cast<opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_TriangularFrustumSet::*)( const Standard_Integer ,  const gp_GTrsf &  ) const>(&SelectMgr_TriangularFrustumSet::ScaleAndTransform),
-             R"#(Returns a copy of the frustum with all sub-volumes transformed according to the matrix given)#"  , py::arg("theScale"),  py::arg("theTrsf"))
+             (opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_TriangularFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const) static_cast<opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_TriangularFrustum::*)( const Standard_Integer ,  const gp_GTrsf &  ) const>(&SelectMgr_TriangularFrustum::ScaleAndTransform),
+             R"#(Returns a copy of the frustum transformed according to the matrix given)#"  , py::arg("theScale"),  py::arg("theTrsf"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
-             R"#(None)#"  , py::arg("theMinPnt"),  py::arg("theMaxPnt"),  py::arg("theDepth"))
+             (Standard_Boolean (SelectMgr_TriangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given axis-aligned box)#"  , py::arg("theMinPnt"),  py::arg("theMaxPnt"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
-             R"#(None)#"  , py::arg("theMinPnt"),  py::arg("theMaxPnt"),  py::arg("theInside"))
+             (Standard_Boolean (SelectMgr_TriangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustum::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) >(&SelectMgr_TriangularFrustum::Overlaps),
+             R"#(Returns true if selecting volume is overlapped by axis-aligned bounding box with minimum corner at point theMinPt and maximum at point theMaxPt)#"  , py::arg("theMinPt"),  py::arg("theMaxPt"),  py::arg("theInside"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
-             R"#(None)#"  , py::arg("thePnt"),  py::arg("theDepth"))
+             (Standard_Boolean (SelectMgr_TriangularFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustum::*)( const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustum::Overlaps),
+             R"#(Intersection test between defined volume and given point)#"  , py::arg("thePnt"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
-             R"#(None)#"  , py::arg("theArrayOfPnts"),  py::arg("theSensType"),  py::arg("theDepth"))
+             (Standard_Boolean (SelectMgr_TriangularFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustum::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given ordered set of points, representing line segments. The test may be considered of interior part or boundary line defined by segments depending on given sensitivity type)#"  , py::arg("theArrayOfPnts"),  py::arg("theSensType"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
-             R"#(None)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theDepth"))
+             (Standard_Boolean (SelectMgr_TriangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustum::Overlaps),
+             R"#(Checks if line segment overlaps selecting frustum)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theDepth"))
         .def("Overlaps",
-             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
-             R"#(None)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("thePnt3"),  py::arg("theSensType"),  py::arg("theDepth"))
+             (Standard_Boolean (SelectMgr_TriangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustum::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustum::Overlaps),
+             R"#(SAT intersection test between defined volume and given triangle. The test may be considered of interior part or boundary line defined by triangle vertices depending on given sensitivity type)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("thePnt3"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("Clear",
+             (void (SelectMgr_TriangularFrustum::*)() ) static_cast<void (SelectMgr_TriangularFrustum::*)() >(&SelectMgr_TriangularFrustum::Clear),
+             R"#(Nullifies the handle to corresponding builder instance to prevent memory leaks)#" )
         .def("GetPlanes",
-             (void (SelectMgr_TriangularFrustumSet::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const) static_cast<void (SelectMgr_TriangularFrustumSet::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const>(&SelectMgr_TriangularFrustumSet::GetPlanes),
+             (void (SelectMgr_TriangularFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const) static_cast<void (SelectMgr_TriangularFrustum::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const>(&SelectMgr_TriangularFrustum::GetPlanes),
              R"#(Stores plane equation coefficients (in the following form: Ax + By + Cz + D = 0) to the given vector)#"  , py::arg("thePlaneEquations"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_TriangularFrustum::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_TriangularFrustum::*)() const>(&SelectMgr_TriangularFrustum::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_TriangularFrustum::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_TriangularFrustum::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_ViewClipRange , shared_ptr<SelectMgr_ViewClipRange>  >>(m.attr("SelectMgr_ViewClipRange"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Set",
+             (void (SelectMgr_ViewClipRange::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (SelectMgr_ViewClipRange::*)( const Standard_Real ,  const Standard_Real  ) >(&SelectMgr_ViewClipRange::Set),
+             R"#(Sets boundaries and validates view clipping range)#"  , py::arg("theDepthMin"),  py::arg("theDepthMax"))
+        .def("IsValid",
+             (Standard_Boolean (SelectMgr_ViewClipRange::*)() const) static_cast<Standard_Boolean (SelectMgr_ViewClipRange::*)() const>(&SelectMgr_ViewClipRange::IsValid),
+             R"#(Returns true if clip range is set and depth of each matched primitive must be tested for satisfying the defined interval)#" )
+        .def("MaxDepth",
+             (Standard_Real (SelectMgr_ViewClipRange::*)() const) static_cast<Standard_Real (SelectMgr_ViewClipRange::*)() const>(&SelectMgr_ViewClipRange::MaxDepth),
+             R"#(Returns the upper bound of valid depth range)#" )
+        .def("MinDepth",
+             (Standard_Real (SelectMgr_ViewClipRange::*)() const) static_cast<Standard_Real (SelectMgr_ViewClipRange::*)() const>(&SelectMgr_ViewClipRange::MinDepth),
+             R"#(Returns the lower bound of valid depth range)#" )
+        .def("Clear",
+             (void (SelectMgr_ViewClipRange::*)() ) static_cast<void (SelectMgr_ViewClipRange::*)() >(&SelectMgr_ViewClipRange::Clear),
+             R"#(Invalidates view clipping range)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<SelectMgr_ViewerSelector ,opencascade::handle<SelectMgr_ViewerSelector>  , Standard_Transient >>(m.attr("SelectMgr_ViewerSelector"))
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (SelectMgr_ViewerSelector::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_ViewerSelector::*)() const>(&SelectMgr_ViewerSelector::DynamicType),
              R"#(None)#" )
@@ -678,188 +1264,22 @@ py::module m = static_cast<py::module>(main_module.attr("SelectMgr"));
         .def("DetectedEntity",
              (const opencascade::handle<SelectBasics_SensitiveEntity> & (SelectMgr_ViewerSelector::*)() const) static_cast<const opencascade::handle<SelectBasics_SensitiveEntity> & (SelectMgr_ViewerSelector::*)() const>(&SelectMgr_ViewerSelector::DetectedEntity),
              R"#(Returns sensitive entity that was detected during the previous run of selection algorithm)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_ViewerSelector::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_ViewerSelector::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<SelectMgr_Filter ,opencascade::handle<SelectMgr_Filter> ,Py_SelectMgr_Filter , Standard_Transient >>(m.attr("SelectMgr_Filter"))
-        .def("IsOk",
-             (Standard_Boolean (SelectMgr_Filter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const) static_cast<Standard_Boolean (SelectMgr_Filter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const>(&SelectMgr_Filter::IsOk),
-             R"#(Indicates that the selected Interactive Object passes the filter. The owner, anObj, can be either direct or user. A direct owner is the corresponding construction element, whereas a user is the compound shape of which the entity forms a part. When an object is detected by the mouse - in AIS, this is done through a context selector - its owner is passed to the filter as an argument. If the object returns Standard_True, it is kept; if not, it is rejected. If you are creating a filter class inheriting this framework, and the daughter class is to be used in an AIS local context, you will need to implement the virtual function ActsOn.)#"  , py::arg("anObj"))
-        .def("ActsOn",
-             (Standard_Boolean (SelectMgr_Filter::*)( const TopAbs_ShapeEnum  ) const) static_cast<Standard_Boolean (SelectMgr_Filter::*)( const TopAbs_ShapeEnum  ) const>(&SelectMgr_Filter::ActsOn),
-             R"#(Returns true in an AIS local context, if this filter operates on a type of subshape defined in a filter class inheriting this framework. This function completes IsOk in an AIS local context.)#"  , py::arg("aStandardMode"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_Filter::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_Filter::*)() const>(&SelectMgr_Filter::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_Filter::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_Filter::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<SelectMgr_SensitiveEntity ,opencascade::handle<SelectMgr_SensitiveEntity>  , Standard_Transient >>(m.attr("SelectMgr_SensitiveEntity"))
-        .def(py::init< const opencascade::handle<SelectBasics_SensitiveEntity> & >()  , py::arg("theEntity") )
-        .def("Clear",
-             (void (SelectMgr_SensitiveEntity::*)() ) static_cast<void (SelectMgr_SensitiveEntity::*)() >(&SelectMgr_SensitiveEntity::Clear),
-             R"#(Clears up all resources and memory)#" )
-        .def("BaseSensitive",
-             (const opencascade::handle<SelectBasics_SensitiveEntity> & (SelectMgr_SensitiveEntity::*)() const) static_cast<const opencascade::handle<SelectBasics_SensitiveEntity> & (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::BaseSensitive),
-             R"#(Returns related instance of SelectBasics class)#" )
-        .def("IsActiveForSelection",
-             (Standard_Boolean (SelectMgr_SensitiveEntity::*)() const) static_cast<Standard_Boolean (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::IsActiveForSelection),
-             R"#(Returns true if this entity belongs to the active selection mode of parent object)#" )
-        .def("ResetSelectionActiveStatus",
-             (void (SelectMgr_SensitiveEntity::*)() const) static_cast<void (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::ResetSelectionActiveStatus),
-             R"#(Marks entity as inactive for selection)#" )
-        .def("SetActiveForSelection",
-             (void (SelectMgr_SensitiveEntity::*)() const) static_cast<void (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::SetActiveForSelection),
-             R"#(Marks entity as active for selection)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_SensitiveEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_SensitiveEntity::*)() const>(&SelectMgr_SensitiveEntity::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_SensitiveEntity::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_SensitiveEntity::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<SelectMgr_SelectionManager ,opencascade::handle<SelectMgr_SelectionManager>  , Standard_Transient >>(m.attr("SelectMgr_SelectionManager"))
-        .def(py::init<  >()  )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_SelectionManager::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_SelectionManager::*)() const>(&SelectMgr_SelectionManager::DynamicType),
-             R"#(None)#" )
-        .def("Add",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Add),
-             R"#(Adds the viewer selector theSelector to the list of known items.)#"  , py::arg("theSelector"))
-        .def("Remove",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Remove),
-             R"#(Removes viewer selector theSelector from the list of known items.)#"  , py::arg("theSelector"))
-        .def("Contains",
-             (Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) const) static_cast<Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_ViewerSelector> &  ) const>(&SelectMgr_SelectionManager::Contains),
-             R"#(Returns true if the manager contains the viewer selector theSelector in a list of known items.)#"  , py::arg("theSelector"))
-        .def("Contains",
-             (Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const) static_cast<Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) const>(&SelectMgr_SelectionManager::Contains),
-             R"#(Returns true if the manager contains the selectable object theObject.)#"  , py::arg("theObject"))
-        .def("Load",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::Load),
-             R"#(Loads and computes selection mode theMode (if it is not equal to -1) in global context and adds selectable object to BVH tree. If the object theObject has an already calculated selection with mode theMode and it was removed, the selection will be recalculated.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1))
-        .def("Load",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::Load),
-             R"#(Loads and computes selection mode theMode (if it is not equal to -1) and adds selectable object to BVH tree. Does not perform check of existence of theObject in global context before addition, but adds theSelector to local context.)#"  , py::arg("theObject"),  py::arg("theSelector"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1))
-        .def("Remove",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_SelectionManager::Remove),
-             R"#(Removes selectable object theObject from all viewer selectors it was added to previously, removes it from all contexts and clears all computed selections of theObject.)#"  , py::arg("theObject"))
-        .def("Remove",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Remove),
-             R"#(Removes theObject from theSelector, does not clear selections and unbind theObject from context maps.)#"  , py::arg("theObject"),  py::arg("theSelector"))
-        .def("Activate",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Activate),
-             R"#(Activates the selection mode theMode in the selector theSelector for the selectable object anObject. By default, theMode is equal to 0. If theSelector is set to default (NULL), the selection with the mode theMode will be activated in all the viewers available.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(0),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
-        .def("Deactivate",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::Deactivate),
-             R"#(Deactivates mode theMode of theObject in theSelector. If theMode value is set to default (-1), all active selection modes will be deactivated. Likewise, if theSelector value is set to default (NULL), theMode will be deactivated in all viewer selectors.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
-        .def("IsActivated",
-             (Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) const) static_cast<Standard_Boolean (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) const>(&SelectMgr_SelectionManager::IsActivated),
-             R"#(Returns true if the selection with theMode is active for the selectable object theObject and selector theSelector. If all parameters are set to default values, it returns it there is any active selection in any known viewer selector for object theObject.)#"  , py::arg("theObject"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
-        .def("ClearSelectionStructures",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::ClearSelectionStructures),
-             R"#(Removes sensitive entities from all viewer selectors after method Clear() was called to the selection they belonged to or it was recomputed somehow.)#"  , py::arg("theObj"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
-        .def("RestoreSelectionStructures",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const opencascade::handle<SelectMgr_ViewerSelector> &  ) >(&SelectMgr_SelectionManager::RestoreSelectionStructures),
-             R"#(Re-adds newly calculated sensitive entities of recomputed selection defined by mode theMode to all viewer selectors contained that selection.)#"  , py::arg("theObj"),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1),  py::arg("theSelector")=static_cast<const opencascade::handle<SelectMgr_ViewerSelector> &>(Handle ( SelectMgr_ViewerSelector ) ( )))
-        .def("RecomputeSelection",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::RecomputeSelection),
-             R"#(Recomputes activated selections of theObject for all known viewer selectors according to theMode specified. If theMode is set to default (-1), then all activated selections will be recomputed. If theIsForce is set to true, then selection mode theMode for object theObject will be recomputed regardless of its activation status.)#"  , py::arg("theObject"),  py::arg("theIsForce")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theMode")=static_cast<const Standard_Integer>(- 1))
-        .def("Update",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Boolean  ) >(&SelectMgr_SelectionManager::Update),
-             R"#(Updates all selections of theObject in all viewer selectors according to its current update status. If theIsForce is set to true, the call is equal to recomputation.)#"  , py::arg("theObject"),  py::arg("theIsForce")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("Update",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Boolean  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const opencascade::handle<SelectMgr_ViewerSelector> & ,  const Standard_Boolean  ) >(&SelectMgr_SelectionManager::Update),
-             R"#(Updates all selections of theObject in specified viewer selector according to its current update status. If theIsForce is set to true, the call is equal to recomputation.)#"  , py::arg("theObject"),  py::arg("theSelector"),  py::arg("theIsForce")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("SetUpdateMode",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const SelectMgr_TypeOfUpdate  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const SelectMgr_TypeOfUpdate  ) >(&SelectMgr_SelectionManager::SetUpdateMode),
-             R"#(Sets type of update of all selections of theObject to the given theType.)#"  , py::arg("theObject"),  py::arg("theType"))
-        .def("SetUpdateMode",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const SelectMgr_TypeOfUpdate  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const SelectMgr_TypeOfUpdate  ) >(&SelectMgr_SelectionManager::SetUpdateMode),
-             R"#(Sets type of update of selection with theMode of theObject to the given theType.)#"  , py::arg("theObject"),  py::arg("theMode"),  py::arg("theType"))
-        .def("SetSelectionSensitivity",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> & ,  const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_SelectionManager::SetSelectionSensitivity),
-             R"#(Allows to manage sensitivity of a particular selection of interactive object theObject and changes previous sensitivity value of all sensitive entities in selection with theMode to the given theNewSensitivity.)#"  , py::arg("theObject"),  py::arg("theMode"),  py::arg("theNewSens"))
-        .def("UpdateSelection",
-             (void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) ) static_cast<void (SelectMgr_SelectionManager::*)( const opencascade::handle<SelectMgr_SelectableObject> &  ) >(&SelectMgr_SelectionManager::UpdateSelection),
-             R"#(Re-adds selectable object in BVHs in all viewer selectors.)#"  , py::arg("theObj"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_SelectionManager::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_SelectionManager::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<SelectMgr_FrustumBuilder ,opencascade::handle<SelectMgr_FrustumBuilder>  , Standard_Transient >>(m.attr("SelectMgr_FrustumBuilder"))
-        .def(py::init<  >()  )
-        .def("SetWorldViewMatrix",
-             (void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) >(&SelectMgr_FrustumBuilder::SetWorldViewMatrix),
-             R"#(Stores current world view transformation matrix)#"  , py::arg("theWorldViewMatrix"))
-        .def("WorldViewMatrix",
-             (const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::WorldViewMatrix),
-             R"#(Returns current world view transformation matrix)#" )
-        .def("SetProjectionMatrix",
-             (void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)(  const NCollection_Mat4<Standard_Real> &  ) >(&SelectMgr_FrustumBuilder::SetProjectionMatrix),
-             R"#(Stores current projection matrix)#"  , py::arg("theProjection"))
-        .def("ProjectionMatrix",
-             (const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const) static_cast<const Graphic3d_Mat4d & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::ProjectionMatrix),
-             R"#(Returns current projection matrix)#" )
-        .def("SetWorldViewProjState",
-             (void (SelectMgr_FrustumBuilder::*)( const Graphic3d_WorldViewProjState &  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)( const Graphic3d_WorldViewProjState &  ) >(&SelectMgr_FrustumBuilder::SetWorldViewProjState),
-             R"#(Stores current world view projection matrix state for the orientation and projection matrices)#"  , py::arg("theState"))
-        .def("WorldViewProjState",
-             (const Graphic3d_WorldViewProjState & (SelectMgr_FrustumBuilder::*)() const) static_cast<const Graphic3d_WorldViewProjState & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::WorldViewProjState),
-             R"#(Returns current world view projection state)#" )
-        .def("SetWindowSize",
-             (void (SelectMgr_FrustumBuilder::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)( const Standard_Integer ,  const Standard_Integer  ) >(&SelectMgr_FrustumBuilder::SetWindowSize),
-             R"#(Stores current window width and height)#"  , py::arg("theWidth"),  py::arg("theHeight"))
-        .def("SetViewport",
-             (void (SelectMgr_FrustumBuilder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (SelectMgr_FrustumBuilder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&SelectMgr_FrustumBuilder::SetViewport),
-             R"#(Stores current viewport coordinates)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theWidth"),  py::arg("theHeight"))
-        .def("InvalidateViewport",
-             (void (SelectMgr_FrustumBuilder::*)() ) static_cast<void (SelectMgr_FrustumBuilder::*)() >(&SelectMgr_FrustumBuilder::InvalidateViewport),
-             R"#(None)#" )
-        .def("WindowSize",
-             (void (SelectMgr_FrustumBuilder::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (SelectMgr_FrustumBuilder::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&SelectMgr_FrustumBuilder::WindowSize),
-             R"#(None)#"  , py::arg("theWidth"),  py::arg("theHeight"))
-        .def("SignedPlanePntDist",
-             (Standard_Real (SelectMgr_FrustumBuilder::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> &  ) const) static_cast<Standard_Real (SelectMgr_FrustumBuilder::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> &  ) const>(&SelectMgr_FrustumBuilder::SignedPlanePntDist),
-             R"#(Calculates signed distance between plane with equation theEq and point thePnt)#"  , py::arg("theEq"),  py::arg("thePnt"))
-        .def("ProjectPntOnViewPlane",
-             (gp_Pnt (SelectMgr_FrustumBuilder::*)( const Standard_Real & ,  const Standard_Real & ,  const Standard_Real &  ) const) static_cast<gp_Pnt (SelectMgr_FrustumBuilder::*)( const Standard_Real & ,  const Standard_Real & ,  const Standard_Real &  ) const>(&SelectMgr_FrustumBuilder::ProjectPntOnViewPlane),
-             R"#(Projects 2d screen point onto view frustum plane: theZ = 0 - near plane, theZ = 1 - far plane)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theZ"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_FrustumBuilder::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_FrustumBuilder::*)() const>(&SelectMgr_FrustumBuilder::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_FrustumBuilder::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_FrustumBuilder::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<SelectMgr_CompositionFilter ,opencascade::handle<SelectMgr_CompositionFilter> ,Py_SelectMgr_CompositionFilter , SelectMgr_Filter >>(m.attr("SelectMgr_CompositionFilter"))
+    // methods
         .def("Add",
              (void (SelectMgr_CompositionFilter::*)( const opencascade::handle<SelectMgr_Filter> &  ) ) static_cast<void (SelectMgr_CompositionFilter::*)( const opencascade::handle<SelectMgr_Filter> &  ) >(&SelectMgr_CompositionFilter::Add),
              R"#(Adds the filter afilter to a filter object created by a filter class inheriting this framework.)#"  , py::arg("afilter"))
@@ -887,17 +1307,84 @@ py::module m = static_cast<py::module>(main_module.attr("SelectMgr"));
         .def("StoredFilters",
              (const SelectMgr_ListOfFilter & (SelectMgr_CompositionFilter::*)() const) static_cast<const SelectMgr_ListOfFilter & (SelectMgr_CompositionFilter::*)() const>(&SelectMgr_CompositionFilter::StoredFilters),
              R"#(Returns the list of stored filters from this framework.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_CompositionFilter::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_CompositionFilter::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_TriangularFrustumSet ,opencascade::handle<SelectMgr_TriangularFrustumSet>  , SelectMgr_BaseFrustum >>(m.attr("SelectMgr_TriangularFrustumSet"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Build",
+             (void (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt2d> &  ) ) static_cast<void (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt2d> &  ) >(&SelectMgr_TriangularFrustumSet::Build),
+             R"#(Meshes polygon bounded by polyline. Than organizes a set of triangular frustums, where each triangle's projection onto near and far view frustum planes is considered as a frustum base)#"  , py::arg("thePoints"))
+        .def("ScaleAndTransform",
+             (opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_TriangularFrustumSet::*)( const Standard_Integer ,  const gp_GTrsf &  ) const) static_cast<opencascade::handle<SelectMgr_BaseFrustum> (SelectMgr_TriangularFrustumSet::*)( const Standard_Integer ,  const gp_GTrsf &  ) const>(&SelectMgr_TriangularFrustumSet::ScaleAndTransform),
+             R"#(Returns a copy of the frustum with all sub-volumes transformed according to the matrix given)#"  , py::arg("theScale"),  py::arg("theTrsf"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
+             R"#(None)#"  , py::arg("theMinPnt"),  py::arg("theMaxPnt"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Vec3<Standard_Real> & ,   const NCollection_Vec3<Standard_Real> & ,  Standard_Boolean *  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
+             R"#(None)#"  , py::arg("theMinPnt"),  py::arg("theMaxPnt"),  py::arg("theInside"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
+             R"#(None)#"  , py::arg("thePnt"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)(  const NCollection_Array1<gp_Pnt> & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
+             R"#(None)#"  , py::arg("theArrayOfPnts"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
+             R"#(None)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theDepth"))
+        .def("Overlaps",
+             (Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) ) static_cast<Standard_Boolean (SelectMgr_TriangularFrustumSet::*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt & ,  Select3D_TypeOfSensitivity ,  Standard_Real &  ) >(&SelectMgr_TriangularFrustumSet::Overlaps),
+             R"#(None)#"  , py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("thePnt3"),  py::arg("theSensType"),  py::arg("theDepth"))
+        .def("GetPlanes",
+             (void (SelectMgr_TriangularFrustumSet::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const) static_cast<void (SelectMgr_TriangularFrustumSet::*)( NCollection_Vector<SelectMgr_Vec4> &  ) const>(&SelectMgr_TriangularFrustumSet::GetPlanes),
+             R"#(Stores plane equation coefficients (in the following form: Ax + By + Cz + D = 0) to the given vector)#"  , py::arg("thePlaneEquations"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<SelectMgr_AndFilter ,opencascade::handle<SelectMgr_AndFilter>  , SelectMgr_CompositionFilter >>(m.attr("SelectMgr_AndFilter"))
+        .def(py::init<  >()  )
+    // methods
+        .def("IsOk",
+             (Standard_Boolean (SelectMgr_AndFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const) static_cast<Standard_Boolean (SelectMgr_AndFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const>(&SelectMgr_AndFilter::IsOk),
+             R"#(None)#"  , py::arg("anobj"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (SelectMgr_AndFilter::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_AndFilter::*)() const>(&SelectMgr_AndFilter::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_AndFilter::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_AndFilter::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<SelectMgr_OrFilter ,opencascade::handle<SelectMgr_OrFilter>  , SelectMgr_CompositionFilter >>(m.attr("SelectMgr_OrFilter"))
         .def(py::init<  >()  )
+    // methods
         .def("IsOk",
              (Standard_Boolean (SelectMgr_OrFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const) static_cast<Standard_Boolean (SelectMgr_OrFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const>(&SelectMgr_OrFilter::IsOk),
              R"#(None)#"  , py::arg("anobj"))
@@ -907,120 +1394,71 @@ py::module m = static_cast<py::module>(main_module.attr("SelectMgr"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (SelectMgr_OrFilter::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_OrFilter::*)() const>(&SelectMgr_OrFilter::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_OrFilter::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_OrFilter::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<SelectMgr_AndFilter ,opencascade::handle<SelectMgr_AndFilter>  , SelectMgr_CompositionFilter >>(m.attr("SelectMgr_AndFilter"))
-        .def(py::init<  >()  )
-        .def("IsOk",
-             (Standard_Boolean (SelectMgr_AndFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const) static_cast<Standard_Boolean (SelectMgr_AndFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const>(&SelectMgr_AndFilter::IsOk),
-             R"#(None)#"  , py::arg("anobj"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (SelectMgr_AndFilter::*)() const) static_cast<const opencascade::handle<Standard_Type> & (SelectMgr_AndFilter::*)() const>(&SelectMgr_AndFilter::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&SelectMgr_AndFilter::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&SelectMgr_AndFilter::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/SelectMgr_RectangularFrustum.hxx
-// ./opencascade/SelectMgr_SOPtr.hxx
-// ./opencascade/SelectMgr_TypeOfBVHUpdate.hxx
-// ./opencascade/SelectMgr_OrFilter.hxx
-// ./opencascade/SelectMgr_ViewClipRange.hxx
-// ./opencascade/SelectMgr_ViewerSelector.hxx
-// ./opencascade/SelectMgr_IndexedMapOfOwner.hxx
 // ./opencascade/SelectMgr_SequenceOfFilter.hxx
-// ./opencascade/SelectMgr_Selection.hxx
-// ./opencascade/SelectMgr_StateOfSelection.hxx
+// ./opencascade/SelectMgr_IndexedDataMapOfOwnerCriterion.hxx
 // ./opencascade/SelectMgr_SensitiveEntity.hxx
-// ./opencascade/SelectMgr_SortCriterion.hxx
+// ./opencascade/SelectMgr_EntityOwner.hxx
+// ./opencascade/SelectMgr_DataMapOfObjectSelectors.hxx
+// ./opencascade/SelectMgr_DataMapIteratorOfDataMapOfObjectSelectors.hxx
+// ./opencascade/SelectMgr_Filter.hxx
+// ./opencascade/SelectMgr_SequenceOfSelector.hxx
 // ./opencascade/SelectMgr_TypeOfUpdate.hxx
+// ./opencascade/SelectMgr_Selection.hxx
 // ./opencascade/SelectMgr_SelectingVolumeManager.hxx
 // ./opencascade/SelectMgr_ListIteratorOfListOfFilter.hxx
-// ./opencascade/SelectMgr_Frustum.hxx
-// ./opencascade/SelectMgr_SelectableObject.hxx
-// ./opencascade/SelectMgr_PickingStrategy.hxx
-// ./opencascade/SelectMgr_FrustumBuilder.hxx
-// ./opencascade/SelectMgr_EntityOwner.hxx
-// ./opencascade/SelectMgr_SequenceOfSelection.hxx
-// ./opencascade/SelectMgr_Filter.hxx
-// ./opencascade/SelectMgr_ToleranceMap.hxx
-// ./opencascade/SelectMgr_DataMapOfObjectSelectors.hxx
 // ./opencascade/SelectMgr_SelectionManager.hxx
-// ./opencascade/SelectMgr_SequenceOfSelector.hxx
-// ./opencascade/SelectMgr_ListOfFilter.hxx
-// ./opencascade/SelectMgr_VectorTypes.hxx
-// ./opencascade/SelectMgr_BaseFrustum.hxx
-// ./opencascade/SelectMgr_IndexedDataMapOfOwnerCriterion.hxx
-// ./opencascade/SelectMgr_DataMapIteratorOfDataMapOfObjectSelectors.hxx
-// ./opencascade/SelectMgr_SequenceOfOwner.hxx
-// ./opencascade/SelectMgr_TriangularFrustum.hxx
-// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
+// ./opencascade/SelectMgr_StateOfSelection.hxx
 // ./opencascade/SelectMgr_CompositionFilter.hxx
-// ./opencascade/SelectMgr_SensitiveEntitySet.hxx
 // ./opencascade/SelectMgr_SelectableObjectSet.hxx
+// ./opencascade/SelectMgr_ViewClipRange.hxx
+// ./opencascade/SelectMgr_SelectableObject.hxx
+// ./opencascade/SelectMgr_FrustumBuilder.hxx
+// ./opencascade/SelectMgr_ViewerSelector.hxx
+// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
+// ./opencascade/SelectMgr_IndexedMapOfOwner.hxx
+// ./opencascade/SelectMgr_RectangularFrustum.hxx
+// ./opencascade/SelectMgr_TypeOfBVHUpdate.hxx
+// ./opencascade/SelectMgr_ToleranceMap.hxx
+// ./opencascade/SelectMgr_SortCriterion.hxx
+// ./opencascade/SelectMgr_SequenceOfOwner.hxx
+// ./opencascade/SelectMgr_BaseFrustum.hxx
+// ./opencascade/SelectMgr_SensitiveEntitySet.hxx
+// ./opencascade/SelectMgr_TriangularFrustum.hxx
 // ./opencascade/SelectMgr_AndFilter.hxx
+// ./opencascade/SelectMgr_ListOfFilter.hxx
+// ./opencascade/SelectMgr_Frustum.hxx
+// ./opencascade/SelectMgr_PickingStrategy.hxx
+// ./opencascade/SelectMgr_OrFilter.hxx
+// ./opencascade/SelectMgr_VectorTypes.hxx
+// ./opencascade/SelectMgr_SequenceOfSelection.hxx
+// ./opencascade/SelectMgr_SOPtr.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/SelectMgr_RectangularFrustum.hxx
-// ./opencascade/SelectMgr_SOPtr.hxx
-// ./opencascade/SelectMgr_TypeOfBVHUpdate.hxx
-// ./opencascade/SelectMgr_OrFilter.hxx
-// ./opencascade/SelectMgr_ViewClipRange.hxx
-// ./opencascade/SelectMgr_ViewerSelector.hxx
-// ./opencascade/SelectMgr_IndexedMapOfOwner.hxx
-// ./opencascade/SelectMgr_SequenceOfFilter.hxx
     register_template_NCollection_Sequence<opencascade::handle<SelectMgr_Filter> >(m,"SelectMgr_SequenceOfFilter");  
-// ./opencascade/SelectMgr_Selection.hxx
-// ./opencascade/SelectMgr_StateOfSelection.hxx
-// ./opencascade/SelectMgr_SensitiveEntity.hxx
-// ./opencascade/SelectMgr_SortCriterion.hxx
-// ./opencascade/SelectMgr_TypeOfUpdate.hxx
-// ./opencascade/SelectMgr_SelectingVolumeManager.hxx
-// ./opencascade/SelectMgr_ListIteratorOfListOfFilter.hxx
-// ./opencascade/SelectMgr_Frustum.hxx
-// ./opencascade/SelectMgr_SelectableObject.hxx
-// ./opencascade/SelectMgr_PickingStrategy.hxx
-// ./opencascade/SelectMgr_FrustumBuilder.hxx
-// ./opencascade/SelectMgr_EntityOwner.hxx
-// ./opencascade/SelectMgr_SequenceOfSelection.hxx
-    register_template_NCollection_Sequence<opencascade::handle<SelectMgr_Selection> >(m,"SelectMgr_SequenceOfSelection");  
-// ./opencascade/SelectMgr_Filter.hxx
-// ./opencascade/SelectMgr_ToleranceMap.hxx
-// ./opencascade/SelectMgr_DataMapOfObjectSelectors.hxx
-    register_template_NCollection_DataMap<opencascade::handle<SelectMgr_SelectableObject>, SelectMgr_SequenceOfSelector, TColStd_MapTransientHasher>(m,"SelectMgr_DataMapOfObjectSelectors");  
-// ./opencascade/SelectMgr_SelectionManager.hxx
-// ./opencascade/SelectMgr_SequenceOfSelector.hxx
-    register_template_NCollection_Sequence<opencascade::handle<SelectMgr_ViewerSelector> >(m,"SelectMgr_SequenceOfSelector");  
-// ./opencascade/SelectMgr_ListOfFilter.hxx
-    register_template_NCollection_List<opencascade::handle<SelectMgr_Filter> >(m,"SelectMgr_ListOfFilter");  
-// ./opencascade/SelectMgr_VectorTypes.hxx
-// ./opencascade/SelectMgr_BaseFrustum.hxx
-// ./opencascade/SelectMgr_IndexedDataMapOfOwnerCriterion.hxx
     register_template_NCollection_IndexedDataMap<opencascade::handle<SelectBasics_EntityOwner>, SelectMgr_SortCriterion, TColStd_MapTransientHasher>(m,"SelectMgr_IndexedDataMapOfOwnerCriterion");  
-// ./opencascade/SelectMgr_DataMapIteratorOfDataMapOfObjectSelectors.hxx
-// ./opencascade/SelectMgr_SequenceOfOwner.hxx
-    register_template_NCollection_Sequence<opencascade::handle<SelectMgr_EntityOwner> >(m,"SelectMgr_SequenceOfOwner");  
-// ./opencascade/SelectMgr_TriangularFrustum.hxx
-// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
+    register_template_NCollection_DataMap<opencascade::handle<SelectMgr_SelectableObject>, SelectMgr_SequenceOfSelector, TColStd_MapTransientHasher>(m,"SelectMgr_DataMapOfObjectSelectors");  
+    register_template_NCollection_Sequence<opencascade::handle<SelectMgr_ViewerSelector> >(m,"SelectMgr_SequenceOfSelector");  
     register_template_NCollection_List<opencascade::handle<SelectMgr_TriangularFrustum> >(m,"SelectMgr_TriangFrustums");  
-// ./opencascade/SelectMgr_CompositionFilter.hxx
-// ./opencascade/SelectMgr_SensitiveEntitySet.hxx
-// ./opencascade/SelectMgr_SelectableObjectSet.hxx
-// ./opencascade/SelectMgr_AndFilter.hxx
+    register_template_NCollection_Sequence<opencascade::handle<SelectMgr_EntityOwner> >(m,"SelectMgr_SequenceOfOwner");  
+    register_template_NCollection_List<opencascade::handle<SelectMgr_Filter> >(m,"SelectMgr_ListOfFilter");  
+    register_template_NCollection_Vec3<Standard_Real>(m,"SelectMgr_Vec3");  
+    register_template_NCollection_Sequence<opencascade::handle<SelectMgr_Selection> >(m,"SelectMgr_SequenceOfSelection");  
 
 
 // exceptions

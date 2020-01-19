@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -39,7 +42,6 @@ py::module m = static_cast<py::module>(main_module.attr("InterfaceGraphic"));
 // operators
 
 // register typdefs
-// ./opencascade/InterfaceGraphic.hxx
 
 
 // exceptions

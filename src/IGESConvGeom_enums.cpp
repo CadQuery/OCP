@@ -11,17 +11,17 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <IGESGeom_CopiousData.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Ax1.hxx>
-#include <IGESGeom_TransformationMatrix.hxx>
 #include <IGESGeom_SplineCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <IGESGeom_SplineSurface.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <IGESConvGeom_GeomBuilder.hxx>
+#include <IGESGeom_CopiousData.hxx>
+#include <gp_Ax3.hxx>
+#include <gp_Ax2.hxx>
+#include <gp_Ax1.hxx>
+#include <IGESGeom_TransformationMatrix.hxx>
 
 // module includes
 #include <IGESConvGeom.hxx>
@@ -47,13 +47,11 @@ py::module m = main_module.def_submodule("IGESConvGeom", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<IGESConvGeom_GeomBuilder ,std::unique_ptr<IGESConvGeom_GeomBuilder>  >(m,"IGESConvGeom_GeomBuilder",R"#(This class provides some useful basic tools to build IGESGeom curves, especially : define a curve in a plane in 3D space (ex. Circular or Conic arc, or Copious Data defined in 2D) make a CopiousData from a list of points/vectors)#");
-    py::class_<IGESConvGeom ,std::unique_ptr<IGESConvGeom>  >(m,"IGESConvGeom",R"#(This package is intended to gather geometric conversion which are not immediate but can be used for several purposes : mainly, standard conversion to and from CasCade geometric and topologic data, and adaptations of IGES files as required (as replacing Spline entities to BSpline equivalents).)#");
-
 // pre-register typdefs
-// ./opencascade/IGESConvGeom_GeomBuilder.hxx
-// ./opencascade/IGESConvGeom.hxx
+
+// classes forward declarations only
+    py::class_<IGESConvGeom , shared_ptr<IGESConvGeom>  >(m,"IGESConvGeom",R"#(This package is intended to gather geometric conversion which are not immediate but can be used for several purposes : mainly, standard conversion to and from CasCade geometric and topologic data, and adaptations of IGES files as required (as replacing Spline entities to BSpline equivalents).)#");
+    py::class_<IGESConvGeom_GeomBuilder , shared_ptr<IGESConvGeom_GeomBuilder>  >(m,"IGESConvGeom_GeomBuilder",R"#(This class provides some useful basic tools to build IGESGeom curves, especially : define a curve in a plane in 3D space (ex. Circular or Conic arc, or Copious Data defined in 2D) make a CopiousData from a list of points/vectors)#");
 
 };
 

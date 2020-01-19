@@ -61,17 +61,12 @@ py::module m = main_module.def_submodule("BSplCLib", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<BSplCLib_Cache ,opencascade::handle<BSplCLib_Cache>  , Standard_Transient >(m,"BSplCLib_Cache",R"#(A cache class for Bezier and B-spline curves.A cache class for Bezier and B-spline curves.)#");
-    py::class_<BSplCLib_EvaluatorFunction ,std::unique_ptr<BSplCLib_EvaluatorFunction> ,Py_BSplCLib_EvaluatorFunction >(m,"BSplCLib_EvaluatorFunction",R"#(None)#");
-    py::class_<BSplCLib ,std::unique_ptr<BSplCLib>  >(m,"BSplCLib",R"#(BSplCLib B-spline curve Library.)#");
-
 // pre-register typdefs
-// ./opencascade/BSplCLib_MultDistribution.hxx
-// ./opencascade/BSplCLib_Cache.hxx
-// ./opencascade/BSplCLib.hxx
-// ./opencascade/BSplCLib_KnotDistribution.hxx
-// ./opencascade/BSplCLib_EvaluatorFunction.hxx
+
+// classes forward declarations only
+    py::class_<BSplCLib , shared_ptr<BSplCLib>  >(m,"BSplCLib",R"#(BSplCLib B-spline curve Library.)#");
+    py::class_<BSplCLib_Cache ,opencascade::handle<BSplCLib_Cache>  , Standard_Transient >(m,"BSplCLib_Cache",R"#(A cache class for Bezier and B-spline curves.A cache class for Bezier and B-spline curves.)#");
+    py::class_<BSplCLib_EvaluatorFunction , shared_ptr<BSplCLib_EvaluatorFunction> ,Py_BSplCLib_EvaluatorFunction >(m,"BSplCLib_EvaluatorFunction",R"#(None)#");
 
 };
 

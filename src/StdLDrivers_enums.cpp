@@ -11,11 +11,11 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <StdObjMgt_MapOfInstantiators.hxx>
-#include <StdObjMgt_Persistent.hxx>
 #include <Standard_GUID.hxx>
 #include <StdObjMgt_MapOfInstantiators.hxx>
 #include <TDocStd_Application.hxx>
+#include <StdObjMgt_MapOfInstantiators.hxx>
+#include <StdObjMgt_Persistent.hxx>
 
 // module includes
 #include <StdLDrivers.hxx>
@@ -42,13 +42,11 @@ py::module m = main_module.def_submodule("StdLDrivers", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<StdLDrivers_DocumentRetrievalDriver ,opencascade::handle<StdLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >(m,"StdLDrivers_DocumentRetrievalDriver",R"#(retrieval driver of a Part document)#");
-    py::class_<StdLDrivers ,std::unique_ptr<StdLDrivers>  >(m,"StdLDrivers",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/StdLDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/StdLDrivers.hxx
+
+// classes forward declarations only
+    py::class_<StdLDrivers , shared_ptr<StdLDrivers>  >(m,"StdLDrivers",R"#(None)#");
+    py::class_<StdLDrivers_DocumentRetrievalDriver ,opencascade::handle<StdLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >(m,"StdLDrivers_DocumentRetrievalDriver",R"#(retrieval driver of a Part document)#");
 
 };
 

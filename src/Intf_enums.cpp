@@ -11,15 +11,6 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <gp_Pnt.hxx>
-#include <gp_XYZ.hxx>
-#include <Intf_Polygon2d.hxx>
-#include <Intf_SectionPoint.hxx>
-#include <Intf_SectionLine.hxx>
-#include <Intf_TangentZone.hxx>
-#include <Intf_Interference.hxx>
-#include <Intf_Tool.hxx>
-#include <Intf_InterferencePolygon2d.hxx>
 #include <Standard_OutOfRange.hxx>
 #include <gp_Lin2d.hxx>
 #include <Bnd_Box2d.hxx>
@@ -30,6 +21,15 @@ namespace py = pybind11;
 #include <gp_Hypr.hxx>
 #include <gp_Parab.hxx>
 #include <Intf_Polygon2d.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_XYZ.hxx>
+#include <Intf_Polygon2d.hxx>
+#include <Intf_SectionPoint.hxx>
+#include <Intf_SectionLine.hxx>
+#include <Intf_TangentZone.hxx>
+#include <Intf_Interference.hxx>
+#include <Intf_Tool.hxx>
+#include <Intf_InterferencePolygon2d.hxx>
 
 // module includes
 #include <Intf.hxx>
@@ -49,11 +49,11 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/Intf_SeqOfSectionLine.hxx
 #include "NCollection.hxx"
-// ./opencascade/Intf_Array1OfLin.hxx
-#include "NCollection.hxx"
 // ./opencascade/Intf_SeqOfTangentZone.hxx
 #include "NCollection.hxx"
 // ./opencascade/Intf_SeqOfSectionPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/Intf_Array1OfLin.hxx
 #include "NCollection.hxx"
 
 
@@ -95,34 +95,21 @@ py::module m = main_module.def_submodule("Intf", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<Intf_Interference ,std::unique_ptr<Intf_Interference, py::nodelete>  >(m,"Intf_Interference",R"#(Describes the Interference computation result between polygon2d or polygon3d or polyhedron (as three sequences of points of intersection, polylines of intersection and zones de tangence).)#");
-    py::class_<Intf_SectionPoint ,std::unique_ptr<Intf_SectionPoint>  >(m,"Intf_SectionPoint",R"#(Describes an intersection point between polygons and polyedra.)#");
-    py::class_<Intf_Tool ,std::unique_ptr<Intf_Tool>  >(m,"Intf_Tool",R"#(Provides services to create box for infinites lines in a given contexte.)#");
-    py::class_<Intf_Polygon2d ,std::unique_ptr<Intf_Polygon2d> ,Py_Intf_Polygon2d >(m,"Intf_Polygon2d",R"#(Describes the necessary polygon information to compute the interferences.)#");
-    py::class_<Intf_TangentZone ,std::unique_ptr<Intf_TangentZone>  >(m,"Intf_TangentZone",R"#(Describes a zone of tangence between polygons or polyhedra as a sequence of points of intersection.)#");
-    py::class_<Intf ,std::unique_ptr<Intf>  >(m,"Intf",R"#(Interference computation between polygons, lines and polyhedra with only triangular facets. These objects are polygonal representations of complex curves and triangulated representations of complex surfaces.)#");
-    py::class_<Intf_InterferencePolygon2d ,std::unique_ptr<Intf_InterferencePolygon2d>  , Intf_Interference >(m,"Intf_InterferencePolygon2d",R"#(Computes the interference between two polygons or the self intersection of a polygon in two dimensions.)#");
-    py::class_<Intf_SectionLine ,std::unique_ptr<Intf_SectionLine>  >(m,"Intf_SectionLine",R"#(Describe a polyline of intersection between two polyhedra as a sequence of points of intersection.)#");
-
 // pre-register typdefs
-// ./opencascade/Intf_SeqOfSectionLine.hxx
     preregister_template_NCollection_Sequence<Intf_SectionLine>(m,"Intf_SeqOfSectionLine");  
-// ./opencascade/Intf_SectionPoint.hxx
-// ./opencascade/Intf.hxx
-// ./opencascade/Intf_Array1OfLin.hxx
-    preregister_template_NCollection_Array1<gp_Lin>(m,"Intf_Array1OfLin");  
-// ./opencascade/Intf_SeqOfTangentZone.hxx
     preregister_template_NCollection_Sequence<Intf_TangentZone>(m,"Intf_SeqOfTangentZone");  
-// ./opencascade/Intf_PIType.hxx
-// ./opencascade/Intf_Tool.hxx
-// ./opencascade/Intf_SectionLine.hxx
-// ./opencascade/Intf_Polygon2d.hxx
-// ./opencascade/Intf_InterferencePolygon2d.hxx
-// ./opencascade/Intf_SeqOfSectionPoint.hxx
     preregister_template_NCollection_Sequence<Intf_SectionPoint>(m,"Intf_SeqOfSectionPoint");  
-// ./opencascade/Intf_Interference.hxx
-// ./opencascade/Intf_TangentZone.hxx
+    preregister_template_NCollection_Array1<gp_Lin>(m,"Intf_Array1OfLin");  
+
+// classes forward declarations only
+    py::class_<Intf , shared_ptr<Intf>  >(m,"Intf",R"#(Interference computation between polygons, lines and polyhedra with only triangular facets. These objects are polygonal representations of complex curves and triangulated representations of complex surfaces.)#");
+    py::class_<Intf_Interference , shared_ptr_nodelete<Intf_Interference>  >(m,"Intf_Interference",R"#(Describes the Interference computation result between polygon2d or polygon3d or polyhedron (as three sequences of points of intersection, polylines of intersection and zones de tangence).)#");
+    py::class_<Intf_Polygon2d , shared_ptr<Intf_Polygon2d> ,Py_Intf_Polygon2d >(m,"Intf_Polygon2d",R"#(Describes the necessary polygon information to compute the interferences.)#");
+    py::class_<Intf_SectionLine , shared_ptr<Intf_SectionLine>  >(m,"Intf_SectionLine",R"#(Describe a polyline of intersection between two polyhedra as a sequence of points of intersection.)#");
+    py::class_<Intf_SectionPoint , shared_ptr<Intf_SectionPoint>  >(m,"Intf_SectionPoint",R"#(Describes an intersection point between polygons and polyedra.)#");
+    py::class_<Intf_TangentZone , shared_ptr<Intf_TangentZone>  >(m,"Intf_TangentZone",R"#(Describes a zone of tangence between polygons or polyhedra as a sequence of points of intersection.)#");
+    py::class_<Intf_Tool , shared_ptr<Intf_Tool>  >(m,"Intf_Tool",R"#(Provides services to create box for infinites lines in a given contexte.)#");
+    py::class_<Intf_InterferencePolygon2d , shared_ptr<Intf_InterferencePolygon2d>  , Intf_Interference >(m,"Intf_InterferencePolygon2d",R"#(Computes the interference between two polygons or the self intersection of a polygon in two dimensions.)#");
 
 };
 

@@ -18,22 +18,22 @@ namespace py = pybind11;
 #include <GccEnt_QualifiedCirc.hxx>
 
 // module includes
+#include <GccEnt.hxx>
+#include <GccEnt_QualifiedLin.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <GccEnt_Array1OfPosition.hxx>
 #include <GccEnt_Position.hxx>
-#include <GccEnt_QualifiedLin.hxx>
-#include <GccEnt.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/GccEnt.hxx
+// ./opencascade/GccEnt_QualifiedLin.hxx
 // ./opencascade/GccEnt_QualifiedCirc.hxx
 // ./opencascade/GccEnt_BadQualifier.hxx
 // ./opencascade/GccEnt_Array1OfPosition.hxx
 // ./opencascade/GccEnt_Position.hxx
-// ./opencascade/GccEnt_QualifiedLin.hxx
-// ./opencascade/GccEnt.hxx
 
 // user-defined post

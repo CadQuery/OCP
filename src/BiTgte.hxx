@@ -10,7 +10,13 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
-#include <Standard_NoSuchObject.hxx>
+#include <BRepAlgo_AsDes.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <BRepOffset_Inter3d.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
@@ -30,31 +36,25 @@ namespace py = pybind11;
 #include <gp_Parab.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <BRepAlgo_AsDes.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <BRepOffset_Inter3d.hxx>
+#include <Standard_NoSuchObject.hxx>
 
 // module includes
-#include <BiTgte_ContactType.hxx>
-#include <BiTgte_HCurveOnVertex.hxx>
+#include <BiTgte_Blend.hxx>
 #include <BiTgte_CurveOnVertex.hxx>
 #include <BiTgte_HCurveOnEdge.hxx>
 #include <BiTgte_CurveOnEdge.hxx>
-#include <BiTgte_Blend.hxx>
+#include <BiTgte_ContactType.hxx>
+#include <BiTgte_HCurveOnVertex.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BiTgte_ContactType.hxx
-// ./opencascade/BiTgte_HCurveOnVertex.hxx
+// ./opencascade/BiTgte_Blend.hxx
 // ./opencascade/BiTgte_CurveOnVertex.hxx
 // ./opencascade/BiTgte_HCurveOnEdge.hxx
 // ./opencascade/BiTgte_CurveOnEdge.hxx
-// ./opencascade/BiTgte_Blend.hxx
+// ./opencascade/BiTgte_ContactType.hxx
+// ./opencascade/BiTgte_HCurveOnVertex.hxx
 
 // user-defined post

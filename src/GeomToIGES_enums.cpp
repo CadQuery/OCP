@@ -14,10 +14,6 @@ namespace py = pybind11;
 #include <IGESGeom_Point.hxx>
 #include <Geom_Point.hxx>
 #include <Geom_CartesianPoint.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <Geom_Vector.hxx>
-#include <Geom_VectorWithMagnitude.hxx>
-#include <Geom_Direction.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Geom_Surface.hxx>
 #include <Geom_BoundedSurface.hxx>
@@ -34,6 +30,10 @@ namespace py = pybind11;
 #include <Geom_SurfaceOfLinearExtrusion.hxx>
 #include <Geom_SurfaceOfRevolution.hxx>
 #include <Geom_OffsetSurface.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <Geom_Vector.hxx>
+#include <Geom_VectorWithMagnitude.hxx>
+#include <Geom_Direction.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom_BoundedCurve.hxx>
@@ -76,19 +76,14 @@ py::module m = main_module.def_submodule("GeomToIGES", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<GeomToIGES_GeomEntity ,std::unique_ptr<GeomToIGES_GeomEntity>  >(m,"GeomToIGES_GeomEntity",R"#(provides methods to transfer Geom entity from CASCADE to IGES.)#");
-    py::class_<GeomToIGES_GeomPoint ,std::unique_ptr<GeomToIGES_GeomPoint>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomPoint",R"#(This class implements the transfer of the Point Entity from Geom to IGES . These are : . Point * CartesianPoint)#");
-    py::class_<GeomToIGES_GeomSurface ,std::unique_ptr<GeomToIGES_GeomSurface>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomSurface",R"#(This class implements the transfer of the Surface Entity from Geom To IGES. These can be : . BoundedSurface * BSplineSurface * BezierSurface * RectangularTrimmedSurface . ElementarySurface * Plane * CylindricalSurface * ConicalSurface * SphericalSurface * ToroidalSurface . SweptSurface * SurfaceOfLinearExtrusion * SurfaceOfRevolution . OffsetSurface)#");
-    py::class_<GeomToIGES_GeomVector ,std::unique_ptr<GeomToIGES_GeomVector>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomVector",R"#(This class implements the transfer of the Vector from Geom to IGES . These can be : . Vector * Direction * VectorWithMagnitude)#");
-    py::class_<GeomToIGES_GeomCurve ,std::unique_ptr<GeomToIGES_GeomCurve>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomCurve",R"#(This class implements the transfer of the Curve Entity from Geom To IGES. These can be : Curve . BoundedCurve * BSplineCurve * BezierCurve * TrimmedCurve . Conic * Circle * Ellipse * Hyperbloa * Line * Parabola . OffsetCurve)#");
-
 // pre-register typdefs
-// ./opencascade/GeomToIGES_GeomPoint.hxx
-// ./opencascade/GeomToIGES_GeomVector.hxx
-// ./opencascade/GeomToIGES_GeomSurface.hxx
-// ./opencascade/GeomToIGES_GeomCurve.hxx
-// ./opencascade/GeomToIGES_GeomEntity.hxx
+
+// classes forward declarations only
+    py::class_<GeomToIGES_GeomEntity , shared_ptr<GeomToIGES_GeomEntity>  >(m,"GeomToIGES_GeomEntity",R"#(provides methods to transfer Geom entity from CASCADE to IGES.)#");
+    py::class_<GeomToIGES_GeomCurve , shared_ptr<GeomToIGES_GeomCurve>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomCurve",R"#(This class implements the transfer of the Curve Entity from Geom To IGES. These can be : Curve . BoundedCurve * BSplineCurve * BezierCurve * TrimmedCurve . Conic * Circle * Ellipse * Hyperbloa * Line * Parabola . OffsetCurve)#");
+    py::class_<GeomToIGES_GeomPoint , shared_ptr<GeomToIGES_GeomPoint>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomPoint",R"#(This class implements the transfer of the Point Entity from Geom to IGES . These are : . Point * CartesianPoint)#");
+    py::class_<GeomToIGES_GeomSurface , shared_ptr<GeomToIGES_GeomSurface>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomSurface",R"#(This class implements the transfer of the Surface Entity from Geom To IGES. These can be : . BoundedSurface * BSplineSurface * BezierSurface * RectangularTrimmedSurface . ElementarySurface * Plane * CylindricalSurface * ConicalSurface * SphericalSurface * ToroidalSurface . SweptSurface * SurfaceOfLinearExtrusion * SurfaceOfRevolution . OffsetSurface)#");
+    py::class_<GeomToIGES_GeomVector , shared_ptr<GeomToIGES_GeomVector>  , GeomToIGES_GeomEntity >(m,"GeomToIGES_GeomVector",R"#(This class implements the transfer of the Vector from Geom to IGES . These can be : . Vector * Direction * VectorWithMagnitude)#");
 
 };
 

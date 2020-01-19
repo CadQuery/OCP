@@ -44,13 +44,11 @@ py::module m = main_module.def_submodule("IntCurvesFace", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<IntCurvesFace_Intersector ,std::unique_ptr<IntCurvesFace_Intersector>  >(m,"IntCurvesFace_Intersector",R"#(None)#");
-    py::class_<IntCurvesFace_ShapeIntersector ,std::unique_ptr<IntCurvesFace_ShapeIntersector>  >(m,"IntCurvesFace_ShapeIntersector",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/IntCurvesFace_Intersector.hxx
-// ./opencascade/IntCurvesFace_ShapeIntersector.hxx
+
+// classes forward declarations only
+    py::class_<IntCurvesFace_Intersector , shared_ptr<IntCurvesFace_Intersector>  >(m,"IntCurvesFace_Intersector",R"#(None)#");
+    py::class_<IntCurvesFace_ShapeIntersector , shared_ptr<IntCurvesFace_ShapeIntersector>  >(m,"IntCurvesFace_ShapeIntersector",R"#(None)#");
 
 };
 

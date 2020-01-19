@@ -31,6 +31,8 @@ namespace py = pybind11;
 #include "OCP_specific.inc"
 
 // user-defined inclusion per module
+using ItemLocation = StdPersistent_TopLoc::ItemLocation;
+using Datum3D = StdPersistent_TopLoc::Datum3D;
 
 // Module definiiton
 void register_StdPersistent_enums(py::module &main_module) {
@@ -44,28 +46,19 @@ py::module m = main_module.def_submodule("StdPersistent", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<StdPersistent_PPrsStd ,std::unique_ptr<StdPersistent_PPrsStd>  >(m,"StdPersistent_PPrsStd",R"#(None)#");
-    py::class_<StdPersistent_TopoDS ,std::unique_ptr<StdPersistent_TopoDS>  >(m,"StdPersistent_TopoDS",R"#(None)#");
-    py::class_<StdPersistent_Naming ,std::unique_ptr<StdPersistent_Naming>  >(m,"StdPersistent_Naming",R"#(None)#");
-    py::class_<StdPersistent_TopLoc ,std::unique_ptr<StdPersistent_TopLoc>  >(m,"StdPersistent_TopLoc",R"#(None)#");
-    py::class_<StdPersistent_HArray1 ,std::unique_ptr<StdPersistent_HArray1>  >(m,"StdPersistent_HArray1",R"#(None)#");
-    py::class_<StdPersistent ,std::unique_ptr<StdPersistent>  >(m,"StdPersistent",R"#(None)#");
-    py::class_<StdPersistent_DataXtd ,std::unique_ptr<StdPersistent_DataXtd>  >(m,"StdPersistent_DataXtd",R"#(None)#");
-    py::class_<StdPersistent_DataXtd_Constraint ,std::unique_ptr<StdPersistent_DataXtd_Constraint>  >(m,"StdPersistent_DataXtd_Constraint",R"#(None)#");
-    py::class_<StdPersistent_DataXtd_PatternStd ,std::unique_ptr<StdPersistent_DataXtd_PatternStd>  >(m,"StdPersistent_DataXtd_PatternStd",R"#(None)#");
-    py::class_<StdPersistent_HArray1OfShape1 ,std::unique_ptr<StdPersistent_HArray1OfShape1>  >(m,"StdPersistent_HArray1OfShape1",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/StdPersistent_PPrsStd.hxx
-// ./opencascade/StdPersistent.hxx
-// ./opencascade/StdPersistent_TopoDS.hxx
-// ./opencascade/StdPersistent_DataXtd_PatternStd.hxx
-// ./opencascade/StdPersistent_Naming.hxx
-// ./opencascade/StdPersistent_DataXtd.hxx
-// ./opencascade/StdPersistent_TopLoc.hxx
-// ./opencascade/StdPersistent_HArray1.hxx
-// ./opencascade/StdPersistent_DataXtd_Constraint.hxx
+
+// classes forward declarations only
+    py::class_<StdPersistent , shared_ptr<StdPersistent>  >(m,"StdPersistent",R"#(None)#");
+    py::class_<StdPersistent_DataXtd , shared_ptr<StdPersistent_DataXtd>  >(m,"StdPersistent_DataXtd",R"#(None)#");
+    py::class_<StdPersistent_DataXtd_Constraint , shared_ptr<StdPersistent_DataXtd_Constraint>  >(m,"StdPersistent_DataXtd_Constraint",R"#(None)#");
+    py::class_<StdPersistent_DataXtd_PatternStd , shared_ptr<StdPersistent_DataXtd_PatternStd>  >(m,"StdPersistent_DataXtd_PatternStd",R"#(None)#");
+    py::class_<StdPersistent_HArray1 , shared_ptr<StdPersistent_HArray1>  >(m,"StdPersistent_HArray1",R"#(None)#");
+    py::class_<StdPersistent_HArray1OfShape1 ,opencascade::handle<StdPersistent_HArray1OfShape1>  , Standard_Transient >(m,"StdPersistent_HArray1OfShape1",R"#()#");
+    py::class_<StdPersistent_Naming , shared_ptr<StdPersistent_Naming>  >(m,"StdPersistent_Naming",R"#(None)#");
+    py::class_<StdPersistent_PPrsStd , shared_ptr<StdPersistent_PPrsStd>  >(m,"StdPersistent_PPrsStd",R"#(None)#");
+    py::class_<StdPersistent_TopLoc , shared_ptr<StdPersistent_TopLoc>  >(m,"StdPersistent_TopLoc",R"#(None)#");
+    py::class_<StdPersistent_TopoDS , shared_ptr<StdPersistent_TopoDS>  >(m,"StdPersistent_TopoDS",R"#(None)#");
 
 };
 

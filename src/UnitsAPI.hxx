@@ -13,14 +13,14 @@ namespace py = pybind11;
 #include <Units_Dimensions.hxx>
 
 // module includes
-#include <UnitsAPI_SystemUnits.hxx>
 #include <UnitsAPI.hxx>
+#include <UnitsAPI_SystemUnits.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/UnitsAPI_SystemUnits.hxx
 // ./opencascade/UnitsAPI.hxx
+// ./opencascade/UnitsAPI_SystemUnits.hxx
 
 // user-defined post

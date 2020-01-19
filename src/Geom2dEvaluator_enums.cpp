@@ -57,13 +57,11 @@ py::module m = main_module.def_submodule("Geom2dEvaluator", R"#()#");
         
     };
 
+// pre-register typdefs
+
 // classes forward declarations only
     py::class_<Geom2dEvaluator_Curve ,opencascade::handle<Geom2dEvaluator_Curve> ,Py_Geom2dEvaluator_Curve , Standard_Transient >(m,"Geom2dEvaluator_Curve",R"#(Interface for calculation of values and derivatives for different kinds of curves in 2D. Works both with adaptors and curves.Interface for calculation of values and derivatives for different kinds of curves in 2D. Works both with adaptors and curves.)#");
     py::class_<Geom2dEvaluator_OffsetCurve ,opencascade::handle<Geom2dEvaluator_OffsetCurve>  , Geom2dEvaluator_Curve >(m,"Geom2dEvaluator_OffsetCurve",R"#(Allows to calculate values and derivatives for offset curves in 2DAllows to calculate values and derivatives for offset curves in 2D)#");
-
-// pre-register typdefs
-// ./opencascade/Geom2dEvaluator_Curve.hxx
-// ./opencascade/Geom2dEvaluator_OffsetCurve.hxx
 
 };
 

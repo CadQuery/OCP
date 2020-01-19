@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -38,28 +41,23 @@ py::module m = static_cast<py::module>(main_module.attr("StdFail"));
 // classes
 
 // functions
+// ./opencascade/StdFail_UndefinedValue.hxx
+// ./opencascade/StdFail_InfiniteSolutions.hxx
 // ./opencascade/StdFail_UndefinedDerivative.hxx
 // ./opencascade/StdFail_NotDone.hxx
 // ./opencascade/StdFail_Undefined.hxx
-// ./opencascade/StdFail_InfiniteSolutions.hxx
-// ./opencascade/StdFail_UndefinedValue.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/StdFail_UndefinedDerivative.hxx
-// ./opencascade/StdFail_NotDone.hxx
-// ./opencascade/StdFail_Undefined.hxx
-// ./opencascade/StdFail_InfiniteSolutions.hxx
-// ./opencascade/StdFail_UndefinedValue.hxx
 
 
 // exceptions
-register_occ_exception<StdFail_UndefinedDerivative>(m, "StdFail_UndefinedDerivative");
-register_occ_exception<StdFail_Undefined>(m, "StdFail_Undefined");
-register_occ_exception<StdFail_UndefinedValue>(m, "StdFail_UndefinedValue");
-register_occ_exception<StdFail_NotDone>(m, "StdFail_NotDone");
 register_occ_exception<StdFail_InfiniteSolutions>(m, "StdFail_InfiniteSolutions");
+register_occ_exception<StdFail_NotDone>(m, "StdFail_NotDone");
+register_occ_exception<StdFail_Undefined>(m, "StdFail_Undefined");
+register_occ_exception<StdFail_UndefinedDerivative>(m, "StdFail_UndefinedDerivative");
+register_occ_exception<StdFail_UndefinedValue>(m, "StdFail_UndefinedValue");
 
 // user-defined post-inclusion per module in the body
 

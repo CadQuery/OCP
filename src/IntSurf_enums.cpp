@@ -39,7 +39,7 @@ namespace py = pybind11;
 #include <IntSurf_TypeTrans.hxx>
 
 // template related includes
-// ./opencascade/IntSurf_SequenceOfInteriorPoint.hxx
+// ./opencascade/IntSurf_SequenceOfCouple.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntSurf_SequenceOfPntOn2S.hxx
 #include "NCollection.hxx"
@@ -49,7 +49,7 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/IntSurf_ListOfPntOn2S.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntSurf_SequenceOfCouple.hxx
+// ./opencascade/IntSurf_SequenceOfInteriorPoint.hxx
 #include "NCollection.hxx"
 
 
@@ -79,45 +79,25 @@ py::module m = main_module.def_submodule("IntSurf", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<IntSurf_Quadric ,std::unique_ptr<IntSurf_Quadric>  >(m,"IntSurf_Quadric",R"#(None)#");
-    py::class_<IntSurf_LineOn2S ,opencascade::handle<IntSurf_LineOn2S>  , Standard_Transient >(m,"IntSurf_LineOn2S",R"#()#");
-    py::class_<IntSurf_Transition ,std::unique_ptr<IntSurf_Transition>  >(m,"IntSurf_Transition",R"#(Definition of the transition at the intersection between an intersection line and a restriction curve on a surface.)#");
-    py::class_<IntSurf_InteriorPoint ,std::unique_ptr<IntSurf_InteriorPoint>  >(m,"IntSurf_InteriorPoint",R"#(Definition of a point solution of the intersection between an implicit an a parametrised surface. These points are passing points on the intersection lines, or starting points for the closed lines on the parametrised surface.)#");
-    py::class_<IntSurf_PathPoint ,std::unique_ptr<IntSurf_PathPoint>  >(m,"IntSurf_PathPoint",R"#(None)#");
-    py::class_<IntSurf_PathPointTool ,std::unique_ptr<IntSurf_PathPointTool>  >(m,"IntSurf_PathPointTool",R"#(None)#");
-    py::class_<IntSurf_QuadricTool ,std::unique_ptr<IntSurf_QuadricTool>  >(m,"IntSurf_QuadricTool",R"#(This class provides a tool on a quadric that can be used to instantiates the Walking algorithmes (see package IntWalk) with a Quadric from IntSurf as implicit surface.)#");
-    py::class_<IntSurf_PntOn2S ,std::unique_ptr<IntSurf_PntOn2S>  >(m,"IntSurf_PntOn2S",R"#(This class defines the geometric informations for an intersection point between 2 surfaces : The coordinates ( Pnt from gp ), and two parametric coordinates.)#");
-    py::class_<IntSurf_InteriorPointTool ,std::unique_ptr<IntSurf_InteriorPointTool>  >(m,"IntSurf_InteriorPointTool",R"#(This class provides a tool on the "interior point" that can be used to instantiates the Walking algorithmes (see package IntWalk).)#");
-    py::class_<IntSurf ,std::unique_ptr<IntSurf>  >(m,"IntSurf",R"#(This package provides resources for all the packages concerning the intersection between surfaces.)#");
-    py::class_<IntSurf_Couple ,std::unique_ptr<IntSurf_Couple>  >(m,"IntSurf_Couple",R"#(creation d 'un couple de 2 entiers)#");
-
 // pre-register typdefs
-// ./opencascade/IntSurf_Situation.hxx
-// ./opencascade/IntSurf_Quadric.hxx
-// ./opencascade/IntSurf_SequenceOfInteriorPoint.hxx
-    preregister_template_NCollection_Sequence<IntSurf_InteriorPoint>(m,"IntSurf_SequenceOfInteriorPoint");  
-// ./opencascade/IntSurf_ListIteratorOfListOfPntOn2S.hxx
-// ./opencascade/IntSurf_QuadricTool.hxx
-// ./opencascade/IntSurf_LineOn2S.hxx
-// ./opencascade/IntSurf.hxx
-// ./opencascade/IntSurf_Transition.hxx
-// ./opencascade/IntSurf_PntOn2S.hxx
-// ./opencascade/IntSurf_SequenceOfPntOn2S.hxx
-    preregister_template_NCollection_Sequence<IntSurf_PntOn2S>(m,"IntSurf_SequenceOfPntOn2S");  
-// ./opencascade/IntSurf_SequenceOfPathPoint.hxx
-    preregister_template_NCollection_Sequence<IntSurf_PathPoint>(m,"IntSurf_SequenceOfPathPoint");  
-// ./opencascade/IntSurf_InteriorPoint.hxx
-// ./opencascade/IntSurf_Couple.hxx
-// ./opencascade/IntSurf_TypeTrans.hxx
-// ./opencascade/IntSurf_Allocator.hxx
-// ./opencascade/IntSurf_PathPoint.hxx
-// ./opencascade/IntSurf_InteriorPointTool.hxx
-// ./opencascade/IntSurf_ListOfPntOn2S.hxx
-    preregister_template_NCollection_List<IntSurf_PntOn2S>(m,"IntSurf_ListOfPntOn2S");  
-// ./opencascade/IntSurf_SequenceOfCouple.hxx
     preregister_template_NCollection_Sequence<IntSurf_Couple>(m,"IntSurf_SequenceOfCouple");  
-// ./opencascade/IntSurf_PathPointTool.hxx
+    preregister_template_NCollection_Sequence<IntSurf_PntOn2S>(m,"IntSurf_SequenceOfPntOn2S");  
+    preregister_template_NCollection_Sequence<IntSurf_PathPoint>(m,"IntSurf_SequenceOfPathPoint");  
+    preregister_template_NCollection_List<IntSurf_PntOn2S>(m,"IntSurf_ListOfPntOn2S");  
+    preregister_template_NCollection_Sequence<IntSurf_InteriorPoint>(m,"IntSurf_SequenceOfInteriorPoint");  
+
+// classes forward declarations only
+    py::class_<IntSurf , shared_ptr<IntSurf>  >(m,"IntSurf",R"#(This package provides resources for all the packages concerning the intersection between surfaces.)#");
+    py::class_<IntSurf_Couple , shared_ptr<IntSurf_Couple>  >(m,"IntSurf_Couple",R"#(creation d 'un couple de 2 entiers)#");
+    py::class_<IntSurf_InteriorPoint , shared_ptr<IntSurf_InteriorPoint>  >(m,"IntSurf_InteriorPoint",R"#(Definition of a point solution of the intersection between an implicit an a parametrised surface. These points are passing points on the intersection lines, or starting points for the closed lines on the parametrised surface.)#");
+    py::class_<IntSurf_InteriorPointTool , shared_ptr<IntSurf_InteriorPointTool>  >(m,"IntSurf_InteriorPointTool",R"#(This class provides a tool on the "interior point" that can be used to instantiates the Walking algorithmes (see package IntWalk).)#");
+    py::class_<IntSurf_LineOn2S ,opencascade::handle<IntSurf_LineOn2S>  , Standard_Transient >(m,"IntSurf_LineOn2S",R"#()#");
+    py::class_<IntSurf_PathPoint , shared_ptr<IntSurf_PathPoint>  >(m,"IntSurf_PathPoint",R"#(None)#");
+    py::class_<IntSurf_PathPointTool , shared_ptr<IntSurf_PathPointTool>  >(m,"IntSurf_PathPointTool",R"#(None)#");
+    py::class_<IntSurf_PntOn2S , shared_ptr<IntSurf_PntOn2S>  >(m,"IntSurf_PntOn2S",R"#(This class defines the geometric informations for an intersection point between 2 surfaces : The coordinates ( Pnt from gp ), and two parametric coordinates.)#");
+    py::class_<IntSurf_Quadric , shared_ptr<IntSurf_Quadric>  >(m,"IntSurf_Quadric",R"#(None)#");
+    py::class_<IntSurf_QuadricTool , shared_ptr<IntSurf_QuadricTool>  >(m,"IntSurf_QuadricTool",R"#(This class provides a tool on a quadric that can be used to instantiates the Walking algorithmes (see package IntWalk) with a Quadric from IntSurf as implicit surface.)#");
+    py::class_<IntSurf_Transition , shared_ptr<IntSurf_Transition>  >(m,"IntSurf_Transition",R"#(Definition of the transition at the intersection between an intersection line and a restriction curve on a surface.)#");
 
 };
 

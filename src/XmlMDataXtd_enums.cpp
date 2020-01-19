@@ -20,6 +20,30 @@ namespace py = pybind11;
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMDataXtd_AxisDriver.hxx>
@@ -31,30 +55,6 @@ namespace py = pybind11;
 #include <XmlMDataXtd_PlacementDriver.hxx>
 #include <XmlMDataXtd_PatternStdDriver.hxx>
 #include <XmlMDataXtd_TriangulationDriver.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
 
 // module includes
 #include <XmlMDataXtd.hxx>
@@ -90,33 +90,21 @@ py::module m = main_module.def_submodule("XmlMDataXtd", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
-    py::class_<XmlMDataXtd_ConstraintDriver ,opencascade::handle<XmlMDataXtd_ConstraintDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_ConstraintDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-    py::class_<XmlMDataXtd_TriangulationDriver ,opencascade::handle<XmlMDataXtd_TriangulationDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_TriangulationDriver",R"#(TDataStd_Mesh attribute XML Driver.TDataStd_Mesh attribute XML Driver.)#");
-    py::class_<XmlMDataXtd_PresentationDriver ,opencascade::handle<XmlMDataXtd_PresentationDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PresentationDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
+    py::class_<XmlMDataXtd , shared_ptr<XmlMDataXtd>  >(m,"XmlMDataXtd",R"#(Storage and Retrieval drivers for modelling attributes. Transient attributes are defined in package TDataXtd.)#");
     py::class_<XmlMDataXtd_AxisDriver ,opencascade::handle<XmlMDataXtd_AxisDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_AxisDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
+    py::class_<XmlMDataXtd_ConstraintDriver ,opencascade::handle<XmlMDataXtd_ConstraintDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_ConstraintDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
+    py::class_<XmlMDataXtd_GeometryDriver ,opencascade::handle<XmlMDataXtd_GeometryDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_GeometryDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
     py::class_<XmlMDataXtd_PatternStdDriver ,opencascade::handle<XmlMDataXtd_PatternStdDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PatternStdDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
     py::class_<XmlMDataXtd_PlacementDriver ,opencascade::handle<XmlMDataXtd_PlacementDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PlacementDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-    py::class_<XmlMDataXtd_GeometryDriver ,opencascade::handle<XmlMDataXtd_GeometryDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_GeometryDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-    py::class_<XmlMDataXtd_PointDriver ,opencascade::handle<XmlMDataXtd_PointDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PointDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-    py::class_<XmlMDataXtd_ShapeDriver ,opencascade::handle<XmlMDataXtd_ShapeDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_ShapeDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-    py::class_<XmlMDataXtd ,std::unique_ptr<XmlMDataXtd>  >(m,"XmlMDataXtd",R"#(Storage and Retrieval drivers for modelling attributes. Transient attributes are defined in package TDataXtd.)#");
-    py::class_<XmlMDataXtd_PositionDriver ,opencascade::handle<XmlMDataXtd_PositionDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PositionDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
     py::class_<XmlMDataXtd_PlaneDriver ,opencascade::handle<XmlMDataXtd_PlaneDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PlaneDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-
-// pre-register typdefs
-// ./opencascade/XmlMDataXtd_ConstraintDriver.hxx
-// ./opencascade/XmlMDataXtd_GeometryDriver.hxx
-// ./opencascade/XmlMDataXtd_TriangulationDriver.hxx
-// ./opencascade/XmlMDataXtd.hxx
-// ./opencascade/XmlMDataXtd_PresentationDriver.hxx
-// ./opencascade/XmlMDataXtd_PointDriver.hxx
-// ./opencascade/XmlMDataXtd_AxisDriver.hxx
-// ./opencascade/XmlMDataXtd_PlaneDriver.hxx
-// ./opencascade/XmlMDataXtd_PatternStdDriver.hxx
-// ./opencascade/XmlMDataXtd_ShapeDriver.hxx
-// ./opencascade/XmlMDataXtd_PlacementDriver.hxx
-// ./opencascade/XmlMDataXtd_PositionDriver.hxx
+    py::class_<XmlMDataXtd_PointDriver ,opencascade::handle<XmlMDataXtd_PointDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PointDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
+    py::class_<XmlMDataXtd_PositionDriver ,opencascade::handle<XmlMDataXtd_PositionDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PositionDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
+    py::class_<XmlMDataXtd_PresentationDriver ,opencascade::handle<XmlMDataXtd_PresentationDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_PresentationDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
+    py::class_<XmlMDataXtd_ShapeDriver ,opencascade::handle<XmlMDataXtd_ShapeDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_ShapeDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
+    py::class_<XmlMDataXtd_TriangulationDriver ,opencascade::handle<XmlMDataXtd_TriangulationDriver>  , XmlMDF_ADriver >(m,"XmlMDataXtd_TriangulationDriver",R"#(TDataStd_Mesh attribute XML Driver.TDataStd_Mesh attribute XML Driver.)#");
 
 };
 

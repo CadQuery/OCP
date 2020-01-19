@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -13,13 +16,13 @@ namespace py = pybind11;
 #include <BRepMAT2d_Explorer.hxx>
 #include <BRepMAT2d_BisectingLocus.hxx>
 #include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Wire.hxx>
 #include <MAT_Graph.hxx>
 #include <BRepMAT2d_Explorer.hxx>
 #include <Geom2d_Geometry.hxx>
 #include <MAT_Node.hxx>
 #include <MAT_Arc.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Wire.hxx>
 
 // module includes
 #include <BRepMAT2d_BisectingLocus.hxx>
@@ -31,13 +34,13 @@ namespace py = pybind11;
 #include <BRepMAT2d_LinkTopoBilo.hxx>
 
 // template related includes
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
-#include "NCollection.hxx"
 // ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
 #include "NCollection.hxx"
 
 
@@ -58,32 +61,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMAT2d"));
 // classes
 
 
-    static_cast<py::class_<BRepMAT2d_LinkTopoBilo ,std::unique_ptr<BRepMAT2d_LinkTopoBilo>  >>(m.attr("BRepMAT2d_LinkTopoBilo"))
+    static_cast<py::class_<BRepMAT2d_BisectingLocus , shared_ptr<BRepMAT2d_BisectingLocus>  >>(m.attr("BRepMAT2d_BisectingLocus"))
         .def(py::init<  >()  )
-        .def(py::init< const BRepMAT2d_Explorer &,const BRepMAT2d_BisectingLocus & >()  , py::arg("Explo"),  py::arg("BiLo") )
-        .def("Perform",
-             (void (BRepMAT2d_LinkTopoBilo::*)( const BRepMAT2d_Explorer & ,  const BRepMAT2d_BisectingLocus &  ) ) static_cast<void (BRepMAT2d_LinkTopoBilo::*)( const BRepMAT2d_Explorer & ,  const BRepMAT2d_BisectingLocus &  ) >(&BRepMAT2d_LinkTopoBilo::Perform),
-             R"#(Constructs the links Between S and BiLo.)#"  , py::arg("Explo"),  py::arg("BiLo"))
-        .def("Init",
-             (void (BRepMAT2d_LinkTopoBilo::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepMAT2d_LinkTopoBilo::*)( const TopoDS_Shape &  ) >(&BRepMAT2d_LinkTopoBilo::Init),
-             R"#(Initialise the Iterator on <S> <S> is an edge or a vertex of the initial wire or face. raises if <S> is not an edge or a vertex.)#"  , py::arg("S"))
-        .def("More",
-             (Standard_Boolean (BRepMAT2d_LinkTopoBilo::*)() ) static_cast<Standard_Boolean (BRepMAT2d_LinkTopoBilo::*)() >(&BRepMAT2d_LinkTopoBilo::More),
-             R"#(Returns True if there is a current BasicElt.)#" )
-        .def("Next",
-             (void (BRepMAT2d_LinkTopoBilo::*)() ) static_cast<void (BRepMAT2d_LinkTopoBilo::*)() >(&BRepMAT2d_LinkTopoBilo::Next),
-             R"#(Proceed to the next BasicElt.)#" )
-        .def("Value",
-             (opencascade::handle<MAT_BasicElt> (BRepMAT2d_LinkTopoBilo::*)() const) static_cast<opencascade::handle<MAT_BasicElt> (BRepMAT2d_LinkTopoBilo::*)() const>(&BRepMAT2d_LinkTopoBilo::Value),
-             R"#(Returns the current BasicElt.)#" )
-        .def("GeneratingShape",
-             (TopoDS_Shape (BRepMAT2d_LinkTopoBilo::*)( const opencascade::handle<MAT_BasicElt> &  ) const) static_cast<TopoDS_Shape (BRepMAT2d_LinkTopoBilo::*)( const opencascade::handle<MAT_BasicElt> &  ) const>(&BRepMAT2d_LinkTopoBilo::GeneratingShape),
-             R"#(Returns the Shape linked to <aBE>.)#"  , py::arg("aBE"))
-;
-
-
-    static_cast<py::class_<BRepMAT2d_BisectingLocus ,std::unique_ptr<BRepMAT2d_BisectingLocus>  >>(m.attr("BRepMAT2d_BisectingLocus"))
-        .def(py::init<  >()  )
+    // methods
         .def("Compute",
              (void (BRepMAT2d_BisectingLocus::*)( BRepMAT2d_Explorer & ,  const Standard_Integer ,  const MAT_Side ,  const GeomAbs_JoinType ,  const Standard_Boolean  ) ) static_cast<void (BRepMAT2d_BisectingLocus::*)( BRepMAT2d_Explorer & ,  const Standard_Integer ,  const MAT_Side ,  const GeomAbs_JoinType ,  const Standard_Boolean  ) >(&BRepMAT2d_BisectingLocus::Compute),
              R"#(Computation of the Bisector_Locus in a set of Lines defined in <anExplo>. The bisecting locus are computed on the side <aSide> from the line <LineIndex> in <anExplo>.)#"  , py::arg("anExplo"),  py::arg("LineIndex")=static_cast<const Standard_Integer>(1),  py::arg("aSide")=static_cast<const MAT_Side>(MAT_Left),  py::arg("aJoinType")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("IsOpenResult")=static_cast<const Standard_Boolean>(Standard_False))
@@ -114,12 +94,18 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMAT2d"));
         .def("GeomBis",
              (Bisector_Bisec (BRepMAT2d_BisectingLocus::*)( const opencascade::handle<MAT_Arc> & ,  Standard_Boolean &  ) const) static_cast<Bisector_Bisec (BRepMAT2d_BisectingLocus::*)( const opencascade::handle<MAT_Arc> & ,  Standard_Boolean &  ) const>(&BRepMAT2d_BisectingLocus::GeomBis),
              R"#(Returns the geometry of type <Bissec> linked to the arc <ARC>. <Reverse> is False when the FirstNode of <anArc> correspond to the first point of geometry.)#"  , py::arg("anArc"),  py::arg("Reverse"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepMAT2d_Explorer ,std::unique_ptr<BRepMAT2d_Explorer>  >>(m.attr("BRepMAT2d_Explorer"))
+    static_cast<py::class_<BRepMAT2d_Explorer , shared_ptr<BRepMAT2d_Explorer>  >>(m.attr("BRepMAT2d_Explorer"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("aFace") )
+    // methods
         .def("Clear",
              (void (BRepMAT2d_Explorer::*)() ) static_cast<void (BRepMAT2d_Explorer::*)() >(&BRepMAT2d_Explorer::Clear),
              R"#(Clear the contents of <me>.)#" )
@@ -159,29 +145,57 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMAT2d"));
         .def("GetIsClosed",
              (const TColStd_SequenceOfBoolean & (BRepMAT2d_Explorer::*)() const) static_cast<const TColStd_SequenceOfBoolean & (BRepMAT2d_Explorer::*)() const>(&BRepMAT2d_Explorer::GetIsClosed),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepMAT2d_LinkTopoBilo , shared_ptr<BRepMAT2d_LinkTopoBilo>  >>(m.attr("BRepMAT2d_LinkTopoBilo"))
+        .def(py::init<  >()  )
+        .def(py::init< const BRepMAT2d_Explorer &,const BRepMAT2d_BisectingLocus & >()  , py::arg("Explo"),  py::arg("BiLo") )
+    // methods
+        .def("Perform",
+             (void (BRepMAT2d_LinkTopoBilo::*)( const BRepMAT2d_Explorer & ,  const BRepMAT2d_BisectingLocus &  ) ) static_cast<void (BRepMAT2d_LinkTopoBilo::*)( const BRepMAT2d_Explorer & ,  const BRepMAT2d_BisectingLocus &  ) >(&BRepMAT2d_LinkTopoBilo::Perform),
+             R"#(Constructs the links Between S and BiLo.)#"  , py::arg("Explo"),  py::arg("BiLo"))
+        .def("Init",
+             (void (BRepMAT2d_LinkTopoBilo::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepMAT2d_LinkTopoBilo::*)( const TopoDS_Shape &  ) >(&BRepMAT2d_LinkTopoBilo::Init),
+             R"#(Initialise the Iterator on <S> <S> is an edge or a vertex of the initial wire or face. raises if <S> is not an edge or a vertex.)#"  , py::arg("S"))
+        .def("More",
+             (Standard_Boolean (BRepMAT2d_LinkTopoBilo::*)() ) static_cast<Standard_Boolean (BRepMAT2d_LinkTopoBilo::*)() >(&BRepMAT2d_LinkTopoBilo::More),
+             R"#(Returns True if there is a current BasicElt.)#" )
+        .def("Next",
+             (void (BRepMAT2d_LinkTopoBilo::*)() ) static_cast<void (BRepMAT2d_LinkTopoBilo::*)() >(&BRepMAT2d_LinkTopoBilo::Next),
+             R"#(Proceed to the next BasicElt.)#" )
+        .def("Value",
+             (opencascade::handle<MAT_BasicElt> (BRepMAT2d_LinkTopoBilo::*)() const) static_cast<opencascade::handle<MAT_BasicElt> (BRepMAT2d_LinkTopoBilo::*)() const>(&BRepMAT2d_LinkTopoBilo::Value),
+             R"#(Returns the current BasicElt.)#" )
+        .def("GeneratingShape",
+             (TopoDS_Shape (BRepMAT2d_LinkTopoBilo::*)( const opencascade::handle<MAT_BasicElt> &  ) const) static_cast<TopoDS_Shape (BRepMAT2d_LinkTopoBilo::*)( const opencascade::handle<MAT_BasicElt> &  ) const>(&BRepMAT2d_LinkTopoBilo::GeneratingShape),
+             R"#(Returns the Shape linked to <aBE>.)#"  , py::arg("aBE"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BRepMAT2d_LinkTopoBilo.hxx
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
 // ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfShapeSequenceOfBasicElt.hxx
-// ./opencascade/BRepMAT2d_Explorer.hxx
+// ./opencascade/BRepMAT2d_LinkTopoBilo.hxx
 // ./opencascade/BRepMAT2d_BisectingLocus.hxx
-// ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
 // ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfBasicEltShape.hxx
+// ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
+// ./opencascade/BRepMAT2d_Explorer.hxx
+// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepMAT2d_LinkTopoBilo.hxx
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
-    register_template_NCollection_DataMap<TopoDS_Shape, MAT_SequenceOfBasicElt, TopTools_ShapeMapHasher>(m,"BRepMAT2d_DataMapOfShapeSequenceOfBasicElt");  
-// ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfShapeSequenceOfBasicElt.hxx
-// ./opencascade/BRepMAT2d_Explorer.hxx
-// ./opencascade/BRepMAT2d_BisectingLocus.hxx
-// ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
     register_template_NCollection_DataMap<opencascade::handle<MAT_BasicElt>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"BRepMAT2d_DataMapOfBasicEltShape");  
-// ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfBasicEltShape.hxx
+    register_template_NCollection_DataMap<TopoDS_Shape, MAT_SequenceOfBasicElt, TopTools_ShapeMapHasher>(m,"BRepMAT2d_DataMapOfShapeSequenceOfBasicElt");  
 
 
 // exceptions

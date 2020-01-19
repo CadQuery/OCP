@@ -11,12 +11,12 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMNaming_NamedShapeDriver.hxx>
 #include <BinMNaming_NamingDriver.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
 
@@ -45,15 +45,12 @@ py::module m = main_module.def_submodule("BinMNaming", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
-    py::class_<BinMNaming ,std::unique_ptr<BinMNaming>  >(m,"BinMNaming",R"#(Storage/Retrieval drivers for TNaming attributes)#");
+    py::class_<BinMNaming , shared_ptr<BinMNaming>  >(m,"BinMNaming",R"#(Storage/Retrieval drivers for TNaming attributes)#");
     py::class_<BinMNaming_NamedShapeDriver ,opencascade::handle<BinMNaming_NamedShapeDriver>  , BinMDF_ADriver >(m,"BinMNaming_NamedShapeDriver",R"#(NamedShape Attribute Driver.NamedShape Attribute Driver.NamedShape Attribute Driver.)#");
     py::class_<BinMNaming_NamingDriver ,opencascade::handle<BinMNaming_NamingDriver>  , BinMDF_ADriver >(m,"BinMNaming_NamingDriver",R"#(Naming Attribute Driver.Naming Attribute Driver.Naming Attribute Driver.)#");
-
-// pre-register typdefs
-// ./opencascade/BinMNaming.hxx
-// ./opencascade/BinMNaming_NamingDriver.hxx
-// ./opencascade/BinMNaming_NamedShapeDriver.hxx
 
 };
 

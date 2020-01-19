@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -11,10 +14,10 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_NullValue.hxx>
-#include <Geom2d_BSplineCurve.hxx>
 #include <Standard_NullValue.hxx>
-#include <math_MultipleVarFunctionWithHessian.hxx>
+#include <Geom2d_BSplineCurve.hxx>
 #include <math_Matrix.hxx>
+#include <math_MultipleVarFunctionWithHessian.hxx>
 
 // module includes
 #include <FairCurve_AnalysisCode.hxx>
@@ -46,6 +49,19 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
 
 
 //Python trampoline classes
+    class Py_FairCurve_DistributionOfEnergy : public FairCurve_DistributionOfEnergy{
+    public:
+        using FairCurve_DistributionOfEnergy::FairCurve_DistributionOfEnergy;
+        
+        // public pure virtual
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
     class Py_FairCurve_Energy : public FairCurve_Energy{
     public:
         using FairCurve_Energy::FairCurve_Energy;
@@ -60,25 +76,13 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
         // private pure virtual
         
     };
-    class Py_FairCurve_DistributionOfEnergy : public FairCurve_DistributionOfEnergy{
-    public:
-        using FairCurve_DistributionOfEnergy::FairCurve_DistributionOfEnergy;
-        
-        // public pure virtual
-        
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
 
 // classes
 
 
-    static_cast<py::class_<FairCurve_Batten ,std::unique_ptr<FairCurve_Batten>  >>(m.attr("FairCurve_Batten"))
+    static_cast<py::class_<FairCurve_Batten , shared_ptr<FairCurve_Batten>  >>(m.attr("FairCurve_Batten"))
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("Height"),  py::arg("Slope")=static_cast<const Standard_Real>(0) )
+    // methods
         .def("SetFreeSliding",
              (void (FairCurve_Batten::*)( const Standard_Boolean  ) ) static_cast<void (FairCurve_Batten::*)( const Standard_Boolean  ) >(&FairCurve_Batten::SetFreeSliding),
              R"#(Freesliding is initialized with the default setting false. When Freesliding is set to true and, as a result, sliding is free, the sliding factor is automatically computed to satisfy the equilibrium of the batten.)#"  , py::arg("FreeSliding"))
@@ -205,11 +209,222 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
         .def("GetSlidingFactor",
              (Standard_Real (FairCurve_Batten::*)() const) static_cast<Standard_Real (FairCurve_Batten::*)() const>(&FairCurve_Batten::GetSlidingFactor),
              R"#(Returns the initial sliding factor.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<FairCurve_MinimalVariation ,std::unique_ptr<FairCurve_MinimalVariation>  , FairCurve_Batten >>(m.attr("FairCurve_MinimalVariation"))
+    static_cast<py::class_<FairCurve_BattenLaw , shared_ptr<FairCurve_BattenLaw>  , math_Function >>(m.attr("FairCurve_BattenLaw"))
+        .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Heigth"),  py::arg("Slope"),  py::arg("Sliding") )
+    // methods
+        .def("SetSliding",
+             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSliding),
+             R"#(Change the value of sliding)#"  , py::arg("Sliding"))
+        .def("SetHeigth",
+             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetHeigth),
+             R"#(Change the value of Heigth at the middle point.)#"  , py::arg("Heigth"))
+        .def("SetSlope",
+             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSlope),
+             R"#(Change the value of the geometric slope.)#"  , py::arg("Slope"))
+        .def("Value",
+             (Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) >(&FairCurve_BattenLaw::Value),
+             R"#(computes the value of the heigth for the parameter T on the neutral fibber)#"  , py::arg("T"),  py::arg("THeigth"))
+        .def("SetSliding",
+             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSliding),
+             R"#(Change the value of sliding)#"  , py::arg("Sliding"))
+        .def("SetHeigth",
+             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetHeigth),
+             R"#(Change the value of Heigth at the middle point.)#"  , py::arg("Heigth"))
+        .def("SetSlope",
+             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSlope),
+             R"#(Change the value of the geometric slope.)#"  , py::arg("Slope"))
+        .def("Value",
+             (Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) >(&FairCurve_BattenLaw::Value),
+             R"#(computes the value of the heigth for the parameter T on the neutral fibber)#"  , py::arg("T"),  py::arg("THeigth"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_DistributionOfEnergy , shared_ptr<FairCurve_DistributionOfEnergy> ,Py_FairCurve_DistributionOfEnergy , math_FunctionSet >>(m.attr("FairCurve_DistributionOfEnergy"))
+    // methods
+        .def("NbVariables",
+             (Standard_Integer (FairCurve_DistributionOfEnergy::*)() const) static_cast<Standard_Integer (FairCurve_DistributionOfEnergy::*)() const>(&FairCurve_DistributionOfEnergy::NbVariables),
+             R"#(returns the number of variables of the function.)#" )
+        .def("NbEquations",
+             (Standard_Integer (FairCurve_DistributionOfEnergy::*)() const) static_cast<Standard_Integer (FairCurve_DistributionOfEnergy::*)() const>(&FairCurve_DistributionOfEnergy::NbEquations),
+             R"#(returns the number of equations of the function.)#" )
+        .def("SetDerivativeOrder",
+             (void (FairCurve_DistributionOfEnergy::*)( const Standard_Integer  ) ) static_cast<void (FairCurve_DistributionOfEnergy::*)( const Standard_Integer  ) >(&FairCurve_DistributionOfEnergy::SetDerivativeOrder),
+             R"#(None)#"  , py::arg("DerivativeOrder"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_Energy , shared_ptr<FairCurve_Energy> ,Py_FairCurve_Energy , math_MultipleVarFunctionWithHessian >>(m.attr("FairCurve_Energy"))
+    // methods
+        .def("NbVariables",
+             (Standard_Integer (FairCurve_Energy::*)() const) static_cast<Standard_Integer (FairCurve_Energy::*)() const>(&FairCurve_Energy::NbVariables),
+             R"#(returns the number of variables of the energy.)#" )
+        .def("Value",
+             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real &  ) >(&FairCurve_Energy::Value),
+             R"#(computes the values of the Energys E for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("E"))
+        .def("Gradient",
+             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_Energy::Gradient),
+             R"#(computes the gradient <G> of the energys for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("G"))
+        .def("Values",
+             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector &  ) >(&FairCurve_Energy::Values),
+             R"#(computes the Energy <E> and the gradient <G> of the energy for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("E"),  py::arg("G"))
+        .def("Values",
+             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector & ,  math_Matrix &  ) >(&FairCurve_Energy::Values),
+             R"#(computes the Energy <E>, the gradient <G> and the Hessian <H> of the energy for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("E"),  py::arg("G"),  py::arg("H"))
+        .def("Variable",
+             (Standard_Boolean (FairCurve_Energy::*)( math_Vector &  ) const) static_cast<Standard_Boolean (FairCurve_Energy::*)( math_Vector &  ) const>(&FairCurve_Energy::Variable),
+             R"#(compute the variables <X> wich correspond with the field <MyPoles>)#"  , py::arg("X"))
+        .def("Poles",
+             (const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const) static_cast<const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const>(&FairCurve_Energy::Poles),
+             R"#(return the poles)#" )
+        .def("NbVariables",
+             (Standard_Integer (FairCurve_Energy::*)() const) static_cast<Standard_Integer (FairCurve_Energy::*)() const>(&FairCurve_Energy::NbVariables),
+             R"#(returns the number of variables of the energy.)#" )
+        .def("Poles",
+             (const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const) static_cast<const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const>(&FairCurve_Energy::Poles),
+             R"#(return the poles)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_Newton , shared_ptr<FairCurve_Newton>  , math_NewtonMinimum >>(m.attr("FairCurve_Newton"))
+        .def(py::init< const math_MultipleVarFunctionWithHessian &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Boolean >()  , py::arg("theFunction"),  py::arg("theSpatialTolerance")=static_cast<const Standard_Real>(1.0e-7),  py::arg("theCriteriumTolerance")=static_cast<const Standard_Real>(1.0e-7),  py::arg("theNbIterations")=static_cast<const Standard_Integer>(40),  py::arg("theConvexity")=static_cast<const Standard_Real>(1.0e-6),  py::arg("theWithSingularity")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
+        .def("IsConverged",
+             (Standard_Boolean (FairCurve_Newton::*)() const) static_cast<Standard_Boolean (FairCurve_Newton::*)() const>(&FairCurve_Newton::IsConverged),
+             R"#(This method is called at the end of each iteration to check the convergence : || Xi+1 - Xi || < SpatialTolerance/100 Or || Xi+1 - Xi || < SpatialTolerance and |F(Xi+1) - F(Xi)| < CriteriumTolerance * |F(xi)| It can be redefined in a sub-class to implement a specific test.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_DistributionOfJerk , shared_ptr<FairCurve_DistributionOfJerk>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfJerk"))
+        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Integer >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0) )
+    // methods
+        .def("Value",
+             (Standard_Boolean (FairCurve_DistributionOfJerk::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfJerk::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfJerk::Value),
+             R"#(computes the values <F> of the functions for the variable <X>. returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_DistributionOfSagging , shared_ptr<FairCurve_DistributionOfSagging>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfSagging"))
+        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Integer >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0) )
+    // methods
+        .def("Value",
+             (Standard_Boolean (FairCurve_DistributionOfSagging::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfSagging::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfSagging::Value),
+             R"#(computes the values <F> of the functions for the variable <X>. returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_DistributionOfTension , shared_ptr<FairCurve_DistributionOfTension>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfTension"))
+        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Real,const FairCurve_BattenLaw &,const Standard_Integer,const Standard_Boolean >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("LengthSliding"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0),  py::arg("Uniform")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
+        .def("SetLengthSliding",
+             (void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) ) static_cast<void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) >(&FairCurve_DistributionOfTension::SetLengthSliding),
+             R"#(change the length sliding)#"  , py::arg("LengthSliding"))
+        .def("Value",
+             (Standard_Boolean (FairCurve_DistributionOfTension::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfTension::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfTension::Value),
+             R"#(computes the values <F> of the functions for the variable <X>. returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+        .def("SetLengthSliding",
+             (void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) ) static_cast<void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) >(&FairCurve_DistributionOfTension::SetLengthSliding),
+             R"#(change the length sliding)#"  , py::arg("LengthSliding"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_EnergyOfBatten , shared_ptr<FairCurve_EnergyOfBatten>  , FairCurve_Energy >>(m.attr("FairCurve_EnergyOfBatten"))
+        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Real >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("ContrOrder1"),  py::arg("ContrOrder2"),  py::arg("Law"),  py::arg("LengthSliding"),  py::arg("FreeSliding")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Angle1")=static_cast<const Standard_Real>(0),  py::arg("Angle2")=static_cast<const Standard_Real>(0) )
+    // methods
+        .def("LengthSliding",
+             (Standard_Real (FairCurve_EnergyOfBatten::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::LengthSliding),
+             R"#(return the lengthSliding = P1P2 + Sliding)#" )
+        .def("Status",
+             (FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::Status),
+             R"#(return the status)#" )
+        .def("Variable",
+             (Standard_Boolean (FairCurve_EnergyOfBatten::*)( math_Vector &  ) const) static_cast<Standard_Boolean (FairCurve_EnergyOfBatten::*)( math_Vector &  ) const>(&FairCurve_EnergyOfBatten::Variable),
+             R"#(compute the variables <X> wich correspond with the field <MyPoles>)#"  , py::arg("X"))
+        .def("LengthSliding",
+             (Standard_Real (FairCurve_EnergyOfBatten::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::LengthSliding),
+             R"#(return the lengthSliding = P1P2 + Sliding)#" )
+        .def("Status",
+             (FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::Status),
+             R"#(return the status)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_EnergyOfMVC , shared_ptr<FairCurve_EnergyOfMVC>  , FairCurve_Energy >>(m.attr("FairCurve_EnergyOfMVC"))
+        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("ContrOrder1"),  py::arg("ContrOrder2"),  py::arg("Law"),  py::arg("PhysicalRatio"),  py::arg("LengthSliding"),  py::arg("FreeSliding")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Angle1")=static_cast<const Standard_Real>(0),  py::arg("Angle2")=static_cast<const Standard_Real>(0),  py::arg("Curvature1")=static_cast<const Standard_Real>(0),  py::arg("Curvature2")=static_cast<const Standard_Real>(0) )
+    // methods
+        .def("LengthSliding",
+             (Standard_Real (FairCurve_EnergyOfMVC::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::LengthSliding),
+             R"#(return the lengthSliding = P1P2 + Sliding)#" )
+        .def("Status",
+             (FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::Status),
+             R"#(return the status)#" )
+        .def("Variable",
+             (Standard_Boolean (FairCurve_EnergyOfMVC::*)( math_Vector &  ) const) static_cast<Standard_Boolean (FairCurve_EnergyOfMVC::*)( math_Vector &  ) const>(&FairCurve_EnergyOfMVC::Variable),
+             R"#(compute the variables <X> wich correspond with the field <MyPoles>)#"  , py::arg("X"))
+        .def("LengthSliding",
+             (Standard_Real (FairCurve_EnergyOfMVC::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::LengthSliding),
+             R"#(return the lengthSliding = P1P2 + Sliding)#" )
+        .def("Status",
+             (FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::Status),
+             R"#(return the status)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<FairCurve_MinimalVariation , shared_ptr<FairCurve_MinimalVariation>  , FairCurve_Batten >>(m.attr("FairCurve_MinimalVariation"))
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("Heigth"),  py::arg("Slope")=static_cast<const Standard_Real>(0),  py::arg("PhysicalRatio")=static_cast<const Standard_Real>(0) )
+    // methods
         .def("SetCurvature1",
              (void (FairCurve_MinimalVariation::*)( const Standard_Real  ) ) static_cast<void (FairCurve_MinimalVariation::*)( const Standard_Real  ) >(&FairCurve_MinimalVariation::SetCurvature1),
              R"#(Allows you to set a new constraint on curvature at the first point.)#"  , py::arg("Curvature"))
@@ -252,188 +467,30 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
         .def("GetPhysicalRatio",
              (Standard_Real (FairCurve_MinimalVariation::*)() const) static_cast<Standard_Real (FairCurve_MinimalVariation::*)() const>(&FairCurve_MinimalVariation::GetPhysicalRatio),
              R"#(Returns the physical ratio, or kind of energy.)#" )
-;
-
-
-    static_cast<py::class_<FairCurve_BattenLaw ,std::unique_ptr<FairCurve_BattenLaw>  , math_Function >>(m.attr("FairCurve_BattenLaw"))
-        .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Heigth"),  py::arg("Slope"),  py::arg("Sliding") )
-        .def("SetSliding",
-             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSliding),
-             R"#(Change the value of sliding)#"  , py::arg("Sliding"))
-        .def("SetHeigth",
-             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetHeigth),
-             R"#(Change the value of Heigth at the middle point.)#"  , py::arg("Heigth"))
-        .def("SetSlope",
-             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSlope),
-             R"#(Change the value of the geometric slope.)#"  , py::arg("Slope"))
-        .def("Value",
-             (Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) >(&FairCurve_BattenLaw::Value),
-             R"#(computes the value of the heigth for the parameter T on the neutral fibber)#"  , py::arg("T"),  py::arg("THeigth"))
-        .def("SetSliding",
-             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSliding),
-             R"#(Change the value of sliding)#"  , py::arg("Sliding"))
-        .def("SetHeigth",
-             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetHeigth),
-             R"#(Change the value of Heigth at the middle point.)#"  , py::arg("Heigth"))
-        .def("SetSlope",
-             (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSlope),
-             R"#(Change the value of the geometric slope.)#"  , py::arg("Slope"))
-        .def("Value",
-             (Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (FairCurve_BattenLaw::*)( const Standard_Real ,  Standard_Real &  ) >(&FairCurve_BattenLaw::Value),
-             R"#(computes the value of the heigth for the parameter T on the neutral fibber)#"  , py::arg("T"),  py::arg("THeigth"))
-;
-
-
-    static_cast<py::class_<FairCurve_Newton ,std::unique_ptr<FairCurve_Newton>  , math_NewtonMinimum >>(m.attr("FairCurve_Newton"))
-        .def(py::init< const math_MultipleVarFunctionWithHessian &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Boolean >()  , py::arg("theFunction"),  py::arg("theSpatialTolerance")=static_cast<const Standard_Real>(1.0e-7),  py::arg("theCriteriumTolerance")=static_cast<const Standard_Real>(1.0e-7),  py::arg("theNbIterations")=static_cast<const Standard_Integer>(40),  py::arg("theConvexity")=static_cast<const Standard_Real>(1.0e-6),  py::arg("theWithSingularity")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def("IsConverged",
-             (Standard_Boolean (FairCurve_Newton::*)() const) static_cast<Standard_Boolean (FairCurve_Newton::*)() const>(&FairCurve_Newton::IsConverged),
-             R"#(This method is called at the end of each iteration to check the convergence : || Xi+1 - Xi || < SpatialTolerance/100 Or || Xi+1 - Xi || < SpatialTolerance and |F(Xi+1) - F(Xi)| < CriteriumTolerance * |F(xi)| It can be redefined in a sub-class to implement a specific test.)#" )
-;
-
-
-    static_cast<py::class_<FairCurve_Energy ,std::unique_ptr<FairCurve_Energy> ,Py_FairCurve_Energy , math_MultipleVarFunctionWithHessian >>(m.attr("FairCurve_Energy"))
-        .def("NbVariables",
-             (Standard_Integer (FairCurve_Energy::*)() const) static_cast<Standard_Integer (FairCurve_Energy::*)() const>(&FairCurve_Energy::NbVariables),
-             R"#(returns the number of variables of the energy.)#" )
-        .def("Value",
-             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real &  ) >(&FairCurve_Energy::Value),
-             R"#(computes the values of the Energys E for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("E"))
-        .def("Gradient",
-             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_Energy::Gradient),
-             R"#(computes the gradient <G> of the energys for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("G"))
-        .def("Values",
-             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector &  ) >(&FairCurve_Energy::Values),
-             R"#(computes the Energy <E> and the gradient <G> of the energy for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("E"),  py::arg("G"))
-        .def("Values",
-             (Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (FairCurve_Energy::*)( const math_Vector & ,  Standard_Real & ,  math_Vector & ,  math_Matrix &  ) >(&FairCurve_Energy::Values),
-             R"#(computes the Energy <E>, the gradient <G> and the Hessian <H> of the energy for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("E"),  py::arg("G"),  py::arg("H"))
-        .def("Variable",
-             (Standard_Boolean (FairCurve_Energy::*)( math_Vector &  ) const) static_cast<Standard_Boolean (FairCurve_Energy::*)( math_Vector &  ) const>(&FairCurve_Energy::Variable),
-             R"#(compute the variables <X> wich correspond with the field <MyPoles>)#"  , py::arg("X"))
-        .def("Poles",
-             (const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const) static_cast<const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const>(&FairCurve_Energy::Poles),
-             R"#(return the poles)#" )
-        .def("NbVariables",
-             (Standard_Integer (FairCurve_Energy::*)() const) static_cast<Standard_Integer (FairCurve_Energy::*)() const>(&FairCurve_Energy::NbVariables),
-             R"#(returns the number of variables of the energy.)#" )
-        .def("Poles",
-             (const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const) static_cast<const opencascade::handle<TColgp_HArray1OfPnt2d> & (FairCurve_Energy::*)() const>(&FairCurve_Energy::Poles),
-             R"#(return the poles)#" )
-;
-
-
-    static_cast<py::class_<FairCurve_EnergyOfBatten ,std::unique_ptr<FairCurve_EnergyOfBatten>  , FairCurve_Energy >>(m.attr("FairCurve_EnergyOfBatten"))
-        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Real >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("ContrOrder1"),  py::arg("ContrOrder2"),  py::arg("Law"),  py::arg("LengthSliding"),  py::arg("FreeSliding")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Angle1")=static_cast<const Standard_Real>(0),  py::arg("Angle2")=static_cast<const Standard_Real>(0) )
-        .def("LengthSliding",
-             (Standard_Real (FairCurve_EnergyOfBatten::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::LengthSliding),
-             R"#(return the lengthSliding = P1P2 + Sliding)#" )
-        .def("Status",
-             (FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::Status),
-             R"#(return the status)#" )
-        .def("Variable",
-             (Standard_Boolean (FairCurve_EnergyOfBatten::*)( math_Vector &  ) const) static_cast<Standard_Boolean (FairCurve_EnergyOfBatten::*)( math_Vector &  ) const>(&FairCurve_EnergyOfBatten::Variable),
-             R"#(compute the variables <X> wich correspond with the field <MyPoles>)#"  , py::arg("X"))
-        .def("LengthSliding",
-             (Standard_Real (FairCurve_EnergyOfBatten::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::LengthSliding),
-             R"#(return the lengthSliding = P1P2 + Sliding)#" )
-        .def("Status",
-             (FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::Status),
-             R"#(return the status)#" )
-;
-
-
-    static_cast<py::class_<FairCurve_EnergyOfMVC ,std::unique_ptr<FairCurve_EnergyOfMVC>  , FairCurve_Energy >>(m.attr("FairCurve_EnergyOfMVC"))
-        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("ContrOrder1"),  py::arg("ContrOrder2"),  py::arg("Law"),  py::arg("PhysicalRatio"),  py::arg("LengthSliding"),  py::arg("FreeSliding")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Angle1")=static_cast<const Standard_Real>(0),  py::arg("Angle2")=static_cast<const Standard_Real>(0),  py::arg("Curvature1")=static_cast<const Standard_Real>(0),  py::arg("Curvature2")=static_cast<const Standard_Real>(0) )
-        .def("LengthSliding",
-             (Standard_Real (FairCurve_EnergyOfMVC::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::LengthSliding),
-             R"#(return the lengthSliding = P1P2 + Sliding)#" )
-        .def("Status",
-             (FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::Status),
-             R"#(return the status)#" )
-        .def("Variable",
-             (Standard_Boolean (FairCurve_EnergyOfMVC::*)( math_Vector &  ) const) static_cast<Standard_Boolean (FairCurve_EnergyOfMVC::*)( math_Vector &  ) const>(&FairCurve_EnergyOfMVC::Variable),
-             R"#(compute the variables <X> wich correspond with the field <MyPoles>)#"  , py::arg("X"))
-        .def("LengthSliding",
-             (Standard_Real (FairCurve_EnergyOfMVC::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::LengthSliding),
-             R"#(return the lengthSliding = P1P2 + Sliding)#" )
-        .def("Status",
-             (FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const) static_cast<FairCurve_AnalysisCode (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::Status),
-             R"#(return the status)#" )
-;
-
-
-    static_cast<py::class_<FairCurve_DistributionOfEnergy ,std::unique_ptr<FairCurve_DistributionOfEnergy> ,Py_FairCurve_DistributionOfEnergy , math_FunctionSet >>(m.attr("FairCurve_DistributionOfEnergy"))
-        .def("NbVariables",
-             (Standard_Integer (FairCurve_DistributionOfEnergy::*)() const) static_cast<Standard_Integer (FairCurve_DistributionOfEnergy::*)() const>(&FairCurve_DistributionOfEnergy::NbVariables),
-             R"#(returns the number of variables of the function.)#" )
-        .def("NbEquations",
-             (Standard_Integer (FairCurve_DistributionOfEnergy::*)() const) static_cast<Standard_Integer (FairCurve_DistributionOfEnergy::*)() const>(&FairCurve_DistributionOfEnergy::NbEquations),
-             R"#(returns the number of equations of the function.)#" )
-        .def("SetDerivativeOrder",
-             (void (FairCurve_DistributionOfEnergy::*)( const Standard_Integer  ) ) static_cast<void (FairCurve_DistributionOfEnergy::*)( const Standard_Integer  ) >(&FairCurve_DistributionOfEnergy::SetDerivativeOrder),
-             R"#(None)#"  , py::arg("DerivativeOrder"))
-;
-
-
-    static_cast<py::class_<FairCurve_DistributionOfTension ,std::unique_ptr<FairCurve_DistributionOfTension>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfTension"))
-        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Real,const FairCurve_BattenLaw &,const Standard_Integer,const Standard_Boolean >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("LengthSliding"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0),  py::arg("Uniform")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def("SetLengthSliding",
-             (void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) ) static_cast<void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) >(&FairCurve_DistributionOfTension::SetLengthSliding),
-             R"#(change the length sliding)#"  , py::arg("LengthSliding"))
-        .def("Value",
-             (Standard_Boolean (FairCurve_DistributionOfTension::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfTension::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfTension::Value),
-             R"#(computes the values <F> of the functions for the variable <X>. returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
-        .def("SetLengthSliding",
-             (void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) ) static_cast<void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) >(&FairCurve_DistributionOfTension::SetLengthSliding),
-             R"#(change the length sliding)#"  , py::arg("LengthSliding"))
-;
-
-
-    static_cast<py::class_<FairCurve_DistributionOfSagging ,std::unique_ptr<FairCurve_DistributionOfSagging>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfSagging"))
-        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Integer >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0) )
-        .def("Value",
-             (Standard_Boolean (FairCurve_DistributionOfSagging::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfSagging::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfSagging::Value),
-             R"#(computes the values <F> of the functions for the variable <X>. returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
-;
-
-
-    static_cast<py::class_<FairCurve_DistributionOfJerk ,std::unique_ptr<FairCurve_DistributionOfJerk>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfJerk"))
-        .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Integer >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0) )
-        .def("Value",
-             (Standard_Boolean (FairCurve_DistributionOfJerk::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfJerk::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfJerk::Value),
-             R"#(computes the values <F> of the functions for the variable <X>. returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/FairCurve_Batten.hxx
 // ./opencascade/FairCurve_EnergyOfBatten.hxx
 // ./opencascade/FairCurve_MinimalVariation.hxx
-// ./opencascade/FairCurve_DistributionOfEnergy.hxx
-// ./opencascade/FairCurve_EnergyOfMVC.hxx
-// ./opencascade/FairCurve_DistributionOfSagging.hxx
 // ./opencascade/FairCurve_BattenLaw.hxx
-// ./opencascade/FairCurve_AnalysisCode.hxx
 // ./opencascade/FairCurve_DistributionOfTension.hxx
-// ./opencascade/FairCurve_Newton.hxx
-// ./opencascade/FairCurve_DistributionOfJerk.hxx
+// ./opencascade/FairCurve_Batten.hxx
+// ./opencascade/FairCurve_EnergyOfMVC.hxx
 // ./opencascade/FairCurve_Energy.hxx
+// ./opencascade/FairCurve_DistributionOfEnergy.hxx
+// ./opencascade/FairCurve_DistributionOfJerk.hxx
+// ./opencascade/FairCurve_Newton.hxx
+// ./opencascade/FairCurve_DistributionOfSagging.hxx
+// ./opencascade/FairCurve_AnalysisCode.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/FairCurve_Batten.hxx
-// ./opencascade/FairCurve_EnergyOfBatten.hxx
-// ./opencascade/FairCurve_MinimalVariation.hxx
-// ./opencascade/FairCurve_DistributionOfEnergy.hxx
-// ./opencascade/FairCurve_EnergyOfMVC.hxx
-// ./opencascade/FairCurve_DistributionOfSagging.hxx
-// ./opencascade/FairCurve_BattenLaw.hxx
-// ./opencascade/FairCurve_AnalysisCode.hxx
-// ./opencascade/FairCurve_DistributionOfTension.hxx
-// ./opencascade/FairCurve_Newton.hxx
-// ./opencascade/FairCurve_DistributionOfJerk.hxx
-// ./opencascade/FairCurve_Energy.hxx
 
 
 // exceptions

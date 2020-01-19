@@ -17,10 +17,10 @@ namespace py = pybind11;
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HExtendedString.hxx>
 #include <StdObjMgt_Persistent.hxx>
-#include <StdObjMgt_Persistent.hxx>
 #include <Standard_GUID.hxx>
 #include <StdObjMgt_Persistent.hxx>
 #include <Standard_GUID.hxx>
+#include <StdObjMgt_Persistent.hxx>
 
 // module includes
 #include <StdObjMgt_Attribute.hxx>
@@ -68,21 +68,14 @@ py::module m = main_module.def_submodule("StdObjMgt", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<StdObjMgt_Persistent ,opencascade::handle<StdObjMgt_Persistent> ,Py_StdObjMgt_Persistent , Standard_Transient >(m,"StdObjMgt_Persistent",R"#(Root class for a temporary persistent object that reads data from a file and then creates transient object using the data.)#");
-    py::class_<StdObjMgt_WriteData ,std::unique_ptr<StdObjMgt_WriteData>  >(m,"StdObjMgt_WriteData",R"#(Auxiliary data used to write persistent objects to a file.)#");
-    py::class_<StdObjMgt_ReadData ,std::unique_ptr<StdObjMgt_ReadData>  >(m,"StdObjMgt_ReadData",R"#(Auxiliary data used to read persistent objects from a file.)#");
-    py::class_<StdObjMgt_SharedObject ,std::unique_ptr<StdObjMgt_SharedObject>  >(m,"StdObjMgt_SharedObject",R"#(None)#");
-    py::class_<StdObjMgt_MapOfInstantiators ,std::unique_ptr<StdObjMgt_MapOfInstantiators>  >(m,"StdObjMgt_MapOfInstantiators",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/StdObjMgt_Attribute.hxx
-// ./opencascade/StdObjMgt_Persistent.hxx
-// ./opencascade/StdObjMgt_TransientPersistentMap.hxx
-// ./opencascade/StdObjMgt_SharedObject.hxx
-// ./opencascade/StdObjMgt_WriteData.hxx
-// ./opencascade/StdObjMgt_MapOfInstantiators.hxx
-// ./opencascade/StdObjMgt_ReadData.hxx
+
+// classes forward declarations only
+    py::class_<StdObjMgt_MapOfInstantiators , shared_ptr<StdObjMgt_MapOfInstantiators>  >(m,"StdObjMgt_MapOfInstantiators",R"#(None)#");
+    py::class_<StdObjMgt_Persistent ,opencascade::handle<StdObjMgt_Persistent> ,Py_StdObjMgt_Persistent , Standard_Transient >(m,"StdObjMgt_Persistent",R"#(Root class for a temporary persistent object that reads data from a file and then creates transient object using the data.)#");
+    py::class_<StdObjMgt_ReadData , shared_ptr<StdObjMgt_ReadData>  >(m,"StdObjMgt_ReadData",R"#(Auxiliary data used to read persistent objects from a file.)#");
+    py::class_<StdObjMgt_SharedObject , shared_ptr<StdObjMgt_SharedObject>  >(m,"StdObjMgt_SharedObject",R"#(None)#");
+    py::class_<StdObjMgt_WriteData , shared_ptr<StdObjMgt_WriteData>  >(m,"StdObjMgt_WriteData",R"#(Auxiliary data used to write persistent objects to a file.)#");
 
 };
 

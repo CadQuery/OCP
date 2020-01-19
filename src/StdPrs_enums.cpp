@@ -11,32 +11,32 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Adaptor3d_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
 #include <Adaptor3d_HSurface.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Adaptor3d_Curve.hxx>
 #include <HLRBRep_Data.hxx>
 #include <TopoDS_Shape.hxx>
 #include <HLRAlgo_Projector.hxx>
 #include <BRepAdaptor_Curve.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Prs3d_Projector.hxx>
-#include <Geom_Point.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <BRepAdaptor_HSurface.hxx>
 #include <Graphic3d_ArrayOfSegments.hxx>
 #include <Graphic3d_ArrayOfTriangles.hxx>
 #include <TopoDS_Shape.hxx>
 #include <BRep_Builder.hxx>
 #include <TopoDS_Compound.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopLoc_Location.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <Geom_Point.hxx>
 #include <TopoDS_Shape.hxx>
+#include <Prs3d_Projector.hxx>
+#include <Adaptor3d_Surface.hxx>
 #include <BRepAdaptor_HSurface.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Adaptor3d_Surface.hxx>
 
 // module includes
 #include <StdPrs_BndBox.hxx>
@@ -92,56 +92,32 @@ py::module m = main_module.def_submodule("StdPrs", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<StdPrs_Isolines ,std::unique_ptr<StdPrs_Isolines>  , Prs3d_Root >(m,"StdPrs_Isolines",R"#(Tool for computing isoline representation for a face or surface. Depending on a flags set to the given Prs3d_Drawer instance, on-surface (is used by default) or on-triangulation isoline builder algorithm will be used. If the given shape is not triangulated, on-surface isoline builder will be applied regardless of Prs3d_Drawer flags.)#");
-    py::class_<StdPrs_Curve ,std::unique_ptr<StdPrs_Curve>  , Prs3d_Root >(m,"StdPrs_Curve",R"#(A framework to define display of lines, arcs of circles and conic sections. This is done with a fixed number of points, which can be modified.)#");
-    py::class_<StdPrs_WFSurface ,std::unique_ptr<StdPrs_WFSurface>  , Prs3d_Root >(m,"StdPrs_WFSurface",R"#(Computes the wireframe presentation of surfaces by displaying a given number of U and/or V isoparametric curves. The isoparametric curves are drawn with respect to a given number of points.)#");
-    py::class_<StdPrs_HLRPolyShape ,std::unique_ptr<StdPrs_HLRPolyShape>  , Prs3d_Root >(m,"StdPrs_HLRPolyShape",R"#(Instantiates Prs3d_PolyHLRShape to define a display of a shape where hidden and visible lines are identified with respect to a given projection. StdPrs_HLRPolyShape works with a polyhedral simplification of the shape whereas StdPrs_HLRShape takes the shape itself into account. When you use StdPrs_HLRShape, you obtain an exact result, whereas, when you use StdPrs_HLRPolyShape, you reduce computation time but obtain polygonal segments. The polygonal algorithm is used.)#");
-    py::class_<StdPrs_ToolPoint ,std::unique_ptr<StdPrs_ToolPoint>  >(m,"StdPrs_ToolPoint",R"#(None)#");
-    py::class_<StdPrs_WFDeflectionSurface ,std::unique_ptr<StdPrs_WFDeflectionSurface>  , Prs3d_Root >(m,"StdPrs_WFDeflectionSurface",R"#(Draws a surface by drawing the isoparametric curves with respect to a maximal chordial deviation. The number of isoparametric curves to be drawn and their color are controlled by the furnished Drawer.)#");
-    py::class_<StdPrs_ToolRFace ,std::unique_ptr<StdPrs_ToolRFace>  >(m,"StdPrs_ToolRFace",R"#(None)#");
-    py::class_<StdPrs_WFDeflectionRestrictedFace ,std::unique_ptr<StdPrs_WFDeflectionRestrictedFace>  , Prs3d_Root >(m,"StdPrs_WFDeflectionRestrictedFace",R"#(A framework to provide display of U and V isoparameters of faces, while allowing you to impose a deflection on them. Computes the wireframe presentation of faces with restrictions by displaying a given number of U and/or V isoparametric curves. The isoparametric curves are drawn with respect to a maximal chordial deviation. The presentation includes the restriction curves.)#");
-    py::class_<StdPrs_ShadedSurface ,std::unique_ptr<StdPrs_ShadedSurface>  , Prs3d_Root >(m,"StdPrs_ShadedSurface",R"#(Computes the shading presentation of surfaces. Draws a surface by drawing the isoparametric curves with respect to a maximal chordial deviation. The number of isoparametric curves to be drawn and their color are controlled by the furnished Drawer.)#");
-    py::class_<StdPrs_PoleCurve ,std::unique_ptr<StdPrs_PoleCurve>  , Prs3d_Root >(m,"StdPrs_PoleCurve",R"#(A framework to provide display of Bezier or BSpline curves (by drawing a broken line linking the poles of the curve).)#");
-    py::class_<StdPrs_Plane ,std::unique_ptr<StdPrs_Plane>  , Prs3d_Root >(m,"StdPrs_Plane",R"#(A framework to display infinite planes.)#");
-    py::class_<StdPrs_BndBox ,std::unique_ptr<StdPrs_BndBox>  , Prs3d_Root >(m,"StdPrs_BndBox",R"#(Tool for computing bounding box presentation.)#");
-    py::class_<StdPrs_HLRToolShape ,std::unique_ptr<StdPrs_HLRToolShape>  >(m,"StdPrs_HLRToolShape",R"#(None)#");
-    py::class_<StdPrs_ShadedShape ,std::unique_ptr<StdPrs_ShadedShape>  , Prs3d_Root >(m,"StdPrs_ShadedShape",R"#(Auxiliary procedures to prepare Shaded presentation of specified shape.)#");
-    py::class_<StdPrs_ToolTriangulatedShape ,std::unique_ptr<StdPrs_ToolTriangulatedShape>  >(m,"StdPrs_ToolTriangulatedShape",R"#(None)#");
-    py::class_<StdPrs_WFRestrictedFace ,std::unique_ptr<StdPrs_WFRestrictedFace>  , Prs3d_Root >(m,"StdPrs_WFRestrictedFace",R"#(None)#");
-    py::class_<StdPrs_WFShape ,std::unique_ptr<StdPrs_WFShape>  , Prs3d_Root >(m,"StdPrs_WFShape",R"#(Tool for computing wireframe presentation of a TopoDS_Shape.)#");
-    py::class_<StdPrs_DeflectionCurve ,std::unique_ptr<StdPrs_DeflectionCurve>  , Prs3d_Root >(m,"StdPrs_DeflectionCurve",R"#(A framework to provide display of any curve with respect to the maximal chordal deviation defined in the Prs3d_Drawer attributes manager.)#");
-    py::class_<StdPrs_ToolVertex ,std::unique_ptr<StdPrs_ToolVertex>  >(m,"StdPrs_ToolVertex",R"#(None)#");
-    py::class_<StdPrs_HLRShape ,std::unique_ptr<StdPrs_HLRShape>  , Prs3d_Root >(m,"StdPrs_HLRShape",R"#(None)#");
-    py::class_<StdPrs_WFPoleSurface ,std::unique_ptr<StdPrs_WFPoleSurface>  , Prs3d_Root >(m,"StdPrs_WFPoleSurface",R"#(Computes the presentation of surfaces by drawing a double network of lines linking the poles of the surface in the two parametric direction. The number of lines to be drawn is controlled by the NetworkNumber of the given Drawer.)#");
-
 // pre-register typdefs
-// ./opencascade/StdPrs_Isolines.hxx
-// ./opencascade/StdPrs_BndBox.hxx
-// ./opencascade/StdPrs_Curve.hxx
-// ./opencascade/StdPrs_WFShape.hxx
-// ./opencascade/StdPrs_WFSurface.hxx
-// ./opencascade/StdPrs_HLRToolShape.hxx
-// ./opencascade/StdPrs_HLRPolyShape.hxx
-// ./opencascade/StdPrs_HLRShape.hxx
-// ./opencascade/StdPrs_ToolPoint.hxx
-// ./opencascade/StdPrs_Volume.hxx
-// ./opencascade/StdPrs_ShadedShape.hxx
-// ./opencascade/StdPrs_WFDeflectionSurface.hxx
-// ./opencascade/StdPrs_DeflectionCurve.hxx
-// ./opencascade/StdPrs_ToolRFace.hxx
-// ./opencascade/StdPrs_Vertex.hxx
     preregister_template_Prs3d_Point<TopoDS_Vertex, StdPrs_ToolVertex>(m,"StdPrs_Vertex");  
-// ./opencascade/StdPrs_ToolTriangulatedShape.hxx
-// ./opencascade/StdPrs_WFDeflectionRestrictedFace.hxx
-// ./opencascade/StdPrs_WFPoleSurface.hxx
-// ./opencascade/StdPrs_ShadedSurface.hxx
-// ./opencascade/StdPrs_WFRestrictedFace.hxx
-// ./opencascade/StdPrs_Point.hxx
     preregister_template_Prs3d_Point<opencascade::handle<Geom_Point>, StdPrs_ToolPoint>(m,"StdPrs_Point");  
-// ./opencascade/StdPrs_PoleCurve.hxx
-// ./opencascade/StdPrs_ToolVertex.hxx
-// ./opencascade/StdPrs_Plane.hxx
+
+// classes forward declarations only
+    py::class_<StdPrs_BndBox , shared_ptr<StdPrs_BndBox>  , Prs3d_Root >(m,"StdPrs_BndBox",R"#(Tool for computing bounding box presentation.)#");
+    py::class_<StdPrs_Curve , shared_ptr<StdPrs_Curve>  , Prs3d_Root >(m,"StdPrs_Curve",R"#(A framework to define display of lines, arcs of circles and conic sections. This is done with a fixed number of points, which can be modified.)#");
+    py::class_<StdPrs_DeflectionCurve , shared_ptr<StdPrs_DeflectionCurve>  , Prs3d_Root >(m,"StdPrs_DeflectionCurve",R"#(A framework to provide display of any curve with respect to the maximal chordal deviation defined in the Prs3d_Drawer attributes manager.)#");
+    py::class_<StdPrs_HLRPolyShape , shared_ptr<StdPrs_HLRPolyShape>  , Prs3d_Root >(m,"StdPrs_HLRPolyShape",R"#(Instantiates Prs3d_PolyHLRShape to define a display of a shape where hidden and visible lines are identified with respect to a given projection. StdPrs_HLRPolyShape works with a polyhedral simplification of the shape whereas StdPrs_HLRShape takes the shape itself into account. When you use StdPrs_HLRShape, you obtain an exact result, whereas, when you use StdPrs_HLRPolyShape, you reduce computation time but obtain polygonal segments. The polygonal algorithm is used.)#");
+    py::class_<StdPrs_HLRShape , shared_ptr<StdPrs_HLRShape>  , Prs3d_Root >(m,"StdPrs_HLRShape",R"#(None)#");
+    py::class_<StdPrs_HLRToolShape , shared_ptr<StdPrs_HLRToolShape>  >(m,"StdPrs_HLRToolShape",R"#(None)#");
+    py::class_<StdPrs_Isolines , shared_ptr<StdPrs_Isolines>  , Prs3d_Root >(m,"StdPrs_Isolines",R"#(Tool for computing isoline representation for a face or surface. Depending on a flags set to the given Prs3d_Drawer instance, on-surface (is used by default) or on-triangulation isoline builder algorithm will be used. If the given shape is not triangulated, on-surface isoline builder will be applied regardless of Prs3d_Drawer flags.)#");
+    py::class_<StdPrs_Plane , shared_ptr<StdPrs_Plane>  , Prs3d_Root >(m,"StdPrs_Plane",R"#(A framework to display infinite planes.)#");
+    py::class_<StdPrs_PoleCurve , shared_ptr<StdPrs_PoleCurve>  , Prs3d_Root >(m,"StdPrs_PoleCurve",R"#(A framework to provide display of Bezier or BSpline curves (by drawing a broken line linking the poles of the curve).)#");
+    py::class_<StdPrs_ShadedShape , shared_ptr<StdPrs_ShadedShape>  , Prs3d_Root >(m,"StdPrs_ShadedShape",R"#(Auxiliary procedures to prepare Shaded presentation of specified shape.)#");
+    py::class_<StdPrs_ShadedSurface , shared_ptr<StdPrs_ShadedSurface>  , Prs3d_Root >(m,"StdPrs_ShadedSurface",R"#(Computes the shading presentation of surfaces. Draws a surface by drawing the isoparametric curves with respect to a maximal chordial deviation. The number of isoparametric curves to be drawn and their color are controlled by the furnished Drawer.)#");
+    py::class_<StdPrs_ToolPoint , shared_ptr<StdPrs_ToolPoint>  >(m,"StdPrs_ToolPoint",R"#(None)#");
+    py::class_<StdPrs_ToolRFace , shared_ptr<StdPrs_ToolRFace>  >(m,"StdPrs_ToolRFace",R"#(None)#");
+    py::class_<StdPrs_ToolTriangulatedShape , shared_ptr<StdPrs_ToolTriangulatedShape>  >(m,"StdPrs_ToolTriangulatedShape",R"#(None)#");
+    py::class_<StdPrs_ToolVertex , shared_ptr<StdPrs_ToolVertex>  >(m,"StdPrs_ToolVertex",R"#(None)#");
+    py::class_<StdPrs_WFDeflectionRestrictedFace , shared_ptr<StdPrs_WFDeflectionRestrictedFace>  , Prs3d_Root >(m,"StdPrs_WFDeflectionRestrictedFace",R"#(A framework to provide display of U and V isoparameters of faces, while allowing you to impose a deflection on them. Computes the wireframe presentation of faces with restrictions by displaying a given number of U and/or V isoparametric curves. The isoparametric curves are drawn with respect to a maximal chordial deviation. The presentation includes the restriction curves.)#");
+    py::class_<StdPrs_WFDeflectionSurface , shared_ptr<StdPrs_WFDeflectionSurface>  , Prs3d_Root >(m,"StdPrs_WFDeflectionSurface",R"#(Draws a surface by drawing the isoparametric curves with respect to a maximal chordial deviation. The number of isoparametric curves to be drawn and their color are controlled by the furnished Drawer.)#");
+    py::class_<StdPrs_WFPoleSurface , shared_ptr<StdPrs_WFPoleSurface>  , Prs3d_Root >(m,"StdPrs_WFPoleSurface",R"#(Computes the presentation of surfaces by drawing a double network of lines linking the poles of the surface in the two parametric direction. The number of lines to be drawn is controlled by the NetworkNumber of the given Drawer.)#");
+    py::class_<StdPrs_WFRestrictedFace , shared_ptr<StdPrs_WFRestrictedFace>  , Prs3d_Root >(m,"StdPrs_WFRestrictedFace",R"#(None)#");
+    py::class_<StdPrs_WFShape , shared_ptr<StdPrs_WFShape>  , Prs3d_Root >(m,"StdPrs_WFShape",R"#(Tool for computing wireframe presentation of a TopoDS_Shape.)#");
+    py::class_<StdPrs_WFSurface , shared_ptr<StdPrs_WFSurface>  , Prs3d_Root >(m,"StdPrs_WFSurface",R"#(Computes the wireframe presentation of surfaces by displaying a given number of U and/or V isoparametric curves. The isoparametric curves are drawn with respect to a given number of points.)#");
 
 };
 

@@ -41,12 +41,10 @@ py::module m = main_module.def_submodule("UnitsAPI", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<UnitsAPI ,std::unique_ptr<UnitsAPI>  >(m,"UnitsAPI",R"#(The UnitsAPI global functions are used to convert a value from any unit into another unit. Principles Conversion is executed among three unit systems: - the SI System - the user's Local System - the user's Current System. The SI System is the standard international unit system. It is indicated by SI in the synopses of the UnitsAPI functions. The MDTV System corresponds to the SI international standard but the length unit and all its derivatives use millimeters instead of the meters. Both systems are proposed by Open CASCADE; the SI System is the standard option. By selecting one of these two systems, the user defines his Local System through the SetLocalSystem function. The Local System is indicated by LS in the synopses of the UnitsAPI functions. The user's Local System units can be modified in the working environment. The user defines his Current System by modifying its units through the SetCurrentUnit function. The Current System is indicated by Current in the synopses of the UnitsAPI functions.)#");
-
 // pre-register typdefs
-// ./opencascade/UnitsAPI_SystemUnits.hxx
-// ./opencascade/UnitsAPI.hxx
+
+// classes forward declarations only
+    py::class_<UnitsAPI , shared_ptr<UnitsAPI>  >(m,"UnitsAPI",R"#(The UnitsAPI global functions are used to convert a value from any unit into another unit. Principles Conversion is executed among three unit systems: - the SI System - the user's Local System - the user's Current System. The SI System is the standard international unit system. It is indicated by SI in the synopses of the UnitsAPI functions. The MDTV System corresponds to the SI international standard but the length unit and all its derivatives use millimeters instead of the meters. Both systems are proposed by Open CASCADE; the SI System is the standard option. By selecting one of these two systems, the user defines his Local System through the SetLocalSystem function. The Local System is indicated by LS in the synopses of the UnitsAPI functions. The user's Local System units can be modified in the working environment. The user defines his Current System by modifying its units through the SetCurrentUnit function. The Current System is indicated by Current in the synopses of the UnitsAPI functions.)#");
 
 };
 

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -26,11 +29,11 @@ namespace py = pybind11;
 #include <Geom2dHatch_MapOfElements.hxx>
 
 // template related includes
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
-#include "NCollection.hxx"
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
-#include "NCollection.hxx"
 // ./opencascade/Geom2dHatch_Hatchings.hxx
+#include "NCollection.hxx"
+// ./opencascade/Geom2dHatch_MapOfElements.hxx
+#include "NCollection.hxx"
+// ./opencascade/Geom2dHatch_MapOfElements.hxx
 #include "NCollection.hxx"
 
 
@@ -51,8 +54,168 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
 // classes
 
 
-    static_cast<py::class_<Geom2dHatch_Hatcher ,std::unique_ptr<Geom2dHatch_Hatcher>  >>(m.attr("Geom2dHatch_Hatcher"))
+    static_cast<py::class_<Geom2dHatch_Classifier , shared_ptr<Geom2dHatch_Classifier>  >>(m.attr("Geom2dHatch_Classifier"))
+        .def(py::init<  >()  )
+        .def(py::init< Geom2dHatch_Elements &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("F"),  py::arg("P"),  py::arg("Tol") )
+    // methods
+        .def("Perform",
+             (void (Geom2dHatch_Classifier::*)( Geom2dHatch_Elements & ,  const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<void (Geom2dHatch_Classifier::*)( Geom2dHatch_Elements & ,  const gp_Pnt2d & ,  const Standard_Real  ) >(&Geom2dHatch_Classifier::Perform),
+             R"#(Classify the Point P with Tolerance <T> on the face described by <F>.)#"  , py::arg("F"),  py::arg("P"),  py::arg("Tol"))
+        .def("State",
+             (TopAbs_State (Geom2dHatch_Classifier::*)() const) static_cast<TopAbs_State (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::State),
+             R"#(Returns the result of the classification.)#" )
+        .def("Rejected",
+             (Standard_Boolean (Geom2dHatch_Classifier::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::Rejected),
+             R"#(Returns True when the state was computed by a rejection. The state is OUT.)#" )
+        .def("NoWires",
+             (Standard_Boolean (Geom2dHatch_Classifier::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::NoWires),
+             R"#(Returns True if the face contains no wire. The state is IN.)#" )
+        .def("Edge",
+             (const Geom2dAdaptor_Curve & (Geom2dHatch_Classifier::*)() const) static_cast<const Geom2dAdaptor_Curve & (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::Edge),
+             R"#(Returns the Edge used to determine the classification. When the State is ON this is the Edge containing the point.)#" )
+        .def("EdgeParameter",
+             (Standard_Real (Geom2dHatch_Classifier::*)() const) static_cast<Standard_Real (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::EdgeParameter),
+             R"#(Returns the parameter on Edge() used to determine the classification.)#" )
+        .def("Position",
+             (IntRes2d_Position (Geom2dHatch_Classifier::*)() const) static_cast<IntRes2d_Position (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::Position),
+             R"#(Returns the position of the point on the edge returned by Edge.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Geom2dHatch_Element , shared_ptr<Geom2dHatch_Element>  >>(m.attr("Geom2dHatch_Element"))
+        .def(py::init<  >()  )
+        .def(py::init< const Geom2dHatch_Element & >()  , py::arg("Other") )
+        .def(py::init< const Geom2dAdaptor_Curve &,const TopAbs_Orientation >()  , py::arg("Curve"),  py::arg("Orientation")=static_cast<const TopAbs_Orientation>(TopAbs_FORWARD) )
+    // methods
+        .def("Curve",
+             (const Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() const) static_cast<const Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() const>(&Geom2dHatch_Element::Curve),
+             R"#(Returns the curve associated to the element.)#" )
+        .def("ChangeCurve",
+             (Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() ) static_cast<Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() >(&Geom2dHatch_Element::ChangeCurve),
+             R"#(Returns the curve associated to the element.)#" )
+        .def("Orientation",
+             (void (Geom2dHatch_Element::*)( const TopAbs_Orientation  ) ) static_cast<void (Geom2dHatch_Element::*)( const TopAbs_Orientation  ) >(&Geom2dHatch_Element::Orientation),
+             R"#(Sets the orientation of the element.)#"  , py::arg("Orientation"))
+        .def("Orientation",
+             (TopAbs_Orientation (Geom2dHatch_Element::*)() const) static_cast<TopAbs_Orientation (Geom2dHatch_Element::*)() const>(&Geom2dHatch_Element::Orientation),
+             R"#(Returns the orientation of the element.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Geom2dHatch_Elements , shared_ptr<Geom2dHatch_Elements>  >>(m.attr("Geom2dHatch_Elements"))
+        .def(py::init<  >()  )
+        .def(py::init< const Geom2dHatch_Elements & >()  , py::arg("Other") )
+    // methods
+        .def("Clear",
+             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::Clear),
+             R"#(None)#" )
+        .def("Bind",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer ,  const Geom2dHatch_Element &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer ,  const Geom2dHatch_Element &  ) >(&Geom2dHatch_Elements::Bind),
+             R"#(None)#"  , py::arg("K"),  py::arg("I"))
+        .def("IsBound",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) const>(&Geom2dHatch_Elements::IsBound),
+             R"#(None)#"  , py::arg("K"))
+        .def("UnBind",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) >(&Geom2dHatch_Elements::UnBind),
+             R"#(None)#"  , py::arg("K"))
+        .def("Find",
+             (const Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) const) static_cast<const Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) const>(&Geom2dHatch_Elements::Find),
+             R"#(None)#"  , py::arg("K"))
+        .def("ChangeFind",
+             (Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) ) static_cast<Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) >(&Geom2dHatch_Elements::ChangeFind),
+             R"#(None)#"  , py::arg("K"))
+        .def("CheckPoint",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( gp_Pnt2d &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( gp_Pnt2d &  ) >(&Geom2dHatch_Elements::CheckPoint),
+             R"#(None)#"  , py::arg("P"))
+        .def("Reject",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d &  ) const>(&Geom2dHatch_Elements::Reject),
+             R"#(None)#"  , py::arg("P"))
+        .def("Segment",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) >(&Geom2dHatch_Elements::Segment),
+             R"#(None)#"  , py::arg("P"),  py::arg("L"),  py::arg("Par"))
+        .def("OtherSegment",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) >(&Geom2dHatch_Elements::OtherSegment),
+             R"#(None)#"  , py::arg("P"),  py::arg("L"),  py::arg("Par"))
+        .def("InitWires",
+             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::InitWires),
+             R"#(None)#" )
+        .def("MoreWires",
+             (Standard_Boolean (Geom2dHatch_Elements::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)() const>(&Geom2dHatch_Elements::MoreWires),
+             R"#(None)#" )
+        .def("NextWire",
+             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::NextWire),
+             R"#(None)#" )
+        .def("RejectWire",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const>(&Geom2dHatch_Elements::RejectWire),
+             R"#(None)#"  , py::arg("L"),  py::arg("Par"))
+        .def("InitEdges",
+             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::InitEdges),
+             R"#(None)#" )
+        .def("MoreEdges",
+             (Standard_Boolean (Geom2dHatch_Elements::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)() const>(&Geom2dHatch_Elements::MoreEdges),
+             R"#(None)#" )
+        .def("NextEdge",
+             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::NextEdge),
+             R"#(None)#" )
+        .def("RejectEdge",
+             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const>(&Geom2dHatch_Elements::RejectEdge),
+             R"#(None)#"  , py::arg("L"),  py::arg("Par"))
+        .def("CurrentEdge",
+             (void (Geom2dHatch_Elements::*)( Geom2dAdaptor_Curve & ,  TopAbs_Orientation &  ) const) static_cast<void (Geom2dHatch_Elements::*)( Geom2dAdaptor_Curve & ,  TopAbs_Orientation &  ) const>(&Geom2dHatch_Elements::CurrentEdge),
+             R"#(None)#"  , py::arg("E"),  py::arg("Or"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Geom2dHatch_FClass2dOfClassifier , shared_ptr<Geom2dHatch_FClass2dOfClassifier>  >>(m.attr("Geom2dHatch_FClass2dOfClassifier"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Reset",
+             (void (Geom2dHatch_FClass2dOfClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dHatch_FClass2dOfClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dHatch_FClass2dOfClassifier::Reset),
+             R"#(Starts a classification process. The point to classify is the origin of the line <L>. <P> is the original length of the segment on <L> used to compute intersections. <Tol> is the tolerance attached to the line segment in intersections.)#"  , py::arg("L"),  py::arg("P"),  py::arg("Tol"))
+        .def("Compare",
+             (void (Geom2dHatch_FClass2dOfClassifier::*)( const Geom2dAdaptor_Curve & ,  const TopAbs_Orientation  ) ) static_cast<void (Geom2dHatch_FClass2dOfClassifier::*)( const Geom2dAdaptor_Curve & ,  const TopAbs_Orientation  ) >(&Geom2dHatch_FClass2dOfClassifier::Compare),
+             R"#(Updates the classification process with the edge <E> from the boundary.)#"  , py::arg("E"),  py::arg("Or"))
+        .def("Parameter",
+             (Standard_Real (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<Standard_Real (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::Parameter),
+             R"#(Returns the current value of the parameter.)#" )
+        .def("Intersector",
+             (Geom2dHatch_Intersector & (Geom2dHatch_FClass2dOfClassifier::*)() ) static_cast<Geom2dHatch_Intersector & (Geom2dHatch_FClass2dOfClassifier::*)() >(&Geom2dHatch_FClass2dOfClassifier::Intersector),
+             R"#(Returns the intersecting algorithm.)#" )
+        .def("ClosestIntersection",
+             (Standard_Integer (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<Standard_Integer (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::ClosestIntersection),
+             R"#(Returns 0 if the last compared edge had no relevant intersection. Else returns the index of this intersection in the last intersection algorithm.)#" )
+        .def("State",
+             (TopAbs_State (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<TopAbs_State (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::State),
+             R"#(Returns the current state of the point.)#" )
+        .def("IsHeadOrEnd",
+             (Standard_Boolean (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<Standard_Boolean (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::IsHeadOrEnd),
+             R"#(Returns the Standard_True if the closest intersection point represents head or end of the edge. Returns Standard_False otherwise.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Geom2dHatch_Hatcher , shared_ptr<Geom2dHatch_Hatcher>  >>(m.attr("Geom2dHatch_Hatcher"))
         .def(py::init< const Geom2dHatch_Intersector &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Intersector"),  py::arg("Confusion2d"),  py::arg("Confusion3d"),  py::arg("KeepPnt")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("KeepSeg")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
         .def("Intersector",
              (void (Geom2dHatch_Hatcher::*)( const Geom2dHatch_Intersector &  ) ) static_cast<void (Geom2dHatch_Hatcher::*)( const Geom2dHatch_Intersector &  ) >(&Geom2dHatch_Hatcher::Intersector),
              R"#(Sets the associated intersector.)#"  , py::arg("Intersector"))
@@ -206,12 +369,18 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
         .def("NbDomains",
              (Standard_Integer (Geom2dHatch_Hatcher::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (Geom2dHatch_Hatcher::*)( const Standard_Integer  ) const>(&Geom2dHatch_Hatcher::NbDomains),
              R"#(Returns the number of domains of the IndH-th hatching. Only ONE "INFINITE" domain means that the hatching is fully included in the contour defined by the elements.)#"  , py::arg("IndH"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Geom2dHatch_Hatching ,std::unique_ptr<Geom2dHatch_Hatching>  >>(m.attr("Geom2dHatch_Hatching"))
+    static_cast<py::class_<Geom2dHatch_Hatching , shared_ptr<Geom2dHatch_Hatching>  >>(m.attr("Geom2dHatch_Hatching"))
         .def(py::init<  >()  )
         .def(py::init< const Geom2dAdaptor_Curve & >()  , py::arg("Curve") )
+    // methods
         .def("Curve",
              (const Geom2dAdaptor_Curve & (Geom2dHatch_Hatching::*)() const) static_cast<const Geom2dAdaptor_Curve & (Geom2dHatch_Hatching::*)() const>(&Geom2dHatch_Hatching::Curve),
              R"#(Returns the curve associated to the hatching.)#" )
@@ -278,39 +447,18 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
         .def("ClassificationPoint",
              (gp_Pnt2d (Geom2dHatch_Hatching::*)() const) static_cast<gp_Pnt2d (Geom2dHatch_Hatching::*)() const>(&Geom2dHatch_Hatching::ClassificationPoint),
              R"#(Returns a point on the curve. This point will be used for the classification.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Geom2dHatch_Classifier ,std::unique_ptr<Geom2dHatch_Classifier>  >>(m.attr("Geom2dHatch_Classifier"))
-        .def(py::init<  >()  )
-        .def(py::init< Geom2dHatch_Elements &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("F"),  py::arg("P"),  py::arg("Tol") )
-        .def("Perform",
-             (void (Geom2dHatch_Classifier::*)( Geom2dHatch_Elements & ,  const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<void (Geom2dHatch_Classifier::*)( Geom2dHatch_Elements & ,  const gp_Pnt2d & ,  const Standard_Real  ) >(&Geom2dHatch_Classifier::Perform),
-             R"#(Classify the Point P with Tolerance <T> on the face described by <F>.)#"  , py::arg("F"),  py::arg("P"),  py::arg("Tol"))
-        .def("State",
-             (TopAbs_State (Geom2dHatch_Classifier::*)() const) static_cast<TopAbs_State (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::State),
-             R"#(Returns the result of the classification.)#" )
-        .def("Rejected",
-             (Standard_Boolean (Geom2dHatch_Classifier::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::Rejected),
-             R"#(Returns True when the state was computed by a rejection. The state is OUT.)#" )
-        .def("NoWires",
-             (Standard_Boolean (Geom2dHatch_Classifier::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::NoWires),
-             R"#(Returns True if the face contains no wire. The state is IN.)#" )
-        .def("Edge",
-             (const Geom2dAdaptor_Curve & (Geom2dHatch_Classifier::*)() const) static_cast<const Geom2dAdaptor_Curve & (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::Edge),
-             R"#(Returns the Edge used to determine the classification. When the State is ON this is the Edge containing the point.)#" )
-        .def("EdgeParameter",
-             (Standard_Real (Geom2dHatch_Classifier::*)() const) static_cast<Standard_Real (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::EdgeParameter),
-             R"#(Returns the parameter on Edge() used to determine the classification.)#" )
-        .def("Position",
-             (IntRes2d_Position (Geom2dHatch_Classifier::*)() const) static_cast<IntRes2d_Position (Geom2dHatch_Classifier::*)() const>(&Geom2dHatch_Classifier::Position),
-             R"#(Returns the position of the point on the edge returned by Edge.)#" )
-;
-
-
-    static_cast<py::class_<Geom2dHatch_Intersector ,std::unique_ptr<Geom2dHatch_Intersector>  , Geom2dInt_GInter >>(m.attr("Geom2dHatch_Intersector"))
+    static_cast<py::class_<Geom2dHatch_Intersector , shared_ptr<Geom2dHatch_Intersector>  , Geom2dInt_GInter >>(m.attr("Geom2dHatch_Intersector"))
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Confusion"),  py::arg("Tangency") )
         .def(py::init<  >()  )
+    // methods
         .def("ConfusionTolerance",
              (Standard_Real (Geom2dHatch_Intersector::*)() const) static_cast<Standard_Real (Geom2dHatch_Intersector::*)() const>(&Geom2dHatch_Intersector::ConfusionTolerance),
              R"#(Returns the confusion tolerance of the intersector.)#" )
@@ -329,9 +477,6 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
         .def("Perform",
              (void (Geom2dHatch_Intersector::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real ,  const Geom2dAdaptor_Curve &  ) ) static_cast<void (Geom2dHatch_Intersector::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real ,  const Geom2dAdaptor_Curve &  ) >(&Geom2dHatch_Intersector::Perform),
              R"#(Performs the intersection between the 2d line segment (<L>, <P>) and the Curve <E>. The line segment is the part of the 2d line <L> of parameter range [0, <P>] (P is positive and can be RealLast()). Tol is the Tolerance on the segment. The order is relevant, the first argument is the segment, the second the Edge.)#"  , py::arg("L"),  py::arg("P"),  py::arg("Tol"),  py::arg("E"))
-        .def("LocalGeometry",
-             (void (Geom2dHatch_Intersector::*)( const Geom2dAdaptor_Curve & ,  const Standard_Real ,  gp_Dir2d & ,  gp_Dir2d & ,  Standard_Real &  ) const) static_cast<void (Geom2dHatch_Intersector::*)( const Geom2dAdaptor_Curve & ,  const Standard_Real ,  gp_Dir2d & ,  gp_Dir2d & ,  Standard_Real &  ) const>(&Geom2dHatch_Intersector::LocalGeometry),
-             R"#(Returns in <T>, <N> and <C> the tangent, normal and curvature of the edge <E> at parameter value <U>.)#"  , py::arg("E"),  py::arg("U"),  py::arg("T"),  py::arg("N"),  py::arg("C"))
         .def("ConfusionTolerance",
              (Standard_Real (Geom2dHatch_Intersector::*)() const) static_cast<Standard_Real (Geom2dHatch_Intersector::*)() const>(&Geom2dHatch_Intersector::ConfusionTolerance),
              R"#(Returns the confusion tolerance of the intersector.)#" )
@@ -347,144 +492,33 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
         .def("Intersect",
              (void (Geom2dHatch_Intersector::*)( const Geom2dAdaptor_Curve & ,  const Geom2dAdaptor_Curve &  ) ) static_cast<void (Geom2dHatch_Intersector::*)( const Geom2dAdaptor_Curve & ,  const Geom2dAdaptor_Curve &  ) >(&Geom2dHatch_Intersector::Intersect),
              R"#(Intersects the curves C1 and C2. The results are retreived by the usual methods described in IntRes2d_Intersection. Creates an intersector.)#"  , py::arg("C1"),  py::arg("C2"))
-;
-
-
-    static_cast<py::class_<Geom2dHatch_FClass2dOfClassifier ,std::unique_ptr<Geom2dHatch_FClass2dOfClassifier>  >>(m.attr("Geom2dHatch_FClass2dOfClassifier"))
-        .def(py::init<  >()  )
-        .def("Reset",
-             (void (Geom2dHatch_FClass2dOfClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dHatch_FClass2dOfClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dHatch_FClass2dOfClassifier::Reset),
-             R"#(Starts a classification process. The point to classify is the origin of the line <L>. <P> is the original length of the segment on <L> used to compute intersections. <Tol> is the tolerance attached to the line segment in intersections.)#"  , py::arg("L"),  py::arg("P"),  py::arg("Tol"))
-        .def("Compare",
-             (void (Geom2dHatch_FClass2dOfClassifier::*)( const Geom2dAdaptor_Curve & ,  const TopAbs_Orientation  ) ) static_cast<void (Geom2dHatch_FClass2dOfClassifier::*)( const Geom2dAdaptor_Curve & ,  const TopAbs_Orientation  ) >(&Geom2dHatch_FClass2dOfClassifier::Compare),
-             R"#(Updates the classification process with the edge <E> from the boundary.)#"  , py::arg("E"),  py::arg("Or"))
-        .def("Parameter",
-             (Standard_Real (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<Standard_Real (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::Parameter),
-             R"#(Returns the current value of the parameter.)#" )
-        .def("Intersector",
-             (Geom2dHatch_Intersector & (Geom2dHatch_FClass2dOfClassifier::*)() ) static_cast<Geom2dHatch_Intersector & (Geom2dHatch_FClass2dOfClassifier::*)() >(&Geom2dHatch_FClass2dOfClassifier::Intersector),
-             R"#(Returns the intersecting algorithm.)#" )
-        .def("ClosestIntersection",
-             (Standard_Integer (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<Standard_Integer (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::ClosestIntersection),
-             R"#(Returns 0 if the last compared edge had no relevant intersection. Else returns the index of this intersection in the last intersection algorithm.)#" )
-        .def("State",
-             (TopAbs_State (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<TopAbs_State (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::State),
-             R"#(Returns the current state of the point.)#" )
-        .def("IsHeadOrEnd",
-             (Standard_Boolean (Geom2dHatch_FClass2dOfClassifier::*)() const) static_cast<Standard_Boolean (Geom2dHatch_FClass2dOfClassifier::*)() const>(&Geom2dHatch_FClass2dOfClassifier::IsHeadOrEnd),
-             R"#(Returns the Standard_True if the closest intersection point represents head or end of the edge. Returns Standard_False otherwise.)#" )
-;
-
-
-    static_cast<py::class_<Geom2dHatch_Elements ,std::unique_ptr<Geom2dHatch_Elements>  >>(m.attr("Geom2dHatch_Elements"))
-        .def(py::init<  >()  )
-        .def(py::init< const Geom2dHatch_Elements & >()  , py::arg("Other") )
-        .def("Clear",
-             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::Clear),
-             R"#(None)#" )
-        .def("Bind",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer ,  const Geom2dHatch_Element &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer ,  const Geom2dHatch_Element &  ) >(&Geom2dHatch_Elements::Bind),
-             R"#(None)#"  , py::arg("K"),  py::arg("I"))
-        .def("IsBound",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) const>(&Geom2dHatch_Elements::IsBound),
-             R"#(None)#"  , py::arg("K"))
-        .def("UnBind",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const Standard_Integer  ) >(&Geom2dHatch_Elements::UnBind),
-             R"#(None)#"  , py::arg("K"))
-        .def("Find",
-             (const Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) const) static_cast<const Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) const>(&Geom2dHatch_Elements::Find),
-             R"#(None)#"  , py::arg("K"))
-        .def("ChangeFind",
-             (Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) ) static_cast<Geom2dHatch_Element & (Geom2dHatch_Elements::*)( const Standard_Integer  ) >(&Geom2dHatch_Elements::ChangeFind),
-             R"#(None)#"  , py::arg("K"))
-        .def("CheckPoint",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( gp_Pnt2d &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( gp_Pnt2d &  ) >(&Geom2dHatch_Elements::CheckPoint),
-             R"#(None)#"  , py::arg("P"))
-        .def("Reject",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d &  ) const>(&Geom2dHatch_Elements::Reject),
-             R"#(None)#"  , py::arg("P"))
-        .def("Segment",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) >(&Geom2dHatch_Elements::Segment),
-             R"#(None)#"  , py::arg("P"),  py::arg("L"),  py::arg("Par"))
-        .def("OtherSegment",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Pnt2d & ,  gp_Lin2d & ,  Standard_Real &  ) >(&Geom2dHatch_Elements::OtherSegment),
-             R"#(None)#"  , py::arg("P"),  py::arg("L"),  py::arg("Par"))
-        .def("InitWires",
-             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::InitWires),
-             R"#(None)#" )
-        .def("MoreWires",
-             (Standard_Boolean (Geom2dHatch_Elements::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)() const>(&Geom2dHatch_Elements::MoreWires),
-             R"#(None)#" )
-        .def("NextWire",
-             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::NextWire),
-             R"#(None)#" )
-        .def("RejectWire",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const>(&Geom2dHatch_Elements::RejectWire),
-             R"#(None)#"  , py::arg("L"),  py::arg("Par"))
-        .def("InitEdges",
-             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::InitEdges),
-             R"#(None)#" )
-        .def("MoreEdges",
-             (Standard_Boolean (Geom2dHatch_Elements::*)() const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)() const>(&Geom2dHatch_Elements::MoreEdges),
-             R"#(None)#" )
-        .def("NextEdge",
-             (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::NextEdge),
-             R"#(None)#" )
-        .def("RejectEdge",
-             (Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (Geom2dHatch_Elements::*)( const gp_Lin2d & ,  const Standard_Real  ) const>(&Geom2dHatch_Elements::RejectEdge),
-             R"#(None)#"  , py::arg("L"),  py::arg("Par"))
-        .def("CurrentEdge",
-             (void (Geom2dHatch_Elements::*)( Geom2dAdaptor_Curve & ,  TopAbs_Orientation &  ) const) static_cast<void (Geom2dHatch_Elements::*)( Geom2dAdaptor_Curve & ,  TopAbs_Orientation &  ) const>(&Geom2dHatch_Elements::CurrentEdge),
-             R"#(None)#"  , py::arg("E"),  py::arg("Or"))
-;
-
-
-    static_cast<py::class_<Geom2dHatch_Element ,std::unique_ptr<Geom2dHatch_Element>  >>(m.attr("Geom2dHatch_Element"))
-        .def(py::init<  >()  )
-        .def(py::init< const Geom2dHatch_Element & >()  , py::arg("Other") )
-        .def(py::init< const Geom2dAdaptor_Curve &,const TopAbs_Orientation >()  , py::arg("Curve"),  py::arg("Orientation")=static_cast<const TopAbs_Orientation>(TopAbs_FORWARD) )
-        .def("Curve",
-             (const Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() const) static_cast<const Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() const>(&Geom2dHatch_Element::Curve),
-             R"#(Returns the curve associated to the element.)#" )
-        .def("ChangeCurve",
-             (Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() ) static_cast<Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() >(&Geom2dHatch_Element::ChangeCurve),
-             R"#(Returns the curve associated to the element.)#" )
-        .def("Orientation",
-             (void (Geom2dHatch_Element::*)( const TopAbs_Orientation  ) ) static_cast<void (Geom2dHatch_Element::*)( const TopAbs_Orientation  ) >(&Geom2dHatch_Element::Orientation),
-             R"#(Sets the orientation of the element.)#"  , py::arg("Orientation"))
-        .def("Orientation",
-             (TopAbs_Orientation (Geom2dHatch_Element::*)() const) static_cast<TopAbs_Orientation (Geom2dHatch_Element::*)() const>(&Geom2dHatch_Element::Orientation),
-             R"#(Returns the orientation of the element.)#" )
+    // methods using call by reference i.s.o. return
+        .def("LocalGeometry",
+             []( Geom2dHatch_Intersector &self , const Geom2dAdaptor_Curve & E,const Standard_Real U,gp_Dir2d & T,gp_Dir2d & N ){ Standard_Real  C; self.LocalGeometry(E,U,T,N,C); return std::make_tuple(C); },
+             R"#(Returns in <T>, <N> and <C> the tangent, normal and curvature of the edge <E> at parameter value <U>.)#"  , py::arg("E"),  py::arg("U"),  py::arg("T"),  py::arg("N"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/Geom2dHatch_Elements.hxx
+// ./opencascade/Geom2dHatch_DataMapIteratorOfHatchings.hxx
 // ./opencascade/Geom2dHatch_DataMapIteratorOfMapOfElements.hxx
-// ./opencascade/Geom2dHatch_Hatcher.hxx
+// ./opencascade/Geom2dHatch_Intersector.hxx
 // ./opencascade/Geom2dHatch_FClass2dOfClassifier.hxx
 // ./opencascade/Geom2dHatch_Hatching.hxx
-// ./opencascade/Geom2dHatch_Element.hxx
 // ./opencascade/Geom2dHatch_Classifier.hxx
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
-// ./opencascade/Geom2dHatch_Elements.hxx
 // ./opencascade/Geom2dHatch_Hatchings.hxx
-// ./opencascade/Geom2dHatch_DataMapIteratorOfHatchings.hxx
-// ./opencascade/Geom2dHatch_Intersector.hxx
+// ./opencascade/Geom2dHatch_MapOfElements.hxx
+// ./opencascade/Geom2dHatch_Hatcher.hxx
+// ./opencascade/Geom2dHatch_Element.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Geom2dHatch_DataMapIteratorOfMapOfElements.hxx
-// ./opencascade/Geom2dHatch_Hatcher.hxx
-// ./opencascade/Geom2dHatch_FClass2dOfClassifier.hxx
-// ./opencascade/Geom2dHatch_Hatching.hxx
-// ./opencascade/Geom2dHatch_Element.hxx
-// ./opencascade/Geom2dHatch_Classifier.hxx
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
     register_template_NCollection_DataMap<Standard_Integer, Geom2dHatch_Element, TColStd_MapIntegerHasher>(m,"Geom2dHatch_MapOfElements");  
-// ./opencascade/Geom2dHatch_Elements.hxx
-// ./opencascade/Geom2dHatch_Hatchings.hxx
-// ./opencascade/Geom2dHatch_DataMapIteratorOfHatchings.hxx
-// ./opencascade/Geom2dHatch_Intersector.hxx
 
 
 // exceptions

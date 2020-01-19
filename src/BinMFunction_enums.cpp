@@ -13,15 +13,15 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMFunction_FunctionDriver.hxx>
 #include <BinMFunction_GraphNodeDriver.hxx>
 #include <BinMFunction_ScopeDriver.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 
 // module includes
 #include <BinMFunction.hxx>
@@ -49,17 +49,13 @@ py::module m = main_module.def_submodule("BinMFunction", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BinMFunction_GraphNodeDriver ,opencascade::handle<BinMFunction_GraphNodeDriver>  , BinMDF_ADriver >(m,"BinMFunction_GraphNodeDriver",R"#(GraphNode attribute Driver.GraphNode attribute Driver.GraphNode attribute Driver.)#");
-    py::class_<BinMFunction_FunctionDriver ,opencascade::handle<BinMFunction_FunctionDriver>  , BinMDF_ADriver >(m,"BinMFunction_FunctionDriver",R"#(Function attribute Driver.Function attribute Driver.Function attribute Driver.)#");
-    py::class_<BinMFunction_ScopeDriver ,opencascade::handle<BinMFunction_ScopeDriver>  , BinMDF_ADriver >(m,"BinMFunction_ScopeDriver",R"#(Scope attribute Driver.Scope attribute Driver.Scope attribute Driver.)#");
-    py::class_<BinMFunction ,std::unique_ptr<BinMFunction>  >(m,"BinMFunction",R"#(Storage and Retrieval drivers for TFunction modelling attributes.)#");
-
 // pre-register typdefs
-// ./opencascade/BinMFunction_GraphNodeDriver.hxx
-// ./opencascade/BinMFunction_ScopeDriver.hxx
-// ./opencascade/BinMFunction_FunctionDriver.hxx
-// ./opencascade/BinMFunction.hxx
+
+// classes forward declarations only
+    py::class_<BinMFunction , shared_ptr<BinMFunction>  >(m,"BinMFunction",R"#(Storage and Retrieval drivers for TFunction modelling attributes.)#");
+    py::class_<BinMFunction_FunctionDriver ,opencascade::handle<BinMFunction_FunctionDriver>  , BinMDF_ADriver >(m,"BinMFunction_FunctionDriver",R"#(Function attribute Driver.Function attribute Driver.Function attribute Driver.)#");
+    py::class_<BinMFunction_GraphNodeDriver ,opencascade::handle<BinMFunction_GraphNodeDriver>  , BinMDF_ADriver >(m,"BinMFunction_GraphNodeDriver",R"#(GraphNode attribute Driver.GraphNode attribute Driver.GraphNode attribute Driver.)#");
+    py::class_<BinMFunction_ScopeDriver ,opencascade::handle<BinMFunction_ScopeDriver>  , BinMDF_ADriver >(m,"BinMFunction_ScopeDriver",R"#(Scope attribute Driver.Scope attribute Driver.Scope attribute Driver.)#");
 
 };
 

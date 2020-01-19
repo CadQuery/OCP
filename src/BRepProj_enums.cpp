@@ -36,11 +36,10 @@ py::module m = main_module.def_submodule("BRepProj", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepProj_Projection ,std::unique_ptr<BRepProj_Projection>  >(m,"BRepProj_Projection",R"#(The Projection class provides conical and cylindrical projections of Edge or Wire on a Shape from TopoDS. The result will be a Edge or Wire from TopoDS.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepProj_Projection.hxx
+
+// classes forward declarations only
+    py::class_<BRepProj_Projection , shared_ptr<BRepProj_Projection>  >(m,"BRepProj_Projection",R"#(The Projection class provides conical and cylindrical projections of Edge or Wire on a Shape from TopoDS. The result will be a Edge or Wire from TopoDS.)#");
 
 };
 

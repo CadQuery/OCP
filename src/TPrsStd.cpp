@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -11,11 +14,6 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_AttributeDelta.hxx>
-#include <TDF_Label.hxx>
-#include <AIS_InteractiveObject.hxx>
-#include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <TDataXtd_Constraint.hxx>
 #include <AIS_InteractiveObject.hxx>
@@ -27,7 +25,8 @@ namespace py = pybind11;
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <TDF_Label.hxx>
-#include <AIS_InteractiveObject.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_AttributeDelta.hxx>
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <AIS_InteractiveContext.hxx>
@@ -35,6 +34,10 @@ namespace py = pybind11;
 #include <TDF_Label.hxx>
 #include <V3d_Viewer.hxx>
 #include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <AIS_InteractiveObject.hxx>
+#include <TDF_Label.hxx>
+#include <AIS_InteractiveObject.hxx>
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 
@@ -91,6 +94,7 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
 
     static_cast<py::class_<TPrsStd_AISPresentation ,opencascade::handle<TPrsStd_AISPresentation>  , TDF_Attribute >>(m.attr("TPrsStd_AISPresentation"))
         .def(py::init<  >()  )
+    // methods
         .def("SetDisplayed",
              (void (TPrsStd_AISPresentation::*)( const Standard_Boolean  ) ) static_cast<void (TPrsStd_AISPresentation::*)( const Standard_Boolean  ) >(&TPrsStd_AISPresentation::SetDisplayed),
              R"#(None)#"  , py::arg("B"))
@@ -223,6 +227,8 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TPrsStd_AISPresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_AISPresentation::*)() const>(&TPrsStd_AISPresentation::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("GetID_s",
                     (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TPrsStd_AISPresentation::GetID),
                     R"#(Returns the GUID for TPrsStd_AISPresentation attributes.)#" )
@@ -241,43 +247,82 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_AISPresentation::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TPrsStd_DriverTable ,opencascade::handle<TPrsStd_DriverTable>  , Standard_Transient >>(m.attr("TPrsStd_DriverTable"))
+    static_cast<py::class_<TPrsStd_AISViewer ,opencascade::handle<TPrsStd_AISViewer>  , TDF_Attribute >>(m.attr("TPrsStd_AISViewer"))
         .def(py::init<  >()  )
-        .def("InitStandardDrivers",
-             (void (TPrsStd_DriverTable::*)() ) static_cast<void (TPrsStd_DriverTable::*)() >(&TPrsStd_DriverTable::InitStandardDrivers),
-             R"#(Fills the table with standard drivers)#" )
-        .def("AddDriver",
-             (Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  const opencascade::handle<TPrsStd_Driver> &  ) ) static_cast<Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  const opencascade::handle<TPrsStd_Driver> &  ) >(&TPrsStd_DriverTable::AddDriver),
-             R"#(Returns true if the driver has been added successfully to the driver table.)#"  , py::arg("guid"),  py::arg("driver"))
-        .def("FindDriver",
-             (Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  opencascade::handle<TPrsStd_Driver> &  ) const) static_cast<Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  opencascade::handle<TPrsStd_Driver> &  ) const>(&TPrsStd_DriverTable::FindDriver),
-             R"#(Returns true if the driver was found.)#"  , py::arg("guid"),  py::arg("driver"))
-        .def("RemoveDriver",
-             (Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID &  ) ) static_cast<Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID &  ) >(&TPrsStd_DriverTable::RemoveDriver),
-             R"#(Removes a driver with the given GUID. Returns true if the driver has been removed successfully.)#"  , py::arg("guid"))
-        .def("Clear",
-             (void (TPrsStd_DriverTable::*)() ) static_cast<void (TPrsStd_DriverTable::*)() >(&TPrsStd_DriverTable::Clear),
-             R"#(Removes all drivers. Returns true if the driver has been removed successfully. If this method is used, the InitStandardDrivers method should be called to fill the table with standard drivers.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TPrsStd_DriverTable::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_DriverTable::*)() const>(&TPrsStd_DriverTable::DynamicType),
+    // methods
+        .def("Update",
+             (void (TPrsStd_AISViewer::*)() const) static_cast<void (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::Update),
+             R"#(Updates the viewer at the label access. access is the root of the data framework.)#" )
+        .def("SetInteractiveContext",
+             (void (TPrsStd_AISViewer::*)( const opencascade::handle<AIS_InteractiveContext> &  ) ) static_cast<void (TPrsStd_AISViewer::*)( const opencascade::handle<AIS_InteractiveContext> &  ) >(&TPrsStd_AISViewer::SetInteractiveContext),
+             R"#(Sets the interactive context ctx for this attribute.)#"  , py::arg("ctx"))
+        .def("GetInteractiveContext",
+             (opencascade::handle<AIS_InteractiveContext> (TPrsStd_AISViewer::*)() const) static_cast<opencascade::handle<AIS_InteractiveContext> (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::GetInteractiveContext),
+             R"#(Returns the interactive context in this attribute.)#" )
+        .def("ID",
+             (const Standard_GUID & (TPrsStd_AISViewer::*)() const) static_cast<const Standard_GUID & (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::ID),
              R"#(None)#" )
-        .def_static("Get_s",
-                    (opencascade::handle<TPrsStd_DriverTable> (*)() ) static_cast<opencascade::handle<TPrsStd_DriverTable> (*)() >(&TPrsStd_DriverTable::Get),
-                    R"#(Returns the static table. If it does not exist, creates it and fills it with standard drivers.)#" )
+        .def("Restore",
+             (void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TPrsStd_AISViewer::Restore),
+             R"#(None)#"  , py::arg("with"))
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TPrsStd_AISViewer::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::NewEmpty),
+             R"#(None)#" )
+        .def("Paste",
+             (void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TPrsStd_AISViewer::Paste),
+             R"#(None)#"  , py::arg("into"),  py::arg("RT"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TPrsStd_AISViewer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TPrsStd_AISViewer::GetID),
+                    R"#(class methods =============)#" )
+        .def_static("Has_s",
+                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TPrsStd_AISViewer::Has),
+                    R"#(returns True if there is an AISViewer attribute in <acces> Data Framework.)#"  , py::arg("acces"))
+        .def_static("New_s",
+                    (opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<AIS_InteractiveContext> &  ) ) static_cast<opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<AIS_InteractiveContext> &  ) >(&TPrsStd_AISViewer::New),
+                    R"#(create and set an AISViewer at. Raise an exception if Has.)#"  , py::arg("access"),  py::arg("selector"))
+        .def_static("New_s",
+                    (opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<V3d_Viewer> &  ) ) static_cast<opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<V3d_Viewer> &  ) >(&TPrsStd_AISViewer::New),
+                    R"#(create and set an AISAttribute at root label. The interactive context is build. Raise an exception if Has.)#"  , py::arg("acces"),  py::arg("viewer"))
+        .def_static("Find_s",
+                    (Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<TPrsStd_AISViewer> &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<TPrsStd_AISViewer> &  ) >(&TPrsStd_AISViewer::Find),
+                    R"#(Finds the viewer attribute at the label access, the root of the data framework. Calling this function can be used to initialize an AIS viewer)#"  , py::arg("acces"),  py::arg("A"))
+        .def_static("Find_s",
+                    (Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveContext> &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveContext> &  ) >(&TPrsStd_AISViewer::Find),
+                    R"#(None)#"  , py::arg("acces"),  py::arg("IC"))
+        .def_static("Find_s",
+                    (Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<V3d_Viewer> &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<V3d_Viewer> &  ) >(&TPrsStd_AISViewer::Find),
+                    R"#(None)#"  , py::arg("acces"),  py::arg("V"))
+        .def_static("Update_s",
+                    (void (*)( const TDF_Label &  ) ) static_cast<void (*)( const TDF_Label &  ) >(&TPrsStd_AISViewer::Update),
+                    R"#(AISViewer methods =================)#"  , py::arg("acces"))
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_DriverTable::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_AISViewer::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_DriverTable::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_AISViewer::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<TPrsStd_ConstraintTools ,std::unique_ptr<TPrsStd_ConstraintTools>>(m,"TPrsStd_ConstraintTools");
+    register_default_constructor<TPrsStd_ConstraintTools , shared_ptr<TPrsStd_ConstraintTools>>(m,"TPrsStd_ConstraintTools");
 
-    static_cast<py::class_<TPrsStd_ConstraintTools ,std::unique_ptr<TPrsStd_ConstraintTools>  >>(m.attr("TPrsStd_ConstraintTools"))
+    static_cast<py::class_<TPrsStd_ConstraintTools , shared_ptr<TPrsStd_ConstraintTools>  >>(m.attr("TPrsStd_ConstraintTools"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("UpdateOnlyValue_s",
                     (void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  const opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  const opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_ConstraintTools::UpdateOnlyValue),
                     R"#(None)#"  , py::arg("aConst"),  py::arg("anAIS"))
@@ -341,222 +386,233 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
         .def_static("ComputeOthers_s",
                     (void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_ConstraintTools::ComputeOthers),
                     R"#(None)#"  , py::arg("aConst"),  py::arg("anAIS"))
-        .def_static("ComputeTextAndValue_s",
-                    (void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  Standard_Real & ,  TCollection_ExtendedString & ,  const Standard_Boolean  ) ) static_cast<void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  Standard_Real & ,  TCollection_ExtendedString & ,  const Standard_Boolean  ) >(&TPrsStd_ConstraintTools::ComputeTextAndValue),
-                    R"#(None)#"  , py::arg("aConst"),  py::arg("aValue"),  py::arg("aText"),  py::arg("anIsAngle"))
         .def_static("ComputeAngleForOneFace_s",
                     (void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<void (*)( const opencascade::handle<TDataXtd_Constraint> & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_ConstraintTools::ComputeAngleForOneFace),
                     R"#(None)#"  , py::arg("aConst"),  py::arg("anAIS"))
+    // static methods using call by reference i.s.o. return
+        .def_static("ComputeTextAndValue_s",
+                    []( const opencascade::handle<TDataXtd_Constraint> & aConst,TCollection_ExtendedString & aText,const Standard_Boolean anIsAngle ){ Standard_Real  aValue; TPrsStd_ConstraintTools::ComputeTextAndValue(aConst,aValue,aText,anIsAngle); return std::make_tuple(aValue); },
+                    R"#(None)#"  , py::arg("aConst"),  py::arg("aText"),  py::arg("anIsAngle"))
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TPrsStd_Driver ,opencascade::handle<TPrsStd_Driver> ,Py_TPrsStd_Driver , Standard_Transient >>(m.attr("TPrsStd_Driver"))
+    // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_Driver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_Driver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_Driver::Update),
              R"#(Updates the interactive object ais with information found on the attributes associated with the label L.)#"  , py::arg("L"),  py::arg("ais"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TPrsStd_Driver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_Driver::*)() const>(&TPrsStd_Driver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_Driver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_Driver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TPrsStd_DriverTable ,opencascade::handle<TPrsStd_DriverTable>  , Standard_Transient >>(m.attr("TPrsStd_DriverTable"))
+        .def(py::init<  >()  )
+    // methods
+        .def("InitStandardDrivers",
+             (void (TPrsStd_DriverTable::*)() ) static_cast<void (TPrsStd_DriverTable::*)() >(&TPrsStd_DriverTable::InitStandardDrivers),
+             R"#(Fills the table with standard drivers)#" )
+        .def("AddDriver",
+             (Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  const opencascade::handle<TPrsStd_Driver> &  ) ) static_cast<Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  const opencascade::handle<TPrsStd_Driver> &  ) >(&TPrsStd_DriverTable::AddDriver),
+             R"#(Returns true if the driver has been added successfully to the driver table.)#"  , py::arg("guid"),  py::arg("driver"))
+        .def("FindDriver",
+             (Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  opencascade::handle<TPrsStd_Driver> &  ) const) static_cast<Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID & ,  opencascade::handle<TPrsStd_Driver> &  ) const>(&TPrsStd_DriverTable::FindDriver),
+             R"#(Returns true if the driver was found.)#"  , py::arg("guid"),  py::arg("driver"))
+        .def("RemoveDriver",
+             (Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID &  ) ) static_cast<Standard_Boolean (TPrsStd_DriverTable::*)( const Standard_GUID &  ) >(&TPrsStd_DriverTable::RemoveDriver),
+             R"#(Removes a driver with the given GUID. Returns true if the driver has been removed successfully.)#"  , py::arg("guid"))
+        .def("Clear",
+             (void (TPrsStd_DriverTable::*)() ) static_cast<void (TPrsStd_DriverTable::*)() >(&TPrsStd_DriverTable::Clear),
+             R"#(Removes all drivers. Returns true if the driver has been removed successfully. If this method is used, the InitStandardDrivers method should be called to fill the table with standard drivers.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TPrsStd_DriverTable::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_DriverTable::*)() const>(&TPrsStd_DriverTable::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Get_s",
+                    (opencascade::handle<TPrsStd_DriverTable> (*)() ) static_cast<opencascade::handle<TPrsStd_DriverTable> (*)() >(&TPrsStd_DriverTable::Get),
+                    R"#(Returns the static table. If it does not exist, creates it and fills it with standard drivers.)#" )
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_DriverTable::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_DriverTable::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TPrsStd_AxisDriver ,opencascade::handle<TPrsStd_AxisDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_AxisDriver"))
         .def(py::init<  >()  )
+    // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_AxisDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_AxisDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_AxisDriver::Update),
              R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TPrsStd_AxisDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_AxisDriver::*)() const>(&TPrsStd_AxisDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_AxisDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_AxisDriver::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TPrsStd_PointDriver ,opencascade::handle<TPrsStd_PointDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_PointDriver"))
-        .def(py::init<  >()  )
-        .def("Update",
-             (Standard_Boolean (TPrsStd_PointDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_PointDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_PointDriver::Update),
-             R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TPrsStd_PointDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_PointDriver::*)() const>(&TPrsStd_PointDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_PointDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_PointDriver::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TPrsStd_ConstraintDriver ,opencascade::handle<TPrsStd_ConstraintDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_ConstraintDriver"))
         .def(py::init<  >()  )
+    // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_ConstraintDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_ConstraintDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_ConstraintDriver::Update),
              R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TPrsStd_ConstraintDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_ConstraintDriver::*)() const>(&TPrsStd_ConstraintDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_ConstraintDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_ConstraintDriver::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TPrsStd_NamedShapeDriver ,opencascade::handle<TPrsStd_NamedShapeDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_NamedShapeDriver"))
-        .def(py::init<  >()  )
-        .def("Update",
-             (Standard_Boolean (TPrsStd_NamedShapeDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_NamedShapeDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_NamedShapeDriver::Update),
-             R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TPrsStd_NamedShapeDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_NamedShapeDriver::*)() const>(&TPrsStd_NamedShapeDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_NamedShapeDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_NamedShapeDriver::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TPrsStd_PlaneDriver ,opencascade::handle<TPrsStd_PlaneDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_PlaneDriver"))
-        .def(py::init<  >()  )
-        .def("Update",
-             (Standard_Boolean (TPrsStd_PlaneDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_PlaneDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_PlaneDriver::Update),
-             R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TPrsStd_PlaneDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_PlaneDriver::*)() const>(&TPrsStd_PlaneDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_PlaneDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_PlaneDriver::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TPrsStd_AISViewer ,opencascade::handle<TPrsStd_AISViewer>  , TDF_Attribute >>(m.attr("TPrsStd_AISViewer"))
-        .def(py::init<  >()  )
-        .def("Update",
-             (void (TPrsStd_AISViewer::*)() const) static_cast<void (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::Update),
-             R"#(Updates the viewer at the label access. access is the root of the data framework.)#" )
-        .def("SetInteractiveContext",
-             (void (TPrsStd_AISViewer::*)( const opencascade::handle<AIS_InteractiveContext> &  ) ) static_cast<void (TPrsStd_AISViewer::*)( const opencascade::handle<AIS_InteractiveContext> &  ) >(&TPrsStd_AISViewer::SetInteractiveContext),
-             R"#(Sets the interactive context ctx for this attribute.)#"  , py::arg("ctx"))
-        .def("GetInteractiveContext",
-             (opencascade::handle<AIS_InteractiveContext> (TPrsStd_AISViewer::*)() const) static_cast<opencascade::handle<AIS_InteractiveContext> (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::GetInteractiveContext),
-             R"#(Returns the interactive context in this attribute.)#" )
-        .def("ID",
-             (const Standard_GUID & (TPrsStd_AISViewer::*)() const) static_cast<const Standard_GUID & (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::ID),
-             R"#(None)#" )
-        .def("Restore",
-             (void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TPrsStd_AISViewer::Restore),
-             R"#(None)#"  , py::arg("with"))
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TPrsStd_AISViewer::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::NewEmpty),
-             R"#(None)#" )
-        .def("Paste",
-             (void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TPrsStd_AISViewer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TPrsStd_AISViewer::Paste),
-             R"#(None)#"  , py::arg("into"),  py::arg("RT"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TPrsStd_AISViewer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::DynamicType),
-             R"#(None)#" )
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TPrsStd_AISViewer::GetID),
-                    R"#(class methods =============)#" )
-        .def_static("Has_s",
-                    (Standard_Boolean (*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label &  ) >(&TPrsStd_AISViewer::Has),
-                    R"#(returns True if there is an AISViewer attribute in <acces> Data Framework.)#"  , py::arg("acces"))
-        .def_static("New_s",
-                    (opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<AIS_InteractiveContext> &  ) ) static_cast<opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<AIS_InteractiveContext> &  ) >(&TPrsStd_AISViewer::New),
-                    R"#(create and set an AISViewer at. Raise an exception if Has.)#"  , py::arg("access"),  py::arg("selector"))
-        .def_static("New_s",
-                    (opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<V3d_Viewer> &  ) ) static_cast<opencascade::handle<TPrsStd_AISViewer> (*)( const TDF_Label & ,  const opencascade::handle<V3d_Viewer> &  ) >(&TPrsStd_AISViewer::New),
-                    R"#(create and set an AISAttribute at root label. The interactive context is build. Raise an exception if Has.)#"  , py::arg("acces"),  py::arg("viewer"))
-        .def_static("Find_s",
-                    (Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<TPrsStd_AISViewer> &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<TPrsStd_AISViewer> &  ) >(&TPrsStd_AISViewer::Find),
-                    R"#(Finds the viewer attribute at the label access, the root of the data framework. Calling this function can be used to initialize an AIS viewer)#"  , py::arg("acces"),  py::arg("A"))
-        .def_static("Find_s",
-                    (Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveContext> &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveContext> &  ) >(&TPrsStd_AISViewer::Find),
-                    R"#(None)#"  , py::arg("acces"),  py::arg("IC"))
-        .def_static("Find_s",
-                    (Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<V3d_Viewer> &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  opencascade::handle<V3d_Viewer> &  ) >(&TPrsStd_AISViewer::Find),
-                    R"#(None)#"  , py::arg("acces"),  py::arg("V"))
-        .def_static("Update_s",
-                    (void (*)( const TDF_Label &  ) ) static_cast<void (*)( const TDF_Label &  ) >(&TPrsStd_AISViewer::Update),
-                    R"#(AISViewer methods =================)#"  , py::arg("acces"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_AISViewer::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_AISViewer::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TPrsStd_GeometryDriver ,opencascade::handle<TPrsStd_GeometryDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_GeometryDriver"))
         .def(py::init<  >()  )
+    // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_GeometryDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_GeometryDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_GeometryDriver::Update),
              R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TPrsStd_GeometryDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_GeometryDriver::*)() const>(&TPrsStd_GeometryDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_GeometryDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_GeometryDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TPrsStd_NamedShapeDriver ,opencascade::handle<TPrsStd_NamedShapeDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_NamedShapeDriver"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Update",
+             (Standard_Boolean (TPrsStd_NamedShapeDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_NamedShapeDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_NamedShapeDriver::Update),
+             R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TPrsStd_NamedShapeDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_NamedShapeDriver::*)() const>(&TPrsStd_NamedShapeDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_NamedShapeDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_NamedShapeDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TPrsStd_PlaneDriver ,opencascade::handle<TPrsStd_PlaneDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_PlaneDriver"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Update",
+             (Standard_Boolean (TPrsStd_PlaneDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_PlaneDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_PlaneDriver::Update),
+             R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TPrsStd_PlaneDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_PlaneDriver::*)() const>(&TPrsStd_PlaneDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_PlaneDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_PlaneDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TPrsStd_PointDriver ,opencascade::handle<TPrsStd_PointDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_PointDriver"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Update",
+             (Standard_Boolean (TPrsStd_PointDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_PointDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_PointDriver::Update),
+             R"#(Build the AISObject (if null) or update it. No compute is done. Returns <True> if informations was found and AISObject updated.)#"  , py::arg("aLabel"),  py::arg("anAISObject"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TPrsStd_PointDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TPrsStd_PointDriver::*)() const>(&TPrsStd_PointDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TPrsStd_PointDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TPrsStd_PointDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/TPrsStd_AISPresentation.hxx
-// ./opencascade/TPrsStd_PointDriver.hxx
-// ./opencascade/TPrsStd_DriverTable.hxx
-// ./opencascade/TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx
-// ./opencascade/TPrsStd_DataMapOfGUIDDriver.hxx
-// ./opencascade/TPrsStd_PlaneDriver.hxx
+// ./opencascade/TPrsStd_GeometryDriver.hxx
 // ./opencascade/TPrsStd_ConstraintTools.hxx
 // ./opencascade/TPrsStd_ConstraintDriver.hxx
-// ./opencascade/TPrsStd_GeometryDriver.hxx
-// ./opencascade/TPrsStd_NamedShapeDriver.hxx
+// ./opencascade/TPrsStd_DriverTable.hxx
+// ./opencascade/TPrsStd_DataMapOfGUIDDriver.hxx
 // ./opencascade/TPrsStd_Driver.hxx
+// ./opencascade/TPrsStd_AISPresentation.hxx
+// ./opencascade/TPrsStd_PointDriver.hxx
 // ./opencascade/TPrsStd_AISViewer.hxx
+// ./opencascade/TPrsStd_NamedShapeDriver.hxx
+// ./opencascade/TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx
 // ./opencascade/TPrsStd_AxisDriver.hxx
+// ./opencascade/TPrsStd_PlaneDriver.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/TPrsStd_AISPresentation.hxx
-// ./opencascade/TPrsStd_PointDriver.hxx
-// ./opencascade/TPrsStd_DriverTable.hxx
-// ./opencascade/TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx
-// ./opencascade/TPrsStd_DataMapOfGUIDDriver.hxx
-// ./opencascade/TPrsStd_PlaneDriver.hxx
-// ./opencascade/TPrsStd_ConstraintTools.hxx
-// ./opencascade/TPrsStd_ConstraintDriver.hxx
-// ./opencascade/TPrsStd_GeometryDriver.hxx
-// ./opencascade/TPrsStd_NamedShapeDriver.hxx
-// ./opencascade/TPrsStd_Driver.hxx
-// ./opencascade/TPrsStd_AISViewer.hxx
-// ./opencascade/TPrsStd_AxisDriver.hxx
 
 
 // exceptions

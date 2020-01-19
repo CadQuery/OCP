@@ -26,8 +26,8 @@ namespace py = pybind11;
 #include <XmlObjMgt_Persistent.hxx>
 
 // module includes
-#include <XmlMFunction_ScopeDriver.hxx>
 #include <XmlMFunction_FunctionDriver.hxx>
+#include <XmlMFunction_ScopeDriver.hxx>
 #include <XmlMFunction.hxx>
 #include <XmlMFunction_GraphNodeDriver.hxx>
 
@@ -35,8 +35,8 @@ namespace py = pybind11;
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/XmlMFunction_ScopeDriver.hxx
 // ./opencascade/XmlMFunction_FunctionDriver.hxx
+// ./opencascade/XmlMFunction_ScopeDriver.hxx
 // ./opencascade/XmlMFunction.hxx
 // ./opencascade/XmlMFunction_GraphNodeDriver.hxx
 

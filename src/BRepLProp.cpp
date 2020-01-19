@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -15,18 +18,18 @@ namespace py = pybind11;
 #include <BRepLProp_SurfaceTool.hxx>
 #include <BRepLProp_CLProps.hxx>
 #include <BRepLProp_SLProps.hxx>
-#include <BRepAdaptor_Curve.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <BRepAdaptor_Surface.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <BRepLProp_SurfaceTool.hxx>
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <BRepLProp_CurveTool.hxx>
+#include <BRepAdaptor_Surface.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <BRepAdaptor_Curve.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
 
 // module includes
 #include <BRepLProp.hxx>
@@ -54,45 +57,29 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
 
 // classes
 
-    register_default_constructor<BRepLProp ,std::unique_ptr<BRepLProp>>(m,"BRepLProp");
+    register_default_constructor<BRepLProp , shared_ptr<BRepLProp>>(m,"BRepLProp");
 
-    static_cast<py::class_<BRepLProp ,std::unique_ptr<BRepLProp>  >>(m.attr("BRepLProp"))
+    static_cast<py::class_<BRepLProp , shared_ptr<BRepLProp>  >>(m.attr("BRepLProp"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Continuity_s",
                     (GeomAbs_Shape (*)( const BRepAdaptor_Curve & ,  const BRepAdaptor_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<GeomAbs_Shape (*)( const BRepAdaptor_Curve & ,  const BRepAdaptor_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&BRepLProp::Continuity),
                     R"#(Computes the regularity at the junction between C1 and C2. The point u1 on C1 and the point u2 on C2 must be confused. tl and ta are the linear and angular tolerance used two compare the derivative.)#"  , py::arg("C1"),  py::arg("C2"),  py::arg("u1"),  py::arg("u2"),  py::arg("tl"),  py::arg("ta"))
         .def_static("Continuity_s",
                     (GeomAbs_Shape (*)( const BRepAdaptor_Curve & ,  const BRepAdaptor_Curve & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<GeomAbs_Shape (*)( const BRepAdaptor_Curve & ,  const BRepAdaptor_Curve & ,  const Standard_Real ,  const Standard_Real  ) >(&BRepLProp::Continuity),
                     R"#(The same as preciding but using the standard tolerances from package Precision.)#"  , py::arg("C1"),  py::arg("C2"),  py::arg("u1"),  py::arg("u2"))
-;
-
-    register_default_constructor<BRepLProp_SurfaceTool ,std::unique_ptr<BRepLProp_SurfaceTool>>(m,"BRepLProp_SurfaceTool");
-
-    static_cast<py::class_<BRepLProp_SurfaceTool ,std::unique_ptr<BRepLProp_SurfaceTool>  >>(m.attr("BRepLProp_SurfaceTool"))
-        .def_static("Value_s",
-                    (void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt &  ) ) static_cast<void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt &  ) >(&BRepLProp_SurfaceTool::Value),
-                    R"#(Computes the point <P> of parameter <U> and <V> on the Surface <S>.)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("P"))
-        .def_static("D1_s",
-                    (void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) ) static_cast<void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) >(&BRepLProp_SurfaceTool::D1),
-                    R"#(Computes the point <P> and first derivative <D1*> of parameter <U> and <V> on the Surface <S>.)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("P"),  py::arg("D1U"),  py::arg("D1V"))
-        .def_static("D2_s",
-                    (void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) ) static_cast<void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) >(&BRepLProp_SurfaceTool::D2),
-                    R"#(Computes the point <P>, the first derivative <D1*> and second derivative <D2*> of parameter <U> and <V> on the Surface <S>.)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("P"),  py::arg("D1U"),  py::arg("D1V"),  py::arg("D2U"),  py::arg("D2V"),  py::arg("DUV"))
-        .def_static("DN_s",
-                    (gp_Vec (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<gp_Vec (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer  ) >(&BRepLProp_SurfaceTool::DN),
-                    R"#(None)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("IU"),  py::arg("IV"))
-        .def_static("Continuity_s",
-                    (Standard_Integer (*)( const BRepAdaptor_Surface &  ) ) static_cast<Standard_Integer (*)( const BRepAdaptor_Surface &  ) >(&BRepLProp_SurfaceTool::Continuity),
-                    R"#(returns the order of continuity of the Surface <S>. returns 1 : first derivative only is computable returns 2 : first and second derivative only are computable.)#"  , py::arg("S"))
-        .def_static("Bounds_s",
-                    (void (*)( const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepLProp_SurfaceTool::Bounds),
-                    R"#(returns the bounds of the Surface.)#"  , py::arg("S"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepLProp_CLProps ,std::unique_ptr<BRepLProp_CLProps>  >>(m.attr("BRepLProp_CLProps"))
+    static_cast<py::class_<BRepLProp_CLProps , shared_ptr<BRepLProp_CLProps>  >>(m.attr("BRepLProp_CLProps"))
         .def(py::init< const BRepAdaptor_Curve &,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const BRepAdaptor_Curve &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("U"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // methods
         .def("SetParameter",
              (void (BRepLProp_CLProps::*)( const Standard_Real  ) ) static_cast<void (BRepLProp_CLProps::*)( const Standard_Real  ) >(&BRepLProp_CLProps::SetParameter),
              R"#(Initializes the local properties of the curve for the parameter value <U>.)#"  , py::arg("U"))
@@ -126,11 +113,19 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
         .def("CentreOfCurvature",
              (void (BRepLProp_CLProps::*)( gp_Pnt &  ) ) static_cast<void (BRepLProp_CLProps::*)( gp_Pnt &  ) >(&BRepLProp_CLProps::CentreOfCurvature),
              R"#(Returns the centre of curvature <P>.)#"  , py::arg("P"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<BRepLProp_CurveTool ,std::unique_ptr<BRepLProp_CurveTool>>(m,"BRepLProp_CurveTool");
+    register_default_constructor<BRepLProp_CurveTool , shared_ptr<BRepLProp_CurveTool>>(m,"BRepLProp_CurveTool");
 
-    static_cast<py::class_<BRepLProp_CurveTool ,std::unique_ptr<BRepLProp_CurveTool>  >>(m.attr("BRepLProp_CurveTool"))
+    static_cast<py::class_<BRepLProp_CurveTool , shared_ptr<BRepLProp_CurveTool>  >>(m.attr("BRepLProp_CurveTool"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Value_s",
                     (void (*)( const BRepAdaptor_Curve & ,  const Standard_Real ,  gp_Pnt &  ) ) static_cast<void (*)( const BRepAdaptor_Curve & ,  const Standard_Real ,  gp_Pnt &  ) >(&BRepLProp_CurveTool::Value),
                     R"#(Computes the point <P> of parameter <U> on the curve <C>.)#"  , py::arg("C"),  py::arg("U"),  py::arg("P"))
@@ -152,13 +147,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
         .def_static("LastParameter_s",
                     (Standard_Real (*)( const BRepAdaptor_Curve &  ) ) static_cast<Standard_Real (*)( const BRepAdaptor_Curve &  ) >(&BRepLProp_CurveTool::LastParameter),
                     R"#(returns the last parameter bound of the curve. FirstParameter must be less than LastParamenter.)#"  , py::arg("C"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepLProp_SLProps ,std::unique_ptr<BRepLProp_SLProps>  >>(m.attr("BRepLProp_SLProps"))
+    static_cast<py::class_<BRepLProp_SLProps , shared_ptr<BRepLProp_SLProps>  >>(m.attr("BRepLProp_SLProps"))
         .def(py::init< const BRepAdaptor_Surface &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const BRepAdaptor_Surface &,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // methods
         .def("SetSurface",
              (void (BRepLProp_SLProps::*)( const BRepAdaptor_Surface &  ) ) static_cast<void (BRepLProp_SLProps::*)( const BRepAdaptor_Surface &  ) >(&BRepLProp_SLProps::SetSurface),
              R"#(Initializes the local properties of the surface S for the new surface.)#"  , py::arg("S"))
@@ -222,23 +221,52 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
         .def("GaussianCurvature",
              (Standard_Real (BRepLProp_SLProps::*)() ) static_cast<Standard_Real (BRepLProp_SLProps::*)() >(&BRepLProp_SLProps::GaussianCurvature),
              R"#(Returns the Gaussian curvature)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BRepLProp_SurfaceTool , shared_ptr<BRepLProp_SurfaceTool>>(m,"BRepLProp_SurfaceTool");
+
+    static_cast<py::class_<BRepLProp_SurfaceTool , shared_ptr<BRepLProp_SurfaceTool>  >>(m.attr("BRepLProp_SurfaceTool"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Value_s",
+                    (void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt &  ) ) static_cast<void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt &  ) >(&BRepLProp_SurfaceTool::Value),
+                    R"#(Computes the point <P> of parameter <U> and <V> on the Surface <S>.)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("P"))
+        .def_static("D1_s",
+                    (void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) ) static_cast<void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec &  ) >(&BRepLProp_SurfaceTool::D1),
+                    R"#(Computes the point <P> and first derivative <D1*> of parameter <U> and <V> on the Surface <S>.)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("P"),  py::arg("D1U"),  py::arg("D1V"))
+        .def_static("D2_s",
+                    (void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) ) static_cast<void (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) >(&BRepLProp_SurfaceTool::D2),
+                    R"#(Computes the point <P>, the first derivative <D1*> and second derivative <D2*> of parameter <U> and <V> on the Surface <S>.)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("P"),  py::arg("D1U"),  py::arg("D1V"),  py::arg("D2U"),  py::arg("D2V"),  py::arg("DUV"))
+        .def_static("DN_s",
+                    (gp_Vec (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<gp_Vec (*)( const BRepAdaptor_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer  ) >(&BRepLProp_SurfaceTool::DN),
+                    R"#(None)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("IU"),  py::arg("IV"))
+        .def_static("Continuity_s",
+                    (Standard_Integer (*)( const BRepAdaptor_Surface &  ) ) static_cast<Standard_Integer (*)( const BRepAdaptor_Surface &  ) >(&BRepLProp_SurfaceTool::Continuity),
+                    R"#(returns the order of continuity of the Surface <S>. returns 1 : first derivative only is computable returns 2 : first and second derivative only are computable.)#"  , py::arg("S"))
+    // static methods using call by reference i.s.o. return
+        .def_static("Bounds_s",
+                    []( const BRepAdaptor_Surface & S ){ Standard_Real  U1; Standard_Real  V1; Standard_Real  U2; Standard_Real  V2; BRepLProp_SurfaceTool::Bounds(S,U1,V1,U2,V2); return std::make_tuple(U1,V1,U2,V2); },
+                    R"#(returns the bounds of the Surface.)#"  , py::arg("S"))
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/BRepLProp.hxx
-// ./opencascade/BRepLProp_CurveTool.hxx
-// ./opencascade/BRepLProp_SurfaceTool.hxx
 // ./opencascade/BRepLProp_SLProps.hxx
 // ./opencascade/BRepLProp_CLProps.hxx
+// ./opencascade/BRepLProp_SurfaceTool.hxx
+// ./opencascade/BRepLProp_CurveTool.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepLProp.hxx
-// ./opencascade/BRepLProp_CurveTool.hxx
-// ./opencascade/BRepLProp_SurfaceTool.hxx
-// ./opencascade/BRepLProp_SLProps.hxx
-// ./opencascade/BRepLProp_CLProps.hxx
 
 
 // exceptions

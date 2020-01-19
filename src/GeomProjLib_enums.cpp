@@ -40,11 +40,10 @@ py::module m = main_module.def_submodule("GeomProjLib", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<GeomProjLib ,std::unique_ptr<GeomProjLib>  >(m,"GeomProjLib",R"#(Projection of a curve on a surface.)#");
-
 // pre-register typdefs
-// ./opencascade/GeomProjLib.hxx
+
+// classes forward declarations only
+    py::class_<GeomProjLib , shared_ptr<GeomProjLib>  >(m,"GeomProjLib",R"#(Projection of a curve on a surface.)#");
 
 };
 

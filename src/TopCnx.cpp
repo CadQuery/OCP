@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -34,8 +37,9 @@ py::module m = static_cast<py::module>(main_module.attr("TopCnx"));
 // classes
 
 
-    static_cast<py::class_<TopCnx_EdgeFaceTransition ,std::unique_ptr<TopCnx_EdgeFaceTransition>  >>(m.attr("TopCnx_EdgeFaceTransition"))
+    static_cast<py::class_<TopCnx_EdgeFaceTransition , shared_ptr<TopCnx_EdgeFaceTransition>  >>(m.attr("TopCnx_EdgeFaceTransition"))
         .def(py::init<  >()  )
+    // methods
         .def("Reset",
              (void (TopCnx_EdgeFaceTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const Standard_Real  ) ) static_cast<void (TopCnx_EdgeFaceTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const Standard_Real  ) >(&TopCnx_EdgeFaceTransition::Reset),
              R"#(Initialize the algorithm with the local description of the edge.)#"  , py::arg("Tgt"),  py::arg("Norm"),  py::arg("Curv"))
@@ -51,6 +55,11 @@ py::module m = static_cast<py::module>(main_module.attr("TopCnx"));
         .def("BoundaryTransition",
              (TopAbs_Orientation (TopCnx_EdgeFaceTransition::*)() const) static_cast<TopAbs_Orientation (TopCnx_EdgeFaceTransition::*)() const>(&TopCnx_EdgeFaceTransition::BoundaryTransition),
              R"#(Returns the current cumulated BoundaryTransition.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -59,7 +68,6 @@ py::module m = static_cast<py::module>(main_module.attr("TopCnx"));
 // operators
 
 // register typdefs
-// ./opencascade/TopCnx_EdgeFaceTransition.hxx
 
 
 // exceptions

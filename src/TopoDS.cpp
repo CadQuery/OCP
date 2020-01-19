@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -11,9 +14,6 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_NoMoreObject.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Iterator.hxx>
-#include <TopoDS_Builder.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
@@ -41,9 +41,12 @@ namespace py = pybind11;
 #include <TopoDS_Compound.hxx>
 #include <TopoDS_Builder.hxx>
 #include <TopoDS_Iterator.hxx>
+#include <TopoDS_Iterator.hxx>
+#include <TopoDS_Builder.hxx>
 #include <Standard_NullObject.hxx>
 #include <TopoDS_FrozenShape.hxx>
 #include <TopoDS_UnCompatibleShapes.hxx>
+#include <TopoDS_Shape.hxx>
 
 // module includes
 #include <TopoDS.hxx>
@@ -76,6 +79,8 @@ namespace py = pybind11;
 #include <TopoDS_Wire.hxx>
 
 // template related includes
+// ./opencascade/TopoDS_ListOfShape.hxx
+#include "NCollection.hxx"
 
 
 // user-defined pre
@@ -137,9 +142,214 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDS"));
 
 // classes
 
+    register_default_constructor<TopoDS , shared_ptr<TopoDS>>(m,"TopoDS");
 
-    static_cast<py::class_<TopoDS_Shape ,std::unique_ptr<TopoDS_Shape>  >>(m.attr("TopoDS_Shape"))
+    static_cast<py::class_<TopoDS , shared_ptr<TopoDS>  >>(m.attr("TopoDS"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Vertex_s",
+                    (const TopoDS_Vertex & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Vertex & (*)( const TopoDS_Shape &  ) >(&TopoDS::Vertex),
+                    R"#(Basic tool to access the data structure. Casts shape S to the more specialized return type, Vertex. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("Vertex_s",
+                    (TopoDS_Vertex & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Vertex & (*)( TopoDS_Shape &  ) >(&TopoDS::Vertex),
+                    R"#(None)#"  , py::arg(""))
+        .def_static("Edge_s",
+                    (const TopoDS_Edge & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Edge & (*)( const TopoDS_Shape &  ) >(&TopoDS::Edge),
+                    R"#(Casts shape S to the more specialized return type, Edge Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("Edge_s",
+                    (TopoDS_Edge & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Edge & (*)( TopoDS_Shape &  ) >(&TopoDS::Edge),
+                    R"#(None)#"  , py::arg(""))
+        .def_static("Wire_s",
+                    (const TopoDS_Wire & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Wire & (*)( const TopoDS_Shape &  ) >(&TopoDS::Wire),
+                    R"#(Casts shape S to the more specialized return type, Wire. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("Wire_s",
+                    (TopoDS_Wire & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Wire & (*)( TopoDS_Shape &  ) >(&TopoDS::Wire),
+                    R"#(None)#"  , py::arg(""))
+        .def_static("Face_s",
+                    (const TopoDS_Face & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Face & (*)( const TopoDS_Shape &  ) >(&TopoDS::Face),
+                    R"#(Casts shape S to the more specialized return type, Face. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("Face_s",
+                    (TopoDS_Face & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Face & (*)( TopoDS_Shape &  ) >(&TopoDS::Face),
+                    R"#(None)#"  , py::arg(""))
+        .def_static("Shell_s",
+                    (const TopoDS_Shell & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Shell & (*)( const TopoDS_Shape &  ) >(&TopoDS::Shell),
+                    R"#(Casts shape S to the more specialized return type, Shell. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("Shell_s",
+                    (TopoDS_Shell & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Shell & (*)( TopoDS_Shape &  ) >(&TopoDS::Shell),
+                    R"#(None)#"  , py::arg(""))
+        .def_static("Solid_s",
+                    (const TopoDS_Solid & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Solid & (*)( const TopoDS_Shape &  ) >(&TopoDS::Solid),
+                    R"#(Casts shape S to the more specialized return type, Solid. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("Solid_s",
+                    (TopoDS_Solid & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Solid & (*)( TopoDS_Shape &  ) >(&TopoDS::Solid),
+                    R"#(None)#"  , py::arg(""))
+        .def_static("CompSolid_s",
+                    (const TopoDS_CompSolid & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_CompSolid & (*)( const TopoDS_Shape &  ) >(&TopoDS::CompSolid),
+                    R"#(Casts shape S to the more specialized return type, CompSolid. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("CompSolid_s",
+                    (TopoDS_CompSolid & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_CompSolid & (*)( TopoDS_Shape &  ) >(&TopoDS::CompSolid),
+                    R"#(None)#"  , py::arg(""))
+        .def_static("Compound_s",
+                    (const TopoDS_Compound & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Compound & (*)( const TopoDS_Shape &  ) >(&TopoDS::Compound),
+                    R"#(Casts shape S to the more specialized return type, Compound. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
+        .def_static("Compound_s",
+                    (TopoDS_Compound & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Compound & (*)( TopoDS_Shape &  ) >(&TopoDS::Compound),
+                    R"#(None)#"  , py::arg(""))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_AlertWithShape ,opencascade::handle<TopoDS_AlertWithShape>  , Message_Alert >>(m.attr("TopoDS_AlertWithShape"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // methods
+        .def("GetShape",
+             (const TopoDS_Shape & (TopoDS_AlertWithShape::*)() const) static_cast<const TopoDS_Shape & (TopoDS_AlertWithShape::*)() const>(&TopoDS_AlertWithShape::GetShape),
+             R"#(Returns contained shape)#" )
+        .def("SupportsMerge",
+             (Standard_Boolean (TopoDS_AlertWithShape::*)() const) static_cast<Standard_Boolean (TopoDS_AlertWithShape::*)() const>(&TopoDS_AlertWithShape::SupportsMerge),
+             R"#(Returns false.)#" )
+        .def("Merge",
+             (Standard_Boolean (TopoDS_AlertWithShape::*)( const opencascade::handle<Message_Alert> &  ) ) static_cast<Standard_Boolean (TopoDS_AlertWithShape::*)( const opencascade::handle<Message_Alert> &  ) >(&TopoDS_AlertWithShape::Merge),
+             R"#(Returns false.)#"  , py::arg("theTarget"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TopoDS_AlertWithShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_AlertWithShape::*)() const>(&TopoDS_AlertWithShape::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_AlertWithShape::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_AlertWithShape::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<TopoDS_Builder , shared_ptr<TopoDS_Builder>>(m,"TopoDS_Builder");
+
+    static_cast<py::class_<TopoDS_Builder , shared_ptr<TopoDS_Builder>  >>(m.attr("TopoDS_Builder"))
+    // methods
+        .def("MakeWire",
+             (void (TopoDS_Builder::*)( TopoDS_Wire &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Wire &  ) const>(&TopoDS_Builder::MakeWire),
+             R"#(Make an empty Wire.)#"  , py::arg("W"))
+        .def("MakeShell",
+             (void (TopoDS_Builder::*)( TopoDS_Shell &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shell &  ) const>(&TopoDS_Builder::MakeShell),
+             R"#(Make an empty Shell.)#"  , py::arg("S"))
+        .def("MakeSolid",
+             (void (TopoDS_Builder::*)( TopoDS_Solid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Solid &  ) const>(&TopoDS_Builder::MakeSolid),
+             R"#(Make a Solid covering the whole 3D space.)#"  , py::arg("S"))
+        .def("MakeCompSolid",
+             (void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const>(&TopoDS_Builder::MakeCompSolid),
+             R"#(Make an empty Composite Solid.)#"  , py::arg("C"))
+        .def("MakeCompound",
+             (void (TopoDS_Builder::*)( TopoDS_Compound &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Compound &  ) const>(&TopoDS_Builder::MakeCompound),
+             R"#(Make an empty Compound.)#"  , py::arg("C"))
+        .def("Add",
+             (void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const>(&TopoDS_Builder::Add),
+             R"#(Add the Shape C in the Shape S. Exceptions - TopoDS_FrozenShape if S is not free and cannot be modified. - TopoDS__UnCompatibleShapes if S and C are not compatible.)#"  , py::arg("S"),  py::arg("C"))
+        .def("Remove",
+             (void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const>(&TopoDS_Builder::Remove),
+             R"#(Remove the Shape C from the Shape S. Exceptions TopoDS_FrozenShape if S is frozen and cannot be modified.)#"  , py::arg("S"),  py::arg("C"))
+        .def("MakeWire",
+             (void (TopoDS_Builder::*)( TopoDS_Wire &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Wire &  ) const>(&TopoDS_Builder::MakeWire),
+             R"#(Make an empty Wire.)#"  , py::arg("W"))
+        .def("MakeShell",
+             (void (TopoDS_Builder::*)( TopoDS_Shell &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shell &  ) const>(&TopoDS_Builder::MakeShell),
+             R"#(Make an empty Shell.)#"  , py::arg("S"))
+        .def("MakeSolid",
+             (void (TopoDS_Builder::*)( TopoDS_Solid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Solid &  ) const>(&TopoDS_Builder::MakeSolid),
+             R"#(Make a Solid covering the whole 3D space.)#"  , py::arg("S"))
+        .def("MakeCompSolid",
+             (void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const>(&TopoDS_Builder::MakeCompSolid),
+             R"#(Make an empty Composite Solid.)#"  , py::arg("C"))
+        .def("MakeCompound",
+             (void (TopoDS_Builder::*)( TopoDS_Compound &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Compound &  ) const>(&TopoDS_Builder::MakeCompound),
+             R"#(Make an empty Compound.)#"  , py::arg("C"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_HShape ,opencascade::handle<TopoDS_HShape>  , Standard_Transient >>(m.attr("TopoDS_HShape"))
         .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("aShape") )
+    // methods
+        .def("Shape",
+             (void (TopoDS_HShape::*)( const TopoDS_Shape &  ) ) static_cast<void (TopoDS_HShape::*)( const TopoDS_Shape &  ) >(&TopoDS_HShape::Shape),
+             R"#(Loads this shape with the shape aShape)#"  , py::arg("aShape"))
+        .def("Shape",
+             (const TopoDS_Shape & (TopoDS_HShape::*)() const) static_cast<const TopoDS_Shape & (TopoDS_HShape::*)() const>(&TopoDS_HShape::Shape),
+             R"#(Returns a reference to a constant TopoDS_Shape based on this shape.)#" )
+        .def("ChangeShape",
+             (TopoDS_Shape & (TopoDS_HShape::*)() ) static_cast<TopoDS_Shape & (TopoDS_HShape::*)() >(&TopoDS_HShape::ChangeShape),
+             R"#(Exchanges the TopoDS_Shape object defining this shape for another one referencing the same underlying shape Accesses the list of shapes within the underlying shape referenced by the TopoDS_Shape object. Returns a reference to a TopoDS_Shape based on this shape. The TopoDS_Shape can be modified.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TopoDS_HShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_HShape::*)() const>(&TopoDS_HShape::DynamicType),
+             R"#(None)#" )
+        .def("Shape",
+             (void (TopoDS_HShape::*)( const TopoDS_Shape &  ) ) static_cast<void (TopoDS_HShape::*)( const TopoDS_Shape &  ) >(&TopoDS_HShape::Shape),
+             R"#(Loads this shape with the shape aShape)#"  , py::arg("aShape"))
+        .def("Shape",
+             (const TopoDS_Shape & (TopoDS_HShape::*)() const) static_cast<const TopoDS_Shape & (TopoDS_HShape::*)() const>(&TopoDS_HShape::Shape),
+             R"#(Returns a reference to a constant TopoDS_Shape based on this shape.)#" )
+        .def("ChangeShape",
+             (TopoDS_Shape & (TopoDS_HShape::*)() ) static_cast<TopoDS_Shape & (TopoDS_HShape::*)() >(&TopoDS_HShape::ChangeShape),
+             R"#(Exchanges the TopoDS_Shape object defining this shape for another one referencing the same underlying shape Accesses the list of shapes within the underlying shape referenced by the TopoDS_Shape object. Returns a reference to a TopoDS_Shape based on this shape. The TopoDS_Shape can be modified.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_HShape::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_HShape::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Iterator , shared_ptr<TopoDS_Iterator>  >>(m.attr("TopoDS_Iterator"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("cumOri")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("cumLoc")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
+        .def("Initialize",
+             (void (TopoDS_Iterator::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (TopoDS_Iterator::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&TopoDS_Iterator::Initialize),
+             R"#(Initializes this iterator with shape S. Note: - If cumOri is true, the function composes all sub-shapes with the orientation of S. - If cumLoc is true, the function multiplies all sub-shapes by the location of S, i.e. it applies to each sub-shape the transformation that is associated with S.)#"  , py::arg("S"),  py::arg("cumOri")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("cumLoc")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("More",
+             (Standard_Boolean (TopoDS_Iterator::*)() const) static_cast<Standard_Boolean (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::More),
+             R"#(Returns true if there is another sub-shape in the shape which this iterator is scanning.)#" )
+        .def("Next",
+             (void (TopoDS_Iterator::*)() ) static_cast<void (TopoDS_Iterator::*)() >(&TopoDS_Iterator::Next),
+             R"#(Moves on to the next sub-shape in the shape which this iterator is scanning. Exceptions Standard_NoMoreObject if there are no more sub-shapes in the shape.)#" )
+        .def("Value",
+             (const TopoDS_Shape & (TopoDS_Iterator::*)() const) static_cast<const TopoDS_Shape & (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::Value),
+             R"#(Returns the current sub-shape in the shape which this iterator is scanning. Exceptions Standard_NoSuchObject if there is no current sub-shape.)#" )
+        .def("More",
+             (Standard_Boolean (TopoDS_Iterator::*)() const) static_cast<Standard_Boolean (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::More),
+             R"#(Returns true if there is another sub-shape in the shape which this iterator is scanning.)#" )
+        .def("Value",
+             (const TopoDS_Shape & (TopoDS_Iterator::*)() const) static_cast<const TopoDS_Shape & (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::Value),
+             R"#(Returns the current sub-shape in the shape which this iterator is scanning. Exceptions Standard_NoSuchObject if there is no current sub-shape.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Shape , shared_ptr<TopoDS_Shape>  >>(m.attr("TopoDS_Shape"))
+        .def(py::init<  >()  )
+    // methods
         .def("IsNull",
              (Standard_Boolean (TopoDS_Shape::*)() const) static_cast<Standard_Boolean (TopoDS_Shape::*)() const>(&TopoDS_Shape::IsNull),
              R"#(Returns true if this shape is null. In other words, it references no underlying shape with the potential to be given a location and an orientation.)#" )
@@ -389,219 +599,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDS"));
         .def("TShape",
              (void (TopoDS_Shape::*)( const opencascade::handle<TopoDS_TShape> &  ) ) static_cast<void (TopoDS_Shape::*)( const opencascade::handle<TopoDS_TShape> &  ) >(&TopoDS_Shape::TShape),
              R"#(None)#"  , py::arg("TS"))
-;
-
-
-    static_cast<py::class_<TopoDS_Iterator ,std::unique_ptr<TopoDS_Iterator>  >>(m.attr("TopoDS_Iterator"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("cumOri")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("cumLoc")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def("Initialize",
-             (void (TopoDS_Iterator::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (TopoDS_Iterator::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&TopoDS_Iterator::Initialize),
-             R"#(Initializes this iterator with shape S. Note: - If cumOri is true, the function composes all sub-shapes with the orientation of S. - If cumLoc is true, the function multiplies all sub-shapes by the location of S, i.e. it applies to each sub-shape the transformation that is associated with S.)#"  , py::arg("S"),  py::arg("cumOri")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("cumLoc")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("More",
-             (Standard_Boolean (TopoDS_Iterator::*)() const) static_cast<Standard_Boolean (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::More),
-             R"#(Returns true if there is another sub-shape in the shape which this iterator is scanning.)#" )
-        .def("Next",
-             (void (TopoDS_Iterator::*)() ) static_cast<void (TopoDS_Iterator::*)() >(&TopoDS_Iterator::Next),
-             R"#(Moves on to the next sub-shape in the shape which this iterator is scanning. Exceptions Standard_NoMoreObject if there are no more sub-shapes in the shape.)#" )
-        .def("Value",
-             (const TopoDS_Shape & (TopoDS_Iterator::*)() const) static_cast<const TopoDS_Shape & (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::Value),
-             R"#(Returns the current sub-shape in the shape which this iterator is scanning. Exceptions Standard_NoSuchObject if there is no current sub-shape.)#" )
-        .def("More",
-             (Standard_Boolean (TopoDS_Iterator::*)() const) static_cast<Standard_Boolean (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::More),
-             R"#(Returns true if there is another sub-shape in the shape which this iterator is scanning.)#" )
-        .def("Value",
-             (const TopoDS_Shape & (TopoDS_Iterator::*)() const) static_cast<const TopoDS_Shape & (TopoDS_Iterator::*)() const>(&TopoDS_Iterator::Value),
-             R"#(Returns the current sub-shape in the shape which this iterator is scanning. Exceptions Standard_NoSuchObject if there is no current sub-shape.)#" )
-;
-
-
-    static_cast<py::class_<TopoDS_Solid ,std::unique_ptr<TopoDS_Solid>  , TopoDS_Shape >>(m.attr("TopoDS_Solid"))
-        .def(py::init<  >()  )
-;
-
-
-    static_cast<py::class_<TopoDS_Face ,std::unique_ptr<TopoDS_Face>  , TopoDS_Shape >>(m.attr("TopoDS_Face"))
-        .def(py::init<  >()  )
-;
-
-
-    static_cast<py::class_<TopoDS_Edge ,std::unique_ptr<TopoDS_Edge>  , TopoDS_Shape >>(m.attr("TopoDS_Edge"))
-        .def(py::init<  >()  )
-;
-
-
-    static_cast<py::class_<TopoDS_AlertWithShape ,opencascade::handle<TopoDS_AlertWithShape>  , Message_Alert >>(m.attr("TopoDS_AlertWithShape"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
-        .def("GetShape",
-             (const TopoDS_Shape & (TopoDS_AlertWithShape::*)() const) static_cast<const TopoDS_Shape & (TopoDS_AlertWithShape::*)() const>(&TopoDS_AlertWithShape::GetShape),
-             R"#(Returns contained shape)#" )
-        .def("SupportsMerge",
-             (Standard_Boolean (TopoDS_AlertWithShape::*)() const) static_cast<Standard_Boolean (TopoDS_AlertWithShape::*)() const>(&TopoDS_AlertWithShape::SupportsMerge),
-             R"#(Returns false.)#" )
-        .def("Merge",
-             (Standard_Boolean (TopoDS_AlertWithShape::*)( const opencascade::handle<Message_Alert> &  ) ) static_cast<Standard_Boolean (TopoDS_AlertWithShape::*)( const opencascade::handle<Message_Alert> &  ) >(&TopoDS_AlertWithShape::Merge),
-             R"#(Returns false.)#"  , py::arg("theTarget"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TopoDS_AlertWithShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_AlertWithShape::*)() const>(&TopoDS_AlertWithShape::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_AlertWithShape::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_AlertWithShape::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<TopoDS_Builder ,std::unique_ptr<TopoDS_Builder>>(m,"TopoDS_Builder");
-
-    static_cast<py::class_<TopoDS_Builder ,std::unique_ptr<TopoDS_Builder>  >>(m.attr("TopoDS_Builder"))
-        .def("MakeWire",
-             (void (TopoDS_Builder::*)( TopoDS_Wire &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Wire &  ) const>(&TopoDS_Builder::MakeWire),
-             R"#(Make an empty Wire.)#"  , py::arg("W"))
-        .def("MakeShell",
-             (void (TopoDS_Builder::*)( TopoDS_Shell &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shell &  ) const>(&TopoDS_Builder::MakeShell),
-             R"#(Make an empty Shell.)#"  , py::arg("S"))
-        .def("MakeSolid",
-             (void (TopoDS_Builder::*)( TopoDS_Solid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Solid &  ) const>(&TopoDS_Builder::MakeSolid),
-             R"#(Make a Solid covering the whole 3D space.)#"  , py::arg("S"))
-        .def("MakeCompSolid",
-             (void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const>(&TopoDS_Builder::MakeCompSolid),
-             R"#(Make an empty Composite Solid.)#"  , py::arg("C"))
-        .def("MakeCompound",
-             (void (TopoDS_Builder::*)( TopoDS_Compound &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Compound &  ) const>(&TopoDS_Builder::MakeCompound),
-             R"#(Make an empty Compound.)#"  , py::arg("C"))
-        .def("Add",
-             (void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const>(&TopoDS_Builder::Add),
-             R"#(Add the Shape C in the Shape S. Exceptions - TopoDS_FrozenShape if S is not free and cannot be modified. - TopoDS__UnCompatibleShapes if S and C are not compatible.)#"  , py::arg("S"),  py::arg("C"))
-        .def("Remove",
-             (void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const>(&TopoDS_Builder::Remove),
-             R"#(Remove the Shape C from the Shape S. Exceptions TopoDS_FrozenShape if S is frozen and cannot be modified.)#"  , py::arg("S"),  py::arg("C"))
-        .def("MakeWire",
-             (void (TopoDS_Builder::*)( TopoDS_Wire &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Wire &  ) const>(&TopoDS_Builder::MakeWire),
-             R"#(Make an empty Wire.)#"  , py::arg("W"))
-        .def("MakeShell",
-             (void (TopoDS_Builder::*)( TopoDS_Shell &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Shell &  ) const>(&TopoDS_Builder::MakeShell),
-             R"#(Make an empty Shell.)#"  , py::arg("S"))
-        .def("MakeSolid",
-             (void (TopoDS_Builder::*)( TopoDS_Solid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Solid &  ) const>(&TopoDS_Builder::MakeSolid),
-             R"#(Make a Solid covering the whole 3D space.)#"  , py::arg("S"))
-        .def("MakeCompSolid",
-             (void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_CompSolid &  ) const>(&TopoDS_Builder::MakeCompSolid),
-             R"#(Make an empty Composite Solid.)#"  , py::arg("C"))
-        .def("MakeCompound",
-             (void (TopoDS_Builder::*)( TopoDS_Compound &  ) const) static_cast<void (TopoDS_Builder::*)( TopoDS_Compound &  ) const>(&TopoDS_Builder::MakeCompound),
-             R"#(Make an empty Compound.)#"  , py::arg("C"))
-;
-
-
-    static_cast<py::class_<TopoDS_Compound ,std::unique_ptr<TopoDS_Compound>  , TopoDS_Shape >>(m.attr("TopoDS_Compound"))
-        .def(py::init<  >()  )
-;
-
-
-    static_cast<py::class_<TopoDS_Wire ,std::unique_ptr<TopoDS_Wire>  , TopoDS_Shape >>(m.attr("TopoDS_Wire"))
-        .def(py::init<  >()  )
-;
-
-
-    static_cast<py::class_<TopoDS_HShape ,opencascade::handle<TopoDS_HShape>  , Standard_Transient >>(m.attr("TopoDS_HShape"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("aShape") )
-        .def("Shape",
-             (void (TopoDS_HShape::*)( const TopoDS_Shape &  ) ) static_cast<void (TopoDS_HShape::*)( const TopoDS_Shape &  ) >(&TopoDS_HShape::Shape),
-             R"#(Loads this shape with the shape aShape)#"  , py::arg("aShape"))
-        .def("Shape",
-             (const TopoDS_Shape & (TopoDS_HShape::*)() const) static_cast<const TopoDS_Shape & (TopoDS_HShape::*)() const>(&TopoDS_HShape::Shape),
-             R"#(Returns a reference to a constant TopoDS_Shape based on this shape.)#" )
-        .def("ChangeShape",
-             (TopoDS_Shape & (TopoDS_HShape::*)() ) static_cast<TopoDS_Shape & (TopoDS_HShape::*)() >(&TopoDS_HShape::ChangeShape),
-             R"#(Exchanges the TopoDS_Shape object defining this shape for another one referencing the same underlying shape Accesses the list of shapes within the underlying shape referenced by the TopoDS_Shape object. Returns a reference to a TopoDS_Shape based on this shape. The TopoDS_Shape can be modified.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TopoDS_HShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_HShape::*)() const>(&TopoDS_HShape::DynamicType),
-             R"#(None)#" )
-        .def("Shape",
-             (void (TopoDS_HShape::*)( const TopoDS_Shape &  ) ) static_cast<void (TopoDS_HShape::*)( const TopoDS_Shape &  ) >(&TopoDS_HShape::Shape),
-             R"#(Loads this shape with the shape aShape)#"  , py::arg("aShape"))
-        .def("Shape",
-             (const TopoDS_Shape & (TopoDS_HShape::*)() const) static_cast<const TopoDS_Shape & (TopoDS_HShape::*)() const>(&TopoDS_HShape::Shape),
-             R"#(Returns a reference to a constant TopoDS_Shape based on this shape.)#" )
-        .def("ChangeShape",
-             (TopoDS_Shape & (TopoDS_HShape::*)() ) static_cast<TopoDS_Shape & (TopoDS_HShape::*)() >(&TopoDS_HShape::ChangeShape),
-             R"#(Exchanges the TopoDS_Shape object defining this shape for another one referencing the same underlying shape Accesses the list of shapes within the underlying shape referenced by the TopoDS_Shape object. Returns a reference to a TopoDS_Shape based on this shape. The TopoDS_Shape can be modified.)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_HShape::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_HShape::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<TopoDS ,std::unique_ptr<TopoDS>>(m,"TopoDS");
-
-    static_cast<py::class_<TopoDS ,std::unique_ptr<TopoDS>  >>(m.attr("TopoDS"))
-        .def_static("Vertex_s",
-                    (const TopoDS_Vertex & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Vertex & (*)( const TopoDS_Shape &  ) >(&TopoDS::Vertex),
-                    R"#(Basic tool to access the data structure. Casts shape S to the more specialized return type, Vertex. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("Vertex_s",
-                    (TopoDS_Vertex & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Vertex & (*)( TopoDS_Shape &  ) >(&TopoDS::Vertex),
-                    R"#(None)#"  , py::arg(""))
-        .def_static("Edge_s",
-                    (const TopoDS_Edge & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Edge & (*)( const TopoDS_Shape &  ) >(&TopoDS::Edge),
-                    R"#(Casts shape S to the more specialized return type, Edge Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("Edge_s",
-                    (TopoDS_Edge & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Edge & (*)( TopoDS_Shape &  ) >(&TopoDS::Edge),
-                    R"#(None)#"  , py::arg(""))
-        .def_static("Wire_s",
-                    (const TopoDS_Wire & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Wire & (*)( const TopoDS_Shape &  ) >(&TopoDS::Wire),
-                    R"#(Casts shape S to the more specialized return type, Wire. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("Wire_s",
-                    (TopoDS_Wire & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Wire & (*)( TopoDS_Shape &  ) >(&TopoDS::Wire),
-                    R"#(None)#"  , py::arg(""))
-        .def_static("Face_s",
-                    (const TopoDS_Face & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Face & (*)( const TopoDS_Shape &  ) >(&TopoDS::Face),
-                    R"#(Casts shape S to the more specialized return type, Face. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("Face_s",
-                    (TopoDS_Face & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Face & (*)( TopoDS_Shape &  ) >(&TopoDS::Face),
-                    R"#(None)#"  , py::arg(""))
-        .def_static("Shell_s",
-                    (const TopoDS_Shell & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Shell & (*)( const TopoDS_Shape &  ) >(&TopoDS::Shell),
-                    R"#(Casts shape S to the more specialized return type, Shell. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("Shell_s",
-                    (TopoDS_Shell & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Shell & (*)( TopoDS_Shape &  ) >(&TopoDS::Shell),
-                    R"#(None)#"  , py::arg(""))
-        .def_static("Solid_s",
-                    (const TopoDS_Solid & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Solid & (*)( const TopoDS_Shape &  ) >(&TopoDS::Solid),
-                    R"#(Casts shape S to the more specialized return type, Solid. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("Solid_s",
-                    (TopoDS_Solid & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Solid & (*)( TopoDS_Shape &  ) >(&TopoDS::Solid),
-                    R"#(None)#"  , py::arg(""))
-        .def_static("CompSolid_s",
-                    (const TopoDS_CompSolid & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_CompSolid & (*)( const TopoDS_Shape &  ) >(&TopoDS::CompSolid),
-                    R"#(Casts shape S to the more specialized return type, CompSolid. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("CompSolid_s",
-                    (TopoDS_CompSolid & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_CompSolid & (*)( TopoDS_Shape &  ) >(&TopoDS::CompSolid),
-                    R"#(None)#"  , py::arg(""))
-        .def_static("Compound_s",
-                    (const TopoDS_Compound & (*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Compound & (*)( const TopoDS_Shape &  ) >(&TopoDS::Compound),
-                    R"#(Casts shape S to the more specialized return type, Compound. Exceptions Standard_TypeMismatch if S cannot be cast to this return type.)#"  , py::arg("S"))
-        .def_static("Compound_s",
-                    (TopoDS_Compound & (*)( TopoDS_Shape &  ) ) static_cast<TopoDS_Compound & (*)( TopoDS_Shape &  ) >(&TopoDS::Compound),
-                    R"#(None)#"  , py::arg(""))
-;
-
-
-    static_cast<py::class_<TopoDS_Vertex ,std::unique_ptr<TopoDS_Vertex>  , TopoDS_Shape >>(m.attr("TopoDS_Vertex"))
-        .def(py::init<  >()  )
-;
-
-
-    static_cast<py::class_<TopoDS_Shell ,std::unique_ptr<TopoDS_Shell>  , TopoDS_Shape >>(m.attr("TopoDS_Shell"))
-        .def(py::init<  >()  )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TopoDS_TShape ,opencascade::handle<TopoDS_TShape> ,Py_TopoDS_TShape , Standard_Transient >>(m.attr("TopoDS_TShape"))
+    // methods
         .def("Free",
              (Standard_Boolean (TopoDS_TShape::*)() const) static_cast<Standard_Boolean (TopoDS_TShape::*)() const>(&TopoDS_TShape::Free),
              R"#(Returns the free flag.)#" )
@@ -707,73 +714,89 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDS"));
         .def("Convex",
              (void (TopoDS_TShape::*)( const Standard_Boolean  ) ) static_cast<void (TopoDS_TShape::*)( const Standard_Boolean  ) >(&TopoDS_TShape::Convex),
              R"#(Sets the convexness flag.)#"  , py::arg("M"))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TShape::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TShape::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TopoDS_TEdge ,opencascade::handle<TopoDS_TEdge> ,Py_TopoDS_TEdge , TopoDS_TShape >>(m.attr("TopoDS_TEdge"))
-        .def("ShapeType",
-             (TopAbs_ShapeEnum (TopoDS_TEdge::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TEdge::*)() const>(&TopoDS_TEdge::ShapeType),
-             R"#(Returns EDGE.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TopoDS_TEdge::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TEdge::*)() const>(&TopoDS_TEdge::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TEdge::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TEdge::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TopoDS_TFace ,opencascade::handle<TopoDS_TFace>  , TopoDS_TShape >>(m.attr("TopoDS_TFace"))
+    static_cast<py::class_<TopoDS_CompSolid , shared_ptr<TopoDS_CompSolid>  , TopoDS_Shape >>(m.attr("TopoDS_CompSolid"))
         .def(py::init<  >()  )
-        .def("ShapeType",
-             (TopAbs_ShapeEnum (TopoDS_TFace::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TFace::*)() const>(&TopoDS_TFace::ShapeType),
-             R"#(returns FACE.)#" )
-        .def("EmptyCopy",
-             (opencascade::handle<TopoDS_TShape> (TopoDS_TFace::*)() const) static_cast<opencascade::handle<TopoDS_TShape> (TopoDS_TFace::*)() const>(&TopoDS_TFace::EmptyCopy),
-             R"#(Returns an empty TFace.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TopoDS_TFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TFace::*)() const>(&TopoDS_TFace::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TFace::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TFace::get_type_descriptor),
-                    R"#(None)#" )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TopoDS_TWire ,opencascade::handle<TopoDS_TWire>  , TopoDS_TShape >>(m.attr("TopoDS_TWire"))
+    static_cast<py::class_<TopoDS_Compound , shared_ptr<TopoDS_Compound>  , TopoDS_Shape >>(m.attr("TopoDS_Compound"))
         .def(py::init<  >()  )
-        .def("ShapeType",
-             (TopAbs_ShapeEnum (TopoDS_TWire::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TWire::*)() const>(&TopoDS_TWire::ShapeType),
-             R"#(Returns WIRE.)#" )
-        .def("EmptyCopy",
-             (opencascade::handle<TopoDS_TShape> (TopoDS_TWire::*)() const) static_cast<opencascade::handle<TopoDS_TShape> (TopoDS_TWire::*)() const>(&TopoDS_TWire::EmptyCopy),
-             R"#(Returns an empty TWire.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TopoDS_TWire::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TWire::*)() const>(&TopoDS_TWire::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TWire::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TWire::get_type_descriptor),
-                    R"#(None)#" )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Edge , shared_ptr<TopoDS_Edge>  , TopoDS_Shape >>(m.attr("TopoDS_Edge"))
+        .def(py::init<  >()  )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Face , shared_ptr<TopoDS_Face>  , TopoDS_Shape >>(m.attr("TopoDS_Face"))
+        .def(py::init<  >()  )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Shell , shared_ptr<TopoDS_Shell>  , TopoDS_Shape >>(m.attr("TopoDS_Shell"))
+        .def(py::init<  >()  )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Solid , shared_ptr<TopoDS_Solid>  , TopoDS_Shape >>(m.attr("TopoDS_Solid"))
+        .def(py::init<  >()  )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TopoDS_TCompSolid ,opencascade::handle<TopoDS_TCompSolid>  , TopoDS_TShape >>(m.attr("TopoDS_TCompSolid"))
         .def(py::init<  >()  )
+    // methods
         .def("ShapeType",
              (TopAbs_ShapeEnum (TopoDS_TCompSolid::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TCompSolid::*)() const>(&TopoDS_TCompSolid::ShapeType),
              R"#(returns COMPSOLID)#" )
@@ -783,37 +806,23 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDS"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TopoDS_TCompSolid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TCompSolid::*)() const>(&TopoDS_TCompSolid::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TCompSolid::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TCompSolid::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TopoDS_TSolid ,opencascade::handle<TopoDS_TSolid>  , TopoDS_TShape >>(m.attr("TopoDS_TSolid"))
-        .def(py::init<  >()  )
-        .def("ShapeType",
-             (TopAbs_ShapeEnum (TopoDS_TSolid::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TSolid::*)() const>(&TopoDS_TSolid::ShapeType),
-             R"#(returns SOLID.)#" )
-        .def("EmptyCopy",
-             (opencascade::handle<TopoDS_TShape> (TopoDS_TSolid::*)() const) static_cast<opencascade::handle<TopoDS_TShape> (TopoDS_TSolid::*)() const>(&TopoDS_TSolid::EmptyCopy),
-             R"#(Returns an empty TSolid.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TopoDS_TSolid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TSolid::*)() const>(&TopoDS_TSolid::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TSolid::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TSolid::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TopoDS_TCompound ,opencascade::handle<TopoDS_TCompound>  , TopoDS_TShape >>(m.attr("TopoDS_TCompound"))
         .def(py::init<  >()  )
+    // methods
         .def("ShapeType",
              (TopAbs_ShapeEnum (TopoDS_TCompound::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TCompound::*)() const>(&TopoDS_TCompound::ShapeType),
              R"#(Returns COMPOUND.)#" )
@@ -823,38 +832,71 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDS"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TopoDS_TCompound::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TCompound::*)() const>(&TopoDS_TCompound::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TCompound::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TCompound::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TopoDS_TVertex ,opencascade::handle<TopoDS_TVertex> ,Py_TopoDS_TVertex , TopoDS_TShape >>(m.attr("TopoDS_TVertex"))
+    static_cast<py::class_<TopoDS_TEdge ,opencascade::handle<TopoDS_TEdge> ,Py_TopoDS_TEdge , TopoDS_TShape >>(m.attr("TopoDS_TEdge"))
+    // methods
         .def("ShapeType",
-             (TopAbs_ShapeEnum (TopoDS_TVertex::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TVertex::*)() const>(&TopoDS_TVertex::ShapeType),
-             R"#(Returns VERTEX.)#" )
+             (TopAbs_ShapeEnum (TopoDS_TEdge::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TEdge::*)() const>(&TopoDS_TEdge::ShapeType),
+             R"#(Returns EDGE.)#" )
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TopoDS_TVertex::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TVertex::*)() const>(&TopoDS_TVertex::DynamicType),
+             (const opencascade::handle<Standard_Type> & (TopoDS_TEdge::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TEdge::*)() const>(&TopoDS_TEdge::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TVertex::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TEdge::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TVertex::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TEdge::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TopoDS_CompSolid ,std::unique_ptr<TopoDS_CompSolid>  , TopoDS_Shape >>(m.attr("TopoDS_CompSolid"))
+    static_cast<py::class_<TopoDS_TFace ,opencascade::handle<TopoDS_TFace>  , TopoDS_TShape >>(m.attr("TopoDS_TFace"))
         .def(py::init<  >()  )
+    // methods
+        .def("ShapeType",
+             (TopAbs_ShapeEnum (TopoDS_TFace::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TFace::*)() const>(&TopoDS_TFace::ShapeType),
+             R"#(returns FACE.)#" )
+        .def("EmptyCopy",
+             (opencascade::handle<TopoDS_TShape> (TopoDS_TFace::*)() const) static_cast<opencascade::handle<TopoDS_TShape> (TopoDS_TFace::*)() const>(&TopoDS_TFace::EmptyCopy),
+             R"#(Returns an empty TFace.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TopoDS_TFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TFace::*)() const>(&TopoDS_TFace::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TFace::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TFace::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TopoDS_TShell ,opencascade::handle<TopoDS_TShell>  , TopoDS_TShape >>(m.attr("TopoDS_TShell"))
         .def(py::init<  >()  )
+    // methods
         .def("ShapeType",
              (TopAbs_ShapeEnum (TopoDS_TShell::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TShell::*)() const>(&TopoDS_TShell::ShapeType),
              R"#(Returns SHELL.)#" )
@@ -864,87 +906,160 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDS"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TopoDS_TShell::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TShell::*)() const>(&TopoDS_TShell::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TShell::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TShell::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_TSolid ,opencascade::handle<TopoDS_TSolid>  , TopoDS_TShape >>(m.attr("TopoDS_TSolid"))
+        .def(py::init<  >()  )
+    // methods
+        .def("ShapeType",
+             (TopAbs_ShapeEnum (TopoDS_TSolid::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TSolid::*)() const>(&TopoDS_TSolid::ShapeType),
+             R"#(returns SOLID.)#" )
+        .def("EmptyCopy",
+             (opencascade::handle<TopoDS_TShape> (TopoDS_TSolid::*)() const) static_cast<opencascade::handle<TopoDS_TShape> (TopoDS_TSolid::*)() const>(&TopoDS_TSolid::EmptyCopy),
+             R"#(Returns an empty TSolid.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TopoDS_TSolid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TSolid::*)() const>(&TopoDS_TSolid::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TSolid::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TSolid::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_TVertex ,opencascade::handle<TopoDS_TVertex> ,Py_TopoDS_TVertex , TopoDS_TShape >>(m.attr("TopoDS_TVertex"))
+    // methods
+        .def("ShapeType",
+             (TopAbs_ShapeEnum (TopoDS_TVertex::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TVertex::*)() const>(&TopoDS_TVertex::ShapeType),
+             R"#(Returns VERTEX.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TopoDS_TVertex::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TVertex::*)() const>(&TopoDS_TVertex::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TVertex::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TVertex::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_TWire ,opencascade::handle<TopoDS_TWire>  , TopoDS_TShape >>(m.attr("TopoDS_TWire"))
+        .def(py::init<  >()  )
+    // methods
+        .def("ShapeType",
+             (TopAbs_ShapeEnum (TopoDS_TWire::*)() const) static_cast<TopAbs_ShapeEnum (TopoDS_TWire::*)() const>(&TopoDS_TWire::ShapeType),
+             R"#(Returns WIRE.)#" )
+        .def("EmptyCopy",
+             (opencascade::handle<TopoDS_TShape> (TopoDS_TWire::*)() const) static_cast<opencascade::handle<TopoDS_TShape> (TopoDS_TWire::*)() const>(&TopoDS_TWire::EmptyCopy),
+             R"#(Returns an empty TWire.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TopoDS_TWire::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopoDS_TWire::*)() const>(&TopoDS_TWire::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TopoDS_TWire::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TopoDS_TWire::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Vertex , shared_ptr<TopoDS_Vertex>  , TopoDS_Shape >>(m.attr("TopoDS_Vertex"))
+        .def(py::init<  >()  )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TopoDS_Wire , shared_ptr<TopoDS_Wire>  , TopoDS_Shape >>(m.attr("TopoDS_Wire"))
+        .def(py::init<  >()  )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/TopoDS_TSolid.hxx
 // ./opencascade/TopoDS_Iterator.hxx
-// ./opencascade/TopoDS_Wire.hxx
-// ./opencascade/TopoDS_ListOfShape.hxx
-// ./opencascade/TopoDS_Solid.hxx
-// ./opencascade/TopoDS_TShape.hxx
-// ./opencascade/TopoDS_Face.hxx
-// ./opencascade/TopoDS_HShape.hxx
-// ./opencascade/TopoDS_UnCompatibleShapes.hxx
-// ./opencascade/TopoDS_CompSolid.hxx
-// ./opencascade/TopoDS_TEdge.hxx
-// ./opencascade/TopoDS_FrozenShape.hxx
-// ./opencascade/TopoDS_TCompound.hxx
-// ./opencascade/TopoDS_ListIteratorOfListOfShape.hxx
 // ./opencascade/TopoDS_Shape.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const TopoDS_Shape & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const TopoDS_Shape & ,  const Standard_Integer  )>(&HashCode),
           R"#(None)#"  , py::arg("me"),  py::arg("Upper"));
-// ./opencascade/TopoDS_Edge.hxx
 // ./opencascade/TopoDS.hxx
     m.def("TopoDS_Mismatch", 
           (Standard_Boolean (*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ))  static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  )>(&TopoDS_Mismatch),
           R"#(None)#"  , py::arg("S"),  py::arg("T"));
 // ./opencascade/TopoDS_TFace.hxx
-// ./opencascade/TopoDS_AlertWithShape.hxx
-// ./opencascade/TopoDS_Vertex.hxx
-// ./opencascade/TopoDS_TShell.hxx
 // ./opencascade/TopoDS_TWire.hxx
+// ./opencascade/TopoDS_TShape.hxx
 // ./opencascade/TopoDS_Builder.hxx
-// ./opencascade/TopoDS_Shell.hxx
+// ./opencascade/TopoDS_HShape.hxx
+// ./opencascade/TopoDS_TEdge.hxx
 // ./opencascade/TopoDS_LockedShape.hxx
 // ./opencascade/TopoDS_TVertex.hxx
-// ./opencascade/TopoDS_TCompSolid.hxx
+// ./opencascade/TopoDS_FrozenShape.hxx
+// ./opencascade/TopoDS_Vertex.hxx
+// ./opencascade/TopoDS_ListIteratorOfListOfShape.hxx
 // ./opencascade/TopoDS_Compound.hxx
+// ./opencascade/TopoDS_UnCompatibleShapes.hxx
+// ./opencascade/TopoDS_Wire.hxx
+// ./opencascade/TopoDS_TCompSolid.hxx
+// ./opencascade/TopoDS_ListOfShape.hxx
+// ./opencascade/TopoDS_TShell.hxx
+// ./opencascade/TopoDS_Edge.hxx
+// ./opencascade/TopoDS_Shell.hxx
+// ./opencascade/TopoDS_TSolid.hxx
+// ./opencascade/TopoDS_CompSolid.hxx
+// ./opencascade/TopoDS_AlertWithShape.hxx
+// ./opencascade/TopoDS_TCompound.hxx
+// ./opencascade/TopoDS_Solid.hxx
+// ./opencascade/TopoDS_Face.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/TopoDS_TSolid.hxx
-// ./opencascade/TopoDS_Iterator.hxx
-// ./opencascade/TopoDS_Wire.hxx
-// ./opencascade/TopoDS_ListOfShape.hxx
-// ./opencascade/TopoDS_Solid.hxx
-// ./opencascade/TopoDS_TShape.hxx
-// ./opencascade/TopoDS_Face.hxx
-// ./opencascade/TopoDS_HShape.hxx
-// ./opencascade/TopoDS_UnCompatibleShapes.hxx
-// ./opencascade/TopoDS_CompSolid.hxx
-// ./opencascade/TopoDS_TEdge.hxx
-// ./opencascade/TopoDS_FrozenShape.hxx
-// ./opencascade/TopoDS_TCompound.hxx
-// ./opencascade/TopoDS_ListIteratorOfListOfShape.hxx
-// ./opencascade/TopoDS_Shape.hxx
-// ./opencascade/TopoDS_Edge.hxx
-// ./opencascade/TopoDS.hxx
-// ./opencascade/TopoDS_TFace.hxx
-// ./opencascade/TopoDS_AlertWithShape.hxx
-// ./opencascade/TopoDS_Vertex.hxx
-// ./opencascade/TopoDS_TShell.hxx
-// ./opencascade/TopoDS_TWire.hxx
-// ./opencascade/TopoDS_Builder.hxx
-// ./opencascade/TopoDS_Shell.hxx
-// ./opencascade/TopoDS_LockedShape.hxx
-// ./opencascade/TopoDS_TVertex.hxx
-// ./opencascade/TopoDS_TCompSolid.hxx
-// ./opencascade/TopoDS_Compound.hxx
 
 
 // exceptions
-register_occ_exception<TopoDS_UnCompatibleShapes>(m, "TopoDS_UnCompatibleShapes");
 register_occ_exception<TopoDS_FrozenShape>(m, "TopoDS_FrozenShape");
 register_occ_exception<TopoDS_LockedShape>(m, "TopoDS_LockedShape");
+register_occ_exception<TopoDS_UnCompatibleShapes>(m, "TopoDS_UnCompatibleShapes");
 
 // user-defined post-inclusion per module in the body
 

@@ -45,25 +45,17 @@ py::module m = main_module.def_submodule("BinTObjDrivers", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BinTObjDrivers_ReferenceDriver ,opencascade::handle<BinTObjDrivers_ReferenceDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_ReferenceDriver",R"#()#");
-    py::class_<BinTObjDrivers_IntSparseArrayDriver ,opencascade::handle<BinTObjDrivers_IntSparseArrayDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_IntSparseArrayDriver",R"#()#");
-    py::class_<BinTObjDrivers ,std::unique_ptr<BinTObjDrivers>  >(m,"BinTObjDrivers",R"#(Class for registering storage/retrieval drivers for TObj Bin persistence)#");
-    py::class_<BinTObjDrivers_DocumentStorageDriver ,opencascade::handle<BinTObjDrivers_DocumentStorageDriver>  , BinLDrivers_DocumentStorageDriver >(m,"BinTObjDrivers_DocumentStorageDriver",R"#()#");
-    py::class_<BinTObjDrivers_XYZDriver ,opencascade::handle<BinTObjDrivers_XYZDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_XYZDriver",R"#()#");
-    py::class_<BinTObjDrivers_DocumentRetrievalDriver ,opencascade::handle<BinTObjDrivers_DocumentRetrievalDriver>  , BinLDrivers_DocumentRetrievalDriver >(m,"BinTObjDrivers_DocumentRetrievalDriver",R"#()#");
-    py::class_<BinTObjDrivers_ObjectDriver ,opencascade::handle<BinTObjDrivers_ObjectDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_ObjectDriver",R"#()#");
-    py::class_<BinTObjDrivers_ModelDriver ,opencascade::handle<BinTObjDrivers_ModelDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_ModelDriver",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/BinTObjDrivers_ReferenceDriver.hxx
-// ./opencascade/BinTObjDrivers_XYZDriver.hxx
-// ./opencascade/BinTObjDrivers_IntSparseArrayDriver.hxx
-// ./opencascade/BinTObjDrivers_ObjectDriver.hxx
-// ./opencascade/BinTObjDrivers.hxx
-// ./opencascade/BinTObjDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/BinTObjDrivers_DocumentStorageDriver.hxx
-// ./opencascade/BinTObjDrivers_ModelDriver.hxx
+
+// classes forward declarations only
+    py::class_<BinTObjDrivers , shared_ptr<BinTObjDrivers>  >(m,"BinTObjDrivers",R"#(Class for registering storage/retrieval drivers for TObj Bin persistence)#");
+    py::class_<BinTObjDrivers_DocumentRetrievalDriver ,opencascade::handle<BinTObjDrivers_DocumentRetrievalDriver>  , BinLDrivers_DocumentRetrievalDriver >(m,"BinTObjDrivers_DocumentRetrievalDriver",R"#()#");
+    py::class_<BinTObjDrivers_DocumentStorageDriver ,opencascade::handle<BinTObjDrivers_DocumentStorageDriver>  , BinLDrivers_DocumentStorageDriver >(m,"BinTObjDrivers_DocumentStorageDriver",R"#()#");
+    py::class_<BinTObjDrivers_IntSparseArrayDriver ,opencascade::handle<BinTObjDrivers_IntSparseArrayDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_IntSparseArrayDriver",R"#()#");
+    py::class_<BinTObjDrivers_ModelDriver ,opencascade::handle<BinTObjDrivers_ModelDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_ModelDriver",R"#()#");
+    py::class_<BinTObjDrivers_ObjectDriver ,opencascade::handle<BinTObjDrivers_ObjectDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_ObjectDriver",R"#()#");
+    py::class_<BinTObjDrivers_ReferenceDriver ,opencascade::handle<BinTObjDrivers_ReferenceDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_ReferenceDriver",R"#()#");
+    py::class_<BinTObjDrivers_XYZDriver ,opencascade::handle<BinTObjDrivers_XYZDriver>  , BinMDF_ADriver >(m,"BinTObjDrivers_XYZDriver",R"#()#");
 
 };
 

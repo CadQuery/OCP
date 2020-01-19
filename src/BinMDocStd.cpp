@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -39,17 +42,24 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDocStd"));
 
 // classes
 
-    register_default_constructor<BinMDocStd ,std::unique_ptr<BinMDocStd>>(m,"BinMDocStd");
+    register_default_constructor<BinMDocStd , shared_ptr<BinMDocStd>>(m,"BinMDocStd");
 
-    static_cast<py::class_<BinMDocStd ,std::unique_ptr<BinMDocStd>  >>(m.attr("BinMDocStd"))
+    static_cast<py::class_<BinMDocStd , shared_ptr<BinMDocStd>  >>(m.attr("BinMDocStd"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("AddDrivers_s",
                     (void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) >(&BinMDocStd::AddDrivers),
                     R"#(Adds the attribute drivers to <theDriverTable>.)#"  , py::arg("theDriverTable"),  py::arg("aMsgDrv"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BinMDocStd_XLinkDriver ,opencascade::handle<BinMDocStd_XLinkDriver>  , BinMDF_ADriver >>(m.attr("BinMDocStd_XLinkDriver"))
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDocStd_XLinkDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDocStd_XLinkDriver::*)() const>(&BinMDocStd_XLinkDriver::NewEmpty),
              R"#(None)#" )
@@ -62,12 +72,17 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDocStd"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BinMDocStd_XLinkDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinMDocStd_XLinkDriver::*)() const>(&BinMDocStd_XLinkDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BinMDocStd_XLinkDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BinMDocStd_XLinkDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -77,8 +92,6 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDocStd"));
 // operators
 
 // register typdefs
-// ./opencascade/BinMDocStd.hxx
-// ./opencascade/BinMDocStd_XLinkDriver.hxx
 
 
 // exceptions

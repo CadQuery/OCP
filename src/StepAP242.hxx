@@ -10,6 +10,8 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_Representation.hxx>
 #include <StepBasic_Action.hxx>
 #include <StepBasic_Address.hxx>
 #include <StepBasic_ApplicationContext.hxx>
@@ -39,26 +41,24 @@ namespace py = pybind11;
 #include <StepRepr_ShapeAspect.hxx>
 #include <StepRepr_ShapeAspectRelationship.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepRepr_Representation.hxx>
-#include <TCollection_HAsciiString.hxx>
 
 // module includes
 #include <StepAP242_GeometricItemSpecificUsage.hxx>
+#include <StepAP242_ItemIdentifiedRepresentationUsage.hxx>
+#include <StepAP242_DraughtingModelItemAssociation.hxx>
 #include <StepAP242_IdAttributeSelect.hxx>
 #include <StepAP242_ItemIdentifiedRepresentationUsageDefinition.hxx>
-#include <StepAP242_ItemIdentifiedRepresentationUsage.hxx>
 #include <StepAP242_IdAttribute.hxx>
-#include <StepAP242_DraughtingModelItemAssociation.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
 // ./opencascade/StepAP242_GeometricItemSpecificUsage.hxx
+// ./opencascade/StepAP242_ItemIdentifiedRepresentationUsage.hxx
+// ./opencascade/StepAP242_DraughtingModelItemAssociation.hxx
 // ./opencascade/StepAP242_IdAttributeSelect.hxx
 // ./opencascade/StepAP242_ItemIdentifiedRepresentationUsageDefinition.hxx
-// ./opencascade/StepAP242_ItemIdentifiedRepresentationUsage.hxx
 // ./opencascade/StepAP242_IdAttribute.hxx
-// ./opencascade/StepAP242_DraughtingModelItemAssociation.hxx
 
 // user-defined post

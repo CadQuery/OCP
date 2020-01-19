@@ -51,15 +51,12 @@ py::module m = main_module.def_submodule("BSplSLib", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<BSplSLib ,std::unique_ptr<BSplSLib>  >(m,"BSplSLib",R"#(BSplSLib B-spline surface Library This package provides an implementation of geometric functions for rational and non rational, periodic and non periodic B-spline surface computation.)#");
-    py::class_<BSplSLib_Cache ,opencascade::handle<BSplSLib_Cache>  , Standard_Transient >(m,"BSplSLib_Cache",R"#(A cache class for Bezier and B-spline surfaces.A cache class for Bezier and B-spline surfaces.)#");
-    py::class_<BSplSLib_EvaluatorFunction ,std::unique_ptr<BSplSLib_EvaluatorFunction> ,Py_BSplSLib_EvaluatorFunction >(m,"BSplSLib_EvaluatorFunction",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/BSplSLib.hxx
-// ./opencascade/BSplSLib_EvaluatorFunction.hxx
-// ./opencascade/BSplSLib_Cache.hxx
+
+// classes forward declarations only
+    py::class_<BSplSLib , shared_ptr<BSplSLib>  >(m,"BSplSLib",R"#(BSplSLib B-spline surface Library This package provides an implementation of geometric functions for rational and non rational, periodic and non periodic B-spline surface computation.)#");
+    py::class_<BSplSLib_Cache ,opencascade::handle<BSplSLib_Cache>  , Standard_Transient >(m,"BSplSLib_Cache",R"#(A cache class for Bezier and B-spline surfaces.A cache class for Bezier and B-spline surfaces.)#");
+    py::class_<BSplSLib_EvaluatorFunction , shared_ptr<BSplSLib_EvaluatorFunction> ,Py_BSplSLib_EvaluatorFunction >(m,"BSplSLib_EvaluatorFunction",R"#(None)#");
 
 };
 

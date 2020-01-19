@@ -32,11 +32,11 @@ namespace py = pybind11;
 #include <NLPlate_StackOfPlate.hxx>
 
 // template related includes
-// ./opencascade/NLPlate_StackOfPlate.hxx
-#include "NCollection.hxx"
-// ./opencascade/NLPlate_StackOfPlate.hxx
-#include "NCollection.hxx"
 // ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
+#include "NCollection.hxx"
+// ./opencascade/NLPlate_StackOfPlate.hxx
+#include "NCollection.hxx"
+// ./opencascade/NLPlate_StackOfPlate.hxx
 #include "NCollection.hxx"
 
 
@@ -72,32 +72,20 @@ py::module m = main_module.def_submodule("NLPlate", R"#()#");
         
     };
 
+// pre-register typdefs
+    preregister_template_NCollection_Sequence<opencascade::handle<NLPlate_HGPPConstraint> >(m,"NLPlate_SequenceOfHGPPConstraint");  
+    preregister_template_NCollection_List<Plate_Plate>(m,"NLPlate_StackOfPlate");  
+
 // classes forward declarations only
-    py::class_<NLPlate_NLPlate ,std::unique_ptr<NLPlate_NLPlate>  >(m,"NLPlate_NLPlate",R"#(None)#");
     py::class_<NLPlate_HGPPConstraint ,opencascade::handle<NLPlate_HGPPConstraint> ,Py_NLPlate_HGPPConstraint , Standard_Transient >(m,"NLPlate_HGPPConstraint",R"#(define a PinPoint geometric Constraint used to load a Non Linear Platedefine a PinPoint geometric Constraint used to load a Non Linear Platedefine a PinPoint geometric Constraint used to load a Non Linear Plate)#");
-    py::class_<NLPlate_HPG1Constraint ,opencascade::handle<NLPlate_HPG1Constraint>  , NLPlate_HGPPConstraint >(m,"NLPlate_HPG1Constraint",R"#(define a PinPoint (no G0) G1 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G1 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G1 Constraint used to load a Non Linear Plate)#");
+    py::class_<NLPlate_NLPlate , shared_ptr<NLPlate_NLPlate>  >(m,"NLPlate_NLPlate",R"#(None)#");
     py::class_<NLPlate_HPG0Constraint ,opencascade::handle<NLPlate_HPG0Constraint>  , NLPlate_HGPPConstraint >(m,"NLPlate_HPG0Constraint",R"#(define a PinPoint G0 Constraint used to load a Non Linear Platedefine a PinPoint G0 Constraint used to load a Non Linear Platedefine a PinPoint G0 Constraint used to load a Non Linear Plate)#");
+    py::class_<NLPlate_HPG1Constraint ,opencascade::handle<NLPlate_HPG1Constraint>  , NLPlate_HGPPConstraint >(m,"NLPlate_HPG1Constraint",R"#(define a PinPoint (no G0) G1 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G1 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G1 Constraint used to load a Non Linear Plate)#");
     py::class_<NLPlate_HPG0G1Constraint ,opencascade::handle<NLPlate_HPG0G1Constraint>  , NLPlate_HPG0Constraint >(m,"NLPlate_HPG0G1Constraint",R"#(define a PinPoint G0+G1 Constraint used to load a Non Linear Platedefine a PinPoint G0+G1 Constraint used to load a Non Linear Platedefine a PinPoint G0+G1 Constraint used to load a Non Linear Plate)#");
     py::class_<NLPlate_HPG2Constraint ,opencascade::handle<NLPlate_HPG2Constraint>  , NLPlate_HPG1Constraint >(m,"NLPlate_HPG2Constraint",R"#(define a PinPoint (no G0) G2 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G2 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G2 Constraint used to load a Non Linear Plate)#");
-    py::class_<NLPlate_HPG3Constraint ,opencascade::handle<NLPlate_HPG3Constraint>  , NLPlate_HPG2Constraint >(m,"NLPlate_HPG3Constraint",R"#(define a PinPoint (no G0) G3 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G3 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G3 Constraint used to load a Non Linear Plate)#");
     py::class_<NLPlate_HPG0G2Constraint ,opencascade::handle<NLPlate_HPG0G2Constraint>  , NLPlate_HPG0G1Constraint >(m,"NLPlate_HPG0G2Constraint",R"#(define a PinPoint G0+G2 Constraint used to load a Non Linear Platedefine a PinPoint G0+G2 Constraint used to load a Non Linear Platedefine a PinPoint G0+G2 Constraint used to load a Non Linear Plate)#");
+    py::class_<NLPlate_HPG3Constraint ,opencascade::handle<NLPlate_HPG3Constraint>  , NLPlate_HPG2Constraint >(m,"NLPlate_HPG3Constraint",R"#(define a PinPoint (no G0) G3 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G3 Constraint used to load a Non Linear Platedefine a PinPoint (no G0) G3 Constraint used to load a Non Linear Plate)#");
     py::class_<NLPlate_HPG0G3Constraint ,opencascade::handle<NLPlate_HPG0G3Constraint>  , NLPlate_HPG0G2Constraint >(m,"NLPlate_HPG0G3Constraint",R"#(define a PinPoint G0+G3 Constraint used to load a Non Linear Platedefine a PinPoint G0+G3 Constraint used to load a Non Linear Platedefine a PinPoint G0+G3 Constraint used to load a Non Linear Plate)#");
-
-// pre-register typdefs
-// ./opencascade/NLPlate_HPG1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G3Constraint.hxx
-// ./opencascade/NLPlate_HPG3Constraint.hxx
-// ./opencascade/NLPlate_ListIteratorOfStackOfPlate.hxx
-// ./opencascade/NLPlate_NLPlate.hxx
-// ./opencascade/NLPlate_HGPPConstraint.hxx
-// ./opencascade/NLPlate_HPG0Constraint.hxx
-// ./opencascade/NLPlate_StackOfPlate.hxx
-    preregister_template_NCollection_List<Plate_Plate>(m,"NLPlate_StackOfPlate");  
-// ./opencascade/NLPlate_HPG2Constraint.hxx
-// ./opencascade/NLPlate_HPG0G2Constraint.hxx
-// ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<NLPlate_HGPPConstraint> >(m,"NLPlate_SequenceOfHGPPConstraint");  
 
 };
 

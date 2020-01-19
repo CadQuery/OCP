@@ -12,18 +12,18 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
-#include <Intrv_Interval.hxx>
-#include <Intrv_Position.hxx>
 #include <Intrv_SequenceOfInterval.hxx>
 #include <Intrv_Intervals.hxx>
+#include <Intrv_Position.hxx>
+#include <Intrv_Interval.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/Intrv_Interval.hxx
-// ./opencascade/Intrv_Position.hxx
 // ./opencascade/Intrv_SequenceOfInterval.hxx
 // ./opencascade/Intrv_Intervals.hxx
+// ./opencascade/Intrv_Position.hxx
+// ./opencascade/Intrv_Interval.hxx
 
 // user-defined post

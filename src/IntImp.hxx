@@ -12,14 +12,14 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
-#include <IntImp_ConstIsoparametric.hxx>
 #include <IntImp_ComputeTangence.hxx>
+#include <IntImp_ConstIsoparametric.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/IntImp_ConstIsoparametric.hxx
 // ./opencascade/IntImp_ComputeTangence.hxx
+// ./opencascade/IntImp_ConstIsoparametric.hxx
 
 // user-defined post

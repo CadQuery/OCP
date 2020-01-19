@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -12,12 +15,12 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <BOPDS_PaveBlock.hxx>
 #include <BOPDS_DS.hxx>
+#include <BOPDS_DS.hxx>
 #include <BOPDS_IteratorSI.hxx>
-#include <BOPDS_DS.hxx>
-#include <BOPDS_DS.hxx>
-#include <IntTools_Context.hxx>
 #include <BOPDS_Iterator.hxx>
 #include <BOPDS_PaveBlock.hxx>
+#include <BOPDS_DS.hxx>
+#include <IntTools_Context.hxx>
 
 // module includes
 #include <BOPDS_CommonBlock.hxx>
@@ -77,65 +80,65 @@ namespace py = pybind11;
 #include <BOPDS_VectorOfVectorOfPair.hxx>
 
 // template related includes
-// ./opencascade/BOPDS_ListOfPave.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_MapOfPair.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfShapeInfo.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfInterfVE.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_DataMapOfPaveBlockListOfPaveBlock.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_MapOfCommonBlock.hxx
-#include "NCollection.hxx"
 // ./opencascade/BOPDS_VectorOfInterfVF.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_MapOfPave.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfInterfEZ.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_MapOfPaveBlock.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks.hxx
 #include "NCollection.hxx"
 // ./opencascade/BOPDS_VectorOfInterfEF.hxx
 #include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfIndexRange.hxx
+// ./opencascade/BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks.hxx
 #include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfInterfFF.hxx
+// ./opencascade/BOPDS_VectorOfVectorOfPair.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfPair.hxx
 #include "NCollection.hxx"
 // ./opencascade/BOPDS_VectorOfCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfInteger.hxx
 #include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfInterfVZ.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfInterfEE.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfShapeInfo.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_IndexedMapOfPaveBlock.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_DataMapOfPaveBlockListOfPaveBlock.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfPave.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_ListOfPaveBlock.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_MapOfCommonBlock.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_MapOfPair.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfInterfEZ.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfInterfVV.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfInterfFF.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfListOfPaveBlock.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_DataMapOfShapeCoupleOfPaveBlocks.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPDS_VectorOfIndexRange.hxx
+#include "NCollection.hxx"
 // ./opencascade/BOPDS_VectorOfFaceInfo.hxx
 #include "NCollection.hxx"
 // ./opencascade/BOPDS_VectorOfInterfFZ.hxx
 #include "NCollection.hxx"
-// ./opencascade/BOPDS_IndexedMapOfPaveBlock.hxx
+// ./opencascade/BOPDS_MapOfPave.hxx
 #include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfInterfEE.hxx
+// ./opencascade/BOPDS_ListOfPave.hxx
 #include "NCollection.hxx"
-// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock.hxx
+// ./opencascade/BOPDS_MapOfPaveBlock.hxx
 #include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfVectorOfPair.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfPave.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfInterfVV.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfInterfVZ.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_DataMapOfShapeCoupleOfPaveBlocks.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfListOfPaveBlock.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_VectorOfPair.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPDS_ListOfPaveBlock.hxx
+// ./opencascade/BOPDS_VectorOfInterfVE.hxx
 #include "NCollection.hxx"
 // ./opencascade/BOPDS_VectorOfInterfZZ.hxx
 #include "NCollection.hxx"
@@ -158,266 +161,130 @@ py::module m = static_cast<py::module>(main_module.attr("BOPDS"));
 // classes
 
 
-    static_cast<py::class_<BOPDS_Iterator ,std::unique_ptr<BOPDS_Iterator>  >>(m.attr("BOPDS_Iterator"))
+    static_cast<py::class_<BOPDS_CommonBlock ,opencascade::handle<BOPDS_CommonBlock>  , Standard_Transient >>(m.attr("BOPDS_CommonBlock"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("DS",
-             (const BOPDS_DS & (BOPDS_Iterator::*)() const) static_cast<const BOPDS_DS & (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::DS),
-             R"#(Selector Returns the data structure)#" )
-        .def("Initialize",
-             (void (BOPDS_Iterator::*)( const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (BOPDS_Iterator::*)( const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&BOPDS_Iterator::Initialize),
-             R"#(Initializes the iterator theType1 - the first type of shape theType2 - the second type of shape)#"  , py::arg("theType1"),  py::arg("theType2"))
-        .def("More",
-             (Standard_Boolean (BOPDS_Iterator::*)() const) static_cast<Standard_Boolean (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::More),
-             R"#(Returns true if still there are pairs of intersected shapes)#" )
-        .def("Next",
-             (void (BOPDS_Iterator::*)() ) static_cast<void (BOPDS_Iterator::*)() >(&BOPDS_Iterator::Next),
-             R"#(Moves iterations ahead)#" )
-        .def("Value",
-             (void (BOPDS_Iterator::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (BOPDS_Iterator::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&BOPDS_Iterator::Value),
-             R"#(Returns indices (DS) of intersected shapes theIndex1 - the index of the first shape theIndex2 - the index of the second shape)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
-        .def("Prepare",
-             (void (BOPDS_Iterator::*)( const opencascade::handle<IntTools_Context> & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (BOPDS_Iterator::*)( const opencascade::handle<IntTools_Context> & ,  const Standard_Boolean ,  const Standard_Real  ) >(&BOPDS_Iterator::Prepare),
-             R"#(Perform the intersection algorithm and prepare the results to be used)#"  , py::arg("theCtx")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )),  py::arg("theCheckOBB")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theFuzzyValue")=static_cast<const Standard_Real>(Precision :: Confusion ( )))
-        .def("ExpectedLength",
-             (Standard_Integer (BOPDS_Iterator::*)() const) static_cast<Standard_Integer (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::ExpectedLength),
-             R"#(Returns the number of intersections founded)#" )
-        .def("BlockLength",
-             (Standard_Integer (BOPDS_Iterator::*)() const) static_cast<Standard_Integer (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::BlockLength),
-             R"#(Returns the block length)#" )
-        .def("SetRunParallel",
-             (void (BOPDS_Iterator::*)( const Standard_Boolean  ) ) static_cast<void (BOPDS_Iterator::*)( const Standard_Boolean  ) >(&BOPDS_Iterator::SetRunParallel),
-             R"#(Set the flag of parallel processing if <theFlag> is true the parallel processing is switched on if <theFlag> is false the parallel processing is switched off)#"  , py::arg("theFlag"))
-        .def("RunParallel",
-             (Standard_Boolean (BOPDS_Iterator::*)() const) static_cast<Standard_Boolean (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::RunParallel),
-             R"#(Returns the flag of parallel processing)#" )
-;
-
-
-    static_cast<py::class_<BOPDS_FaceInfo ,std::unique_ptr<BOPDS_FaceInfo>  >>(m.attr("BOPDS_FaceInfo"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("Clear",
-             (void (BOPDS_FaceInfo::*)() ) static_cast<void (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::Clear),
-             R"#(Clears the contents)#" )
-        .def("SetIndex",
-             (void (BOPDS_FaceInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_FaceInfo::*)( const Standard_Integer  ) >(&BOPDS_FaceInfo::SetIndex),
-             R"#(Modifier Sets the index of the face <theI>)#"  , py::arg("theI"))
-        .def("Index",
-             (Standard_Integer (BOPDS_FaceInfo::*)() const) static_cast<Standard_Integer (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::Index),
-             R"#(Selector Returns the index of the face)#" )
-        .def("PaveBlocksIn",
-             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksIn),
-             R"#(Selector Returns the pave blocks of the face that have state In)#" )
-        .def("ChangePaveBlocksIn",
-             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksIn),
-             R"#(Selector/Modifier Returns the pave blocks of the face that have state In)#" )
-        .def("VerticesIn",
-             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesIn),
-             R"#(Selector Returns the list of indices for vertices of the face that have state In)#" )
-        .def("ChangeVerticesIn",
-             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesIn),
-             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state In)#" )
-        .def("PaveBlocksOn",
-             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksOn),
-             R"#(Selector Returns the pave blocks of the face that have state On)#" )
-        .def("ChangePaveBlocksOn",
-             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksOn),
-             R"#(Selector/Modifier Returns the pave blocks of the face that have state On)#" )
-        .def("VerticesOn",
-             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesOn),
-             R"#(Selector Returns the list of indices for vertices of the face that have state On)#" )
-        .def("ChangeVerticesOn",
-             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesOn),
-             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state On)#" )
-        .def("PaveBlocksSc",
-             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksSc),
-             R"#(Selector Returns the pave blocks of the face that are pave blocks of section edges)#" )
-        .def("ChangePaveBlocksSc",
-             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksSc),
-             R"#(None)#" )
-        .def("VerticesSc",
-             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesSc),
-             R"#(Selector Returns the list of indices for section vertices of the face)#" )
-        .def("ChangeVerticesSc",
-             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesSc),
-             R"#(Selector/Modifier Returns the list of indices for section vertices of the face)#" )
-        .def("Clear",
-             (void (BOPDS_FaceInfo::*)() ) static_cast<void (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::Clear),
-             R"#(Clears the contents)#" )
-        .def("SetIndex",
-             (void (BOPDS_FaceInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_FaceInfo::*)( const Standard_Integer  ) >(&BOPDS_FaceInfo::SetIndex),
-             R"#(Modifier Sets the index of the face <theI>)#"  , py::arg("theI"))
-        .def("Index",
-             (Standard_Integer (BOPDS_FaceInfo::*)() const) static_cast<Standard_Integer (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::Index),
-             R"#(Selector Returns the index of the face)#" )
-        .def("PaveBlocksIn",
-             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksIn),
-             R"#(Selector Returns the pave blocks of the face that have state In)#" )
-        .def("ChangePaveBlocksIn",
-             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksIn),
-             R"#(Selector/Modifier Returns the pave blocks of the face that have state In)#" )
-        .def("VerticesIn",
-             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesIn),
-             R"#(Selector Returns the list of indices for vertices of the face that have state In)#" )
-        .def("ChangeVerticesIn",
-             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesIn),
-             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state In)#" )
-        .def("PaveBlocksOn",
-             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksOn),
-             R"#(Selector Returns the pave blocks of the face that have state On)#" )
-        .def("ChangePaveBlocksOn",
-             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksOn),
-             R"#(Selector/Modifier Returns the pave blocks of the face that have state On)#" )
-        .def("VerticesOn",
-             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesOn),
-             R"#(Selector Returns the list of indices for vertices of the face that have state On)#" )
-        .def("ChangeVerticesOn",
-             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesOn),
-             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state On)#" )
-        .def("PaveBlocksSc",
-             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksSc),
-             R"#(Selector Returns the pave blocks of the face that are pave blocks of section edges)#" )
-        .def("ChangePaveBlocksSc",
-             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksSc),
-             R"#(None)#" )
-        .def("VerticesSc",
-             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesSc),
-             R"#(Selector Returns the list of indices for section vertices of the face)#" )
-        .def("ChangeVerticesSc",
-             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesSc),
-             R"#(Selector/Modifier Returns the list of indices for section vertices of the face)#" )
-;
-
-    register_default_constructor<BOPDS_PaveMapHasher ,std::unique_ptr<BOPDS_PaveMapHasher>>(m,"BOPDS_PaveMapHasher");
-
-    static_cast<py::class_<BOPDS_PaveMapHasher ,std::unique_ptr<BOPDS_PaveMapHasher>  >>(m.attr("BOPDS_PaveMapHasher"))
-        .def_static("HashCode_s",
-                    (Standard_Integer (*)( const BOPDS_Pave & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const BOPDS_Pave & ,  const Standard_Integer  ) >(&BOPDS_PaveMapHasher::HashCode),
-                    R"#(None)#"  , py::arg("aPave"),  py::arg("Upper"))
-        .def_static("IsEqual_s",
-                    (Standard_Boolean (*)( const BOPDS_Pave & ,  const BOPDS_Pave &  ) ) static_cast<Standard_Boolean (*)( const BOPDS_Pave & ,  const BOPDS_Pave &  ) >(&BOPDS_PaveMapHasher::IsEqual),
-                    R"#(None)#"  , py::arg("aPave1"),  py::arg("aPave2"))
-;
-
-
-    static_cast<py::class_<BOPDS_Pair ,std::unique_ptr<BOPDS_Pair>  >>(m.attr("BOPDS_Pair"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theIndex1"),  py::arg("theIndex2") )
-        .def("SetIndices",
-             (void (BOPDS_Pair::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_Pair::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_Pair::SetIndices),
-             R"#(Sets the indices)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
-        .def("Indices",
-             (void (BOPDS_Pair::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (BOPDS_Pair::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&BOPDS_Pair::Indices),
-             R"#(Gets the indices)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
-        .def("IsEqual",
-             (Standard_Boolean (BOPDS_Pair::*)( const BOPDS_Pair &  ) const) static_cast<Standard_Boolean (BOPDS_Pair::*)( const BOPDS_Pair &  ) const>(&BOPDS_Pair::IsEqual),
-             R"#(Returns true if the Pair is equal to <the theOther>)#"  , py::arg("theOther"))
-        .def("HashCode",
-             (Standard_Integer (BOPDS_Pair::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BOPDS_Pair::*)( const Standard_Integer  ) const>(&BOPDS_Pair::HashCode),
-             R"#(Returns hash code)#"  , py::arg("theUpper"))
-;
-
-
-    static_cast<py::class_<BOPDS_PaveBlock ,opencascade::handle<BOPDS_PaveBlock>  , Standard_Transient >>(m.attr("BOPDS_PaveBlock"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("SetPave1",
-             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::SetPave1),
-             R"#(Modifier Sets the first pave <thePave>)#"  , py::arg("thePave"))
-        .def("Pave1",
-             (const BOPDS_Pave & (BOPDS_PaveBlock::*)() const) static_cast<const BOPDS_Pave & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Pave1),
-             R"#(Selector Returns the first pave)#" )
-        .def("SetPave2",
-             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::SetPave2),
-             R"#(Modifier Sets the second pave <thePave>)#"  , py::arg("thePave"))
-        .def("Pave2",
-             (const BOPDS_Pave & (BOPDS_PaveBlock::*)() const) static_cast<const BOPDS_Pave & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Pave2),
-             R"#(Selector Returns the second pave)#" )
+    // methods
+        .def("AddPaveBlock",
+             (void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) ) static_cast<void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) >(&BOPDS_CommonBlock::AddPaveBlock),
+             R"#(Modifier Adds the pave block <aPB> to the list of pave blocks of the common block)#"  , py::arg("aPB"))
+        .def("SetPaveBlocks",
+             (void (BOPDS_CommonBlock::*)(  const NCollection_List<opencascade::handle<BOPDS_PaveBlock> > &  ) ) static_cast<void (BOPDS_CommonBlock::*)(  const NCollection_List<opencascade::handle<BOPDS_PaveBlock> > &  ) >(&BOPDS_CommonBlock::SetPaveBlocks),
+             R"#(Modifier Adds the list of pave blocks <aLPB> to the list of pave blocks of the common block)#"  , py::arg("aLPB"))
+        .def("AddFace",
+             (void (BOPDS_CommonBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_CommonBlock::*)( const Standard_Integer  ) >(&BOPDS_CommonBlock::AddFace),
+             R"#(Modifier Adds the index of the face <aF> to the list of indices of faces of the common block)#"  , py::arg("aF"))
+        .def("SetFaces",
+             (void (BOPDS_CommonBlock::*)(  const NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_CommonBlock::*)(  const NCollection_List<Standard_Integer> &  ) >(&BOPDS_CommonBlock::SetFaces),
+             R"#(Modifier Sets the list of indices of faces <aLF> of the common block)#"  , py::arg("aLF"))
+        .def("AppendFaces",
+             (void (BOPDS_CommonBlock::*)( NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_CommonBlock::*)( NCollection_List<Standard_Integer> &  ) >(&BOPDS_CommonBlock::AppendFaces),
+             R"#(Modifier Appends the list of indices of faces <aLF> to the list of indices of faces of the common block (the input list is emptied))#"  , py::arg("aLF"))
+        .def("PaveBlocks",
+             (const BOPDS_ListOfPaveBlock & (BOPDS_CommonBlock::*)() const) static_cast<const BOPDS_ListOfPaveBlock & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::PaveBlocks),
+             R"#(Selector Returns the list of pave blocks of the common block)#" )
+        .def("Faces",
+             (const TColStd_ListOfInteger & (BOPDS_CommonBlock::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::Faces),
+             R"#(Selector Returns the list of indices of faces of the common block)#" )
+        .def("PaveBlock1",
+             (const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)() const) static_cast<const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::PaveBlock1),
+             R"#(Selector Returns the first pave block of the common block)#" )
+        .def("PaveBlockOnEdge",
+             (opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)( const Standard_Integer  ) ) static_cast<opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)( const Standard_Integer  ) >(&BOPDS_CommonBlock::PaveBlockOnEdge),
+             R"#(Selector Returns the pave block that belongs to the edge with index <theIx>)#"  , py::arg("theIndex"))
+        .def("IsPaveBlockOnFace",
+             (Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const>(&BOPDS_CommonBlock::IsPaveBlockOnFace),
+             R"#(Query Returns true if the common block contains a pave block that belongs to the face with index <theIx>)#"  , py::arg("theIndex"))
+        .def("IsPaveBlockOnEdge",
+             (Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const>(&BOPDS_CommonBlock::IsPaveBlockOnEdge),
+             R"#(Query Returns true if the common block contains a pave block that belongs to the edge with index <theIx>)#"  , py::arg("theIndex"))
+        .def("Contains",
+             (Standard_Boolean (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const>(&BOPDS_CommonBlock::Contains),
+             R"#(Query Returns true if the common block contains a pave block that is equal to <thePB>)#"  , py::arg("thePB"))
+        .def("Contains",
+             (Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const>(&BOPDS_CommonBlock::Contains),
+             R"#(Query Returns true if the common block contains the face with index equal to <theF>)#"  , py::arg("theF"))
         .def("SetEdge",
-             (void (BOPDS_PaveBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Integer  ) >(&BOPDS_PaveBlock::SetEdge),
-             R"#(Modifier Sets the index of edge of pave block <theEdge>)#"  , py::arg("theEdge"))
+             (void (BOPDS_CommonBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_CommonBlock::*)( const Standard_Integer  ) >(&BOPDS_CommonBlock::SetEdge),
+             R"#(Modifier Assign the index <theEdge> as the edge index to all pave blocks of the common block)#"  , py::arg("theEdge"))
         .def("Edge",
-             (Standard_Integer (BOPDS_PaveBlock::*)() const) static_cast<Standard_Integer (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Edge),
-             R"#(Selector Returns the index of edge of pave block)#" )
-        .def("HasEdge",
-             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::HasEdge),
-             R"#(Query Returns true if the pave block has edge)#" )
-        .def("HasEdge",
-             (Standard_Boolean (BOPDS_PaveBlock::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)( Standard_Integer &  ) const>(&BOPDS_PaveBlock::HasEdge),
-             R"#(Query Returns true if the pave block has edge Returns the index of edge <theEdge>)#"  , py::arg("theEdge"))
-        .def("SetOriginalEdge",
-             (void (BOPDS_PaveBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Integer  ) >(&BOPDS_PaveBlock::SetOriginalEdge),
-             R"#(Modifier Sets the index of original edge of the pave block <theEdge>)#"  , py::arg("theEdge"))
-        .def("OriginalEdge",
-             (Standard_Integer (BOPDS_PaveBlock::*)() const) static_cast<Standard_Integer (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::OriginalEdge),
-             R"#(Selector Returns the index of original edge of pave block)#" )
-        .def("IsSplitEdge",
-             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::IsSplitEdge),
-             R"#(Query Returns true if the edge is equal to the original edge of the pave block)#" )
-        .def("Range",
-             (void (BOPDS_PaveBlock::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (BOPDS_PaveBlock::*)( Standard_Real & ,  Standard_Real &  ) const>(&BOPDS_PaveBlock::Range),
-             R"#(Selector Returns the parametric range <theT1,theT2> of the pave block)#"  , py::arg("theT1"),  py::arg("theT2"))
-        .def("HasSameBounds",
-             (Standard_Boolean (BOPDS_PaveBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const>(&BOPDS_PaveBlock::HasSameBounds),
-             R"#(Query Returns true if the pave block has pave indices that equal to the pave indices of the pave block <theOther>)#"  , py::arg("theOther"))
-        .def("Indices",
-             (void (BOPDS_PaveBlock::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (BOPDS_PaveBlock::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&BOPDS_PaveBlock::Indices),
-             R"#(Selector Returns the pave indices <theIndex1,theIndex2> of the pave block)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
-        .def("IsToUpdate",
-             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::IsToUpdate),
-             R"#(Query Returns true if the pave block contains extra paves)#" )
-        .def("AppendExtPave",
-             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::AppendExtPave),
-             R"#(Modifier Appends extra paves <thePave>)#"  , py::arg("thePave"))
-        .def("AppendExtPave1",
-             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::AppendExtPave1),
-             R"#(Modifier Appends extra pave <thePave>)#"  , py::arg("thePave"))
-        .def("RemoveExtPave",
-             (void (BOPDS_PaveBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Integer  ) >(&BOPDS_PaveBlock::RemoveExtPave),
-             R"#(Modifier Removes a pave with the given vertex number from extra paves)#"  , py::arg("theVertNum"))
-        .def("ExtPaves",
-             (const BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() const) static_cast<const BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::ExtPaves),
-             R"#(Selector Returns the extra paves)#" )
-        .def("ChangeExtPaves",
-             (BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() ) static_cast<BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() >(&BOPDS_PaveBlock::ChangeExtPaves),
-             R"#(Selector / Modifier Returns the extra paves)#" )
-        .def("Update",
-             (void (BOPDS_PaveBlock::*)( NCollection_List<opencascade::handle<BOPDS_PaveBlock> > & ,  const Standard_Boolean  ) ) static_cast<void (BOPDS_PaveBlock::*)( NCollection_List<opencascade::handle<BOPDS_PaveBlock> > & ,  const Standard_Boolean  ) >(&BOPDS_PaveBlock::Update),
-             R"#(Modifier Updates the pave block. The extra paves are used to create new pave blocks <theLPB>. <theFlag> - if true, the first pave and the second pave are used to produce new pave blocks.)#"  , py::arg("theLPB"),  py::arg("theFlag")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("ContainsParameter",
-             (Standard_Boolean (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  Standard_Integer &  ) const>(&BOPDS_PaveBlock::ContainsParameter),
-             R"#(Query Returns true if the extra paves contain the pave with given value of the parameter <thePrm> <theTol> - the value of the tolerance to compare <theInd> - index of the found pave)#"  , py::arg("thePrm"),  py::arg("theTol"),  py::arg("theInd"))
-        .def("SetShrunkData",
-             (void (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  const Bnd_Box & ,  const Standard_Boolean  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  const Bnd_Box & ,  const Standard_Boolean  ) >(&BOPDS_PaveBlock::SetShrunkData),
-             R"#(Modifier Sets the shrunk data for the pave block <theTS1>, <theTS2> - shrunk range <theBox> - the bounding box <theIsSplittable> - defines whether the edge can be split)#"  , py::arg("theTS1"),  py::arg("theTS2"),  py::arg("theBox"),  py::arg("theIsSplittable"))
-        .def("ShrunkData",
-             (void (BOPDS_PaveBlock::*)( Standard_Real & ,  Standard_Real & ,  Bnd_Box & ,  Standard_Boolean &  ) const) static_cast<void (BOPDS_PaveBlock::*)( Standard_Real & ,  Standard_Real & ,  Bnd_Box & ,  Standard_Boolean &  ) const>(&BOPDS_PaveBlock::ShrunkData),
-             R"#(Selector Returns the shrunk data for the pave block <theTS1>, <theTS2> - shrunk range <theBox> - the bounding box <theIsSplittable> - defines whether the edge can be split)#"  , py::arg("theTS1"),  py::arg("theTS2"),  py::arg("theBox"),  py::arg("theIsSplittable"))
-        .def("HasShrunkData",
-             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::HasShrunkData),
-             R"#(Query Returns true if the pave block contains the shrunk data)#" )
+             (Standard_Integer (BOPDS_CommonBlock::*)() const) static_cast<Standard_Integer (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::Edge),
+             R"#(Selector Returns the index of the edge of all pave blocks of the common block)#" )
         .def("Dump",
-             (void (BOPDS_PaveBlock::*)() const) static_cast<void (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Dump),
+             (void (BOPDS_CommonBlock::*)() const) static_cast<void (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::Dump),
              R"#(None)#" )
-        .def("IsSplittable",
-             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::IsSplittable),
-             R"#(Query Returns FALSE if the pave block has a too short shrunk range and cannot be split, otherwise returns TRUE)#" )
+        .def("SetRealPaveBlock",
+             (void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) ) static_cast<void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) >(&BOPDS_CommonBlock::SetRealPaveBlock),
+             R"#(Moves the pave blocks in the list to make the given pave block to be the first. It will be representative for the whole group.)#"  , py::arg("thePB"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPDS_PaveBlock::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::DynamicType),
+             (const opencascade::handle<Standard_Type> & (BOPDS_CommonBlock::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPDS_PaveBlock::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPDS_CommonBlock::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPDS_PaveBlock::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPDS_CommonBlock::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPDS_Curve ,std::unique_ptr<BOPDS_Curve>  >>(m.attr("BOPDS_Curve"))
+    static_cast<py::class_<BOPDS_CoupleOfPaveBlocks , shared_ptr<BOPDS_CoupleOfPaveBlocks>  >>(m.attr("BOPDS_CoupleOfPaveBlocks"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<BOPDS_PaveBlock> &,const opencascade::handle<BOPDS_PaveBlock> & >()  , py::arg("thePB1"),  py::arg("thePB2") )
+    // methods
+        .def("SetIndex",
+             (void (BOPDS_CoupleOfPaveBlocks::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_CoupleOfPaveBlocks::*)( const Standard_Integer  ) >(&BOPDS_CoupleOfPaveBlocks::SetIndex),
+             R"#(Sets an index)#"  , py::arg("theIndex"))
+        .def("Index",
+             (Standard_Integer (BOPDS_CoupleOfPaveBlocks::*)() const) static_cast<Standard_Integer (BOPDS_CoupleOfPaveBlocks::*)() const>(&BOPDS_CoupleOfPaveBlocks::Index),
+             R"#(Returns the index)#" )
+        .def("SetIndexInterf",
+             (void (BOPDS_CoupleOfPaveBlocks::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_CoupleOfPaveBlocks::*)( const Standard_Integer  ) >(&BOPDS_CoupleOfPaveBlocks::SetIndexInterf),
+             R"#(Sets an index of an interference)#"  , py::arg("theIndex"))
+        .def("IndexInterf",
+             (Standard_Integer (BOPDS_CoupleOfPaveBlocks::*)() const) static_cast<Standard_Integer (BOPDS_CoupleOfPaveBlocks::*)() const>(&BOPDS_CoupleOfPaveBlocks::IndexInterf),
+             R"#(Returns the index of an interference)#" )
+        .def("SetPaveBlocks",
+             (void (BOPDS_CoupleOfPaveBlocks::*)( const opencascade::handle<BOPDS_PaveBlock> & ,  const opencascade::handle<BOPDS_PaveBlock> &  ) ) static_cast<void (BOPDS_CoupleOfPaveBlocks::*)( const opencascade::handle<BOPDS_PaveBlock> & ,  const opencascade::handle<BOPDS_PaveBlock> &  ) >(&BOPDS_CoupleOfPaveBlocks::SetPaveBlocks),
+             R"#(Sets pave blocks)#"  , py::arg("thePB1"),  py::arg("thePB2"))
+        .def("PaveBlocks",
+             (void (BOPDS_CoupleOfPaveBlocks::*)( opencascade::handle<BOPDS_PaveBlock> & ,  opencascade::handle<BOPDS_PaveBlock> &  ) const) static_cast<void (BOPDS_CoupleOfPaveBlocks::*)( opencascade::handle<BOPDS_PaveBlock> & ,  opencascade::handle<BOPDS_PaveBlock> &  ) const>(&BOPDS_CoupleOfPaveBlocks::PaveBlocks),
+             R"#(Returns pave blocks)#"  , py::arg("thePB1"),  py::arg("thePB2"))
+        .def("SetPaveBlock1",
+             (void (BOPDS_CoupleOfPaveBlocks::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) ) static_cast<void (BOPDS_CoupleOfPaveBlocks::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) >(&BOPDS_CoupleOfPaveBlocks::SetPaveBlock1),
+             R"#(Sets the first pave block)#"  , py::arg("thePB"))
+        .def("PaveBlock1",
+             (const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CoupleOfPaveBlocks::*)() const) static_cast<const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CoupleOfPaveBlocks::*)() const>(&BOPDS_CoupleOfPaveBlocks::PaveBlock1),
+             R"#(Returns the first pave block)#" )
+        .def("SetPaveBlock2",
+             (void (BOPDS_CoupleOfPaveBlocks::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) ) static_cast<void (BOPDS_CoupleOfPaveBlocks::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) >(&BOPDS_CoupleOfPaveBlocks::SetPaveBlock2),
+             R"#(Sets the second pave block)#"  , py::arg("thePB"))
+        .def("PaveBlock2",
+             (const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CoupleOfPaveBlocks::*)() const) static_cast<const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CoupleOfPaveBlocks::*)() const>(&BOPDS_CoupleOfPaveBlocks::PaveBlock2),
+             R"#(Returns the second pave block)#" )
+        .def("SetTolerance",
+             (void (BOPDS_CoupleOfPaveBlocks::*)( const Standard_Real  ) ) static_cast<void (BOPDS_CoupleOfPaveBlocks::*)( const Standard_Real  ) >(&BOPDS_CoupleOfPaveBlocks::SetTolerance),
+             R"#(Sets the tolerance associated with this couple)#"  , py::arg("theTol"))
+        .def("Tolerance",
+             (Standard_Real (BOPDS_CoupleOfPaveBlocks::*)() const) static_cast<Standard_Real (BOPDS_CoupleOfPaveBlocks::*)() const>(&BOPDS_CoupleOfPaveBlocks::Tolerance),
+             R"#(Returns the tolerance associated with this couple)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_Curve , shared_ptr<BOPDS_Curve>  >>(m.attr("BOPDS_Curve"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
         .def("SetCurve",
              (void (BOPDS_Curve::*)( const IntTools_Curve &  ) ) static_cast<void (BOPDS_Curve::*)( const IntTools_Curve &  ) >(&BOPDS_Curve::SetCurve),
              R"#(Modifier Sets the curve <theC>)#"  , py::arg("theC"))
@@ -505,349 +372,18 @@ py::module m = static_cast<py::module>(main_module.attr("BOPDS"));
         .def("HasEdge",
              (Standard_Boolean (BOPDS_Curve::*)() const) static_cast<Standard_Boolean (BOPDS_Curve::*)() const>(&BOPDS_Curve::HasEdge),
              R"#(Query Returns true if at least one pave block of the curve has edge)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPDS_Pave ,std::unique_ptr<BOPDS_Pave>  >>(m.attr("BOPDS_Pave"))
-        .def(py::init<  >()  )
-        .def("SetIndex",
-             (void (BOPDS_Pave::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Integer  ) >(&BOPDS_Pave::SetIndex),
-             R"#(Modifier Sets the index of vertex <theIndex>)#"  , py::arg("theIndex"))
-        .def("Index",
-             (Standard_Integer (BOPDS_Pave::*)() const) static_cast<Standard_Integer (BOPDS_Pave::*)() const>(&BOPDS_Pave::Index),
-             R"#(Selector Returns the index of vertex)#" )
-        .def("SetParameter",
-             (void (BOPDS_Pave::*)( const Standard_Real  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Real  ) >(&BOPDS_Pave::SetParameter),
-             R"#(Modifier Sets the parameter of vertex <theParameter>)#"  , py::arg("theParameter"))
-        .def("Parameter",
-             (Standard_Real (BOPDS_Pave::*)() const) static_cast<Standard_Real (BOPDS_Pave::*)() const>(&BOPDS_Pave::Parameter),
-             R"#(Selector Returns the parameter of vertex)#" )
-        .def("Contents",
-             (void (BOPDS_Pave::*)( Standard_Integer & ,  Standard_Real &  ) const) static_cast<void (BOPDS_Pave::*)( Standard_Integer & ,  Standard_Real &  ) const>(&BOPDS_Pave::Contents),
-             R"#(Selector Returns the index of vertex <theIndex> Returns the parameter of vertex <theParameter>)#"  , py::arg("theIndex"),  py::arg("theParameter"))
-        .def("IsLess",
-             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsLess),
-             R"#(Query Returns true if thr parameter od this is less than the parameter of <theOther>)#"  , py::arg("theOther"))
-        .def("IsEqual",
-             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsEqual),
-             R"#(Query Returns true if thr parameter od this is equal to the parameter of <theOther>)#"  , py::arg("theOther"))
-        .def("Dump",
-             (void (BOPDS_Pave::*)() const) static_cast<void (BOPDS_Pave::*)() const>(&BOPDS_Pave::Dump),
-             R"#(None)#" )
-        .def("SetIndex",
-             (void (BOPDS_Pave::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Integer  ) >(&BOPDS_Pave::SetIndex),
-             R"#(Modifier Sets the index of vertex <theIndex>)#"  , py::arg("theIndex"))
-        .def("Index",
-             (Standard_Integer (BOPDS_Pave::*)() const) static_cast<Standard_Integer (BOPDS_Pave::*)() const>(&BOPDS_Pave::Index),
-             R"#(Selector Returns the index of vertex)#" )
-        .def("SetParameter",
-             (void (BOPDS_Pave::*)( const Standard_Real  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Real  ) >(&BOPDS_Pave::SetParameter),
-             R"#(Modifier Sets the parameter of vertex <theParameter>)#"  , py::arg("theParameter"))
-        .def("Parameter",
-             (Standard_Real (BOPDS_Pave::*)() const) static_cast<Standard_Real (BOPDS_Pave::*)() const>(&BOPDS_Pave::Parameter),
-             R"#(Selector Returns the parameter of vertex)#" )
-        .def("Contents",
-             (void (BOPDS_Pave::*)( Standard_Integer & ,  Standard_Real &  ) const) static_cast<void (BOPDS_Pave::*)( Standard_Integer & ,  Standard_Real &  ) const>(&BOPDS_Pave::Contents),
-             R"#(Selector Returns the index of vertex <theIndex> Returns the parameter of vertex <theParameter>)#"  , py::arg("theIndex"),  py::arg("theParameter"))
-        .def("IsLess",
-             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsLess),
-             R"#(Query Returns true if thr parameter od this is less than the parameter of <theOther>)#"  , py::arg("theOther"))
-        .def("IsEqual",
-             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsEqual),
-             R"#(Query Returns true if thr parameter od this is equal to the parameter of <theOther>)#"  , py::arg("theOther"))
-;
-
-
-    static_cast<py::class_<BOPDS_SubIterator ,std::unique_ptr<BOPDS_SubIterator>  >>(m.attr("BOPDS_SubIterator"))
+    static_cast<py::class_<BOPDS_DS , shared_ptr<BOPDS_DS>  >>(m.attr("BOPDS_DS"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("DS",
-             (const BOPDS_DS & (BOPDS_SubIterator::*)() const) static_cast<const BOPDS_DS & (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::DS),
-             R"#(Returns the data structure)#" )
-        .def("SetSubSet1",
-             (void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) >(&BOPDS_SubIterator::SetSubSet1),
-             R"#(Sets the first set of indices <theLI> to process)#"  , py::arg("theLI"))
-        .def("SubSet1",
-             (const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::SubSet1),
-             R"#(Returns the first set of indices to process)#" )
-        .def("SetSubSet2",
-             (void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) >(&BOPDS_SubIterator::SetSubSet2),
-             R"#(Sets the second set of indices <theLI> to process)#"  , py::arg("theLI"))
-        .def("SubSet2",
-             (const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::SubSet2),
-             R"#(Returns the second set of indices to process)#" )
-        .def("Initialize",
-             (void (BOPDS_SubIterator::*)() ) static_cast<void (BOPDS_SubIterator::*)() >(&BOPDS_SubIterator::Initialize),
-             R"#(Initializes the iterator)#" )
-        .def("More",
-             (Standard_Boolean (BOPDS_SubIterator::*)() const) static_cast<Standard_Boolean (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::More),
-             R"#(Returns true if there are more pairs of intersected shapes)#" )
-        .def("Next",
-             (void (BOPDS_SubIterator::*)() ) static_cast<void (BOPDS_SubIterator::*)() >(&BOPDS_SubIterator::Next),
-             R"#(Moves iterations ahead)#" )
-        .def("Value",
-             (void (BOPDS_SubIterator::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (BOPDS_SubIterator::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&BOPDS_SubIterator::Value),
-             R"#(Returns indices (DS) of intersected shapes theIndex1 - the index of the first shape theIndex2 - the index of the second shape)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
-        .def("Prepare",
-             (void (BOPDS_SubIterator::*)() ) static_cast<void (BOPDS_SubIterator::*)() >(&BOPDS_SubIterator::Prepare),
-             R"#(Perform the intersection algorithm and prepare the results to be used)#" )
-        .def("ExpectedLength",
-             (Standard_Integer (BOPDS_SubIterator::*)() const) static_cast<Standard_Integer (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::ExpectedLength),
-             R"#(Returns the number of interfering pairs)#" )
-;
-
-
-    static_cast<py::class_<BOPDS_ShapeInfo ,std::unique_ptr<BOPDS_ShapeInfo>  >>(m.attr("BOPDS_ShapeInfo"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("SetShape",
-             (void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) >(&BOPDS_ShapeInfo::SetShape),
-             R"#(Modifier Sets the shape <theS>)#"  , py::arg("theS"))
-        .def("Shape",
-             (const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const) static_cast<const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Shape),
-             R"#(Selector Returns the shape)#" )
-        .def("SetShapeType",
-             (void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) >(&BOPDS_ShapeInfo::SetShapeType),
-             R"#(Modifier Sets the type of shape theType)#"  , py::arg("theType"))
-        .def("ShapeType",
-             (TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const) static_cast<TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::ShapeType),
-             R"#(Selector Returns the type of shape)#" )
-        .def("SetBox",
-             (void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) >(&BOPDS_ShapeInfo::SetBox),
-             R"#(Modifier Sets the boundung box of the shape theBox)#"  , py::arg("theBox"))
-        .def("Box",
-             (const Bnd_Box & (BOPDS_ShapeInfo::*)() const) static_cast<const Bnd_Box & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Box),
-             R"#(Selector Returns the boundung box of the shape)#" )
-        .def("ChangeBox",
-             (Bnd_Box & (BOPDS_ShapeInfo::*)() ) static_cast<Bnd_Box & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeBox),
-             R"#(Selector/Modifier Returns the boundung box of the shape)#" )
-        .def("SubShapes",
-             (const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::SubShapes),
-             R"#(Selector Returns the list of indices of sub-shapes)#" )
-        .def("ChangeSubShapes",
-             (TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() ) static_cast<TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeSubShapes),
-             R"#(Selector/ Modifier Returns the list of indices of sub-shapes)#" )
-        .def("HasSubShape",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const>(&BOPDS_ShapeInfo::HasSubShape),
-             R"#(Query Returns true if the shape has sub-shape with index theI)#"  , py::arg("theI"))
-        .def("HasReference",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasReference),
-             R"#(None)#" )
-        .def("SetReference",
-             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetReference),
-             R"#(Modifier Sets the index of a reference information)#"  , py::arg("theI"))
-        .def("Reference",
-             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Reference),
-             R"#(Selector Returns the index of a reference information)#" )
-        .def("HasBRep",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasBRep),
-             R"#(Query Returns true if the shape has boundary representation)#" )
-        .def("IsInterfering",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::IsInterfering),
-             R"#(Returns true if the shape can be participant of an interference)#" )
-        .def("HasFlag",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasFlag),
-             R"#(Query Returns true if there is flag.)#" )
-        .def("HasFlag",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const>(&BOPDS_ShapeInfo::HasFlag),
-             R"#(Query Returns true if there is flag. Returns the the flag theFlag)#"  , py::arg("theFlag"))
-        .def("SetFlag",
-             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetFlag),
-             R"#(Modifier Sets the flag)#"  , py::arg("theI"))
-        .def("Flag",
-             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Flag),
-             R"#(Returns the flag)#" )
-        .def("Dump",
-             (void (BOPDS_ShapeInfo::*)() const) static_cast<void (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Dump),
-             R"#(None)#" )
-        .def("SetShape",
-             (void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) >(&BOPDS_ShapeInfo::SetShape),
-             R"#(Modifier Sets the shape <theS>)#"  , py::arg("theS"))
-        .def("Shape",
-             (const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const) static_cast<const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Shape),
-             R"#(Selector Returns the shape)#" )
-        .def("SetShapeType",
-             (void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) >(&BOPDS_ShapeInfo::SetShapeType),
-             R"#(Modifier Sets the type of shape theType)#"  , py::arg("theType"))
-        .def("ShapeType",
-             (TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const) static_cast<TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::ShapeType),
-             R"#(Selector Returns the type of shape)#" )
-        .def("SetBox",
-             (void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) >(&BOPDS_ShapeInfo::SetBox),
-             R"#(Modifier Sets the boundung box of the shape theBox)#"  , py::arg("theBox"))
-        .def("Box",
-             (const Bnd_Box & (BOPDS_ShapeInfo::*)() const) static_cast<const Bnd_Box & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Box),
-             R"#(Selector Returns the boundung box of the shape)#" )
-        .def("ChangeBox",
-             (Bnd_Box & (BOPDS_ShapeInfo::*)() ) static_cast<Bnd_Box & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeBox),
-             R"#(Selector/Modifier Returns the boundung box of the shape)#" )
-        .def("SubShapes",
-             (const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::SubShapes),
-             R"#(Selector Returns the list of indices of sub-shapes)#" )
-        .def("ChangeSubShapes",
-             (TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() ) static_cast<TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeSubShapes),
-             R"#(Selector/ Modifier Returns the list of indices of sub-shapes)#" )
-        .def("HasSubShape",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const>(&BOPDS_ShapeInfo::HasSubShape),
-             R"#(Query Returns true if the shape has sub-shape with index theI)#"  , py::arg("theI"))
-        .def("HasReference",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasReference),
-             R"#(None)#" )
-        .def("SetReference",
-             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetReference),
-             R"#(Modifier Sets the index of a reference information)#"  , py::arg("theI"))
-        .def("Reference",
-             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Reference),
-             R"#(Selector Returns the index of a reference information)#" )
-        .def("HasBRep",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasBRep),
-             R"#(Query Returns true if the shape has boundary representation)#" )
-        .def("IsInterfering",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::IsInterfering),
-             R"#(Returns true if the shape can be participant of an interference)#" )
-        .def("HasFlag",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasFlag),
-             R"#(Query Returns true if there is flag.)#" )
-        .def("HasFlag",
-             (Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const>(&BOPDS_ShapeInfo::HasFlag),
-             R"#(Query Returns true if there is flag. Returns the the flag theFlag)#"  , py::arg("theFlag"))
-        .def("SetFlag",
-             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetFlag),
-             R"#(Modifier Sets the flag)#"  , py::arg("theFlag"))
-        .def("Flag",
-             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Flag),
-             R"#(Returns the flag)#" )
-;
-
-
-    static_cast<py::class_<BOPDS_IndexRange ,std::unique_ptr<BOPDS_IndexRange>  >>(m.attr("BOPDS_IndexRange"))
-        .def(py::init<  >()  )
-        .def("SetFirst",
-             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetFirst),
-             R"#(Modifier Sets the first index <theI1> of the range)#"  , py::arg("theI1"))
-        .def("SetLast",
-             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetLast),
-             R"#(Modifier Sets the second index <theI2> of the range)#"  , py::arg("theI2"))
-        .def("First",
-             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::First),
-             R"#(Selector Returns the first index of the range)#" )
-        .def("Last",
-             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::Last),
-             R"#(Selector Returns the second index of the range)#" )
-        .def("SetIndices",
-             (void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_IndexRange::SetIndices),
-             R"#(Modifier Sets the first index of the range <theI1> Sets the second index of the range <theI2>)#"  , py::arg("theI1"),  py::arg("theI2"))
-        .def("Indices",
-             (void (BOPDS_IndexRange::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (BOPDS_IndexRange::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&BOPDS_IndexRange::Indices),
-             R"#(Selector Returns the first index of the range <theI1> Returns the second index of the range <theI2>)#"  , py::arg("theI1"),  py::arg("theI2"))
-        .def("Contains",
-             (Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const>(&BOPDS_IndexRange::Contains),
-             R"#(Query Returns true if the range contains <theIndex>)#"  , py::arg("theIndex"))
-        .def("Dump",
-             (void (BOPDS_IndexRange::*)() const) static_cast<void (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::Dump),
-             R"#(None)#" )
-        .def("SetFirst",
-             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetFirst),
-             R"#(Modifier Sets the first index <theI1> of the range)#"  , py::arg("aFirst"))
-        .def("First",
-             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::First),
-             R"#(Selector Returns the first index of the range)#" )
-        .def("SetLast",
-             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetLast),
-             R"#(Modifier Sets the second index <theI2> of the range)#"  , py::arg("aLast"))
-        .def("Last",
-             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::Last),
-             R"#(Selector Returns the second index of the range)#" )
-        .def("SetIndices",
-             (void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_IndexRange::SetIndices),
-             R"#(Modifier Sets the first index of the range <theI1> Sets the second index of the range <theI2>)#"  , py::arg("theI1"),  py::arg("theI2"))
-        .def("Indices",
-             (void (BOPDS_IndexRange::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (BOPDS_IndexRange::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&BOPDS_IndexRange::Indices),
-             R"#(Selector Returns the first index of the range <theI1> Returns the second index of the range <theI2>)#"  , py::arg("theI1"),  py::arg("theI2"))
-        .def("Contains",
-             (Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const>(&BOPDS_IndexRange::Contains),
-             R"#(Query Returns true if the range contains <theIndex>)#"  , py::arg("aIndex"))
-;
-
-
-    static_cast<py::class_<BOPDS_CommonBlock ,opencascade::handle<BOPDS_CommonBlock>  , Standard_Transient >>(m.attr("BOPDS_CommonBlock"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("AddPaveBlock",
-             (void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) ) static_cast<void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) >(&BOPDS_CommonBlock::AddPaveBlock),
-             R"#(Modifier Adds the pave block <aPB> to the list of pave blocks of the common block)#"  , py::arg("aPB"))
-        .def("SetPaveBlocks",
-             (void (BOPDS_CommonBlock::*)(  const NCollection_List<opencascade::handle<BOPDS_PaveBlock> > &  ) ) static_cast<void (BOPDS_CommonBlock::*)(  const NCollection_List<opencascade::handle<BOPDS_PaveBlock> > &  ) >(&BOPDS_CommonBlock::SetPaveBlocks),
-             R"#(Modifier Adds the list of pave blocks <aLPB> to the list of pave blocks of the common block)#"  , py::arg("aLPB"))
-        .def("AddFace",
-             (void (BOPDS_CommonBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_CommonBlock::*)( const Standard_Integer  ) >(&BOPDS_CommonBlock::AddFace),
-             R"#(Modifier Adds the index of the face <aF> to the list of indices of faces of the common block)#"  , py::arg("aF"))
-        .def("SetFaces",
-             (void (BOPDS_CommonBlock::*)(  const NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_CommonBlock::*)(  const NCollection_List<Standard_Integer> &  ) >(&BOPDS_CommonBlock::SetFaces),
-             R"#(Modifier Sets the list of indices of faces <aLF> of the common block)#"  , py::arg("aLF"))
-        .def("AppendFaces",
-             (void (BOPDS_CommonBlock::*)( NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_CommonBlock::*)( NCollection_List<Standard_Integer> &  ) >(&BOPDS_CommonBlock::AppendFaces),
-             R"#(Modifier Appends the list of indices of faces <aLF> to the list of indices of faces of the common block (the input list is emptied))#"  , py::arg("aLF"))
-        .def("PaveBlocks",
-             (const BOPDS_ListOfPaveBlock & (BOPDS_CommonBlock::*)() const) static_cast<const BOPDS_ListOfPaveBlock & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::PaveBlocks),
-             R"#(Selector Returns the list of pave blocks of the common block)#" )
-        .def("Faces",
-             (const TColStd_ListOfInteger & (BOPDS_CommonBlock::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::Faces),
-             R"#(Selector Returns the list of indices of faces of the common block)#" )
-        .def("PaveBlock1",
-             (const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)() const) static_cast<const opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::PaveBlock1),
-             R"#(Selector Returns the first pave block of the common block)#" )
-        .def("PaveBlockOnEdge",
-             (opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)( const Standard_Integer  ) ) static_cast<opencascade::handle<BOPDS_PaveBlock> & (BOPDS_CommonBlock::*)( const Standard_Integer  ) >(&BOPDS_CommonBlock::PaveBlockOnEdge),
-             R"#(Selector Returns the pave block that belongs to the edge with index <theIx>)#"  , py::arg("theIndex"))
-        .def("IsPaveBlockOnFace",
-             (Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const>(&BOPDS_CommonBlock::IsPaveBlockOnFace),
-             R"#(Query Returns true if the common block contains a pave block that belongs to the face with index <theIx>)#"  , py::arg("theIndex"))
-        .def("IsPaveBlockOnEdge",
-             (Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const>(&BOPDS_CommonBlock::IsPaveBlockOnEdge),
-             R"#(Query Returns true if the common block contains a pave block that belongs to the edge with index <theIx>)#"  , py::arg("theIndex"))
-        .def("Contains",
-             (Standard_Boolean (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const>(&BOPDS_CommonBlock::Contains),
-             R"#(Query Returns true if the common block contains a pave block that is equal to <thePB>)#"  , py::arg("thePB"))
-        .def("Contains",
-             (Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_CommonBlock::*)( const Standard_Integer  ) const>(&BOPDS_CommonBlock::Contains),
-             R"#(Query Returns true if the common block contains the face with index equal to <theF>)#"  , py::arg("theF"))
-        .def("SetEdge",
-             (void (BOPDS_CommonBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_CommonBlock::*)( const Standard_Integer  ) >(&BOPDS_CommonBlock::SetEdge),
-             R"#(Modifier Assign the index <theEdge> as the edge index to all pave blocks of the common block)#"  , py::arg("theEdge"))
-        .def("Edge",
-             (Standard_Integer (BOPDS_CommonBlock::*)() const) static_cast<Standard_Integer (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::Edge),
-             R"#(Selector Returns the index of the edge of all pave blocks of the common block)#" )
-        .def("Dump",
-             (void (BOPDS_CommonBlock::*)() const) static_cast<void (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::Dump),
-             R"#(None)#" )
-        .def("SetRealPaveBlock",
-             (void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) ) static_cast<void (BOPDS_CommonBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) >(&BOPDS_CommonBlock::SetRealPaveBlock),
-             R"#(Moves the pave blocks in the list to make the given pave block to be the first. It will be representative for the whole group.)#"  , py::arg("thePB"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BOPDS_CommonBlock::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPDS_CommonBlock::*)() const>(&BOPDS_CommonBlock::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPDS_CommonBlock::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPDS_CommonBlock::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BOPDS_IteratorSI ,std::unique_ptr<BOPDS_IteratorSI>  , BOPDS_Iterator >>(m.attr("BOPDS_IteratorSI"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("UpdateByLevelOfCheck",
-             (void (BOPDS_IteratorSI::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IteratorSI::*)( const Standard_Integer  ) >(&BOPDS_IteratorSI::UpdateByLevelOfCheck),
-             R"#(Updates the lists of possible intersections according to the value of <theLevel>. It defines which interferferences will be checked: 0 - only V/V; 1 - V/V and V/E; 2 - V/V, V/E and E/E; 3 - V/V, V/E, E/E and V/F; 4 - V/V, V/E, E/E, V/F and E/F; other - all interferences.)#"  , py::arg("theLevel"))
-;
-
-
-    static_cast<py::class_<BOPDS_DS ,std::unique_ptr<BOPDS_DS>  >>(m.attr("BOPDS_DS"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
         .def("Clear",
              (void (BOPDS_DS::*)() ) static_cast<void (BOPDS_DS::*)() >(&BOPDS_DS::Clear),
              R"#(Clears the contents)#" )
@@ -1103,78 +639,717 @@ py::module m = static_cast<py::module>(main_module.attr("BOPDS"));
         .def("Interferences",
              (const BOPDS_MapOfPair & (BOPDS_DS::*)() const) static_cast<const BOPDS_MapOfPair & (BOPDS_DS::*)() const>(&BOPDS_DS::Interferences),
              R"#(Selector Returns the table of interferences)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("NbInterfTypes_s",
                     (Standard_Integer (*)() ) static_cast<Standard_Integer (*)() >(&BOPDS_DS::NbInterfTypes),
                     R"#(Returns the number of types of the interferences)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BOPDS_Point ,std::unique_ptr<BOPDS_Point>  >>(m.attr("BOPDS_Point"))
+    static_cast<py::class_<BOPDS_FaceInfo , shared_ptr<BOPDS_FaceInfo>  >>(m.attr("BOPDS_FaceInfo"))
         .def(py::init<  >()  )
-        .def("SetPnt",
-             (void (BOPDS_Point::*)( const gp_Pnt &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt &  ) >(&BOPDS_Point::SetPnt),
-             R"#(Modifier Sets 3D point <thePnt>)#"  , py::arg("thePnt"))
-        .def("Pnt",
-             (const gp_Pnt & (BOPDS_Point::*)() const) static_cast<const gp_Pnt & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt),
-             R"#(Selector Returns 3D point)#" )
-        .def("SetPnt2D1",
-             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D1),
-             R"#(Modifier Sets 2D point on the first face <thePnt>)#"  , py::arg("thePnt"))
-        .def("Pnt2D1",
-             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D1),
-             R"#(Selector Returns 2D point on the first face <thePnt>)#" )
-        .def("SetPnt2D2",
-             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D2),
-             R"#(Modifier Sets 2D point on the second face <thePnt>)#"  , py::arg("thePnt"))
-        .def("Pnt2D2",
-             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D2),
-             R"#(Selector Returns 2D point on the second face <thePnt>)#" )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("Clear",
+             (void (BOPDS_FaceInfo::*)() ) static_cast<void (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::Clear),
+             R"#(Clears the contents)#" )
         .def("SetIndex",
-             (void (BOPDS_Point::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Point::*)( const Standard_Integer  ) >(&BOPDS_Point::SetIndex),
-             R"#(Modifier Sets the index of the vertex <theIndex>)#"  , py::arg("theIndex"))
+             (void (BOPDS_FaceInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_FaceInfo::*)( const Standard_Integer  ) >(&BOPDS_FaceInfo::SetIndex),
+             R"#(Modifier Sets the index of the face <theI>)#"  , py::arg("theI"))
         .def("Index",
-             (Standard_Integer (BOPDS_Point::*)() const) static_cast<Standard_Integer (BOPDS_Point::*)() const>(&BOPDS_Point::Index),
-             R"#(Selector Returns index of the vertex)#" )
+             (Standard_Integer (BOPDS_FaceInfo::*)() const) static_cast<Standard_Integer (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::Index),
+             R"#(Selector Returns the index of the face)#" )
+        .def("PaveBlocksIn",
+             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksIn),
+             R"#(Selector Returns the pave blocks of the face that have state In)#" )
+        .def("ChangePaveBlocksIn",
+             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksIn),
+             R"#(Selector/Modifier Returns the pave blocks of the face that have state In)#" )
+        .def("VerticesIn",
+             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesIn),
+             R"#(Selector Returns the list of indices for vertices of the face that have state In)#" )
+        .def("ChangeVerticesIn",
+             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesIn),
+             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state In)#" )
+        .def("PaveBlocksOn",
+             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksOn),
+             R"#(Selector Returns the pave blocks of the face that have state On)#" )
+        .def("ChangePaveBlocksOn",
+             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksOn),
+             R"#(Selector/Modifier Returns the pave blocks of the face that have state On)#" )
+        .def("VerticesOn",
+             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesOn),
+             R"#(Selector Returns the list of indices for vertices of the face that have state On)#" )
+        .def("ChangeVerticesOn",
+             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesOn),
+             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state On)#" )
+        .def("PaveBlocksSc",
+             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksSc),
+             R"#(Selector Returns the pave blocks of the face that are pave blocks of section edges)#" )
+        .def("ChangePaveBlocksSc",
+             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksSc),
+             R"#(None)#" )
+        .def("VerticesSc",
+             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesSc),
+             R"#(Selector Returns the list of indices for section vertices of the face)#" )
+        .def("ChangeVerticesSc",
+             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesSc),
+             R"#(Selector/Modifier Returns the list of indices for section vertices of the face)#" )
+        .def("Clear",
+             (void (BOPDS_FaceInfo::*)() ) static_cast<void (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::Clear),
+             R"#(Clears the contents)#" )
         .def("SetIndex",
-             (void (BOPDS_Point::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Point::*)( const Standard_Integer  ) >(&BOPDS_Point::SetIndex),
-             R"#(Modifier Sets the index of the vertex <theIndex>)#"  , py::arg("theIndex"))
+             (void (BOPDS_FaceInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_FaceInfo::*)( const Standard_Integer  ) >(&BOPDS_FaceInfo::SetIndex),
+             R"#(Modifier Sets the index of the face <theI>)#"  , py::arg("theI"))
         .def("Index",
-             (Standard_Integer (BOPDS_Point::*)() const) static_cast<Standard_Integer (BOPDS_Point::*)() const>(&BOPDS_Point::Index),
-             R"#(Selector Returns index of the vertex)#" )
-        .def("SetPnt",
-             (void (BOPDS_Point::*)( const gp_Pnt &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt &  ) >(&BOPDS_Point::SetPnt),
-             R"#(Modifier Sets 3D point <thePnt>)#"  , py::arg("thePnt"))
-        .def("Pnt",
-             (const gp_Pnt & (BOPDS_Point::*)() const) static_cast<const gp_Pnt & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt),
-             R"#(Selector Returns 3D point)#" )
-        .def("SetPnt2D1",
-             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D1),
-             R"#(Modifier Sets 2D point on the first face <thePnt>)#"  , py::arg("thePnt"))
-        .def("Pnt2D1",
-             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D1),
-             R"#(Selector Returns 2D point on the first face <thePnt>)#" )
-        .def("SetPnt2D2",
-             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D2),
-             R"#(Modifier Sets 2D point on the second face <thePnt>)#"  , py::arg("thePnt"))
-        .def("Pnt2D2",
-             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D2),
-             R"#(Selector Returns 2D point on the second face <thePnt>)#" )
+             (Standard_Integer (BOPDS_FaceInfo::*)() const) static_cast<Standard_Integer (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::Index),
+             R"#(Selector Returns the index of the face)#" )
+        .def("PaveBlocksIn",
+             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksIn),
+             R"#(Selector Returns the pave blocks of the face that have state In)#" )
+        .def("ChangePaveBlocksIn",
+             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksIn),
+             R"#(Selector/Modifier Returns the pave blocks of the face that have state In)#" )
+        .def("VerticesIn",
+             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesIn),
+             R"#(Selector Returns the list of indices for vertices of the face that have state In)#" )
+        .def("ChangeVerticesIn",
+             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesIn),
+             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state In)#" )
+        .def("PaveBlocksOn",
+             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksOn),
+             R"#(Selector Returns the pave blocks of the face that have state On)#" )
+        .def("ChangePaveBlocksOn",
+             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksOn),
+             R"#(Selector/Modifier Returns the pave blocks of the face that have state On)#" )
+        .def("VerticesOn",
+             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesOn),
+             R"#(Selector Returns the list of indices for vertices of the face that have state On)#" )
+        .def("ChangeVerticesOn",
+             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesOn),
+             R"#(Selector/Modifier Returns the list of indices for vertices of the face that have state On)#" )
+        .def("PaveBlocksSc",
+             (const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const) static_cast<const BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::PaveBlocksSc),
+             R"#(Selector Returns the pave blocks of the face that are pave blocks of section edges)#" )
+        .def("ChangePaveBlocksSc",
+             (BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() ) static_cast<BOPDS_IndexedMapOfPaveBlock & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangePaveBlocksSc),
+             R"#(None)#" )
+        .def("VerticesSc",
+             (const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const) static_cast<const TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() const>(&BOPDS_FaceInfo::VerticesSc),
+             R"#(Selector Returns the list of indices for section vertices of the face)#" )
+        .def("ChangeVerticesSc",
+             (TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() ) static_cast<TColStd_MapOfInteger & (BOPDS_FaceInfo::*)() >(&BOPDS_FaceInfo::ChangeVerticesSc),
+             R"#(Selector/Modifier Returns the list of indices for section vertices of the face)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<BOPDS_PairMapHasher ,std::unique_ptr<BOPDS_PairMapHasher>>(m,"BOPDS_PairMapHasher");
 
-    static_cast<py::class_<BOPDS_PairMapHasher ,std::unique_ptr<BOPDS_PairMapHasher>  >>(m.attr("BOPDS_PairMapHasher"))
+    static_cast<py::class_<BOPDS_IndexRange , shared_ptr<BOPDS_IndexRange>  >>(m.attr("BOPDS_IndexRange"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetFirst",
+             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetFirst),
+             R"#(Modifier Sets the first index <theI1> of the range)#"  , py::arg("theI1"))
+        .def("SetLast",
+             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetLast),
+             R"#(Modifier Sets the second index <theI2> of the range)#"  , py::arg("theI2"))
+        .def("First",
+             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::First),
+             R"#(Selector Returns the first index of the range)#" )
+        .def("Last",
+             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::Last),
+             R"#(Selector Returns the second index of the range)#" )
+        .def("SetIndices",
+             (void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_IndexRange::SetIndices),
+             R"#(Modifier Sets the first index of the range <theI1> Sets the second index of the range <theI2>)#"  , py::arg("theI1"),  py::arg("theI2"))
+        .def("Contains",
+             (Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const>(&BOPDS_IndexRange::Contains),
+             R"#(Query Returns true if the range contains <theIndex>)#"  , py::arg("theIndex"))
+        .def("Dump",
+             (void (BOPDS_IndexRange::*)() const) static_cast<void (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::Dump),
+             R"#(None)#" )
+        .def("SetFirst",
+             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetFirst),
+             R"#(Modifier Sets the first index <theI1> of the range)#"  , py::arg("aFirst"))
+        .def("First",
+             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::First),
+             R"#(Selector Returns the first index of the range)#" )
+        .def("SetLast",
+             (void (BOPDS_IndexRange::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer  ) >(&BOPDS_IndexRange::SetLast),
+             R"#(Modifier Sets the second index <theI2> of the range)#"  , py::arg("aLast"))
+        .def("Last",
+             (Standard_Integer (BOPDS_IndexRange::*)() const) static_cast<Standard_Integer (BOPDS_IndexRange::*)() const>(&BOPDS_IndexRange::Last),
+             R"#(Selector Returns the second index of the range)#" )
+        .def("SetIndices",
+             (void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_IndexRange::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_IndexRange::SetIndices),
+             R"#(Modifier Sets the first index of the range <theI1> Sets the second index of the range <theI2>)#"  , py::arg("theI1"),  py::arg("theI2"))
+        .def("Contains",
+             (Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_IndexRange::*)( const Standard_Integer  ) const>(&BOPDS_IndexRange::Contains),
+             R"#(Query Returns true if the range contains <theIndex>)#"  , py::arg("aIndex"))
+    // methods using call by reference i.s.o. return
+        .def("Indices",
+             []( BOPDS_IndexRange &self   ){ Standard_Integer  theI1; Standard_Integer  theI2; self.Indices(theI1,theI2); return std::make_tuple(theI1,theI2); },
+             R"#(Selector Returns the first index of the range <theI1> Returns the second index of the range <theI2>)#" )
+        .def("Indices",
+             []( BOPDS_IndexRange &self   ){ Standard_Integer  theI1; Standard_Integer  theI2; self.Indices(theI1,theI2); return std::make_tuple(theI1,theI2); },
+             R"#(Selector Returns the first index of the range <theI1> Returns the second index of the range <theI2>)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_Interf , shared_ptr_nodelete<BOPDS_Interf>  >>(m.attr("BOPDS_Interf"))
+    // methods
+        .def("SetIndices",
+             (void (BOPDS_Interf::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_Interf::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_Interf::SetIndices),
+             R"#(Sets the indices of interferred shapes)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
+        .def("SetIndex1",
+             (void (BOPDS_Interf::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Interf::*)( const Standard_Integer  ) >(&BOPDS_Interf::SetIndex1),
+             R"#(Sets the index of the first interferred shape)#"  , py::arg("theIndex"))
+        .def("SetIndex2",
+             (void (BOPDS_Interf::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Interf::*)( const Standard_Integer  ) >(&BOPDS_Interf::SetIndex2),
+             R"#(Sets the index of the second interferred shape)#"  , py::arg("theIndex"))
+        .def("Index1",
+             (Standard_Integer (BOPDS_Interf::*)() const) static_cast<Standard_Integer (BOPDS_Interf::*)() const>(&BOPDS_Interf::Index1),
+             R"#(Returns the index of the first interferred shape)#" )
+        .def("Index2",
+             (Standard_Integer (BOPDS_Interf::*)() const) static_cast<Standard_Integer (BOPDS_Interf::*)() const>(&BOPDS_Interf::Index2),
+             R"#(Returns the index of the second interferred shape)#" )
+        .def("OppositeIndex",
+             (Standard_Integer (BOPDS_Interf::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BOPDS_Interf::*)( const Standard_Integer  ) const>(&BOPDS_Interf::OppositeIndex),
+             R"#(Returns the index of that are opposite to the given index)#"  , py::arg("theI"))
+        .def("Contains",
+             (Standard_Boolean (BOPDS_Interf::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_Interf::*)( const Standard_Integer  ) const>(&BOPDS_Interf::Contains),
+             R"#(Returns true if the interference contains given index)#"  , py::arg("theIndex"))
+        .def("SetIndexNew",
+             (void (BOPDS_Interf::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Interf::*)( const Standard_Integer  ) >(&BOPDS_Interf::SetIndexNew),
+             R"#(Sets the index of new shape)#"  , py::arg("theIndex"))
+        .def("IndexNew",
+             (Standard_Integer (BOPDS_Interf::*)() const) static_cast<Standard_Integer (BOPDS_Interf::*)() const>(&BOPDS_Interf::IndexNew),
+             R"#(Returns the index of new shape)#" )
+        .def("HasIndexNew",
+             (Standard_Boolean (BOPDS_Interf::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_Interf::*)( Standard_Integer &  ) const>(&BOPDS_Interf::HasIndexNew),
+             R"#(Returns true if the interference has index of new shape that is equal to the given index)#"  , py::arg("theIndex"))
+        .def("HasIndexNew",
+             (Standard_Boolean (BOPDS_Interf::*)() const) static_cast<Standard_Boolean (BOPDS_Interf::*)() const>(&BOPDS_Interf::HasIndexNew),
+             R"#(Returns true if the interference has index of new shape the index)#" )
+    // methods using call by reference i.s.o. return
+        .def("Indices",
+             []( BOPDS_Interf &self   ){ Standard_Integer  theIndex1; Standard_Integer  theIndex2; self.Indices(theIndex1,theIndex2); return std::make_tuple(theIndex1,theIndex2); },
+             R"#(Returns the indices of interferred shapes)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_Iterator , shared_ptr<BOPDS_Iterator>  >>(m.attr("BOPDS_Iterator"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("DS",
+             (const BOPDS_DS & (BOPDS_Iterator::*)() const) static_cast<const BOPDS_DS & (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::DS),
+             R"#(Selector Returns the data structure)#" )
+        .def("Initialize",
+             (void (BOPDS_Iterator::*)( const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (BOPDS_Iterator::*)( const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&BOPDS_Iterator::Initialize),
+             R"#(Initializes the iterator theType1 - the first type of shape theType2 - the second type of shape)#"  , py::arg("theType1"),  py::arg("theType2"))
+        .def("More",
+             (Standard_Boolean (BOPDS_Iterator::*)() const) static_cast<Standard_Boolean (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::More),
+             R"#(Returns true if still there are pairs of intersected shapes)#" )
+        .def("Next",
+             (void (BOPDS_Iterator::*)() ) static_cast<void (BOPDS_Iterator::*)() >(&BOPDS_Iterator::Next),
+             R"#(Moves iterations ahead)#" )
+        .def("Prepare",
+             (void (BOPDS_Iterator::*)( const opencascade::handle<IntTools_Context> & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (BOPDS_Iterator::*)( const opencascade::handle<IntTools_Context> & ,  const Standard_Boolean ,  const Standard_Real  ) >(&BOPDS_Iterator::Prepare),
+             R"#(Perform the intersection algorithm and prepare the results to be used)#"  , py::arg("theCtx")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )),  py::arg("theCheckOBB")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theFuzzyValue")=static_cast<const Standard_Real>(Precision :: Confusion ( )))
+        .def("ExpectedLength",
+             (Standard_Integer (BOPDS_Iterator::*)() const) static_cast<Standard_Integer (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::ExpectedLength),
+             R"#(Returns the number of intersections founded)#" )
+        .def("BlockLength",
+             (Standard_Integer (BOPDS_Iterator::*)() const) static_cast<Standard_Integer (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::BlockLength),
+             R"#(Returns the block length)#" )
+        .def("SetRunParallel",
+             (void (BOPDS_Iterator::*)( const Standard_Boolean  ) ) static_cast<void (BOPDS_Iterator::*)( const Standard_Boolean  ) >(&BOPDS_Iterator::SetRunParallel),
+             R"#(Set the flag of parallel processing if <theFlag> is true the parallel processing is switched on if <theFlag> is false the parallel processing is switched off)#"  , py::arg("theFlag"))
+        .def("RunParallel",
+             (Standard_Boolean (BOPDS_Iterator::*)() const) static_cast<Standard_Boolean (BOPDS_Iterator::*)() const>(&BOPDS_Iterator::RunParallel),
+             R"#(Returns the flag of parallel processing)#" )
+    // methods using call by reference i.s.o. return
+        .def("Value",
+             []( BOPDS_Iterator &self   ){ Standard_Integer  theIndex1; Standard_Integer  theIndex2; self.Value(theIndex1,theIndex2); return std::make_tuple(theIndex1,theIndex2); },
+             R"#(Returns indices (DS) of intersected shapes theIndex1 - the index of the first shape theIndex2 - the index of the second shape)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_Pair , shared_ptr<BOPDS_Pair>  >>(m.attr("BOPDS_Pair"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theIndex1"),  py::arg("theIndex2") )
+    // methods
+        .def("SetIndices",
+             (void (BOPDS_Pair::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_Pair::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_Pair::SetIndices),
+             R"#(Sets the indices)#"  , py::arg("theIndex1"),  py::arg("theIndex2"))
+        .def("IsEqual",
+             (Standard_Boolean (BOPDS_Pair::*)( const BOPDS_Pair &  ) const) static_cast<Standard_Boolean (BOPDS_Pair::*)( const BOPDS_Pair &  ) const>(&BOPDS_Pair::IsEqual),
+             R"#(Returns true if the Pair is equal to <the theOther>)#"  , py::arg("theOther"))
+        .def("HashCode",
+             (Standard_Integer (BOPDS_Pair::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BOPDS_Pair::*)( const Standard_Integer  ) const>(&BOPDS_Pair::HashCode),
+             R"#(Returns hash code)#"  , py::arg("theUpper"))
+    // methods using call by reference i.s.o. return
+        .def("Indices",
+             []( BOPDS_Pair &self   ){ Standard_Integer  theIndex1; Standard_Integer  theIndex2; self.Indices(theIndex1,theIndex2); return std::make_tuple(theIndex1,theIndex2); },
+             R"#(Gets the indices)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPDS_PairMapHasher , shared_ptr<BOPDS_PairMapHasher>>(m,"BOPDS_PairMapHasher");
+
+    static_cast<py::class_<BOPDS_PairMapHasher , shared_ptr<BOPDS_PairMapHasher>  >>(m.attr("BOPDS_PairMapHasher"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("HashCode_s",
                     (Standard_Integer (*)( const BOPDS_Pair & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const BOPDS_Pair & ,  const Standard_Integer  ) >(&BOPDS_PairMapHasher::HashCode),
                     R"#(None)#"  , py::arg("thePair"),  py::arg("Upper"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const BOPDS_Pair & ,  const BOPDS_Pair &  ) ) static_cast<Standard_Boolean (*)( const BOPDS_Pair & ,  const BOPDS_Pair &  ) >(&BOPDS_PairMapHasher::IsEqual),
                     R"#(None)#"  , py::arg("thePair1"),  py::arg("thePair2"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<BOPDS_Tools ,std::unique_ptr<BOPDS_Tools>>(m,"BOPDS_Tools");
 
-    static_cast<py::class_<BOPDS_Tools ,std::unique_ptr<BOPDS_Tools>  >>(m.attr("BOPDS_Tools"))
+    static_cast<py::class_<BOPDS_Pave , shared_ptr<BOPDS_Pave>  >>(m.attr("BOPDS_Pave"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetIndex",
+             (void (BOPDS_Pave::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Integer  ) >(&BOPDS_Pave::SetIndex),
+             R"#(Modifier Sets the index of vertex <theIndex>)#"  , py::arg("theIndex"))
+        .def("Index",
+             (Standard_Integer (BOPDS_Pave::*)() const) static_cast<Standard_Integer (BOPDS_Pave::*)() const>(&BOPDS_Pave::Index),
+             R"#(Selector Returns the index of vertex)#" )
+        .def("SetParameter",
+             (void (BOPDS_Pave::*)( const Standard_Real  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Real  ) >(&BOPDS_Pave::SetParameter),
+             R"#(Modifier Sets the parameter of vertex <theParameter>)#"  , py::arg("theParameter"))
+        .def("Parameter",
+             (Standard_Real (BOPDS_Pave::*)() const) static_cast<Standard_Real (BOPDS_Pave::*)() const>(&BOPDS_Pave::Parameter),
+             R"#(Selector Returns the parameter of vertex)#" )
+        .def("IsLess",
+             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsLess),
+             R"#(Query Returns true if thr parameter od this is less than the parameter of <theOther>)#"  , py::arg("theOther"))
+        .def("IsEqual",
+             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsEqual),
+             R"#(Query Returns true if thr parameter od this is equal to the parameter of <theOther>)#"  , py::arg("theOther"))
+        .def("Dump",
+             (void (BOPDS_Pave::*)() const) static_cast<void (BOPDS_Pave::*)() const>(&BOPDS_Pave::Dump),
+             R"#(None)#" )
+        .def("SetIndex",
+             (void (BOPDS_Pave::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Integer  ) >(&BOPDS_Pave::SetIndex),
+             R"#(Modifier Sets the index of vertex <theIndex>)#"  , py::arg("theIndex"))
+        .def("Index",
+             (Standard_Integer (BOPDS_Pave::*)() const) static_cast<Standard_Integer (BOPDS_Pave::*)() const>(&BOPDS_Pave::Index),
+             R"#(Selector Returns the index of vertex)#" )
+        .def("SetParameter",
+             (void (BOPDS_Pave::*)( const Standard_Real  ) ) static_cast<void (BOPDS_Pave::*)( const Standard_Real  ) >(&BOPDS_Pave::SetParameter),
+             R"#(Modifier Sets the parameter of vertex <theParameter>)#"  , py::arg("theParameter"))
+        .def("Parameter",
+             (Standard_Real (BOPDS_Pave::*)() const) static_cast<Standard_Real (BOPDS_Pave::*)() const>(&BOPDS_Pave::Parameter),
+             R"#(Selector Returns the parameter of vertex)#" )
+        .def("IsLess",
+             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsLess),
+             R"#(Query Returns true if thr parameter od this is less than the parameter of <theOther>)#"  , py::arg("theOther"))
+        .def("IsEqual",
+             (Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const) static_cast<Standard_Boolean (BOPDS_Pave::*)( const BOPDS_Pave &  ) const>(&BOPDS_Pave::IsEqual),
+             R"#(Query Returns true if thr parameter od this is equal to the parameter of <theOther>)#"  , py::arg("theOther"))
+    // methods using call by reference i.s.o. return
+        .def("Contents",
+             []( BOPDS_Pave &self   ){ Standard_Integer  theIndex; Standard_Real  theParameter; self.Contents(theIndex,theParameter); return std::make_tuple(theIndex,theParameter); },
+             R"#(Selector Returns the index of vertex <theIndex> Returns the parameter of vertex <theParameter>)#" )
+        .def("Contents",
+             []( BOPDS_Pave &self   ){ Standard_Integer  theIndex; Standard_Real  theParameter; self.Contents(theIndex,theParameter); return std::make_tuple(theIndex,theParameter); },
+             R"#(Selector Returns the index of vertex <theIndex> Returns the parameter of vertex <theParameter>)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_PaveBlock ,opencascade::handle<BOPDS_PaveBlock>  , Standard_Transient >>(m.attr("BOPDS_PaveBlock"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("SetPave1",
+             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::SetPave1),
+             R"#(Modifier Sets the first pave <thePave>)#"  , py::arg("thePave"))
+        .def("Pave1",
+             (const BOPDS_Pave & (BOPDS_PaveBlock::*)() const) static_cast<const BOPDS_Pave & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Pave1),
+             R"#(Selector Returns the first pave)#" )
+        .def("SetPave2",
+             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::SetPave2),
+             R"#(Modifier Sets the second pave <thePave>)#"  , py::arg("thePave"))
+        .def("Pave2",
+             (const BOPDS_Pave & (BOPDS_PaveBlock::*)() const) static_cast<const BOPDS_Pave & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Pave2),
+             R"#(Selector Returns the second pave)#" )
+        .def("SetEdge",
+             (void (BOPDS_PaveBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Integer  ) >(&BOPDS_PaveBlock::SetEdge),
+             R"#(Modifier Sets the index of edge of pave block <theEdge>)#"  , py::arg("theEdge"))
+        .def("Edge",
+             (Standard_Integer (BOPDS_PaveBlock::*)() const) static_cast<Standard_Integer (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Edge),
+             R"#(Selector Returns the index of edge of pave block)#" )
+        .def("HasEdge",
+             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::HasEdge),
+             R"#(Query Returns true if the pave block has edge)#" )
+        .def("HasEdge",
+             (Standard_Boolean (BOPDS_PaveBlock::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)( Standard_Integer &  ) const>(&BOPDS_PaveBlock::HasEdge),
+             R"#(Query Returns true if the pave block has edge Returns the index of edge <theEdge>)#"  , py::arg("theEdge"))
+        .def("SetOriginalEdge",
+             (void (BOPDS_PaveBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Integer  ) >(&BOPDS_PaveBlock::SetOriginalEdge),
+             R"#(Modifier Sets the index of original edge of the pave block <theEdge>)#"  , py::arg("theEdge"))
+        .def("OriginalEdge",
+             (Standard_Integer (BOPDS_PaveBlock::*)() const) static_cast<Standard_Integer (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::OriginalEdge),
+             R"#(Selector Returns the index of original edge of pave block)#" )
+        .def("IsSplitEdge",
+             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::IsSplitEdge),
+             R"#(Query Returns true if the edge is equal to the original edge of the pave block)#" )
+        .def("HasSameBounds",
+             (Standard_Boolean (BOPDS_PaveBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)( const opencascade::handle<BOPDS_PaveBlock> &  ) const>(&BOPDS_PaveBlock::HasSameBounds),
+             R"#(Query Returns true if the pave block has pave indices that equal to the pave indices of the pave block <theOther>)#"  , py::arg("theOther"))
+        .def("IsToUpdate",
+             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::IsToUpdate),
+             R"#(Query Returns true if the pave block contains extra paves)#" )
+        .def("AppendExtPave",
+             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::AppendExtPave),
+             R"#(Modifier Appends extra paves <thePave>)#"  , py::arg("thePave"))
+        .def("AppendExtPave1",
+             (void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) ) static_cast<void (BOPDS_PaveBlock::*)( const BOPDS_Pave &  ) >(&BOPDS_PaveBlock::AppendExtPave1),
+             R"#(Modifier Appends extra pave <thePave>)#"  , py::arg("thePave"))
+        .def("RemoveExtPave",
+             (void (BOPDS_PaveBlock::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Integer  ) >(&BOPDS_PaveBlock::RemoveExtPave),
+             R"#(Modifier Removes a pave with the given vertex number from extra paves)#"  , py::arg("theVertNum"))
+        .def("ExtPaves",
+             (const BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() const) static_cast<const BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::ExtPaves),
+             R"#(Selector Returns the extra paves)#" )
+        .def("ChangeExtPaves",
+             (BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() ) static_cast<BOPDS_ListOfPave & (BOPDS_PaveBlock::*)() >(&BOPDS_PaveBlock::ChangeExtPaves),
+             R"#(Selector / Modifier Returns the extra paves)#" )
+        .def("Update",
+             (void (BOPDS_PaveBlock::*)( NCollection_List<opencascade::handle<BOPDS_PaveBlock> > & ,  const Standard_Boolean  ) ) static_cast<void (BOPDS_PaveBlock::*)( NCollection_List<opencascade::handle<BOPDS_PaveBlock> > & ,  const Standard_Boolean  ) >(&BOPDS_PaveBlock::Update),
+             R"#(Modifier Updates the pave block. The extra paves are used to create new pave blocks <theLPB>. <theFlag> - if true, the first pave and the second pave are used to produce new pave blocks.)#"  , py::arg("theLPB"),  py::arg("theFlag")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("ContainsParameter",
+             (Standard_Boolean (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  Standard_Integer &  ) const>(&BOPDS_PaveBlock::ContainsParameter),
+             R"#(Query Returns true if the extra paves contain the pave with given value of the parameter <thePrm> <theTol> - the value of the tolerance to compare <theInd> - index of the found pave)#"  , py::arg("thePrm"),  py::arg("theTol"),  py::arg("theInd"))
+        .def("SetShrunkData",
+             (void (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  const Bnd_Box & ,  const Standard_Boolean  ) ) static_cast<void (BOPDS_PaveBlock::*)( const Standard_Real ,  const Standard_Real ,  const Bnd_Box & ,  const Standard_Boolean  ) >(&BOPDS_PaveBlock::SetShrunkData),
+             R"#(Modifier Sets the shrunk data for the pave block <theTS1>, <theTS2> - shrunk range <theBox> - the bounding box <theIsSplittable> - defines whether the edge can be split)#"  , py::arg("theTS1"),  py::arg("theTS2"),  py::arg("theBox"),  py::arg("theIsSplittable"))
+        .def("HasShrunkData",
+             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::HasShrunkData),
+             R"#(Query Returns true if the pave block contains the shrunk data)#" )
+        .def("Dump",
+             (void (BOPDS_PaveBlock::*)() const) static_cast<void (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::Dump),
+             R"#(None)#" )
+        .def("IsSplittable",
+             (Standard_Boolean (BOPDS_PaveBlock::*)() const) static_cast<Standard_Boolean (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::IsSplittable),
+             R"#(Query Returns FALSE if the pave block has a too short shrunk range and cannot be split, otherwise returns TRUE)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BOPDS_PaveBlock::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BOPDS_PaveBlock::*)() const>(&BOPDS_PaveBlock::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Range",
+             []( BOPDS_PaveBlock &self   ){ Standard_Real  theT1; Standard_Real  theT2; self.Range(theT1,theT2); return std::make_tuple(theT1,theT2); },
+             R"#(Selector Returns the parametric range <theT1,theT2> of the pave block)#" )
+        .def("Indices",
+             []( BOPDS_PaveBlock &self   ){ Standard_Integer  theIndex1; Standard_Integer  theIndex2; self.Indices(theIndex1,theIndex2); return std::make_tuple(theIndex1,theIndex2); },
+             R"#(Selector Returns the pave indices <theIndex1,theIndex2> of the pave block)#" )
+        .def("ShrunkData",
+             []( BOPDS_PaveBlock &self , Bnd_Box & theBox ){ Standard_Real  theTS1; Standard_Real  theTS2; Standard_Boolean  theIsSplittable; self.ShrunkData(theTS1,theTS2,theBox,theIsSplittable); return std::make_tuple(theTS1,theTS2,theIsSplittable); },
+             R"#(Selector Returns the shrunk data for the pave block <theTS1>, <theTS2> - shrunk range <theBox> - the bounding box <theIsSplittable> - defines whether the edge can be split)#"  , py::arg("theBox"))
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BOPDS_PaveBlock::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BOPDS_PaveBlock::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPDS_PaveMapHasher , shared_ptr<BOPDS_PaveMapHasher>>(m,"BOPDS_PaveMapHasher");
+
+    static_cast<py::class_<BOPDS_PaveMapHasher , shared_ptr<BOPDS_PaveMapHasher>  >>(m.attr("BOPDS_PaveMapHasher"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("HashCode_s",
+                    (Standard_Integer (*)( const BOPDS_Pave & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const BOPDS_Pave & ,  const Standard_Integer  ) >(&BOPDS_PaveMapHasher::HashCode),
+                    R"#(None)#"  , py::arg("aPave"),  py::arg("Upper"))
+        .def_static("IsEqual_s",
+                    (Standard_Boolean (*)( const BOPDS_Pave & ,  const BOPDS_Pave &  ) ) static_cast<Standard_Boolean (*)( const BOPDS_Pave & ,  const BOPDS_Pave &  ) >(&BOPDS_PaveMapHasher::IsEqual),
+                    R"#(None)#"  , py::arg("aPave1"),  py::arg("aPave2"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_Point , shared_ptr<BOPDS_Point>  >>(m.attr("BOPDS_Point"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetPnt",
+             (void (BOPDS_Point::*)( const gp_Pnt &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt &  ) >(&BOPDS_Point::SetPnt),
+             R"#(Modifier Sets 3D point <thePnt>)#"  , py::arg("thePnt"))
+        .def("Pnt",
+             (const gp_Pnt & (BOPDS_Point::*)() const) static_cast<const gp_Pnt & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt),
+             R"#(Selector Returns 3D point)#" )
+        .def("SetPnt2D1",
+             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D1),
+             R"#(Modifier Sets 2D point on the first face <thePnt>)#"  , py::arg("thePnt"))
+        .def("Pnt2D1",
+             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D1),
+             R"#(Selector Returns 2D point on the first face <thePnt>)#" )
+        .def("SetPnt2D2",
+             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D2),
+             R"#(Modifier Sets 2D point on the second face <thePnt>)#"  , py::arg("thePnt"))
+        .def("Pnt2D2",
+             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D2),
+             R"#(Selector Returns 2D point on the second face <thePnt>)#" )
+        .def("SetIndex",
+             (void (BOPDS_Point::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Point::*)( const Standard_Integer  ) >(&BOPDS_Point::SetIndex),
+             R"#(Modifier Sets the index of the vertex <theIndex>)#"  , py::arg("theIndex"))
+        .def("Index",
+             (Standard_Integer (BOPDS_Point::*)() const) static_cast<Standard_Integer (BOPDS_Point::*)() const>(&BOPDS_Point::Index),
+             R"#(Selector Returns index of the vertex)#" )
+        .def("SetIndex",
+             (void (BOPDS_Point::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_Point::*)( const Standard_Integer  ) >(&BOPDS_Point::SetIndex),
+             R"#(Modifier Sets the index of the vertex <theIndex>)#"  , py::arg("theIndex"))
+        .def("Index",
+             (Standard_Integer (BOPDS_Point::*)() const) static_cast<Standard_Integer (BOPDS_Point::*)() const>(&BOPDS_Point::Index),
+             R"#(Selector Returns index of the vertex)#" )
+        .def("SetPnt",
+             (void (BOPDS_Point::*)( const gp_Pnt &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt &  ) >(&BOPDS_Point::SetPnt),
+             R"#(Modifier Sets 3D point <thePnt>)#"  , py::arg("thePnt"))
+        .def("Pnt",
+             (const gp_Pnt & (BOPDS_Point::*)() const) static_cast<const gp_Pnt & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt),
+             R"#(Selector Returns 3D point)#" )
+        .def("SetPnt2D1",
+             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D1),
+             R"#(Modifier Sets 2D point on the first face <thePnt>)#"  , py::arg("thePnt"))
+        .def("Pnt2D1",
+             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D1),
+             R"#(Selector Returns 2D point on the first face <thePnt>)#" )
+        .def("SetPnt2D2",
+             (void (BOPDS_Point::*)( const gp_Pnt2d &  ) ) static_cast<void (BOPDS_Point::*)( const gp_Pnt2d &  ) >(&BOPDS_Point::SetPnt2D2),
+             R"#(Modifier Sets 2D point on the second face <thePnt>)#"  , py::arg("thePnt"))
+        .def("Pnt2D2",
+             (const gp_Pnt2d & (BOPDS_Point::*)() const) static_cast<const gp_Pnt2d & (BOPDS_Point::*)() const>(&BOPDS_Point::Pnt2D2),
+             R"#(Selector Returns 2D point on the second face <thePnt>)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_ShapeInfo , shared_ptr<BOPDS_ShapeInfo>  >>(m.attr("BOPDS_ShapeInfo"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("SetShape",
+             (void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) >(&BOPDS_ShapeInfo::SetShape),
+             R"#(Modifier Sets the shape <theS>)#"  , py::arg("theS"))
+        .def("Shape",
+             (const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const) static_cast<const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Shape),
+             R"#(Selector Returns the shape)#" )
+        .def("SetShapeType",
+             (void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) >(&BOPDS_ShapeInfo::SetShapeType),
+             R"#(Modifier Sets the type of shape theType)#"  , py::arg("theType"))
+        .def("ShapeType",
+             (TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const) static_cast<TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::ShapeType),
+             R"#(Selector Returns the type of shape)#" )
+        .def("SetBox",
+             (void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) >(&BOPDS_ShapeInfo::SetBox),
+             R"#(Modifier Sets the boundung box of the shape theBox)#"  , py::arg("theBox"))
+        .def("Box",
+             (const Bnd_Box & (BOPDS_ShapeInfo::*)() const) static_cast<const Bnd_Box & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Box),
+             R"#(Selector Returns the boundung box of the shape)#" )
+        .def("ChangeBox",
+             (Bnd_Box & (BOPDS_ShapeInfo::*)() ) static_cast<Bnd_Box & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeBox),
+             R"#(Selector/Modifier Returns the boundung box of the shape)#" )
+        .def("SubShapes",
+             (const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::SubShapes),
+             R"#(Selector Returns the list of indices of sub-shapes)#" )
+        .def("ChangeSubShapes",
+             (TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() ) static_cast<TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeSubShapes),
+             R"#(Selector/ Modifier Returns the list of indices of sub-shapes)#" )
+        .def("HasSubShape",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const>(&BOPDS_ShapeInfo::HasSubShape),
+             R"#(Query Returns true if the shape has sub-shape with index theI)#"  , py::arg("theI"))
+        .def("HasReference",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasReference),
+             R"#(None)#" )
+        .def("SetReference",
+             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetReference),
+             R"#(Modifier Sets the index of a reference information)#"  , py::arg("theI"))
+        .def("Reference",
+             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Reference),
+             R"#(Selector Returns the index of a reference information)#" )
+        .def("HasBRep",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasBRep),
+             R"#(Query Returns true if the shape has boundary representation)#" )
+        .def("IsInterfering",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::IsInterfering),
+             R"#(Returns true if the shape can be participant of an interference)#" )
+        .def("HasFlag",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasFlag),
+             R"#(Query Returns true if there is flag.)#" )
+        .def("HasFlag",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const>(&BOPDS_ShapeInfo::HasFlag),
+             R"#(Query Returns true if there is flag. Returns the the flag theFlag)#"  , py::arg("theFlag"))
+        .def("SetFlag",
+             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetFlag),
+             R"#(Modifier Sets the flag)#"  , py::arg("theI"))
+        .def("Flag",
+             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Flag),
+             R"#(Returns the flag)#" )
+        .def("Dump",
+             (void (BOPDS_ShapeInfo::*)() const) static_cast<void (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Dump),
+             R"#(None)#" )
+        .def("SetShape",
+             (void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopoDS_Shape &  ) >(&BOPDS_ShapeInfo::SetShape),
+             R"#(Modifier Sets the shape <theS>)#"  , py::arg("theS"))
+        .def("Shape",
+             (const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const) static_cast<const TopoDS_Shape & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Shape),
+             R"#(Selector Returns the shape)#" )
+        .def("SetShapeType",
+             (void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const TopAbs_ShapeEnum  ) >(&BOPDS_ShapeInfo::SetShapeType),
+             R"#(Modifier Sets the type of shape theType)#"  , py::arg("theType"))
+        .def("ShapeType",
+             (TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const) static_cast<TopAbs_ShapeEnum (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::ShapeType),
+             R"#(Selector Returns the type of shape)#" )
+        .def("SetBox",
+             (void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Bnd_Box &  ) >(&BOPDS_ShapeInfo::SetBox),
+             R"#(Modifier Sets the boundung box of the shape theBox)#"  , py::arg("theBox"))
+        .def("Box",
+             (const Bnd_Box & (BOPDS_ShapeInfo::*)() const) static_cast<const Bnd_Box & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Box),
+             R"#(Selector Returns the boundung box of the shape)#" )
+        .def("ChangeBox",
+             (Bnd_Box & (BOPDS_ShapeInfo::*)() ) static_cast<Bnd_Box & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeBox),
+             R"#(Selector/Modifier Returns the boundung box of the shape)#" )
+        .def("SubShapes",
+             (const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::SubShapes),
+             R"#(Selector Returns the list of indices of sub-shapes)#" )
+        .def("ChangeSubShapes",
+             (TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() ) static_cast<TColStd_ListOfInteger & (BOPDS_ShapeInfo::*)() >(&BOPDS_ShapeInfo::ChangeSubShapes),
+             R"#(Selector/ Modifier Returns the list of indices of sub-shapes)#" )
+        .def("HasSubShape",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( const Standard_Integer  ) const>(&BOPDS_ShapeInfo::HasSubShape),
+             R"#(Query Returns true if the shape has sub-shape with index theI)#"  , py::arg("theI"))
+        .def("HasReference",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasReference),
+             R"#(None)#" )
+        .def("SetReference",
+             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetReference),
+             R"#(Modifier Sets the index of a reference information)#"  , py::arg("theI"))
+        .def("Reference",
+             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Reference),
+             R"#(Selector Returns the index of a reference information)#" )
+        .def("HasBRep",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasBRep),
+             R"#(Query Returns true if the shape has boundary representation)#" )
+        .def("IsInterfering",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::IsInterfering),
+             R"#(Returns true if the shape can be participant of an interference)#" )
+        .def("HasFlag",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::HasFlag),
+             R"#(Query Returns true if there is flag.)#" )
+        .def("HasFlag",
+             (Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (BOPDS_ShapeInfo::*)( Standard_Integer &  ) const>(&BOPDS_ShapeInfo::HasFlag),
+             R"#(Query Returns true if there is flag. Returns the the flag theFlag)#"  , py::arg("theFlag"))
+        .def("SetFlag",
+             (void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_ShapeInfo::*)( const Standard_Integer  ) >(&BOPDS_ShapeInfo::SetFlag),
+             R"#(Modifier Sets the flag)#"  , py::arg("theFlag"))
+        .def("Flag",
+             (Standard_Integer (BOPDS_ShapeInfo::*)() const) static_cast<Standard_Integer (BOPDS_ShapeInfo::*)() const>(&BOPDS_ShapeInfo::Flag),
+             R"#(Returns the flag)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_SubIterator , shared_ptr<BOPDS_SubIterator>  >>(m.attr("BOPDS_SubIterator"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("DS",
+             (const BOPDS_DS & (BOPDS_SubIterator::*)() const) static_cast<const BOPDS_DS & (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::DS),
+             R"#(Returns the data structure)#" )
+        .def("SetSubSet1",
+             (void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) >(&BOPDS_SubIterator::SetSubSet1),
+             R"#(Sets the first set of indices <theLI> to process)#"  , py::arg("theLI"))
+        .def("SubSet1",
+             (const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::SubSet1),
+             R"#(Returns the first set of indices to process)#" )
+        .def("SetSubSet2",
+             (void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) ) static_cast<void (BOPDS_SubIterator::*)(  const NCollection_List<Standard_Integer> &  ) >(&BOPDS_SubIterator::SetSubSet2),
+             R"#(Sets the second set of indices <theLI> to process)#"  , py::arg("theLI"))
+        .def("SubSet2",
+             (const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const) static_cast<const TColStd_ListOfInteger & (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::SubSet2),
+             R"#(Returns the second set of indices to process)#" )
+        .def("Initialize",
+             (void (BOPDS_SubIterator::*)() ) static_cast<void (BOPDS_SubIterator::*)() >(&BOPDS_SubIterator::Initialize),
+             R"#(Initializes the iterator)#" )
+        .def("More",
+             (Standard_Boolean (BOPDS_SubIterator::*)() const) static_cast<Standard_Boolean (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::More),
+             R"#(Returns true if there are more pairs of intersected shapes)#" )
+        .def("Next",
+             (void (BOPDS_SubIterator::*)() ) static_cast<void (BOPDS_SubIterator::*)() >(&BOPDS_SubIterator::Next),
+             R"#(Moves iterations ahead)#" )
+        .def("Prepare",
+             (void (BOPDS_SubIterator::*)() ) static_cast<void (BOPDS_SubIterator::*)() >(&BOPDS_SubIterator::Prepare),
+             R"#(Perform the intersection algorithm and prepare the results to be used)#" )
+        .def("ExpectedLength",
+             (Standard_Integer (BOPDS_SubIterator::*)() const) static_cast<Standard_Integer (BOPDS_SubIterator::*)() const>(&BOPDS_SubIterator::ExpectedLength),
+             R"#(Returns the number of interfering pairs)#" )
+    // methods using call by reference i.s.o. return
+        .def("Value",
+             []( BOPDS_SubIterator &self   ){ Standard_Integer  theIndex1; Standard_Integer  theIndex2; self.Value(theIndex1,theIndex2); return std::make_tuple(theIndex1,theIndex2); },
+             R"#(Returns indices (DS) of intersected shapes theIndex1 - the index of the first shape theIndex2 - the index of the second shape)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPDS_Tools , shared_ptr<BOPDS_Tools>>(m,"BOPDS_Tools");
+
+    static_cast<py::class_<BOPDS_Tools , shared_ptr<BOPDS_Tools>  >>(m.attr("BOPDS_Tools"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("TypeToInteger_s",
                     (Standard_Integer (*)( const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<Standard_Integer (*)( const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&BOPDS_Tools::TypeToInteger),
                     R"#(Converts the conmbination of two types of shape <theT1>,<theT2> to the one integer value, that is returned)#"  , py::arg("theT1"),  py::arg("theT2"))
@@ -1187,154 +1362,281 @@ py::module m = static_cast<py::module>(main_module.attr("BOPDS"));
         .def_static("IsInterfering_s",
                     (Standard_Boolean (*)( const TopAbs_ShapeEnum  ) ) static_cast<Standard_Boolean (*)( const TopAbs_ShapeEnum  ) >(&BOPDS_Tools::IsInterfering),
                     R"#(Returns true if the type <theT> can be participant of an interference)#"  , py::arg("theT"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfEE , shared_ptr<BOPDS_InterfEE>  , BOPDS_Interf >>(m.attr("BOPDS_InterfEE"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("SetCommonPart",
+             (void (BOPDS_InterfEE::*)( const IntTools_CommonPrt &  ) ) static_cast<void (BOPDS_InterfEE::*)( const IntTools_CommonPrt &  ) >(&BOPDS_InterfEE::SetCommonPart),
+             R"#(Modifier Sets the info of common part)#"  , py::arg("theCP"))
+        .def("CommonPart",
+             (const IntTools_CommonPrt & (BOPDS_InterfEE::*)() const) static_cast<const IntTools_CommonPrt & (BOPDS_InterfEE::*)() const>(&BOPDS_InterfEE::CommonPart),
+             R"#(Selector Returns the info of common part)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfEF , shared_ptr<BOPDS_InterfEF>  , BOPDS_Interf >>(m.attr("BOPDS_InterfEF"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("SetCommonPart",
+             (void (BOPDS_InterfEF::*)( const IntTools_CommonPrt &  ) ) static_cast<void (BOPDS_InterfEF::*)( const IntTools_CommonPrt &  ) >(&BOPDS_InterfEF::SetCommonPart),
+             R"#(Modifier Sets the info of common part)#"  , py::arg("theCP"))
+        .def("CommonPart",
+             (const IntTools_CommonPrt & (BOPDS_InterfEF::*)() const) static_cast<const IntTools_CommonPrt & (BOPDS_InterfEF::*)() const>(&BOPDS_InterfEF::CommonPart),
+             R"#(Selector Returns the info of common part)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfEZ , shared_ptr<BOPDS_InterfEZ>  , BOPDS_Interf >>(m.attr("BOPDS_InterfEZ"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfFF , shared_ptr<BOPDS_InterfFF>  , BOPDS_Interf >>(m.attr("BOPDS_InterfFF"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Init",
+             (void (BOPDS_InterfFF::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BOPDS_InterfFF::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BOPDS_InterfFF::Init),
+             R"#(Initializer)#"  , py::arg("theNbCurves"),  py::arg("theNbPoints"))
+        .def("SetTangentFaces",
+             (void (BOPDS_InterfFF::*)( const Standard_Boolean  ) ) static_cast<void (BOPDS_InterfFF::*)( const Standard_Boolean  ) >(&BOPDS_InterfFF::SetTangentFaces),
+             R"#(Modifier Sets the flag of whether the faces are tangent)#"  , py::arg("theFlag"))
+        .def("TangentFaces",
+             (Standard_Boolean (BOPDS_InterfFF::*)() const) static_cast<Standard_Boolean (BOPDS_InterfFF::*)() const>(&BOPDS_InterfFF::TangentFaces),
+             R"#(Selector Returns the flag whether the faces are tangent)#" )
+        .def("Curves",
+             (const BOPDS_VectorOfCurve & (BOPDS_InterfFF::*)() const) static_cast<const BOPDS_VectorOfCurve & (BOPDS_InterfFF::*)() const>(&BOPDS_InterfFF::Curves),
+             R"#(Selector Returns the intersection curves)#" )
+        .def("ChangeCurves",
+             (BOPDS_VectorOfCurve & (BOPDS_InterfFF::*)() ) static_cast<BOPDS_VectorOfCurve & (BOPDS_InterfFF::*)() >(&BOPDS_InterfFF::ChangeCurves),
+             R"#(Selector/Modifier Returns the intersection curves)#" )
+        .def("Points",
+             (const BOPDS_VectorOfPoint & (BOPDS_InterfFF::*)() const) static_cast<const BOPDS_VectorOfPoint & (BOPDS_InterfFF::*)() const>(&BOPDS_InterfFF::Points),
+             R"#(Selector Returns the intersection points)#" )
+        .def("ChangePoints",
+             (BOPDS_VectorOfPoint & (BOPDS_InterfFF::*)() ) static_cast<BOPDS_VectorOfPoint & (BOPDS_InterfFF::*)() >(&BOPDS_InterfFF::ChangePoints),
+             R"#(Selector/Modifier Returns the intersection points)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfFZ , shared_ptr<BOPDS_InterfFZ>  , BOPDS_Interf >>(m.attr("BOPDS_InterfFZ"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfVE , shared_ptr<BOPDS_InterfVE>  , BOPDS_Interf >>(m.attr("BOPDS_InterfVE"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("SetParameter",
+             (void (BOPDS_InterfVE::*)( const Standard_Real  ) ) static_cast<void (BOPDS_InterfVE::*)( const Standard_Real  ) >(&BOPDS_InterfVE::SetParameter),
+             R"#(Modifier Sets the value of parameter of the point of the vertex on the curve of the edge)#"  , py::arg("theT"))
+        .def("Parameter",
+             (Standard_Real (BOPDS_InterfVE::*)() const) static_cast<Standard_Real (BOPDS_InterfVE::*)() const>(&BOPDS_InterfVE::Parameter),
+             R"#(Selector Returrns the value of parameter of the point of the vertex on the curve of the edge)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfVF , shared_ptr<BOPDS_InterfVF>  , BOPDS_Interf >>(m.attr("BOPDS_InterfVF"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("SetUV",
+             (void (BOPDS_InterfVF::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BOPDS_InterfVF::*)( const Standard_Real ,  const Standard_Real  ) >(&BOPDS_InterfVF::SetUV),
+             R"#(Modifier Sets the value of parameters of the point of the vertex on the surface of of the face)#"  , py::arg("theU"),  py::arg("theV"))
+    // methods using call by reference i.s.o. return
+        .def("UV",
+             []( BOPDS_InterfVF &self   ){ Standard_Real  theU; Standard_Real  theV; self.UV(theU,theV); return std::make_tuple(theU,theV); },
+             R"#(Selector Returns the value of parameters of the point of the vertex on the surface of of the face)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfVV , shared_ptr<BOPDS_InterfVV>  , BOPDS_Interf >>(m.attr("BOPDS_InterfVV"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfVZ , shared_ptr<BOPDS_InterfVZ>  , BOPDS_Interf >>(m.attr("BOPDS_InterfVZ"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_InterfZZ , shared_ptr<BOPDS_InterfZZ>  , BOPDS_Interf >>(m.attr("BOPDS_InterfZZ"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPDS_IteratorSI , shared_ptr<BOPDS_IteratorSI>  , BOPDS_Iterator >>(m.attr("BOPDS_IteratorSI"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("UpdateByLevelOfCheck",
+             (void (BOPDS_IteratorSI::*)( const Standard_Integer  ) ) static_cast<void (BOPDS_IteratorSI::*)( const Standard_Integer  ) >(&BOPDS_IteratorSI::UpdateByLevelOfCheck),
+             R"#(Updates the lists of possible intersections according to the value of <theLevel>. It defines which interferferences will be checked: 0 - only V/V; 1 - V/V and V/E; 2 - V/V, V/E and E/E; 3 - V/V, V/E, E/E and V/F; 4 - V/V, V/E, E/E, V/F and E/F; other - all interferences.)#"  , py::arg("theLevel"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BOPDS_ListOfPave.hxx
-// ./opencascade/BOPDS_FaceInfo.hxx
-// ./opencascade/BOPDS_IndexRange.hxx
-// ./opencascade/BOPDS_MapOfPair.hxx
-// ./opencascade/BOPDS_VectorOfShapeInfo.hxx
-// ./opencascade/BOPDS_VectorOfInterfVE.hxx
-// ./opencascade/BOPDS_PaveMapHasher.hxx
-// ./opencascade/BOPDS_DataMapOfPaveBlockListOfPaveBlock.hxx
-// ./opencascade/BOPDS_MapOfCommonBlock.hxx
 // ./opencascade/BOPDS_VectorOfInterfVF.hxx
-// ./opencascade/BOPDS_Point.hxx
-// ./opencascade/BOPDS_MapOfPave.hxx
-// ./opencascade/BOPDS_VectorOfInterfEZ.hxx
-// ./opencascade/BOPDS_MapOfPaveBlock.hxx
-// ./opencascade/BOPDS_Interf.hxx
-// ./opencascade/BOPDS_Pair.hxx
-// ./opencascade/BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks.hxx
-// ./opencascade/BOPDS_VectorOfInterfEF.hxx
-// ./opencascade/BOPDS_VectorOfIndexRange.hxx
-// ./opencascade/BOPDS_VectorOfInterfFF.hxx
-// ./opencascade/BOPDS_CoupleOfPaveBlocks.hxx
-// ./opencascade/BOPDS_PaveBlock.hxx
 // ./opencascade/BOPDS_CommonBlock.hxx
-// ./opencascade/BOPDS_VectorOfCurve.hxx
-// ./opencascade/BOPDS_PDS.hxx
-// ./opencascade/BOPDS_Curve.hxx
-// ./opencascade/BOPDS_DataMapOfIntegerListOfPaveBlock.hxx
-// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfInteger.hxx
-// ./opencascade/BOPDS_VectorOfFaceInfo.hxx
-// ./opencascade/BOPDS_PairMapHasher.hxx
-// ./opencascade/BOPDS_Pave.hxx
-// ./opencascade/BOPDS_VectorOfInterfFZ.hxx
-// ./opencascade/BOPDS_IteratorSI.hxx
-// ./opencascade/BOPDS_IndexedMapOfPaveBlock.hxx
-// ./opencascade/BOPDS_VectorOfInterfEE.hxx
-// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock.hxx
+// ./opencascade/BOPDS_VectorOfInterfEF.hxx
+// ./opencascade/BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks.hxx
 // ./opencascade/BOPDS_VectorOfVectorOfPair.hxx
-// ./opencascade/BOPDS_PIteratorSI.hxx
-// ./opencascade/BOPDS_VectorOfPoint.hxx
-// ./opencascade/BOPDS_VectorOfPave.hxx
-// ./opencascade/BOPDS_VectorOfInterfVV.hxx
-// ./opencascade/BOPDS_SubIterator.hxx
-// ./opencascade/BOPDS_Iterator.hxx
+// ./opencascade/BOPDS_VectorOfPair.hxx
+// ./opencascade/BOPDS_VectorOfCurve.hxx
+// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfInteger.hxx
 // ./opencascade/BOPDS_VectorOfInterfVZ.hxx
+// ./opencascade/BOPDS_Point.hxx
+// ./opencascade/BOPDS_VectorOfInterfEE.hxx
+// ./opencascade/BOPDS_DataMapOfPaveBlockListOfInteger.hxx
+// ./opencascade/BOPDS_VectorOfShapeInfo.hxx
+// ./opencascade/BOPDS_PaveBlock.hxx
+// ./opencascade/BOPDS_PDS.hxx
+// ./opencascade/BOPDS_IndexedMapOfPaveBlock.hxx
+// ./opencascade/BOPDS_SubIterator.hxx
+// ./opencascade/BOPDS_Pave.hxx
+// ./opencascade/BOPDS_DataMapOfPaveBlockListOfPaveBlock.hxx
+// ./opencascade/BOPDS_PIteratorSI.hxx
+// ./opencascade/BOPDS_PIterator.hxx
+// ./opencascade/BOPDS_VectorOfPave.hxx
+// ./opencascade/BOPDS_ListOfPaveBlock.hxx
+// ./opencascade/BOPDS_DataMapOfIntegerListOfPaveBlock.hxx
+// ./opencascade/BOPDS_Iterator.hxx
+// ./opencascade/BOPDS_PaveMapHasher.hxx
+// ./opencascade/BOPDS_MapOfCommonBlock.hxx
+// ./opencascade/BOPDS_MapOfPair.hxx
+// ./opencascade/BOPDS_VectorOfInterfEZ.hxx
+// ./opencascade/BOPDS_CoupleOfPaveBlocks.hxx
+// ./opencascade/BOPDS_VectorOfInterfVV.hxx
+// ./opencascade/BOPDS_VectorOfInterfFF.hxx
+// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock.hxx
+// ./opencascade/BOPDS_PairMapHasher.hxx
+// ./opencascade/BOPDS_VectorOfListOfPaveBlock.hxx
+// ./opencascade/BOPDS_VectorOfPoint.hxx
+// ./opencascade/BOPDS_DataMapOfShapeCoupleOfPaveBlocks.hxx
+// ./opencascade/BOPDS_VectorOfIndexRange.hxx
+// ./opencascade/BOPDS_VectorOfFaceInfo.hxx
+// ./opencascade/BOPDS_VectorOfInterfFZ.hxx
+// ./opencascade/BOPDS_Interf.hxx
+// ./opencascade/BOPDS_IteratorSI.hxx
+// ./opencascade/BOPDS_IndexRange.hxx
+// ./opencascade/BOPDS_DS.hxx
+// ./opencascade/BOPDS_MapOfPave.hxx
+// ./opencascade/BOPDS_ListOfPave.hxx
+// ./opencascade/BOPDS_MapOfPaveBlock.hxx
+// ./opencascade/BOPDS_Pair.hxx
+// ./opencascade/BOPDS_VectorOfInterfVE.hxx
+// ./opencascade/BOPDS_VectorOfInterfZZ.hxx
 // ./opencascade/BOPDS_Tools.hxx
 // ./opencascade/BOPDS_ShapeInfo.hxx
-// ./opencascade/BOPDS_DataMapOfShapeCoupleOfPaveBlocks.hxx
-// ./opencascade/BOPDS_VectorOfListOfPaveBlock.hxx
-// ./opencascade/BOPDS_PIterator.hxx
-// ./opencascade/BOPDS_VectorOfPair.hxx
 // ./opencascade/BOPDS_DataMapOfPaveBlockCommonBlock.hxx
-// ./opencascade/BOPDS_ListOfPaveBlock.hxx
-// ./opencascade/BOPDS_DataMapOfPaveBlockListOfInteger.hxx
-// ./opencascade/BOPDS_VectorOfInterfZZ.hxx
-// ./opencascade/BOPDS_DS.hxx
+// ./opencascade/BOPDS_FaceInfo.hxx
+// ./opencascade/BOPDS_Curve.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BOPDS_ListOfPave.hxx
-    register_template_NCollection_List<BOPDS_Pave>(m,"BOPDS_ListOfPave");  
-// ./opencascade/BOPDS_FaceInfo.hxx
-// ./opencascade/BOPDS_IndexRange.hxx
-// ./opencascade/BOPDS_MapOfPair.hxx
-    register_template_NCollection_Map<BOPDS_Pair, BOPDS_PairMapHasher>(m,"BOPDS_MapOfPair");  
-// ./opencascade/BOPDS_VectorOfShapeInfo.hxx
-    register_template_NCollection_Vector<BOPDS_ShapeInfo>(m,"BOPDS_VectorOfShapeInfo");  
-// ./opencascade/BOPDS_VectorOfInterfVE.hxx
-    register_template_NCollection_Vector<BOPDS_InterfVE>(m,"BOPDS_VectorOfInterfVE");  
-// ./opencascade/BOPDS_PaveMapHasher.hxx
-// ./opencascade/BOPDS_DataMapOfPaveBlockListOfPaveBlock.hxx
-    register_template_NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock, TColStd_MapTransientHasher>(m,"BOPDS_DataMapOfPaveBlockListOfPaveBlock");  
-// ./opencascade/BOPDS_MapOfCommonBlock.hxx
-    register_template_NCollection_Map<opencascade::handle<BOPDS_CommonBlock>, TColStd_MapTransientHasher>(m,"BOPDS_MapOfCommonBlock");  
-// ./opencascade/BOPDS_VectorOfInterfVF.hxx
     register_template_NCollection_Vector<BOPDS_InterfVF>(m,"BOPDS_VectorOfInterfVF");  
-// ./opencascade/BOPDS_Point.hxx
-// ./opencascade/BOPDS_MapOfPave.hxx
-    register_template_NCollection_Map<BOPDS_Pave, BOPDS_PaveMapHasher>(m,"BOPDS_MapOfPave");  
-// ./opencascade/BOPDS_VectorOfInterfEZ.hxx
-    register_template_NCollection_Vector<BOPDS_InterfEZ>(m,"BOPDS_VectorOfInterfEZ");  
-// ./opencascade/BOPDS_MapOfPaveBlock.hxx
-    register_template_NCollection_Map<opencascade::handle<BOPDS_PaveBlock>, TColStd_MapTransientHasher>(m,"BOPDS_MapOfPaveBlock");  
-// ./opencascade/BOPDS_Interf.hxx
-// ./opencascade/BOPDS_Pair.hxx
-// ./opencascade/BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks.hxx
-    register_template_NCollection_IndexedDataMap<TopoDS_Shape, BOPDS_CoupleOfPaveBlocks, TopTools_ShapeMapHasher>(m,"BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks");  
-// ./opencascade/BOPDS_VectorOfInterfEF.hxx
     register_template_NCollection_Vector<BOPDS_InterfEF>(m,"BOPDS_VectorOfInterfEF");  
-// ./opencascade/BOPDS_VectorOfIndexRange.hxx
-    register_template_NCollection_Vector<BOPDS_IndexRange>(m,"BOPDS_VectorOfIndexRange");  
-// ./opencascade/BOPDS_VectorOfInterfFF.hxx
-    register_template_NCollection_Vector<BOPDS_InterfFF>(m,"BOPDS_VectorOfInterfFF");  
-// ./opencascade/BOPDS_CoupleOfPaveBlocks.hxx
-// ./opencascade/BOPDS_PaveBlock.hxx
-// ./opencascade/BOPDS_CommonBlock.hxx
-// ./opencascade/BOPDS_VectorOfCurve.hxx
-    register_template_NCollection_Vector<BOPDS_Curve>(m,"BOPDS_VectorOfCurve");  
-// ./opencascade/BOPDS_PDS.hxx
-// ./opencascade/BOPDS_Curve.hxx
-// ./opencascade/BOPDS_DataMapOfIntegerListOfPaveBlock.hxx
-// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfInteger.hxx
-    register_template_NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_ListOfInteger, TColStd_MapTransientHasher>(m,"BOPDS_IndexedDataMapOfPaveBlockListOfInteger");  
-// ./opencascade/BOPDS_VectorOfFaceInfo.hxx
-    register_template_NCollection_Vector<BOPDS_FaceInfo>(m,"BOPDS_VectorOfFaceInfo");  
-// ./opencascade/BOPDS_PairMapHasher.hxx
-// ./opencascade/BOPDS_Pave.hxx
-// ./opencascade/BOPDS_VectorOfInterfFZ.hxx
-    register_template_NCollection_Vector<BOPDS_InterfFZ>(m,"BOPDS_VectorOfInterfFZ");  
-// ./opencascade/BOPDS_IteratorSI.hxx
-// ./opencascade/BOPDS_IndexedMapOfPaveBlock.hxx
-    register_template_NCollection_IndexedMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_MapTransientHasher>(m,"BOPDS_IndexedMapOfPaveBlock");  
-// ./opencascade/BOPDS_VectorOfInterfEE.hxx
-    register_template_NCollection_Vector<BOPDS_InterfEE>(m,"BOPDS_VectorOfInterfEE");  
-// ./opencascade/BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock.hxx
-    register_template_NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock, TColStd_MapTransientHasher>(m,"BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock");  
-// ./opencascade/BOPDS_VectorOfVectorOfPair.hxx
+    register_template_NCollection_IndexedDataMap<TopoDS_Shape, BOPDS_CoupleOfPaveBlocks, TopTools_ShapeMapHasher>(m,"BOPDS_IndexedDataMapOfShapeCoupleOfPaveBlocks");  
     register_template_NCollection_Vector<BOPDS_VectorOfPair>(m,"BOPDS_VectorOfVectorOfPair");  
-// ./opencascade/BOPDS_PIteratorSI.hxx
-// ./opencascade/BOPDS_VectorOfPoint.hxx
-    register_template_NCollection_Vector<BOPDS_Point>(m,"BOPDS_VectorOfPoint");  
-// ./opencascade/BOPDS_VectorOfPave.hxx
-    register_template_NCollection_Array1<BOPDS_Pave>(m,"BOPDS_VectorOfPave");  
-// ./opencascade/BOPDS_VectorOfInterfVV.hxx
-    register_template_NCollection_Vector<BOPDS_InterfVV>(m,"BOPDS_VectorOfInterfVV");  
-// ./opencascade/BOPDS_SubIterator.hxx
-// ./opencascade/BOPDS_Iterator.hxx
-// ./opencascade/BOPDS_VectorOfInterfVZ.hxx
-    register_template_NCollection_Vector<BOPDS_InterfVZ>(m,"BOPDS_VectorOfInterfVZ");  
-// ./opencascade/BOPDS_Tools.hxx
-// ./opencascade/BOPDS_ShapeInfo.hxx
-// ./opencascade/BOPDS_DataMapOfShapeCoupleOfPaveBlocks.hxx
-    register_template_NCollection_DataMap<TopoDS_Shape, BOPDS_CoupleOfPaveBlocks, TopTools_ShapeMapHasher>(m,"BOPDS_DataMapOfShapeCoupleOfPaveBlocks");  
-// ./opencascade/BOPDS_VectorOfListOfPaveBlock.hxx
-    register_template_NCollection_Vector<BOPDS_ListOfPaveBlock>(m,"BOPDS_VectorOfListOfPaveBlock");  
-// ./opencascade/BOPDS_PIterator.hxx
-// ./opencascade/BOPDS_VectorOfPair.hxx
     register_template_NCollection_Vector<BOPDS_Pair>(m,"BOPDS_VectorOfPair");  
-// ./opencascade/BOPDS_DataMapOfPaveBlockCommonBlock.hxx
-// ./opencascade/BOPDS_ListOfPaveBlock.hxx
+    register_template_NCollection_Vector<BOPDS_Curve>(m,"BOPDS_VectorOfCurve");  
+    register_template_NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_ListOfInteger, TColStd_MapTransientHasher>(m,"BOPDS_IndexedDataMapOfPaveBlockListOfInteger");  
+    register_template_NCollection_Vector<BOPDS_InterfVZ>(m,"BOPDS_VectorOfInterfVZ");  
+    register_template_NCollection_Vector<BOPDS_InterfEE>(m,"BOPDS_VectorOfInterfEE");  
+    register_template_NCollection_Vector<BOPDS_ShapeInfo>(m,"BOPDS_VectorOfShapeInfo");  
+    register_template_NCollection_IndexedMap<opencascade::handle<BOPDS_PaveBlock>, TColStd_MapTransientHasher>(m,"BOPDS_IndexedMapOfPaveBlock");  
+    register_template_NCollection_DataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock, TColStd_MapTransientHasher>(m,"BOPDS_DataMapOfPaveBlockListOfPaveBlock");  
+    register_template_NCollection_Array1<BOPDS_Pave>(m,"BOPDS_VectorOfPave");  
     register_template_NCollection_List<opencascade::handle<BOPDS_PaveBlock> >(m,"BOPDS_ListOfPaveBlock");  
-// ./opencascade/BOPDS_DataMapOfPaveBlockListOfInteger.hxx
-// ./opencascade/BOPDS_VectorOfInterfZZ.hxx
+    register_template_NCollection_Map<opencascade::handle<BOPDS_CommonBlock>, TColStd_MapTransientHasher>(m,"BOPDS_MapOfCommonBlock");  
+    register_template_NCollection_Map<BOPDS_Pair, BOPDS_PairMapHasher>(m,"BOPDS_MapOfPair");  
+    register_template_NCollection_Vector<BOPDS_InterfEZ>(m,"BOPDS_VectorOfInterfEZ");  
+    register_template_NCollection_Vector<BOPDS_InterfVV>(m,"BOPDS_VectorOfInterfVV");  
+    register_template_NCollection_Vector<BOPDS_InterfFF>(m,"BOPDS_VectorOfInterfFF");  
+    register_template_NCollection_IndexedDataMap<opencascade::handle<BOPDS_PaveBlock>, BOPDS_ListOfPaveBlock, TColStd_MapTransientHasher>(m,"BOPDS_IndexedDataMapOfPaveBlockListOfPaveBlock");  
+    register_template_NCollection_Vector<BOPDS_ListOfPaveBlock>(m,"BOPDS_VectorOfListOfPaveBlock");  
+    register_template_NCollection_Vector<BOPDS_Point>(m,"BOPDS_VectorOfPoint");  
+    register_template_NCollection_DataMap<TopoDS_Shape, BOPDS_CoupleOfPaveBlocks, TopTools_ShapeMapHasher>(m,"BOPDS_DataMapOfShapeCoupleOfPaveBlocks");  
+    register_template_NCollection_Vector<BOPDS_IndexRange>(m,"BOPDS_VectorOfIndexRange");  
+    register_template_NCollection_Vector<BOPDS_FaceInfo>(m,"BOPDS_VectorOfFaceInfo");  
+    register_template_NCollection_Vector<BOPDS_InterfFZ>(m,"BOPDS_VectorOfInterfFZ");  
+    register_template_NCollection_Map<BOPDS_Pave, BOPDS_PaveMapHasher>(m,"BOPDS_MapOfPave");  
+    register_template_NCollection_List<BOPDS_Pave>(m,"BOPDS_ListOfPave");  
+    register_template_NCollection_Map<opencascade::handle<BOPDS_PaveBlock>, TColStd_MapTransientHasher>(m,"BOPDS_MapOfPaveBlock");  
+    register_template_NCollection_Vector<BOPDS_InterfVE>(m,"BOPDS_VectorOfInterfVE");  
     register_template_NCollection_Vector<BOPDS_InterfZZ>(m,"BOPDS_VectorOfInterfZZ");  
-// ./opencascade/BOPDS_DS.hxx
 
 
 // exceptions

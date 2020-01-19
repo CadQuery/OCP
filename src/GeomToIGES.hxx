@@ -13,10 +13,6 @@ namespace py = pybind11;
 #include <IGESGeom_Point.hxx>
 #include <Geom_Point.hxx>
 #include <Geom_CartesianPoint.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <Geom_Vector.hxx>
-#include <Geom_VectorWithMagnitude.hxx>
-#include <Geom_Direction.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Geom_Surface.hxx>
 #include <Geom_BoundedSurface.hxx>
@@ -33,6 +29,10 @@ namespace py = pybind11;
 #include <Geom_SurfaceOfLinearExtrusion.hxx>
 #include <Geom_SurfaceOfRevolution.hxx>
 #include <Geom_OffsetSurface.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <Geom_Vector.hxx>
+#include <Geom_VectorWithMagnitude.hxx>
+#include <Geom_Direction.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom_BoundedCurve.hxx>
@@ -50,8 +50,8 @@ namespace py = pybind11;
 
 // module includes
 #include <GeomToIGES_GeomPoint.hxx>
-#include <GeomToIGES_GeomVector.hxx>
 #include <GeomToIGES_GeomSurface.hxx>
+#include <GeomToIGES_GeomVector.hxx>
 #include <GeomToIGES_GeomCurve.hxx>
 #include <GeomToIGES_GeomEntity.hxx>
 
@@ -60,8 +60,8 @@ namespace py = pybind11;
 
 // Class template handling functions
 // ./opencascade/GeomToIGES_GeomPoint.hxx
-// ./opencascade/GeomToIGES_GeomVector.hxx
 // ./opencascade/GeomToIGES_GeomSurface.hxx
+// ./opencascade/GeomToIGES_GeomVector.hxx
 // ./opencascade/GeomToIGES_GeomCurve.hxx
 // ./opencascade/GeomToIGES_GeomEntity.hxx
 

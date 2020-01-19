@@ -26,18 +26,18 @@ namespace py = pybind11;
 #include <gp_Pnt.hxx>
 
 // module includes
-#include <ShapeBuild_ReShape.hxx>
 #include <ShapeBuild.hxx>
 #include <ShapeBuild_Edge.hxx>
 #include <ShapeBuild_Vertex.hxx>
+#include <ShapeBuild_ReShape.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/ShapeBuild_ReShape.hxx
 // ./opencascade/ShapeBuild.hxx
 // ./opencascade/ShapeBuild_Edge.hxx
 // ./opencascade/ShapeBuild_Vertex.hxx
+// ./opencascade/ShapeBuild_ReShape.hxx
 
 // user-defined post

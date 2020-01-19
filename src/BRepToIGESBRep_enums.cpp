@@ -50,11 +50,10 @@ py::module m = main_module.def_submodule("BRepToIGESBRep", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepToIGESBRep_Entity ,std::unique_ptr<BRepToIGESBRep_Entity>  , BRepToIGES_BREntity >(m,"BRepToIGESBRep_Entity",R"#(provides methods to transfer BRep entity from CASCADE to IGESBRep.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepToIGESBRep_Entity.hxx
+
+// classes forward declarations only
+    py::class_<BRepToIGESBRep_Entity , shared_ptr<BRepToIGESBRep_Entity>  , BRepToIGES_BREntity >(m,"BRepToIGESBRep_Entity",R"#(provides methods to transfer BRep entity from CASCADE to IGESBRep.)#");
 
 };
 

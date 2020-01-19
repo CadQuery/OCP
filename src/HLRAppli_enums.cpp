@@ -35,11 +35,10 @@ py::module m = main_module.def_submodule("HLRAppli", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<HLRAppli_ReflectLines ,std::unique_ptr<HLRAppli_ReflectLines>  >(m,"HLRAppli_ReflectLines",R"#(This class builds reflect lines on a shape according to the axes of view defined by user. Reflect lines are represented by edges in 3d.)#");
-
 // pre-register typdefs
-// ./opencascade/HLRAppli_ReflectLines.hxx
+
+// classes forward declarations only
+    py::class_<HLRAppli_ReflectLines , shared_ptr<HLRAppli_ReflectLines>  >(m,"HLRAppli_ReflectLines",R"#(This class builds reflect lines on a shape according to the axes of view defined by user. Reflect lines are represented by edges in 3d.)#");
 
 };
 

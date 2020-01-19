@@ -21,18 +21,18 @@ namespace py = pybind11;
 #include <Geom_Surface.hxx>
 
 // module includes
-#include <BRepFilletAPI_MakeFillet2d.hxx>
 #include <BRepFilletAPI_LocalOperation.hxx>
 #include <BRepFilletAPI_MakeChamfer.hxx>
+#include <BRepFilletAPI_MakeFillet2d.hxx>
 #include <BRepFilletAPI_MakeFillet.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
 // ./opencascade/BRepFilletAPI_LocalOperation.hxx
 // ./opencascade/BRepFilletAPI_MakeChamfer.hxx
+// ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
 // ./opencascade/BRepFilletAPI_MakeFillet.hxx
 
 // user-defined post

@@ -35,10 +35,9 @@ py::module m = main_module.def_submodule("InterfaceGraphic", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-
 // pre-register typdefs
-// ./opencascade/InterfaceGraphic.hxx
+
+// classes forward declarations only
 
 };
 

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -42,14 +45,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntImpParGen"));
 
 // classes
 
-    register_default_constructor<IntImpParGen_ImpTool ,std::unique_ptr<IntImpParGen_ImpTool>>(m,"IntImpParGen_ImpTool");
+    register_default_constructor<IntImpParGen , shared_ptr<IntImpParGen>>(m,"IntImpParGen");
 
-    static_cast<py::class_<IntImpParGen_ImpTool ,std::unique_ptr<IntImpParGen_ImpTool>  >>(m.attr("IntImpParGen_ImpTool"))
-;
-
-    register_default_constructor<IntImpParGen ,std::unique_ptr<IntImpParGen>>(m,"IntImpParGen");
-
-    static_cast<py::class_<IntImpParGen ,std::unique_ptr<IntImpParGen>  >>(m.attr("IntImpParGen"))
+    static_cast<py::class_<IntImpParGen , shared_ptr<IntImpParGen>  >>(m.attr("IntImpParGen"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("DetermineTransition_s",
                     (void (*)( const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const Standard_Real  ) ) static_cast<void (*)( const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const Standard_Real  ) >(&IntImpParGen::DetermineTransition),
                     R"#(Template class for an implicit curve. Math function, instantiated inside the Intersector. Tool used by the package IntCurve and IntImpParGen)#"  , py::arg("Pos1"),  py::arg("Tan1"),  py::arg("Norm1"),  py::arg("Trans1"),  py::arg("Pos2"),  py::arg("Tan2"),  py::arg("Norm2"),  py::arg("Trans2"),  py::arg("Tol"))
@@ -62,6 +63,20 @@ py::module m = static_cast<py::module>(main_module.attr("IntImpParGen"));
         .def_static("NormalizeOnDomain_s",
                     (Standard_Real (*)( Standard_Real & ,  const IntRes2d_Domain &  ) ) static_cast<Standard_Real (*)( Standard_Real & ,  const IntRes2d_Domain &  ) >(&IntImpParGen::NormalizeOnDomain),
                     R"#(None)#"  , py::arg("Par1"),  py::arg("Dom1"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<IntImpParGen_ImpTool , shared_ptr<IntImpParGen_ImpTool>>(m,"IntImpParGen_ImpTool");
+
+    static_cast<py::class_<IntImpParGen_ImpTool , shared_ptr<IntImpParGen_ImpTool>  >>(m.attr("IntImpParGen_ImpTool"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -81,9 +96,6 @@ py::module m = static_cast<py::module>(main_module.attr("IntImpParGen"));
 // operators
 
 // register typdefs
-// ./opencascade/IntImpParGen_Tool.hxx
-// ./opencascade/IntImpParGen_ImpTool.hxx
-// ./opencascade/IntImpParGen.hxx
 
 
 // exceptions

@@ -59,24 +59,14 @@ py::module m = main_module.def_submodule("Resource", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Resource_LexicalCompare ,std::unique_ptr<Resource_LexicalCompare>  >(m,"Resource_LexicalCompare",R"#(None)#");
-    py::class_<Resource_Unicode ,std::unique_ptr<Resource_Unicode>  >(m,"Resource_Unicode",R"#(This class provides functions used to convert a non-ASCII C string given in ANSI, EUC, GB or SJIS format, to a Unicode string of extended characters, and vice versa.)#");
-    py::class_<Resource_Manager ,opencascade::handle<Resource_Manager>  , Standard_Transient >(m,"Resource_Manager",R"#(Defines a resource structure and its management methods.Defines a resource structure and its management methods.Defines a resource structure and its management methods.)#");
-
 // pre-register typdefs
-// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
     preregister_template_NCollection_DataMap<TCollection_AsciiString, TCollection_ExtendedString, TCollection_AsciiString>(m,"Resource_DataMapOfAsciiStringExtendedString");  
-// ./opencascade/Resource_ConvertUnicode.hxx
-// ./opencascade/Resource_LexicalCompare.hxx
-// ./opencascade/Resource_Manager.hxx
-// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringExtendedString.hxx
-// ./opencascade/Resource_FormatType.hxx
-// ./opencascade/Resource_Unicode.hxx
-// ./opencascade/Resource_NoSuchResource.hxx
-// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString.hxx
-// ./opencascade/Resource_DataMapOfAsciiStringAsciiString.hxx
     preregister_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString>(m,"Resource_DataMapOfAsciiStringAsciiString");  
+
+// classes forward declarations only
+    py::class_<Resource_LexicalCompare , shared_ptr<Resource_LexicalCompare>  >(m,"Resource_LexicalCompare",R"#(None)#");
+    py::class_<Resource_Manager ,opencascade::handle<Resource_Manager>  , Standard_Transient >(m,"Resource_Manager",R"#(Defines a resource structure and its management methods.Defines a resource structure and its management methods.Defines a resource structure and its management methods.)#");
+    py::class_<Resource_Unicode , shared_ptr<Resource_Unicode>  >(m,"Resource_Unicode",R"#(This class provides functions used to convert a non-ASCII C string given in ANSI, EUC, GB or SJIS format, to a Unicode string of extended characters, and vice versa.)#");
 
 };
 

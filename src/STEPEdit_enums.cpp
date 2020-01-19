@@ -47,15 +47,12 @@ py::module m = main_module.def_submodule("STEPEdit", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
+    py::class_<STEPEdit , shared_ptr<STEPEdit>  >(m,"STEPEdit",R"#(Provides tools to exploit and edit a set of STEP data : editors, selections ..)#");
     py::class_<STEPEdit_EditContext ,opencascade::handle<STEPEdit_EditContext>  , IFSelect_Editor >(m,"STEPEdit_EditContext",R"#(EditContext is an Editor fit for Product Definition Context (one per Model) , i.e. : - ProductDefinition - ApplicationProtocolDefinition - ProductRelatedProductCategoryEditContext is an Editor fit for Product Definition Context (one per Model) , i.e. : - ProductDefinition - ApplicationProtocolDefinition - ProductRelatedProductCategoryEditContext is an Editor fit for Product Definition Context (one per Model) , i.e. : - ProductDefinition - ApplicationProtocolDefinition - ProductRelatedProductCategory)#");
     py::class_<STEPEdit_EditSDR ,opencascade::handle<STEPEdit_EditSDR>  , IFSelect_Editor >(m,"STEPEdit_EditSDR",R"#(EditSDR is an Editor fit for a Shape Definition Representation which designates a Product DefinitionEditSDR is an Editor fit for a Shape Definition Representation which designates a Product DefinitionEditSDR is an Editor fit for a Shape Definition Representation which designates a Product Definition)#");
-    py::class_<STEPEdit ,std::unique_ptr<STEPEdit>  >(m,"STEPEdit",R"#(Provides tools to exploit and edit a set of STEP data : editors, selections ..)#");
-
-// pre-register typdefs
-// ./opencascade/STEPEdit_EditContext.hxx
-// ./opencascade/STEPEdit.hxx
-// ./opencascade/STEPEdit_EditSDR.hxx
 
 };
 

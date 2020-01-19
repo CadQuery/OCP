@@ -52,17 +52,13 @@ py::module m = main_module.def_submodule("ShapeBuild", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<ShapeBuild_ReShape ,opencascade::handle<ShapeBuild_ReShape>  , BRepTools_ReShape >(m,"ShapeBuild_ReShape",R"#(Rebuilds a Shape by making pre-defined substitutions on some of its componentsRebuilds a Shape by making pre-defined substitutions on some of its componentsRebuilds a Shape by making pre-defined substitutions on some of its components)#");
-    py::class_<ShapeBuild_Edge ,std::unique_ptr<ShapeBuild_Edge>  >(m,"ShapeBuild_Edge",R"#(This class provides low-level operators for building an edge 3d curve, copying edge with replaced vertices etc.)#");
-    py::class_<ShapeBuild ,std::unique_ptr<ShapeBuild>  >(m,"ShapeBuild",R"#(This package provides basic building tools for other packages in ShapeHealing. These tools are rather internal for ShapeHealing .)#");
-    py::class_<ShapeBuild_Vertex ,std::unique_ptr<ShapeBuild_Vertex>  >(m,"ShapeBuild_Vertex",R"#(Provides low-level functions used for constructing vertices)#");
-
 // pre-register typdefs
-// ./opencascade/ShapeBuild_ReShape.hxx
-// ./opencascade/ShapeBuild.hxx
-// ./opencascade/ShapeBuild_Edge.hxx
-// ./opencascade/ShapeBuild_Vertex.hxx
+
+// classes forward declarations only
+    py::class_<ShapeBuild , shared_ptr<ShapeBuild>  >(m,"ShapeBuild",R"#(This package provides basic building tools for other packages in ShapeHealing. These tools are rather internal for ShapeHealing .)#");
+    py::class_<ShapeBuild_Edge , shared_ptr<ShapeBuild_Edge>  >(m,"ShapeBuild_Edge",R"#(This class provides low-level operators for building an edge 3d curve, copying edge with replaced vertices etc.)#");
+    py::class_<ShapeBuild_ReShape ,opencascade::handle<ShapeBuild_ReShape>  , BRepTools_ReShape >(m,"ShapeBuild_ReShape",R"#(Rebuilds a Shape by making pre-defined substitutions on some of its componentsRebuilds a Shape by making pre-defined substitutions on some of its componentsRebuilds a Shape by making pre-defined substitutions on some of its components)#");
+    py::class_<ShapeBuild_Vertex , shared_ptr<ShapeBuild_Vertex>  >(m,"ShapeBuild_Vertex",R"#(Provides low-level functions used for constructing vertices)#");
 
 };
 

@@ -11,32 +11,14 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Standard_NoMoreObject.hxx>
 #include <TopOpeBRepBuild_BlockBuilder.hxx>
-#include <TopOpeBRepBuild_WireEdgeSet.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Solid.hxx>
+#include <TopOpeBRepBuild_Loop.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
 #include <TopOpeBRepTool_ShapeClassifier.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopOpeBRepBuild_ShellFaceSet.hxx>
-#include <TopOpeBRepBuild_ShapeSet.hxx>
-#include <TopOpeBRepBuild_ShapeSet.hxx>
-#include <TopOpeBRepBuild_BlockIterator.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopOpeBRepBuild_WireEdgeSet.hxx>
-#include <TopOpeBRepBuild_ShapeSet.hxx>
-#include <TopOpeBRepBuild_Builder.hxx>
-#include <TopOpeBRepBuild_GTopo.hxx>
-#include <TopOpeBRepBuild_GTopo.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
 #include <TopOpeBRepTool_ShapeExplorer.hxx>
@@ -51,38 +33,56 @@ namespace py = pybind11;
 #include <TopOpeBRepBuild_ShellFaceSet.hxx>
 #include <TopOpeBRepDS_SurfaceIterator.hxx>
 #include <TopOpeBRepDS_CurveIterator.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Bnd_Box2d.hxx>
 #include <TopOpeBRepBuild_BlockBuilder.hxx>
 #include <TopOpeBRepBuild_Loop.hxx>
 #include <TopoDS_Shape.hxx>
+#include <TopOpeBRepBuild_WireEdgeSet.hxx>
+#include <TopOpeBRepBuild_ShapeSet.hxx>
+#include <TopOpeBRepBuild_GTopo.hxx>
 #include <TopOpeBRepBuild_PaveSet.hxx>
 #include <TopOpeBRepBuild_PaveClassifier.hxx>
 #include <TopOpeBRepBuild_LoopSet.hxx>
 #include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopOpeBRepBuild_Loop.hxx>
-#include <TopOpeBRepBuild_BlockBuilder.hxx>
-#include <TopOpeBRepBuild_Loop.hxx>
-#include <TopOpeBRepBuild_GTopo.hxx>
-#include <TopOpeBRepBuild_Loop.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepBuild_GTopo.hxx>
 #include <TopOpeBRepBuild_ShellFaceSet.hxx>
 #include <TopOpeBRepBuild_WireEdgeSet.hxx>
 #include <TopOpeBRepBuild_PaveSet.hxx>
+#include <TopOpeBRepBuild_ShellFaceSet.hxx>
+#include <TopOpeBRepBuild_ShapeSet.hxx>
+#include <TopOpeBRepBuild_Loop.hxx>
+#include <TopOpeBRepBuild_ShapeSet.hxx>
+#include <TopOpeBRepBuild_BlockIterator.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopoDS_Shell.hxx>
+#include <TopoDS_Solid.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopOpeBRepBuild_Loop.hxx>
+#include <TopOpeBRepBuild_WireEdgeSet.hxx>
+#include <TopOpeBRepBuild_GTopo.hxx>
+#include <TopOpeBRepBuild_Builder.hxx>
 #include <TopOpeBRepBuild_LoopSet.hxx>
 #include <TopOpeBRepBuild_LoopClassifier.hxx>
 #include <TopOpeBRepBuild_PaveSet.hxx>
 #include <TopOpeBRepBuild_PaveClassifier.hxx>
 #include <TopOpeBRepBuild_LoopSet.hxx>
 #include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <TopOpeBRepBuild_GTopo.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Bnd_Box2d.hxx>
 #include <TopoDS_Wire.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopOpeBRepBuild_BlockBuilder.hxx>
 
 // module includes
 #include <TopOpeBRepBuild_Area1dBuilder.hxx>
@@ -142,23 +142,23 @@ namespace py = pybind11;
 #include <TopOpeBRepBuild_WireToFace.hxx>
 
 // template related includes
-// ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
+// ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
+// ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
+// ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
+// ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
+// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
 #include "NCollection.hxx"
@@ -220,108 +220,53 @@ py::module m = main_module.def_submodule("TopOpeBRepBuild", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<TopOpeBRepBuild_LoopClassifier ,std::unique_ptr<TopOpeBRepBuild_LoopClassifier> ,Py_TopOpeBRepBuild_LoopClassifier >(m,"TopOpeBRepBuild_LoopClassifier",R"#(classify loops in order to build Areas)#");
-    py::class_<TopOpeBRepBuild_LoopSet ,std::unique_ptr<TopOpeBRepBuild_LoopSet>  >(m,"TopOpeBRepBuild_LoopSet",R"#(None)#");
-    py::class_<TopOpeBRepBuild_AreaBuilder ,std::unique_ptr<TopOpeBRepBuild_AreaBuilder>  >(m,"TopOpeBRepBuild_AreaBuilder",R"#(The AreaBuilder algorithm is used to reconstruct complex topological objects as Faces or Solids. * Loop is the composite topological object of the boundary. Wire for a Face. Shell for a Solid. * LoopSet is a tool describing the object to build. It gives an iteration on Loops. For each Loop it tells if it is on the boundary or if it is an interference. * LoopClassifier is an algorithm used to test if a Loop is inside another Loop. The result of the reconstruction is an iteration on the reconstructed areas. An area is described by a set of Loops. A AreaBuilder is built with : - a LoopSet describing the object to reconstruct. - a LoopClassifier providing the classification algorithm.)#");
-    py::class_<TopOpeBRepBuild_ShapeSet ,std::unique_ptr<TopOpeBRepBuild_ShapeSet>  >(m,"TopOpeBRepBuild_ShapeSet",R"#(Auxiliary class providing an exploration of a set of shapes to build faces or solids. To build faces : shapes are wires, elements are edges. To build solids : shapes are shells, elements are faces. The ShapeSet stores a list of shapes, a list of elements to start reconstructions, and a map to search neighbours. The map stores the connection between elements through subshapes of type <SubShapeType> given in constructor. <SubShapeType> is : - TopAbs_VERTEX to connect edges - TopAbs_EDGE to connect faces)#");
-    py::class_<TopOpeBRepBuild_Builder ,std::unique_ptr<TopOpeBRepBuild_Builder>  >(m,"TopOpeBRepBuild_Builder",R"#(The Builder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.)#");
-    py::class_<TopOpeBRepBuild_BlockIterator ,std::unique_ptr<TopOpeBRepBuild_BlockIterator>  >(m,"TopOpeBRepBuild_BlockIterator",R"#(Iterator on the elements of a block.)#");
-    py::class_<TopOpeBRepBuild_PaveSet ,std::unique_ptr<TopOpeBRepBuild_PaveSet>  , TopOpeBRepBuild_LoopSet >(m,"TopOpeBRepBuild_PaveSet",R"#(class providing an exploration of a set of vertices to build edges. It is similar to LoopSet from TopOpeBRepBuild where Loop is Pave.)#");
-    py::class_<TopOpeBRepBuild_ShellToSolid ,std::unique_ptr<TopOpeBRepBuild_ShellToSolid>  >(m,"TopOpeBRepBuild_ShellToSolid",R"#(This class builds solids from a set of shells SSh and a solid F.)#");
-    py::class_<TopOpeBRepBuild_Loop ,opencascade::handle<TopOpeBRepBuild_Loop>  , Standard_Transient >(m,"TopOpeBRepBuild_Loop",R"#(a Loop is an existing shape (Shell,Wire) or a set of shapes (Faces,Edges) which are connex. a set of connex shape is represented by a BlockIteratora Loop is an existing shape (Shell,Wire) or a set of shapes (Faces,Edges) which are connex. a set of connex shape is represented by a BlockIteratora Loop is an existing shape (Shell,Wire) or a set of shapes (Faces,Edges) which are connex. a set of connex shape is represented by a BlockIterator)#");
-    py::class_<TopOpeBRepBuild_WireToFace ,std::unique_ptr<TopOpeBRepBuild_WireToFace>  >(m,"TopOpeBRepBuild_WireToFace",R"#(This class builds faces from a set of wires SW and a face F. The face must have and underlying surface, say S. All of the edges of all of the wires must have a 2d representation on surface S (except if S is planar))#");
-    py::class_<TopOpeBRepBuild_SolidBuilder ,std::unique_ptr<TopOpeBRepBuild_SolidBuilder>  >(m,"TopOpeBRepBuild_SolidBuilder",R"#(None)#");
-    py::class_<TopOpeBRepBuild_Area2dBuilder ,std::unique_ptr<TopOpeBRepBuild_Area2dBuilder>  , TopOpeBRepBuild_AreaBuilder >(m,"TopOpeBRepBuild_Area2dBuilder",R"#(The Area2dBuilder algorithm is used to construct Faces from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the Area2dBuilder is an iteration on areas. An area is described by a set of Loops.)#");
-    py::class_<TopOpeBRepBuild_FuseFace ,std::unique_ptr<TopOpeBRepBuild_FuseFace>  >(m,"TopOpeBRepBuild_FuseFace",R"#(None)#");
-    py::class_<TopOpeBRepBuild_GTopo ,std::unique_ptr<TopOpeBRepBuild_GTopo>  >(m,"TopOpeBRepBuild_GTopo",R"#(None)#");
-    py::class_<TopOpeBRepBuild_HBuilder ,opencascade::handle<TopOpeBRepBuild_HBuilder>  , Standard_Transient >(m,"TopOpeBRepBuild_HBuilder",R"#(The HBuilder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.The HBuilder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.The HBuilder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.)#");
-    py::class_<TopOpeBRepBuild_CorrectFace2d ,std::unique_ptr<TopOpeBRepBuild_CorrectFace2d>  >(m,"TopOpeBRepBuild_CorrectFace2d",R"#(None)#");
-    py::class_<TopOpeBRepBuild_ShapeListOfShape ,std::unique_ptr<TopOpeBRepBuild_ShapeListOfShape>  >(m,"TopOpeBRepBuild_ShapeListOfShape",R"#(represent shape + a list of shape)#");
-    py::class_<TopOpeBRepBuild_GTool ,std::unique_ptr<TopOpeBRepBuild_GTool>  >(m,"TopOpeBRepBuild_GTool",R"#(None)#");
-    py::class_<TopOpeBRepBuild_Builder1 ,std::unique_ptr<TopOpeBRepBuild_Builder1>  , TopOpeBRepBuild_Builder >(m,"TopOpeBRepBuild_Builder1",R"#(extension of the class TopOpeBRepBuild_Builder dedicated to avoid bugs in "Rebuilding Result" algorithm for the case of SOLID/SOLID Boolean Operations)#");
-    py::class_<TopOpeBRepBuild_Area1dBuilder ,std::unique_ptr<TopOpeBRepBuild_Area1dBuilder>  , TopOpeBRepBuild_AreaBuilder >(m,"TopOpeBRepBuild_Area1dBuilder",R"#(None)#");
-    py::class_<TopOpeBRepBuild_Pave ,opencascade::handle<TopOpeBRepBuild_Pave>  , TopOpeBRepBuild_Loop >(m,"TopOpeBRepBuild_Pave",R"#()#");
-    py::class_<TopOpeBRepBuild_Area3dBuilder ,std::unique_ptr<TopOpeBRepBuild_Area3dBuilder>  , TopOpeBRepBuild_AreaBuilder >(m,"TopOpeBRepBuild_Area3dBuilder",R"#(The Area3dBuilder algorithm is used to construct Solids from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the Area3dBuilder is an iteration on areas. An area is described by a set of Loops.)#");
-    py::class_<TopOpeBRepBuild_BlockBuilder ,std::unique_ptr<TopOpeBRepBuild_BlockBuilder>  >(m,"TopOpeBRepBuild_BlockBuilder",R"#(None)#");
-    py::class_<TopOpeBRepBuild_GIter ,std::unique_ptr<TopOpeBRepBuild_GIter>  >(m,"TopOpeBRepBuild_GIter",R"#(None)#");
-    py::class_<TopOpeBRepBuild_WireEdgeSet ,std::unique_ptr<TopOpeBRepBuild_WireEdgeSet>  , TopOpeBRepBuild_ShapeSet >(m,"TopOpeBRepBuild_WireEdgeSet",R"#(a bound is a wire, a boundelement is an edge. The ShapeSet stores : - a list of wire (bounds), - a list of edge (boundelements) to start reconstructions, - a map of vertex giving the list of edge incident to a vertex.)#");
-    py::class_<TopOpeBRepBuild_CompositeClassifier ,std::unique_ptr<TopOpeBRepBuild_CompositeClassifier> ,Py_TopOpeBRepBuild_CompositeClassifier , TopOpeBRepBuild_LoopClassifier >(m,"TopOpeBRepBuild_CompositeClassifier",R"#(classify composite Loops, i.e, loops that can be either a Shape, or a block of Elements.)#");
-    py::class_<TopOpeBRepBuild_EdgeBuilder ,std::unique_ptr<TopOpeBRepBuild_EdgeBuilder>  , TopOpeBRepBuild_Area1dBuilder >(m,"TopOpeBRepBuild_EdgeBuilder",R"#(None)#");
-    py::class_<TopOpeBRepBuild_PaveClassifier ,std::unique_ptr<TopOpeBRepBuild_PaveClassifier>  , TopOpeBRepBuild_LoopClassifier >(m,"TopOpeBRepBuild_PaveClassifier",R"#(This class compares vertices on an edge.)#");
-    py::class_<TopOpeBRepBuild_Tools2d ,std::unique_ptr<TopOpeBRepBuild_Tools2d>  >(m,"TopOpeBRepBuild_Tools2d",R"#(None)#");
-    py::class_<TopOpeBRepBuild_ShellFaceClassifier ,std::unique_ptr<TopOpeBRepBuild_ShellFaceClassifier>  , TopOpeBRepBuild_CompositeClassifier >(m,"TopOpeBRepBuild_ShellFaceClassifier",R"#(Classify faces and shells. shapes are Shells, Elements are Faces.)#");
-    py::class_<TopOpeBRepBuild_FaceAreaBuilder ,std::unique_ptr<TopOpeBRepBuild_FaceAreaBuilder>  , TopOpeBRepBuild_Area2dBuilder >(m,"TopOpeBRepBuild_FaceAreaBuilder",R"#(The FaceAreaBuilder algorithm is used to construct Faces from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the FaceAreaBuilder is an iteration on areas. An area is described by a set of Loops.)#");
-    py::class_<TopOpeBRepBuild_SolidAreaBuilder ,std::unique_ptr<TopOpeBRepBuild_SolidAreaBuilder>  , TopOpeBRepBuild_Area3dBuilder >(m,"TopOpeBRepBuild_SolidAreaBuilder",R"#(The SolidAreaBuilder algorithm is used to construct Solids from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the SolidAreaBuilder is an iteration on areas. An area is described by a set of Loops.)#");
-    py::class_<TopOpeBRepBuild_ShellFaceSet ,std::unique_ptr<TopOpeBRepBuild_ShellFaceSet>  , TopOpeBRepBuild_ShapeSet >(m,"TopOpeBRepBuild_ShellFaceSet",R"#(a bound is a shell, a boundelement is a face. The ShapeSet stores : - a list of shell (bounds), - a list of face (boundelements) to start reconstructions, - a map of edge giving the list of face incident to an edge.)#");
-    py::class_<TopOpeBRepBuild_BuilderON ,std::unique_ptr<TopOpeBRepBuild_BuilderON>  >(m,"TopOpeBRepBuild_BuilderON",R"#(None)#");
-    py::class_<TopOpeBRepBuild_Tools ,std::unique_ptr<TopOpeBRepBuild_Tools>  >(m,"TopOpeBRepBuild_Tools",R"#(Auxiliary methods used in TopOpeBRepBuild_Builder1 class)#");
-    py::class_<TopOpeBRepBuild_VertexInfo ,std::unique_ptr<TopOpeBRepBuild_VertexInfo>  >(m,"TopOpeBRepBuild_VertexInfo",R"#(None)#");
-    py::class_<TopOpeBRepBuild_FaceBuilder ,std::unique_ptr<TopOpeBRepBuild_FaceBuilder>  >(m,"TopOpeBRepBuild_FaceBuilder",R"#(None)#");
-    py::class_<TopOpeBRepBuild_WireEdgeClassifier ,std::unique_ptr<TopOpeBRepBuild_WireEdgeClassifier>  , TopOpeBRepBuild_CompositeClassifier >(m,"TopOpeBRepBuild_WireEdgeClassifier",R"#(Classify edges and wires. shapes are Wires, Element are Edge.)#");
-
 // pre-register typdefs
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfShapeListOfShape.hxx
-// ./opencascade/TopOpeBRepBuild_kpresu.hxx
-// ./opencascade/TopOpeBRepBuild_BlockIterator.hxx
-// ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
-    preregister_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepBuild_ListOfShapeListOfShape, TopTools_ShapeMapHasher>(m,"TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape");  
-// ./opencascade/TopOpeBRepBuild_ShellFaceClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_PaveSet.hxx
-// ./opencascade/TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo.hxx
-    preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepBuild_VertexInfo, TopTools_ShapeMapHasher>(m,"TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo");  
-// ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
-    preregister_template_NCollection_List<opencascade::handle<TopOpeBRepBuild_Pave> >(m,"TopOpeBRepBuild_ListOfPave");  
-// ./opencascade/TopOpeBRepBuild_Pave.hxx
-// ./opencascade/TopOpeBRepBuild_PWireEdgeSet.hxx
-// ./opencascade/TopOpeBRepBuild_ShellToSolid.hxx
-// ./opencascade/TopOpeBRepBuild_Tools.hxx
-// ./opencascade/TopOpeBRepBuild_DataMapIteratorOfDataMapOfShapeListOfShapeListOfShape.hxx
-// ./opencascade/TopOpeBRepBuild_Loop.hxx
-// ./opencascade/TopOpeBRepBuild_Area3dBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_WireToFace.hxx
-// ./opencascade/TopOpeBRepBuild_FaceAreaBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_SolidBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_BlockBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_Area2dBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_FaceBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_PBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_FuseFace.hxx
-// ./opencascade/TopOpeBRepBuild_PGTopo.hxx
-// ./opencascade/TopOpeBRepBuild_LoopSet.hxx
-// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
-    preregister_template_NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop> >(m,"TopOpeBRepBuild_ListOfLoop");  
-// ./opencascade/TopOpeBRepBuild_GIter.hxx
-// ./opencascade/TopOpeBRepBuild_Builder.hxx
-// ./opencascade/TopOpeBRepBuild_SolidAreaBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_GTopo.hxx
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfListOfLoop.hxx
-// ./opencascade/TopOpeBRepBuild_WireEdgeSet.hxx
-// ./opencascade/TopOpeBRepBuild_HBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_define.hxx
-// ./opencascade/TopOpeBRepBuild_VertexInfo.hxx
-// ./opencascade/TopOpeBRepBuild_CorrectFace2d.hxx
-// ./opencascade/TopOpeBRepBuild_CompositeClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_ShapeListOfShape.hxx
-// ./opencascade/TopOpeBRepBuild_ShellFaceSet.hxx
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfLoop.hxx
-// ./opencascade/TopOpeBRepBuild_EdgeBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfPave.hxx
-// ./opencascade/TopOpeBRepBuild_LoopClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
     preregister_template_NCollection_List<TopOpeBRepBuild_ListOfLoop>(m,"TopOpeBRepBuild_ListOfListOfLoop");  
-// ./opencascade/TopOpeBRepBuild_WireEdgeClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_GTool.hxx
-// ./opencascade/TopOpeBRepBuild_PaveClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_Builder1.hxx
-// ./opencascade/TopOpeBRepBuild_AreaBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_BuilderON.hxx
-// ./opencascade/TopOpeBRepBuild_ShapeSet.hxx
-// ./opencascade/TopOpeBRepBuild_LoopEnum.hxx
-// ./opencascade/TopOpeBRepBuild_Area1dBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_Tools2d.hxx
-// ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
+    preregister_template_NCollection_List<opencascade::handle<TopOpeBRepBuild_Pave> >(m,"TopOpeBRepBuild_ListOfPave");  
+    preregister_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepBuild_VertexInfo, TopTools_ShapeMapHasher>(m,"TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo");  
+    preregister_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepBuild_ListOfShapeListOfShape, TopTools_ShapeMapHasher>(m,"TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape");  
+    preregister_template_NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop> >(m,"TopOpeBRepBuild_ListOfLoop");  
     preregister_template_NCollection_List<TopOpeBRepBuild_ShapeListOfShape>(m,"TopOpeBRepBuild_ListOfShapeListOfShape");  
+
+// classes forward declarations only
+    py::class_<TopOpeBRepBuild_AreaBuilder , shared_ptr<TopOpeBRepBuild_AreaBuilder>  >(m,"TopOpeBRepBuild_AreaBuilder",R"#(The AreaBuilder algorithm is used to reconstruct complex topological objects as Faces or Solids. * Loop is the composite topological object of the boundary. Wire for a Face. Shell for a Solid. * LoopSet is a tool describing the object to build. It gives an iteration on Loops. For each Loop it tells if it is on the boundary or if it is an interference. * LoopClassifier is an algorithm used to test if a Loop is inside another Loop. The result of the reconstruction is an iteration on the reconstructed areas. An area is described by a set of Loops. A AreaBuilder is built with : - a LoopSet describing the object to reconstruct. - a LoopClassifier providing the classification algorithm.)#");
+    py::class_<TopOpeBRepBuild_BlockBuilder , shared_ptr<TopOpeBRepBuild_BlockBuilder>  >(m,"TopOpeBRepBuild_BlockBuilder",R"#(None)#");
+    py::class_<TopOpeBRepBuild_BlockIterator , shared_ptr<TopOpeBRepBuild_BlockIterator>  >(m,"TopOpeBRepBuild_BlockIterator",R"#(Iterator on the elements of a block.)#");
+    py::class_<TopOpeBRepBuild_Builder , shared_ptr<TopOpeBRepBuild_Builder>  >(m,"TopOpeBRepBuild_Builder",R"#(The Builder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.)#");
+    py::class_<TopOpeBRepBuild_BuilderON , shared_ptr<TopOpeBRepBuild_BuilderON>  >(m,"TopOpeBRepBuild_BuilderON",R"#(None)#");
+    py::class_<TopOpeBRepBuild_CorrectFace2d , shared_ptr<TopOpeBRepBuild_CorrectFace2d>  >(m,"TopOpeBRepBuild_CorrectFace2d",R"#(None)#");
+    py::class_<TopOpeBRepBuild_FaceBuilder , shared_ptr<TopOpeBRepBuild_FaceBuilder>  >(m,"TopOpeBRepBuild_FaceBuilder",R"#(None)#");
+    py::class_<TopOpeBRepBuild_FuseFace , shared_ptr<TopOpeBRepBuild_FuseFace>  >(m,"TopOpeBRepBuild_FuseFace",R"#(None)#");
+    py::class_<TopOpeBRepBuild_GIter , shared_ptr<TopOpeBRepBuild_GIter>  >(m,"TopOpeBRepBuild_GIter",R"#(None)#");
+    py::class_<TopOpeBRepBuild_GTool , shared_ptr<TopOpeBRepBuild_GTool>  >(m,"TopOpeBRepBuild_GTool",R"#(None)#");
+    py::class_<TopOpeBRepBuild_GTopo , shared_ptr<TopOpeBRepBuild_GTopo>  >(m,"TopOpeBRepBuild_GTopo",R"#(None)#");
+    py::class_<TopOpeBRepBuild_HBuilder ,opencascade::handle<TopOpeBRepBuild_HBuilder>  , Standard_Transient >(m,"TopOpeBRepBuild_HBuilder",R"#(The HBuilder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.The HBuilder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.The HBuilder algorithm constructs topological objects from an existing topology and new geometries attached to the topology. It is used to construct the result of a topological operation; the existing topologies are the parts involved in the topological operation and the new geometries are the intersection lines and points.)#");
+    py::class_<TopOpeBRepBuild_Loop ,opencascade::handle<TopOpeBRepBuild_Loop>  , Standard_Transient >(m,"TopOpeBRepBuild_Loop",R"#(a Loop is an existing shape (Shell,Wire) or a set of shapes (Faces,Edges) which are connex. a set of connex shape is represented by a BlockIteratora Loop is an existing shape (Shell,Wire) or a set of shapes (Faces,Edges) which are connex. a set of connex shape is represented by a BlockIteratora Loop is an existing shape (Shell,Wire) or a set of shapes (Faces,Edges) which are connex. a set of connex shape is represented by a BlockIterator)#");
+    py::class_<TopOpeBRepBuild_LoopClassifier , shared_ptr<TopOpeBRepBuild_LoopClassifier> ,Py_TopOpeBRepBuild_LoopClassifier >(m,"TopOpeBRepBuild_LoopClassifier",R"#(classify loops in order to build Areas)#");
+    py::class_<TopOpeBRepBuild_LoopSet , shared_ptr<TopOpeBRepBuild_LoopSet>  >(m,"TopOpeBRepBuild_LoopSet",R"#(None)#");
+    py::class_<TopOpeBRepBuild_ShapeListOfShape , shared_ptr<TopOpeBRepBuild_ShapeListOfShape>  >(m,"TopOpeBRepBuild_ShapeListOfShape",R"#(represent shape + a list of shape)#");
+    py::class_<TopOpeBRepBuild_ShapeSet , shared_ptr<TopOpeBRepBuild_ShapeSet>  >(m,"TopOpeBRepBuild_ShapeSet",R"#(Auxiliary class providing an exploration of a set of shapes to build faces or solids. To build faces : shapes are wires, elements are edges. To build solids : shapes are shells, elements are faces. The ShapeSet stores a list of shapes, a list of elements to start reconstructions, and a map to search neighbours. The map stores the connection between elements through subshapes of type <SubShapeType> given in constructor. <SubShapeType> is : - TopAbs_VERTEX to connect edges - TopAbs_EDGE to connect faces)#");
+    py::class_<TopOpeBRepBuild_ShellToSolid , shared_ptr<TopOpeBRepBuild_ShellToSolid>  >(m,"TopOpeBRepBuild_ShellToSolid",R"#(This class builds solids from a set of shells SSh and a solid F.)#");
+    py::class_<TopOpeBRepBuild_SolidBuilder , shared_ptr<TopOpeBRepBuild_SolidBuilder>  >(m,"TopOpeBRepBuild_SolidBuilder",R"#(None)#");
+    py::class_<TopOpeBRepBuild_Tools , shared_ptr<TopOpeBRepBuild_Tools>  >(m,"TopOpeBRepBuild_Tools",R"#(Auxiliary methods used in TopOpeBRepBuild_Builder1 class)#");
+    py::class_<TopOpeBRepBuild_Tools2d , shared_ptr<TopOpeBRepBuild_Tools2d>  >(m,"TopOpeBRepBuild_Tools2d",R"#(None)#");
+    py::class_<TopOpeBRepBuild_VertexInfo , shared_ptr<TopOpeBRepBuild_VertexInfo>  >(m,"TopOpeBRepBuild_VertexInfo",R"#(None)#");
+    py::class_<TopOpeBRepBuild_WireToFace , shared_ptr<TopOpeBRepBuild_WireToFace>  >(m,"TopOpeBRepBuild_WireToFace",R"#(This class builds faces from a set of wires SW and a face F. The face must have and underlying surface, say S. All of the edges of all of the wires must have a 2d representation on surface S (except if S is planar))#");
+    py::class_<TopOpeBRepBuild_Area1dBuilder , shared_ptr<TopOpeBRepBuild_Area1dBuilder>  , TopOpeBRepBuild_AreaBuilder >(m,"TopOpeBRepBuild_Area1dBuilder",R"#(None)#");
+    py::class_<TopOpeBRepBuild_Area2dBuilder , shared_ptr<TopOpeBRepBuild_Area2dBuilder>  , TopOpeBRepBuild_AreaBuilder >(m,"TopOpeBRepBuild_Area2dBuilder",R"#(The Area2dBuilder algorithm is used to construct Faces from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the Area2dBuilder is an iteration on areas. An area is described by a set of Loops.)#");
+    py::class_<TopOpeBRepBuild_Area3dBuilder , shared_ptr<TopOpeBRepBuild_Area3dBuilder>  , TopOpeBRepBuild_AreaBuilder >(m,"TopOpeBRepBuild_Area3dBuilder",R"#(The Area3dBuilder algorithm is used to construct Solids from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the Area3dBuilder is an iteration on areas. An area is described by a set of Loops.)#");
+    py::class_<TopOpeBRepBuild_Builder1 , shared_ptr<TopOpeBRepBuild_Builder1>  , TopOpeBRepBuild_Builder >(m,"TopOpeBRepBuild_Builder1",R"#(extension of the class TopOpeBRepBuild_Builder dedicated to avoid bugs in "Rebuilding Result" algorithm for the case of SOLID/SOLID Boolean Operations)#");
+    py::class_<TopOpeBRepBuild_CompositeClassifier , shared_ptr<TopOpeBRepBuild_CompositeClassifier> ,Py_TopOpeBRepBuild_CompositeClassifier , TopOpeBRepBuild_LoopClassifier >(m,"TopOpeBRepBuild_CompositeClassifier",R"#(classify composite Loops, i.e, loops that can be either a Shape, or a block of Elements.)#");
+    py::class_<TopOpeBRepBuild_Pave ,opencascade::handle<TopOpeBRepBuild_Pave>  , TopOpeBRepBuild_Loop >(m,"TopOpeBRepBuild_Pave",R"#()#");
+    py::class_<TopOpeBRepBuild_PaveClassifier , shared_ptr<TopOpeBRepBuild_PaveClassifier>  , TopOpeBRepBuild_LoopClassifier >(m,"TopOpeBRepBuild_PaveClassifier",R"#(This class compares vertices on an edge.)#");
+    py::class_<TopOpeBRepBuild_PaveSet , shared_ptr<TopOpeBRepBuild_PaveSet>  , TopOpeBRepBuild_LoopSet >(m,"TopOpeBRepBuild_PaveSet",R"#(class providing an exploration of a set of vertices to build edges. It is similar to LoopSet from TopOpeBRepBuild where Loop is Pave.)#");
+    py::class_<TopOpeBRepBuild_ShellFaceSet , shared_ptr<TopOpeBRepBuild_ShellFaceSet>  , TopOpeBRepBuild_ShapeSet >(m,"TopOpeBRepBuild_ShellFaceSet",R"#(a bound is a shell, a boundelement is a face. The ShapeSet stores : - a list of shell (bounds), - a list of face (boundelements) to start reconstructions, - a map of edge giving the list of face incident to an edge.)#");
+    py::class_<TopOpeBRepBuild_WireEdgeSet , shared_ptr<TopOpeBRepBuild_WireEdgeSet>  , TopOpeBRepBuild_ShapeSet >(m,"TopOpeBRepBuild_WireEdgeSet",R"#(a bound is a wire, a boundelement is an edge. The ShapeSet stores : - a list of wire (bounds), - a list of edge (boundelements) to start reconstructions, - a map of vertex giving the list of edge incident to a vertex.)#");
+    py::class_<TopOpeBRepBuild_EdgeBuilder , shared_ptr<TopOpeBRepBuild_EdgeBuilder>  , TopOpeBRepBuild_Area1dBuilder >(m,"TopOpeBRepBuild_EdgeBuilder",R"#(None)#");
+    py::class_<TopOpeBRepBuild_FaceAreaBuilder , shared_ptr<TopOpeBRepBuild_FaceAreaBuilder>  , TopOpeBRepBuild_Area2dBuilder >(m,"TopOpeBRepBuild_FaceAreaBuilder",R"#(The FaceAreaBuilder algorithm is used to construct Faces from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the FaceAreaBuilder is an iteration on areas. An area is described by a set of Loops.)#");
+    py::class_<TopOpeBRepBuild_ShellFaceClassifier , shared_ptr<TopOpeBRepBuild_ShellFaceClassifier>  , TopOpeBRepBuild_CompositeClassifier >(m,"TopOpeBRepBuild_ShellFaceClassifier",R"#(Classify faces and shells. shapes are Shells, Elements are Faces.)#");
+    py::class_<TopOpeBRepBuild_SolidAreaBuilder , shared_ptr<TopOpeBRepBuild_SolidAreaBuilder>  , TopOpeBRepBuild_Area3dBuilder >(m,"TopOpeBRepBuild_SolidAreaBuilder",R"#(The SolidAreaBuilder algorithm is used to construct Solids from a LoopSet, where the Loop is the composite topological object of the boundary, here wire or block of edges. The LoopSet gives an iteration on Loops. For each Loop it indicates if it is on the boundary (wire) or if it results from an interference (block of edges). The result of the SolidAreaBuilder is an iteration on areas. An area is described by a set of Loops.)#");
+    py::class_<TopOpeBRepBuild_WireEdgeClassifier , shared_ptr<TopOpeBRepBuild_WireEdgeClassifier>  , TopOpeBRepBuild_CompositeClassifier >(m,"TopOpeBRepBuild_WireEdgeClassifier",R"#(Classify edges and wires. shapes are Wires, Element are Edge.)#");
 
 };
 

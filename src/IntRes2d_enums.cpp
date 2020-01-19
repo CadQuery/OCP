@@ -50,37 +50,27 @@ py::module m = main_module.def_submodule("IntRes2d", R"#()#");
         .value("IntRes2d_Out",IntRes2d_TypeTrans::IntRes2d_Out)
         .value("IntRes2d_Touch",IntRes2d_TypeTrans::IntRes2d_Touch)
         .value("IntRes2d_Undecided",IntRes2d_TypeTrans::IntRes2d_Undecided).export_values();
-    py::enum_<IntRes2d_Situation>(m, "IntRes2d_Situation",R"#(None)#")
-        .value("IntRes2d_Inside",IntRes2d_Situation::IntRes2d_Inside)
-        .value("IntRes2d_Outside",IntRes2d_Situation::IntRes2d_Outside)
-        .value("IntRes2d_Unknown",IntRes2d_Situation::IntRes2d_Unknown).export_values();
     py::enum_<IntRes2d_Position>(m, "IntRes2d_Position",R"#(None)#")
         .value("IntRes2d_Head",IntRes2d_Position::IntRes2d_Head)
         .value("IntRes2d_Middle",IntRes2d_Position::IntRes2d_Middle)
         .value("IntRes2d_End",IntRes2d_Position::IntRes2d_End).export_values();
+    py::enum_<IntRes2d_Situation>(m, "IntRes2d_Situation",R"#(None)#")
+        .value("IntRes2d_Inside",IntRes2d_Situation::IntRes2d_Inside)
+        .value("IntRes2d_Outside",IntRes2d_Situation::IntRes2d_Outside)
+        .value("IntRes2d_Unknown",IntRes2d_Situation::IntRes2d_Unknown).export_values();
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<IntRes2d_Transition ,std::unique_ptr<IntRes2d_Transition>  >(m,"IntRes2d_Transition",R"#(Definition of the type of transition near an intersection point between two curves. The transition is either a "true transition", which means that one of the curves goes inside or outside the area defined by the other curve near the intersection, or a "touch transition" which means that the first curve does not cross the other one, or an "undecided" transition, which means that the curves are superposed.)#");
-    py::class_<IntRes2d_IntersectionSegment ,std::unique_ptr<IntRes2d_IntersectionSegment>  >(m,"IntRes2d_IntersectionSegment",R"#(Definition of an intersection curve between two 2D curves.)#");
-    py::class_<IntRes2d_Intersection ,std::unique_ptr<IntRes2d_Intersection, py::nodelete>  >(m,"IntRes2d_Intersection",R"#(Defines the root class of all the Intersections between two 2D-Curves, and provides all the methods about the results of the Intersections Algorithms.)#");
-    py::class_<IntRes2d_IntersectionPoint ,std::unique_ptr<IntRes2d_IntersectionPoint>  >(m,"IntRes2d_IntersectionPoint",R"#(Definition of an intersection point between two 2D curves.)#");
-    py::class_<IntRes2d_Domain ,std::unique_ptr<IntRes2d_Domain>  >(m,"IntRes2d_Domain",R"#(Definition of the domain of parameter on a 2d-curve. Most of the time, a domain is defined by two extremities. An extremity is made of : - a point in 2d-space (Pnt2d from gp), - a parameter on the curve, - a tolerance in the 2d-space. Sometimes, it can be made of 0 or 1 point ( for an infinite or semi-infinite line for example).)#");
-
 // pre-register typdefs
-// ./opencascade/IntRes2d_Transition.hxx
-// ./opencascade/IntRes2d_IntersectionPoint.hxx
-// ./opencascade/IntRes2d_SequenceOfIntersectionSegment.hxx
     preregister_template_NCollection_Sequence<IntRes2d_IntersectionSegment>(m,"IntRes2d_SequenceOfIntersectionSegment");  
-// ./opencascade/IntRes2d_IntersectionSegment.hxx
-// ./opencascade/IntRes2d_SequenceOfIntersectionPoint.hxx
     preregister_template_NCollection_Sequence<IntRes2d_IntersectionPoint>(m,"IntRes2d_SequenceOfIntersectionPoint");  
-// ./opencascade/IntRes2d_TypeTrans.hxx
-// ./opencascade/IntRes2d_Situation.hxx
-// ./opencascade/IntRes2d_Position.hxx
-// ./opencascade/IntRes2d_Domain.hxx
-// ./opencascade/IntRes2d_Intersection.hxx
+
+// classes forward declarations only
+    py::class_<IntRes2d_Domain , shared_ptr<IntRes2d_Domain>  >(m,"IntRes2d_Domain",R"#(Definition of the domain of parameter on a 2d-curve. Most of the time, a domain is defined by two extremities. An extremity is made of : - a point in 2d-space (Pnt2d from gp), - a parameter on the curve, - a tolerance in the 2d-space. Sometimes, it can be made of 0 or 1 point ( for an infinite or semi-infinite line for example).)#");
+    py::class_<IntRes2d_Intersection , shared_ptr_nodelete<IntRes2d_Intersection>  >(m,"IntRes2d_Intersection",R"#(Defines the root class of all the Intersections between two 2D-Curves, and provides all the methods about the results of the Intersections Algorithms.)#");
+    py::class_<IntRes2d_IntersectionPoint , shared_ptr<IntRes2d_IntersectionPoint>  >(m,"IntRes2d_IntersectionPoint",R"#(Definition of an intersection point between two 2D curves.)#");
+    py::class_<IntRes2d_IntersectionSegment , shared_ptr<IntRes2d_IntersectionSegment>  >(m,"IntRes2d_IntersectionSegment",R"#(Definition of an intersection curve between two 2D curves.)#");
+    py::class_<IntRes2d_Transition , shared_ptr<IntRes2d_Transition>  >(m,"IntRes2d_Transition",R"#(Definition of the type of transition near an intersection point between two curves. The transition is either a "true transition", which means that one of the curves goes inside or outside the area defined by the other curve near the intersection, or a "touch transition" which means that the first curve does not cross the other one, or an "undecided" transition, which means that the curves are superposed.)#");
 
 };
 

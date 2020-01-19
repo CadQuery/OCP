@@ -54,16 +54,12 @@ py::module m = main_module.def_submodule("Intrv", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Intrv_Interval ,std::unique_ptr<Intrv_Interval>  >(m,"Intrv_Interval",R"#(**-----------**** Other ***---* IsBefore ***----------* IsJustBefore ***---------------* IsOverlappingAtStart ***------------------------* IsJustEnclosingAtEnd ***-----------------------------------* IsEnclosing ***----* IsJustOverlappingAtStart ***-------------* IsSimilar ***------------------------* IsJustEnclosingAtStart ***-* IsInside ***------* IsJustOverlappingAtEnd ***-----------------* IsOverlappingAtEnd ***--------* IsJustAfter ***---* IsAfter)#");
-    py::class_<Intrv_Intervals ,std::unique_ptr<Intrv_Intervals>  >(m,"Intrv_Intervals",R"#(The class Intervals is a sorted sequence of non overlapping Real Intervals.)#");
-
 // pre-register typdefs
-// ./opencascade/Intrv_Interval.hxx
-// ./opencascade/Intrv_Position.hxx
-// ./opencascade/Intrv_SequenceOfInterval.hxx
     preregister_template_NCollection_Sequence<Intrv_Interval>(m,"Intrv_SequenceOfInterval");  
-// ./opencascade/Intrv_Intervals.hxx
+
+// classes forward declarations only
+    py::class_<Intrv_Interval , shared_ptr<Intrv_Interval>  >(m,"Intrv_Interval",R"#(**-----------**** Other ***---* IsBefore ***----------* IsJustBefore ***---------------* IsOverlappingAtStart ***------------------------* IsJustEnclosingAtEnd ***-----------------------------------* IsEnclosing ***----* IsJustOverlappingAtStart ***-------------* IsSimilar ***------------------------* IsJustEnclosingAtStart ***-* IsInside ***------* IsJustOverlappingAtEnd ***-----------------* IsOverlappingAtEnd ***--------* IsJustAfter ***---* IsAfter)#");
+    py::class_<Intrv_Intervals , shared_ptr<Intrv_Intervals>  >(m,"Intrv_Intervals",R"#(The class Intervals is a sorted sequence of non overlapping Real Intervals.)#");
 
 };
 

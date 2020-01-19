@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -35,9 +38,10 @@ py::module m = static_cast<py::module>(main_module.attr("BRepProj"));
 // classes
 
 
-    static_cast<py::class_<BRepProj_Projection ,std::unique_ptr<BRepProj_Projection>  >>(m.attr("BRepProj_Projection"))
+    static_cast<py::class_<BRepProj_Projection , shared_ptr<BRepProj_Projection>  >>(m.attr("BRepProj_Projection"))
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const gp_Dir & >()  , py::arg("Wire"),  py::arg("Shape"),  py::arg("D") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const gp_Pnt & >()  , py::arg("Wire"),  py::arg("Shape"),  py::arg("P") )
+    // methods
         .def("IsDone",
              (Standard_Boolean (BRepProj_Projection::*)() const) static_cast<Standard_Boolean (BRepProj_Projection::*)() const>(&BRepProj_Projection::IsDone),
              R"#(returns False if the section failed)#" )
@@ -74,6 +78,11 @@ py::module m = static_cast<py::module>(main_module.attr("BRepProj"));
         .def("Current",
              (TopoDS_Wire (BRepProj_Projection::*)() const) static_cast<TopoDS_Wire (BRepProj_Projection::*)() const>(&BRepProj_Projection::Current),
              R"#(Returns the current result wire.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -82,7 +91,6 @@ py::module m = static_cast<py::module>(main_module.attr("BRepProj"));
 // operators
 
 // register typdefs
-// ./opencascade/BRepProj_Projection.hxx
 
 
 // exceptions

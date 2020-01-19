@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,9 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StdFail_NotDone.hxx>
-#include <Geom_Curve.hxx>
-#include <GeomLProp_CLProps.hxx>
 #include <LocalAnalysis_SurfaceContinuity.hxx>
 #include <LocalAnalysis_CurveContinuity.hxx>
 #include <LocalAnalysis_SurfaceContinuity.hxx>
@@ -21,6 +21,9 @@ namespace py = pybind11;
 #include <Geom_Surface.hxx>
 #include <Geom2d_Curve.hxx>
 #include <GeomLProp_SLProps.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom_Curve.hxx>
+#include <GeomLProp_CLProps.hxx>
 
 // module includes
 #include <LocalAnalysis.hxx>
@@ -47,9 +50,27 @@ py::module m = static_cast<py::module>(main_module.attr("LocalAnalysis"));
 
 // classes
 
+    register_default_constructor<LocalAnalysis , shared_ptr<LocalAnalysis>>(m,"LocalAnalysis");
 
-    static_cast<py::class_<LocalAnalysis_CurveContinuity ,std::unique_ptr<LocalAnalysis_CurveContinuity>  >>(m.attr("LocalAnalysis_CurveContinuity"))
+    static_cast<py::class_<LocalAnalysis , shared_ptr<LocalAnalysis>  >>(m.attr("LocalAnalysis"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Dump_s",
+                    (void (*)( const LocalAnalysis_SurfaceContinuity & ,  std::ostream &  ) ) static_cast<void (*)( const LocalAnalysis_SurfaceContinuity & ,  std::ostream &  ) >(&LocalAnalysis::Dump),
+                    R"#(This class compute s and gives tools to check the local continuity between two points situated on 2 curves))#"  , py::arg("surfconti"),  py::arg("o"))
+        .def_static("Dump_s",
+                    (void (*)( const LocalAnalysis_CurveContinuity & ,  std::ostream &  ) ) static_cast<void (*)( const LocalAnalysis_CurveContinuity & ,  std::ostream &  ) >(&LocalAnalysis::Dump),
+                    R"#(This fonction gives informations about a variable SurfaceContinuity)#"  , py::arg("curvconti"),  py::arg("o"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<LocalAnalysis_CurveContinuity , shared_ptr<LocalAnalysis_CurveContinuity>  >>(m.attr("LocalAnalysis_CurveContinuity"))
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const opencascade::handle<Geom_Curve> &,const Standard_Real,const GeomAbs_Shape,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Curv1"),  py::arg("u1"),  py::arg("Curv2"),  py::arg("u2"),  py::arg("Order"),  py::arg("EpsNul")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC0")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC1")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC2")=static_cast<const Standard_Real>(0.001),  py::arg("EpsG1")=static_cast<const Standard_Real>(0.001),  py::arg("EpsG2")=static_cast<const Standard_Real>(0.001),  py::arg("Percent")=static_cast<const Standard_Real>(0.01),  py::arg("Maxlen")=static_cast<const Standard_Real>(10000) )
+    // methods
         .def("IsDone",
              (Standard_Boolean (LocalAnalysis_CurveContinuity::*)() const) static_cast<Standard_Boolean (LocalAnalysis_CurveContinuity::*)() const>(&LocalAnalysis_CurveContinuity::IsDone),
              R"#(None)#" )
@@ -98,13 +119,19 @@ py::module m = static_cast<py::module>(main_module.attr("LocalAnalysis"));
         .def("IsG2",
              (Standard_Boolean (LocalAnalysis_CurveContinuity::*)() const) static_cast<Standard_Boolean (LocalAnalysis_CurveContinuity::*)() const>(&LocalAnalysis_CurveContinuity::IsG2),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<LocalAnalysis_SurfaceContinuity ,std::unique_ptr<LocalAnalysis_SurfaceContinuity>  >>(m.attr("LocalAnalysis_SurfaceContinuity"))
+    static_cast<py::class_<LocalAnalysis_SurfaceContinuity , shared_ptr<LocalAnalysis_SurfaceContinuity>  >>(m.attr("LocalAnalysis_SurfaceContinuity"))
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Surf1"),  py::arg("u1"),  py::arg("v1"),  py::arg("Surf2"),  py::arg("u2"),  py::arg("v2"),  py::arg("Order"),  py::arg("EpsNul")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC0")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC1")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC2")=static_cast<const Standard_Real>(0.001),  py::arg("EpsG1")=static_cast<const Standard_Real>(0.001),  py::arg("Percent")=static_cast<const Standard_Real>(0.01),  py::arg("Maxlen")=static_cast<const Standard_Real>(10000) )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> &,const GeomAbs_Shape,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("curv1"),  py::arg("curv2"),  py::arg("U"),  py::arg("Surf1"),  py::arg("Surf2"),  py::arg("Order"),  py::arg("EpsNul")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC0")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC1")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC2")=static_cast<const Standard_Real>(0.001),  py::arg("EpsG1")=static_cast<const Standard_Real>(0.001),  py::arg("Percent")=static_cast<const Standard_Real>(0.01),  py::arg("Maxlen")=static_cast<const Standard_Real>(10000) )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("EpsNul")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC0")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC1")=static_cast<const Standard_Real>(0.001),  py::arg("EpsC2")=static_cast<const Standard_Real>(0.001),  py::arg("EpsG1")=static_cast<const Standard_Real>(0.001),  py::arg("Percent")=static_cast<const Standard_Real>(0.01),  py::arg("Maxlen")=static_cast<const Standard_Real>(10000) )
+    // methods
         .def("ComputeAnalysis",
              (void (LocalAnalysis_SurfaceContinuity::*)( GeomLProp_SLProps & ,  GeomLProp_SLProps & ,  const GeomAbs_Shape  ) ) static_cast<void (LocalAnalysis_SurfaceContinuity::*)( GeomLProp_SLProps & ,  GeomLProp_SLProps & ,  const GeomAbs_Shape  ) >(&LocalAnalysis_SurfaceContinuity::ComputeAnalysis),
              R"#(None)#"  , py::arg("Surf1"),  py::arg("Surf2"),  py::arg("Order"))
@@ -165,32 +192,22 @@ py::module m = static_cast<py::module>(main_module.attr("LocalAnalysis"));
         .def("IsG2",
              (Standard_Boolean (LocalAnalysis_SurfaceContinuity::*)() const) static_cast<Standard_Boolean (LocalAnalysis_SurfaceContinuity::*)() const>(&LocalAnalysis_SurfaceContinuity::IsG2),
              R"#(None)#" )
-;
-
-    register_default_constructor<LocalAnalysis ,std::unique_ptr<LocalAnalysis>>(m,"LocalAnalysis");
-
-    static_cast<py::class_<LocalAnalysis ,std::unique_ptr<LocalAnalysis>  >>(m.attr("LocalAnalysis"))
-        .def_static("Dump_s",
-                    (void (*)( const LocalAnalysis_SurfaceContinuity & ,  std::ostream &  ) ) static_cast<void (*)( const LocalAnalysis_SurfaceContinuity & ,  std::ostream &  ) >(&LocalAnalysis::Dump),
-                    R"#(This class compute s and gives tools to check the local continuity between two points situated on 2 curves))#"  , py::arg("surfconti"),  py::arg("o"))
-        .def_static("Dump_s",
-                    (void (*)( const LocalAnalysis_CurveContinuity & ,  std::ostream &  ) ) static_cast<void (*)( const LocalAnalysis_CurveContinuity & ,  std::ostream &  ) >(&LocalAnalysis::Dump),
-                    R"#(This fonction gives informations about a variable SurfaceContinuity)#"  , py::arg("curvconti"),  py::arg("o"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/LocalAnalysis_CurveContinuity.hxx
+// ./opencascade/LocalAnalysis_StatusErrorType.hxx
 // ./opencascade/LocalAnalysis.hxx
 // ./opencascade/LocalAnalysis_SurfaceContinuity.hxx
-// ./opencascade/LocalAnalysis_StatusErrorType.hxx
+// ./opencascade/LocalAnalysis_CurveContinuity.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/LocalAnalysis_CurveContinuity.hxx
-// ./opencascade/LocalAnalysis.hxx
-// ./opencascade/LocalAnalysis_SurfaceContinuity.hxx
-// ./opencascade/LocalAnalysis_StatusErrorType.hxx
 
 
 // exceptions

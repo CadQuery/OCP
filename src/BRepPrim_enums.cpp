@@ -12,15 +12,15 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <gp_Pln.hxx>
+#include <gp_Lin.hxx>
+#include <BRep_Builder.hxx>
+#include <Geom_Surface.hxx>
+#include <gp_Pln.hxx>
 #include <TopoDS_Edge.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Circ.hxx>
 #include <gp_Lin2d.hxx>
 #include <gp_Circ2d.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Lin.hxx>
-#include <BRep_Builder.hxx>
-#include <Geom_Surface.hxx>
 
 // module includes
 #include <BRepPrim_Builder.hxx>
@@ -79,30 +79,19 @@ py::module m = main_module.def_submodule("BRepPrim", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<BRepPrim_OneAxis ,std::unique_ptr<BRepPrim_OneAxis> ,Py_BRepPrim_OneAxis >(m,"BRepPrim_OneAxis",R"#(Algorithm to build primitives with one axis of revolution.)#");
-    py::class_<BRepPrim_GWedge ,std::unique_ptr<BRepPrim_GWedge>  >(m,"BRepPrim_GWedge",R"#(A wedge is defined by :)#");
-    py::class_<BRepPrim_Revolution ,std::unique_ptr<BRepPrim_Revolution>  , BRepPrim_OneAxis >(m,"BRepPrim_Revolution",R"#(Implement the OneAxis algoritm for a revolution surface.)#");
-    py::class_<BRepPrim_Cylinder ,std::unique_ptr<BRepPrim_Cylinder>  , BRepPrim_Revolution >(m,"BRepPrim_Cylinder",R"#(Cylinder primitive.)#");
-    py::class_<BRepPrim_Torus ,std::unique_ptr<BRepPrim_Torus>  , BRepPrim_Revolution >(m,"BRepPrim_Torus",R"#(Implements the torus primitive)#");
-    py::class_<BRepPrim_Wedge ,std::unique_ptr<BRepPrim_Wedge>  , BRepPrim_GWedge >(m,"BRepPrim_Wedge",R"#(Provides constructors without Builders.)#");
-    py::class_<BRepPrim_Builder ,std::unique_ptr<BRepPrim_Builder>  >(m,"BRepPrim_Builder",R"#(implements the abstract Builder with the BRep Builder)#");
-    py::class_<BRepPrim_Cone ,std::unique_ptr<BRepPrim_Cone>  , BRepPrim_Revolution >(m,"BRepPrim_Cone",R"#(Implement the cone primitive.)#");
-    py::class_<BRepPrim_Sphere ,std::unique_ptr<BRepPrim_Sphere>  , BRepPrim_Revolution >(m,"BRepPrim_Sphere",R"#(Implements the sphere primitive)#");
-    py::class_<BRepPrim_FaceBuilder ,std::unique_ptr<BRepPrim_FaceBuilder>  >(m,"BRepPrim_FaceBuilder",R"#(The FaceBuilder is an algorithm to build a BRep Face from a Geom Surface.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepPrim_Revolution.hxx
-// ./opencascade/BRepPrim_Builder.hxx
-// ./opencascade/BRepPrim_Cylinder.hxx
-// ./opencascade/BRepPrim_GWedge.hxx
-// ./opencascade/BRepPrim_Sphere.hxx
-// ./opencascade/BRepPrim_OneAxis.hxx
-// ./opencascade/BRepPrim_Torus.hxx
-// ./opencascade/BRepPrim_Direction.hxx
-// ./opencascade/BRepPrim_Cone.hxx
-// ./opencascade/BRepPrim_Wedge.hxx
-// ./opencascade/BRepPrim_FaceBuilder.hxx
+
+// classes forward declarations only
+    py::class_<BRepPrim_Builder , shared_ptr<BRepPrim_Builder>  >(m,"BRepPrim_Builder",R"#(implements the abstract Builder with the BRep Builder)#");
+    py::class_<BRepPrim_FaceBuilder , shared_ptr<BRepPrim_FaceBuilder>  >(m,"BRepPrim_FaceBuilder",R"#(The FaceBuilder is an algorithm to build a BRep Face from a Geom Surface.)#");
+    py::class_<BRepPrim_GWedge , shared_ptr<BRepPrim_GWedge>  >(m,"BRepPrim_GWedge",R"#(A wedge is defined by :)#");
+    py::class_<BRepPrim_OneAxis , shared_ptr<BRepPrim_OneAxis> ,Py_BRepPrim_OneAxis >(m,"BRepPrim_OneAxis",R"#(Algorithm to build primitives with one axis of revolution.)#");
+    py::class_<BRepPrim_Revolution , shared_ptr<BRepPrim_Revolution>  , BRepPrim_OneAxis >(m,"BRepPrim_Revolution",R"#(Implement the OneAxis algoritm for a revolution surface.)#");
+    py::class_<BRepPrim_Wedge , shared_ptr<BRepPrim_Wedge>  , BRepPrim_GWedge >(m,"BRepPrim_Wedge",R"#(Provides constructors without Builders.)#");
+    py::class_<BRepPrim_Cone , shared_ptr<BRepPrim_Cone>  , BRepPrim_Revolution >(m,"BRepPrim_Cone",R"#(Implement the cone primitive.)#");
+    py::class_<BRepPrim_Cylinder , shared_ptr<BRepPrim_Cylinder>  , BRepPrim_Revolution >(m,"BRepPrim_Cylinder",R"#(Cylinder primitive.)#");
+    py::class_<BRepPrim_Sphere , shared_ptr<BRepPrim_Sphere>  , BRepPrim_Revolution >(m,"BRepPrim_Sphere",R"#(Implements the sphere primitive)#");
+    py::class_<BRepPrim_Torus , shared_ptr<BRepPrim_Torus>  , BRepPrim_Revolution >(m,"BRepPrim_Torus",R"#(Implements the torus primitive)#");
 
 };
 

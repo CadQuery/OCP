@@ -43,11 +43,10 @@ py::module m = main_module.def_submodule("UTL", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<UTL ,std::unique_ptr<UTL>  >(m,"UTL",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/UTL.hxx
+
+// classes forward declarations only
+    py::class_<UTL , shared_ptr<UTL>  >(m,"UTL",R"#(None)#");
 
 };
 

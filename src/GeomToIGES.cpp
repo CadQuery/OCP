@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -13,10 +16,6 @@ namespace py = pybind11;
 #include <IGESGeom_Point.hxx>
 #include <Geom_Point.hxx>
 #include <Geom_CartesianPoint.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <Geom_Vector.hxx>
-#include <Geom_VectorWithMagnitude.hxx>
-#include <Geom_Direction.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Geom_Surface.hxx>
 #include <Geom_BoundedSurface.hxx>
@@ -33,6 +32,10 @@ namespace py = pybind11;
 #include <Geom_SurfaceOfLinearExtrusion.hxx>
 #include <Geom_SurfaceOfRevolution.hxx>
 #include <Geom_OffsetSurface.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <Geom_Vector.hxx>
+#include <Geom_VectorWithMagnitude.hxx>
+#include <Geom_Direction.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom_BoundedCurve.hxx>
@@ -75,9 +78,10 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
 // classes
 
 
-    static_cast<py::class_<GeomToIGES_GeomEntity ,std::unique_ptr<GeomToIGES_GeomEntity>  >>(m.attr("GeomToIGES_GeomEntity"))
+    static_cast<py::class_<GeomToIGES_GeomEntity , shared_ptr<GeomToIGES_GeomEntity>  >>(m.attr("GeomToIGES_GeomEntity"))
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // methods
         .def("SetModel",
              (void (GeomToIGES_GeomEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) ) static_cast<void (GeomToIGES_GeomEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) >(&GeomToIGES_GeomEntity::SetModel),
              R"#(Set the value of "TheModel")#"  , py::arg("model"))
@@ -90,24 +94,84 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
         .def("GetUnit",
              (Standard_Real (GeomToIGES_GeomEntity::*)() const) static_cast<Standard_Real (GeomToIGES_GeomEntity::*)() const>(&GeomToIGES_GeomEntity::GetUnit),
              R"#(Returns the value of the UnitFlag of the header of the model in meters.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<GeomToIGES_GeomPoint ,std::unique_ptr<GeomToIGES_GeomPoint>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomPoint"))
+    static_cast<py::class_<GeomToIGES_GeomCurve , shared_ptr<GeomToIGES_GeomCurve>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomCurve"))
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // methods
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(Transfert a GeometryEntity which answer True to the member : BRepToIGES::IsGeomCurve(Geometry). If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BoundedCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BoundedCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BezierCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BezierCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_TrimmedCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_TrimmedCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Conic> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Conic> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Circle> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Circle> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Ellipse> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Ellipse> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Hyperbola> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Hyperbola> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Line> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Line> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Parabola> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Parabola> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+        .def("TransferCurve",
+             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_OffsetCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_OffsetCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
+             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<GeomToIGES_GeomPoint , shared_ptr<GeomToIGES_GeomPoint>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomPoint"))
+        .def(py::init<  >()  )
+        .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // methods
         .def("TransferPoint",
              (opencascade::handle<IGESGeom_Point> (GeomToIGES_GeomPoint::*)( const opencascade::handle<Geom_Point> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (GeomToIGES_GeomPoint::*)( const opencascade::handle<Geom_Point> &  ) >(&GeomToIGES_GeomPoint::TransferPoint),
              R"#(Transfert a Point from Geom to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
         .def("TransferPoint",
              (opencascade::handle<IGESGeom_Point> (GeomToIGES_GeomPoint::*)( const opencascade::handle<Geom_CartesianPoint> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (GeomToIGES_GeomPoint::*)( const opencascade::handle<Geom_CartesianPoint> &  ) >(&GeomToIGES_GeomPoint::TransferPoint),
              R"#(Transfert a CartesianPoint from Geom to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<GeomToIGES_GeomSurface ,std::unique_ptr<GeomToIGES_GeomSurface>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomSurface"))
+    static_cast<py::class_<GeomToIGES_GeomSurface , shared_ptr<GeomToIGES_GeomSurface>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomSurface"))
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // methods
         .def("TransferSurface",
              (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomSurface::TransferSurface),
              R"#(Transfert a GeometryEntity which answer True to the member : BRepToIGES::IsGeomSurface(Geometry). If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"),  py::arg("Vdeb"),  py::arg("Vfin"))
@@ -183,12 +247,18 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
         .def("SetAnalyticMode",
              (void (GeomToIGES_GeomSurface::*)( const Standard_Boolean  ) ) static_cast<void (GeomToIGES_GeomSurface::*)( const Standard_Boolean  ) >(&GeomToIGES_GeomSurface::SetAnalyticMode),
              R"#(Setst flag for writing elementary surfaces)#"  , py::arg("flag"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<GeomToIGES_GeomVector ,std::unique_ptr<GeomToIGES_GeomVector>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomVector"))
+    static_cast<py::class_<GeomToIGES_GeomVector , shared_ptr<GeomToIGES_GeomVector>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomVector"))
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // methods
         .def("TransferVector",
              (opencascade::handle<IGESGeom_Direction> (GeomToIGES_GeomVector::*)( const opencascade::handle<Geom_Vector> &  ) ) static_cast<opencascade::handle<IGESGeom_Direction> (GeomToIGES_GeomVector::*)( const opencascade::handle<Geom_Vector> &  ) >(&GeomToIGES_GeomVector::TransferVector),
              R"#(Transfert a GeometryEntity which answer True to the member : BRepToIGES::IsGeomVector(Geometry). If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
@@ -198,65 +268,23 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
         .def("TransferVector",
              (opencascade::handle<IGESGeom_Direction> (GeomToIGES_GeomVector::*)( const opencascade::handle<Geom_Direction> &  ) ) static_cast<opencascade::handle<IGESGeom_Direction> (GeomToIGES_GeomVector::*)( const opencascade::handle<Geom_Direction> &  ) >(&GeomToIGES_GeomVector::TransferVector),
              R"#(None)#"  , py::arg("start"))
-;
-
-
-    static_cast<py::class_<GeomToIGES_GeomCurve ,std::unique_ptr<GeomToIGES_GeomCurve>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomCurve"))
-        .def(py::init<  >()  )
-        .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(Transfert a GeometryEntity which answer True to the member : BRepToIGES::IsGeomCurve(Geometry). If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BoundedCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BoundedCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BezierCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_BezierCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_TrimmedCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_TrimmedCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Conic> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Conic> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Circle> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Circle> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Ellipse> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Ellipse> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Hyperbola> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Hyperbola> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Line> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Line> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Parabola> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Parabola> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-        .def("TransferCurve",
-             (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_OffsetCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_OffsetCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
-             R"#(None)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/GeomToIGES_GeomPoint.hxx
-// ./opencascade/GeomToIGES_GeomVector.hxx
 // ./opencascade/GeomToIGES_GeomSurface.hxx
+// ./opencascade/GeomToIGES_GeomVector.hxx
 // ./opencascade/GeomToIGES_GeomCurve.hxx
 // ./opencascade/GeomToIGES_GeomEntity.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/GeomToIGES_GeomPoint.hxx
-// ./opencascade/GeomToIGES_GeomVector.hxx
-// ./opencascade/GeomToIGES_GeomSurface.hxx
-// ./opencascade/GeomToIGES_GeomCurve.hxx
-// ./opencascade/GeomToIGES_GeomEntity.hxx
 
 
 // exceptions

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -34,9 +37,12 @@ py::module m = static_cast<py::module>(main_module.attr("ElSLib"));
 
 // classes
 
-    register_default_constructor<ElSLib ,std::unique_ptr<ElSLib>>(m,"ElSLib");
+    register_default_constructor<ElSLib , shared_ptr<ElSLib>>(m,"ElSLib");
 
-    static_cast<py::class_<ElSLib ,std::unique_ptr<ElSLib>  >>(m.attr("ElSLib"))
+    static_cast<py::class_<ElSLib , shared_ptr<ElSLib>  >>(m.attr("ElSLib"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Value_s",
                     (gp_Pnt (*)( const Standard_Real ,  const Standard_Real ,  const gp_Pln &  ) ) static_cast<gp_Pnt (*)( const Standard_Real ,  const Standard_Real ,  const gp_Pln &  ) >(&ElSLib::Value),
                     R"#(For elementary surfaces from the gp package (planes, cones, cylinders, spheres and tori), computes the point of parameters (U, V).)#"  , py::arg("U"),  py::arg("V"),  py::arg("Pl"))
@@ -205,36 +211,6 @@ py::module m = static_cast<py::module>(main_module.attr("ElSLib"));
         .def_static("TorusD3_s",
                     (void (*)( const Standard_Real ,  const Standard_Real ,  const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) ) static_cast<void (*)( const Standard_Real ,  const Standard_Real ,  const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) >(&ElSLib::TorusD3),
                     R"#(The following functions compute the parametric values corresponding to a given point on a elementary surface. The point should be on the surface.)#"  , py::arg("U"),  py::arg("V"),  py::arg("Pos"),  py::arg("MajorRadius"),  py::arg("MinorRadius"),  py::arg("P"),  py::arg("Vu"),  py::arg("Vv"),  py::arg("Vuu"),  py::arg("Vvv"),  py::arg("Vuv"),  py::arg("Vuuu"),  py::arg("Vvvv"),  py::arg("Vuuv"),  py::arg("Vuvv"))
-        .def_static("Parameters_s",
-                    (void (*)( const gp_Pln & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Pln & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::Parameters),
-                    R"#(parametrization P (U, V) = Pl.Location() + U * Pl.XDirection() + V * Pl.YDirection())#"  , py::arg("Pl"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("Parameters_s",
-                    (void (*)( const gp_Cylinder & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Cylinder & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::Parameters),
-                    R"#(parametrization P (U, V) = Location + V * ZDirection + Radius * (Cos(U) * XDirection + Sin (U) * YDirection))#"  , py::arg("C"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("Parameters_s",
-                    (void (*)( const gp_Cone & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Cone & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::Parameters),
-                    R"#(parametrization P (U, V) = Location + V * ZDirection + (Radius + V * Tan (SemiAngle)) * (Cos(U) * XDirection + Sin(U) * YDirection))#"  , py::arg("C"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("Parameters_s",
-                    (void (*)( const gp_Sphere & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Sphere & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::Parameters),
-                    R"#(parametrization P (U, V) = Location + Radius * Cos (V) * (Cos (U) * XDirection + Sin (U) * YDirection) + Radius * Sin (V) * ZDirection)#"  , py::arg("S"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("Parameters_s",
-                    (void (*)( const gp_Torus & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Torus & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::Parameters),
-                    R"#(parametrization P (U, V) = Location + (MajorRadius + MinorRadius * Cos(U)) * (Cos(V) * XDirection - Sin(V) * YDirection) + MinorRadius * Sin(U) * ZDirection)#"  , py::arg("T"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("PlaneParameters_s",
-                    (void (*)( const gp_Ax3 & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Ax3 & ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::PlaneParameters),
-                    R"#(parametrization P (U, V) = Pl.Location() + U * Pl.XDirection() + V * Pl.YDirection())#"  , py::arg("Pos"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("CylinderParameters_s",
-                    (void (*)( const gp_Ax3 & ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Ax3 & ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::CylinderParameters),
-                    R"#(parametrization P (U, V) = Location + V * ZDirection + Radius * (Cos(U) * XDirection + Sin (U) * YDirection))#"  , py::arg("Pos"),  py::arg("Radius"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("ConeParameters_s",
-                    (void (*)( const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::ConeParameters),
-                    R"#(parametrization P (U, V) = Location + V * ZDirection + (Radius + V * Tan (SemiAngle)) * (Cos(U) * XDirection + Sin(U) * YDirection))#"  , py::arg("Pos"),  py::arg("Radius"),  py::arg("SAngle"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("SphereParameters_s",
-                    (void (*)( const gp_Ax3 & ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Ax3 & ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::SphereParameters),
-                    R"#(parametrization P (U, V) = Location + Radius * Cos (V) * (Cos (U) * XDirection + Sin (U) * YDirection) + Radius * Sin (V) * ZDirection)#"  , py::arg("Pos"),  py::arg("Radius"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
-        .def_static("TorusParameters_s",
-                    (void (*)( const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt & ,  Standard_Real & ,  Standard_Real &  ) >(&ElSLib::TorusParameters),
-                    R"#(parametrization P (U, V) = Location + (MajorRadius + MinorRadius * Cos(U)) * (Cos(V) * XDirection - Sin(V) * YDirection) + MinorRadius * Sin(U) * ZDirection)#"  , py::arg("Pos"),  py::arg("MajorRadius"),  py::arg("MinorRadius"),  py::arg("P"),  py::arg("U"),  py::arg("V"))
         .def_static("PlaneUIso_s",
                     (gp_Lin (*)( const gp_Ax3 & ,  const Standard_Real  ) ) static_cast<gp_Lin (*)( const gp_Ax3 & ,  const Standard_Real  ) >(&ElSLib::PlaneUIso),
                     R"#(compute the U Isoparametric gp_Lin of the plane.)#"  , py::arg("Pos"),  py::arg("U"))
@@ -265,6 +241,39 @@ py::module m = static_cast<py::module>(main_module.attr("ElSLib"));
         .def_static("TorusVIso_s",
                     (gp_Circ (*)( const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<gp_Circ (*)( const gp_Ax3 & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&ElSLib::TorusVIso),
                     R"#(compute the V Isoparametric gp_Circ of the torus.)#"  , py::arg("Pos"),  py::arg("MajorRadius"),  py::arg("MinorRadius"),  py::arg("V"))
+    // static methods using call by reference i.s.o. return
+        .def_static("Parameters_s",
+                    []( const gp_Pln & Pl,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::Parameters(Pl,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Pl.Location() + U * Pl.XDirection() + V * Pl.YDirection())#"  , py::arg("Pl"),  py::arg("P"))
+        .def_static("Parameters_s",
+                    []( const gp_Cylinder & C,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::Parameters(C,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + V * ZDirection + Radius * (Cos(U) * XDirection + Sin (U) * YDirection))#"  , py::arg("C"),  py::arg("P"))
+        .def_static("Parameters_s",
+                    []( const gp_Cone & C,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::Parameters(C,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + V * ZDirection + (Radius + V * Tan (SemiAngle)) * (Cos(U) * XDirection + Sin(U) * YDirection))#"  , py::arg("C"),  py::arg("P"))
+        .def_static("Parameters_s",
+                    []( const gp_Sphere & S,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::Parameters(S,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + Radius * Cos (V) * (Cos (U) * XDirection + Sin (U) * YDirection) + Radius * Sin (V) * ZDirection)#"  , py::arg("S"),  py::arg("P"))
+        .def_static("Parameters_s",
+                    []( const gp_Torus & T,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::Parameters(T,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + (MajorRadius + MinorRadius * Cos(U)) * (Cos(V) * XDirection - Sin(V) * YDirection) + MinorRadius * Sin(U) * ZDirection)#"  , py::arg("T"),  py::arg("P"))
+        .def_static("PlaneParameters_s",
+                    []( const gp_Ax3 & Pos,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::PlaneParameters(Pos,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Pl.Location() + U * Pl.XDirection() + V * Pl.YDirection())#"  , py::arg("Pos"),  py::arg("P"))
+        .def_static("CylinderParameters_s",
+                    []( const gp_Ax3 & Pos,const Standard_Real Radius,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::CylinderParameters(Pos,Radius,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + V * ZDirection + Radius * (Cos(U) * XDirection + Sin (U) * YDirection))#"  , py::arg("Pos"),  py::arg("Radius"),  py::arg("P"))
+        .def_static("ConeParameters_s",
+                    []( const gp_Ax3 & Pos,const Standard_Real Radius,const Standard_Real SAngle,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::ConeParameters(Pos,Radius,SAngle,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + V * ZDirection + (Radius + V * Tan (SemiAngle)) * (Cos(U) * XDirection + Sin(U) * YDirection))#"  , py::arg("Pos"),  py::arg("Radius"),  py::arg("SAngle"),  py::arg("P"))
+        .def_static("SphereParameters_s",
+                    []( const gp_Ax3 & Pos,const Standard_Real Radius,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::SphereParameters(Pos,Radius,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + Radius * Cos (V) * (Cos (U) * XDirection + Sin (U) * YDirection) + Radius * Sin (V) * ZDirection)#"  , py::arg("Pos"),  py::arg("Radius"),  py::arg("P"))
+        .def_static("TorusParameters_s",
+                    []( const gp_Ax3 & Pos,const Standard_Real MajorRadius,const Standard_Real MinorRadius,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::TorusParameters(Pos,MajorRadius,MinorRadius,P,U,V); return std::make_tuple(U,V); },
+                    R"#(parametrization P (U, V) = Location + (MajorRadius + MinorRadius * Cos(U)) * (Cos(V) * XDirection - Sin(V) * YDirection) + MinorRadius * Sin(U) * ZDirection)#"  , py::arg("Pos"),  py::arg("MajorRadius"),  py::arg("MinorRadius"),  py::arg("P"))
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -273,7 +282,6 @@ py::module m = static_cast<py::module>(main_module.attr("ElSLib"));
 // operators
 
 // register typdefs
-// ./opencascade/ElSLib.hxx
 
 
 // exceptions

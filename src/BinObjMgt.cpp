@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -47,8 +50,9 @@ py::module m = static_cast<py::module>(main_module.attr("BinObjMgt"));
 // classes
 
 
-    static_cast<py::class_<BinObjMgt_Persistent ,std::unique_ptr<BinObjMgt_Persistent>  >>(m.attr("BinObjMgt_Persistent"))
+    static_cast<py::class_<BinObjMgt_Persistent , shared_ptr<BinObjMgt_Persistent>  >>(m.attr("BinObjMgt_Persistent"))
         .def(py::init<  >()  )
+    // methods
         .def("PutCharacter",
              (BinObjMgt_Persistent & (BinObjMgt_Persistent::*)( const Standard_Character  ) ) static_cast<BinObjMgt_Persistent & (BinObjMgt_Persistent::*)( const Standard_Character  ) >(&BinObjMgt_Persistent::PutCharacter),
              R"#(None)#"  , py::arg("theValue"))
@@ -232,31 +236,47 @@ py::module m = static_cast<py::module>(main_module.attr("BinObjMgt"));
         .def("GetBoolean",
              (const BinObjMgt_Persistent & (BinObjMgt_Persistent::*)( Standard_Boolean &  ) const) static_cast<const BinObjMgt_Persistent & (BinObjMgt_Persistent::*)( Standard_Boolean &  ) const>(&BinObjMgt_Persistent::GetBoolean),
              R"#(None)#"  , py::arg("theValue"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BinObjMgt_RRelocationTable , shared_ptr<BinObjMgt_RRelocationTable>>(m,"BinObjMgt_RRelocationTable");
+
+    static_cast<py::class_<BinObjMgt_RRelocationTable , shared_ptr<BinObjMgt_RRelocationTable>  >>(m.attr("BinObjMgt_RRelocationTable"))
+    // methods
+        .def("GetHeaderData",
+             (const opencascade::handle<Storage_HeaderData> & (BinObjMgt_RRelocationTable::*)() const) static_cast<const opencascade::handle<Storage_HeaderData> & (BinObjMgt_RRelocationTable::*)() const>(&BinObjMgt_RRelocationTable::GetHeaderData),
+             R"#(Returns a handle to the header data of the file that is begin read)#" )
+        .def("SetHeaderData",
+             (void (BinObjMgt_RRelocationTable::*)( const opencascade::handle<Storage_HeaderData> &  ) ) static_cast<void (BinObjMgt_RRelocationTable::*)( const opencascade::handle<Storage_HeaderData> &  ) >(&BinObjMgt_RRelocationTable::SetHeaderData),
+             R"#(Sets the storage header data.)#"  , py::arg("theHeaderData"))
+        .def("Clear",
+             (void (BinObjMgt_RRelocationTable::*)( const Standard_Boolean  ) ) static_cast<void (BinObjMgt_RRelocationTable::*)( const Standard_Boolean  ) >(&BinObjMgt_RRelocationTable::Clear),
+             R"#(None)#"  , py::arg("doReleaseMemory")=static_cast<const Standard_Boolean>(Standard_True))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BinObjMgt_RRelocationTable.hxx
 // ./opencascade/BinObjMgt_Persistent.hxx
-// ./opencascade/BinObjMgt_PExtChar.hxx
-// ./opencascade/BinObjMgt_SRelocationTable.hxx
-// ./opencascade/BinObjMgt_PReal.hxx
 // ./opencascade/BinObjMgt_PShortReal.hxx
 // ./opencascade/BinObjMgt_PChar.hxx
-// ./opencascade/BinObjMgt_PByte.hxx
+// ./opencascade/BinObjMgt_PReal.hxx
+// ./opencascade/BinObjMgt_RRelocationTable.hxx
 // ./opencascade/BinObjMgt_PInteger.hxx
+// ./opencascade/BinObjMgt_PByte.hxx
+// ./opencascade/BinObjMgt_SRelocationTable.hxx
+// ./opencascade/BinObjMgt_PExtChar.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BinObjMgt_RRelocationTable.hxx
-// ./opencascade/BinObjMgt_Persistent.hxx
-// ./opencascade/BinObjMgt_PExtChar.hxx
-// ./opencascade/BinObjMgt_SRelocationTable.hxx
-// ./opencascade/BinObjMgt_PReal.hxx
-// ./opencascade/BinObjMgt_PShortReal.hxx
-// ./opencascade/BinObjMgt_PChar.hxx
-// ./opencascade/BinObjMgt_PByte.hxx
-// ./opencascade/BinObjMgt_PInteger.hxx
 
 
 // exceptions

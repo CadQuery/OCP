@@ -12,13 +12,13 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_ErrorHandler.hxx>
+#include <Standard_Persistent.hxx>
+#include <Standard_Failure.hxx>
+#include <Standard_Type.hxx>
+#include <Standard_ErrorHandler.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Standard_Failure.hxx>
-#include <Standard_ErrorHandler.hxx>
 #include <Standard_Persistent.hxx>
-#include <Standard_Failure.hxx>
-#include <Standard_Persistent.hxx>
-#include <Standard_Type.hxx>
 
 // module includes
 #include <Standard.hxx>
@@ -137,97 +137,22 @@ py::module m = main_module.def_submodule("Standard", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<Standard_Transient ,opencascade::handle<Standard_Transient>  >(m,"Standard_Transient",R"#(Abstract class which forms the root of the entire Transient class hierarchy.)#");
-    py::class_<Standard_MMgrRoot ,std::unique_ptr<Standard_MMgrRoot> ,Py_Standard_MMgrRoot >(m,"Standard_MMgrRoot",R"#(Root class for Open CASCADE mmemory managers. Defines only abstract interface functions.)#");
-    py::class_<Standard_MMgrOpt ,std::unique_ptr<Standard_MMgrOpt>  , Standard_MMgrRoot >(m,"Standard_MMgrOpt",R"#(Open CASCADE memory manager optimized for speed.)#");
-    py::class_<Standard_MMgrTBBalloc ,std::unique_ptr<Standard_MMgrTBBalloc>  , Standard_MMgrRoot >(m,"Standard_MMgrTBBalloc",R"#(Implementation of OCC memory manager which uses Intel TBB scalable allocator.)#");
-    py::class_<Standard_Persistent ,opencascade::handle<Standard_Persistent>  , Standard_Transient >(m,"Standard_Persistent",R"#(Root of "persistent" classes, a legacy support of object oriented databases, now outdated.)#");
-    py::class_<Standard_CLocaleSentry ,std::unique_ptr<Standard_CLocaleSentry>  >(m,"Standard_CLocaleSentry",R"#(This class intended to temporary switch C locale and logically equivalent to setlocale(LC_ALL, "C"). It is intended to format text regardless of user locale settings (for import/export functionality). Thus following calls to sprintf, atoi and other functions will use "C" locale. Destructor of this class will return original locale.)#");
-    py::class_<Standard_ArrayStreamBuffer ,std::unique_ptr<Standard_ArrayStreamBuffer>  >(m,"Standard_ArrayStreamBuffer",R"#(Custom buffer object implementing STL interface std::streambuf for streamed reading from allocated memory block. Implements minimal sub-set of methods for passing buffer to std::istream, including seek support.)#");
-    py::class_<Standard_MMgrRaw ,std::unique_ptr<Standard_MMgrRaw>  , Standard_MMgrRoot >(m,"Standard_MMgrRaw",R"#(Implementation of raw OCC memory manager which uses standard C functions: malloc (or calloc), free and realloc without any optimization)#");
-    py::class_<Standard ,std::unique_ptr<Standard>  >(m,"Standard",R"#(The package Standard provides global memory allocator and other basic services used by other OCCT components.)#");
-    py::class_<Standard_Mutex ,std::unique_ptr<Standard_Mutex>  >(m,"Standard_Mutex",R"#(Mutex: a class to synchronize access to shared data.)#");
-    py::class_<Standard_GUID ,std::unique_ptr<Standard_GUID>  >(m,"Standard_GUID",R"#(None)#");
-    py::class_<Standard_Type ,opencascade::handle<Standard_Type>  , Standard_Transient >(m,"Standard_Type",R"#(This class provides legacy interface (type descriptor) to run-time type information (RTTI) for OCCT classes inheriting from Standard_Transient.This class provides legacy interface (type descriptor) to run-time type information (RTTI) for OCCT classes inheriting from Standard_Transient.)#");
-    py::class_<Standard_ErrorHandler ,std::unique_ptr<Standard_ErrorHandler>  >(m,"Standard_ErrorHandler",R"#(Class implementing mechanics of conversion of signals to exceptions.)#");
-
 // pre-register typdefs
-// ./opencascade/Standard_PrimitiveTypes.hxx
-// ./opencascade/Standard_DimensionMismatch.hxx
-// ./opencascade/Standard_UUID.hxx
-// ./opencascade/Standard_PErrorHandler.hxx
-// ./opencascade/Standard_Size.hxx
-// ./opencascade/Standard_ImmutableObject.hxx
-// ./opencascade/Standard_MMgrOpt.hxx
-// ./opencascade/Standard_DefineException.hxx
-// ./opencascade/Standard_OStream.hxx
-// ./opencascade/Standard_Atomic.hxx
-// ./opencascade/Standard_Byte.hxx
-// ./opencascade/Standard_Integer.hxx
-// ./opencascade/Standard_ExtString.hxx
-// ./opencascade/Standard_CString.hxx
-// ./opencascade/Standard_Overflow.hxx
-// ./opencascade/Standard_Character.hxx
-// ./opencascade/Standard_LicenseNotFound.hxx
-// ./opencascade/Standard_AbortiveTransaction.hxx
-// ./opencascade/Standard_JmpBuf.hxx
-// ./opencascade/Standard_Assert.hxx
-// ./opencascade/Standard_PCharacter.hxx
-// ./opencascade/Standard_NullObject.hxx
-// ./opencascade/Standard_MultiplyDefined.hxx
-// ./opencascade/Standard_MMgrTBBalloc.hxx
-// ./opencascade/Standard_NotImplemented.hxx
-// ./opencascade/Standard_Persistent.hxx
-// ./opencascade/Standard_Type.hxx
-// ./opencascade/Standard_NumericError.hxx
-// ./opencascade/Standard_CLocaleSentry.hxx
-// ./opencascade/Standard_ThreadId.hxx
-// ./opencascade/Standard_Failure.hxx
-// ./opencascade/Standard_OutOfRange.hxx
-// ./opencascade/Standard_NoMoreObject.hxx
-// ./opencascade/Standard_Version.hxx
-// ./opencascade/Standard_DivideByZero.hxx
-// ./opencascade/Standard_IStream.hxx
-// ./opencascade/Standard_NullValue.hxx
-// ./opencascade/Standard_Real.hxx
-// ./opencascade/Standard_ArrayStreamBuffer.hxx
-// ./opencascade/Standard_NoSuchObject.hxx
-// ./opencascade/Standard_Underflow.hxx
-// ./opencascade/Standard_ConstructionError.hxx
-// ./opencascade/Standard_WarningsDisable.hxx
-// ./opencascade/Standard_Time.hxx
-// ./opencascade/Standard_RangeError.hxx
-// ./opencascade/Standard_ShortReal.hxx
-// ./opencascade/Standard_Stream.hxx
-// ./opencascade/Standard_DomainError.hxx
-// ./opencascade/Standard_MMgrRoot.hxx
-// ./opencascade/Standard_Address.hxx
-// ./opencascade/Standard_MMgrRaw.hxx
-// ./opencascade/Standard_ErrorHandler.hxx
-// ./opencascade/Standard_math.hxx
-// ./opencascade/Standard_NegativeValue.hxx
-// ./opencascade/Standard_PExtCharacter.hxx
-// ./opencascade/Standard.hxx
-// ./opencascade/Standard_TypeDef.hxx
-// ./opencascade/Standard_TypeMismatch.hxx
-// ./opencascade/Standard_Mutex.hxx
-// ./opencascade/Standard_SStream.hxx
-// ./opencascade/Standard_LicenseError.hxx
-// ./opencascade/Standard_DefineHandle.hxx
-// ./opencascade/Standard_ProgramError.hxx
-// ./opencascade/Standard_GUID.hxx
-// ./opencascade/Standard_PByte.hxx
-// ./opencascade/Standard_DimensionError.hxx
-// ./opencascade/Standard_OutOfMemory.hxx
-// ./opencascade/Standard_WarningsRestore.hxx
-// ./opencascade/Standard_DefineAlloc.hxx
-// ./opencascade/Standard_HandlerStatus.hxx
-// ./opencascade/Standard_Macro.hxx
-// ./opencascade/Standard_Transient.hxx
-// ./opencascade/Standard_Boolean.hxx
-// ./opencascade/Standard_ExtCharacter.hxx
-// ./opencascade/Standard_TooManyUsers.hxx
+
+// classes forward declarations only
+    py::class_<Standard , shared_ptr<Standard>  >(m,"Standard",R"#(The package Standard provides global memory allocator and other basic services used by other OCCT components.)#");
+    py::class_<Standard_ArrayStreamBuffer , shared_ptr<Standard_ArrayStreamBuffer>  >(m,"Standard_ArrayStreamBuffer",R"#(Custom buffer object implementing STL interface std::streambuf for streamed reading from allocated memory block. Implements minimal sub-set of methods for passing buffer to std::istream, including seek support.)#");
+    py::class_<Standard_CLocaleSentry , shared_ptr<Standard_CLocaleSentry>  >(m,"Standard_CLocaleSentry",R"#(This class intended to temporary switch C locale and logically equivalent to setlocale(LC_ALL, "C"). It is intended to format text regardless of user locale settings (for import/export functionality). Thus following calls to sprintf, atoi and other functions will use "C" locale. Destructor of this class will return original locale.)#");
+    py::class_<Standard_ErrorHandler , shared_ptr<Standard_ErrorHandler>  >(m,"Standard_ErrorHandler",R"#(Class implementing mechanics of conversion of signals to exceptions.)#");
+    py::class_<Standard_GUID , shared_ptr<Standard_GUID>  >(m,"Standard_GUID",R"#(None)#");
+    py::class_<Standard_MMgrRoot , shared_ptr<Standard_MMgrRoot> ,Py_Standard_MMgrRoot >(m,"Standard_MMgrRoot",R"#(Root class for Open CASCADE mmemory managers. Defines only abstract interface functions.)#");
+    py::class_<Standard_Mutex , shared_ptr<Standard_Mutex>  >(m,"Standard_Mutex",R"#(Mutex: a class to synchronize access to shared data.)#");
+    py::class_<Standard_Transient ,opencascade::handle<Standard_Transient>  >(m,"Standard_Transient",R"#(Abstract class which forms the root of the entire Transient class hierarchy.)#");
+    py::class_<Standard_MMgrOpt , shared_ptr<Standard_MMgrOpt>  , Standard_MMgrRoot >(m,"Standard_MMgrOpt",R"#(Open CASCADE memory manager optimized for speed.)#");
+    py::class_<Standard_MMgrRaw , shared_ptr<Standard_MMgrRaw>  , Standard_MMgrRoot >(m,"Standard_MMgrRaw",R"#(Implementation of raw OCC memory manager which uses standard C functions: malloc (or calloc), free and realloc without any optimization)#");
+    py::class_<Standard_MMgrTBBalloc , shared_ptr<Standard_MMgrTBBalloc>  , Standard_MMgrRoot >(m,"Standard_MMgrTBBalloc",R"#(Implementation of OCC memory manager which uses Intel TBB scalable allocator.)#");
+    py::class_<Standard_Persistent ,opencascade::handle<Standard_Persistent>  , Standard_Transient >(m,"Standard_Persistent",R"#(Root of "persistent" classes, a legacy support of object oriented databases, now outdated.)#");
+    py::class_<Standard_Type ,opencascade::handle<Standard_Type>  , Standard_Transient >(m,"Standard_Type",R"#(This class provides legacy interface (type descriptor) to run-time type information (RTTI) for OCCT classes inheriting from Standard_Transient.This class provides legacy interface (type descriptor) to run-time type information (RTTI) for OCCT classes inheriting from Standard_Transient.)#");
 
 };
 

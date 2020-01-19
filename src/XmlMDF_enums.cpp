@@ -41,9 +41,9 @@ namespace py = pybind11;
 #include <XmlMDF_TypeADriverMap.hxx>
 
 // template related includes
-// ./opencascade/XmlMDF_TypeADriverMap.hxx
-#include "NCollection.hxx"
 // ./opencascade/XmlMDF_MapOfDriver.hxx
+#include "NCollection.hxx"
+// ./opencascade/XmlMDF_TypeADriverMap.hxx
 #include "NCollection.hxx"
 
 
@@ -80,23 +80,14 @@ py::module m = main_module.def_submodule("XmlMDF", R"#()#");
         
     };
 
+// pre-register typdefs
+
 // classes forward declarations only
+    py::class_<XmlMDF , shared_ptr<XmlMDF>  >(m,"XmlMDF",R"#(This package provides classes and methods to translate a transient DF into a persistent one and vice versa.)#");
     py::class_<XmlMDF_ADriver ,opencascade::handle<XmlMDF_ADriver> ,Py_XmlMDF_ADriver , Standard_Transient >(m,"XmlMDF_ADriver",R"#(Attribute Storage/Retrieval Driver.Attribute Storage/Retrieval Driver.Attribute Storage/Retrieval Driver.)#");
-    py::class_<XmlMDF ,std::unique_ptr<XmlMDF>  >(m,"XmlMDF",R"#(This package provides classes and methods to translate a transient DF into a persistent one and vice versa.)#");
+    py::class_<XmlMDF_ADriverTable ,opencascade::handle<XmlMDF_ADriverTable>  , Standard_Transient >(m,"XmlMDF_ADriverTable",R"#(A driver table is an object building links between object types and object drivers. In the translation process, a driver table is asked to give a translation driver for each current object to be translated.A driver table is an object building links between object types and object drivers. In the translation process, a driver table is asked to give a translation driver for each current object to be translated.A driver table is an object building links between object types and object drivers. In the translation process, a driver table is asked to give a translation driver for each current object to be translated.)#");
     py::class_<XmlMDF_ReferenceDriver ,opencascade::handle<XmlMDF_ReferenceDriver>  , XmlMDF_ADriver >(m,"XmlMDF_ReferenceDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
     py::class_<XmlMDF_TagSourceDriver ,opencascade::handle<XmlMDF_TagSourceDriver>  , XmlMDF_ADriver >(m,"XmlMDF_TagSourceDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-    py::class_<XmlMDF_ADriverTable ,opencascade::handle<XmlMDF_ADriverTable>  , Standard_Transient >(m,"XmlMDF_ADriverTable",R"#(A driver table is an object building links between object types and object drivers. In the translation process, a driver table is asked to give a translation driver for each current object to be translated.A driver table is an object building links between object types and object drivers. In the translation process, a driver table is asked to give a translation driver for each current object to be translated.A driver table is an object building links between object types and object drivers. In the translation process, a driver table is asked to give a translation driver for each current object to be translated.)#");
-
-// pre-register typdefs
-// ./opencascade/XmlMDF_ADriver.hxx
-// ./opencascade/XmlMDF_TypeADriverMap.hxx
-// ./opencascade/XmlMDF_DataMapIteratorOfTypeADriverMap.hxx
-// ./opencascade/XmlMDF_TagSourceDriver.hxx
-// ./opencascade/XmlMDF.hxx
-// ./opencascade/XmlMDF_MapOfDriver.hxx
-// ./opencascade/XmlMDF_ADriverTable.hxx
-// ./opencascade/XmlMDF_ReferenceDriver.hxx
-// ./opencascade/XmlMDF_DataMapIteratorOfMapOfDriver.hxx
 
 };
 

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,9 +13,9 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TCollection_HAsciiString.hxx>
 #include <Font_FTFont.hxx>
 #include <Font_FTLibrary.hxx>
+#include <TCollection_HAsciiString.hxx>
 
 // module includes
 #include <Font_BRepFont.hxx>
@@ -49,84 +52,31 @@ py::module m = static_cast<py::module>(main_module.attr("Font"));
 
 // classes
 
+    register_default_constructor<Font_BRepTextBuilder , shared_ptr<Font_BRepTextBuilder>>(m,"Font_BRepTextBuilder");
 
-    static_cast<py::class_<Font_SystemFont ,opencascade::handle<Font_SystemFont>  , Standard_Transient >>(m.attr("Font_SystemFont"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<TCollection_HAsciiString> &,const Font_FontAspect,const opencascade::handle<TCollection_HAsciiString> & >()  , py::arg("theFontName"),  py::arg("theFontAspect"),  py::arg("theFilePath") )
-        .def(py::init< const opencascade::handle<TCollection_HAsciiString> &,const opencascade::handle<TCollection_HAsciiString> & >()  , py::arg("theXLFD"),  py::arg("theFilePath") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Font_SystemFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Font_SystemFont::*)() const>(&Font_SystemFont::DynamicType),
-             R"#(None)#" )
-        .def("FontName",
-             (const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const) static_cast<const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const>(&Font_SystemFont::FontName),
-             R"#(Returns font family name.)#" )
-        .def("FontPath",
-             (const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const) static_cast<const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const>(&Font_SystemFont::FontPath),
-             R"#(Returns font file path.)#" )
-        .def("FontAspect",
-             (Font_FontAspect (Font_SystemFont::*)() const) static_cast<Font_FontAspect (Font_SystemFont::*)() const>(&Font_SystemFont::FontAspect),
-             R"#(Returns font aspect.)#" )
-        .def("FontHeight",
-             (Standard_Integer (Font_SystemFont::*)() const) static_cast<Standard_Integer (Font_SystemFont::*)() const>(&Font_SystemFont::FontHeight),
-             R"#(Returns font height. If returned value is equal -1 it means that font is resizable.)#" )
-        .def("IsValid",
-             (Standard_Boolean (Font_SystemFont::*)() const) static_cast<Standard_Boolean (Font_SystemFont::*)() const>(&Font_SystemFont::IsValid),
-             R"#(None)#" )
-        .def("IsEqual",
-             (Standard_Boolean (Font_SystemFont::*)( const opencascade::handle<Font_SystemFont> &  ) const) static_cast<Standard_Boolean (Font_SystemFont::*)( const opencascade::handle<Font_SystemFont> &  ) const>(&Font_SystemFont::IsEqual),
-             R"#(Return true if the FontName, FontAspect and FontSize are the same.)#"  , py::arg("theOtherFont"))
-        .def("IsSingleStrokeFont",
-             (Standard_Boolean (Font_SystemFont::*)() const) static_cast<Standard_Boolean (Font_SystemFont::*)() const>(&Font_SystemFont::IsSingleStrokeFont),
-             R"#(Return TRUE if this is single-stroke (one-line) font, FALSE by default. Such fonts define single-line glyphs instead of closed contours, so that they are rendered incorrectly by normal software.)#" )
-        .def("SetSingleStrokeFont",
-             (void (Font_SystemFont::*)( Standard_Boolean  ) ) static_cast<void (Font_SystemFont::*)( Standard_Boolean  ) >(&Font_SystemFont::SetSingleStrokeFont),
-             R"#(Set if this font should be rendered as single-stroke (one-line).)#"  , py::arg("theIsSingleLine"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Font_SystemFont::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Font_SystemFont::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<Font_FontMgr ,opencascade::handle<Font_FontMgr>>(m,"Font_FontMgr");
-
-    static_cast<py::class_<Font_FontMgr ,opencascade::handle<Font_FontMgr>  , Standard_Transient >>(m.attr("Font_FontMgr"))
-        .def("GetAvailableFonts",
-             (const Font_NListOfSystemFont & (Font_FontMgr::*)() const) static_cast<const Font_NListOfSystemFont & (Font_FontMgr::*)() const>(&Font_FontMgr::GetAvailableFonts),
-             R"#(None)#" )
-        .def("GetAvailableFontsNames",
-             (void (Font_FontMgr::*)( NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> > &  ) const) static_cast<void (Font_FontMgr::*)( NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> > &  ) const>(&Font_FontMgr::GetAvailableFontsNames),
-             R"#(Returns sequence of available fonts names)#"  , py::arg("theFontsNames"))
-        .def("GetFont",
-             (opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const) static_cast<opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const>(&Font_FontMgr::GetFont),
-             R"#(Returns font that match given parameters. If theFontName is empty string returned font can have any FontName. If theFontAspect is Font_FA_Undefined returned font can have any FontAspect. If theFontSize is "-1" returned font can have any FontSize.)#"  , py::arg("theFontName"),  py::arg("theFontAspect"),  py::arg("theFontSize"))
-        .def("FindFont",
-             (opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const) static_cast<opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const>(&Font_FontMgr::FindFont),
-             R"#(Tries to find font by given parameters. If the specified font is not found tries to use font names mapping. If the requested family name not found -> search for any font family with given aspect and height. If the font is still not found, returns any font available in the system. Returns NULL in case when the fonts are not found in the system.)#"  , py::arg("theFontName"),  py::arg("theFontAspect"),  py::arg("theFontSize"))
-        .def("CheckFont",
-             (opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const Standard_CString  ) const) static_cast<opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const Standard_CString  ) const>(&Font_FontMgr::CheckFont),
-             R"#(Read font file and retrieve information from it.)#"  , py::arg("theFontPath"))
-        .def("RegisterFont",
-             (Standard_Boolean (Font_FontMgr::*)( const opencascade::handle<Font_SystemFont> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (Font_FontMgr::*)( const opencascade::handle<Font_SystemFont> & ,  const Standard_Boolean  ) >(&Font_FontMgr::RegisterFont),
-             R"#(Register new font. If there is existing entity with the same name and properties but different path then font will will be overridden or ignored depending on theToOverride flag.)#"  , py::arg("theFont"),  py::arg("theToOverride"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Font_FontMgr::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Font_FontMgr::*)() const>(&Font_FontMgr::DynamicType),
-             R"#(None)#" )
-        .def_static("GetInstance_s",
-                    (opencascade::handle<Font_FontMgr> (*)() ) static_cast<opencascade::handle<Font_FontMgr> (*)() >(&Font_FontMgr::GetInstance),
-                    R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Font_FontMgr::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Font_FontMgr::get_type_descriptor),
-                    R"#(None)#" )
+    static_cast<py::class_<Font_BRepTextBuilder , shared_ptr<Font_BRepTextBuilder>  >>(m.attr("Font_BRepTextBuilder"))
+    // methods
+        .def("Perform",
+             (TopoDS_Shape (Font_BRepTextBuilder::*)( Font_BRepFont & ,  const Font_TextFormatter & ,  const gp_Ax3 &  ) ) static_cast<TopoDS_Shape (Font_BRepTextBuilder::*)( Font_BRepFont & ,  const Font_TextFormatter & ,  const gp_Ax3 &  ) >(&Font_BRepTextBuilder::Perform),
+             R"#(Render text as BRep shape.)#"  , py::arg("theFont"),  py::arg("theFormatter"),  py::arg("thePenLoc")=static_cast<const gp_Ax3 &>(gp_Ax3 ( )))
+        .def("Perform",
+             (TopoDS_Shape (Font_BRepTextBuilder::*)( Font_BRepFont & ,   const NCollection_Utf8String & ,  const gp_Ax3 & ,  const Graphic3d_HorizontalTextAlignment ,  const Graphic3d_VerticalTextAlignment  ) ) static_cast<TopoDS_Shape (Font_BRepTextBuilder::*)( Font_BRepFont & ,   const NCollection_Utf8String & ,  const gp_Ax3 & ,  const Graphic3d_HorizontalTextAlignment ,  const Graphic3d_VerticalTextAlignment  ) >(&Font_BRepTextBuilder::Perform),
+             R"#(Render text as BRep shape.)#"  , py::arg("theFont"),  py::arg("theString"),  py::arg("thePenLoc")=static_cast<const gp_Ax3 &>(gp_Ax3 ( )),  py::arg("theHAlign")=static_cast<const Graphic3d_HorizontalTextAlignment>(Graphic3d_HTA_LEFT),  py::arg("theVAlign")=static_cast<const Graphic3d_VerticalTextAlignment>(Graphic3d_VTA_BOTTOM))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+        .def("Perform",
+             []( Font_BRepTextBuilder & self , const char* path, double size, Font_FontAspect aspect, const char* text){ auto font = Font_BRepFont(path,aspect,size); return self.Perform(font,text);},
+             R"#(Render text as BRep shape.)#"
+, py::arg("Font path"), py::arg("Font size"), py::arg("Font style"), py::arg("Text"))
 ;
 
 
     static_cast<py::class_<Font_FTFont ,opencascade::handle<Font_FTFont>  , Standard_Transient >>(m.attr("Font_FTFont"))
         .def(py::init< const opencascade::handle<Font_FTLibrary> & >()  , py::arg("theFTLib")=static_cast<const opencascade::handle<Font_FTLibrary> &>(Handle ( Font_FTLibrary ) ( )) )
+    // methods
         .def("IsValid",
              (bool (Font_FTFont::*)() const) static_cast<bool (Font_FTFont::*)() const>(&Font_FTFont::IsValid),
              R"#(Returns true if font is loaded)#" )
@@ -196,17 +146,23 @@ py::module m = static_cast<py::module>(main_module.attr("Font"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Font_FTFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Font_FTFont::*)() const>(&Font_FTFont::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Font_FTFont::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Font_FTFont::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Font_FTLibrary ,opencascade::handle<Font_FTLibrary>  , Standard_Transient >>(m.attr("Font_FTLibrary"))
         .def(py::init<  >()  )
+    // methods
         .def("IsValid",
              (bool (Font_FTLibrary::*)() const) static_cast<bool (Font_FTLibrary::*)() const>(&Font_FTLibrary::IsValid),
              R"#(This method should always return true.)#" )
@@ -216,45 +172,166 @@ py::module m = static_cast<py::module>(main_module.attr("Font"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Font_FTLibrary::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Font_FTLibrary::*)() const>(&Font_FTLibrary::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Font_FTLibrary::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Font_FTLibrary::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Font_FontMgr ,opencascade::handle<Font_FontMgr>  , Standard_Transient >>(m.attr("Font_FontMgr"))
+    // methods
+        .def("GetAvailableFonts",
+             (const Font_NListOfSystemFont & (Font_FontMgr::*)() const) static_cast<const Font_NListOfSystemFont & (Font_FontMgr::*)() const>(&Font_FontMgr::GetAvailableFonts),
+             R"#(None)#" )
+        .def("GetAvailableFontsNames",
+             (void (Font_FontMgr::*)( NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> > &  ) const) static_cast<void (Font_FontMgr::*)( NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> > &  ) const>(&Font_FontMgr::GetAvailableFontsNames),
+             R"#(Returns sequence of available fonts names)#"  , py::arg("theFontsNames"))
+        .def("GetFont",
+             (opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const) static_cast<opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const>(&Font_FontMgr::GetFont),
+             R"#(Returns font that match given parameters. If theFontName is empty string returned font can have any FontName. If theFontAspect is Font_FA_Undefined returned font can have any FontAspect. If theFontSize is "-1" returned font can have any FontSize.)#"  , py::arg("theFontName"),  py::arg("theFontAspect"),  py::arg("theFontSize"))
+        .def("FindFont",
+             (opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const) static_cast<opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Font_FontAspect ,  const Standard_Integer  ) const>(&Font_FontMgr::FindFont),
+             R"#(Tries to find font by given parameters. If the specified font is not found tries to use font names mapping. If the requested family name not found -> search for any font family with given aspect and height. If the font is still not found, returns any font available in the system. Returns NULL in case when the fonts are not found in the system.)#"  , py::arg("theFontName"),  py::arg("theFontAspect"),  py::arg("theFontSize"))
+        .def("CheckFont",
+             (opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const Standard_CString  ) const) static_cast<opencascade::handle<Font_SystemFont> (Font_FontMgr::*)( const Standard_CString  ) const>(&Font_FontMgr::CheckFont),
+             R"#(Read font file and retrieve information from it.)#"  , py::arg("theFontPath"))
+        .def("RegisterFont",
+             (Standard_Boolean (Font_FontMgr::*)( const opencascade::handle<Font_SystemFont> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (Font_FontMgr::*)( const opencascade::handle<Font_SystemFont> & ,  const Standard_Boolean  ) >(&Font_FontMgr::RegisterFont),
+             R"#(Register new font. If there is existing entity with the same name and properties but different path then font will will be overridden or ignored depending on theToOverride flag.)#"  , py::arg("theFont"),  py::arg("theToOverride"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Font_FontMgr::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Font_FontMgr::*)() const>(&Font_FontMgr::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetInstance_s",
+                    (opencascade::handle<Font_FontMgr> (*)() ) static_cast<opencascade::handle<Font_FontMgr> (*)() >(&Font_FontMgr::GetInstance),
+                    R"#(None)#" )
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Font_FontMgr::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Font_FontMgr::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Font_SystemFont ,opencascade::handle<Font_SystemFont>  , Standard_Transient >>(m.attr("Font_SystemFont"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<TCollection_HAsciiString> &,const Font_FontAspect,const opencascade::handle<TCollection_HAsciiString> & >()  , py::arg("theFontName"),  py::arg("theFontAspect"),  py::arg("theFilePath") )
+        .def(py::init< const opencascade::handle<TCollection_HAsciiString> &,const opencascade::handle<TCollection_HAsciiString> & >()  , py::arg("theXLFD"),  py::arg("theFilePath") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Font_SystemFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Font_SystemFont::*)() const>(&Font_SystemFont::DynamicType),
+             R"#(None)#" )
+        .def("FontName",
+             (const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const) static_cast<const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const>(&Font_SystemFont::FontName),
+             R"#(Returns font family name.)#" )
+        .def("FontPath",
+             (const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const) static_cast<const opencascade::handle<TCollection_HAsciiString> & (Font_SystemFont::*)() const>(&Font_SystemFont::FontPath),
+             R"#(Returns font file path.)#" )
+        .def("FontAspect",
+             (Font_FontAspect (Font_SystemFont::*)() const) static_cast<Font_FontAspect (Font_SystemFont::*)() const>(&Font_SystemFont::FontAspect),
+             R"#(Returns font aspect.)#" )
+        .def("FontHeight",
+             (Standard_Integer (Font_SystemFont::*)() const) static_cast<Standard_Integer (Font_SystemFont::*)() const>(&Font_SystemFont::FontHeight),
+             R"#(Returns font height. If returned value is equal -1 it means that font is resizable.)#" )
+        .def("IsValid",
+             (Standard_Boolean (Font_SystemFont::*)() const) static_cast<Standard_Boolean (Font_SystemFont::*)() const>(&Font_SystemFont::IsValid),
+             R"#(None)#" )
+        .def("IsEqual",
+             (Standard_Boolean (Font_SystemFont::*)( const opencascade::handle<Font_SystemFont> &  ) const) static_cast<Standard_Boolean (Font_SystemFont::*)( const opencascade::handle<Font_SystemFont> &  ) const>(&Font_SystemFont::IsEqual),
+             R"#(Return true if the FontName, FontAspect and FontSize are the same.)#"  , py::arg("theOtherFont"))
+        .def("IsSingleStrokeFont",
+             (Standard_Boolean (Font_SystemFont::*)() const) static_cast<Standard_Boolean (Font_SystemFont::*)() const>(&Font_SystemFont::IsSingleStrokeFont),
+             R"#(Return TRUE if this is single-stroke (one-line) font, FALSE by default. Such fonts define single-line glyphs instead of closed contours, so that they are rendered incorrectly by normal software.)#" )
+        .def("SetSingleStrokeFont",
+             (void (Font_SystemFont::*)( Standard_Boolean  ) ) static_cast<void (Font_SystemFont::*)( Standard_Boolean  ) >(&Font_SystemFont::SetSingleStrokeFont),
+             R"#(Set if this font should be rendered as single-stroke (one-line).)#"  , py::arg("theIsSingleLine"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Font_SystemFont::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Font_SystemFont::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Font_TextFormatter , shared_ptr<Font_TextFormatter>  >>(m.attr("Font_TextFormatter"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetupAlignment",
+             (void (Font_TextFormatter::*)( const Graphic3d_HorizontalTextAlignment ,  const Graphic3d_VerticalTextAlignment  ) ) static_cast<void (Font_TextFormatter::*)( const Graphic3d_HorizontalTextAlignment ,  const Graphic3d_VerticalTextAlignment  ) >(&Font_TextFormatter::SetupAlignment),
+             R"#(Setup alignment style.)#"  , py::arg("theAlignX"),  py::arg("theAlignY"))
+        .def("Reset",
+             (void (Font_TextFormatter::*)() ) static_cast<void (Font_TextFormatter::*)() >(&Font_TextFormatter::Reset),
+             R"#(Reset current progress.)#" )
+        .def("Append",
+             (void (Font_TextFormatter::*)(  const NCollection_Utf8String & ,  Font_FTFont &  ) ) static_cast<void (Font_TextFormatter::*)(  const NCollection_Utf8String & ,  Font_FTFont &  ) >(&Font_TextFormatter::Append),
+             R"#(Render specified text to inner buffer.)#"  , py::arg("theString"),  py::arg("theFont"))
+        .def("Format",
+             (void (Font_TextFormatter::*)() ) static_cast<void (Font_TextFormatter::*)() >(&Font_TextFormatter::Format),
+             R"#(Perform formatting on the buffered text. Should not be called more than once after initialization!)#" )
+        .def("TopLeft",
+             (const NCollection_Vec2<Standard_ShortReal> & (Font_TextFormatter::*)( const Standard_Integer  ) const) static_cast<const NCollection_Vec2<Standard_ShortReal> & (Font_TextFormatter::*)( const Standard_Integer  ) const>(&Font_TextFormatter::TopLeft),
+             R"#(Returns specific glyph rectangle.)#"  , py::arg("theIndex"))
+        .def("String",
+             (const NCollection_String & (Font_TextFormatter::*)() const) static_cast<const NCollection_String & (Font_TextFormatter::*)() const>(&Font_TextFormatter::String),
+             R"#(Returns current rendering string.)#" )
+        .def("TabSize",
+             (Standard_Integer (Font_TextFormatter::*)() const) static_cast<Standard_Integer (Font_TextFormatter::*)() const>(&Font_TextFormatter::TabSize),
+             R"#(Returns tab size.)#" )
+        .def("ResultWidth",
+             (Standard_ShortReal (Font_TextFormatter::*)() const) static_cast<Standard_ShortReal (Font_TextFormatter::*)() const>(&Font_TextFormatter::ResultWidth),
+             R"#(Returns width of formatted text.)#" )
+        .def("ResultHeight",
+             (Standard_ShortReal (Font_TextFormatter::*)() const) static_cast<Standard_ShortReal (Font_TextFormatter::*)() const>(&Font_TextFormatter::ResultHeight),
+             R"#(Returns height of formatted text.)#" )
+        .def("BndBox",
+             (void (Font_TextFormatter::*)( Font_Rect &  ) const) static_cast<void (Font_TextFormatter::*)( Font_Rect &  ) const>(&Font_TextFormatter::BndBox),
+             R"#()#"  , py::arg("theBndBox"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/Font_TextFormatter.hxx
+// ./opencascade/Font_FTFont.hxx
+// ./opencascade/Font_Rect.hxx
+// ./opencascade/Font_NameOfFont.hxx
+// ./opencascade/Font_BRepFont.hxx
+// ./opencascade/Font_BRepTextBuilder.hxx
+// ./opencascade/Font_FTLibrary.hxx
 // ./opencascade/Font_SystemFont.hxx
 // ./opencascade/Font_NListOfSystemFont.hxx
     m.def("IsEqual", 
           (Standard_Boolean (*)( const opencascade::handle<Font_SystemFont> & ,  const opencascade::handle<Font_SystemFont> &  ))  static_cast<Standard_Boolean (*)( const opencascade::handle<Font_SystemFont> & ,  const opencascade::handle<Font_SystemFont> &  )>(&IsEqual),
           R"#(None)#"  , py::arg("theFirstFont"),  py::arg("theSecondFont"));
-// ./opencascade/Font_BRepFont.hxx
-// ./opencascade/Font_Rect.hxx
 // ./opencascade/Font_FontMgr.hxx
-// ./opencascade/Font_FTLibrary.hxx
-// ./opencascade/Font_TextFormatter.hxx
-// ./opencascade/Font_FTFont.hxx
 // ./opencascade/Font_FontAspect.hxx
-// ./opencascade/Font_BRepTextBuilder.hxx
-// ./opencascade/Font_NameOfFont.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Font_SystemFont.hxx
-// ./opencascade/Font_NListOfSystemFont.hxx
     register_template_NCollection_List<opencascade::handle<Font_SystemFont> >(m,"Font_NListOfSystemFont");  
-// ./opencascade/Font_BRepFont.hxx
-// ./opencascade/Font_Rect.hxx
-// ./opencascade/Font_FontMgr.hxx
-// ./opencascade/Font_FTLibrary.hxx
-// ./opencascade/Font_TextFormatter.hxx
-// ./opencascade/Font_FTFont.hxx
-// ./opencascade/Font_FontAspect.hxx
-// ./opencascade/Font_BRepTextBuilder.hxx
-// ./opencascade/Font_NameOfFont.hxx
 
 
 // exceptions

@@ -47,25 +47,17 @@ py::module m = main_module.def_submodule("XmlTObjDrivers", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<XmlTObjDrivers_IntSparseArrayDriver ,opencascade::handle<XmlTObjDrivers_IntSparseArrayDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_IntSparseArrayDriver",R"#()#");
-    py::class_<XmlTObjDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlTObjDrivers_DocumentRetrievalDriver>  , XmlLDrivers_DocumentRetrievalDriver >(m,"XmlTObjDrivers_DocumentRetrievalDriver",R"#()#");
-    py::class_<XmlTObjDrivers_ObjectDriver ,opencascade::handle<XmlTObjDrivers_ObjectDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_ObjectDriver",R"#()#");
-    py::class_<XmlTObjDrivers_ModelDriver ,opencascade::handle<XmlTObjDrivers_ModelDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_ModelDriver",R"#()#");
-    py::class_<XmlTObjDrivers_XYZDriver ,opencascade::handle<XmlTObjDrivers_XYZDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_XYZDriver",R"#()#");
-    py::class_<XmlTObjDrivers ,std::unique_ptr<XmlTObjDrivers>  >(m,"XmlTObjDrivers",R"#(Class for registering storage/retrieval drivers for TObj XML persistence)#");
-    py::class_<XmlTObjDrivers_DocumentStorageDriver ,opencascade::handle<XmlTObjDrivers_DocumentStorageDriver>  , XmlLDrivers_DocumentStorageDriver >(m,"XmlTObjDrivers_DocumentStorageDriver",R"#()#");
-    py::class_<XmlTObjDrivers_ReferenceDriver ,opencascade::handle<XmlTObjDrivers_ReferenceDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_ReferenceDriver",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/XmlTObjDrivers_IntSparseArrayDriver.hxx
-// ./opencascade/XmlTObjDrivers_XYZDriver.hxx
-// ./opencascade/XmlTObjDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/XmlTObjDrivers_DocumentStorageDriver.hxx
-// ./opencascade/XmlTObjDrivers_ObjectDriver.hxx
-// ./opencascade/XmlTObjDrivers.hxx
-// ./opencascade/XmlTObjDrivers_ModelDriver.hxx
-// ./opencascade/XmlTObjDrivers_ReferenceDriver.hxx
+
+// classes forward declarations only
+    py::class_<XmlTObjDrivers , shared_ptr<XmlTObjDrivers>  >(m,"XmlTObjDrivers",R"#(Class for registering storage/retrieval drivers for TObj XML persistence)#");
+    py::class_<XmlTObjDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlTObjDrivers_DocumentRetrievalDriver>  , XmlLDrivers_DocumentRetrievalDriver >(m,"XmlTObjDrivers_DocumentRetrievalDriver",R"#()#");
+    py::class_<XmlTObjDrivers_DocumentStorageDriver ,opencascade::handle<XmlTObjDrivers_DocumentStorageDriver>  , XmlLDrivers_DocumentStorageDriver >(m,"XmlTObjDrivers_DocumentStorageDriver",R"#()#");
+    py::class_<XmlTObjDrivers_IntSparseArrayDriver ,opencascade::handle<XmlTObjDrivers_IntSparseArrayDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_IntSparseArrayDriver",R"#()#");
+    py::class_<XmlTObjDrivers_ModelDriver ,opencascade::handle<XmlTObjDrivers_ModelDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_ModelDriver",R"#()#");
+    py::class_<XmlTObjDrivers_ObjectDriver ,opencascade::handle<XmlTObjDrivers_ObjectDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_ObjectDriver",R"#()#");
+    py::class_<XmlTObjDrivers_ReferenceDriver ,opencascade::handle<XmlTObjDrivers_ReferenceDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_ReferenceDriver",R"#()#");
+    py::class_<XmlTObjDrivers_XYZDriver ,opencascade::handle<XmlTObjDrivers_XYZDriver>  , XmlMDF_ADriver >(m,"XmlTObjDrivers_XYZDriver",R"#()#");
 
 };
 

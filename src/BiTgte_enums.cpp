@@ -11,7 +11,13 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Standard_NoSuchObject.hxx>
+#include <BRepAlgo_AsDes.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <BRepOffset_Inter3d.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
@@ -31,13 +37,7 @@ namespace py = pybind11;
 #include <gp_Parab.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <BRepAlgo_AsDes.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <BRepOffset_Inter3d.hxx>
+#include <Standard_NoSuchObject.hxx>
 
 // module includes
 #include <BiTgte_Blend.hxx>
@@ -74,20 +74,14 @@ py::module m = main_module.def_submodule("BiTgte", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BiTgte_HCurveOnVertex ,opencascade::handle<BiTgte_HCurveOnVertex>  , Adaptor3d_HCurve >(m,"BiTgte_HCurveOnVertex",R"#()#");
-    py::class_<BiTgte_HCurveOnEdge ,opencascade::handle<BiTgte_HCurveOnEdge>  , Adaptor3d_HCurve >(m,"BiTgte_HCurveOnEdge",R"#()#");
-    py::class_<BiTgte_Blend ,std::unique_ptr<BiTgte_Blend>  >(m,"BiTgte_Blend",R"#(Root class)#");
-    py::class_<BiTgte_CurveOnVertex ,std::unique_ptr<BiTgte_CurveOnVertex>  , Adaptor3d_Curve >(m,"BiTgte_CurveOnVertex",R"#(private class used to create a filler rolling on an edge.)#");
-    py::class_<BiTgte_CurveOnEdge ,std::unique_ptr<BiTgte_CurveOnEdge>  , Adaptor3d_Curve >(m,"BiTgte_CurveOnEdge",R"#(private class used to create a filler rolling on an edge.)#");
-
 // pre-register typdefs
-// ./opencascade/BiTgte_ContactType.hxx
-// ./opencascade/BiTgte_HCurveOnVertex.hxx
-// ./opencascade/BiTgte_CurveOnVertex.hxx
-// ./opencascade/BiTgte_HCurveOnEdge.hxx
-// ./opencascade/BiTgte_CurveOnEdge.hxx
-// ./opencascade/BiTgte_Blend.hxx
+
+// classes forward declarations only
+    py::class_<BiTgte_Blend , shared_ptr<BiTgte_Blend>  >(m,"BiTgte_Blend",R"#(Root class)#");
+    py::class_<BiTgte_CurveOnEdge , shared_ptr<BiTgte_CurveOnEdge>  , Adaptor3d_Curve >(m,"BiTgte_CurveOnEdge",R"#(private class used to create a filler rolling on an edge.)#");
+    py::class_<BiTgte_CurveOnVertex , shared_ptr<BiTgte_CurveOnVertex>  , Adaptor3d_Curve >(m,"BiTgte_CurveOnVertex",R"#(private class used to create a filler rolling on an edge.)#");
+    py::class_<BiTgte_HCurveOnEdge ,opencascade::handle<BiTgte_HCurveOnEdge>  , Adaptor3d_HCurve >(m,"BiTgte_HCurveOnEdge",R"#()#");
+    py::class_<BiTgte_HCurveOnVertex ,opencascade::handle<BiTgte_HCurveOnVertex>  , Adaptor3d_HCurve >(m,"BiTgte_HCurveOnVertex",R"#()#");
 
 };
 

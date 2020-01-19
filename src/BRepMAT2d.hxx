@@ -13,33 +13,33 @@ namespace py = pybind11;
 #include <BRepMAT2d_Explorer.hxx>
 #include <BRepMAT2d_BisectingLocus.hxx>
 #include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Wire.hxx>
 #include <MAT_Graph.hxx>
 #include <BRepMAT2d_Explorer.hxx>
 #include <Geom2d_Geometry.hxx>
 #include <MAT_Node.hxx>
 #include <MAT_Arc.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Wire.hxx>
 
 // module includes
-#include <BRepMAT2d_LinkTopoBilo.hxx>
-#include <BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx>
 #include <BRepMAT2d_DataMapIteratorOfDataMapOfShapeSequenceOfBasicElt.hxx>
-#include <BRepMAT2d_Explorer.hxx>
+#include <BRepMAT2d_LinkTopoBilo.hxx>
 #include <BRepMAT2d_BisectingLocus.hxx>
-#include <BRepMAT2d_DataMapOfBasicEltShape.hxx>
 #include <BRepMAT2d_DataMapIteratorOfDataMapOfBasicEltShape.hxx>
+#include <BRepMAT2d_DataMapOfBasicEltShape.hxx>
+#include <BRepMAT2d_Explorer.hxx>
+#include <BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BRepMAT2d_LinkTopoBilo.hxx
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
 // ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfShapeSequenceOfBasicElt.hxx
-// ./opencascade/BRepMAT2d_Explorer.hxx
+// ./opencascade/BRepMAT2d_LinkTopoBilo.hxx
 // ./opencascade/BRepMAT2d_BisectingLocus.hxx
-// ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
 // ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfBasicEltShape.hxx
+// ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
+// ./opencascade/BRepMAT2d_Explorer.hxx
+// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
 
 // user-defined post

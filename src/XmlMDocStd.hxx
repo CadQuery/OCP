@@ -10,22 +10,22 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMDocStd_XLinkDriver.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
 
 // module includes
-#include <XmlMDocStd_XLinkDriver.hxx>
 #include <XmlMDocStd.hxx>
+#include <XmlMDocStd_XLinkDriver.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/XmlMDocStd_XLinkDriver.hxx
 // ./opencascade/XmlMDocStd.hxx
+// ./opencascade/XmlMDocStd_XLinkDriver.hxx
 
 // user-defined post

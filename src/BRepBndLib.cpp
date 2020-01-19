@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -36,9 +39,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBndLib"));
 
 // classes
 
-    register_default_constructor<BRepBndLib ,std::unique_ptr<BRepBndLib>>(m,"BRepBndLib");
+    register_default_constructor<BRepBndLib , shared_ptr<BRepBndLib>>(m,"BRepBndLib");
 
-    static_cast<py::class_<BRepBndLib ,std::unique_ptr<BRepBndLib>  >>(m.attr("BRepBndLib"))
+    static_cast<py::class_<BRepBndLib , shared_ptr<BRepBndLib>  >>(m.attr("BRepBndLib"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Add_s",
                     (void (*)( const TopoDS_Shape & ,  Bnd_Box & ,  const Standard_Boolean  ) ) static_cast<void (*)( const TopoDS_Shape & ,  Bnd_Box & ,  const Standard_Boolean  ) >(&BRepBndLib::Add),
                     R"#(Adds the shape S to the bounding box B. More precisely are successively added to B: - each face of S; the triangulation of the face is used if it exists, - then each edge of S which does not belong to a face, the polygon of the edge is used if it exists - and last each vertex of S which does not belong to an edge. After each elementary operation, the bounding box B is enlarged by the tolerance value of the relative sub-shape. When working with the triangulation of a face this value of enlargement is the sum of the triangulation deflection and the face tolerance. When working with the polygon of an edge this value of enlargement is the sum of the polygon deflection and the edge tolerance. Warning - This algorithm is time consuming if triangulation has not been inserted inside the data structure of the shape S. - The resulting bounding box may be somewhat larger than the object.)#"  , py::arg("S"),  py::arg("B"),  py::arg("useTriangulation")=static_cast<const Standard_Boolean>(Standard_True))
@@ -51,6 +57,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBndLib"));
         .def_static("AddOBB_s",
                     (void (*)( const TopoDS_Shape & ,  Bnd_OBB & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (*)( const TopoDS_Shape & ,  Bnd_OBB & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&BRepBndLib::AddOBB),
                     R"#(Computes the Oriented Bounding box for the shape <theS>. Two independent methods of computation are implemented: first method based on set of points (so, it demands the triangulated shape or shape with planar faces and linear edges). The second method is based on use of inertia axes and is called if use of the first method is impossible. If theIsTriangulationUsed == FALSE then the triangulation will be ignored at all. If theIsShapeToleranceUsed == TRUE then resulting box will be extended on the tolerance of the shape. theIsOptimal flag defines the algorithm for construction of initial Bnd_Box for the second method (if theIsOptimal == TRUE then this box will be created by AddOptimal(...) method).)#"  , py::arg("theS"),  py::arg("theOBB"),  py::arg("theIsTriangulationUsed")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theIsOptimal")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theIsShapeToleranceUsed")=static_cast<const Standard_Boolean>(Standard_True))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -59,7 +68,6 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBndLib"));
 // operators
 
 // register typdefs
-// ./opencascade/BRepBndLib.hxx
 
 
 // exceptions

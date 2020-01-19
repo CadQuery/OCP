@@ -12,17 +12,18 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_OutOfRange.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <StdFail_NotDone.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Curve.hxx>
+#include <gp_Pnt.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
+#include <gp_Pnt2d.hxx>
+#include <GeomLib_DenominatorMultiplier.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <Standard_ConstructionError.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Geom_Surface.hxx>
 #include <Geom_Curve.hxx>
 #include <gp_Ax2.hxx>
 #include <Geom2d_Curve.hxx>
@@ -45,14 +46,13 @@ namespace py = pybind11;
 #include <GeomLib_LogSample.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Geom_Curve.hxx>
-#include <gp_Pnt.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <StdFail_NotDone.hxx>
 #include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Pnt2d.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
-#include <GeomLib_DenominatorMultiplier.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <StdFail_NotDone.hxx>
 
 // module includes
 #include <GeomLib.hxx>
@@ -97,35 +97,21 @@ py::module m = main_module.def_submodule("GeomLib", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<GeomLib_LogSample ,std::unique_ptr<GeomLib_LogSample>  , math_FunctionSample >(m,"GeomLib_LogSample",R"#(None)#");
-    py::class_<GeomLib_PolyFunc ,std::unique_ptr<GeomLib_PolyFunc>  , math_FunctionWithDerivative >(m,"GeomLib_PolyFunc",R"#(Polynomial Function)#");
-    py::class_<GeomLib_DenominatorMultiplier ,std::unique_ptr<GeomLib_DenominatorMultiplier>  >(m,"GeomLib_DenominatorMultiplier",R"#(this defines an evaluator for a function of 2 variables that will be used by CancelDenominatorDerivative in one direction.)#");
-    py::class_<GeomLib_IsPlanarSurface ,std::unique_ptr<GeomLib_IsPlanarSurface>  >(m,"GeomLib_IsPlanarSurface",R"#(Find if a surface is a planar surface.)#");
-    py::class_<GeomLib_Check2dBSplineCurve ,std::unique_ptr<GeomLib_Check2dBSplineCurve>  >(m,"GeomLib_Check2dBSplineCurve",R"#(Checks for the end tangents : wether or not those are reversed)#");
-    py::class_<GeomLib_CheckCurveOnSurface ,std::unique_ptr<GeomLib_CheckCurveOnSurface>  >(m,"GeomLib_CheckCurveOnSurface",R"#(Computes the max distance between 3D-curve and 2D-curve in some surface.)#");
-    py::class_<GeomLib_MakeCurvefromApprox ,std::unique_ptr<GeomLib_MakeCurvefromApprox>  >(m,"GeomLib_MakeCurvefromApprox",R"#(this class is used to construct the BSpline curve from an Approximation ( ApproxAFunction from AdvApprox).)#");
-    py::class_<GeomLib_Interpolate ,std::unique_ptr<GeomLib_Interpolate>  >(m,"GeomLib_Interpolate",R"#(this class is used to construct a BSpline curve by interpolation of points at given parameters The continuity of the curve is degree - 1 and the method used when boundary condition are not given is to use odd degrees and null the derivatives on both sides from degree -1 down to (degree+1) / 2 When even degree is given the returned curve is of degree - 1 so that the degree of the curve is odd)#");
-    py::class_<GeomLib_Tool ,std::unique_ptr<GeomLib_Tool>  >(m,"GeomLib_Tool",R"#(Provides various methods with Geom2d and Geom curves and surfaces. The methods of this class compute the parameter(s) of a given point on a curve or a surface. To get the valid result the point must be located rather close to the curve (surface) or at least to allow getting unambiguous result (do not put point at center of circle...), but choice of "trust" distance between curve/surface and point is responcibility of user (parameter MaxDist). Return FALSE if the point is beyond the MaxDist limit or if computation fails.)#");
-    py::class_<GeomLib_CheckBSplineCurve ,std::unique_ptr<GeomLib_CheckBSplineCurve>  >(m,"GeomLib_CheckBSplineCurve",R"#(Checks for the end tangents : wether or not those are reversed regarding the third or n-3rd control)#");
-    py::class_<GeomLib ,std::unique_ptr<GeomLib>  >(m,"GeomLib",R"#(Geom Library. This package provides an implementation of functions for basic computation on geometric entity from packages Geom and Geom2d.)#");
-
 // pre-register typdefs
-// ./opencascade/GeomLib_LogSample.hxx
-// ./opencascade/GeomLib_InterpolationErrors.hxx
-// ./opencascade/GeomLib_MakeCurvefromApprox.hxx
-// ./opencascade/GeomLib_PolyFunc.hxx
-// ./opencascade/GeomLib_CheckBSplineCurve.hxx
-// ./opencascade/GeomLib_DenominatorMultiplier.hxx
-// ./opencascade/GeomLib_Interpolate.hxx
-// ./opencascade/GeomLib_IsPlanarSurface.hxx
-// ./opencascade/GeomLib_Array1OfMat.hxx
     preregister_template_NCollection_Array1<gp_Mat>(m,"GeomLib_Array1OfMat");  
-// ./opencascade/GeomLib.hxx
-// ./opencascade/GeomLib_Check2dBSplineCurve.hxx
-// ./opencascade/GeomLib_Tool.hxx
-// ./opencascade/GeomLib_CheckCurveOnSurface.hxx
-// ./opencascade/GeomLib_DenominatorMultiplierPtr.hxx
+
+// classes forward declarations only
+    py::class_<GeomLib , shared_ptr<GeomLib>  >(m,"GeomLib",R"#(Geom Library. This package provides an implementation of functions for basic computation on geometric entity from packages Geom and Geom2d.)#");
+    py::class_<GeomLib_Check2dBSplineCurve , shared_ptr<GeomLib_Check2dBSplineCurve>  >(m,"GeomLib_Check2dBSplineCurve",R"#(Checks for the end tangents : wether or not those are reversed)#");
+    py::class_<GeomLib_CheckBSplineCurve , shared_ptr<GeomLib_CheckBSplineCurve>  >(m,"GeomLib_CheckBSplineCurve",R"#(Checks for the end tangents : wether or not those are reversed regarding the third or n-3rd control)#");
+    py::class_<GeomLib_CheckCurveOnSurface , shared_ptr<GeomLib_CheckCurveOnSurface>  >(m,"GeomLib_CheckCurveOnSurface",R"#(Computes the max distance between 3D-curve and 2D-curve in some surface.)#");
+    py::class_<GeomLib_DenominatorMultiplier , shared_ptr<GeomLib_DenominatorMultiplier>  >(m,"GeomLib_DenominatorMultiplier",R"#(this defines an evaluator for a function of 2 variables that will be used by CancelDenominatorDerivative in one direction.)#");
+    py::class_<GeomLib_Interpolate , shared_ptr<GeomLib_Interpolate>  >(m,"GeomLib_Interpolate",R"#(this class is used to construct a BSpline curve by interpolation of points at given parameters The continuity of the curve is degree - 1 and the method used when boundary condition are not given is to use odd degrees and null the derivatives on both sides from degree -1 down to (degree+1) / 2 When even degree is given the returned curve is of degree - 1 so that the degree of the curve is odd)#");
+    py::class_<GeomLib_IsPlanarSurface , shared_ptr<GeomLib_IsPlanarSurface>  >(m,"GeomLib_IsPlanarSurface",R"#(Find if a surface is a planar surface.)#");
+    py::class_<GeomLib_LogSample , shared_ptr<GeomLib_LogSample>  , math_FunctionSample >(m,"GeomLib_LogSample",R"#(None)#");
+    py::class_<GeomLib_MakeCurvefromApprox , shared_ptr<GeomLib_MakeCurvefromApprox>  >(m,"GeomLib_MakeCurvefromApprox",R"#(this class is used to construct the BSpline curve from an Approximation ( ApproxAFunction from AdvApprox).)#");
+    py::class_<GeomLib_PolyFunc , shared_ptr<GeomLib_PolyFunc>  , math_FunctionWithDerivative >(m,"GeomLib_PolyFunc",R"#(Polynomial Function)#");
+    py::class_<GeomLib_Tool , shared_ptr<GeomLib_Tool>  >(m,"GeomLib_Tool",R"#(Provides various methods with Geom2d and Geom curves and surfaces. The methods of this class compute the parameter(s) of a given point on a curve or a surface. To get the valid result the point must be located rather close to the curve (surface) or at least to allow getting unambiguous result (do not put point at center of circle...), but choice of "trust" distance between curve/surface and point is responcibility of user (parameter MaxDist). Return FALSE if the point is beyond the MaxDist limit or if computation fails.)#");
 
 };
 

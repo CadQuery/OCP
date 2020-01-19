@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -43,16 +46,23 @@ py::module m = static_cast<py::module>(main_module.attr("LProp"));
 // classes
 
 
-    static_cast<py::class_<LProp_AnalyticCurInf ,std::unique_ptr<LProp_AnalyticCurInf>  >>(m.attr("LProp_AnalyticCurInf"))
+    static_cast<py::class_<LProp_AnalyticCurInf , shared_ptr<LProp_AnalyticCurInf>  >>(m.attr("LProp_AnalyticCurInf"))
         .def(py::init<  >()  )
+    // methods
         .def("Perform",
              (void (LProp_AnalyticCurInf::*)( const GeomAbs_CurveType ,  const Standard_Real ,  const Standard_Real ,  LProp_CurAndInf &  ) ) static_cast<void (LProp_AnalyticCurInf::*)( const GeomAbs_CurveType ,  const Standard_Real ,  const Standard_Real ,  LProp_CurAndInf &  ) >(&LProp_AnalyticCurInf::Perform),
              R"#(None)#"  , py::arg("T"),  py::arg("UFirst"),  py::arg("ULast"),  py::arg("Result"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<LProp_CurAndInf ,std::unique_ptr<LProp_CurAndInf>  >>(m.attr("LProp_CurAndInf"))
+    static_cast<py::class_<LProp_CurAndInf , shared_ptr<LProp_CurAndInf>  >>(m.attr("LProp_CurAndInf"))
         .def(py::init<  >()  )
+    // methods
         .def("AddInflection",
              (void (LProp_CurAndInf::*)( const Standard_Real  ) ) static_cast<void (LProp_CurAndInf::*)( const Standard_Real  ) >(&LProp_CurAndInf::AddInflection),
              R"#(None)#"  , py::arg("Param"))
@@ -74,28 +84,26 @@ py::module m = static_cast<py::module>(main_module.attr("LProp"));
         .def("Type",
              (LProp_CIType (LProp_CurAndInf::*)( const Standard_Integer  ) const) static_cast<LProp_CIType (LProp_CurAndInf::*)( const Standard_Integer  ) const>(&LProp_CurAndInf::Type),
              R"#(Returns - MinCur if the Nth parameter corresponds to a minimum of the radius of curvature. - MaxCur if the Nth parameter corresponds to a maximum of the radius of curvature. - Inflection if the parameter corresponds to a point of inflection. raises if N not in the range [1,NbPoints()])#"  , py::arg("N"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/LProp_SequenceOfCIType.hxx
-// ./opencascade/LProp_CIType.hxx
 // ./opencascade/LProp_BadContinuity.hxx
-// ./opencascade/LProp_NotDefined.hxx
-// ./opencascade/LProp_AnalyticCurInf.hxx
+// ./opencascade/LProp_SequenceOfCIType.hxx
 // ./opencascade/LProp_CurAndInf.hxx
+// ./opencascade/LProp_AnalyticCurInf.hxx
+// ./opencascade/LProp_CIType.hxx
 // ./opencascade/LProp_Status.hxx
+// ./opencascade/LProp_NotDefined.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/LProp_SequenceOfCIType.hxx
     register_template_NCollection_Sequence<LProp_CIType>(m,"LProp_SequenceOfCIType");  
-// ./opencascade/LProp_CIType.hxx
-// ./opencascade/LProp_BadContinuity.hxx
-// ./opencascade/LProp_NotDefined.hxx
-// ./opencascade/LProp_AnalyticCurInf.hxx
-// ./opencascade/LProp_CurAndInf.hxx
-// ./opencascade/LProp_Status.hxx
 
 
 // exceptions

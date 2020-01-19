@@ -42,15 +42,12 @@ py::module m = main_module.def_submodule("StlAPI", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<StlAPI ,std::unique_ptr<StlAPI>  >(m,"StlAPI",R"#(Offers the API for STL data manipulation.)#");
-    py::class_<StlAPI_Reader ,std::unique_ptr<StlAPI_Reader>  >(m,"StlAPI_Reader",R"#(Reading from stereolithography format.)#");
-    py::class_<StlAPI_Writer ,std::unique_ptr<StlAPI_Writer>  >(m,"StlAPI_Writer",R"#(This class creates and writes STL files from Open CASCADE shapes. An STL file can be written to an existing STL file or to a new one.)#");
-
 // pre-register typdefs
-// ./opencascade/StlAPI.hxx
-// ./opencascade/StlAPI_Writer.hxx
-// ./opencascade/StlAPI_Reader.hxx
+
+// classes forward declarations only
+    py::class_<StlAPI , shared_ptr<StlAPI>  >(m,"StlAPI",R"#(Offers the API for STL data manipulation.)#");
+    py::class_<StlAPI_Reader , shared_ptr<StlAPI_Reader>  >(m,"StlAPI_Reader",R"#(Reading from stereolithography format.)#");
+    py::class_<StlAPI_Writer , shared_ptr<StlAPI_Writer>  >(m,"StlAPI_Writer",R"#(This class creates and writes STL files from Open CASCADE shapes. An STL file can be written to an existing STL file or to a new one.)#");
 
 };
 

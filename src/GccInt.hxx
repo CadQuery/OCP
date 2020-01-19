@@ -19,26 +19,26 @@ namespace py = pybind11;
 #include <gp_Elips2d.hxx>
 
 // module includes
-#include <GccInt_BLine.hxx>
+#include <GccInt_BElips.hxx>
+#include <GccInt_IType.hxx>
 #include <GccInt_Bisec.hxx>
 #include <GccInt_BPoint.hxx>
-#include <GccInt_BParab.hxx>
-#include <GccInt_BElips.hxx>
 #include <GccInt_BCirc.hxx>
+#include <GccInt_BLine.hxx>
 #include <GccInt_BHyper.hxx>
-#include <GccInt_IType.hxx>
+#include <GccInt_BParab.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/GccInt_BLine.hxx
+// ./opencascade/GccInt_BElips.hxx
+// ./opencascade/GccInt_IType.hxx
 // ./opencascade/GccInt_Bisec.hxx
 // ./opencascade/GccInt_BPoint.hxx
-// ./opencascade/GccInt_BParab.hxx
-// ./opencascade/GccInt_BElips.hxx
 // ./opencascade/GccInt_BCirc.hxx
+// ./opencascade/GccInt_BLine.hxx
 // ./opencascade/GccInt_BHyper.hxx
-// ./opencascade/GccInt_IType.hxx
+// ./opencascade/GccInt_BParab.hxx
 
 // user-defined post

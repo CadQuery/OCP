@@ -41,14 +41,11 @@ py::module m = main_module.def_submodule("TopBas", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TopBas_TestInterference ,std::unique_ptr<TopBas_TestInterference>  >(m,"TopBas_TestInterference",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/TopBas_ListOfTestInterference.hxx
     preregister_template_NCollection_List<TopBas_TestInterference>(m,"TopBas_ListOfTestInterference");  
-// ./opencascade/TopBas_ListIteratorOfListOfTestInterference.hxx
-// ./opencascade/TopBas_TestInterference.hxx
+
+// classes forward declarations only
+    py::class_<TopBas_TestInterference , shared_ptr<TopBas_TestInterference>  >(m,"TopBas_TestInterference",R"#(None)#");
 
 };
 

@@ -11,13 +11,7 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <TDF_Label.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
+#include <TFunction_Scope.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <Standard_GUID.hxx>
@@ -26,8 +20,14 @@ namespace py = pybind11;
 #include <TFunction_GraphNode.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
 #include <TFunction_Logbook.hxx>
-#include <TFunction_Scope.hxx>
+#include <TDF_Label.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
 
 // module includes
 #include <TFunction_Array1OfDataMapOfGUIDDriver.hxx>
@@ -51,15 +51,15 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/TFunction_Array1OfDataMapOfGUIDDriver.hxx
 #include "NCollection.hxx"
-// ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
-#include "NCollection.hxx"
-// ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
-#include "NCollection.hxx"
-// ./opencascade/TFunction_DataMapOfLabelListOfLabel.hxx
-#include "NCollection.hxx"
-// ./opencascade/TFunction_DataMapOfLabelListOfLabel.hxx
-#include "NCollection.hxx"
 // ./opencascade/TFunction_DataMapOfGUIDDriver.hxx
+#include "NCollection.hxx"
+// ./opencascade/TFunction_DataMapOfLabelListOfLabel.hxx
+#include "NCollection.hxx"
+// ./opencascade/TFunction_DataMapOfLabelListOfLabel.hxx
+#include "NCollection.hxx"
+// ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
+#include "NCollection.hxx"
+// ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
 #include "NCollection.hxx"
 
 
@@ -100,38 +100,21 @@ py::module m = main_module.def_submodule("TFunction", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<TFunction_GraphNode ,opencascade::handle<TFunction_GraphNode>  , TDF_Attribute >(m,"TFunction_GraphNode",R"#(Provides links between functions.Provides links between functions.Provides links between functions.)#");
-    py::class_<TFunction_Scope ,opencascade::handle<TFunction_Scope>  , TDF_Attribute >(m,"TFunction_Scope",R"#(Keeps a scope of functions.Keeps a scope of functions.Keeps a scope of functions.)#");
-    py::class_<TFunction_DriverTable ,opencascade::handle<TFunction_DriverTable>  , Standard_Transient >(m,"TFunction_DriverTable",R"#(A container for instances of drivers. You create a new instance of TFunction_Driver and use the method AddDriver to load it into the driver table.A container for instances of drivers. You create a new instance of TFunction_Driver and use the method AddDriver to load it into the driver table.A container for instances of drivers. You create a new instance of TFunction_Driver and use the method AddDriver to load it into the driver table.)#");
-    py::class_<TFunction_Driver ,opencascade::handle<TFunction_Driver> ,Py_TFunction_Driver , Standard_Transient >(m,"TFunction_Driver",R"#(This driver class provide services around function execution. One instance of this class is built for the whole session. The driver is bound to the DriverGUID in the DriverTable class. It allows you to create classes which inherit from this abstract class. These subclasses identify the various algorithms which can be applied to the data contained in the attributes of sub-labels of a model. A single instance of this class and each of its subclasses is built for the whole session.This driver class provide services around function execution. One instance of this class is built for the whole session. The driver is bound to the DriverGUID in the DriverTable class. It allows you to create classes which inherit from this abstract class. These subclasses identify the various algorithms which can be applied to the data contained in the attributes of sub-labels of a model. A single instance of this class and each of its subclasses is built for the whole session.This driver class provide services around function execution. One instance of this class is built for the whole session. The driver is bound to the DriverGUID in the DriverTable class. It allows you to create classes which inherit from this abstract class. These subclasses identify the various algorithms which can be applied to the data contained in the attributes of sub-labels of a model. A single instance of this class and each of its subclasses is built for the whole session.)#");
-    py::class_<TFunction_HArray1OfDataMapOfGUIDDriver ,std::unique_ptr<TFunction_HArray1OfDataMapOfGUIDDriver>  >(m,"TFunction_HArray1OfDataMapOfGUIDDriver",R"#()#");
-    py::class_<TFunction_Function ,opencascade::handle<TFunction_Function>  , TDF_Attribute >(m,"TFunction_Function",R"#(Provides the following two services - a link to an evaluation driver - the means of providing a link between a function and an evaluation driver.Provides the following two services - a link to an evaluation driver - the means of providing a link between a function and an evaluation driver.Provides the following two services - a link to an evaluation driver - the means of providing a link between a function and an evaluation driver.)#");
-    py::class_<TFunction_Logbook ,opencascade::handle<TFunction_Logbook>  , TDF_Attribute >(m,"TFunction_Logbook",R"#(This class contains information which is written and read during the solving process. Information is divided in three groups.This class contains information which is written and read during the solving process. Information is divided in three groups.This class contains information which is written and read during the solving process. Information is divided in three groups.This class contains information which is written and read during the solving process. Information is divided in three groups.)#");
-    py::class_<TFunction_IFunction ,std::unique_ptr<TFunction_IFunction>  >(m,"TFunction_IFunction",R"#(Interface class for usage of Function Mechanism)#");
-    py::class_<TFunction_Iterator ,std::unique_ptr<TFunction_Iterator>  >(m,"TFunction_Iterator",R"#(Iterator of the graph of functions)#");
-
 // pre-register typdefs
-// ./opencascade/TFunction_Array1OfDataMapOfGUIDDriver.hxx
     preregister_template_NCollection_Array1<TFunction_DataMapOfGUIDDriver>(m,"TFunction_Array1OfDataMapOfGUIDDriver");  
-// ./opencascade/TFunction_DoubleMapIteratorOfDoubleMapOfIntegerLabel.hxx
-// ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
-    preregister_template_NCollection_DoubleMap<Standard_Integer, TDF_Label, TColStd_MapIntegerHasher, TDF_LabelMapHasher>(m,"TFunction_DoubleMapOfIntegerLabel");  
-// ./opencascade/TFunction_GraphNode.hxx
-// ./opencascade/TFunction_Function.hxx
-// ./opencascade/TFunction_Scope.hxx
-// ./opencascade/TFunction_IFunction.hxx
-// ./opencascade/TFunction_DriverTable.hxx
-// ./opencascade/TFunction_DataMapOfLabelListOfLabel.hxx
     preregister_template_NCollection_DataMap<TDF_Label, TDF_LabelList, TDF_LabelMapHasher>(m,"TFunction_DataMapOfLabelListOfLabel");  
-// ./opencascade/TFunction_DataMapOfGUIDDriver.hxx
-// ./opencascade/TFunction_Logbook.hxx
-// ./opencascade/TFunction_Driver.hxx
-// ./opencascade/TFunction_ExecutionStatus.hxx
-// ./opencascade/TFunction_Iterator.hxx
-// ./opencascade/TFunction_HArray1OfDataMapOfGUIDDriver.hxx
-// ./opencascade/TFunction_DataMapIteratorOfDataMapOfLabelListOfLabel.hxx
-// ./opencascade/TFunction_DataMapIteratorOfDataMapOfGUIDDriver.hxx
+    preregister_template_NCollection_DoubleMap<Standard_Integer, TDF_Label, TColStd_MapIntegerHasher, TDF_LabelMapHasher>(m,"TFunction_DoubleMapOfIntegerLabel");  
+
+// classes forward declarations only
+    py::class_<TFunction_Driver ,opencascade::handle<TFunction_Driver> ,Py_TFunction_Driver , Standard_Transient >(m,"TFunction_Driver",R"#(This driver class provide services around function execution. One instance of this class is built for the whole session. The driver is bound to the DriverGUID in the DriverTable class. It allows you to create classes which inherit from this abstract class. These subclasses identify the various algorithms which can be applied to the data contained in the attributes of sub-labels of a model. A single instance of this class and each of its subclasses is built for the whole session.This driver class provide services around function execution. One instance of this class is built for the whole session. The driver is bound to the DriverGUID in the DriverTable class. It allows you to create classes which inherit from this abstract class. These subclasses identify the various algorithms which can be applied to the data contained in the attributes of sub-labels of a model. A single instance of this class and each of its subclasses is built for the whole session.This driver class provide services around function execution. One instance of this class is built for the whole session. The driver is bound to the DriverGUID in the DriverTable class. It allows you to create classes which inherit from this abstract class. These subclasses identify the various algorithms which can be applied to the data contained in the attributes of sub-labels of a model. A single instance of this class and each of its subclasses is built for the whole session.)#");
+    py::class_<TFunction_DriverTable ,opencascade::handle<TFunction_DriverTable>  , Standard_Transient >(m,"TFunction_DriverTable",R"#(A container for instances of drivers. You create a new instance of TFunction_Driver and use the method AddDriver to load it into the driver table.A container for instances of drivers. You create a new instance of TFunction_Driver and use the method AddDriver to load it into the driver table.A container for instances of drivers. You create a new instance of TFunction_Driver and use the method AddDriver to load it into the driver table.)#");
+    py::class_<TFunction_Function ,opencascade::handle<TFunction_Function>  , TDF_Attribute >(m,"TFunction_Function",R"#(Provides the following two services - a link to an evaluation driver - the means of providing a link between a function and an evaluation driver.Provides the following two services - a link to an evaluation driver - the means of providing a link between a function and an evaluation driver.Provides the following two services - a link to an evaluation driver - the means of providing a link between a function and an evaluation driver.)#");
+    py::class_<TFunction_GraphNode ,opencascade::handle<TFunction_GraphNode>  , TDF_Attribute >(m,"TFunction_GraphNode",R"#(Provides links between functions.Provides links between functions.Provides links between functions.)#");
+    py::class_<TFunction_HArray1OfDataMapOfGUIDDriver ,opencascade::handle<TFunction_HArray1OfDataMapOfGUIDDriver>  , TFunction_Array1OfDataMapOfGUIDDriver , Standard_Transient >(m,"TFunction_HArray1OfDataMapOfGUIDDriver",R"#()#");
+    py::class_<TFunction_IFunction , shared_ptr<TFunction_IFunction>  >(m,"TFunction_IFunction",R"#(Interface class for usage of Function Mechanism)#");
+    py::class_<TFunction_Iterator , shared_ptr<TFunction_Iterator>  >(m,"TFunction_Iterator",R"#(Iterator of the graph of functions)#");
+    py::class_<TFunction_Logbook ,opencascade::handle<TFunction_Logbook>  , TDF_Attribute >(m,"TFunction_Logbook",R"#(This class contains information which is written and read during the solving process. Information is divided in three groups.This class contains information which is written and read during the solving process. Information is divided in three groups.This class contains information which is written and read during the solving process. Information is divided in three groups.This class contains information which is written and read during the solving process. Information is divided in three groups.)#");
+    py::class_<TFunction_Scope ,opencascade::handle<TFunction_Scope>  , TDF_Attribute >(m,"TFunction_Scope",R"#(Keeps a scope of functions.Keeps a scope of functions.Keeps a scope of functions.)#");
 
 };
 

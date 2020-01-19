@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -41,43 +44,56 @@ py::module m = static_cast<py::module>(main_module.attr("Image"));
 // classes
 
 
-    static_cast<py::class_<Image_PixMapData ,opencascade::handle<Image_PixMapData>  , NCollection_Buffer >>(m.attr("Image_PixMapData"))
+    static_cast<py::class_<Image_Diff ,opencascade::handle<Image_Diff>  , Standard_Transient >>(m.attr("Image_Diff"))
         .def(py::init<  >()  )
+    // methods
         .def("Init",
-             (void (Image_PixMapData::*)( const opencascade::handle<NCollection_BaseAllocator> & ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  Standard_Byte *  ) ) static_cast<void (Image_PixMapData::*)( const opencascade::handle<NCollection_BaseAllocator> & ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  Standard_Byte *  ) >(&Image_PixMapData::Init),
-             R"#(Initializer.)#"  , py::arg("theAlloc"),  py::arg("theSizeBPP"),  py::arg("theSizeX"),  py::arg("theSizeY"),  py::arg("theSizeRowBytes"),  py::arg("theDataPtr"))
-        .def("Row",
-             (const Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) const) static_cast<const Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) const>(&Image_PixMapData::Row),
-             R"#(Returns data pointer to requested row (first column).)#"  , py::arg("theRow"))
-        .def("ChangeRow",
-             (Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) ) static_cast<Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) >(&Image_PixMapData::ChangeRow),
-             R"#(Returns data pointer to requested row (first column).)#"  , py::arg("theRow"))
-        .def("Value",
-             (const Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) const) static_cast<const Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) const>(&Image_PixMapData::Value),
-             R"#(Returns data pointer to requested position.)#"  , py::arg("theRow"),  py::arg("theCol"))
-        .def("ChangeValue",
-             (Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) ) static_cast<Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) >(&Image_PixMapData::ChangeValue),
-             R"#(Returns data pointer to requested position.)#"  , py::arg("theRow"),  py::arg("theCol"))
-        .def("MaxRowAligmentBytes",
-             (Standard_Size (Image_PixMapData::*)() const) static_cast<Standard_Size (Image_PixMapData::*)() const>(&Image_PixMapData::MaxRowAligmentBytes),
-             R"#(Compute the maximal row alignment for current row size.)#" )
-        .def("SetTopDown",
-             (void (Image_PixMapData::*)( const bool  ) ) static_cast<void (Image_PixMapData::*)( const bool  ) >(&Image_PixMapData::SetTopDown),
-             R"#(Setup scanlines order in memory - top-down or bottom-up. Drawers should explicitly specify this value if current state IsTopDown() was ignored!)#"  , py::arg("theIsTopDown"))
+             (Standard_Boolean (Image_Diff::*)( const opencascade::handle<Image_PixMap> & ,  const opencascade::handle<Image_PixMap> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (Image_Diff::*)( const opencascade::handle<Image_PixMap> & ,  const opencascade::handle<Image_PixMap> & ,  const Standard_Boolean  ) >(&Image_Diff::Init),
+             R"#(Initialize algorithm by two images.)#"  , py::arg("theImageRef"),  py::arg("theImageNew"),  py::arg("theToBlackWhite")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("Init",
+             (Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) >(&Image_Diff::Init),
+             R"#(Initialize algorithm by two images (will be loaded from files).)#"  , py::arg("theImgPathRef"),  py::arg("theImgPathNew"),  py::arg("theToBlackWhite")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("SetColorTolerance",
+             (void (Image_Diff::*)( const Standard_Real  ) ) static_cast<void (Image_Diff::*)( const Standard_Real  ) >(&Image_Diff::SetColorTolerance),
+             R"#(Color tolerance for equality check. Should be within range 0..1: Corresponds to a difference between white and black colors (maximum difference). By default, the tolerance is equal to 0 thus equality check will return false for any different colors.)#"  , py::arg("theTolerance"))
+        .def("ColorTolerance",
+             (Standard_Real (Image_Diff::*)() const) static_cast<Standard_Real (Image_Diff::*)() const>(&Image_Diff::ColorTolerance),
+             R"#(Color tolerance for equality check.)#" )
+        .def("SetBorderFilterOn",
+             (void (Image_Diff::*)( const Standard_Boolean  ) ) static_cast<void (Image_Diff::*)( const Standard_Boolean  ) >(&Image_Diff::SetBorderFilterOn),
+             R"#(Sets taking into account (ignoring) a "border effect" on comparison of images. The border effect is caused by a border of shaded shapes in the viewer 3d. Triangles of this area are located at about 0 or 90 degrees to the user. Therefore, they deflect light differently according to implementation of a video card driver. This flag allows to detect such a "border" area and skip it from comparison of images. Filter turned OFF by default.)#"  , py::arg("theToIgnore"))
+        .def("IsBorderFilterOn",
+             (Standard_Boolean (Image_Diff::*)() const) static_cast<Standard_Boolean (Image_Diff::*)() const>(&Image_Diff::IsBorderFilterOn),
+             R"#(Returns a flag of taking into account (ignoring) a border effect in comparison of images.)#" )
+        .def("Compare",
+             (Standard_Integer (Image_Diff::*)() ) static_cast<Standard_Integer (Image_Diff::*)() >(&Image_Diff::Compare),
+             R"#(Compares two images. It returns a number of different pixels (or groups of pixels). It returns -1 if algorithm not initialized before.)#" )
+        .def("SaveDiffImage",
+             (Standard_Boolean (Image_Diff::*)( Image_PixMap &  ) const) static_cast<Standard_Boolean (Image_Diff::*)( Image_PixMap &  ) const>(&Image_Diff::SaveDiffImage),
+             R"#(Saves a difference between two images as white pixels on black backgroud.)#"  , py::arg("theDiffImage"))
+        .def("SaveDiffImage",
+             (Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString &  ) const) static_cast<Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString &  ) const>(&Image_Diff::SaveDiffImage),
+             R"#(Saves a difference between two images as white pixels on black backgroud.)#"  , py::arg("theDiffPath"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Image_PixMapData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Image_PixMapData::*)() const>(&Image_PixMapData::DynamicType),
+             (const opencascade::handle<Standard_Type> & (Image_Diff::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Image_Diff::*)() const>(&Image_Diff::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Image_PixMapData::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Image_Diff::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Image_PixMapData::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Image_Diff::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Image_PixMap ,opencascade::handle<Image_PixMap>  , Standard_Transient >>(m.attr("Image_PixMap"))
         .def(py::init<  >()  )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Image_PixMap::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Image_PixMap::*)() const>(&Image_PixMap::DynamicType),
              R"#(None)#" )
@@ -165,6 +181,8 @@ py::module m = static_cast<py::module>(main_module.attr("Image"));
         .def("SizeBytes",
              (Standard_Size (Image_PixMap::*)() const) static_cast<Standard_Size (Image_PixMap::*)() const>(&Image_PixMap::SizeBytes),
              R"#(Returns buffer size)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Image_PixMap::get_type_name),
                     R"#(None)#" )
@@ -183,52 +201,56 @@ py::module m = static_cast<py::module>(main_module.attr("Image"));
         .def_static("SizePixelBytes_s",
                     (Standard_Size (*)( const Image_Format  ) ) static_cast<Standard_Size (*)( const Image_Format  ) >(&Image_PixMap::SizePixelBytes),
                     R"#(Returns bytes reserved for one pixel (may include extra bytes for alignment).)#"  , py::arg("thePixelFormat"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Image_Diff ,opencascade::handle<Image_Diff>  , Standard_Transient >>(m.attr("Image_Diff"))
+    static_cast<py::class_<Image_PixMapData ,opencascade::handle<Image_PixMapData>  , NCollection_Buffer >>(m.attr("Image_PixMapData"))
         .def(py::init<  >()  )
+    // methods
         .def("Init",
-             (Standard_Boolean (Image_Diff::*)( const opencascade::handle<Image_PixMap> & ,  const opencascade::handle<Image_PixMap> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (Image_Diff::*)( const opencascade::handle<Image_PixMap> & ,  const opencascade::handle<Image_PixMap> & ,  const Standard_Boolean  ) >(&Image_Diff::Init),
-             R"#(Initialize algorithm by two images.)#"  , py::arg("theImageRef"),  py::arg("theImageNew"),  py::arg("theToBlackWhite")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("Init",
-             (Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) >(&Image_Diff::Init),
-             R"#(Initialize algorithm by two images (will be loaded from files).)#"  , py::arg("theImgPathRef"),  py::arg("theImgPathNew"),  py::arg("theToBlackWhite")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("SetColorTolerance",
-             (void (Image_Diff::*)( const Standard_Real  ) ) static_cast<void (Image_Diff::*)( const Standard_Real  ) >(&Image_Diff::SetColorTolerance),
-             R"#(Color tolerance for equality check. Should be within range 0..1: Corresponds to a difference between white and black colors (maximum difference). By default, the tolerance is equal to 0 thus equality check will return false for any different colors.)#"  , py::arg("theTolerance"))
-        .def("ColorTolerance",
-             (Standard_Real (Image_Diff::*)() const) static_cast<Standard_Real (Image_Diff::*)() const>(&Image_Diff::ColorTolerance),
-             R"#(Color tolerance for equality check.)#" )
-        .def("SetBorderFilterOn",
-             (void (Image_Diff::*)( const Standard_Boolean  ) ) static_cast<void (Image_Diff::*)( const Standard_Boolean  ) >(&Image_Diff::SetBorderFilterOn),
-             R"#(Sets taking into account (ignoring) a "border effect" on comparison of images. The border effect is caused by a border of shaded shapes in the viewer 3d. Triangles of this area are located at about 0 or 90 degrees to the user. Therefore, they deflect light differently according to implementation of a video card driver. This flag allows to detect such a "border" area and skip it from comparison of images. Filter turned OFF by default.)#"  , py::arg("theToIgnore"))
-        .def("IsBorderFilterOn",
-             (Standard_Boolean (Image_Diff::*)() const) static_cast<Standard_Boolean (Image_Diff::*)() const>(&Image_Diff::IsBorderFilterOn),
-             R"#(Returns a flag of taking into account (ignoring) a border effect in comparison of images.)#" )
-        .def("Compare",
-             (Standard_Integer (Image_Diff::*)() ) static_cast<Standard_Integer (Image_Diff::*)() >(&Image_Diff::Compare),
-             R"#(Compares two images. It returns a number of different pixels (or groups of pixels). It returns -1 if algorithm not initialized before.)#" )
-        .def("SaveDiffImage",
-             (Standard_Boolean (Image_Diff::*)( Image_PixMap &  ) const) static_cast<Standard_Boolean (Image_Diff::*)( Image_PixMap &  ) const>(&Image_Diff::SaveDiffImage),
-             R"#(Saves a difference between two images as white pixels on black backgroud.)#"  , py::arg("theDiffImage"))
-        .def("SaveDiffImage",
-             (Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString &  ) const) static_cast<Standard_Boolean (Image_Diff::*)( const TCollection_AsciiString &  ) const>(&Image_Diff::SaveDiffImage),
-             R"#(Saves a difference between two images as white pixels on black backgroud.)#"  , py::arg("theDiffPath"))
+             (void (Image_PixMapData::*)( const opencascade::handle<NCollection_BaseAllocator> & ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  Standard_Byte *  ) ) static_cast<void (Image_PixMapData::*)( const opencascade::handle<NCollection_BaseAllocator> & ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  const Standard_Size ,  Standard_Byte *  ) >(&Image_PixMapData::Init),
+             R"#(Initializer.)#"  , py::arg("theAlloc"),  py::arg("theSizeBPP"),  py::arg("theSizeX"),  py::arg("theSizeY"),  py::arg("theSizeRowBytes"),  py::arg("theDataPtr"))
+        .def("Row",
+             (const Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) const) static_cast<const Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) const>(&Image_PixMapData::Row),
+             R"#(Returns data pointer to requested row (first column).)#"  , py::arg("theRow"))
+        .def("ChangeRow",
+             (Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) ) static_cast<Standard_Byte * (Image_PixMapData::*)( const Standard_Size  ) >(&Image_PixMapData::ChangeRow),
+             R"#(Returns data pointer to requested row (first column).)#"  , py::arg("theRow"))
+        .def("Value",
+             (const Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) const) static_cast<const Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) const>(&Image_PixMapData::Value),
+             R"#(Returns data pointer to requested position.)#"  , py::arg("theRow"),  py::arg("theCol"))
+        .def("ChangeValue",
+             (Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) ) static_cast<Standard_Byte * (Image_PixMapData::*)( const Standard_Size ,  const Standard_Size  ) >(&Image_PixMapData::ChangeValue),
+             R"#(Returns data pointer to requested position.)#"  , py::arg("theRow"),  py::arg("theCol"))
+        .def("MaxRowAligmentBytes",
+             (Standard_Size (Image_PixMapData::*)() const) static_cast<Standard_Size (Image_PixMapData::*)() const>(&Image_PixMapData::MaxRowAligmentBytes),
+             R"#(Compute the maximal row alignment for current row size.)#" )
+        .def("SetTopDown",
+             (void (Image_PixMapData::*)( const bool  ) ) static_cast<void (Image_PixMapData::*)( const bool  ) >(&Image_PixMapData::SetTopDown),
+             R"#(Setup scanlines order in memory - top-down or bottom-up. Drawers should explicitly specify this value if current state IsTopDown() was ignored!)#"  , py::arg("theIsTopDown"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Image_Diff::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Image_Diff::*)() const>(&Image_Diff::DynamicType),
+             (const opencascade::handle<Standard_Type> & (Image_PixMapData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Image_PixMapData::*)() const>(&Image_PixMapData::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Image_Diff::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Image_PixMapData::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Image_Diff::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Image_PixMapData::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Image_VideoRecorder ,opencascade::handle<Image_VideoRecorder>  , Standard_Transient >>(m.attr("Image_VideoRecorder"))
         .def(py::init<  >()  )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Image_VideoRecorder::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Image_VideoRecorder::*)() const>(&Image_VideoRecorder::DynamicType),
              R"#(None)#" )
@@ -247,17 +269,23 @@ py::module m = static_cast<py::module>(main_module.attr("Image"));
         .def("PushFrame",
              (Standard_Boolean (Image_VideoRecorder::*)() ) static_cast<Standard_Boolean (Image_VideoRecorder::*)() >(&Image_VideoRecorder::PushFrame),
              R"#(Push new frame, should be called after Open().)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Image_VideoRecorder::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Image_VideoRecorder::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Image_AlienPixMap ,opencascade::handle<Image_AlienPixMap>  , Image_PixMap >>(m.attr("Image_AlienPixMap"))
         .def(py::init<  >()  )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Image_AlienPixMap::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Image_AlienPixMap::*)() const>(&Image_AlienPixMap::DynamicType),
              R"#(None)#" )
@@ -279,22 +307,27 @@ py::module m = static_cast<py::module>(main_module.attr("Image"));
         .def("AdjustGamma",
              (bool (Image_AlienPixMap::*)( const Standard_Real  ) ) static_cast<bool (Image_AlienPixMap::*)( const Standard_Real  ) >(&Image_AlienPixMap::AdjustGamma),
              R"#(Performs gamma correction on image. theGamma - gamma value to use; a value of 1.0 leaves the image alone)#"  , py::arg("theGammaCorr"))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Image_AlienPixMap::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Image_AlienPixMap::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Image_PixMapData.hxx
-// ./opencascade/Image_VideoRecorder.hxx
-// ./opencascade/Image_PixMap.hxx
-// ./opencascade/Image_AlienPixMap.hxx
-// ./opencascade/Image_Diff.hxx
-// ./opencascade/Image_Color.hxx
 // ./opencascade/Image_Format.hxx
+// ./opencascade/Image_Color.hxx
+// ./opencascade/Image_PixMap.hxx
+// ./opencascade/Image_PixMapData.hxx
+// ./opencascade/Image_Diff.hxx
+// ./opencascade/Image_VideoRecorder.hxx
+// ./opencascade/Image_AlienPixMap.hxx
 
 // operators
     m.def("__add__", 
@@ -379,13 +412,6 @@ py::module m = static_cast<py::module>(main_module.attr("Image"));
           R"#(None)#"  , py::arg("theA"),  py::arg("theB"));
 
 // register typdefs
-// ./opencascade/Image_PixMapData.hxx
-// ./opencascade/Image_VideoRecorder.hxx
-// ./opencascade/Image_PixMap.hxx
-// ./opencascade/Image_AlienPixMap.hxx
-// ./opencascade/Image_Diff.hxx
-// ./opencascade/Image_Color.hxx
-// ./opencascade/Image_Format.hxx
 
 
 // exceptions

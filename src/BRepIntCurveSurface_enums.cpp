@@ -41,11 +41,10 @@ py::module m = main_module.def_submodule("BRepIntCurveSurface", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepIntCurveSurface_Inter ,std::unique_ptr<BRepIntCurveSurface_Inter>  >(m,"BRepIntCurveSurface_Inter",R"#(Computes the intersection between a face and a curve. To intersect one curve with shape method Init(Shape, curve, tTol) should be used. To intersect a few curves with specified shape it is necessary to load shape one time using method Load(shape, tol) and find intersection points for each curve using method Init(curve). For iteration by intersection points method More() and Next() should be used.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepIntCurveSurface_Inter.hxx
+
+// classes forward declarations only
+    py::class_<BRepIntCurveSurface_Inter , shared_ptr<BRepIntCurveSurface_Inter>  >(m,"BRepIntCurveSurface_Inter",R"#(Computes the intersection between a face and a curve. To intersect one curve with shape method Init(Shape, curve, tTol) should be used. To intersect a few curves with specified shape it is necessary to load shape one time using method Load(shape, tol) and find intersection points for each curve using method Init(curve). For iteration by intersection points method More() and Next() should be used.)#");
 
 };
 

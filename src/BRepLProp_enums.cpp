@@ -16,18 +16,18 @@ namespace py = pybind11;
 #include <BRepLProp_SurfaceTool.hxx>
 #include <BRepLProp_CLProps.hxx>
 #include <BRepLProp_SLProps.hxx>
-#include <BRepAdaptor_Curve.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <BRepAdaptor_Surface.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <BRepLProp_SurfaceTool.hxx>
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <BRepLProp_CurveTool.hxx>
+#include <BRepAdaptor_Surface.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <BRepAdaptor_Curve.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
 
 // module includes
 #include <BRepLProp.hxx>
@@ -56,19 +56,14 @@ py::module m = main_module.def_submodule("BRepLProp", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepLProp ,std::unique_ptr<BRepLProp>  >(m,"BRepLProp",R"#(These global functions compute the degree of continuity of a curve built by concatenation of two edges at their junction point.)#");
-    py::class_<BRepLProp_SurfaceTool ,std::unique_ptr<BRepLProp_SurfaceTool>  >(m,"BRepLProp_SurfaceTool",R"#(None)#");
-    py::class_<BRepLProp_CLProps ,std::unique_ptr<BRepLProp_CLProps>  >(m,"BRepLProp_CLProps",R"#(None)#");
-    py::class_<BRepLProp_CurveTool ,std::unique_ptr<BRepLProp_CurveTool>  >(m,"BRepLProp_CurveTool",R"#(None)#");
-    py::class_<BRepLProp_SLProps ,std::unique_ptr<BRepLProp_SLProps>  >(m,"BRepLProp_SLProps",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/BRepLProp.hxx
-// ./opencascade/BRepLProp_CurveTool.hxx
-// ./opencascade/BRepLProp_SurfaceTool.hxx
-// ./opencascade/BRepLProp_SLProps.hxx
-// ./opencascade/BRepLProp_CLProps.hxx
+
+// classes forward declarations only
+    py::class_<BRepLProp , shared_ptr<BRepLProp>  >(m,"BRepLProp",R"#(These global functions compute the degree of continuity of a curve built by concatenation of two edges at their junction point.)#");
+    py::class_<BRepLProp_CLProps , shared_ptr<BRepLProp_CLProps>  >(m,"BRepLProp_CLProps",R"#(None)#");
+    py::class_<BRepLProp_CurveTool , shared_ptr<BRepLProp_CurveTool>  >(m,"BRepLProp_CurveTool",R"#(None)#");
+    py::class_<BRepLProp_SLProps , shared_ptr<BRepLProp_SLProps>  >(m,"BRepLProp_SLProps",R"#(None)#");
+    py::class_<BRepLProp_SurfaceTool , shared_ptr<BRepLProp_SurfaceTool>  >(m,"BRepLProp_SurfaceTool",R"#(None)#");
 
 };
 

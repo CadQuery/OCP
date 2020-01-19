@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -77,9 +80,74 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
 // classes
 
 
-    static_cast<py::class_<BRepFilletAPI_MakeFillet2d ,std::unique_ptr<BRepFilletAPI_MakeFillet2d>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepFilletAPI_MakeFillet2d"))
+    static_cast<py::class_<BRepFilletAPI_LocalOperation , shared_ptr<BRepFilletAPI_LocalOperation> ,Py_BRepFilletAPI_LocalOperation , BRepBuilderAPI_MakeShape >>(m.attr("BRepFilletAPI_LocalOperation"))
+    // methods
+        .def("Add",
+             (void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_LocalOperation::Add),
+             R"#(Adds a contour in the builder (builds a contour of tangent edges).)#"  , py::arg("E"))
+        .def("ResetContour",
+             (void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) >(&BRepFilletAPI_LocalOperation::ResetContour),
+             R"#(Reset the contour of index IC, there is nomore information in the contour.)#"  , py::arg("IC"))
+        .def("NbContours",
+             (Standard_Integer (BRepFilletAPI_LocalOperation::*)() const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)() const>(&BRepFilletAPI_LocalOperation::NbContours),
+             R"#(Number of contours.)#" )
+        .def("Contour",
+             (Standard_Integer (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) const>(&BRepFilletAPI_LocalOperation::Contour),
+             R"#(Returns the index of the contour containing the edge E, returns 0 if E doesn't belong to any contour.)#"  , py::arg("E"))
+        .def("NbEdges",
+             (Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::NbEdges),
+             R"#(Number of Edges in the contour I.)#"  , py::arg("I"))
+        .def("Edge",
+             (const TopoDS_Edge & (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Edge),
+             R"#(Returns the Edge J in the contour I.)#"  , py::arg("I"),  py::arg("J"))
+        .def("Remove",
+             (void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_LocalOperation::Remove),
+             R"#(remove the contour containing the Edge E.)#"  , py::arg("E"))
+        .def("Length",
+             (Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Length),
+             R"#(returns the length the contour of index IC.)#"  , py::arg("IC"))
+        .def("FirstVertex",
+             (TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::FirstVertex),
+             R"#(Returns the first Vertex of the contour of index IC.)#"  , py::arg("IC"))
+        .def("LastVertex",
+             (TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::LastVertex),
+             R"#(Returns the last Vertex of the contour of index IC.)#"  , py::arg("IC"))
+        .def("Abscissa",
+             (Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_LocalOperation::Abscissa),
+             R"#(returns the abscissa of the vertex V on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
+        .def("RelativeAbscissa",
+             (Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_LocalOperation::RelativeAbscissa),
+             R"#(returns the relative abscissa([0.,1.]) of the vertex V on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
+        .def("ClosedAndTangent",
+             (Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::ClosedAndTangent),
+             R"#(returns true if the contour of index IC is closed an tangent.)#"  , py::arg("IC"))
+        .def("Closed",
+             (Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Closed),
+             R"#(returns true if the contour of index IC is closed)#"  , py::arg("IC"))
+        .def("Reset",
+             (void (BRepFilletAPI_LocalOperation::*)() ) static_cast<void (BRepFilletAPI_LocalOperation::*)() >(&BRepFilletAPI_LocalOperation::Reset),
+             R"#(Reset all the fields updated by Build operation and leave the algorithm in the same state than before build call. It allows contours and radius modifications to build the result another time.)#" )
+        .def("Simulate",
+             (void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) >(&BRepFilletAPI_LocalOperation::Simulate),
+             R"#(None)#"  , py::arg("IC"))
+        .def("NbSurf",
+             (Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::NbSurf),
+             R"#(None)#"  , py::arg("IC"))
+        .def("Sect",
+             (opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Sect),
+             R"#(None)#"  , py::arg("IC"),  py::arg("IS"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepFilletAPI_MakeFillet2d , shared_ptr<BRepFilletAPI_MakeFillet2d>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepFilletAPI_MakeFillet2d"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // methods
         .def("Init",
              (void (BRepFilletAPI_MakeFillet2d::*)( const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeFillet2d::*)( const TopoDS_Face &  ) >(&BRepFilletAPI_MakeFillet2d::Init),
              R"#(Initializes this algorithm for constructing fillets or chamfers with the face F. Warning The status of the initialization, as given by the Status function, can be one of the following: - ChFi2d_Ready if the initialization is correct, - ChFi2d_NotPlanar if F is not planar, - ChFi2d_NoFace if F is a null face.)#"  , py::arg("F"))
@@ -173,69 +241,133 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
         .def("Status",
              (ChFi2d_ConstructionError (BRepFilletAPI_MakeFillet2d::*)() const) static_cast<ChFi2d_ConstructionError (BRepFilletAPI_MakeFillet2d::*)() const>(&BRepFilletAPI_MakeFillet2d::Status),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepFilletAPI_LocalOperation ,std::unique_ptr<BRepFilletAPI_LocalOperation> ,Py_BRepFilletAPI_LocalOperation , BRepBuilderAPI_MakeShape >>(m.attr("BRepFilletAPI_LocalOperation"))
+    static_cast<py::class_<BRepFilletAPI_MakeChamfer , shared_ptr<BRepFilletAPI_MakeChamfer>  , BRepFilletAPI_LocalOperation >>(m.attr("BRepFilletAPI_MakeChamfer"))
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // methods
         .def("Add",
-             (void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_LocalOperation::Add),
-             R"#(Adds a contour in the builder (builds a contour of tangent edges).)#"  , py::arg("E"))
+             (void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_MakeChamfer::Add),
+             R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer must be set after the)#"  , py::arg("E"))
+        .def("Add",
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::Add),
+             R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer are given by the two distances Dis1 and Dis2; the face F identifies the side where Dis1 is measured. The Add function results in a contour being built by propagation from the edge E (i.e. the contour contains at least this edge). This contour is composed of edges of the shape which are tangential to one another and which delimit two series of tangential faces, with one series of faces being located on either side of the contour. Warning Nothing is done if edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis"),  py::arg("E"),  py::arg("F"))
+        .def("SetDist",
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDist),
+             R"#(Sets the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC generated using the Add function in the internal data structure of this algorithm. The face F identifies the side where Dis1 is measured. Warning Nothing is done if either the edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis"),  py::arg("IC"),  py::arg("F"))
+        .def("Add",
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::Add),
+             R"#(Adds a fillet contour in the builder (builds a contour of tangent edges to <E> and sets the two distances <Dis1> and <Dis2> ( parameters of the chamfer ) ).)#"  , py::arg("Dis1"),  py::arg("Dis2"),  py::arg("E"),  py::arg("F"))
+        .def("SetDists",
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDists),
+             R"#(Sets the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC generated using the Add function in the internal data structure of this algorithm. The face F identifies the side where Dis1 is measured. Warning Nothing is done if either the edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis1"),  py::arg("Dis2"),  py::arg("IC"),  py::arg("F"))
+        .def("AddDA",
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::AddDA),
+             R"#(Adds a fillet contour in the builder (builds a contour of tangent edges to <E> and sets the distance <Dis1> and angle <Angle> ( parameters of the chamfer ) ).)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("E"),  py::arg("F"))
+        .def("SetDistAngle",
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDistAngle),
+             R"#(set the distance <Dis> and <Angle> of the fillet contour of index <IC> in the DS with <Dis> on <F>. if the face <F> is not one of common faces of an edge of the contour <IC>)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("IC"),  py::arg("F"))
+        .def("IsSymetric",
+             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::IsSymetric),
+             R"#(return True if chamfer symetric false else.)#"  , py::arg("IC"))
+        .def("IsTwoDistances",
+             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::IsTwoDistances),
+             R"#(return True if chamfer is made with two distances false else.)#"  , py::arg("IC"))
+        .def("IsDistanceAngle",
+             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::IsDistanceAngle),
+             R"#(return True if chamfer is made with distance and angle false else.)#"  , py::arg("IC"))
         .def("ResetContour",
-             (void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) >(&BRepFilletAPI_LocalOperation::ResetContour),
-             R"#(Reset the contour of index IC, there is nomore information in the contour.)#"  , py::arg("IC"))
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) >(&BRepFilletAPI_MakeChamfer::ResetContour),
+             R"#(Erases the chamfer parameters on the contour of index IC in the internal data structure of this algorithm. Use the SetDists function to reset this data. Warning Nothing is done if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
         .def("NbContours",
-             (Standard_Integer (BRepFilletAPI_LocalOperation::*)() const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)() const>(&BRepFilletAPI_LocalOperation::NbContours),
-             R"#(Number of contours.)#" )
+             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)() const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)() const>(&BRepFilletAPI_MakeChamfer::NbContours),
+             R"#(Returns the number of contours generated using the Add function in the internal data structure of this algorithm.)#" )
         .def("Contour",
-             (Standard_Integer (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) const>(&BRepFilletAPI_LocalOperation::Contour),
-             R"#(Returns the index of the contour containing the edge E, returns 0 if E doesn't belong to any contour.)#"  , py::arg("E"))
+             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) const>(&BRepFilletAPI_MakeChamfer::Contour),
+             R"#(Returns the index of the contour in the internal data structure of this algorithm, which contains the edge E of the shape. This function returns 0 if the edge E does not belong to any contour. Warning This index can change if a contour is removed from the internal data structure of this algorithm using the function Remove.)#"  , py::arg("E"))
         .def("NbEdges",
-             (Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::NbEdges),
-             R"#(Number of Edges in the contour I.)#"  , py::arg("I"))
+             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::NbEdges),
+             R"#(Returns the number of edges in the contour of index I in the internal data structure of this algorithm. Warning Returns 0 if I is outside the bounds of the table of contours.)#"  , py::arg("I"))
         .def("Edge",
-             (const TopoDS_Edge & (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Edge),
-             R"#(Returns the Edge J in the contour I.)#"  , py::arg("I"),  py::arg("J"))
+             (const TopoDS_Edge & (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Edge),
+             R"#(Returns the edge of index J in the contour of index I in the internal data structure of this algorithm. Warning Returns a null shape if: - I is outside the bounds of the table of contours, or - J is outside the bounds of the table of edges of the contour of index I.)#"  , py::arg("I"),  py::arg("J"))
         .def("Remove",
-             (void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_LocalOperation::Remove),
-             R"#(remove the contour containing the Edge E.)#"  , py::arg("E"))
+             (void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_MakeChamfer::Remove),
+             R"#(Removes the contour in the internal data structure of this algorithm which contains the edge E of the shape. Warning Nothing is done if the edge E does not belong to the contour in the internal data structure of this algorithm.)#"  , py::arg("E"))
         .def("Length",
-             (Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Length),
-             R"#(returns the length the contour of index IC.)#"  , py::arg("IC"))
+             (Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Length),
+             R"#(Returns the length of the contour of index IC in the internal data structure of this algorithm. Warning Returns -1. if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
         .def("FirstVertex",
-             (TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::FirstVertex),
-             R"#(Returns the first Vertex of the contour of index IC.)#"  , py::arg("IC"))
+             (TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::FirstVertex),
+             R"#(Returns the first vertex of the contour of index IC in the internal data structure of this algorithm. Warning Returns a null shape if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
         .def("LastVertex",
-             (TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::LastVertex),
-             R"#(Returns the last Vertex of the contour of index IC.)#"  , py::arg("IC"))
+             (TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::LastVertex),
+             R"#(Returns the last vertex of the contour of index IC in the internal data structure of this algorithm. Warning Returns a null shape if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
         .def("Abscissa",
-             (Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_LocalOperation::Abscissa),
-             R"#(returns the abscissa of the vertex V on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
+             (Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_MakeChamfer::Abscissa),
+             R"#(Returns the curvilinear abscissa of the vertex V on the contour of index IC in the internal data structure of this algorithm. Warning Returns -1. if: - IC is outside the bounds of the table of contours, or - V is not on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
         .def("RelativeAbscissa",
-             (Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_LocalOperation::RelativeAbscissa),
-             R"#(returns the relative abscissa([0.,1.]) of the vertex V on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
+             (Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_MakeChamfer::RelativeAbscissa),
+             R"#(Returns the relative curvilinear abscissa (i.e. between 0 and 1) of the vertex V on the contour of index IC in the internal data structure of this algorithm. Warning Returns -1. if: - IC is outside the bounds of the table of contours, or - V is not on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
         .def("ClosedAndTangent",
-             (Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::ClosedAndTangent),
-             R"#(returns true if the contour of index IC is closed an tangent.)#"  , py::arg("IC"))
+             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::ClosedAndTangent),
+             R"#(eturns true if the contour of index IC in the internal data structure of this algorithm is closed and tangential at the point of closure. Warning Returns false if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
         .def("Closed",
-             (Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Closed),
-             R"#(returns true if the contour of index IC is closed)#"  , py::arg("IC"))
+             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Closed),
+             R"#(Returns true if the contour of index IC in the internal data structure of this algorithm is closed. Warning Returns false if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
+        .def("Build",
+             (void (BRepFilletAPI_MakeChamfer::*)() ) static_cast<void (BRepFilletAPI_MakeChamfer::*)() >(&BRepFilletAPI_MakeChamfer::Build),
+             R"#(Builds the chamfers on all the contours in the internal data structure of this algorithm and constructs the resulting shape. Use the function IsDone to verify that the chamfered shape is built. Use the function Shape to retrieve the chamfered shape. Warning The construction of chamfers implements highly complex construction algorithms. Consequently, there may be instances where the algorithm fails, for example if the data defining the parameters of the chamfer is not compatible with the geometry of the initial shape. There is no initial analysis of errors and these only become evident at the construction stage. Additionally, in the current software release, the following cases are not handled: - the end point of the contour is the point of intersection of 4 or more edges of the shape, or - the intersection of the chamfer with a face which limits the contour is not fully contained in this face.)#" )
         .def("Reset",
-             (void (BRepFilletAPI_LocalOperation::*)() ) static_cast<void (BRepFilletAPI_LocalOperation::*)() >(&BRepFilletAPI_LocalOperation::Reset),
-             R"#(Reset all the fields updated by Build operation and leave the algorithm in the same state than before build call. It allows contours and radius modifications to build the result another time.)#" )
+             (void (BRepFilletAPI_MakeChamfer::*)() ) static_cast<void (BRepFilletAPI_MakeChamfer::*)() >(&BRepFilletAPI_MakeChamfer::Reset),
+             R"#(Reinitializes this algorithm, thus canceling the effects of the Build function. This function allows modifications to be made to the contours and chamfer parameters in order to rebuild the shape.)#" )
+        .def("Builder",
+             (opencascade::handle<TopOpeBRepBuild_HBuilder> (BRepFilletAPI_MakeChamfer::*)() const) static_cast<opencascade::handle<TopOpeBRepBuild_HBuilder> (BRepFilletAPI_MakeChamfer::*)() const>(&BRepFilletAPI_MakeChamfer::Builder),
+             R"#(Returns the internal filleting algorithm.)#" )
+        .def("Generated",
+             (const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) >(&BRepFilletAPI_MakeChamfer::Generated),
+             R"#(Returns the list of shapes generated from the shape <EorV>.)#"  , py::arg("EorV"))
+        .def("Modified",
+             (const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) >(&BRepFilletAPI_MakeChamfer::Modified),
+             R"#(Returns the list of shapes modified from the shape <F>.)#"  , py::arg("F"))
+        .def("IsDeleted",
+             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) >(&BRepFilletAPI_MakeChamfer::IsDeleted),
+             R"#(None)#"  , py::arg("F"))
         .def("Simulate",
-             (void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) >(&BRepFilletAPI_LocalOperation::Simulate),
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) >(&BRepFilletAPI_MakeChamfer::Simulate),
              R"#(None)#"  , py::arg("IC"))
         .def("NbSurf",
-             (Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_LocalOperation::*)( const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::NbSurf),
+             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::NbSurf),
              R"#(None)#"  , py::arg("IC"))
         .def("Sect",
-             (opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_LocalOperation::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_LocalOperation::Sect),
+             (opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Sect),
              R"#(None)#"  , py::arg("IC"),  py::arg("IS"))
+    // methods using call by reference i.s.o. return
+        .def("GetDist",
+             []( BRepFilletAPI_MakeChamfer &self , const Standard_Integer IC ){ Standard_Real  Dis; self.GetDist(IC,Dis); return std::make_tuple(Dis); },
+             R"#(None)#"  , py::arg("IC"))
+        .def("Dists",
+             []( BRepFilletAPI_MakeChamfer &self , const Standard_Integer IC ){ Standard_Real  Dis1; Standard_Real  Dis2; self.Dists(IC,Dis1,Dis2); return std::make_tuple(Dis1,Dis2); },
+             R"#(Returns the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC in the internal data structure of this algorithm. Warning -1. is returned if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
+        .def("GetDistAngle",
+             []( BRepFilletAPI_MakeChamfer &self , const Standard_Integer IC ){ Standard_Real  Dis; Standard_Real  Angle; Standard_Boolean  DisOnFace1; self.GetDistAngle(IC,Dis,Angle,DisOnFace1); return std::make_tuple(Dis,Angle,DisOnFace1); },
+             R"#(gives the distances <Dis> and <Angle> of the fillet contour of index <IC> in the DS)#"  , py::arg("IC"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepFilletAPI_MakeFillet ,std::unique_ptr<BRepFilletAPI_MakeFillet>  , BRepFilletAPI_LocalOperation >>(m.attr("BRepFilletAPI_MakeFillet"))
+    static_cast<py::class_<BRepFilletAPI_MakeFillet , shared_ptr<BRepFilletAPI_MakeFillet>  , BRepFilletAPI_LocalOperation >>(m.attr("BRepFilletAPI_MakeFillet"))
         .def(py::init< const TopoDS_Shape &,const ChFi3d_FilletShape >()  , py::arg("S"),  py::arg("FShape")=static_cast<const ChFi3d_FilletShape>(ChFi3d_Rational) )
+    // methods
         .def("SetParams",
              (void (BRepFilletAPI_MakeFillet::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepFilletAPI_MakeFillet::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&BRepFilletAPI_MakeFillet::SetParams),
              R"#(None)#"  , py::arg("Tang"),  py::arg("Tesp"),  py::arg("T2d"),  py::arg("TApp3d"),  py::arg("TolApp2d"),  py::arg("Fleche"))
@@ -401,131 +533,22 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
         .def("StripeStatus",
              (ChFiDS_ErrorStatus (BRepFilletAPI_MakeFillet::*)( const Standard_Integer  ) const) static_cast<ChFiDS_ErrorStatus (BRepFilletAPI_MakeFillet::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeFillet::StripeStatus),
              R"#(returns the status concerning the contour IC in case of error ChFiDS_Ok : the computation is Ok ChFiDS_StartsolFailure : the computation can't start, perhaps the the radius is too big ChFiDS_TwistedSurface : the computation failed because of a twisted surface ChFiDS_WalkingFailure : there is a problem in the walking ChFiDS_Error: other error different from above)#"  , py::arg("IC"))
-;
-
-
-    static_cast<py::class_<BRepFilletAPI_MakeChamfer ,std::unique_ptr<BRepFilletAPI_MakeChamfer>  , BRepFilletAPI_LocalOperation >>(m.attr("BRepFilletAPI_MakeChamfer"))
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
-        .def("Add",
-             (void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_MakeChamfer::Add),
-             R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer must be set after the)#"  , py::arg("E"))
-        .def("Add",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::Add),
-             R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer are given by the two distances Dis1 and Dis2; the face F identifies the side where Dis1 is measured. The Add function results in a contour being built by propagation from the edge E (i.e. the contour contains at least this edge). This contour is composed of edges of the shape which are tangential to one another and which delimit two series of tangential faces, with one series of faces being located on either side of the contour. Warning Nothing is done if edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis"),  py::arg("E"),  py::arg("F"))
-        .def("SetDist",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDist),
-             R"#(Sets the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC generated using the Add function in the internal data structure of this algorithm. The face F identifies the side where Dis1 is measured. Warning Nothing is done if either the edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis"),  py::arg("IC"),  py::arg("F"))
-        .def("GetDist",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  Standard_Real &  ) const) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  Standard_Real &  ) const>(&BRepFilletAPI_MakeChamfer::GetDist),
-             R"#(None)#"  , py::arg("IC"),  py::arg("Dis"))
-        .def("Add",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::Add),
-             R"#(Adds a fillet contour in the builder (builds a contour of tangent edges to <E> and sets the two distances <Dis1> and <Dis2> ( parameters of the chamfer ) ).)#"  , py::arg("Dis1"),  py::arg("Dis2"),  py::arg("E"),  py::arg("F"))
-        .def("SetDists",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDists),
-             R"#(Sets the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC generated using the Add function in the internal data structure of this algorithm. The face F identifies the side where Dis1 is measured. Warning Nothing is done if either the edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis1"),  py::arg("Dis2"),  py::arg("IC"),  py::arg("F"))
-        .def("Dists",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const>(&BRepFilletAPI_MakeChamfer::Dists),
-             R"#(Returns the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC in the internal data structure of this algorithm. Warning -1. is returned if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"),  py::arg("Dis1"),  py::arg("Dis2"))
-        .def("AddDA",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::AddDA),
-             R"#(Adds a fillet contour in the builder (builds a contour of tangent edges to <E> and sets the distance <Dis1> and angle <Angle> ( parameters of the chamfer ) ).)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("E"),  py::arg("F"))
-        .def("SetDistAngle",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDistAngle),
-             R"#(set the distance <Dis> and <Angle> of the fillet contour of index <IC> in the DS with <Dis> on <F>. if the face <F> is not one of common faces of an edge of the contour <IC>)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("IC"),  py::arg("F"))
-        .def("GetDistAngle",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real & ,  Standard_Boolean &  ) const) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real & ,  Standard_Boolean &  ) const>(&BRepFilletAPI_MakeChamfer::GetDistAngle),
-             R"#(gives the distances <Dis> and <Angle> of the fillet contour of index <IC> in the DS)#"  , py::arg("IC"),  py::arg("Dis"),  py::arg("Angle"),  py::arg("DisOnFace1"))
-        .def("IsSymetric",
-             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::IsSymetric),
-             R"#(return True if chamfer symetric false else.)#"  , py::arg("IC"))
-        .def("IsTwoDistances",
-             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::IsTwoDistances),
-             R"#(return True if chamfer is made with two distances false else.)#"  , py::arg("IC"))
-        .def("IsDistanceAngle",
-             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::IsDistanceAngle),
-             R"#(return True if chamfer is made with distance and angle false else.)#"  , py::arg("IC"))
-        .def("ResetContour",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) >(&BRepFilletAPI_MakeChamfer::ResetContour),
-             R"#(Erases the chamfer parameters on the contour of index IC in the internal data structure of this algorithm. Use the SetDists function to reset this data. Warning Nothing is done if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
-        .def("NbContours",
-             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)() const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)() const>(&BRepFilletAPI_MakeChamfer::NbContours),
-             R"#(Returns the number of contours generated using the Add function in the internal data structure of this algorithm.)#" )
-        .def("Contour",
-             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) const>(&BRepFilletAPI_MakeChamfer::Contour),
-             R"#(Returns the index of the contour in the internal data structure of this algorithm, which contains the edge E of the shape. This function returns 0 if the edge E does not belong to any contour. Warning This index can change if a contour is removed from the internal data structure of this algorithm using the function Remove.)#"  , py::arg("E"))
-        .def("NbEdges",
-             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::NbEdges),
-             R"#(Returns the number of edges in the contour of index I in the internal data structure of this algorithm. Warning Returns 0 if I is outside the bounds of the table of contours.)#"  , py::arg("I"))
-        .def("Edge",
-             (const TopoDS_Edge & (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Edge),
-             R"#(Returns the edge of index J in the contour of index I in the internal data structure of this algorithm. Warning Returns a null shape if: - I is outside the bounds of the table of contours, or - J is outside the bounds of the table of edges of the contour of index I.)#"  , py::arg("I"),  py::arg("J"))
-        .def("Remove",
-             (void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_MakeChamfer::Remove),
-             R"#(Removes the contour in the internal data structure of this algorithm which contains the edge E of the shape. Warning Nothing is done if the edge E does not belong to the contour in the internal data structure of this algorithm.)#"  , py::arg("E"))
-        .def("Length",
-             (Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Length),
-             R"#(Returns the length of the contour of index IC in the internal data structure of this algorithm. Warning Returns -1. if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
-        .def("FirstVertex",
-             (TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::FirstVertex),
-             R"#(Returns the first vertex of the contour of index IC in the internal data structure of this algorithm. Warning Returns a null shape if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
-        .def("LastVertex",
-             (TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<TopoDS_Vertex (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::LastVertex),
-             R"#(Returns the last vertex of the contour of index IC in the internal data structure of this algorithm. Warning Returns a null shape if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
-        .def("Abscissa",
-             (Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_MakeChamfer::Abscissa),
-             R"#(Returns the curvilinear abscissa of the vertex V on the contour of index IC in the internal data structure of this algorithm. Warning Returns -1. if: - IC is outside the bounds of the table of contours, or - V is not on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
-        .def("RelativeAbscissa",
-             (Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const) static_cast<Standard_Real (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const TopoDS_Vertex &  ) const>(&BRepFilletAPI_MakeChamfer::RelativeAbscissa),
-             R"#(Returns the relative curvilinear abscissa (i.e. between 0 and 1) of the vertex V on the contour of index IC in the internal data structure of this algorithm. Warning Returns -1. if: - IC is outside the bounds of the table of contours, or - V is not on the contour of index IC.)#"  , py::arg("IC"),  py::arg("V"))
-        .def("ClosedAndTangent",
-             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::ClosedAndTangent),
-             R"#(eturns true if the contour of index IC in the internal data structure of this algorithm is closed and tangential at the point of closure. Warning Returns false if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
-        .def("Closed",
-             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Closed),
-             R"#(Returns true if the contour of index IC in the internal data structure of this algorithm is closed. Warning Returns false if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
-        .def("Build",
-             (void (BRepFilletAPI_MakeChamfer::*)() ) static_cast<void (BRepFilletAPI_MakeChamfer::*)() >(&BRepFilletAPI_MakeChamfer::Build),
-             R"#(Builds the chamfers on all the contours in the internal data structure of this algorithm and constructs the resulting shape. Use the function IsDone to verify that the chamfered shape is built. Use the function Shape to retrieve the chamfered shape. Warning The construction of chamfers implements highly complex construction algorithms. Consequently, there may be instances where the algorithm fails, for example if the data defining the parameters of the chamfer is not compatible with the geometry of the initial shape. There is no initial analysis of errors and these only become evident at the construction stage. Additionally, in the current software release, the following cases are not handled: - the end point of the contour is the point of intersection of 4 or more edges of the shape, or - the intersection of the chamfer with a face which limits the contour is not fully contained in this face.)#" )
-        .def("Reset",
-             (void (BRepFilletAPI_MakeChamfer::*)() ) static_cast<void (BRepFilletAPI_MakeChamfer::*)() >(&BRepFilletAPI_MakeChamfer::Reset),
-             R"#(Reinitializes this algorithm, thus canceling the effects of the Build function. This function allows modifications to be made to the contours and chamfer parameters in order to rebuild the shape.)#" )
-        .def("Builder",
-             (opencascade::handle<TopOpeBRepBuild_HBuilder> (BRepFilletAPI_MakeChamfer::*)() const) static_cast<opencascade::handle<TopOpeBRepBuild_HBuilder> (BRepFilletAPI_MakeChamfer::*)() const>(&BRepFilletAPI_MakeChamfer::Builder),
-             R"#(Returns the internal filleting algorithm.)#" )
-        .def("Generated",
-             (const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) >(&BRepFilletAPI_MakeChamfer::Generated),
-             R"#(Returns the list of shapes generated from the shape <EorV>.)#"  , py::arg("EorV"))
-        .def("Modified",
-             (const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) >(&BRepFilletAPI_MakeChamfer::Modified),
-             R"#(Returns the list of shapes modified from the shape <F>.)#"  , py::arg("F"))
-        .def("IsDeleted",
-             (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Shape &  ) >(&BRepFilletAPI_MakeChamfer::IsDeleted),
-             R"#(None)#"  , py::arg("F"))
-        .def("Simulate",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) >(&BRepFilletAPI_MakeChamfer::Simulate),
-             R"#(None)#"  , py::arg("IC"))
-        .def("NbSurf",
-             (Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::NbSurf),
-             R"#(None)#"  , py::arg("IC"))
-        .def("Sect",
-             (opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<opencascade::handle<ChFiDS_SecHArray1> (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::Sect),
-             R"#(None)#"  , py::arg("IC"),  py::arg("IS"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
 // ./opencascade/BRepFilletAPI_LocalOperation.hxx
 // ./opencascade/BRepFilletAPI_MakeChamfer.hxx
+// ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
 // ./opencascade/BRepFilletAPI_MakeFillet.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
-// ./opencascade/BRepFilletAPI_LocalOperation.hxx
-// ./opencascade/BRepFilletAPI_MakeChamfer.hxx
-// ./opencascade/BRepFilletAPI_MakeFillet.hxx
 
 
 // exceptions

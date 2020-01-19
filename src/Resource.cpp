@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -53,52 +56,24 @@ py::module m = static_cast<py::module>(main_module.attr("Resource"));
 // classes
 
 
-    static_cast<py::class_<Resource_LexicalCompare ,std::unique_ptr<Resource_LexicalCompare>  >>(m.attr("Resource_LexicalCompare"))
+    static_cast<py::class_<Resource_LexicalCompare , shared_ptr<Resource_LexicalCompare>  >>(m.attr("Resource_LexicalCompare"))
         .def(py::init<  >()  )
+    // methods
         .def("IsLower",
              (Standard_Boolean (Resource_LexicalCompare::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) const) static_cast<Standard_Boolean (Resource_LexicalCompare::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) const>(&Resource_LexicalCompare::IsLower),
              R"#(Returns True if <Left> is lower than <Right>.)#"  , py::arg("Left"),  py::arg("Right"))
-;
-
-    register_default_constructor<Resource_Unicode ,std::unique_ptr<Resource_Unicode>>(m,"Resource_Unicode");
-
-    static_cast<py::class_<Resource_Unicode ,std::unique_ptr<Resource_Unicode>  >>(m.attr("Resource_Unicode"))
-        .def_static("ConvertSJISToUnicode_s",
-                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertSJISToUnicode),
-                    R"#(Converts non-ASCII CString <fromstr> in SJIS format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
-        .def_static("ConvertEUCToUnicode_s",
-                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertEUCToUnicode),
-                    R"#(Converts non-ASCII CString <fromstr> in EUC format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
-        .def_static("ConvertGBToUnicode_s",
-                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertGBToUnicode),
-                    R"#(Converts non-ASCII CString <fromstr> in GB format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
-        .def_static("ConvertGBKToUnicode_s",
-                    (Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertGBKToUnicode),
-                    R"#(Converts non-ASCII CString <fromstr> in GBK format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
-        .def_static("ConvertBig5ToUnicode_s",
-                    (Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertBig5ToUnicode),
-                    R"#(Converts non-ASCII CString <fromstr> in Big5 format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
-        .def_static("ConvertANSIToUnicode_s",
-                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertANSIToUnicode),
-                    R"#(Converts non-ASCII CString <fromstr> in ANSI format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
-        .def_static("SetFormat_s",
-                    (void (*)( const Resource_FormatType  ) ) static_cast<void (*)( const Resource_FormatType  ) >(&Resource_Unicode::SetFormat),
-                    R"#(Defines the current conversion format as typecode. This conversion format will then be used by the functions ConvertFormatToUnicode and ConvertUnicodeToFormat to convert the strings.)#"  , py::arg("typecode"))
-        .def_static("GetFormat_s",
-                    (Resource_FormatType (*)() ) static_cast<Resource_FormatType (*)() >(&Resource_Unicode::GetFormat),
-                    R"#(Returns the current conversion format (either ANSI, EUC, GB or SJIS). The current converting format must be defined in advance with the SetFormat function.)#" )
-        .def_static("ReadFormat_s",
-                    (void (*)() ) static_cast<void (*)() >(&Resource_Unicode::ReadFormat),
-                    R"#(Reads converting format from resource "FormatType" in Resource Manager "CharSet")#" )
-        .def_static("ConvertFormatToUnicode_s",
-                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertFormatToUnicode),
-                    R"#(Converts the non-ASCII C string fromstr to the Unicode string of extended characters tostr. fromstr is translated according to the format (either ANSI, EUC, GB or SJIS) returned by the function GetFormat.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Resource_Manager ,opencascade::handle<Resource_Manager>  , Standard_Transient >>(m.attr("Resource_Manager"))
         .def(py::init< const Standard_CString,const Standard_Boolean >()  , py::arg("aName"),  py::arg("Verbose")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_CString,TCollection_AsciiString &,TCollection_AsciiString &,const Standard_Boolean >()  , py::arg("aName"),  py::arg("aDefaultsDirectory"),  py::arg("anUserDefaultsDirectory"),  py::arg("Verbose")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
         .def("Save",
              (Standard_Boolean (Resource_Manager::*)() const) static_cast<Standard_Boolean (Resource_Manager::*)() const>(&Resource_Manager::Save),
              R"#(Save the user resource structure in the specified file. Creates the file if it does not exist.)#" )
@@ -132,6 +107,8 @@ py::module m = static_cast<py::module>(main_module.attr("Resource"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Resource_Manager::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Resource_Manager::*)() const>(&Resource_Manager::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("GetResourcePath_s",
                     (void (*)( TCollection_AsciiString & ,  const Standard_CString ,  const Standard_Boolean  ) ) static_cast<void (*)( TCollection_AsciiString & ,  const Standard_CString ,  const Standard_Boolean  ) >(&Resource_Manager::GetResourcePath),
                     R"#(Gets the resource file full path by its name. If corresponding environment variable is not set or file doesn't exist returns empty string.)#"  , py::arg("aPath"),  py::arg("aName"),  py::arg("isUserDefaults"))
@@ -141,34 +118,68 @@ py::module m = static_cast<py::module>(main_module.attr("Resource"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Resource_Manager::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<Resource_Unicode , shared_ptr<Resource_Unicode>>(m,"Resource_Unicode");
+
+    static_cast<py::class_<Resource_Unicode , shared_ptr<Resource_Unicode>  >>(m.attr("Resource_Unicode"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("ConvertSJISToUnicode_s",
+                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertSJISToUnicode),
+                    R"#(Converts non-ASCII CString <fromstr> in SJIS format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+        .def_static("ConvertEUCToUnicode_s",
+                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertEUCToUnicode),
+                    R"#(Converts non-ASCII CString <fromstr> in EUC format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+        .def_static("ConvertGBToUnicode_s",
+                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertGBToUnicode),
+                    R"#(Converts non-ASCII CString <fromstr> in GB format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+        .def_static("ConvertGBKToUnicode_s",
+                    (Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertGBKToUnicode),
+                    R"#(Converts non-ASCII CString <fromstr> in GBK format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+        .def_static("ConvertBig5ToUnicode_s",
+                    (Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertBig5ToUnicode),
+                    R"#(Converts non-ASCII CString <fromstr> in Big5 format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+        .def_static("ConvertANSIToUnicode_s",
+                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertANSIToUnicode),
+                    R"#(Converts non-ASCII CString <fromstr> in ANSI format to Unicode ExtendedString <tostr>.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+        .def_static("SetFormat_s",
+                    (void (*)( const Resource_FormatType  ) ) static_cast<void (*)( const Resource_FormatType  ) >(&Resource_Unicode::SetFormat),
+                    R"#(Defines the current conversion format as typecode. This conversion format will then be used by the functions ConvertFormatToUnicode and ConvertUnicodeToFormat to convert the strings.)#"  , py::arg("typecode"))
+        .def_static("GetFormat_s",
+                    (Resource_FormatType (*)() ) static_cast<Resource_FormatType (*)() >(&Resource_Unicode::GetFormat),
+                    R"#(Returns the current conversion format (either ANSI, EUC, GB or SJIS). The current converting format must be defined in advance with the SetFormat function.)#" )
+        .def_static("ReadFormat_s",
+                    (void (*)() ) static_cast<void (*)() >(&Resource_Unicode::ReadFormat),
+                    R"#(Reads converting format from resource "FormatType" in Resource Manager "CharSet")#" )
+        .def_static("ConvertFormatToUnicode_s",
+                    (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertFormatToUnicode),
+                    R"#(Converts the non-ASCII C string fromstr to the Unicode string of extended characters tostr. fromstr is translated according to the format (either ANSI, EUC, GB or SJIS) returned by the function GetFormat.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
-// ./opencascade/Resource_ConvertUnicode.hxx
-// ./opencascade/Resource_LexicalCompare.hxx
-// ./opencascade/Resource_Manager.hxx
 // ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringExtendedString.hxx
-// ./opencascade/Resource_FormatType.hxx
-// ./opencascade/Resource_Unicode.hxx
+// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
+// ./opencascade/Resource_LexicalCompare.hxx
+// ./opencascade/Resource_ConvertUnicode.hxx
 // ./opencascade/Resource_NoSuchResource.hxx
-// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString.hxx
 // ./opencascade/Resource_DataMapOfAsciiStringAsciiString.hxx
+// ./opencascade/Resource_FormatType.hxx
+// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString.hxx
+// ./opencascade/Resource_Manager.hxx
+// ./opencascade/Resource_Unicode.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
     register_template_NCollection_DataMap<TCollection_AsciiString, TCollection_ExtendedString, TCollection_AsciiString>(m,"Resource_DataMapOfAsciiStringExtendedString");  
-// ./opencascade/Resource_ConvertUnicode.hxx
-// ./opencascade/Resource_LexicalCompare.hxx
-// ./opencascade/Resource_Manager.hxx
-// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringExtendedString.hxx
-// ./opencascade/Resource_FormatType.hxx
-// ./opencascade/Resource_Unicode.hxx
-// ./opencascade/Resource_NoSuchResource.hxx
-// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString.hxx
-// ./opencascade/Resource_DataMapOfAsciiStringAsciiString.hxx
     register_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString>(m,"Resource_DataMapOfAsciiStringAsciiString");  
 
 

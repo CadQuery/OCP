@@ -15,9 +15,9 @@ namespace py = pybind11;
 // module includes
 #include <BSplCLib_MultDistribution.hxx>
 #include <BSplCLib_Cache.hxx>
+#include <BSplCLib_EvaluatorFunction.hxx>
 #include <BSplCLib.hxx>
 #include <BSplCLib_KnotDistribution.hxx>
-#include <BSplCLib_EvaluatorFunction.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
@@ -25,8 +25,8 @@ namespace py = pybind11;
 // Class template handling functions
 // ./opencascade/BSplCLib_MultDistribution.hxx
 // ./opencascade/BSplCLib_Cache.hxx
+// ./opencascade/BSplCLib_EvaluatorFunction.hxx
 // ./opencascade/BSplCLib.hxx
 // ./opencascade/BSplCLib_KnotDistribution.hxx
-// ./opencascade/BSplCLib_EvaluatorFunction.hxx
 
 // user-defined post

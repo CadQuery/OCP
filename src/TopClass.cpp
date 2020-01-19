@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -39,8 +42,6 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
         
         // public pure virtual
         Standard_Boolean Reject(const gp_Pnt & P) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TopClass_SolidExplorer,Reject,P) };
-        void Segment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,Segment,P,L,Par) };
-        void OtherSegment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,OtherSegment,P,L,Par) };
         void InitShell() override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,InitShell,) };
         Standard_Boolean MoreShells() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TopClass_SolidExplorer,MoreShells,) };
         void NextShell() override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,NextShell,) };
@@ -50,6 +51,8 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
         void NextFace() override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,NextFace,) };
         TopoDS_Face CurrentFace() const  override { PYBIND11_OVERLOAD_PURE(TopoDS_Face,TopClass_SolidExplorer,CurrentFace,) };
         Standard_Boolean RejectFace(const gp_Lin & L,const Standard_Real Par) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TopClass_SolidExplorer,RejectFace,L,Par) };
+        void Segment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,Segment,P,L,Par) };
+        void OtherSegment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,OtherSegment,P,L,Par) };
         
         
         // protected pure virtual
@@ -62,16 +65,11 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
 // classes
 
 
-    static_cast<py::class_<TopClass_SolidExplorer ,std::unique_ptr<TopClass_SolidExplorer> ,Py_TopClass_SolidExplorer >>(m.attr("TopClass_SolidExplorer"))
+    static_cast<py::class_<TopClass_SolidExplorer , shared_ptr<TopClass_SolidExplorer> ,Py_TopClass_SolidExplorer >>(m.attr("TopClass_SolidExplorer"))
+    // methods
         .def("Reject",
              (Standard_Boolean (TopClass_SolidExplorer::*)( const gp_Pnt &  ) const) static_cast<Standard_Boolean (TopClass_SolidExplorer::*)( const gp_Pnt &  ) const>(&TopClass_SolidExplorer::Reject),
              R"#(Should return True if the point is outside a bounding volume of the shape.)#"  , py::arg("P"))
-        .def("Segment",
-             (void (TopClass_SolidExplorer::*)( const gp_Pnt & ,  gp_Lin & ,  Standard_Real &  ) ) static_cast<void (TopClass_SolidExplorer::*)( const gp_Pnt & ,  gp_Lin & ,  Standard_Real &  ) >(&TopClass_SolidExplorer::Segment),
-             R"#(Returns in <L>, <Par> a segment having at least one intersection with the shape boundary to compute intersections.)#"  , py::arg("P"),  py::arg("L"),  py::arg("Par"))
-        .def("OtherSegment",
-             (void (TopClass_SolidExplorer::*)( const gp_Pnt & ,  gp_Lin & ,  Standard_Real &  ) ) static_cast<void (TopClass_SolidExplorer::*)( const gp_Pnt & ,  gp_Lin & ,  Standard_Real &  ) >(&TopClass_SolidExplorer::OtherSegment),
-             R"#(Returns in <L>, <Par> a segment having at least one intersection with the shape boundary to compute intersections.)#"  , py::arg("P"),  py::arg("L"),  py::arg("Par"))
         .def("InitShell",
              (void (TopClass_SolidExplorer::*)() ) static_cast<void (TopClass_SolidExplorer::*)() >(&TopClass_SolidExplorer::InitShell),
              R"#(Starts an exploration of the shells.)#" )
@@ -99,6 +97,17 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
         .def("RejectFace",
              (Standard_Boolean (TopClass_SolidExplorer::*)( const gp_Lin & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (TopClass_SolidExplorer::*)( const gp_Lin & ,  const Standard_Real  ) const>(&TopClass_SolidExplorer::RejectFace),
              R"#(Returns True if the face bounding volume does not intersect the segment.)#"  , py::arg("L"),  py::arg("Par"))
+    // methods using call by reference i.s.o. return
+        .def("Segment",
+             []( TopClass_SolidExplorer &self , const gp_Pnt & P,gp_Lin & L ){ Standard_Real  Par; self.Segment(P,L,Par); return std::make_tuple(Par); },
+             R"#(Returns in <L>, <Par> a segment having at least one intersection with the shape boundary to compute intersections.)#"  , py::arg("P"),  py::arg("L"))
+        .def("OtherSegment",
+             []( TopClass_SolidExplorer &self , const gp_Pnt & P,gp_Lin & L ){ Standard_Real  Par; self.OtherSegment(P,L,Par); return std::make_tuple(Par); },
+             R"#(Returns in <L>, <Par> a segment having at least one intersection with the shape boundary to compute intersections.)#"  , py::arg("P"),  py::arg("L"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -107,7 +116,6 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
 // operators
 
 // register typdefs
-// ./opencascade/TopClass_SolidExplorer.hxx
 
 
 // exceptions

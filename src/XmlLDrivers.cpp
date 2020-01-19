@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -16,9 +19,6 @@ namespace py = pybind11;
 #include <CDM_Application.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMDF_ADriver.hxx>
-#include <XmlMDF_ADriverTable.hxx>
-#include <CDM_Document.hxx>
-#include <Message_Messenger.hxx>
 #include <Standard_GUID.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <XmlMDF_ADriverTable.hxx>
@@ -27,6 +27,9 @@ namespace py = pybind11;
 #include <XmlLDrivers_DocumentRetrievalDriver.hxx>
 #include <XmlLDrivers_NamespaceDef.hxx>
 #include <TDocStd_Application.hxx>
+#include <XmlMDF_ADriverTable.hxx>
+#include <CDM_Document.hxx>
+#include <Message_Messenger.hxx>
 
 // module includes
 #include <XmlLDrivers.hxx>
@@ -56,44 +59,39 @@ py::module m = static_cast<py::module>(main_module.attr("XmlLDrivers"));
 
 // classes
 
+    register_default_constructor<XmlLDrivers , shared_ptr<XmlLDrivers>>(m,"XmlLDrivers");
 
-    static_cast<py::class_<XmlLDrivers_NamespaceDef ,std::unique_ptr<XmlLDrivers_NamespaceDef>  >>(m.attr("XmlLDrivers_NamespaceDef"))
-        .def(py::init<  >()  )
-        .def(py::init< const TCollection_AsciiString &,const TCollection_AsciiString & >()  , py::arg("thePrefix"),  py::arg("theURI") )
-        .def("Prefix",
-             (const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const) static_cast<const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const>(&XmlLDrivers_NamespaceDef::Prefix),
-             R"#(None)#" )
-        .def("URI",
-             (const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const) static_cast<const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const>(&XmlLDrivers_NamespaceDef::URI),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<XmlLDrivers_DocumentStorageDriver ,opencascade::handle<XmlLDrivers_DocumentStorageDriver>  , PCDM_StorageDriver >>(m.attr("XmlLDrivers_DocumentStorageDriver"))
-        .def(py::init< const TCollection_ExtendedString & >()  , py::arg("theCopyright") )
-        .def("Write",
-             (void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) ) static_cast<void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) >(&XmlLDrivers_DocumentStorageDriver::Write),
-             R"#(None)#"  , py::arg("theDocument"),  py::arg("theFileName"))
-        .def("Write",
-             (void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) ) static_cast<void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) >(&XmlLDrivers_DocumentStorageDriver::Write),
-             R"#(None)#"  , py::arg("theDocument"),  py::arg("theOStream"))
-        .def("AttributeDrivers",
-             (opencascade::handle<XmlMDF_ADriverTable> (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlLDrivers_DocumentStorageDriver::AttributeDrivers),
-             R"#(None)#"  , py::arg("theMsgDriver"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (XmlLDrivers_DocumentStorageDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlLDrivers_DocumentStorageDriver::*)() const>(&XmlLDrivers_DocumentStorageDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&XmlLDrivers_DocumentStorageDriver::get_type_name),
+    static_cast<py::class_<XmlLDrivers , shared_ptr<XmlLDrivers>  >>(m.attr("XmlLDrivers"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Factory_s",
+                    (const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) ) static_cast<const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) >(&XmlLDrivers::Factory),
+                    R"#(None)#"  , py::arg("theGUID"))
+        .def_static("CreationDate_s",
+                    (TCollection_AsciiString (*)() ) static_cast<TCollection_AsciiString (*)() >(&XmlLDrivers::CreationDate),
                     R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&XmlLDrivers_DocumentStorageDriver::get_type_descriptor),
+        .def_static("DefineFormat_s",
+                    (void (*)( const opencascade::handle<TDocStd_Application> &  ) ) static_cast<void (*)( const opencascade::handle<TDocStd_Application> &  ) >(&XmlLDrivers::DefineFormat),
+                    R"#(Defines format "XmlLOcaf" and registers its read and write drivers in the specified application)#"  , py::arg("theApp"))
+        .def_static("AttributeDrivers_s",
+                    (opencascade::handle<XmlMDF_ADriverTable> (*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlLDrivers::AttributeDrivers),
+                    R"#(None)#"  , py::arg("theMsgDriver"))
+        .def_static("StorageVersion_s",
+                    (int (*)() ) static_cast<int (*)() >(&XmlLDrivers::StorageVersion),
                     R"#(None)#" )
+        .def_static("SetStorageVersion_s",
+                    (void (*)( const int  ) ) static_cast<void (*)( const int  ) >(&XmlLDrivers::SetStorageVersion),
+                    R"#(None)#"  , py::arg("version"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<XmlLDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >>(m.attr("XmlLDrivers_DocumentRetrievalDriver"))
         .def(py::init<  >()  )
+    // methods
         .def("CreateDocument",
              (opencascade::handle<CDM_Document> (XmlLDrivers_DocumentRetrievalDriver::*)() ) static_cast<opencascade::handle<CDM_Document> (XmlLDrivers_DocumentRetrievalDriver::*)() >(&XmlLDrivers_DocumentRetrievalDriver::CreateDocument),
              R"#(None)#" )
@@ -109,30 +107,77 @@ py::module m = static_cast<py::module>(main_module.attr("XmlLDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlLDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlLDrivers_DocumentRetrievalDriver::*)() const>(&XmlLDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&XmlLDrivers_DocumentRetrievalDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&XmlLDrivers_DocumentRetrievalDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<XmlLDrivers_DocumentStorageDriver ,opencascade::handle<XmlLDrivers_DocumentStorageDriver>  , PCDM_StorageDriver >>(m.attr("XmlLDrivers_DocumentStorageDriver"))
+        .def(py::init< const TCollection_ExtendedString & >()  , py::arg("theCopyright") )
+    // methods
+        .def("Write",
+             (void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) ) static_cast<void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) >(&XmlLDrivers_DocumentStorageDriver::Write),
+             R"#(None)#"  , py::arg("theDocument"),  py::arg("theFileName"))
+        .def("Write",
+             (void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) ) static_cast<void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) >(&XmlLDrivers_DocumentStorageDriver::Write),
+             R"#(None)#"  , py::arg("theDocument"),  py::arg("theOStream"))
+        .def("AttributeDrivers",
+             (opencascade::handle<XmlMDF_ADriverTable> (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlLDrivers_DocumentStorageDriver::AttributeDrivers),
+             R"#(None)#"  , py::arg("theMsgDriver"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (XmlLDrivers_DocumentStorageDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlLDrivers_DocumentStorageDriver::*)() const>(&XmlLDrivers_DocumentStorageDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&XmlLDrivers_DocumentStorageDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&XmlLDrivers_DocumentStorageDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<XmlLDrivers_NamespaceDef , shared_ptr<XmlLDrivers_NamespaceDef>  >>(m.attr("XmlLDrivers_NamespaceDef"))
+        .def(py::init<  >()  )
+        .def(py::init< const TCollection_AsciiString &,const TCollection_AsciiString & >()  , py::arg("thePrefix"),  py::arg("theURI") )
+    // methods
+        .def("Prefix",
+             (const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const) static_cast<const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const>(&XmlLDrivers_NamespaceDef::Prefix),
+             R"#(None)#" )
+        .def("URI",
+             (const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const) static_cast<const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const>(&XmlLDrivers_NamespaceDef::URI),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/XmlLDrivers_NamespaceDef.hxx
 // ./opencascade/XmlLDrivers_DocumentRetrievalDriver.hxx
+// ./opencascade/XmlLDrivers_NamespaceDef.hxx
 // ./opencascade/XmlLDrivers_SequenceOfNamespaceDef.hxx
-// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
 // ./opencascade/XmlLDrivers.hxx
+// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/XmlLDrivers_NamespaceDef.hxx
-// ./opencascade/XmlLDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/XmlLDrivers_SequenceOfNamespaceDef.hxx
     register_template_NCollection_Sequence<XmlLDrivers_NamespaceDef>(m,"XmlLDrivers_SequenceOfNamespaceDef");  
-// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
-// ./opencascade/XmlLDrivers.hxx
 
 
 // exceptions

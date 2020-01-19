@@ -59,23 +59,16 @@ py::module m = main_module.def_submodule("ChFi2d", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<ChFi2d ,std::unique_ptr<ChFi2d>  >(m,"ChFi2d",R"#(This package contains the algorithms used to build fillets or chamfers on planar wire.)#");
-    py::class_<FilletPoint ,std::unique_ptr<FilletPoint>  >(m,"FilletPoint",R"#(Private class. Corresponds to the point on the first curve, computed fillet function and derivative on it.Private class. Corresponds to the point on the first curve, computed fillet function and derivative on it.)#");
-    py::class_<ChFi2d_FilletAPI ,std::unique_ptr<ChFi2d_FilletAPI>  >(m,"ChFi2d_FilletAPI",R"#(An interface class for 2D fillets. Open CASCADE provides two algorithms for 2D fillets: ChFi2d_Builder - it constructs a fillet or chamfer for linear and circular edges of a face. ChFi2d_FilletAPI - it encapsulates two algorithms: ChFi2d_AnaFilletAlgo - analytical constructor of the fillet. It works only for linear and circular edges, having a common point. ChFi2d_FilletAlgo - iteration recursive method constructing the fillet edge for any type of edges including ellipses and b-splines. The edges may even have no common point.)#");
-    py::class_<ChFi2d_AnaFilletAlgo ,std::unique_ptr<ChFi2d_AnaFilletAlgo>  >(m,"ChFi2d_AnaFilletAlgo",R"#(An analytical algorithm for calculation of the fillets. It is implemented for segments and arcs of circle only.)#");
-    py::class_<ChFi2d_ChamferAPI ,std::unique_ptr<ChFi2d_ChamferAPI>  >(m,"ChFi2d_ChamferAPI",R"#(A class making a chamfer between two linear edges.)#");
-    py::class_<ChFi2d_Builder ,std::unique_ptr<ChFi2d_Builder>  >(m,"ChFi2d_Builder",R"#(This class contains the algorithm used to build fillet on planar wire.)#");
-    py::class_<ChFi2d_FilletAlgo ,std::unique_ptr<ChFi2d_FilletAlgo>  >(m,"ChFi2d_FilletAlgo",R"#(Algorithm that creates fillet edge: arc tangent to two edges in the start and in the end vertices. Initial edges must be located on the plane and must be connected by the end or start points (shared vertices are not obligatory). Created fillet arc is created with the given radius, that is useful in sketcher applications.)#");
-
 // pre-register typdefs
-// ./opencascade/ChFi2d.hxx
-// ./opencascade/ChFi2d_ChamferAPI.hxx
-// ./opencascade/ChFi2d_FilletAlgo.hxx
-// ./opencascade/ChFi2d_FilletAPI.hxx
-// ./opencascade/ChFi2d_ConstructionError.hxx
-// ./opencascade/ChFi2d_Builder.hxx
-// ./opencascade/ChFi2d_AnaFilletAlgo.hxx
+
+// classes forward declarations only
+    py::class_<ChFi2d , shared_ptr<ChFi2d>  >(m,"ChFi2d",R"#(This package contains the algorithms used to build fillets or chamfers on planar wire.)#");
+    py::class_<ChFi2d_AnaFilletAlgo , shared_ptr<ChFi2d_AnaFilletAlgo>  >(m,"ChFi2d_AnaFilletAlgo",R"#(An analytical algorithm for calculation of the fillets. It is implemented for segments and arcs of circle only.)#");
+    py::class_<ChFi2d_Builder , shared_ptr<ChFi2d_Builder>  >(m,"ChFi2d_Builder",R"#(This class contains the algorithm used to build fillet on planar wire.)#");
+    py::class_<ChFi2d_ChamferAPI , shared_ptr<ChFi2d_ChamferAPI>  >(m,"ChFi2d_ChamferAPI",R"#(A class making a chamfer between two linear edges.)#");
+    py::class_<ChFi2d_FilletAPI , shared_ptr<ChFi2d_FilletAPI>  >(m,"ChFi2d_FilletAPI",R"#(An interface class for 2D fillets. Open CASCADE provides two algorithms for 2D fillets: ChFi2d_Builder - it constructs a fillet or chamfer for linear and circular edges of a face. ChFi2d_FilletAPI - it encapsulates two algorithms: ChFi2d_AnaFilletAlgo - analytical constructor of the fillet. It works only for linear and circular edges, having a common point. ChFi2d_FilletAlgo - iteration recursive method constructing the fillet edge for any type of edges including ellipses and b-splines. The edges may even have no common point.)#");
+    py::class_<ChFi2d_FilletAlgo , shared_ptr<ChFi2d_FilletAlgo>  >(m,"ChFi2d_FilletAlgo",R"#(Algorithm that creates fillet edge: arc tangent to two edges in the start and in the end vertices. Initial edges must be located on the plane and must be connected by the end or start points (shared vertices are not obligatory). Created fillet arc is created with the given radius, that is useful in sketcher applications.)#");
+    py::class_<FilletPoint , shared_ptr<FilletPoint>  >(m,"FilletPoint",R"#(Private class. Corresponds to the point on the first curve, computed fillet function and derivative on it.Private class. Corresponds to the point on the first curve, computed fillet function and derivative on it.)#");
 
 };
 

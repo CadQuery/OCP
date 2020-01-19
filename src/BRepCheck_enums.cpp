@@ -11,15 +11,10 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <TopoDS_Solid.hxx>
 #include <TopoDS_Vertex.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Face.hxx>
+#include <TopoDS_Solid.hxx>
 #include <BRep_CurveRepresentation.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
@@ -32,6 +27,11 @@ namespace py = pybind11;
 #include <BRepCheck_Shell.hxx>
 #include <BRepCheck_Solid.hxx>
 #include <BRepCheck_Analyzer.hxx>
+#include <TopoDS_Shell.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
 #include <Standard_NullObject.hxx>
 
 // module includes
@@ -53,15 +53,15 @@ namespace py = pybind11;
 #include <BRepCheck_Wire.hxx>
 
 // template related includes
-// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepCheck_ListOfStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepCheck_ListOfStatus.hxx
-#include "NCollection.hxx"
 // ./opencascade/BRepCheck_DataMapOfShapeResult.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepCheck_ListOfStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepCheck_ListOfStatus.hxx
 #include "NCollection.hxx"
 
 
@@ -136,36 +136,20 @@ py::module m = main_module.def_submodule("BRepCheck", R"#()#");
         
     };
 
+// pre-register typdefs
+    preregister_template_NCollection_DataMap<TopoDS_Shape, BRepCheck_ListOfStatus, TopTools_ShapeMapHasher>(m,"BRepCheck_DataMapOfShapeListOfStatus");  
+    preregister_template_NCollection_List<BRepCheck_Status>(m,"BRepCheck_ListOfStatus");  
+
 // classes forward declarations only
-    py::class_<BRepCheck ,std::unique_ptr<BRepCheck>  >(m,"BRepCheck",R"#(This package provides tools to check the validity of the BRep.)#");
-    py::class_<BRepCheck_Analyzer ,std::unique_ptr<BRepCheck_Analyzer>  >(m,"BRepCheck_Analyzer",R"#(A framework to check the overall validity of a shape. For a shape to be valid in Open CASCADE, it - or its component subshapes - must respect certain criteria. These criteria are checked by the function IsValid. Once you have determined whether a shape is valid or not, you can diagnose its specific anomalies and correct them using the services of the ShapeAnalysis, ShapeUpgrade, and ShapeFix packages.)#");
+    py::class_<BRepCheck , shared_ptr<BRepCheck>  >(m,"BRepCheck",R"#(This package provides tools to check the validity of the BRep.)#");
+    py::class_<BRepCheck_Analyzer , shared_ptr<BRepCheck_Analyzer>  >(m,"BRepCheck_Analyzer",R"#(A framework to check the overall validity of a shape. For a shape to be valid in Open CASCADE, it - or its component subshapes - must respect certain criteria. These criteria are checked by the function IsValid. Once you have determined whether a shape is valid or not, you can diagnose its specific anomalies and correct them using the services of the ShapeAnalysis, ShapeUpgrade, and ShapeFix packages.)#");
     py::class_<BRepCheck_Result ,opencascade::handle<BRepCheck_Result> ,Py_BRepCheck_Result , Standard_Transient >(m,"BRepCheck_Result",R"#()#");
-    py::class_<BRepCheck_Solid ,opencascade::handle<BRepCheck_Solid>  , BRepCheck_Result >(m,"BRepCheck_Solid",R"#(The class is to check a solid.The class is to check a solid.The class is to check a solid.)#");
-    py::class_<BRepCheck_Shell ,opencascade::handle<BRepCheck_Shell>  , BRepCheck_Result >(m,"BRepCheck_Shell",R"#()#");
     py::class_<BRepCheck_Edge ,opencascade::handle<BRepCheck_Edge>  , BRepCheck_Result >(m,"BRepCheck_Edge",R"#()#");
+    py::class_<BRepCheck_Face ,opencascade::handle<BRepCheck_Face>  , BRepCheck_Result >(m,"BRepCheck_Face",R"#()#");
+    py::class_<BRepCheck_Shell ,opencascade::handle<BRepCheck_Shell>  , BRepCheck_Result >(m,"BRepCheck_Shell",R"#()#");
+    py::class_<BRepCheck_Solid ,opencascade::handle<BRepCheck_Solid>  , BRepCheck_Result >(m,"BRepCheck_Solid",R"#(The class is to check a solid.The class is to check a solid.The class is to check a solid.)#");
     py::class_<BRepCheck_Vertex ,opencascade::handle<BRepCheck_Vertex>  , BRepCheck_Result >(m,"BRepCheck_Vertex",R"#()#");
     py::class_<BRepCheck_Wire ,opencascade::handle<BRepCheck_Wire>  , BRepCheck_Result >(m,"BRepCheck_Wire",R"#()#");
-    py::class_<BRepCheck_Face ,opencascade::handle<BRepCheck_Face>  , BRepCheck_Result >(m,"BRepCheck_Face",R"#()#");
-
-// pre-register typdefs
-// ./opencascade/BRepCheck_Solid.hxx
-// ./opencascade/BRepCheck_Vertex.hxx
-// ./opencascade/BRepCheck_Status.hxx
-// ./opencascade/BRepCheck_DataMapIteratorOfDataMapOfShapeListOfStatus.hxx
-// ./opencascade/BRepCheck_Shell.hxx
-// ./opencascade/BRepCheck_Face.hxx
-// ./opencascade/BRepCheck_Edge.hxx
-// ./opencascade/BRepCheck_DataMapIteratorOfDataMapOfShapeResult.hxx
-// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
-    preregister_template_NCollection_DataMap<TopoDS_Shape, BRepCheck_ListOfStatus, TopTools_ShapeMapHasher>(m,"BRepCheck_DataMapOfShapeListOfStatus");  
-// ./opencascade/BRepCheck_ListIteratorOfListOfStatus.hxx
-// ./opencascade/BRepCheck_Wire.hxx
-// ./opencascade/BRepCheck_ListOfStatus.hxx
-    preregister_template_NCollection_List<BRepCheck_Status>(m,"BRepCheck_ListOfStatus");  
-// ./opencascade/BRepCheck.hxx
-// ./opencascade/BRepCheck_Result.hxx
-// ./opencascade/BRepCheck_Analyzer.hxx
-// ./opencascade/BRepCheck_DataMapOfShapeResult.hxx
 
 };
 

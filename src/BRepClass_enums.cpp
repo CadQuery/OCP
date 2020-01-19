@@ -46,23 +46,16 @@ py::module m = main_module.def_submodule("BRepClass", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepClass_FClassifier ,std::unique_ptr<BRepClass_FClassifier>  >(m,"BRepClass_FClassifier",R"#(None)#");
-    py::class_<BRepClass_Edge ,std::unique_ptr<BRepClass_Edge>  >(m,"BRepClass_Edge",R"#(This class is used to send the description of an Edge to the classifier. It contains an Edge and a Face. So the PCurve of the Edge can be found.)#");
-    py::class_<BRepClass_FaceClassifier ,std::unique_ptr<BRepClass_FaceClassifier>  , BRepClass_FClassifier >(m,"BRepClass_FaceClassifier",R"#(Provides Constructors with a Face.)#");
-    py::class_<BRepClass_FacePassiveClassifier ,std::unique_ptr<BRepClass_FacePassiveClassifier>  >(m,"BRepClass_FacePassiveClassifier",R"#(None)#");
-    py::class_<BRepClass_FClass2dOfFClassifier ,std::unique_ptr<BRepClass_FClass2dOfFClassifier>  >(m,"BRepClass_FClass2dOfFClassifier",R"#(None)#");
-    py::class_<BRepClass_Intersector ,std::unique_ptr<BRepClass_Intersector>  , Geom2dInt_IntConicCurveOfGInter >(m,"BRepClass_Intersector",R"#(Intersect an Edge with a segment. Implement the Intersector2d required by the classifier.)#");
-    py::class_<BRepClass_FaceExplorer ,std::unique_ptr<BRepClass_FaceExplorer>  >(m,"BRepClass_FaceExplorer",R"#(Provide an exploration of a BRep Face for the classification. Return UV edges.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepClass_Edge.hxx
-// ./opencascade/BRepClass_FClass2dOfFClassifier.hxx
-// ./opencascade/BRepClass_FaceClassifier.hxx
-// ./opencascade/BRepClass_FaceExplorer.hxx
-// ./opencascade/BRepClass_FClassifier.hxx
-// ./opencascade/BRepClass_FacePassiveClassifier.hxx
-// ./opencascade/BRepClass_Intersector.hxx
+
+// classes forward declarations only
+    py::class_<BRepClass_Edge , shared_ptr<BRepClass_Edge>  >(m,"BRepClass_Edge",R"#(This class is used to send the description of an Edge to the classifier. It contains an Edge and a Face. So the PCurve of the Edge can be found.)#");
+    py::class_<BRepClass_FClass2dOfFClassifier , shared_ptr<BRepClass_FClass2dOfFClassifier>  >(m,"BRepClass_FClass2dOfFClassifier",R"#(None)#");
+    py::class_<BRepClass_FClassifier , shared_ptr<BRepClass_FClassifier>  >(m,"BRepClass_FClassifier",R"#(None)#");
+    py::class_<BRepClass_FaceExplorer , shared_ptr<BRepClass_FaceExplorer>  >(m,"BRepClass_FaceExplorer",R"#(Provide an exploration of a BRep Face for the classification. Return UV edges.)#");
+    py::class_<BRepClass_FacePassiveClassifier , shared_ptr<BRepClass_FacePassiveClassifier>  >(m,"BRepClass_FacePassiveClassifier",R"#(None)#");
+    py::class_<BRepClass_Intersector , shared_ptr<BRepClass_Intersector>  , Geom2dInt_IntConicCurveOfGInter >(m,"BRepClass_Intersector",R"#(Intersect an Edge with a segment. Implement the Intersector2d required by the classifier.)#");
+    py::class_<BRepClass_FaceClassifier , shared_ptr<BRepClass_FaceClassifier>  , BRepClass_FClassifier >(m,"BRepClass_FaceClassifier",R"#(Provides Constructors with a Face.)#");
 
 };
 

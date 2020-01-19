@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,24 +13,24 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_GUID.hxx>
-#include <Standard_GUID.hxx>
 #include <TObj_Model.hxx>
-#include <TObj_Persistence.hxx>
-#include <TObj_ObjectIterator.hxx>
-#include <TObj_TNameContainer.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TObj_Model.hxx>
-#include <TObj_Model.hxx>
-#include <TObj_Object.hxx>
-#include <Standard_GUID.hxx>
 #include <TObj_Object.hxx>
 #include <TObj_TNameContainer.hxx>
 #include <TDocStd_Document.hxx>
 #include <TObj_CheckModel.hxx>
 #include <TObj_Application.hxx>
+#include <TObj_Model.hxx>
+#include <TObj_Persistence.hxx>
+#include <TObj_ObjectIterator.hxx>
+#include <TObj_TNameContainer.hxx>
+#include <Standard_GUID.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TObj_Model.hxx>
+#include <Standard_GUID.hxx>
 #include <TObj_Object.hxx>
+#include <TObj_Object.hxx>
+#include <Standard_GUID.hxx>
 
 // module includes
 #include <TObj_Application.hxx>
@@ -57,15 +60,15 @@ namespace py = pybind11;
 #include <TObj_TXYZ.hxx>
 
 // template related includes
+// ./opencascade/TObj_SequenceOfObject.hxx
+#include "NCollection.hxx"
 // ./opencascade/TObj_SequenceOfIterator.hxx
-#include "NCollection.hxx"
-// ./opencascade/TObj_Container.hxx
-#include "NCollection.hxx"
-// ./opencascade/TObj_Container.hxx
 #include "NCollection.hxx"
 // ./opencascade/TObj_TIntSparseArray.hxx
 #include "NCollection.hxx"
-// ./opencascade/TObj_SequenceOfObject.hxx
+// ./opencascade/TObj_Container.hxx
+#include "NCollection.hxx"
+// ./opencascade/TObj_Container.hxx
 #include "NCollection.hxx"
 
 
@@ -84,20 +87,6 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
 
 
 //Python trampoline classes
-    class Py_TObj_Persistence : public TObj_Persistence{
-    public:
-        using TObj_Persistence::TObj_Persistence;
-        
-        // public pure virtual
-        
-        
-        // protected pure virtual
-        opencascade::handle<TObj_Object> New(const TDF_Label & theLabel) const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<TObj_Object>,TObj_Persistence,New,theLabel) };
-        
-        
-        // private pure virtual
-        
-    };
     class Py_TObj_Model : public TObj_Model{
     public:
         using TObj_Model::TObj_Model;
@@ -107,6 +96,20 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         
         
         // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
+    class Py_TObj_Persistence : public TObj_Persistence{
+    public:
+        using TObj_Persistence::TObj_Persistence;
+        
+        // public pure virtual
+        
+        
+        // protected pure virtual
+        opencascade::handle<TObj_Object> New(const TDF_Label & theLabel) const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<TObj_Object>,TObj_Persistence,New,theLabel) };
         
         
         // private pure virtual
@@ -130,33 +133,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
 // classes
 
 
-    static_cast<py::class_<TObj_CheckModel ,opencascade::handle<TObj_CheckModel>  , Message_Algorithm >>(m.attr("TObj_CheckModel"))
-        .def(py::init< const opencascade::handle<TObj_Model> & >()  , py::arg("theModel") )
-        .def("SetToFix",
-             (void (TObj_CheckModel::*)( const Standard_Boolean  ) ) static_cast<void (TObj_CheckModel::*)( const Standard_Boolean  ) >(&TObj_CheckModel::SetToFix),
-             R"#(Sets flag allowing fixing inconsistencies)#"  , py::arg("theToFix"))
-        .def("IsToFix",
-             (Standard_Boolean (TObj_CheckModel::*)() const) static_cast<Standard_Boolean (TObj_CheckModel::*)() const>(&TObj_CheckModel::IsToFix),
-             R"#(Returns true if it is allowed to fix inconsistencies)#" )
-        .def("GetModel",
-             (const opencascade::handle<TObj_Model> & (TObj_CheckModel::*)() const) static_cast<const opencascade::handle<TObj_Model> & (TObj_CheckModel::*)() const>(&TObj_CheckModel::GetModel),
-             R"#(Returns the checked model)#" )
-        .def("Perform",
-             (Standard_Boolean (TObj_CheckModel::*)() ) static_cast<Standard_Boolean (TObj_CheckModel::*)() >(&TObj_CheckModel::Perform),
-             R"#(Performs all checks. Descendants should call parent method before doing own checks. This implementation checks OCAF references and back references between objects of the model. Returns true if no inconsistencies found.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_CheckModel::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_CheckModel::*)() const>(&TObj_CheckModel::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_CheckModel::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_CheckModel::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
     static_cast<py::class_<TObj_Application ,opencascade::handle<TObj_Application>  , TDocStd_Application >>(m.attr("TObj_Application"))
+    // methods
         .def("Messenger",
              (opencascade::handle<Message_Messenger> & (TObj_Application::*)() ) static_cast<opencascade::handle<Message_Messenger> & (TObj_Application::*)() >(&TObj_Application::Messenger),
              R"#(Returns reference to associated messenger handle)#" )
@@ -187,6 +165,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_Application::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_Application::*)() const>(&TObj_Application::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("GetInstance_s",
                     (opencascade::handle<TObj_Application> (*)() ) static_cast<opencascade::handle<TObj_Application> (*)() >(&TObj_Application::GetInstance),
                     R"#(Returns static instance of the application)#" )
@@ -196,118 +176,123 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_Application::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<TObj_Assistant , shared_ptr<TObj_Assistant>>(m,"TObj_Assistant");
+
+    static_cast<py::class_<TObj_Assistant , shared_ptr<TObj_Assistant>  >>(m.attr("TObj_Assistant"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("FindModel_s",
+                    (opencascade::handle<TObj_Model> (*)( const Standard_CString  ) ) static_cast<opencascade::handle<TObj_Model> (*)( const Standard_CString  ) >(&TObj_Assistant::FindModel),
+                    R"#(Finds model by name)#"  , py::arg("theName"))
+        .def_static("BindModel_s",
+                    (void (*)( const opencascade::handle<TObj_Model>  ) ) static_cast<void (*)( const opencascade::handle<TObj_Model>  ) >(&TObj_Assistant::BindModel),
+                    R"#(Binds model to the map)#"  , py::arg("theModel"))
+        .def_static("ClearModelMap_s",
+                    (void (*)() ) static_cast<void (*)() >(&TObj_Assistant::ClearModelMap),
+                    R"#(Clears all records from the model map)#" )
+        .def_static("FindType_s",
+                    (opencascade::handle<Standard_Type> (*)( const Standard_Integer  ) ) static_cast<opencascade::handle<Standard_Type> (*)( const Standard_Integer  ) >(&TObj_Assistant::FindType),
+                    R"#(Finds Standard_Type by index; returns NULL handle if not found)#"  , py::arg("theTypeIndex"))
+        .def_static("FindTypeIndex_s",
+                    (Standard_Integer (*)( const opencascade::handle<Standard_Type> &  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Standard_Type> &  ) >(&TObj_Assistant::FindTypeIndex),
+                    R"#(Rinds index by Standard_Type; returns 0 if not found)#"  , py::arg("theType"))
+        .def_static("BindType_s",
+                    (Standard_Integer (*)( const opencascade::handle<Standard_Type> &  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Standard_Type> &  ) >(&TObj_Assistant::BindType),
+                    R"#(Binds Standard_Type to the map; returns index of bound type)#"  , py::arg("theType"))
+        .def_static("ClearTypeMap_s",
+                    (void (*)() ) static_cast<void (*)() >(&TObj_Assistant::ClearTypeMap),
+                    R"#(Clears map of types)#" )
+        .def_static("SetCurrentModel_s",
+                    (void (*)( const opencascade::handle<TObj_Model> &  ) ) static_cast<void (*)( const opencascade::handle<TObj_Model> &  ) >(&TObj_Assistant::SetCurrentModel),
+                    R"#(Sets current model)#"  , py::arg("theModel"))
+        .def_static("GetCurrentModel_s",
+                    (opencascade::handle<TObj_Model> (*)() ) static_cast<opencascade::handle<TObj_Model> (*)() >(&TObj_Assistant::GetCurrentModel),
+                    R"#(Returns current model)#" )
+        .def_static("UnSetCurrentModel_s",
+                    (void (*)() ) static_cast<void (*)() >(&TObj_Assistant::UnSetCurrentModel),
+                    R"#(Unsets current model)#" )
+        .def_static("GetAppVersion_s",
+                    (Standard_Integer (*)() ) static_cast<Standard_Integer (*)() >(&TObj_Assistant::GetAppVersion),
+                    R"#(Returns the version of application which wrote the currently read document. Returns 0 if it has not been set yet for the current document.)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TObj_TObject ,opencascade::handle<TObj_TObject>  , TDF_Attribute >>(m.attr("TObj_TObject"))
+    static_cast<py::class_<TObj_CheckModel ,opencascade::handle<TObj_CheckModel>  , Message_Algorithm >>(m.attr("TObj_CheckModel"))
+        .def(py::init< const opencascade::handle<TObj_Model> & >()  , py::arg("theModel") )
+    // methods
+        .def("SetToFix",
+             (void (TObj_CheckModel::*)( const Standard_Boolean  ) ) static_cast<void (TObj_CheckModel::*)( const Standard_Boolean  ) >(&TObj_CheckModel::SetToFix),
+             R"#(Sets flag allowing fixing inconsistencies)#"  , py::arg("theToFix"))
+        .def("IsToFix",
+             (Standard_Boolean (TObj_CheckModel::*)() const) static_cast<Standard_Boolean (TObj_CheckModel::*)() const>(&TObj_CheckModel::IsToFix),
+             R"#(Returns true if it is allowed to fix inconsistencies)#" )
+        .def("GetModel",
+             (const opencascade::handle<TObj_Model> & (TObj_CheckModel::*)() const) static_cast<const opencascade::handle<TObj_Model> & (TObj_CheckModel::*)() const>(&TObj_CheckModel::GetModel),
+             R"#(Returns the checked model)#" )
+        .def("Perform",
+             (Standard_Boolean (TObj_CheckModel::*)() ) static_cast<Standard_Boolean (TObj_CheckModel::*)() >(&TObj_CheckModel::Perform),
+             R"#(Performs all checks. Descendants should call parent method before doing own checks. This implementation checks OCAF references and back references between objects of the model. Returns true if no inconsistencies found.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_CheckModel::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_CheckModel::*)() const>(&TObj_CheckModel::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_CheckModel::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_CheckModel::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_HSequenceOfObject ,opencascade::handle<TObj_HSequenceOfObject>  , TObj_SequenceOfObject , Standard_Transient >>(m.attr("TObj_HSequenceOfObject"))
         .def(py::init<  >()  )
-        .def("ID",
-             (const Standard_GUID & (TObj_TObject::*)() const) static_cast<const Standard_GUID & (TObj_TObject::*)() const>(&TObj_TObject::ID),
-             R"#(Returns the ID of TObj_TObject attribute.)#" )
-        .def("Set",
-             (void (TObj_TObject::*)( const opencascade::handle<TObj_Object> &  ) ) static_cast<void (TObj_TObject::*)( const opencascade::handle<TObj_Object> &  ) >(&TObj_TObject::Set),
-             R"#(Sets the TObj_Object object)#"  , py::arg("theElem"))
-        .def("Get",
-             (opencascade::handle<TObj_Object> (TObj_TObject::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_TObject::*)() const>(&TObj_TObject::Get),
-             R"#(Returns the TObj_Object object)#" )
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TObj_TObject::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TObject::*)() const>(&TObj_TObject::NewEmpty),
-             R"#(Returns an new empty TObj_TObject attribute. It is used by the copy algorithm.)#" )
-        .def("Restore",
-             (void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TObject::Restore),
-             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
-        .def("Paste",
-             (void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TObject::Paste),
-             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
-        .def("BeforeForget",
-             (void (TObj_TObject::*)() ) static_cast<void (TObj_TObject::*)() >(&TObj_TObject::BeforeForget),
-             R"#(Tell TObj_Object to die, i.e. (myElem->IsAlive() == false) after that)#" )
-        .def("AfterUndo",
-             (Standard_Boolean (TObj_TObject::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TObject::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) >(&TObj_TObject::AfterUndo),
-             R"#(Tell TObj_Object to rise from the dead, i.e. (myElem->IsAlive() == true) after that)#"  , py::arg("anAttDelta"),  py::arg("forceIt"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_TObject::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TObject::*)() const>(&TObj_TObject::DynamicType),
+        .def(py::init<  const NCollection_Sequence<opencascade::handle<TObj_Object> > & >()  , py::arg("theOther") )
+    // methods
+        .def("Sequence",
+             (const TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() const) static_cast<const TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() const>(&TObj_HSequenceOfObject::Sequence),
              R"#(None)#" )
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TObject::GetID),
-                    R"#(This method is used in implementation of ID())#" )
-        .def_static("Set_s",
-                    (opencascade::handle<TObj_TObject> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> &  ) ) static_cast<opencascade::handle<TObj_TObject> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> &  ) >(&TObj_TObject::Set),
-                    R"#(Creates TObj_TObject attribute on given label)#"  , py::arg("theLabel"),  py::arg("theElem"))
+        .def("Append",
+             (void (TObj_HSequenceOfObject::*)(  const opencascade::handle<TObj_Object> &  ) ) static_cast<void (TObj_HSequenceOfObject::*)(  const opencascade::handle<TObj_Object> &  ) >(&TObj_HSequenceOfObject::Append),
+             R"#(None)#"  , py::arg("theItem"))
+        .def("Append",
+             (void (TObj_HSequenceOfObject::*)( NCollection_Sequence<opencascade::handle<TObj_Object> > &  ) ) static_cast<void (TObj_HSequenceOfObject::*)( NCollection_Sequence<opencascade::handle<TObj_Object> > &  ) >(&TObj_HSequenceOfObject::Append),
+             R"#(None)#"  , py::arg("theSequence"))
+        .def("ChangeSequence",
+             (TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() ) static_cast<TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() >(&TObj_HSequenceOfObject::ChangeSequence),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_HSequenceOfObject::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_HSequenceOfObject::*)() const>(&TObj_HSequenceOfObject::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TObject::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_HSequenceOfObject::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TObject::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_HSequenceOfObject::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TObj_TXYZ ,opencascade::handle<TObj_TXYZ>  , TDF_Attribute >>(m.attr("TObj_TXYZ"))
-        .def(py::init<  >()  )
-        .def("ID",
-             (const Standard_GUID & (TObj_TXYZ::*)() const) static_cast<const Standard_GUID & (TObj_TXYZ::*)() const>(&TObj_TXYZ::ID),
-             R"#(Returns the ID of TObj_TXYZ attribute.)#" )
-        .def("Set",
-             (void (TObj_TXYZ::*)( const gp_XYZ &  ) ) static_cast<void (TObj_TXYZ::*)( const gp_XYZ &  ) >(&TObj_TXYZ::Set),
-             R"#(Sets the XYZ)#"  , py::arg("theXYZ"))
-        .def("Get",
-             (gp_XYZ (TObj_TXYZ::*)() const) static_cast<gp_XYZ (TObj_TXYZ::*)() const>(&TObj_TXYZ::Get),
-             R"#(Returns the XYZ)#" )
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TObj_TXYZ::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TXYZ::*)() const>(&TObj_TXYZ::NewEmpty),
-             R"#(Returns an new empty TObj_TXYZ attribute. It is used by the copy algorithm.)#" )
-        .def("Restore",
-             (void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TXYZ::Restore),
-             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
-        .def("Paste",
-             (void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TXYZ::Paste),
-             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
-        .def("Dump",
-             (Standard_OStream & (TObj_TXYZ::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TObj_TXYZ::*)( std::ostream &  ) const>(&TObj_TXYZ::Dump),
-             R"#(This method dumps the attribute value into the stream)#"  , py::arg("theOS"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_TXYZ::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TXYZ::*)() const>(&TObj_TXYZ::DynamicType),
-             R"#(None)#" )
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TXYZ::GetID),
-                    R"#(This method is used in implementation of ID())#" )
-        .def_static("Set_s",
-                    (opencascade::handle<TObj_TXYZ> (*)( const TDF_Label & ,  const gp_XYZ &  ) ) static_cast<opencascade::handle<TObj_TXYZ> (*)( const TDF_Label & ,  const gp_XYZ &  ) >(&TObj_TXYZ::Set),
-                    R"#(Creates attribute and sets the XYZ)#"  , py::arg("theLabel"),  py::arg("theXYZ"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TXYZ::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TXYZ::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<TObj_ObjectIterator ,opencascade::handle<TObj_ObjectIterator>>(m,"TObj_ObjectIterator");
-
-    static_cast<py::class_<TObj_ObjectIterator ,opencascade::handle<TObj_ObjectIterator>  , Standard_Transient >>(m.attr("TObj_ObjectIterator"))
-        .def("More",
-             (Standard_Boolean (TObj_ObjectIterator::*)() const) static_cast<Standard_Boolean (TObj_ObjectIterator::*)() const>(&TObj_ObjectIterator::More),
-             R"#(Returns True if iteration is not finished and method Current() will give the object. Default implementation returns False)#" )
-        .def("Next",
-             (void (TObj_ObjectIterator::*)() ) static_cast<void (TObj_ObjectIterator::*)() >(&TObj_ObjectIterator::Next),
-             R"#(Iterates to the next object Default implementation does nothing)#" )
-        .def("Value",
-             (opencascade::handle<TObj_Object> (TObj_ObjectIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_ObjectIterator::*)() const>(&TObj_ObjectIterator::Value),
-             R"#(Returns current object (or null if iteration has finished) Default implementation returns null handle)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_ObjectIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_ObjectIterator::*)() const>(&TObj_ObjectIterator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_ObjectIterator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_ObjectIterator::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TObj_Model ,opencascade::handle<TObj_Model> ,Py_TObj_Model , Standard_Transient >>(m.attr("TObj_Model"))
+    // methods
         .def("SetMessenger",
              (void (TObj_Model::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (TObj_Model::*)( const opencascade::handle<Message_Messenger> &  ) >(&TObj_Model::SetMessenger),
              R"#(Set messenger to use for messages output)#"  , py::arg("theMsgr"))
@@ -419,6 +404,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_Model::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_Model::*)() const>(&TObj_Model::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("GetDocumentModel_s",
                     (opencascade::handle<TObj_Model> (*)( const TDF_Label &  ) ) static_cast<opencascade::handle<TObj_Model> (*)( const TDF_Label &  ) >(&TObj_Model::GetDocumentModel),
                     R"#(Returns model which contains a document with the label, or NULL handle if label is NULL)#"  , py::arg("theLabel"))
@@ -431,61 +418,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_Model::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-
-    static_cast<py::class_<TObj_HSequenceOfObject ,std::unique_ptr<TObj_HSequenceOfObject>  >>(m.attr("TObj_HSequenceOfObject"))
-        .def(py::init<  >()  )
-        .def(py::init<  const NCollection_Sequence<opencascade::handle<TObj_Object> > & >()  , py::arg("theOther") )
-        .def("Sequence",
-             (const TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() const) static_cast<const TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() const>(&TObj_HSequenceOfObject::Sequence),
-             R"#(None)#" )
-        .def("Append",
-             (void (TObj_HSequenceOfObject::*)(  const opencascade::handle<TObj_Object> &  ) ) static_cast<void (TObj_HSequenceOfObject::*)(  const opencascade::handle<TObj_Object> &  ) >(&TObj_HSequenceOfObject::Append),
-             R"#(None)#"  , py::arg("theItem"))
-        .def("Append",
-             (void (TObj_HSequenceOfObject::*)( NCollection_Sequence<opencascade::handle<TObj_Object> > &  ) ) static_cast<void (TObj_HSequenceOfObject::*)( NCollection_Sequence<opencascade::handle<TObj_Object> > &  ) >(&TObj_HSequenceOfObject::Append),
-             R"#(None)#"  , py::arg("theSequence"))
-        .def("ChangeSequence",
-             (TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() ) static_cast<TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() >(&TObj_HSequenceOfObject::ChangeSequence),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_HSequenceOfObject::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_HSequenceOfObject::*)() const>(&TObj_HSequenceOfObject::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_HSequenceOfObject::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_HSequenceOfObject::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TObj_SequenceIterator ,opencascade::handle<TObj_SequenceIterator>  , TObj_ObjectIterator >>(m.attr("TObj_SequenceIterator"))
-        .def(py::init< const opencascade::handle<TObj_HSequenceOfObject> &,const opencascade::handle<Standard_Type> & >()  , py::arg("theObjects"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL) )
-        .def("More",
-             (Standard_Boolean (TObj_SequenceIterator::*)() const) static_cast<Standard_Boolean (TObj_SequenceIterator::*)() const>(&TObj_SequenceIterator::More),
-             R"#(Returns True if there is a current Item in the iteration.)#" )
-        .def("Next",
-             (void (TObj_SequenceIterator::*)() ) static_cast<void (TObj_SequenceIterator::*)() >(&TObj_SequenceIterator::Next),
-             R"#(Move to the next Item)#" )
-        .def("Value",
-             (opencascade::handle<TObj_Object> (TObj_SequenceIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_SequenceIterator::*)() const>(&TObj_SequenceIterator::Value),
-             R"#(Returns the current item)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_SequenceIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_SequenceIterator::*)() const>(&TObj_SequenceIterator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_SequenceIterator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_SequenceIterator::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<TObj_Object ,opencascade::handle<TObj_Object>>(m,"TObj_Object");
 
     static_cast<py::class_<TObj_Object ,opencascade::handle<TObj_Object>  , Standard_Transient >>(m.attr("TObj_Object"))
+    // methods
         .def("GetModel",
              (opencascade::handle<TObj_Model> (TObj_Object::*)() const) static_cast<opencascade::handle<TObj_Model> (TObj_Object::*)() const>(&TObj_Object::GetModel),
              R"#(Returns the model to which the object belongs)#" )
@@ -627,6 +567,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_Object::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_Object::*)() const>(&TObj_Object::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Detach_s",
                     (Standard_Boolean (*)( const TDF_Label & ,  const TObj_DeletingMode  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  const TObj_DeletingMode  ) >(&TObj_Object::Detach),
                     R"#(Deletes the object from the label. Checks if object can be deleted. Finds object on the label and detaches it by calling previos method. Returns true if there is no object on the label after detaching)#"  , py::arg("theLabel"),  py::arg("theMode")=static_cast<const TObj_DeletingMode>(TObj_FreeOnly))
@@ -639,163 +581,60 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_Object::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
+    register_default_constructor<TObj_ObjectIterator ,opencascade::handle<TObj_ObjectIterator>>(m,"TObj_ObjectIterator");
 
-    static_cast<py::class_<TObj_LabelIterator ,opencascade::handle<TObj_LabelIterator> ,Py_TObj_LabelIterator , TObj_ObjectIterator >>(m.attr("TObj_LabelIterator"))
-        .def(py::init< const TDF_Label &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("isRecursive")=static_cast<const Standard_Boolean>(Standard_False) )
+    static_cast<py::class_<TObj_ObjectIterator ,opencascade::handle<TObj_ObjectIterator>  , Standard_Transient >>(m.attr("TObj_ObjectIterator"))
+    // methods
         .def("More",
-             (Standard_Boolean (TObj_LabelIterator::*)() const) static_cast<Standard_Boolean (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::More),
-             R"#(Returns True if there is a current Item in the iteration.)#" )
+             (Standard_Boolean (TObj_ObjectIterator::*)() const) static_cast<Standard_Boolean (TObj_ObjectIterator::*)() const>(&TObj_ObjectIterator::More),
+             R"#(Returns True if iteration is not finished and method Current() will give the object. Default implementation returns False)#" )
         .def("Next",
-             (void (TObj_LabelIterator::*)() ) static_cast<void (TObj_LabelIterator::*)() >(&TObj_LabelIterator::Next),
-             R"#(Move to the next Item)#" )
+             (void (TObj_ObjectIterator::*)() ) static_cast<void (TObj_ObjectIterator::*)() >(&TObj_ObjectIterator::Next),
+             R"#(Iterates to the next object Default implementation does nothing)#" )
         .def("Value",
-             (opencascade::handle<TObj_Object> (TObj_LabelIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::Value),
-             R"#(Returns the current item)#" )
-        .def("LabelValue",
-             (const TDF_Label & (TObj_LabelIterator::*)() const) static_cast<const TDF_Label & (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::LabelValue),
-             R"#(Returns the label of the current item)#" )
+             (opencascade::handle<TObj_Object> (TObj_ObjectIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_ObjectIterator::*)() const>(&TObj_ObjectIterator::Value),
+             R"#(Returns current object (or null if iteration has finished) Default implementation returns null handle)#" )
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_LabelIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::DynamicType),
+             (const opencascade::handle<Standard_Type> & (TObj_ObjectIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_ObjectIterator::*)() const>(&TObj_ObjectIterator::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_LabelIterator::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_ObjectIterator::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_LabelIterator::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_ObjectIterator::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<TObj_TReference ,opencascade::handle<TObj_TReference>  , TDF_Attribute >>(m.attr("TObj_TReference"))
-        .def(py::init<  >()  )
-        .def("ID",
-             (const Standard_GUID & (TObj_TReference::*)() const) static_cast<const Standard_GUID & (TObj_TReference::*)() const>(&TObj_TReference::ID),
-             R"#(Returns the ID of TObj_TReference attribute.)#" )
-        .def("Set",
-             (void (TObj_TReference::*)( const opencascade::handle<TObj_Object> & ,  const TDF_Label &  ) ) static_cast<void (TObj_TReference::*)( const opencascade::handle<TObj_Object> & ,  const TDF_Label &  ) >(&TObj_TReference::Set),
-             R"#(Sets the reference to the theObject)#"  , py::arg("theObject"),  py::arg("theMasterLabel"))
-        .def("Set",
-             (void (TObj_TReference::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TObj_TReference::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TObj_TReference::Set),
-             R"#(Sets the reference to the theObject at indicated Label. It is method for persistent only. Don`t use anywhere else.)#"  , py::arg("theLabel"),  py::arg("theMasterLabel"))
-        .def("Get",
-             (opencascade::handle<TObj_Object> (TObj_TReference::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_TReference::*)() const>(&TObj_TReference::Get),
-             R"#(Returns the referenced theObject)#" )
-        .def("GetMasterLabel",
-             (TDF_Label (TObj_TReference::*)() const) static_cast<TDF_Label (TObj_TReference::*)() const>(&TObj_TReference::GetMasterLabel),
-             R"#(Returns the Label of master object.)#" )
-        .def("GetLabel",
-             (TDF_Label (TObj_TReference::*)() const) static_cast<TDF_Label (TObj_TReference::*)() const>(&TObj_TReference::GetLabel),
-             R"#(Returns the referred label.)#" )
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TObj_TReference::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TReference::*)() const>(&TObj_TReference::NewEmpty),
-             R"#(Returns an new empty TObj_TReference attribute. It is used by the copy algorithm.)#" )
-        .def("Restore",
-             (void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TReference::Restore),
-             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
-        .def("Paste",
-             (void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TReference::Paste),
-             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
-        .def("BeforeForget",
-             (void (TObj_TReference::*)() ) static_cast<void (TObj_TReference::*)() >(&TObj_TReference::BeforeForget),
-             R"#(Remove back references of it reference if it is in other document.)#" )
-        .def("BeforeUndo",
-             (Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) >(&TObj_TReference::BeforeUndo),
-             R"#(It is necessary for tranzaction mechanism (Undo/Redo).)#"  , py::arg("theDelta"),  py::arg("isForced")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("AfterUndo",
-             (Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) >(&TObj_TReference::AfterUndo),
-             R"#(It is necessary for tranzaction mechanism (Undo/Redo).)#"  , py::arg("theDelta"),  py::arg("isForced")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("AfterResume",
-             (void (TObj_TReference::*)() ) static_cast<void (TObj_TReference::*)() >(&TObj_TReference::AfterResume),
-             R"#(Check if back reference exists for reference.)#" )
-        .def("AfterRetrieval",
-             (Standard_Boolean (TObj_TReference::*)( const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TReference::*)( const Standard_Boolean  ) >(&TObj_TReference::AfterRetrieval),
-             R"#(Called after retrieval reference from file.)#"  , py::arg("forceIt")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_TReference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TReference::*)() const>(&TObj_TReference::DynamicType),
-             R"#(None)#" )
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TReference::GetID),
-                    R"#(This method is used in implementation of ID())#" )
-        .def_static("Set_s",
-                    (opencascade::handle<TObj_TReference> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> & ,  const opencascade::handle<TObj_Object> &  ) ) static_cast<opencascade::handle<TObj_TReference> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> & ,  const opencascade::handle<TObj_Object> &  ) >(&TObj_TReference::Set),
-                    R"#(Creates reference on TDF_Label <theLabel> to the object <theObject> and creates backreference from the object <theObject> to <theMaster> one.)#"  , py::arg("theLabel"),  py::arg("theObject"),  py::arg("theMaster"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TReference::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TReference::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TObj_ReferenceIterator ,opencascade::handle<TObj_ReferenceIterator>  , TObj_LabelIterator >>(m.attr("TObj_ReferenceIterator"))
-        .def(py::init< const TDF_Label &,const opencascade::handle<Standard_Type> &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL),  py::arg("theRecursive")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_ReferenceIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_ReferenceIterator::*)() const>(&TObj_ReferenceIterator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_ReferenceIterator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_ReferenceIterator::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TObj_TNameContainer ,opencascade::handle<TObj_TNameContainer>  , TDF_Attribute >>(m.attr("TObj_TNameContainer"))
-        .def(py::init<  >()  )
-        .def("ID",
-             (const Standard_GUID & (TObj_TNameContainer::*)() const) static_cast<const Standard_GUID & (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::ID),
-             R"#(Returns the ID of TObj_TNameContainer attribute.)#" )
-        .def("RecordName",
-             (void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> & ,  const TDF_Label &  ) ) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> & ,  const TDF_Label &  ) >(&TObj_TNameContainer::RecordName),
-             R"#(Records name with label attached)#"  , py::arg("theName"),  py::arg("theLabel"))
-        .def("RemoveName",
-             (void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) ) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) >(&TObj_TNameContainer::RemoveName),
-             R"#(Remove name from the map)#"  , py::arg("theName"))
-        .def("IsRegistered",
-             (Standard_Boolean (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const) static_cast<Standard_Boolean (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const>(&TObj_TNameContainer::IsRegistered),
-             R"#(Return True is theName is registered in the Map)#"  , py::arg("theName"))
-        .def("Clear",
-             (void (TObj_TNameContainer::*)() ) static_cast<void (TObj_TNameContainer::*)() >(&TObj_TNameContainer::Clear),
-             R"#(Remove all names registered in container)#" )
-        .def("Set",
-             (void (TObj_TNameContainer::*)(  const NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label> &  ) ) static_cast<void (TObj_TNameContainer::*)(  const NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label> &  ) >(&TObj_TNameContainer::Set),
-             R"#(Sets the TObj_DataMapOfNameLabel object)#"  , py::arg("theElem"))
-        .def("Get",
-             (const TObj_DataMapOfNameLabel & (TObj_TNameContainer::*)() const) static_cast<const TObj_DataMapOfNameLabel & (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::Get),
-             R"#(Returns the TObj_DataMapOfNameLabel object)#" )
-        .def("NewEmpty",
-             (opencascade::handle<TDF_Attribute> (TObj_TNameContainer::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::NewEmpty),
-             R"#(Returns an new empty TObj_TNameContainer attribute. It is used by the copy algorithm.)#" )
-        .def("Restore",
-             (void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TNameContainer::Restore),
-             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
-        .def("Paste",
-             (void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TNameContainer::Paste),
-             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_TNameContainer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::DynamicType),
-             R"#(None)#" )
-        .def_static("GetID_s",
-                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TNameContainer::GetID),
-                    R"#(This method is used in implementation of ID())#" )
-        .def_static("Set_s",
-                    (opencascade::handle<TObj_TNameContainer> (*)( const TDF_Label &  ) ) static_cast<opencascade::handle<TObj_TNameContainer> (*)( const TDF_Label &  ) >(&TObj_TNameContainer::Set),
-                    R"#(Creates TObj_DataMapOfNameLabel attribute on given label if not exist)#"  , py::arg("theLabel"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TNameContainer::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TNameContainer::get_type_descriptor),
-                    R"#(None)#" )
+    static_cast<py::class_<TObj_Persistence , shared_ptr_nodelete<TObj_Persistence> ,Py_TObj_Persistence >>(m.attr("TObj_Persistence"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("CreateNewObject_s",
+                    (opencascade::handle<TObj_Object> (*)( const Standard_CString ,  const TDF_Label &  ) ) static_cast<opencascade::handle<TObj_Object> (*)( const Standard_CString ,  const TDF_Label &  ) >(&TObj_Persistence::CreateNewObject),
+                    R"#(Creates and returns a new object of the registered type If the type is not registered, returns Null handle)#"  , py::arg("theType"),  py::arg("theLabel"))
+        .def_static("DumpTypes_s",
+                    (void (*)( std::ostream &  ) ) static_cast<void (*)( std::ostream &  ) >(&TObj_Persistence::DumpTypes),
+                    R"#(Dumps names of all the types registered for persistence to the specified stream)#"  , py::arg("theOs"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TObj_TIntSparseArray ,opencascade::handle<TObj_TIntSparseArray>  , TDF_Attribute >>(m.attr("TObj_TIntSparseArray"))
         .def(py::init<  >()  )
+    // methods
         .def("ID",
              (const Standard_GUID & (TObj_TIntSparseArray::*)() const) static_cast<const Standard_GUID & (TObj_TIntSparseArray::*)() const>(&TObj_TIntSparseArray::ID),
              R"#(Returns the ID of this attribute.)#" )
@@ -850,6 +689,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_TIntSparseArray::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TIntSparseArray::*)() const>(&TObj_TIntSparseArray::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("GetID_s",
                     (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TIntSparseArray::GetID),
                     R"#(This method is used in implementation of ID())#" )
@@ -862,48 +703,15 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TIntSparseArray::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TObj_OcafObjectIterator ,opencascade::handle<TObj_OcafObjectIterator>  , TObj_LabelIterator >>(m.attr("TObj_OcafObjectIterator"))
-        .def(py::init< const TDF_Label &,const opencascade::handle<Standard_Type> &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL),  py::arg("theRecursive")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_OcafObjectIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_OcafObjectIterator::*)() const>(&TObj_OcafObjectIterator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_OcafObjectIterator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_OcafObjectIterator::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<TObj_ModelIterator ,opencascade::handle<TObj_ModelIterator>  , TObj_ObjectIterator >>(m.attr("TObj_ModelIterator"))
-        .def(py::init< const opencascade::handle<TObj_Model> & >()  , py::arg("theModel") )
-        .def("More",
-             (Standard_Boolean (TObj_ModelIterator::*)() const) static_cast<Standard_Boolean (TObj_ModelIterator::*)() const>(&TObj_ModelIterator::More),
-             R"#(Returns True if iteration is not finished and method Value() will give the object)#" )
-        .def("Next",
-             (void (TObj_ModelIterator::*)() ) static_cast<void (TObj_ModelIterator::*)() >(&TObj_ModelIterator::Next),
-             R"#(Iterates to the next object)#" )
-        .def("Value",
-             (opencascade::handle<TObj_Object> (TObj_ModelIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_ModelIterator::*)() const>(&TObj_ModelIterator::Value),
-             R"#(Returns current object (or MainObj of Model if iteration has finished))#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (TObj_ModelIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_ModelIterator::*)() const>(&TObj_ModelIterator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_ModelIterator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_ModelIterator::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TObj_TModel ,opencascade::handle<TObj_TModel>  , TDF_Attribute >>(m.attr("TObj_TModel"))
         .def(py::init<  >()  )
+    // methods
         .def("ID",
              (const Standard_GUID & (TObj_TModel::*)() const) static_cast<const Standard_GUID & (TObj_TModel::*)() const>(&TObj_TModel::ID),
              R"#(Returns the ID of TObj_TModel attribute.)#" )
@@ -925,6 +733,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_TModel::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TModel::*)() const>(&TObj_TModel::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("GetID_s",
                     (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TModel::GetID),
                     R"#(This method is used in implementation of ID())#" )
@@ -934,10 +744,296 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TModel::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_TNameContainer ,opencascade::handle<TObj_TNameContainer>  , TDF_Attribute >>(m.attr("TObj_TNameContainer"))
+        .def(py::init<  >()  )
+    // methods
+        .def("ID",
+             (const Standard_GUID & (TObj_TNameContainer::*)() const) static_cast<const Standard_GUID & (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::ID),
+             R"#(Returns the ID of TObj_TNameContainer attribute.)#" )
+        .def("RecordName",
+             (void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> & ,  const TDF_Label &  ) ) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> & ,  const TDF_Label &  ) >(&TObj_TNameContainer::RecordName),
+             R"#(Records name with label attached)#"  , py::arg("theName"),  py::arg("theLabel"))
+        .def("RemoveName",
+             (void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) ) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) >(&TObj_TNameContainer::RemoveName),
+             R"#(Remove name from the map)#"  , py::arg("theName"))
+        .def("IsRegistered",
+             (Standard_Boolean (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const) static_cast<Standard_Boolean (TObj_TNameContainer::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const>(&TObj_TNameContainer::IsRegistered),
+             R"#(Return True is theName is registered in the Map)#"  , py::arg("theName"))
+        .def("Clear",
+             (void (TObj_TNameContainer::*)() ) static_cast<void (TObj_TNameContainer::*)() >(&TObj_TNameContainer::Clear),
+             R"#(Remove all names registered in container)#" )
+        .def("Set",
+             (void (TObj_TNameContainer::*)(  const NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label> &  ) ) static_cast<void (TObj_TNameContainer::*)(  const NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label> &  ) >(&TObj_TNameContainer::Set),
+             R"#(Sets the TObj_DataMapOfNameLabel object)#"  , py::arg("theElem"))
+        .def("Get",
+             (const TObj_DataMapOfNameLabel & (TObj_TNameContainer::*)() const) static_cast<const TObj_DataMapOfNameLabel & (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::Get),
+             R"#(Returns the TObj_DataMapOfNameLabel object)#" )
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TObj_TNameContainer::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::NewEmpty),
+             R"#(Returns an new empty TObj_TNameContainer attribute. It is used by the copy algorithm.)#" )
+        .def("Restore",
+             (void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TNameContainer::Restore),
+             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
+        .def("Paste",
+             (void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TNameContainer::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TNameContainer::Paste),
+             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_TNameContainer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TNameContainer::GetID),
+                    R"#(This method is used in implementation of ID())#" )
+        .def_static("Set_s",
+                    (opencascade::handle<TObj_TNameContainer> (*)( const TDF_Label &  ) ) static_cast<opencascade::handle<TObj_TNameContainer> (*)( const TDF_Label &  ) >(&TObj_TNameContainer::Set),
+                    R"#(Creates TObj_DataMapOfNameLabel attribute on given label if not exist)#"  , py::arg("theLabel"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TNameContainer::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TNameContainer::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_TObject ,opencascade::handle<TObj_TObject>  , TDF_Attribute >>(m.attr("TObj_TObject"))
+        .def(py::init<  >()  )
+    // methods
+        .def("ID",
+             (const Standard_GUID & (TObj_TObject::*)() const) static_cast<const Standard_GUID & (TObj_TObject::*)() const>(&TObj_TObject::ID),
+             R"#(Returns the ID of TObj_TObject attribute.)#" )
+        .def("Set",
+             (void (TObj_TObject::*)( const opencascade::handle<TObj_Object> &  ) ) static_cast<void (TObj_TObject::*)( const opencascade::handle<TObj_Object> &  ) >(&TObj_TObject::Set),
+             R"#(Sets the TObj_Object object)#"  , py::arg("theElem"))
+        .def("Get",
+             (opencascade::handle<TObj_Object> (TObj_TObject::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_TObject::*)() const>(&TObj_TObject::Get),
+             R"#(Returns the TObj_Object object)#" )
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TObj_TObject::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TObject::*)() const>(&TObj_TObject::NewEmpty),
+             R"#(Returns an new empty TObj_TObject attribute. It is used by the copy algorithm.)#" )
+        .def("Restore",
+             (void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TObject::Restore),
+             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
+        .def("Paste",
+             (void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TObject::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TObject::Paste),
+             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
+        .def("BeforeForget",
+             (void (TObj_TObject::*)() ) static_cast<void (TObj_TObject::*)() >(&TObj_TObject::BeforeForget),
+             R"#(Tell TObj_Object to die, i.e. (myElem->IsAlive() == false) after that)#" )
+        .def("AfterUndo",
+             (Standard_Boolean (TObj_TObject::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TObject::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) >(&TObj_TObject::AfterUndo),
+             R"#(Tell TObj_Object to rise from the dead, i.e. (myElem->IsAlive() == true) after that)#"  , py::arg("anAttDelta"),  py::arg("forceIt"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_TObject::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TObject::*)() const>(&TObj_TObject::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TObject::GetID),
+                    R"#(This method is used in implementation of ID())#" )
+        .def_static("Set_s",
+                    (opencascade::handle<TObj_TObject> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> &  ) ) static_cast<opencascade::handle<TObj_TObject> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> &  ) >(&TObj_TObject::Set),
+                    R"#(Creates TObj_TObject attribute on given label)#"  , py::arg("theLabel"),  py::arg("theElem"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TObject::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TObject::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_TReference ,opencascade::handle<TObj_TReference>  , TDF_Attribute >>(m.attr("TObj_TReference"))
+        .def(py::init<  >()  )
+    // methods
+        .def("ID",
+             (const Standard_GUID & (TObj_TReference::*)() const) static_cast<const Standard_GUID & (TObj_TReference::*)() const>(&TObj_TReference::ID),
+             R"#(Returns the ID of TObj_TReference attribute.)#" )
+        .def("Set",
+             (void (TObj_TReference::*)( const opencascade::handle<TObj_Object> & ,  const TDF_Label &  ) ) static_cast<void (TObj_TReference::*)( const opencascade::handle<TObj_Object> & ,  const TDF_Label &  ) >(&TObj_TReference::Set),
+             R"#(Sets the reference to the theObject)#"  , py::arg("theObject"),  py::arg("theMasterLabel"))
+        .def("Set",
+             (void (TObj_TReference::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TObj_TReference::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TObj_TReference::Set),
+             R"#(Sets the reference to the theObject at indicated Label. It is method for persistent only. Don`t use anywhere else.)#"  , py::arg("theLabel"),  py::arg("theMasterLabel"))
+        .def("Get",
+             (opencascade::handle<TObj_Object> (TObj_TReference::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_TReference::*)() const>(&TObj_TReference::Get),
+             R"#(Returns the referenced theObject)#" )
+        .def("GetMasterLabel",
+             (TDF_Label (TObj_TReference::*)() const) static_cast<TDF_Label (TObj_TReference::*)() const>(&TObj_TReference::GetMasterLabel),
+             R"#(Returns the Label of master object.)#" )
+        .def("GetLabel",
+             (TDF_Label (TObj_TReference::*)() const) static_cast<TDF_Label (TObj_TReference::*)() const>(&TObj_TReference::GetLabel),
+             R"#(Returns the referred label.)#" )
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TObj_TReference::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TReference::*)() const>(&TObj_TReference::NewEmpty),
+             R"#(Returns an new empty TObj_TReference attribute. It is used by the copy algorithm.)#" )
+        .def("Restore",
+             (void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TReference::Restore),
+             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
+        .def("Paste",
+             (void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TReference::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TReference::Paste),
+             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
+        .def("BeforeForget",
+             (void (TObj_TReference::*)() ) static_cast<void (TObj_TReference::*)() >(&TObj_TReference::BeforeForget),
+             R"#(Remove back references of it reference if it is in other document.)#" )
+        .def("BeforeUndo",
+             (Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) >(&TObj_TReference::BeforeUndo),
+             R"#(It is necessary for tranzaction mechanism (Undo/Redo).)#"  , py::arg("theDelta"),  py::arg("isForced")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("AfterUndo",
+             (Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TReference::*)( const opencascade::handle<TDF_AttributeDelta> & ,  const Standard_Boolean  ) >(&TObj_TReference::AfterUndo),
+             R"#(It is necessary for tranzaction mechanism (Undo/Redo).)#"  , py::arg("theDelta"),  py::arg("isForced")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("AfterResume",
+             (void (TObj_TReference::*)() ) static_cast<void (TObj_TReference::*)() >(&TObj_TReference::AfterResume),
+             R"#(Check if back reference exists for reference.)#" )
+        .def("AfterRetrieval",
+             (Standard_Boolean (TObj_TReference::*)( const Standard_Boolean  ) ) static_cast<Standard_Boolean (TObj_TReference::*)( const Standard_Boolean  ) >(&TObj_TReference::AfterRetrieval),
+             R"#(Called after retrieval reference from file.)#"  , py::arg("forceIt")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_TReference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TReference::*)() const>(&TObj_TReference::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TReference::GetID),
+                    R"#(This method is used in implementation of ID())#" )
+        .def_static("Set_s",
+                    (opencascade::handle<TObj_TReference> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> & ,  const opencascade::handle<TObj_Object> &  ) ) static_cast<opencascade::handle<TObj_TReference> (*)( const TDF_Label & ,  const opencascade::handle<TObj_Object> & ,  const opencascade::handle<TObj_Object> &  ) >(&TObj_TReference::Set),
+                    R"#(Creates reference on TDF_Label <theLabel> to the object <theObject> and creates backreference from the object <theObject> to <theMaster> one.)#"  , py::arg("theLabel"),  py::arg("theObject"),  py::arg("theMaster"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TReference::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TReference::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_TXYZ ,opencascade::handle<TObj_TXYZ>  , TDF_Attribute >>(m.attr("TObj_TXYZ"))
+        .def(py::init<  >()  )
+    // methods
+        .def("ID",
+             (const Standard_GUID & (TObj_TXYZ::*)() const) static_cast<const Standard_GUID & (TObj_TXYZ::*)() const>(&TObj_TXYZ::ID),
+             R"#(Returns the ID of TObj_TXYZ attribute.)#" )
+        .def("Set",
+             (void (TObj_TXYZ::*)( const gp_XYZ &  ) ) static_cast<void (TObj_TXYZ::*)( const gp_XYZ &  ) >(&TObj_TXYZ::Set),
+             R"#(Sets the XYZ)#"  , py::arg("theXYZ"))
+        .def("Get",
+             (gp_XYZ (TObj_TXYZ::*)() const) static_cast<gp_XYZ (TObj_TXYZ::*)() const>(&TObj_TXYZ::Get),
+             R"#(Returns the XYZ)#" )
+        .def("NewEmpty",
+             (opencascade::handle<TDF_Attribute> (TObj_TXYZ::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TObj_TXYZ::*)() const>(&TObj_TXYZ::NewEmpty),
+             R"#(Returns an new empty TObj_TXYZ attribute. It is used by the copy algorithm.)#" )
+        .def("Restore",
+             (void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> &  ) ) static_cast<void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> &  ) >(&TObj_TXYZ::Restore),
+             R"#(Restores the backuped contents from <theWith> into this one. It is used when aborting a transaction.)#"  , py::arg("theWith"))
+        .def("Paste",
+             (void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const) static_cast<void (TObj_TXYZ::*)( const opencascade::handle<TDF_Attribute> & ,  const opencascade::handle<TDF_RelocationTable> &  ) const>(&TObj_TXYZ::Paste),
+             R"#(This method is used when copying an attribute from a source structure into a target structure.)#"  , py::arg("theInto"),  py::arg("theRT"))
+        .def("Dump",
+             (Standard_OStream & (TObj_TXYZ::*)( std::ostream &  ) const) static_cast<Standard_OStream & (TObj_TXYZ::*)( std::ostream &  ) const>(&TObj_TXYZ::Dump),
+             R"#(This method dumps the attribute value into the stream)#"  , py::arg("theOS"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_TXYZ::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_TXYZ::*)() const>(&TObj_TXYZ::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("GetID_s",
+                    (const Standard_GUID & (*)() ) static_cast<const Standard_GUID & (*)() >(&TObj_TXYZ::GetID),
+                    R"#(This method is used in implementation of ID())#" )
+        .def_static("Set_s",
+                    (opencascade::handle<TObj_TXYZ> (*)( const TDF_Label & ,  const gp_XYZ &  ) ) static_cast<opencascade::handle<TObj_TXYZ> (*)( const TDF_Label & ,  const gp_XYZ &  ) >(&TObj_TXYZ::Set),
+                    R"#(Creates attribute and sets the XYZ)#"  , py::arg("theLabel"),  py::arg("theXYZ"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_TXYZ::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_TXYZ::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_LabelIterator ,opencascade::handle<TObj_LabelIterator> ,Py_TObj_LabelIterator , TObj_ObjectIterator >>(m.attr("TObj_LabelIterator"))
+        .def(py::init< const TDF_Label &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("isRecursive")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
+        .def("More",
+             (Standard_Boolean (TObj_LabelIterator::*)() const) static_cast<Standard_Boolean (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::More),
+             R"#(Returns True if there is a current Item in the iteration.)#" )
+        .def("Next",
+             (void (TObj_LabelIterator::*)() ) static_cast<void (TObj_LabelIterator::*)() >(&TObj_LabelIterator::Next),
+             R"#(Move to the next Item)#" )
+        .def("Value",
+             (opencascade::handle<TObj_Object> (TObj_LabelIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::Value),
+             R"#(Returns the current item)#" )
+        .def("LabelValue",
+             (const TDF_Label & (TObj_LabelIterator::*)() const) static_cast<const TDF_Label & (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::LabelValue),
+             R"#(Returns the label of the current item)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_LabelIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_LabelIterator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_LabelIterator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_ModelIterator ,opencascade::handle<TObj_ModelIterator>  , TObj_ObjectIterator >>(m.attr("TObj_ModelIterator"))
+        .def(py::init< const opencascade::handle<TObj_Model> & >()  , py::arg("theModel") )
+    // methods
+        .def("More",
+             (Standard_Boolean (TObj_ModelIterator::*)() const) static_cast<Standard_Boolean (TObj_ModelIterator::*)() const>(&TObj_ModelIterator::More),
+             R"#(Returns True if iteration is not finished and method Value() will give the object)#" )
+        .def("Next",
+             (void (TObj_ModelIterator::*)() ) static_cast<void (TObj_ModelIterator::*)() >(&TObj_ModelIterator::Next),
+             R"#(Iterates to the next object)#" )
+        .def("Value",
+             (opencascade::handle<TObj_Object> (TObj_ModelIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_ModelIterator::*)() const>(&TObj_ModelIterator::Value),
+             R"#(Returns current object (or MainObj of Model if iteration has finished))#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_ModelIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_ModelIterator::*)() const>(&TObj_ModelIterator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_ModelIterator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_ModelIterator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TObj_Partition ,opencascade::handle<TObj_Partition>  , TObj_Object >>(m.attr("TObj_Partition"))
+    // methods
         .def("SetName",
              (Standard_Boolean (TObj_Partition::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const) static_cast<Standard_Boolean (TObj_Partition::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const>(&TObj_Partition::SetName),
              R"#(Sets name of the object. partition does not check unique of own name)#"  , py::arg("theName"))
@@ -968,6 +1064,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_Partition::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_Partition::*)() const>(&TObj_Partition::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Create_s",
                     (opencascade::handle<TObj_Partition> (*)( const TDF_Label &  ) ) static_cast<opencascade::handle<TObj_Partition> (*)( const TDF_Label &  ) >(&TObj_Partition::Create),
                     R"#(Creates a new partition on given label.)#"  , py::arg("theLabel"))
@@ -980,33 +1078,120 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_Partition::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_SequenceIterator ,opencascade::handle<TObj_SequenceIterator>  , TObj_ObjectIterator >>(m.attr("TObj_SequenceIterator"))
+        .def(py::init< const opencascade::handle<TObj_HSequenceOfObject> &,const opencascade::handle<Standard_Type> & >()  , py::arg("theObjects"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL) )
+    // methods
+        .def("More",
+             (Standard_Boolean (TObj_SequenceIterator::*)() const) static_cast<Standard_Boolean (TObj_SequenceIterator::*)() const>(&TObj_SequenceIterator::More),
+             R"#(Returns True if there is a current Item in the iteration.)#" )
+        .def("Next",
+             (void (TObj_SequenceIterator::*)() ) static_cast<void (TObj_SequenceIterator::*)() >(&TObj_SequenceIterator::Next),
+             R"#(Move to the next Item)#" )
+        .def("Value",
+             (opencascade::handle<TObj_Object> (TObj_SequenceIterator::*)() const) static_cast<opencascade::handle<TObj_Object> (TObj_SequenceIterator::*)() const>(&TObj_SequenceIterator::Value),
+             R"#(Returns the current item)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_SequenceIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_SequenceIterator::*)() const>(&TObj_SequenceIterator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_SequenceIterator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_SequenceIterator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<TObj_HiddenPartition ,opencascade::handle<TObj_HiddenPartition>  , TObj_Partition >>(m.attr("TObj_HiddenPartition"))
         .def(py::init< const TDF_Label & >()  , py::arg("theLabel") )
+    // methods
         .def("GetTypeFlags",
              (Standard_Integer (TObj_HiddenPartition::*)() const) static_cast<Standard_Integer (TObj_HiddenPartition::*)() const>(&TObj_HiddenPartition::GetTypeFlags),
              R"#(Returns all flags of father except Visible)#" )
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_HiddenPartition::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_HiddenPartition::*)() const>(&TObj_HiddenPartition::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&TObj_HiddenPartition::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_HiddenPartition::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_OcafObjectIterator ,opencascade::handle<TObj_OcafObjectIterator>  , TObj_LabelIterator >>(m.attr("TObj_OcafObjectIterator"))
+        .def(py::init< const TDF_Label &,const opencascade::handle<Standard_Type> &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL),  py::arg("theRecursive")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_OcafObjectIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_OcafObjectIterator::*)() const>(&TObj_OcafObjectIterator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_OcafObjectIterator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_OcafObjectIterator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<TObj_ReferenceIterator ,opencascade::handle<TObj_ReferenceIterator>  , TObj_LabelIterator >>(m.attr("TObj_ReferenceIterator"))
+        .def(py::init< const TDF_Label &,const opencascade::handle<Standard_Type> &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL),  py::arg("theRecursive")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (TObj_ReferenceIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_ReferenceIterator::*)() const>(&TObj_ReferenceIterator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&TObj_ReferenceIterator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&TObj_ReferenceIterator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/TObj_CheckModel.hxx
 // ./opencascade/TObj_SequenceIterator.hxx
+// ./opencascade/TObj_HiddenPartition.hxx
+// ./opencascade/TObj_Persistence.hxx
+// ./opencascade/TObj_TModel.hxx
+// ./opencascade/TObj_SequenceOfObject.hxx
+// ./opencascade/TObj_LabelIterator.hxx
+// ./opencascade/TObj_Model.hxx
 // ./opencascade/TObj_Application.hxx
+// ./opencascade/TObj_Object.hxx
+// ./opencascade/TObj_TObject.hxx
+// ./opencascade/TObj_TXYZ.hxx
 // ./opencascade/TObj_SequenceOfIterator.hxx
-// ./opencascade/TObj_Container.hxx
-// ./opencascade/TObj_DeletingMode.hxx
+// ./opencascade/TObj_Assistant.hxx
+// ./opencascade/TObj_ReferenceIterator.hxx
 // ./opencascade/TObj_TIntSparseArray.hxx
+// ./opencascade/TObj_Partition.hxx
 // ./opencascade/TObj_Common.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const Standard_Integer  )>(&HashCode),
@@ -1014,57 +1199,23 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
     m.def("IsEqual", 
           (Standard_Boolean (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const opencascade::handle<TCollection_HExtendedString> &  ))  static_cast<Standard_Boolean (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const opencascade::handle<TCollection_HExtendedString> &  )>(&IsEqual),
           R"#(None)#"  , py::arg("theStr1"),  py::arg("theStr2"));
-// ./opencascade/TObj_TObject.hxx
-// ./opencascade/TObj_Object.hxx
-// ./opencascade/TObj_TXYZ.hxx
-// ./opencascade/TObj_TModel.hxx
-// ./opencascade/TObj_OcafObjectIterator.hxx
-// ./opencascade/TObj_LabelIterator.hxx
-// ./opencascade/TObj_Persistence.hxx
-// ./opencascade/TObj_Partition.hxx
-// ./opencascade/TObj_Assistant.hxx
-// ./opencascade/TObj_TReference.hxx
-// ./opencascade/TObj_ModelIterator.hxx
-// ./opencascade/TObj_ObjectIterator.hxx
-// ./opencascade/TObj_ReferenceIterator.hxx
-// ./opencascade/TObj_Model.hxx
-// ./opencascade/TObj_HiddenPartition.hxx
-// ./opencascade/TObj_SequenceOfObject.hxx
 // ./opencascade/TObj_TNameContainer.hxx
+// ./opencascade/TObj_ObjectIterator.hxx
+// ./opencascade/TObj_Container.hxx
+// ./opencascade/TObj_CheckModel.hxx
+// ./opencascade/TObj_ModelIterator.hxx
+// ./opencascade/TObj_OcafObjectIterator.hxx
+// ./opencascade/TObj_TReference.hxx
+// ./opencascade/TObj_DeletingMode.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/TObj_CheckModel.hxx
-// ./opencascade/TObj_SequenceIterator.hxx
-// ./opencascade/TObj_Application.hxx
-// ./opencascade/TObj_SequenceOfIterator.hxx
+    register_template_NCollection_Sequence<opencascade::handle<TObj_Object> >(m,"TObj_SequenceOfObject");  
     register_template_NCollection_Sequence<opencascade::handle<TObj_ObjectIterator> >(m,"TObj_SequenceOfIterator");  
-// ./opencascade/TObj_Container.hxx
+    register_template_NCollection_SparseArray<Standard_Integer>(m,"TObj_TIntSparseArray_VecOfData");  
     register_template_NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label>(m,"TObj_DataMapOfNameLabel");  
     register_template_NCollection_DataMap<TCollection_AsciiString, Standard_Address>(m,"TObj_DataMapOfStringPointer");  
-// ./opencascade/TObj_DeletingMode.hxx
-// ./opencascade/TObj_TIntSparseArray.hxx
-    register_template_NCollection_SparseArray<Standard_Integer>(m,"TObj_TIntSparseArray_VecOfData");  
-// ./opencascade/TObj_Common.hxx
-// ./opencascade/TObj_TObject.hxx
-// ./opencascade/TObj_Object.hxx
-// ./opencascade/TObj_TXYZ.hxx
-// ./opencascade/TObj_TModel.hxx
-// ./opencascade/TObj_OcafObjectIterator.hxx
-// ./opencascade/TObj_LabelIterator.hxx
-// ./opencascade/TObj_Persistence.hxx
-// ./opencascade/TObj_Partition.hxx
-// ./opencascade/TObj_Assistant.hxx
-// ./opencascade/TObj_TReference.hxx
-// ./opencascade/TObj_ModelIterator.hxx
-// ./opencascade/TObj_ObjectIterator.hxx
-// ./opencascade/TObj_ReferenceIterator.hxx
-// ./opencascade/TObj_Model.hxx
-// ./opencascade/TObj_HiddenPartition.hxx
-// ./opencascade/TObj_SequenceOfObject.hxx
-    register_template_NCollection_Sequence<opencascade::handle<TObj_Object> >(m,"TObj_SequenceOfObject");  
-// ./opencascade/TObj_TNameContainer.hxx
 
 
 // exceptions

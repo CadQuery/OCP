@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -40,8 +43,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepIntCurveSurface"));
 // classes
 
 
-    static_cast<py::class_<BRepIntCurveSurface_Inter ,std::unique_ptr<BRepIntCurveSurface_Inter>  >>(m.attr("BRepIntCurveSurface_Inter"))
+    static_cast<py::class_<BRepIntCurveSurface_Inter , shared_ptr<BRepIntCurveSurface_Inter>  >>(m.attr("BRepIntCurveSurface_Inter"))
         .def(py::init<  >()  )
+    // methods
         .def("Init",
              (void (BRepIntCurveSurface_Inter::*)( const TopoDS_Shape & ,  const GeomAdaptor_Curve & ,  const Standard_Real  ) ) static_cast<void (BRepIntCurveSurface_Inter::*)( const TopoDS_Shape & ,  const GeomAdaptor_Curve & ,  const Standard_Real  ) >(&BRepIntCurveSurface_Inter::Init),
              R"#(Load the Shape, the curve and initialize the tolerance used for the classification.)#"  , py::arg("theShape"),  py::arg("theCurve"),  py::arg("theTol"))
@@ -84,6 +88,11 @@ py::module m = static_cast<py::module>(main_module.attr("BRepIntCurveSurface"));
         .def("Face",
              (const TopoDS_Face & (BRepIntCurveSurface_Inter::*)() const) static_cast<const TopoDS_Face & (BRepIntCurveSurface_Inter::*)() const>(&BRepIntCurveSurface_Inter::Face),
              R"#(returns the current face.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -92,7 +101,6 @@ py::module m = static_cast<py::module>(main_module.attr("BRepIntCurveSurface"));
 // operators
 
 // register typdefs
-// ./opencascade/BRepIntCurveSurface_Inter.hxx
 
 
 // exceptions

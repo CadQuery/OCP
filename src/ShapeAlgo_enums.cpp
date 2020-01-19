@@ -14,6 +14,8 @@ namespace py = pybind11;
 #include <ShapeAlgo_AlgoContainer.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAlgo_AlgoContainer.hxx>
+#include <ShapeFix_Shape.hxx>
+#include <ShapeFix_EdgeProjAux.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAnalysis_Wire.hxx>
 #include <ShapeExtend_WireData.hxx>
@@ -24,8 +26,6 @@ namespace py = pybind11;
 #include <Geom_Surface.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
-#include <ShapeFix_Shape.hxx>
-#include <ShapeFix_EdgeProjAux.hxx>
 
 // module includes
 #include <ShapeAlgo.hxx>
@@ -52,15 +52,12 @@ py::module m = main_module.def_submodule("ShapeAlgo", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<ShapeAlgo ,std::unique_ptr<ShapeAlgo>  >(m,"ShapeAlgo",R"#(None)#");
-    py::class_<ShapeAlgo_ToolContainer ,opencascade::handle<ShapeAlgo_ToolContainer>  , Standard_Transient >(m,"ShapeAlgo_ToolContainer",R"#(Returns tools used by AlgoContainerReturns tools used by AlgoContainerReturns tools used by AlgoContainer)#");
-    py::class_<ShapeAlgo_AlgoContainer ,opencascade::handle<ShapeAlgo_AlgoContainer>  , Standard_Transient >(m,"ShapeAlgo_AlgoContainer",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/ShapeAlgo.hxx
-// ./opencascade/ShapeAlgo_AlgoContainer.hxx
-// ./opencascade/ShapeAlgo_ToolContainer.hxx
+
+// classes forward declarations only
+    py::class_<ShapeAlgo , shared_ptr<ShapeAlgo>  >(m,"ShapeAlgo",R"#(None)#");
+    py::class_<ShapeAlgo_AlgoContainer ,opencascade::handle<ShapeAlgo_AlgoContainer>  , Standard_Transient >(m,"ShapeAlgo_AlgoContainer",R"#()#");
+    py::class_<ShapeAlgo_ToolContainer ,opencascade::handle<ShapeAlgo_ToolContainer>  , Standard_Transient >(m,"ShapeAlgo_ToolContainer",R"#(Returns tools used by AlgoContainerReturns tools used by AlgoContainerReturns tools used by AlgoContainer)#");
 
 };
 

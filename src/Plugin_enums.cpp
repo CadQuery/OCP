@@ -43,15 +43,10 @@ py::module m = main_module.def_submodule("Plugin", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Plugin ,std::unique_ptr<Plugin>  >(m,"Plugin",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/Plugin_MapOfFunctions.hxx
-// ./opencascade/Plugin_DataMapIteratorOfMapOfFunctions.hxx
-// ./opencascade/Plugin.hxx
-// ./opencascade/Plugin_Macro.hxx
-// ./opencascade/Plugin_Failure.hxx
+
+// classes forward declarations only
+    py::class_<Plugin , shared_ptr<Plugin>  >(m,"Plugin",R"#(None)#");
 
 };
 

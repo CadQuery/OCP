@@ -13,10 +13,6 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <IGESData_IGESEntity.hxx>
 #include <TopoDS_Shape.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Face.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <TopoDS_Shape.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
@@ -29,6 +25,10 @@ namespace py = pybind11;
 #include <TopoDS_Solid.hxx>
 #include <TopoDS_CompSolid.hxx>
 #include <TopoDS_Compound.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Shell.hxx>
+#include <TopoDS_Face.hxx>
 #include <IGESData_IGESModel.hxx>
 #include <Transfer_FinderProcess.hxx>
 #include <IGESData_IGESEntity.hxx>
@@ -60,17 +60,13 @@ py::module m = main_module.def_submodule("BRepToIGES", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepToIGES_BREntity ,std::unique_ptr<BRepToIGES_BREntity>  >(m,"BRepToIGES_BREntity",R"#(provides methods to transfer BRep entity from CASCADE to IGES.)#");
-    py::class_<BRepToIGES_BRShell ,std::unique_ptr<BRepToIGES_BRShell>  , BRepToIGES_BREntity >(m,"BRepToIGES_BRShell",R"#(This class implements the transfer of Shape Entities from Geom To IGES. These can be : . Vertex . Edge . Wire)#");
-    py::class_<BRepToIGES_BRSolid ,std::unique_ptr<BRepToIGES_BRSolid>  , BRepToIGES_BREntity >(m,"BRepToIGES_BRSolid",R"#(This class implements the transfer of Shape Entities from Geom To IGES. These can be : . Vertex . Edge . Wire)#");
-    py::class_<BRepToIGES_BRWire ,std::unique_ptr<BRepToIGES_BRWire>  , BRepToIGES_BREntity >(m,"BRepToIGES_BRWire",R"#(This class implements the transfer of Shape Entities from Geom To IGES. These can be : . Vertex . Edge . Wire)#");
-
 // pre-register typdefs
-// ./opencascade/BRepToIGES_BRShell.hxx
-// ./opencascade/BRepToIGES_BRWire.hxx
-// ./opencascade/BRepToIGES_BRSolid.hxx
-// ./opencascade/BRepToIGES_BREntity.hxx
+
+// classes forward declarations only
+    py::class_<BRepToIGES_BREntity , shared_ptr<BRepToIGES_BREntity>  >(m,"BRepToIGES_BREntity",R"#(provides methods to transfer BRep entity from CASCADE to IGES.)#");
+    py::class_<BRepToIGES_BRShell , shared_ptr<BRepToIGES_BRShell>  , BRepToIGES_BREntity >(m,"BRepToIGES_BRShell",R"#(This class implements the transfer of Shape Entities from Geom To IGES. These can be : . Vertex . Edge . Wire)#");
+    py::class_<BRepToIGES_BRSolid , shared_ptr<BRepToIGES_BRSolid>  , BRepToIGES_BREntity >(m,"BRepToIGES_BRSolid",R"#(This class implements the transfer of Shape Entities from Geom To IGES. These can be : . Vertex . Edge . Wire)#");
+    py::class_<BRepToIGES_BRWire , shared_ptr<BRepToIGES_BRWire>  , BRepToIGES_BREntity >(m,"BRepToIGES_BRWire",R"#(This class implements the transfer of Shape Entities from Geom To IGES. These can be : . Vertex . Edge . Wire)#");
 
 };
 

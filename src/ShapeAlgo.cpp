@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -13,6 +16,8 @@ namespace py = pybind11;
 #include <ShapeAlgo_AlgoContainer.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAlgo_AlgoContainer.hxx>
+#include <ShapeFix_Shape.hxx>
+#include <ShapeFix_EdgeProjAux.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAnalysis_Wire.hxx>
 #include <ShapeExtend_WireData.hxx>
@@ -23,8 +28,6 @@ namespace py = pybind11;
 #include <Geom_Surface.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
-#include <ShapeFix_Shape.hxx>
-#include <ShapeFix_EdgeProjAux.hxx>
 
 // module includes
 #include <ShapeAlgo.hxx>
@@ -50,9 +53,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
 
 // classes
 
-    register_default_constructor<ShapeAlgo ,std::unique_ptr<ShapeAlgo>>(m,"ShapeAlgo");
+    register_default_constructor<ShapeAlgo , shared_ptr<ShapeAlgo>>(m,"ShapeAlgo");
 
-    static_cast<py::class_<ShapeAlgo ,std::unique_ptr<ShapeAlgo>  >>(m.attr("ShapeAlgo"))
+    static_cast<py::class_<ShapeAlgo , shared_ptr<ShapeAlgo>  >>(m.attr("ShapeAlgo"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Init_s",
                     (void (*)() ) static_cast<void (*)() >(&ShapeAlgo::Init),
                     R"#(Provides initerface to the algorithms from Shape Healing. Creates and initializes default AlgoContainer.)#" )
@@ -62,31 +68,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
         .def_static("AlgoContainer_s",
                     (opencascade::handle<ShapeAlgo_AlgoContainer> (*)() ) static_cast<opencascade::handle<ShapeAlgo_AlgoContainer> (*)() >(&ShapeAlgo::AlgoContainer),
                     R"#(Returns default AlgoContainer)#" )
-;
-
-
-    static_cast<py::class_<ShapeAlgo_ToolContainer ,opencascade::handle<ShapeAlgo_ToolContainer>  , Standard_Transient >>(m.attr("ShapeAlgo_ToolContainer"))
-        .def(py::init<  >()  )
-        .def("FixShape",
-             (opencascade::handle<ShapeFix_Shape> (ShapeAlgo_ToolContainer::*)() const) static_cast<opencascade::handle<ShapeFix_Shape> (ShapeAlgo_ToolContainer::*)() const>(&ShapeAlgo_ToolContainer::FixShape),
-             R"#(Returns ShapeFix_Shape)#" )
-        .def("EdgeProjAux",
-             (opencascade::handle<ShapeFix_EdgeProjAux> (ShapeAlgo_ToolContainer::*)() const) static_cast<opencascade::handle<ShapeFix_EdgeProjAux> (ShapeAlgo_ToolContainer::*)() const>(&ShapeAlgo_ToolContainer::EdgeProjAux),
-             R"#(Returns ShapeFix_EdgeProjAux)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeAlgo_ToolContainer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAlgo_ToolContainer::*)() const>(&ShapeAlgo_ToolContainer::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAlgo_ToolContainer::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAlgo_ToolContainer::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeAlgo_AlgoContainer ,opencascade::handle<ShapeAlgo_AlgoContainer>  , Standard_Transient >>(m.attr("ShapeAlgo_AlgoContainer"))
         .def(py::init<  >()  )
+    // methods
         .def("SetToolContainer",
              (void (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<ShapeAlgo_ToolContainer> &  ) ) static_cast<void (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<ShapeAlgo_ToolContainer> &  ) >(&ShapeAlgo_AlgoContainer::SetToolContainer),
              R"#(Sets ToolContainer)#"  , py::arg("TC"))
@@ -123,9 +113,6 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
         .def("ConvertToPeriodic",
              (opencascade::handle<Geom_Surface> (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<Geom_Surface> &  ) const) static_cast<opencascade::handle<Geom_Surface> (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<Geom_Surface> &  ) const>(&ShapeAlgo_AlgoContainer::ConvertToPeriodic),
              R"#(Converts surface to periodic form. Calls ShapeCustom_Surface.)#"  , py::arg("surf"))
-        .def("GetFaceUVBounds",
-             (void (ShapeAlgo_AlgoContainer::*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ShapeAlgo_AlgoContainer::*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&ShapeAlgo_AlgoContainer::GetFaceUVBounds),
-             R"#(Computes exact UV bounds of all wires on the face)#"  , py::arg("F"),  py::arg("Umin"),  py::arg("Umax"),  py::arg("Vmin"),  py::arg("Vmax"))
         .def("ConvertCurveToBSpline",
              (opencascade::handle<Geom_BSplineCurve> (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const GeomAbs_Shape ,  const Standard_Integer ,  const Standard_Integer  ) const) static_cast<opencascade::handle<Geom_BSplineCurve> (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const GeomAbs_Shape ,  const Standard_Integer ,  const Standard_Integer  ) const>(&ShapeAlgo_AlgoContainer::ConvertCurveToBSpline),
              R"#(Convert Geom_Curve to Geom_BSplineCurve)#"  , py::arg("C3D"),  py::arg("First"),  py::arg("Last"),  py::arg("Tol3d"),  py::arg("Continuity"),  py::arg("MaxSegments"),  py::arg("MaxDegree"))
@@ -138,25 +125,56 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
         .def("ToolContainer",
              (opencascade::handle<ShapeAlgo_ToolContainer> (ShapeAlgo_AlgoContainer::*)() const) static_cast<opencascade::handle<ShapeAlgo_ToolContainer> (ShapeAlgo_AlgoContainer::*)() const>(&ShapeAlgo_AlgoContainer::ToolContainer),
              R"#(Returns ToolContainer)#" )
+    // methods using call by reference i.s.o. return
+        .def("GetFaceUVBounds",
+             []( ShapeAlgo_AlgoContainer &self , const TopoDS_Face & F ){ Standard_Real  Umin; Standard_Real  Umax; Standard_Real  Vmin; Standard_Real  Vmax; self.GetFaceUVBounds(F,Umin,Umax,Vmin,Vmax); return std::make_tuple(Umin,Umax,Vmin,Vmax); },
+             R"#(Computes exact UV bounds of all wires on the face)#"  , py::arg("F"))
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAlgo_AlgoContainer::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAlgo_AlgoContainer::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAlgo_ToolContainer ,opencascade::handle<ShapeAlgo_ToolContainer>  , Standard_Transient >>(m.attr("ShapeAlgo_ToolContainer"))
+        .def(py::init<  >()  )
+    // methods
+        .def("FixShape",
+             (opencascade::handle<ShapeFix_Shape> (ShapeAlgo_ToolContainer::*)() const) static_cast<opencascade::handle<ShapeFix_Shape> (ShapeAlgo_ToolContainer::*)() const>(&ShapeAlgo_ToolContainer::FixShape),
+             R"#(Returns ShapeFix_Shape)#" )
+        .def("EdgeProjAux",
+             (opencascade::handle<ShapeFix_EdgeProjAux> (ShapeAlgo_ToolContainer::*)() const) static_cast<opencascade::handle<ShapeFix_EdgeProjAux> (ShapeAlgo_ToolContainer::*)() const>(&ShapeAlgo_ToolContainer::EdgeProjAux),
+             R"#(Returns ShapeFix_EdgeProjAux)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeAlgo_ToolContainer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAlgo_ToolContainer::*)() const>(&ShapeAlgo_ToolContainer::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAlgo_ToolContainer::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAlgo_ToolContainer::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/ShapeAlgo.hxx
-// ./opencascade/ShapeAlgo_AlgoContainer.hxx
 // ./opencascade/ShapeAlgo_ToolContainer.hxx
+// ./opencascade/ShapeAlgo_AlgoContainer.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ShapeAlgo.hxx
-// ./opencascade/ShapeAlgo_AlgoContainer.hxx
-// ./opencascade/ShapeAlgo_ToolContainer.hxx
 
 
 // exceptions

@@ -57,37 +57,16 @@ py::module m = main_module.def_submodule("AdvApprox", R"#()#");
         // private pure virtual
         
     };
-    class Py_AdvApprox_EvaluatorFunction : public AdvApprox_EvaluatorFunction{
-    public:
-        using AdvApprox_EvaluatorFunction::AdvApprox_EvaluatorFunction;
-        
-        // public pure virtual
-        
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
-
-// classes forward declarations only
-    py::class_<AdvApprox_Cutting ,std::unique_ptr<AdvApprox_Cutting> ,Py_AdvApprox_Cutting >(m,"AdvApprox_Cutting",R"#(to choose the way of cutting in approximation)#");
-    py::class_<AdvApprox_ApproxAFunction ,std::unique_ptr<AdvApprox_ApproxAFunction>  >(m,"AdvApprox_ApproxAFunction",R"#(this approximate a given function)#");
-    py::class_<AdvApprox_PrefCutting ,std::unique_ptr<AdvApprox_PrefCutting>  , AdvApprox_Cutting >(m,"AdvApprox_PrefCutting",R"#(inherits class Cutting; contains a list of preferential points (di)i if Cutting is necessary in [a,b], we cut at the di nearest from (a+b)/2.)#");
-    py::class_<AdvApprox_DichoCutting ,std::unique_ptr<AdvApprox_DichoCutting>  , AdvApprox_Cutting >(m,"AdvApprox_DichoCutting",R"#(if Cutting is necessary in [a,b], we cut at (a+b) / 2.)#");
-    py::class_<AdvApprox_PrefAndRec ,std::unique_ptr<AdvApprox_PrefAndRec>  , AdvApprox_Cutting >(m,"AdvApprox_PrefAndRec",R"#(inherits class Cutting; contains a list of preferential points (pi)i and a list of Recommended points used in cutting management. if Cutting is necessary in [a,b], we cut at the di nearest from (a+b)/2)#");
-    py::class_<AdvApprox_SimpleApprox ,std::unique_ptr<AdvApprox_SimpleApprox>  >(m,"AdvApprox_SimpleApprox",R"#(Approximate a function on an intervall [First,Last] The result is a simple polynomial whose degree is as low as possible to satisfy the required tolerance and the maximum degree. The maximum error and the averrage error resulting from approximating the function by the polynomial are computed)#");
-    py::class_<AdvApprox_EvaluatorFunction ,std::unique_ptr<AdvApprox_EvaluatorFunction> ,Py_AdvApprox_EvaluatorFunction >(m,"AdvApprox_EvaluatorFunction",R"#(Interface for a class implementing a function to be approximated by AdvApprox_ApproxAFunction)#");
 
 // pre-register typdefs
-// ./opencascade/AdvApprox_ApproxAFunction.hxx
-// ./opencascade/AdvApprox_PrefAndRec.hxx
-// ./opencascade/AdvApprox_Cutting.hxx
-// ./opencascade/AdvApprox_PrefCutting.hxx
-// ./opencascade/AdvApprox_EvaluatorFunction.hxx
-// ./opencascade/AdvApprox_DichoCutting.hxx
-// ./opencascade/AdvApprox_SimpleApprox.hxx
+
+// classes forward declarations only
+    py::class_<AdvApprox_ApproxAFunction , shared_ptr<AdvApprox_ApproxAFunction>  >(m,"AdvApprox_ApproxAFunction",R"#(this approximate a given function)#");
+    py::class_<AdvApprox_Cutting , shared_ptr<AdvApprox_Cutting> ,Py_AdvApprox_Cutting >(m,"AdvApprox_Cutting",R"#(to choose the way of cutting in approximation)#");
+    py::class_<AdvApprox_SimpleApprox , shared_ptr<AdvApprox_SimpleApprox>  >(m,"AdvApprox_SimpleApprox",R"#(Approximate a function on an intervall [First,Last] The result is a simple polynomial whose degree is as low as possible to satisfy the required tolerance and the maximum degree. The maximum error and the averrage error resulting from approximating the function by the polynomial are computed)#");
+    py::class_<AdvApprox_DichoCutting , shared_ptr<AdvApprox_DichoCutting>  , AdvApprox_Cutting >(m,"AdvApprox_DichoCutting",R"#(if Cutting is necessary in [a,b], we cut at (a+b) / 2.)#");
+    py::class_<AdvApprox_PrefAndRec , shared_ptr<AdvApprox_PrefAndRec>  , AdvApprox_Cutting >(m,"AdvApprox_PrefAndRec",R"#(inherits class Cutting; contains a list of preferential points (pi)i and a list of Recommended points used in cutting management. if Cutting is necessary in [a,b], we cut at the di nearest from (a+b)/2)#");
+    py::class_<AdvApprox_PrefCutting , shared_ptr<AdvApprox_PrefCutting>  , AdvApprox_Cutting >(m,"AdvApprox_PrefCutting",R"#(inherits class Cutting; contains a list of preferential points (di)i if Cutting is necessary in [a,b], we cut at the di nearest from (a+b)/2.)#");
 
 };
 

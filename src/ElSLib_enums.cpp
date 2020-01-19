@@ -36,11 +36,10 @@ py::module m = main_module.def_submodule("ElSLib", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<ElSLib ,std::unique_ptr<ElSLib>  >(m,"ElSLib",R"#(Provides functions for basic geometric computation on elementary surfaces. This includes: - calculation of a point or derived vector on a surface where the surface is provided by the gp package, or defined in canonical form (as in the gp package), and the point is defined with a parameter, - evaluation of the parameters corresponding to a point on an elementary surface from gp, - calculation of isoparametric curves on an elementary surface defined in canonical form (as in the gp package). Notes: - ElSLib stands for Elementary Surfaces Library. - If the surfaces provided by the gp package are not explicitly parameterized, they still have an implicit parameterization, similar to that which they infer on the equivalent Geom surfaces. Note: ElSLib stands for Elementary Surfaces Library.)#");
-
 // pre-register typdefs
-// ./opencascade/ElSLib.hxx
+
+// classes forward declarations only
+    py::class_<ElSLib , shared_ptr<ElSLib>  >(m,"ElSLib",R"#(Provides functions for basic geometric computation on elementary surfaces. This includes: - calculation of a point or derived vector on a surface where the surface is provided by the gp package, or defined in canonical form (as in the gp package), and the point is defined with a parameter, - evaluation of the parameters corresponding to a point on an elementary surface from gp, - calculation of isoparametric curves on an elementary surface defined in canonical form (as in the gp package). Notes: - ElSLib stands for Elementary Surfaces Library. - If the surfaces provided by the gp package are not explicitly parameterized, they still have an implicit parameterization, similar to that which they infer on the equivalent Geom surfaces. Note: ElSLib stands for Elementary Surfaces Library.)#");
 
 };
 

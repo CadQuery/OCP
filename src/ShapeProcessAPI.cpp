@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -35,8 +38,9 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcessAPI"));
 // classes
 
 
-    static_cast<py::class_<ShapeProcessAPI_ApplySequence ,std::unique_ptr<ShapeProcessAPI_ApplySequence>  >>(m.attr("ShapeProcessAPI_ApplySequence"))
+    static_cast<py::class_<ShapeProcessAPI_ApplySequence , shared_ptr<ShapeProcessAPI_ApplySequence>  >>(m.attr("ShapeProcessAPI_ApplySequence"))
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("rscName"),  py::arg("seqName")=static_cast<const Standard_CString>("") )
+    // methods
         .def("Context",
              (opencascade::handle<ShapeProcess_ShapeContext> & (ShapeProcessAPI_ApplySequence::*)() ) static_cast<opencascade::handle<ShapeProcess_ShapeContext> & (ShapeProcessAPI_ApplySequence::*)() >(&ShapeProcessAPI_ApplySequence::Context),
              R"#(Returns object for managing resource file and sequence of operators.)#" )
@@ -52,6 +56,11 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcessAPI"));
         .def("PrintPreparationResult",
              (void (ShapeProcessAPI_ApplySequence::*)() const) static_cast<void (ShapeProcessAPI_ApplySequence::*)() const>(&ShapeProcessAPI_ApplySequence::PrintPreparationResult),
              R"#(Prints result of preparation onto the messenger of the context. Note that results can be accumulated from previous preparations it method ClearMap was not called before PrepareShape.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -60,7 +69,6 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcessAPI"));
 // operators
 
 // register typdefs
-// ./opencascade/ShapeProcessAPI_ApplySequence.hxx
 
 
 // exceptions

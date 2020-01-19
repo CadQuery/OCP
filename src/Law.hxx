@@ -11,6 +11,8 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Law_BSpline.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Standard_NoSuchObject.hxx>
 #include <Law_BSpFunc.hxx>
 #include <Law_Linear.hxx>
 #include <Law_BSpline.hxx>
@@ -26,43 +28,41 @@ namespace py = pybind11;
 #include <Law_Composite.hxx>
 #include <Law_BSplineKnotSplitting.hxx>
 #include <Law_BSpline.hxx>
+#include <Law_BSpline.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_ConstructionError.hxx>
-#include <Law_BSpline.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_NoSuchObject.hxx>
 
 // module includes
-#include <Law_Interpol.hxx>
-#include <Law_Composite.hxx>
 #include <Law_BSplineKnotSplitting.hxx>
-#include <Law.hxx>
-#include <Law_Linear.hxx>
-#include <Law_Laws.hxx>
-#include <Law_Interpolate.hxx>
 #include <Law_Function.hxx>
-#include <Law_ListIteratorOfLaws.hxx>
-#include <Law_BSpFunc.hxx>
-#include <Law_Constant.hxx>
-#include <Law_S.hxx>
+#include <Law_Interpol.hxx>
 #include <Law_BSpline.hxx>
+#include <Law.hxx>
+#include <Law_BSpFunc.hxx>
+#include <Law_Laws.hxx>
+#include <Law_S.hxx>
+#include <Law_Interpolate.hxx>
+#include <Law_Composite.hxx>
+#include <Law_Linear.hxx>
+#include <Law_Constant.hxx>
+#include <Law_ListIteratorOfLaws.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/Law_Interpol.hxx
-// ./opencascade/Law_Composite.hxx
 // ./opencascade/Law_BSplineKnotSplitting.hxx
-// ./opencascade/Law.hxx
-// ./opencascade/Law_Linear.hxx
-// ./opencascade/Law_Laws.hxx
-// ./opencascade/Law_Interpolate.hxx
 // ./opencascade/Law_Function.hxx
-// ./opencascade/Law_ListIteratorOfLaws.hxx
-// ./opencascade/Law_BSpFunc.hxx
-// ./opencascade/Law_Constant.hxx
-// ./opencascade/Law_S.hxx
+// ./opencascade/Law_Interpol.hxx
 // ./opencascade/Law_BSpline.hxx
+// ./opencascade/Law.hxx
+// ./opencascade/Law_BSpFunc.hxx
+// ./opencascade/Law_Laws.hxx
+// ./opencascade/Law_S.hxx
+// ./opencascade/Law_Interpolate.hxx
+// ./opencascade/Law_Composite.hxx
+// ./opencascade/Law_Linear.hxx
+// ./opencascade/Law_Constant.hxx
+// ./opencascade/Law_ListIteratorOfLaws.hxx
 
 // user-defined post

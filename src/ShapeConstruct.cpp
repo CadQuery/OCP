@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -57,9 +60,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
 
 // classes
 
-    register_default_constructor<ShapeConstruct ,std::unique_ptr<ShapeConstruct>>(m,"ShapeConstruct");
+    register_default_constructor<ShapeConstruct , shared_ptr<ShapeConstruct>>(m,"ShapeConstruct");
 
-    static_cast<py::class_<ShapeConstruct ,std::unique_ptr<ShapeConstruct>  >>(m.attr("ShapeConstruct"))
+    static_cast<py::class_<ShapeConstruct , shared_ptr<ShapeConstruct>  >>(m.attr("ShapeConstruct"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("ConvertCurveToBSpline_s",
                     (opencascade::handle<Geom_BSplineCurve> (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const GeomAbs_Shape ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<opencascade::handle<Geom_BSplineCurve> (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const GeomAbs_Shape ,  const Standard_Integer ,  const Standard_Integer  ) >(&ShapeConstruct::ConvertCurveToBSpline),
                     R"#(Tool for wire triangulation)#"  , py::arg("C3D"),  py::arg("First"),  py::arg("Last"),  py::arg("Tol3d"),  py::arg("Continuity"),  py::arg("MaxSegments"),  py::arg("MaxDegree"))
@@ -78,11 +84,65 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
         .def_static("JoinCurves_s",
                     (Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const TopAbs_Orientation ,  const TopAbs_Orientation ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Boolean & ,  Standard_Boolean & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const TopAbs_Orientation ,  const TopAbs_Orientation ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Boolean & ,  Standard_Boolean & ,  const Standard_Boolean  ) >(&ShapeConstruct::JoinCurves),
                     R"#(Method for joininig curves 3D. Parameters : c3d1,ac3d2 - initial curves Orient1, Orient2 - initial edges orientations. first1,last1,first2,last2 - parameters for trimming curves (re-calculate with account of orientation edges) c3dOut - result curve isRev1,isRev2 - out parameters indicative on possible errors. isError - input parameter indicative possible errors due to that one from edges have one vertex Return value : True - if curves were joined successfully, else - False.)#"  , py::arg("c2d1"),  py::arg("ac2d2"),  py::arg("Orient1"),  py::arg("Orient2"),  py::arg("first1"),  py::arg("last1"),  py::arg("first2"),  py::arg("last2"),  py::arg("c2dOut"),  py::arg("isRev1"),  py::arg("isRev2"),  py::arg("isError")=static_cast<const Standard_Boolean>(Standard_False))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<ShapeConstruct_Curve , shared_ptr<ShapeConstruct_Curve>>(m,"ShapeConstruct_Curve");
+
+    static_cast<py::class_<ShapeConstruct_Curve , shared_ptr<ShapeConstruct_Curve>  >>(m.attr("ShapeConstruct_Curve"))
+    // methods
+        .def("AdjustCurve",
+             (Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Boolean ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Boolean ,  const Standard_Boolean  ) const>(&ShapeConstruct_Curve::AdjustCurve),
+             R"#(Modifies a curve in order to make its bounds confused with given points. Works only on lines and B-Splines, returns True in this case, else returns False. For line considers both bounding points, for B-Splines only specified.)#"  , py::arg("C3D"),  py::arg("P1"),  py::arg("P2"),  py::arg("take1")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("take2")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("AdjustCurveSegment",
+             (Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeConstruct_Curve::AdjustCurveSegment),
+             R"#(Modifies a curve in order to make its bounds confused with given points. Works only on lines and B-Splines.)#"  , py::arg("C3D"),  py::arg("P1"),  py::arg("P2"),  py::arg("U1"),  py::arg("U2"))
+        .def("AdjustCurve2d",
+             (Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Boolean ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Boolean ,  const Standard_Boolean  ) const>(&ShapeConstruct_Curve::AdjustCurve2d),
+             R"#(Modifies a curve in order to make its bounds confused with given points. Works only on lines and B-Splines, returns True in this case, else returns False.)#"  , py::arg("C2D"),  py::arg("P1"),  py::arg("P2"),  py::arg("take1")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("take2")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("ConvertToBSpline",
+             (opencascade::handle<Geom_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Geom_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeConstruct_Curve::ConvertToBSpline),
+             R"#(Converts a curve of any type (only part from first to last) to bspline. The method of conversion depends on the type of original curve: BSpline -> C.Segment(first,last) Bezier and Line -> GeomConvert::CurveToBSplineCurve(C).Segment(first,last) Conic and Other -> Approx_Curve3d(C[first,last],prec,C1,9,1000))#"  , py::arg("C"),  py::arg("first"),  py::arg("last"),  py::arg("prec"))
+        .def("ConvertToBSpline",
+             (opencascade::handle<Geom2d_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeConstruct_Curve::ConvertToBSpline),
+             R"#(Converts a curve of any type (only part from first to last) to bspline. The method of conversion depends on the type of original curve: BSpline -> C.Segment(first,last) Bezier and Line -> GeomConvert::CurveToBSplineCurve(C).Segment(first,last) Conic and Other -> Approx_Curve2d(C[first,last],prec,C1,9,1000))#"  , py::arg("C"),  py::arg("first"),  py::arg("last"),  py::arg("prec"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("FixKnots_s",
+                    (Standard_Boolean (*)( opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<Standard_Boolean (*)( opencascade::handle<TColStd_HArray1OfReal> &  ) >(&ShapeConstruct_Curve::FixKnots),
+                    R"#(None)#"  , py::arg("knots"))
+        .def_static("FixKnots_s",
+                    (Standard_Boolean (*)( NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (*)( NCollection_Array1<Standard_Real> &  ) >(&ShapeConstruct_Curve::FixKnots),
+                    R"#(Fix bspline knots to ensure that there is enough gap between neighbouring values Returns True if something fixed (by shifting knot))#"  , py::arg("knots"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeConstruct_MakeTriangulation , shared_ptr<ShapeConstruct_MakeTriangulation>  , BRepBuilderAPI_MakeShape >>(m.attr("ShapeConstruct_MakeTriangulation"))
+        .def(py::init<  const NCollection_Array1<gp_Pnt> &,const Standard_Real >()  , py::arg("pnts"),  py::arg("prec")=static_cast<const Standard_Real>(0.0) )
+        .def(py::init< const TopoDS_Wire &,const Standard_Real >()  , py::arg("wire"),  py::arg("prec")=static_cast<const Standard_Real>(0.0) )
+    // methods
+        .def("Build",
+             (void (ShapeConstruct_MakeTriangulation::*)() ) static_cast<void (ShapeConstruct_MakeTriangulation::*)() >(&ShapeConstruct_MakeTriangulation::Build),
+             R"#(None)#" )
+        .def("IsDone",
+             (Standard_Boolean (ShapeConstruct_MakeTriangulation::*)() const) static_cast<Standard_Boolean (ShapeConstruct_MakeTriangulation::*)() const>(&ShapeConstruct_MakeTriangulation::IsDone),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeConstruct_ProjectCurveOnSurface ,opencascade::handle<ShapeConstruct_ProjectCurveOnSurface>  , Standard_Transient >>(m.attr("ShapeConstruct_ProjectCurveOnSurface"))
         .def(py::init<  >()  )
+    // methods
         .def("Init",
              (void (ShapeConstruct_ProjectCurveOnSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) ) static_cast<void (ShapeConstruct_ProjectCurveOnSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) >(&ShapeConstruct_ProjectCurveOnSurface::Init),
              R"#(Initializes the object with all necessary parameters, i.e. surface and precision)#"  , py::arg("surf"),  py::arg("preci"))
@@ -116,65 +176,28 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ShapeConstruct_ProjectCurveOnSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeConstruct_ProjectCurveOnSurface::*)() const>(&ShapeConstruct_ProjectCurveOnSurface::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeConstruct_ProjectCurveOnSurface::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeConstruct_ProjectCurveOnSurface::get_type_descriptor),
                     R"#(None)#" )
-;
-
-    register_default_constructor<ShapeConstruct_Curve ,std::unique_ptr<ShapeConstruct_Curve>>(m,"ShapeConstruct_Curve");
-
-    static_cast<py::class_<ShapeConstruct_Curve ,std::unique_ptr<ShapeConstruct_Curve>  >>(m.attr("ShapeConstruct_Curve"))
-        .def("AdjustCurve",
-             (Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Boolean ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Boolean ,  const Standard_Boolean  ) const>(&ShapeConstruct_Curve::AdjustCurve),
-             R"#(Modifies a curve in order to make its bounds confused with given points. Works only on lines and B-Splines, returns True in this case, else returns False. For line considers both bounding points, for B-Splines only specified.)#"  , py::arg("C3D"),  py::arg("P1"),  py::arg("P2"),  py::arg("take1")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("take2")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("AdjustCurveSegment",
-             (Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeConstruct_Curve::AdjustCurveSegment),
-             R"#(Modifies a curve in order to make its bounds confused with given points. Works only on lines and B-Splines.)#"  , py::arg("C3D"),  py::arg("P1"),  py::arg("P2"),  py::arg("U1"),  py::arg("U2"))
-        .def("AdjustCurve2d",
-             (Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Boolean ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Boolean ,  const Standard_Boolean  ) const>(&ShapeConstruct_Curve::AdjustCurve2d),
-             R"#(Modifies a curve in order to make its bounds confused with given points. Works only on lines and B-Splines, returns True in this case, else returns False.)#"  , py::arg("C2D"),  py::arg("P1"),  py::arg("P2"),  py::arg("take1")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("take2")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("ConvertToBSpline",
-             (opencascade::handle<Geom_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Geom_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeConstruct_Curve::ConvertToBSpline),
-             R"#(Converts a curve of any type (only part from first to last) to bspline. The method of conversion depends on the type of original curve: BSpline -> C.Segment(first,last) Bezier and Line -> GeomConvert::CurveToBSplineCurve(C).Segment(first,last) Conic and Other -> Approx_Curve3d(C[first,last],prec,C1,9,1000))#"  , py::arg("C"),  py::arg("first"),  py::arg("last"),  py::arg("prec"))
-        .def("ConvertToBSpline",
-             (opencascade::handle<Geom2d_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (ShapeConstruct_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeConstruct_Curve::ConvertToBSpline),
-             R"#(Converts a curve of any type (only part from first to last) to bspline. The method of conversion depends on the type of original curve: BSpline -> C.Segment(first,last) Bezier and Line -> GeomConvert::CurveToBSplineCurve(C).Segment(first,last) Conic and Other -> Approx_Curve2d(C[first,last],prec,C1,9,1000))#"  , py::arg("C"),  py::arg("first"),  py::arg("last"),  py::arg("prec"))
-        .def_static("FixKnots_s",
-                    (Standard_Boolean (*)( opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<Standard_Boolean (*)( opencascade::handle<TColStd_HArray1OfReal> &  ) >(&ShapeConstruct_Curve::FixKnots),
-                    R"#(None)#"  , py::arg("knots"))
-        .def_static("FixKnots_s",
-                    (Standard_Boolean (*)( NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (*)( NCollection_Array1<Standard_Real> &  ) >(&ShapeConstruct_Curve::FixKnots),
-                    R"#(Fix bspline knots to ensure that there is enough gap between neighbouring values Returns True if something fixed (by shifting knot))#"  , py::arg("knots"))
-;
-
-
-    static_cast<py::class_<ShapeConstruct_MakeTriangulation ,std::unique_ptr<ShapeConstruct_MakeTriangulation>  , BRepBuilderAPI_MakeShape >>(m.attr("ShapeConstruct_MakeTriangulation"))
-        .def(py::init<  const NCollection_Array1<gp_Pnt> &,const Standard_Real >()  , py::arg("pnts"),  py::arg("prec")=static_cast<const Standard_Real>(0.0) )
-        .def(py::init< const TopoDS_Wire &,const Standard_Real >()  , py::arg("wire"),  py::arg("prec")=static_cast<const Standard_Real>(0.0) )
-        .def("Build",
-             (void (ShapeConstruct_MakeTriangulation::*)() ) static_cast<void (ShapeConstruct_MakeTriangulation::*)() >(&ShapeConstruct_MakeTriangulation::Build),
-             R"#(None)#" )
-        .def("IsDone",
-             (Standard_Boolean (ShapeConstruct_MakeTriangulation::*)() const) static_cast<Standard_Boolean (ShapeConstruct_MakeTriangulation::*)() const>(&ShapeConstruct_MakeTriangulation::IsDone),
-             R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/ShapeConstruct_MakeTriangulation.hxx
 // ./opencascade/ShapeConstruct.hxx
 // ./opencascade/ShapeConstruct_Curve.hxx
 // ./opencascade/ShapeConstruct_ProjectCurveOnSurface.hxx
-// ./opencascade/ShapeConstruct_MakeTriangulation.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ShapeConstruct.hxx
-// ./opencascade/ShapeConstruct_Curve.hxx
-// ./opencascade/ShapeConstruct_ProjectCurveOnSurface.hxx
-// ./opencascade/ShapeConstruct_MakeTriangulation.hxx
 
 
 // exceptions

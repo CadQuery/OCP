@@ -39,11 +39,10 @@ py::class_<__GLXFBConfigRec>(m, "__GLXFBConfigRec");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
     py::class_<Xw_Window ,opencascade::handle<Xw_Window>  , Aspect_Window >(m,"Xw_Window",R"#(This class defines XLib window intended for creation of OpenGL context.This class defines XLib window intended for creation of OpenGL context.)#");
-
-// pre-register typdefs
-// ./opencascade/Xw_Window.hxx
 
 };
 

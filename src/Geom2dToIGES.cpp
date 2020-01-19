@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,7 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IGESData_IGESModel.hxx>
 #include <IGESGeom_Direction.hxx>
 #include <Geom2d_Vector.hxx>
 #include <Geom2d_VectorWithMagnitude.hxx>
@@ -18,6 +20,7 @@ namespace py = pybind11;
 #include <IGESGeom_Point.hxx>
 #include <Geom2d_Point.hxx>
 #include <Geom2d_CartesianPoint.hxx>
+#include <IGESData_IGESModel.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Geom2d_Curve.hxx>
 
@@ -47,9 +50,10 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
 // classes
 
 
-    static_cast<py::class_<Geom2dToIGES_Geom2dEntity ,std::unique_ptr<Geom2dToIGES_Geom2dEntity>  >>(m.attr("Geom2dToIGES_Geom2dEntity"))
+    static_cast<py::class_<Geom2dToIGES_Geom2dEntity , shared_ptr<Geom2dToIGES_Geom2dEntity>  >>(m.attr("Geom2dToIGES_Geom2dEntity"))
         .def(py::init<  >()  )
         .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("GE") )
+    // methods
         .def("SetModel",
              (void (Geom2dToIGES_Geom2dEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) ) static_cast<void (Geom2dToIGES_Geom2dEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) >(&Geom2dToIGES_Geom2dEntity::SetModel),
              R"#(Set the value of "TheModel")#"  , py::arg("model"))
@@ -62,12 +66,51 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
         .def("GetUnit",
              (Standard_Real (Geom2dToIGES_Geom2dEntity::*)() const) static_cast<Standard_Real (Geom2dToIGES_Geom2dEntity::*)() const>(&Geom2dToIGES_Geom2dEntity::GetUnit),
              R"#(Returns the value of the UnitFlag of the header of the model in millimeters.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Geom2dToIGES_Geom2dVector ,std::unique_ptr<Geom2dToIGES_Geom2dVector>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dVector"))
+    static_cast<py::class_<Geom2dToIGES_Geom2dCurve , shared_ptr<Geom2dToIGES_Geom2dCurve>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dCurve"))
         .def(py::init<  >()  )
         .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
+    // methods
+        .def("Transfer2dCurve",
+             (opencascade::handle<IGESData_IGESEntity> (Geom2dToIGES_Geom2dCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (Geom2dToIGES_Geom2dCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dToIGES_Geom2dCurve::Transfer2dCurve),
+             R"#(Transfert an Entity from Geom2d to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Geom2dToIGES_Geom2dPoint , shared_ptr<Geom2dToIGES_Geom2dPoint>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dPoint"))
+        .def(py::init<  >()  )
+        .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
+    // methods
+        .def("Transfer2dPoint",
+             (opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_Point> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_Point> &  ) >(&Geom2dToIGES_Geom2dPoint::Transfer2dPoint),
+             R"#(Transfert a Point from Geom to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
+        .def("Transfer2dPoint",
+             (opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_CartesianPoint> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_CartesianPoint> &  ) >(&Geom2dToIGES_Geom2dPoint::Transfer2dPoint),
+             R"#(Transfert a CartesianPoint from Geom to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Geom2dToIGES_Geom2dVector , shared_ptr<Geom2dToIGES_Geom2dVector>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dVector"))
+        .def(py::init<  >()  )
+        .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
+    // methods
         .def("Transfer2dVector",
              (opencascade::handle<IGESGeom_Direction> (Geom2dToIGES_Geom2dVector::*)( const opencascade::handle<Geom2d_Vector> &  ) ) static_cast<opencascade::handle<IGESGeom_Direction> (Geom2dToIGES_Geom2dVector::*)( const opencascade::handle<Geom2d_Vector> &  ) >(&Geom2dToIGES_Geom2dVector::Transfer2dVector),
              R"#(Transfert a GeometryEntity which answer True to the member : BRepToIGES::IsGeomVector(Geometry). If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
@@ -77,42 +120,22 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
         .def("Transfer2dVector",
              (opencascade::handle<IGESGeom_Direction> (Geom2dToIGES_Geom2dVector::*)( const opencascade::handle<Geom2d_Direction> &  ) ) static_cast<opencascade::handle<IGESGeom_Direction> (Geom2dToIGES_Geom2dVector::*)( const opencascade::handle<Geom2d_Direction> &  ) >(&Geom2dToIGES_Geom2dVector::Transfer2dVector),
              R"#(None)#"  , py::arg("start"))
-;
-
-
-    static_cast<py::class_<Geom2dToIGES_Geom2dCurve ,std::unique_ptr<Geom2dToIGES_Geom2dCurve>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dCurve"))
-        .def(py::init<  >()  )
-        .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
-        .def("Transfer2dCurve",
-             (opencascade::handle<IGESData_IGESEntity> (Geom2dToIGES_Geom2dCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (Geom2dToIGES_Geom2dCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dToIGES_Geom2dCurve::Transfer2dCurve),
-             R"#(Transfert an Entity from Geom2d to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"),  py::arg("Udeb"),  py::arg("Ufin"))
-;
-
-
-    static_cast<py::class_<Geom2dToIGES_Geom2dPoint ,std::unique_ptr<Geom2dToIGES_Geom2dPoint>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dPoint"))
-        .def(py::init<  >()  )
-        .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
-        .def("Transfer2dPoint",
-             (opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_Point> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_Point> &  ) >(&Geom2dToIGES_Geom2dPoint::Transfer2dPoint),
-             R"#(Transfert a Point from Geom to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
-        .def("Transfer2dPoint",
-             (opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_CartesianPoint> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_CartesianPoint> &  ) >(&Geom2dToIGES_Geom2dPoint::Transfer2dPoint),
-             R"#(Transfert a CartesianPoint from Geom to IGES. If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Geom2dToIGES_Geom2dEntity.hxx
 // ./opencascade/Geom2dToIGES_Geom2dVector.hxx
 // ./opencascade/Geom2dToIGES_Geom2dPoint.hxx
+// ./opencascade/Geom2dToIGES_Geom2dEntity.hxx
 // ./opencascade/Geom2dToIGES_Geom2dCurve.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Geom2dToIGES_Geom2dEntity.hxx
-// ./opencascade/Geom2dToIGES_Geom2dVector.hxx
-// ./opencascade/Geom2dToIGES_Geom2dPoint.hxx
-// ./opencascade/Geom2dToIGES_Geom2dCurve.hxx
 
 
 // exceptions

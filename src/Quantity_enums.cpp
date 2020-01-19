@@ -11,8 +11,8 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Quantity_ColorDefinitionError.hxx>
 #include <Quantity_PeriodDefinitionError.hxx>
+#include <Quantity_ColorDefinitionError.hxx>
 #include <Quantity_DateDefinitionError.hxx>
 #include <Standard_OutOfRange.hxx>
 #include <Quantity_Period.hxx>
@@ -114,9 +114,9 @@ namespace py = pybind11;
 #include <Quantity_Work.hxx>
 
 // template related includes
-// ./opencascade/Quantity_Array1OfColor.hxx
-#include "NCollection.hxx"
 // ./opencascade/Quantity_Array2OfColor.hxx
+#include "NCollection.hxx"
+// ./opencascade/Quantity_Array1OfColor.hxx
 #include "NCollection.hxx"
 
 
@@ -137,6 +137,75 @@ py::module m = main_module.def_submodule("Quantity", R"#()#");
     py::enum_<Quantity_TypeOfColor>(m, "Quantity_TypeOfColor",R"#(Identifies color definition systems - Quantity_TOC_RGB: with this system a color is defined by its quantities of red, green and blue (R-G-B values). - Quantity_TOC_HLS: with this system a color is defined by its hue angle and its lightness and saturation values (H-L-S values). A Quantity_Color object may define a color from three values R-G-B or H-L-S according to a given color definition system.)#")
         .value("Quantity_TOC_RGB",Quantity_TypeOfColor::Quantity_TOC_RGB)
         .value("Quantity_TOC_HLS",Quantity_TypeOfColor::Quantity_TOC_HLS).export_values();
+    py::enum_<Quantity_PhysicalQuantity>(m, "Quantity_PhysicalQuantity",R"#(List of all physical quantities(Afnor))#")
+        .value("Quantity_MASS",Quantity_PhysicalQuantity::Quantity_MASS)
+        .value("Quantity_PLANEANGLE",Quantity_PhysicalQuantity::Quantity_PLANEANGLE)
+        .value("Quantity_SOLIDANGLE",Quantity_PhysicalQuantity::Quantity_SOLIDANGLE)
+        .value("Quantity_LENGTH",Quantity_PhysicalQuantity::Quantity_LENGTH)
+        .value("Quantity_AREA",Quantity_PhysicalQuantity::Quantity_AREA)
+        .value("Quantity_VOLUME",Quantity_PhysicalQuantity::Quantity_VOLUME)
+        .value("Quantity_SPEED",Quantity_PhysicalQuantity::Quantity_SPEED)
+        .value("Quantity_VELOCITY",Quantity_PhysicalQuantity::Quantity_VELOCITY)
+        .value("Quantity_ACCELERATION",Quantity_PhysicalQuantity::Quantity_ACCELERATION)
+        .value("Quantity_ANGULARVELOCITY",Quantity_PhysicalQuantity::Quantity_ANGULARVELOCITY)
+        .value("Quantity_FREQUENCY",Quantity_PhysicalQuantity::Quantity_FREQUENCY)
+        .value("Quantity_TEMPERATURE",Quantity_PhysicalQuantity::Quantity_TEMPERATURE)
+        .value("Quantity_AMOUNTOFSUBSTANCE",Quantity_PhysicalQuantity::Quantity_AMOUNTOFSUBSTANCE)
+        .value("Quantity_DENSITY",Quantity_PhysicalQuantity::Quantity_DENSITY)
+        .value("Quantity_MASSFLOW",Quantity_PhysicalQuantity::Quantity_MASSFLOW)
+        .value("Quantity_VOLUMEFLOW",Quantity_PhysicalQuantity::Quantity_VOLUMEFLOW)
+        .value("Quantity_CONSUMPTION",Quantity_PhysicalQuantity::Quantity_CONSUMPTION)
+        .value("Quantity_MOMENTUM",Quantity_PhysicalQuantity::Quantity_MOMENTUM)
+        .value("Quantity_KINETICMOMENT",Quantity_PhysicalQuantity::Quantity_KINETICMOMENT)
+        .value("Quantity_MOMENTOFINERTIA",Quantity_PhysicalQuantity::Quantity_MOMENTOFINERTIA)
+        .value("Quantity_FORCE",Quantity_PhysicalQuantity::Quantity_FORCE)
+        .value("Quantity_MOMENTOFAFORCE",Quantity_PhysicalQuantity::Quantity_MOMENTOFAFORCE)
+        .value("Quantity_TORQUE",Quantity_PhysicalQuantity::Quantity_TORQUE)
+        .value("Quantity_WEIGHT",Quantity_PhysicalQuantity::Quantity_WEIGHT)
+        .value("Quantity_PRESSURE",Quantity_PhysicalQuantity::Quantity_PRESSURE)
+        .value("Quantity_VISCOSITY",Quantity_PhysicalQuantity::Quantity_VISCOSITY)
+        .value("Quantity_KINEMATICVISCOSITY",Quantity_PhysicalQuantity::Quantity_KINEMATICVISCOSITY)
+        .value("Quantity_ENERGY",Quantity_PhysicalQuantity::Quantity_ENERGY)
+        .value("Quantity_WORK",Quantity_PhysicalQuantity::Quantity_WORK)
+        .value("Quantity_POWER",Quantity_PhysicalQuantity::Quantity_POWER)
+        .value("Quantity_SURFACETENSION",Quantity_PhysicalQuantity::Quantity_SURFACETENSION)
+        .value("Quantity_COEFFICIENTOFEXPANSION",Quantity_PhysicalQuantity::Quantity_COEFFICIENTOFEXPANSION)
+        .value("Quantity_THERMALCONDUCTIVITY",Quantity_PhysicalQuantity::Quantity_THERMALCONDUCTIVITY)
+        .value("Quantity_SPECIFICHEATCAPACITY",Quantity_PhysicalQuantity::Quantity_SPECIFICHEATCAPACITY)
+        .value("Quantity_ENTROPY",Quantity_PhysicalQuantity::Quantity_ENTROPY)
+        .value("Quantity_ENTHALPY",Quantity_PhysicalQuantity::Quantity_ENTHALPY)
+        .value("Quantity_LUMINOUSINTENSITY",Quantity_PhysicalQuantity::Quantity_LUMINOUSINTENSITY)
+        .value("Quantity_LUMINOUSFLUX",Quantity_PhysicalQuantity::Quantity_LUMINOUSFLUX)
+        .value("Quantity_LUMINANCE",Quantity_PhysicalQuantity::Quantity_LUMINANCE)
+        .value("Quantity_ILLUMINANCE",Quantity_PhysicalQuantity::Quantity_ILLUMINANCE)
+        .value("Quantity_LUMINOUSEXPOSITION",Quantity_PhysicalQuantity::Quantity_LUMINOUSEXPOSITION)
+        .value("Quantity_LUMINOUSEFFICACITY",Quantity_PhysicalQuantity::Quantity_LUMINOUSEFFICACITY)
+        .value("Quantity_ELECTRICCHARGE",Quantity_PhysicalQuantity::Quantity_ELECTRICCHARGE)
+        .value("Quantity_ELECTRICCURRENT",Quantity_PhysicalQuantity::Quantity_ELECTRICCURRENT)
+        .value("Quantity_ELECTRICFIELDSTRENGTH",Quantity_PhysicalQuantity::Quantity_ELECTRICFIELDSTRENGTH)
+        .value("Quantity_ELECTRICPOTENTIAL",Quantity_PhysicalQuantity::Quantity_ELECTRICPOTENTIAL)
+        .value("Quantity_ELECTRICCAPACITANCE",Quantity_PhysicalQuantity::Quantity_ELECTRICCAPACITANCE)
+        .value("Quantity_MAGNETICFLUX",Quantity_PhysicalQuantity::Quantity_MAGNETICFLUX)
+        .value("Quantity_MAGNETICFLUXDENSITY",Quantity_PhysicalQuantity::Quantity_MAGNETICFLUXDENSITY)
+        .value("Quantity_MAGNETICFIELDSTRENGTH",Quantity_PhysicalQuantity::Quantity_MAGNETICFIELDSTRENGTH)
+        .value("Quantity_RELUCTANCE",Quantity_PhysicalQuantity::Quantity_RELUCTANCE)
+        .value("Quantity_RESISTANCE",Quantity_PhysicalQuantity::Quantity_RESISTANCE)
+        .value("Quantity_INDUCTANCE",Quantity_PhysicalQuantity::Quantity_INDUCTANCE)
+        .value("Quantity_CAPACITANCE",Quantity_PhysicalQuantity::Quantity_CAPACITANCE)
+        .value("Quantity_IMPEDANCE",Quantity_PhysicalQuantity::Quantity_IMPEDANCE)
+        .value("Quantity_ADMITTANCE",Quantity_PhysicalQuantity::Quantity_ADMITTANCE)
+        .value("Quantity_RESISTIVITY",Quantity_PhysicalQuantity::Quantity_RESISTIVITY)
+        .value("Quantity_CONDUCTIVITY",Quantity_PhysicalQuantity::Quantity_CONDUCTIVITY)
+        .value("Quantity_MOLARMASS",Quantity_PhysicalQuantity::Quantity_MOLARMASS)
+        .value("Quantity_MOLARVOLUME",Quantity_PhysicalQuantity::Quantity_MOLARVOLUME)
+        .value("Quantity_CONCENTRATION",Quantity_PhysicalQuantity::Quantity_CONCENTRATION)
+        .value("Quantity_MOLARCONCENTRATION",Quantity_PhysicalQuantity::Quantity_MOLARCONCENTRATION)
+        .value("Quantity_MOLARITY",Quantity_PhysicalQuantity::Quantity_MOLARITY)
+        .value("Quantity_SOUNDINTENSITY",Quantity_PhysicalQuantity::Quantity_SOUNDINTENSITY)
+        .value("Quantity_ACOUSTICINTENSITY",Quantity_PhysicalQuantity::Quantity_ACOUSTICINTENSITY)
+        .value("Quantity_ACTIVITY",Quantity_PhysicalQuantity::Quantity_ACTIVITY)
+        .value("Quantity_ABSORBEDDOSE",Quantity_PhysicalQuantity::Quantity_ABSORBEDDOSE)
+        .value("Quantity_DOSEEQUIVALENT",Quantity_PhysicalQuantity::Quantity_DOSEEQUIVALENT).export_values();
     py::enum_<Quantity_NameOfColor>(m, "Quantity_NameOfColor",R"#(Definition of names of known colours.)#")
         .value("Quantity_NOC_BLACK",Quantity_NameOfColor::Quantity_NOC_BLACK)
         .value("Quantity_NOC_MATRABLUE",Quantity_NameOfColor::Quantity_NOC_MATRABLUE)
@@ -655,182 +724,19 @@ py::module m = main_module.def_submodule("Quantity", R"#()#");
         .value("Quantity_NOC_YELLOW4",Quantity_NameOfColor::Quantity_NOC_YELLOW4)
         .value("Quantity_NOC_YELLOWGREEN",Quantity_NameOfColor::Quantity_NOC_YELLOWGREEN)
         .value("Quantity_NOC_WHITE",Quantity_NameOfColor::Quantity_NOC_WHITE).export_values();
-    py::enum_<Quantity_PhysicalQuantity>(m, "Quantity_PhysicalQuantity",R"#(List of all physical quantities(Afnor))#")
-        .value("Quantity_MASS",Quantity_PhysicalQuantity::Quantity_MASS)
-        .value("Quantity_PLANEANGLE",Quantity_PhysicalQuantity::Quantity_PLANEANGLE)
-        .value("Quantity_SOLIDANGLE",Quantity_PhysicalQuantity::Quantity_SOLIDANGLE)
-        .value("Quantity_LENGTH",Quantity_PhysicalQuantity::Quantity_LENGTH)
-        .value("Quantity_AREA",Quantity_PhysicalQuantity::Quantity_AREA)
-        .value("Quantity_VOLUME",Quantity_PhysicalQuantity::Quantity_VOLUME)
-        .value("Quantity_SPEED",Quantity_PhysicalQuantity::Quantity_SPEED)
-        .value("Quantity_VELOCITY",Quantity_PhysicalQuantity::Quantity_VELOCITY)
-        .value("Quantity_ACCELERATION",Quantity_PhysicalQuantity::Quantity_ACCELERATION)
-        .value("Quantity_ANGULARVELOCITY",Quantity_PhysicalQuantity::Quantity_ANGULARVELOCITY)
-        .value("Quantity_FREQUENCY",Quantity_PhysicalQuantity::Quantity_FREQUENCY)
-        .value("Quantity_TEMPERATURE",Quantity_PhysicalQuantity::Quantity_TEMPERATURE)
-        .value("Quantity_AMOUNTOFSUBSTANCE",Quantity_PhysicalQuantity::Quantity_AMOUNTOFSUBSTANCE)
-        .value("Quantity_DENSITY",Quantity_PhysicalQuantity::Quantity_DENSITY)
-        .value("Quantity_MASSFLOW",Quantity_PhysicalQuantity::Quantity_MASSFLOW)
-        .value("Quantity_VOLUMEFLOW",Quantity_PhysicalQuantity::Quantity_VOLUMEFLOW)
-        .value("Quantity_CONSUMPTION",Quantity_PhysicalQuantity::Quantity_CONSUMPTION)
-        .value("Quantity_MOMENTUM",Quantity_PhysicalQuantity::Quantity_MOMENTUM)
-        .value("Quantity_KINETICMOMENT",Quantity_PhysicalQuantity::Quantity_KINETICMOMENT)
-        .value("Quantity_MOMENTOFINERTIA",Quantity_PhysicalQuantity::Quantity_MOMENTOFINERTIA)
-        .value("Quantity_FORCE",Quantity_PhysicalQuantity::Quantity_FORCE)
-        .value("Quantity_MOMENTOFAFORCE",Quantity_PhysicalQuantity::Quantity_MOMENTOFAFORCE)
-        .value("Quantity_TORQUE",Quantity_PhysicalQuantity::Quantity_TORQUE)
-        .value("Quantity_WEIGHT",Quantity_PhysicalQuantity::Quantity_WEIGHT)
-        .value("Quantity_PRESSURE",Quantity_PhysicalQuantity::Quantity_PRESSURE)
-        .value("Quantity_VISCOSITY",Quantity_PhysicalQuantity::Quantity_VISCOSITY)
-        .value("Quantity_KINEMATICVISCOSITY",Quantity_PhysicalQuantity::Quantity_KINEMATICVISCOSITY)
-        .value("Quantity_ENERGY",Quantity_PhysicalQuantity::Quantity_ENERGY)
-        .value("Quantity_WORK",Quantity_PhysicalQuantity::Quantity_WORK)
-        .value("Quantity_POWER",Quantity_PhysicalQuantity::Quantity_POWER)
-        .value("Quantity_SURFACETENSION",Quantity_PhysicalQuantity::Quantity_SURFACETENSION)
-        .value("Quantity_COEFFICIENTOFEXPANSION",Quantity_PhysicalQuantity::Quantity_COEFFICIENTOFEXPANSION)
-        .value("Quantity_THERMALCONDUCTIVITY",Quantity_PhysicalQuantity::Quantity_THERMALCONDUCTIVITY)
-        .value("Quantity_SPECIFICHEATCAPACITY",Quantity_PhysicalQuantity::Quantity_SPECIFICHEATCAPACITY)
-        .value("Quantity_ENTROPY",Quantity_PhysicalQuantity::Quantity_ENTROPY)
-        .value("Quantity_ENTHALPY",Quantity_PhysicalQuantity::Quantity_ENTHALPY)
-        .value("Quantity_LUMINOUSINTENSITY",Quantity_PhysicalQuantity::Quantity_LUMINOUSINTENSITY)
-        .value("Quantity_LUMINOUSFLUX",Quantity_PhysicalQuantity::Quantity_LUMINOUSFLUX)
-        .value("Quantity_LUMINANCE",Quantity_PhysicalQuantity::Quantity_LUMINANCE)
-        .value("Quantity_ILLUMINANCE",Quantity_PhysicalQuantity::Quantity_ILLUMINANCE)
-        .value("Quantity_LUMINOUSEXPOSITION",Quantity_PhysicalQuantity::Quantity_LUMINOUSEXPOSITION)
-        .value("Quantity_LUMINOUSEFFICACITY",Quantity_PhysicalQuantity::Quantity_LUMINOUSEFFICACITY)
-        .value("Quantity_ELECTRICCHARGE",Quantity_PhysicalQuantity::Quantity_ELECTRICCHARGE)
-        .value("Quantity_ELECTRICCURRENT",Quantity_PhysicalQuantity::Quantity_ELECTRICCURRENT)
-        .value("Quantity_ELECTRICFIELDSTRENGTH",Quantity_PhysicalQuantity::Quantity_ELECTRICFIELDSTRENGTH)
-        .value("Quantity_ELECTRICPOTENTIAL",Quantity_PhysicalQuantity::Quantity_ELECTRICPOTENTIAL)
-        .value("Quantity_ELECTRICCAPACITANCE",Quantity_PhysicalQuantity::Quantity_ELECTRICCAPACITANCE)
-        .value("Quantity_MAGNETICFLUX",Quantity_PhysicalQuantity::Quantity_MAGNETICFLUX)
-        .value("Quantity_MAGNETICFLUXDENSITY",Quantity_PhysicalQuantity::Quantity_MAGNETICFLUXDENSITY)
-        .value("Quantity_MAGNETICFIELDSTRENGTH",Quantity_PhysicalQuantity::Quantity_MAGNETICFIELDSTRENGTH)
-        .value("Quantity_RELUCTANCE",Quantity_PhysicalQuantity::Quantity_RELUCTANCE)
-        .value("Quantity_RESISTANCE",Quantity_PhysicalQuantity::Quantity_RESISTANCE)
-        .value("Quantity_INDUCTANCE",Quantity_PhysicalQuantity::Quantity_INDUCTANCE)
-        .value("Quantity_CAPACITANCE",Quantity_PhysicalQuantity::Quantity_CAPACITANCE)
-        .value("Quantity_IMPEDANCE",Quantity_PhysicalQuantity::Quantity_IMPEDANCE)
-        .value("Quantity_ADMITTANCE",Quantity_PhysicalQuantity::Quantity_ADMITTANCE)
-        .value("Quantity_RESISTIVITY",Quantity_PhysicalQuantity::Quantity_RESISTIVITY)
-        .value("Quantity_CONDUCTIVITY",Quantity_PhysicalQuantity::Quantity_CONDUCTIVITY)
-        .value("Quantity_MOLARMASS",Quantity_PhysicalQuantity::Quantity_MOLARMASS)
-        .value("Quantity_MOLARVOLUME",Quantity_PhysicalQuantity::Quantity_MOLARVOLUME)
-        .value("Quantity_CONCENTRATION",Quantity_PhysicalQuantity::Quantity_CONCENTRATION)
-        .value("Quantity_MOLARCONCENTRATION",Quantity_PhysicalQuantity::Quantity_MOLARCONCENTRATION)
-        .value("Quantity_MOLARITY",Quantity_PhysicalQuantity::Quantity_MOLARITY)
-        .value("Quantity_SOUNDINTENSITY",Quantity_PhysicalQuantity::Quantity_SOUNDINTENSITY)
-        .value("Quantity_ACOUSTICINTENSITY",Quantity_PhysicalQuantity::Quantity_ACOUSTICINTENSITY)
-        .value("Quantity_ACTIVITY",Quantity_PhysicalQuantity::Quantity_ACTIVITY)
-        .value("Quantity_ABSORBEDDOSE",Quantity_PhysicalQuantity::Quantity_ABSORBEDDOSE)
-        .value("Quantity_DOSEEQUIVALENT",Quantity_PhysicalQuantity::Quantity_DOSEEQUIVALENT).export_values();
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Quantity_Color ,std::unique_ptr<Quantity_Color>  >(m,"Quantity_Color",R"#(This class allows the definition of a colour. The names of the colours are from the X11 specification. color object may be used for numerous applicative purposes. A color is defined by: - its respective quantities of red, green and blue (R-G-B values), or - its hue angle and its values of lightness and saturation (H-L-S values). These two color definition systems are equivalent. Use this class in conjunction with: - the Quantity_TypeOfColor enumeration which identifies the color definition system you are using, - the Quantity_NameOfColor enumeration which lists numerous predefined colors and identifies them by their name.)#");
-    py::class_<Quantity_Period ,std::unique_ptr<Quantity_Period>  >(m,"Quantity_Period",R"#(Manages date intervals. For example, a Period object gives the interval between two dates. A period is expressed in seconds and microseconds.)#");
-    py::class_<Quantity_Date ,std::unique_ptr<Quantity_Date>  >(m,"Quantity_Date",R"#(This class provides services to manage date information. A date represents the following time intervals: year, month, day, hour, minute, second, millisecond and microsecond. Current time is expressed in elapsed seconds and microseconds beginning from 00:00 GMT, January 1, 1979 (zero hour). The valid date can only be later than this one. Note: a Period object gives the interval between two dates.)#");
-    py::class_<Quantity_HArray1OfColor ,std::unique_ptr<Quantity_HArray1OfColor>  >(m,"Quantity_HArray1OfColor",R"#()#");
-    py::class_<Quantity_ColorRGBA ,std::unique_ptr<Quantity_ColorRGBA>  >(m,"Quantity_ColorRGBA",R"#(The pair of Quantity_Color and Alpha component (1.0 opaque, 0.0 transparent).)#");
-
 // pre-register typdefs
-// ./opencascade/Quantity_MolarMass.hxx
-// ./opencascade/Quantity_Torque.hxx
-// ./opencascade/Quantity_Array1OfColor.hxx
-    preregister_template_NCollection_Array1<Quantity_Color>(m,"Quantity_Array1OfColor");  
-// ./opencascade/Quantity_Parameter.hxx
-// ./opencascade/Quantity_Speed.hxx
-// ./opencascade/Quantity_Volume.hxx
-// ./opencascade/Quantity_Frequency.hxx
-// ./opencascade/Quantity_Temperature.hxx
-// ./opencascade/Quantity_Consumption.hxx
-// ./opencascade/Quantity_Color.hxx
-// ./opencascade/Quantity_Power.hxx
-// ./opencascade/Quantity_LuminousExposition.hxx
-// ./opencascade/Quantity_LuminousEfficacity.hxx
-// ./opencascade/Quantity_MassFlow.hxx
-// ./opencascade/Quantity_Pressure.hxx
-// ./opencascade/Quantity_MagneticFluxDensity.hxx
-// ./opencascade/Quantity_Inductance.hxx
-// ./opencascade/Quantity_Momentum.hxx
-// ./opencascade/Quantity_Array2OfColor.hxx
     preregister_template_NCollection_Array2<Quantity_Color>(m,"Quantity_Array2OfColor");  
-// ./opencascade/Quantity_Quotient.hxx
-// ./opencascade/Quantity_Illuminance.hxx
-// ./opencascade/Quantity_LuminousIntensity.hxx
-// ./opencascade/Quantity_MolarVolume.hxx
-// ./opencascade/Quantity_Capacitance.hxx
-// ./opencascade/Quantity_Entropy.hxx
-// ./opencascade/Quantity_Energy.hxx
-// ./opencascade/Quantity_Weight.hxx
-// ./opencascade/Quantity_Enthalpy.hxx
-// ./opencascade/Quantity_Area.hxx
-// ./opencascade/Quantity_Index.hxx
-// ./opencascade/Quantity_Work.hxx
-// ./opencascade/Quantity_LuminousFlux.hxx
-// ./opencascade/Quantity_Coefficient.hxx
-// ./opencascade/Quantity_MagneticFlux.hxx
-// ./opencascade/Quantity_Scalaire.hxx
-// ./opencascade/Quantity_SurfaceTension.hxx
-// ./opencascade/Quantity_CoefficientOfExpansion.hxx
-// ./opencascade/Quantity_Activity.hxx
-// ./opencascade/Quantity_ElectricCapacitance.hxx
-// ./opencascade/Quantity_SolidAngle.hxx
-// ./opencascade/Quantity_Mass.hxx
-// ./opencascade/Quantity_AcousticIntensity.hxx
-// ./opencascade/Quantity_Normality.hxx
-// ./opencascade/Quantity_SpecificHeatCapacity.hxx
-// ./opencascade/Quantity_Rate.hxx
-// ./opencascade/Quantity_Constant.hxx
-// ./opencascade/Quantity_SoundIntensity.hxx
-// ./opencascade/Quantity_PlaneAngle.hxx
-// ./opencascade/Quantity_PeriodDefinitionError.hxx
-// ./opencascade/Quantity_Period.hxx
-// ./opencascade/Quantity_ElectricPotential.hxx
-// ./opencascade/Quantity_MagneticFieldStrength.hxx
-// ./opencascade/Quantity_Length.hxx
-// ./opencascade/Quantity_Viscosity.hxx
-// ./opencascade/Quantity_ColorDefinitionError.hxx
-// ./opencascade/Quantity_Reluctance.hxx
-// ./opencascade/Quantity_ElectricCurrent.hxx
-// ./opencascade/Quantity_AbsorbedDose.hxx
-// ./opencascade/Quantity_ColorRGBAHasher.hxx
-// ./opencascade/Quantity_Admittance.hxx
-// ./opencascade/Quantity_Density.hxx
-// ./opencascade/Quantity_ElectricCharge.hxx
-// ./opencascade/Quantity_ThermalConductivity.hxx
-// ./opencascade/Quantity_AngularVelocity.hxx
-// ./opencascade/Quantity_ElectricFieldStrength.hxx
-// ./opencascade/Quantity_Date.hxx
-// ./opencascade/Quantity_ColorRGBA.hxx
-// ./opencascade/Quantity_Impedance.hxx
-// ./opencascade/Quantity_VolumeFlow.hxx
-// ./opencascade/Quantity_MolarConcentration.hxx
-// ./opencascade/Quantity_TypeOfColor.hxx
-// ./opencascade/Quantity_KinematicViscosity.hxx
-// ./opencascade/Quantity_AmountOfSubstance.hxx
-// ./opencascade/Quantity_Velocity.hxx
-// ./opencascade/Quantity_Conductivity.hxx
-// ./opencascade/Quantity_MomentOfInertia.hxx
-// ./opencascade/Quantity_Concentration.hxx
-// ./opencascade/Quantity_Factor.hxx
-// ./opencascade/Quantity_NameOfColor.hxx
-// ./opencascade/Quantity_ColorHasher.hxx
-// ./opencascade/Quantity_Resistance.hxx
-// ./opencascade/Quantity_Acceleration.hxx
-// ./opencascade/Quantity_Ratio.hxx
-// ./opencascade/Quantity_Molarity.hxx
-// ./opencascade/Quantity_DoseEquivalent.hxx
-// ./opencascade/Quantity_Force.hxx
-// ./opencascade/Quantity_PhysicalQuantity.hxx
-// ./opencascade/Quantity_HArray1OfColor.hxx
-// ./opencascade/Quantity_Content.hxx
-// ./opencascade/Quantity_Resistivity.hxx
-// ./opencascade/Quantity_Luminance.hxx
-// ./opencascade/Quantity_MomentOfAForce.hxx
-// ./opencascade/Quantity_KineticMoment.hxx
-// ./opencascade/Quantity_DateDefinitionError.hxx
+    preregister_template_NCollection_Array1<Quantity_Color>(m,"Quantity_Array1OfColor");  
+
+// classes forward declarations only
+    py::class_<Quantity_Color , shared_ptr<Quantity_Color>  >(m,"Quantity_Color",R"#(This class allows the definition of a colour. The names of the colours are from the X11 specification. color object may be used for numerous applicative purposes. A color is defined by: - its respective quantities of red, green and blue (R-G-B values), or - its hue angle and its values of lightness and saturation (H-L-S values). These two color definition systems are equivalent. Use this class in conjunction with: - the Quantity_TypeOfColor enumeration which identifies the color definition system you are using, - the Quantity_NameOfColor enumeration which lists numerous predefined colors and identifies them by their name.)#");
+    py::class_<Quantity_ColorRGBA , shared_ptr<Quantity_ColorRGBA>  >(m,"Quantity_ColorRGBA",R"#(The pair of Quantity_Color and Alpha component (1.0 opaque, 0.0 transparent).)#");
+    py::class_<Quantity_Date , shared_ptr<Quantity_Date>  >(m,"Quantity_Date",R"#(This class provides services to manage date information. A date represents the following time intervals: year, month, day, hour, minute, second, millisecond and microsecond. Current time is expressed in elapsed seconds and microseconds beginning from 00:00 GMT, January 1, 1979 (zero hour). The valid date can only be later than this one. Note: a Period object gives the interval between two dates.)#");
+    py::class_<Quantity_HArray1OfColor ,opencascade::handle<Quantity_HArray1OfColor>  , Quantity_Array1OfColor , Standard_Transient >(m,"Quantity_HArray1OfColor",R"#()#");
+    py::class_<Quantity_Period , shared_ptr<Quantity_Period>  >(m,"Quantity_Period",R"#(Manages date intervals. For example, a Period object gives the interval between two dates. A period is expressed in seconds and microseconds.)#");
 
 };
 

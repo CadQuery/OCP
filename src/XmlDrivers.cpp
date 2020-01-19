@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -18,9 +21,9 @@ namespace py = pybind11;
 #include <TDocStd_Application.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
+#include <XmlMDF_ADriver.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
-#include <XmlMDF_ADriver.hxx>
 
 // module includes
 #include <XmlDrivers.hxx>
@@ -46,9 +49,30 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
 
 // classes
 
+    register_default_constructor<XmlDrivers , shared_ptr<XmlDrivers>>(m,"XmlDrivers");
+
+    static_cast<py::class_<XmlDrivers , shared_ptr<XmlDrivers>  >>(m.attr("XmlDrivers"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Factory_s",
+                    (const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) ) static_cast<const opencascade::handle<Standard_Transient> & (*)( const Standard_GUID &  ) >(&XmlDrivers::Factory),
+                    R"#(None)#"  , py::arg("theGUID"))
+        .def_static("DefineFormat_s",
+                    (void (*)( const opencascade::handle<TDocStd_Application> &  ) ) static_cast<void (*)( const opencascade::handle<TDocStd_Application> &  ) >(&XmlDrivers::DefineFormat),
+                    R"#(Defines format "XmlOcaf" and registers its read and write drivers in the specified application)#"  , py::arg("theApp"))
+        .def_static("AttributeDrivers_s",
+                    (opencascade::handle<XmlMDF_ADriverTable> (*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlDrivers::AttributeDrivers),
+                    R"#(None)#"  , py::arg("theMsgDriver"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
 
     static_cast<py::class_<XmlDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlDrivers_DocumentRetrievalDriver>  , XmlLDrivers_DocumentRetrievalDriver >>(m.attr("XmlDrivers_DocumentRetrievalDriver"))
         .def(py::init<  >()  )
+    // methods
         .def("AttributeDrivers",
              (opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlDrivers_DocumentRetrievalDriver::AttributeDrivers),
              R"#(None)#"  , py::arg("theMsgDriver"))
@@ -64,17 +88,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlDrivers_DocumentRetrievalDriver::*)() const>(&XmlDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&XmlDrivers_DocumentRetrievalDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&XmlDrivers_DocumentRetrievalDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<XmlDrivers_DocumentStorageDriver ,opencascade::handle<XmlDrivers_DocumentStorageDriver>  , XmlLDrivers_DocumentStorageDriver >>(m.attr("XmlDrivers_DocumentStorageDriver"))
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("theCopyright") )
+    // methods
         .def("AttributeDrivers",
              (opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlDrivers_DocumentStorageDriver::AttributeDrivers),
              R"#(None)#"  , py::arg("theMsgDriver"))
@@ -84,25 +114,27 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlDrivers_DocumentStorageDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlDrivers_DocumentStorageDriver::*)() const>(&XmlDrivers_DocumentStorageDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&XmlDrivers_DocumentStorageDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&XmlDrivers_DocumentStorageDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/XmlDrivers.hxx
-// ./opencascade/XmlDrivers_DocumentStorageDriver.hxx
 // ./opencascade/XmlDrivers_DocumentRetrievalDriver.hxx
+// ./opencascade/XmlDrivers_DocumentStorageDriver.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/XmlDrivers.hxx
-// ./opencascade/XmlDrivers_DocumentStorageDriver.hxx
-// ./opencascade/XmlDrivers_DocumentRetrievalDriver.hxx
 
 
 // exceptions

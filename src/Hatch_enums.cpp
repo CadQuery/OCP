@@ -24,9 +24,9 @@ namespace py = pybind11;
 #include <Hatch_SequenceOfParameter.hxx>
 
 // template related includes
-// ./opencascade/Hatch_SequenceOfLine.hxx
-#include "NCollection.hxx"
 // ./opencascade/Hatch_SequenceOfParameter.hxx
+#include "NCollection.hxx"
+// ./opencascade/Hatch_SequenceOfLine.hxx
 #include "NCollection.hxx"
 
 
@@ -51,20 +51,14 @@ py::module m = main_module.def_submodule("Hatch", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Hatch_Hatcher ,std::unique_ptr<Hatch_Hatcher>  >(m,"Hatch_Hatcher",R"#(The Hatcher is an algorithm to compute cross hatchings in a 2d plane. It is mainly dedicated to display purpose.)#");
-    py::class_<Hatch_Line ,std::unique_ptr<Hatch_Line>  >(m,"Hatch_Line",R"#(Stores a Line in the Hatcher. Represented by :)#");
-    py::class_<Hatch_Parameter ,std::unique_ptr<Hatch_Parameter>  >(m,"Hatch_Parameter",R"#(Stores an intersection on a line represented by :)#");
-
 // pre-register typdefs
-// ./opencascade/Hatch_Hatcher.hxx
-// ./opencascade/Hatch_SequenceOfLine.hxx
-    preregister_template_NCollection_Sequence<Hatch_Line>(m,"Hatch_SequenceOfLine");  
-// ./opencascade/Hatch_Parameter.hxx
-// ./opencascade/Hatch_SequenceOfParameter.hxx
     preregister_template_NCollection_Sequence<Hatch_Parameter>(m,"Hatch_SequenceOfParameter");  
-// ./opencascade/Hatch_Line.hxx
-// ./opencascade/Hatch_LineForm.hxx
+    preregister_template_NCollection_Sequence<Hatch_Line>(m,"Hatch_SequenceOfLine");  
+
+// classes forward declarations only
+    py::class_<Hatch_Hatcher , shared_ptr<Hatch_Hatcher>  >(m,"Hatch_Hatcher",R"#(The Hatcher is an algorithm to compute cross hatchings in a 2d plane. It is mainly dedicated to display purpose.)#");
+    py::class_<Hatch_Line , shared_ptr<Hatch_Line>  >(m,"Hatch_Line",R"#(Stores a Line in the Hatcher. Represented by :)#");
+    py::class_<Hatch_Parameter , shared_ptr<Hatch_Parameter>  >(m,"Hatch_Parameter",R"#(Stores an intersection on a line represented by :)#");
 
 };
 

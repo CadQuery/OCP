@@ -59,17 +59,12 @@ py::module m = main_module.def_submodule("CSLib", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<CSLib ,std::unique_ptr<CSLib>  >(m,"CSLib",R"#(This package implements functions for basis geometric computation on curves and surfaces. The tolerance criterions used in this package are Resolution from package gp and RealEpsilon from class Real of package Standard.)#");
-    py::class_<CSLib_Class2d ,std::unique_ptr<CSLib_Class2d>  >(m,"CSLib_Class2d",R"#(*** Class2d : Low level algorithm for 2d classification this class was moved from package BRepTopAdaptor)#");
-    py::class_<CSLib_NormalPolyDef ,std::unique_ptr<CSLib_NormalPolyDef>  , math_FunctionWithDerivative >(m,"CSLib_NormalPolyDef",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/CSLib_DerivativeStatus.hxx
-// ./opencascade/CSLib.hxx
-// ./opencascade/CSLib_NormalPolyDef.hxx
-// ./opencascade/CSLib_Class2d.hxx
-// ./opencascade/CSLib_NormalStatus.hxx
+
+// classes forward declarations only
+    py::class_<CSLib , shared_ptr<CSLib>  >(m,"CSLib",R"#(This package implements functions for basis geometric computation on curves and surfaces. The tolerance criterions used in this package are Resolution from package gp and RealEpsilon from class Real of package Standard.)#");
+    py::class_<CSLib_Class2d , shared_ptr<CSLib_Class2d>  >(m,"CSLib_Class2d",R"#(*** Class2d : Low level algorithm for 2d classification this class was moved from package BRepTopAdaptor)#");
+    py::class_<CSLib_NormalPolyDef , shared_ptr<CSLib_NormalPolyDef>  , math_FunctionWithDerivative >(m,"CSLib_NormalPolyDef",R"#(None)#");
 
 };
 

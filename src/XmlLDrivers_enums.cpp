@@ -17,9 +17,6 @@ namespace py = pybind11;
 #include <CDM_Application.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMDF_ADriver.hxx>
-#include <XmlMDF_ADriverTable.hxx>
-#include <CDM_Document.hxx>
-#include <Message_Messenger.hxx>
 #include <Standard_GUID.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <XmlMDF_ADriverTable.hxx>
@@ -28,6 +25,9 @@ namespace py = pybind11;
 #include <XmlLDrivers_DocumentRetrievalDriver.hxx>
 #include <XmlLDrivers_NamespaceDef.hxx>
 #include <TDocStd_Application.hxx>
+#include <XmlMDF_ADriverTable.hxx>
+#include <CDM_Document.hxx>
+#include <Message_Messenger.hxx>
 
 // module includes
 #include <XmlLDrivers.hxx>
@@ -58,19 +58,14 @@ py::module m = main_module.def_submodule("XmlLDrivers", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<XmlLDrivers_NamespaceDef ,std::unique_ptr<XmlLDrivers_NamespaceDef>  >(m,"XmlLDrivers_NamespaceDef",R"#(None)#");
-    py::class_<XmlLDrivers_DocumentStorageDriver ,opencascade::handle<XmlLDrivers_DocumentStorageDriver>  , PCDM_StorageDriver >(m,"XmlLDrivers_DocumentStorageDriver",R"#()#");
-    py::class_<XmlLDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >(m,"XmlLDrivers_DocumentRetrievalDriver",R"#()#");
-    py::class_<XmlLDrivers ,std::unique_ptr<XmlLDrivers>  >(m,"XmlLDrivers",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/XmlLDrivers_NamespaceDef.hxx
-// ./opencascade/XmlLDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/XmlLDrivers_SequenceOfNamespaceDef.hxx
     preregister_template_NCollection_Sequence<XmlLDrivers_NamespaceDef>(m,"XmlLDrivers_SequenceOfNamespaceDef");  
-// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
-// ./opencascade/XmlLDrivers.hxx
+
+// classes forward declarations only
+    py::class_<XmlLDrivers , shared_ptr<XmlLDrivers>  >(m,"XmlLDrivers",R"#(None)#");
+    py::class_<XmlLDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >(m,"XmlLDrivers_DocumentRetrievalDriver",R"#()#");
+    py::class_<XmlLDrivers_DocumentStorageDriver ,opencascade::handle<XmlLDrivers_DocumentStorageDriver>  , PCDM_StorageDriver >(m,"XmlLDrivers_DocumentStorageDriver",R"#()#");
+    py::class_<XmlLDrivers_NamespaceDef , shared_ptr<XmlLDrivers_NamespaceDef>  >(m,"XmlLDrivers_NamespaceDef",R"#(None)#");
 
 };
 

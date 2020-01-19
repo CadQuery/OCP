@@ -11,9 +11,9 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
+#include <Standard_OutOfRange.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <Standard_OutOfRange.hxx>
 
 // module includes
 #include <Sweep_NumShape.hxx>
@@ -40,15 +40,12 @@ py::module m = main_module.def_submodule("Sweep", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Sweep_NumShape ,std::unique_ptr<Sweep_NumShape>  >(m,"Sweep_NumShape",R"#(Gives a simple indexed representation of a Directing Edge topology.)#");
-    py::class_<Sweep_NumShapeTool ,std::unique_ptr<Sweep_NumShapeTool>  >(m,"Sweep_NumShapeTool",R"#(This class provides the indexation and type analysis services required by the NumShape Directing Shapes of Swept Primitives.)#");
-    py::class_<Sweep_NumShapeIterator ,std::unique_ptr<Sweep_NumShapeIterator>  >(m,"Sweep_NumShapeIterator",R"#(This class provides iteration services required by the Swept Primitives for a Directing NumShape Line.)#");
-
 // pre-register typdefs
-// ./opencascade/Sweep_NumShape.hxx
-// ./opencascade/Sweep_NumShapeIterator.hxx
-// ./opencascade/Sweep_NumShapeTool.hxx
+
+// classes forward declarations only
+    py::class_<Sweep_NumShape , shared_ptr<Sweep_NumShape>  >(m,"Sweep_NumShape",R"#(Gives a simple indexed representation of a Directing Edge topology.)#");
+    py::class_<Sweep_NumShapeIterator , shared_ptr<Sweep_NumShapeIterator>  >(m,"Sweep_NumShapeIterator",R"#(This class provides iteration services required by the Swept Primitives for a Directing NumShape Line.)#");
+    py::class_<Sweep_NumShapeTool , shared_ptr<Sweep_NumShapeTool>  >(m,"Sweep_NumShapeTool",R"#(This class provides the indexation and type analysis services required by the NumShape Directing Shapes of Swept Primitives.)#");
 
 };
 

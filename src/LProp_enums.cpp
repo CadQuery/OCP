@@ -53,19 +53,12 @@ py::module m = main_module.def_submodule("LProp", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<LProp_AnalyticCurInf ,std::unique_ptr<LProp_AnalyticCurInf>  >(m,"LProp_AnalyticCurInf",R"#(Computes the locals extremas of curvature of a gp curve Remark : a gp curve has not inflection.)#");
-    py::class_<LProp_CurAndInf ,std::unique_ptr<LProp_CurAndInf>  >(m,"LProp_CurAndInf",R"#(Stores the parameters of a curve 2d or 3d corresponding to the curvature's extremas and the Inflection's Points.)#");
-
 // pre-register typdefs
-// ./opencascade/LProp_SequenceOfCIType.hxx
     preregister_template_NCollection_Sequence<LProp_CIType>(m,"LProp_SequenceOfCIType");  
-// ./opencascade/LProp_CIType.hxx
-// ./opencascade/LProp_BadContinuity.hxx
-// ./opencascade/LProp_NotDefined.hxx
-// ./opencascade/LProp_AnalyticCurInf.hxx
-// ./opencascade/LProp_CurAndInf.hxx
-// ./opencascade/LProp_Status.hxx
+
+// classes forward declarations only
+    py::class_<LProp_AnalyticCurInf , shared_ptr<LProp_AnalyticCurInf>  >(m,"LProp_AnalyticCurInf",R"#(Computes the locals extremas of curvature of a gp curve Remark : a gp curve has not inflection.)#");
+    py::class_<LProp_CurAndInf , shared_ptr<LProp_CurAndInf>  >(m,"LProp_CurAndInf",R"#(Stores the parameters of a curve 2d or 3d corresponding to the curvature's extremas and the Inflection's Points.)#");
 
 };
 

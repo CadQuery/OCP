@@ -12,16 +12,16 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
-#include <TopBas_ListOfTestInterference.hxx>
 #include <TopBas_ListIteratorOfListOfTestInterference.hxx>
+#include <TopBas_ListOfTestInterference.hxx>
 #include <TopBas_TestInterference.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/TopBas_ListOfTestInterference.hxx
 // ./opencascade/TopBas_ListIteratorOfListOfTestInterference.hxx
+// ./opencascade/TopBas_ListOfTestInterference.hxx
 // ./opencascade/TopBas_TestInterference.hxx
 
 // user-defined post

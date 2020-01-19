@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,16 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <BOPTools_Set.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
-#include <gp_Dir.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Pnt.hxx>
-#include <IntTools_Context.hxx>
-#include <gp_Pnt2d.hxx>
-#include <TopoDS_Shape.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
 #include <gp_Vec.hxx>
@@ -37,6 +30,16 @@ namespace py = pybind11;
 #include <IntTools_Range.hxx>
 #include <TopoDS_Shell.hxx>
 #include <Message_Report.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Face.hxx>
+#include <gp_Dir.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
+#include <gp_Pnt.hxx>
+#include <IntTools_Context.hxx>
+#include <gp_Pnt2d.hxx>
+#include <TopoDS_Shape.hxx>
+#include <BOPTools_Set.hxx>
 
 // module includes
 #include <BOPTools_AlgoTools.hxx>
@@ -55,16 +58,16 @@ namespace py = pybind11;
 #include <BOPTools_SetMapHasher.hxx>
 
 // template related includes
-// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
-#include "NCollection.hxx"
-// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
-#include "NCollection.hxx"
 // ./opencascade/BOPTools_MapOfSet.hxx
 #include "NCollection.hxx"
 // ./opencascade/BOPTools_BoxBndTree.hxx
 #include "BOPTools.hxx"
+// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
+#include "NCollection.hxx"
 
 
 // user-defined pre
@@ -83,103 +86,12 @@ py::module m = static_cast<py::module>(main_module.attr("BOPTools"));
 
 // classes
 
-    register_default_constructor<BOPTools_SetMapHasher ,std::unique_ptr<BOPTools_SetMapHasher>>(m,"BOPTools_SetMapHasher");
+    register_default_constructor<BOPTools_AlgoTools , shared_ptr<BOPTools_AlgoTools>>(m,"BOPTools_AlgoTools");
 
-    static_cast<py::class_<BOPTools_SetMapHasher ,std::unique_ptr<BOPTools_SetMapHasher>  >>(m.attr("BOPTools_SetMapHasher"))
-        .def_static("HashCode_s",
-                    (Standard_Integer (*)( const BOPTools_Set & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const BOPTools_Set & ,  const Standard_Integer  ) >(&BOPTools_SetMapHasher::HashCode),
-                    R"#(None)#"  , py::arg("aSet"),  py::arg("Upper"))
-        .def_static("IsEqual_s",
-                    (Standard_Boolean (*)( const BOPTools_Set & ,  const BOPTools_Set &  ) ) static_cast<Standard_Boolean (*)( const BOPTools_Set & ,  const BOPTools_Set &  ) >(&BOPTools_SetMapHasher::IsEqual),
-                    R"#(None)#"  , py::arg("aSet1"),  py::arg("aSet2"))
-;
-
-    register_default_constructor<BOPTools_AlgoTools3D ,std::unique_ptr<BOPTools_AlgoTools3D>>(m,"BOPTools_AlgoTools3D");
-
-    static_cast<py::class_<BOPTools_AlgoTools3D ,std::unique_ptr<BOPTools_AlgoTools3D>  >>(m.attr("BOPTools_AlgoTools3D"))
-        .def_static("DoSplitSEAMOnFace_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BOPTools_AlgoTools3D::DoSplitSEAMOnFace),
-                    R"#(Make the edge <aSp> seam edge for the face <aF>)#"  , py::arg("aSp"),  py::arg("aF"))
-        .def_static("GetNormalToFaceOnEdge_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetNormalToFaceOnEdge),
-                    R"#(Computes normal to the face <aF> for the point on the edge <aE> at parameter <aT>. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aD"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
-        .def_static("GetNormalToFaceOnEdge_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetNormalToFaceOnEdge),
-                    R"#(Computes normal to the face <aF> for the point on the edge <aE> at arbitrary intermediate parameter. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aD"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
-        .def_static("SenseFlag_s",
-                    (Standard_Integer (*)( const gp_Dir & ,  const gp_Dir &  ) ) static_cast<Standard_Integer (*)( const gp_Dir & ,  const gp_Dir &  ) >(&BOPTools_AlgoTools3D::SenseFlag),
-                    R"#(Returns 1 if scalar product aNF1* aNF2>0. Returns 0 if directions aNF1 aNF2 coincide Returns -1 if scalar product aNF1* aNF2<0.)#"  , py::arg("aNF1"),  py::arg("aNF2"))
-        .def_static("GetNormalToSurface_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  gp_Dir &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  gp_Dir &  ) >(&BOPTools_AlgoTools3D::GetNormalToSurface),
-                    R"#(Compute normal <aD> to surface <aS> in point (U,V) Returns TRUE if directions aD1U, aD1V coincide)#"  , py::arg("aS"),  py::arg("U"),  py::arg("V"),  py::arg("aD"))
-        .def_static("GetApproxNormalToFaceOnEdge_s",
-                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetApproxNormalToFaceOnEdge),
-                    R"#(Computes normal to the face <aF> for the 3D-point that belongs to the edge <aE> at parameter <aT>. Output: aPx - the 3D-point where the normal computed aD - the normal; Warning: The normal is computed not exactly in the point on the edge, but in point that is near to the edge towards to the face material (so, we'll have approx. normal); The point is computed using PointNearEdge function, with the shifting value BOPTools_AlgoTools3D::MinStepIn2d(), from the edge, but if this value is too big, the point will be computed using Hatcher (PointInFace function). Returns TRUE in case of success.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aPx"),  py::arg("aD"),  py::arg("theContext"))
-        .def_static("GetApproxNormalToFaceOnEdge_s",
-                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const Standard_Real  ) >(&BOPTools_AlgoTools3D::GetApproxNormalToFaceOnEdge),
-                    R"#(Computes normal to the face <aF> for the 3D-point that belongs to the edge <aE> at parameter <aT>. Output: aPx - the 3D-point where the normal computed aD - the normal; Warning: The normal is computed not exactly in the point on the edge, but in point that is near to the edge towards to the face material (so, we'll have approx. normal); The point is computed using PointNearEdge function with the shifting value <aDt2D> from the edge; No checks on this value will be done. Returns TRUE in case of success.)#"  , py::arg("theE"),  py::arg("theF"),  py::arg("aT"),  py::arg("aP"),  py::arg("aDNF"),  py::arg("aDt2D"))
-        .def_static("GetApproxNormalToFaceOnEdge_s",
-                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetApproxNormalToFaceOnEdge),
-                    R"#(Computes normal to the face <aF> for the 3D-point that belongs to the edge <aE> at parameter <aT>. Output: aPx - the 3D-point where the normal computed aD - the normal; Warning: The normal is computed not exactly in the point on the edge, but in point that is near to the edge towards to the face material (so, we'll have approx. normal); The point is computed using PointNearEdge function with the shifting value <aDt2D> from the edge, but if this value is too big the point will be computed using Hatcher (PointInFace function). Returns TRUE in case of success.)#"  , py::arg("theE"),  py::arg("theF"),  py::arg("aT"),  py::arg("aDt2D"),  py::arg("aP"),  py::arg("aDNF"),  py::arg("theContext"))
-        .def_static("PointNearEdge_s",
-                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
-                    R"#(Compute the point <aPx>, (<aP2D>) that is near to the edge <aE> at parameter <aT> towards to the material of the face <aF>. The value of shifting in 2D is <aDt2D> If the value of shifting is too big the point will be computed using Hatcher (PointInFace function). Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>; 2 - the computed point is out of the face.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aDt2D"),  py::arg("aP2D"),  py::arg("aPx"),  py::arg("theContext"))
-        .def_static("PointNearEdge_s",
-                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
-                    R"#(Compute the point <aPx>, (<aP2D>) that is near to the edge <aE> at parameter <aT> towards to the material of the face <aF>. The value of shifting in 2D is <aDt2D>. No checks on this value will be done. Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aDt2D"),  py::arg("aP2D"),  py::arg("aPx"))
-        .def_static("PointNearEdge_s",
-                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
-                    R"#(Computes the point <aPx>, (<aP2D>) that is near to the edge <aE> at parameter <aT> towards to the material of the face <aF>. The value of shifting in 2D is dt2D=BOPTools_AlgoTools3D::MinStepIn2d() If the value of shifting is too big the point will be computed using Hatcher (PointInFace function). Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>; 2 - the computed point is out of the face.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aP2D"),  py::arg("aPx"),  py::arg("theContext"))
-        .def_static("PointNearEdge_s",
-                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
-                    R"#(Compute the point <aPx>, (<aP2D>) that is near to the edge <aE> at arbitrary parameter towards to the material of the face <aF>. The value of shifting in 2D is dt2D=BOPTools_AlgoTools3D::MinStepIn2d(). If the value of shifting is too big the point will be computed using Hatcher (PointInFace function). Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>; 2 - the computed point is out of the face.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aP2D"),  py::arg("aPx"),  py::arg("theContext"))
-        .def_static("MinStepIn2d_s",
-                    (Standard_Real (*)() ) static_cast<Standard_Real (*)() >(&BOPTools_AlgoTools3D::MinStepIn2d),
-                    R"#(Returns simple step value that is used in 2D-computations = 1.e-5)#" )
-        .def_static("IsEmptyShape_s",
-                    (Standard_Boolean (*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape &  ) >(&BOPTools_AlgoTools3D::IsEmptyShape),
-                    R"#(Returns TRUE if the shape <aS> does not contain geometry information (e.g. empty compound))#"  , py::arg("aS"))
-        .def_static("OrientEdgeOnFace_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  TopoDS_Edge &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  TopoDS_Edge &  ) >(&BOPTools_AlgoTools3D::OrientEdgeOnFace),
-                    R"#(Get the edge <aER> from the face <aF> that is the same as the edge <aE>)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aER"))
-        .def_static("PointInFace_s",
-                    (Standard_Integer (*)( const TopoDS_Face & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Face & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointInFace),
-                    R"#(Computes arbitrary point <theP> inside the face <theF>. <theP2D> - 2D representation of <theP> on the surface of <theF> Returns 0 in case of success.)#"  , py::arg("theF"),  py::arg("theP"),  py::arg("theP2D"),  py::arg("theContext"))
-        .def_static("PointInFace_s",
-                    (Standard_Integer (*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointInFace),
-                    R"#(Computes a point <theP> inside the face <theF> using starting point taken by the parameter <theT> from the 2d curve of the edge <theE> on the face <theF> in the direction perpendicular to the tangent vector of the 2d curve of the edge. The point will be distanced on <theDt2D> from the 2d curve. <theP2D> - 2D representation of <theP> on the surface of <theF> Returns 0 in case of success.)#"  , py::arg("theF"),  py::arg("theE"),  py::arg("theT"),  py::arg("theDt2D"),  py::arg("theP"),  py::arg("theP2D"),  py::arg("theContext"))
-        .def_static("PointInFace_s",
-                    (Standard_Integer (*)( const TopoDS_Face & ,  const opencascade::handle<Geom2d_Curve> & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> & ,  const Standard_Real  ) ) static_cast<Standard_Integer (*)( const TopoDS_Face & ,  const opencascade::handle<Geom2d_Curve> & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> & ,  const Standard_Real  ) >(&BOPTools_AlgoTools3D::PointInFace),
-                    R"#(Computes a point <theP> inside the face <theF> using the line <theL> so that 2D point <theP2D>, 2D representation of <theP> on the surface of <theF>, lies on that line. Returns 0 in case of success.)#"  , py::arg("theF"),  py::arg("theL"),  py::arg("theP"),  py::arg("theP2D"),  py::arg("theContext"),  py::arg("theDt2D")=static_cast<const Standard_Real>(0.0))
-;
-
-
-    static_cast<py::class_<BOPTools_Set ,std::unique_ptr<BOPTools_Set>  >>(m.attr("BOPTools_Set"))
-        .def(py::init<  >()  )
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
-        .def("Assign",
-             (BOPTools_Set & (BOPTools_Set::*)( const BOPTools_Set &  ) ) static_cast<BOPTools_Set & (BOPTools_Set::*)( const BOPTools_Set &  ) >(&BOPTools_Set::Assign),
-             R"#(None)#"  , py::arg("Other"))
-        .def("Shape",
-             (const TopoDS_Shape & (BOPTools_Set::*)() const) static_cast<const TopoDS_Shape & (BOPTools_Set::*)() const>(&BOPTools_Set::Shape),
-             R"#(None)#" )
-        .def("Add",
-             (void (BOPTools_Set::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) ) static_cast<void (BOPTools_Set::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) >(&BOPTools_Set::Add),
-             R"#(None)#"  , py::arg("theS"),  py::arg("theType"))
-        .def("NbShapes",
-             (Standard_Integer (BOPTools_Set::*)() const) static_cast<Standard_Integer (BOPTools_Set::*)() const>(&BOPTools_Set::NbShapes),
-             R"#(None)#" )
-        .def("IsEqual",
-             (Standard_Boolean (BOPTools_Set::*)( const BOPTools_Set &  ) const) static_cast<Standard_Boolean (BOPTools_Set::*)( const BOPTools_Set &  ) const>(&BOPTools_Set::IsEqual),
-             R"#(None)#"  , py::arg("aOther"))
-        .def("HashCode",
-             (Standard_Integer (BOPTools_Set::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BOPTools_Set::*)( const Standard_Integer  ) const>(&BOPTools_Set::HashCode),
-             R"#(None)#"  , py::arg("Upper"))
-;
-
-    register_default_constructor<BOPTools_AlgoTools ,std::unique_ptr<BOPTools_AlgoTools>>(m,"BOPTools_AlgoTools");
-
-    static_cast<py::class_<BOPTools_AlgoTools ,std::unique_ptr<BOPTools_AlgoTools>  >>(m.attr("BOPTools_AlgoTools"))
+    static_cast<py::class_<BOPTools_AlgoTools , shared_ptr<BOPTools_AlgoTools>  >>(m.attr("BOPTools_AlgoTools"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("ComputeVV_s",
                     (Standard_Integer (*)( const TopoDS_Vertex & ,  const gp_Pnt & ,  const Standard_Real  ) ) static_cast<Standard_Integer (*)( const TopoDS_Vertex & ,  const gp_Pnt & ,  const Standard_Real  ) >(&BOPTools_AlgoTools::ComputeVV),
                     R"#(Intersects the vertex <theV1> with the point <theP> with tolerance <theTolP>. Returns the error status: - 0 - no error, meaning that the vertex intersects the point; - 1 - the distance between vertex and point is grater than the sum of tolerances.)#"  , py::arg("theV"),  py::arg("theP"),  py::arg("theTolP"))
@@ -339,26 +251,23 @@ py::module m = static_cast<py::module>(main_module.attr("BOPTools"));
         .def_static("IsOpenShell_s",
                     (Standard_Boolean (*)( const TopoDS_Shell &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shell &  ) >(&BOPTools_AlgoTools::IsOpenShell),
                     R"#(Returns true if the shell <theShell> is open)#"  , py::arg("theShell"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
-    register_default_constructor<BOPTools_AlgoTools2D ,std::unique_ptr<BOPTools_AlgoTools2D>>(m,"BOPTools_AlgoTools2D");
+    register_default_constructor<BOPTools_AlgoTools2D , shared_ptr<BOPTools_AlgoTools2D>>(m,"BOPTools_AlgoTools2D");
 
-    static_cast<py::class_<BOPTools_AlgoTools2D ,std::unique_ptr<BOPTools_AlgoTools2D>  >>(m.attr("BOPTools_AlgoTools2D"))
+    static_cast<py::class_<BOPTools_AlgoTools2D , shared_ptr<BOPTools_AlgoTools2D>  >>(m.attr("BOPTools_AlgoTools2D"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("BuildPCurveForEdgeOnFace_s",
                     (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::BuildPCurveForEdgeOnFace),
                     R"#(Compute P-Curve for the edge <aE> on the face <aF>. Raises exception Standard_ConstructionError if projection algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
         .def_static("EdgeTangent_s",
                     (Standard_Boolean (*)( const TopoDS_Edge & ,  const Standard_Real ,  gp_Vec &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const Standard_Real ,  gp_Vec &  ) >(&BOPTools_AlgoTools2D::EdgeTangent),
                     R"#(Compute tangent for the edge <aE> [in 3D] at parameter <aT>)#"  , py::arg("anE"),  py::arg("aT"),  py::arg("Tau"))
-        .def_static("PointOnSurface_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  Standard_Real & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  Standard_Real & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::PointOnSurface),
-                    R"#(Compute surface parameters <U,V> of the face <aF> for the point from the edge <aE> at parameter <aT>. If <aE> has't pcurve on surface, algorithm tries to get it by projection and can raise exception Standard_ConstructionError if projection algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("U"),  py::arg("V"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
-        .def_static("CurveOnSurface_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::CurveOnSurface),
-                    R"#(Get P-Curve <aC> for the edge <aE> on surface <aF> . If the P-Curve does not exist, build it using Make2D(). [aToler] - reached tolerance Raises exception Standard_ConstructionError if algorithm Make2D() fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aC"),  py::arg("aToler"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
-        .def_static("CurveOnSurface_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::CurveOnSurface),
-                    R"#(Get P-Curve <aC> for the edge <aE> on surface <aF> . If the P-Curve does not exist, build it using Make2D(). [aFirst, aLast] - range of the P-Curve [aToler] - reached tolerance Raises exception Standard_ConstructionError if algorithm Make2D() fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aC"),  py::arg("aFirst"),  py::arg("aLast"),  py::arg("aToler"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
         .def_static("HasCurveOnSurface_s",
                     (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) >(&BOPTools_AlgoTools2D::HasCurveOnSurface),
                     R"#(Returns TRUE if the edge <aE> has P-Curve <aC> on surface <aF> . [aFirst, aLast] - range of the P-Curve [aToler] - reached tolerance If the P-Curve does not exist, aC.IsNull()=TRUE.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aC"),  py::arg("aFirst"),  py::arg("aLast"),  py::arg("aToler"))
@@ -380,61 +289,224 @@ py::module m = static_cast<py::module>(main_module.attr("BOPTools"));
         .def_static("IntermediatePoint_s",
                     (Standard_Real (*)( const TopoDS_Edge &  ) ) static_cast<Standard_Real (*)( const TopoDS_Edge &  ) >(&BOPTools_AlgoTools2D::IntermediatePoint),
                     R"#(Compute intermediate value of parameter for the edge <anE>.)#"  , py::arg("anE"))
-        .def_static("Make2D_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::Make2D),
-                    R"#(Make P-Curve <aC> for the edge <aE> on surface <aF> . [aFirst, aLast] - range of the P-Curve [aToler] - reached tolerance Raises exception Standard_ConstructionError if algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aC"),  py::arg("aFirst"),  py::arg("aLast"),  py::arg("aToler"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
-        .def_static("MakePCurveOnFace_s",
-                    (void (*)( const TopoDS_Face & ,  const opencascade::handle<Geom_Curve> & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Face & ,  const opencascade::handle<Geom_Curve> & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::MakePCurveOnFace),
-                    R"#(Make P-Curve <aC> for the 3D-curve <C3D> on surface <aF> . [aToler] - reached tolerance Raises exception Standard_ConstructionError if projection algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aF"),  py::arg("C3D"),  py::arg("aC"),  py::arg("aToler"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
-        .def_static("MakePCurveOnFace_s",
-                    (void (*)( const TopoDS_Face & ,  const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Face & ,  const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::MakePCurveOnFace),
-                    R"#(Make P-Curve <aC> for the 3D-curve <C3D> on surface <aF> . [aT1, aT2] - range to build [aToler] - reached tolerance Raises exception Standard_ConstructionError if projection algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aF"),  py::arg("C3D"),  py::arg("aT1"),  py::arg("aT2"),  py::arg("aC"),  py::arg("aToler"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
         .def_static("AttachExistingPCurve_s",
                     (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools2D::AttachExistingPCurve),
                     R"#(Attach P-Curve from the edge <aEold> on surface <aF> to the edge <aEnew> Returns 0 in case of success)#"  , py::arg("aEold"),  py::arg("aEnew"),  py::arg("aF"),  py::arg("aCtx"))
+    // static methods using call by reference i.s.o. return
+        .def_static("PointOnSurface_s",
+                    []( const TopoDS_Edge & aE,const TopoDS_Face & aF,const Standard_Real aT,const opencascade::handle<IntTools_Context> & theContext ){ Standard_Real  U; Standard_Real  V; BOPTools_AlgoTools2D::PointOnSurface(aE,aF,aT,U,V,theContext); return std::make_tuple(U,V); },
+                    R"#(Compute surface parameters <U,V> of the face <aF> for the point from the edge <aE> at parameter <aT>. If <aE> has't pcurve on surface, algorithm tries to get it by projection and can raise exception Standard_ConstructionError if projection algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
+        .def_static("CurveOnSurface_s",
+                    []( const TopoDS_Edge & aE,const TopoDS_Face & aF,opencascade::handle<Geom2d_Curve> & aC,const opencascade::handle<IntTools_Context> & theContext ){ Standard_Real  aToler; BOPTools_AlgoTools2D::CurveOnSurface(aE,aF,aC,aToler,theContext); return std::make_tuple(aToler); },
+                    R"#(Get P-Curve <aC> for the edge <aE> on surface <aF> . If the P-Curve does not exist, build it using Make2D(). [aToler] - reached tolerance Raises exception Standard_ConstructionError if algorithm Make2D() fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aC"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
+        .def_static("CurveOnSurface_s",
+                    []( const TopoDS_Edge & aE,const TopoDS_Face & aF,opencascade::handle<Geom2d_Curve> & aC,const opencascade::handle<IntTools_Context> & theContext ){ Standard_Real  aFirst; Standard_Real  aLast; Standard_Real  aToler; BOPTools_AlgoTools2D::CurveOnSurface(aE,aF,aC,aFirst,aLast,aToler,theContext); return std::make_tuple(aFirst,aLast,aToler); },
+                    R"#(Get P-Curve <aC> for the edge <aE> on surface <aF> . If the P-Curve does not exist, build it using Make2D(). [aFirst, aLast] - range of the P-Curve [aToler] - reached tolerance Raises exception Standard_ConstructionError if algorithm Make2D() fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aC"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
+        .def_static("Make2D_s",
+                    []( const TopoDS_Edge & aE,const TopoDS_Face & aF,opencascade::handle<Geom2d_Curve> & aC,const opencascade::handle<IntTools_Context> & theContext ){ Standard_Real  aFirst; Standard_Real  aLast; Standard_Real  aToler; BOPTools_AlgoTools2D::Make2D(aE,aF,aC,aFirst,aLast,aToler,theContext); return std::make_tuple(aFirst,aLast,aToler); },
+                    R"#(Make P-Curve <aC> for the edge <aE> on surface <aF> . [aFirst, aLast] - range of the P-Curve [aToler] - reached tolerance Raises exception Standard_ConstructionError if algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aC"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
+        .def_static("MakePCurveOnFace_s",
+                    []( const TopoDS_Face & aF,const opencascade::handle<Geom_Curve> & C3D,opencascade::handle<Geom2d_Curve> & aC,const opencascade::handle<IntTools_Context> & theContext ){ Standard_Real  aToler; BOPTools_AlgoTools2D::MakePCurveOnFace(aF,C3D,aC,aToler,theContext); return std::make_tuple(aToler); },
+                    R"#(Make P-Curve <aC> for the 3D-curve <C3D> on surface <aF> . [aToler] - reached tolerance Raises exception Standard_ConstructionError if projection algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aF"),  py::arg("C3D"),  py::arg("aC"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
+        .def_static("MakePCurveOnFace_s",
+                    []( const TopoDS_Face & aF,const opencascade::handle<Geom_Curve> & C3D,const Standard_Real aT1,const Standard_Real aT2,opencascade::handle<Geom2d_Curve> & aC,const opencascade::handle<IntTools_Context> & theContext ){ Standard_Real  aToler; BOPTools_AlgoTools2D::MakePCurveOnFace(aF,C3D,aT1,aT2,aC,aToler,theContext); return std::make_tuple(aToler); },
+                    R"#(Make P-Curve <aC> for the 3D-curve <C3D> on surface <aF> . [aT1, aT2] - range to build [aToler] - reached tolerance Raises exception Standard_ConstructionError if projection algorithm fails. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aF"),  py::arg("C3D"),  py::arg("aT1"),  py::arg("aT2"),  py::arg("aC"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
         .def_static("IsEdgeIsoline_s",
-                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BOPTools_AlgoTools2D::IsEdgeIsoline),
-                    R"#(Checks if CurveOnSurface of theE on theF matches with isoline of theF surface. Sets corresponding values for isTheUIso and isTheVIso variables. ATTENTION!!! This method is based on comparation between direction of surface (which theF is based on) iso-lines and the direction of the edge p-curve (on theF) in middle-point of the p-curve. This method should be used carefully (e.g. BRep_Tool::IsClosed(...) together) in order to avoid false classification some p-curves as isoline (e.g. circle on a plane).)#"  , py::arg("theE"),  py::arg("theF"),  py::arg("isTheUIso"),  py::arg("isTheVIso"))
+                    []( const TopoDS_Edge & theE,const TopoDS_Face & theF ){ Standard_Boolean  isTheUIso; Standard_Boolean  isTheVIso; BOPTools_AlgoTools2D::IsEdgeIsoline(theE,theF,isTheUIso,isTheVIso); return std::make_tuple(isTheUIso,isTheVIso); },
+                    R"#(Checks if CurveOnSurface of theE on theF matches with isoline of theF surface. Sets corresponding values for isTheUIso and isTheVIso variables. ATTENTION!!! This method is based on comparation between direction of surface (which theF is based on) iso-lines and the direction of the edge p-curve (on theF) in middle-point of the p-curve. This method should be used carefully (e.g. BRep_Tool::IsClosed(...) together) in order to avoid false classification some p-curves as isoline (e.g. circle on a plane).)#"  , py::arg("theE"),  py::arg("theF"))
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPTools_AlgoTools3D , shared_ptr<BOPTools_AlgoTools3D>>(m,"BOPTools_AlgoTools3D");
+
+    static_cast<py::class_<BOPTools_AlgoTools3D , shared_ptr<BOPTools_AlgoTools3D>  >>(m.attr("BOPTools_AlgoTools3D"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("DoSplitSEAMOnFace_s",
+                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BOPTools_AlgoTools3D::DoSplitSEAMOnFace),
+                    R"#(Make the edge <aSp> seam edge for the face <aF>)#"  , py::arg("aSp"),  py::arg("aF"))
+        .def_static("GetNormalToFaceOnEdge_s",
+                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetNormalToFaceOnEdge),
+                    R"#(Computes normal to the face <aF> for the point on the edge <aE> at parameter <aT>. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aD"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
+        .def_static("GetNormalToFaceOnEdge_s",
+                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetNormalToFaceOnEdge),
+                    R"#(Computes normal to the face <aF> for the point on the edge <aE> at arbitrary intermediate parameter. <theContext> - storage for caching the geometrical tools)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aD"),  py::arg("theContext")=static_cast<const opencascade::handle<IntTools_Context> &>(Handle ( IntTools_Context ) ( )))
+        .def_static("SenseFlag_s",
+                    (Standard_Integer (*)( const gp_Dir & ,  const gp_Dir &  ) ) static_cast<Standard_Integer (*)( const gp_Dir & ,  const gp_Dir &  ) >(&BOPTools_AlgoTools3D::SenseFlag),
+                    R"#(Returns 1 if scalar product aNF1* aNF2>0. Returns 0 if directions aNF1 aNF2 coincide Returns -1 if scalar product aNF1* aNF2<0.)#"  , py::arg("aNF1"),  py::arg("aNF2"))
+        .def_static("GetNormalToSurface_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  gp_Dir &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  gp_Dir &  ) >(&BOPTools_AlgoTools3D::GetNormalToSurface),
+                    R"#(Compute normal <aD> to surface <aS> in point (U,V) Returns TRUE if directions aD1U, aD1V coincide)#"  , py::arg("aS"),  py::arg("U"),  py::arg("V"),  py::arg("aD"))
+        .def_static("GetApproxNormalToFaceOnEdge_s",
+                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetApproxNormalToFaceOnEdge),
+                    R"#(Computes normal to the face <aF> for the 3D-point that belongs to the edge <aE> at parameter <aT>. Output: aPx - the 3D-point where the normal computed aD - the normal; Warning: The normal is computed not exactly in the point on the edge, but in point that is near to the edge towards to the face material (so, we'll have approx. normal); The point is computed using PointNearEdge function, with the shifting value BOPTools_AlgoTools3D::MinStepIn2d(), from the edge, but if this value is too big, the point will be computed using Hatcher (PointInFace function). Returns TRUE in case of success.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aPx"),  py::arg("aD"),  py::arg("theContext"))
+        .def_static("GetApproxNormalToFaceOnEdge_s",
+                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const Standard_Real  ) >(&BOPTools_AlgoTools3D::GetApproxNormalToFaceOnEdge),
+                    R"#(Computes normal to the face <aF> for the 3D-point that belongs to the edge <aE> at parameter <aT>. Output: aPx - the 3D-point where the normal computed aD - the normal; Warning: The normal is computed not exactly in the point on the edge, but in point that is near to the edge towards to the face material (so, we'll have approx. normal); The point is computed using PointNearEdge function with the shifting value <aDt2D> from the edge; No checks on this value will be done. Returns TRUE in case of success.)#"  , py::arg("theE"),  py::arg("theF"),  py::arg("aT"),  py::arg("aP"),  py::arg("aDNF"),  py::arg("aDt2D"))
+        .def_static("GetApproxNormalToFaceOnEdge_s",
+                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Dir & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::GetApproxNormalToFaceOnEdge),
+                    R"#(Computes normal to the face <aF> for the 3D-point that belongs to the edge <aE> at parameter <aT>. Output: aPx - the 3D-point where the normal computed aD - the normal; Warning: The normal is computed not exactly in the point on the edge, but in point that is near to the edge towards to the face material (so, we'll have approx. normal); The point is computed using PointNearEdge function with the shifting value <aDt2D> from the edge, but if this value is too big the point will be computed using Hatcher (PointInFace function). Returns TRUE in case of success.)#"  , py::arg("theE"),  py::arg("theF"),  py::arg("aT"),  py::arg("aDt2D"),  py::arg("aP"),  py::arg("aDNF"),  py::arg("theContext"))
+        .def_static("PointNearEdge_s",
+                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
+                    R"#(Compute the point <aPx>, (<aP2D>) that is near to the edge <aE> at parameter <aT> towards to the material of the face <aF>. The value of shifting in 2D is <aDt2D> If the value of shifting is too big the point will be computed using Hatcher (PointInFace function). Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>; 2 - the computed point is out of the face.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aDt2D"),  py::arg("aP2D"),  py::arg("aPx"),  py::arg("theContext"))
+        .def_static("PointNearEdge_s",
+                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
+                    R"#(Compute the point <aPx>, (<aP2D>) that is near to the edge <aE> at parameter <aT> towards to the material of the face <aF>. The value of shifting in 2D is <aDt2D>. No checks on this value will be done. Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aDt2D"),  py::arg("aP2D"),  py::arg("aPx"))
+        .def_static("PointNearEdge_s",
+                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
+                    R"#(Computes the point <aPx>, (<aP2D>) that is near to the edge <aE> at parameter <aT> towards to the material of the face <aF>. The value of shifting in 2D is dt2D=BOPTools_AlgoTools3D::MinStepIn2d() If the value of shifting is too big the point will be computed using Hatcher (PointInFace function). Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>; 2 - the computed point is out of the face.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aT"),  py::arg("aP2D"),  py::arg("aPx"),  py::arg("theContext"))
+        .def_static("PointNearEdge_s",
+                    (Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  gp_Pnt & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointNearEdge),
+                    R"#(Compute the point <aPx>, (<aP2D>) that is near to the edge <aE> at arbitrary parameter towards to the material of the face <aF>. The value of shifting in 2D is dt2D=BOPTools_AlgoTools3D::MinStepIn2d(). If the value of shifting is too big the point will be computed using Hatcher (PointInFace function). Returns error status: 0 - in case of success; 1 - <aE> does not have 2d curve on the face <aF>; 2 - the computed point is out of the face.)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aP2D"),  py::arg("aPx"),  py::arg("theContext"))
+        .def_static("MinStepIn2d_s",
+                    (Standard_Real (*)() ) static_cast<Standard_Real (*)() >(&BOPTools_AlgoTools3D::MinStepIn2d),
+                    R"#(Returns simple step value that is used in 2D-computations = 1.e-5)#" )
+        .def_static("IsEmptyShape_s",
+                    (Standard_Boolean (*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape &  ) >(&BOPTools_AlgoTools3D::IsEmptyShape),
+                    R"#(Returns TRUE if the shape <aS> does not contain geometry information (e.g. empty compound))#"  , py::arg("aS"))
+        .def_static("OrientEdgeOnFace_s",
+                    (void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  TopoDS_Edge &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  TopoDS_Edge &  ) >(&BOPTools_AlgoTools3D::OrientEdgeOnFace),
+                    R"#(Get the edge <aER> from the face <aF> that is the same as the edge <aE>)#"  , py::arg("aE"),  py::arg("aF"),  py::arg("aER"))
+        .def_static("PointInFace_s",
+                    (Standard_Integer (*)( const TopoDS_Face & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Face & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointInFace),
+                    R"#(Computes arbitrary point <theP> inside the face <theF>. <theP2D> - 2D representation of <theP> on the surface of <theF> Returns 0 in case of success.)#"  , py::arg("theF"),  py::arg("theP"),  py::arg("theP2D"),  py::arg("theContext"))
+        .def_static("PointInFace_s",
+                    (Standard_Integer (*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) ) static_cast<Standard_Integer (*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> &  ) >(&BOPTools_AlgoTools3D::PointInFace),
+                    R"#(Computes a point <theP> inside the face <theF> using starting point taken by the parameter <theT> from the 2d curve of the edge <theE> on the face <theF> in the direction perpendicular to the tangent vector of the 2d curve of the edge. The point will be distanced on <theDt2D> from the 2d curve. <theP2D> - 2D representation of <theP> on the surface of <theF> Returns 0 in case of success.)#"  , py::arg("theF"),  py::arg("theE"),  py::arg("theT"),  py::arg("theDt2D"),  py::arg("theP"),  py::arg("theP2D"),  py::arg("theContext"))
+        .def_static("PointInFace_s",
+                    (Standard_Integer (*)( const TopoDS_Face & ,  const opencascade::handle<Geom2d_Curve> & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> & ,  const Standard_Real  ) ) static_cast<Standard_Integer (*)( const TopoDS_Face & ,  const opencascade::handle<Geom2d_Curve> & ,  gp_Pnt & ,  gp_Pnt2d & ,  const opencascade::handle<IntTools_Context> & ,  const Standard_Real  ) >(&BOPTools_AlgoTools3D::PointInFace),
+                    R"#(Computes a point <theP> inside the face <theF> using the line <theL> so that 2D point <theP2D>, 2D representation of <theP> on the surface of <theF>, lies on that line. Returns 0 in case of success.)#"  , py::arg("theF"),  py::arg("theL"),  py::arg("theP"),  py::arg("theP2D"),  py::arg("theContext"),  py::arg("theDt2D")=static_cast<const Standard_Real>(0.0))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPTools_ConnexityBlock , shared_ptr<BOPTools_ConnexityBlock>  >>(m.attr("BOPTools_ConnexityBlock"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("Shapes",
+             (const TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() const) static_cast<const TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() const>(&BOPTools_ConnexityBlock::Shapes),
+             R"#(None)#" )
+        .def("ChangeShapes",
+             (TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() ) static_cast<TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() >(&BOPTools_ConnexityBlock::ChangeShapes),
+             R"#(None)#" )
+        .def("SetRegular",
+             (void (BOPTools_ConnexityBlock::*)( const Standard_Boolean  ) ) static_cast<void (BOPTools_ConnexityBlock::*)( const Standard_Boolean  ) >(&BOPTools_ConnexityBlock::SetRegular),
+             R"#(None)#"  , py::arg("theFlag"))
+        .def("IsRegular",
+             (Standard_Boolean (BOPTools_ConnexityBlock::*)() const) static_cast<Standard_Boolean (BOPTools_ConnexityBlock::*)() const>(&BOPTools_ConnexityBlock::IsRegular),
+             R"#(None)#" )
+        .def("Loops",
+             (const TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() const) static_cast<const TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() const>(&BOPTools_ConnexityBlock::Loops),
+             R"#(None)#" )
+        .def("ChangeLoops",
+             (TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() ) static_cast<TopTools_ListOfShape & (BOPTools_ConnexityBlock::*)() >(&BOPTools_ConnexityBlock::ChangeLoops),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPTools_CoupleOfShape , shared_ptr<BOPTools_CoupleOfShape>  >>(m.attr("BOPTools_CoupleOfShape"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetShape1",
+             (void (BOPTools_CoupleOfShape::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPTools_CoupleOfShape::*)( const TopoDS_Shape &  ) >(&BOPTools_CoupleOfShape::SetShape1),
+             R"#(None)#"  , py::arg("theShape"))
+        .def("Shape1",
+             (const TopoDS_Shape & (BOPTools_CoupleOfShape::*)() const) static_cast<const TopoDS_Shape & (BOPTools_CoupleOfShape::*)() const>(&BOPTools_CoupleOfShape::Shape1),
+             R"#(None)#" )
+        .def("SetShape2",
+             (void (BOPTools_CoupleOfShape::*)( const TopoDS_Shape &  ) ) static_cast<void (BOPTools_CoupleOfShape::*)( const TopoDS_Shape &  ) >(&BOPTools_CoupleOfShape::SetShape2),
+             R"#(None)#"  , py::arg("theShape"))
+        .def("Shape2",
+             (const TopoDS_Shape & (BOPTools_CoupleOfShape::*)() const) static_cast<const TopoDS_Shape & (BOPTools_CoupleOfShape::*)() const>(&BOPTools_CoupleOfShape::Shape2),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BOPTools_Set , shared_ptr<BOPTools_Set>  >>(m.attr("BOPTools_Set"))
+        .def(py::init<  >()  )
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // methods
+        .def("Assign",
+             (BOPTools_Set & (BOPTools_Set::*)( const BOPTools_Set &  ) ) static_cast<BOPTools_Set & (BOPTools_Set::*)( const BOPTools_Set &  ) >(&BOPTools_Set::Assign),
+             R"#(None)#"  , py::arg("Other"))
+        .def("Shape",
+             (const TopoDS_Shape & (BOPTools_Set::*)() const) static_cast<const TopoDS_Shape & (BOPTools_Set::*)() const>(&BOPTools_Set::Shape),
+             R"#(None)#" )
+        .def("Add",
+             (void (BOPTools_Set::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) ) static_cast<void (BOPTools_Set::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) >(&BOPTools_Set::Add),
+             R"#(None)#"  , py::arg("theS"),  py::arg("theType"))
+        .def("NbShapes",
+             (Standard_Integer (BOPTools_Set::*)() const) static_cast<Standard_Integer (BOPTools_Set::*)() const>(&BOPTools_Set::NbShapes),
+             R"#(None)#" )
+        .def("IsEqual",
+             (Standard_Boolean (BOPTools_Set::*)( const BOPTools_Set &  ) const) static_cast<Standard_Boolean (BOPTools_Set::*)( const BOPTools_Set &  ) const>(&BOPTools_Set::IsEqual),
+             R"#(None)#"  , py::arg("aOther"))
+        .def("HashCode",
+             (Standard_Integer (BOPTools_Set::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BOPTools_Set::*)( const Standard_Integer  ) const>(&BOPTools_Set::HashCode),
+             R"#(None)#"  , py::arg("Upper"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<BOPTools_SetMapHasher , shared_ptr<BOPTools_SetMapHasher>>(m,"BOPTools_SetMapHasher");
+
+    static_cast<py::class_<BOPTools_SetMapHasher , shared_ptr<BOPTools_SetMapHasher>  >>(m.attr("BOPTools_SetMapHasher"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("HashCode_s",
+                    (Standard_Integer (*)( const BOPTools_Set & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const BOPTools_Set & ,  const Standard_Integer  ) >(&BOPTools_SetMapHasher::HashCode),
+                    R"#(None)#"  , py::arg("aSet"),  py::arg("Upper"))
+        .def_static("IsEqual_s",
+                    (Standard_Boolean (*)( const BOPTools_Set & ,  const BOPTools_Set &  ) ) static_cast<Standard_Boolean (*)( const BOPTools_Set & ,  const BOPTools_Set &  ) >(&BOPTools_SetMapHasher::IsEqual),
+                    R"#(None)#"  , py::arg("aSet1"),  py::arg("aSet2"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BOPTools_SetMapHasher.hxx
-// ./opencascade/BOPTools_ConnexityBlock.hxx
-// ./opencascade/BOPTools_AlgoTools3D.hxx
-// ./opencascade/BOPTools_Parallel.hxx
-// ./opencascade/BOPTools_CoupleOfShape.hxx
-// ./opencascade/BOPTools_Set.hxx
 // ./opencascade/BOPTools_BoxSelector.hxx
-// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
-// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
 // ./opencascade/BOPTools_AlgoTools2D.hxx
-// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
 // ./opencascade/BOPTools_MapOfSet.hxx
 // ./opencascade/BOPTools_BoxBndTree.hxx
+// ./opencascade/BOPTools_Set.hxx
 // ./opencascade/BOPTools_AlgoTools.hxx
+// ./opencascade/BOPTools_AlgoTools3D.hxx
+// ./opencascade/BOPTools_Parallel.hxx
+// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
+// ./opencascade/BOPTools_SetMapHasher.hxx
+// ./opencascade/BOPTools_ConnexityBlock.hxx
+// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
+// ./opencascade/BOPTools_CoupleOfShape.hxx
+// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BOPTools_SetMapHasher.hxx
-// ./opencascade/BOPTools_ConnexityBlock.hxx
-// ./opencascade/BOPTools_AlgoTools3D.hxx
-// ./opencascade/BOPTools_Parallel.hxx
-// ./opencascade/BOPTools_CoupleOfShape.hxx
-// ./opencascade/BOPTools_Set.hxx
-// ./opencascade/BOPTools_BoxSelector.hxx
-// ./opencascade/BOPTools_IndexedDataMapOfSetShape.hxx
-    register_template_NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape, BOPTools_SetMapHasher>(m,"BOPTools_IndexedDataMapOfSetShape");  
-// ./opencascade/BOPTools_ListOfConnexityBlock.hxx
-    register_template_NCollection_List<BOPTools_ConnexityBlock>(m,"BOPTools_ListOfConnexityBlock");  
-// ./opencascade/BOPTools_AlgoTools2D.hxx
-// ./opencascade/BOPTools_ListOfCoupleOfShape.hxx
-    register_template_NCollection_List<BOPTools_CoupleOfShape>(m,"BOPTools_ListOfCoupleOfShape");  
-// ./opencascade/BOPTools_MapOfSet.hxx
     register_template_NCollection_Map<BOPTools_Set, BOPTools_SetMapHasher>(m,"BOPTools_MapOfSet");  
-// ./opencascade/BOPTools_BoxBndTree.hxx
     register_template_BOPTools_BoxSelector<Bnd_Box>(m,"BOPTools_BoxBndTreeSelector");  
-// ./opencascade/BOPTools_AlgoTools.hxx
+    register_template_NCollection_List<BOPTools_CoupleOfShape>(m,"BOPTools_ListOfCoupleOfShape");  
+    register_template_NCollection_IndexedDataMap<BOPTools_Set, TopoDS_Shape, BOPTools_SetMapHasher>(m,"BOPTools_IndexedDataMapOfSetShape");  
+    register_template_NCollection_List<BOPTools_ConnexityBlock>(m,"BOPTools_ListOfConnexityBlock");  
 
 
 // exceptions

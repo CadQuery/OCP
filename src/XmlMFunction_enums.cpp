@@ -52,17 +52,13 @@ py::module m = main_module.def_submodule("XmlMFunction", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
-    py::class_<XmlMFunction_ScopeDriver ,opencascade::handle<XmlMFunction_ScopeDriver>  , XmlMDF_ADriver >(m,"XmlMFunction_ScopeDriver",R"#(XML persistence driver for a scope of functions.XML persistence driver for a scope of functions.XML persistence driver for a scope of functions.)#");
-    py::class_<XmlMFunction ,std::unique_ptr<XmlMFunction>  >(m,"XmlMFunction",R"#(None)#");
+    py::class_<XmlMFunction , shared_ptr<XmlMFunction>  >(m,"XmlMFunction",R"#(None)#");
     py::class_<XmlMFunction_FunctionDriver ,opencascade::handle<XmlMFunction_FunctionDriver>  , XmlMDF_ADriver >(m,"XmlMFunction_FunctionDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
     py::class_<XmlMFunction_GraphNodeDriver ,opencascade::handle<XmlMFunction_GraphNodeDriver>  , XmlMDF_ADriver >(m,"XmlMFunction_GraphNodeDriver",R"#(XML persistence driver for dependencies of a function.XML persistence driver for dependencies of a function.XML persistence driver for dependencies of a function.)#");
-
-// pre-register typdefs
-// ./opencascade/XmlMFunction_ScopeDriver.hxx
-// ./opencascade/XmlMFunction_FunctionDriver.hxx
-// ./opencascade/XmlMFunction.hxx
-// ./opencascade/XmlMFunction_GraphNodeDriver.hxx
+    py::class_<XmlMFunction_ScopeDriver ,opencascade::handle<XmlMFunction_ScopeDriver>  , XmlMDF_ADriver >(m,"XmlMFunction_ScopeDriver",R"#(XML persistence driver for a scope of functions.XML persistence driver for a scope of functions.XML persistence driver for a scope of functions.)#");
 
 };
 

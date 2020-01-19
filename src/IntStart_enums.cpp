@@ -50,11 +50,10 @@ py::module m = main_module.def_submodule("IntStart", R"#()#");
         
     };
 
+// pre-register typdefs
+
 // classes forward declarations only
     py::class_<IntStart_SITopolTool ,opencascade::handle<IntStart_SITopolTool> ,Py_IntStart_SITopolTool , Standard_Transient >(m,"IntStart_SITopolTool",R"#(template class for a topological tool. This tool is linked with the surface on which the classification has to be made.template class for a topological tool. This tool is linked with the surface on which the classification has to be made.template class for a topological tool. This tool is linked with the surface on which the classification has to be made.)#");
-
-// pre-register typdefs
-// ./opencascade/IntStart_SITopolTool.hxx
 
 };
 

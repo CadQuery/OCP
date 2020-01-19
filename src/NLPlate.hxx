@@ -17,34 +17,34 @@ namespace py = pybind11;
 #include <Plate_D3.hxx>
 
 // module includes
-#include <NLPlate_HPG1Constraint.hxx>
-#include <NLPlate_HPG0G1Constraint.hxx>
-#include <NLPlate_HPG0G3Constraint.hxx>
+#include <NLPlate_HPG2Constraint.hxx>
+#include <NLPlate_HPG0Constraint.hxx>
 #include <NLPlate_HPG3Constraint.hxx>
-#include <NLPlate_ListIteratorOfStackOfPlate.hxx>
+#include <NLPlate_SequenceOfHGPPConstraint.hxx>
+#include <NLPlate_StackOfPlate.hxx>
+#include <NLPlate_HPG1Constraint.hxx>
 #include <NLPlate_NLPlate.hxx>
 #include <NLPlate_HGPPConstraint.hxx>
-#include <NLPlate_HPG0Constraint.hxx>
-#include <NLPlate_StackOfPlate.hxx>
-#include <NLPlate_HPG2Constraint.hxx>
+#include <NLPlate_HPG0G3Constraint.hxx>
+#include <NLPlate_ListIteratorOfStackOfPlate.hxx>
+#include <NLPlate_HPG0G1Constraint.hxx>
 #include <NLPlate_HPG0G2Constraint.hxx>
-#include <NLPlate_SequenceOfHGPPConstraint.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/NLPlate_HPG1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G3Constraint.hxx
+// ./opencascade/NLPlate_HPG2Constraint.hxx
+// ./opencascade/NLPlate_HPG0Constraint.hxx
 // ./opencascade/NLPlate_HPG3Constraint.hxx
-// ./opencascade/NLPlate_ListIteratorOfStackOfPlate.hxx
+// ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
+// ./opencascade/NLPlate_StackOfPlate.hxx
+// ./opencascade/NLPlate_HPG1Constraint.hxx
 // ./opencascade/NLPlate_NLPlate.hxx
 // ./opencascade/NLPlate_HGPPConstraint.hxx
-// ./opencascade/NLPlate_HPG0Constraint.hxx
-// ./opencascade/NLPlate_StackOfPlate.hxx
-// ./opencascade/NLPlate_HPG2Constraint.hxx
+// ./opencascade/NLPlate_HPG0G3Constraint.hxx
+// ./opencascade/NLPlate_ListIteratorOfStackOfPlate.hxx
+// ./opencascade/NLPlate_HPG0G1Constraint.hxx
 // ./opencascade/NLPlate_HPG0G2Constraint.hxx
-// ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
 
 // user-defined post

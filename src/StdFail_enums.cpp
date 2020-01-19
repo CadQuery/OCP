@@ -39,14 +39,9 @@ py::module m = main_module.def_submodule("StdFail", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-
 // pre-register typdefs
-// ./opencascade/StdFail_UndefinedDerivative.hxx
-// ./opencascade/StdFail_NotDone.hxx
-// ./opencascade/StdFail_Undefined.hxx
-// ./opencascade/StdFail_InfiniteSolutions.hxx
-// ./opencascade/StdFail_UndefinedValue.hxx
+
+// classes forward declarations only
 
 };
 

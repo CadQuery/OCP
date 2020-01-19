@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -45,67 +48,12 @@ py::module m = static_cast<py::module>(main_module.attr("STEPEdit"));
 
 // classes
 
+    register_default_constructor<STEPEdit , shared_ptr<STEPEdit>>(m,"STEPEdit");
 
-    static_cast<py::class_<STEPEdit_EditContext ,opencascade::handle<STEPEdit_EditContext>  , IFSelect_Editor >>(m.attr("STEPEdit_EditContext"))
-        .def(py::init<  >()  )
-        .def("Label",
-             (TCollection_AsciiString (STEPEdit_EditContext::*)() const) static_cast<TCollection_AsciiString (STEPEdit_EditContext::*)() const>(&STEPEdit_EditContext::Label),
-             R"#(None)#" )
-        .def("Recognize",
-             (Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> &  ) const>(&STEPEdit_EditContext::Recognize),
-             R"#(None)#"  , py::arg("form"))
-        .def("StringValue",
-             (opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const) static_cast<opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const>(&STEPEdit_EditContext::StringValue),
-             R"#(None)#"  , py::arg("form"),  py::arg("num"))
-        .def("Apply",
-             (Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditContext::Apply),
-             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
-        .def("Load",
-             (Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditContext::Load),
-             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (STEPEdit_EditContext::*)() const) static_cast<const opencascade::handle<Standard_Type> & (STEPEdit_EditContext::*)() const>(&STEPEdit_EditContext::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&STEPEdit_EditContext::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&STEPEdit_EditContext::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<STEPEdit_EditSDR ,opencascade::handle<STEPEdit_EditSDR>  , IFSelect_Editor >>(m.attr("STEPEdit_EditSDR"))
-        .def(py::init<  >()  )
-        .def("Label",
-             (TCollection_AsciiString (STEPEdit_EditSDR::*)() const) static_cast<TCollection_AsciiString (STEPEdit_EditSDR::*)() const>(&STEPEdit_EditSDR::Label),
-             R"#(None)#" )
-        .def("Recognize",
-             (Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> &  ) const>(&STEPEdit_EditSDR::Recognize),
-             R"#(None)#"  , py::arg("form"))
-        .def("StringValue",
-             (opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const) static_cast<opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const>(&STEPEdit_EditSDR::StringValue),
-             R"#(None)#"  , py::arg("form"),  py::arg("num"))
-        .def("Apply",
-             (Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditSDR::Apply),
-             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
-        .def("Load",
-             (Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditSDR::Load),
-             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (STEPEdit_EditSDR::*)() const) static_cast<const opencascade::handle<Standard_Type> & (STEPEdit_EditSDR::*)() const>(&STEPEdit_EditSDR::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&STEPEdit_EditSDR::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&STEPEdit_EditSDR::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<STEPEdit ,std::unique_ptr<STEPEdit>>(m,"STEPEdit");
-
-    static_cast<py::class_<STEPEdit ,std::unique_ptr<STEPEdit>  >>(m.attr("STEPEdit"))
+    static_cast<py::class_<STEPEdit , shared_ptr<STEPEdit>  >>(m.attr("STEPEdit"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Protocol_s",
                     (opencascade::handle<Interface_Protocol> (*)() ) static_cast<opencascade::handle<Interface_Protocol> (*)() >(&STEPEdit::Protocol),
                     R"#(Returns a Protocol fit for STEP (creates the first time))#" )
@@ -124,19 +72,89 @@ py::module m = static_cast<py::module>(main_module.attr("STEPEdit"));
         .def_static("NewSelectShapeRepr_s",
                     (opencascade::handle<IFSelect_SelectSignature> (*)() ) static_cast<opencascade::handle<IFSelect_SelectSignature> (*)() >(&STEPEdit::NewSelectShapeRepr),
                     R"#(Creates a Selection for ShapeRepresentation and its sub-types, plus ContextDependentShapeRepresentation (which is not a sub-type of ShapeRepresentation) By default in the whole StepModel)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<STEPEdit_EditContext ,opencascade::handle<STEPEdit_EditContext>  , IFSelect_Editor >>(m.attr("STEPEdit_EditContext"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Label",
+             (TCollection_AsciiString (STEPEdit_EditContext::*)() const) static_cast<TCollection_AsciiString (STEPEdit_EditContext::*)() const>(&STEPEdit_EditContext::Label),
+             R"#(None)#" )
+        .def("Recognize",
+             (Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> &  ) const>(&STEPEdit_EditContext::Recognize),
+             R"#(None)#"  , py::arg("form"))
+        .def("StringValue",
+             (opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const) static_cast<opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const>(&STEPEdit_EditContext::StringValue),
+             R"#(None)#"  , py::arg("form"),  py::arg("num"))
+        .def("Apply",
+             (Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditContext::Apply),
+             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
+        .def("Load",
+             (Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditContext::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditContext::Load),
+             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (STEPEdit_EditContext::*)() const) static_cast<const opencascade::handle<Standard_Type> & (STEPEdit_EditContext::*)() const>(&STEPEdit_EditContext::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&STEPEdit_EditContext::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&STEPEdit_EditContext::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<STEPEdit_EditSDR ,opencascade::handle<STEPEdit_EditSDR>  , IFSelect_Editor >>(m.attr("STEPEdit_EditSDR"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Label",
+             (TCollection_AsciiString (STEPEdit_EditSDR::*)() const) static_cast<TCollection_AsciiString (STEPEdit_EditSDR::*)() const>(&STEPEdit_EditSDR::Label),
+             R"#(None)#" )
+        .def("Recognize",
+             (Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> &  ) const>(&STEPEdit_EditSDR::Recognize),
+             R"#(None)#"  , py::arg("form"))
+        .def("StringValue",
+             (opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const) static_cast<opencascade::handle<TCollection_HAsciiString> (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const Standard_Integer  ) const>(&STEPEdit_EditSDR::StringValue),
+             R"#(None)#"  , py::arg("form"),  py::arg("num"))
+        .def("Apply",
+             (Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditSDR::Apply),
+             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
+        .def("Load",
+             (Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (STEPEdit_EditSDR::*)( const opencascade::handle<IFSelect_EditForm> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&STEPEdit_EditSDR::Load),
+             R"#(None)#"  , py::arg("form"),  py::arg("ent"),  py::arg("model"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (STEPEdit_EditSDR::*)() const) static_cast<const opencascade::handle<Standard_Type> & (STEPEdit_EditSDR::*)() const>(&STEPEdit_EditSDR::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&STEPEdit_EditSDR::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&STEPEdit_EditSDR::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/STEPEdit_EditContext.hxx
-// ./opencascade/STEPEdit.hxx
 // ./opencascade/STEPEdit_EditSDR.hxx
+// ./opencascade/STEPEdit.hxx
+// ./opencascade/STEPEdit_EditContext.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/STEPEdit_EditContext.hxx
-// ./opencascade/STEPEdit.hxx
-// ./opencascade/STEPEdit_EditSDR.hxx
 
 
 // exceptions

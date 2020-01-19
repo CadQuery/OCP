@@ -44,18 +44,13 @@ py::module m = main_module.def_submodule("CPnts", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<CPnts_UniformDeflection ,std::unique_ptr<CPnts_UniformDeflection>  >(m,"CPnts_UniformDeflection",R"#(This class defines an algorithm to create a set of points (with a given chordal deviation) at the positions of constant deflection of a given parametrized curve or a trimmed circle. The continuity of the curve must be at least C2.)#");
-    py::class_<CPnts_MyGaussFunction ,std::unique_ptr<CPnts_MyGaussFunction>  , math_Function >(m,"CPnts_MyGaussFunction",R"#(for implementation, compute values for Gauss)#");
-    py::class_<CPnts_MyRootFunction ,std::unique_ptr<CPnts_MyRootFunction>  , math_FunctionWithDerivative >(m,"CPnts_MyRootFunction",R"#(Implements a function for the Newton algorithm to find the solution of Integral(F) = L (compute Length and Derivative of the curve for Newton))#");
-    py::class_<CPnts_AbscissaPoint ,std::unique_ptr<CPnts_AbscissaPoint>  >(m,"CPnts_AbscissaPoint",R"#(the algorithm computes a point on a curve at a given distance from another point on the curve)#");
-
 // pre-register typdefs
-// ./opencascade/CPnts_UniformDeflection.hxx
-// ./opencascade/CPnts_MyRootFunction.hxx
-// ./opencascade/CPnts_RealFunction.hxx
-// ./opencascade/CPnts_MyGaussFunction.hxx
-// ./opencascade/CPnts_AbscissaPoint.hxx
+
+// classes forward declarations only
+    py::class_<CPnts_AbscissaPoint , shared_ptr<CPnts_AbscissaPoint>  >(m,"CPnts_AbscissaPoint",R"#(the algorithm computes a point on a curve at a given distance from another point on the curve)#");
+    py::class_<CPnts_MyGaussFunction , shared_ptr<CPnts_MyGaussFunction>  , math_Function >(m,"CPnts_MyGaussFunction",R"#(for implementation, compute values for Gauss)#");
+    py::class_<CPnts_MyRootFunction , shared_ptr<CPnts_MyRootFunction>  , math_FunctionWithDerivative >(m,"CPnts_MyRootFunction",R"#(Implements a function for the Newton algorithm to find the solution of Integral(F) = L (compute Length and Derivative of the curve for Newton))#");
+    py::class_<CPnts_UniformDeflection , shared_ptr<CPnts_UniformDeflection>  >(m,"CPnts_UniformDeflection",R"#(This class defines an algorithm to create a set of points (with a given chordal deviation) at the positions of constant deflection of a given parametrized curve or a trimmed circle. The continuity of the curve must be at least C2.)#");
 
 };
 

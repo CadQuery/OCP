@@ -54,19 +54,13 @@ py::module m = main_module.def_submodule("GccEnt", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<GccEnt_QualifiedCirc ,std::unique_ptr<GccEnt_QualifiedCirc>  >(m,"GccEnt_QualifiedCirc",R"#(Creates a qualified 2d Circle. A qualified 2D circle is a circle (gp_Circ2d circle) with a qualifier which specifies whether the solution of a construction algorithm using the qualified circle (as an argument): - encloses the circle, or - is enclosed by the circle, or - is built so that both the circle and it are external to one another, or - is undefined (all solutions apply).)#");
-    py::class_<GccEnt_QualifiedLin ,std::unique_ptr<GccEnt_QualifiedLin>  >(m,"GccEnt_QualifiedLin",R"#(Describes a qualified 2D line. A qualified 2D line is a line (gp_Lin2d line) with a qualifier which specifies whether the solution of a construction algorithm using the qualified line (as an argument): - is 'enclosed' by the line, or - is built so that both the line and it are external to one another, or - is undefined (all solutions apply). Note: the interior of a line is defined as the left-hand side of the line in relation to its orientation (i.e. when moving from the start to the end of the curve).)#");
-    py::class_<GccEnt ,std::unique_ptr<GccEnt>  >(m,"GccEnt",R"#(This package provides an implementation of the qualified entities useful to create 2d entities with geometric constraints. The qualifier explains which subfamily of solutions we want to obtain. It uses the following law: the matter/the interior side is at the left of the line, if we go from the beginning to the end. The qualifiers are: Enclosing : the solution(s) must enclose the argument. Enclosed : the solution(s) must be enclosed in the argument. Outside : both the solution(s) and the argument must be outside to each other. Unqualified : the position is undefined, so give all the solutions. The use of a qualifier is always required if such subfamilies exist. For example, it is not used for a point. Note: the interior of a curve is defined as the left-hand side of the curve in relation to its orientation.)#");
-
 // pre-register typdefs
-// ./opencascade/GccEnt_QualifiedCirc.hxx
-// ./opencascade/GccEnt_BadQualifier.hxx
-// ./opencascade/GccEnt_Array1OfPosition.hxx
     preregister_template_NCollection_Array1<GccEnt_Position>(m,"GccEnt_Array1OfPosition");  
-// ./opencascade/GccEnt_Position.hxx
-// ./opencascade/GccEnt_QualifiedLin.hxx
-// ./opencascade/GccEnt.hxx
+
+// classes forward declarations only
+    py::class_<GccEnt , shared_ptr<GccEnt>  >(m,"GccEnt",R"#(This package provides an implementation of the qualified entities useful to create 2d entities with geometric constraints. The qualifier explains which subfamily of solutions we want to obtain. It uses the following law: the matter/the interior side is at the left of the line, if we go from the beginning to the end. The qualifiers are: Enclosing : the solution(s) must enclose the argument. Enclosed : the solution(s) must be enclosed in the argument. Outside : both the solution(s) and the argument must be outside to each other. Unqualified : the position is undefined, so give all the solutions. The use of a qualifier is always required if such subfamilies exist. For example, it is not used for a point. Note: the interior of a curve is defined as the left-hand side of the curve in relation to its orientation.)#");
+    py::class_<GccEnt_QualifiedCirc , shared_ptr<GccEnt_QualifiedCirc>  >(m,"GccEnt_QualifiedCirc",R"#(Creates a qualified 2d Circle. A qualified 2D circle is a circle (gp_Circ2d circle) with a qualifier which specifies whether the solution of a construction algorithm using the qualified circle (as an argument): - encloses the circle, or - is enclosed by the circle, or - is built so that both the circle and it are external to one another, or - is undefined (all solutions apply).)#");
+    py::class_<GccEnt_QualifiedLin , shared_ptr<GccEnt_QualifiedLin>  >(m,"GccEnt_QualifiedLin",R"#(Describes a qualified 2D line. A qualified 2D line is a line (gp_Lin2d line) with a qualifier which specifies whether the solution of a construction algorithm using the qualified line (as an argument): - is 'enclosed' by the line, or - is built so that both the line and it are external to one another, or - is undefined (all solutions apply). Note: the interior of a line is defined as the left-hand side of the line in relation to its orientation (i.e. when moving from the start to the end of the curve).)#");
 
 };
 

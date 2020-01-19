@@ -11,11 +11,6 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_AttributeDelta.hxx>
-#include <TDF_Label.hxx>
-#include <AIS_InteractiveObject.hxx>
-#include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <TDataXtd_Constraint.hxx>
 #include <AIS_InteractiveObject.hxx>
@@ -27,7 +22,8 @@ namespace py = pybind11;
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <TDF_Label.hxx>
-#include <AIS_InteractiveObject.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_AttributeDelta.hxx>
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <AIS_InteractiveContext.hxx>
@@ -37,38 +33,42 @@ namespace py = pybind11;
 #include <TDF_RelocationTable.hxx>
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
+#include <TDF_Label.hxx>
+#include <AIS_InteractiveObject.hxx>
+#include <TDF_Label.hxx>
+#include <AIS_InteractiveObject.hxx>
 
 // module includes
-#include <TPrsStd_AISPresentation.hxx>
-#include <TPrsStd_PointDriver.hxx>
-#include <TPrsStd_DriverTable.hxx>
-#include <TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx>
-#include <TPrsStd_DataMapOfGUIDDriver.hxx>
-#include <TPrsStd_PlaneDriver.hxx>
+#include <TPrsStd_GeometryDriver.hxx>
 #include <TPrsStd_ConstraintTools.hxx>
 #include <TPrsStd_ConstraintDriver.hxx>
-#include <TPrsStd_GeometryDriver.hxx>
-#include <TPrsStd_NamedShapeDriver.hxx>
+#include <TPrsStd_DriverTable.hxx>
+#include <TPrsStd_DataMapOfGUIDDriver.hxx>
 #include <TPrsStd_Driver.hxx>
+#include <TPrsStd_AISPresentation.hxx>
+#include <TPrsStd_PointDriver.hxx>
 #include <TPrsStd_AISViewer.hxx>
+#include <TPrsStd_NamedShapeDriver.hxx>
+#include <TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx>
 #include <TPrsStd_AxisDriver.hxx>
+#include <TPrsStd_PlaneDriver.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/TPrsStd_AISPresentation.hxx
-// ./opencascade/TPrsStd_PointDriver.hxx
-// ./opencascade/TPrsStd_DriverTable.hxx
-// ./opencascade/TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx
-// ./opencascade/TPrsStd_DataMapOfGUIDDriver.hxx
-// ./opencascade/TPrsStd_PlaneDriver.hxx
+// ./opencascade/TPrsStd_GeometryDriver.hxx
 // ./opencascade/TPrsStd_ConstraintTools.hxx
 // ./opencascade/TPrsStd_ConstraintDriver.hxx
-// ./opencascade/TPrsStd_GeometryDriver.hxx
-// ./opencascade/TPrsStd_NamedShapeDriver.hxx
+// ./opencascade/TPrsStd_DriverTable.hxx
+// ./opencascade/TPrsStd_DataMapOfGUIDDriver.hxx
 // ./opencascade/TPrsStd_Driver.hxx
+// ./opencascade/TPrsStd_AISPresentation.hxx
+// ./opencascade/TPrsStd_PointDriver.hxx
 // ./opencascade/TPrsStd_AISViewer.hxx
+// ./opencascade/TPrsStd_NamedShapeDriver.hxx
+// ./opencascade/TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx
 // ./opencascade/TPrsStd_AxisDriver.hxx
+// ./opencascade/TPrsStd_PlaneDriver.hxx
 
 // user-defined post

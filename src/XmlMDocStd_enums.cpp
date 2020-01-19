@@ -11,12 +11,12 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMDocStd_XLinkDriver.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
 
 // module includes
 #include <XmlMDocStd.hxx>
@@ -42,13 +42,11 @@ py::module m = main_module.def_submodule("XmlMDocStd", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<XmlMDocStd_XLinkDriver ,opencascade::handle<XmlMDocStd_XLinkDriver>  , XmlMDF_ADriver >(m,"XmlMDocStd_XLinkDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
-    py::class_<XmlMDocStd ,std::unique_ptr<XmlMDocStd>  >(m,"XmlMDocStd",R"#(Driver for TDocStd_XLink)#");
-
 // pre-register typdefs
-// ./opencascade/XmlMDocStd_XLinkDriver.hxx
-// ./opencascade/XmlMDocStd.hxx
+
+// classes forward declarations only
+    py::class_<XmlMDocStd , shared_ptr<XmlMDocStd>  >(m,"XmlMDocStd",R"#(Driver for TDocStd_XLink)#");
+    py::class_<XmlMDocStd_XLinkDriver ,opencascade::handle<XmlMDocStd_XLinkDriver>  , XmlMDF_ADriver >(m,"XmlMDocStd_XLinkDriver",R"#(Attribute Driver.Attribute Driver.Attribute Driver.)#");
 
 };
 

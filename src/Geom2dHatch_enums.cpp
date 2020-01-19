@@ -27,11 +27,11 @@ namespace py = pybind11;
 #include <Geom2dHatch_MapOfElements.hxx>
 
 // template related includes
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
-#include "NCollection.hxx"
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
-#include "NCollection.hxx"
 // ./opencascade/Geom2dHatch_Hatchings.hxx
+#include "NCollection.hxx"
+// ./opencascade/Geom2dHatch_MapOfElements.hxx
+#include "NCollection.hxx"
+// ./opencascade/Geom2dHatch_MapOfElements.hxx
 #include "NCollection.hxx"
 
 
@@ -52,28 +52,17 @@ py::module m = main_module.def_submodule("Geom2dHatch", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Geom2dHatch_Hatcher ,std::unique_ptr<Geom2dHatch_Hatcher>  >(m,"Geom2dHatch_Hatcher",R"#(None)#");
-    py::class_<Geom2dHatch_Hatching ,std::unique_ptr<Geom2dHatch_Hatching>  >(m,"Geom2dHatch_Hatching",R"#(None)#");
-    py::class_<Geom2dHatch_Classifier ,std::unique_ptr<Geom2dHatch_Classifier>  >(m,"Geom2dHatch_Classifier",R"#(None)#");
-    py::class_<Geom2dHatch_Intersector ,std::unique_ptr<Geom2dHatch_Intersector>  , Geom2dInt_GInter >(m,"Geom2dHatch_Intersector",R"#(None)#");
-    py::class_<Geom2dHatch_FClass2dOfClassifier ,std::unique_ptr<Geom2dHatch_FClass2dOfClassifier>  >(m,"Geom2dHatch_FClass2dOfClassifier",R"#(None)#");
-    py::class_<Geom2dHatch_Elements ,std::unique_ptr<Geom2dHatch_Elements>  >(m,"Geom2dHatch_Elements",R"#(None)#");
-    py::class_<Geom2dHatch_Element ,std::unique_ptr<Geom2dHatch_Element>  >(m,"Geom2dHatch_Element",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/Geom2dHatch_DataMapIteratorOfMapOfElements.hxx
-// ./opencascade/Geom2dHatch_Hatcher.hxx
-// ./opencascade/Geom2dHatch_FClass2dOfClassifier.hxx
-// ./opencascade/Geom2dHatch_Hatching.hxx
-// ./opencascade/Geom2dHatch_Element.hxx
-// ./opencascade/Geom2dHatch_Classifier.hxx
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
     preregister_template_NCollection_DataMap<Standard_Integer, Geom2dHatch_Element, TColStd_MapIntegerHasher>(m,"Geom2dHatch_MapOfElements");  
-// ./opencascade/Geom2dHatch_Elements.hxx
-// ./opencascade/Geom2dHatch_Hatchings.hxx
-// ./opencascade/Geom2dHatch_DataMapIteratorOfHatchings.hxx
-// ./opencascade/Geom2dHatch_Intersector.hxx
+
+// classes forward declarations only
+    py::class_<Geom2dHatch_Classifier , shared_ptr<Geom2dHatch_Classifier>  >(m,"Geom2dHatch_Classifier",R"#(None)#");
+    py::class_<Geom2dHatch_Element , shared_ptr<Geom2dHatch_Element>  >(m,"Geom2dHatch_Element",R"#(None)#");
+    py::class_<Geom2dHatch_Elements , shared_ptr<Geom2dHatch_Elements>  >(m,"Geom2dHatch_Elements",R"#(None)#");
+    py::class_<Geom2dHatch_FClass2dOfClassifier , shared_ptr<Geom2dHatch_FClass2dOfClassifier>  >(m,"Geom2dHatch_FClass2dOfClassifier",R"#(None)#");
+    py::class_<Geom2dHatch_Hatcher , shared_ptr<Geom2dHatch_Hatcher>  >(m,"Geom2dHatch_Hatcher",R"#(None)#");
+    py::class_<Geom2dHatch_Hatching , shared_ptr<Geom2dHatch_Hatching>  >(m,"Geom2dHatch_Hatching",R"#(None)#");
+    py::class_<Geom2dHatch_Intersector , shared_ptr<Geom2dHatch_Intersector>  , Geom2dInt_GInter >(m,"Geom2dHatch_Intersector",R"#(None)#");
 
 };
 

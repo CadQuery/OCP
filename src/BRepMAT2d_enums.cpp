@@ -14,13 +14,13 @@ namespace py = pybind11;
 #include <BRepMAT2d_Explorer.hxx>
 #include <BRepMAT2d_BisectingLocus.hxx>
 #include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Wire.hxx>
 #include <MAT_Graph.hxx>
 #include <BRepMAT2d_Explorer.hxx>
 #include <Geom2d_Geometry.hxx>
 #include <MAT_Node.hxx>
 #include <MAT_Arc.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Wire.hxx>
 
 // module includes
 #include <BRepMAT2d_BisectingLocus.hxx>
@@ -32,13 +32,13 @@ namespace py = pybind11;
 #include <BRepMAT2d_LinkTopoBilo.hxx>
 
 // template related includes
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
-#include "NCollection.hxx"
 // ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
 #include "NCollection.hxx"
 
 
@@ -59,21 +59,14 @@ py::module m = main_module.def_submodule("BRepMAT2d", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepMAT2d_LinkTopoBilo ,std::unique_ptr<BRepMAT2d_LinkTopoBilo>  >(m,"BRepMAT2d_LinkTopoBilo",R"#(Constucts links between the Wire or the Face of the explorer and the BasicElts contained in the bisecting locus.)#");
-    py::class_<BRepMAT2d_BisectingLocus ,std::unique_ptr<BRepMAT2d_BisectingLocus>  >(m,"BRepMAT2d_BisectingLocus",R"#(BisectingLocus generates and contains the Bisecting_Locus of a set of lines from Geom2d, defined by <ExploSet>.)#");
-    py::class_<BRepMAT2d_Explorer ,std::unique_ptr<BRepMAT2d_Explorer>  >(m,"BRepMAT2d_Explorer",R"#(Construct an explorer from wires, face, set of curves from Geom2d to compute the bisecting Locus.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepMAT2d_LinkTopoBilo.hxx
-// ./opencascade/BRepMAT2d_DataMapOfShapeSequenceOfBasicElt.hxx
-    preregister_template_NCollection_DataMap<TopoDS_Shape, MAT_SequenceOfBasicElt, TopTools_ShapeMapHasher>(m,"BRepMAT2d_DataMapOfShapeSequenceOfBasicElt");  
-// ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfShapeSequenceOfBasicElt.hxx
-// ./opencascade/BRepMAT2d_Explorer.hxx
-// ./opencascade/BRepMAT2d_BisectingLocus.hxx
-// ./opencascade/BRepMAT2d_DataMapOfBasicEltShape.hxx
     preregister_template_NCollection_DataMap<opencascade::handle<MAT_BasicElt>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"BRepMAT2d_DataMapOfBasicEltShape");  
-// ./opencascade/BRepMAT2d_DataMapIteratorOfDataMapOfBasicEltShape.hxx
+    preregister_template_NCollection_DataMap<TopoDS_Shape, MAT_SequenceOfBasicElt, TopTools_ShapeMapHasher>(m,"BRepMAT2d_DataMapOfShapeSequenceOfBasicElt");  
+
+// classes forward declarations only
+    py::class_<BRepMAT2d_BisectingLocus , shared_ptr<BRepMAT2d_BisectingLocus>  >(m,"BRepMAT2d_BisectingLocus",R"#(BisectingLocus generates and contains the Bisecting_Locus of a set of lines from Geom2d, defined by <ExploSet>.)#");
+    py::class_<BRepMAT2d_Explorer , shared_ptr<BRepMAT2d_Explorer>  >(m,"BRepMAT2d_Explorer",R"#(Construct an explorer from wires, face, set of curves from Geom2d to compute the bisecting Locus.)#");
+    py::class_<BRepMAT2d_LinkTopoBilo , shared_ptr<BRepMAT2d_LinkTopoBilo>  >(m,"BRepMAT2d_LinkTopoBilo",R"#(Constucts links between the Wire or the Face of the explorer and the BasicElts contained in the bisecting locus.)#");
 
 };
 

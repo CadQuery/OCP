@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -58,6 +61,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
 
     static_cast<py::class_<Geom2dEvaluator_Curve ,opencascade::handle<Geom2dEvaluator_Curve> ,Py_Geom2dEvaluator_Curve , Standard_Transient >>(m.attr("Geom2dEvaluator_Curve"))
         .def(py::init<  >()  )
+    // methods
         .def("D0",
              (void (Geom2dEvaluator_Curve::*)( const Standard_Real ,  gp_Pnt2d &  ) const) static_cast<void (Geom2dEvaluator_Curve::*)( const Standard_Real ,  gp_Pnt2d &  ) const>(&Geom2dEvaluator_Curve::D0),
              R"#(Value of 2D curve)#"  , py::arg("theU"),  py::arg("theValue"))
@@ -76,18 +80,24 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Geom2dEvaluator_Curve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Geom2dEvaluator_Curve::*)() const>(&Geom2dEvaluator_Curve::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Geom2dEvaluator_Curve::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Geom2dEvaluator_Curve::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Geom2dEvaluator_OffsetCurve ,opencascade::handle<Geom2dEvaluator_OffsetCurve>  , Geom2dEvaluator_Curve >>(m.attr("Geom2dEvaluator_OffsetCurve"))
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real >()  , py::arg("theBase"),  py::arg("theOffset") )
         .def(py::init< const opencascade::handle<Geom2dAdaptor_HCurve> &,const Standard_Real >()  , py::arg("theBase"),  py::arg("theOffset") )
+    // methods
         .def("SetOffsetValue",
              (void (Geom2dEvaluator_OffsetCurve::*)( Standard_Real  ) ) static_cast<void (Geom2dEvaluator_OffsetCurve::*)( Standard_Real  ) >(&Geom2dEvaluator_OffsetCurve::SetOffsetValue),
              R"#(Change the offset value)#"  , py::arg("theOffset"))
@@ -109,12 +119,17 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Geom2dEvaluator_OffsetCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Geom2dEvaluator_OffsetCurve::*)() const>(&Geom2dEvaluator_OffsetCurve::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Geom2dEvaluator_OffsetCurve::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Geom2dEvaluator_OffsetCurve::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -124,8 +139,6 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
 // operators
 
 // register typdefs
-// ./opencascade/Geom2dEvaluator_Curve.hxx
-// ./opencascade/Geom2dEvaluator_OffsetCurve.hxx
 
 
 // exceptions

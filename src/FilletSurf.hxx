@@ -28,8 +28,8 @@ namespace py = pybind11;
 #include <Geom_TrimmedCurve.hxx>
 
 // module includes
-#include <FilletSurf_StatusDone.hxx>
 #include <FilletSurf_ErrorTypeStatus.hxx>
+#include <FilletSurf_StatusDone.hxx>
 #include <FilletSurf_InternalBuilder.hxx>
 #include <FilletSurf_Builder.hxx>
 #include <FilletSurf_StatusType.hxx>
@@ -38,8 +38,8 @@ namespace py = pybind11;
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/FilletSurf_StatusDone.hxx
 // ./opencascade/FilletSurf_ErrorTypeStatus.hxx
+// ./opencascade/FilletSurf_StatusDone.hxx
 // ./opencascade/FilletSurf_InternalBuilder.hxx
 // ./opencascade/FilletSurf_Builder.hxx
 // ./opencascade/FilletSurf_StatusType.hxx

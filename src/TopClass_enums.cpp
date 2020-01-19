@@ -43,8 +43,6 @@ py::module m = main_module.def_submodule("TopClass", R"#()#");
         
         // public pure virtual
         Standard_Boolean Reject(const gp_Pnt & P) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TopClass_SolidExplorer,Reject,P) };
-        void Segment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,Segment,P,L,Par) };
-        void OtherSegment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,OtherSegment,P,L,Par) };
         void InitShell() override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,InitShell,) };
         Standard_Boolean MoreShells() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TopClass_SolidExplorer,MoreShells,) };
         void NextShell() override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,NextShell,) };
@@ -54,6 +52,8 @@ py::module m = main_module.def_submodule("TopClass", R"#()#");
         void NextFace() override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,NextFace,) };
         TopoDS_Face CurrentFace() const  override { PYBIND11_OVERLOAD_PURE(TopoDS_Face,TopClass_SolidExplorer,CurrentFace,) };
         Standard_Boolean RejectFace(const gp_Lin & L,const Standard_Real Par) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TopClass_SolidExplorer,RejectFace,L,Par) };
+        void Segment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,Segment,P,L,Par) };
+        void OtherSegment(const gp_Pnt & P,gp_Lin & L,Standard_Real & Par) override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,OtherSegment,P,L,Par) };
         
         
         // protected pure virtual
@@ -63,11 +63,10 @@ py::module m = main_module.def_submodule("TopClass", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<TopClass_SolidExplorer ,std::unique_ptr<TopClass_SolidExplorer> ,Py_TopClass_SolidExplorer >(m,"TopClass_SolidExplorer",R"#(Provide an exploration of a BRep Shape for the classification. Defines the description of a solid for the SolidClassifier.)#");
-
 // pre-register typdefs
-// ./opencascade/TopClass_SolidExplorer.hxx
+
+// classes forward declarations only
+    py::class_<TopClass_SolidExplorer , shared_ptr<TopClass_SolidExplorer> ,Py_TopClass_SolidExplorer >(m,"TopClass_SolidExplorer",R"#(Provide an exploration of a BRep Shape for the classification. Defines the description of a solid for the SolidClassifier.)#");
 
 };
 

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,6 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Contap_Contour.hxx>
+#include <HLRTopoBRep_Data.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Contap_Point.hxx>
+#include <TopoDS_Edge.hxx>
 #include <HLRAlgo_Projector.hxx>
 #include <TopoDS_Face.hxx>
 #include <HLRTopoBRep_Data.hxx>
@@ -17,12 +26,6 @@ namespace py = pybind11;
 #include <TopoDS_Edge.hxx>
 #include <gp_Pnt.hxx>
 #include <Geom2d_Line.hxx>
-#include <Contap_Contour.hxx>
-#include <HLRTopoBRep_Data.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Contap_Point.hxx>
-#include <TopoDS_Edge.hxx>
 
 // module includes
 #include <HLRTopoBRep_Data.hxx>
@@ -39,17 +42,17 @@ namespace py = pybind11;
 #include <HLRTopoBRep_VData.hxx>
 
 // template related includes
-// ./opencascade/HLRTopoBRep_ListOfVData.hxx
+// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRTopoBRep_ListOfVData.hxx
+// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
+// ./opencascade/HLRTopoBRep_ListOfVData.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
+// ./opencascade/HLRTopoBRep_ListOfVData.hxx
 #include "NCollection.hxx"
 
 
@@ -69,58 +72,24 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
 
 // classes
 
+    register_default_constructor<HLRTopoBRep_DSFiller , shared_ptr<HLRTopoBRep_DSFiller>>(m,"HLRTopoBRep_DSFiller");
 
-    static_cast<py::class_<HLRTopoBRep_OutLiner ,opencascade::handle<HLRTopoBRep_OutLiner>  , Standard_Transient >>(m.attr("HLRTopoBRep_OutLiner"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("OriSh") )
-        .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("OriS"),  py::arg("OutS") )
-        .def("OriginalShape",
-             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OriginalShape),
-             R"#(None)#"  , py::arg("OriS"))
-        .def("OriginalShape",
-             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OriginalShape),
-             R"#(None)#" )
-        .def("OutLinedShape",
-             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OutLinedShape),
-             R"#(None)#"  , py::arg("OutS"))
-        .def("OutLinedShape",
-             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OutLinedShape),
-             R"#(None)#" )
-        .def("DataStructure",
-             (HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() ) static_cast<HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::DataStructure),
-             R"#(None)#" )
-        .def("Fill",
-             (void (HLRTopoBRep_OutLiner::*)( const HLRAlgo_Projector & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const HLRAlgo_Projector & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) >(&HLRTopoBRep_OutLiner::Fill),
-             R"#(None)#"  , py::arg("P"),  py::arg("MST"),  py::arg("nbIso"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (HLRTopoBRep_OutLiner::*)() const) static_cast<const opencascade::handle<Standard_Type> & (HLRTopoBRep_OutLiner::*)() const>(&HLRTopoBRep_OutLiner::DynamicType),
-             R"#(None)#" )
-        .def("OriginalShape",
-             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OriginalShape),
-             R"#(None)#"  , py::arg("OriS"))
-        .def("OriginalShape",
-             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OriginalShape),
-             R"#(None)#" )
-        .def("OutLinedShape",
-             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OutLinedShape),
-             R"#(None)#"  , py::arg("OutS"))
-        .def("OutLinedShape",
-             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OutLinedShape),
-             R"#(None)#" )
-        .def("DataStructure",
-             (HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() ) static_cast<HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::DataStructure),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&HLRTopoBRep_OutLiner::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&HLRTopoBRep_OutLiner::get_type_descriptor),
-                    R"#(None)#" )
+    static_cast<py::class_<HLRTopoBRep_DSFiller , shared_ptr<HLRTopoBRep_DSFiller>  >>(m.attr("HLRTopoBRep_DSFiller"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Insert_s",
+                    (void (*)( const TopoDS_Shape & ,  Contap_Contour & ,  HLRTopoBRep_Data & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) ) static_cast<void (*)( const TopoDS_Shape & ,  Contap_Contour & ,  HLRTopoBRep_Data & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) >(&HLRTopoBRep_DSFiller::Insert),
+                    R"#(Stores in <DS> the outlines of <S> using the current outliner and stores the isolines in <DS> using a Hatcher.)#"  , py::arg("S"),  py::arg("FO"),  py::arg("DS"),  py::arg("MST"),  py::arg("nbIso"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<HLRTopoBRep_Data ,std::unique_ptr<HLRTopoBRep_Data>  >>(m.attr("HLRTopoBRep_Data"))
+    static_cast<py::class_<HLRTopoBRep_Data , shared_ptr<HLRTopoBRep_Data>  >>(m.attr("HLRTopoBRep_Data"))
         .def(py::init<  >()  )
+    // methods
         .def("Clear",
              (void (HLRTopoBRep_Data::*)() ) static_cast<void (HLRTopoBRep_Data::*)() >(&HLRTopoBRep_Data::Clear),
              R"#(Clear of all the maps.)#" )
@@ -262,19 +231,17 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
         .def("NextVertex",
              (void (HLRTopoBRep_Data::*)() ) static_cast<void (HLRTopoBRep_Data::*)() >(&HLRTopoBRep_Data::NextVertex),
              R"#(None)#" )
-;
-
-    register_default_constructor<HLRTopoBRep_DSFiller ,std::unique_ptr<HLRTopoBRep_DSFiller>>(m,"HLRTopoBRep_DSFiller");
-
-    static_cast<py::class_<HLRTopoBRep_DSFiller ,std::unique_ptr<HLRTopoBRep_DSFiller>  >>(m.attr("HLRTopoBRep_DSFiller"))
-        .def_static("Insert_s",
-                    (void (*)( const TopoDS_Shape & ,  Contap_Contour & ,  HLRTopoBRep_Data & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) ) static_cast<void (*)( const TopoDS_Shape & ,  Contap_Contour & ,  HLRTopoBRep_Data & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) >(&HLRTopoBRep_DSFiller::Insert),
-                    R"#(Stores in <DS> the outlines of <S> using the current outliner and stores the isolines in <DS> using a Hatcher.)#"  , py::arg("S"),  py::arg("FO"),  py::arg("DS"),  py::arg("MST"),  py::arg("nbIso"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<HLRTopoBRep_FaceData ,std::unique_ptr<HLRTopoBRep_FaceData>  >>(m.attr("HLRTopoBRep_FaceData"))
+    static_cast<py::class_<HLRTopoBRep_FaceData , shared_ptr<HLRTopoBRep_FaceData>  >>(m.attr("HLRTopoBRep_FaceData"))
         .def(py::init<  >()  )
+    // methods
         .def("FaceIntL",
              (const TopTools_ListOfShape & (HLRTopoBRep_FaceData::*)() const) static_cast<const TopTools_ListOfShape & (HLRTopoBRep_FaceData::*)() const>(&HLRTopoBRep_FaceData::FaceIntL),
              R"#(None)#" )
@@ -311,29 +278,19 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
         .def("AddIsoL",
              (TopTools_ListOfShape & (HLRTopoBRep_FaceData::*)() ) static_cast<TopTools_ListOfShape & (HLRTopoBRep_FaceData::*)() >(&HLRTopoBRep_FaceData::AddIsoL),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
+    register_default_constructor<HLRTopoBRep_FaceIsoLiner , shared_ptr<HLRTopoBRep_FaceIsoLiner>>(m,"HLRTopoBRep_FaceIsoLiner");
 
-    static_cast<py::class_<HLRTopoBRep_VData ,std::unique_ptr<HLRTopoBRep_VData>  >>(m.attr("HLRTopoBRep_VData"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Real,const TopoDS_Shape & >()  , py::arg("P"),  py::arg("V") )
-        .def("Parameter",
-             (Standard_Real (HLRTopoBRep_VData::*)() const) static_cast<Standard_Real (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Parameter),
-             R"#(None)#" )
-        .def("Vertex",
-             (const TopoDS_Shape & (HLRTopoBRep_VData::*)() const) static_cast<const TopoDS_Shape & (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Vertex),
-             R"#(None)#" )
-        .def("Parameter",
-             (Standard_Real (HLRTopoBRep_VData::*)() const) static_cast<Standard_Real (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Parameter),
-             R"#(None)#" )
-        .def("Vertex",
-             (const TopoDS_Shape & (HLRTopoBRep_VData::*)() const) static_cast<const TopoDS_Shape & (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Vertex),
-             R"#(None)#" )
-;
-
-    register_default_constructor<HLRTopoBRep_FaceIsoLiner ,std::unique_ptr<HLRTopoBRep_FaceIsoLiner>>(m,"HLRTopoBRep_FaceIsoLiner");
-
-    static_cast<py::class_<HLRTopoBRep_FaceIsoLiner ,std::unique_ptr<HLRTopoBRep_FaceIsoLiner>  >>(m.attr("HLRTopoBRep_FaceIsoLiner"))
+    static_cast<py::class_<HLRTopoBRep_FaceIsoLiner , shared_ptr<HLRTopoBRep_FaceIsoLiner>  >>(m.attr("HLRTopoBRep_FaceIsoLiner"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Perform_s",
                     (void (*)( const Standard_Integer ,  const TopoDS_Face & ,  HLRTopoBRep_Data & ,  const Standard_Integer  ) ) static_cast<void (*)( const Standard_Integer ,  const TopoDS_Face & ,  HLRTopoBRep_Data & ,  const Standard_Integer  ) >(&HLRTopoBRep_FaceIsoLiner::Perform),
                     R"#(None)#"  , py::arg("FI"),  py::arg("F"),  py::arg("DS"),  py::arg("nbIsos"))
@@ -343,40 +300,110 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
         .def_static("MakeIsoLine_s",
                     (void (*)( const TopoDS_Face & ,  const opencascade::handle<Geom2d_Line> & ,  TopoDS_Vertex & ,  TopoDS_Vertex & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  HLRTopoBRep_Data &  ) ) static_cast<void (*)( const TopoDS_Face & ,  const opencascade::handle<Geom2d_Line> & ,  TopoDS_Vertex & ,  TopoDS_Vertex & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  HLRTopoBRep_Data &  ) >(&HLRTopoBRep_FaceIsoLiner::MakeIsoLine),
                     R"#(None)#"  , py::arg("F"),  py::arg("Iso"),  py::arg("V1"),  py::arg("V2"),  py::arg("U1"),  py::arg("U2"),  py::arg("Tol"),  py::arg("DS"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<HLRTopoBRep_OutLiner ,opencascade::handle<HLRTopoBRep_OutLiner>  , Standard_Transient >>(m.attr("HLRTopoBRep_OutLiner"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("OriSh") )
+        .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("OriS"),  py::arg("OutS") )
+    // methods
+        .def("OriginalShape",
+             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OriginalShape),
+             R"#(None)#"  , py::arg("OriS"))
+        .def("OriginalShape",
+             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OriginalShape),
+             R"#(None)#" )
+        .def("OutLinedShape",
+             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OutLinedShape),
+             R"#(None)#"  , py::arg("OutS"))
+        .def("OutLinedShape",
+             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OutLinedShape),
+             R"#(None)#" )
+        .def("DataStructure",
+             (HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() ) static_cast<HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::DataStructure),
+             R"#(None)#" )
+        .def("Fill",
+             (void (HLRTopoBRep_OutLiner::*)( const HLRAlgo_Projector & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const HLRAlgo_Projector & ,  NCollection_DataMap<TopoDS_Shape, BRepTopAdaptor_Tool, TopTools_ShapeMapHasher> & ,  const Standard_Integer  ) >(&HLRTopoBRep_OutLiner::Fill),
+             R"#(None)#"  , py::arg("P"),  py::arg("MST"),  py::arg("nbIso"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (HLRTopoBRep_OutLiner::*)() const) static_cast<const opencascade::handle<Standard_Type> & (HLRTopoBRep_OutLiner::*)() const>(&HLRTopoBRep_OutLiner::DynamicType),
+             R"#(None)#" )
+        .def("OriginalShape",
+             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OriginalShape),
+             R"#(None)#"  , py::arg("OriS"))
+        .def("OriginalShape",
+             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OriginalShape),
+             R"#(None)#" )
+        .def("OutLinedShape",
+             (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OutLinedShape),
+             R"#(None)#"  , py::arg("OutS"))
+        .def("OutLinedShape",
+             (TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() ) static_cast<TopoDS_Shape & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::OutLinedShape),
+             R"#(None)#" )
+        .def("DataStructure",
+             (HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() ) static_cast<HLRTopoBRep_Data & (HLRTopoBRep_OutLiner::*)() >(&HLRTopoBRep_OutLiner::DataStructure),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&HLRTopoBRep_OutLiner::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&HLRTopoBRep_OutLiner::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<HLRTopoBRep_VData , shared_ptr<HLRTopoBRep_VData>  >>(m.attr("HLRTopoBRep_VData"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Real,const TopoDS_Shape & >()  , py::arg("P"),  py::arg("V") )
+    // methods
+        .def("Parameter",
+             (Standard_Real (HLRTopoBRep_VData::*)() const) static_cast<Standard_Real (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Parameter),
+             R"#(None)#" )
+        .def("Vertex",
+             (const TopoDS_Shape & (HLRTopoBRep_VData::*)() const) static_cast<const TopoDS_Shape & (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Vertex),
+             R"#(None)#" )
+        .def("Parameter",
+             (Standard_Real (HLRTopoBRep_VData::*)() const) static_cast<Standard_Real (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Parameter),
+             R"#(None)#" )
+        .def("Vertex",
+             (const TopoDS_Shape & (HLRTopoBRep_VData::*)() const) static_cast<const TopoDS_Shape & (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Vertex),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/HLRTopoBRep_DataMapIteratorOfMapOfShapeListOfVData.hxx
+// ./opencascade/HLRTopoBRep_DSFiller.hxx
+// ./opencascade/HLRTopoBRep_DataMapIteratorOfDataMapOfShapeFaceData.hxx
+// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
+// ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
 // ./opencascade/HLRTopoBRep_OutLiner.hxx
+// ./opencascade/HLRTopoBRep_FaceIsoLiner.hxx
 // ./opencascade/HLRTopoBRep_FaceData.hxx
 // ./opencascade/HLRTopoBRep_ListOfVData.hxx
-// ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
-// ./opencascade/HLRTopoBRep_DataMapIteratorOfDataMapOfShapeFaceData.hxx
-// ./opencascade/HLRTopoBRep_ListIteratorOfListOfVData.hxx
 // ./opencascade/HLRTopoBRep_Data.hxx
-// ./opencascade/HLRTopoBRep_DataMapIteratorOfMapOfShapeListOfVData.hxx
-// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
-// ./opencascade/HLRTopoBRep_FaceIsoLiner.hxx
-// ./opencascade/HLRTopoBRep_DSFiller.hxx
 // ./opencascade/HLRTopoBRep_VData.hxx
+// ./opencascade/HLRTopoBRep_ListIteratorOfListOfVData.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/HLRTopoBRep_OutLiner.hxx
-// ./opencascade/HLRTopoBRep_FaceData.hxx
-// ./opencascade/HLRTopoBRep_ListOfVData.hxx
-    register_template_NCollection_List<HLRTopoBRep_VData>(m,"HLRTopoBRep_ListOfVData");  
-// ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
-    register_template_NCollection_DataMap<TopoDS_Shape, HLRTopoBRep_FaceData, TopTools_ShapeMapHasher>(m,"HLRTopoBRep_DataMapOfShapeFaceData");  
-// ./opencascade/HLRTopoBRep_DataMapIteratorOfDataMapOfShapeFaceData.hxx
-// ./opencascade/HLRTopoBRep_ListIteratorOfListOfVData.hxx
-// ./opencascade/HLRTopoBRep_Data.hxx
-// ./opencascade/HLRTopoBRep_DataMapIteratorOfMapOfShapeListOfVData.hxx
-// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
     register_template_NCollection_DataMap<TopoDS_Shape, HLRTopoBRep_ListOfVData, TopTools_ShapeMapHasher>(m,"HLRTopoBRep_MapOfShapeListOfVData");  
-// ./opencascade/HLRTopoBRep_FaceIsoLiner.hxx
-// ./opencascade/HLRTopoBRep_DSFiller.hxx
-// ./opencascade/HLRTopoBRep_VData.hxx
+    register_template_NCollection_DataMap<TopoDS_Shape, HLRTopoBRep_FaceData, TopTools_ShapeMapHasher>(m,"HLRTopoBRep_DataMapOfShapeFaceData");  
+    register_template_NCollection_List<HLRTopoBRep_VData>(m,"HLRTopoBRep_ListOfVData");  
 
 
 // exceptions

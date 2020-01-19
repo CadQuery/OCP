@@ -10,6 +10,12 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <gp_Lin2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <IntAna2d_Conic.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <gp_Hypr2d.hxx>
 #include <gp_Circ2d.hxx>
 #include <gp_Lin2d.hxx>
 #include <gp_Parab2d.hxx>
@@ -17,26 +23,20 @@ namespace py = pybind11;
 #include <gp_Elips2d.hxx>
 #include <gp_XY.hxx>
 #include <gp_Ax2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <IntAna2d_Conic.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <gp_Hypr2d.hxx>
 
 // module includes
-#include <IntAna2d_Conic.hxx>
 #include <IntAna2d_AnaIntersection.hxx>
-#include <IntAna2d_Outils.hxx>
+#include <IntAna2d_Conic.hxx>
 #include <IntAna2d_IntPoint.hxx>
+#include <IntAna2d_Outils.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/IntAna2d_Conic.hxx
 // ./opencascade/IntAna2d_AnaIntersection.hxx
-// ./opencascade/IntAna2d_Outils.hxx
+// ./opencascade/IntAna2d_Conic.hxx
 // ./opencascade/IntAna2d_IntPoint.hxx
+// ./opencascade/IntAna2d_Outils.hxx
 
 // user-defined post

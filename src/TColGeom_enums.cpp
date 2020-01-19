@@ -31,23 +31,23 @@ namespace py = pybind11;
 #include <TColGeom_SequenceOfSurface.hxx>
 
 // template related includes
-// ./opencascade/TColGeom_SequenceOfCurve.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColGeom_Array1OfBSplineCurve.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColGeom_SequenceOfSurface.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColGeom_Array1OfSurface.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColGeom_Array1OfBezierCurve.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColGeom_Array1OfCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColGeom_Array2OfBezierSurface.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColGeom_Array2OfSurface.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColGeom_SequenceOfBoundedCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColGeom_SequenceOfSurface.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColGeom_SequenceOfCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColGeom_Array1OfCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColGeom_Array1OfSurface.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColGeom_Array1OfBSplineCurve.hxx
 #include "NCollection.hxx"
 
 
@@ -68,41 +68,25 @@ py::module m = main_module.def_submodule("TColGeom", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TColGeom_HSequenceOfCurve ,std::unique_ptr<TColGeom_HSequenceOfCurve>  >(m,"TColGeom_HSequenceOfCurve",R"#()#");
-    py::class_<TColGeom_HArray1OfCurve ,std::unique_ptr<TColGeom_HArray1OfCurve>  >(m,"TColGeom_HArray1OfCurve",R"#()#");
-    py::class_<TColGeom_HSequenceOfBoundedCurve ,std::unique_ptr<TColGeom_HSequenceOfBoundedCurve>  >(m,"TColGeom_HSequenceOfBoundedCurve",R"#()#");
-    py::class_<TColGeom_HArray1OfSurface ,std::unique_ptr<TColGeom_HArray1OfSurface>  >(m,"TColGeom_HArray1OfSurface",R"#()#");
-    py::class_<TColGeom_HArray1OfBezierCurve ,std::unique_ptr<TColGeom_HArray1OfBezierCurve>  >(m,"TColGeom_HArray1OfBezierCurve",R"#()#");
-    py::class_<TColGeom_HArray2OfSurface ,std::unique_ptr<TColGeom_HArray2OfSurface>  >(m,"TColGeom_HArray2OfSurface",R"#()#");
-    py::class_<TColGeom_HArray1OfBSplineCurve ,std::unique_ptr<TColGeom_HArray1OfBSplineCurve>  >(m,"TColGeom_HArray1OfBSplineCurve",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/TColGeom_SequenceOfCurve.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<Geom_Curve> >(m,"TColGeom_SequenceOfCurve");  
-// ./opencascade/TColGeom_Array1OfBSplineCurve.hxx
-    preregister_template_NCollection_Array1<opencascade::handle<Geom_BSplineCurve> >(m,"TColGeom_Array1OfBSplineCurve");  
-// ./opencascade/TColGeom_HSequenceOfCurve.hxx
-// ./opencascade/TColGeom_SequenceOfSurface.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<Geom_Surface> >(m,"TColGeom_SequenceOfSurface");  
-// ./opencascade/TColGeom_Array1OfSurface.hxx
-    preregister_template_NCollection_Array1<opencascade::handle<Geom_Surface> >(m,"TColGeom_Array1OfSurface");  
-// ./opencascade/TColGeom_Array1OfBezierCurve.hxx
     preregister_template_NCollection_Array1<opencascade::handle<Geom_BezierCurve> >(m,"TColGeom_Array1OfBezierCurve");  
-// ./opencascade/TColGeom_HArray1OfBezierCurve.hxx
-// ./opencascade/TColGeom_Array1OfCurve.hxx
-    preregister_template_NCollection_Array1<opencascade::handle<Geom_Curve> >(m,"TColGeom_Array1OfCurve");  
-// ./opencascade/TColGeom_Array2OfBezierSurface.hxx
     preregister_template_NCollection_Array2<opencascade::handle<Geom_BezierSurface> >(m,"TColGeom_Array2OfBezierSurface");  
-// ./opencascade/TColGeom_Array2OfSurface.hxx
     preregister_template_NCollection_Array2<opencascade::handle<Geom_Surface> >(m,"TColGeom_Array2OfSurface");  
-// ./opencascade/TColGeom_HArray1OfCurve.hxx
-// ./opencascade/TColGeom_HArray1OfBSplineCurve.hxx
-// ./opencascade/TColGeom_HSequenceOfBoundedCurve.hxx
-// ./opencascade/TColGeom_SequenceOfBoundedCurve.hxx
     preregister_template_NCollection_Sequence<opencascade::handle<Geom_BoundedCurve> >(m,"TColGeom_SequenceOfBoundedCurve");  
-// ./opencascade/TColGeom_HArray2OfSurface.hxx
-// ./opencascade/TColGeom_HArray1OfSurface.hxx
+    preregister_template_NCollection_Sequence<opencascade::handle<Geom_Surface> >(m,"TColGeom_SequenceOfSurface");  
+    preregister_template_NCollection_Sequence<opencascade::handle<Geom_Curve> >(m,"TColGeom_SequenceOfCurve");  
+    preregister_template_NCollection_Array1<opencascade::handle<Geom_Curve> >(m,"TColGeom_Array1OfCurve");  
+    preregister_template_NCollection_Array1<opencascade::handle<Geom_Surface> >(m,"TColGeom_Array1OfSurface");  
+    preregister_template_NCollection_Array1<opencascade::handle<Geom_BSplineCurve> >(m,"TColGeom_Array1OfBSplineCurve");  
+
+// classes forward declarations only
+    py::class_<TColGeom_HArray1OfBSplineCurve ,opencascade::handle<TColGeom_HArray1OfBSplineCurve>  , TColGeom_Array1OfBSplineCurve , Standard_Transient >(m,"TColGeom_HArray1OfBSplineCurve",R"#()#");
+    py::class_<TColGeom_HArray1OfBezierCurve ,opencascade::handle<TColGeom_HArray1OfBezierCurve>  , TColGeom_Array1OfBezierCurve , Standard_Transient >(m,"TColGeom_HArray1OfBezierCurve",R"#()#");
+    py::class_<TColGeom_HArray1OfCurve ,opencascade::handle<TColGeom_HArray1OfCurve>  , TColGeom_Array1OfCurve , Standard_Transient >(m,"TColGeom_HArray1OfCurve",R"#()#");
+    py::class_<TColGeom_HArray1OfSurface ,opencascade::handle<TColGeom_HArray1OfSurface>  , TColGeom_Array1OfSurface , Standard_Transient >(m,"TColGeom_HArray1OfSurface",R"#()#");
+    py::class_<TColGeom_HArray2OfSurface ,opencascade::handle<TColGeom_HArray2OfSurface>  , TColGeom_Array2OfSurface , Standard_Transient >(m,"TColGeom_HArray2OfSurface",R"#()#");
+    py::class_<TColGeom_HSequenceOfBoundedCurve ,opencascade::handle<TColGeom_HSequenceOfBoundedCurve>  , TColGeom_SequenceOfBoundedCurve , Standard_Transient >(m,"TColGeom_HSequenceOfBoundedCurve",R"#()#");
+    py::class_<TColGeom_HSequenceOfCurve ,opencascade::handle<TColGeom_HSequenceOfCurve>  , TColGeom_SequenceOfCurve , Standard_Transient >(m,"TColGeom_HSequenceOfCurve",R"#()#");
 
 };
 

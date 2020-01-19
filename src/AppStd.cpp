@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -36,18 +39,24 @@ py::module m = static_cast<py::module>(main_module.attr("AppStd"));
     register_default_constructor<AppStd_Application ,opencascade::handle<AppStd_Application>>(m,"AppStd_Application");
 
     static_cast<py::class_<AppStd_Application ,opencascade::handle<AppStd_Application>  , TDocStd_Application >>(m.attr("AppStd_Application"))
+    // methods
         .def("ResourcesName",
              (Standard_CString (AppStd_Application::*)() ) static_cast<Standard_CString (AppStd_Application::*)() >(&AppStd_Application::ResourcesName),
              R"#(returns the file name which contains application resources)#" )
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (AppStd_Application::*)() const) static_cast<const opencascade::handle<Standard_Type> & (AppStd_Application::*)() const>(&AppStd_Application::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&AppStd_Application::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&AppStd_Application::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -56,7 +65,6 @@ py::module m = static_cast<py::module>(main_module.attr("AppStd"));
 // operators
 
 // register typdefs
-// ./opencascade/AppStd_Application.hxx
 
 
 // exceptions

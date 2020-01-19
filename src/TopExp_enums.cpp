@@ -43,14 +43,11 @@ py::module m = main_module.def_submodule("TopExp", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<TopExp_Explorer ,std::unique_ptr<TopExp_Explorer>  >(m,"TopExp_Explorer",R"#(An Explorer is a Tool to visit a Topological Data Structure form the TopoDS package.)#");
-    py::class_<TopExp ,std::unique_ptr<TopExp>  >(m,"TopExp",R"#(This package provides basic tools to explore the topological data structures.)#");
-
 // pre-register typdefs
-// ./opencascade/TopExp_Explorer.hxx
-// ./opencascade/TopExp.hxx
-// ./opencascade/TopExp_Stack.hxx
+
+// classes forward declarations only
+    py::class_<TopExp , shared_ptr<TopExp>  >(m,"TopExp",R"#(This package provides basic tools to explore the topological data structures.)#");
+    py::class_<TopExp_Explorer , shared_ptr<TopExp_Explorer>  >(m,"TopExp_Explorer",R"#(An Explorer is a Tool to visit a Topological Data Structure form the TopoDS package.)#");
 
 };
 

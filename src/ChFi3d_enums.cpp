@@ -11,6 +11,7 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
+#include <Geom_Curve.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
 #include <ChFiDS_Spine.hxx>
@@ -33,13 +34,6 @@ namespace py = pybind11;
 #include <TopoDS_Face.hxx>
 #include <AppBlend_Approx.hxx>
 #include <Geom2d_Curve.hxx>
-#include <BRepAdaptor_Surface.hxx>
-#include <TopoDS_Edge.hxx>
-#include <ChFi3d_Builder.hxx>
-#include <ChFi3d_ChBuilder.hxx>
-#include <ChFi3d_FilBuilder.hxx>
-#include <ChFi3d_SearchSing.hxx>
-#include <Geom_Curve.hxx>
 #include <Law_Function.hxx>
 #include <ChFiDS_HElSpine.hxx>
 #include <ChFiDS_Spine.hxx>
@@ -53,6 +47,12 @@ namespace py = pybind11;
 #include <BRepAdaptor_HSurface.hxx>
 #include <Adaptor3d_TopolTool.hxx>
 #include <BRepAdaptor_HCurve2d.hxx>
+#include <BRepAdaptor_Surface.hxx>
+#include <TopoDS_Edge.hxx>
+#include <ChFi3d_Builder.hxx>
+#include <ChFi3d_ChBuilder.hxx>
+#include <ChFi3d_FilBuilder.hxx>
+#include <ChFi3d_SearchSing.hxx>
 
 // module includes
 #include <ChFi3d.hxx>
@@ -110,21 +110,14 @@ py::module m = main_module.def_submodule("ChFi3d", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<ChFi3d_Builder ,std::unique_ptr<ChFi3d_Builder> ,Py_ChFi3d_Builder >(m,"ChFi3d_Builder",R"#(Root class for calculation of surfaces (fillets, chamfers) destined to smooth edges of a gap on a Shape and the reconstruction of the Shape.)#");
-    py::class_<ChFi3d ,std::unique_ptr<ChFi3d>  >(m,"ChFi3d",R"#(creation of spatial fillets on a solid.)#");
-    py::class_<ChFi3d_FilBuilder ,std::unique_ptr<ChFi3d_FilBuilder>  , ChFi3d_Builder >(m,"ChFi3d_FilBuilder",R"#(Tool of construction of fillets 3d on edges (on a solid).)#");
-    py::class_<ChFi3d_SearchSing ,std::unique_ptr<ChFi3d_SearchSing>  , math_FunctionWithDerivative >(m,"ChFi3d_SearchSing",R"#(Searches singularities on fillet. F(t) = (C1(t) - C2(t)).(C1'(t) - C2'(t));)#");
-    py::class_<ChFi3d_ChBuilder ,std::unique_ptr<ChFi3d_ChBuilder>  , ChFi3d_Builder >(m,"ChFi3d_ChBuilder",R"#(construction tool for 3D chamfers on edges (on a solid).)#");
-
 // pre-register typdefs
-// ./opencascade/ChFi3d_Builder_0.hxx
-// ./opencascade/ChFi3d_Builder.hxx
-// ./opencascade/ChFi3d.hxx
-// ./opencascade/ChFi3d_SearchSing.hxx
-// ./opencascade/ChFi3d_FilletShape.hxx
-// ./opencascade/ChFi3d_FilBuilder.hxx
-// ./opencascade/ChFi3d_ChBuilder.hxx
+
+// classes forward declarations only
+    py::class_<ChFi3d , shared_ptr<ChFi3d>  >(m,"ChFi3d",R"#(creation of spatial fillets on a solid.)#");
+    py::class_<ChFi3d_Builder , shared_ptr<ChFi3d_Builder> ,Py_ChFi3d_Builder >(m,"ChFi3d_Builder",R"#(Root class for calculation of surfaces (fillets, chamfers) destined to smooth edges of a gap on a Shape and the reconstruction of the Shape.)#");
+    py::class_<ChFi3d_SearchSing , shared_ptr<ChFi3d_SearchSing>  , math_FunctionWithDerivative >(m,"ChFi3d_SearchSing",R"#(Searches singularities on fillet. F(t) = (C1(t) - C2(t)).(C1'(t) - C2'(t));)#");
+    py::class_<ChFi3d_ChBuilder , shared_ptr<ChFi3d_ChBuilder>  , ChFi3d_Builder >(m,"ChFi3d_ChBuilder",R"#(construction tool for 3D chamfers on edges (on a solid).)#");
+    py::class_<ChFi3d_FilBuilder , shared_ptr<ChFi3d_FilBuilder>  , ChFi3d_Builder >(m,"ChFi3d_FilBuilder",R"#(Tool of construction of fillets 3d on edges (on a solid).)#");
 
 };
 

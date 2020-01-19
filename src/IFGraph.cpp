@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -48,9 +51,183 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
 // classes
 
 
-    static_cast<py::class_<IFGraph_SubPartsIterator ,std::unique_ptr<IFGraph_SubPartsIterator>  >>(m.attr("IFGraph_SubPartsIterator"))
+    static_cast<py::class_<IFGraph_AllConnected , shared_ptr<IFGraph_AllConnected>  , Interface_GraphContent >>(m.attr("IFGraph_AllConnected"))
+        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+        .def(py::init< const Interface_Graph &,const opencascade::handle<Standard_Transient> & >()  , py::arg("agraph"),  py::arg("ent") )
+    // methods
+        .def("GetFromEntity",
+             (void (IFGraph_AllConnected::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_AllConnected::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_AllConnected::GetFromEntity),
+             R"#(adds an entity and its Connected ones to the list (allows to cumulate all Entities Connected by some ones) Note that if "ent" is in the already computed list,, no entity will be added, but if "ent" is not already in the list, a new Connected Componant will be cumulated)#"  , py::arg("ent"))
+        .def("ResetData",
+             (void (IFGraph_AllConnected::*)() ) static_cast<void (IFGraph_AllConnected::*)() >(&IFGraph_AllConnected::ResetData),
+             R"#(Allows to restart on a new data set)#" )
+        .def("Evaluate",
+             (void (IFGraph_AllConnected::*)() ) static_cast<void (IFGraph_AllConnected::*)() >(&IFGraph_AllConnected::Evaluate),
+             R"#(does the specific evaluation (Connected entities atall levels))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_AllShared , shared_ptr<IFGraph_AllShared>  , Interface_GraphContent >>(m.attr("IFGraph_AllShared"))
+        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+        .def(py::init< const Interface_Graph &,const opencascade::handle<Standard_Transient> & >()  , py::arg("agraph"),  py::arg("ent") )
+    // methods
+        .def("GetFromEntity",
+             (void (IFGraph_AllShared::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_AllShared::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_AllShared::GetFromEntity),
+             R"#(adds an entity and its shared ones to the list (allows to cumulate all Entities shared by some ones))#"  , py::arg("ent"))
+        .def("GetFromIter",
+             (void (IFGraph_AllShared::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_AllShared::*)( const Interface_EntityIterator &  ) >(&IFGraph_AllShared::GetFromIter),
+             R"#(Adds Entities from an EntityIterator and all their shared ones at any level)#"  , py::arg("iter"))
+        .def("ResetData",
+             (void (IFGraph_AllShared::*)() ) static_cast<void (IFGraph_AllShared::*)() >(&IFGraph_AllShared::ResetData),
+             R"#(Allows to restart on a new data set)#" )
+        .def("Evaluate",
+             (void (IFGraph_AllShared::*)() ) static_cast<void (IFGraph_AllShared::*)() >(&IFGraph_AllShared::Evaluate),
+             R"#(does the specific evaluation (shared entities atall levels))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_Articulations , shared_ptr<IFGraph_Articulations>  , Interface_GraphContent >>(m.attr("IFGraph_Articulations"))
+        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+    // methods
+        .def("GetFromEntity",
+             (void (IFGraph_Articulations::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_Articulations::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_Articulations::GetFromEntity),
+             R"#(adds an entity and its shared ones to the list)#"  , py::arg("ent"))
+        .def("GetFromIter",
+             (void (IFGraph_Articulations::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_Articulations::*)( const Interface_EntityIterator &  ) >(&IFGraph_Articulations::GetFromIter),
+             R"#(adds a list of entities (as an iterator))#"  , py::arg("iter"))
+        .def("ResetData",
+             (void (IFGraph_Articulations::*)() ) static_cast<void (IFGraph_Articulations::*)() >(&IFGraph_Articulations::ResetData),
+             R"#(Allows to restart on a new data set)#" )
+        .def("Evaluate",
+             (void (IFGraph_Articulations::*)() ) static_cast<void (IFGraph_Articulations::*)() >(&IFGraph_Articulations::Evaluate),
+             R"#(Evaluates the list of Articulation points)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_Compare , shared_ptr<IFGraph_Compare>  , Interface_GraphContent >>(m.attr("IFGraph_Compare"))
+        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+    // methods
+        .def("GetFromEntity",
+             (void (IFGraph_Compare::*)( const opencascade::handle<Standard_Transient> & ,  const Standard_Boolean  ) ) static_cast<void (IFGraph_Compare::*)( const opencascade::handle<Standard_Transient> & ,  const Standard_Boolean  ) >(&IFGraph_Compare::GetFromEntity),
+             R"#(adds an entity and its shared ones to the list : first True means adds to the first sub-list, else to the 2nd)#"  , py::arg("ent"),  py::arg("first"))
+        .def("GetFromIter",
+             (void (IFGraph_Compare::*)( const Interface_EntityIterator & ,  const Standard_Boolean  ) ) static_cast<void (IFGraph_Compare::*)( const Interface_EntityIterator & ,  const Standard_Boolean  ) >(&IFGraph_Compare::GetFromIter),
+             R"#(adds a list of entities (as an iterator) as such, that is, their shared entities are not considered (use AllShared to have them) first True means adds to the first sub-list, else to the 2nd)#"  , py::arg("iter"),  py::arg("first"))
+        .def("Merge",
+             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::Merge),
+             R"#(merges the second list into the first one, hence the second list is empty)#" )
+        .def("RemoveSecond",
+             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::RemoveSecond),
+             R"#(Removes the contents of second list)#" )
+        .def("KeepCommon",
+             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::KeepCommon),
+             R"#(Keeps only Common part, sets it as First list and clears second list)#" )
+        .def("ResetData",
+             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::ResetData),
+             R"#(Allows to restart on a new data set)#" )
+        .def("Evaluate",
+             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::Evaluate),
+             R"#(Recomputes result of comparing to sub-parts)#" )
+        .def("Common",
+             (Interface_EntityIterator (IFGraph_Compare::*)() const) static_cast<Interface_EntityIterator (IFGraph_Compare::*)() const>(&IFGraph_Compare::Common),
+             R"#(returns entities common to the both parts)#" )
+        .def("FirstOnly",
+             (Interface_EntityIterator (IFGraph_Compare::*)() const) static_cast<Interface_EntityIterator (IFGraph_Compare::*)() const>(&IFGraph_Compare::FirstOnly),
+             R"#(returns entities which are exclusively in the first list)#" )
+        .def("SecondOnly",
+             (Interface_EntityIterator (IFGraph_Compare::*)() const) static_cast<Interface_EntityIterator (IFGraph_Compare::*)() const>(&IFGraph_Compare::SecondOnly),
+             R"#(returns entities which are exclusively in the second part)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_Cumulate , shared_ptr<IFGraph_Cumulate>  , Interface_GraphContent >>(m.attr("IFGraph_Cumulate"))
+        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+    // methods
+        .def("GetFromEntity",
+             (void (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_Cumulate::GetFromEntity),
+             R"#(adds an entity and its shared ones to the list)#"  , py::arg("ent"))
+        .def("GetFromIter",
+             (void (IFGraph_Cumulate::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_Cumulate::*)( const Interface_EntityIterator &  ) >(&IFGraph_Cumulate::GetFromIter),
+             R"#(adds a list of entities (as an iterator) as such, that is, without their shared entities (use AllShared to have them))#"  , py::arg("iter"))
+        .def("ResetData",
+             (void (IFGraph_Cumulate::*)() ) static_cast<void (IFGraph_Cumulate::*)() >(&IFGraph_Cumulate::ResetData),
+             R"#(Allows to restart on a new data set)#" )
+        .def("Evaluate",
+             (void (IFGraph_Cumulate::*)() ) static_cast<void (IFGraph_Cumulate::*)() >(&IFGraph_Cumulate::Evaluate),
+             R"#(Evaluates the result of cumulation)#" )
+        .def("Overlapped",
+             (Interface_EntityIterator (IFGraph_Cumulate::*)() const) static_cast<Interface_EntityIterator (IFGraph_Cumulate::*)() const>(&IFGraph_Cumulate::Overlapped),
+             R"#(returns entities which are taken several times)#" )
+        .def("Forgotten",
+             (Interface_EntityIterator (IFGraph_Cumulate::*)() const) static_cast<Interface_EntityIterator (IFGraph_Cumulate::*)() const>(&IFGraph_Cumulate::Forgotten),
+             R"#(returns entities which are not taken)#" )
+        .def("PerCount",
+             (Interface_EntityIterator (IFGraph_Cumulate::*)( const Standard_Integer  ) const) static_cast<Interface_EntityIterator (IFGraph_Cumulate::*)( const Standard_Integer  ) const>(&IFGraph_Cumulate::PerCount),
+             R"#(Returns entities taken a given count of times (0 : same as Forgotten, 1 : same as no Overlap : default))#"  , py::arg("count")=static_cast<const Standard_Integer>(1))
+        .def("NbTimes",
+             (Standard_Integer (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) const>(&IFGraph_Cumulate::NbTimes),
+             R"#(returns number of times an Entity has been counted (0 means forgotten, more than 1 means overlap, 1 is normal))#"  , py::arg("ent"))
+        .def("HighestNbTimes",
+             (Standard_Integer (IFGraph_Cumulate::*)() const) static_cast<Standard_Integer (IFGraph_Cumulate::*)() const>(&IFGraph_Cumulate::HighestNbTimes),
+             R"#(Returns the highest number of times recorded for every Entity (0 means empty, 1 means no overlap))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_ExternalSources , shared_ptr<IFGraph_ExternalSources>  , Interface_GraphContent >>(m.attr("IFGraph_ExternalSources"))
+        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+    // methods
+        .def("GetFromEntity",
+             (void (IFGraph_ExternalSources::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_ExternalSources::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_ExternalSources::GetFromEntity),
+             R"#(adds an entity and its shared ones to the list)#"  , py::arg("ent"))
+        .def("GetFromIter",
+             (void (IFGraph_ExternalSources::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_ExternalSources::*)( const Interface_EntityIterator &  ) >(&IFGraph_ExternalSources::GetFromIter),
+             R"#(adds a list of entities (as an iterator) with shared ones)#"  , py::arg("iter"))
+        .def("ResetData",
+             (void (IFGraph_ExternalSources::*)() ) static_cast<void (IFGraph_ExternalSources::*)() >(&IFGraph_ExternalSources::ResetData),
+             R"#(Allows to restart on a new data set)#" )
+        .def("Evaluate",
+             (void (IFGraph_ExternalSources::*)() ) static_cast<void (IFGraph_ExternalSources::*)() >(&IFGraph_ExternalSources::Evaluate),
+             R"#(Evaluates external sources of a set of entities)#" )
+        .def("IsEmpty",
+             (Standard_Boolean (IFGraph_ExternalSources::*)() ) static_cast<Standard_Boolean (IFGraph_ExternalSources::*)() >(&IFGraph_ExternalSources::IsEmpty),
+             R"#(Returns True if no External Source are found It means that we have a "root" set (performs an Evaluation as necessary))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_SubPartsIterator , shared_ptr<IFGraph_SubPartsIterator>  >>(m.attr("IFGraph_SubPartsIterator"))
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
         .def(py::init< IFGraph_SubPartsIterator & >()  , py::arg("other") )
+    // methods
         .def("GetParts",
              (void (IFGraph_SubPartsIterator::*)( IFGraph_SubPartsIterator &  ) ) static_cast<void (IFGraph_SubPartsIterator::*)( IFGraph_SubPartsIterator &  ) >(&IFGraph_SubPartsIterator::GetParts),
              R"#(Gets Parts from another SubPartsIterator (in addition to the ones already recorded) Error if both SubPartsIterators are not based on the same Model)#"  , py::arg("other"))
@@ -117,206 +294,87 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
         .def("Entities",
              (Interface_EntityIterator (IFGraph_SubPartsIterator::*)() const) static_cast<Interface_EntityIterator (IFGraph_SubPartsIterator::*)() const>(&IFGraph_SubPartsIterator::Entities),
              R"#(Returns current sub-part, not as a "Value", but as an Iterator on Entities it contains Error : same as above (end of iteration))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IFGraph_Compare ,std::unique_ptr<IFGraph_Compare>  , Interface_GraphContent >>(m.attr("IFGraph_Compare"))
-        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
-        .def("GetFromEntity",
-             (void (IFGraph_Compare::*)( const opencascade::handle<Standard_Transient> & ,  const Standard_Boolean  ) ) static_cast<void (IFGraph_Compare::*)( const opencascade::handle<Standard_Transient> & ,  const Standard_Boolean  ) >(&IFGraph_Compare::GetFromEntity),
-             R"#(adds an entity and its shared ones to the list : first True means adds to the first sub-list, else to the 2nd)#"  , py::arg("ent"),  py::arg("first"))
-        .def("GetFromIter",
-             (void (IFGraph_Compare::*)( const Interface_EntityIterator & ,  const Standard_Boolean  ) ) static_cast<void (IFGraph_Compare::*)( const Interface_EntityIterator & ,  const Standard_Boolean  ) >(&IFGraph_Compare::GetFromIter),
-             R"#(adds a list of entities (as an iterator) as such, that is, their shared entities are not considered (use AllShared to have them) first True means adds to the first sub-list, else to the 2nd)#"  , py::arg("iter"),  py::arg("first"))
-        .def("Merge",
-             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::Merge),
-             R"#(merges the second list into the first one, hence the second list is empty)#" )
-        .def("RemoveSecond",
-             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::RemoveSecond),
-             R"#(Removes the contents of second list)#" )
-        .def("KeepCommon",
-             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::KeepCommon),
-             R"#(Keeps only Common part, sets it as First list and clears second list)#" )
-        .def("ResetData",
-             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::ResetData),
-             R"#(Allows to restart on a new data set)#" )
-        .def("Evaluate",
-             (void (IFGraph_Compare::*)() ) static_cast<void (IFGraph_Compare::*)() >(&IFGraph_Compare::Evaluate),
-             R"#(Recomputes result of comparing to sub-parts)#" )
-        .def("Common",
-             (Interface_EntityIterator (IFGraph_Compare::*)() const) static_cast<Interface_EntityIterator (IFGraph_Compare::*)() const>(&IFGraph_Compare::Common),
-             R"#(returns entities common to the both parts)#" )
-        .def("FirstOnly",
-             (Interface_EntityIterator (IFGraph_Compare::*)() const) static_cast<Interface_EntityIterator (IFGraph_Compare::*)() const>(&IFGraph_Compare::FirstOnly),
-             R"#(returns entities which are exclusively in the first list)#" )
-        .def("SecondOnly",
-             (Interface_EntityIterator (IFGraph_Compare::*)() const) static_cast<Interface_EntityIterator (IFGraph_Compare::*)() const>(&IFGraph_Compare::SecondOnly),
-             R"#(returns entities which are exclusively in the second part)#" )
-;
-
-
-    static_cast<py::class_<IFGraph_ExternalSources ,std::unique_ptr<IFGraph_ExternalSources>  , Interface_GraphContent >>(m.attr("IFGraph_ExternalSources"))
-        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
-        .def("GetFromEntity",
-             (void (IFGraph_ExternalSources::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_ExternalSources::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_ExternalSources::GetFromEntity),
-             R"#(adds an entity and its shared ones to the list)#"  , py::arg("ent"))
-        .def("GetFromIter",
-             (void (IFGraph_ExternalSources::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_ExternalSources::*)( const Interface_EntityIterator &  ) >(&IFGraph_ExternalSources::GetFromIter),
-             R"#(adds a list of entities (as an iterator) with shared ones)#"  , py::arg("iter"))
-        .def("ResetData",
-             (void (IFGraph_ExternalSources::*)() ) static_cast<void (IFGraph_ExternalSources::*)() >(&IFGraph_ExternalSources::ResetData),
-             R"#(Allows to restart on a new data set)#" )
-        .def("Evaluate",
-             (void (IFGraph_ExternalSources::*)() ) static_cast<void (IFGraph_ExternalSources::*)() >(&IFGraph_ExternalSources::Evaluate),
-             R"#(Evaluates external sources of a set of entities)#" )
-        .def("IsEmpty",
-             (Standard_Boolean (IFGraph_ExternalSources::*)() ) static_cast<Standard_Boolean (IFGraph_ExternalSources::*)() >(&IFGraph_ExternalSources::IsEmpty),
-             R"#(Returns True if no External Source are found It means that we have a "root" set (performs an Evaluation as necessary))#" )
-;
-
-
-    static_cast<py::class_<IFGraph_StrongComponants ,std::unique_ptr<IFGraph_StrongComponants>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_StrongComponants"))
+    static_cast<py::class_<IFGraph_ConnectedComponants , shared_ptr<IFGraph_ConnectedComponants>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_ConnectedComponants"))
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
-        .def("Evaluate",
-             (void (IFGraph_StrongComponants::*)() ) static_cast<void (IFGraph_StrongComponants::*)() >(&IFGraph_StrongComponants::Evaluate),
-             R"#(does the computation)#" )
-;
-
-
-    static_cast<py::class_<IFGraph_AllConnected ,std::unique_ptr<IFGraph_AllConnected>  , Interface_GraphContent >>(m.attr("IFGraph_AllConnected"))
-        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
-        .def(py::init< const Interface_Graph &,const opencascade::handle<Standard_Transient> & >()  , py::arg("agraph"),  py::arg("ent") )
-        .def("GetFromEntity",
-             (void (IFGraph_AllConnected::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_AllConnected::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_AllConnected::GetFromEntity),
-             R"#(adds an entity and its Connected ones to the list (allows to cumulate all Entities Connected by some ones) Note that if "ent" is in the already computed list,, no entity will be added, but if "ent" is not already in the list, a new Connected Componant will be cumulated)#"  , py::arg("ent"))
-        .def("ResetData",
-             (void (IFGraph_AllConnected::*)() ) static_cast<void (IFGraph_AllConnected::*)() >(&IFGraph_AllConnected::ResetData),
-             R"#(Allows to restart on a new data set)#" )
-        .def("Evaluate",
-             (void (IFGraph_AllConnected::*)() ) static_cast<void (IFGraph_AllConnected::*)() >(&IFGraph_AllConnected::Evaluate),
-             R"#(does the specific evaluation (Connected entities atall levels))#" )
-;
-
-
-    static_cast<py::class_<IFGraph_Cycles ,std::unique_ptr<IFGraph_Cycles>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_Cycles"))
-        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
-        .def(py::init< IFGraph_StrongComponants & >()  , py::arg("subparts") )
-        .def("Evaluate",
-             (void (IFGraph_Cycles::*)() ) static_cast<void (IFGraph_Cycles::*)() >(&IFGraph_Cycles::Evaluate),
-             R"#(does the computation. Cycles are StrongComponants which are not Single)#" )
-;
-
-
-    static_cast<py::class_<IFGraph_SCRoots ,std::unique_ptr<IFGraph_SCRoots>  , IFGraph_StrongComponants >>(m.attr("IFGraph_SCRoots"))
-        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
-        .def(py::init< IFGraph_StrongComponants & >()  , py::arg("subparts") )
-        .def("Evaluate",
-             (void (IFGraph_SCRoots::*)() ) static_cast<void (IFGraph_SCRoots::*)() >(&IFGraph_SCRoots::Evaluate),
-             R"#(does the computation)#" )
-;
-
-
-    static_cast<py::class_<IFGraph_Cumulate ,std::unique_ptr<IFGraph_Cumulate>  , Interface_GraphContent >>(m.attr("IFGraph_Cumulate"))
-        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
-        .def("GetFromEntity",
-             (void (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_Cumulate::GetFromEntity),
-             R"#(adds an entity and its shared ones to the list)#"  , py::arg("ent"))
-        .def("GetFromIter",
-             (void (IFGraph_Cumulate::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_Cumulate::*)( const Interface_EntityIterator &  ) >(&IFGraph_Cumulate::GetFromIter),
-             R"#(adds a list of entities (as an iterator) as such, that is, without their shared entities (use AllShared to have them))#"  , py::arg("iter"))
-        .def("ResetData",
-             (void (IFGraph_Cumulate::*)() ) static_cast<void (IFGraph_Cumulate::*)() >(&IFGraph_Cumulate::ResetData),
-             R"#(Allows to restart on a new data set)#" )
-        .def("Evaluate",
-             (void (IFGraph_Cumulate::*)() ) static_cast<void (IFGraph_Cumulate::*)() >(&IFGraph_Cumulate::Evaluate),
-             R"#(Evaluates the result of cumulation)#" )
-        .def("Overlapped",
-             (Interface_EntityIterator (IFGraph_Cumulate::*)() const) static_cast<Interface_EntityIterator (IFGraph_Cumulate::*)() const>(&IFGraph_Cumulate::Overlapped),
-             R"#(returns entities which are taken several times)#" )
-        .def("Forgotten",
-             (Interface_EntityIterator (IFGraph_Cumulate::*)() const) static_cast<Interface_EntityIterator (IFGraph_Cumulate::*)() const>(&IFGraph_Cumulate::Forgotten),
-             R"#(returns entities which are not taken)#" )
-        .def("PerCount",
-             (Interface_EntityIterator (IFGraph_Cumulate::*)( const Standard_Integer  ) const) static_cast<Interface_EntityIterator (IFGraph_Cumulate::*)( const Standard_Integer  ) const>(&IFGraph_Cumulate::PerCount),
-             R"#(Returns entities taken a given count of times (0 : same as Forgotten, 1 : same as no Overlap : default))#"  , py::arg("count")=static_cast<const Standard_Integer>(1))
-        .def("NbTimes",
-             (Standard_Integer (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) const>(&IFGraph_Cumulate::NbTimes),
-             R"#(returns number of times an Entity has been counted (0 means forgotten, more than 1 means overlap, 1 is normal))#"  , py::arg("ent"))
-        .def("HighestNbTimes",
-             (Standard_Integer (IFGraph_Cumulate::*)() const) static_cast<Standard_Integer (IFGraph_Cumulate::*)() const>(&IFGraph_Cumulate::HighestNbTimes),
-             R"#(Returns the highest number of times recorded for every Entity (0 means empty, 1 means no overlap))#" )
-;
-
-
-    static_cast<py::class_<IFGraph_AllShared ,std::unique_ptr<IFGraph_AllShared>  , Interface_GraphContent >>(m.attr("IFGraph_AllShared"))
-        .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
-        .def(py::init< const Interface_Graph &,const opencascade::handle<Standard_Transient> & >()  , py::arg("agraph"),  py::arg("ent") )
-        .def("GetFromEntity",
-             (void (IFGraph_AllShared::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_AllShared::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_AllShared::GetFromEntity),
-             R"#(adds an entity and its shared ones to the list (allows to cumulate all Entities shared by some ones))#"  , py::arg("ent"))
-        .def("GetFromIter",
-             (void (IFGraph_AllShared::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_AllShared::*)( const Interface_EntityIterator &  ) >(&IFGraph_AllShared::GetFromIter),
-             R"#(Adds Entities from an EntityIterator and all their shared ones at any level)#"  , py::arg("iter"))
-        .def("ResetData",
-             (void (IFGraph_AllShared::*)() ) static_cast<void (IFGraph_AllShared::*)() >(&IFGraph_AllShared::ResetData),
-             R"#(Allows to restart on a new data set)#" )
-        .def("Evaluate",
-             (void (IFGraph_AllShared::*)() ) static_cast<void (IFGraph_AllShared::*)() >(&IFGraph_AllShared::Evaluate),
-             R"#(does the specific evaluation (shared entities atall levels))#" )
-;
-
-
-    static_cast<py::class_<IFGraph_Articulations ,std::unique_ptr<IFGraph_Articulations>  , Interface_GraphContent >>(m.attr("IFGraph_Articulations"))
-        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
-        .def("GetFromEntity",
-             (void (IFGraph_Articulations::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_Articulations::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_Articulations::GetFromEntity),
-             R"#(adds an entity and its shared ones to the list)#"  , py::arg("ent"))
-        .def("GetFromIter",
-             (void (IFGraph_Articulations::*)( const Interface_EntityIterator &  ) ) static_cast<void (IFGraph_Articulations::*)( const Interface_EntityIterator &  ) >(&IFGraph_Articulations::GetFromIter),
-             R"#(adds a list of entities (as an iterator))#"  , py::arg("iter"))
-        .def("ResetData",
-             (void (IFGraph_Articulations::*)() ) static_cast<void (IFGraph_Articulations::*)() >(&IFGraph_Articulations::ResetData),
-             R"#(Allows to restart on a new data set)#" )
-        .def("Evaluate",
-             (void (IFGraph_Articulations::*)() ) static_cast<void (IFGraph_Articulations::*)() >(&IFGraph_Articulations::Evaluate),
-             R"#(Evaluates the list of Articulation points)#" )
-;
-
-
-    static_cast<py::class_<IFGraph_ConnectedComponants ,std::unique_ptr<IFGraph_ConnectedComponants>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_ConnectedComponants"))
-        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+    // methods
         .def("Evaluate",
              (void (IFGraph_ConnectedComponants::*)() ) static_cast<void (IFGraph_ConnectedComponants::*)() >(&IFGraph_ConnectedComponants::Evaluate),
              R"#(does the computation)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_Cycles , shared_ptr<IFGraph_Cycles>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_Cycles"))
+        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+        .def(py::init< IFGraph_StrongComponants & >()  , py::arg("subparts") )
+    // methods
+        .def("Evaluate",
+             (void (IFGraph_Cycles::*)() ) static_cast<void (IFGraph_Cycles::*)() >(&IFGraph_Cycles::Evaluate),
+             R"#(does the computation. Cycles are StrongComponants which are not Single)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_StrongComponants , shared_ptr<IFGraph_StrongComponants>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_StrongComponants"))
+        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+    // methods
+        .def("Evaluate",
+             (void (IFGraph_StrongComponants::*)() ) static_cast<void (IFGraph_StrongComponants::*)() >(&IFGraph_StrongComponants::Evaluate),
+             R"#(does the computation)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IFGraph_SCRoots , shared_ptr<IFGraph_SCRoots>  , IFGraph_StrongComponants >>(m.attr("IFGraph_SCRoots"))
+        .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+        .def(py::init< IFGraph_StrongComponants & >()  , py::arg("subparts") )
+    // methods
+        .def("Evaluate",
+             (void (IFGraph_SCRoots::*)() ) static_cast<void (IFGraph_SCRoots::*)() >(&IFGraph_SCRoots::Evaluate),
+             R"#(does the computation)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/IFGraph_Compare.hxx
-// ./opencascade/IFGraph_SCRoots.hxx
-// ./opencascade/IFGraph_ExternalSources.hxx
+// ./opencascade/IFGraph_AllShared.hxx
 // ./opencascade/IFGraph_SubPartsIterator.hxx
 // ./opencascade/IFGraph_Articulations.hxx
+// ./opencascade/IFGraph_Compare.hxx
+// ./opencascade/IFGraph_ExternalSources.hxx
 // ./opencascade/IFGraph_StrongComponants.hxx
-// ./opencascade/IFGraph_Cumulate.hxx
-// ./opencascade/IFGraph_AllConnected.hxx
-// ./opencascade/IFGraph_ConnectedComponants.hxx
 // ./opencascade/IFGraph_Cycles.hxx
-// ./opencascade/IFGraph_AllShared.hxx
+// ./opencascade/IFGraph_AllConnected.hxx
+// ./opencascade/IFGraph_SCRoots.hxx
+// ./opencascade/IFGraph_ConnectedComponants.hxx
+// ./opencascade/IFGraph_Cumulate.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/IFGraph_Compare.hxx
-// ./opencascade/IFGraph_SCRoots.hxx
-// ./opencascade/IFGraph_ExternalSources.hxx
-// ./opencascade/IFGraph_SubPartsIterator.hxx
-// ./opencascade/IFGraph_Articulations.hxx
-// ./opencascade/IFGraph_StrongComponants.hxx
-// ./opencascade/IFGraph_Cumulate.hxx
-// ./opencascade/IFGraph_AllConnected.hxx
-// ./opencascade/IFGraph_ConnectedComponants.hxx
-// ./opencascade/IFGraph_Cycles.hxx
-// ./opencascade/IFGraph_AllShared.hxx
 
 
 // exceptions

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -33,7 +36,6 @@ namespace py = pybind11;
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom_Surface.hxx>
-#include <TopoDS_Vertex.hxx>
 #include <TopoDS_Face.hxx>
 #include <Geom_Surface.hxx>
 #include <TopLoc_Location.hxx>
@@ -41,6 +43,10 @@ namespace py = pybind11;
 #include <Geom_Curve.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <Geom2d_Curve.hxx>
+#include <Standard_NullObject.hxx>
+#include <BRepTools_Modification.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_Surface.hxx>
 #include <TopoDS_Face.hxx>
 #include <Geom_Surface.hxx>
 #include <TopoDS_Edge.hxx>
@@ -58,12 +64,11 @@ namespace py = pybind11;
 #include <Poly_Triangulation.hxx>
 #include <Poly_Polygon3D.hxx>
 #include <Poly_PolygonOnTriangulation.hxx>
-#include <Standard_NullObject.hxx>
-#include <BRepTools_Modification.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Surface.hxx>
+#include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
 #include <Geom_Surface.hxx>
 #include <TopLoc_Location.hxx>
@@ -71,8 +76,6 @@ namespace py = pybind11;
 #include <Geom_Curve.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <Geom2d_Curve.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TopoDS_Wire.hxx>
 
 // module includes
 #include <BRepTools.hxx>
@@ -132,18 +135,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
 
 // classes
 
-    register_default_constructor<BRepTools ,std::unique_ptr<BRepTools>>(m,"BRepTools");
+    register_default_constructor<BRepTools , shared_ptr<BRepTools>>(m,"BRepTools");
 
-    static_cast<py::class_<BRepTools ,std::unique_ptr<BRepTools>  >>(m.attr("BRepTools"))
-        .def_static("UVBounds_s",
-                    (void (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools::UVBounds),
-                    R"#(Returns in UMin, UMax, VMin, VMax the bounding values in the parametric space of F.)#"  , py::arg("F"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("VMin"),  py::arg("VMax"))
-        .def_static("UVBounds_s",
-                    (void (*)( const TopoDS_Face & ,  const TopoDS_Wire & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const TopoDS_Face & ,  const TopoDS_Wire & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools::UVBounds),
-                    R"#(Returns in UMin, UMax, VMin, VMax the bounding values of the wire in the parametric space of F.)#"  , py::arg("F"),  py::arg("W"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("VMin"),  py::arg("VMax"))
-        .def_static("UVBounds_s",
-                    (void (*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const TopoDS_Face & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools::UVBounds),
-                    R"#(Returns in UMin, UMax, VMin, VMax the bounding values of the edge in the parametric space of F.)#"  , py::arg("F"),  py::arg("E"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("VMin"),  py::arg("VMax"))
+    static_cast<py::class_<BRepTools , shared_ptr<BRepTools>  >>(m.attr("BRepTools"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("AddUVBounds_s",
                     (void (*)( const TopoDS_Face & ,  Bnd_Box2d &  ) ) static_cast<void (*)( const TopoDS_Face & ,  Bnd_Box2d &  ) >(&BRepTools::AddUVBounds),
                     R"#(Adds to the box <B> the bounding values in the parametric space of F.)#"  , py::arg("F"),  py::arg("B"))
@@ -207,9 +204,6 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def_static("IsReallyClosed_s",
                     (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepTools::IsReallyClosed),
                     R"#(Verifies that the edge <E> is found two times on the face <F> before calling BRep_Tool::IsClosed.)#"  , py::arg("E"),  py::arg("F"))
-        .def_static("DetectClosedness_s",
-                    (void (*)( const TopoDS_Face & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<void (*)( const TopoDS_Face & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools::DetectClosedness),
-                    R"#(Detect closedness of face in U and V directions)#"  , py::arg("theFace"),  py::arg("theUclosed"),  py::arg("theVclosed"))
         .def_static("Dump_s",
                     (void (*)( const TopoDS_Shape & ,  std::ostream &  ) ) static_cast<void (*)( const TopoDS_Shape & ,  std::ostream &  ) >(&BRepTools::Dump),
                     R"#(Dumps the topological structure and the geometry of <Sh> on the stream <S>.)#"  , py::arg("Sh"),  py::arg("S"))
@@ -228,82 +222,27 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def_static("EvalAndUpdateTol_s",
                     (Standard_Real (*)( const TopoDS_Edge & ,  const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom2d_Curve> ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Real (*)( const TopoDS_Edge & ,  const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom2d_Curve> ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real  ) >(&BRepTools::EvalAndUpdateTol),
                     R"#(Evals real tolerance of edge <theE>. <theC3d>, <theC2d>, <theS>, <theF>, <theL> are correspondently 3d curve of edge, 2d curve on surface <theS> and rang of edge If calculated tolerance is more then current edge tolerance, edge is updated. Method returns actual tolerance of edge)#"  , py::arg("theE"),  py::arg("theC3d"),  py::arg("theC2d"),  py::arg("theS"),  py::arg("theF"),  py::arg("theL"))
-;
-
-
-    static_cast<py::class_<BRepTools_Modification ,opencascade::handle<BRepTools_Modification> ,Py_BRepTools_Modification , Standard_Transient >>(m.attr("BRepTools_Modification"))
-        .def("NewSurface",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_Modification::NewSurface),
-             R"#(Returns true if the face, F, has been modified. If the face has been modified: - S is the new geometry of the face, - L is its new location, and - Tol is the new tolerance. The flag, RevWires, is set to true when the modification reverses the normal of the surface, (i.e. the wires have to be reversed). The flag, RevFace, is set to true if the orientation of the modified face changes in the shells which contain it. If the face has not been modified this function returns false, and the values of S, L, Tol, RevWires and RevFace are not significant.)#"  , py::arg("F"),  py::arg("S"),  py::arg("L"),  py::arg("Tol"),  py::arg("RevWires"),  py::arg("RevFace"))
-        .def("NewTriangulation",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Poly_Triangulation> &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Poly_Triangulation> &  ) >(&BRepTools_Modification::NewTriangulation),
-             R"#(Returns true if the face has been modified according to changed triangulation. If the face has been modified: - T is a new triangulation on the face)#"  , py::arg("F"),  py::arg("T"))
-        .def("NewCurve",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) >(&BRepTools_Modification::NewCurve),
-             R"#(Returns true if the edge, E, has been modified. If the edge has been modified: - C is the new geometry associated with the edge, - L is its new location, and - Tol is the new tolerance. If the edge has not been modified, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("C"),  py::arg("L"),  py::arg("Tol"))
-        .def("NewPolygon",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Poly_Polygon3D> &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Poly_Polygon3D> &  ) >(&BRepTools_Modification::NewPolygon),
-             R"#(Returns true if the edge has been modified according to changed polygon. If the edge has been modified: - P is a new polygon)#"  , py::arg("E"),  py::arg("P"))
-        .def("NewPolygonOnTriangulation",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Poly_PolygonOnTriangulation> &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Poly_PolygonOnTriangulation> &  ) >(&BRepTools_Modification::NewPolygonOnTriangulation),
-             R"#(Returns true if the edge has been modified according to changed polygon on triangulation. If the edge has been modified: - P is a new polygon on triangulation)#"  , py::arg("E"),  py::arg("F"),  py::arg("P"))
-        .def("NewPoint",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) >(&BRepTools_Modification::NewPoint),
-             R"#(Returns true if the vertex V has been modified. If V has been modified: - P is the new geometry of the vertex, and - Tol is the new tolerance. If the vertex has not been modified this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("P"),  py::arg("Tol"))
-        .def("NewCurve2d",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) >(&BRepTools_Modification::NewCurve2d),
-             R"#(Returns true if the edge, E, has a new curve on surface on the face, F. If a new curve exists: - C is the new geometry of the edge, - L is the new location, and - Tol is the new tolerance. NewE is the new edge created from E, and NewF is the new face created from F. If there is no new curve on the face, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("F"),  py::arg("NewE"),  py::arg("NewF"),  py::arg("C"),  py::arg("Tol"))
-        .def("NewParameter",
-             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools_Modification::NewParameter),
-             R"#(Returns true if the vertex V has a new parameter on the edge E. If a new parameter exists: - P is the parameter, and - Tol is the new tolerance. If there is no new parameter this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("E"),  py::arg("P"),  py::arg("Tol"))
-        .def("Continuity",
-             (GeomAbs_Shape (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<GeomAbs_Shape (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) >(&BRepTools_Modification::Continuity),
-             R"#(Returns the continuity of <NewE> between <NewF1> and <NewF2>. <NewE> is the new edge created from <E>. <NewF1> (resp. <NewF2>) is the new face created from <F1> (resp. <F2>).)#"  , py::arg("E"),  py::arg("F1"),  py::arg("F2"),  py::arg("NewE"),  py::arg("NewF1"),  py::arg("NewF2"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepTools_Modification::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_Modification::*)() const>(&BRepTools_Modification::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_Modification::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_Modification::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepTools_Modifier ,std::unique_ptr<BRepTools_Modifier>  >>(m.attr("BRepTools_Modifier"))
-        .def(py::init< Standard_Boolean >()  , py::arg("theMutableInput")=static_cast<Standard_Boolean>(Standard_False) )
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
-        .def(py::init< const TopoDS_Shape &,const opencascade::handle<BRepTools_Modification> & >()  , py::arg("S"),  py::arg("M") )
-        .def("Init",
-             (void (BRepTools_Modifier::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepTools_Modifier::*)( const TopoDS_Shape &  ) >(&BRepTools_Modifier::Init),
-             R"#(Initializes the modifier with the shape <S>.)#"  , py::arg("S"))
-        .def("Perform",
-             (void (BRepTools_Modifier::*)( const opencascade::handle<BRepTools_Modification> & ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<void (BRepTools_Modifier::*)( const opencascade::handle<BRepTools_Modification> & ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&BRepTools_Modifier::Perform),
-             R"#(Performs the modifications described by <M>.)#"  , py::arg("M"),  py::arg("aProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(NULL))
-        .def("IsDone",
-             (Standard_Boolean (BRepTools_Modifier::*)() const) static_cast<Standard_Boolean (BRepTools_Modifier::*)() const>(&BRepTools_Modifier::IsDone),
-             R"#(Returns Standard_True if the modification has been computed successfully.)#" )
-        .def("IsMutableInput",
-             (Standard_Boolean (BRepTools_Modifier::*)() const) static_cast<Standard_Boolean (BRepTools_Modifier::*)() const>(&BRepTools_Modifier::IsMutableInput),
-             R"#(Returns the current mutable input state)#" )
-        .def("SetMutableInput",
-             (void (BRepTools_Modifier::*)( Standard_Boolean  ) ) static_cast<void (BRepTools_Modifier::*)( Standard_Boolean  ) >(&BRepTools_Modifier::SetMutableInput),
-             R"#(Sets the mutable input state If true then the input (original) shape can be modified during modification process)#"  , py::arg("theMutableInput"))
-        .def("ModifiedShape",
-             (const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const) static_cast<const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const>(&BRepTools_Modifier::ModifiedShape),
-             R"#(Returns the modified shape corresponding to <S>.)#"  , py::arg("S"))
-        .def("ModifiedShape",
-             (const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const) static_cast<const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const>(&BRepTools_Modifier::ModifiedShape),
-             R"#(Returns the modified shape corresponding to <S>.)#"  , py::arg("S"))
-        .def("IsDone",
-             (Standard_Boolean (BRepTools_Modifier::*)() const) static_cast<Standard_Boolean (BRepTools_Modifier::*)() const>(&BRepTools_Modifier::IsDone),
-             R"#(Returns Standard_True if the modification has been computed successfully.)#" )
+    // static methods using call by reference i.s.o. return
+        .def_static("UVBounds_s",
+                    []( const TopoDS_Face & F ){ Standard_Real  UMin; Standard_Real  UMax; Standard_Real  VMin; Standard_Real  VMax; BRepTools::UVBounds(F,UMin,UMax,VMin,VMax); return std::make_tuple(UMin,UMax,VMin,VMax); },
+                    R"#(Returns in UMin, UMax, VMin, VMax the bounding values in the parametric space of F.)#"  , py::arg("F"))
+        .def_static("UVBounds_s",
+                    []( const TopoDS_Face & F,const TopoDS_Wire & W ){ Standard_Real  UMin; Standard_Real  UMax; Standard_Real  VMin; Standard_Real  VMax; BRepTools::UVBounds(F,W,UMin,UMax,VMin,VMax); return std::make_tuple(UMin,UMax,VMin,VMax); },
+                    R"#(Returns in UMin, UMax, VMin, VMax the bounding values of the wire in the parametric space of F.)#"  , py::arg("F"),  py::arg("W"))
+        .def_static("UVBounds_s",
+                    []( const TopoDS_Face & F,const TopoDS_Edge & E ){ Standard_Real  UMin; Standard_Real  UMax; Standard_Real  VMin; Standard_Real  VMax; BRepTools::UVBounds(F,E,UMin,UMax,VMin,VMax); return std::make_tuple(UMin,UMax,VMin,VMax); },
+                    R"#(Returns in UMin, UMax, VMin, VMax the bounding values of the edge in the parametric space of F.)#"  , py::arg("F"),  py::arg("E"))
+        .def_static("DetectClosedness_s",
+                    []( const TopoDS_Face & theFace ){ Standard_Boolean  theUclosed; Standard_Boolean  theVclosed; BRepTools::DetectClosedness(theFace,theUclosed,theVclosed); return std::make_tuple(theUclosed,theVclosed); },
+                    R"#(Detect closedness of face in U and V directions)#"  , py::arg("theFace"))
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BRepTools_History ,opencascade::handle<BRepTools_History>  , Standard_Transient >>(m.attr("BRepTools_History"))
         .def(py::init<  >()  )
+    // methods
         .def("AddGenerated",
              (void (BRepTools_History::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (BRepTools_History::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepTools_History::AddGenerated),
              R"#(Set the second shape as generated one from the first shape.)#"  , py::arg("theInitial"),  py::arg("theGenerated"))
@@ -343,6 +282,8 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BRepTools_History::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_History::*)() const>(&BRepTools_History::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("IsSupportedType_s",
                     (Standard_Boolean (*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape &  ) >(&BRepTools_History::IsSupportedType),
                     R"#(Returns 'true' if the type of the shape is supported by the history.)#"  , py::arg("theShape"))
@@ -352,46 +293,127 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_History::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepTools_TrsfModification ,opencascade::handle<BRepTools_TrsfModification>  , BRepTools_Modification >>(m.attr("BRepTools_TrsfModification"))
-        .def(py::init< const gp_Trsf & >()  , py::arg("T") )
-        .def("Trsf",
-             (gp_Trsf & (BRepTools_TrsfModification::*)() ) static_cast<gp_Trsf & (BRepTools_TrsfModification::*)() >(&BRepTools_TrsfModification::Trsf),
-             R"#(Provides access to the gp_Trsf associated with this modification. The transformation can be changed.)#" )
+    static_cast<py::class_<BRepTools_Modification ,opencascade::handle<BRepTools_Modification> ,Py_BRepTools_Modification , Standard_Transient >>(m.attr("BRepTools_Modification"))
+    // methods
         .def("NewSurface",
-             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_TrsfModification::NewSurface),
-             R"#(Returns true if the face F has been modified. If the face has been modified: - S is the new geometry of the face, - L is its new location, and - Tol is the new tolerance. RevWires is set to true when the modification reverses the normal of the surface (the wires have to be reversed). RevFace is set to true if the orientation of the modified face changes in the shells which contain it. For this class, RevFace returns true if the gp_Trsf associated with this modification is negative.)#"  , py::arg("F"),  py::arg("S"),  py::arg("L"),  py::arg("Tol"),  py::arg("RevWires"),  py::arg("RevFace"))
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_Modification::NewSurface),
+             R"#(Returns true if the face, F, has been modified. If the face has been modified: - S is the new geometry of the face, - L is its new location, and - Tol is the new tolerance. The flag, RevWires, is set to true when the modification reverses the normal of the surface, (i.e. the wires have to be reversed). The flag, RevFace, is set to true if the orientation of the modified face changes in the shells which contain it. If the face has not been modified this function returns false, and the values of S, L, Tol, RevWires and RevFace are not significant.)#"  , py::arg("F"),  py::arg("S"),  py::arg("L"),  py::arg("Tol"),  py::arg("RevWires"),  py::arg("RevFace"))
+        .def("NewTriangulation",
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Poly_Triangulation> &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Poly_Triangulation> &  ) >(&BRepTools_Modification::NewTriangulation),
+             R"#(Returns true if the face has been modified according to changed triangulation. If the face has been modified: - T is a new triangulation on the face)#"  , py::arg("F"),  py::arg("T"))
         .def("NewCurve",
-             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewCurve),
-             R"#(Returns true if the edge E has been modified. If the edge has been modified: - C is the new geometric support of the edge, - L is the new location, and - Tol is the new tolerance. If the edge has not been modified, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("C"),  py::arg("L"),  py::arg("Tol"))
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) >(&BRepTools_Modification::NewCurve),
+             R"#(Returns true if the edge, E, has been modified. If the edge has been modified: - C is the new geometry associated with the edge, - L is its new location, and - Tol is the new tolerance. If the edge has not been modified, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("C"),  py::arg("L"),  py::arg("Tol"))
+        .def("NewPolygon",
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Poly_Polygon3D> &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  opencascade::handle<Poly_Polygon3D> &  ) >(&BRepTools_Modification::NewPolygon),
+             R"#(Returns true if the edge has been modified according to changed polygon. If the edge has been modified: - P is a new polygon)#"  , py::arg("E"),  py::arg("P"))
+        .def("NewPolygonOnTriangulation",
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Poly_PolygonOnTriangulation> &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Poly_PolygonOnTriangulation> &  ) >(&BRepTools_Modification::NewPolygonOnTriangulation),
+             R"#(Returns true if the edge has been modified according to changed polygon on triangulation. If the edge has been modified: - P is a new polygon on triangulation)#"  , py::arg("E"),  py::arg("F"),  py::arg("P"))
         .def("NewPoint",
-             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewPoint),
-             R"#(Returns true if the vertex V has been modified. If the vertex has been modified: - P is the new geometry of the vertex, and - Tol is the new tolerance. If the vertex has not been modified this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("P"),  py::arg("Tol"))
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) >(&BRepTools_Modification::NewPoint),
+             R"#(Returns true if the vertex V has been modified. If V has been modified: - P is the new geometry of the vertex, and - Tol is the new tolerance. If the vertex has not been modified this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("P"),  py::arg("Tol"))
         .def("NewCurve2d",
-             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewCurve2d),
-             R"#(Returns true if the edge E has a new curve on surface on the face F. If a new curve exists: - C is the new geometric support of the edge, - L is the new location, and - Tol the new tolerance. If no new curve exists, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("F"),  py::arg("NewE"),  py::arg("NewF"),  py::arg("C"),  py::arg("Tol"))
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) >(&BRepTools_Modification::NewCurve2d),
+             R"#(Returns true if the edge, E, has a new curve on surface on the face, F. If a new curve exists: - C is the new geometry of the edge, - L is the new location, and - Tol is the new tolerance. NewE is the new edge created from E, and NewF is the new face created from F. If there is no new curve on the face, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("F"),  py::arg("NewE"),  py::arg("NewF"),  py::arg("C"),  py::arg("Tol"))
         .def("NewParameter",
-             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewParameter),
-             R"#(Returns true if the Vertex V has a new parameter on the edge E. If a new parameter exists: - P is the parameter, and - Tol is the new tolerance. If no new parameter exists, this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("E"),  py::arg("P"),  py::arg("Tol"))
+             (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools_Modification::NewParameter),
+             R"#(Returns true if the vertex V has a new parameter on the edge E. If a new parameter exists: - P is the parameter, and - Tol is the new tolerance. If there is no new parameter this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("E"),  py::arg("P"),  py::arg("Tol"))
         .def("Continuity",
-             (GeomAbs_Shape (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<GeomAbs_Shape (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) >(&BRepTools_TrsfModification::Continuity),
-             R"#(Returns the continuity of <NewE> between <NewF1> and <NewF2>.)#"  , py::arg("E"),  py::arg("F1"),  py::arg("F2"),  py::arg("NewE"),  py::arg("NewF1"),  py::arg("NewF2"))
+             (GeomAbs_Shape (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<GeomAbs_Shape (BRepTools_Modification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) >(&BRepTools_Modification::Continuity),
+             R"#(Returns the continuity of <NewE> between <NewF1> and <NewF2>. <NewE> is the new edge created from <E>. <NewF1> (resp. <NewF2>) is the new face created from <F1> (resp. <F2>).)#"  , py::arg("E"),  py::arg("F1"),  py::arg("F2"),  py::arg("NewE"),  py::arg("NewF1"),  py::arg("NewF2"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepTools_TrsfModification::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_TrsfModification::*)() const>(&BRepTools_TrsfModification::DynamicType),
+             (const opencascade::handle<Standard_Type> & (BRepTools_Modification::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_Modification::*)() const>(&BRepTools_Modification::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_TrsfModification::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_Modification::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_TrsfModification::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_Modification::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepTools_Modifier , shared_ptr<BRepTools_Modifier>  >>(m.attr("BRepTools_Modifier"))
+        .def(py::init< Standard_Boolean >()  , py::arg("theMutableInput")=static_cast<Standard_Boolean>(Standard_False) )
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+        .def(py::init< const TopoDS_Shape &,const opencascade::handle<BRepTools_Modification> & >()  , py::arg("S"),  py::arg("M") )
+    // methods
+        .def("Init",
+             (void (BRepTools_Modifier::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepTools_Modifier::*)( const TopoDS_Shape &  ) >(&BRepTools_Modifier::Init),
+             R"#(Initializes the modifier with the shape <S>.)#"  , py::arg("S"))
+        .def("Perform",
+             (void (BRepTools_Modifier::*)( const opencascade::handle<BRepTools_Modification> & ,  const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<void (BRepTools_Modifier::*)( const opencascade::handle<BRepTools_Modification> & ,  const opencascade::handle<Message_ProgressIndicator> &  ) >(&BRepTools_Modifier::Perform),
+             R"#(Performs the modifications described by <M>.)#"  , py::arg("M"),  py::arg("aProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(NULL))
+        .def("IsDone",
+             (Standard_Boolean (BRepTools_Modifier::*)() const) static_cast<Standard_Boolean (BRepTools_Modifier::*)() const>(&BRepTools_Modifier::IsDone),
+             R"#(Returns Standard_True if the modification has been computed successfully.)#" )
+        .def("IsMutableInput",
+             (Standard_Boolean (BRepTools_Modifier::*)() const) static_cast<Standard_Boolean (BRepTools_Modifier::*)() const>(&BRepTools_Modifier::IsMutableInput),
+             R"#(Returns the current mutable input state)#" )
+        .def("SetMutableInput",
+             (void (BRepTools_Modifier::*)( Standard_Boolean  ) ) static_cast<void (BRepTools_Modifier::*)( Standard_Boolean  ) >(&BRepTools_Modifier::SetMutableInput),
+             R"#(Sets the mutable input state If true then the input (original) shape can be modified during modification process)#"  , py::arg("theMutableInput"))
+        .def("ModifiedShape",
+             (const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const) static_cast<const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const>(&BRepTools_Modifier::ModifiedShape),
+             R"#(Returns the modified shape corresponding to <S>.)#"  , py::arg("S"))
+        .def("ModifiedShape",
+             (const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const) static_cast<const TopoDS_Shape & (BRepTools_Modifier::*)( const TopoDS_Shape &  ) const>(&BRepTools_Modifier::ModifiedShape),
+             R"#(Returns the modified shape corresponding to <S>.)#"  , py::arg("S"))
+        .def("IsDone",
+             (Standard_Boolean (BRepTools_Modifier::*)() const) static_cast<Standard_Boolean (BRepTools_Modifier::*)() const>(&BRepTools_Modifier::IsDone),
+             R"#(Returns Standard_True if the modification has been computed successfully.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepTools_Quilt , shared_ptr<BRepTools_Quilt>  >>(m.attr("BRepTools_Quilt"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Bind",
+             (void (BRepTools_Quilt::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) ) static_cast<void (BRepTools_Quilt::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) >(&BRepTools_Quilt::Bind),
+             R"#(Binds <Enew> to be the new edge instead of <Eold>.)#"  , py::arg("Eold"),  py::arg("Enew"))
+        .def("Bind",
+             (void (BRepTools_Quilt::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) ) static_cast<void (BRepTools_Quilt::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) >(&BRepTools_Quilt::Bind),
+             R"#(Binds <VNew> to be a new vertex instead of <Vold>.)#"  , py::arg("Vold"),  py::arg("Vnew"))
+        .def("Add",
+             (void (BRepTools_Quilt::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepTools_Quilt::*)( const TopoDS_Shape &  ) >(&BRepTools_Quilt::Add),
+             R"#(Add the faces of <S> to the Quilt, the faces containing bounded edges are copied.)#"  , py::arg("S"))
+        .def("IsCopied",
+             (Standard_Boolean (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const>(&BRepTools_Quilt::IsCopied),
+             R"#(Returns True if <S> has been copied (<S> is a vertex, an edge or a face))#"  , py::arg("S"))
+        .def("Copy",
+             (const TopoDS_Shape & (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const) static_cast<const TopoDS_Shape & (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const>(&BRepTools_Quilt::Copy),
+             R"#(Returns the shape substitued to <S> in the Quilt.)#"  , py::arg("S"))
+        .def("Shells",
+             (TopoDS_Shape (BRepTools_Quilt::*)() const) static_cast<TopoDS_Shape (BRepTools_Quilt::*)() const>(&BRepTools_Quilt::Shells),
+             R"#(Returns a Compound of shells made from the current set of faces. The shells will be flagged as closed or not closed.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BRepTools_ReShape ,opencascade::handle<BRepTools_ReShape>  , Standard_Transient >>(m.attr("BRepTools_ReShape"))
         .def(py::init<  >()  )
+    // methods
         .def("Clear",
              (void (BRepTools_ReShape::*)() ) static_cast<void (BRepTools_ReShape::*)() >(&BRepTools_ReShape::Clear),
              R"#(Clears all substitutions requests)#" )
@@ -431,53 +453,24 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BRepTools_ReShape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_ReShape::*)() const>(&BRepTools_ReShape::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_ReShape::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_ReShape::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepTools_NurbsConvertModification ,opencascade::handle<BRepTools_NurbsConvertModification>  , BRepTools_Modification >>(m.attr("BRepTools_NurbsConvertModification"))
-        .def(py::init<  >()  )
-        .def("NewSurface",
-             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_NurbsConvertModification::NewSurface),
-             R"#(Returns Standard_True if the face <F> has been modified. In this case, <S> is the new geometric support of the face, <L> the new location,<Tol> the new tolerance.<RevWires> has to be set to Standard_True when the modification reverses the normal of the surface.(the wires have to be reversed). <RevFace> has to be set to Standard_True if the orientation of the modified face changes in the shells which contain it. -- Here, <RevFace> will return Standard_True if the -- gp_Trsf is negative.)#"  , py::arg("F"),  py::arg("S"),  py::arg("L"),  py::arg("Tol"),  py::arg("RevWires"),  py::arg("RevFace"))
-        .def("NewCurve",
-             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewCurve),
-             R"#(Returns Standard_True if the edge <E> has been modified. In this case, <C> is the new geometric support of the edge, <L> the new location, <Tol> the new tolerance. Otherwise, returns Standard_False, and <C>, <L>, <Tol> are not significant.)#"  , py::arg("E"),  py::arg("C"),  py::arg("L"),  py::arg("Tol"))
-        .def("NewPoint",
-             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewPoint),
-             R"#(Returns Standard_True if the vertex <V> has been modified. In this case, <P> is the new geometric support of the vertex, <Tol> the new tolerance. Otherwise, returns Standard_False, and <P>, <Tol> are not significant.)#"  , py::arg("V"),  py::arg("P"),  py::arg("Tol"))
-        .def("NewCurve2d",
-             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewCurve2d),
-             R"#(Returns Standard_True if the edge <E> has a new curve on surface on the face <F>.In this case, <C> is the new geometric support of the edge, <L> the new location, <Tol> the new tolerance. Otherwise, returns Standard_False, and <C>, <L>, <Tol> are not significant.)#"  , py::arg("E"),  py::arg("F"),  py::arg("NewE"),  py::arg("NewF"),  py::arg("C"),  py::arg("Tol"))
-        .def("NewParameter",
-             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewParameter),
-             R"#(Returns Standard_True if the Vertex <V> has a new parameter on the edge <E>. In this case, <P> is the parameter, <Tol> the new tolerance. Otherwise, returns Standard_False, and <P>, <Tol> are not significant.)#"  , py::arg("V"),  py::arg("E"),  py::arg("P"),  py::arg("Tol"))
-        .def("Continuity",
-             (GeomAbs_Shape (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<GeomAbs_Shape (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) >(&BRepTools_NurbsConvertModification::Continuity),
-             R"#(Returns the continuity of <NewE> between <NewF1> and <NewF2>.)#"  , py::arg("E"),  py::arg("F1"),  py::arg("F2"),  py::arg("NewE"),  py::arg("NewF1"),  py::arg("NewF2"))
-        .def("GetUpdatedEdges",
-             (const TopTools_ListOfShape & (BRepTools_NurbsConvertModification::*)() const) static_cast<const TopTools_ListOfShape & (BRepTools_NurbsConvertModification::*)() const>(&BRepTools_NurbsConvertModification::GetUpdatedEdges),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepTools_NurbsConvertModification::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_NurbsConvertModification::*)() const>(&BRepTools_NurbsConvertModification::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_NurbsConvertModification::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_NurbsConvertModification::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepTools_ShapeSet ,std::unique_ptr<BRepTools_ShapeSet>  , TopTools_ShapeSet >>(m.attr("BRepTools_ShapeSet"))
+    static_cast<py::class_<BRepTools_ShapeSet , shared_ptr<BRepTools_ShapeSet>  , TopTools_ShapeSet >>(m.attr("BRepTools_ShapeSet"))
         .def(py::init< const Standard_Boolean >()  , py::arg("isWithTriangles")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const BRep_Builder &,const Standard_Boolean >()  , py::arg("B"),  py::arg("isWithTriangles")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
         .def("Clear",
              (void (BRepTools_ShapeSet::*)() ) static_cast<void (BRepTools_ShapeSet::*)() >(&BRepTools_ShapeSet::Clear),
              R"#(Clears the content of the set.)#" )
@@ -535,13 +528,45 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def("DumpPolygonOnTriangulation",
              (void (BRepTools_ShapeSet::*)( std::ostream &  ) const) static_cast<void (BRepTools_ShapeSet::*)( std::ostream &  ) const>(&BRepTools_ShapeSet::DumpPolygonOnTriangulation),
              R"#(Dumps the polygons on triangulation on the stream <OS>.)#"  , py::arg("OS"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepTools_WireExplorer ,std::unique_ptr<BRepTools_WireExplorer>  >>(m.attr("BRepTools_WireExplorer"))
+    static_cast<py::class_<BRepTools_Substitution , shared_ptr<BRepTools_Substitution>  >>(m.attr("BRepTools_Substitution"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Clear",
+             (void (BRepTools_Substitution::*)() ) static_cast<void (BRepTools_Substitution::*)() >(&BRepTools_Substitution::Clear),
+             R"#(Reset all the fields.)#" )
+        .def("Substitute",
+             (void (BRepTools_Substitution::*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepTools_Substitution::*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  ) >(&BRepTools_Substitution::Substitute),
+             R"#(<Oldshape> will be replaced by <NewShapes>.)#"  , py::arg("OldShape"),  py::arg("NewShapes"))
+        .def("Build",
+             (void (BRepTools_Substitution::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepTools_Substitution::*)( const TopoDS_Shape &  ) >(&BRepTools_Substitution::Build),
+             R"#(Build NewShape from <S> if its subshapes has modified.)#"  , py::arg("S"))
+        .def("IsCopied",
+             (Standard_Boolean (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const>(&BRepTools_Substitution::IsCopied),
+             R"#(Returns True if <S> has been replaced .)#"  , py::arg("S"))
+        .def("Copy",
+             (const TopTools_ListOfShape & (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const) static_cast<const TopTools_ListOfShape & (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const>(&BRepTools_Substitution::Copy),
+             R"#(Returns the set of shapes substitued to <S> .)#"  , py::arg("S"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepTools_WireExplorer , shared_ptr<BRepTools_WireExplorer>  >>(m.attr("BRepTools_WireExplorer"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire & >()  , py::arg("W") )
         .def(py::init< const TopoDS_Wire &,const TopoDS_Face & >()  , py::arg("W"),  py::arg("F") )
+    // methods
         .def("Init",
              (void (BRepTools_WireExplorer::*)( const TopoDS_Wire &  ) ) static_cast<void (BRepTools_WireExplorer::*)( const TopoDS_Wire &  ) >(&BRepTools_WireExplorer::Init),
              R"#(Initializes an exploration of the wire <W>.)#"  , py::arg("W"))
@@ -569,11 +594,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def("Clear",
              (void (BRepTools_WireExplorer::*)() ) static_cast<void (BRepTools_WireExplorer::*)() >(&BRepTools_WireExplorer::Clear),
              R"#(Clears the content of the explorer.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<BRepTools_GTrsfModification ,opencascade::handle<BRepTools_GTrsfModification>  , BRepTools_Modification >>(m.attr("BRepTools_GTrsfModification"))
         .def(py::init< const gp_GTrsf & >()  , py::arg("T") )
+    // methods
         .def("GTrsf",
              (gp_GTrsf & (BRepTools_GTrsfModification::*)() ) static_cast<gp_GTrsf & (BRepTools_GTrsfModification::*)() >(&BRepTools_GTrsfModification::GTrsf),
              R"#(Gives an access on the GTrsf.)#" )
@@ -598,91 +629,121 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BRepTools_GTrsfModification::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_GTrsfModification::*)() const>(&BRepTools_GTrsfModification::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_GTrsfModification::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_GTrsfModification::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepTools_Quilt ,std::unique_ptr<BRepTools_Quilt>  >>(m.attr("BRepTools_Quilt"))
+    static_cast<py::class_<BRepTools_NurbsConvertModification ,opencascade::handle<BRepTools_NurbsConvertModification>  , BRepTools_Modification >>(m.attr("BRepTools_NurbsConvertModification"))
         .def(py::init<  >()  )
-        .def("Bind",
-             (void (BRepTools_Quilt::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) ) static_cast<void (BRepTools_Quilt::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) >(&BRepTools_Quilt::Bind),
-             R"#(Binds <Enew> to be the new edge instead of <Eold>.)#"  , py::arg("Eold"),  py::arg("Enew"))
-        .def("Bind",
-             (void (BRepTools_Quilt::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) ) static_cast<void (BRepTools_Quilt::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) >(&BRepTools_Quilt::Bind),
-             R"#(Binds <VNew> to be a new vertex instead of <Vold>.)#"  , py::arg("Vold"),  py::arg("Vnew"))
-        .def("Add",
-             (void (BRepTools_Quilt::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepTools_Quilt::*)( const TopoDS_Shape &  ) >(&BRepTools_Quilt::Add),
-             R"#(Add the faces of <S> to the Quilt, the faces containing bounded edges are copied.)#"  , py::arg("S"))
-        .def("IsCopied",
-             (Standard_Boolean (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const>(&BRepTools_Quilt::IsCopied),
-             R"#(Returns True if <S> has been copied (<S> is a vertex, an edge or a face))#"  , py::arg("S"))
-        .def("Copy",
-             (const TopoDS_Shape & (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const) static_cast<const TopoDS_Shape & (BRepTools_Quilt::*)( const TopoDS_Shape &  ) const>(&BRepTools_Quilt::Copy),
-             R"#(Returns the shape substitued to <S> in the Quilt.)#"  , py::arg("S"))
-        .def("Shells",
-             (TopoDS_Shape (BRepTools_Quilt::*)() const) static_cast<TopoDS_Shape (BRepTools_Quilt::*)() const>(&BRepTools_Quilt::Shells),
-             R"#(Returns a Compound of shells made from the current set of faces. The shells will be flagged as closed or not closed.)#" )
+    // methods
+        .def("NewSurface",
+             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_NurbsConvertModification::NewSurface),
+             R"#(Returns Standard_True if the face <F> has been modified. In this case, <S> is the new geometric support of the face, <L> the new location,<Tol> the new tolerance.<RevWires> has to be set to Standard_True when the modification reverses the normal of the surface.(the wires have to be reversed). <RevFace> has to be set to Standard_True if the orientation of the modified face changes in the shells which contain it. -- Here, <RevFace> will return Standard_True if the -- gp_Trsf is negative.)#"  , py::arg("F"),  py::arg("S"),  py::arg("L"),  py::arg("Tol"),  py::arg("RevWires"),  py::arg("RevFace"))
+        .def("NewCurve",
+             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewCurve),
+             R"#(Returns Standard_True if the edge <E> has been modified. In this case, <C> is the new geometric support of the edge, <L> the new location, <Tol> the new tolerance. Otherwise, returns Standard_False, and <C>, <L>, <Tol> are not significant.)#"  , py::arg("E"),  py::arg("C"),  py::arg("L"),  py::arg("Tol"))
+        .def("NewPoint",
+             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewPoint),
+             R"#(Returns Standard_True if the vertex <V> has been modified. In this case, <P> is the new geometric support of the vertex, <Tol> the new tolerance. Otherwise, returns Standard_False, and <P>, <Tol> are not significant.)#"  , py::arg("V"),  py::arg("P"),  py::arg("Tol"))
+        .def("NewCurve2d",
+             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewCurve2d),
+             R"#(Returns Standard_True if the edge <E> has a new curve on surface on the face <F>.In this case, <C> is the new geometric support of the edge, <L> the new location, <Tol> the new tolerance. Otherwise, returns Standard_False, and <C>, <L>, <Tol> are not significant.)#"  , py::arg("E"),  py::arg("F"),  py::arg("NewE"),  py::arg("NewF"),  py::arg("C"),  py::arg("Tol"))
+        .def("NewParameter",
+             (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools_NurbsConvertModification::NewParameter),
+             R"#(Returns Standard_True if the Vertex <V> has a new parameter on the edge <E>. In this case, <P> is the parameter, <Tol> the new tolerance. Otherwise, returns Standard_False, and <P>, <Tol> are not significant.)#"  , py::arg("V"),  py::arg("E"),  py::arg("P"),  py::arg("Tol"))
+        .def("Continuity",
+             (GeomAbs_Shape (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<GeomAbs_Shape (BRepTools_NurbsConvertModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) >(&BRepTools_NurbsConvertModification::Continuity),
+             R"#(Returns the continuity of <NewE> between <NewF1> and <NewF2>.)#"  , py::arg("E"),  py::arg("F1"),  py::arg("F2"),  py::arg("NewE"),  py::arg("NewF1"),  py::arg("NewF2"))
+        .def("GetUpdatedEdges",
+             (const TopTools_ListOfShape & (BRepTools_NurbsConvertModification::*)() const) static_cast<const TopTools_ListOfShape & (BRepTools_NurbsConvertModification::*)() const>(&BRepTools_NurbsConvertModification::GetUpdatedEdges),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepTools_NurbsConvertModification::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_NurbsConvertModification::*)() const>(&BRepTools_NurbsConvertModification::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_NurbsConvertModification::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_NurbsConvertModification::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepTools_Substitution ,std::unique_ptr<BRepTools_Substitution>  >>(m.attr("BRepTools_Substitution"))
-        .def(py::init<  >()  )
-        .def("Clear",
-             (void (BRepTools_Substitution::*)() ) static_cast<void (BRepTools_Substitution::*)() >(&BRepTools_Substitution::Clear),
-             R"#(Reset all the fields.)#" )
-        .def("Substitute",
-             (void (BRepTools_Substitution::*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepTools_Substitution::*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  ) >(&BRepTools_Substitution::Substitute),
-             R"#(<Oldshape> will be replaced by <NewShapes>.)#"  , py::arg("OldShape"),  py::arg("NewShapes"))
-        .def("Build",
-             (void (BRepTools_Substitution::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepTools_Substitution::*)( const TopoDS_Shape &  ) >(&BRepTools_Substitution::Build),
-             R"#(Build NewShape from <S> if its subshapes has modified.)#"  , py::arg("S"))
-        .def("IsCopied",
-             (Standard_Boolean (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const>(&BRepTools_Substitution::IsCopied),
-             R"#(Returns True if <S> has been replaced .)#"  , py::arg("S"))
-        .def("Copy",
-             (const TopTools_ListOfShape & (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const) static_cast<const TopTools_ListOfShape & (BRepTools_Substitution::*)( const TopoDS_Shape &  ) const>(&BRepTools_Substitution::Copy),
-             R"#(Returns the set of shapes substitued to <S> .)#"  , py::arg("S"))
+    static_cast<py::class_<BRepTools_TrsfModification ,opencascade::handle<BRepTools_TrsfModification>  , BRepTools_Modification >>(m.attr("BRepTools_TrsfModification"))
+        .def(py::init< const gp_Trsf & >()  , py::arg("T") )
+    // methods
+        .def("Trsf",
+             (gp_Trsf & (BRepTools_TrsfModification::*)() ) static_cast<gp_Trsf & (BRepTools_TrsfModification::*)() >(&BRepTools_TrsfModification::Trsf),
+             R"#(Provides access to the gp_Trsf associated with this modification. The transformation can be changed.)#" )
+        .def("NewSurface",
+             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_TrsfModification::NewSurface),
+             R"#(Returns true if the face F has been modified. If the face has been modified: - S is the new geometry of the face, - L is its new location, and - Tol is the new tolerance. RevWires is set to true when the modification reverses the normal of the surface (the wires have to be reversed). RevFace is set to true if the orientation of the modified face changes in the shells which contain it. For this class, RevFace returns true if the gp_Trsf associated with this modification is negative.)#"  , py::arg("F"),  py::arg("S"),  py::arg("L"),  py::arg("Tol"),  py::arg("RevWires"),  py::arg("RevFace"))
+        .def("NewCurve",
+             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  TopLoc_Location & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewCurve),
+             R"#(Returns true if the edge E has been modified. If the edge has been modified: - C is the new geometric support of the edge, - L is the new location, and - Tol is the new tolerance. If the edge has not been modified, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("C"),  py::arg("L"),  py::arg("Tol"))
+        .def("NewPoint",
+             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  gp_Pnt & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewPoint),
+             R"#(Returns true if the vertex V has been modified. If the vertex has been modified: - P is the new geometry of the vertex, and - Tol is the new tolerance. If the vertex has not been modified this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("P"),  py::arg("Tol"))
+        .def("NewCurve2d",
+             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewCurve2d),
+             R"#(Returns true if the edge E has a new curve on surface on the face F. If a new curve exists: - C is the new geometric support of the edge, - L is the new location, and - Tol the new tolerance. If no new curve exists, this function returns false, and the values of C, L and Tol are not significant.)#"  , py::arg("E"),  py::arg("F"),  py::arg("NewE"),  py::arg("NewF"),  py::arg("C"),  py::arg("Tol"))
+        .def("NewParameter",
+             (Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (BRepTools_TrsfModification::*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepTools_TrsfModification::NewParameter),
+             R"#(Returns true if the Vertex V has a new parameter on the edge E. If a new parameter exists: - P is the parameter, and - Tol is the new tolerance. If no new parameter exists, this function returns false, and the values of P and Tol are not significant.)#"  , py::arg("V"),  py::arg("E"),  py::arg("P"),  py::arg("Tol"))
+        .def("Continuity",
+             (GeomAbs_Shape (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<GeomAbs_Shape (BRepTools_TrsfModification::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const TopoDS_Face &  ) >(&BRepTools_TrsfModification::Continuity),
+             R"#(Returns the continuity of <NewE> between <NewF1> and <NewF2>.)#"  , py::arg("E"),  py::arg("F1"),  py::arg("F2"),  py::arg("NewE"),  py::arg("NewF1"),  py::arg("NewF2"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepTools_TrsfModification::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepTools_TrsfModification::*)() const>(&BRepTools_TrsfModification::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepTools_TrsfModification::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepTools_TrsfModification::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
 // ./opencascade/BRepTools.hxx
-// ./opencascade/BRepTools_ReShape.hxx
-// ./opencascade/BRepTools_GTrsfModification.hxx
-// ./opencascade/BRepTools_NurbsConvertModification.hxx
-// ./opencascade/BRepTools_Modification.hxx
+// ./opencascade/BRepTools_MapOfVertexPnt2d.hxx
+// ./opencascade/BRepTools_TrsfModification.hxx
+// ./opencascade/BRepTools_ShapeSet.hxx
 // ./opencascade/BRepTools_Substitution.hxx
 // ./opencascade/BRepTools_Modifier.hxx
-// ./opencascade/BRepTools_ShapeSet.hxx
-// ./opencascade/BRepTools_MapOfVertexPnt2d.hxx
-// ./opencascade/BRepTools_History.hxx
+// ./opencascade/BRepTools_NurbsConvertModification.hxx
+// ./opencascade/BRepTools_Modification.hxx
+// ./opencascade/BRepTools_ReShape.hxx
 // ./opencascade/BRepTools_Quilt.hxx
-// ./opencascade/BRepTools_TrsfModification.hxx
-// ./opencascade/BRepTools_DataMapIteratorOfMapOfVertexPnt2d.hxx
+// ./opencascade/BRepTools_History.hxx
 // ./opencascade/BRepTools_WireExplorer.hxx
+// ./opencascade/BRepTools_DataMapIteratorOfMapOfVertexPnt2d.hxx
+// ./opencascade/BRepTools_GTrsfModification.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepTools.hxx
-// ./opencascade/BRepTools_ReShape.hxx
-// ./opencascade/BRepTools_GTrsfModification.hxx
-// ./opencascade/BRepTools_NurbsConvertModification.hxx
-// ./opencascade/BRepTools_Modification.hxx
-// ./opencascade/BRepTools_Substitution.hxx
-// ./opencascade/BRepTools_Modifier.hxx
-// ./opencascade/BRepTools_ShapeSet.hxx
-// ./opencascade/BRepTools_MapOfVertexPnt2d.hxx
     register_template_NCollection_DataMap<TopoDS_Shape, TColgp_SequenceOfPnt2d, TopTools_ShapeMapHasher>(m,"BRepTools_MapOfVertexPnt2d");  
-// ./opencascade/BRepTools_History.hxx
-// ./opencascade/BRepTools_Quilt.hxx
-// ./opencascade/BRepTools_TrsfModification.hxx
-// ./opencascade/BRepTools_DataMapIteratorOfMapOfVertexPnt2d.hxx
-// ./opencascade/BRepTools_WireExplorer.hxx
 
 
 // exceptions

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -43,8 +46,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurvesFace"));
 // classes
 
 
-    static_cast<py::class_<IntCurvesFace_Intersector ,std::unique_ptr<IntCurvesFace_Intersector>  >>(m.attr("IntCurvesFace_Intersector"))
+    static_cast<py::class_<IntCurvesFace_Intersector , shared_ptr<IntCurvesFace_Intersector>  >>(m.attr("IntCurvesFace_Intersector"))
         .def(py::init< const TopoDS_Face &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("F"),  py::arg("aTol"),  py::arg("aRestr")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("UseBToler")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
         .def("Perform",
              (void (IntCurvesFace_Intersector::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntCurvesFace_Intersector::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) >(&IntCurvesFace_Intersector::Perform),
              R"#(Perform the intersection between the segment L and the loaded face.)#"  , py::arg("L"),  py::arg("PInf"),  py::arg("PSup"))
@@ -129,11 +133,17 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurvesFace"));
         .def("Face",
              (const TopoDS_Face & (IntCurvesFace_Intersector::*)() const) static_cast<const TopoDS_Face & (IntCurvesFace_Intersector::*)() const>(&IntCurvesFace_Intersector::Face),
              R"#(Returns the significant face used to determine the intersection.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IntCurvesFace_ShapeIntersector ,std::unique_ptr<IntCurvesFace_ShapeIntersector>  >>(m.attr("IntCurvesFace_ShapeIntersector"))
+    static_cast<py::class_<IntCurvesFace_ShapeIntersector , shared_ptr<IntCurvesFace_ShapeIntersector>  >>(m.attr("IntCurvesFace_ShapeIntersector"))
         .def(py::init<  >()  )
+    // methods
         .def("Load",
              (void (IntCurvesFace_ShapeIntersector::*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (IntCurvesFace_ShapeIntersector::*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&IntCurvesFace_ShapeIntersector::Load),
              R"#(None)#"  , py::arg("Sh"),  py::arg("Tol"))
@@ -206,6 +216,11 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurvesFace"));
         .def("IsDone",
              (Standard_Boolean (IntCurvesFace_ShapeIntersector::*)() const) static_cast<Standard_Boolean (IntCurvesFace_ShapeIntersector::*)() const>(&IntCurvesFace_ShapeIntersector::IsDone),
              R"#(True is returned when the intersection have been computed.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -215,8 +230,6 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurvesFace"));
 // operators
 
 // register typdefs
-// ./opencascade/IntCurvesFace_Intersector.hxx
-// ./opencascade/IntCurvesFace_ShapeIntersector.hxx
 
 
 // exceptions

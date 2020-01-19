@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -33,9 +36,12 @@ py::module m = static_cast<py::module>(main_module.attr("Precision"));
 
 // classes
 
-    register_default_constructor<Precision ,std::unique_ptr<Precision>>(m,"Precision");
+    register_default_constructor<Precision , shared_ptr<Precision>>(m,"Precision");
 
-    static_cast<py::class_<Precision ,std::unique_ptr<Precision>  >>(m.attr("Precision"))
+    static_cast<py::class_<Precision , shared_ptr<Precision>  >>(m.attr("Precision"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Angular_s",
                     (Standard_Real (*)() ) static_cast<Standard_Real (*)() >(&Precision::Angular),
                     R"#(Returns the recommended precision value when checking the equality of two angles (given in radians). Standard_Real Angle1 = ... , Angle2 = ... ; If ( Abs( Angle2 - Angle1 ) < Precision::Angular() ) ... The tolerance of angular equality may be used to check the parallelism of two vectors : gp_Vec V1, V2 ; V1 = ... V2 = ... If ( V1.IsParallel (V2, Precision::Angular() ) ) ... The tolerance of angular equality is equal to 1.e-12. Note : The tolerance of angular equality can be used when working with scalar products or cross products since sines and angles are equivalent for small angles. Therefore, in order to check whether two unit vectors are perpendicular : gp_Dir D1, D2 ; D1 = ... D2 = ... you can use : If ( Abs( D1.D2 ) < Precision::Angular() ) ... (although the function IsNormal does exist).)#" )
@@ -90,6 +96,9 @@ py::module m = static_cast<py::module>(main_module.attr("Precision"));
         .def_static("Infinite_s",
                     (Standard_Real (*)() ) static_cast<Standard_Real (*)() >(&Precision::Infinite),
                     R"#(Returns a big number that can be considered as infinite. Use -Infinite() for a negative big number.)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -98,7 +107,6 @@ py::module m = static_cast<py::module>(main_module.attr("Precision"));
 // operators
 
 // register typdefs
-// ./opencascade/Precision.hxx
 
 
 // exceptions

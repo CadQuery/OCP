@@ -16,24 +16,24 @@ namespace py = pybind11;
 #include <ChFi2d_Builder.hxx>
 
 // module includes
-#include <ChFi2d.hxx>
-#include <ChFi2d_ChamferAPI.hxx>
-#include <ChFi2d_FilletAlgo.hxx>
-#include <ChFi2d_FilletAPI.hxx>
-#include <ChFi2d_ConstructionError.hxx>
 #include <ChFi2d_Builder.hxx>
+#include <ChFi2d_FilletAPI.hxx>
+#include <ChFi2d.hxx>
+#include <ChFi2d_ConstructionError.hxx>
 #include <ChFi2d_AnaFilletAlgo.hxx>
+#include <ChFi2d_FilletAlgo.hxx>
+#include <ChFi2d_ChamferAPI.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/ChFi2d.hxx
-// ./opencascade/ChFi2d_ChamferAPI.hxx
-// ./opencascade/ChFi2d_FilletAlgo.hxx
-// ./opencascade/ChFi2d_FilletAPI.hxx
-// ./opencascade/ChFi2d_ConstructionError.hxx
 // ./opencascade/ChFi2d_Builder.hxx
+// ./opencascade/ChFi2d_FilletAPI.hxx
+// ./opencascade/ChFi2d.hxx
+// ./opencascade/ChFi2d_ConstructionError.hxx
 // ./opencascade/ChFi2d_AnaFilletAlgo.hxx
+// ./opencascade/ChFi2d_FilletAlgo.hxx
+// ./opencascade/ChFi2d_ChamferAPI.hxx
 
 // user-defined post

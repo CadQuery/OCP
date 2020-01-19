@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,9 +13,9 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Standard_OutOfRange.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <Standard_OutOfRange.hxx>
 
 // module includes
 #include <Sweep_NumShape.hxx>
@@ -39,9 +42,10 @@ py::module m = static_cast<py::module>(main_module.attr("Sweep"));
 // classes
 
 
-    static_cast<py::class_<Sweep_NumShape ,std::unique_ptr<Sweep_NumShape>  >>(m.attr("Sweep_NumShape"))
+    static_cast<py::class_<Sweep_NumShape , shared_ptr<Sweep_NumShape>  >>(m.attr("Sweep_NumShape"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const TopAbs_ShapeEnum,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Index"),  py::arg("Type"),  py::arg("Closed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("BegInf")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("EndInf")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
         .def("Init",
              (void (Sweep_NumShape::*)( const Standard_Integer ,  const TopAbs_ShapeEnum ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (Sweep_NumShape::*)( const Standard_Integer ,  const TopAbs_ShapeEnum ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&Sweep_NumShape::Init),
              R"#(Reinitialize a simple indexed edge.)#"  , py::arg("Index"),  py::arg("Type"),  py::arg("Closed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("BegInf")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("EndInf")=static_cast<const Standard_Boolean>(Standard_False))
@@ -78,11 +82,52 @@ py::module m = static_cast<py::module>(main_module.attr("Sweep"));
         .def("EndInfinite",
              (Standard_Boolean (Sweep_NumShape::*)() const) static_cast<Standard_Boolean (Sweep_NumShape::*)() const>(&Sweep_NumShape::EndInfinite),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Sweep_NumShapeTool ,std::unique_ptr<Sweep_NumShapeTool>  >>(m.attr("Sweep_NumShapeTool"))
+    static_cast<py::class_<Sweep_NumShapeIterator , shared_ptr<Sweep_NumShapeIterator>  >>(m.attr("Sweep_NumShapeIterator"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Init",
+             (void (Sweep_NumShapeIterator::*)( const Sweep_NumShape &  ) ) static_cast<void (Sweep_NumShapeIterator::*)( const Sweep_NumShape &  ) >(&Sweep_NumShapeIterator::Init),
+             R"#(Resest the NumShapeIterator on sub-shapes of <aShape>.)#"  , py::arg("aShape"))
+        .def("More",
+             (Standard_Boolean (Sweep_NumShapeIterator::*)() const) static_cast<Standard_Boolean (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::More),
+             R"#(Returns True if there is a current sub-shape.)#" )
+        .def("Next",
+             (void (Sweep_NumShapeIterator::*)() ) static_cast<void (Sweep_NumShapeIterator::*)() >(&Sweep_NumShapeIterator::Next),
+             R"#(Moves to the next sub-shape.)#" )
+        .def("Value",
+             (const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const) static_cast<const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Value),
+             R"#(Returns the current sub-shape.)#" )
+        .def("Orientation",
+             (TopAbs_Orientation (Sweep_NumShapeIterator::*)() const) static_cast<TopAbs_Orientation (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Orientation),
+             R"#(Returns the orientation of the current sub-shape.)#" )
+        .def("More",
+             (Standard_Boolean (Sweep_NumShapeIterator::*)() const) static_cast<Standard_Boolean (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::More),
+             R"#(Returns True if there is a current sub-shape.)#" )
+        .def("Value",
+             (const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const) static_cast<const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Value),
+             R"#(Returns the current sub-shape.)#" )
+        .def("Orientation",
+             (TopAbs_Orientation (Sweep_NumShapeIterator::*)() const) static_cast<TopAbs_Orientation (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Orientation),
+             R"#(Returns the orientation of the current sub-shape.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Sweep_NumShapeTool , shared_ptr<Sweep_NumShapeTool>  >>(m.attr("Sweep_NumShapeTool"))
         .def(py::init< const Sweep_NumShape & >()  , py::arg("aShape") )
+    // methods
         .def("NbShapes",
              (Standard_Integer (Sweep_NumShapeTool::*)() const) static_cast<Standard_Integer (Sweep_NumShapeTool::*)() const>(&Sweep_NumShapeTool::NbShapes),
              R"#(Returns the number of subshapes in the shape.)#" )
@@ -110,48 +155,21 @@ py::module m = static_cast<py::module>(main_module.attr("Sweep"));
         .def("LastVertex",
              (Sweep_NumShape (Sweep_NumShapeTool::*)() const) static_cast<Sweep_NumShape (Sweep_NumShapeTool::*)() const>(&Sweep_NumShapeTool::LastVertex),
              R"#(Returns the last vertex.)#" )
-;
-
-
-    static_cast<py::class_<Sweep_NumShapeIterator ,std::unique_ptr<Sweep_NumShapeIterator>  >>(m.attr("Sweep_NumShapeIterator"))
-        .def(py::init<  >()  )
-        .def("Init",
-             (void (Sweep_NumShapeIterator::*)( const Sweep_NumShape &  ) ) static_cast<void (Sweep_NumShapeIterator::*)( const Sweep_NumShape &  ) >(&Sweep_NumShapeIterator::Init),
-             R"#(Resest the NumShapeIterator on sub-shapes of <aShape>.)#"  , py::arg("aShape"))
-        .def("More",
-             (Standard_Boolean (Sweep_NumShapeIterator::*)() const) static_cast<Standard_Boolean (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::More),
-             R"#(Returns True if there is a current sub-shape.)#" )
-        .def("Next",
-             (void (Sweep_NumShapeIterator::*)() ) static_cast<void (Sweep_NumShapeIterator::*)() >(&Sweep_NumShapeIterator::Next),
-             R"#(Moves to the next sub-shape.)#" )
-        .def("Value",
-             (const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const) static_cast<const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Value),
-             R"#(Returns the current sub-shape.)#" )
-        .def("Orientation",
-             (TopAbs_Orientation (Sweep_NumShapeIterator::*)() const) static_cast<TopAbs_Orientation (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Orientation),
-             R"#(Returns the orientation of the current sub-shape.)#" )
-        .def("More",
-             (Standard_Boolean (Sweep_NumShapeIterator::*)() const) static_cast<Standard_Boolean (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::More),
-             R"#(Returns True if there is a current sub-shape.)#" )
-        .def("Value",
-             (const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const) static_cast<const Sweep_NumShape & (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Value),
-             R"#(Returns the current sub-shape.)#" )
-        .def("Orientation",
-             (TopAbs_Orientation (Sweep_NumShapeIterator::*)() const) static_cast<TopAbs_Orientation (Sweep_NumShapeIterator::*)() const>(&Sweep_NumShapeIterator::Orientation),
-             R"#(Returns the orientation of the current sub-shape.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/Sweep_NumShapeTool.hxx
 // ./opencascade/Sweep_NumShape.hxx
 // ./opencascade/Sweep_NumShapeIterator.hxx
-// ./opencascade/Sweep_NumShapeTool.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Sweep_NumShape.hxx
-// ./opencascade/Sweep_NumShapeIterator.hxx
-// ./opencascade/Sweep_NumShapeTool.hxx
 
 
 // exceptions

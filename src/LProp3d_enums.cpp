@@ -11,6 +11,13 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
+#include <Adaptor3d_HCurve.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <LProp3d_CurveTool.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
@@ -18,13 +25,6 @@ namespace py = pybind11;
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <LProp3d_SurfaceTool.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <LProp3d_CurveTool.hxx>
 
 // module includes
 #include <LProp3d_CLProps.hxx>
@@ -52,17 +52,13 @@ py::module m = main_module.def_submodule("LProp3d", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<LProp3d_SurfaceTool ,std::unique_ptr<LProp3d_SurfaceTool>  >(m,"LProp3d_SurfaceTool",R"#(None)#");
-    py::class_<LProp3d_CurveTool ,std::unique_ptr<LProp3d_CurveTool>  >(m,"LProp3d_CurveTool",R"#(None)#");
-    py::class_<LProp3d_SLProps ,std::unique_ptr<LProp3d_SLProps>  >(m,"LProp3d_SLProps",R"#(None)#");
-    py::class_<LProp3d_CLProps ,std::unique_ptr<LProp3d_CLProps>  >(m,"LProp3d_CLProps",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/LProp3d_SurfaceTool.hxx
-// ./opencascade/LProp3d_SLProps.hxx
-// ./opencascade/LProp3d_CurveTool.hxx
-// ./opencascade/LProp3d_CLProps.hxx
+
+// classes forward declarations only
+    py::class_<LProp3d_CLProps , shared_ptr<LProp3d_CLProps>  >(m,"LProp3d_CLProps",R"#(None)#");
+    py::class_<LProp3d_CurveTool , shared_ptr<LProp3d_CurveTool>  >(m,"LProp3d_CurveTool",R"#(None)#");
+    py::class_<LProp3d_SLProps , shared_ptr<LProp3d_SLProps>  >(m,"LProp3d_SLProps",R"#(None)#");
+    py::class_<LProp3d_SurfaceTool , shared_ptr<LProp3d_SurfaceTool>  >(m,"LProp3d_SurfaceTool",R"#(None)#");
 
 };
 

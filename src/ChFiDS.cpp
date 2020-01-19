@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -14,7 +17,9 @@ namespace py = pybind11;
 #include <ChFiDS_Spine.hxx>
 #include <Geom2d_Curve.hxx>
 #include <TopoDS_Vertex.hxx>
+#include <TopoDS_Vertex.hxx>
 #include <Law_Composite.hxx>
+#include <Geom2d_Curve.hxx>
 #include <ChFiDS_SurfData.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <gp_Lin.hxx>
@@ -24,8 +29,6 @@ namespace py = pybind11;
 #include <gp_Parab.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Geom2d_Curve.hxx>
 
 // module includes
 #include <ChFiDS_ChamfMethod.hxx>
@@ -59,7 +62,19 @@ namespace py = pybind11;
 #include <ChFiDS_SurfData.hxx>
 
 // template related includes
+// ./opencascade/ChFiDS_SecArray1.hxx
+#include "NCollection.hxx"
 // ./opencascade/ChFiDS_SequenceOfSurfData.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfStripe.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfStripe.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfHElSpine.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfHElSpine.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_IndexedDataMapOfVertexListOfStripe.hxx
 #include "NCollection.hxx"
 // ./opencascade/ChFiDS_Regularities.hxx
 #include "NCollection.hxx"
@@ -67,19 +82,7 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/ChFiDS_StripeArray1.hxx
 #include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfHElSpine.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfHElSpine.hxx
-#include "NCollection.hxx"
 // ./opencascade/ChFiDS_SequenceOfSpine.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_IndexedDataMapOfVertexListOfStripe.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_SecArray1.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfStripe.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfStripe.hxx
 #include "NCollection.hxx"
 
 
@@ -100,8 +103,32 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
 // classes
 
 
-    static_cast<py::class_<ChFiDS_CommonPoint ,std::unique_ptr<ChFiDS_CommonPoint>  >>(m.attr("ChFiDS_CommonPoint"))
+    static_cast<py::class_<ChFiDS_CircSection , shared_ptr<ChFiDS_CircSection>  >>(m.attr("ChFiDS_CircSection"))
         .def(py::init<  >()  )
+    // methods
+        .def("Set",
+             (void (ChFiDS_CircSection::*)( const gp_Circ & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_CircSection::*)( const gp_Circ & ,  const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_CircSection::Set),
+             R"#(None)#"  , py::arg("C"),  py::arg("F"),  py::arg("L"))
+        .def("Set",
+             (void (ChFiDS_CircSection::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_CircSection::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_CircSection::Set),
+             R"#(None)#"  , py::arg("C"),  py::arg("F"),  py::arg("L"))
+    // methods using call by reference i.s.o. return
+        .def("Get",
+             []( ChFiDS_CircSection &self , gp_Circ & C ){ Standard_Real  F; Standard_Real  L; self.Get(C,F,L); return std::make_tuple(F,L); },
+             R"#(None)#"  , py::arg("C"))
+        .def("Get",
+             []( ChFiDS_CircSection &self , gp_Lin & C ){ Standard_Real  F; Standard_Real  L; self.Get(C,F,L); return std::make_tuple(F,L); },
+             R"#(None)#"  , py::arg("C"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_CommonPoint , shared_ptr<ChFiDS_CommonPoint>  >>(m.attr("ChFiDS_CommonPoint"))
+        .def(py::init<  >()  )
+    // methods
         .def("Reset",
              (void (ChFiDS_CommonPoint::*)() ) static_cast<void (ChFiDS_CommonPoint::*)() >(&ChFiDS_CommonPoint::Reset),
              R"#(default value for all fields)#" )
@@ -189,517 +216,17 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("IsOnArc",
              (Standard_Boolean (ChFiDS_CommonPoint::*)() const) static_cast<Standard_Boolean (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::IsOnArc),
              R"#(Returns TRUE if the point is a on an edge of the initial restriction facet of the surface.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ChFiDS_Stripe ,opencascade::handle<ChFiDS_Stripe>  , Standard_Transient >>(m.attr("ChFiDS_Stripe"))
+    static_cast<py::class_<ChFiDS_ElSpine , shared_ptr<ChFiDS_ElSpine>  , Adaptor3d_Curve >>(m.attr("ChFiDS_ElSpine"))
         .def(py::init<  >()  )
-        .def("Reset",
-             (void (ChFiDS_Stripe::*)() ) static_cast<void (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::Reset),
-             R"#(Reset everything except Spine.)#" )
-        .def("SetOfSurfData",
-             (const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::SetOfSurfData),
-             R"#(None)#" )
-        .def("Spine",
-             (const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Spine),
-             R"#(None)#" )
-        .def("OrientationOnFace1",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace1),
-             R"#(None)#" )
-        .def("OrientationOnFace2",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace2),
-             R"#(None)#" )
-        .def("Choix",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Choix),
-             R"#(None)#" )
-        .def("ChangeSetOfSurfData",
-             (opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSetOfSurfData),
-             R"#(None)#" )
-        .def("ChangeSpine",
-             (opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSpine),
-             R"#(None)#" )
-        .def("OrientationOnFace1",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace1),
-             R"#(None)#"  , py::arg("Or1"))
-        .def("OrientationOnFace2",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace2),
-             R"#(None)#"  , py::arg("Or2"))
-        .def("Choix",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::Choix),
-             R"#(None)#"  , py::arg("C"))
-        .def("FirstParameters",
-             (void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_Stripe::FirstParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("LastParameters",
-             (void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_Stripe::LastParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("ChangeFirstParameters",
-             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeFirstParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("ChangeLastParameters",
-             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeLastParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("FirstCurve",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstCurve),
-             R"#(None)#" )
-        .def("LastCurve",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastCurve),
-             R"#(None)#" )
-        .def("ChangeFirstCurve",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeFirstCurve),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeLastCurve",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeLastCurve),
-             R"#(None)#"  , py::arg("Index"))
-        .def("FirstPCurve",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurve),
-             R"#(None)#" )
-        .def("LastPCurve",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurve),
-             R"#(None)#" )
-        .def("ChangeFirstPCurve",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeFirstPCurve),
-             R"#(None)#" )
-        .def("ChangeLastPCurve",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeLastPCurve),
-             R"#(None)#" )
-        .def("FirstPCurveOrientation",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurveOrientation),
-             R"#(None)#" )
-        .def("LastPCurveOrientation",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurveOrientation),
-             R"#(None)#" )
-        .def("FirstPCurveOrientation",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::FirstPCurveOrientation),
-             R"#(None)#"  , py::arg("O"))
-        .def("LastPCurveOrientation",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::LastPCurveOrientation),
-             R"#(None)#"  , py::arg("O"))
-        .def("IndexFirstPointOnS1",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS1),
-             R"#(None)#" )
-        .def("IndexFirstPointOnS2",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS2),
-             R"#(None)#" )
-        .def("IndexLastPointOnS1",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS1),
-             R"#(None)#" )
-        .def("IndexLastPointOnS2",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS2),
-             R"#(None)#" )
-        .def("ChangeIndexFirstPointOnS1",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS1),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeIndexFirstPointOnS2",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS2),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeIndexLastPointOnS1",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS1),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeIndexLastPointOnS2",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS2),
-             R"#(None)#"  , py::arg("Index"))
-        .def("Parameters",
-             (void (ChFiDS_Stripe::*)( const Standard_Boolean ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_Stripe::*)( const Standard_Boolean ,  Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_Stripe::Parameters),
-             R"#(None)#"  , py::arg("First"),  py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("SetParameters",
-             (void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::SetParameters),
-             R"#(None)#"  , py::arg("First"),  py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("Curve",
-             (Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::Curve),
-             R"#(None)#"  , py::arg("First"))
-        .def("SetCurve",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&ChFiDS_Stripe::SetCurve),
-             R"#(None)#"  , py::arg("Index"),  py::arg("First"))
-        .def("PCurve",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::PCurve),
-             R"#(None)#"  , py::arg("First"))
-        .def("ChangePCurve",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) >(&ChFiDS_Stripe::ChangePCurve),
-             R"#(None)#"  , py::arg("First"))
-        .def("Orientation",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Integer  ) const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Integer  ) const>(&ChFiDS_Stripe::Orientation),
-             R"#(None)#"  , py::arg("OnS"))
-        .def("SetOrientation",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Integer  ) >(&ChFiDS_Stripe::SetOrientation),
-             R"#(None)#"  , py::arg("Or"),  py::arg("OnS"))
-        .def("Orientation",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::Orientation),
-             R"#(None)#"  , py::arg("First"))
-        .def("SetOrientation",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Boolean  ) >(&ChFiDS_Stripe::SetOrientation),
-             R"#(None)#"  , py::arg("Or"),  py::arg("First"))
-        .def("IndexPoint",
-             (Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) const>(&ChFiDS_Stripe::IndexPoint),
-             R"#(None)#"  , py::arg("First"),  py::arg("OnS"))
-        .def("SetIndexPoint",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) >(&ChFiDS_Stripe::SetIndexPoint),
-             R"#(None)#"  , py::arg("Index"),  py::arg("First"),  py::arg("OnS"))
-        .def("SolidIndex",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::SolidIndex),
-             R"#(None)#" )
-        .def("SetSolidIndex",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::SetSolidIndex),
-             R"#(None)#"  , py::arg("Index"))
-        .def("InDS",
-             (void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) >(&ChFiDS_Stripe::InDS),
-             R"#(Set nb of SurfData's at end put in DS)#"  , py::arg("First"),  py::arg("Nb")=static_cast<const Standard_Integer>(1))
-        .def("IsInDS",
-             (Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::IsInDS),
-             R"#(Returns nb of SurfData's at end being in DS)#"  , py::arg("First"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::DynamicType),
-             R"#(None)#" )
-        .def("SetOfSurfData",
-             (const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::SetOfSurfData),
-             R"#(None)#" )
-        .def("Spine",
-             (const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Spine),
-             R"#(None)#" )
-        .def("OrientationOnFace1",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace1),
-             R"#(None)#" )
-        .def("OrientationOnFace2",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace2),
-             R"#(None)#" )
-        .def("Choix",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Choix),
-             R"#(None)#" )
-        .def("ChangeSetOfSurfData",
-             (opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSetOfSurfData),
-             R"#(None)#" )
-        .def("ChangeSpine",
-             (opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSpine),
-             R"#(None)#" )
-        .def("OrientationOnFace1",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace1),
-             R"#(None)#"  , py::arg("Or1"))
-        .def("OrientationOnFace2",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace2),
-             R"#(None)#"  , py::arg("Or2"))
-        .def("Choix",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::Choix),
-             R"#(None)#"  , py::arg("C"))
-        .def("FirstParameters",
-             (void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_Stripe::FirstParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("LastParameters",
-             (void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_Stripe::*)( Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_Stripe::LastParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("ChangeFirstParameters",
-             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeFirstParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("ChangeLastParameters",
-             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeLastParameters),
-             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
-        .def("FirstCurve",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstCurve),
-             R"#(None)#" )
-        .def("LastCurve",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastCurve),
-             R"#(None)#" )
-        .def("ChangeFirstCurve",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeFirstCurve),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeLastCurve",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeLastCurve),
-             R"#(None)#"  , py::arg("Index"))
-        .def("FirstPCurve",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurve),
-             R"#(None)#" )
-        .def("LastPCurve",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurve),
-             R"#(None)#" )
-        .def("ChangeFirstPCurve",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeFirstPCurve),
-             R"#(None)#" )
-        .def("ChangeLastPCurve",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeLastPCurve),
-             R"#(None)#" )
-        .def("IndexFirstPointOnS1",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS1),
-             R"#(None)#" )
-        .def("IndexLastPointOnS1",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS1),
-             R"#(None)#" )
-        .def("IndexFirstPointOnS2",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS2),
-             R"#(None)#" )
-        .def("IndexLastPointOnS2",
-             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS2),
-             R"#(None)#" )
-        .def("ChangeIndexFirstPointOnS1",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS1),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeIndexLastPointOnS1",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS1),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeIndexFirstPointOnS2",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS2),
-             R"#(None)#"  , py::arg("Index"))
-        .def("ChangeIndexLastPointOnS2",
-             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS2),
-             R"#(None)#"  , py::arg("Index"))
-        .def("FirstPCurveOrientation",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurveOrientation),
-             R"#(None)#" )
-        .def("LastPCurveOrientation",
-             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurveOrientation),
-             R"#(None)#" )
-        .def("FirstPCurveOrientation",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::FirstPCurveOrientation),
-             R"#(None)#"  , py::arg("O"))
-        .def("LastPCurveOrientation",
-             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::LastPCurveOrientation),
-             R"#(None)#"  , py::arg("O"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_Stripe::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_Stripe::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ChFiDS_HElSpine ,opencascade::handle<ChFiDS_HElSpine>  , Adaptor3d_HCurve >>(m.attr("ChFiDS_HElSpine"))
-        .def(py::init<  >()  )
-        .def(py::init< const ChFiDS_ElSpine & >()  , py::arg("C") )
-        .def("Set",
-             (void (ChFiDS_HElSpine::*)( const ChFiDS_ElSpine &  ) ) static_cast<void (ChFiDS_HElSpine::*)( const ChFiDS_ElSpine &  ) >(&ChFiDS_HElSpine::Set),
-             R"#(Sets the field of the GenHCurve.)#"  , py::arg("C"))
-        .def("Curve",
-             (const Adaptor3d_Curve & (ChFiDS_HElSpine::*)() const) static_cast<const Adaptor3d_Curve & (ChFiDS_HElSpine::*)() const>(&ChFiDS_HElSpine::Curve),
-             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
-        .def("GetCurve",
-             (Adaptor3d_Curve & (ChFiDS_HElSpine::*)() ) static_cast<Adaptor3d_Curve & (ChFiDS_HElSpine::*)() >(&ChFiDS_HElSpine::GetCurve),
-             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
-        .def("ChangeCurve",
-             (ChFiDS_ElSpine & (ChFiDS_HElSpine::*)() ) static_cast<ChFiDS_ElSpine & (ChFiDS_HElSpine::*)() >(&ChFiDS_HElSpine::ChangeCurve),
-             R"#(Returns the curve used to create the GenHCurve.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ChFiDS_HElSpine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_HElSpine::*)() const>(&ChFiDS_HElSpine::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_HElSpine::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_HElSpine::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ChFiDS_HData ,std::unique_ptr<ChFiDS_HData>  >>(m.attr("ChFiDS_HData"))
-        .def(py::init<  >()  )
-        .def(py::init<  const NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > & >()  , py::arg("theOther") )
-        .def("Sequence",
-             (const ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() const) static_cast<const ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() const>(&ChFiDS_HData::Sequence),
-             R"#(None)#" )
-        .def("Append",
-             (void (ChFiDS_HData::*)(  const opencascade::handle<ChFiDS_SurfData> &  ) ) static_cast<void (ChFiDS_HData::*)(  const opencascade::handle<ChFiDS_SurfData> &  ) >(&ChFiDS_HData::Append),
-             R"#(None)#"  , py::arg("theItem"))
-        .def("Append",
-             (void (ChFiDS_HData::*)( NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > &  ) ) static_cast<void (ChFiDS_HData::*)( NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > &  ) >(&ChFiDS_HData::Append),
-             R"#(None)#"  , py::arg("theSequence"))
-        .def("ChangeSequence",
-             (ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() ) static_cast<ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() >(&ChFiDS_HData::ChangeSequence),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ChFiDS_HData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_HData::*)() const>(&ChFiDS_HData::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_HData::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_HData::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ChFiDS_Map ,std::unique_ptr<ChFiDS_Map>  >>(m.attr("ChFiDS_Map"))
-        .def(py::init<  >()  )
-        .def("Fill",
-             (void (ChFiDS_Map::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (ChFiDS_Map::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&ChFiDS_Map::Fill),
-             R"#(Fills the map with the subshapes of type T1 as keys and the list of ancestors of type T2 as items.)#"  , py::arg("S"),  py::arg("T1"),  py::arg("T2"))
-        .def("Contains",
-             (Standard_Boolean (ChFiDS_Map::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (ChFiDS_Map::*)( const TopoDS_Shape &  ) const>(&ChFiDS_Map::Contains),
-             R"#(None)#"  , py::arg("S"))
-        .def("FindFromKey",
-             (const TopTools_ListOfShape & (ChFiDS_Map::*)( const TopoDS_Shape &  ) const) static_cast<const TopTools_ListOfShape & (ChFiDS_Map::*)( const TopoDS_Shape &  ) const>(&ChFiDS_Map::FindFromKey),
-             R"#(None)#"  , py::arg("S"))
-        .def("FindFromIndex",
-             (const TopTools_ListOfShape & (ChFiDS_Map::*)( const Standard_Integer  ) const) static_cast<const TopTools_ListOfShape & (ChFiDS_Map::*)( const Standard_Integer  ) const>(&ChFiDS_Map::FindFromIndex),
-             R"#(None)#"  , py::arg("I"))
-;
-
-
-    static_cast<py::class_<ChFiDS_FaceInterference ,std::unique_ptr<ChFiDS_FaceInterference>  >>(m.attr("ChFiDS_FaceInterference"))
-        .def(py::init<  >()  )
-        .def("SetInterference",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) >(&ChFiDS_FaceInterference::SetInterference),
-             R"#(None)#"  , py::arg("LineIndex"),  py::arg("Trans"),  py::arg("PCurv1"),  py::arg("PCurv2"))
-        .def("SetTransition",
-             (void (ChFiDS_FaceInterference::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const TopAbs_Orientation  ) >(&ChFiDS_FaceInterference::SetTransition),
-             R"#(None)#"  , py::arg("Trans"))
-        .def("SetFirstParameter",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetFirstParameter),
-             R"#(None)#"  , py::arg("U1"))
-        .def("SetLastParameter",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetLastParameter),
-             R"#(None)#"  , py::arg("U1"))
-        .def("SetParameter",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real ,  const Standard_Boolean  ) >(&ChFiDS_FaceInterference::SetParameter),
-             R"#(None)#"  , py::arg("U1"),  py::arg("IsFirst"))
-        .def("LineIndex",
-             (Standard_Integer (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Integer (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LineIndex),
-             R"#(None)#" )
-        .def("SetLineIndex",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) >(&ChFiDS_FaceInterference::SetLineIndex),
-             R"#(None)#"  , py::arg("I"))
-        .def("Transition",
-             (TopAbs_Orientation (ChFiDS_FaceInterference::*)() const) static_cast<TopAbs_Orientation (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::Transition),
-             R"#(None)#" )
-        .def("PCurveOnFace",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnFace),
-             R"#(None)#" )
-        .def("PCurveOnSurf",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnSurf),
-             R"#(None)#" )
-        .def("ChangePCurveOnFace",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnFace),
-             R"#(None)#" )
-        .def("ChangePCurveOnSurf",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnSurf),
-             R"#(None)#" )
-        .def("FirstParameter",
-             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::FirstParameter),
-             R"#(None)#" )
-        .def("LastParameter",
-             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LastParameter),
-             R"#(None)#" )
-        .def("Parameter",
-             (Standard_Real (ChFiDS_FaceInterference::*)( const Standard_Boolean  ) const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)( const Standard_Boolean  ) const>(&ChFiDS_FaceInterference::Parameter),
-             R"#(None)#"  , py::arg("IsFirst"))
-        .def("SetInterference",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) >(&ChFiDS_FaceInterference::SetInterference),
-             R"#(None)#"  , py::arg("LineIndex"),  py::arg("Trans"),  py::arg("PCurv1"),  py::arg("PCurv2"))
-        .def("SetLineIndex",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) >(&ChFiDS_FaceInterference::SetLineIndex),
-             R"#(None)#"  , py::arg("I"))
-        .def("SetFirstParameter",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetFirstParameter),
-             R"#(None)#"  , py::arg("U1"))
-        .def("SetLastParameter",
-             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetLastParameter),
-             R"#(None)#"  , py::arg("U1"))
-        .def("LineIndex",
-             (Standard_Integer (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Integer (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LineIndex),
-             R"#(None)#" )
-        .def("Transition",
-             (TopAbs_Orientation (ChFiDS_FaceInterference::*)() const) static_cast<TopAbs_Orientation (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::Transition),
-             R"#(None)#" )
-        .def("PCurveOnFace",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnFace),
-             R"#(None)#" )
-        .def("PCurveOnSurf",
-             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnSurf),
-             R"#(None)#" )
-        .def("ChangePCurveOnFace",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnFace),
-             R"#(None)#" )
-        .def("ChangePCurveOnSurf",
-             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnSurf),
-             R"#(None)#" )
-        .def("FirstParameter",
-             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::FirstParameter),
-             R"#(None)#" )
-        .def("LastParameter",
-             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LastParameter),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ChFiDS_Regul ,std::unique_ptr<ChFiDS_Regul>  >>(m.attr("ChFiDS_Regul"))
-        .def(py::init<  >()  )
-        .def("SetCurve",
-             (void (ChFiDS_Regul::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Regul::*)( const Standard_Integer  ) >(&ChFiDS_Regul::SetCurve),
-             R"#(None)#"  , py::arg("IC"))
-        .def("SetS1",
-             (void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&ChFiDS_Regul::SetS1),
-             R"#(None)#"  , py::arg("IS1"),  py::arg("IsFace")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("SetS2",
-             (void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&ChFiDS_Regul::SetS2),
-             R"#(None)#"  , py::arg("IS2"),  py::arg("IsFace")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("IsSurface1",
-             (Standard_Boolean (ChFiDS_Regul::*)() const) static_cast<Standard_Boolean (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::IsSurface1),
-             R"#(None)#" )
-        .def("IsSurface2",
-             (Standard_Boolean (ChFiDS_Regul::*)() const) static_cast<Standard_Boolean (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::IsSurface2),
-             R"#(None)#" )
-        .def("Curve",
-             (Standard_Integer (ChFiDS_Regul::*)() const) static_cast<Standard_Integer (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::Curve),
-             R"#(None)#" )
-        .def("S1",
-             (Standard_Integer (ChFiDS_Regul::*)() const) static_cast<Standard_Integer (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::S1),
-             R"#(None)#" )
-        .def("S2",
-             (Standard_Integer (ChFiDS_Regul::*)() const) static_cast<Standard_Integer (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::S2),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ChFiDS_SecHArray1 ,std::unique_ptr<ChFiDS_SecHArray1>  >>(m.attr("ChFiDS_SecHArray1"))
-        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
-        .def(py::init< const Standard_Integer,const Standard_Integer, const ChFiDS_CircSection & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
-        .def(py::init<  const NCollection_Array1<ChFiDS_CircSection> & >()  , py::arg("theOther") )
-        .def("Array1",
-             (const ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() const) static_cast<const ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() const>(&ChFiDS_SecHArray1::Array1),
-             R"#(None)#" )
-        .def("ChangeArray1",
-             (ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() ) static_cast<ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() >(&ChFiDS_SecHArray1::ChangeArray1),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ChFiDS_SecHArray1::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_SecHArray1::*)() const>(&ChFiDS_SecHArray1::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_SecHArray1::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_SecHArray1::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ChFiDS_StripeMap ,std::unique_ptr<ChFiDS_StripeMap>  >>(m.attr("ChFiDS_StripeMap"))
-        .def(py::init<  >()  )
-        .def("Add",
-             (void (ChFiDS_StripeMap::*)( const TopoDS_Vertex & ,  const opencascade::handle<ChFiDS_Stripe> &  ) ) static_cast<void (ChFiDS_StripeMap::*)( const TopoDS_Vertex & ,  const opencascade::handle<ChFiDS_Stripe> &  ) >(&ChFiDS_StripeMap::Add),
-             R"#(None)#"  , py::arg("V"),  py::arg("F"))
-        .def("Extent",
-             (Standard_Integer (ChFiDS_StripeMap::*)() const) static_cast<Standard_Integer (ChFiDS_StripeMap::*)() const>(&ChFiDS_StripeMap::Extent),
-             R"#(None)#" )
-        .def("FindFromKey",
-             (const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const TopoDS_Vertex &  ) const) static_cast<const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const TopoDS_Vertex &  ) const>(&ChFiDS_StripeMap::FindFromKey),
-             R"#(None)#"  , py::arg("V"))
-        .def("FindFromIndex",
-             (const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const) static_cast<const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const>(&ChFiDS_StripeMap::FindFromIndex),
-             R"#(None)#"  , py::arg("I"))
-        .def("FindKey",
-             (const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const>(&ChFiDS_StripeMap::FindKey),
-             R"#(None)#"  , py::arg("I"))
-        .def("Clear",
-             (void (ChFiDS_StripeMap::*)() ) static_cast<void (ChFiDS_StripeMap::*)() >(&ChFiDS_StripeMap::Clear),
-             R"#(None)#" )
-        .def("Extent",
-             (Standard_Integer (ChFiDS_StripeMap::*)() const) static_cast<Standard_Integer (ChFiDS_StripeMap::*)() const>(&ChFiDS_StripeMap::Extent),
-             R"#(None)#" )
-        .def("FindKey",
-             (const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const>(&ChFiDS_StripeMap::FindKey),
-             R"#(None)#"  , py::arg("I"))
-;
-
-
-    static_cast<py::class_<ChFiDS_ElSpine ,std::unique_ptr<ChFiDS_ElSpine>  , Adaptor3d_Curve >>(m.attr("ChFiDS_ElSpine"))
-        .def(py::init<  >()  )
+    // methods
         .def("FirstParameter",
              (Standard_Real (ChFiDS_ElSpine::*)() const) static_cast<Standard_Real (ChFiDS_ElSpine::*)() const>(&ChFiDS_ElSpine::FirstParameter),
              R"#(None)#" )
@@ -826,12 +353,262 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("BSpline",
              (opencascade::handle<Geom_BSplineCurve> (ChFiDS_ElSpine::*)() const) static_cast<opencascade::handle<Geom_BSplineCurve> (ChFiDS_ElSpine::*)() const>(&ChFiDS_ElSpine::BSpline),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_FaceInterference , shared_ptr<ChFiDS_FaceInterference>  >>(m.attr("ChFiDS_FaceInterference"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetInterference",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) >(&ChFiDS_FaceInterference::SetInterference),
+             R"#(None)#"  , py::arg("LineIndex"),  py::arg("Trans"),  py::arg("PCurv1"),  py::arg("PCurv2"))
+        .def("SetTransition",
+             (void (ChFiDS_FaceInterference::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const TopAbs_Orientation  ) >(&ChFiDS_FaceInterference::SetTransition),
+             R"#(None)#"  , py::arg("Trans"))
+        .def("SetFirstParameter",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetFirstParameter),
+             R"#(None)#"  , py::arg("U1"))
+        .def("SetLastParameter",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetLastParameter),
+             R"#(None)#"  , py::arg("U1"))
+        .def("SetParameter",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real ,  const Standard_Boolean  ) >(&ChFiDS_FaceInterference::SetParameter),
+             R"#(None)#"  , py::arg("U1"),  py::arg("IsFirst"))
+        .def("LineIndex",
+             (Standard_Integer (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Integer (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LineIndex),
+             R"#(None)#" )
+        .def("SetLineIndex",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) >(&ChFiDS_FaceInterference::SetLineIndex),
+             R"#(None)#"  , py::arg("I"))
+        .def("Transition",
+             (TopAbs_Orientation (ChFiDS_FaceInterference::*)() const) static_cast<TopAbs_Orientation (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::Transition),
+             R"#(None)#" )
+        .def("PCurveOnFace",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnFace),
+             R"#(None)#" )
+        .def("PCurveOnSurf",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnSurf),
+             R"#(None)#" )
+        .def("ChangePCurveOnFace",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnFace),
+             R"#(None)#" )
+        .def("ChangePCurveOnSurf",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnSurf),
+             R"#(None)#" )
+        .def("FirstParameter",
+             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::FirstParameter),
+             R"#(None)#" )
+        .def("LastParameter",
+             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LastParameter),
+             R"#(None)#" )
+        .def("Parameter",
+             (Standard_Real (ChFiDS_FaceInterference::*)( const Standard_Boolean  ) const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)( const Standard_Boolean  ) const>(&ChFiDS_FaceInterference::Parameter),
+             R"#(None)#"  , py::arg("IsFirst"))
+        .def("SetInterference",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) >(&ChFiDS_FaceInterference::SetInterference),
+             R"#(None)#"  , py::arg("LineIndex"),  py::arg("Trans"),  py::arg("PCurv1"),  py::arg("PCurv2"))
+        .def("SetLineIndex",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer  ) >(&ChFiDS_FaceInterference::SetLineIndex),
+             R"#(None)#"  , py::arg("I"))
+        .def("SetFirstParameter",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetFirstParameter),
+             R"#(None)#"  , py::arg("U1"))
+        .def("SetLastParameter",
+             (void (ChFiDS_FaceInterference::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Real  ) >(&ChFiDS_FaceInterference::SetLastParameter),
+             R"#(None)#"  , py::arg("U1"))
+        .def("LineIndex",
+             (Standard_Integer (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Integer (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LineIndex),
+             R"#(None)#" )
+        .def("Transition",
+             (TopAbs_Orientation (ChFiDS_FaceInterference::*)() const) static_cast<TopAbs_Orientation (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::Transition),
+             R"#(None)#" )
+        .def("PCurveOnFace",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnFace),
+             R"#(None)#" )
+        .def("PCurveOnSurf",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::PCurveOnSurf),
+             R"#(None)#" )
+        .def("ChangePCurveOnFace",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnFace),
+             R"#(None)#" )
+        .def("ChangePCurveOnSurf",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_FaceInterference::*)() >(&ChFiDS_FaceInterference::ChangePCurveOnSurf),
+             R"#(None)#" )
+        .def("FirstParameter",
+             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::FirstParameter),
+             R"#(None)#" )
+        .def("LastParameter",
+             (Standard_Real (ChFiDS_FaceInterference::*)() const) static_cast<Standard_Real (ChFiDS_FaceInterference::*)() const>(&ChFiDS_FaceInterference::LastParameter),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_HData ,opencascade::handle<ChFiDS_HData>  , ChFiDS_SequenceOfSurfData , Standard_Transient >>(m.attr("ChFiDS_HData"))
+        .def(py::init<  >()  )
+        .def(py::init<  const NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > & >()  , py::arg("theOther") )
+    // methods
+        .def("Sequence",
+             (const ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() const) static_cast<const ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() const>(&ChFiDS_HData::Sequence),
+             R"#(None)#" )
+        .def("Append",
+             (void (ChFiDS_HData::*)(  const opencascade::handle<ChFiDS_SurfData> &  ) ) static_cast<void (ChFiDS_HData::*)(  const opencascade::handle<ChFiDS_SurfData> &  ) >(&ChFiDS_HData::Append),
+             R"#(None)#"  , py::arg("theItem"))
+        .def("Append",
+             (void (ChFiDS_HData::*)( NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > &  ) ) static_cast<void (ChFiDS_HData::*)( NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > &  ) >(&ChFiDS_HData::Append),
+             R"#(None)#"  , py::arg("theSequence"))
+        .def("ChangeSequence",
+             (ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() ) static_cast<ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() >(&ChFiDS_HData::ChangeSequence),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ChFiDS_HData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_HData::*)() const>(&ChFiDS_HData::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_HData::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_HData::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_HElSpine ,opencascade::handle<ChFiDS_HElSpine>  , Adaptor3d_HCurve >>(m.attr("ChFiDS_HElSpine"))
+        .def(py::init<  >()  )
+        .def(py::init< const ChFiDS_ElSpine & >()  , py::arg("C") )
+    // methods
+        .def("Set",
+             (void (ChFiDS_HElSpine::*)( const ChFiDS_ElSpine &  ) ) static_cast<void (ChFiDS_HElSpine::*)( const ChFiDS_ElSpine &  ) >(&ChFiDS_HElSpine::Set),
+             R"#(Sets the field of the GenHCurve.)#"  , py::arg("C"))
+        .def("Curve",
+             (const Adaptor3d_Curve & (ChFiDS_HElSpine::*)() const) static_cast<const Adaptor3d_Curve & (ChFiDS_HElSpine::*)() const>(&ChFiDS_HElSpine::Curve),
+             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
+        .def("GetCurve",
+             (Adaptor3d_Curve & (ChFiDS_HElSpine::*)() ) static_cast<Adaptor3d_Curve & (ChFiDS_HElSpine::*)() >(&ChFiDS_HElSpine::GetCurve),
+             R"#(Returns the curve used to create the GenHCurve. This is redefined from HCurve, cannot be inline.)#" )
+        .def("ChangeCurve",
+             (ChFiDS_ElSpine & (ChFiDS_HElSpine::*)() ) static_cast<ChFiDS_ElSpine & (ChFiDS_HElSpine::*)() >(&ChFiDS_HElSpine::ChangeCurve),
+             R"#(Returns the curve used to create the GenHCurve.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ChFiDS_HElSpine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_HElSpine::*)() const>(&ChFiDS_HElSpine::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_HElSpine::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_HElSpine::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_Map , shared_ptr<ChFiDS_Map>  >>(m.attr("ChFiDS_Map"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Fill",
+             (void (ChFiDS_Map::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (ChFiDS_Map::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&ChFiDS_Map::Fill),
+             R"#(Fills the map with the subshapes of type T1 as keys and the list of ancestors of type T2 as items.)#"  , py::arg("S"),  py::arg("T1"),  py::arg("T2"))
+        .def("Contains",
+             (Standard_Boolean (ChFiDS_Map::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (ChFiDS_Map::*)( const TopoDS_Shape &  ) const>(&ChFiDS_Map::Contains),
+             R"#(None)#"  , py::arg("S"))
+        .def("FindFromKey",
+             (const TopTools_ListOfShape & (ChFiDS_Map::*)( const TopoDS_Shape &  ) const) static_cast<const TopTools_ListOfShape & (ChFiDS_Map::*)( const TopoDS_Shape &  ) const>(&ChFiDS_Map::FindFromKey),
+             R"#(None)#"  , py::arg("S"))
+        .def("FindFromIndex",
+             (const TopTools_ListOfShape & (ChFiDS_Map::*)( const Standard_Integer  ) const) static_cast<const TopTools_ListOfShape & (ChFiDS_Map::*)( const Standard_Integer  ) const>(&ChFiDS_Map::FindFromIndex),
+             R"#(None)#"  , py::arg("I"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_Regul , shared_ptr<ChFiDS_Regul>  >>(m.attr("ChFiDS_Regul"))
+        .def(py::init<  >()  )
+    // methods
+        .def("SetCurve",
+             (void (ChFiDS_Regul::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Regul::*)( const Standard_Integer  ) >(&ChFiDS_Regul::SetCurve),
+             R"#(None)#"  , py::arg("IC"))
+        .def("SetS1",
+             (void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&ChFiDS_Regul::SetS1),
+             R"#(None)#"  , py::arg("IS1"),  py::arg("IsFace")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("SetS2",
+             (void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Regul::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&ChFiDS_Regul::SetS2),
+             R"#(None)#"  , py::arg("IS2"),  py::arg("IsFace")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("IsSurface1",
+             (Standard_Boolean (ChFiDS_Regul::*)() const) static_cast<Standard_Boolean (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::IsSurface1),
+             R"#(None)#" )
+        .def("IsSurface2",
+             (Standard_Boolean (ChFiDS_Regul::*)() const) static_cast<Standard_Boolean (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::IsSurface2),
+             R"#(None)#" )
+        .def("Curve",
+             (Standard_Integer (ChFiDS_Regul::*)() const) static_cast<Standard_Integer (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::Curve),
+             R"#(None)#" )
+        .def("S1",
+             (Standard_Integer (ChFiDS_Regul::*)() const) static_cast<Standard_Integer (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::S1),
+             R"#(None)#" )
+        .def("S2",
+             (Standard_Integer (ChFiDS_Regul::*)() const) static_cast<Standard_Integer (ChFiDS_Regul::*)() const>(&ChFiDS_Regul::S2),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_SecHArray1 ,opencascade::handle<ChFiDS_SecHArray1>  , ChFiDS_SecArray1 , Standard_Transient >>(m.attr("ChFiDS_SecHArray1"))
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const ChFiDS_CircSection & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<ChFiDS_CircSection> & >()  , py::arg("theOther") )
+    // methods
+        .def("Array1",
+             (const ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() const) static_cast<const ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() const>(&ChFiDS_SecHArray1::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() ) static_cast<ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() >(&ChFiDS_SecHArray1::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ChFiDS_SecHArray1::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_SecHArray1::*)() const>(&ChFiDS_SecHArray1::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_SecHArray1::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_SecHArray1::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ChFiDS_Spine ,opencascade::handle<ChFiDS_Spine>  , Standard_Transient >>(m.attr("ChFiDS_Spine"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real >()  , py::arg("Tol") )
+    // methods
         .def("SetEdges",
              (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::SetEdges),
              R"#(store edges composing the guideline)#"  , py::arg("E"))
@@ -916,12 +693,6 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("Absc",
              (Standard_Real (ChFiDS_Spine::*)( const Standard_Real ,  const Standard_Integer  ) ) static_cast<Standard_Real (ChFiDS_Spine::*)( const Standard_Real ,  const Standard_Integer  ) >(&ChFiDS_Spine::Absc),
              R"#(None)#"  , py::arg("U"),  py::arg("I"))
-        .def("Parameter",
-             (void (ChFiDS_Spine::*)( const Standard_Real ,  Standard_Real & ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Spine::*)( const Standard_Real ,  Standard_Real & ,  const Standard_Boolean  ) >(&ChFiDS_Spine::Parameter),
-             R"#(None)#"  , py::arg("AbsC"),  py::arg("U"),  py::arg("Oriented")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("Parameter",
-             (void (ChFiDS_Spine::*)( const Standard_Integer ,  const Standard_Real ,  Standard_Real & ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Spine::*)( const Standard_Integer ,  const Standard_Real ,  Standard_Real & ,  const Standard_Boolean  ) >(&ChFiDS_Spine::Parameter),
-             R"#(None)#"  , py::arg("Index"),  py::arg("AbsC"),  py::arg("U"),  py::arg("Oriented")=static_cast<const Standard_Boolean>(Standard_True))
         .def("Value",
              (gp_Pnt (ChFiDS_Spine::*)( const Standard_Real  ) ) static_cast<gp_Pnt (ChFiDS_Spine::*)( const Standard_Real  ) >(&ChFiDS_Spine::Value),
              R"#(None)#"  , py::arg("AbsC"))
@@ -1054,17 +825,339 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("CurrentIndexOfElementarySpine",
              (Standard_Integer (ChFiDS_Spine::*)() const) static_cast<Standard_Integer (ChFiDS_Spine::*)() const>(&ChFiDS_Spine::CurrentIndexOfElementarySpine),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("Parameter",
+             []( ChFiDS_Spine &self , const Standard_Real AbsC,const Standard_Boolean Oriented ){ Standard_Real  U; self.Parameter(AbsC,U,Oriented); return std::make_tuple(U); },
+             R"#(None)#"  , py::arg("AbsC"),  py::arg("Oriented")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("Parameter",
+             []( ChFiDS_Spine &self , const Standard_Integer Index,const Standard_Real AbsC,const Standard_Boolean Oriented ){ Standard_Real  U; self.Parameter(Index,AbsC,U,Oriented); return std::make_tuple(U); },
+             R"#(None)#"  , py::arg("Index"),  py::arg("AbsC"),  py::arg("Oriented")=static_cast<const Standard_Boolean>(Standard_True))
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_Spine::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_Spine::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_Stripe ,opencascade::handle<ChFiDS_Stripe>  , Standard_Transient >>(m.attr("ChFiDS_Stripe"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Reset",
+             (void (ChFiDS_Stripe::*)() ) static_cast<void (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::Reset),
+             R"#(Reset everything except Spine.)#" )
+        .def("SetOfSurfData",
+             (const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::SetOfSurfData),
+             R"#(None)#" )
+        .def("Spine",
+             (const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Spine),
+             R"#(None)#" )
+        .def("OrientationOnFace1",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace1),
+             R"#(None)#" )
+        .def("OrientationOnFace2",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace2),
+             R"#(None)#" )
+        .def("Choix",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Choix),
+             R"#(None)#" )
+        .def("ChangeSetOfSurfData",
+             (opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSetOfSurfData),
+             R"#(None)#" )
+        .def("ChangeSpine",
+             (opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSpine),
+             R"#(None)#" )
+        .def("OrientationOnFace1",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace1),
+             R"#(None)#"  , py::arg("Or1"))
+        .def("OrientationOnFace2",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace2),
+             R"#(None)#"  , py::arg("Or2"))
+        .def("Choix",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::Choix),
+             R"#(None)#"  , py::arg("C"))
+        .def("ChangeFirstParameters",
+             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeFirstParameters),
+             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
+        .def("ChangeLastParameters",
+             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeLastParameters),
+             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
+        .def("FirstCurve",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstCurve),
+             R"#(None)#" )
+        .def("LastCurve",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastCurve),
+             R"#(None)#" )
+        .def("ChangeFirstCurve",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeFirstCurve),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeLastCurve",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeLastCurve),
+             R"#(None)#"  , py::arg("Index"))
+        .def("FirstPCurve",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurve),
+             R"#(None)#" )
+        .def("LastPCurve",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurve),
+             R"#(None)#" )
+        .def("ChangeFirstPCurve",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeFirstPCurve),
+             R"#(None)#" )
+        .def("ChangeLastPCurve",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeLastPCurve),
+             R"#(None)#" )
+        .def("FirstPCurveOrientation",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurveOrientation),
+             R"#(None)#" )
+        .def("LastPCurveOrientation",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurveOrientation),
+             R"#(None)#" )
+        .def("FirstPCurveOrientation",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::FirstPCurveOrientation),
+             R"#(None)#"  , py::arg("O"))
+        .def("LastPCurveOrientation",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::LastPCurveOrientation),
+             R"#(None)#"  , py::arg("O"))
+        .def("IndexFirstPointOnS1",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS1),
+             R"#(None)#" )
+        .def("IndexFirstPointOnS2",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS2),
+             R"#(None)#" )
+        .def("IndexLastPointOnS1",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS1),
+             R"#(None)#" )
+        .def("IndexLastPointOnS2",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS2),
+             R"#(None)#" )
+        .def("ChangeIndexFirstPointOnS1",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS1),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeIndexFirstPointOnS2",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS2),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeIndexLastPointOnS1",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS1),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeIndexLastPointOnS2",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS2),
+             R"#(None)#"  , py::arg("Index"))
+        .def("SetParameters",
+             (void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::SetParameters),
+             R"#(None)#"  , py::arg("First"),  py::arg("Pdeb"),  py::arg("Pfin"))
+        .def("Curve",
+             (Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::Curve),
+             R"#(None)#"  , py::arg("First"))
+        .def("SetCurve",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&ChFiDS_Stripe::SetCurve),
+             R"#(None)#"  , py::arg("Index"),  py::arg("First"))
+        .def("PCurve",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::PCurve),
+             R"#(None)#"  , py::arg("First"))
+        .def("ChangePCurve",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)( const Standard_Boolean  ) >(&ChFiDS_Stripe::ChangePCurve),
+             R"#(None)#"  , py::arg("First"))
+        .def("Orientation",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Integer  ) const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Integer  ) const>(&ChFiDS_Stripe::Orientation),
+             R"#(None)#"  , py::arg("OnS"))
+        .def("SetOrientation",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Integer  ) >(&ChFiDS_Stripe::SetOrientation),
+             R"#(None)#"  , py::arg("Or"),  py::arg("OnS"))
+        .def("Orientation",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::Orientation),
+             R"#(None)#"  , py::arg("First"))
+        .def("SetOrientation",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation ,  const Standard_Boolean  ) >(&ChFiDS_Stripe::SetOrientation),
+             R"#(None)#"  , py::arg("Or"),  py::arg("First"))
+        .def("IndexPoint",
+             (Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) const>(&ChFiDS_Stripe::IndexPoint),
+             R"#(None)#"  , py::arg("First"),  py::arg("OnS"))
+        .def("SetIndexPoint",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) >(&ChFiDS_Stripe::SetIndexPoint),
+             R"#(None)#"  , py::arg("Index"),  py::arg("First"),  py::arg("OnS"))
+        .def("SolidIndex",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::SolidIndex),
+             R"#(None)#" )
+        .def("SetSolidIndex",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::SetSolidIndex),
+             R"#(None)#"  , py::arg("Index"))
+        .def("InDS",
+             (void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Boolean ,  const Standard_Integer  ) >(&ChFiDS_Stripe::InDS),
+             R"#(Set nb of SurfData's at end put in DS)#"  , py::arg("First"),  py::arg("Nb")=static_cast<const Standard_Integer>(1))
+        .def("IsInDS",
+             (Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const) static_cast<Standard_Integer (ChFiDS_Stripe::*)( const Standard_Boolean  ) const>(&ChFiDS_Stripe::IsInDS),
+             R"#(Returns nb of SurfData's at end being in DS)#"  , py::arg("First"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::DynamicType),
+             R"#(None)#" )
+        .def("SetOfSurfData",
+             (const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::SetOfSurfData),
+             R"#(None)#" )
+        .def("Spine",
+             (const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Spine),
+             R"#(None)#" )
+        .def("OrientationOnFace1",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace1),
+             R"#(None)#" )
+        .def("OrientationOnFace2",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::OrientationOnFace2),
+             R"#(None)#" )
+        .def("Choix",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::Choix),
+             R"#(None)#" )
+        .def("ChangeSetOfSurfData",
+             (opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_HData> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSetOfSurfData),
+             R"#(None)#" )
+        .def("ChangeSpine",
+             (opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<ChFiDS_Spine> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeSpine),
+             R"#(None)#" )
+        .def("OrientationOnFace1",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace1),
+             R"#(None)#"  , py::arg("Or1"))
+        .def("OrientationOnFace2",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::OrientationOnFace2),
+             R"#(None)#"  , py::arg("Or2"))
+        .def("Choix",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::Choix),
+             R"#(None)#"  , py::arg("C"))
+        .def("ChangeFirstParameters",
+             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeFirstParameters),
+             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
+        .def("ChangeLastParameters",
+             (void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_Stripe::ChangeLastParameters),
+             R"#(None)#"  , py::arg("Pdeb"),  py::arg("Pfin"))
+        .def("FirstCurve",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstCurve),
+             R"#(None)#" )
+        .def("LastCurve",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastCurve),
+             R"#(None)#" )
+        .def("ChangeFirstCurve",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeFirstCurve),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeLastCurve",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeLastCurve),
+             R"#(None)#"  , py::arg("Index"))
+        .def("FirstPCurve",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurve),
+             R"#(None)#" )
+        .def("LastPCurve",
+             (const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurve),
+             R"#(None)#" )
+        .def("ChangeFirstPCurve",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeFirstPCurve),
+             R"#(None)#" )
+        .def("ChangeLastPCurve",
+             (opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() ) static_cast<opencascade::handle<Geom2d_Curve> & (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::ChangeLastPCurve),
+             R"#(None)#" )
+        .def("IndexFirstPointOnS1",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS1),
+             R"#(None)#" )
+        .def("IndexLastPointOnS1",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS1),
+             R"#(None)#" )
+        .def("IndexFirstPointOnS2",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexFirstPointOnS2),
+             R"#(None)#" )
+        .def("IndexLastPointOnS2",
+             (Standard_Integer (ChFiDS_Stripe::*)() const) static_cast<Standard_Integer (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::IndexLastPointOnS2),
+             R"#(None)#" )
+        .def("ChangeIndexFirstPointOnS1",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS1),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeIndexLastPointOnS1",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS1),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeIndexFirstPointOnS2",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexFirstPointOnS2),
+             R"#(None)#"  , py::arg("Index"))
+        .def("ChangeIndexLastPointOnS2",
+             (void (ChFiDS_Stripe::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Stripe::*)( const Standard_Integer  ) >(&ChFiDS_Stripe::ChangeIndexLastPointOnS2),
+             R"#(None)#"  , py::arg("Index"))
+        .def("FirstPCurveOrientation",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::FirstPCurveOrientation),
+             R"#(None)#" )
+        .def("LastPCurveOrientation",
+             (TopAbs_Orientation (ChFiDS_Stripe::*)() const) static_cast<TopAbs_Orientation (ChFiDS_Stripe::*)() const>(&ChFiDS_Stripe::LastPCurveOrientation),
+             R"#(None)#" )
+        .def("FirstPCurveOrientation",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::FirstPCurveOrientation),
+             R"#(None)#"  , py::arg("O"))
+        .def("LastPCurveOrientation",
+             (void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_Stripe::*)( const TopAbs_Orientation  ) >(&ChFiDS_Stripe::LastPCurveOrientation),
+             R"#(None)#"  , py::arg("O"))
+    // methods using call by reference i.s.o. return
+        .def("FirstParameters",
+             []( ChFiDS_Stripe &self   ){ Standard_Real  Pdeb; Standard_Real  Pfin; self.FirstParameters(Pdeb,Pfin); return std::make_tuple(Pdeb,Pfin); },
+             R"#(None)#" )
+        .def("LastParameters",
+             []( ChFiDS_Stripe &self   ){ Standard_Real  Pdeb; Standard_Real  Pfin; self.LastParameters(Pdeb,Pfin); return std::make_tuple(Pdeb,Pfin); },
+             R"#(None)#" )
+        .def("Parameters",
+             []( ChFiDS_Stripe &self , const Standard_Boolean First ){ Standard_Real  Pdeb; Standard_Real  Pfin; self.Parameters(First,Pdeb,Pfin); return std::make_tuple(Pdeb,Pfin); },
+             R"#(None)#"  , py::arg("First"))
+        .def("FirstParameters",
+             []( ChFiDS_Stripe &self   ){ Standard_Real  Pdeb; Standard_Real  Pfin; self.FirstParameters(Pdeb,Pfin); return std::make_tuple(Pdeb,Pfin); },
+             R"#(None)#" )
+        .def("LastParameters",
+             []( ChFiDS_Stripe &self   ){ Standard_Real  Pdeb; Standard_Real  Pfin; self.LastParameters(Pdeb,Pfin); return std::make_tuple(Pdeb,Pfin); },
+             R"#(None)#" )
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_Stripe::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_Stripe::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_StripeMap , shared_ptr<ChFiDS_StripeMap>  >>(m.attr("ChFiDS_StripeMap"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Add",
+             (void (ChFiDS_StripeMap::*)( const TopoDS_Vertex & ,  const opencascade::handle<ChFiDS_Stripe> &  ) ) static_cast<void (ChFiDS_StripeMap::*)( const TopoDS_Vertex & ,  const opencascade::handle<ChFiDS_Stripe> &  ) >(&ChFiDS_StripeMap::Add),
+             R"#(None)#"  , py::arg("V"),  py::arg("F"))
+        .def("Extent",
+             (Standard_Integer (ChFiDS_StripeMap::*)() const) static_cast<Standard_Integer (ChFiDS_StripeMap::*)() const>(&ChFiDS_StripeMap::Extent),
+             R"#(None)#" )
+        .def("FindFromKey",
+             (const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const TopoDS_Vertex &  ) const) static_cast<const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const TopoDS_Vertex &  ) const>(&ChFiDS_StripeMap::FindFromKey),
+             R"#(None)#"  , py::arg("V"))
+        .def("FindFromIndex",
+             (const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const) static_cast<const ChFiDS_ListOfStripe & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const>(&ChFiDS_StripeMap::FindFromIndex),
+             R"#(None)#"  , py::arg("I"))
+        .def("FindKey",
+             (const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const>(&ChFiDS_StripeMap::FindKey),
+             R"#(None)#"  , py::arg("I"))
+        .def("Clear",
+             (void (ChFiDS_StripeMap::*)() ) static_cast<void (ChFiDS_StripeMap::*)() >(&ChFiDS_StripeMap::Clear),
+             R"#(None)#" )
+        .def("Extent",
+             (Standard_Integer (ChFiDS_StripeMap::*)() const) static_cast<Standard_Integer (ChFiDS_StripeMap::*)() const>(&ChFiDS_StripeMap::Extent),
+             R"#(None)#" )
+        .def("FindKey",
+             (const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Vertex & (ChFiDS_StripeMap::*)( const Standard_Integer  ) const>(&ChFiDS_StripeMap::FindKey),
+             R"#(None)#"  , py::arg("I"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ChFiDS_SurfData ,opencascade::handle<ChFiDS_SurfData>  , Standard_Transient >>(m.attr("ChFiDS_SurfData"))
         .def(py::init<  >()  )
+    // methods
         .def("Copy",
              (void (ChFiDS_SurfData::*)( const opencascade::handle<ChFiDS_SurfData> &  ) ) static_cast<void (ChFiDS_SurfData::*)( const opencascade::handle<ChFiDS_SurfData> &  ) >(&ChFiDS_SurfData::Copy),
              R"#(None)#"  , py::arg("Other"))
@@ -1320,18 +1413,66 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("TwistOnS2",
              (void (ChFiDS_SurfData::*)( const Standard_Boolean  ) ) static_cast<void (ChFiDS_SurfData::*)( const Standard_Boolean  ) >(&ChFiDS_SurfData::TwistOnS2),
              R"#(None)#"  , py::arg("T"))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_SurfData::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_SurfData::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ChFiDS_ChamfSpine ,opencascade::handle<ChFiDS_ChamfSpine>  , ChFiDS_Spine >>(m.attr("ChFiDS_ChamfSpine"))
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Real >()  , py::arg("Tol") )
+    // methods
+        .def("SetDist",
+             (void (ChFiDS_ChamfSpine::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real  ) >(&ChFiDS_ChamfSpine::SetDist),
+             R"#(None)#"  , py::arg("Dis"))
+        .def("SetDists",
+             (void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_ChamfSpine::SetDists),
+             R"#(None)#"  , py::arg("Dis1"),  py::arg("Dis2"))
+        .def("SetDistAngle",
+             (void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&ChFiDS_ChamfSpine::SetDistAngle),
+             R"#(None)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("DisOnF1"))
+        .def("IsChamfer",
+             (ChFiDS_ChamfMethod (ChFiDS_ChamfSpine::*)() const) static_cast<ChFiDS_ChamfMethod (ChFiDS_ChamfSpine::*)() const>(&ChFiDS_ChamfSpine::IsChamfer),
+             R"#(Return the method of chamfers used)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ChFiDS_ChamfSpine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_ChamfSpine::*)() const>(&ChFiDS_ChamfSpine::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("GetDist",
+             []( ChFiDS_ChamfSpine &self   ){ Standard_Real  Dis; self.GetDist(Dis); return std::make_tuple(Dis); },
+             R"#(None)#" )
+        .def("Dists",
+             []( ChFiDS_ChamfSpine &self   ){ Standard_Real  Dis1; Standard_Real  Dis2; self.Dists(Dis1,Dis2); return std::make_tuple(Dis1,Dis2); },
+             R"#(None)#" )
+        .def("GetDistAngle",
+             []( ChFiDS_ChamfSpine &self   ){ Standard_Real  Dis; Standard_Real  Angle; Standard_Boolean  DisOnF1; self.GetDistAngle(Dis,Angle,DisOnF1); return std::make_tuple(Dis,Angle,DisOnF1); },
+             R"#(None)#" )
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_ChamfSpine::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_ChamfSpine::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ChFiDS_FilSpine ,opencascade::handle<ChFiDS_FilSpine>  , ChFiDS_Spine >>(m.attr("ChFiDS_FilSpine"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real >()  , py::arg("Tol") )
+    // methods
         .def("Reset",
              (void (ChFiDS_FilSpine::*)( const Standard_Boolean  ) ) static_cast<void (ChFiDS_FilSpine::*)( const Standard_Boolean  ) >(&ChFiDS_FilSpine::Reset),
              R"#(None)#"  , py::arg("AllData")=static_cast<const Standard_Boolean>(Standard_False))
@@ -1386,138 +1527,61 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ChFiDS_FilSpine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_FilSpine::*)() const>(&ChFiDS_FilSpine::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_FilSpine::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_FilSpine::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ChFiDS_CircSection ,std::unique_ptr<ChFiDS_CircSection>  >>(m.attr("ChFiDS_CircSection"))
-        .def(py::init<  >()  )
-        .def("Set",
-             (void (ChFiDS_CircSection::*)( const gp_Circ & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_CircSection::*)( const gp_Circ & ,  const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_CircSection::Set),
-             R"#(None)#"  , py::arg("C"),  py::arg("F"),  py::arg("L"))
-        .def("Set",
-             (void (ChFiDS_CircSection::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_CircSection::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_CircSection::Set),
-             R"#(None)#"  , py::arg("C"),  py::arg("F"),  py::arg("L"))
-        .def("Get",
-             (void (ChFiDS_CircSection::*)( gp_Circ & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_CircSection::*)( gp_Circ & ,  Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_CircSection::Get),
-             R"#(None)#"  , py::arg("C"),  py::arg("F"),  py::arg("L"))
-        .def("Get",
-             (void (ChFiDS_CircSection::*)( gp_Lin & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_CircSection::*)( gp_Lin & ,  Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_CircSection::Get),
-             R"#(None)#"  , py::arg("C"),  py::arg("F"),  py::arg("L"))
-;
-
-
-    static_cast<py::class_<ChFiDS_ChamfSpine ,opencascade::handle<ChFiDS_ChamfSpine>  , ChFiDS_Spine >>(m.attr("ChFiDS_ChamfSpine"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Real >()  , py::arg("Tol") )
-        .def("SetDist",
-             (void (ChFiDS_ChamfSpine::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real  ) >(&ChFiDS_ChamfSpine::SetDist),
-             R"#(None)#"  , py::arg("Dis"))
-        .def("GetDist",
-             (void (ChFiDS_ChamfSpine::*)( Standard_Real &  ) const) static_cast<void (ChFiDS_ChamfSpine::*)( Standard_Real &  ) const>(&ChFiDS_ChamfSpine::GetDist),
-             R"#(None)#"  , py::arg("Dis"))
-        .def("SetDists",
-             (void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_ChamfSpine::SetDists),
-             R"#(None)#"  , py::arg("Dis1"),  py::arg("Dis2"))
-        .def("Dists",
-             (void (ChFiDS_ChamfSpine::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ChFiDS_ChamfSpine::*)( Standard_Real & ,  Standard_Real &  ) const>(&ChFiDS_ChamfSpine::Dists),
-             R"#(None)#"  , py::arg("Dis1"),  py::arg("Dis2"))
-        .def("GetDistAngle",
-             (void (ChFiDS_ChamfSpine::*)( Standard_Real & ,  Standard_Real & ,  Standard_Boolean &  ) const) static_cast<void (ChFiDS_ChamfSpine::*)( Standard_Real & ,  Standard_Real & ,  Standard_Boolean &  ) const>(&ChFiDS_ChamfSpine::GetDistAngle),
-             R"#(None)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("DisOnF1"))
-        .def("SetDistAngle",
-             (void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&ChFiDS_ChamfSpine::SetDistAngle),
-             R"#(None)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("DisOnF1"))
-        .def("IsChamfer",
-             (ChFiDS_ChamfMethod (ChFiDS_ChamfSpine::*)() const) static_cast<ChFiDS_ChamfMethod (ChFiDS_ChamfSpine::*)() const>(&ChFiDS_ChamfSpine::IsChamfer),
-             R"#(Return the method of chamfers used)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ChFiDS_ChamfSpine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_ChamfSpine::*)() const>(&ChFiDS_ChamfSpine::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ChFiDS_ChamfSpine::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ChFiDS_ChamfSpine::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/ChFiDS_State.hxx
+// ./opencascade/ChFiDS_HElSpine.hxx
+// ./opencascade/ChFiDS_CircSection.hxx
+// ./opencascade/ChFiDS_ListIteratorOfListOfHElSpine.hxx
 // ./opencascade/ChFiDS_CommonPoint.hxx
+// ./opencascade/ChFiDS_SecArray1.hxx
+// ./opencascade/ChFiDS_Stripe.hxx
 // ./opencascade/ChFiDS_SequenceOfSurfData.hxx
-// ./opencascade/ChFiDS_Regularities.hxx
-// ./opencascade/ChFiDS_StripeArray1.hxx
+// ./opencascade/ChFiDS_ErrorStatus.hxx
+// ./opencascade/ChFiDS_Regul.hxx
+// ./opencascade/ChFiDS_ListIteratorOfRegularities.hxx
+// ./opencascade/ChFiDS_ChamfMethod.hxx
+// ./opencascade/ChFiDS_State.hxx
+// ./opencascade/ChFiDS_ListOfStripe.hxx
+// ./opencascade/ChFiDS_SurfData.hxx
+// ./opencascade/ChFiDS_HData.hxx
+// ./opencascade/ChFiDS_Spine.hxx
 // ./opencascade/ChFiDS_StripeMap.hxx
 // ./opencascade/ChFiDS_ListOfHElSpine.hxx
-// ./opencascade/ChFiDS_SequenceOfSpine.hxx
-// ./opencascade/ChFiDS_ListIteratorOfRegularities.hxx
-// ./opencascade/ChFiDS_Stripe.hxx
-// ./opencascade/ChFiDS_IndexedDataMapOfVertexListOfStripe.hxx
 // ./opencascade/ChFiDS_FilSpine.hxx
-// ./opencascade/ChFiDS_ErrorStatus.hxx
-// ./opencascade/ChFiDS_HElSpine.hxx
-// ./opencascade/ChFiDS_ElSpine.hxx
-// ./opencascade/ChFiDS_HData.hxx
-// ./opencascade/ChFiDS_SecArray1.hxx
-// ./opencascade/ChFiDS_ChamfSpine.hxx
+// ./opencascade/ChFiDS_IndexedDataMapOfVertexListOfStripe.hxx
 // ./opencascade/ChFiDS_Map.hxx
-// ./opencascade/ChFiDS_ChamfMethod.hxx
-// ./opencascade/ChFiDS_Spine.hxx
-// ./opencascade/ChFiDS_ListOfStripe.hxx
-// ./opencascade/ChFiDS_FaceInterference.hxx
-// ./opencascade/ChFiDS_CircSection.hxx
-// ./opencascade/ChFiDS_Regul.hxx
-// ./opencascade/ChFiDS_SurfData.hxx
 // ./opencascade/ChFiDS_ListIteratorOfListOfStripe.hxx
-// ./opencascade/ChFiDS_ListIteratorOfListOfHElSpine.hxx
+// ./opencascade/ChFiDS_Regularities.hxx
+// ./opencascade/ChFiDS_StripeArray1.hxx
+// ./opencascade/ChFiDS_FaceInterference.hxx
+// ./opencascade/ChFiDS_SequenceOfSpine.hxx
+// ./opencascade/ChFiDS_ElSpine.hxx
+// ./opencascade/ChFiDS_ChamfSpine.hxx
 // ./opencascade/ChFiDS_SecHArray1.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ChFiDS_State.hxx
-// ./opencascade/ChFiDS_CommonPoint.hxx
-// ./opencascade/ChFiDS_SequenceOfSurfData.hxx
-    register_template_NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> >(m,"ChFiDS_SequenceOfSurfData");  
-// ./opencascade/ChFiDS_Regularities.hxx
-    register_template_NCollection_List<ChFiDS_Regul>(m,"ChFiDS_Regularities");  
-// ./opencascade/ChFiDS_StripeArray1.hxx
-    register_template_NCollection_Array1<opencascade::handle<ChFiDS_Stripe> >(m,"ChFiDS_StripeArray1");  
-// ./opencascade/ChFiDS_StripeMap.hxx
-// ./opencascade/ChFiDS_ListOfHElSpine.hxx
-    register_template_NCollection_List<opencascade::handle<ChFiDS_HElSpine> >(m,"ChFiDS_ListOfHElSpine");  
-// ./opencascade/ChFiDS_SequenceOfSpine.hxx
-    register_template_NCollection_Sequence<opencascade::handle<ChFiDS_Spine> >(m,"ChFiDS_SequenceOfSpine");  
-// ./opencascade/ChFiDS_ListIteratorOfRegularities.hxx
-// ./opencascade/ChFiDS_Stripe.hxx
-// ./opencascade/ChFiDS_IndexedDataMapOfVertexListOfStripe.hxx
-    register_template_NCollection_IndexedDataMap<TopoDS_Vertex, ChFiDS_ListOfStripe, TopTools_ShapeMapHasher>(m,"ChFiDS_IndexedDataMapOfVertexListOfStripe");  
-// ./opencascade/ChFiDS_FilSpine.hxx
-// ./opencascade/ChFiDS_ErrorStatus.hxx
-// ./opencascade/ChFiDS_HElSpine.hxx
-// ./opencascade/ChFiDS_ElSpine.hxx
-// ./opencascade/ChFiDS_HData.hxx
-// ./opencascade/ChFiDS_SecArray1.hxx
     register_template_NCollection_Array1<ChFiDS_CircSection>(m,"ChFiDS_SecArray1");  
-// ./opencascade/ChFiDS_ChamfSpine.hxx
-// ./opencascade/ChFiDS_Map.hxx
-// ./opencascade/ChFiDS_ChamfMethod.hxx
-// ./opencascade/ChFiDS_Spine.hxx
-// ./opencascade/ChFiDS_ListOfStripe.hxx
+    register_template_NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> >(m,"ChFiDS_SequenceOfSurfData");  
     register_template_NCollection_List<opencascade::handle<ChFiDS_Stripe> >(m,"ChFiDS_ListOfStripe");  
-// ./opencascade/ChFiDS_FaceInterference.hxx
-// ./opencascade/ChFiDS_CircSection.hxx
-// ./opencascade/ChFiDS_Regul.hxx
-// ./opencascade/ChFiDS_SurfData.hxx
-// ./opencascade/ChFiDS_ListIteratorOfListOfStripe.hxx
-// ./opencascade/ChFiDS_ListIteratorOfListOfHElSpine.hxx
-// ./opencascade/ChFiDS_SecHArray1.hxx
+    register_template_NCollection_List<opencascade::handle<ChFiDS_HElSpine> >(m,"ChFiDS_ListOfHElSpine");  
+    register_template_NCollection_IndexedDataMap<TopoDS_Vertex, ChFiDS_ListOfStripe, TopTools_ShapeMapHasher>(m,"ChFiDS_IndexedDataMapOfVertexListOfStripe");  
+    register_template_NCollection_List<ChFiDS_Regul>(m,"ChFiDS_Regularities");  
+    register_template_NCollection_Array1<opencascade::handle<ChFiDS_Stripe> >(m,"ChFiDS_StripeArray1");  
+    register_template_NCollection_Sequence<opencascade::handle<ChFiDS_Spine> >(m,"ChFiDS_SequenceOfSpine");  
 
 
 // exceptions

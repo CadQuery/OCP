@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -41,9 +44,12 @@ py::module m = static_cast<py::module>(main_module.attr("UTL"));
 
 // classes
 
-    register_default_constructor<UTL ,std::unique_ptr<UTL>>(m,"UTL");
+    register_default_constructor<UTL , shared_ptr<UTL>>(m,"UTL");
 
-    static_cast<py::class_<UTL ,std::unique_ptr<UTL>  >>(m.attr("UTL"))
+    static_cast<py::class_<UTL , shared_ptr<UTL>  >>(m.attr("UTL"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("xgetenv_s",
                     (TCollection_ExtendedString (*)( const Standard_CString  ) ) static_cast<TCollection_ExtendedString (*)( const Standard_CString  ) >(&UTL::xgetenv),
                     R"#(None)#"  , py::arg("aCString"))
@@ -98,6 +104,9 @@ py::module m = static_cast<py::module>(main_module.attr("UTL"));
         .def_static("IsReadOnly_s",
                     (Standard_Boolean (*)( const TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (*)( const TCollection_ExtendedString &  ) >(&UTL::IsReadOnly),
                     R"#(None)#"  , py::arg("aFileName"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -106,7 +115,6 @@ py::module m = static_cast<py::module>(main_module.attr("UTL"));
 // operators
 
 // register typdefs
-// ./opencascade/UTL.hxx
 
 
 // exceptions

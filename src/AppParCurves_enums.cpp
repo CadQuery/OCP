@@ -36,17 +36,17 @@ namespace py = pybind11;
 #include <AppParCurves_SequenceOfMultiCurve.hxx>
 
 // template related includes
-// ./opencascade/AppParCurves_Array1OfMultiPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/AppParCurves_Array1OfMultiCurve.hxx
+// ./opencascade/AppParCurves_SequenceOfMultiCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/AppParCurves_SequenceOfMultiBSpCurve.hxx
 #include "NCollection.hxx"
-// ./opencascade/AppParCurves_Array1OfMultiBSpCurve.hxx
+// ./opencascade/AppParCurves_Array1OfMultiCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/AppParCurves_Array1OfConstraintCouple.hxx
 #include "NCollection.hxx"
-// ./opencascade/AppParCurves_SequenceOfMultiCurve.hxx
+// ./opencascade/AppParCurves_Array1OfMultiPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/AppParCurves_Array1OfMultiBSpCurve.hxx
 #include "NCollection.hxx"
 
 
@@ -72,40 +72,24 @@ py::module m = main_module.def_submodule("AppParCurves", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<AppParCurves_MultiCurve ,std::unique_ptr<AppParCurves_MultiCurve>  >(m,"AppParCurves_MultiCurve",R"#(This class describes a MultiCurve approximating a Multiline. As a Multiline is a set of n lines, a MultiCurve is a set of n curves. These curves are Bezier curves. A MultiCurve is composed of m MultiPoint. The approximating degree of these n curves is the same for each one.)#");
-    py::class_<AppParCurves_MultiBSpCurve ,std::unique_ptr<AppParCurves_MultiBSpCurve>  , AppParCurves_MultiCurve >(m,"AppParCurves_MultiBSpCurve",R"#(This class describes a MultiBSpCurve approximating a Multiline. Just as a Multiline is a set of a given number of lines, a MultiBSpCurve is a set of a specified number of bsplines defined by: - A specified number of MultiPoints - the poles of a specified number of curves - The degree of approximation identical for each of the specified number of curves.)#");
-    py::class_<AppParCurves_MultiPoint ,std::unique_ptr<AppParCurves_MultiPoint>  >(m,"AppParCurves_MultiPoint",R"#(This class describes Points composing a MultiPoint. These points can be 2D or 3D. The user must first give the 3D Points and then the 2D Points. They are Poles of a Bezier Curve. This class is used either to define data input or results when performing the approximation of several lines in parallel.)#");
-    py::class_<AppParCurves_HArray1OfConstraintCouple ,std::unique_ptr<AppParCurves_HArray1OfConstraintCouple>  >(m,"AppParCurves_HArray1OfConstraintCouple",R"#()#");
-    py::class_<AppParCurves_HArray1OfMultiCurve ,std::unique_ptr<AppParCurves_HArray1OfMultiCurve>  >(m,"AppParCurves_HArray1OfMultiCurve",R"#()#");
-    py::class_<AppParCurves ,std::unique_ptr<AppParCurves>  >(m,"AppParCurves",R"#(Parallel Approximation in n curves. This package gives all the algorithms used to approximate a MultiLine described by the tool MLineTool. The result of the approximation will be a MultiCurve.)#");
-    py::class_<AppParCurves_HArray1OfMultiPoint ,std::unique_ptr<AppParCurves_HArray1OfMultiPoint>  >(m,"AppParCurves_HArray1OfMultiPoint",R"#()#");
-    py::class_<AppParCurves_HArray1OfMultiBSpCurve ,std::unique_ptr<AppParCurves_HArray1OfMultiBSpCurve>  >(m,"AppParCurves_HArray1OfMultiBSpCurve",R"#()#");
-    py::class_<AppParCurves_ConstraintCouple ,std::unique_ptr<AppParCurves_ConstraintCouple>  >(m,"AppParCurves_ConstraintCouple",R"#(associates an index and a constraint for an object. This couple is used by AppDef_TheVariational when performing approximations.)#");
-
 // pre-register typdefs
-// ./opencascade/AppParCurves_MultiBSpCurve.hxx
-// ./opencascade/AppParCurves_MultiCurve.hxx
-// ./opencascade/AppParCurves.hxx
-// ./opencascade/AppParCurves_Array1OfMultiPoint.hxx
-    preregister_template_NCollection_Array1<AppParCurves_MultiPoint>(m,"AppParCurves_Array1OfMultiPoint");  
-// ./opencascade/AppParCurves_MultiPoint.hxx
-// ./opencascade/AppParCurves_HArray1OfMultiBSpCurve.hxx
-// ./opencascade/AppParCurves_Array1OfMultiCurve.hxx
-    preregister_template_NCollection_Array1<AppParCurves_MultiCurve>(m,"AppParCurves_Array1OfMultiCurve");  
-// ./opencascade/AppParCurves_HArray1OfConstraintCouple.hxx
-// ./opencascade/AppParCurves_SequenceOfMultiBSpCurve.hxx
-    preregister_template_NCollection_Sequence<AppParCurves_MultiBSpCurve>(m,"AppParCurves_SequenceOfMultiBSpCurve");  
-// ./opencascade/AppParCurves_HArray1OfMultiPoint.hxx
-// ./opencascade/AppParCurves_HArray1OfMultiCurve.hxx
-// ./opencascade/AppParCurves_Array1OfMultiBSpCurve.hxx
-    preregister_template_NCollection_Array1<AppParCurves_MultiBSpCurve>(m,"AppParCurves_Array1OfMultiBSpCurve");  
-// ./opencascade/AppParCurves_Array1OfConstraintCouple.hxx
-    preregister_template_NCollection_Array1<AppParCurves_ConstraintCouple>(m,"AppParCurves_Array1OfConstraintCouple");  
-// ./opencascade/AppParCurves_SequenceOfMultiCurve.hxx
     preregister_template_NCollection_Sequence<AppParCurves_MultiCurve>(m,"AppParCurves_SequenceOfMultiCurve");  
-// ./opencascade/AppParCurves_ConstraintCouple.hxx
-// ./opencascade/AppParCurves_Constraint.hxx
+    preregister_template_NCollection_Sequence<AppParCurves_MultiBSpCurve>(m,"AppParCurves_SequenceOfMultiBSpCurve");  
+    preregister_template_NCollection_Array1<AppParCurves_MultiCurve>(m,"AppParCurves_Array1OfMultiCurve");  
+    preregister_template_NCollection_Array1<AppParCurves_ConstraintCouple>(m,"AppParCurves_Array1OfConstraintCouple");  
+    preregister_template_NCollection_Array1<AppParCurves_MultiPoint>(m,"AppParCurves_Array1OfMultiPoint");  
+    preregister_template_NCollection_Array1<AppParCurves_MultiBSpCurve>(m,"AppParCurves_Array1OfMultiBSpCurve");  
+
+// classes forward declarations only
+    py::class_<AppParCurves , shared_ptr<AppParCurves>  >(m,"AppParCurves",R"#(Parallel Approximation in n curves. This package gives all the algorithms used to approximate a MultiLine described by the tool MLineTool. The result of the approximation will be a MultiCurve.)#");
+    py::class_<AppParCurves_ConstraintCouple , shared_ptr<AppParCurves_ConstraintCouple>  >(m,"AppParCurves_ConstraintCouple",R"#(associates an index and a constraint for an object. This couple is used by AppDef_TheVariational when performing approximations.)#");
+    py::class_<AppParCurves_HArray1OfConstraintCouple ,opencascade::handle<AppParCurves_HArray1OfConstraintCouple>  , AppParCurves_Array1OfConstraintCouple , Standard_Transient >(m,"AppParCurves_HArray1OfConstraintCouple",R"#()#");
+    py::class_<AppParCurves_HArray1OfMultiBSpCurve ,opencascade::handle<AppParCurves_HArray1OfMultiBSpCurve>  , AppParCurves_Array1OfMultiBSpCurve , Standard_Transient >(m,"AppParCurves_HArray1OfMultiBSpCurve",R"#()#");
+    py::class_<AppParCurves_HArray1OfMultiCurve ,opencascade::handle<AppParCurves_HArray1OfMultiCurve>  , AppParCurves_Array1OfMultiCurve , Standard_Transient >(m,"AppParCurves_HArray1OfMultiCurve",R"#()#");
+    py::class_<AppParCurves_HArray1OfMultiPoint ,opencascade::handle<AppParCurves_HArray1OfMultiPoint>  , AppParCurves_Array1OfMultiPoint , Standard_Transient >(m,"AppParCurves_HArray1OfMultiPoint",R"#()#");
+    py::class_<AppParCurves_MultiCurve , shared_ptr<AppParCurves_MultiCurve>  >(m,"AppParCurves_MultiCurve",R"#(This class describes a MultiCurve approximating a Multiline. As a Multiline is a set of n lines, a MultiCurve is a set of n curves. These curves are Bezier curves. A MultiCurve is composed of m MultiPoint. The approximating degree of these n curves is the same for each one.)#");
+    py::class_<AppParCurves_MultiPoint , shared_ptr<AppParCurves_MultiPoint>  >(m,"AppParCurves_MultiPoint",R"#(This class describes Points composing a MultiPoint. These points can be 2D or 3D. The user must first give the 3D Points and then the 2D Points. They are Poles of a Bezier Curve. This class is used either to define data input or results when performing the approximation of several lines in parallel.)#");
+    py::class_<AppParCurves_MultiBSpCurve , shared_ptr<AppParCurves_MultiBSpCurve>  , AppParCurves_MultiCurve >(m,"AppParCurves_MultiBSpCurve",R"#(This class describes a MultiBSpCurve approximating a Multiline. Just as a Multiline is a set of a given number of lines, a MultiBSpCurve is a set of a specified number of bsplines defined by: - A specified number of MultiPoints - the poles of a specified number of curves - The degree of approximation identical for each of the specified number of curves.)#");
 
 };
 

@@ -78,39 +78,15 @@ py::module m = main_module.def_submodule("BVH", R"#()#");
         
     };
 
+// pre-register typdefs
+
 // classes forward declarations only
-    py::class_<BVH_Properties ,opencascade::handle<BVH_Properties> ,Py_BVH_Properties , Standard_Transient >(m,"BVH_Properties",R"#(Abstract properties of geometric object.)#");
+    py::class_<BVH_BuildQueue , shared_ptr<BVH_BuildQueue>  >(m,"BVH_BuildQueue",R"#(Command-queue for parallel building of BVH nodes.)#");
     py::class_<BVH_BuildThread ,opencascade::handle<BVH_BuildThread>  , Standard_Transient >(m,"BVH_BuildThread",R"#(Wrapper for BVH build thread.Wrapper for BVH build thread.)#");
     py::class_<BVH_BuilderTransient ,opencascade::handle<BVH_BuilderTransient>  , Standard_Transient >(m,"BVH_BuilderTransient",R"#(A non-template class for using as base for BVH_Builder (just to have a named base class).)#");
     py::class_<BVH_ObjectTransient ,opencascade::handle<BVH_ObjectTransient>  , Standard_Transient >(m,"BVH_ObjectTransient",R"#(A non-template class for using as base for BVH_Object (just to have a named base class).)#");
+    py::class_<BVH_Properties ,opencascade::handle<BVH_Properties> ,Py_BVH_Properties , Standard_Transient >(m,"BVH_Properties",R"#(Abstract properties of geometric object.)#");
     py::class_<BVH_TreeBaseTransient ,opencascade::handle<BVH_TreeBaseTransient>  , Standard_Transient >(m,"BVH_TreeBaseTransient",R"#(A non-template class for using as base for BVH_TreeBase (just to have a named base class).)#");
-    py::class_<BVH_BuildQueue ,std::unique_ptr<BVH_BuildQueue>  >(m,"BVH_BuildQueue",R"#(Command-queue for parallel building of BVH nodes.)#");
-
-// pre-register typdefs
-// ./opencascade/BVH_Set.hxx
-// ./opencascade/BVH_LinearBuilder.hxx
-// ./opencascade/BVH_Properties.hxx
-// ./opencascade/BVH_Object.hxx
-// ./opencascade/BVH_DistanceField.hxx
-// ./opencascade/BVH_SweepPlaneBuilder.hxx
-// ./opencascade/BVH_BuildThread.hxx
-// ./opencascade/BVH_Triangulation.hxx
-// ./opencascade/BVH_SpatialMedianBuilder.hxx
-// ./opencascade/BVH_BinnedBuilder.hxx
-// ./opencascade/BVH_Sorter.hxx
-// ./opencascade/BVH_Geometry.hxx
-// ./opencascade/BVH_PrimitiveSet3d.hxx
-// ./opencascade/BVH_BuildQueue.hxx
-// ./opencascade/BVH_BinaryTree.hxx
-// ./opencascade/BVH_PrimitiveSet.hxx
-// ./opencascade/BVH_QuadTree.hxx
-// ./opencascade/BVH_QuickSorter.hxx
-// ./opencascade/BVH_Constants.hxx
-// ./opencascade/BVH_Builder.hxx
-// ./opencascade/BVH_ObjectSet.hxx
-// ./opencascade/BVH_QueueBuilder.hxx
-// ./opencascade/BVH_Tree.hxx
-// ./opencascade/BVH_Box.hxx
 
 };
 

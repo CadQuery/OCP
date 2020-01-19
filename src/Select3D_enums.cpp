@@ -11,11 +11,11 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Select3D_SensitiveEntity.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <Poly_Triangulation.hxx>
 #include <Geom_Circle.hxx>
 #include <Select3D_SensitiveEntity.hxx>
+#include <SelectBasics_EntityOwner.hxx>
+#include <Select3D_SensitiveEntity.hxx>
+#include <Poly_Triangulation.hxx>
 
 // module includes
 #include <Select3D_BndBox3d.hxx>
@@ -43,15 +43,13 @@ namespace py = pybind11;
 #include <Select3D_TypeOfSensitivity.hxx>
 
 // template related includes
-// ./opencascade/Select3D_EntitySequence.hxx
-#include "NCollection.hxx"
-// ./opencascade/Select3D_EntitySequence.hxx
+// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
 #include "NCollection.hxx"
 // ./opencascade/Select3D_BVHBuilder3d.hxx
 #include "BVH.hxx"
-// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
+// ./opencascade/Select3D_EntitySequence.hxx
 #include "NCollection.hxx"
-// ./opencascade/Select3D_BndBox3d.hxx
+// ./opencascade/Select3D_EntitySequence.hxx
 #include "NCollection.hxx"
 
 
@@ -112,53 +110,29 @@ py::module m = main_module.def_submodule("Select3D", R"#()#");
         
     };
 
+// pre-register typdefs
+    preregister_template_NCollection_Vector<opencascade::handle<Select3D_SensitivePoly> >(m,"Select3D_VectorOfHPoly");  
+    preregister_template_BVH_Builder<Standard_Real, 3>(m,"Select3D_BVHBuilder3d");  
+    preregister_template_NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> >(m,"Select3D_EntitySequence");  
+
 // classes forward declarations only
+    py::class_<Select3D_BVHIndexBuffer ,opencascade::handle<Select3D_BVHIndexBuffer>  , Graphic3d_Buffer >(m,"Select3D_BVHIndexBuffer",R"#(Index buffer for BVH tree.Index buffer for BVH tree.)#");
+    py::class_<Select3D_PointData , shared_ptr<Select3D_PointData>  >(m,"Select3D_PointData",R"#(None)#");
     py::class_<Select3D_SensitiveEntity ,opencascade::handle<Select3D_SensitiveEntity> ,Py_Select3D_SensitiveEntity , SelectBasics_SensitiveEntity >(m,"Select3D_SensitiveEntity",R"#(Abstract framework to define 3D sensitive entities. As the selection process uses the principle of a projection of 3D shapes onto a 2D view where nearness to a rectangle determines whether a shape is picked or not, all 3D shapes need to be converted into 2D ones in order to be selected.Abstract framework to define 3D sensitive entities. As the selection process uses the principle of a projection of 3D shapes onto a 2D view where nearness to a rectangle determines whether a shape is picked or not, all 3D shapes need to be converted into 2D ones in order to be selected.)#");
-    py::class_<Select3D_PointData ,std::unique_ptr<Select3D_PointData>  >(m,"Select3D_PointData",R"#(None)#");
+    py::class_<Select3D_SensitiveBox ,opencascade::handle<Select3D_SensitiveBox>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveBox",R"#(A framework to define selection by a sensitive box.A framework to define selection by a sensitive box.)#");
+    py::class_<Select3D_SensitiveFace ,opencascade::handle<Select3D_SensitiveFace>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveFace",R"#(Sensitive Entity to make a face selectable. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.Sensitive Entity to make a face selectable. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.)#");
+    py::class_<Select3D_SensitivePoint ,opencascade::handle<Select3D_SensitivePoint>  , Select3D_SensitiveEntity >(m,"Select3D_SensitivePoint",R"#(A framework to define sensitive 3D points.A framework to define sensitive 3D points.)#");
+    py::class_<Select3D_SensitiveSegment ,opencascade::handle<Select3D_SensitiveSegment>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveSegment",R"#(A framework to define sensitive zones along a segment One gives the 3D start and end pointA framework to define sensitive zones along a segment One gives the 3D start and end point)#");
     py::class_<Select3D_SensitiveSet ,opencascade::handle<Select3D_SensitiveSet> ,Py_Select3D_SensitiveSet , Select3D_SensitiveEntity >(m,"Select3D_SensitiveSet",R"#(This class is base class for handling overlap detection of complex sensitive entities. It provides an interface for building BVH tree for some set of entities. Thereby, each iteration of overlap detection is a traverse of BVH tree in fact. To use speed-up hierarchical structure in a custom complex sensitive entity, it is necessary to make that custom entity a descendant of this class and organize sub-entities in some container which allows referencing to elements by index. Note that methods taking index as a parameter are used for BVH build and the range of given index is [0; Size() - 1]. For example of usage see Select3D_SensitiveTriangulation.This class is base class for handling overlap detection of complex sensitive entities. It provides an interface for building BVH tree for some set of entities. Thereby, each iteration of overlap detection is a traverse of BVH tree in fact. To use speed-up hierarchical structure in a custom complex sensitive entity, it is necessary to make that custom entity a descendant of this class and organize sub-entities in some container which allows referencing to elements by index. Note that methods taking index as a parameter are used for BVH build and the range of given index is [0; Size() - 1]. For example of usage see Select3D_SensitiveTriangulation.)#");
-    py::class_<Select3D_SensitivePrimitiveArray ,opencascade::handle<Select3D_SensitivePrimitiveArray>  , Select3D_SensitiveSet >(m,"Select3D_SensitivePrimitiveArray",R"#(Sensitive for triangulation or point set defined by Primitive Array. The primitives can be optionally combined into patches within BVH tree to reduce its building time in expense of extra traverse time.Sensitive for triangulation or point set defined by Primitive Array. The primitives can be optionally combined into patches within BVH tree to reduce its building time in expense of extra traverse time.)#");
+    py::class_<Select3D_SensitiveTriangle ,opencascade::handle<Select3D_SensitiveTriangle>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveTriangle",R"#(A framework to define selection of triangles in a view. This comes into play in the detection of meshing and triangulation in surfaces. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.A framework to define selection of triangles in a view. This comes into play in the detection of meshing and triangulation in surfaces. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.)#");
+    py::class_<Select3D_InteriorSensitivePointSet ,opencascade::handle<Select3D_InteriorSensitivePointSet>  , Select3D_SensitiveSet >(m,"Select3D_InteriorSensitivePointSet",R"#(This class handles the selection of arbitrary point set with internal type of sensitivity. The main principle is to split the point set given onto planar convex polygons and search for the overlap with one or more of them through traverse of BVH tree.This class handles the selection of arbitrary point set with internal type of sensitivity. The main principle is to split the point set given onto planar convex polygons and search for the overlap with one or more of them through traverse of BVH tree.)#");
     py::class_<Select3D_SensitiveGroup ,opencascade::handle<Select3D_SensitiveGroup>  , Select3D_SensitiveSet >(m,"Select3D_SensitiveGroup",R"#(A framework to define selection of a sensitive group by a sensitive entity which is a set of 3D sensitive entities. Remark: 2 modes are possible for rectangle selection the group is considered selected 1) when all the entities inside are selected in the rectangle 2) only one entity inside is selected by the rectangle By default the "Match All entities" mode is set.A framework to define selection of a sensitive group by a sensitive entity which is a set of 3D sensitive entities. Remark: 2 modes are possible for rectangle selection the group is considered selected 1) when all the entities inside are selected in the rectangle 2) only one entity inside is selected by the rectangle By default the "Match All entities" mode is set.)#");
     py::class_<Select3D_SensitivePoly ,opencascade::handle<Select3D_SensitivePoly>  , Select3D_SensitiveSet >(m,"Select3D_SensitivePoly",R"#(Sensitive Entity to make a face selectable. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions from its member Select3D_PointData myPolyg.Sensitive Entity to make a face selectable. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions from its member Select3D_PointData myPolyg.)#");
-    py::class_<Select3D_SensitivePoint ,opencascade::handle<Select3D_SensitivePoint>  , Select3D_SensitiveEntity >(m,"Select3D_SensitivePoint",R"#(A framework to define sensitive 3D points.A framework to define sensitive 3D points.)#");
+    py::class_<Select3D_SensitivePrimitiveArray ,opencascade::handle<Select3D_SensitivePrimitiveArray>  , Select3D_SensitiveSet >(m,"Select3D_SensitivePrimitiveArray",R"#(Sensitive for triangulation or point set defined by Primitive Array. The primitives can be optionally combined into patches within BVH tree to reduce its building time in expense of extra traverse time.Sensitive for triangulation or point set defined by Primitive Array. The primitives can be optionally combined into patches within BVH tree to reduce its building time in expense of extra traverse time.)#");
     py::class_<Select3D_SensitiveTriangulation ,opencascade::handle<Select3D_SensitiveTriangulation>  , Select3D_SensitiveSet >(m,"Select3D_SensitiveTriangulation",R"#(A framework to define selection of a sensitive entity made of a set of triangles.A framework to define selection of a sensitive entity made of a set of triangles.)#");
-    py::class_<Select3D_InteriorSensitivePointSet ,opencascade::handle<Select3D_InteriorSensitivePointSet>  , Select3D_SensitiveSet >(m,"Select3D_InteriorSensitivePointSet",R"#(This class handles the selection of arbitrary point set with internal type of sensitivity. The main principle is to split the point set given onto planar convex polygons and search for the overlap with one or more of them through traverse of BVH tree.This class handles the selection of arbitrary point set with internal type of sensitivity. The main principle is to split the point set given onto planar convex polygons and search for the overlap with one or more of them through traverse of BVH tree.)#");
-    py::class_<Select3D_SensitiveCircle ,opencascade::handle<Select3D_SensitiveCircle>  , Select3D_SensitivePoly >(m,"Select3D_SensitiveCircle",R"#(A framework to define sensitive 3D arcs and circles. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.A framework to define sensitive 3D arcs and circles. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.)#");
-    py::class_<Select3D_SensitiveFace ,opencascade::handle<Select3D_SensitiveFace>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveFace",R"#(Sensitive Entity to make a face selectable. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.Sensitive Entity to make a face selectable. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.)#");
-    py::class_<Select3D_SensitiveSegment ,opencascade::handle<Select3D_SensitiveSegment>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveSegment",R"#(A framework to define sensitive zones along a segment One gives the 3D start and end pointA framework to define sensitive zones along a segment One gives the 3D start and end point)#");
     py::class_<Select3D_SensitiveWire ,opencascade::handle<Select3D_SensitiveWire>  , Select3D_SensitiveSet >(m,"Select3D_SensitiveWire",R"#(A framework to define selection of a wire owner by an elastic wire band.A framework to define selection of a wire owner by an elastic wire band.)#");
-    py::class_<Select3D_BVHIndexBuffer ,opencascade::handle<Select3D_BVHIndexBuffer>  , Graphic3d_Buffer >(m,"Select3D_BVHIndexBuffer",R"#(Index buffer for BVH tree.Index buffer for BVH tree.)#");
+    py::class_<Select3D_SensitiveCircle ,opencascade::handle<Select3D_SensitiveCircle>  , Select3D_SensitivePoly >(m,"Select3D_SensitiveCircle",R"#(A framework to define sensitive 3D arcs and circles. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.A framework to define sensitive 3D arcs and circles. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.)#");
     py::class_<Select3D_SensitiveCurve ,opencascade::handle<Select3D_SensitiveCurve>  , Select3D_SensitivePoly >(m,"Select3D_SensitiveCurve",R"#(A framework to define a sensitive 3D curve. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.A framework to define a sensitive 3D curve. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.)#");
-    py::class_<Select3D_SensitiveBox ,opencascade::handle<Select3D_SensitiveBox>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveBox",R"#(A framework to define selection by a sensitive box.A framework to define selection by a sensitive box.)#");
-    py::class_<Select3D_SensitiveTriangle ,opencascade::handle<Select3D_SensitiveTriangle>  , Select3D_SensitiveEntity >(m,"Select3D_SensitiveTriangle",R"#(A framework to define selection of triangles in a view. This comes into play in the detection of meshing and triangulation in surfaces. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.A framework to define selection of triangles in a view. This comes into play in the detection of meshing and triangulation in surfaces. In some cases this class can raise Standard_ConstructionError and Standard_OutOfRange exceptions. For more details see Select3D_SensitivePoly.)#");
-
-// pre-register typdefs
-// ./opencascade/Select3D_SensitiveGroup.hxx
-// ./opencascade/Select3D_EntitySequence.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> >(m,"Select3D_EntitySequence");  
-// ./opencascade/Select3D_SensitiveFace.hxx
-// ./opencascade/Select3D_SensitiveCurve.hxx
-// ./opencascade/Select3D_SensitivePoly.hxx
-// ./opencascade/Select3D_TypeOfSensitivity.hxx
-// ./opencascade/Select3D_SensitiveSegment.hxx
-// ./opencascade/Select3D_SensitivePoint.hxx
-// ./opencascade/Select3D_SensitiveEntity.hxx
-// ./opencascade/Select3D_SensitiveTriangle.hxx
-// ./opencascade/Select3D_Pnt.hxx
-// ./opencascade/Select3D_SensitiveTriangulation.hxx
-// ./opencascade/Select3D_BVHBuilder3d.hxx
-    preregister_template_BVH_Builder<Standard_Real, 3>(m,"Select3D_BVHBuilder3d");  
-// ./opencascade/Select3D_SensitiveWire.hxx
-// ./opencascade/Select3D_PointData.hxx
-// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
-    preregister_template_NCollection_Vector<opencascade::handle<Select3D_SensitivePoly> >(m,"Select3D_VectorOfHPoly");  
-// ./opencascade/Select3D_SensitiveSet.hxx
-// ./opencascade/Select3D_SensitiveBox.hxx
-// ./opencascade/Select3D_SensitiveCircle.hxx
-// ./opencascade/Select3D_SensitivePrimitiveArray.hxx
-// ./opencascade/Select3D_BVHIndexBuffer.hxx
-// ./opencascade/Select3D_IndexedMapOfEntity.hxx
-// ./opencascade/Select3D_BndBox3d.hxx
-    preregister_template_NCollection_Vec3<Standard_Real>(m,"Select3D_Vec3");  
 
 };
 

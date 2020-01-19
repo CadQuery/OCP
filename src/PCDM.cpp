@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -12,14 +15,10 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <PCDM_DriverError.hxx>
 #include <CDM_Document.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <CDM_Document.hxx>
-#include <PCDM_StorageDriver.hxx>
-#include <TCollection_AsciiString.hxx>
+#include <CDM_Application.hxx>
 #include <PCDM_DriverError.hxx>
 #include <CDM_Document.hxx>
-#include <CDM_Application.hxx>
+#include <Storage_Schema.hxx>
 #include <Message_Messenger.hxx>
 #include <CDM_Document.hxx>
 #include <CDM_MetaData.hxx>
@@ -28,16 +27,20 @@ namespace py = pybind11;
 #include <Storage_Data.hxx>
 #include <CDM_Document.hxx>
 #include <Message_Messenger.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Storage_Data.hxx>
-#include <CDM_Document.hxx>
-#include <Message_Messenger.hxx>
 #include <Storage_BaseDriver.hxx>
+#include <CDM_Document.hxx>
+#include <PCDM_StorageDriver.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <CDM_MetaData.hxx>
 #include <Message_Messenger.hxx>
 #include <PCDM_DriverError.hxx>
 #include <CDM_Document.hxx>
 #include <TCollection_ExtendedString.hxx>
+#include <Storage_BaseDriver.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Storage_Data.hxx>
+#include <CDM_Document.hxx>
+#include <Message_Messenger.hxx>
 
 // module includes
 #include <PCDM.hxx>
@@ -79,22 +82,6 @@ py::module m = static_cast<py::module>(main_module.attr("PCDM"));
 
 
 //Python trampoline classes
-    class Py_PCDM_Reader : public PCDM_Reader{
-    public:
-        using PCDM_Reader::PCDM_Reader;
-        
-        // public pure virtual
-        opencascade::handle<CDM_Document> CreateDocument() override { PYBIND11_OVERLOAD_PURE(opencascade::handle<CDM_Document>,PCDM_Reader,CreateDocument,) };
-        void Read(const TCollection_ExtendedString & aFileName,const opencascade::handle<CDM_Document> & aNewDocument,const opencascade::handle<CDM_Application> & anApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,aFileName,aNewDocument,anApplication) };
-        void Read(std::istream & theIStream,const opencascade::handle<Storage_Data> & theStorageData,const opencascade::handle<CDM_Document> & theDoc,const opencascade::handle<CDM_Application> & theApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,theIStream,theStorageData,theDoc,theApplication) };
-        
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
     class Py_PCDM_ReadWriter : public PCDM_ReadWriter{
     public:
         using PCDM_ReadWriter::PCDM_ReadWriter;
@@ -109,6 +96,22 @@ py::module m = static_cast<py::module>(main_module.attr("PCDM"));
         void ReadReferences(const TCollection_ExtendedString & aFileName,NCollection_Sequence<PCDM_Reference> & theReferences,const opencascade::handle<Message_Messenger> & theMsgDriver) const  override { PYBIND11_OVERLOAD_PURE(void,PCDM_ReadWriter,ReadReferences,aFileName,theReferences,theMsgDriver) };
         void ReadExtensions(const TCollection_ExtendedString & aFileName,NCollection_Sequence<TCollection_ExtendedString> & theExtensions,const opencascade::handle<Message_Messenger> & theMsgDriver) const  override { PYBIND11_OVERLOAD_PURE(void,PCDM_ReadWriter,ReadExtensions,aFileName,theExtensions,theMsgDriver) };
         Standard_Integer ReadDocumentVersion(const TCollection_ExtendedString & aFileName,const opencascade::handle<Message_Messenger> & theMsgDriver) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,PCDM_ReadWriter,ReadDocumentVersion,aFileName,theMsgDriver) };
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
+    class Py_PCDM_Reader : public PCDM_Reader{
+    public:
+        using PCDM_Reader::PCDM_Reader;
+        
+        // public pure virtual
+        opencascade::handle<CDM_Document> CreateDocument() override { PYBIND11_OVERLOAD_PURE(opencascade::handle<CDM_Document>,PCDM_Reader,CreateDocument,) };
+        void Read(const TCollection_ExtendedString & aFileName,const opencascade::handle<CDM_Document> & aNewDocument,const opencascade::handle<CDM_Application> & anApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,aFileName,aNewDocument,anApplication) };
+        void Read(std::istream & theIStream,const opencascade::handle<Storage_Data> & theStorageData,const opencascade::handle<CDM_Document> & theDoc,const opencascade::handle<CDM_Application> & theApplication) override { PYBIND11_OVERLOAD_PURE(void,PCDM_Reader,Read,theIStream,theStorageData,theDoc,theApplication) };
         
         
         // protected pure virtual
@@ -151,41 +154,66 @@ py::module m = static_cast<py::module>(main_module.attr("PCDM"));
 
 // classes
 
-    register_default_constructor<PCDM ,std::unique_ptr<PCDM>>(m,"PCDM");
+    register_default_constructor<PCDM , shared_ptr<PCDM>>(m,"PCDM");
 
-    static_cast<py::class_<PCDM ,std::unique_ptr<PCDM>  >>(m.attr("PCDM"))
+    static_cast<py::class_<PCDM , shared_ptr<PCDM>  >>(m.attr("PCDM"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
+    register_default_constructor<PCDM_DOMHeaderParser , shared_ptr<PCDM_DOMHeaderParser>>(m,"PCDM_DOMHeaderParser");
 
-    static_cast<py::class_<PCDM_Reader ,opencascade::handle<PCDM_Reader> ,Py_PCDM_Reader , Standard_Transient >>(m.attr("PCDM_Reader"))
-        .def("CreateDocument",
-             (opencascade::handle<CDM_Document> (PCDM_Reader::*)() ) static_cast<opencascade::handle<CDM_Document> (PCDM_Reader::*)() >(&PCDM_Reader::CreateDocument),
-             R"#(this method is called by the framework before the read method.)#" )
-        .def("Read",
-             (void (PCDM_Reader::*)( const TCollection_ExtendedString & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) ) static_cast<void (PCDM_Reader::*)( const TCollection_ExtendedString & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) >(&PCDM_Reader::Read),
-             R"#(retrieves the content of the file into a new Document.)#"  , py::arg("aFileName"),  py::arg("aNewDocument"),  py::arg("anApplication"))
-        .def("Read",
-             (void (PCDM_Reader::*)( std::istream & ,  const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) ) static_cast<void (PCDM_Reader::*)( std::istream & ,  const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) >(&PCDM_Reader::Read),
-             R"#(None)#"  , py::arg("theIStream"),  py::arg("theStorageData"),  py::arg("theDoc"),  py::arg("theApplication"))
-        .def("GetStatus",
-             (PCDM_ReaderStatus (PCDM_Reader::*)() const) static_cast<PCDM_ReaderStatus (PCDM_Reader::*)() const>(&PCDM_Reader::GetStatus),
+    static_cast<py::class_<PCDM_DOMHeaderParser , shared_ptr<PCDM_DOMHeaderParser>  >>(m.attr("PCDM_DOMHeaderParser"))
+    // methods
+        .def("SetStartElementName",
+             (void (PCDM_DOMHeaderParser::*)( const TCollection_AsciiString &  ) ) static_cast<void (PCDM_DOMHeaderParser::*)( const TCollection_AsciiString &  ) >(&PCDM_DOMHeaderParser::SetStartElementName),
+             R"#(None)#"  , py::arg("aStartElementName"))
+        .def("SetEndElementName",
+             (void (PCDM_DOMHeaderParser::*)( const TCollection_AsciiString &  ) ) static_cast<void (PCDM_DOMHeaderParser::*)( const TCollection_AsciiString &  ) >(&PCDM_DOMHeaderParser::SetEndElementName),
+             R"#(None)#"  , py::arg("anEndElementName"))
+        .def("startElement",
+             (Standard_Boolean (PCDM_DOMHeaderParser::*)() ) static_cast<Standard_Boolean (PCDM_DOMHeaderParser::*)() >(&PCDM_DOMHeaderParser::startElement),
              R"#(None)#" )
+        .def("endElement",
+             (Standard_Boolean (PCDM_DOMHeaderParser::*)() ) static_cast<Standard_Boolean (PCDM_DOMHeaderParser::*)() >(&PCDM_DOMHeaderParser::endElement),
+             R"#(None)#" )
+        .def("GetElement",
+             (const LDOM_Element & (PCDM_DOMHeaderParser::*)() const) static_cast<const LDOM_Element & (PCDM_DOMHeaderParser::*)() const>(&PCDM_DOMHeaderParser::GetElement),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<PCDM_Document ,opencascade::handle<PCDM_Document>>(m,"PCDM_Document");
+
+    static_cast<py::class_<PCDM_Document ,opencascade::handle<PCDM_Document>  , Standard_Persistent >>(m.attr("PCDM_Document"))
+    // methods
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (PCDM_Reader::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_Reader::*)() const>(&PCDM_Reader::DynamicType),
+             (const opencascade::handle<Standard_Type> & (PCDM_Document::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_Document::*)() const>(&PCDM_Document::DynamicType),
              R"#(None)#" )
-        .def("GetStatus",
-             (PCDM_ReaderStatus (PCDM_Reader::*)() const) static_cast<PCDM_ReaderStatus (PCDM_Reader::*)() const>(&PCDM_Reader::GetStatus),
-             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_Reader::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_Document::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_Reader::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_Document::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<PCDM_ReadWriter ,opencascade::handle<PCDM_ReadWriter> ,Py_PCDM_ReadWriter , Standard_Transient >>(m.attr("PCDM_ReadWriter"))
+    // methods
         .def("Version",
              (TCollection_AsciiString (PCDM_ReadWriter::*)() const) static_cast<TCollection_AsciiString (PCDM_ReadWriter::*)() const>(&PCDM_ReadWriter::Version),
              R"#(returns PCDM_ReadWriter_1.)#" )
@@ -216,6 +244,8 @@ py::module m = static_cast<py::module>(main_module.attr("PCDM"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (PCDM_ReadWriter::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_ReadWriter::*)() const>(&PCDM_ReadWriter::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Open_s",
                     (void (*)( Storage_BaseDriver & ,  const TCollection_ExtendedString & ,  const Storage_OpenMode  ) ) static_cast<void (*)( Storage_BaseDriver & ,  const TCollection_ExtendedString & ,  const Storage_OpenMode  ) >(&PCDM_ReadWriter::Open),
                     R"#(None)#"  , py::arg("aDriver"),  py::arg("aFileName"),  py::arg("anOpenMode"))
@@ -237,31 +267,50 @@ py::module m = static_cast<py::module>(main_module.attr("PCDM"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_ReadWriter::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<PCDM_Writer ,opencascade::handle<PCDM_Writer> ,Py_PCDM_Writer , Standard_Transient >>(m.attr("PCDM_Writer"))
-        .def("Write",
-             (void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) ) static_cast<void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) >(&PCDM_Writer::Write),
-             R"#(None)#"  , py::arg("aDocument"),  py::arg("aFileName"))
-        .def("Write",
-             (void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) ) static_cast<void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) >(&PCDM_Writer::Write),
-             R"#(Write <theDocument> to theOStream)#"  , py::arg("theDocument"),  py::arg("theOStream"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (PCDM_Writer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_Writer::*)() const>(&PCDM_Writer::DynamicType),
+    static_cast<py::class_<PCDM_Reader ,opencascade::handle<PCDM_Reader> ,Py_PCDM_Reader , Standard_Transient >>(m.attr("PCDM_Reader"))
+    // methods
+        .def("CreateDocument",
+             (opencascade::handle<CDM_Document> (PCDM_Reader::*)() ) static_cast<opencascade::handle<CDM_Document> (PCDM_Reader::*)() >(&PCDM_Reader::CreateDocument),
+             R"#(this method is called by the framework before the read method.)#" )
+        .def("Read",
+             (void (PCDM_Reader::*)( const TCollection_ExtendedString & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) ) static_cast<void (PCDM_Reader::*)( const TCollection_ExtendedString & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) >(&PCDM_Reader::Read),
+             R"#(retrieves the content of the file into a new Document.)#"  , py::arg("aFileName"),  py::arg("aNewDocument"),  py::arg("anApplication"))
+        .def("Read",
+             (void (PCDM_Reader::*)( std::istream & ,  const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) ) static_cast<void (PCDM_Reader::*)( std::istream & ,  const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_Application> &  ) >(&PCDM_Reader::Read),
+             R"#(None)#"  , py::arg("theIStream"),  py::arg("theStorageData"),  py::arg("theDoc"),  py::arg("theApplication"))
+        .def("GetStatus",
+             (PCDM_ReaderStatus (PCDM_Reader::*)() const) static_cast<PCDM_ReaderStatus (PCDM_Reader::*)() const>(&PCDM_Reader::GetStatus),
              R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (PCDM_Reader::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_Reader::*)() const>(&PCDM_Reader::DynamicType),
+             R"#(None)#" )
+        .def("GetStatus",
+             (PCDM_ReaderStatus (PCDM_Reader::*)() const) static_cast<PCDM_ReaderStatus (PCDM_Reader::*)() const>(&PCDM_Reader::GetStatus),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_Writer::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_Reader::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_Writer::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_Reader::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<PCDM_Reference ,std::unique_ptr<PCDM_Reference>  >>(m.attr("PCDM_Reference"))
+    static_cast<py::class_<PCDM_Reference , shared_ptr<PCDM_Reference>  >>(m.attr("PCDM_Reference"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const TCollection_ExtendedString &,const Standard_Integer >()  , py::arg("aReferenceIdentifier"),  py::arg("aFileName"),  py::arg("aDocumentVersion") )
+    // methods
         .def("ReferenceIdentifier",
              (Standard_Integer (PCDM_Reference::*)() const) static_cast<Standard_Integer (PCDM_Reference::*)() const>(&PCDM_Reference::ReferenceIdentifier),
              R"#(None)#" )
@@ -271,11 +320,146 @@ py::module m = static_cast<py::module>(main_module.attr("PCDM"));
         .def("DocumentVersion",
              (Standard_Integer (PCDM_Reference::*)() const) static_cast<Standard_Integer (PCDM_Reference::*)() const>(&PCDM_Reference::DocumentVersion),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<PCDM_ReferenceIterator ,opencascade::handle<PCDM_ReferenceIterator>  , Standard_Transient >>(m.attr("PCDM_ReferenceIterator"))
+        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // methods
+        .def("LoadReferences",
+             (void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_MetaData> & ,  const opencascade::handle<CDM_Application> & ,  const Standard_Boolean  ) ) static_cast<void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_MetaData> & ,  const opencascade::handle<CDM_Application> & ,  const Standard_Boolean  ) >(&PCDM_ReferenceIterator::LoadReferences),
+             R"#(None)#"  , py::arg("aDocument"),  py::arg("aMetaData"),  py::arg("anApplication"),  py::arg("UseStorageConfiguration"))
+        .def("Init",
+             (void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_MetaData> &  ) ) static_cast<void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_MetaData> &  ) >(&PCDM_ReferenceIterator::Init),
+             R"#(None)#"  , py::arg("aMetaData"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (PCDM_ReferenceIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_ReferenceIterator::*)() const>(&PCDM_ReferenceIterator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_ReferenceIterator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_ReferenceIterator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<PCDM_Writer ,opencascade::handle<PCDM_Writer> ,Py_PCDM_Writer , Standard_Transient >>(m.attr("PCDM_Writer"))
+    // methods
+        .def("Write",
+             (void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) ) static_cast<void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) >(&PCDM_Writer::Write),
+             R"#(None)#"  , py::arg("aDocument"),  py::arg("aFileName"))
+        .def("Write",
+             (void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) ) static_cast<void (PCDM_Writer::*)( const opencascade::handle<CDM_Document> & ,  std::ostream &  ) >(&PCDM_Writer::Write),
+             R"#(Write <theDocument> to theOStream)#"  , py::arg("theDocument"),  py::arg("theOStream"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (PCDM_Writer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_Writer::*)() const>(&PCDM_Writer::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_Writer::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_Writer::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<PCDM_ReadWriter_1 ,opencascade::handle<PCDM_ReadWriter_1>  , PCDM_ReadWriter >>(m.attr("PCDM_ReadWriter_1"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Version",
+             (TCollection_AsciiString (PCDM_ReadWriter_1::*)() const) static_cast<TCollection_AsciiString (PCDM_ReadWriter_1::*)() const>(&PCDM_ReadWriter_1::Version),
+             R"#(returns PCDM_ReadWriter_1.)#" )
+        .def("WriteReferenceCounter",
+             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const>(&PCDM_ReadWriter_1::WriteReferenceCounter),
+             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"))
+        .def("WriteReferences",
+             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) const>(&PCDM_ReadWriter_1::WriteReferences),
+             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"),  py::arg("theReferencerFileName"))
+        .def("WriteExtensions",
+             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const>(&PCDM_ReadWriter_1::WriteExtensions),
+             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"))
+        .def("WriteVersion",
+             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const>(&PCDM_ReadWriter_1::WriteVersion),
+             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"))
+        .def("ReadReferenceCounter",
+             (Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadReferenceCounter),
+             R"#(None)#"  , py::arg("aFileName"),  py::arg("theMsgDriver"))
+        .def("ReadReferences",
+             (void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<PCDM_Reference> & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<PCDM_Reference> & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadReferences),
+             R"#(None)#"  , py::arg("aFileName"),  py::arg("theReferences"),  py::arg("theMsgDriver"))
+        .def("ReadExtensions",
+             (void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_ExtendedString> & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_ExtendedString> & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadExtensions),
+             R"#(None)#"  , py::arg("aFileName"),  py::arg("theExtensions"),  py::arg("theMsgDriver"))
+        .def("ReadDocumentVersion",
+             (Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadDocumentVersion),
+             R"#(None)#"  , py::arg("aFileName"),  py::arg("theMsgDriver"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (PCDM_ReadWriter_1::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_ReadWriter_1::*)() const>(&PCDM_ReadWriter_1::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_ReadWriter_1::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_ReadWriter_1::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<PCDM_RetrievalDriver ,opencascade::handle<PCDM_RetrievalDriver> ,Py_PCDM_RetrievalDriver , PCDM_Reader >>(m.attr("PCDM_RetrievalDriver"))
+    // methods
+        .def("SetFormat",
+             (void (PCDM_RetrievalDriver::*)( const TCollection_ExtendedString &  ) ) static_cast<void (PCDM_RetrievalDriver::*)( const TCollection_ExtendedString &  ) >(&PCDM_RetrievalDriver::SetFormat),
+             R"#(None)#"  , py::arg("aformat"))
+        .def("GetFormat",
+             (TCollection_ExtendedString (PCDM_RetrievalDriver::*)() const) static_cast<TCollection_ExtendedString (PCDM_RetrievalDriver::*)() const>(&PCDM_RetrievalDriver::GetFormat),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (PCDM_RetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_RetrievalDriver::*)() const>(&PCDM_RetrievalDriver::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("DocumentVersion_s",
+                    (Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) >(&PCDM_RetrievalDriver::DocumentVersion),
+                    R"#(None)#"  , py::arg("theFileName"),  py::arg("theMsgDriver"))
+        .def_static("ReferenceCounter_s",
+                    (Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) >(&PCDM_RetrievalDriver::ReferenceCounter),
+                    R"#(None)#"  , py::arg("theFileName"),  py::arg("theMsgDriver"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_RetrievalDriver::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_RetrievalDriver::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
     register_default_constructor<PCDM_StorageDriver ,opencascade::handle<PCDM_StorageDriver>>(m,"PCDM_StorageDriver");
 
     static_cast<py::class_<PCDM_StorageDriver ,opencascade::handle<PCDM_StorageDriver>  , PCDM_Writer >>(m.attr("PCDM_StorageDriver"))
+    // methods
         .def("Make",
              (opencascade::handle<PCDM_Document> (PCDM_StorageDriver::*)( const opencascade::handle<CDM_Document> &  ) ) static_cast<opencascade::handle<PCDM_Document> (PCDM_StorageDriver::*)( const opencascade::handle<CDM_Document> &  ) >(&PCDM_StorageDriver::Make),
              R"#(raises NotImplemented.)#"  , py::arg("aDocument"))
@@ -309,157 +493,44 @@ py::module m = static_cast<py::module>(main_module.attr("PCDM"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (PCDM_StorageDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_StorageDriver::*)() const>(&PCDM_StorageDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_StorageDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_StorageDriver::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<PCDM_ReferenceIterator ,opencascade::handle<PCDM_ReferenceIterator>  , Standard_Transient >>(m.attr("PCDM_ReferenceIterator"))
-        .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
-        .def("LoadReferences",
-             (void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_MetaData> & ,  const opencascade::handle<CDM_Application> & ,  const Standard_Boolean  ) ) static_cast<void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_Document> & ,  const opencascade::handle<CDM_MetaData> & ,  const opencascade::handle<CDM_Application> & ,  const Standard_Boolean  ) >(&PCDM_ReferenceIterator::LoadReferences),
-             R"#(None)#"  , py::arg("aDocument"),  py::arg("aMetaData"),  py::arg("anApplication"),  py::arg("UseStorageConfiguration"))
-        .def("Init",
-             (void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_MetaData> &  ) ) static_cast<void (PCDM_ReferenceIterator::*)( const opencascade::handle<CDM_MetaData> &  ) >(&PCDM_ReferenceIterator::Init),
-             R"#(None)#"  , py::arg("aMetaData"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (PCDM_ReferenceIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_ReferenceIterator::*)() const>(&PCDM_ReferenceIterator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_ReferenceIterator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_ReferenceIterator::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<PCDM_RetrievalDriver ,opencascade::handle<PCDM_RetrievalDriver> ,Py_PCDM_RetrievalDriver , PCDM_Reader >>(m.attr("PCDM_RetrievalDriver"))
-        .def("SetFormat",
-             (void (PCDM_RetrievalDriver::*)( const TCollection_ExtendedString &  ) ) static_cast<void (PCDM_RetrievalDriver::*)( const TCollection_ExtendedString &  ) >(&PCDM_RetrievalDriver::SetFormat),
-             R"#(None)#"  , py::arg("aformat"))
-        .def("GetFormat",
-             (TCollection_ExtendedString (PCDM_RetrievalDriver::*)() const) static_cast<TCollection_ExtendedString (PCDM_RetrievalDriver::*)() const>(&PCDM_RetrievalDriver::GetFormat),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (PCDM_RetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_RetrievalDriver::*)() const>(&PCDM_RetrievalDriver::DynamicType),
-             R"#(None)#" )
-        .def_static("DocumentVersion_s",
-                    (Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) >(&PCDM_RetrievalDriver::DocumentVersion),
-                    R"#(None)#"  , py::arg("theFileName"),  py::arg("theMsgDriver"))
-        .def_static("ReferenceCounter_s",
-                    (Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<Standard_Integer (*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) >(&PCDM_RetrievalDriver::ReferenceCounter),
-                    R"#(None)#"  , py::arg("theFileName"),  py::arg("theMsgDriver"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_RetrievalDriver::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_RetrievalDriver::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<PCDM_Document ,opencascade::handle<PCDM_Document>>(m,"PCDM_Document");
-
-    static_cast<py::class_<PCDM_Document ,opencascade::handle<PCDM_Document>  , Standard_Persistent >>(m.attr("PCDM_Document"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (PCDM_Document::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_Document::*)() const>(&PCDM_Document::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_Document::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_Document::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<PCDM_ReadWriter_1 ,opencascade::handle<PCDM_ReadWriter_1>  , PCDM_ReadWriter >>(m.attr("PCDM_ReadWriter_1"))
-        .def(py::init<  >()  )
-        .def("Version",
-             (TCollection_AsciiString (PCDM_ReadWriter_1::*)() const) static_cast<TCollection_AsciiString (PCDM_ReadWriter_1::*)() const>(&PCDM_ReadWriter_1::Version),
-             R"#(returns PCDM_ReadWriter_1.)#" )
-        .def("WriteReferenceCounter",
-             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const>(&PCDM_ReadWriter_1::WriteReferenceCounter),
-             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"))
-        .def("WriteReferences",
-             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) const>(&PCDM_ReadWriter_1::WriteReferences),
-             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"),  py::arg("theReferencerFileName"))
-        .def("WriteExtensions",
-             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const>(&PCDM_ReadWriter_1::WriteExtensions),
-             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"))
-        .def("WriteVersion",
-             (void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const opencascade::handle<Storage_Data> & ,  const opencascade::handle<CDM_Document> &  ) const>(&PCDM_ReadWriter_1::WriteVersion),
-             R"#(None)#"  , py::arg("aData"),  py::arg("aDocument"))
-        .def("ReadReferenceCounter",
-             (Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadReferenceCounter),
-             R"#(None)#"  , py::arg("aFileName"),  py::arg("theMsgDriver"))
-        .def("ReadReferences",
-             (void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<PCDM_Reference> & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<PCDM_Reference> & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadReferences),
-             R"#(None)#"  , py::arg("aFileName"),  py::arg("theReferences"),  py::arg("theMsgDriver"))
-        .def("ReadExtensions",
-             (void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_ExtendedString> & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<void (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  NCollection_Sequence<TCollection_ExtendedString> & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadExtensions),
-             R"#(None)#"  , py::arg("aFileName"),  py::arg("theExtensions"),  py::arg("theMsgDriver"))
-        .def("ReadDocumentVersion",
-             (Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<Standard_Integer (PCDM_ReadWriter_1::*)( const TCollection_ExtendedString & ,  const opencascade::handle<Message_Messenger> &  ) const>(&PCDM_ReadWriter_1::ReadDocumentVersion),
-             R"#(None)#"  , py::arg("aFileName"),  py::arg("theMsgDriver"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (PCDM_ReadWriter_1::*)() const) static_cast<const opencascade::handle<Standard_Type> & (PCDM_ReadWriter_1::*)() const>(&PCDM_ReadWriter_1::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&PCDM_ReadWriter_1::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&PCDM_ReadWriter_1::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/PCDM_DOMHeaderParser.hxx
+// ./opencascade/PCDM_Reader.hxx
 // ./opencascade/PCDM_StorageDriver.hxx
 // ./opencascade/PCDM_SequenceOfReference.hxx
-// ./opencascade/PCDM_BaseDriverPointer.hxx
-// ./opencascade/PCDM.hxx
-// ./opencascade/PCDM_Document.hxx
-// ./opencascade/PCDM_Reader.hxx
-// ./opencascade/PCDM_ReferenceIterator.hxx
-// ./opencascade/PCDM_TypeOfFileDriver.hxx
-// ./opencascade/PCDM_ReadWriter_1.hxx
 // ./opencascade/PCDM_StoreStatus.hxx
-// ./opencascade/PCDM_ReadWriter.hxx
-// ./opencascade/PCDM_RetrievalDriver.hxx
-// ./opencascade/PCDM_SequenceOfDocument.hxx
-// ./opencascade/PCDM_Writer.hxx
-// ./opencascade/PCDM_DriverError.hxx
+// ./opencascade/PCDM_ReferenceIterator.hxx
 // ./opencascade/PCDM_ReaderStatus.hxx
 // ./opencascade/PCDM_Reference.hxx
+// ./opencascade/PCDM_DriverError.hxx
+// ./opencascade/PCDM_ReadWriter.hxx
+// ./opencascade/PCDM.hxx
+// ./opencascade/PCDM_SequenceOfDocument.hxx
+// ./opencascade/PCDM_RetrievalDriver.hxx
+// ./opencascade/PCDM_Document.hxx
+// ./opencascade/PCDM_Writer.hxx
+// ./opencascade/PCDM_TypeOfFileDriver.hxx
+// ./opencascade/PCDM_DOMHeaderParser.hxx
+// ./opencascade/PCDM_BaseDriverPointer.hxx
+// ./opencascade/PCDM_ReadWriter_1.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/PCDM_DOMHeaderParser.hxx
-// ./opencascade/PCDM_StorageDriver.hxx
-// ./opencascade/PCDM_SequenceOfReference.hxx
     register_template_NCollection_Sequence<PCDM_Reference>(m,"PCDM_SequenceOfReference");  
-// ./opencascade/PCDM_BaseDriverPointer.hxx
-// ./opencascade/PCDM.hxx
-// ./opencascade/PCDM_Document.hxx
-// ./opencascade/PCDM_Reader.hxx
-// ./opencascade/PCDM_ReferenceIterator.hxx
-// ./opencascade/PCDM_TypeOfFileDriver.hxx
-// ./opencascade/PCDM_ReadWriter_1.hxx
-// ./opencascade/PCDM_StoreStatus.hxx
-// ./opencascade/PCDM_ReadWriter.hxx
-// ./opencascade/PCDM_RetrievalDriver.hxx
-// ./opencascade/PCDM_SequenceOfDocument.hxx
     register_template_NCollection_Sequence<opencascade::handle<PCDM_Document> >(m,"PCDM_SequenceOfDocument");  
-// ./opencascade/PCDM_Writer.hxx
-// ./opencascade/PCDM_DriverError.hxx
-// ./opencascade/PCDM_ReaderStatus.hxx
-// ./opencascade/PCDM_Reference.hxx
 
 
 // exceptions

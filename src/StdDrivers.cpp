@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -37,18 +40,44 @@ py::module m = static_cast<py::module>(main_module.attr("StdDrivers"));
 
 // classes
 
+    register_default_constructor<StdDrivers , shared_ptr<StdDrivers>>(m,"StdDrivers");
+
+    static_cast<py::class_<StdDrivers , shared_ptr<StdDrivers>  >>(m.attr("StdDrivers"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Factory_s",
+                    (opencascade::handle<Standard_Transient> (*)( const Standard_GUID &  ) ) static_cast<opencascade::handle<Standard_Transient> (*)( const Standard_GUID &  ) >(&StdDrivers::Factory),
+                    R"#(Depending from the ID, returns a list of storage or retrieval attribute drivers. Used for plugin)#"  , py::arg("aGUID"))
+        .def_static("DefineFormat_s",
+                    (void (*)( const opencascade::handle<TDocStd_Application> &  ) ) static_cast<void (*)( const opencascade::handle<TDocStd_Application> &  ) >(&StdDrivers::DefineFormat),
+                    R"#(Defines format "MDTV-Standard" and registers its retrieval driver in the specified application)#"  , py::arg("theApp"))
+        .def_static("BindTypes_s",
+                    (void (*)( StdObjMgt_MapOfInstantiators &  ) ) static_cast<void (*)( StdObjMgt_MapOfInstantiators &  ) >(&StdDrivers::BindTypes),
+                    R"#(Register types.)#"  , py::arg("theMap"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
     register_default_constructor<StdDrivers_DocumentRetrievalDriver ,opencascade::handle<StdDrivers_DocumentRetrievalDriver>>(m,"StdDrivers_DocumentRetrievalDriver");
 
     static_cast<py::class_<StdDrivers_DocumentRetrievalDriver ,opencascade::handle<StdDrivers_DocumentRetrievalDriver>  , StdLDrivers_DocumentRetrievalDriver >>(m.attr("StdDrivers_DocumentRetrievalDriver"))
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdDrivers_DocumentRetrievalDriver::*)() const>(&StdDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&StdDrivers_DocumentRetrievalDriver::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StdDrivers_DocumentRetrievalDriver::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -58,8 +87,6 @@ py::module m = static_cast<py::module>(main_module.attr("StdDrivers"));
 // operators
 
 // register typdefs
-// ./opencascade/StdDrivers.hxx
-// ./opencascade/StdDrivers_DocumentRetrievalDriver.hxx
 
 
 // exceptions

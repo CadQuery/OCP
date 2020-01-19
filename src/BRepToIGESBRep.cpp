@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -49,8 +52,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGESBRep"));
 // classes
 
 
-    static_cast<py::class_<BRepToIGESBRep_Entity ,std::unique_ptr<BRepToIGESBRep_Entity>  , BRepToIGES_BREntity >>(m.attr("BRepToIGESBRep_Entity"))
+    static_cast<py::class_<BRepToIGESBRep_Entity , shared_ptr<BRepToIGESBRep_Entity>  , BRepToIGES_BREntity >>(m.attr("BRepToIGESBRep_Entity"))
         .def(py::init<  >()  )
+    // methods
         .def("Clear",
              (void (BRepToIGESBRep_Entity::*)() ) static_cast<void (BRepToIGESBRep_Entity::*)() >(&BRepToIGESBRep_Entity::Clear),
              R"#(Clears the contents of the fields)#" )
@@ -99,6 +103,11 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGESBRep"));
         .def("TransferCompound",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGESBRep_Entity::*)( const TopoDS_Compound &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGESBRep_Entity::*)( const TopoDS_Compound &  ) >(&BRepToIGESBRep_Entity::TransferCompound),
              R"#(Transfert a Compound entity from TopoDS to IGES If this Entity could not be converted, this member returns a NullEntity.)#"  , py::arg("start"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -107,7 +116,6 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGESBRep"));
 // operators
 
 // register typdefs
-// ./opencascade/BRepToIGESBRep_Entity.hxx
 
 
 // exceptions

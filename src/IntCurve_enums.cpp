@@ -11,16 +11,6 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <gp_Lin2d.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <IntCurve_PConic.hxx>
-#include <gp_Pnt2d.hxx>
-#include <IntCurve_PConic.hxx>
-#include <IntCurve_PConicTool.hxx>
 #include <IntCurve_PConic.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Vec2d.hxx>
@@ -30,11 +20,21 @@ namespace py = pybind11;
 #include <IntCurve_ProjectOnPConicTool.hxx>
 #include <IntCurve_MyImpParToolOfIntImpConicParConic.hxx>
 #include <IntRes2d_Domain.hxx>
+#include <gp_Lin2d.hxx>
+#include <IntRes2d_Domain.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <gp_Hypr2d.hxx>
 #include <gp_Elips2d.hxx>
 #include <gp_Lin2d.hxx>
 #include <gp_Circ2d.hxx>
 #include <gp_Parab2d.hxx>
 #include <gp_Hypr2d.hxx>
+#include <IntCurve_PConic.hxx>
+#include <IntCurve_PConicTool.hxx>
+#include <IntCurve_PConic.hxx>
+#include <gp_Pnt2d.hxx>
 #include <gp_Elips2d.hxx>
 #include <gp_Circ2d.hxx>
 #include <gp_Parab2d.hxx>
@@ -71,26 +71,18 @@ py::module m = main_module.def_submodule("IntCurve", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<IntCurve_IntConicConic ,std::unique_ptr<IntCurve_IntConicConic>  , IntRes2d_Intersection >(m,"IntCurve_IntConicConic",R"#(Provides methods to intersect two conics. The exception ConstructionError is raised in constructors or in Perform methods when a domain (Domain from IntRes2d) is not correct, i-e when a Circle (Circ2d from gp) or an Ellipse (i-e Elips2d from gp) do not have a closed domain (use the SetEquivalentParameters method for a domain on a circle or an ellipse).)#");
-    py::class_<IntCurve_MyImpParToolOfIntImpConicParConic ,std::unique_ptr<IntCurve_MyImpParToolOfIntImpConicParConic>  , math_FunctionWithDerivative >(m,"IntCurve_MyImpParToolOfIntImpConicParConic",R"#(None)#");
-    py::class_<PeriodicInterval ,std::unique_ptr<PeriodicInterval>  >(m,"PeriodicInterval",R"#(None)#");
-    py::class_<IntCurve_IntImpConicParConic ,std::unique_ptr<IntCurve_IntImpConicParConic>  , IntRes2d_Intersection >(m,"IntCurve_IntImpConicParConic",R"#(None)#");
-    py::class_<IntCurve_PConic ,std::unique_ptr<IntCurve_PConic>  >(m,"IntCurve_PConic",R"#(This class represents a conic from gp as a parametric curve ( in order to be used by the class PConicTool from IntCurve).)#");
-    py::class_<IntCurve_ProjectOnPConicTool ,std::unique_ptr<IntCurve_ProjectOnPConicTool>  >(m,"IntCurve_ProjectOnPConicTool",R"#(This class provides a tool which computes the parameter of a point near a parametric conic.)#");
-    py::class_<IntCurve_PConicTool ,std::unique_ptr<IntCurve_PConicTool>  >(m,"IntCurve_PConicTool",R"#(Implementation of the ParTool from IntImpParGen for conics of gp, using the class PConic from IntCurve.)#");
-    py::class_<Interval ,std::unique_ptr<Interval>  >(m,"Interval",R"#(None)#");
-    py::class_<IntCurve_IConicTool ,std::unique_ptr<IntCurve_IConicTool>  >(m,"IntCurve_IConicTool",R"#(Implementation of the ImpTool from IntImpParGen for conics of gp.)#");
-
 // pre-register typdefs
-// ./opencascade/IntCurve_IntConicConic.hxx
-// ./opencascade/IntCurve_ProjectOnPConicTool.hxx
-// ./opencascade/IntCurve_MyImpParToolOfIntImpConicParConic.hxx
-// ./opencascade/IntCurve_IntConicConic_Tool.hxx
-// ./opencascade/IntCurve_PConicTool.hxx
-// ./opencascade/IntCurve_IntImpConicParConic.hxx
-// ./opencascade/IntCurve_IConicTool.hxx
-// ./opencascade/IntCurve_PConic.hxx
+
+// classes forward declarations only
+    py::class_<IntCurve_IConicTool , shared_ptr<IntCurve_IConicTool>  >(m,"IntCurve_IConicTool",R"#(Implementation of the ImpTool from IntImpParGen for conics of gp.)#");
+    py::class_<IntCurve_IntConicConic , shared_ptr<IntCurve_IntConicConic>  , IntRes2d_Intersection >(m,"IntCurve_IntConicConic",R"#(Provides methods to intersect two conics. The exception ConstructionError is raised in constructors or in Perform methods when a domain (Domain from IntRes2d) is not correct, i-e when a Circle (Circ2d from gp) or an Ellipse (i-e Elips2d from gp) do not have a closed domain (use the SetEquivalentParameters method for a domain on a circle or an ellipse).)#");
+    py::class_<IntCurve_IntImpConicParConic , shared_ptr<IntCurve_IntImpConicParConic>  , IntRes2d_Intersection >(m,"IntCurve_IntImpConicParConic",R"#(None)#");
+    py::class_<IntCurve_MyImpParToolOfIntImpConicParConic , shared_ptr<IntCurve_MyImpParToolOfIntImpConicParConic>  , math_FunctionWithDerivative >(m,"IntCurve_MyImpParToolOfIntImpConicParConic",R"#(None)#");
+    py::class_<IntCurve_PConic , shared_ptr<IntCurve_PConic>  >(m,"IntCurve_PConic",R"#(This class represents a conic from gp as a parametric curve ( in order to be used by the class PConicTool from IntCurve).)#");
+    py::class_<IntCurve_PConicTool , shared_ptr<IntCurve_PConicTool>  >(m,"IntCurve_PConicTool",R"#(Implementation of the ParTool from IntImpParGen for conics of gp, using the class PConic from IntCurve.)#");
+    py::class_<IntCurve_ProjectOnPConicTool , shared_ptr<IntCurve_ProjectOnPConicTool>  >(m,"IntCurve_ProjectOnPConicTool",R"#(This class provides a tool which computes the parameter of a point near a parametric conic.)#");
+    py::class_<Interval , shared_ptr<Interval>  >(m,"Interval",R"#(None)#");
+    py::class_<PeriodicInterval , shared_ptr<PeriodicInterval>  >(m,"PeriodicInterval",R"#(None)#");
 
 };
 

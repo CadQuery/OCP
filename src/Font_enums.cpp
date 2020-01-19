@@ -11,9 +11,9 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <TCollection_HAsciiString.hxx>
 #include <Font_FTFont.hxx>
 #include <Font_FTLibrary.hxx>
+#include <TCollection_HAsciiString.hxx>
 
 // module includes
 #include <Font_BRepFont.hxx>
@@ -57,27 +57,16 @@ py::module m = main_module.def_submodule("Font", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+    preregister_template_NCollection_List<opencascade::handle<Font_SystemFont> >(m,"Font_NListOfSystemFont");  
+
 // classes forward declarations only
-    py::class_<Font_SystemFont ,opencascade::handle<Font_SystemFont>  , Standard_Transient >(m,"Font_SystemFont",R"#(This class stores information about the font, which is merely a file path and cached metadata about the font.This class stores information about the font, which is merely a file path and cached metadata about the font.)#");
-    py::class_<Font_FontMgr ,opencascade::handle<Font_FontMgr>  , Standard_Transient >(m,"Font_FontMgr",R"#(Collects and provides information about available fonts in system.Collects and provides information about available fonts in system.Collects and provides information about available fonts in system.)#");
-    py::class_<Font_TextFormatter ,std::unique_ptr<Font_TextFormatter>  >(m,"Font_TextFormatter",R"#(This class intended to prepare formatted text.)#");
-    py::class_<Font_BRepTextBuilder ,std::unique_ptr<Font_BRepTextBuilder>  >(m,"Font_BRepTextBuilder",R"#(Represents class for applying text formatting.)#");
+    py::class_<Font_BRepTextBuilder , shared_ptr<Font_BRepTextBuilder>  >(m,"Font_BRepTextBuilder",R"#(Represents class for applying text formatting.)#");
     py::class_<Font_FTFont ,opencascade::handle<Font_FTFont>  , Standard_Transient >(m,"Font_FTFont",R"#(Wrapper over FreeType font. Notice that this class uses internal buffers for loaded glyphs and it is absolutely UNSAFE to load/read glyph from concurrent threads!Wrapper over FreeType font. Notice that this class uses internal buffers for loaded glyphs and it is absolutely UNSAFE to load/read glyph from concurrent threads!)#");
     py::class_<Font_FTLibrary ,opencascade::handle<Font_FTLibrary>  , Standard_Transient >(m,"Font_FTLibrary",R"#(Wrapper over FT_Library. Provides access to FreeType library.Wrapper over FT_Library. Provides access to FreeType library.)#");
-
-// pre-register typdefs
-// ./opencascade/Font_SystemFont.hxx
-// ./opencascade/Font_NListOfSystemFont.hxx
-    preregister_template_NCollection_List<opencascade::handle<Font_SystemFont> >(m,"Font_NListOfSystemFont");  
-// ./opencascade/Font_BRepFont.hxx
-// ./opencascade/Font_Rect.hxx
-// ./opencascade/Font_FontMgr.hxx
-// ./opencascade/Font_FTLibrary.hxx
-// ./opencascade/Font_TextFormatter.hxx
-// ./opencascade/Font_FTFont.hxx
-// ./opencascade/Font_FontAspect.hxx
-// ./opencascade/Font_BRepTextBuilder.hxx
-// ./opencascade/Font_NameOfFont.hxx
+    py::class_<Font_FontMgr ,opencascade::handle<Font_FontMgr>  , Standard_Transient >(m,"Font_FontMgr",R"#(Collects and provides information about available fonts in system.Collects and provides information about available fonts in system.Collects and provides information about available fonts in system.)#");
+    py::class_<Font_SystemFont ,opencascade::handle<Font_SystemFont>  , Standard_Transient >(m,"Font_SystemFont",R"#(This class stores information about the font, which is merely a file path and cached metadata about the font.This class stores information about the font, which is merely a file path and cached metadata about the font.)#");
+    py::class_<Font_TextFormatter , shared_ptr<Font_TextFormatter>  >(m,"Font_TextFormatter",R"#(This class intended to prepare formatted text.)#");
 
 };
 

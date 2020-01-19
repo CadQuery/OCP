@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -40,9 +43,10 @@ py::module m = static_cast<py::module>(main_module.attr("TopBas"));
 // classes
 
 
-    static_cast<py::class_<TopBas_TestInterference ,std::unique_ptr<TopBas_TestInterference>  >>(m.attr("TopBas_TestInterference"))
+    static_cast<py::class_<TopBas_TestInterference , shared_ptr<TopBas_TestInterference>  >>(m.attr("TopBas_TestInterference"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real &,const Standard_Integer &,const TopAbs_Orientation,const TopAbs_Orientation,const TopAbs_Orientation >()  , py::arg("Inters"),  py::arg("Bound"),  py::arg("Orient"),  py::arg("Trans"),  py::arg("BTrans") )
+    // methods
         .def("Intersection",
              (void (TopBas_TestInterference::*)( const Standard_Real &  ) ) static_cast<void (TopBas_TestInterference::*)( const Standard_Real &  ) >(&TopBas_TestInterference::Intersection),
              R"#(None)#"  , py::arg("I"))
@@ -79,20 +83,22 @@ py::module m = static_cast<py::module>(main_module.attr("TopBas"));
         .def("BoundaryTransition",
              (TopAbs_Orientation (TopBas_TestInterference::*)() const) static_cast<TopAbs_Orientation (TopBas_TestInterference::*)() const>(&TopBas_TestInterference::BoundaryTransition),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/TopBas_ListOfTestInterference.hxx
 // ./opencascade/TopBas_ListIteratorOfListOfTestInterference.hxx
+// ./opencascade/TopBas_ListOfTestInterference.hxx
 // ./opencascade/TopBas_TestInterference.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/TopBas_ListOfTestInterference.hxx
     register_template_NCollection_List<TopBas_TestInterference>(m,"TopBas_ListOfTestInterference");  
-// ./opencascade/TopBas_ListIteratorOfListOfTestInterference.hxx
-// ./opencascade/TopBas_TestInterference.hxx
 
 
 // exceptions

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,11 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Select3D_SensitiveEntity.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <Poly_Triangulation.hxx>
 #include <Geom_Circle.hxx>
 #include <Select3D_SensitiveEntity.hxx>
+#include <SelectBasics_EntityOwner.hxx>
+#include <Select3D_SensitiveEntity.hxx>
+#include <Poly_Triangulation.hxx>
 
 // module includes
 #include <Select3D_BndBox3d.hxx>
@@ -42,15 +45,13 @@ namespace py = pybind11;
 #include <Select3D_TypeOfSensitivity.hxx>
 
 // template related includes
-// ./opencascade/Select3D_EntitySequence.hxx
-#include "NCollection.hxx"
-// ./opencascade/Select3D_EntitySequence.hxx
+// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
 #include "NCollection.hxx"
 // ./opencascade/Select3D_BVHBuilder3d.hxx
 #include "BVH.hxx"
-// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
+// ./opencascade/Select3D_EntitySequence.hxx
 #include "NCollection.hxx"
-// ./opencascade/Select3D_BndBox3d.hxx
+// ./opencascade/Select3D_EntitySequence.hxx
 #include "NCollection.hxx"
 
 
@@ -108,7 +109,72 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
 // classes
 
 
+    static_cast<py::class_<Select3D_BVHIndexBuffer ,opencascade::handle<Select3D_BVHIndexBuffer>  , Graphic3d_Buffer >>(m.attr("Select3D_BVHIndexBuffer"))
+        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAlloc") )
+    // methods
+        .def("HasPatches",
+             (bool (Select3D_BVHIndexBuffer::*)() const) static_cast<bool (Select3D_BVHIndexBuffer::*)() const>(&Select3D_BVHIndexBuffer::HasPatches),
+             R"#(None)#" )
+        .def("Init",
+             (bool (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const bool  ) ) static_cast<bool (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const bool  ) >(&Select3D_BVHIndexBuffer::Init),
+             R"#(Allocates new empty index array)#"  , py::arg("theNbElems"),  py::arg("theHasPatches"))
+        .def("Index",
+             (Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const>(&Select3D_BVHIndexBuffer::Index),
+             R"#(Access index at specified position)#"  , py::arg("theIndex"))
+        .def("PatchSize",
+             (Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const>(&Select3D_BVHIndexBuffer::PatchSize),
+             R"#(Access index at specified position)#"  , py::arg("theIndex"))
+        .def("SetIndex",
+             (void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_BVHIndexBuffer::SetIndex),
+             R"#(Change index at specified position)#"  , py::arg("theIndex"),  py::arg("theValue"))
+        .def("SetIndex",
+             (void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_BVHIndexBuffer::SetIndex),
+             R"#(Change index at specified position)#"  , py::arg("theIndex"),  py::arg("theValue"),  py::arg("thePatchSize"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_BVHIndexBuffer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_BVHIndexBuffer::*)() const>(&Select3D_BVHIndexBuffer::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_BVHIndexBuffer::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_BVHIndexBuffer::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_PointData , shared_ptr<Select3D_PointData>  >>(m.attr("Select3D_PointData"))
+        .def(py::init< const Standard_Integer >()  , py::arg("theNbPoints") )
+    // methods
+        .def("SetPnt",
+             (void (Select3D_PointData::*)( const Standard_Integer ,  const Select3D_Pnt &  ) ) static_cast<void (Select3D_PointData::*)( const Standard_Integer ,  const Select3D_Pnt &  ) >(&Select3D_PointData::SetPnt),
+             R"#(None)#"  , py::arg("theIndex"),  py::arg("theValue"))
+        .def("SetPnt",
+             (void (Select3D_PointData::*)( const Standard_Integer ,  const gp_Pnt &  ) ) static_cast<void (Select3D_PointData::*)( const Standard_Integer ,  const gp_Pnt &  ) >(&Select3D_PointData::SetPnt),
+             R"#(None)#"  , py::arg("theIndex"),  py::arg("theValue"))
+        .def("Pnt",
+             (const Select3D_Pnt & (Select3D_PointData::*)( const Standard_Integer  ) const) static_cast<const Select3D_Pnt & (Select3D_PointData::*)( const Standard_Integer  ) const>(&Select3D_PointData::Pnt),
+             R"#(None)#"  , py::arg("theIndex"))
+        .def("Pnt3d",
+             (gp_Pnt (Select3D_PointData::*)( const Standard_Integer  ) const) static_cast<gp_Pnt (Select3D_PointData::*)( const Standard_Integer  ) const>(&Select3D_PointData::Pnt3d),
+             R"#(None)#"  , py::arg("theIndex"))
+        .def("Size",
+             (Standard_Integer (Select3D_PointData::*)() const) static_cast<Standard_Integer (Select3D_PointData::*)() const>(&Select3D_PointData::Size),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
     static_cast<py::class_<Select3D_SensitiveEntity ,opencascade::handle<Select3D_SensitiveEntity> ,Py_Select3D_SensitiveEntity , SelectBasics_SensitiveEntity >>(m.attr("Select3D_SensitiveEntity"))
+    // methods
         .def("GetConnected",
              (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveEntity::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveEntity::*)() >(&Select3D_SensitiveEntity::GetConnected),
              R"#(Originally this method intended to return sensitive entity with new location aLocation, but currently sensitive entities do not hold a location, instead HasLocation() and Location() methods call corresponding entity owner's methods. Thus all entities returned by GetConnected() share the same location propagated from corresponding selectable object. You must redefine this function for any type of sensitive entity which can accept another connected sensitive entity.//can be connected to another sensitive entity.)#" )
@@ -139,17 +205,195 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Select3D_SensitiveEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveEntity::*)() const>(&Select3D_SensitiveEntity::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveEntity::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveEntity::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_SensitiveBox ,opencascade::handle<Select3D_SensitiveBox>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveBox"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Bnd_Box & >()  , py::arg("theOwnerId"),  py::arg("theBox") )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theOwnerId"),  py::arg("theXMin"),  py::arg("theYMin"),  py::arg("theZMin"),  py::arg("theXMax"),  py::arg("theYMax"),  py::arg("theZMax") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveBox::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveBox::*)() const>(&Select3D_SensitiveBox::DynamicType),
+             R"#(None)#" )
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_SensitiveBox::*)() ) static_cast<Standard_Integer (Select3D_SensitiveBox::*)() >(&Select3D_SensitiveBox::NbSubElements),
+             R"#(Returns the amount of sub-entities in sensitive)#" )
+        .def("GetConnected",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveBox::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveBox::*)() >(&Select3D_SensitiveBox::GetConnected),
+             R"#(None)#" )
+        .def("Matches",
+             (Standard_Boolean (Select3D_SensitiveBox::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveBox::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveBox::Matches),
+             R"#(Checks whether the box overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
+        .def("Box",
+             (Bnd_Box (Select3D_SensitiveBox::*)() const) static_cast<Bnd_Box (Select3D_SensitiveBox::*)() const>(&Select3D_SensitiveBox::Box),
+             R"#(None)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitiveBox::*)() const) static_cast<gp_Pnt (Select3D_SensitiveBox::*)() const>(&Select3D_SensitiveBox::CenterOfGeometry),
+             R"#(Returns center of the box. If location transformation is set, it will be applied)#" )
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_SensitiveBox::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveBox::*)() >(&Select3D_SensitiveBox::BoundingBox),
+             R"#(Returns coordinates of the box. If location transformation is set, it will be applied)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveBox::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveBox::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_SensitiveFace ,opencascade::handle<Select3D_SensitiveFace>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveFace"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theType") )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<TColgp_HArray1OfPnt> &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theType") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveFace::*)() const>(&Select3D_SensitiveFace::DynamicType),
+             R"#(None)#" )
+        .def("GetPoints",
+             (void (Select3D_SensitiveFace::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) ) static_cast<void (Select3D_SensitiveFace::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) >(&Select3D_SensitiveFace::GetPoints),
+             R"#(Initializes the given array theHArrayOfPnt by 3d coordinates of vertices of the face)#"  , py::arg("theHArrayOfPnt"))
+        .def("Matches",
+             (Standard_Boolean (Select3D_SensitiveFace::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveFace::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveFace::Matches),
+             R"#(Checks whether the face overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
+        .def("GetConnected",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveFace::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::GetConnected),
+             R"#(None)#" )
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_SensitiveFace::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::BoundingBox),
+             R"#(Returns bounding box of the face. If location transformation is set, it will be applied)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitiveFace::*)() const) static_cast<gp_Pnt (Select3D_SensitiveFace::*)() const>(&Select3D_SensitiveFace::CenterOfGeometry),
+             R"#(Returns center of the face. If location transformation is set, it will be applied)#" )
+        .def("BVH",
+             (void (Select3D_SensitiveFace::*)() ) static_cast<void (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::BVH),
+             R"#(Builds BVH tree for the face)#" )
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_SensitiveFace::*)() ) static_cast<Standard_Integer (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::NbSubElements),
+             R"#(Returns the amount of sub-entities (points or planar convex polygons))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveFace::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveFace::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_SensitivePoint ,opencascade::handle<Select3D_SensitivePoint>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitivePoint"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const gp_Pnt & >()  , py::arg("theOwnerId"),  py::arg("thePoint") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitivePoint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitivePoint::*)() const>(&Select3D_SensitivePoint::DynamicType),
+             R"#(None)#" )
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_SensitivePoint::*)() ) static_cast<Standard_Integer (Select3D_SensitivePoint::*)() >(&Select3D_SensitivePoint::NbSubElements),
+             R"#(Returns the amount of sub-entities in sensitive)#" )
+        .def("GetConnected",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitivePoint::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitivePoint::*)() >(&Select3D_SensitivePoint::GetConnected),
+             R"#(None)#" )
+        .def("Matches",
+             (Standard_Boolean (Select3D_SensitivePoint::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitivePoint::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitivePoint::Matches),
+             R"#(Checks whether the point overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
+        .def("Point",
+             (const gp_Pnt & (Select3D_SensitivePoint::*)() const) static_cast<const gp_Pnt & (Select3D_SensitivePoint::*)() const>(&Select3D_SensitivePoint::Point),
+             R"#(Returns the point used at the time of construction.)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitivePoint::*)() const) static_cast<gp_Pnt (Select3D_SensitivePoint::*)() const>(&Select3D_SensitivePoint::CenterOfGeometry),
+             R"#(Returns center of point. If location transformation is set, it will be applied)#" )
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_SensitivePoint::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitivePoint::*)() >(&Select3D_SensitivePoint::BoundingBox),
+             R"#(Returns bounding box of the point. If location transformation is set, it will be applied)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitivePoint::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitivePoint::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_SensitiveSegment ,opencascade::handle<Select3D_SensitiveSegment>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveSegment"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("theOwnerId"),  py::arg("theFirstPnt"),  py::arg("theLastPnt") )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveSegment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::DynamicType),
+             R"#(None)#" )
+        .def("SetStartPoint",
+             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::SetStartPoint),
+             R"#(changes the start Point of the Segment;)#"  , py::arg("thePnt"))
+        .def("SetEndPoint",
+             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::SetEndPoint),
+             R"#(changes the end point of the segment)#"  , py::arg("thePnt"))
+        .def("StartPoint",
+             (const gp_Pnt & (Select3D_SensitiveSegment::*)() const) static_cast<const gp_Pnt & (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::StartPoint),
+             R"#(gives the 3D start Point of the Segment)#" )
+        .def("EndPoint",
+             (const gp_Pnt & (Select3D_SensitiveSegment::*)() const) static_cast<const gp_Pnt & (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::EndPoint),
+             R"#(gives the 3D End Point of the Segment)#" )
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_SensitiveSegment::*)() ) static_cast<Standard_Integer (Select3D_SensitiveSegment::*)() >(&Select3D_SensitiveSegment::NbSubElements),
+             R"#(Returns the amount of points)#" )
+        .def("GetConnected",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveSegment::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveSegment::*)() >(&Select3D_SensitiveSegment::GetConnected),
+             R"#(None)#" )
+        .def("Matches",
+             (Standard_Boolean (Select3D_SensitiveSegment::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveSegment::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveSegment::Matches),
+             R"#(Checks whether the segment overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitiveSegment::*)() const) static_cast<gp_Pnt (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::CenterOfGeometry),
+             R"#(Returns center of the segment. If location transformation is set, it will be applied)#" )
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_SensitiveSegment::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveSegment::*)() >(&Select3D_SensitiveSegment::BoundingBox),
+             R"#(Returns bounding box of the segment. If location transformation is set, it will be applied)#" )
+        .def("StartPoint",
+             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::StartPoint),
+             R"#(changes the start Point of the Segment;)#"  , py::arg("thePnt"))
+        .def("EndPoint",
+             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::EndPoint),
+             R"#(changes the end point of the segment)#"  , py::arg("thePnt"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveSegment::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveSegment::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Select3D_SensitiveSet ,opencascade::handle<Select3D_SensitiveSet> ,Py_Select3D_SensitiveSet , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveSet"))
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> & >()  , py::arg("theOwnerId") )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Select3D_SensitiveSet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveSet::*)() const>(&Select3D_SensitiveSet::DynamicType),
              R"#(None)#" )
@@ -189,6 +433,8 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
         .def("GetLeafNodeSize",
              (Standard_Integer (Select3D_SensitiveSet::*)() const) static_cast<Standard_Integer (Select3D_SensitiveSet::*)() const>(&Select3D_SensitiveSet::GetLeafNodeSize),
              R"#(Returns a number of nodes in 1 BVH leaf)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveSet::get_type_name),
                     R"#(None)#" )
@@ -201,11 +447,236 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
         .def_static("SetDefaultBVHBuilder_s",
                     (void (*)( const opencascade::handle<Select3D_BVHBuilder3d> &  ) ) static_cast<void (*)( const opencascade::handle<Select3D_BVHBuilder3d> &  ) >(&Select3D_SensitiveSet::SetDefaultBVHBuilder),
                     R"#(Assign new BVH builder to be used by default for new sensitive sets (assigning is NOT thread-safe!).)#"  , py::arg("theBuilder"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_SensitiveTriangle ,opencascade::handle<Select3D_SensitiveTriangle>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveTriangle"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const gp_Pnt &,const gp_Pnt &,const gp_Pnt &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwnerId"),  py::arg("thePnt0"),  py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theType")=static_cast<const Select3D_TypeOfSensitivity>(Select3D_TOS_INTERIOR) )
+    // methods
+        .def("Matches",
+             (Standard_Boolean (Select3D_SensitiveTriangle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveTriangle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveTriangle::Matches),
+             R"#(Checks whether the triangle overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
+        .def("Points3D",
+             (void (Select3D_SensitiveTriangle::*)( gp_Pnt & ,  gp_Pnt & ,  gp_Pnt &  ) const) static_cast<void (Select3D_SensitiveTriangle::*)( gp_Pnt & ,  gp_Pnt & ,  gp_Pnt &  ) const>(&Select3D_SensitiveTriangle::Points3D),
+             R"#(Returns the 3D points P1, P2, P3 used at the time of construction.)#"  , py::arg("thePnt0"),  py::arg("thePnt1"),  py::arg("thePnt2"))
+        .def("Center3D",
+             (gp_Pnt (Select3D_SensitiveTriangle::*)() const) static_cast<gp_Pnt (Select3D_SensitiveTriangle::*)() const>(&Select3D_SensitiveTriangle::Center3D),
+             R"#(Returns the center point of the sensitive triangle created at construction time.)#" )
+        .def("GetConnected",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveTriangle::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveTriangle::*)() >(&Select3D_SensitiveTriangle::GetConnected),
+             R"#(Returns the copy of this)#" )
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_SensitiveTriangle::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveTriangle::*)() >(&Select3D_SensitiveTriangle::BoundingBox),
+             R"#(Returns bounding box of the triangle. If location transformation is set, it will be applied)#" )
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_SensitiveTriangle::*)() ) static_cast<Standard_Integer (Select3D_SensitiveTriangle::*)() >(&Select3D_SensitiveTriangle::NbSubElements),
+             R"#(Returns the amount of points)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitiveTriangle::*)() const) static_cast<gp_Pnt (Select3D_SensitiveTriangle::*)() const>(&Select3D_SensitiveTriangle::CenterOfGeometry),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveTriangle::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveTriangle::*)() const>(&Select3D_SensitiveTriangle::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveTriangle::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveTriangle::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_InteriorSensitivePointSet ,opencascade::handle<Select3D_InteriorSensitivePointSet>  , Select3D_SensitiveSet >>(m.attr("Select3D_InteriorSensitivePointSet"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("theOwnerId"),  py::arg("thePoints") )
+    // methods
+        .def("GetPoints",
+             (void (Select3D_InteriorSensitivePointSet::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) ) static_cast<void (Select3D_InteriorSensitivePointSet::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) >(&Select3D_InteriorSensitivePointSet::GetPoints),
+             R"#(Initializes the given array theHArrayOfPnt by 3d coordinates of vertices of the whole point set)#"  , py::arg("theHArrayOfPnt"))
+        .def("Size",
+             (Standard_Integer (Select3D_InteriorSensitivePointSet::*)() const) static_cast<Standard_Integer (Select3D_InteriorSensitivePointSet::*)() const>(&Select3D_InteriorSensitivePointSet::Size),
+             R"#(Returns the length of vector of planar convex polygons)#" )
+        .def("Box",
+             (Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer  ) const) static_cast<Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer  ) const>(&Select3D_InteriorSensitivePointSet::Box),
+             R"#(Returns bounding box of planar convex polygon with index theIdx)#"  , py::arg("theIdx"))
+        .def("Center",
+             (Standard_Real (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Select3D_InteriorSensitivePointSet::Center),
+             R"#(Returns geometry center of planar convex polygon with index theIdx in the vector along the given axis theAxis)#"  , py::arg("theIdx"),  py::arg("theAxis"))
+        .def("Swap",
+             (void (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_InteriorSensitivePointSet::Swap),
+             R"#(Swaps items with indexes theIdx1 and theIdx2 in the vector)#"  , py::arg("theIdx1"),  py::arg("theIdx2"))
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)() ) static_cast<Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)() >(&Select3D_InteriorSensitivePointSet::BoundingBox),
+             R"#(Returns bounding box of the point set. If location transformation is set, it will be applied)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_InteriorSensitivePointSet::*)() const) static_cast<gp_Pnt (Select3D_InteriorSensitivePointSet::*)() const>(&Select3D_InteriorSensitivePointSet::CenterOfGeometry),
+             R"#(Returns center of the point set. If location transformation is set, it will be applied)#" )
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_InteriorSensitivePointSet::*)() ) static_cast<Standard_Integer (Select3D_InteriorSensitivePointSet::*)() >(&Select3D_InteriorSensitivePointSet::NbSubElements),
+             R"#(Returns the amount of points in set)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_InteriorSensitivePointSet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_InteriorSensitivePointSet::*)() const>(&Select3D_InteriorSensitivePointSet::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_InteriorSensitivePointSet::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_InteriorSensitivePointSet::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_SensitiveGroup ,opencascade::handle<Select3D_SensitiveGroup>  , Select3D_SensitiveSet >>(m.attr("Select3D_SensitiveGroup"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("theIsMustMatchAll")=static_cast<const Standard_Boolean>(Standard_True) )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> > &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("theEntities"),  py::arg("theIsMustMatchAll")=static_cast<const Standard_Boolean>(Standard_True) )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveGroup::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::DynamicType),
+             R"#(None)#" )
+        .def("Entities",
+             (const Select3D_IndexedMapOfEntity & (Select3D_SensitiveGroup::*)() const) static_cast<const Select3D_IndexedMapOfEntity & (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::Entities),
+             R"#(Gets group content)#" )
+        .def("SubEntity",
+             (const opencascade::handle<Select3D_SensitiveEntity> & (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const) static_cast<const opencascade::handle<Select3D_SensitiveEntity> & (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const>(&Select3D_SensitiveGroup::SubEntity),
+             R"#(Access entity by index [1, NbSubElements()].)#"  , py::arg("theIndex"))
+        .def("LastDetectedEntity",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() const) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::LastDetectedEntity),
+             R"#(Return last detected entity.)#" )
+        .def("LastDetectedEntityIndex",
+             (Standard_Integer (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Integer (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::LastDetectedEntityIndex),
+             R"#(Return index of last detected entity.)#" )
+        .def("Add",
+             (void (Select3D_SensitiveGroup::*)( NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> > &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> > &  ) >(&Select3D_SensitiveGroup::Add),
+             R"#(Adds the list of sensitive entities LL to the empty sensitive group object created at construction time.)#"  , py::arg("theEntities"))
+        .def("Add",
+             (void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) >(&Select3D_SensitiveGroup::Add),
+             R"#(Adds the sensitive entity aSensitive to the non-empty sensitive group object created at construction time.)#"  , py::arg("theSensitive"))
+        .def("Remove",
+             (void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) >(&Select3D_SensitiveGroup::Remove),
+             R"#(None)#"  , py::arg("theSensitive"))
+        .def("Clear",
+             (void (Select3D_SensitiveGroup::*)() ) static_cast<void (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::Clear),
+             R"#(Removes all sensitive entities from the list used at the time of construction, or added using the function Add.)#" )
+        .def("IsIn",
+             (Standard_Boolean (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) const) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) const>(&Select3D_SensitiveGroup::IsIn),
+             R"#(Returns true if the sensitive entity aSensitive is in the list used at the time of construction, or added using the function Add.)#"  , py::arg("theSensitive"))
+        .def("SetMatchType",
+             (void (Select3D_SensitiveGroup::*)( const Standard_Boolean  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const Standard_Boolean  ) >(&Select3D_SensitiveGroup::SetMatchType),
+             R"#(Sets the requirement that all sensitive entities in the list used at the time of construction, or added using the function Add must be matched.)#"  , py::arg("theIsMustMatchAll"))
+        .def("MustMatchAll",
+             (Standard_Boolean (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::MustMatchAll),
+             R"#(Returns true if all sensitive entities in the list used at the time of construction, or added using the function Add must be matched.)#" )
+        .def("ToCheckOverlapAll",
+             (Standard_Boolean (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::ToCheckOverlapAll),
+             R"#(Returns TRUE if all sensitive entities should be checked within rectangular/polygonal selection, FALSE by default. Can be useful for sensitive entities holding detection results as class property.)#" )
+        .def("SetCheckOverlapAll",
+             (void (Select3D_SensitiveGroup::*)( Standard_Boolean  ) ) static_cast<void (Select3D_SensitiveGroup::*)( Standard_Boolean  ) >(&Select3D_SensitiveGroup::SetCheckOverlapAll),
+             R"#(Returns TRUE if all sensitive entities should be checked within rectangular/polygonal selection, FALSE by default. Can be useful for sensitive entities holding detection results as class property.)#"  , py::arg("theToCheckAll"))
+        .def("Matches",
+             (Standard_Boolean (Select3D_SensitiveGroup::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveGroup::Matches),
+             R"#(Checks whether the group overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_SensitiveGroup::*)() ) static_cast<Standard_Integer (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::NbSubElements),
+             R"#(Returns the amount of sub-entities)#" )
+        .def("GetConnected",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::GetConnected),
+             R"#(None)#" )
+        .def("Set",
+             (void (Select3D_SensitiveGroup::*)( const opencascade::handle<SelectBasics_EntityOwner> &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const opencascade::handle<SelectBasics_EntityOwner> &  ) >(&Select3D_SensitiveGroup::Set),
+             R"#(Sets the owner for all entities in group)#"  , py::arg("theOwnerId"))
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_SensitiveGroup::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::BoundingBox),
+             R"#(Returns bounding box of the group. If location transformation is set, it will be applied)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitiveGroup::*)() const) static_cast<gp_Pnt (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::CenterOfGeometry),
+             R"#(Returns center of entity set. If location transformation is set, it will be applied)#" )
+        .def("Box",
+             (Select3D_BndBox3d (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const) static_cast<Select3D_BndBox3d (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const>(&Select3D_SensitiveGroup::Box),
+             R"#(Returns bounding box of sensitive entity with index theIdx)#"  , py::arg("theIdx"))
+        .def("Center",
+             (Standard_Real (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Select3D_SensitiveGroup::Center),
+             R"#(Returns geometry center of sensitive entity index theIdx in the vector along the given axis theAxis)#"  , py::arg("theIdx"),  py::arg("theAxis"))
+        .def("Swap",
+             (void (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_SensitiveGroup::Swap),
+             R"#(Swaps items with indexes theIdx1 and theIdx2 in the vector)#"  , py::arg("theIdx1"),  py::arg("theIdx2"))
+        .def("Size",
+             (Standard_Integer (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Integer (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::Size),
+             R"#(Returns the length of vector of sensitive entities)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveGroup::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveGroup::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<Select3D_SensitivePoly ,opencascade::handle<Select3D_SensitivePoly>  , Select3D_SensitiveSet >>(m.attr("Select3D_SensitivePoly"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theIsBVHEnabled") )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<TColgp_HArray1OfPnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theIsBVHEnabled") )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Standard_Boolean,const Standard_Integer >()  , py::arg("theOwnerId"),  py::arg("theIsBVHEnabled"),  py::arg("theNbPnts")=static_cast<const Standard_Integer>(6) )
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitivePoly::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitivePoly::*)() const>(&Select3D_SensitivePoly::DynamicType),
+             R"#(None)#" )
+        .def("NbSubElements",
+             (Standard_Integer (Select3D_SensitivePoly::*)() ) static_cast<Standard_Integer (Select3D_SensitivePoly::*)() >(&Select3D_SensitivePoly::NbSubElements),
+             R"#(Returns the amount of segments in poly)#" )
+        .def("Points3D",
+             (void (Select3D_SensitivePoly::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) ) static_cast<void (Select3D_SensitivePoly::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) >(&Select3D_SensitivePoly::Points3D),
+             R"#(Returns the 3D points of the array used at construction time.)#"  , py::arg("theHArrayOfPnt"))
+        .def("BoundingBox",
+             (Select3D_BndBox3d (Select3D_SensitivePoly::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitivePoly::*)() >(&Select3D_SensitivePoly::BoundingBox),
+             R"#(Returns bounding box of a polygon. If location transformation is set, it will be applied)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitivePoly::*)() const) static_cast<gp_Pnt (Select3D_SensitivePoly::*)() const>(&Select3D_SensitivePoly::CenterOfGeometry),
+             R"#(Returns center of the point set. If location transformation is set, it will be applied)#" )
+        .def("Size",
+             (Standard_Integer (Select3D_SensitivePoly::*)() const) static_cast<Standard_Integer (Select3D_SensitivePoly::*)() const>(&Select3D_SensitivePoly::Size),
+             R"#(Returns the amount of segments of the poly)#" )
+        .def("Box",
+             (Select3D_BndBox3d (Select3D_SensitivePoly::*)( const Standard_Integer  ) const) static_cast<Select3D_BndBox3d (Select3D_SensitivePoly::*)( const Standard_Integer  ) const>(&Select3D_SensitivePoly::Box),
+             R"#(Returns bounding box of segment with index theIdx)#"  , py::arg("theIdx"))
+        .def("Center",
+             (Standard_Real (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Select3D_SensitivePoly::Center),
+             R"#(Returns geometry center of sensitive entity index theIdx in the vector along the given axis theAxis)#"  , py::arg("theIdx"),  py::arg("theAxis"))
+        .def("Swap",
+             (void (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_SensitivePoly::Swap),
+             R"#(Swaps items with indexes theIdx1 and theIdx2 in the vector)#"  , py::arg("theIdx1"),  py::arg("theIdx2"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitivePoly::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitivePoly::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Select3D_SensitivePrimitiveArray ,opencascade::handle<Select3D_SensitivePrimitiveArray>  , Select3D_SensitiveSet >>(m.attr("Select3D_SensitivePrimitiveArray"))
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> & >()  , py::arg("theOwnerId") )
+    // methods
         .def("PatchSizeMax",
              (Standard_Integer (Select3D_SensitivePrimitiveArray::*)() const) static_cast<Standard_Integer (Select3D_SensitivePrimitiveArray::*)() const>(&Select3D_SensitivePrimitiveArray::PatchSizeMax),
              R"#(Return patch size limit (1 by default).)#" )
@@ -326,174 +797,24 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Select3D_SensitivePrimitiveArray::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitivePrimitiveArray::*)() const>(&Select3D_SensitivePrimitiveArray::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitivePrimitiveArray::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitivePrimitiveArray::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitiveGroup ,opencascade::handle<Select3D_SensitiveGroup>  , Select3D_SensitiveSet >>(m.attr("Select3D_SensitiveGroup"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("theIsMustMatchAll")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> > &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("theEntities"),  py::arg("theIsMustMatchAll")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveGroup::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::DynamicType),
-             R"#(None)#" )
-        .def("Entities",
-             (const Select3D_IndexedMapOfEntity & (Select3D_SensitiveGroup::*)() const) static_cast<const Select3D_IndexedMapOfEntity & (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::Entities),
-             R"#(Gets group content)#" )
-        .def("SubEntity",
-             (const opencascade::handle<Select3D_SensitiveEntity> & (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const) static_cast<const opencascade::handle<Select3D_SensitiveEntity> & (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const>(&Select3D_SensitiveGroup::SubEntity),
-             R"#(Access entity by index [1, NbSubElements()].)#"  , py::arg("theIndex"))
-        .def("LastDetectedEntity",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() const) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::LastDetectedEntity),
-             R"#(Return last detected entity.)#" )
-        .def("LastDetectedEntityIndex",
-             (Standard_Integer (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Integer (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::LastDetectedEntityIndex),
-             R"#(Return index of last detected entity.)#" )
-        .def("Add",
-             (void (Select3D_SensitiveGroup::*)( NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> > &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> > &  ) >(&Select3D_SensitiveGroup::Add),
-             R"#(Adds the list of sensitive entities LL to the empty sensitive group object created at construction time.)#"  , py::arg("theEntities"))
-        .def("Add",
-             (void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) >(&Select3D_SensitiveGroup::Add),
-             R"#(Adds the sensitive entity aSensitive to the non-empty sensitive group object created at construction time.)#"  , py::arg("theSensitive"))
-        .def("Remove",
-             (void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) >(&Select3D_SensitiveGroup::Remove),
-             R"#(None)#"  , py::arg("theSensitive"))
-        .def("Clear",
-             (void (Select3D_SensitiveGroup::*)() ) static_cast<void (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::Clear),
-             R"#(Removes all sensitive entities from the list used at the time of construction, or added using the function Add.)#" )
-        .def("IsIn",
-             (Standard_Boolean (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) const) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) const>(&Select3D_SensitiveGroup::IsIn),
-             R"#(Returns true if the sensitive entity aSensitive is in the list used at the time of construction, or added using the function Add.)#"  , py::arg("theSensitive"))
-        .def("SetMatchType",
-             (void (Select3D_SensitiveGroup::*)( const Standard_Boolean  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const Standard_Boolean  ) >(&Select3D_SensitiveGroup::SetMatchType),
-             R"#(Sets the requirement that all sensitive entities in the list used at the time of construction, or added using the function Add must be matched.)#"  , py::arg("theIsMustMatchAll"))
-        .def("MustMatchAll",
-             (Standard_Boolean (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::MustMatchAll),
-             R"#(Returns true if all sensitive entities in the list used at the time of construction, or added using the function Add must be matched.)#" )
-        .def("ToCheckOverlapAll",
-             (Standard_Boolean (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::ToCheckOverlapAll),
-             R"#(Returns TRUE if all sensitive entities should be checked within rectangular/polygonal selection, FALSE by default. Can be useful for sensitive entities holding detection results as class property.)#" )
-        .def("SetCheckOverlapAll",
-             (void (Select3D_SensitiveGroup::*)( Standard_Boolean  ) ) static_cast<void (Select3D_SensitiveGroup::*)( Standard_Boolean  ) >(&Select3D_SensitiveGroup::SetCheckOverlapAll),
-             R"#(Returns TRUE if all sensitive entities should be checked within rectangular/polygonal selection, FALSE by default. Can be useful for sensitive entities holding detection results as class property.)#"  , py::arg("theToCheckAll"))
-        .def("Matches",
-             (Standard_Boolean (Select3D_SensitiveGroup::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveGroup::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveGroup::Matches),
-             R"#(Checks whether the group overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_SensitiveGroup::*)() ) static_cast<Standard_Integer (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::NbSubElements),
-             R"#(Returns the amount of sub-entities)#" )
-        .def("GetConnected",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::GetConnected),
-             R"#(None)#" )
-        .def("Set",
-             (void (Select3D_SensitiveGroup::*)( const opencascade::handle<SelectBasics_EntityOwner> &  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const opencascade::handle<SelectBasics_EntityOwner> &  ) >(&Select3D_SensitiveGroup::Set),
-             R"#(Sets the owner for all entities in group)#"  , py::arg("theOwnerId"))
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_SensitiveGroup::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveGroup::*)() >(&Select3D_SensitiveGroup::BoundingBox),
-             R"#(Returns bounding box of the group. If location transformation is set, it will be applied)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitiveGroup::*)() const) static_cast<gp_Pnt (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::CenterOfGeometry),
-             R"#(Returns center of entity set. If location transformation is set, it will be applied)#" )
-        .def("Box",
-             (Select3D_BndBox3d (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const) static_cast<Select3D_BndBox3d (Select3D_SensitiveGroup::*)( const Standard_Integer  ) const>(&Select3D_SensitiveGroup::Box),
-             R"#(Returns bounding box of sensitive entity with index theIdx)#"  , py::arg("theIdx"))
-        .def("Center",
-             (Standard_Real (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Select3D_SensitiveGroup::Center),
-             R"#(Returns geometry center of sensitive entity index theIdx in the vector along the given axis theAxis)#"  , py::arg("theIdx"),  py::arg("theAxis"))
-        .def("Swap",
-             (void (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_SensitiveGroup::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_SensitiveGroup::Swap),
-             R"#(Swaps items with indexes theIdx1 and theIdx2 in the vector)#"  , py::arg("theIdx1"),  py::arg("theIdx2"))
-        .def("Size",
-             (Standard_Integer (Select3D_SensitiveGroup::*)() const) static_cast<Standard_Integer (Select3D_SensitiveGroup::*)() const>(&Select3D_SensitiveGroup::Size),
-             R"#(Returns the length of vector of sensitive entities)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveGroup::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveGroup::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitivePoly ,opencascade::handle<Select3D_SensitivePoly>  , Select3D_SensitiveSet >>(m.attr("Select3D_SensitivePoly"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theIsBVHEnabled") )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<TColgp_HArray1OfPnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theIsBVHEnabled") )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Standard_Boolean,const Standard_Integer >()  , py::arg("theOwnerId"),  py::arg("theIsBVHEnabled"),  py::arg("theNbPnts")=static_cast<const Standard_Integer>(6) )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitivePoly::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitivePoly::*)() const>(&Select3D_SensitivePoly::DynamicType),
-             R"#(None)#" )
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_SensitivePoly::*)() ) static_cast<Standard_Integer (Select3D_SensitivePoly::*)() >(&Select3D_SensitivePoly::NbSubElements),
-             R"#(Returns the amount of segments in poly)#" )
-        .def("Points3D",
-             (void (Select3D_SensitivePoly::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) ) static_cast<void (Select3D_SensitivePoly::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) >(&Select3D_SensitivePoly::Points3D),
-             R"#(Returns the 3D points of the array used at construction time.)#"  , py::arg("theHArrayOfPnt"))
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_SensitivePoly::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitivePoly::*)() >(&Select3D_SensitivePoly::BoundingBox),
-             R"#(Returns bounding box of a polygon. If location transformation is set, it will be applied)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitivePoly::*)() const) static_cast<gp_Pnt (Select3D_SensitivePoly::*)() const>(&Select3D_SensitivePoly::CenterOfGeometry),
-             R"#(Returns center of the point set. If location transformation is set, it will be applied)#" )
-        .def("Size",
-             (Standard_Integer (Select3D_SensitivePoly::*)() const) static_cast<Standard_Integer (Select3D_SensitivePoly::*)() const>(&Select3D_SensitivePoly::Size),
-             R"#(Returns the amount of segments of the poly)#" )
-        .def("Box",
-             (Select3D_BndBox3d (Select3D_SensitivePoly::*)( const Standard_Integer  ) const) static_cast<Select3D_BndBox3d (Select3D_SensitivePoly::*)( const Standard_Integer  ) const>(&Select3D_SensitivePoly::Box),
-             R"#(Returns bounding box of segment with index theIdx)#"  , py::arg("theIdx"))
-        .def("Center",
-             (Standard_Real (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Select3D_SensitivePoly::Center),
-             R"#(Returns geometry center of sensitive entity index theIdx in the vector along the given axis theAxis)#"  , py::arg("theIdx"),  py::arg("theAxis"))
-        .def("Swap",
-             (void (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_SensitivePoly::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_SensitivePoly::Swap),
-             R"#(Swaps items with indexes theIdx1 and theIdx2 in the vector)#"  , py::arg("theIdx1"),  py::arg("theIdx2"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitivePoly::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitivePoly::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitivePoint ,opencascade::handle<Select3D_SensitivePoint>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitivePoint"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const gp_Pnt & >()  , py::arg("theOwnerId"),  py::arg("thePoint") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitivePoint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitivePoint::*)() const>(&Select3D_SensitivePoint::DynamicType),
-             R"#(None)#" )
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_SensitivePoint::*)() ) static_cast<Standard_Integer (Select3D_SensitivePoint::*)() >(&Select3D_SensitivePoint::NbSubElements),
-             R"#(Returns the amount of sub-entities in sensitive)#" )
-        .def("GetConnected",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitivePoint::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitivePoint::*)() >(&Select3D_SensitivePoint::GetConnected),
-             R"#(None)#" )
-        .def("Matches",
-             (Standard_Boolean (Select3D_SensitivePoint::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitivePoint::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitivePoint::Matches),
-             R"#(Checks whether the point overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
-        .def("Point",
-             (const gp_Pnt & (Select3D_SensitivePoint::*)() const) static_cast<const gp_Pnt & (Select3D_SensitivePoint::*)() const>(&Select3D_SensitivePoint::Point),
-             R"#(Returns the point used at the time of construction.)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitivePoint::*)() const) static_cast<gp_Pnt (Select3D_SensitivePoint::*)() const>(&Select3D_SensitivePoint::CenterOfGeometry),
-             R"#(Returns center of point. If location transformation is set, it will be applied)#" )
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_SensitivePoint::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitivePoint::*)() >(&Select3D_SensitivePoint::BoundingBox),
-             R"#(Returns bounding box of the point. If location transformation is set, it will be applied)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitivePoint::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitivePoint::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Select3D_SensitiveTriangulation ,opencascade::handle<Select3D_SensitiveTriangulation>  , Select3D_SensitiveSet >>(m.attr("Select3D_SensitiveTriangulation"))
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<Poly_Triangulation> &,const TopLoc_Location &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("theTrg"),  py::arg("theInitLoc"),  py::arg("theIsInterior")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<Poly_Triangulation> &,const TopLoc_Location &,const opencascade::handle<TColStd_HArray1OfInteger> &,const gp_Pnt &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("theTrg"),  py::arg("theInitLoc"),  py::arg("theFreeEdges"),  py::arg("theCOG"),  py::arg("theIsInterior") )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Select3D_SensitiveTriangulation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveTriangulation::*)() const>(&Select3D_SensitiveTriangulation::DynamicType),
              R"#(None)#" )
@@ -533,173 +854,23 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
         .def("GetInitLocation",
              (const TopLoc_Location & (Select3D_SensitiveTriangulation::*)() const) static_cast<const TopLoc_Location & (Select3D_SensitiveTriangulation::*)() const>(&Select3D_SensitiveTriangulation::GetInitLocation),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveTriangulation::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveTriangulation::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_InteriorSensitivePointSet ,opencascade::handle<Select3D_InteriorSensitivePointSet>  , Select3D_SensitiveSet >>(m.attr("Select3D_InteriorSensitivePointSet"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("theOwnerId"),  py::arg("thePoints") )
-        .def("GetPoints",
-             (void (Select3D_InteriorSensitivePointSet::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) ) static_cast<void (Select3D_InteriorSensitivePointSet::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) >(&Select3D_InteriorSensitivePointSet::GetPoints),
-             R"#(Initializes the given array theHArrayOfPnt by 3d coordinates of vertices of the whole point set)#"  , py::arg("theHArrayOfPnt"))
-        .def("Size",
-             (Standard_Integer (Select3D_InteriorSensitivePointSet::*)() const) static_cast<Standard_Integer (Select3D_InteriorSensitivePointSet::*)() const>(&Select3D_InteriorSensitivePointSet::Size),
-             R"#(Returns the length of vector of planar convex polygons)#" )
-        .def("Box",
-             (Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer  ) const) static_cast<Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer  ) const>(&Select3D_InteriorSensitivePointSet::Box),
-             R"#(Returns bounding box of planar convex polygon with index theIdx)#"  , py::arg("theIdx"))
-        .def("Center",
-             (Standard_Real (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Real (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&Select3D_InteriorSensitivePointSet::Center),
-             R"#(Returns geometry center of planar convex polygon with index theIdx in the vector along the given axis theAxis)#"  , py::arg("theIdx"),  py::arg("theAxis"))
-        .def("Swap",
-             (void (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_InteriorSensitivePointSet::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_InteriorSensitivePointSet::Swap),
-             R"#(Swaps items with indexes theIdx1 and theIdx2 in the vector)#"  , py::arg("theIdx1"),  py::arg("theIdx2"))
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)() ) static_cast<Select3D_BndBox3d (Select3D_InteriorSensitivePointSet::*)() >(&Select3D_InteriorSensitivePointSet::BoundingBox),
-             R"#(Returns bounding box of the point set. If location transformation is set, it will be applied)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_InteriorSensitivePointSet::*)() const) static_cast<gp_Pnt (Select3D_InteriorSensitivePointSet::*)() const>(&Select3D_InteriorSensitivePointSet::CenterOfGeometry),
-             R"#(Returns center of the point set. If location transformation is set, it will be applied)#" )
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_InteriorSensitivePointSet::*)() ) static_cast<Standard_Integer (Select3D_InteriorSensitivePointSet::*)() >(&Select3D_InteriorSensitivePointSet::NbSubElements),
-             R"#(Returns the amount of points in set)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_InteriorSensitivePointSet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_InteriorSensitivePointSet::*)() const>(&Select3D_InteriorSensitivePointSet::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_InteriorSensitivePointSet::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_InteriorSensitivePointSet::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitiveCircle ,opencascade::handle<Select3D_SensitiveCircle>  , Select3D_SensitivePoly >>(m.attr("Select3D_SensitiveCircle"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<Geom_Circle> &,const Standard_Boolean,const Standard_Integer >()  , py::arg("theOwnerId"),  py::arg("theCircle"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theNbPnts")=static_cast<const Standard_Integer>(12) )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<Geom_Circle> &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Integer >()  , py::arg("theOwnerId"),  py::arg("theCircle"),  py::arg("theU1"),  py::arg("theU2"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theNbPnts")=static_cast<const Standard_Integer>(12) )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<TColgp_HArray1OfPnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePnts3d"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePnts3d"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveCircle::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveCircle::*)() const>(&Select3D_SensitiveCircle::DynamicType),
-             R"#(None)#" )
-        .def("Matches",
-             (Standard_Boolean (Select3D_SensitiveCircle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveCircle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveCircle::Matches),
-             R"#(Checks whether the circle overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
-        .def("ArrayBounds",
-             (void (Select3D_SensitiveCircle::*)( Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (Select3D_SensitiveCircle::*)( Standard_Integer & ,  Standard_Integer &  ) const>(&Select3D_SensitiveCircle::ArrayBounds),
-             R"#(None)#"  , py::arg("theLow"),  py::arg("theUp"))
-        .def("GetPoint3d",
-             (gp_Pnt (Select3D_SensitiveCircle::*)( const Standard_Integer  ) const) static_cast<gp_Pnt (Select3D_SensitiveCircle::*)( const Standard_Integer  ) const>(&Select3D_SensitiveCircle::GetPoint3d),
-             R"#(None)#"  , py::arg("thePntIdx"))
-        .def("GetConnected",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveCircle::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveCircle::*)() >(&Select3D_SensitiveCircle::GetConnected),
-             R"#(None)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitiveCircle::*)() const) static_cast<gp_Pnt (Select3D_SensitiveCircle::*)() const>(&Select3D_SensitiveCircle::CenterOfGeometry),
-             R"#(Returns center of the circle. If location transformation is set, it will be applied)#" )
-        .def("BVH",
-             (void (Select3D_SensitiveCircle::*)() ) static_cast<void (Select3D_SensitiveCircle::*)() >(&Select3D_SensitiveCircle::BVH),
-             R"#(Builds BVH tree for a circle's edge segments if needed)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveCircle::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveCircle::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitiveFace ,opencascade::handle<Select3D_SensitiveFace>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveFace"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theType") )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<TColgp_HArray1OfPnt> &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwnerId"),  py::arg("thePoints"),  py::arg("theType") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveFace::*)() const>(&Select3D_SensitiveFace::DynamicType),
-             R"#(None)#" )
-        .def("GetPoints",
-             (void (Select3D_SensitiveFace::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) ) static_cast<void (Select3D_SensitiveFace::*)( opencascade::handle<TColgp_HArray1OfPnt> &  ) >(&Select3D_SensitiveFace::GetPoints),
-             R"#(Initializes the given array theHArrayOfPnt by 3d coordinates of vertices of the face)#"  , py::arg("theHArrayOfPnt"))
-        .def("Matches",
-             (Standard_Boolean (Select3D_SensitiveFace::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveFace::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveFace::Matches),
-             R"#(Checks whether the face overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
-        .def("GetConnected",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveFace::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::GetConnected),
-             R"#(None)#" )
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_SensitiveFace::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::BoundingBox),
-             R"#(Returns bounding box of the face. If location transformation is set, it will be applied)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitiveFace::*)() const) static_cast<gp_Pnt (Select3D_SensitiveFace::*)() const>(&Select3D_SensitiveFace::CenterOfGeometry),
-             R"#(Returns center of the face. If location transformation is set, it will be applied)#" )
-        .def("BVH",
-             (void (Select3D_SensitiveFace::*)() ) static_cast<void (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::BVH),
-             R"#(Builds BVH tree for the face)#" )
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_SensitiveFace::*)() ) static_cast<Standard_Integer (Select3D_SensitiveFace::*)() >(&Select3D_SensitiveFace::NbSubElements),
-             R"#(Returns the amount of sub-entities (points or planar convex polygons))#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveFace::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveFace::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitiveSegment ,opencascade::handle<Select3D_SensitiveSegment>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveSegment"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("theOwnerId"),  py::arg("theFirstPnt"),  py::arg("theLastPnt") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveSegment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::DynamicType),
-             R"#(None)#" )
-        .def("SetStartPoint",
-             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::SetStartPoint),
-             R"#(changes the start Point of the Segment;)#"  , py::arg("thePnt"))
-        .def("SetEndPoint",
-             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::SetEndPoint),
-             R"#(changes the end point of the segment)#"  , py::arg("thePnt"))
-        .def("StartPoint",
-             (const gp_Pnt & (Select3D_SensitiveSegment::*)() const) static_cast<const gp_Pnt & (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::StartPoint),
-             R"#(gives the 3D start Point of the Segment)#" )
-        .def("EndPoint",
-             (const gp_Pnt & (Select3D_SensitiveSegment::*)() const) static_cast<const gp_Pnt & (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::EndPoint),
-             R"#(gives the 3D End Point of the Segment)#" )
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_SensitiveSegment::*)() ) static_cast<Standard_Integer (Select3D_SensitiveSegment::*)() >(&Select3D_SensitiveSegment::NbSubElements),
-             R"#(Returns the amount of points)#" )
-        .def("GetConnected",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveSegment::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveSegment::*)() >(&Select3D_SensitiveSegment::GetConnected),
-             R"#(None)#" )
-        .def("Matches",
-             (Standard_Boolean (Select3D_SensitiveSegment::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveSegment::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveSegment::Matches),
-             R"#(Checks whether the segment overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitiveSegment::*)() const) static_cast<gp_Pnt (Select3D_SensitiveSegment::*)() const>(&Select3D_SensitiveSegment::CenterOfGeometry),
-             R"#(Returns center of the segment. If location transformation is set, it will be applied)#" )
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_SensitiveSegment::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveSegment::*)() >(&Select3D_SensitiveSegment::BoundingBox),
-             R"#(Returns bounding box of the segment. If location transformation is set, it will be applied)#" )
-        .def("StartPoint",
-             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::StartPoint),
-             R"#(changes the start Point of the Segment;)#"  , py::arg("thePnt"))
-        .def("EndPoint",
-             (void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) ) static_cast<void (Select3D_SensitiveSegment::*)( const gp_Pnt &  ) >(&Select3D_SensitiveSegment::EndPoint),
-             R"#(changes the end point of the segment)#"  , py::arg("thePnt"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveSegment::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveSegment::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<Select3D_SensitiveWire ,opencascade::handle<Select3D_SensitiveWire>  , Select3D_SensitiveSet >>(m.attr("Select3D_SensitiveWire"))
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> & >()  , py::arg("theOwnerId") )
+    // methods
         .def("Add",
              (void (Select3D_SensitiveWire::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) ) static_cast<void (Select3D_SensitiveWire::*)( const opencascade::handle<Select3D_SensitiveEntity> &  ) >(&Select3D_SensitiveWire::Add),
              R"#(Adds the sensitive entity theSensitive to this framework.)#"  , py::arg("theSensitive"))
@@ -739,44 +910,58 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Select3D_SensitiveWire::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveWire::*)() const>(&Select3D_SensitiveWire::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveWire::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveWire::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<Select3D_BVHIndexBuffer ,opencascade::handle<Select3D_BVHIndexBuffer>  , Graphic3d_Buffer >>(m.attr("Select3D_BVHIndexBuffer"))
-        .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAlloc") )
-        .def("HasPatches",
-             (bool (Select3D_BVHIndexBuffer::*)() const) static_cast<bool (Select3D_BVHIndexBuffer::*)() const>(&Select3D_BVHIndexBuffer::HasPatches),
-             R"#(None)#" )
-        .def("Init",
-             (bool (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const bool  ) ) static_cast<bool (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const bool  ) >(&Select3D_BVHIndexBuffer::Init),
-             R"#(Allocates new empty index array)#"  , py::arg("theNbElems"),  py::arg("theHasPatches"))
-        .def("Index",
-             (Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const>(&Select3D_BVHIndexBuffer::Index),
-             R"#(Access index at specified position)#"  , py::arg("theIndex"))
-        .def("PatchSize",
-             (Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (Select3D_BVHIndexBuffer::*)( const Standard_Integer  ) const>(&Select3D_BVHIndexBuffer::PatchSize),
-             R"#(Access index at specified position)#"  , py::arg("theIndex"))
-        .def("SetIndex",
-             (void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_BVHIndexBuffer::SetIndex),
-             R"#(Change index at specified position)#"  , py::arg("theIndex"),  py::arg("theValue"))
-        .def("SetIndex",
-             (void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Select3D_BVHIndexBuffer::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&Select3D_BVHIndexBuffer::SetIndex),
-             R"#(Change index at specified position)#"  , py::arg("theIndex"),  py::arg("theValue"),  py::arg("thePatchSize"))
+    static_cast<py::class_<Select3D_SensitiveCircle ,opencascade::handle<Select3D_SensitiveCircle>  , Select3D_SensitivePoly >>(m.attr("Select3D_SensitiveCircle"))
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<Geom_Circle> &,const Standard_Boolean,const Standard_Integer >()  , py::arg("theOwnerId"),  py::arg("theCircle"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theNbPnts")=static_cast<const Standard_Integer>(12) )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<Geom_Circle> &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Integer >()  , py::arg("theOwnerId"),  py::arg("theCircle"),  py::arg("theU1"),  py::arg("theU2"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theNbPnts")=static_cast<const Standard_Integer>(12) )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<TColgp_HArray1OfPnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePnts3d"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False) )
+        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Standard_Boolean >()  , py::arg("theOwnerId"),  py::arg("thePnts3d"),  py::arg("theIsFilled")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_BVHIndexBuffer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_BVHIndexBuffer::*)() const>(&Select3D_BVHIndexBuffer::DynamicType),
+             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveCircle::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveCircle::*)() const>(&Select3D_SensitiveCircle::DynamicType),
              R"#(None)#" )
+        .def("Matches",
+             (Standard_Boolean (Select3D_SensitiveCircle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveCircle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveCircle::Matches),
+             R"#(Checks whether the circle overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
+        .def("GetPoint3d",
+             (gp_Pnt (Select3D_SensitiveCircle::*)( const Standard_Integer  ) const) static_cast<gp_Pnt (Select3D_SensitiveCircle::*)( const Standard_Integer  ) const>(&Select3D_SensitiveCircle::GetPoint3d),
+             R"#(None)#"  , py::arg("thePntIdx"))
+        .def("GetConnected",
+             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveCircle::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveCircle::*)() >(&Select3D_SensitiveCircle::GetConnected),
+             R"#(None)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (Select3D_SensitiveCircle::*)() const) static_cast<gp_Pnt (Select3D_SensitiveCircle::*)() const>(&Select3D_SensitiveCircle::CenterOfGeometry),
+             R"#(Returns center of the circle. If location transformation is set, it will be applied)#" )
+        .def("BVH",
+             (void (Select3D_SensitiveCircle::*)() ) static_cast<void (Select3D_SensitiveCircle::*)() >(&Select3D_SensitiveCircle::BVH),
+             R"#(Builds BVH tree for a circle's edge segments if needed)#" )
+    // methods using call by reference i.s.o. return
+        .def("ArrayBounds",
+             []( Select3D_SensitiveCircle &self   ){ Standard_Integer  theLow; Standard_Integer  theUp; self.ArrayBounds(theLow,theUp); return std::make_tuple(theLow,theUp); },
+             R"#(None)#" )
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_BVHIndexBuffer::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveCircle::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_BVHIndexBuffer::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveCircle::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
@@ -784,143 +969,57 @@ py::module m = static_cast<py::module>(main_module.attr("Select3D"));
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<Geom_Curve> &,const Standard_Integer >()  , py::arg("theOwnerId"),  py::arg("theCurve"),  py::arg("theNbPnts")=static_cast<const Standard_Integer>(17) )
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<TColgp_HArray1OfPnt> & >()  , py::arg("theOwnerId"),  py::arg("thePoints") )
         .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("theOwnerId"),  py::arg("thePoints") )
+    // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Select3D_SensitiveCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveCurve::*)() const>(&Select3D_SensitiveCurve::DynamicType),
              R"#(None)#" )
         .def("GetConnected",
              (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveCurve::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveCurve::*)() >(&Select3D_SensitiveCurve::GetConnected),
              R"#(Returns the copy of this)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveCurve::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveCurve::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitiveBox ,opencascade::handle<Select3D_SensitiveBox>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveBox"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Bnd_Box & >()  , py::arg("theOwnerId"),  py::arg("theBox") )
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theOwnerId"),  py::arg("theXMin"),  py::arg("theYMin"),  py::arg("theZMin"),  py::arg("theXMax"),  py::arg("theYMax"),  py::arg("theZMax") )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveBox::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveBox::*)() const>(&Select3D_SensitiveBox::DynamicType),
-             R"#(None)#" )
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_SensitiveBox::*)() ) static_cast<Standard_Integer (Select3D_SensitiveBox::*)() >(&Select3D_SensitiveBox::NbSubElements),
-             R"#(Returns the amount of sub-entities in sensitive)#" )
-        .def("GetConnected",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveBox::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveBox::*)() >(&Select3D_SensitiveBox::GetConnected),
-             R"#(None)#" )
-        .def("Matches",
-             (Standard_Boolean (Select3D_SensitiveBox::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveBox::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveBox::Matches),
-             R"#(Checks whether the box overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
-        .def("Box",
-             (Bnd_Box (Select3D_SensitiveBox::*)() const) static_cast<Bnd_Box (Select3D_SensitiveBox::*)() const>(&Select3D_SensitiveBox::Box),
-             R"#(None)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitiveBox::*)() const) static_cast<gp_Pnt (Select3D_SensitiveBox::*)() const>(&Select3D_SensitiveBox::CenterOfGeometry),
-             R"#(Returns center of the box. If location transformation is set, it will be applied)#" )
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_SensitiveBox::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveBox::*)() >(&Select3D_SensitiveBox::BoundingBox),
-             R"#(Returns coordinates of the box. If location transformation is set, it will be applied)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveBox::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveBox::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-
-    static_cast<py::class_<Select3D_SensitiveTriangle ,opencascade::handle<Select3D_SensitiveTriangle>  , Select3D_SensitiveEntity >>(m.attr("Select3D_SensitiveTriangle"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const gp_Pnt &,const gp_Pnt &,const gp_Pnt &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwnerId"),  py::arg("thePnt0"),  py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("theType")=static_cast<const Select3D_TypeOfSensitivity>(Select3D_TOS_INTERIOR) )
-        .def("Matches",
-             (Standard_Boolean (Select3D_SensitiveTriangle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (Select3D_SensitiveTriangle::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&Select3D_SensitiveTriangle::Matches),
-             R"#(Checks whether the triangle overlaps current selecting volume)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
-        .def("Points3D",
-             (void (Select3D_SensitiveTriangle::*)( gp_Pnt & ,  gp_Pnt & ,  gp_Pnt &  ) const) static_cast<void (Select3D_SensitiveTriangle::*)( gp_Pnt & ,  gp_Pnt & ,  gp_Pnt &  ) const>(&Select3D_SensitiveTriangle::Points3D),
-             R"#(Returns the 3D points P1, P2, P3 used at the time of construction.)#"  , py::arg("thePnt0"),  py::arg("thePnt1"),  py::arg("thePnt2"))
-        .def("Center3D",
-             (gp_Pnt (Select3D_SensitiveTriangle::*)() const) static_cast<gp_Pnt (Select3D_SensitiveTriangle::*)() const>(&Select3D_SensitiveTriangle::Center3D),
-             R"#(Returns the center point of the sensitive triangle created at construction time.)#" )
-        .def("GetConnected",
-             (opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveTriangle::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (Select3D_SensitiveTriangle::*)() >(&Select3D_SensitiveTriangle::GetConnected),
-             R"#(Returns the copy of this)#" )
-        .def("BoundingBox",
-             (Select3D_BndBox3d (Select3D_SensitiveTriangle::*)() ) static_cast<Select3D_BndBox3d (Select3D_SensitiveTriangle::*)() >(&Select3D_SensitiveTriangle::BoundingBox),
-             R"#(Returns bounding box of the triangle. If location transformation is set, it will be applied)#" )
-        .def("NbSubElements",
-             (Standard_Integer (Select3D_SensitiveTriangle::*)() ) static_cast<Standard_Integer (Select3D_SensitiveTriangle::*)() >(&Select3D_SensitiveTriangle::NbSubElements),
-             R"#(Returns the amount of points)#" )
-        .def("CenterOfGeometry",
-             (gp_Pnt (Select3D_SensitiveTriangle::*)() const) static_cast<gp_Pnt (Select3D_SensitiveTriangle::*)() const>(&Select3D_SensitiveTriangle::CenterOfGeometry),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Select3D_SensitiveTriangle::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Select3D_SensitiveTriangle::*)() const>(&Select3D_SensitiveTriangle::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Select3D_SensitiveTriangle::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Select3D_SensitiveTriangle::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/Select3D_SensitiveGroup.hxx
-// ./opencascade/Select3D_EntitySequence.hxx
-// ./opencascade/Select3D_SensitiveFace.hxx
-// ./opencascade/Select3D_SensitiveCurve.hxx
-// ./opencascade/Select3D_SensitivePoly.hxx
-// ./opencascade/Select3D_TypeOfSensitivity.hxx
-// ./opencascade/Select3D_SensitiveSegment.hxx
-// ./opencascade/Select3D_SensitivePoint.hxx
-// ./opencascade/Select3D_SensitiveEntity.hxx
-// ./opencascade/Select3D_SensitiveTriangle.hxx
-// ./opencascade/Select3D_Pnt.hxx
-// ./opencascade/Select3D_SensitiveTriangulation.hxx
-// ./opencascade/Select3D_BVHBuilder3d.hxx
-// ./opencascade/Select3D_SensitiveWire.hxx
-// ./opencascade/Select3D_PointData.hxx
-// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
-// ./opencascade/Select3D_SensitiveSet.hxx
 // ./opencascade/Select3D_SensitiveBox.hxx
+// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
 // ./opencascade/Select3D_SensitiveCircle.hxx
-// ./opencascade/Select3D_SensitivePrimitiveArray.hxx
+// ./opencascade/Select3D_BVHBuilder3d.hxx
+// ./opencascade/Select3D_SensitiveFace.hxx
+// ./opencascade/Select3D_SensitiveSegment.hxx
+// ./opencascade/Select3D_SensitivePoly.hxx
+// ./opencascade/Select3D_EntitySequence.hxx
 // ./opencascade/Select3D_BVHIndexBuffer.hxx
-// ./opencascade/Select3D_IndexedMapOfEntity.hxx
+// ./opencascade/Select3D_SensitiveEntity.hxx
+// ./opencascade/Select3D_SensitivePoint.hxx
 // ./opencascade/Select3D_BndBox3d.hxx
+// ./opencascade/Select3D_TypeOfSensitivity.hxx
+// ./opencascade/Select3D_SensitiveGroup.hxx
+// ./opencascade/Select3D_SensitiveSet.hxx
+// ./opencascade/Select3D_PointData.hxx
+// ./opencascade/Select3D_SensitiveWire.hxx
+// ./opencascade/Select3D_Pnt.hxx
+// ./opencascade/Select3D_IndexedMapOfEntity.hxx
+// ./opencascade/Select3D_SensitiveTriangulation.hxx
+// ./opencascade/Select3D_SensitivePrimitiveArray.hxx
+// ./opencascade/Select3D_SensitiveCurve.hxx
+// ./opencascade/Select3D_SensitiveTriangle.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/Select3D_SensitiveGroup.hxx
-// ./opencascade/Select3D_EntitySequence.hxx
-    register_template_NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> >(m,"Select3D_EntitySequence");  
-// ./opencascade/Select3D_SensitiveFace.hxx
-// ./opencascade/Select3D_SensitiveCurve.hxx
-// ./opencascade/Select3D_SensitivePoly.hxx
-// ./opencascade/Select3D_TypeOfSensitivity.hxx
-// ./opencascade/Select3D_SensitiveSegment.hxx
-// ./opencascade/Select3D_SensitivePoint.hxx
-// ./opencascade/Select3D_SensitiveEntity.hxx
-// ./opencascade/Select3D_SensitiveTriangle.hxx
-// ./opencascade/Select3D_Pnt.hxx
-// ./opencascade/Select3D_SensitiveTriangulation.hxx
-// ./opencascade/Select3D_BVHBuilder3d.hxx
-    register_template_BVH_Builder<Standard_Real, 3>(m,"Select3D_BVHBuilder3d");  
-// ./opencascade/Select3D_SensitiveWire.hxx
-// ./opencascade/Select3D_PointData.hxx
-// ./opencascade/Select3D_InteriorSensitivePointSet.hxx
     register_template_NCollection_Vector<opencascade::handle<Select3D_SensitivePoly> >(m,"Select3D_VectorOfHPoly");  
-// ./opencascade/Select3D_SensitiveSet.hxx
-// ./opencascade/Select3D_SensitiveBox.hxx
-// ./opencascade/Select3D_SensitiveCircle.hxx
-// ./opencascade/Select3D_SensitivePrimitiveArray.hxx
-// ./opencascade/Select3D_BVHIndexBuffer.hxx
-// ./opencascade/Select3D_IndexedMapOfEntity.hxx
-// ./opencascade/Select3D_BndBox3d.hxx
-    register_template_NCollection_Vec3<Standard_Real>(m,"Select3D_Vec3");  
+    register_template_BVH_Builder<Standard_Real, 3>(m,"Select3D_BVHBuilder3d");  
+    register_template_NCollection_Sequence<opencascade::handle<Select3D_SensitiveEntity> >(m,"Select3D_EntitySequence");  
 
 
 // exceptions

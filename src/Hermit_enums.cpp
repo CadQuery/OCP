@@ -37,11 +37,10 @@ py::module m = main_module.def_submodule("Hermit", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<Hermit ,std::unique_ptr<Hermit>  >(m,"Hermit",R"#(This is used to reparameterize Rational BSpline Curves so that we can concatenate them later to build C1 Curves It builds and 1D-reparameterizing function starting from an Hermite interpolation and adding knots and modifying poles of the 1D BSpline obtained that way. The goal is to build a(u) so that if we consider a BSpline curve N(u) f(u) = ----- D(u))#");
-
 // pre-register typdefs
-// ./opencascade/Hermit.hxx
+
+// classes forward declarations only
+    py::class_<Hermit , shared_ptr<Hermit>  >(m,"Hermit",R"#(This is used to reparameterize Rational BSpline Curves so that we can concatenate them later to build C1 Curves It builds and 1D-reparameterizing function starting from an Hermite interpolation and adding knots and modifying poles of the 1D BSpline obtained that way. The goal is to build a(u) so that if we consider a BSpline curve N(u) f(u) = ----- D(u))#");
 
 };
 

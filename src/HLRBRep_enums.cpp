@@ -11,99 +11,26 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
+#include <HLRBRep_Data.hxx>
+#include <gp_Dir.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <gp_Lin.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
+#include <HLRBRep_Data.hxx>
+#include <HLRTopoBRep_OutLiner.hxx>
+#include <HLRAlgo_Projector.hxx>
+#include <TopoDS_Face.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <HLRBRep_Curve.hxx>
 #include <HLRBRep_AreaLimit.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Standard_DomainError.hxx>
 #include <HLRBRep_VertexList.hxx>
 #include <HLRAlgo_Intersection.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRTopoBRep_OutLiner.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <StdFail_NotDone.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <StdFail_UndefinedDerivative.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <HLRAlgo_Projector.hxx>
-#include <HLRBRep_EdgeInterferenceTool.hxx>
-#include <HLRBRep_Algo.hxx>
-#include <HLRBRep_Data.hxx>
-#include <HLRBRep_EdgeData.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <HLRBRep_SLPropsATool.hxx>
-#include <HLRBRep_ThePolygonOfInterCSurf.hxx>
-#include <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
-#include <HLRBRep_ThePolyhedronOfInterCSurf.hxx>
-#include <HLRBRep_ThePolyhedronToolOfInterCSurf.hxx>
-#include <Bnd_BoundSortBox.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <gp_Lin.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <HLRBRep_ThePolygonOfInterCSurf.hxx>
-#include <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
-#include <HLRBRep_ThePolyhedronOfInterCSurf.hxx>
-#include <HLRBRep_ThePolyhedronToolOfInterCSurf.hxx>
-#include <HLRBRep_TheInterferenceOfInterCSurf.hxx>
-#include <HLRBRep_TheCSFunctionOfInterCSurf.hxx>
-#include <HLRBRep_TheExactInterCSurf.hxx>
-#include <HLRBRep_TheQuadCurvExactInterCSurf.hxx>
-#include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
-#include <Bnd_BoundSortBox.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Parab.hxx>
-#include <gp_Hypr.hxx>
-#include <IntAna_IntConicQuad.hxx>
-#include <Bnd_Box.hxx>
-#include <gp_Lin.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <gp_Lin.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <math_Matrix.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRAlgo_WiresBlock.hxx>
-#include <HLRBRep_Data.hxx>
-#include <HLRTopoBRep_OutLiner.hxx>
-#include <HLRAlgo_Projector.hxx>
-#include <TopoDS_Face.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
-#include <StdFail_UndefinedDerivative.hxx>
-#include <gp_Lin.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
-#include <HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx>
-#include <HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx>
-#include <gp_Pnt2d.hxx>
-#include <IntCurve_IConicTool.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <HLRBRep_FaceData.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <math_FunctionSetRoot.hxx>
-#include <HLRBRep_Data.hxx>
 #include <TopoDS_Edge.hxx>
 #include <HLRBRep_Curve.hxx>
 #include <HLRBRep_CurveTool.hxx>
@@ -160,17 +87,92 @@ namespace py = pybind11;
 #include <HLRBRep_TheExactInterCSurf.hxx>
 #include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
 #include <HLRBRep_TheQuadCurvExactInterCSurf.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <BRepTopAdaptor_TopolTool.hxx>
+#include <StdFail_UndefinedDerivative.hxx>
+#include <StdFail_UndefinedDerivative.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <HLRAlgo_Projector.hxx>
+#include <HLRAlgo_PolyInternalData.hxx>
+#include <HLRAlgo_EdgeStatus.hxx>
+#include <IntCurve_IConicTool.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
+#include <IntRes2d_Domain.hxx>
+#include <gp_Pnt.hxx>
+#include <HLRAlgo_WiresBlock.hxx>
+#include <HLRBRep_Data.hxx>
 #include <HLRBRep_CurveTool.hxx>
 #include <HLRBRep_TheProjPCurOfCInter.hxx>
 #include <HLRBRep_TheIntPCurvePCurveOfCInter.hxx>
 #include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <HLRBRep_Curve.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <math_Matrix.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <gp_Lin.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <HLRBRep_ThePolygonOfInterCSurf.hxx>
+#include <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
+#include <HLRBRep_ThePolyhedronOfInterCSurf.hxx>
+#include <HLRBRep_ThePolyhedronToolOfInterCSurf.hxx>
+#include <HLRBRep_TheInterferenceOfInterCSurf.hxx>
+#include <HLRBRep_TheCSFunctionOfInterCSurf.hxx>
+#include <HLRBRep_TheExactInterCSurf.hxx>
+#include <HLRBRep_TheQuadCurvExactInterCSurf.hxx>
+#include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
+#include <Bnd_BoundSortBox.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Hypr.hxx>
+#include <IntAna_IntConicQuad.hxx>
+#include <Bnd_Box.hxx>
+#include <HLRBRep_PolyAlgo.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <gp_Lin.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <HLRBRep_EdgeInterferenceTool.hxx>
+#include <HLRBRep_FaceData.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <StdFail_NotDone.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRTopoBRep_OutLiner.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
+#include <HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx>
+#include <HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx>
+#include <gp_Pnt2d.hxx>
+#include <HLRBRep_Algo.hxx>
+#include <HLRBRep_Data.hxx>
+#include <HLRBRep_EdgeData.hxx>
+#include <HLRBRep_ThePolygonOfInterCSurf.hxx>
+#include <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
+#include <HLRBRep_ThePolyhedronOfInterCSurf.hxx>
+#include <HLRBRep_ThePolyhedronToolOfInterCSurf.hxx>
+#include <Bnd_BoundSortBox.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
 #include <HLRBRep_CurveTool.hxx>
 #include <Extrema_POnCurv2d.hxx>
 #include <gp_Pnt2d.hxx>
-#include <gp_Pnt.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <HLRBRep_SLPropsATool.hxx>
 #include <HLRBRep_CurveTool.hxx>
 #include <HLRBRep_TheProjPCurOfCInter.hxx>
 #include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
@@ -179,24 +181,22 @@ namespace py = pybind11;
 #include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
 #include <HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx>
 #include <HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <IntRes2d_Domain.hxx>
 #include <HLRBRep_SurfaceTool.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_XYZ.hxx>
-#include <HLRBRep_Data.hxx>
-#include <HLRTopoBRep_OutLiner.hxx>
-#include <HLRAlgo_PolyInternalData.hxx>
-#include <HLRAlgo_EdgeStatus.hxx>
-#include <BRepTopAdaptor_TopolTool.hxx>
-#include <StdFail_UndefinedDerivative.hxx>
-#include <HLRBRep_PolyAlgo.hxx>
 #include <gp_Dir.hxx>
 #include <HLRBRep_CurveTool.hxx>
 #include <math_Matrix.hxx>
 #include <HLRBRep_Data.hxx>
-#include <gp_Dir.hxx>
-#include <HLRBRep_LineTool.hxx>
+#include <HLRTopoBRep_OutLiner.hxx>
+#include <StdFail_UndefinedDerivative.hxx>
+#include <gp_Lin.hxx>
 #include <HLRBRep_CurveTool.hxx>
-#include <IntRes2d_Domain.hxx>
 
 // module includes
 #include <HLRBRep.hxx>
@@ -267,17 +267,17 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/HLRBRep_Array1OfEData.hxx
 #include "NCollection.hxx"
+// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRBRep_ListOfBPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRBRep_ListOfBPoint.hxx
+#include "NCollection.hxx"
 // ./opencascade/HLRBRep_SeqOfShapeBounds.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
-#include "NCollection.hxx"
 // ./opencascade/HLRBRep_Array1OfFData.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRBRep_ListOfBPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRBRep_ListOfBPoint.hxx
 #include "NCollection.hxx"
 
 
@@ -305,133 +305,69 @@ py::module m = main_module.def_submodule("HLRBRep", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<HLRBRep_SLPropsATool ,std::unique_ptr<HLRBRep_SLPropsATool>  >(m,"HLRBRep_SLPropsATool",R"#(None)#");
-    py::class_<HLRBRep_TheIntPCurvePCurveOfCInter ,std::unique_ptr<HLRBRep_TheIntPCurvePCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_TheIntPCurvePCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter ,std::unique_ptr<HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter>  >(m,"HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter",R"#(None)#");
-    py::class_<HLRBRep_EdgeIList ,std::unique_ptr<HLRBRep_EdgeIList>  >(m,"HLRBRep_EdgeIList",R"#(None)#");
-    py::class_<HLRBRep_AreaLimit ,opencascade::handle<HLRBRep_AreaLimit>  , Standard_Transient >(m,"HLRBRep_AreaLimit",R"#(The private nested class AreaLimit represents a -- vertex on the Edge with the state on the left and -- the right.The private nested class AreaLimit represents a -- vertex on the Edge with the state on the left and -- the right.The private nested class AreaLimit represents a -- vertex on the Edge with the state on the left and -- the right.)#");
-    py::class_<HLRBRep_SLProps ,std::unique_ptr<HLRBRep_SLProps>  >(m,"HLRBRep_SLProps",R"#(None)#");
-    py::class_<HLRBRep_LineTool ,std::unique_ptr<HLRBRep_LineTool>  >(m,"HLRBRep_LineTool",R"#(The LineTool class provides class methods to access the methodes of the Line.)#");
-    py::class_<HLRBRep_ThePolygonOfInterCSurf ,std::unique_ptr<HLRBRep_ThePolygonOfInterCSurf>  >(m,"HLRBRep_ThePolygonOfInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_TheQuadCurvExactInterCSurf ,std::unique_ptr<HLRBRep_TheQuadCurvExactInterCSurf>  >(m,"HLRBRep_TheQuadCurvExactInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter ,std::unique_ptr<HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter>  , math_FunctionWithDerivative >(m,"HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter ,std::unique_ptr<HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter>  , math_FunctionWithDerivative >(m,"HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter",R"#(None)#");
-    py::class_<HLRBRep_FaceData ,std::unique_ptr<HLRBRep_FaceData>  >(m,"HLRBRep_FaceData",R"#(None)#");
-    py::class_<HLRBRep_TheIntConicCurveOfCInter ,std::unique_ptr<HLRBRep_TheIntConicCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_TheIntConicCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_TheProjPCurOfCInter ,std::unique_ptr<HLRBRep_TheProjPCurOfCInter>  >(m,"HLRBRep_TheProjPCurOfCInter",R"#(None)#");
-    py::class_<HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter ,std::unique_ptr<HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_BCurveTool ,std::unique_ptr<HLRBRep_BCurveTool>  >(m,"HLRBRep_BCurveTool",R"#(None)#");
-    py::class_<HLRBRep_Hider ,std::unique_ptr<HLRBRep_Hider>  >(m,"HLRBRep_Hider",R"#(None)#");
-    py::class_<HLRBRep ,std::unique_ptr<HLRBRep>  >(m,"HLRBRep",R"#(Hidden Lines Removal algorithms on the BRep DataStructure.)#");
-    py::class_<HLRBRep_CLProps ,std::unique_ptr<HLRBRep_CLProps>  >(m,"HLRBRep_CLProps",R"#(None)#");
-    py::class_<HLRBRep_ThePolygonToolOfInterCSurf ,std::unique_ptr<HLRBRep_ThePolygonToolOfInterCSurf>  >(m,"HLRBRep_ThePolygonToolOfInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_ThePolyhedronToolOfInterCSurf ,std::unique_ptr<HLRBRep_ThePolyhedronToolOfInterCSurf>  >(m,"HLRBRep_ThePolyhedronToolOfInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_ThePolyhedronOfInterCSurf ,std::unique_ptr<HLRBRep_ThePolyhedronOfInterCSurf>  >(m,"HLRBRep_ThePolyhedronOfInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_PolyAlgo ,opencascade::handle<HLRBRep_PolyAlgo>  , Standard_Transient >(m,"HLRBRep_PolyAlgo",R"#(to remove Hidden lines on Shapes with Triangulations. A framework to compute the shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_PolyAlgo works with three types of entity: - shapes to be visualized (these shapes must have already been triangulated.) - edges in these shapes (these edges are defined as polygonal lines on the triangulation of the shape, and are the basic entities which will be visualized or hidden), and - triangles in these shapes which hide the edges. HLRBRep_PolyAlgo is based on the principle of comparing each edge of the shape to be visualized with each of the triangles produced by the triangulation of the shape, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_PolyAlgo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_PolyHLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape whereas HLRBRep_Algo takes the shape itself into account. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. An HLRBRep_PolyAlgo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.to remove Hidden lines on Shapes with Triangulations. A framework to compute the shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_PolyAlgo works with three types of entity: - shapes to be visualized (these shapes must have already been triangulated.) - edges in these shapes (these edges are defined as polygonal lines on the triangulation of the shape, and are the basic entities which will be visualized or hidden), and - triangles in these shapes which hide the edges. HLRBRep_PolyAlgo is based on the principle of comparing each edge of the shape to be visualized with each of the triangles produced by the triangulation of the shape, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_PolyAlgo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_PolyHLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape whereas HLRBRep_Algo takes the shape itself into account. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. An HLRBRep_PolyAlgo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.to remove Hidden lines on Shapes with Triangulations. A framework to compute the shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_PolyAlgo works with three types of entity: - shapes to be visualized (these shapes must have already been triangulated.) - edges in these shapes (these edges are defined as polygonal lines on the triangulation of the shape, and are the basic entities which will be visualized or hidden), and - triangles in these shapes which hide the edges. HLRBRep_PolyAlgo is based on the principle of comparing each edge of the shape to be visualized with each of the triangles produced by the triangulation of the shape, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_PolyAlgo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_PolyHLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape whereas HLRBRep_Algo takes the shape itself into account. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. An HLRBRep_PolyAlgo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.)#");
-    py::class_<HLRBRep_PolyHLRToShape ,std::unique_ptr<HLRBRep_PolyHLRToShape>  >(m,"HLRBRep_PolyHLRToShape",R"#(A framework for filtering the computation results of an HLRBRep_Algo algorithm by extraction. From the results calculated by the algorithm on a shape, a filter returns the type of edge you want to identify. You can choose any of the following types of output: - visible sharp edges - hidden sharp edges - visible smooth edges - hidden smooth edges - visible sewn edges - hidden sewn edges - visible outline edges - hidden outline edges. - visible isoparameters and - hidden isoparameters. Sharp edges present a C0 continuity (non G1). Smooth edges present a G1 continuity (non G2). Sewn edges present a C2 continuity. The result is composed of 2D edges in the projection plane of the view which the algorithm has worked with. These 2D edges are not included in the data structure of the visualized shape. In order to obtain a complete image, you must combine the shapes given by each of the chosen filters. The construction of the shape does not call a new computation of the algorithm, but only reads its internal results.)#");
-    py::class_<HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter ,std::unique_ptr<HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter>  , math_FunctionSetWithDerivatives >(m,"HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_EdgeInterferenceTool ,std::unique_ptr<HLRBRep_EdgeInterferenceTool>  >(m,"HLRBRep_EdgeInterferenceTool",R"#(Implements the methods required to instantiates the EdgeInterferenceList from HLRAlgo.)#");
-    py::class_<HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter ,std::unique_ptr<HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter>  , Intf_Polygon2d >(m,"HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_EdgeBuilder ,std::unique_ptr<HLRBRep_EdgeBuilder>  >(m,"HLRBRep_EdgeBuilder",R"#(None)#");
-    py::class_<HLRBRep_Curve ,std::unique_ptr<HLRBRep_Curve>  >(m,"HLRBRep_Curve",R"#(Defines a 2d curve by projection of a 3D curve on a plane with an optional perspective transformation.)#");
-    py::class_<HLRBRep_HLRToShape ,std::unique_ptr<HLRBRep_HLRToShape>  >(m,"HLRBRep_HLRToShape",R"#(A framework for filtering the computation results of an HLRBRep_Algo algorithm by extraction. From the results calculated by the algorithm on a shape, a filter returns the type of edge you want to identify. You can choose any of the following types of output: - visible sharp edges - hidden sharp edges - visible smooth edges - hidden smooth edges - visible sewn edges - hidden sewn edges - visible outline edges - hidden outline edges. - visible isoparameters and - hidden isoparameters. Sharp edges present a C0 continuity (non G1). Smooth edges present a G1 continuity (non G2). Sewn edges present a C2 continuity. The result is composed of 2D edges in the projection plane of the view which the algorithm has worked with. These 2D edges are not included in the data structure of the visualized shape. In order to obtain a complete image, you must combine the shapes given by each of the chosen filters. The construction of the shape does not call a new computation of the algorithm, but only reads its internal results. The methods of this shape are almost identic to those of the HLRBrep_PolyHLRToShape class.)#");
-    py::class_<HLRBRep_TheInterferenceOfInterCSurf ,std::unique_ptr<HLRBRep_TheInterferenceOfInterCSurf>  , Intf_Interference >(m,"HLRBRep_TheInterferenceOfInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_BiPnt2D ,std::unique_ptr<HLRBRep_BiPnt2D>  >(m,"HLRBRep_BiPnt2D",R"#(Contains the colors of a shape.)#");
-    py::class_<HLRBRep_TheCSFunctionOfInterCSurf ,std::unique_ptr<HLRBRep_TheCSFunctionOfInterCSurf>  , math_FunctionSetWithDerivatives >(m,"HLRBRep_TheCSFunctionOfInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_ShapeToHLR ,std::unique_ptr<HLRBRep_ShapeToHLR>  >(m,"HLRBRep_ShapeToHLR",R"#(compute the OutLinedShape of a Shape with an OutLiner, a Projector and create the Data Structure of a Shape.)#");
-    py::class_<HLRBRep_CurveTool ,std::unique_ptr<HLRBRep_CurveTool>  >(m,"HLRBRep_CurveTool",R"#(None)#");
-    py::class_<HLRBRep_TheExactInterCSurf ,std::unique_ptr<HLRBRep_TheExactInterCSurf>  >(m,"HLRBRep_TheExactInterCSurf",R"#(None)#");
-    py::class_<HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter ,std::unique_ptr<HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter>  >(m,"HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_VertexList ,std::unique_ptr<HLRBRep_VertexList>  >(m,"HLRBRep_VertexList",R"#(None)#");
-    py::class_<HLRBRep_CInter ,std::unique_ptr<HLRBRep_CInter>  , IntRes2d_Intersection >(m,"HLRBRep_CInter",R"#(None)#");
-    py::class_<HLRBRep_Data ,opencascade::handle<HLRBRep_Data>  , Standard_Transient >(m,"HLRBRep_Data",R"#()#");
-    py::class_<HLRBRep_Surface ,std::unique_ptr<HLRBRep_Surface>  >(m,"HLRBRep_Surface",R"#(None)#");
-    py::class_<HLRBRep_ShapeBounds ,std::unique_ptr<HLRBRep_ShapeBounds>  >(m,"HLRBRep_ShapeBounds",R"#(Contains a Shape and the bounds of its vertices, edges and faces in the DataStructure.)#");
-    py::class_<HLRBRep_SurfaceTool ,std::unique_ptr<HLRBRep_SurfaceTool>  >(m,"HLRBRep_SurfaceTool",R"#(None)#");
-    py::class_<HLRBRep_IntConicCurveOfCInter ,std::unique_ptr<HLRBRep_IntConicCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_IntConicCurveOfCInter",R"#(None)#");
-    py::class_<HLRBRep_Intersector ,std::unique_ptr<HLRBRep_Intersector>  >(m,"HLRBRep_Intersector",R"#(The Intersector computes 2D intersections of the projections of 3D curves.)#");
-    py::class_<HLRBRep_BiPoint ,std::unique_ptr<HLRBRep_BiPoint>  >(m,"HLRBRep_BiPoint",R"#(Contains the colors of a shape.)#");
-    py::class_<HLRBRep_BSurfaceTool ,std::unique_ptr<HLRBRep_BSurfaceTool>  >(m,"HLRBRep_BSurfaceTool",R"#(None)#");
-    py::class_<HLRBRep_EdgeFaceTool ,std::unique_ptr<HLRBRep_EdgeFaceTool>  >(m,"HLRBRep_EdgeFaceTool",R"#(The EdgeFaceTool computes the UV coordinates at a given parameter on a Curve and a Surface. It also compute the signed curvature value in a direction at a given u,v point on a surface.)#");
-    py::class_<HLRBRep_InterCSurf ,std::unique_ptr<HLRBRep_InterCSurf>  , IntCurveSurface_Intersection >(m,"HLRBRep_InterCSurf",R"#(None)#");
-    py::class_<HLRBRep_FaceIterator ,std::unique_ptr<HLRBRep_FaceIterator>  >(m,"HLRBRep_FaceIterator",R"#(None)#");
-    py::class_<HLRBRep_InternalAlgo ,opencascade::handle<HLRBRep_InternalAlgo>  , Standard_Transient >(m,"HLRBRep_InternalAlgo",R"#()#");
-    py::class_<HLRBRep_Algo ,opencascade::handle<HLRBRep_Algo>  , HLRBRep_InternalAlgo >(m,"HLRBRep_Algo",R"#(Inherited from InternalAlgo to provide methods with Shape from TopoDS. A framework to compute a shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_Algo works with three types of entity: - shapes to be visualized - edges in these shapes (these edges are the basic entities which will be visualized or hidden), and - faces in these shapes which hide the edges. HLRBRep_Algo is based on the principle of comparing each edge of the shape to be visualized with each of its faces, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_Algo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_HLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_Algo takes the shape itself into account whereas HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. In the case of complicated shapes, HLRBRep_Algo may be time-consuming. An HLRBRep_Algo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.Inherited from InternalAlgo to provide methods with Shape from TopoDS. A framework to compute a shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_Algo works with three types of entity: - shapes to be visualized - edges in these shapes (these edges are the basic entities which will be visualized or hidden), and - faces in these shapes which hide the edges. HLRBRep_Algo is based on the principle of comparing each edge of the shape to be visualized with each of its faces, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_Algo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_HLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_Algo takes the shape itself into account whereas HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. In the case of complicated shapes, HLRBRep_Algo may be time-consuming. An HLRBRep_Algo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.Inherited from InternalAlgo to provide methods with Shape from TopoDS. A framework to compute a shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_Algo works with three types of entity: - shapes to be visualized - edges in these shapes (these edges are the basic entities which will be visualized or hidden), and - faces in these shapes which hide the edges. HLRBRep_Algo is based on the principle of comparing each edge of the shape to be visualized with each of its faces, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_Algo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_HLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_Algo takes the shape itself into account whereas HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. In the case of complicated shapes, HLRBRep_Algo may be time-consuming. An HLRBRep_Algo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.)#");
-    py::class_<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter ,std::unique_ptr<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter>  >(m,"HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter",R"#(None)#");
-    py::class_<HLRBRep_EdgeData ,std::unique_ptr<HLRBRep_EdgeData>  >(m,"HLRBRep_EdgeData",R"#(None)#");
-    py::class_<HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf ,std::unique_ptr<HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf>  , math_FunctionWithDerivative >(m,"HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/HLRBRep_SLPropsATool.hxx
-// ./opencascade/HLRBRep_EdgeBuilder.hxx
-// ./opencascade/HLRBRep_TheIntPCurvePCurveOfCInter.hxx
-// ./opencascade/HLRBRep_ShapeBounds.hxx
-// ./opencascade/HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx
-// ./opencascade/HLRBRep_Curve.hxx
-// ./opencascade/HLRBRep_Algo.hxx
-// ./opencascade/HLRBRep_EdgeIList.hxx
-// ./opencascade/HLRBRep_HLRToShape.hxx
-// ./opencascade/HLRBRep_AreaLimit.hxx
-// ./opencascade/HLRBRep_SurfaceTool.hxx
-// ./opencascade/HLRBRep_SLProps.hxx
-// ./opencascade/HLRBRep_TheInterferenceOfInterCSurf.hxx
-// ./opencascade/HLRBRep_LineTool.hxx
-// ./opencascade/HLRBRep_InterCSurf.hxx
-// ./opencascade/HLRBRep_ThePolygonOfInterCSurf.hxx
-// ./opencascade/HLRBRep_BiPnt2D.hxx
-// ./opencascade/HLRBRep_TheQuadCurvExactInterCSurf.hxx
-// ./opencascade/HLRBRep_Array1OfEData.hxx
     preregister_template_NCollection_Array1<HLRBRep_EdgeData>(m,"HLRBRep_Array1OfEData");  
-// ./opencascade/HLRBRep_IntConicCurveOfCInter.hxx
-// ./opencascade/HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx
-// ./opencascade/HLRBRep_TheCSFunctionOfInterCSurf.hxx
-// ./opencascade/HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx
-// ./opencascade/HLRBRep_SeqOfShapeBounds.hxx
-    preregister_template_NCollection_Sequence<HLRBRep_ShapeBounds>(m,"HLRBRep_SeqOfShapeBounds");  
-// ./opencascade/HLRBRep_EdgeData.hxx
-// ./opencascade/HLRBRep_FaceData.hxx
-// ./opencascade/HLRBRep_ShapeToHLR.hxx
-// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
     preregister_template_NCollection_List<HLRBRep_BiPnt2D>(m,"HLRBRep_ListOfBPnt2D");  
-// ./opencascade/HLRBRep_TheIntConicCurveOfCInter.hxx
-// ./opencascade/HLRBRep_Intersector.hxx
-// ./opencascade/HLRBRep_TheProjPCurOfCInter.hxx
-// ./opencascade/HLRBRep_CurveTool.hxx
-// ./opencascade/HLRBRep_Array1OfFData.hxx
-    preregister_template_NCollection_Array1<HLRBRep_FaceData>(m,"HLRBRep_Array1OfFData");  
-// ./opencascade/HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter.hxx
-// ./opencascade/HLRBRep_FaceIterator.hxx
-// ./opencascade/HLRBRep_BCurveTool.hxx
-// ./opencascade/HLRBRep_TheExactInterCSurf.hxx
-// ./opencascade/HLRBRep_Hider.hxx
-// ./opencascade/HLRBRep_BiPoint.hxx
-// ./opencascade/HLRBRep_ListIteratorOfListOfBPoint.hxx
-// ./opencascade/HLRBRep_ListIteratorOfListOfBPnt2D.hxx
-// ./opencascade/HLRBRep.hxx
-// ./opencascade/HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx
-// ./opencascade/HLRBRep_CLProps.hxx
-// ./opencascade/HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx
-// ./opencascade/HLRBRep_ThePolygonToolOfInterCSurf.hxx
-// ./opencascade/HLRBRep_VertexList.hxx
-// ./opencascade/HLRBRep_ListOfBPoint.hxx
     preregister_template_NCollection_List<HLRBRep_BiPoint>(m,"HLRBRep_ListOfBPoint");  
-// ./opencascade/HLRBRep_CLPropsATool.hxx
-// ./opencascade/HLRBRep_BSurfaceTool.hxx
-// ./opencascade/HLRBRep_ThePolyhedronToolOfInterCSurf.hxx
-// ./opencascade/HLRBRep_CInter.hxx
-// ./opencascade/HLRBRep_ThePolyhedronOfInterCSurf.hxx
-// ./opencascade/HLRBRep_InternalAlgo.hxx
-// ./opencascade/HLRBRep_PolyAlgo.hxx
-// ./opencascade/HLRBRep_Data.hxx
-// ./opencascade/HLRBRep_PolyHLRToShape.hxx
-// ./opencascade/HLRBRep_EdgeFaceTool.hxx
-// ./opencascade/HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx
-// ./opencascade/HLRBRep_Surface.hxx
-// ./opencascade/HLRBRep_TypeOfResultingEdge.hxx
-// ./opencascade/HLRBRep_EdgeInterferenceTool.hxx
-// ./opencascade/HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx
-// ./opencascade/HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx
+    preregister_template_NCollection_Sequence<HLRBRep_ShapeBounds>(m,"HLRBRep_SeqOfShapeBounds");  
+    preregister_template_NCollection_Array1<HLRBRep_FaceData>(m,"HLRBRep_Array1OfFData");  
+
+// classes forward declarations only
+    py::class_<HLRBRep , shared_ptr<HLRBRep>  >(m,"HLRBRep",R"#(Hidden Lines Removal algorithms on the BRep DataStructure.)#");
+    py::class_<HLRBRep_AreaLimit ,opencascade::handle<HLRBRep_AreaLimit>  , Standard_Transient >(m,"HLRBRep_AreaLimit",R"#(The private nested class AreaLimit represents a -- vertex on the Edge with the state on the left and -- the right.The private nested class AreaLimit represents a -- vertex on the Edge with the state on the left and -- the right.The private nested class AreaLimit represents a -- vertex on the Edge with the state on the left and -- the right.)#");
+    py::class_<HLRBRep_BCurveTool , shared_ptr<HLRBRep_BCurveTool>  >(m,"HLRBRep_BCurveTool",R"#(None)#");
+    py::class_<HLRBRep_BSurfaceTool , shared_ptr<HLRBRep_BSurfaceTool>  >(m,"HLRBRep_BSurfaceTool",R"#(None)#");
+    py::class_<HLRBRep_BiPnt2D , shared_ptr<HLRBRep_BiPnt2D>  >(m,"HLRBRep_BiPnt2D",R"#(Contains the colors of a shape.)#");
+    py::class_<HLRBRep_BiPoint , shared_ptr<HLRBRep_BiPoint>  >(m,"HLRBRep_BiPoint",R"#(Contains the colors of a shape.)#");
+    py::class_<HLRBRep_CInter , shared_ptr<HLRBRep_CInter>  , IntRes2d_Intersection >(m,"HLRBRep_CInter",R"#(None)#");
+    py::class_<HLRBRep_CLProps , shared_ptr<HLRBRep_CLProps>  >(m,"HLRBRep_CLProps",R"#(None)#");
+    py::class_<HLRBRep_Curve , shared_ptr<HLRBRep_Curve>  >(m,"HLRBRep_Curve",R"#(Defines a 2d curve by projection of a 3D curve on a plane with an optional perspective transformation.)#");
+    py::class_<HLRBRep_CurveTool , shared_ptr<HLRBRep_CurveTool>  >(m,"HLRBRep_CurveTool",R"#(None)#");
+    py::class_<HLRBRep_Data ,opencascade::handle<HLRBRep_Data>  , Standard_Transient >(m,"HLRBRep_Data",R"#()#");
+    py::class_<HLRBRep_EdgeBuilder , shared_ptr<HLRBRep_EdgeBuilder>  >(m,"HLRBRep_EdgeBuilder",R"#(None)#");
+    py::class_<HLRBRep_EdgeData , shared_ptr<HLRBRep_EdgeData>  >(m,"HLRBRep_EdgeData",R"#(None)#");
+    py::class_<HLRBRep_EdgeFaceTool , shared_ptr<HLRBRep_EdgeFaceTool>  >(m,"HLRBRep_EdgeFaceTool",R"#(The EdgeFaceTool computes the UV coordinates at a given parameter on a Curve and a Surface. It also compute the signed curvature value in a direction at a given u,v point on a surface.)#");
+    py::class_<HLRBRep_EdgeIList , shared_ptr<HLRBRep_EdgeIList>  >(m,"HLRBRep_EdgeIList",R"#(None)#");
+    py::class_<HLRBRep_EdgeInterferenceTool , shared_ptr<HLRBRep_EdgeInterferenceTool>  >(m,"HLRBRep_EdgeInterferenceTool",R"#(Implements the methods required to instantiates the EdgeInterferenceList from HLRAlgo.)#");
+    py::class_<HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter>  >(m,"HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_FaceData , shared_ptr<HLRBRep_FaceData>  >(m,"HLRBRep_FaceData",R"#(None)#");
+    py::class_<HLRBRep_FaceIterator , shared_ptr<HLRBRep_FaceIterator>  >(m,"HLRBRep_FaceIterator",R"#(None)#");
+    py::class_<HLRBRep_HLRToShape , shared_ptr<HLRBRep_HLRToShape>  >(m,"HLRBRep_HLRToShape",R"#(A framework for filtering the computation results of an HLRBRep_Algo algorithm by extraction. From the results calculated by the algorithm on a shape, a filter returns the type of edge you want to identify. You can choose any of the following types of output: - visible sharp edges - hidden sharp edges - visible smooth edges - hidden smooth edges - visible sewn edges - hidden sewn edges - visible outline edges - hidden outline edges. - visible isoparameters and - hidden isoparameters. Sharp edges present a C0 continuity (non G1). Smooth edges present a G1 continuity (non G2). Sewn edges present a C2 continuity. The result is composed of 2D edges in the projection plane of the view which the algorithm has worked with. These 2D edges are not included in the data structure of the visualized shape. In order to obtain a complete image, you must combine the shapes given by each of the chosen filters. The construction of the shape does not call a new computation of the algorithm, but only reads its internal results. The methods of this shape are almost identic to those of the HLRBrep_PolyHLRToShape class.)#");
+    py::class_<HLRBRep_Hider , shared_ptr<HLRBRep_Hider>  >(m,"HLRBRep_Hider",R"#(None)#");
+    py::class_<HLRBRep_IntConicCurveOfCInter , shared_ptr<HLRBRep_IntConicCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_IntConicCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_InterCSurf , shared_ptr<HLRBRep_InterCSurf>  , IntCurveSurface_Intersection >(m,"HLRBRep_InterCSurf",R"#(None)#");
+    py::class_<HLRBRep_InternalAlgo ,opencascade::handle<HLRBRep_InternalAlgo>  , Standard_Transient >(m,"HLRBRep_InternalAlgo",R"#()#");
+    py::class_<HLRBRep_Intersector , shared_ptr<HLRBRep_Intersector>  >(m,"HLRBRep_Intersector",R"#(The Intersector computes 2D intersections of the projections of 3D curves.)#");
+    py::class_<HLRBRep_LineTool , shared_ptr<HLRBRep_LineTool>  >(m,"HLRBRep_LineTool",R"#(The LineTool class provides class methods to access the methodes of the Line.)#");
+    py::class_<HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter , shared_ptr<HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter>  , math_FunctionWithDerivative >(m,"HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter , shared_ptr<HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter>  , math_FunctionWithDerivative >(m,"HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter",R"#(None)#");
+    py::class_<HLRBRep_PolyAlgo ,opencascade::handle<HLRBRep_PolyAlgo>  , Standard_Transient >(m,"HLRBRep_PolyAlgo",R"#(to remove Hidden lines on Shapes with Triangulations. A framework to compute the shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_PolyAlgo works with three types of entity: - shapes to be visualized (these shapes must have already been triangulated.) - edges in these shapes (these edges are defined as polygonal lines on the triangulation of the shape, and are the basic entities which will be visualized or hidden), and - triangles in these shapes which hide the edges. HLRBRep_PolyAlgo is based on the principle of comparing each edge of the shape to be visualized with each of the triangles produced by the triangulation of the shape, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_PolyAlgo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_PolyHLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape whereas HLRBRep_Algo takes the shape itself into account. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. An HLRBRep_PolyAlgo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.to remove Hidden lines on Shapes with Triangulations. A framework to compute the shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_PolyAlgo works with three types of entity: - shapes to be visualized (these shapes must have already been triangulated.) - edges in these shapes (these edges are defined as polygonal lines on the triangulation of the shape, and are the basic entities which will be visualized or hidden), and - triangles in these shapes which hide the edges. HLRBRep_PolyAlgo is based on the principle of comparing each edge of the shape to be visualized with each of the triangles produced by the triangulation of the shape, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_PolyAlgo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_PolyHLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape whereas HLRBRep_Algo takes the shape itself into account. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. An HLRBRep_PolyAlgo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.to remove Hidden lines on Shapes with Triangulations. A framework to compute the shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_PolyAlgo works with three types of entity: - shapes to be visualized (these shapes must have already been triangulated.) - edges in these shapes (these edges are defined as polygonal lines on the triangulation of the shape, and are the basic entities which will be visualized or hidden), and - triangles in these shapes which hide the edges. HLRBRep_PolyAlgo is based on the principle of comparing each edge of the shape to be visualized with each of the triangles produced by the triangulation of the shape, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_PolyAlgo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_PolyHLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_PolyAlgo works with a polyhedral simplification of the shape whereas HLRBRep_Algo takes the shape itself into account. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. An HLRBRep_PolyAlgo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.)#");
+    py::class_<HLRBRep_PolyHLRToShape , shared_ptr<HLRBRep_PolyHLRToShape>  >(m,"HLRBRep_PolyHLRToShape",R"#(A framework for filtering the computation results of an HLRBRep_Algo algorithm by extraction. From the results calculated by the algorithm on a shape, a filter returns the type of edge you want to identify. You can choose any of the following types of output: - visible sharp edges - hidden sharp edges - visible smooth edges - hidden smooth edges - visible sewn edges - hidden sewn edges - visible outline edges - hidden outline edges. - visible isoparameters and - hidden isoparameters. Sharp edges present a C0 continuity (non G1). Smooth edges present a G1 continuity (non G2). Sewn edges present a C2 continuity. The result is composed of 2D edges in the projection plane of the view which the algorithm has worked with. These 2D edges are not included in the data structure of the visualized shape. In order to obtain a complete image, you must combine the shapes given by each of the chosen filters. The construction of the shape does not call a new computation of the algorithm, but only reads its internal results.)#");
+    py::class_<HLRBRep_SLProps , shared_ptr<HLRBRep_SLProps>  >(m,"HLRBRep_SLProps",R"#(None)#");
+    py::class_<HLRBRep_SLPropsATool , shared_ptr<HLRBRep_SLPropsATool>  >(m,"HLRBRep_SLPropsATool",R"#(None)#");
+    py::class_<HLRBRep_ShapeBounds , shared_ptr<HLRBRep_ShapeBounds>  >(m,"HLRBRep_ShapeBounds",R"#(Contains a Shape and the bounds of its vertices, edges and faces in the DataStructure.)#");
+    py::class_<HLRBRep_ShapeToHLR , shared_ptr<HLRBRep_ShapeToHLR>  >(m,"HLRBRep_ShapeToHLR",R"#(compute the OutLinedShape of a Shape with an OutLiner, a Projector and create the Data Structure of a Shape.)#");
+    py::class_<HLRBRep_Surface , shared_ptr<HLRBRep_Surface>  >(m,"HLRBRep_Surface",R"#(None)#");
+    py::class_<HLRBRep_SurfaceTool , shared_ptr<HLRBRep_SurfaceTool>  >(m,"HLRBRep_SurfaceTool",R"#(None)#");
+    py::class_<HLRBRep_TheCSFunctionOfInterCSurf , shared_ptr<HLRBRep_TheCSFunctionOfInterCSurf>  , math_FunctionSetWithDerivatives >(m,"HLRBRep_TheCSFunctionOfInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter , shared_ptr<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter>  >(m,"HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter",R"#(None)#");
+    py::class_<HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter>  , math_FunctionSetWithDerivatives >(m,"HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_TheExactInterCSurf , shared_ptr<HLRBRep_TheExactInterCSurf>  >(m,"HLRBRep_TheExactInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_TheIntConicCurveOfCInter , shared_ptr<HLRBRep_TheIntConicCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_TheIntConicCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_TheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_TheIntPCurvePCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_TheIntPCurvePCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_TheInterferenceOfInterCSurf , shared_ptr<HLRBRep_TheInterferenceOfInterCSurf>  , Intf_Interference >(m,"HLRBRep_TheInterferenceOfInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter , shared_ptr<HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter>  , IntRes2d_Intersection >(m,"HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter , shared_ptr<HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter>  >(m,"HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter",R"#(None)#");
+    py::class_<HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter>  , Intf_Polygon2d >(m,"HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter",R"#(None)#");
+    py::class_<HLRBRep_ThePolygonOfInterCSurf , shared_ptr<HLRBRep_ThePolygonOfInterCSurf>  >(m,"HLRBRep_ThePolygonOfInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_ThePolygonToolOfInterCSurf , shared_ptr<HLRBRep_ThePolygonToolOfInterCSurf>  >(m,"HLRBRep_ThePolygonToolOfInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_ThePolyhedronOfInterCSurf , shared_ptr<HLRBRep_ThePolyhedronOfInterCSurf>  >(m,"HLRBRep_ThePolyhedronOfInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_ThePolyhedronToolOfInterCSurf , shared_ptr<HLRBRep_ThePolyhedronToolOfInterCSurf>  >(m,"HLRBRep_ThePolyhedronToolOfInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_TheProjPCurOfCInter , shared_ptr<HLRBRep_TheProjPCurOfCInter>  >(m,"HLRBRep_TheProjPCurOfCInter",R"#(None)#");
+    py::class_<HLRBRep_TheQuadCurvExactInterCSurf , shared_ptr<HLRBRep_TheQuadCurvExactInterCSurf>  >(m,"HLRBRep_TheQuadCurvExactInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf , shared_ptr<HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf>  , math_FunctionWithDerivative >(m,"HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf",R"#(None)#");
+    py::class_<HLRBRep_VertexList , shared_ptr<HLRBRep_VertexList>  >(m,"HLRBRep_VertexList",R"#(None)#");
+    py::class_<HLRBRep_Algo ,opencascade::handle<HLRBRep_Algo>  , HLRBRep_InternalAlgo >(m,"HLRBRep_Algo",R"#(Inherited from InternalAlgo to provide methods with Shape from TopoDS. A framework to compute a shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_Algo works with three types of entity: - shapes to be visualized - edges in these shapes (these edges are the basic entities which will be visualized or hidden), and - faces in these shapes which hide the edges. HLRBRep_Algo is based on the principle of comparing each edge of the shape to be visualized with each of its faces, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_Algo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_HLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_Algo takes the shape itself into account whereas HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. In the case of complicated shapes, HLRBRep_Algo may be time-consuming. An HLRBRep_Algo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.Inherited from InternalAlgo to provide methods with Shape from TopoDS. A framework to compute a shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_Algo works with three types of entity: - shapes to be visualized - edges in these shapes (these edges are the basic entities which will be visualized or hidden), and - faces in these shapes which hide the edges. HLRBRep_Algo is based on the principle of comparing each edge of the shape to be visualized with each of its faces, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_Algo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_HLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_Algo takes the shape itself into account whereas HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. In the case of complicated shapes, HLRBRep_Algo may be time-consuming. An HLRBRep_Algo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.Inherited from InternalAlgo to provide methods with Shape from TopoDS. A framework to compute a shape as seen in a projection plane. This is done by calculating the visible and the hidden parts of the shape. HLRBRep_Algo works with three types of entity: - shapes to be visualized - edges in these shapes (these edges are the basic entities which will be visualized or hidden), and - faces in these shapes which hide the edges. HLRBRep_Algo is based on the principle of comparing each edge of the shape to be visualized with each of its faces, and calculating the visible and the hidden parts of each edge. For a given projection, HLRBRep_Algo calculates a set of lines characteristic of the object being represented. It is also used in conjunction with the HLRBRep_HLRToShape extraction utilities, which reconstruct a new, simplified shape from a selection of calculation results. This new shape is made up of edges, which represent the shape visualized in the projection. HLRBRep_Algo takes the shape itself into account whereas HLRBRep_PolyAlgo works with a polyhedral simplification of the shape. When you use HLRBRep_Algo, you obtain an exact result, whereas, when you use HLRBRep_PolyAlgo, you reduce computation time but obtain polygonal segments. In the case of complicated shapes, HLRBRep_Algo may be time-consuming. An HLRBRep_Algo object provides a framework for: - defining the point of view - identifying the shape or shapes to be visualized - calculating the outlines - calculating the visible and hidden lines of the shape. Warning - Superimposed lines are not eliminated by this algorithm. - There must be no unfinished objects inside the shape you wish to visualize. - Points are not treated. - Note that this is not the sort of algorithm used in generating shading, which calculates the visible and hidden parts of each face in a shape to be visualized by comparing each face in the shape with every other face in the same shape.)#");
 
 };
 

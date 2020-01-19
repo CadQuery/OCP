@@ -11,19 +11,6 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <StdFail_NotDone.hxx>
-#include <LocOpe_WiresOnShape.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TopoDS_Edge.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Compound.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Circ.hxx>
-#include <StdFail_NotDone.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
@@ -49,34 +36,47 @@ namespace py = pybind11;
 #include <LocOpe_BuildShape.hxx>
 #include <LocOpe_SplitDrafts.hxx>
 #include <LocOpe_BuildWires.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <LocOpe_GeneratedShape.hxx>
-#include <Standard_NullObject.hxx>
-#include <TopoDS_Face.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StdFail_NotDone.hxx>
-#include <LocOpe_PntFace.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_NullObject.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Wire.hxx>
 #include <gp_Pln.hxx>
+#include <Standard_NullObject.hxx>
+#include <LocOpe_WiresOnShape.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <TopoDS_Edge.hxx>
+#include <gp_Ax1.hxx>
+#include <gp_Circ.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StdFail_NotDone.hxx>
+#include <LocOpe_PntFace.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
-#include <Standard_NullObject.hxx>
-#include <LocOpe_WiresOnShape.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Face.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <TopoDS_Edge.hxx>
+#include <LocOpe_GeneratedShape.hxx>
+#include <Standard_NullObject.hxx>
+#include <TopoDS_Face.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Compound.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <StdFail_NotDone.hxx>
+#include <LocOpe_WiresOnShape.hxx>
 
 // module includes
 #include <LocOpe.hxx>
@@ -111,13 +111,13 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/LocOpe_SequenceOfCirc.hxx
 #include "NCollection.hxx"
-// ./opencascade/LocOpe_SequenceOfLin.hxx
-#include "NCollection.hxx"
 // ./opencascade/LocOpe_DataMapOfShapePnt.hxx
 #include "NCollection.hxx"
 // ./opencascade/LocOpe_DataMapOfShapePnt.hxx
 #include "NCollection.hxx"
 // ./opencascade/LocOpe_SequenceOfPntFace.hxx
+#include "NCollection.hxx"
+// ./opencascade/LocOpe_SequenceOfLin.hxx
 #include "NCollection.hxx"
 
 
@@ -159,63 +159,35 @@ py::module m = main_module.def_submodule("LocOpe", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<LocOpe_BuildWires ,std::unique_ptr<LocOpe_BuildWires>  >(m,"LocOpe_BuildWires",R"#(None)#");
-    py::class_<LocOpe_Pipe ,std::unique_ptr<LocOpe_Pipe>  >(m,"LocOpe_Pipe",R"#(Defines a pipe (near from Pipe from BRepFill), with modifications provided for the Pipe feature.)#");
-    py::class_<LocOpe_WiresOnShape ,opencascade::handle<LocOpe_WiresOnShape>  , Standard_Transient >(m,"LocOpe_WiresOnShape",R"#()#");
-    py::class_<LocOpe_PntFace ,std::unique_ptr<LocOpe_PntFace>  >(m,"LocOpe_PntFace",R"#(None)#");
-    py::class_<LocOpe ,std::unique_ptr<LocOpe>  >(m,"LocOpe",R"#(Provides tools to implement local topological operations on a shape.)#");
-    py::class_<LocOpe_BuildShape ,std::unique_ptr<LocOpe_BuildShape>  >(m,"LocOpe_BuildShape",R"#(None)#");
-    py::class_<LocOpe_Generator ,std::unique_ptr<LocOpe_Generator>  >(m,"LocOpe_Generator",R"#(None)#");
-    py::class_<LocOpe_RevolutionForm ,std::unique_ptr<LocOpe_RevolutionForm>  >(m,"LocOpe_RevolutionForm",R"#(Defines a revolution form (using Revol from BRepSweep) with modifications provided for the RevolutionForm feature.)#");
-    py::class_<LocOpe_SplitDrafts ,std::unique_ptr<LocOpe_SplitDrafts>  >(m,"LocOpe_SplitDrafts",R"#(This class provides a tool to realize the following operations on a shape : - split a face of the shape with a wire, - put draft angle on both side of the wire. For each side, the draft angle may be different.)#");
-    py::class_<LocOpe_Spliter ,std::unique_ptr<LocOpe_Spliter>  >(m,"LocOpe_Spliter",R"#(None)#");
-    py::class_<LocOpe_LinearForm ,std::unique_ptr<LocOpe_LinearForm>  >(m,"LocOpe_LinearForm",R"#(Defines a linear form (using Prism from BRepSweep) with modifications provided for the LinearForm feature.)#");
-    py::class_<LocOpe_FindEdges ,std::unique_ptr<LocOpe_FindEdges>  >(m,"LocOpe_FindEdges",R"#(None)#");
-    py::class_<LocOpe_CurveShapeIntersector ,std::unique_ptr<LocOpe_CurveShapeIntersector>  >(m,"LocOpe_CurveShapeIntersector",R"#(This class provides the intersection between an axis or a circle and the faces of a shape. The intersection points are sorted in increasing parameter along the axis.)#");
-    py::class_<LocOpe_Gluer ,std::unique_ptr<LocOpe_Gluer>  >(m,"LocOpe_Gluer",R"#(None)#");
-    py::class_<LocOpe_Prism ,std::unique_ptr<LocOpe_Prism>  >(m,"LocOpe_Prism",R"#(Defines a prism (using Prism from BRepSweep) with modifications provided for the Prism feature.)#");
-    py::class_<LocOpe_SplitShape ,std::unique_ptr<LocOpe_SplitShape>  >(m,"LocOpe_SplitShape",R"#(Provides a tool to cut : - edges with a vertices, - faces with wires, and rebuilds the shape containing the edges and the faces.)#");
-    py::class_<LocOpe_FindEdgesInFace ,std::unique_ptr<LocOpe_FindEdgesInFace>  >(m,"LocOpe_FindEdgesInFace",R"#(None)#");
-    py::class_<LocOpe_DPrism ,std::unique_ptr<LocOpe_DPrism>  >(m,"LocOpe_DPrism",R"#(Defines a pipe (near from Pipe from BRepFill), with modifications provided for the Pipe feature.)#");
-    py::class_<LocOpe_CSIntersector ,std::unique_ptr<LocOpe_CSIntersector>  >(m,"LocOpe_CSIntersector",R"#(This class provides the intersection between a set of axis or a circle and the faces of a shape. The intersection points are sorted in increasing parameter along each axis or circle.)#");
-    py::class_<LocOpe_Revol ,std::unique_ptr<LocOpe_Revol>  >(m,"LocOpe_Revol",R"#(Defines a prism (using Prism from BRepSweep) with modifications provided for the Prism feature.)#");
-    py::class_<LocOpe_GeneratedShape ,opencascade::handle<LocOpe_GeneratedShape> ,Py_LocOpe_GeneratedShape , Standard_Transient >(m,"LocOpe_GeneratedShape",R"#()#");
-    py::class_<LocOpe_GluedShape ,opencascade::handle<LocOpe_GluedShape>  , LocOpe_GeneratedShape >(m,"LocOpe_GluedShape",R"#()#");
-
 // pre-register typdefs
-// ./opencascade/LocOpe_BuildWires.hxx
-// ./opencascade/LocOpe_FindEdges.hxx
-// ./opencascade/LocOpe_Operation.hxx
-// ./opencascade/LocOpe_Pipe.hxx
-// ./opencascade/LocOpe_DPrism.hxx
-// ./opencascade/LocOpe_WiresOnShape.hxx
-// ./opencascade/LocOpe_CurveShapeIntersector.hxx
-// ./opencascade/LocOpe_PntFace.hxx
-// ./opencascade/LocOpe_DataMapIteratorOfDataMapOfShapePnt.hxx
-// ./opencascade/LocOpe_Revol.hxx
-// ./opencascade/LocOpe.hxx
-// ./opencascade/LocOpe_SequenceOfCirc.hxx
     preregister_template_NCollection_Sequence<gp_Circ>(m,"LocOpe_SequenceOfCirc");  
-// ./opencascade/LocOpe_SequenceOfLin.hxx
-    preregister_template_NCollection_Sequence<gp_Lin>(m,"LocOpe_SequenceOfLin");  
-// ./opencascade/LocOpe_Gluer.hxx
-// ./opencascade/LocOpe_BuildShape.hxx
-// ./opencascade/LocOpe_GluedShape.hxx
-// ./opencascade/LocOpe_DataMapOfShapePnt.hxx
     preregister_template_NCollection_DataMap<TopoDS_Shape, gp_Pnt, TopTools_ShapeMapHasher>(m,"LocOpe_DataMapOfShapePnt");  
-// ./opencascade/LocOpe_Generator.hxx
-// ./opencascade/LocOpe_Prism.hxx
-// ./opencascade/LocOpe_RevolutionForm.hxx
-// ./opencascade/LocOpe_CSIntersector.hxx
-// ./opencascade/LocOpe_SplitDrafts.hxx
-// ./opencascade/LocOpe_SplitShape.hxx
-// ./opencascade/LocOpe_Spliter.hxx
-// ./opencascade/LocOpe_GeneratedShape.hxx
-// ./opencascade/LocOpe_LinearForm.hxx
-// ./opencascade/LocOpe_FindEdgesInFace.hxx
-// ./opencascade/LocOpe_SequenceOfPntFace.hxx
     preregister_template_NCollection_Sequence<LocOpe_PntFace>(m,"LocOpe_SequenceOfPntFace");  
+    preregister_template_NCollection_Sequence<gp_Lin>(m,"LocOpe_SequenceOfLin");  
+
+// classes forward declarations only
+    py::class_<LocOpe , shared_ptr<LocOpe>  >(m,"LocOpe",R"#(Provides tools to implement local topological operations on a shape.)#");
+    py::class_<LocOpe_BuildShape , shared_ptr<LocOpe_BuildShape>  >(m,"LocOpe_BuildShape",R"#(None)#");
+    py::class_<LocOpe_BuildWires , shared_ptr<LocOpe_BuildWires>  >(m,"LocOpe_BuildWires",R"#(None)#");
+    py::class_<LocOpe_CSIntersector , shared_ptr<LocOpe_CSIntersector>  >(m,"LocOpe_CSIntersector",R"#(This class provides the intersection between a set of axis or a circle and the faces of a shape. The intersection points are sorted in increasing parameter along each axis or circle.)#");
+    py::class_<LocOpe_CurveShapeIntersector , shared_ptr<LocOpe_CurveShapeIntersector>  >(m,"LocOpe_CurveShapeIntersector",R"#(This class provides the intersection between an axis or a circle and the faces of a shape. The intersection points are sorted in increasing parameter along the axis.)#");
+    py::class_<LocOpe_DPrism , shared_ptr<LocOpe_DPrism>  >(m,"LocOpe_DPrism",R"#(Defines a pipe (near from Pipe from BRepFill), with modifications provided for the Pipe feature.)#");
+    py::class_<LocOpe_FindEdges , shared_ptr<LocOpe_FindEdges>  >(m,"LocOpe_FindEdges",R"#(None)#");
+    py::class_<LocOpe_FindEdgesInFace , shared_ptr<LocOpe_FindEdgesInFace>  >(m,"LocOpe_FindEdgesInFace",R"#(None)#");
+    py::class_<LocOpe_GeneratedShape ,opencascade::handle<LocOpe_GeneratedShape> ,Py_LocOpe_GeneratedShape , Standard_Transient >(m,"LocOpe_GeneratedShape",R"#()#");
+    py::class_<LocOpe_Generator , shared_ptr<LocOpe_Generator>  >(m,"LocOpe_Generator",R"#(None)#");
+    py::class_<LocOpe_Gluer , shared_ptr<LocOpe_Gluer>  >(m,"LocOpe_Gluer",R"#(None)#");
+    py::class_<LocOpe_LinearForm , shared_ptr<LocOpe_LinearForm>  >(m,"LocOpe_LinearForm",R"#(Defines a linear form (using Prism from BRepSweep) with modifications provided for the LinearForm feature.)#");
+    py::class_<LocOpe_Pipe , shared_ptr<LocOpe_Pipe>  >(m,"LocOpe_Pipe",R"#(Defines a pipe (near from Pipe from BRepFill), with modifications provided for the Pipe feature.)#");
+    py::class_<LocOpe_PntFace , shared_ptr<LocOpe_PntFace>  >(m,"LocOpe_PntFace",R"#(None)#");
+    py::class_<LocOpe_Prism , shared_ptr<LocOpe_Prism>  >(m,"LocOpe_Prism",R"#(Defines a prism (using Prism from BRepSweep) with modifications provided for the Prism feature.)#");
+    py::class_<LocOpe_Revol , shared_ptr<LocOpe_Revol>  >(m,"LocOpe_Revol",R"#(Defines a prism (using Prism from BRepSweep) with modifications provided for the Prism feature.)#");
+    py::class_<LocOpe_RevolutionForm , shared_ptr<LocOpe_RevolutionForm>  >(m,"LocOpe_RevolutionForm",R"#(Defines a revolution form (using Revol from BRepSweep) with modifications provided for the RevolutionForm feature.)#");
+    py::class_<LocOpe_SplitDrafts , shared_ptr<LocOpe_SplitDrafts>  >(m,"LocOpe_SplitDrafts",R"#(This class provides a tool to realize the following operations on a shape : - split a face of the shape with a wire, - put draft angle on both side of the wire. For each side, the draft angle may be different.)#");
+    py::class_<LocOpe_SplitShape , shared_ptr<LocOpe_SplitShape>  >(m,"LocOpe_SplitShape",R"#(Provides a tool to cut : - edges with a vertices, - faces with wires, and rebuilds the shape containing the edges and the faces.)#");
+    py::class_<LocOpe_Spliter , shared_ptr<LocOpe_Spliter>  >(m,"LocOpe_Spliter",R"#(None)#");
+    py::class_<LocOpe_WiresOnShape ,opencascade::handle<LocOpe_WiresOnShape>  , Standard_Transient >(m,"LocOpe_WiresOnShape",R"#()#");
+    py::class_<LocOpe_GluedShape ,opencascade::handle<LocOpe_GluedShape>  , LocOpe_GeneratedShape >(m,"LocOpe_GluedShape",R"#()#");
 
 };
 

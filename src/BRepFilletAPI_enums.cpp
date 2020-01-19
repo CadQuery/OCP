@@ -78,17 +78,13 @@ py::module m = main_module.def_submodule("BRepFilletAPI", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<BRepFilletAPI_MakeFillet2d ,std::unique_ptr<BRepFilletAPI_MakeFillet2d>  , BRepBuilderAPI_MakeShape >(m,"BRepFilletAPI_MakeFillet2d",R"#(Describes functions to build fillets and chamfers on the vertices of a planar face. Fillets and Chamfers on the Vertices of a Planar Face A MakeFillet2d object provides a framework for: - initializing the construction algorithm with a given face, - acquiring the data characterizing the fillets and chamfers, - building the fillets and chamfers, and constructing the resulting shape, and - consulting the result. Warning Only segments of straight lines and arcs of circles are treated. BSplines are not processed.)#");
-    py::class_<BRepFilletAPI_LocalOperation ,std::unique_ptr<BRepFilletAPI_LocalOperation> ,Py_BRepFilletAPI_LocalOperation , BRepBuilderAPI_MakeShape >(m,"BRepFilletAPI_LocalOperation",R"#(Construction of fillets on the edges of a Shell.)#");
-    py::class_<BRepFilletAPI_MakeFillet ,std::unique_ptr<BRepFilletAPI_MakeFillet>  , BRepFilletAPI_LocalOperation >(m,"BRepFilletAPI_MakeFillet",R"#(Describes functions to build fillets on the broken edges of a shell or solid. A MakeFillet object provides a framework for: - initializing the construction algorithm with a given shape, - acquiring the data characterizing the fillets, - building the fillets and constructing the resulting shape, and - consulting the result.)#");
-    py::class_<BRepFilletAPI_MakeChamfer ,std::unique_ptr<BRepFilletAPI_MakeChamfer>  , BRepFilletAPI_LocalOperation >(m,"BRepFilletAPI_MakeChamfer",R"#(Describes functions to build chamfers on edges of a shell or solid. Chamfered Edge of a Shell or Solid A MakeChamfer object provides a framework for: - initializing the construction algorithm with a given shape, - acquiring the data characterizing the chamfers, - building the chamfers and constructing the resulting shape, and - consulting the result.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
-// ./opencascade/BRepFilletAPI_LocalOperation.hxx
-// ./opencascade/BRepFilletAPI_MakeChamfer.hxx
-// ./opencascade/BRepFilletAPI_MakeFillet.hxx
+
+// classes forward declarations only
+    py::class_<BRepFilletAPI_LocalOperation , shared_ptr<BRepFilletAPI_LocalOperation> ,Py_BRepFilletAPI_LocalOperation , BRepBuilderAPI_MakeShape >(m,"BRepFilletAPI_LocalOperation",R"#(Construction of fillets on the edges of a Shell.)#");
+    py::class_<BRepFilletAPI_MakeFillet2d , shared_ptr<BRepFilletAPI_MakeFillet2d>  , BRepBuilderAPI_MakeShape >(m,"BRepFilletAPI_MakeFillet2d",R"#(Describes functions to build fillets and chamfers on the vertices of a planar face. Fillets and Chamfers on the Vertices of a Planar Face A MakeFillet2d object provides a framework for: - initializing the construction algorithm with a given face, - acquiring the data characterizing the fillets and chamfers, - building the fillets and chamfers, and constructing the resulting shape, and - consulting the result. Warning Only segments of straight lines and arcs of circles are treated. BSplines are not processed.)#");
+    py::class_<BRepFilletAPI_MakeChamfer , shared_ptr<BRepFilletAPI_MakeChamfer>  , BRepFilletAPI_LocalOperation >(m,"BRepFilletAPI_MakeChamfer",R"#(Describes functions to build chamfers on edges of a shell or solid. Chamfered Edge of a Shell or Solid A MakeChamfer object provides a framework for: - initializing the construction algorithm with a given shape, - acquiring the data characterizing the chamfers, - building the chamfers and constructing the resulting shape, and - consulting the result.)#");
+    py::class_<BRepFilletAPI_MakeFillet , shared_ptr<BRepFilletAPI_MakeFillet>  , BRepFilletAPI_LocalOperation >(m,"BRepFilletAPI_MakeFillet",R"#(Describes functions to build fillets on the broken edges of a shell or solid. A MakeFillet object provides a framework for: - initializing the construction algorithm with a given shape, - acquiring the data characterizing the fillets, - building the fillets and constructing the resulting shape, and - consulting the result.)#");
 
 };
 

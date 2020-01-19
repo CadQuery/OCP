@@ -48,17 +48,17 @@ py::module m = main_module.def_submodule("HatchGen", R"#()#");
 // user-defined inclusion per module in the body
 
 // enums
+    py::enum_<HatchGen_IntersectionType>(m, "HatchGen_IntersectionType",R"#(Intersection type between the hatching and the element.)#")
+        .value("HatchGen_TRUE",HatchGen_IntersectionType::HatchGen_TRUE)
+        .value("HatchGen_TOUCH",HatchGen_IntersectionType::HatchGen_TOUCH)
+        .value("HatchGen_TANGENT",HatchGen_IntersectionType::HatchGen_TANGENT)
+        .value("HatchGen_UNDETERMINED",HatchGen_IntersectionType::HatchGen_UNDETERMINED).export_values();
     py::enum_<HatchGen_ErrorStatus>(m, "HatchGen_ErrorStatus",R"#(Error status.)#")
         .value("HatchGen_NoProblem",HatchGen_ErrorStatus::HatchGen_NoProblem)
         .value("HatchGen_TrimFailure",HatchGen_ErrorStatus::HatchGen_TrimFailure)
         .value("HatchGen_TransitionFailure",HatchGen_ErrorStatus::HatchGen_TransitionFailure)
         .value("HatchGen_IncoherentParity",HatchGen_ErrorStatus::HatchGen_IncoherentParity)
         .value("HatchGen_IncompatibleStates",HatchGen_ErrorStatus::HatchGen_IncompatibleStates).export_values();
-    py::enum_<HatchGen_IntersectionType>(m, "HatchGen_IntersectionType",R"#(Intersection type between the hatching and the element.)#")
-        .value("HatchGen_TRUE",HatchGen_IntersectionType::HatchGen_TRUE)
-        .value("HatchGen_TOUCH",HatchGen_IntersectionType::HatchGen_TOUCH)
-        .value("HatchGen_TANGENT",HatchGen_IntersectionType::HatchGen_TANGENT)
-        .value("HatchGen_UNDETERMINED",HatchGen_IntersectionType::HatchGen_UNDETERMINED).export_values();
 
 //Python trampoline classes
     class Py_HatchGen_IntersectionPoint : public HatchGen_IntersectionPoint{
@@ -76,25 +76,16 @@ py::module m = main_module.def_submodule("HatchGen", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<HatchGen_IntersectionPoint ,std::unique_ptr<HatchGen_IntersectionPoint, py::nodelete> ,Py_HatchGen_IntersectionPoint >(m,"HatchGen_IntersectionPoint",R"#(None)#");
-    py::class_<HatchGen_PointOnElement ,std::unique_ptr<HatchGen_PointOnElement>  , HatchGen_IntersectionPoint >(m,"HatchGen_PointOnElement",R"#(None)#");
-    py::class_<HatchGen_Domain ,std::unique_ptr<HatchGen_Domain>  >(m,"HatchGen_Domain",R"#(None)#");
-    py::class_<HatchGen_PointOnHatching ,std::unique_ptr<HatchGen_PointOnHatching>  , HatchGen_IntersectionPoint >(m,"HatchGen_PointOnHatching",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/HatchGen_IntersectionPoint.hxx
-// ./opencascade/HatchGen_PointsOnElement.hxx
     preregister_template_NCollection_Sequence<HatchGen_PointOnElement>(m,"HatchGen_PointsOnElement");  
-// ./opencascade/HatchGen_PointsOnHatching.hxx
     preregister_template_NCollection_Sequence<HatchGen_PointOnHatching>(m,"HatchGen_PointsOnHatching");  
-// ./opencascade/HatchGen_PointOnElement.hxx
-// ./opencascade/HatchGen_PointOnHatching.hxx
-// ./opencascade/HatchGen_Domain.hxx
-// ./opencascade/HatchGen_ErrorStatus.hxx
-// ./opencascade/HatchGen_IntersectionType.hxx
-// ./opencascade/HatchGen_Domains.hxx
     preregister_template_NCollection_Sequence<HatchGen_Domain>(m,"HatchGen_Domains");  
+
+// classes forward declarations only
+    py::class_<HatchGen_Domain , shared_ptr<HatchGen_Domain>  >(m,"HatchGen_Domain",R"#(None)#");
+    py::class_<HatchGen_IntersectionPoint , shared_ptr_nodelete<HatchGen_IntersectionPoint> ,Py_HatchGen_IntersectionPoint >(m,"HatchGen_IntersectionPoint",R"#(None)#");
+    py::class_<HatchGen_PointOnElement , shared_ptr<HatchGen_PointOnElement>  , HatchGen_IntersectionPoint >(m,"HatchGen_PointOnElement",R"#(None)#");
+    py::class_<HatchGen_PointOnHatching , shared_ptr<HatchGen_PointOnHatching>  , HatchGen_IntersectionPoint >(m,"HatchGen_PointOnHatching",R"#(None)#");
 
 };
 

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -33,9 +36,15 @@ py::module m = static_cast<py::module>(main_module.attr("XBRepMesh"));
 
 // classes
 
-    register_default_constructor<XBRepMesh ,std::unique_ptr<XBRepMesh>>(m,"XBRepMesh");
+    register_default_constructor<XBRepMesh , shared_ptr<XBRepMesh>>(m,"XBRepMesh");
 
-    static_cast<py::class_<XBRepMesh ,std::unique_ptr<XBRepMesh>  >>(m.attr("XBRepMesh"))
+    static_cast<py::class_<XBRepMesh , shared_ptr<XBRepMesh>  >>(m.attr("XBRepMesh"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -44,7 +53,6 @@ py::module m = static_cast<py::module>(main_module.attr("XBRepMesh"));
 // operators
 
 // register typdefs
-// ./opencascade/XBRepMesh.hxx
 
 
 // exceptions

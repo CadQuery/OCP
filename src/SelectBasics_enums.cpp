@@ -57,26 +57,6 @@ py::module m = main_module.def_submodule("SelectBasics", R"#()#");
         // private pure virtual
         
     };
-    class Py_SelectBasics_SensitiveEntity : public SelectBasics_SensitiveEntity{
-    public:
-        using SelectBasics_SensitiveEntity::SelectBasics_SensitiveEntity;
-        
-        // public pure virtual
-        Standard_Boolean Matches(SelectBasics_SelectingVolumeManager & theMgr,SelectBasics_PickResult & thePickResult) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,SelectBasics_SensitiveEntity,Matches,theMgr,thePickResult) };
-        Standard_Integer NbSubElements() override { PYBIND11_OVERLOAD_PURE(Standard_Integer,SelectBasics_SensitiveEntity,NbSubElements,) };
-        Select3D_BndBox3d BoundingBox() override { PYBIND11_OVERLOAD_PURE(Select3D_BndBox3d,SelectBasics_SensitiveEntity,BoundingBox,) };
-        void BVH() override { PYBIND11_OVERLOAD_PURE(void,SelectBasics_SensitiveEntity,BVH,) };
-        void Clear() override { PYBIND11_OVERLOAD_PURE(void,SelectBasics_SensitiveEntity,Clear,) };
-        Standard_Boolean HasInitLocation() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,SelectBasics_SensitiveEntity,HasInitLocation,) };
-        gp_GTrsf InvInitLocation() const  override { PYBIND11_OVERLOAD_PURE(gp_GTrsf,SelectBasics_SensitiveEntity,InvInitLocation,) };
-        
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
     class Py_SelectBasics_SelectingVolumeManager : public SelectBasics_SelectingVolumeManager{
     public:
         using SelectBasics_SelectingVolumeManager::SelectBasics_SelectingVolumeManager;
@@ -105,19 +85,34 @@ py::module m = main_module.def_submodule("SelectBasics", R"#()#");
         // private pure virtual
         
     };
-
-// classes forward declarations only
-    py::class_<SelectBasics_EntityOwner ,opencascade::handle<SelectBasics_EntityOwner> ,Py_SelectBasics_EntityOwner , Standard_Transient >(m,"SelectBasics_EntityOwner",R"#(defines an abstract owner of sensitive primitives. Owners are typically used to establish a connection between sensitive entities and high-level objects (e.g. presentations).defines an abstract owner of sensitive primitives. Owners are typically used to establish a connection between sensitive entities and high-level objects (e.g. presentations).)#");
-    py::class_<SelectBasics_SensitiveEntity ,opencascade::handle<SelectBasics_SensitiveEntity> ,Py_SelectBasics_SensitiveEntity , Standard_Transient >(m,"SelectBasics_SensitiveEntity",R"#(root class; the inheriting classes will be able to give sensitive Areas for the dynamic selection algorithmsroot class; the inheriting classes will be able to give sensitive Areas for the dynamic selection algorithms)#");
-    py::class_<SelectBasics_SelectingVolumeManager ,std::unique_ptr<SelectBasics_SelectingVolumeManager> ,Py_SelectBasics_SelectingVolumeManager >(m,"SelectBasics_SelectingVolumeManager",R"#(This class provides an interface for selecting volume manager, which is responsible for all overlap detection methods and calculation of minimum depth, distance to center of geometry and detected closest point on entity.)#");
-    py::class_<SelectBasics ,std::unique_ptr<SelectBasics>  >(m,"SelectBasics",R"#(interface class for dynamic selection)#");
+    class Py_SelectBasics_SensitiveEntity : public SelectBasics_SensitiveEntity{
+    public:
+        using SelectBasics_SensitiveEntity::SelectBasics_SensitiveEntity;
+        
+        // public pure virtual
+        Standard_Boolean Matches(SelectBasics_SelectingVolumeManager & theMgr,SelectBasics_PickResult & thePickResult) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,SelectBasics_SensitiveEntity,Matches,theMgr,thePickResult) };
+        Standard_Integer NbSubElements() override { PYBIND11_OVERLOAD_PURE(Standard_Integer,SelectBasics_SensitiveEntity,NbSubElements,) };
+        Select3D_BndBox3d BoundingBox() override { PYBIND11_OVERLOAD_PURE(Select3D_BndBox3d,SelectBasics_SensitiveEntity,BoundingBox,) };
+        void BVH() override { PYBIND11_OVERLOAD_PURE(void,SelectBasics_SensitiveEntity,BVH,) };
+        void Clear() override { PYBIND11_OVERLOAD_PURE(void,SelectBasics_SensitiveEntity,Clear,) };
+        Standard_Boolean HasInitLocation() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,SelectBasics_SensitiveEntity,HasInitLocation,) };
+        gp_GTrsf InvInitLocation() const  override { PYBIND11_OVERLOAD_PURE(gp_GTrsf,SelectBasics_SensitiveEntity,InvInitLocation,) };
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
 
 // pre-register typdefs
-// ./opencascade/SelectBasics_EntityOwner.hxx
-// ./opencascade/SelectBasics_SelectingVolumeManager.hxx
-// ./opencascade/SelectBasics_PickResult.hxx
-// ./opencascade/SelectBasics_SensitiveEntity.hxx
-// ./opencascade/SelectBasics.hxx
+
+// classes forward declarations only
+    py::class_<SelectBasics , shared_ptr<SelectBasics>  >(m,"SelectBasics",R"#(interface class for dynamic selection)#");
+    py::class_<SelectBasics_EntityOwner ,opencascade::handle<SelectBasics_EntityOwner> ,Py_SelectBasics_EntityOwner , Standard_Transient >(m,"SelectBasics_EntityOwner",R"#(defines an abstract owner of sensitive primitives. Owners are typically used to establish a connection between sensitive entities and high-level objects (e.g. presentations).defines an abstract owner of sensitive primitives. Owners are typically used to establish a connection between sensitive entities and high-level objects (e.g. presentations).)#");
+    py::class_<SelectBasics_SelectingVolumeManager , shared_ptr<SelectBasics_SelectingVolumeManager> ,Py_SelectBasics_SelectingVolumeManager >(m,"SelectBasics_SelectingVolumeManager",R"#(This class provides an interface for selecting volume manager, which is responsible for all overlap detection methods and calculation of minimum depth, distance to center of geometry and detected closest point on entity.)#");
+    py::class_<SelectBasics_SensitiveEntity ,opencascade::handle<SelectBasics_SensitiveEntity> ,Py_SelectBasics_SensitiveEntity , Standard_Transient >(m,"SelectBasics_SensitiveEntity",R"#(root class; the inheriting classes will be able to give sensitive Areas for the dynamic selection algorithmsroot class; the inheriting classes will be able to give sensitive Areas for the dynamic selection algorithms)#");
 
 };
 

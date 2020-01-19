@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -33,15 +36,15 @@ py::module m = static_cast<py::module>(main_module.attr("ElCLib"));
 
 // classes
 
-    register_default_constructor<ElCLib ,std::unique_ptr<ElCLib>>(m,"ElCLib");
+    register_default_constructor<ElCLib , shared_ptr<ElCLib>>(m,"ElCLib");
 
-    static_cast<py::class_<ElCLib ,std::unique_ptr<ElCLib>  >>(m.attr("ElCLib"))
+    static_cast<py::class_<ElCLib , shared_ptr<ElCLib>  >>(m.attr("ElCLib"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("InPeriod_s",
                     (Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&ElCLib::InPeriod),
                     R"#(Return a value in the range <UFirst, ULast> by adding or removing the period <ULast - UFirst> to <U>. ATTENTION!!! It is expected but not checked that (ULast > UFirst))#"  , py::arg("U"),  py::arg("UFirst"),  py::arg("ULast"))
-        .def_static("AdjustPeriodic_s",
-                    (void (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real &  ) >(&ElCLib::AdjustPeriodic),
-                    R"#(Adjust U1 and U2 in the parametric range UFirst Ulast of a periodic curve, where ULast - UFirst is its period. To do this, this function: - sets U1 in the range [ UFirst, ULast ] by adding/removing the period to/from the value U1, then - sets U2 in the range [ U1, U1 + period ] by adding/removing the period to/from the value U2. Precision is used to test the equalities.)#"  , py::arg("UFirst"),  py::arg("ULast"),  py::arg("Precision"),  py::arg("U1"),  py::arg("U2"))
         .def_static("Value_s",
                     (gp_Pnt (*)( const Standard_Real ,  const gp_Lin &  ) ) static_cast<gp_Pnt (*)( const Standard_Real ,  const gp_Lin &  ) >(&ElCLib::Value),
                     R"#(For elementary curves (lines, circles and conics) from the gp package, computes the point of parameter U. The result is either: - a gp_Pnt point for a curve in 3D space, or - a gp_Pnt2d point for a curve in 2D space.)#"  , py::arg("U"),  py::arg("L"))
@@ -396,6 +399,12 @@ py::module m = static_cast<py::module>(main_module.attr("ElCLib"));
         .def_static("To3d_s",
                     (gp_Parab (*)( const gp_Ax2 & ,  const gp_Parab2d &  ) ) static_cast<gp_Parab (*)( const gp_Ax2 & ,  const gp_Parab2d &  ) >(&ElCLib::To3d),
                     R"#(These functions build a 3D geometric entity from a 2D geometric entity. The "X Axis" and the "Y Axis" of the global coordinate system (i.e. 2D space) are lined up respectively with the "X Axis" and "Y Axis" of the 3D coordinate system, Pos.)#"  , py::arg("Pos"),  py::arg("Prb"))
+    // static methods using call by reference i.s.o. return
+        .def_static("AdjustPeriodic_s",
+                    []( const Standard_Real UFirst,const Standard_Real ULast,const Standard_Real Precision ){ Standard_Real  U1; Standard_Real  U2; ElCLib::AdjustPeriodic(UFirst,ULast,Precision,U1,U2); return std::make_tuple(U1,U2); },
+                    R"#(Adjust U1 and U2 in the parametric range UFirst Ulast of a periodic curve, where ULast - UFirst is its period. To do this, this function: - sets U1 in the range [ UFirst, ULast ] by adding/removing the period to/from the value U1, then - sets U2 in the range [ U1, U1 + period ] by adding/removing the period to/from the value U2. Precision is used to test the equalities.)#"  , py::arg("UFirst"),  py::arg("ULast"),  py::arg("Precision"))
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -404,7 +413,6 @@ py::module m = static_cast<py::module>(main_module.attr("ElCLib"));
 // operators
 
 // register typdefs
-// ./opencascade/ElCLib.hxx
 
 
 // exceptions

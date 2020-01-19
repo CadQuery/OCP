@@ -33,18 +33,18 @@ namespace py = pybind11;
 #include <Geom2d_Curve.hxx>
 
 // module includes
+#include <ShapeConstruct_MakeTriangulation.hxx>
 #include <ShapeConstruct.hxx>
 #include <ShapeConstruct_Curve.hxx>
 #include <ShapeConstruct_ProjectCurveOnSurface.hxx>
-#include <ShapeConstruct_MakeTriangulation.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/ShapeConstruct_MakeTriangulation.hxx
 // ./opencascade/ShapeConstruct.hxx
 // ./opencascade/ShapeConstruct_Curve.hxx
 // ./opencascade/ShapeConstruct_ProjectCurveOnSurface.hxx
-// ./opencascade/ShapeConstruct_MakeTriangulation.hxx
 
 // user-defined post

@@ -38,11 +38,10 @@ py::module m = main_module.def_submodule("BRepBndLib", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BRepBndLib ,std::unique_ptr<BRepBndLib>  >(m,"BRepBndLib",R"#(This package provides the bounding boxes for curves and surfaces from BRepAdaptor. Functions to add a topological shape to a bounding box)#");
-
 // pre-register typdefs
-// ./opencascade/BRepBndLib.hxx
+
+// classes forward declarations only
+    py::class_<BRepBndLib , shared_ptr<BRepBndLib>  >(m,"BRepBndLib",R"#(This package provides the bounding boxes for curves and surfaces from BRepAdaptor. Functions to add a topological shape to a bounding box)#");
 
 };
 

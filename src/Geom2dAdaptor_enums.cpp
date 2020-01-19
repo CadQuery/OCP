@@ -11,11 +11,6 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Geom2d_Curve.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dAdaptor_Curve.hxx>
-#include <Geom2dAdaptor_GHCurve.hxx>
-#include <Geom2dAdaptor_HCurve.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <gp_Lin2d.hxx>
 #include <gp_Circ2d.hxx>
@@ -24,6 +19,11 @@ namespace py = pybind11;
 #include <gp_Parab2d.hxx>
 #include <Geom2d_BezierCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dAdaptor_Curve.hxx>
+#include <Geom2dAdaptor_GHCurve.hxx>
+#include <Geom2dAdaptor_HCurve.hxx>
 
 // module includes
 #include <Geom2dAdaptor.hxx>
@@ -51,17 +51,13 @@ py::module m = main_module.def_submodule("Geom2dAdaptor", R"#()#");
 
 //Python trampoline classes
 
+// pre-register typdefs
+
 // classes forward declarations only
-    py::class_<Geom2dAdaptor ,std::unique_ptr<Geom2dAdaptor>  >(m,"Geom2dAdaptor",R"#(this package contains the geometric definition of 2d curves compatible with the Adaptor package templates.)#");
-    py::class_<Geom2dAdaptor_Curve ,std::unique_ptr<Geom2dAdaptor_Curve>  , Adaptor2d_Curve2d >(m,"Geom2dAdaptor_Curve",R"#(An interface between the services provided by any curve from the package Geom2d and those required of the curve by algorithms which use it.)#");
+    py::class_<Geom2dAdaptor , shared_ptr<Geom2dAdaptor>  >(m,"Geom2dAdaptor",R"#(this package contains the geometric definition of 2d curves compatible with the Adaptor package templates.)#");
+    py::class_<Geom2dAdaptor_Curve , shared_ptr<Geom2dAdaptor_Curve>  , Adaptor2d_Curve2d >(m,"Geom2dAdaptor_Curve",R"#(An interface between the services provided by any curve from the package Geom2d and those required of the curve by algorithms which use it.)#");
     py::class_<Geom2dAdaptor_GHCurve ,opencascade::handle<Geom2dAdaptor_GHCurve>  , Adaptor2d_HCurve2d >(m,"Geom2dAdaptor_GHCurve",R"#()#");
     py::class_<Geom2dAdaptor_HCurve ,opencascade::handle<Geom2dAdaptor_HCurve>  , Geom2dAdaptor_GHCurve >(m,"Geom2dAdaptor_HCurve",R"#(Provides an interface between the services provided by any curve from the package Geom2d and those required of the curve by algorithms, which use it.Provides an interface between the services provided by any curve from the package Geom2d and those required of the curve by algorithms, which use it.Provides an interface between the services provided by any curve from the package Geom2d and those required of the curve by algorithms, which use it.)#");
-
-// pre-register typdefs
-// ./opencascade/Geom2dAdaptor.hxx
-// ./opencascade/Geom2dAdaptor_HCurve.hxx
-// ./opencascade/Geom2dAdaptor_Curve.hxx
-// ./opencascade/Geom2dAdaptor_GHCurve.hxx
 
 };
 

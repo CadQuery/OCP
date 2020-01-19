@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,7 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
 #include <TopoDS_Compound.hxx>
+#include <gp_Pln.hxx>
 #include <TopoDS_Edge.hxx>
 #include <Geom_Curve.hxx>
 #include <TopoDS_Face.hxx>
@@ -22,6 +28,18 @@ namespace py = pybind11;
 #include <gp_Vec2d.hxx>
 #include <gp_Pnt.hxx>
 #include <Adaptor3d_Curve.hxx>
+#include <Geom_Curve.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Bnd_Box2d.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <gp_XY.hxx>
+#include <ShapeAnalysis_Surface.hxx>
+#include <TopoDS_Wire.hxx>
+#include <Geom_Surface.hxx>
+#include <ShapeAnalysis_WireOrder.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
 #include <ShapeExtend_WireData.hxx>
@@ -43,27 +61,12 @@ namespace py = pybind11;
 #include <ShapeAnalysis_FreeBoundsProperties.hxx>
 #include <ShapeAnalysis_TransferParameters.hxx>
 #include <ShapeAnalysis_TransferParametersProj.hxx>
+#include <TopoDS_Compound.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <TopoDS_Vertex.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <gp_XY.hxx>
-#include <ShapeAnalysis_Surface.hxx>
-#include <TopoDS_Wire.hxx>
-#include <Geom_Surface.hxx>
-#include <ShapeAnalysis_WireOrder.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Compound.hxx>
-#include <gp_Pln.hxx>
 #include <ShapeExtend_WireData.hxx>
 #include <TopoDS_Wire.hxx>
-#include <Geom_Curve.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Bnd_Box2d.hxx>
 
 // module includes
 #include <ShapeAnalysis.hxx>
@@ -94,9 +97,9 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
 #include "NCollection.hxx"
-// ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
-#include "NCollection.hxx"
 // ./opencascade/ShapeAnalysis_BoxBndTree.hxx
+#include "NCollection.hxx"
+// ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
 #include "NCollection.hxx"
 
 
@@ -116,74 +119,258 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
 
 // classes
 
+    register_default_constructor<ShapeAnalysis , shared_ptr<ShapeAnalysis>>(m,"ShapeAnalysis");
 
-    static_cast<py::class_<ShapeAnalysis_HSequenceOfFreeBounds ,std::unique_ptr<ShapeAnalysis_HSequenceOfFreeBounds>  >>(m.attr("ShapeAnalysis_HSequenceOfFreeBounds"))
-        .def(py::init<  >()  )
-        .def(py::init<  const NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> > & >()  , py::arg("theOther") )
-        .def("Sequence",
-             (const ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const) static_cast<const ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const>(&ShapeAnalysis_HSequenceOfFreeBounds::Sequence),
-             R"#(None)#" )
-        .def("Append",
-             (void (ShapeAnalysis_HSequenceOfFreeBounds::*)(  const opencascade::handle<ShapeAnalysis_FreeBoundData> &  ) ) static_cast<void (ShapeAnalysis_HSequenceOfFreeBounds::*)(  const opencascade::handle<ShapeAnalysis_FreeBoundData> &  ) >(&ShapeAnalysis_HSequenceOfFreeBounds::Append),
-             R"#(None)#"  , py::arg("theItem"))
-        .def("Append",
-             (void (ShapeAnalysis_HSequenceOfFreeBounds::*)( NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> > &  ) ) static_cast<void (ShapeAnalysis_HSequenceOfFreeBounds::*)( NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> > &  ) >(&ShapeAnalysis_HSequenceOfFreeBounds::Append),
-             R"#(None)#"  , py::arg("theSequence"))
-        .def("ChangeSequence",
-             (ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() ) static_cast<ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() >(&ShapeAnalysis_HSequenceOfFreeBounds::ChangeSequence),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const>(&ShapeAnalysis_HSequenceOfFreeBounds::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_HSequenceOfFreeBounds::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_HSequenceOfFreeBounds::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<ShapeAnalysis_Shell ,std::unique_ptr<ShapeAnalysis_Shell>>(m,"ShapeAnalysis_Shell");
-
-    static_cast<py::class_<ShapeAnalysis_Shell ,std::unique_ptr<ShapeAnalysis_Shell>  >>(m.attr("ShapeAnalysis_Shell"))
-        .def("Clear",
-             (void (ShapeAnalysis_Shell::*)() ) static_cast<void (ShapeAnalysis_Shell::*)() >(&ShapeAnalysis_Shell::Clear),
-             R"#(Clears data about loaded shells and performed checks)#" )
-        .def("LoadShells",
-             (void (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) >(&ShapeAnalysis_Shell::LoadShells),
-             R"#(Adds shells contained in the <shape> to the list of loaded shells)#"  , py::arg("shape"))
-        .def("CheckOrientedShells",
-             (Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeAnalysis_Shell::CheckOrientedShells),
-             R"#(Checks if shells fulfill orientation condition, i.e. if each edge is, either present once (free edge) or twice (connected edge) but with different orientations (FORWARD/REVERSED) Edges which do not fulfill these conditions are bad)#"  , py::arg("shape"),  py::arg("alsofree")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("checkinternaledges")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("IsLoaded",
-             (Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) const>(&ShapeAnalysis_Shell::IsLoaded),
-             R"#(Tells if a shape is loaded (only shells are checked))#"  , py::arg("shape"))
-        .def("NbLoaded",
-             (Standard_Integer (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Integer (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::NbLoaded),
-             R"#(Returns the actual number of loaded shapes (i.e. shells))#" )
-        .def("Loaded",
-             (TopoDS_Shape (ShapeAnalysis_Shell::*)( const Standard_Integer  ) const) static_cast<TopoDS_Shape (ShapeAnalysis_Shell::*)( const Standard_Integer  ) const>(&ShapeAnalysis_Shell::Loaded),
-             R"#(Returns a loaded shape specified by its rank number. Returns null shape if <num> is out of range)#"  , py::arg("num"))
-        .def("HasBadEdges",
-             (Standard_Boolean (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::HasBadEdges),
-             R"#(Tells if at least one edge is recorded as bad)#" )
-        .def("BadEdges",
-             (TopoDS_Compound (ShapeAnalysis_Shell::*)() const) static_cast<TopoDS_Compound (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::BadEdges),
-             R"#(Returns the list of bad edges as a Compound It is empty (not null) if no edge are recorded as bad)#" )
-        .def("HasFreeEdges",
-             (Standard_Boolean (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::HasFreeEdges),
-             R"#(Tells if at least one edge is recorded as free (not connected))#" )
-        .def("FreeEdges",
-             (TopoDS_Compound (ShapeAnalysis_Shell::*)() const) static_cast<TopoDS_Compound (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::FreeEdges),
-             R"#(Returns the list of free (not connected) edges as a Compound It is empty (not null) if no edge are recorded as free)#" )
-        .def("HasConnectedEdges",
-             (Standard_Boolean (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::HasConnectedEdges),
-             R"#(Tells if at least one edge is connected (shared twice or more))#" )
+    static_cast<py::class_<ShapeAnalysis , shared_ptr<ShapeAnalysis>  >>(m.attr("ShapeAnalysis"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("OuterWire_s",
+                    (TopoDS_Wire (*)( const TopoDS_Face &  ) ) static_cast<TopoDS_Wire (*)( const TopoDS_Face &  ) >(&ShapeAnalysis::OuterWire),
+                    R"#(Returns the outer wire on the face <Face>. This is replacement of the method BRepTools::OuterWire until it works badly. Returns the first wire oriented as outer according to FClass2d_Classifier. If none, last wire is returned.)#"  , py::arg("face"))
+        .def_static("TotCross2D_s",
+                    (Standard_Real (*)( const opencascade::handle<ShapeExtend_WireData> & ,  const TopoDS_Face &  ) ) static_cast<Standard_Real (*)( const opencascade::handle<ShapeExtend_WireData> & ,  const TopoDS_Face &  ) >(&ShapeAnalysis::TotCross2D),
+                    R"#(Returns a total area of 2d wire)#"  , py::arg("sewd"),  py::arg("aFace"))
+        .def_static("ContourArea_s",
+                    (Standard_Real (*)( const TopoDS_Wire &  ) ) static_cast<Standard_Real (*)( const TopoDS_Wire &  ) >(&ShapeAnalysis::ContourArea),
+                    R"#(Returns a total area of 3d wire)#"  , py::arg("theWire"))
+        .def_static("IsOuterBound_s",
+                    (Standard_Boolean (*)( const TopoDS_Face &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Face &  ) >(&ShapeAnalysis::IsOuterBound),
+                    R"#(Returns True if <F> has outer bound.)#"  , py::arg("face"))
+        .def_static("AdjustByPeriod_s",
+                    (Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeAnalysis::AdjustByPeriod),
+                    R"#(Returns a shift required to move point <Val> to the range [ToVal-Period/2,ToVal+Period/2]. This shift will be the divisible by Period. Intended for adjusting parameters on periodic surfaces.)#"  , py::arg("Val"),  py::arg("ToVal"),  py::arg("Period"))
+        .def_static("AdjustToPeriod_s",
+                    (Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeAnalysis::AdjustToPeriod),
+                    R"#(Returns a shift required to move point <Val> to the range [ValMin,ValMax]. This shift will be the divisible by Period with Period = ValMax - ValMin. Intended for adjusting parameters on periodic surfaces.)#"  , py::arg("Val"),  py::arg("ValMin"),  py::arg("ValMax"))
+        .def_static("FindBounds_s",
+                    (void (*)( const TopoDS_Shape & ,  TopoDS_Vertex & ,  TopoDS_Vertex &  ) ) static_cast<void (*)( const TopoDS_Shape & ,  TopoDS_Vertex & ,  TopoDS_Vertex &  ) >(&ShapeAnalysis::FindBounds),
+                    R"#(Finds the start and end vertices of the shape Shape can be of the following type: vertex: V1 and V2 are the same and equal to <shape>, edge : V1 is start and V2 is end vertex (see ShapeAnalysis_Edge methods FirstVertex and LastVertex), wire : V1 is start vertex of the first edge, V2 is end vertex of the last edge (also see ShapeAnalysis_Edge). If wire contains no edges V1 and V2 are nullified If none of the above V1 and V2 are nullified)#"  , py::arg("shape"),  py::arg("V1"),  py::arg("V2"))
+    // static methods using call by reference i.s.o. return
+        .def_static("GetFaceUVBounds_s",
+                    []( const TopoDS_Face & F ){ Standard_Real  Umin; Standard_Real  Umax; Standard_Real  Vmin; Standard_Real  Vmax; ShapeAnalysis::GetFaceUVBounds(F,Umin,Umax,Vmin,Vmax); return std::make_tuple(Umin,Umax,Vmin,Vmax); },
+                    R"#(Computes exact UV bounds of all wires on the face)#"  , py::arg("F"))
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeAnalysis_Edge ,std::unique_ptr<ShapeAnalysis_Edge>  >>(m.attr("ShapeAnalysis_Edge"))
+    static_cast<py::class_<ShapeAnalysis_BoxBndTreeSelector , shared_ptr<ShapeAnalysis_BoxBndTreeSelector>  >>(m.attr("ShapeAnalysis_BoxBndTreeSelector"))
+        .def(py::init< opencascade::handle<TopTools_HArray1OfShape>,Standard_Boolean >()  , py::arg("theSeq"),  py::arg("theShared") )
+    // methods
+        .def("DefineBoxes",
+             (void (ShapeAnalysis_BoxBndTreeSelector::*)( const Bnd_Box & ,  const Bnd_Box &  ) ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)( const Bnd_Box & ,  const Bnd_Box &  ) >(&ShapeAnalysis_BoxBndTreeSelector::DefineBoxes),
+             R"#(None)#"  , py::arg("theFBox"),  py::arg("theLBox"))
+        .def("DefineVertexes",
+             (void (ShapeAnalysis_BoxBndTreeSelector::*)( TopoDS_Vertex ,  TopoDS_Vertex  ) ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)( TopoDS_Vertex ,  TopoDS_Vertex  ) >(&ShapeAnalysis_BoxBndTreeSelector::DefineVertexes),
+             R"#(None)#"  , py::arg("theVf"),  py::arg("theVl"))
+        .def("DefinePnt",
+             (void (ShapeAnalysis_BoxBndTreeSelector::*)( gp_Pnt ,  gp_Pnt  ) ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)( gp_Pnt ,  gp_Pnt  ) >(&ShapeAnalysis_BoxBndTreeSelector::DefinePnt),
+             R"#(None)#"  , py::arg("theFPnt"),  py::arg("theLPnt"))
+        .def("GetNb",
+             (Standard_Integer (ShapeAnalysis_BoxBndTreeSelector::*)() ) static_cast<Standard_Integer (ShapeAnalysis_BoxBndTreeSelector::*)() >(&ShapeAnalysis_BoxBndTreeSelector::GetNb),
+             R"#(None)#" )
+        .def("SetNb",
+             (void (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Integer  ) ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Integer  ) >(&ShapeAnalysis_BoxBndTreeSelector::SetNb),
+             R"#(None)#"  , py::arg("theNb"))
+        .def("LoadList",
+             (void (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Integer  ) ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Integer  ) >(&ShapeAnalysis_BoxBndTreeSelector::LoadList),
+             R"#(None)#"  , py::arg("elem"))
+        .def("SetStop",
+             (void (ShapeAnalysis_BoxBndTreeSelector::*)() ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)() >(&ShapeAnalysis_BoxBndTreeSelector::SetStop),
+             R"#(None)#" )
+        .def("SetTolerance",
+             (void (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Real  ) ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Real  ) >(&ShapeAnalysis_BoxBndTreeSelector::SetTolerance),
+             R"#(None)#"  , py::arg("theTol"))
+        .def("ContWire",
+             (Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Integer  ) ) static_cast<Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( Standard_Integer  ) >(&ShapeAnalysis_BoxBndTreeSelector::ContWire),
+             R"#(None)#"  , py::arg("nbWire"))
+        .def("LastCheckStatus",
+             (Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_BoxBndTreeSelector::LastCheckStatus),
+             R"#(None)#"  , py::arg("theStatus"))
+        .def("Reject",
+             (Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( const Bnd_Box &  ) const) static_cast<Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( const Bnd_Box &  ) const>(&ShapeAnalysis_BoxBndTreeSelector::Reject),
+             R"#(None)#"  , py::arg("theBnd"))
+        .def("Accept",
+             (Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( const Standard_Integer &  ) ) static_cast<Standard_Boolean (ShapeAnalysis_BoxBndTreeSelector::*)( const Standard_Integer &  ) >(&ShapeAnalysis_BoxBndTreeSelector::Accept),
+             R"#(None)#"  , py::arg(""))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_CheckSmallFace , shared_ptr<ShapeAnalysis_CheckSmallFace>  >>(m.attr("ShapeAnalysis_CheckSmallFace"))
         .def(py::init<  >()  )
+    // methods
+        .def("IsSpotFace",
+             (Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real  ) const) static_cast<Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real  ) const>(&ShapeAnalysis_CheckSmallFace::IsSpotFace),
+             R"#(Checks if a Face is as a Spot Returns 0 if not, 1 if yes, 2 if yes and all vertices are the same By default, considers the tolerance zone of its vertices A given value <tol> may be given to check a spot of this size If a Face is a Spot, its location is returned in <spot>, and <spotol> returns an equivalent tolerance, which is computed as half of max dimension of min-max box of the face)#"  , py::arg("F"),  py::arg("spot"),  py::arg("spotol"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
+        .def("CheckSpotFace",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckSpotFace),
+             R"#(Acts as IsSpotFace, but records in <infos> a diagnostic "SpotFace" with the Pnt as value (data "Location"))#"  , py::arg("F"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
+        .def("IsStripSupport",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::IsStripSupport),
+             R"#(Checks if a Face lies on a Surface which is a strip So the Face is a strip. But a Face may be a strip elsewhere ..)#"  , py::arg("F"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
+        .def("CheckStripEdges",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) const>(&ShapeAnalysis_CheckSmallFace::CheckStripEdges),
+             R"#(Checks if two edges define a strip, i.e. distance maxi below tolerance, given or some of those of E1 and E2)#"  , py::arg("E1"),  py::arg("E2"),  py::arg("tol"),  py::arg("dmax"))
+        .def("FindStripEdges",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) >(&ShapeAnalysis_CheckSmallFace::FindStripEdges),
+             R"#(Searchs for two and only two edges up tolerance Returns True if OK, false if not 2 edges If True, returns the two edges and their maximum distance)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol"),  py::arg("dmax"))
+        .def("CheckSingleStrip",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckSingleStrip),
+             R"#(Checks if a Face is a single strip, i.e. brings two great edges which are confused on their whole length, possible other edges are small or null length)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
+        .def("CheckStripFace",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckStripFace),
+             R"#(Checks if a Face is as a Strip Returns 0 if not or non determined, 1 if in U, 2 if in V By default, considers the tolerance zone of its edges A given value <tol> may be given to check a strip of max this width)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
+        .def("CheckSplittingVertices",
+             (Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> & ,  NCollection_DataMap<TopoDS_Shape, TColStd_ListOfReal, TopTools_ShapeMapHasher> & ,  TopoDS_Compound &  ) ) static_cast<Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> & ,  NCollection_DataMap<TopoDS_Shape, TColStd_ListOfReal, TopTools_ShapeMapHasher> & ,  TopoDS_Compound &  ) >(&ShapeAnalysis_CheckSmallFace::CheckSplittingVertices),
+             R"#(Checks if a Face brings vertices which split it, either confused with non adjacent vertices, or confused with their projection on non adjacent edges Returns the count of found splitting vertices Each vertex then brings a diagnostic "SplittingVertex", with data : "Face" for the face, "Edge" for the split edge)#"  , py::arg("F"),  py::arg("MapEdges"),  py::arg("MapParam"),  py::arg("theAllVert"))
+        .def("CheckPin",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Integer & ,  Standard_Integer &  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Integer & ,  Standard_Integer &  ) >(&ShapeAnalysis_CheckSmallFace::CheckPin),
+             R"#(Checks if a Face has a pin, which can be edited No singularity : no pin, returns 0 If there is a pin, checked topics, with returned value : - 0 : nothing to do more - 1 : "smooth", i.e. not a really sharp pin -> diagnostic "SmoothPin" - 2 : stretched pin, i.e. is possible to relimit the face by another vertex, so that this vertex still gives a pin -> diagnostic "StretchedPin" with location of vertex (Pnt))#"  , py::arg("F"),  py::arg("whatrow"),  py::arg("sence"))
+        .def("CheckTwisted",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  ) >(&ShapeAnalysis_CheckSmallFace::CheckTwisted),
+             R"#(Checks if a Face is twisted (apart from checking Pin, i.e. it does not give information on pin, only "it is twisted"))#"  , py::arg("F"),  py::arg("paramu"),  py::arg("paramv"))
+        .def("CheckPinFace",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckPinFace),
+             R"#(None)#"  , py::arg("F"),  py::arg("mapEdges"),  py::arg("toler")=static_cast<const Standard_Real>(- 1.0))
+        .def("CheckPinEdges",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeAnalysis_CheckSmallFace::CheckPinEdges),
+             R"#(None)#"  , py::arg("theFirstEdge"),  py::arg("theSecondEdge"),  py::arg("coef1"),  py::arg("coef2"),  py::arg("toler"))
+        .def("Status",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::Status),
+             R"#(Returns the status of last call to Perform() ShapeExtend_OK : face was OK, nothing done ShapeExtend_DONE1: some wires are fixed ShapeExtend_DONE2: orientation of wires fixed ShapeExtend_DONE3: missing seam added ShapeExtend_DONE4: small area wire removed ShapeExtend_DONE5: natural bounds added ShapeExtend_FAIL1: some fails during fixing wires ShapeExtend_FAIL2: cannot fix orientation of wires ShapeExtend_FAIL3: cannot add missing seam ShapeExtend_FAIL4: cannot remove small area wire)#"  , py::arg("status"))
+        .def("SetTolerance",
+             (void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::SetTolerance),
+             R"#(Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Sets a fixed MaxTolerance to check small face Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Unset fixed tolerance, comes back to local tolerance zones Unset fixed tolerance, comes back to local tolerance zones)#"  , py::arg("tol"))
+        .def("Tolerance",
+             (Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const) static_cast<Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const>(&ShapeAnalysis_CheckSmallFace::Tolerance),
+             R"#(Returns the tolerance to check small faces, negative value if local tolerances zones are to be considered)#" )
+        .def("StatusSpot",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSpot),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusStrip",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusStrip),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusPin",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPin),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusTwisted",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusTwisted),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusSplitVert",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSplitVert),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusPinFace",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinFace),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusPinEdges",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinEdges),
+             R"#(None)#"  , py::arg("status"))
+        .def("Status",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::Status),
+             R"#(Returns the status of last call to Perform() ShapeExtend_OK : face was OK, nothing done ShapeExtend_DONE1: some wires are fixed ShapeExtend_DONE2: orientation of wires fixed ShapeExtend_DONE3: missing seam added ShapeExtend_DONE4: small area wire removed ShapeExtend_DONE5: natural bounds added ShapeExtend_FAIL1: some fails during fixing wires ShapeExtend_FAIL2: cannot fix orientation of wires ShapeExtend_FAIL3: cannot add missing seam ShapeExtend_FAIL4: cannot remove small area wire)#"  , py::arg("status"))
+        .def("SetTolerance",
+             (void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::SetTolerance),
+             R"#(Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Sets a fixed MaxTolerance to check small face Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Unset fixed tolerance, comes back to local tolerance zones Unset fixed tolerance, comes back to local tolerance zones)#"  , py::arg("tol"))
+        .def("Tolerance",
+             (Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const) static_cast<Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const>(&ShapeAnalysis_CheckSmallFace::Tolerance),
+             R"#(Returns the tolerance to check small faces, negative value if local tolerances zones are to be considered)#" )
+        .def("StatusSpot",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSpot),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusStrip",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusStrip),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusPin",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPin),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusTwisted",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusTwisted),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusPinFace",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinFace),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusPinEdges",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinEdges),
+             R"#(None)#"  , py::arg("status"))
+        .def("StatusSplitVert",
+             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSplitVert),
+             R"#(None)#"  , py::arg("status"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<ShapeAnalysis_Curve , shared_ptr<ShapeAnalysis_Curve>>(m,"ShapeAnalysis_Curve");
+
+    static_cast<py::class_<ShapeAnalysis_Curve , shared_ptr<ShapeAnalysis_Curve>  >>(m.attr("ShapeAnalysis_Curve"))
+    // methods
+        .def("Project",
+             (Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::Project),
+             R"#(Projects a Point on a Curve. Computes the projected point and its parameter on the curve. <preci> is used as 3d precision (hence, 0 will produce reject unless exact confusion). The number of iterations is limited. If AdjustToEnds is True, point will be adjusted to the end of the curve if distance is less than <preci>)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("Project",
+             (Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::Project),
+             R"#(Projects a Point on a Curve. Computes the projected point and its parameter on the curve. <preci> is used as 3d precision (hence, 0 will produce reject unless exact confusion). The number of iterations is limited.)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("Project",
+             (Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::Project),
+             R"#(Projects a Point on a Curve, but parameters are limited between <cf> and <cl>. The range [cf, cl] is extended with help of Adaptor3d on the basis of 3d precision <preci>. If AdjustToEnds is True, point will be adjusted to the end of the curve if distance is less than <preci>)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("cf"),  py::arg("cl"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("ProjectAct",
+             (Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const>(&ShapeAnalysis_Curve::ProjectAct),
+             R"#(None)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"))
+        .def("NextProject",
+             (Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::NextProject),
+             R"#(Projects a Point on a Curve using Newton method. <paramPrev> is taken as the first approximation of solution. If Newton algorithm fails the method Project() is used. If AdjustToEnds is True, point will be adjusted to the end of the curve if distance is less than <preci>)#"  , py::arg("paramPrev"),  py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("cf"),  py::arg("cl"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("NextProject",
+             (Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const>(&ShapeAnalysis_Curve::NextProject),
+             R"#(Projects a Point on a Curve using Newton method. <paramPrev> is taken as the first approximation of solution. If Newton algorithm fails the method Project() is used.)#"  , py::arg("paramPrev"),  py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"))
+        .def("ValidateRange",
+             (Standard_Boolean (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Real  ) const>(&ShapeAnalysis_Curve::ValidateRange),
+             R"#(Validate parameters First and Last for the given curve in order to make them valid for creation of edge. This includes: - limiting range [First,Last] by range of curve - adjusting range [First,Last] for periodic (or closed) curve if Last < First Returns True if parameters are OK or are successfully corrected, or False if parameters cannot be corrected. In the latter case, parameters are reset to range of curve.)#"  , py::arg("Crv"),  py::arg("First"),  py::arg("Last"),  py::arg("prec"))
+        .def("FillBndBox",
+             (void (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  Bnd_Box2d &  ) const) static_cast<void (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  Bnd_Box2d &  ) const>(&ShapeAnalysis_Curve::FillBndBox),
+             R"#(Computes a boundary box on segment of curve C2d from First to Last. This is done by taking NPoints points from the curve and, if Exact is True, by searching for exact extrema. All these points are added to Box.)#"  , py::arg("C2d"),  py::arg("First"),  py::arg("Last"),  py::arg("NPoints"),  py::arg("Exact"),  py::arg("Box"))
+        .def("SelectForwardSeam",
+             (Standard_Integer (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) const) static_cast<Standard_Integer (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) const>(&ShapeAnalysis_Curve::SelectForwardSeam),
+             R"#(Defines which pcurve (C1 or C2) should be chosen for FORWARD seam edge.)#"  , py::arg("C1"),  py::arg("C2"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("IsPlanar_s",
+                    (Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_XYZ & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_XYZ & ,  const Standard_Real  ) >(&ShapeAnalysis_Curve::IsPlanar),
+                    R"#(Checks if points are planar with given preci. If Normal has not zero modulus, checks with given normal)#"  , py::arg("pnts"),  py::arg("Normal"),  py::arg("preci")=static_cast<const Standard_Real>(0))
+        .def_static("IsPlanar_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  gp_XYZ & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  gp_XYZ & ,  const Standard_Real  ) >(&ShapeAnalysis_Curve::IsPlanar),
+                    R"#(Checks if curve is planar with given preci. If Normal has not zero modulus, checks with given normal)#"  , py::arg("curve"),  py::arg("Normal"),  py::arg("preci")=static_cast<const Standard_Real>(0))
+        .def_static("GetSamplePoints_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt2d> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt2d> &  ) >(&ShapeAnalysis_Curve::GetSamplePoints),
+                    R"#(Returns sample points which will serve as linearisation of the2d curve in range (first, last) The distribution of sample points is consystent with what is used by BRepTopAdaptor_FClass2d)#"  , py::arg("curve"),  py::arg("first"),  py::arg("last"),  py::arg("seq"))
+        .def_static("GetSamplePoints_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt> &  ) >(&ShapeAnalysis_Curve::GetSamplePoints),
+                    R"#(Returns sample points which will serve as linearisation of the curve in range (first, last))#"  , py::arg("curve"),  py::arg("first"),  py::arg("last"),  py::arg("seq"))
+        .def_static("IsClosed_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) >(&ShapeAnalysis_Curve::IsClosed),
+                    R"#(Tells if the Curve is closed with given precision. If <preci> < 0 then Precision::Confusion is used.)#"  , py::arg("curve"),  py::arg("preci")=static_cast<const Standard_Real>(- 1))
+        .def_static("IsPeriodic_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> &  ) >(&ShapeAnalysis_Curve::IsPeriodic),
+                    R"#(This method was implemented as fix for changes in trimmed curve behaviour. For the moment trimmed curve returns false anyway. So it is necessary to adapt all Data exchange tools for this behaviour. Current implementation takes into account that curve may be offset.)#"  , py::arg("curve"))
+        .def_static("IsPeriodic_s",
+                    (Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> &  ) >(&ShapeAnalysis_Curve::IsPeriodic),
+                    R"#(The same as for Curve3d.)#"  , py::arg("curve"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_Edge , shared_ptr<ShapeAnalysis_Edge>  >>(m.attr("ShapeAnalysis_Edge"))
+        .def(py::init<  >()  )
+    // methods
         .def("HasCurve3d",
              (Standard_Boolean (ShapeAnalysis_Edge::*)( const TopoDS_Edge &  ) const) static_cast<Standard_Boolean (ShapeAnalysis_Edge::*)( const TopoDS_Edge &  ) const>(&ShapeAnalysis_Edge::HasCurve3d),
              R"#(Tells if the edge has a 3d curve)#"  , py::arg("edge"))
@@ -265,14 +452,611 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def("CheckOverlapping",
              (Standard_Boolean (ShapeAnalysis_Edge::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  Standard_Real & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_Edge::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  Standard_Real & ,  const Standard_Real  ) >(&ShapeAnalysis_Edge::CheckOverlapping),
              R"#(Checks the first edge is overlapped with second edge. If distance between two edges is less then theTolOverlap edges is overlapped. theDomainDis - length of part of edges on wich edges is overlapped.)#"  , py::arg("theEdge1"),  py::arg("theEdge2"),  py::arg("theTolOverlap"),  py::arg("theDomainDist")=static_cast<const Standard_Real>(0.0))
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("ComputeDeviation_s",
                     (Standard_Boolean (*)( const Adaptor3d_Curve & ,  const Adaptor3d_Curve & ,  const Standard_Boolean ,  Standard_Real & ,  const Standard_Integer  ) ) static_cast<Standard_Boolean (*)( const Adaptor3d_Curve & ,  const Adaptor3d_Curve & ,  const Standard_Boolean ,  Standard_Real & ,  const Standard_Integer  ) >(&ShapeAnalysis_Edge::ComputeDeviation),
                     R"#(Computes the maximal deviation between the two curve representations. dev is an input/output parameter and contains the computed deviation (should be initialized with 0. for the first call). Used by CheckSameParameter().)#"  , py::arg("CRef"),  py::arg("Other"),  py::arg("SameParameter"),  py::arg("dev"),  py::arg("NCONTROL"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeAnalysis_ShapeTolerance ,std::unique_ptr<ShapeAnalysis_ShapeTolerance>  >>(m.attr("ShapeAnalysis_ShapeTolerance"))
+    static_cast<py::class_<ShapeAnalysis_FreeBoundData ,opencascade::handle<ShapeAnalysis_FreeBoundData>  , Standard_Transient >>(m.attr("ShapeAnalysis_FreeBoundData"))
         .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Wire & >()  , py::arg("freebound") )
+    // methods
+        .def("Clear",
+             (void (ShapeAnalysis_FreeBoundData::*)() ) static_cast<void (ShapeAnalysis_FreeBoundData::*)() >(&ShapeAnalysis_FreeBoundData::Clear),
+             R"#(Clears all properties of the contour. Contour bound itself is not cleared.)#" )
+        .def("SetFreeBound",
+             (void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) >(&ShapeAnalysis_FreeBoundData::SetFreeBound),
+             R"#(Sets contour)#"  , py::arg("freebound"))
+        .def("SetArea",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetArea),
+             R"#(Sets area of the contour)#"  , py::arg("area"))
+        .def("SetPerimeter",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetPerimeter),
+             R"#(Sets perimeter of the contour)#"  , py::arg("perimeter"))
+        .def("SetRatio",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetRatio),
+             R"#(Sets ratio of average length to average width of the contour)#"  , py::arg("ratio"))
+        .def("SetWidth",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetWidth),
+             R"#(Sets average width of the contour)#"  , py::arg("width"))
+        .def("AddNotch",
+             (void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire & ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::AddNotch),
+             R"#(Adds notch on the contour with its maximum width)#"  , py::arg("notch"),  py::arg("width"))
+        .def("FreeBound",
+             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::FreeBound),
+             R"#(Returns contour)#" )
+        .def("Area",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Area),
+             R"#(Returns area of the contour)#" )
+        .def("Perimeter",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Perimeter),
+             R"#(Returns perimeter of the contour)#" )
+        .def("Ratio",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Ratio),
+             R"#(Returns ratio of average length to average width of the contour)#" )
+        .def("Width",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Width),
+             R"#(Returns average width of the contour)#" )
+        .def("NbNotches",
+             (Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::NbNotches),
+             R"#(Returns number of notches on the contour)#" )
+        .def("Notches",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Notches),
+             R"#(Returns sequence of notches on the contour)#" )
+        .def("Notch",
+             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundData::Notch),
+             R"#(Returns notch on the contour)#"  , py::arg("index"))
+        .def("NotchWidth",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundData::NotchWidth),
+             R"#(Returns maximum width of notch specified by its rank number on the contour)#"  , py::arg("index"))
+        .def("NotchWidth",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) const>(&ShapeAnalysis_FreeBoundData::NotchWidth),
+             R"#(Returns maximum width of notch specified as TopoDS_Wire on the contour)#"  , py::arg("notch"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeAnalysis_FreeBoundData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::DynamicType),
+             R"#(None)#" )
+        .def("SetFreeBound",
+             (void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) >(&ShapeAnalysis_FreeBoundData::SetFreeBound),
+             R"#(Sets contour)#"  , py::arg("freebound"))
+        .def("SetArea",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetArea),
+             R"#(Sets area of the contour)#"  , py::arg("area"))
+        .def("SetPerimeter",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetPerimeter),
+             R"#(Sets perimeter of the contour)#"  , py::arg("perimeter"))
+        .def("SetRatio",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetRatio),
+             R"#(Sets ratio of average length to average width of the contour)#"  , py::arg("ratio"))
+        .def("SetWidth",
+             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetWidth),
+             R"#(Sets average width of the contour)#"  , py::arg("width"))
+        .def("FreeBound",
+             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::FreeBound),
+             R"#(Returns contour)#" )
+        .def("Area",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Area),
+             R"#(Returns area of the contour)#" )
+        .def("Perimeter",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Perimeter),
+             R"#(Returns perimeter of the contour)#" )
+        .def("Ratio",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Ratio),
+             R"#(Returns ratio of average length to average width of the contour)#" )
+        .def("Width",
+             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Width),
+             R"#(Returns average width of the contour)#" )
+        .def("NbNotches",
+             (Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::NbNotches),
+             R"#(Returns number of notches on the contour)#" )
+        .def("Notches",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Notches),
+             R"#(Returns sequence of notches on the contour)#" )
+        .def("Notch",
+             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundData::Notch),
+             R"#(Returns notch on the contour)#"  , py::arg("index"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_FreeBoundData::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_FreeBoundData::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_FreeBounds , shared_ptr<ShapeAnalysis_FreeBounds>  >>(m.attr("ShapeAnalysis_FreeBounds"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("toler"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_True) )
+        .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("checkinternaledges")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
+        .def("GetClosedWires",
+             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetClosedWires),
+             R"#(Returns compound of closed wires out of free edges.)#" )
+        .def("GetOpenWires",
+             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetOpenWires),
+             R"#(Returns compound of open wires out of free edges.)#" )
+        .def("GetClosedWires",
+             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetClosedWires),
+             R"#(Returns compound of closed wires out of free edges.)#" )
+        .def("GetOpenWires",
+             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetOpenWires),
+             R"#(Returns compound of open wires out of free edges.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("ConnectEdgesToWires_s",
+                    (void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) ) static_cast<void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) >(&ShapeAnalysis_FreeBounds::ConnectEdgesToWires),
+                    R"#(Builds sequnce of <wires> out of sequence of not sorted <edges>. Tries to build wires of maximum length. Building a wire is stopped when no edges can be connected to it at its head or at its tail.)#"  , py::arg("edges"),  py::arg("toler"),  py::arg("shared"),  py::arg("wires"))
+        .def_static("ConnectWiresToWires_s",
+                    (void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) ) static_cast<void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) >(&ShapeAnalysis_FreeBounds::ConnectWiresToWires),
+                    R"#(None)#"  , py::arg("iwires"),  py::arg("toler"),  py::arg("shared"),  py::arg("owires"))
+        .def_static("ConnectWiresToWires_s",
+                    (void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> &  ) ) static_cast<void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> &  ) >(&ShapeAnalysis_FreeBounds::ConnectWiresToWires),
+                    R"#(Builds sequnce of <owires> out of sequence of not sorted <iwires>. Tries to build wires of maximum length. Building a wire is stopped when no wires can be connected to it at its head or at its tail.)#"  , py::arg("iwires"),  py::arg("toler"),  py::arg("shared"),  py::arg("owires"),  py::arg("vertices"))
+        .def_static("SplitWires_s",
+                    (void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) ) static_cast<void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) >(&ShapeAnalysis_FreeBounds::SplitWires),
+                    R"#(Extracts closed sub-wires out of <wires> and adds them to <closed>, open wires remained after extraction are put into <open>. If <shared> is True extraction is performed only when edges share the same vertex. If <shared> is False connection is performed only when ends of the edges are at distance less than <toler>.)#"  , py::arg("wires"),  py::arg("toler"),  py::arg("shared"),  py::arg("closed"),  py::arg("open"))
+        .def_static("DispatchWires_s",
+                    (void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  TopoDS_Compound & ,  TopoDS_Compound &  ) ) static_cast<void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  TopoDS_Compound & ,  TopoDS_Compound &  ) >(&ShapeAnalysis_FreeBounds::DispatchWires),
+                    R"#(Dispatches sequence of <wires> into two compounds <closed> for closed wires and <open> for open wires. If a compound is not empty wires are added into it.)#"  , py::arg("wires"),  py::arg("closed"),  py::arg("open"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_FreeBoundsProperties , shared_ptr<ShapeAnalysis_FreeBoundsProperties>  >>(m.attr("ShapeAnalysis_FreeBoundsProperties"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("tolerance"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False) )
+        .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False) )
+    // methods
+        .def("Init",
+             (void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeAnalysis_FreeBoundsProperties::Init),
+             R"#(Initializes the object with given parameters. <shape> should be a compound of faces.)#"  , py::arg("shape"),  py::arg("tolerance"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("Init",
+             (void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeAnalysis_FreeBoundsProperties::Init),
+             R"#(Initializes the object with given parameters. <shape> should be a compound of shells.)#"  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("Perform",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() >(&ShapeAnalysis_FreeBoundsProperties::Perform),
+             R"#(Builds and analyzes free bounds of the shape. First calls ShapeAnalysis_FreeBounds for building free bounds. Then on each free bound computes its properties: - area of the contour, - perimeter of the contour, - ratio of average length to average width of the contour, - average width of contour, - notches on the contour and for each notch - maximum width of the notch.)#" )
+        .def("IsLoaded",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::IsLoaded),
+             R"#(Returns True if shape is loaded)#" )
+        .def("Shape",
+             (TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Shape),
+             R"#(Returns shape)#" )
+        .def("Tolerance",
+             (Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Tolerance),
+             R"#(Returns tolerance)#" )
+        .def("NbFreeBounds",
+             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbFreeBounds),
+             R"#(Returns number of free bounds)#" )
+        .def("NbClosedFreeBounds",
+             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbClosedFreeBounds),
+             R"#(Returns number of closed free bounds)#" )
+        .def("NbOpenFreeBounds",
+             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbOpenFreeBounds),
+             R"#(Returns number of open free bounds)#" )
+        .def("ClosedFreeBounds",
+             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBounds),
+             R"#(Returns all closed free bounds)#" )
+        .def("OpenFreeBounds",
+             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBounds),
+             R"#(Returns all open free bounds)#" )
+        .def("ClosedFreeBound",
+             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBound),
+             R"#(Returns properties of closed free bound specified by its rank number)#"  , py::arg("index"))
+        .def("OpenFreeBound",
+             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBound),
+             R"#(Returns properties of open free bound specified by its rank number)#"  , py::arg("index"))
+        .def("DispatchBounds",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() >(&ShapeAnalysis_FreeBoundsProperties::DispatchBounds),
+             R"#(None)#" )
+        .def("CheckContours",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckContours),
+             R"#(None)#"  , py::arg("prec")=static_cast<const Standard_Real>(0.0))
+        .def("CheckNotches",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckNotches),
+             R"#(None)#"  , py::arg("prec")=static_cast<const Standard_Real>(0.0))
+        .def("CheckNotches",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckNotches),
+             R"#(None)#"  , py::arg("fbData"),  py::arg("prec")=static_cast<const Standard_Real>(0.0))
+        .def("CheckNotches",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Wire & ,  const Standard_Integer ,  TopoDS_Wire & ,  Standard_Real & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Wire & ,  const Standard_Integer ,  TopoDS_Wire & ,  Standard_Real & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckNotches),
+             R"#(None)#"  , py::arg("freebound"),  py::arg("num"),  py::arg("notch"),  py::arg("distMax"),  py::arg("prec")=static_cast<const Standard_Real>(0.0))
+        .def("FillProperties",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::FillProperties),
+             R"#(None)#"  , py::arg("fbData"),  py::arg("prec")=static_cast<const Standard_Real>(0.0))
+        .def("Shape",
+             (TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Shape),
+             R"#(Returns shape)#" )
+        .def("IsLoaded",
+             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::IsLoaded),
+             R"#(Returns True if shape is loaded)#" )
+        .def("Tolerance",
+             (Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Tolerance),
+             R"#(Returns tolerance)#" )
+        .def("NbFreeBounds",
+             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbFreeBounds),
+             R"#(Returns number of free bounds)#" )
+        .def("NbClosedFreeBounds",
+             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbClosedFreeBounds),
+             R"#(Returns number of closed free bounds)#" )
+        .def("NbOpenFreeBounds",
+             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbOpenFreeBounds),
+             R"#(Returns number of open free bounds)#" )
+        .def("ClosedFreeBounds",
+             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBounds),
+             R"#(Returns all closed free bounds)#" )
+        .def("OpenFreeBounds",
+             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBounds),
+             R"#(Returns all open free bounds)#" )
+        .def("ClosedFreeBound",
+             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBound),
+             R"#(Returns properties of closed free bound specified by its rank number)#"  , py::arg("index"))
+        .def("OpenFreeBound",
+             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBound),
+             R"#(Returns properties of open free bound specified by its rank number)#"  , py::arg("index"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<ShapeAnalysis_Geom , shared_ptr<ShapeAnalysis_Geom>>(m,"ShapeAnalysis_Geom");
+
+    static_cast<py::class_<ShapeAnalysis_Geom , shared_ptr<ShapeAnalysis_Geom>  >>(m.attr("ShapeAnalysis_Geom"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("NearestPlane_s",
+                    (Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_Pln & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_Pln & ,  Standard_Real &  ) >(&ShapeAnalysis_Geom::NearestPlane),
+                    R"#(Builds a plane out of a set of points in array Returns in <dmax> the maximal distance between the produced plane and given points)#"  , py::arg("Pnts"),  py::arg("aPln"),  py::arg("Dmax"))
+        .def_static("PositionTrsf_s",
+                    (Standard_Boolean (*)( const opencascade::handle<TColStd_HArray2OfReal> & ,  gp_Trsf & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<TColStd_HArray2OfReal> & ,  gp_Trsf & ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeAnalysis_Geom::PositionTrsf),
+                    R"#(Builds transfromation object out of matrix. Matrix must be 3 x 4. Unit is used as multiplier.)#"  , py::arg("coefs"),  py::arg("trsf"),  py::arg("unit"),  py::arg("prec"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_HSequenceOfFreeBounds ,opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds>  , ShapeAnalysis_SequenceOfFreeBounds , Standard_Transient >>(m.attr("ShapeAnalysis_HSequenceOfFreeBounds"))
+        .def(py::init<  >()  )
+        .def(py::init<  const NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> > & >()  , py::arg("theOther") )
+    // methods
+        .def("Sequence",
+             (const ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const) static_cast<const ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const>(&ShapeAnalysis_HSequenceOfFreeBounds::Sequence),
+             R"#(None)#" )
+        .def("Append",
+             (void (ShapeAnalysis_HSequenceOfFreeBounds::*)(  const opencascade::handle<ShapeAnalysis_FreeBoundData> &  ) ) static_cast<void (ShapeAnalysis_HSequenceOfFreeBounds::*)(  const opencascade::handle<ShapeAnalysis_FreeBoundData> &  ) >(&ShapeAnalysis_HSequenceOfFreeBounds::Append),
+             R"#(None)#"  , py::arg("theItem"))
+        .def("Append",
+             (void (ShapeAnalysis_HSequenceOfFreeBounds::*)( NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> > &  ) ) static_cast<void (ShapeAnalysis_HSequenceOfFreeBounds::*)( NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> > &  ) >(&ShapeAnalysis_HSequenceOfFreeBounds::Append),
+             R"#(None)#"  , py::arg("theSequence"))
+        .def("ChangeSequence",
+             (ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() ) static_cast<ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() >(&ShapeAnalysis_HSequenceOfFreeBounds::ChangeSequence),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const>(&ShapeAnalysis_HSequenceOfFreeBounds::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_HSequenceOfFreeBounds::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_HSequenceOfFreeBounds::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_ShapeContents , shared_ptr<ShapeAnalysis_ShapeContents>  >>(m.attr("ShapeAnalysis_ShapeContents"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Clear",
+             (void (ShapeAnalysis_ShapeContents::*)() ) static_cast<void (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::Clear),
+             R"#(Clears all accumulated statictics)#" )
+        .def("ClearFlags",
+             (void (ShapeAnalysis_ShapeContents::*)() ) static_cast<void (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ClearFlags),
+             R"#(Clears all flags)#" )
+        .def("Perform",
+             (void (ShapeAnalysis_ShapeContents::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeAnalysis_ShapeContents::*)( const TopoDS_Shape &  ) >(&ShapeAnalysis_ShapeContents::Perform),
+             R"#(Counts quantities of sun-shapes in shape and stores sub-shapes according to flags)#"  , py::arg("shape"))
+        .def("ModifyBigSplineMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyBigSplineMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves has more than 8192 poles.)#" )
+        .def("ModifyIndirectMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyIndirectMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces on indirect surfaces)#" )
+        .def("ModifyOffestSurfaceMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffestSurfaceMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces on offset surfaces.)#" )
+        .def("ModifyTrimmed3dMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed3dMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if ist 3D curves are trimmed curves)#" )
+        .def("ModifyOffsetCurveMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffsetCurveMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves and pcurves are offest curves)#" )
+        .def("ModifyTrimmed2dMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed2dMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its pcurves are trimmed curves)#" )
+        .def("NbSolids",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolids),
+             R"#(None)#" )
+        .def("NbShells",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbShells),
+             R"#(None)#" )
+        .def("NbFaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaces),
+             R"#(None)#" )
+        .def("NbWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWires),
+             R"#(None)#" )
+        .def("NbEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbEdges),
+             R"#(None)#" )
+        .def("NbVertices",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbVertices),
+             R"#(None)#" )
+        .def("NbSolidsWithVoids",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolidsWithVoids),
+             R"#(None)#" )
+        .def("NbBigSplines",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBigSplines),
+             R"#(None)#" )
+        .def("NbC0Surfaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Surfaces),
+             R"#(None)#" )
+        .def("NbC0Curves",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Curves),
+             R"#(None)#" )
+        .def("NbOffsetSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetSurf),
+             R"#(None)#" )
+        .def("NbIndirectSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbIndirectSurf),
+             R"#(None)#" )
+        .def("NbOffsetCurves",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetCurves),
+             R"#(None)#" )
+        .def("NbTrimmedCurve2d",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve2d),
+             R"#(None)#" )
+        .def("NbTrimmedCurve3d",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve3d),
+             R"#(None)#" )
+        .def("NbBSplibeSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBSplibeSurf),
+             R"#(None)#" )
+        .def("NbBezierSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBezierSurf),
+             R"#(None)#" )
+        .def("NbTrimSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimSurf),
+             R"#(None)#" )
+        .def("NbWireWitnSeam",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWitnSeam),
+             R"#(None)#" )
+        .def("NbWireWithSevSeams",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWithSevSeams),
+             R"#(None)#" )
+        .def("NbFaceWithSevWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaceWithSevWires),
+             R"#(None)#" )
+        .def("NbNoPCurve",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbNoPCurve),
+             R"#(None)#" )
+        .def("NbFreeFaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeFaces),
+             R"#(None)#" )
+        .def("NbFreeWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeWires),
+             R"#(None)#" )
+        .def("NbFreeEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeEdges),
+             R"#(None)#" )
+        .def("NbSharedSolids",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedSolids),
+             R"#(None)#" )
+        .def("NbSharedShells",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedShells),
+             R"#(None)#" )
+        .def("NbSharedFaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFaces),
+             R"#(None)#" )
+        .def("NbSharedWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedWires),
+             R"#(None)#" )
+        .def("NbSharedFreeWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeWires),
+             R"#(None)#" )
+        .def("NbSharedFreeEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeEdges),
+             R"#(None)#" )
+        .def("NbSharedEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedEdges),
+             R"#(None)#" )
+        .def("NbSharedVertices",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedVertices),
+             R"#(None)#" )
+        .def("BigSplineSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::BigSplineSec),
+             R"#(None)#" )
+        .def("IndirectSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::IndirectSec),
+             R"#(None)#" )
+        .def("OffsetSurfaceSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetSurfaceSec),
+             R"#(None)#" )
+        .def("Trimmed3dSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed3dSec),
+             R"#(None)#" )
+        .def("OffsetCurveSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetCurveSec),
+             R"#(None)#" )
+        .def("Trimmed2dSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed2dSec),
+             R"#(None)#" )
+        .def("NbSolids",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolids),
+             R"#(None)#" )
+        .def("NbShells",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbShells),
+             R"#(None)#" )
+        .def("NbFaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaces),
+             R"#(None)#" )
+        .def("NbWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWires),
+             R"#(None)#" )
+        .def("NbEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbEdges),
+             R"#(None)#" )
+        .def("NbVertices",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbVertices),
+             R"#(None)#" )
+        .def("NbSolidsWithVoids",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolidsWithVoids),
+             R"#(None)#" )
+        .def("NbBigSplines",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBigSplines),
+             R"#(None)#" )
+        .def("NbC0Surfaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Surfaces),
+             R"#(None)#" )
+        .def("NbC0Curves",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Curves),
+             R"#(None)#" )
+        .def("NbOffsetSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetSurf),
+             R"#(None)#" )
+        .def("NbIndirectSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbIndirectSurf),
+             R"#(None)#" )
+        .def("NbOffsetCurves",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetCurves),
+             R"#(None)#" )
+        .def("NbTrimmedCurve2d",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve2d),
+             R"#(None)#" )
+        .def("NbTrimmedCurve3d",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve3d),
+             R"#(None)#" )
+        .def("NbBSplibeSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBSplibeSurf),
+             R"#(None)#" )
+        .def("NbBezierSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBezierSurf),
+             R"#(None)#" )
+        .def("NbTrimSurf",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimSurf),
+             R"#(None)#" )
+        .def("NbWireWitnSeam",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWitnSeam),
+             R"#(None)#" )
+        .def("NbWireWithSevSeams",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWithSevSeams),
+             R"#(None)#" )
+        .def("NbFaceWithSevWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaceWithSevWires),
+             R"#(None)#" )
+        .def("NbNoPCurve",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbNoPCurve),
+             R"#(None)#" )
+        .def("NbFreeFaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeFaces),
+             R"#(None)#" )
+        .def("NbFreeWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeWires),
+             R"#(None)#" )
+        .def("NbFreeEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeEdges),
+             R"#(None)#" )
+        .def("NbSharedSolids",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedSolids),
+             R"#(None)#" )
+        .def("NbSharedShells",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedShells),
+             R"#(None)#" )
+        .def("NbSharedFaces",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFaces),
+             R"#(None)#" )
+        .def("NbSharedWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedWires),
+             R"#(None)#" )
+        .def("NbSharedFreeWires",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeWires),
+             R"#(None)#" )
+        .def("NbSharedFreeEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeEdges),
+             R"#(None)#" )
+        .def("NbSharedEdges",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedEdges),
+             R"#(None)#" )
+        .def("NbSharedVertices",
+             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedVertices),
+             R"#(None)#" )
+        .def("BigSplineSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::BigSplineSec),
+             R"#(None)#" )
+        .def("IndirectSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::IndirectSec),
+             R"#(None)#" )
+        .def("OffsetSurfaceSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetSurfaceSec),
+             R"#(None)#" )
+        .def("Trimmed3dSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed3dSec),
+             R"#(None)#" )
+        .def("OffsetCurveSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetCurveSec),
+             R"#(None)#" )
+        .def("Trimmed2dSec",
+             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed2dSec),
+             R"#(None)#" )
+        .def("ModifyBigSplineMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyBigSplineMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves has more than 8192 poles.)#" )
+        .def("ModifyIndirectMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyIndirectMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces on indirect surfaces)#" )
+        .def("ModifyOffestSurfaceMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffestSurfaceMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces on offset surfaces.)#" )
+        .def("ModifyTrimmed3dMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed3dMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if ist 3D curves are trimmed curves)#" )
+        .def("ModifyOffsetCurveMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffsetCurveMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves and pcurves are offest curves)#" )
+        .def("ModifyTrimmed2dMode",
+             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed2dMode),
+             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its pcurves are trimmed curves)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_ShapeTolerance , shared_ptr<ShapeAnalysis_ShapeTolerance>  >>(m.attr("ShapeAnalysis_ShapeTolerance"))
+        .def(py::init<  >()  )
+    // methods
         .def("Tolerance",
              (Standard_Real (ShapeAnalysis_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Integer ,  const TopAbs_ShapeEnum  ) ) static_cast<Standard_Real (ShapeAnalysis_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Integer ,  const TopAbs_ShapeEnum  ) >(&ShapeAnalysis_ShapeTolerance::Tolerance),
              R"#(Determines a tolerance from the ones stored in a shape Remark : calls InitTolerance and AddTolerance, hence, can be used to start a series for cumulating tolerance <mode> = 0 : returns the average value between sub-shapes, <mode> > 0 : returns the maximal found, <mode> < 0 : returns the minimal found. <type> defines what kinds of sub-shapes to consider: SHAPE (default) : all : VERTEX, EDGE, FACE, VERTEX : only vertices, EDGE : only edges, FACE : only faces, SHELL : combined SHELL + FACE, for each face (and containing shell), also checks EDGE and VERTEX)#"  , py::arg("shape"),  py::arg("mode"),  py::arg("type")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE))
@@ -291,11 +1075,61 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def("GlobalTolerance",
              (Standard_Real (ShapeAnalysis_ShapeTolerance::*)( const Standard_Integer  ) const) static_cast<Standard_Real (ShapeAnalysis_ShapeTolerance::*)( const Standard_Integer  ) const>(&ShapeAnalysis_ShapeTolerance::GlobalTolerance),
              R"#(Returns the computed tolerance according to the <mode> <mode> = 0 : average <mode> > 0 : maximal <mode> < 0 : minimal)#"  , py::arg("mode"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+    register_default_constructor<ShapeAnalysis_Shell , shared_ptr<ShapeAnalysis_Shell>>(m,"ShapeAnalysis_Shell");
+
+    static_cast<py::class_<ShapeAnalysis_Shell , shared_ptr<ShapeAnalysis_Shell>  >>(m.attr("ShapeAnalysis_Shell"))
+    // methods
+        .def("Clear",
+             (void (ShapeAnalysis_Shell::*)() ) static_cast<void (ShapeAnalysis_Shell::*)() >(&ShapeAnalysis_Shell::Clear),
+             R"#(Clears data about loaded shells and performed checks)#" )
+        .def("LoadShells",
+             (void (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) >(&ShapeAnalysis_Shell::LoadShells),
+             R"#(Adds shells contained in the <shape> to the list of loaded shells)#"  , py::arg("shape"))
+        .def("CheckOrientedShells",
+             (Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeAnalysis_Shell::CheckOrientedShells),
+             R"#(Checks if shells fulfill orientation condition, i.e. if each edge is, either present once (free edge) or twice (connected edge) but with different orientations (FORWARD/REVERSED) Edges which do not fulfill these conditions are bad)#"  , py::arg("shape"),  py::arg("alsofree")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("checkinternaledges")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("IsLoaded",
+             (Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)( const TopoDS_Shape &  ) const>(&ShapeAnalysis_Shell::IsLoaded),
+             R"#(Tells if a shape is loaded (only shells are checked))#"  , py::arg("shape"))
+        .def("NbLoaded",
+             (Standard_Integer (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Integer (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::NbLoaded),
+             R"#(Returns the actual number of loaded shapes (i.e. shells))#" )
+        .def("Loaded",
+             (TopoDS_Shape (ShapeAnalysis_Shell::*)( const Standard_Integer  ) const) static_cast<TopoDS_Shape (ShapeAnalysis_Shell::*)( const Standard_Integer  ) const>(&ShapeAnalysis_Shell::Loaded),
+             R"#(Returns a loaded shape specified by its rank number. Returns null shape if <num> is out of range)#"  , py::arg("num"))
+        .def("HasBadEdges",
+             (Standard_Boolean (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::HasBadEdges),
+             R"#(Tells if at least one edge is recorded as bad)#" )
+        .def("BadEdges",
+             (TopoDS_Compound (ShapeAnalysis_Shell::*)() const) static_cast<TopoDS_Compound (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::BadEdges),
+             R"#(Returns the list of bad edges as a Compound It is empty (not null) if no edge are recorded as bad)#" )
+        .def("HasFreeEdges",
+             (Standard_Boolean (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::HasFreeEdges),
+             R"#(Tells if at least one edge is recorded as free (not connected))#" )
+        .def("FreeEdges",
+             (TopoDS_Compound (ShapeAnalysis_Shell::*)() const) static_cast<TopoDS_Compound (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::FreeEdges),
+             R"#(Returns the list of free (not connected) edges as a Compound It is empty (not null) if no edge are recorded as free)#" )
+        .def("HasConnectedEdges",
+             (Standard_Boolean (ShapeAnalysis_Shell::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_Shell::*)() const>(&ShapeAnalysis_Shell::HasConnectedEdges),
+             R"#(Tells if at least one edge is connected (shared twice or more))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_Surface ,opencascade::handle<ShapeAnalysis_Surface>  , Standard_Transient >>(m.attr("ShapeAnalysis_Surface"))
         .def(py::init< const opencascade::handle<Geom_Surface> & >()  , py::arg("S") )
+    // methods
         .def("Init",
              (void (ShapeAnalysis_Surface::*)( const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (ShapeAnalysis_Surface::*)( const opencascade::handle<Geom_Surface> &  ) >(&ShapeAnalysis_Surface::Init),
              R"#(Loads existing surface)#"  , py::arg("S"))
@@ -347,9 +1181,6 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def("IsDegenerated",
              (Standard_Boolean (ShapeAnalysis_Surface::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_Surface::*)( const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeAnalysis_Surface::IsDegenerated),
              R"#(Returns True if straight pcurve going from point p2d1 to p2d2 is degenerate, i.e. lies in the singularity of the surface. NOTE: it uses another method of detecting singularity than used by ComputeSingularities() et al.! For that, maximums of distances between points p2d1, p2d2 and 0.5*(p2d1+p2d2) and between corresponding 3d points are computed. The pcurve (p2d1, p2d2) is considered as degenerate if: - max distance in 3d is less than <tol> - max distance in 2d is at least <ratio> times greather than the Resolution computed from max distance in 3d (max3d < tol && max2d > ratio * Resolution(max3d)) NOTE: <ratio> should be >1 (e.g. 10))#"  , py::arg("p2d1"),  py::arg("p2d2"),  py::arg("tol"),  py::arg("ratio"))
-        .def("Bounds",
-             (void (ShapeAnalysis_Surface::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ShapeAnalysis_Surface::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&ShapeAnalysis_Surface::Bounds),
-             R"#(Returns the bounds of the surface (from Bounds from Surface, but buffered))#"  , py::arg("ufirst"),  py::arg("ulast"),  py::arg("vfirst"),  py::arg("vlast"))
         .def("ComputeBoundIsos",
              (void (ShapeAnalysis_Surface::*)() ) static_cast<void (ShapeAnalysis_Surface::*)() >(&ShapeAnalysis_Surface::ComputeBoundIsos),
              R"#(Computes bound isos (protected against exceptions))#" )
@@ -410,21 +1241,68 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def("Value",
              (gp_Pnt (ShapeAnalysis_Surface::*)( const gp_Pnt2d &  ) ) static_cast<gp_Pnt (ShapeAnalysis_Surface::*)( const gp_Pnt2d &  ) >(&ShapeAnalysis_Surface::Value),
              R"#(Returns a 3d point specified by a point in surface parametrical space)#"  , py::arg("p2d"))
-        .def("Bounds",
-             (void (ShapeAnalysis_Surface::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (ShapeAnalysis_Surface::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&ShapeAnalysis_Surface::Bounds),
-             R"#(Returns the bounds of the surface (from Bounds from Surface, but buffered))#"  , py::arg("ufirst"),  py::arg("ulast"),  py::arg("vfirst"),  py::arg("vlast"))
         .def("UCloseVal",
              (Standard_Real (ShapeAnalysis_Surface::*)() const) static_cast<Standard_Real (ShapeAnalysis_Surface::*)() const>(&ShapeAnalysis_Surface::UCloseVal),
              R"#(Returns minimum value to consider the surface as U-closed)#" )
         .def("VCloseVal",
              (Standard_Real (ShapeAnalysis_Surface::*)() const) static_cast<Standard_Real (ShapeAnalysis_Surface::*)() const>(&ShapeAnalysis_Surface::VCloseVal),
              R"#(Returns minimum value to consider the surface as V-closed)#" )
+    // methods using call by reference i.s.o. return
+        .def("Bounds",
+             []( ShapeAnalysis_Surface &self   ){ Standard_Real  ufirst; Standard_Real  ulast; Standard_Real  vfirst; Standard_Real  vlast; self.Bounds(ufirst,ulast,vfirst,vlast); return std::make_tuple(ufirst,ulast,vfirst,vlast); },
+             R"#(Returns the bounds of the surface (from Bounds from Surface, but buffered))#" )
+        .def("Bounds",
+             []( ShapeAnalysis_Surface &self   ){ Standard_Real  ufirst; Standard_Real  ulast; Standard_Real  vfirst; Standard_Real  vlast; self.Bounds(ufirst,ulast,vfirst,vlast); return std::make_tuple(ufirst,ulast,vfirst,vlast); },
+             R"#(Returns the bounds of the surface (from Bounds from Surface, but buffered))#" )
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_Surface::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_Surface::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeAnalysis_TransferParameters ,opencascade::handle<ShapeAnalysis_TransferParameters>  , Standard_Transient >>(m.attr("ShapeAnalysis_TransferParameters"))
+        .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // methods
+        .def("Init",
+             (void (ShapeAnalysis_TransferParameters::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (ShapeAnalysis_TransferParameters::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&ShapeAnalysis_TransferParameters::Init),
+             R"#(Initialize a tool with edge and face)#"  , py::arg("E"),  py::arg("F"))
+        .def("SetMaxTolerance",
+             (void (ShapeAnalysis_TransferParameters::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_TransferParameters::*)( const Standard_Real  ) >(&ShapeAnalysis_TransferParameters::SetMaxTolerance),
+             R"#(Sets maximal tolerance to use linear recomputation of parameters.)#"  , py::arg("maxtol"))
+        .def("Perform",
+             (opencascade::handle<TColStd_HSequenceOfReal> (ShapeAnalysis_TransferParameters::*)( const opencascade::handle<TColStd_HSequenceOfReal> & ,  const Standard_Boolean  ) ) static_cast<opencascade::handle<TColStd_HSequenceOfReal> (ShapeAnalysis_TransferParameters::*)( const opencascade::handle<TColStd_HSequenceOfReal> & ,  const Standard_Boolean  ) >(&ShapeAnalysis_TransferParameters::Perform),
+             R"#(Transfers parameters given by sequence Params from 3d curve to pcurve (if To2d is True) or back (if To2d is False))#"  , py::arg("Params"),  py::arg("To2d"))
+        .def("Perform",
+             (Standard_Real (ShapeAnalysis_TransferParameters::*)( const Standard_Real ,  const Standard_Boolean  ) ) static_cast<Standard_Real (ShapeAnalysis_TransferParameters::*)( const Standard_Real ,  const Standard_Boolean  ) >(&ShapeAnalysis_TransferParameters::Perform),
+             R"#(Transfers parameter given by sequence Params from 3d curve to pcurve (if To2d is True) or back (if To2d is False))#"  , py::arg("Param"),  py::arg("To2d"))
+        .def("TransferRange",
+             (void (ShapeAnalysis_TransferParameters::*)( TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_TransferParameters::*)( TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&ShapeAnalysis_TransferParameters::TransferRange),
+             R"#(Recomputes range of curves from NewEdge. If Is2d equals True parameters are recomputed by curve2d else by curve3d.)#"  , py::arg("newEdge"),  py::arg("prevPar"),  py::arg("currPar"),  py::arg("To2d"))
+        .def("IsSameRange",
+             (Standard_Boolean (ShapeAnalysis_TransferParameters::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_TransferParameters::*)() const>(&ShapeAnalysis_TransferParameters::IsSameRange),
+             R"#(Returns True if 3d curve of edge and pcurve are SameRange (in default implementation, if myScale == 1 and myShift == 0))#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeAnalysis_TransferParameters::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAnalysis_TransferParameters::*)() const>(&ShapeAnalysis_TransferParameters::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_TransferParameters::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_TransferParameters::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
@@ -432,6 +1310,7 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const TopoDS_Face &,const Standard_Real >()  , py::arg("wire"),  py::arg("face"),  py::arg("precision") )
         .def(py::init< const opencascade::handle<ShapeExtend_WireData> &,const TopoDS_Face &,const Standard_Real >()  , py::arg("sbwd"),  py::arg("face"),  py::arg("precision") )
+    // methods
         .def("Init",
              (void (ShapeAnalysis_Wire::*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_Wire::*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeAnalysis_Wire::Init),
              R"#(Initializes the object with standard TopoDS_Wire, face and precision)#"  , py::arg("wire"),  py::arg("face"),  py::arg("precision"))
@@ -717,118 +1596,95 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def("MaxDistance2d",
              (Standard_Real (ShapeAnalysis_Wire::*)() const) static_cast<Standard_Real (ShapeAnalysis_Wire::*)() const>(&ShapeAnalysis_Wire::MaxDistance2d),
              R"#(Returns the last maximal distance in 2D-UV computed by CheckContinuity2d)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_Wire::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_Wire::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeAnalysis_CheckSmallFace ,std::unique_ptr<ShapeAnalysis_CheckSmallFace>  >>(m.attr("ShapeAnalysis_CheckSmallFace"))
+    static_cast<py::class_<ShapeAnalysis_WireOrder , shared_ptr<ShapeAnalysis_WireOrder>  >>(m.attr("ShapeAnalysis_WireOrder"))
         .def(py::init<  >()  )
-        .def("IsSpotFace",
-             (Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real  ) const) static_cast<Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real  ) const>(&ShapeAnalysis_CheckSmallFace::IsSpotFace),
-             R"#(Checks if a Face is as a Spot Returns 0 if not, 1 if yes, 2 if yes and all vertices are the same By default, considers the tolerance zone of its vertices A given value <tol> may be given to check a spot of this size If a Face is a Spot, its location is returned in <spot>, and <spotol> returns an equivalent tolerance, which is computed as half of max dimension of min-max box of the face)#"  , py::arg("F"),  py::arg("spot"),  py::arg("spotol"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
-        .def("CheckSpotFace",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckSpotFace),
-             R"#(Acts as IsSpotFace, but records in <infos> a diagnostic "SpotFace" with the Pnt as value (data "Location"))#"  , py::arg("F"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
-        .def("IsStripSupport",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::IsStripSupport),
-             R"#(Checks if a Face lies on a Surface which is a strip So the Face is a strip. But a Face may be a strip elsewhere ..)#"  , py::arg("F"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
-        .def("CheckStripEdges",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) const>(&ShapeAnalysis_CheckSmallFace::CheckStripEdges),
-             R"#(Checks if two edges define a strip, i.e. distance maxi below tolerance, given or some of those of E1 and E2)#"  , py::arg("E1"),  py::arg("E2"),  py::arg("tol"),  py::arg("dmax"))
-        .def("FindStripEdges",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real ,  Standard_Real &  ) >(&ShapeAnalysis_CheckSmallFace::FindStripEdges),
-             R"#(Searchs for two and only two edges up tolerance Returns True if OK, false if not 2 edges If True, returns the two edges and their maximum distance)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol"),  py::arg("dmax"))
-        .def("CheckSingleStrip",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckSingleStrip),
-             R"#(Checks if a Face is a single strip, i.e. brings two great edges which are confused on their whole length, possible other edges are small or null length)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
-        .def("CheckStripFace",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckStripFace),
-             R"#(Checks if a Face is as a Strip Returns 0 if not or non determined, 1 if in U, 2 if in V By default, considers the tolerance zone of its edges A given value <tol> may be given to check a strip of max this width)#"  , py::arg("F"),  py::arg("E1"),  py::arg("E2"),  py::arg("tol")=static_cast<const Standard_Real>(- 1.0))
-        .def("CheckSplittingVertices",
-             (Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> & ,  NCollection_DataMap<TopoDS_Shape, TColStd_ListOfReal, TopTools_ShapeMapHasher> & ,  TopoDS_Compound &  ) ) static_cast<Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> & ,  NCollection_DataMap<TopoDS_Shape, TColStd_ListOfReal, TopTools_ShapeMapHasher> & ,  TopoDS_Compound &  ) >(&ShapeAnalysis_CheckSmallFace::CheckSplittingVertices),
-             R"#(Checks if a Face brings vertices which split it, either confused with non adjacent vertices, or confused with their projection on non adjacent edges Returns the count of found splitting vertices Each vertex then brings a diagnostic "SplittingVertex", with data : "Face" for the face, "Edge" for the split edge)#"  , py::arg("F"),  py::arg("MapEdges"),  py::arg("MapParam"),  py::arg("theAllVert"))
-        .def("CheckPin",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Integer & ,  Standard_Integer &  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Integer & ,  Standard_Integer &  ) >(&ShapeAnalysis_CheckSmallFace::CheckPin),
-             R"#(Checks if a Face has a pin, which can be edited No singularity : no pin, returns 0 If there is a pin, checked topics, with returned value : - 0 : nothing to do more - 1 : "smooth", i.e. not a really sharp pin -> diagnostic "SmoothPin" - 2 : stretched pin, i.e. is possible to relimit the face by another vertex, so that this vertex still gives a pin -> diagnostic "StretchedPin" with location of vertex (Pnt))#"  , py::arg("F"),  py::arg("whatrow"),  py::arg("sence"))
-        .def("CheckTwisted",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  ) >(&ShapeAnalysis_CheckSmallFace::CheckTwisted),
-             R"#(Checks if a Face is twisted (apart from checking Pin, i.e. it does not give information on pin, only "it is twisted"))#"  , py::arg("F"),  py::arg("paramu"),  py::arg("paramv"))
-        .def("CheckPinFace",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::CheckPinFace),
-             R"#(None)#"  , py::arg("F"),  py::arg("mapEdges"),  py::arg("toler")=static_cast<const Standard_Real>(- 1.0))
-        .def("CheckPinEdges",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) const>(&ShapeAnalysis_CheckSmallFace::CheckPinEdges),
-             R"#(None)#"  , py::arg("theFirstEdge"),  py::arg("theSecondEdge"),  py::arg("coef1"),  py::arg("coef2"),  py::arg("toler"))
-        .def("Status",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::Status),
-             R"#(Returns the status of last call to Perform() ShapeExtend_OK : face was OK, nothing done ShapeExtend_DONE1: some wires are fixed ShapeExtend_DONE2: orientation of wires fixed ShapeExtend_DONE3: missing seam added ShapeExtend_DONE4: small area wire removed ShapeExtend_DONE5: natural bounds added ShapeExtend_FAIL1: some fails during fixing wires ShapeExtend_FAIL2: cannot fix orientation of wires ShapeExtend_FAIL3: cannot add missing seam ShapeExtend_FAIL4: cannot remove small area wire)#"  , py::arg("status"))
-        .def("SetTolerance",
-             (void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::SetTolerance),
-             R"#(Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Sets a fixed MaxTolerance to check small face Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Unset fixed tolerance, comes back to local tolerance zones Unset fixed tolerance, comes back to local tolerance zones)#"  , py::arg("tol"))
+        .def(py::init< const Standard_Boolean,const Standard_Real >()  , py::arg("mode3d"),  py::arg("tol") )
+    // methods
+        .def("SetMode",
+             (void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean ,  const Standard_Real  ) >(&ShapeAnalysis_WireOrder::SetMode),
+             R"#(Sets new values. Clears the connexion list If <mode3d> changes, also clears the edge list (else, doesnt))#"  , py::arg("mode3d"),  py::arg("tol"))
         .def("Tolerance",
-             (Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const) static_cast<Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const>(&ShapeAnalysis_CheckSmallFace::Tolerance),
-             R"#(Returns the tolerance to check small faces, negative value if local tolerances zones are to be considered)#" )
-        .def("StatusSpot",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSpot),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusStrip",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusStrip),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusPin",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPin),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusTwisted",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusTwisted),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusSplitVert",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSplitVert),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusPinFace",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinFace),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusPinEdges",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinEdges),
-             R"#(None)#"  , py::arg("status"))
+             (Standard_Real (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Real (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::Tolerance),
+             R"#(Returns the working tolerance)#" )
+        .def("Clear",
+             (void (ShapeAnalysis_WireOrder::*)() ) static_cast<void (ShapeAnalysis_WireOrder::*)() >(&ShapeAnalysis_WireOrder::Clear),
+             R"#(Clears the list of edges, but not mode and tol)#" )
+        .def("Add",
+             (void (ShapeAnalysis_WireOrder::*)( const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const gp_XYZ & ,  const gp_XYZ &  ) >(&ShapeAnalysis_WireOrder::Add),
+             R"#(Adds a couple of points 3D (start,end))#"  , py::arg("start3d"),  py::arg("end3d"))
+        .def("Add",
+             (void (ShapeAnalysis_WireOrder::*)( const gp_XY & ,  const gp_XY &  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const gp_XY & ,  const gp_XY &  ) >(&ShapeAnalysis_WireOrder::Add),
+             R"#(Adds a couple of points 2D (start,end))#"  , py::arg("start2d"),  py::arg("end2d"))
+        .def("NbEdges",
+             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::NbEdges),
+             R"#(Returns the count of added couples of points (one per edges))#" )
+        .def("KeepLoopsMode",
+             (Standard_Boolean & (ShapeAnalysis_WireOrder::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_WireOrder::*)() >(&ShapeAnalysis_WireOrder::KeepLoopsMode),
+             R"#(If this mode is True method perform does not sort edges of different loops. The resulting order is first loop, second one etc...)#" )
+        .def("Perform",
+             (void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean  ) >(&ShapeAnalysis_WireOrder::Perform),
+             R"#(Computes the better order If <closed> is True (D) considers also closure Optimised if the couples were already in order The criterium is : two couples in order if distance between end-prec and start-cur is less then starting tolerance <tol> Else, the smallest distance is reached Gap corresponds to a smallest distance greater than <tol>)#"  , py::arg("closed")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("IsDone",
+             (Standard_Boolean (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::IsDone),
+             R"#(Tells if Perform has been done Else, the following methods returns original values)#" )
         .def("Status",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::Status),
-             R"#(Returns the status of last call to Perform() ShapeExtend_OK : face was OK, nothing done ShapeExtend_DONE1: some wires are fixed ShapeExtend_DONE2: orientation of wires fixed ShapeExtend_DONE3: missing seam added ShapeExtend_DONE4: small area wire removed ShapeExtend_DONE5: natural bounds added ShapeExtend_FAIL1: some fails during fixing wires ShapeExtend_FAIL2: cannot fix orientation of wires ShapeExtend_FAIL3: cannot add missing seam ShapeExtend_FAIL4: cannot remove small area wire)#"  , py::arg("status"))
-        .def("SetTolerance",
-             (void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_CheckSmallFace::*)( const Standard_Real  ) >(&ShapeAnalysis_CheckSmallFace::SetTolerance),
-             R"#(Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Sets a fixed MaxTolerance to check small face Sets a fixed Tolerance to check small face By default, local tolerance zone is considered Unset fixed tolerance, comes back to local tolerance zones Unset fixed tolerance, comes back to local tolerance zones)#"  , py::arg("tol"))
-        .def("Tolerance",
-             (Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const) static_cast<Standard_Real (ShapeAnalysis_CheckSmallFace::*)() const>(&ShapeAnalysis_CheckSmallFace::Tolerance),
-             R"#(Returns the tolerance to check small faces, negative value if local tolerances zones are to be considered)#" )
-        .def("StatusSpot",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSpot),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusStrip",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusStrip),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusPin",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPin),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusTwisted",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusTwisted),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusPinFace",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinFace),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusPinEdges",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusPinEdges),
-             R"#(None)#"  , py::arg("status"))
-        .def("StatusSplitVert",
-             (Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const) static_cast<Standard_Boolean (ShapeAnalysis_CheckSmallFace::*)( const ShapeExtend_Status  ) const>(&ShapeAnalysis_CheckSmallFace::StatusSplitVert),
-             R"#(None)#"  , py::arg("status"))
+             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::Status),
+             R"#(Returns the status of the order (0 if not done) : 0 : all edges are direct and in sequence 1 : all edges are direct but some are not in sequence 2 : in addition, unresolved gaps remain -1 : some edges are reversed, but no gap remain -2 : some edges are reversed and some gaps remain -10 : COULD NOT BE RESOLVED, Failure on Reorder gap : regarding starting <tol>)#" )
+        .def("Ordered",
+             (Standard_Integer (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const>(&ShapeAnalysis_WireOrder::Ordered),
+             R"#(Returns the number of original edge which correspond to the newly ordered number <n> Warning : the returned value is NEGATIVE if edge should be reversed)#"  , py::arg("n"))
+        .def("XYZ",
+             (void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XYZ & ,  gp_XYZ &  ) const) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XYZ & ,  gp_XYZ &  ) const>(&ShapeAnalysis_WireOrder::XYZ),
+             R"#(Returns the values of the couple <num>, as 3D values)#"  , py::arg("num"),  py::arg("start3d"),  py::arg("end3d"))
+        .def("XY",
+             (void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XY & ,  gp_XY &  ) const) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XY & ,  gp_XY &  ) const>(&ShapeAnalysis_WireOrder::XY),
+             R"#(Returns the values of the couple <num>, as 2D values)#"  , py::arg("num"),  py::arg("start2d"),  py::arg("end2d"))
+        .def("Gap",
+             (Standard_Real (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const) static_cast<Standard_Real (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const>(&ShapeAnalysis_WireOrder::Gap),
+             R"#(Returns the gap between a couple and its preceeding <num> is considered ordered If <num> = 0 (D), returns the greatest gap found)#"  , py::arg("num")=static_cast<const Standard_Integer>(0))
+        .def("SetChains",
+             (void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) >(&ShapeAnalysis_WireOrder::SetChains),
+             R"#(Determines the chains inside which successive edges have a gap less than a given value. Queried by NbChains and Chain)#"  , py::arg("gap"))
+        .def("NbChains",
+             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::NbChains),
+             R"#(Returns the count of computed chains)#" )
+        .def("SetCouples",
+             (void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) >(&ShapeAnalysis_WireOrder::SetCouples),
+             R"#(Determines the couples of edges for which end and start fit inside a given gap. Queried by NbCouples and Couple)#"  , py::arg("gap"))
+        .def("NbCouples",
+             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::NbCouples),
+             R"#(Returns the count of computed couples)#" )
+    // methods using call by reference i.s.o. return
+        .def("Chain",
+             []( ShapeAnalysis_WireOrder &self , const Standard_Integer num ){ Standard_Integer  n1; Standard_Integer  n2; self.Chain(num,n1,n2); return std::make_tuple(n1,n2); },
+             R"#(Returns, for the chain n0 num, starting and ending numbers of edges. In the list of ordered edges (see Ordered for originals))#"  , py::arg("num"))
+        .def("Couple",
+             []( ShapeAnalysis_WireOrder &self , const Standard_Integer num ){ Standard_Integer  n1; Standard_Integer  n2; self.Couple(num,n1,n2); return std::make_tuple(n1,n2); },
+             R"#(Returns, for the couple n0 num, the two implied edges In the list of ordered edges)#"  , py::arg("num"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeAnalysis_WireVertex ,std::unique_ptr<ShapeAnalysis_WireVertex>  >>(m.attr("ShapeAnalysis_WireVertex"))
+    static_cast<py::class_<ShapeAnalysis_WireVertex , shared_ptr<ShapeAnalysis_WireVertex>  >>(m.attr("ShapeAnalysis_WireVertex"))
         .def(py::init<  >()  )
+    // methods
         .def("Init",
              (void (ShapeAnalysis_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) >(&ShapeAnalysis_WireVertex::Init),
              R"#(None)#"  , py::arg("wire"),  py::arg("preci"))
@@ -901,437 +1757,18 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def("NextCriter",
              (Standard_Integer (ShapeAnalysis_WireVertex::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Integer (ShapeAnalysis_WireVertex::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&ShapeAnalysis_WireVertex::NextCriter),
              R"#(For a given criter, returns the rank of the vertex which follows <num> and has the same status. 0 if no more Acts as an iterator, starts on the first one Criters are: 0: same vertex (status 0) 1: a solution exists (status >= 0) 2: same coords (i.e. same params) (status 0 1 2) 3: same coods but not same vertex (status 1 2) 4: redefined coords (status 3 4 5) -1: no solution (status -1))#"  , py::arg("crit"),  py::arg("num")=static_cast<const Standard_Integer>(0))
-;
-
-
-    static_cast<py::class_<ShapeAnalysis_FreeBoundsProperties ,std::unique_ptr<ShapeAnalysis_FreeBoundsProperties>  >>(m.attr("ShapeAnalysis_FreeBoundsProperties"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("tolerance"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def("Init",
-             (void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeAnalysis_FreeBoundsProperties::Init),
-             R"#(Initializes the object with given parameters. <shape> should be a compound of faces.)#"  , py::arg("shape"),  py::arg("tolerance"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("Init",
-             (void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeAnalysis_FreeBoundsProperties::Init),
-             R"#(Initializes the object with given parameters. <shape> should be a compound of shells.)#"  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("Perform",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() >(&ShapeAnalysis_FreeBoundsProperties::Perform),
-             R"#(Builds and analyzes free bounds of the shape. First calls ShapeAnalysis_FreeBounds for building free bounds. Then on each free bound computes its properties: - area of the contour, - perimeter of the contour, - ratio of average length to average width of the contour, - average width of contour, - notches on the contour and for each notch - maximum width of the notch.)#" )
-        .def("IsLoaded",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::IsLoaded),
-             R"#(Returns True if shape is loaded)#" )
-        .def("Shape",
-             (TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Shape),
-             R"#(Returns shape)#" )
-        .def("Tolerance",
-             (Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Tolerance),
-             R"#(Returns tolerance)#" )
-        .def("NbFreeBounds",
-             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbFreeBounds),
-             R"#(Returns number of free bounds)#" )
-        .def("NbClosedFreeBounds",
-             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbClosedFreeBounds),
-             R"#(Returns number of closed free bounds)#" )
-        .def("NbOpenFreeBounds",
-             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbOpenFreeBounds),
-             R"#(Returns number of open free bounds)#" )
-        .def("ClosedFreeBounds",
-             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBounds),
-             R"#(Returns all closed free bounds)#" )
-        .def("OpenFreeBounds",
-             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBounds),
-             R"#(Returns all open free bounds)#" )
-        .def("ClosedFreeBound",
-             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBound),
-             R"#(Returns properties of closed free bound specified by its rank number)#"  , py::arg("index"))
-        .def("OpenFreeBound",
-             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBound),
-             R"#(Returns properties of open free bound specified by its rank number)#"  , py::arg("index"))
-        .def("DispatchBounds",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() >(&ShapeAnalysis_FreeBoundsProperties::DispatchBounds),
-             R"#(None)#" )
-        .def("CheckContours",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckContours),
-             R"#(None)#"  , py::arg("prec")=static_cast<const Standard_Real>(0.0))
-        .def("CheckNotches",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckNotches),
-             R"#(None)#"  , py::arg("prec")=static_cast<const Standard_Real>(0.0))
-        .def("CheckNotches",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckNotches),
-             R"#(None)#"  , py::arg("fbData"),  py::arg("prec")=static_cast<const Standard_Real>(0.0))
-        .def("CheckNotches",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Wire & ,  const Standard_Integer ,  TopoDS_Wire & ,  Standard_Real & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Wire & ,  const Standard_Integer ,  TopoDS_Wire & ,  Standard_Real & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::CheckNotches),
-             R"#(None)#"  , py::arg("freebound"),  py::arg("num"),  py::arg("notch"),  py::arg("distMax"),  py::arg("prec")=static_cast<const Standard_Real>(0.0))
-        .def("FillProperties",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)( opencascade::handle<ShapeAnalysis_FreeBoundData> & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundsProperties::FillProperties),
-             R"#(None)#"  , py::arg("fbData"),  py::arg("prec")=static_cast<const Standard_Real>(0.0))
-        .def("Shape",
-             (TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<TopoDS_Shape (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Shape),
-             R"#(Returns shape)#" )
-        .def("IsLoaded",
-             (Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::IsLoaded),
-             R"#(Returns True if shape is loaded)#" )
-        .def("Tolerance",
-             (Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::Tolerance),
-             R"#(Returns tolerance)#" )
-        .def("NbFreeBounds",
-             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbFreeBounds),
-             R"#(Returns number of free bounds)#" )
-        .def("NbClosedFreeBounds",
-             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbClosedFreeBounds),
-             R"#(Returns number of closed free bounds)#" )
-        .def("NbOpenFreeBounds",
-             (Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::NbOpenFreeBounds),
-             R"#(Returns number of open free bounds)#" )
-        .def("ClosedFreeBounds",
-             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBounds),
-             R"#(Returns all closed free bounds)#" )
-        .def("OpenFreeBounds",
-             (opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const) static_cast<opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds> (ShapeAnalysis_FreeBoundsProperties::*)() const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBounds),
-             R"#(Returns all open free bounds)#" )
-        .def("ClosedFreeBound",
-             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::ClosedFreeBound),
-             R"#(Returns properties of closed free bound specified by its rank number)#"  , py::arg("index"))
-        .def("OpenFreeBound",
-             (opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ShapeAnalysis_FreeBoundData> (ShapeAnalysis_FreeBoundsProperties::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundsProperties::OpenFreeBound),
-             R"#(Returns properties of open free bound specified by its rank number)#"  , py::arg("index"))
-;
-
-    register_default_constructor<ShapeAnalysis ,std::unique_ptr<ShapeAnalysis>>(m,"ShapeAnalysis");
-
-    static_cast<py::class_<ShapeAnalysis ,std::unique_ptr<ShapeAnalysis>  >>(m.attr("ShapeAnalysis"))
-        .def_static("OuterWire_s",
-                    (TopoDS_Wire (*)( const TopoDS_Face &  ) ) static_cast<TopoDS_Wire (*)( const TopoDS_Face &  ) >(&ShapeAnalysis::OuterWire),
-                    R"#(Returns the outer wire on the face <Face>. This is replacement of the method BRepTools::OuterWire until it works badly. Returns the first wire oriented as outer according to FClass2d_Classifier. If none, last wire is returned.)#"  , py::arg("face"))
-        .def_static("TotCross2D_s",
-                    (Standard_Real (*)( const opencascade::handle<ShapeExtend_WireData> & ,  const TopoDS_Face &  ) ) static_cast<Standard_Real (*)( const opencascade::handle<ShapeExtend_WireData> & ,  const TopoDS_Face &  ) >(&ShapeAnalysis::TotCross2D),
-                    R"#(Returns a total area of 2d wire)#"  , py::arg("sewd"),  py::arg("aFace"))
-        .def_static("ContourArea_s",
-                    (Standard_Real (*)( const TopoDS_Wire &  ) ) static_cast<Standard_Real (*)( const TopoDS_Wire &  ) >(&ShapeAnalysis::ContourArea),
-                    R"#(Returns a total area of 3d wire)#"  , py::arg("theWire"))
-        .def_static("IsOuterBound_s",
-                    (Standard_Boolean (*)( const TopoDS_Face &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Face &  ) >(&ShapeAnalysis::IsOuterBound),
-                    R"#(Returns True if <F> has outer bound.)#"  , py::arg("face"))
-        .def_static("AdjustByPeriod_s",
-                    (Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeAnalysis::AdjustByPeriod),
-                    R"#(Returns a shift required to move point <Val> to the range [ToVal-Period/2,ToVal+Period/2]. This shift will be the divisible by Period. Intended for adjusting parameters on periodic surfaces.)#"  , py::arg("Val"),  py::arg("ToVal"),  py::arg("Period"))
-        .def_static("AdjustToPeriod_s",
-                    (Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeAnalysis::AdjustToPeriod),
-                    R"#(Returns a shift required to move point <Val> to the range [ValMin,ValMax]. This shift will be the divisible by Period with Period = ValMax - ValMin. Intended for adjusting parameters on periodic surfaces.)#"  , py::arg("Val"),  py::arg("ValMin"),  py::arg("ValMax"))
-        .def_static("FindBounds_s",
-                    (void (*)( const TopoDS_Shape & ,  TopoDS_Vertex & ,  TopoDS_Vertex &  ) ) static_cast<void (*)( const TopoDS_Shape & ,  TopoDS_Vertex & ,  TopoDS_Vertex &  ) >(&ShapeAnalysis::FindBounds),
-                    R"#(Finds the start and end vertices of the shape Shape can be of the following type: vertex: V1 and V2 are the same and equal to <shape>, edge : V1 is start and V2 is end vertex (see ShapeAnalysis_Edge methods FirstVertex and LastVertex), wire : V1 is start vertex of the first edge, V2 is end vertex of the last edge (also see ShapeAnalysis_Edge). If wire contains no edges V1 and V2 are nullified If none of the above V1 and V2 are nullified)#"  , py::arg("shape"),  py::arg("V1"),  py::arg("V2"))
-        .def_static("GetFaceUVBounds_s",
-                    (void (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<void (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) >(&ShapeAnalysis::GetFaceUVBounds),
-                    R"#(Computes exact UV bounds of all wires on the face)#"  , py::arg("F"),  py::arg("Umin"),  py::arg("Umax"),  py::arg("Vmin"),  py::arg("Vmax"))
-;
-
-
-    static_cast<py::class_<ShapeAnalysis_WireOrder ,std::unique_ptr<ShapeAnalysis_WireOrder>  >>(m.attr("ShapeAnalysis_WireOrder"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Boolean,const Standard_Real >()  , py::arg("mode3d"),  py::arg("tol") )
-        .def("SetMode",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean ,  const Standard_Real  ) >(&ShapeAnalysis_WireOrder::SetMode),
-             R"#(Sets new values. Clears the connexion list If <mode3d> changes, also clears the edge list (else, doesnt))#"  , py::arg("mode3d"),  py::arg("tol"))
-        .def("Tolerance",
-             (Standard_Real (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Real (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::Tolerance),
-             R"#(Returns the working tolerance)#" )
-        .def("Clear",
-             (void (ShapeAnalysis_WireOrder::*)() ) static_cast<void (ShapeAnalysis_WireOrder::*)() >(&ShapeAnalysis_WireOrder::Clear),
-             R"#(Clears the list of edges, but not mode and tol)#" )
-        .def("Add",
-             (void (ShapeAnalysis_WireOrder::*)( const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const gp_XYZ & ,  const gp_XYZ &  ) >(&ShapeAnalysis_WireOrder::Add),
-             R"#(Adds a couple of points 3D (start,end))#"  , py::arg("start3d"),  py::arg("end3d"))
-        .def("Add",
-             (void (ShapeAnalysis_WireOrder::*)( const gp_XY & ,  const gp_XY &  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const gp_XY & ,  const gp_XY &  ) >(&ShapeAnalysis_WireOrder::Add),
-             R"#(Adds a couple of points 2D (start,end))#"  , py::arg("start2d"),  py::arg("end2d"))
-        .def("NbEdges",
-             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::NbEdges),
-             R"#(Returns the count of added couples of points (one per edges))#" )
-        .def("KeepLoopsMode",
-             (Standard_Boolean & (ShapeAnalysis_WireOrder::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_WireOrder::*)() >(&ShapeAnalysis_WireOrder::KeepLoopsMode),
-             R"#(If this mode is True method perform does not sort edges of different loops. The resulting order is first loop, second one etc...)#" )
-        .def("Perform",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean  ) >(&ShapeAnalysis_WireOrder::Perform),
-             R"#(Computes the better order If <closed> is True (D) considers also closure Optimised if the couples were already in order The criterium is : two couples in order if distance between end-prec and start-cur is less then starting tolerance <tol> Else, the smallest distance is reached Gap corresponds to a smallest distance greater than <tol>)#"  , py::arg("closed")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("IsDone",
-             (Standard_Boolean (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::IsDone),
-             R"#(Tells if Perform has been done Else, the following methods returns original values)#" )
-        .def("Status",
-             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::Status),
-             R"#(Returns the status of the order (0 if not done) : 0 : all edges are direct and in sequence 1 : all edges are direct but some are not in sequence 2 : in addition, unresolved gaps remain -1 : some edges are reversed, but no gap remain -2 : some edges are reversed and some gaps remain -10 : COULD NOT BE RESOLVED, Failure on Reorder gap : regarding starting <tol>)#" )
-        .def("Ordered",
-             (Standard_Integer (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const>(&ShapeAnalysis_WireOrder::Ordered),
-             R"#(Returns the number of original edge which correspond to the newly ordered number <n> Warning : the returned value is NEGATIVE if edge should be reversed)#"  , py::arg("n"))
-        .def("XYZ",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XYZ & ,  gp_XYZ &  ) const) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XYZ & ,  gp_XYZ &  ) const>(&ShapeAnalysis_WireOrder::XYZ),
-             R"#(Returns the values of the couple <num>, as 3D values)#"  , py::arg("num"),  py::arg("start3d"),  py::arg("end3d"))
-        .def("XY",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XY & ,  gp_XY &  ) const) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  gp_XY & ,  gp_XY &  ) const>(&ShapeAnalysis_WireOrder::XY),
-             R"#(Returns the values of the couple <num>, as 2D values)#"  , py::arg("num"),  py::arg("start2d"),  py::arg("end2d"))
-        .def("Gap",
-             (Standard_Real (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const) static_cast<Standard_Real (ShapeAnalysis_WireOrder::*)( const Standard_Integer  ) const>(&ShapeAnalysis_WireOrder::Gap),
-             R"#(Returns the gap between a couple and its preceeding <num> is considered ordered If <num> = 0 (D), returns the greatest gap found)#"  , py::arg("num")=static_cast<const Standard_Integer>(0))
-        .def("SetChains",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) >(&ShapeAnalysis_WireOrder::SetChains),
-             R"#(Determines the chains inside which successive edges have a gap less than a given value. Queried by NbChains and Chain)#"  , py::arg("gap"))
-        .def("NbChains",
-             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::NbChains),
-             R"#(Returns the count of computed chains)#" )
-        .def("Chain",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  Standard_Integer & ,  Standard_Integer &  ) const>(&ShapeAnalysis_WireOrder::Chain),
-             R"#(Returns, for the chain n0 num, starting and ending numbers of edges. In the list of ordered edges (see Ordered for originals))#"  , py::arg("num"),  py::arg("n1"),  py::arg("n2"))
-        .def("SetCouples",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Real  ) >(&ShapeAnalysis_WireOrder::SetCouples),
-             R"#(Determines the couples of edges for which end and start fit inside a given gap. Queried by NbCouples and Couple)#"  , py::arg("gap"))
-        .def("NbCouples",
-             (Standard_Integer (ShapeAnalysis_WireOrder::*)() const) static_cast<Standard_Integer (ShapeAnalysis_WireOrder::*)() const>(&ShapeAnalysis_WireOrder::NbCouples),
-             R"#(Returns the count of computed couples)#" )
-        .def("Couple",
-             (void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Integer ,  Standard_Integer & ,  Standard_Integer &  ) const>(&ShapeAnalysis_WireOrder::Couple),
-             R"#(Returns, for the couple n0 num, the two implied edges In the list of ordered edges)#"  , py::arg("num"),  py::arg("n1"),  py::arg("n2"))
-;
-
-
-    static_cast<py::class_<ShapeAnalysis_FreeBoundData ,opencascade::handle<ShapeAnalysis_FreeBoundData>  , Standard_Transient >>(m.attr("ShapeAnalysis_FreeBoundData"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Wire & >()  , py::arg("freebound") )
-        .def("Clear",
-             (void (ShapeAnalysis_FreeBoundData::*)() ) static_cast<void (ShapeAnalysis_FreeBoundData::*)() >(&ShapeAnalysis_FreeBoundData::Clear),
-             R"#(Clears all properties of the contour. Contour bound itself is not cleared.)#" )
-        .def("SetFreeBound",
-             (void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) >(&ShapeAnalysis_FreeBoundData::SetFreeBound),
-             R"#(Sets contour)#"  , py::arg("freebound"))
-        .def("SetArea",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetArea),
-             R"#(Sets area of the contour)#"  , py::arg("area"))
-        .def("SetPerimeter",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetPerimeter),
-             R"#(Sets perimeter of the contour)#"  , py::arg("perimeter"))
-        .def("SetRatio",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetRatio),
-             R"#(Sets ratio of average length to average width of the contour)#"  , py::arg("ratio"))
-        .def("SetWidth",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetWidth),
-             R"#(Sets average width of the contour)#"  , py::arg("width"))
-        .def("AddNotch",
-             (void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire & ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire & ,  const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::AddNotch),
-             R"#(Adds notch on the contour with its maximum width)#"  , py::arg("notch"),  py::arg("width"))
-        .def("FreeBound",
-             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::FreeBound),
-             R"#(Returns contour)#" )
-        .def("Area",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Area),
-             R"#(Returns area of the contour)#" )
-        .def("Perimeter",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Perimeter),
-             R"#(Returns perimeter of the contour)#" )
-        .def("Ratio",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Ratio),
-             R"#(Returns ratio of average length to average width of the contour)#" )
-        .def("Width",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Width),
-             R"#(Returns average width of the contour)#" )
-        .def("NbNotches",
-             (Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::NbNotches),
-             R"#(Returns number of notches on the contour)#" )
-        .def("Notches",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Notches),
-             R"#(Returns sequence of notches on the contour)#" )
-        .def("Notch",
-             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundData::Notch),
-             R"#(Returns notch on the contour)#"  , py::arg("index"))
-        .def("NotchWidth",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundData::NotchWidth),
-             R"#(Returns maximum width of notch specified by its rank number on the contour)#"  , py::arg("index"))
-        .def("NotchWidth",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) const>(&ShapeAnalysis_FreeBoundData::NotchWidth),
-             R"#(Returns maximum width of notch specified as TopoDS_Wire on the contour)#"  , py::arg("notch"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeAnalysis_FreeBoundData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::DynamicType),
-             R"#(None)#" )
-        .def("SetFreeBound",
-             (void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const TopoDS_Wire &  ) >(&ShapeAnalysis_FreeBoundData::SetFreeBound),
-             R"#(Sets contour)#"  , py::arg("freebound"))
-        .def("SetArea",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetArea),
-             R"#(Sets area of the contour)#"  , py::arg("area"))
-        .def("SetPerimeter",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetPerimeter),
-             R"#(Sets perimeter of the contour)#"  , py::arg("perimeter"))
-        .def("SetRatio",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetRatio),
-             R"#(Sets ratio of average length to average width of the contour)#"  , py::arg("ratio"))
-        .def("SetWidth",
-             (void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_FreeBoundData::*)( const Standard_Real  ) >(&ShapeAnalysis_FreeBoundData::SetWidth),
-             R"#(Sets average width of the contour)#"  , py::arg("width"))
-        .def("FreeBound",
-             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::FreeBound),
-             R"#(Returns contour)#" )
-        .def("Area",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Area),
-             R"#(Returns area of the contour)#" )
-        .def("Perimeter",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Perimeter),
-             R"#(Returns perimeter of the contour)#" )
-        .def("Ratio",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Ratio),
-             R"#(Returns ratio of average length to average width of the contour)#" )
-        .def("Width",
-             (Standard_Real (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Real (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Width),
-             R"#(Returns average width of the contour)#" )
-        .def("NbNotches",
-             (Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const) static_cast<Standard_Integer (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::NbNotches),
-             R"#(Returns number of notches on the contour)#" )
-        .def("Notches",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_FreeBoundData::*)() const>(&ShapeAnalysis_FreeBoundData::Notches),
-             R"#(Returns sequence of notches on the contour)#" )
-        .def("Notch",
-             (TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const) static_cast<TopoDS_Wire (ShapeAnalysis_FreeBoundData::*)( const Standard_Integer  ) const>(&ShapeAnalysis_FreeBoundData::Notch),
-             R"#(Returns notch on the contour)#"  , py::arg("index"))
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_FreeBoundData::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_FreeBoundData::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<ShapeAnalysis_Geom ,std::unique_ptr<ShapeAnalysis_Geom>>(m,"ShapeAnalysis_Geom");
-
-    static_cast<py::class_<ShapeAnalysis_Geom ,std::unique_ptr<ShapeAnalysis_Geom>  >>(m.attr("ShapeAnalysis_Geom"))
-        .def_static("NearestPlane_s",
-                    (Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_Pln & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_Pln & ,  Standard_Real &  ) >(&ShapeAnalysis_Geom::NearestPlane),
-                    R"#(Builds a plane out of a set of points in array Returns in <dmax> the maximal distance between the produced plane and given points)#"  , py::arg("Pnts"),  py::arg("aPln"),  py::arg("Dmax"))
-        .def_static("PositionTrsf_s",
-                    (Standard_Boolean (*)( const opencascade::handle<TColStd_HArray2OfReal> & ,  gp_Trsf & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<TColStd_HArray2OfReal> & ,  gp_Trsf & ,  const Standard_Real ,  const Standard_Real  ) >(&ShapeAnalysis_Geom::PositionTrsf),
-                    R"#(Builds transfromation object out of matrix. Matrix must be 3 x 4. Unit is used as multiplier.)#"  , py::arg("coefs"),  py::arg("trsf"),  py::arg("unit"),  py::arg("prec"))
-;
-
-
-    static_cast<py::class_<ShapeAnalysis_FreeBounds ,std::unique_ptr<ShapeAnalysis_FreeBounds>  >>(m.attr("ShapeAnalysis_FreeBounds"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("toler"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("checkinternaledges")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def("GetClosedWires",
-             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetClosedWires),
-             R"#(Returns compound of closed wires out of free edges.)#" )
-        .def("GetOpenWires",
-             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetOpenWires),
-             R"#(Returns compound of open wires out of free edges.)#" )
-        .def("GetClosedWires",
-             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetClosedWires),
-             R"#(Returns compound of closed wires out of free edges.)#" )
-        .def("GetOpenWires",
-             (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetOpenWires),
-             R"#(Returns compound of open wires out of free edges.)#" )
-        .def_static("ConnectEdgesToWires_s",
-                    (void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) ) static_cast<void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) >(&ShapeAnalysis_FreeBounds::ConnectEdgesToWires),
-                    R"#(Builds sequnce of <wires> out of sequence of not sorted <edges>. Tries to build wires of maximum length. Building a wire is stopped when no edges can be connected to it at its head or at its tail.)#"  , py::arg("edges"),  py::arg("toler"),  py::arg("shared"),  py::arg("wires"))
-        .def_static("ConnectWiresToWires_s",
-                    (void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) ) static_cast<void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) >(&ShapeAnalysis_FreeBounds::ConnectWiresToWires),
-                    R"#(None)#"  , py::arg("iwires"),  py::arg("toler"),  py::arg("shared"),  py::arg("owires"))
-        .def_static("ConnectWiresToWires_s",
-                    (void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> &  ) ) static_cast<void (*)( opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> &  ) >(&ShapeAnalysis_FreeBounds::ConnectWiresToWires),
-                    R"#(Builds sequnce of <owires> out of sequence of not sorted <iwires>. Tries to build wires of maximum length. Building a wire is stopped when no wires can be connected to it at its head or at its tail.)#"  , py::arg("iwires"),  py::arg("toler"),  py::arg("shared"),  py::arg("owires"),  py::arg("vertices"))
-        .def_static("SplitWires_s",
-                    (void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) ) static_cast<void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  const Standard_Real ,  const Standard_Boolean ,  opencascade::handle<TopTools_HSequenceOfShape> & ,  opencascade::handle<TopTools_HSequenceOfShape> &  ) >(&ShapeAnalysis_FreeBounds::SplitWires),
-                    R"#(Extracts closed sub-wires out of <wires> and adds them to <closed>, open wires remained after extraction are put into <open>. If <shared> is True extraction is performed only when edges share the same vertex. If <shared> is False connection is performed only when ends of the edges are at distance less than <toler>.)#"  , py::arg("wires"),  py::arg("toler"),  py::arg("shared"),  py::arg("closed"),  py::arg("open"))
-        .def_static("DispatchWires_s",
-                    (void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  TopoDS_Compound & ,  TopoDS_Compound &  ) ) static_cast<void (*)( const opencascade::handle<TopTools_HSequenceOfShape> & ,  TopoDS_Compound & ,  TopoDS_Compound &  ) >(&ShapeAnalysis_FreeBounds::DispatchWires),
-                    R"#(Dispatches sequence of <wires> into two compounds <closed> for closed wires and <open> for open wires. If a compound is not empty wires are added into it.)#"  , py::arg("wires"),  py::arg("closed"),  py::arg("open"))
-;
-
-
-    static_cast<py::class_<ShapeAnalysis_TransferParameters ,opencascade::handle<ShapeAnalysis_TransferParameters>  , Standard_Transient >>(m.attr("ShapeAnalysis_TransferParameters"))
-        .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
-        .def("Init",
-             (void (ShapeAnalysis_TransferParameters::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (ShapeAnalysis_TransferParameters::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&ShapeAnalysis_TransferParameters::Init),
-             R"#(Initialize a tool with edge and face)#"  , py::arg("E"),  py::arg("F"))
-        .def("SetMaxTolerance",
-             (void (ShapeAnalysis_TransferParameters::*)( const Standard_Real  ) ) static_cast<void (ShapeAnalysis_TransferParameters::*)( const Standard_Real  ) >(&ShapeAnalysis_TransferParameters::SetMaxTolerance),
-             R"#(Sets maximal tolerance to use linear recomputation of parameters.)#"  , py::arg("maxtol"))
-        .def("Perform",
-             (opencascade::handle<TColStd_HSequenceOfReal> (ShapeAnalysis_TransferParameters::*)( const opencascade::handle<TColStd_HSequenceOfReal> & ,  const Standard_Boolean  ) ) static_cast<opencascade::handle<TColStd_HSequenceOfReal> (ShapeAnalysis_TransferParameters::*)( const opencascade::handle<TColStd_HSequenceOfReal> & ,  const Standard_Boolean  ) >(&ShapeAnalysis_TransferParameters::Perform),
-             R"#(Transfers parameters given by sequence Params from 3d curve to pcurve (if To2d is True) or back (if To2d is False))#"  , py::arg("Params"),  py::arg("To2d"))
-        .def("Perform",
-             (Standard_Real (ShapeAnalysis_TransferParameters::*)( const Standard_Real ,  const Standard_Boolean  ) ) static_cast<Standard_Real (ShapeAnalysis_TransferParameters::*)( const Standard_Real ,  const Standard_Boolean  ) >(&ShapeAnalysis_TransferParameters::Perform),
-             R"#(Transfers parameter given by sequence Params from 3d curve to pcurve (if To2d is True) or back (if To2d is False))#"  , py::arg("Param"),  py::arg("To2d"))
-        .def("TransferRange",
-             (void (ShapeAnalysis_TransferParameters::*)( TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_TransferParameters::*)( TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&ShapeAnalysis_TransferParameters::TransferRange),
-             R"#(Recomputes range of curves from NewEdge. If Is2d equals True parameters are recomputed by curve2d else by curve3d.)#"  , py::arg("newEdge"),  py::arg("prevPar"),  py::arg("currPar"),  py::arg("To2d"))
-        .def("IsSameRange",
-             (Standard_Boolean (ShapeAnalysis_TransferParameters::*)() const) static_cast<Standard_Boolean (ShapeAnalysis_TransferParameters::*)() const>(&ShapeAnalysis_TransferParameters::IsSameRange),
-             R"#(Returns True if 3d curve of edge and pcurve are SameRange (in default implementation, if myScale == 1 and myShift == 0))#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeAnalysis_TransferParameters::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAnalysis_TransferParameters::*)() const>(&ShapeAnalysis_TransferParameters::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeAnalysis_TransferParameters::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_TransferParameters::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<ShapeAnalysis_Curve ,std::unique_ptr<ShapeAnalysis_Curve>>(m,"ShapeAnalysis_Curve");
-
-    static_cast<py::class_<ShapeAnalysis_Curve ,std::unique_ptr<ShapeAnalysis_Curve>  >>(m.attr("ShapeAnalysis_Curve"))
-        .def("Project",
-             (Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::Project),
-             R"#(Projects a Point on a Curve. Computes the projected point and its parameter on the curve. <preci> is used as 3d precision (hence, 0 will produce reject unless exact confusion). The number of iterations is limited. If AdjustToEnds is True, point will be adjusted to the end of the curve if distance is less than <preci>)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("Project",
-             (Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::Project),
-             R"#(Projects a Point on a Curve. Computes the projected point and its parameter on the curve. <preci> is used as 3d precision (hence, 0 will produce reject unless exact confusion). The number of iterations is limited.)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("Project",
-             (Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::Project),
-             R"#(Projects a Point on a Curve, but parameters are limited between <cf> and <cl>. The range [cf, cl] is extended with help of Adaptor3d on the basis of 3d precision <preci>. If AdjustToEnds is True, point will be adjusted to the end of the curve if distance is less than <preci>)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("cf"),  py::arg("cl"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("ProjectAct",
-             (Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const>(&ShapeAnalysis_Curve::ProjectAct),
-             R"#(None)#"  , py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"))
-        .def("NextProject",
-             (Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::NextProject),
-             R"#(Projects a Point on a Curve using Newton method. <paramPrev> is taken as the first approximation of solution. If Newton algorithm fails the method Project() is used. If AdjustToEnds is True, point will be adjusted to the end of the curve if distance is less than <preci>)#"  , py::arg("paramPrev"),  py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"),  py::arg("cf"),  py::arg("cl"),  py::arg("AdjustToEnds")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("NextProject",
-             (Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const Standard_Real ,  const Adaptor3d_Curve & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real &  ) const>(&ShapeAnalysis_Curve::NextProject),
-             R"#(Projects a Point on a Curve using Newton method. <paramPrev> is taken as the first approximation of solution. If Newton algorithm fails the method Project() is used.)#"  , py::arg("paramPrev"),  py::arg("C3D"),  py::arg("P3D"),  py::arg("preci"),  py::arg("proj"),  py::arg("param"))
-        .def("ValidateRange",
-             (Standard_Boolean (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Real  ) const) static_cast<Standard_Boolean (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Real  ) const>(&ShapeAnalysis_Curve::ValidateRange),
-             R"#(Validate parameters First and Last for the given curve in order to make them valid for creation of edge. This includes: - limiting range [First,Last] by range of curve - adjusting range [First,Last] for periodic (or closed) curve if Last < First Returns True if parameters are OK or are successfully corrected, or False if parameters cannot be corrected. In the latter case, parameters are reset to range of curve.)#"  , py::arg("Crv"),  py::arg("First"),  py::arg("Last"),  py::arg("prec"))
-        .def("FillBndBox",
-             (void (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  Bnd_Box2d &  ) const) static_cast<void (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  Bnd_Box2d &  ) const>(&ShapeAnalysis_Curve::FillBndBox),
-             R"#(Computes a boundary box on segment of curve C2d from First to Last. This is done by taking NPoints points from the curve and, if Exact is True, by searching for exact extrema. All these points are added to Box.)#"  , py::arg("C2d"),  py::arg("First"),  py::arg("Last"),  py::arg("NPoints"),  py::arg("Exact"),  py::arg("Box"))
-        .def("SelectForwardSeam",
-             (Standard_Integer (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) const) static_cast<Standard_Integer (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) const>(&ShapeAnalysis_Curve::SelectForwardSeam),
-             R"#(Defines which pcurve (C1 or C2) should be chosen for FORWARD seam edge.)#"  , py::arg("C1"),  py::arg("C2"))
-        .def_static("IsPlanar_s",
-                    (Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_XYZ & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)(  const NCollection_Array1<gp_Pnt> & ,  gp_XYZ & ,  const Standard_Real  ) >(&ShapeAnalysis_Curve::IsPlanar),
-                    R"#(Checks if points are planar with given preci. If Normal has not zero modulus, checks with given normal)#"  , py::arg("pnts"),  py::arg("Normal"),  py::arg("preci")=static_cast<const Standard_Real>(0))
-        .def_static("IsPlanar_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  gp_XYZ & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  gp_XYZ & ,  const Standard_Real  ) >(&ShapeAnalysis_Curve::IsPlanar),
-                    R"#(Checks if curve is planar with given preci. If Normal has not zero modulus, checks with given normal)#"  , py::arg("curve"),  py::arg("Normal"),  py::arg("preci")=static_cast<const Standard_Real>(0))
-        .def_static("GetSamplePoints_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt2d> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt2d> &  ) >(&ShapeAnalysis_Curve::GetSamplePoints),
-                    R"#(Returns sample points which will serve as linearisation of the2d curve in range (first, last) The distribution of sample points is consystent with what is used by BRepTopAdaptor_FClass2d)#"  , py::arg("curve"),  py::arg("first"),  py::arg("last"),  py::arg("seq"))
-        .def_static("GetSamplePoints_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real ,  NCollection_Sequence<gp_Pnt> &  ) >(&ShapeAnalysis_Curve::GetSamplePoints),
-                    R"#(Returns sample points which will serve as linearisation of the curve in range (first, last))#"  , py::arg("curve"),  py::arg("first"),  py::arg("last"),  py::arg("seq"))
-        .def_static("IsClosed_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) >(&ShapeAnalysis_Curve::IsClosed),
-                    R"#(Tells if the Curve is closed with given precision. If <preci> < 0 then Precision::Confusion is used.)#"  , py::arg("curve"),  py::arg("preci")=static_cast<const Standard_Real>(- 1))
-        .def_static("IsPeriodic_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> &  ) >(&ShapeAnalysis_Curve::IsPeriodic),
-                    R"#(This method was implemented as fix for changes in trimmed curve behaviour. For the moment trimmed curve returns false anyway. So it is necessary to adapt all Data exchange tools for this behaviour. Current implementation takes into account that curve may be offset.)#"  , py::arg("curve"))
-        .def_static("IsPeriodic_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Geom2d_Curve> &  ) >(&ShapeAnalysis_Curve::IsPeriodic),
-                    R"#(The same as for Curve3d.)#"  , py::arg("curve"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_TransferParametersProj ,opencascade::handle<ShapeAnalysis_TransferParametersProj>  , ShapeAnalysis_TransferParameters >>(m.attr("ShapeAnalysis_TransferParametersProj"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // methods
         .def("Init",
              (void (ShapeAnalysis_TransferParametersProj::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (ShapeAnalysis_TransferParametersProj::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&ShapeAnalysis_TransferParametersProj::Init),
              R"#(None)#"  , py::arg("E"),  py::arg("F"))
@@ -1353,6 +1790,8 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ShapeAnalysis_TransferParametersProj::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeAnalysis_TransferParametersProj::*)() const>(&ShapeAnalysis_TransferParametersProj::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("CopyNMVertex_s",
                     (TopoDS_Vertex (*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  const TopoDS_Edge &  ) ) static_cast<TopoDS_Vertex (*)( const TopoDS_Vertex & ,  const TopoDS_Edge & ,  const TopoDS_Edge &  ) >(&ShapeAnalysis_TransferParametersProj::CopyNMVertex),
                     R"#(Make a copy of non-manifold vertex theVert (i.e. create new TVertex and replace PointRepresentations for this vertex from fromedge to toedge. Other representations were copied))#"  , py::arg("theVert"),  py::arg("toedge"),  py::arg("fromedge"))
@@ -1365,344 +1804,41 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeAnalysis_TransferParametersProj::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<ShapeAnalysis_ShapeContents ,std::unique_ptr<ShapeAnalysis_ShapeContents>  >>(m.attr("ShapeAnalysis_ShapeContents"))
-        .def(py::init<  >()  )
-        .def("Clear",
-             (void (ShapeAnalysis_ShapeContents::*)() ) static_cast<void (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::Clear),
-             R"#(Clears all accumulated statictics)#" )
-        .def("ClearFlags",
-             (void (ShapeAnalysis_ShapeContents::*)() ) static_cast<void (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ClearFlags),
-             R"#(Clears all flags)#" )
-        .def("Perform",
-             (void (ShapeAnalysis_ShapeContents::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeAnalysis_ShapeContents::*)( const TopoDS_Shape &  ) >(&ShapeAnalysis_ShapeContents::Perform),
-             R"#(Counts quantities of sun-shapes in shape and stores sub-shapes according to flags)#"  , py::arg("shape"))
-        .def("ModifyBigSplineMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyBigSplineMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves has more than 8192 poles.)#" )
-        .def("ModifyIndirectMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyIndirectMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces on indirect surfaces)#" )
-        .def("ModifyOffestSurfaceMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffestSurfaceMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces on offset surfaces.)#" )
-        .def("ModifyTrimmed3dMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed3dMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if ist 3D curves are trimmed curves)#" )
-        .def("ModifyOffsetCurveMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffsetCurveMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves and pcurves are offest curves)#" )
-        .def("ModifyTrimmed2dMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed2dMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its pcurves are trimmed curves)#" )
-        .def("NbSolids",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolids),
-             R"#(None)#" )
-        .def("NbShells",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbShells),
-             R"#(None)#" )
-        .def("NbFaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaces),
-             R"#(None)#" )
-        .def("NbWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWires),
-             R"#(None)#" )
-        .def("NbEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbEdges),
-             R"#(None)#" )
-        .def("NbVertices",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbVertices),
-             R"#(None)#" )
-        .def("NbSolidsWithVoids",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolidsWithVoids),
-             R"#(None)#" )
-        .def("NbBigSplines",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBigSplines),
-             R"#(None)#" )
-        .def("NbC0Surfaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Surfaces),
-             R"#(None)#" )
-        .def("NbC0Curves",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Curves),
-             R"#(None)#" )
-        .def("NbOffsetSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetSurf),
-             R"#(None)#" )
-        .def("NbIndirectSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbIndirectSurf),
-             R"#(None)#" )
-        .def("NbOffsetCurves",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetCurves),
-             R"#(None)#" )
-        .def("NbTrimmedCurve2d",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve2d),
-             R"#(None)#" )
-        .def("NbTrimmedCurve3d",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve3d),
-             R"#(None)#" )
-        .def("NbBSplibeSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBSplibeSurf),
-             R"#(None)#" )
-        .def("NbBezierSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBezierSurf),
-             R"#(None)#" )
-        .def("NbTrimSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimSurf),
-             R"#(None)#" )
-        .def("NbWireWitnSeam",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWitnSeam),
-             R"#(None)#" )
-        .def("NbWireWithSevSeams",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWithSevSeams),
-             R"#(None)#" )
-        .def("NbFaceWithSevWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaceWithSevWires),
-             R"#(None)#" )
-        .def("NbNoPCurve",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbNoPCurve),
-             R"#(None)#" )
-        .def("NbFreeFaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeFaces),
-             R"#(None)#" )
-        .def("NbFreeWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeWires),
-             R"#(None)#" )
-        .def("NbFreeEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeEdges),
-             R"#(None)#" )
-        .def("NbSharedSolids",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedSolids),
-             R"#(None)#" )
-        .def("NbSharedShells",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedShells),
-             R"#(None)#" )
-        .def("NbSharedFaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFaces),
-             R"#(None)#" )
-        .def("NbSharedWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedWires),
-             R"#(None)#" )
-        .def("NbSharedFreeWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeWires),
-             R"#(None)#" )
-        .def("NbSharedFreeEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeEdges),
-             R"#(None)#" )
-        .def("NbSharedEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedEdges),
-             R"#(None)#" )
-        .def("NbSharedVertices",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedVertices),
-             R"#(None)#" )
-        .def("BigSplineSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::BigSplineSec),
-             R"#(None)#" )
-        .def("IndirectSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::IndirectSec),
-             R"#(None)#" )
-        .def("OffsetSurfaceSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetSurfaceSec),
-             R"#(None)#" )
-        .def("Trimmed3dSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed3dSec),
-             R"#(None)#" )
-        .def("OffsetCurveSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetCurveSec),
-             R"#(None)#" )
-        .def("Trimmed2dSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed2dSec),
-             R"#(None)#" )
-        .def("NbSolids",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolids),
-             R"#(None)#" )
-        .def("NbShells",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbShells),
-             R"#(None)#" )
-        .def("NbFaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaces),
-             R"#(None)#" )
-        .def("NbWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWires),
-             R"#(None)#" )
-        .def("NbEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbEdges),
-             R"#(None)#" )
-        .def("NbVertices",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbVertices),
-             R"#(None)#" )
-        .def("NbSolidsWithVoids",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSolidsWithVoids),
-             R"#(None)#" )
-        .def("NbBigSplines",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBigSplines),
-             R"#(None)#" )
-        .def("NbC0Surfaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Surfaces),
-             R"#(None)#" )
-        .def("NbC0Curves",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbC0Curves),
-             R"#(None)#" )
-        .def("NbOffsetSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetSurf),
-             R"#(None)#" )
-        .def("NbIndirectSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbIndirectSurf),
-             R"#(None)#" )
-        .def("NbOffsetCurves",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbOffsetCurves),
-             R"#(None)#" )
-        .def("NbTrimmedCurve2d",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve2d),
-             R"#(None)#" )
-        .def("NbTrimmedCurve3d",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimmedCurve3d),
-             R"#(None)#" )
-        .def("NbBSplibeSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBSplibeSurf),
-             R"#(None)#" )
-        .def("NbBezierSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbBezierSurf),
-             R"#(None)#" )
-        .def("NbTrimSurf",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbTrimSurf),
-             R"#(None)#" )
-        .def("NbWireWitnSeam",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWitnSeam),
-             R"#(None)#" )
-        .def("NbWireWithSevSeams",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbWireWithSevSeams),
-             R"#(None)#" )
-        .def("NbFaceWithSevWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFaceWithSevWires),
-             R"#(None)#" )
-        .def("NbNoPCurve",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbNoPCurve),
-             R"#(None)#" )
-        .def("NbFreeFaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeFaces),
-             R"#(None)#" )
-        .def("NbFreeWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeWires),
-             R"#(None)#" )
-        .def("NbFreeEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbFreeEdges),
-             R"#(None)#" )
-        .def("NbSharedSolids",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedSolids),
-             R"#(None)#" )
-        .def("NbSharedShells",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedShells),
-             R"#(None)#" )
-        .def("NbSharedFaces",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFaces),
-             R"#(None)#" )
-        .def("NbSharedWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedWires),
-             R"#(None)#" )
-        .def("NbSharedFreeWires",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeWires),
-             R"#(None)#" )
-        .def("NbSharedFreeEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedFreeEdges),
-             R"#(None)#" )
-        .def("NbSharedEdges",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedEdges),
-             R"#(None)#" )
-        .def("NbSharedVertices",
-             (Standard_Integer (ShapeAnalysis_ShapeContents::*)() const) static_cast<Standard_Integer (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::NbSharedVertices),
-             R"#(None)#" )
-        .def("BigSplineSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::BigSplineSec),
-             R"#(None)#" )
-        .def("IndirectSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::IndirectSec),
-             R"#(None)#" )
-        .def("OffsetSurfaceSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetSurfaceSec),
-             R"#(None)#" )
-        .def("Trimmed3dSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed3dSec),
-             R"#(None)#" )
-        .def("OffsetCurveSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::OffsetCurveSec),
-             R"#(None)#" )
-        .def("Trimmed2dSec",
-             (opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const) static_cast<opencascade::handle<TopTools_HSequenceOfShape> (ShapeAnalysis_ShapeContents::*)() const>(&ShapeAnalysis_ShapeContents::Trimmed2dSec),
-             R"#(None)#" )
-        .def("ModifyBigSplineMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyBigSplineMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves has more than 8192 poles.)#" )
-        .def("ModifyIndirectMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyIndirectMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces on indirect surfaces)#" )
-        .def("ModifyOffestSurfaceMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffestSurfaceMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces on offset surfaces.)#" )
-        .def("ModifyTrimmed3dMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed3dMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if ist 3D curves are trimmed curves)#" )
-        .def("ModifyOffsetCurveMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyOffsetCurveMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its 3D curves and pcurves are offest curves)#" )
-        .def("ModifyTrimmed2dMode",
-             (Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() ) static_cast<Standard_Boolean & (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::ModifyTrimmed2dMode),
-             R"#(Returns (modifiable) the flag which defines whether to store faces with edges if its pcurves are trimmed curves)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/ShapeAnalysis_HSequenceOfFreeBounds.hxx
-// ./opencascade/ShapeAnalysis_FreeBoundsProperties.hxx
-// ./opencascade/ShapeAnalysis_Shell.hxx
-// ./opencascade/ShapeAnalysis_FreeBounds.hxx
-// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
-// ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
-// ./opencascade/ShapeAnalysis_Edge.hxx
-// ./opencascade/ShapeAnalysis.hxx
-// ./opencascade/ShapeAnalysis_DataMapIteratorOfDataMapOfShapeListOfReal.hxx
-// ./opencascade/ShapeAnalysis_TransferParametersProj.hxx
-// ./opencascade/ShapeAnalysis_ShapeTolerance.hxx
-// ./opencascade/ShapeAnalysis_WireOrder.hxx
 // ./opencascade/ShapeAnalysis_Surface.hxx
-// ./opencascade/ShapeAnalysis_TransferParameters.hxx
-// ./opencascade/ShapeAnalysis_Wire.hxx
-// ./opencascade/ShapeAnalysis_FreeBoundData.hxx
-// ./opencascade/ShapeAnalysis_BoxBndTree.hxx
-// ./opencascade/ShapeAnalysis_ShapeContents.hxx
 // ./opencascade/ShapeAnalysis_CheckSmallFace.hxx
 // ./opencascade/ShapeAnalysis_Geom.hxx
-// ./opencascade/ShapeAnalysis_WireVertex.hxx
+// ./opencascade/ShapeAnalysis_Edge.hxx
+// ./opencascade/ShapeAnalysis_ShapeContents.hxx
+// ./opencascade/ShapeAnalysis_FreeBoundsProperties.hxx
+// ./opencascade/ShapeAnalysis_DataMapIteratorOfDataMapOfShapeListOfReal.hxx
 // ./opencascade/ShapeAnalysis_Curve.hxx
+// ./opencascade/ShapeAnalysis_TransferParameters.hxx
+// ./opencascade/ShapeAnalysis_FreeBoundData.hxx
+// ./opencascade/ShapeAnalysis_FreeBounds.hxx
+// ./opencascade/ShapeAnalysis_WireOrder.hxx
+// ./opencascade/ShapeAnalysis_Wire.hxx
+// ./opencascade/ShapeAnalysis.hxx
+// ./opencascade/ShapeAnalysis_Shell.hxx
+// ./opencascade/ShapeAnalysis_TransferParametersProj.hxx
+// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
+// ./opencascade/ShapeAnalysis_BoxBndTree.hxx
+// ./opencascade/ShapeAnalysis_HSequenceOfFreeBounds.hxx
+// ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
+// ./opencascade/ShapeAnalysis_WireVertex.hxx
+// ./opencascade/ShapeAnalysis_ShapeTolerance.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ShapeAnalysis_HSequenceOfFreeBounds.hxx
-// ./opencascade/ShapeAnalysis_FreeBoundsProperties.hxx
-// ./opencascade/ShapeAnalysis_Shell.hxx
-// ./opencascade/ShapeAnalysis_FreeBounds.hxx
-// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
     register_template_NCollection_DataMap<TopoDS_Shape, TColStd_ListOfReal, TopTools_ShapeMapHasher>(m,"ShapeAnalysis_DataMapOfShapeListOfReal");  
-// ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
-    register_template_NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> >(m,"ShapeAnalysis_SequenceOfFreeBounds");  
-// ./opencascade/ShapeAnalysis_Edge.hxx
-// ./opencascade/ShapeAnalysis.hxx
-// ./opencascade/ShapeAnalysis_DataMapIteratorOfDataMapOfShapeListOfReal.hxx
-// ./opencascade/ShapeAnalysis_TransferParametersProj.hxx
-// ./opencascade/ShapeAnalysis_ShapeTolerance.hxx
-// ./opencascade/ShapeAnalysis_WireOrder.hxx
-// ./opencascade/ShapeAnalysis_Surface.hxx
-// ./opencascade/ShapeAnalysis_TransferParameters.hxx
-// ./opencascade/ShapeAnalysis_Wire.hxx
-// ./opencascade/ShapeAnalysis_FreeBoundData.hxx
-// ./opencascade/ShapeAnalysis_BoxBndTree.hxx
     register_template_NCollection_UBTree<Standard_Integer, Bnd_Box>(m,"ShapeAnalysis_BoxBndTree");  
-// ./opencascade/ShapeAnalysis_ShapeContents.hxx
-// ./opencascade/ShapeAnalysis_CheckSmallFace.hxx
-// ./opencascade/ShapeAnalysis_Geom.hxx
-// ./opencascade/ShapeAnalysis_WireVertex.hxx
-// ./opencascade/ShapeAnalysis_Curve.hxx
+    register_template_NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> >(m,"ShapeAnalysis_SequenceOfFreeBounds");  
 
 
 // exceptions

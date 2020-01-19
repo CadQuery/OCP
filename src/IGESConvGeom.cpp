@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,17 +13,17 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IGESGeom_CopiousData.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Ax1.hxx>
-#include <IGESGeom_TransformationMatrix.hxx>
 #include <IGESGeom_SplineCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <IGESGeom_SplineSurface.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <IGESConvGeom_GeomBuilder.hxx>
+#include <IGESGeom_CopiousData.hxx>
+#include <gp_Ax3.hxx>
+#include <gp_Ax2.hxx>
+#include <gp_Ax1.hxx>
+#include <IGESGeom_TransformationMatrix.hxx>
 
 // module includes
 #include <IGESConvGeom.hxx>
@@ -45,9 +48,36 @@ py::module m = static_cast<py::module>(main_module.attr("IGESConvGeom"));
 
 // classes
 
+    register_default_constructor<IGESConvGeom , shared_ptr<IGESConvGeom>>(m,"IGESConvGeom");
 
-    static_cast<py::class_<IGESConvGeom_GeomBuilder ,std::unique_ptr<IGESConvGeom_GeomBuilder>  >>(m.attr("IGESConvGeom_GeomBuilder"))
+    static_cast<py::class_<IGESConvGeom , shared_ptr<IGESConvGeom>  >>(m.attr("IGESConvGeom"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("SplineCurveFromIGES_s",
+                    (Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineCurve> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineCurve> &  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineCurve> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineCurve> &  ) >(&IGESConvGeom::SplineCurveFromIGES),
+                    R"#(basic tool to build curves from IGESGeom (arrays of points, Transformations, evaluation of points in a datum) Converts a SplineCurve from IGES to a BSplineCurve from CasCade <epscoef> gives tolerance to consider coefficient to be nul <epsgeom> gives tolerance to consider poles to be equal The returned value is a status with these possible values : - 0 OK, done - 1 the result is not guaranteed to be C0 (with <epsgeom>) - 2 SplineType not processed (allowed : max 3) (no result produced) - 3 error during creation of control points (no result produced) - 4 polynomial equation is not correct (no result produced) - 5 less than one segment (no result produced))#"  , py::arg("igesent"),  py::arg("epscoef"),  py::arg("epsgeom"),  py::arg("result"))
+        .def_static("IncreaseCurveContinuity_s",
+                    (Standard_Integer (*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) >(&IGESConvGeom::IncreaseCurveContinuity),
+                    R"#(Tries to increase curve continuity with tolerance <epsgeom> <continuity> is the new desired continuity, can be 1 or 2 (more than 2 is considered as 2). Returns the new maximum continuity obtained on all knots. Remark that, for instance with <continuity> = 2, even if not all the knots can be passed to C2, all knots which can be are.)#"  , py::arg("curve"),  py::arg("epsgeom"),  py::arg("continuity")=static_cast<const Standard_Integer>(2))
+        .def_static("IncreaseCurveContinuity_s",
+                    (Standard_Integer (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) >(&IGESConvGeom::IncreaseCurveContinuity),
+                    R"#(None)#"  , py::arg("curve"),  py::arg("epsgeom"),  py::arg("continuity")=static_cast<const Standard_Integer>(2))
+        .def_static("SplineSurfaceFromIGES_s",
+                    (Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineSurface> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineSurface> &  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineSurface> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineSurface> &  ) >(&IGESConvGeom::SplineSurfaceFromIGES),
+                    R"#(Converts a SplineSurface from IGES to a BSplineSurface from CasCade <epscoef> gives tolerance to consider coefficient to be nul <epsgeom> gives tolerance to consider poles to be equal The returned value is a status with these possible values : - 0 OK, done - 1 the result is not guaranteed to be C0 (with <epsgeom>) - 2 degree is not compatible with code boundary type (warning) but C0 is OK - 3 idem but C0 is not guaranteed (warning) - 4 degree has been determined to be nul, either in U or V (no result produced) - 5 less than one segment in U or V (no result produced))#"  , py::arg("igesent"),  py::arg("epscoef"),  py::arg("epsgeom"),  py::arg("result"))
+        .def_static("IncreaseSurfaceContinuity_s",
+                    (Standard_Integer (*)( const opencascade::handle<Geom_BSplineSurface> & ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Geom_BSplineSurface> & ,  const Standard_Real ,  const Standard_Integer  ) >(&IGESConvGeom::IncreaseSurfaceContinuity),
+                    R"#(Tries to increase Surface continuity with tolerance <epsgeom> <continuity> is the new desired continuity, can be 1 or 2 (more than 2 is considered as 2). Returns the new maximum continuity obtained on all knots. Remark that, for instance with <continuity> = 2, even if not all the knots can be passed to C2, all knots which can be are.)#"  , py::arg("surface"),  py::arg("epsgeom"),  py::arg("continuity")=static_cast<const Standard_Integer>(2))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IGESConvGeom_GeomBuilder , shared_ptr<IGESConvGeom_GeomBuilder>  >>(m.attr("IGESConvGeom_GeomBuilder"))
         .def(py::init<  >()  )
+    // methods
         .def("Clear",
              (void (IGESConvGeom_GeomBuilder::*)() ) static_cast<void (IGESConvGeom_GeomBuilder::*)() >(&IGESConvGeom_GeomBuilder::Clear),
              R"#(Clears list of Points/Vectors and data about Transformation)#" )
@@ -93,43 +123,26 @@ py::module m = static_cast<py::module>(main_module.attr("IGESConvGeom"));
         .def("IsZOnly",
              (Standard_Boolean (IGESConvGeom_GeomBuilder::*)() const) static_cast<Standard_Boolean (IGESConvGeom_GeomBuilder::*)() const>(&IGESConvGeom_GeomBuilder::IsZOnly),
              R"#(Returns True if the Position corresponds to a Z-Displacement, i.e. is a Translation only, and only on Z Remark : Identity will answer True)#" )
-        .def("EvalXYZ",
-             (void (IGESConvGeom_GeomBuilder::*)( const gp_XYZ & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IGESConvGeom_GeomBuilder::*)( const gp_XYZ & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&IGESConvGeom_GeomBuilder::EvalXYZ),
-             R"#(Evaluates a XYZ value in the Position already defined. Returns the transformed coordinates. For a 2D definition, X,Y will then be used to define a XY and Z will be regarded as a Z Displacement (can be ignored))#"  , py::arg("val"),  py::arg("X"),  py::arg("Y"),  py::arg("Z"))
         .def("MakeTransformation",
              (opencascade::handle<IGESGeom_TransformationMatrix> (IGESConvGeom_GeomBuilder::*)( const Standard_Real  ) const) static_cast<opencascade::handle<IGESGeom_TransformationMatrix> (IGESConvGeom_GeomBuilder::*)( const Standard_Real  ) const>(&IGESConvGeom_GeomBuilder::MakeTransformation),
              R"#(Returns the IGES Transformation which corresponds to the Position. Even if it is an Identity : IsIdentity should be tested first. <unit> is the unit value in which the model is created : it is used to convert translation part)#"  , py::arg("unit")=static_cast<const Standard_Real>(1))
-;
-
-    register_default_constructor<IGESConvGeom ,std::unique_ptr<IGESConvGeom>>(m,"IGESConvGeom");
-
-    static_cast<py::class_<IGESConvGeom ,std::unique_ptr<IGESConvGeom>  >>(m.attr("IGESConvGeom"))
-        .def_static("SplineCurveFromIGES_s",
-                    (Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineCurve> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineCurve> &  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineCurve> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineCurve> &  ) >(&IGESConvGeom::SplineCurveFromIGES),
-                    R"#(basic tool to build curves from IGESGeom (arrays of points, Transformations, evaluation of points in a datum) Converts a SplineCurve from IGES to a BSplineCurve from CasCade <epscoef> gives tolerance to consider coefficient to be nul <epsgeom> gives tolerance to consider poles to be equal The returned value is a status with these possible values : - 0 OK, done - 1 the result is not guaranteed to be C0 (with <epsgeom>) - 2 SplineType not processed (allowed : max 3) (no result produced) - 3 error during creation of control points (no result produced) - 4 polynomial equation is not correct (no result produced) - 5 less than one segment (no result produced))#"  , py::arg("igesent"),  py::arg("epscoef"),  py::arg("epsgeom"),  py::arg("result"))
-        .def_static("IncreaseCurveContinuity_s",
-                    (Standard_Integer (*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Geom_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) >(&IGESConvGeom::IncreaseCurveContinuity),
-                    R"#(Tries to increase curve continuity with tolerance <epsgeom> <continuity> is the new desired continuity, can be 1 or 2 (more than 2 is considered as 2). Returns the new maximum continuity obtained on all knots. Remark that, for instance with <continuity> = 2, even if not all the knots can be passed to C2, all knots which can be are.)#"  , py::arg("curve"),  py::arg("epsgeom"),  py::arg("continuity")=static_cast<const Standard_Integer>(2))
-        .def_static("IncreaseCurveContinuity_s",
-                    (Standard_Integer (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real ,  const Standard_Integer  ) >(&IGESConvGeom::IncreaseCurveContinuity),
-                    R"#(None)#"  , py::arg("curve"),  py::arg("epsgeom"),  py::arg("continuity")=static_cast<const Standard_Integer>(2))
-        .def_static("SplineSurfaceFromIGES_s",
-                    (Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineSurface> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineSurface> &  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<IGESGeom_SplineSurface> & ,  const Standard_Real ,  const Standard_Real ,  opencascade::handle<Geom_BSplineSurface> &  ) >(&IGESConvGeom::SplineSurfaceFromIGES),
-                    R"#(Converts a SplineSurface from IGES to a BSplineSurface from CasCade <epscoef> gives tolerance to consider coefficient to be nul <epsgeom> gives tolerance to consider poles to be equal The returned value is a status with these possible values : - 0 OK, done - 1 the result is not guaranteed to be C0 (with <epsgeom>) - 2 degree is not compatible with code boundary type (warning) but C0 is OK - 3 idem but C0 is not guaranteed (warning) - 4 degree has been determined to be nul, either in U or V (no result produced) - 5 less than one segment in U or V (no result produced))#"  , py::arg("igesent"),  py::arg("epscoef"),  py::arg("epsgeom"),  py::arg("result"))
-        .def_static("IncreaseSurfaceContinuity_s",
-                    (Standard_Integer (*)( const opencascade::handle<Geom_BSplineSurface> & ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Geom_BSplineSurface> & ,  const Standard_Real ,  const Standard_Integer  ) >(&IGESConvGeom::IncreaseSurfaceContinuity),
-                    R"#(Tries to increase Surface continuity with tolerance <epsgeom> <continuity> is the new desired continuity, can be 1 or 2 (more than 2 is considered as 2). Returns the new maximum continuity obtained on all knots. Remark that, for instance with <continuity> = 2, even if not all the knots can be passed to C2, all knots which can be are.)#"  , py::arg("surface"),  py::arg("epsgeom"),  py::arg("continuity")=static_cast<const Standard_Integer>(2))
+    // methods using call by reference i.s.o. return
+        .def("EvalXYZ",
+             []( IGESConvGeom_GeomBuilder &self , const gp_XYZ & val ){ Standard_Real  X; Standard_Real  Y; Standard_Real  Z; self.EvalXYZ(val,X,Y,Z); return std::make_tuple(X,Y,Z); },
+             R"#(Evaluates a XYZ value in the Position already defined. Returns the transformed coordinates. For a 2D definition, X,Y will then be used to define a XY and Z will be regarded as a Z Displacement (can be ignored))#"  , py::arg("val"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/IGESConvGeom_GeomBuilder.hxx
 // ./opencascade/IGESConvGeom.hxx
+// ./opencascade/IGESConvGeom_GeomBuilder.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/IGESConvGeom_GeomBuilder.hxx
-// ./opencascade/IGESConvGeom.hxx
 
 
 // exceptions

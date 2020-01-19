@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -46,52 +49,12 @@ py::module m = static_cast<py::module>(main_module.attr("GccEnt"));
 
 // classes
 
+    register_default_constructor<GccEnt , shared_ptr<GccEnt>>(m,"GccEnt");
 
-    static_cast<py::class_<GccEnt_QualifiedCirc ,std::unique_ptr<GccEnt_QualifiedCirc>  >>(m.attr("GccEnt_QualifiedCirc"))
-        .def(py::init< const gp_Circ2d &,const GccEnt_Position >()  , py::arg("Qualified"),  py::arg("Qualifier") )
-        .def("Qualified",
-             (gp_Circ2d (GccEnt_QualifiedCirc::*)() const) static_cast<gp_Circ2d (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::Qualified),
-             R"#(Returns a 2D circle to which the qualifier is assigned.)#" )
-        .def("Qualifier",
-             (GccEnt_Position (GccEnt_QualifiedCirc::*)() const) static_cast<GccEnt_Position (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::Qualifier),
-             R"#(Returns - the qualifier of this qualified circle, if it is enclosing, enclosed or outside, or - GccEnt_noqualifier if it is unqualified.)#" )
-        .def("IsUnqualified",
-             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsUnqualified),
-             R"#(Returns true if the Circ2d is Unqualified and false in the other cases.)#" )
-        .def("IsEnclosing",
-             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsEnclosing),
-             R"#(Returns true if the solution computed by a construction algorithm using this qualified circle encloses the circle.)#" )
-        .def("IsEnclosed",
-             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsEnclosed),
-             R"#(Returns true if the solution computed by a construction algorithm using this qualified circle is enclosed by the circle.)#" )
-        .def("IsOutside",
-             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsOutside),
-             R"#(Returns true if both the solution computed by a construction algorithm using this qualified circle and the circle are external to one another.)#" )
-;
-
-
-    static_cast<py::class_<GccEnt_QualifiedLin ,std::unique_ptr<GccEnt_QualifiedLin>  >>(m.attr("GccEnt_QualifiedLin"))
-        .def(py::init< const gp_Lin2d &,const GccEnt_Position >()  , py::arg("Qualified"),  py::arg("Qualifier") )
-        .def("Qualified",
-             (gp_Lin2d (GccEnt_QualifiedLin::*)() const) static_cast<gp_Lin2d (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::Qualified),
-             R"#(Returns a 2D line to which the qualifier is assigned.)#" )
-        .def("Qualifier",
-             (GccEnt_Position (GccEnt_QualifiedLin::*)() const) static_cast<GccEnt_Position (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::Qualifier),
-             R"#(Returns the qualifier of this qualified line, if it is "enclosed" or "outside", or - GccEnt_noqualifier if it is unqualified.)#" )
-        .def("IsUnqualified",
-             (Standard_Boolean (GccEnt_QualifiedLin::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::IsUnqualified),
-             R"#(Returns true if the solution is unqualified and false in the other cases.)#" )
-        .def("IsEnclosed",
-             (Standard_Boolean (GccEnt_QualifiedLin::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::IsEnclosed),
-             R"#(Returns true if the solution is Enclosed in the Lin2d and false in the other cases.)#" )
-        .def("IsOutside",
-             (Standard_Boolean (GccEnt_QualifiedLin::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::IsOutside),
-             R"#(Returns true if the solution is Outside the Lin2d and false in the other cases.)#" )
-;
-
-    register_default_constructor<GccEnt ,std::unique_ptr<GccEnt>>(m,"GccEnt");
-
-    static_cast<py::class_<GccEnt ,std::unique_ptr<GccEnt>  >>(m.attr("GccEnt"))
+    static_cast<py::class_<GccEnt , shared_ptr<GccEnt>  >>(m.attr("GccEnt"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Print_s",
                     (Standard_OStream & (*)( const GccEnt_Position ,  std::ostream &  ) ) static_cast<Standard_OStream & (*)( const GccEnt_Position ,  std::ostream &  ) >(&GccEnt::Print),
                     R"#(Prints the name of Position type as a String on the Stream.)#"  , py::arg("thePosition"),  py::arg("theStream"))
@@ -125,26 +88,78 @@ py::module m = static_cast<py::module>(main_module.attr("GccEnt"));
         .def_static("Outside_s",
                     (GccEnt_QualifiedCirc (*)( const gp_Circ2d &  ) ) static_cast<GccEnt_QualifiedCirc (*)( const gp_Circ2d &  ) >(&GccEnt::Outside),
                     R"#(Constructs a qualified circle so that the solution computed by a construction algorithm using the qualified circle or line and the circle or line are external to one another.)#"  , py::arg("Obj"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<GccEnt_QualifiedCirc , shared_ptr<GccEnt_QualifiedCirc>  >>(m.attr("GccEnt_QualifiedCirc"))
+        .def(py::init< const gp_Circ2d &,const GccEnt_Position >()  , py::arg("Qualified"),  py::arg("Qualifier") )
+    // methods
+        .def("Qualified",
+             (gp_Circ2d (GccEnt_QualifiedCirc::*)() const) static_cast<gp_Circ2d (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::Qualified),
+             R"#(Returns a 2D circle to which the qualifier is assigned.)#" )
+        .def("Qualifier",
+             (GccEnt_Position (GccEnt_QualifiedCirc::*)() const) static_cast<GccEnt_Position (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::Qualifier),
+             R"#(Returns - the qualifier of this qualified circle, if it is enclosing, enclosed or outside, or - GccEnt_noqualifier if it is unqualified.)#" )
+        .def("IsUnqualified",
+             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsUnqualified),
+             R"#(Returns true if the Circ2d is Unqualified and false in the other cases.)#" )
+        .def("IsEnclosing",
+             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsEnclosing),
+             R"#(Returns true if the solution computed by a construction algorithm using this qualified circle encloses the circle.)#" )
+        .def("IsEnclosed",
+             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsEnclosed),
+             R"#(Returns true if the solution computed by a construction algorithm using this qualified circle is enclosed by the circle.)#" )
+        .def("IsOutside",
+             (Standard_Boolean (GccEnt_QualifiedCirc::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::IsOutside),
+             R"#(Returns true if both the solution computed by a construction algorithm using this qualified circle and the circle are external to one another.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<GccEnt_QualifiedLin , shared_ptr<GccEnt_QualifiedLin>  >>(m.attr("GccEnt_QualifiedLin"))
+        .def(py::init< const gp_Lin2d &,const GccEnt_Position >()  , py::arg("Qualified"),  py::arg("Qualifier") )
+    // methods
+        .def("Qualified",
+             (gp_Lin2d (GccEnt_QualifiedLin::*)() const) static_cast<gp_Lin2d (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::Qualified),
+             R"#(Returns a 2D line to which the qualifier is assigned.)#" )
+        .def("Qualifier",
+             (GccEnt_Position (GccEnt_QualifiedLin::*)() const) static_cast<GccEnt_Position (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::Qualifier),
+             R"#(Returns the qualifier of this qualified line, if it is "enclosed" or "outside", or - GccEnt_noqualifier if it is unqualified.)#" )
+        .def("IsUnqualified",
+             (Standard_Boolean (GccEnt_QualifiedLin::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::IsUnqualified),
+             R"#(Returns true if the solution is unqualified and false in the other cases.)#" )
+        .def("IsEnclosed",
+             (Standard_Boolean (GccEnt_QualifiedLin::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::IsEnclosed),
+             R"#(Returns true if the solution is Enclosed in the Lin2d and false in the other cases.)#" )
+        .def("IsOutside",
+             (Standard_Boolean (GccEnt_QualifiedLin::*)() const) static_cast<Standard_Boolean (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::IsOutside),
+             R"#(Returns true if the solution is Outside the Lin2d and false in the other cases.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/GccEnt.hxx
+// ./opencascade/GccEnt_QualifiedLin.hxx
 // ./opencascade/GccEnt_QualifiedCirc.hxx
 // ./opencascade/GccEnt_BadQualifier.hxx
 // ./opencascade/GccEnt_Array1OfPosition.hxx
 // ./opencascade/GccEnt_Position.hxx
-// ./opencascade/GccEnt_QualifiedLin.hxx
-// ./opencascade/GccEnt.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/GccEnt_QualifiedCirc.hxx
-// ./opencascade/GccEnt_BadQualifier.hxx
-// ./opencascade/GccEnt_Array1OfPosition.hxx
     register_template_NCollection_Array1<GccEnt_Position>(m,"GccEnt_Array1OfPosition");  
-// ./opencascade/GccEnt_Position.hxx
-// ./opencascade/GccEnt_QualifiedLin.hxx
-// ./opencascade/GccEnt.hxx
 
 
 // exceptions

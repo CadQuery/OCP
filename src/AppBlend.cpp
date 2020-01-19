@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -37,7 +40,6 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
         
         // public pure virtual
         Standard_Boolean IsDone() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,AppBlend_Approx,IsDone,) };
-        void SurfShape(Standard_Integer & UDegree,Standard_Integer & VDegree,Standard_Integer & NbUPoles,Standard_Integer & NbVPoles,Standard_Integer & NbUKnots,Standard_Integer & NbVKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,SurfShape,UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots) };
         void Surface(NCollection_Array2<gp_Pnt> & TPoles,NCollection_Array2<Standard_Real> & TWeights,NCollection_Array1<Standard_Real> & TUKnots,NCollection_Array1<Standard_Real> & TVKnots,NCollection_Array1<Standard_Integer> & TUMults,NCollection_Array1<Standard_Integer> & TVMults) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Surface,TPoles,TWeights,TUKnots,TVKnots,TUMults,TVMults) };
         Standard_Integer UDegree() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,UDegree,) };
         Standard_Integer VDegree() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,VDegree,) };
@@ -48,14 +50,15 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
         const TColStd_Array1OfInteger & SurfUMults() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfInteger &,AppBlend_Approx,SurfUMults,) };
         const TColStd_Array1OfInteger & SurfVMults() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfInteger &,AppBlend_Approx,SurfVMults,) };
         Standard_Integer NbCurves2d() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,NbCurves2d,) };
-        void Curves2dShape(Standard_Integer & Degree,Standard_Integer & NbPoles,Standard_Integer & NbKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Curves2dShape,Degree,NbPoles,NbKnots) };
         void Curve2d(const Standard_Integer Index,NCollection_Array1<gp_Pnt2d> & TPoles,NCollection_Array1<Standard_Real> & TKnots,NCollection_Array1<Standard_Integer> & TMults) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Curve2d,Index,TPoles,TKnots,TMults) };
         Standard_Integer Curves2dDegree() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,AppBlend_Approx,Curves2dDegree,) };
         const TColgp_Array1OfPnt2d & Curve2dPoles(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(const TColgp_Array1OfPnt2d &,AppBlend_Approx,Curve2dPoles,Index) };
         const TColStd_Array1OfReal & Curves2dKnots() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfReal &,AppBlend_Approx,Curves2dKnots,) };
         const TColStd_Array1OfInteger & Curves2dMults() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_Array1OfInteger &,AppBlend_Approx,Curves2dMults,) };
-        void TolReached(Standard_Real & Tol3d,Standard_Real & Tol2d) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,TolReached,Tol3d,Tol2d) };
         Standard_Real TolCurveOnSurf(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,AppBlend_Approx,TolCurveOnSurf,Index) };
+        void SurfShape(Standard_Integer & UDegree,Standard_Integer & VDegree,Standard_Integer & NbUPoles,Standard_Integer & NbVPoles,Standard_Integer & NbUKnots,Standard_Integer & NbVKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,SurfShape,UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots) };
+        void Curves2dShape(Standard_Integer & Degree,Standard_Integer & NbPoles,Standard_Integer & NbKnots) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Curves2dShape,Degree,NbPoles,NbKnots) };
+        void TolReached(Standard_Real & Tol3d,Standard_Real & Tol2d) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,TolReached,Tol3d,Tol2d) };
         
         
         // protected pure virtual
@@ -68,13 +71,11 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
 // classes
 
 
-    static_cast<py::class_<AppBlend_Approx ,std::unique_ptr<AppBlend_Approx> ,Py_AppBlend_Approx >>(m.attr("AppBlend_Approx"))
+    static_cast<py::class_<AppBlend_Approx , shared_ptr<AppBlend_Approx> ,Py_AppBlend_Approx >>(m.attr("AppBlend_Approx"))
+    // methods
         .def("IsDone",
              (Standard_Boolean (AppBlend_Approx::*)() const) static_cast<Standard_Boolean (AppBlend_Approx::*)() const>(&AppBlend_Approx::IsDone),
              R"#(None)#" )
-        .def("SurfShape",
-             (void (AppBlend_Approx::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (AppBlend_Approx::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const>(&AppBlend_Approx::SurfShape),
-             R"#(None)#"  , py::arg("UDegree"),  py::arg("VDegree"),  py::arg("NbUPoles"),  py::arg("NbVPoles"),  py::arg("NbUKnots"),  py::arg("NbVKnots"))
         .def("Surface",
              (void (AppBlend_Approx::*)( NCollection_Array2<gp_Pnt> & ,  NCollection_Array2<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> & ,  NCollection_Array1<Standard_Integer> &  ) const) static_cast<void (AppBlend_Approx::*)( NCollection_Array2<gp_Pnt> & ,  NCollection_Array2<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> & ,  NCollection_Array1<Standard_Integer> &  ) const>(&AppBlend_Approx::Surface),
              R"#(None)#"  , py::arg("TPoles"),  py::arg("TWeights"),  py::arg("TUKnots"),  py::arg("TVKnots"),  py::arg("TUMults"),  py::arg("TVMults"))
@@ -105,9 +106,6 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
         .def("NbCurves2d",
              (Standard_Integer (AppBlend_Approx::*)() const) static_cast<Standard_Integer (AppBlend_Approx::*)() const>(&AppBlend_Approx::NbCurves2d),
              R"#(None)#" )
-        .def("Curves2dShape",
-             (void (AppBlend_Approx::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const) static_cast<void (AppBlend_Approx::*)( Standard_Integer & ,  Standard_Integer & ,  Standard_Integer &  ) const>(&AppBlend_Approx::Curves2dShape),
-             R"#(None)#"  , py::arg("Degree"),  py::arg("NbPoles"),  py::arg("NbKnots"))
         .def("Curve2d",
              (void (AppBlend_Approx::*)( const Standard_Integer ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> &  ) const) static_cast<void (AppBlend_Approx::*)( const Standard_Integer ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> &  ) const>(&AppBlend_Approx::Curve2d),
              R"#(None)#"  , py::arg("Index"),  py::arg("TPoles"),  py::arg("TKnots"),  py::arg("TMults"))
@@ -123,12 +121,23 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
         .def("Curves2dMults",
              (const TColStd_Array1OfInteger & (AppBlend_Approx::*)() const) static_cast<const TColStd_Array1OfInteger & (AppBlend_Approx::*)() const>(&AppBlend_Approx::Curves2dMults),
              R"#(None)#" )
-        .def("TolReached",
-             (void (AppBlend_Approx::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (AppBlend_Approx::*)( Standard_Real & ,  Standard_Real &  ) const>(&AppBlend_Approx::TolReached),
-             R"#(None)#"  , py::arg("Tol3d"),  py::arg("Tol2d"))
         .def("TolCurveOnSurf",
              (Standard_Real (AppBlend_Approx::*)( const Standard_Integer  ) const) static_cast<Standard_Real (AppBlend_Approx::*)( const Standard_Integer  ) const>(&AppBlend_Approx::TolCurveOnSurf),
              R"#(None)#"  , py::arg("Index"))
+    // methods using call by reference i.s.o. return
+        .def("SurfShape",
+             []( AppBlend_Approx &self   ){ Standard_Integer  UDegree; Standard_Integer  VDegree; Standard_Integer  NbUPoles; Standard_Integer  NbVPoles; Standard_Integer  NbUKnots; Standard_Integer  NbVKnots; self.SurfShape(UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots); return std::make_tuple(UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots); },
+             R"#(None)#" )
+        .def("Curves2dShape",
+             []( AppBlend_Approx &self   ){ Standard_Integer  Degree; Standard_Integer  NbPoles; Standard_Integer  NbKnots; self.Curves2dShape(Degree,NbPoles,NbKnots); return std::make_tuple(Degree,NbPoles,NbKnots); },
+             R"#(None)#" )
+        .def("TolReached",
+             []( AppBlend_Approx &self   ){ Standard_Real  Tol3d; Standard_Real  Tol2d; self.TolReached(Tol3d,Tol2d); return std::make_tuple(Tol3d,Tol2d); },
+             R"#(None)#" )
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -137,7 +146,6 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
 // operators
 
 // register typdefs
-// ./opencascade/AppBlend_Approx.hxx
 
 
 // exceptions

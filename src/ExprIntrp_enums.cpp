@@ -11,6 +11,8 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
+#include <Expr_GeneralRelation.hxx>
+#include <ExprIntrp_Generator.hxx>
 #include <ExprIntrp_Generator.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <ExprIntrp_Generator.hxx>
@@ -18,8 +20,6 @@ namespace py = pybind11;
 #include <ExprIntrp_GenFct.hxx>
 #include <ExprIntrp_GenRel.hxx>
 #include <ExprIntrp_Analysis.hxx>
-#include <ExprIntrp_Generator.hxx>
-#include <Expr_GeneralRelation.hxx>
 
 // module includes
 #include <ExprIntrp.hxx>
@@ -41,12 +41,6 @@ namespace py = pybind11;
 #include <ExprIntrp_yaccintrf.hxx>
 
 // template related includes
-// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
-#include "NCollection.hxx"
-// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
-#include "NCollection.hxx"
-// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
-#include "NCollection.hxx"
 // ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
 #include "NCollection.hxx"
 // ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
@@ -56,6 +50,12 @@ namespace py = pybind11;
 // ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
 #include "NCollection.hxx"
 // ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
+#include "NCollection.hxx"
+// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
+#include "NCollection.hxx"
+// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
+#include "NCollection.hxx"
+// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
 #include "NCollection.hxx"
 
 
@@ -76,37 +76,20 @@ py::module m = main_module.def_submodule("ExprIntrp", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<ExprIntrp ,std::unique_ptr<ExprIntrp>  >(m,"ExprIntrp",R"#(Describes an interpreter for GeneralExpressions, GeneralFunctions, and GeneralRelations defined in package Expr.)#");
-    py::class_<ExprIntrp_Generator ,opencascade::handle<ExprIntrp_Generator>  , Standard_Transient >(m,"ExprIntrp_Generator",R"#(Implements general services for interpretation of expressions.Implements general services for interpretation of expressions.Implements general services for interpretation of expressions.)#");
-    py::class_<ExprIntrp_Analysis ,std::unique_ptr<ExprIntrp_Analysis>  >(m,"ExprIntrp_Analysis",R"#(None)#");
-    py::class_<ExprIntrp_GenFct ,opencascade::handle<ExprIntrp_GenFct>  , ExprIntrp_Generator >(m,"ExprIntrp_GenFct",R"#(Implements an interpreter for defining functions. All its functionnalities can be found in class GenExp.Implements an interpreter for defining functions. All its functionnalities can be found in class GenExp.Implements an interpreter for defining functions. All its functionnalities can be found in class GenExp.)#");
-    py::class_<ExprIntrp_GenExp ,opencascade::handle<ExprIntrp_GenExp>  , ExprIntrp_Generator >(m,"ExprIntrp_GenExp",R"#(This class permits, from a string, to create any kind of expression of package Expr by using built-in functions such as Sin,Cos, etc, and by creating variables.This class permits, from a string, to create any kind of expression of package Expr by using built-in functions such as Sin,Cos, etc, and by creating variables.This class permits, from a string, to create any kind of expression of package Expr by using built-in functions such as Sin,Cos, etc, and by creating variables.)#");
-    py::class_<ExprIntrp_GenRel ,opencascade::handle<ExprIntrp_GenRel>  , ExprIntrp_Generator >(m,"ExprIntrp_GenRel",R"#(Implements an interpreter for equations or system of equations made of expressions of package Expr.Implements an interpreter for equations or system of equations made of expressions of package Expr.Implements an interpreter for equations or system of equations made of expressions of package Expr.)#");
-
 // pre-register typdefs
-// ./opencascade/ExprIntrp.hxx
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralRelation.hxx
-// ./opencascade/ExprIntrp_yaccintrf.hxx
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralExpression.hxx
-// ./opencascade/ExprIntrp_SequenceOfNamedFunction.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<Expr_NamedFunction> >(m,"ExprIntrp_SequenceOfNamedFunction");  
-// ./opencascade/ExprIntrp_StackOfGeneralExpression.hxx
-    preregister_template_NCollection_List<opencascade::handle<Expr_GeneralExpression> >(m,"ExprIntrp_StackOfGeneralExpression");  
-// ./opencascade/ExprIntrp_StackOfGeneralRelation.hxx
     preregister_template_NCollection_List<opencascade::handle<Expr_GeneralRelation> >(m,"ExprIntrp_StackOfGeneralRelation");  
-// ./opencascade/ExprIntrp_ListIteratorOfStackOfGeneralFunction.hxx
-// ./opencascade/ExprIntrp_Analysis.hxx
-// ./opencascade/ExprIntrp_SequenceOfNamedExpression.hxx
     preregister_template_NCollection_Sequence<opencascade::handle<Expr_NamedExpression> >(m,"ExprIntrp_SequenceOfNamedExpression");  
-// ./opencascade/ExprIntrp_GenExp.hxx
-// ./opencascade/ExprIntrp_yaccanal.hxx
-// ./opencascade/ExprIntrp_GenFct.hxx
-// ./opencascade/ExprIntrp_Generator.hxx
-// ./opencascade/ExprIntrp_GenRel.hxx
-// ./opencascade/ExprIntrp_StackOfGeneralFunction.hxx
     preregister_template_NCollection_List<opencascade::handle<Expr_GeneralFunction> >(m,"ExprIntrp_StackOfGeneralFunction");  
-// ./opencascade/ExprIntrp_SyntaxError.hxx
+    preregister_template_NCollection_List<opencascade::handle<Expr_GeneralExpression> >(m,"ExprIntrp_StackOfGeneralExpression");  
+    preregister_template_NCollection_Sequence<opencascade::handle<Expr_NamedFunction> >(m,"ExprIntrp_SequenceOfNamedFunction");  
+
+// classes forward declarations only
+    py::class_<ExprIntrp , shared_ptr<ExprIntrp>  >(m,"ExprIntrp",R"#(Describes an interpreter for GeneralExpressions, GeneralFunctions, and GeneralRelations defined in package Expr.)#");
+    py::class_<ExprIntrp_Analysis , shared_ptr<ExprIntrp_Analysis>  >(m,"ExprIntrp_Analysis",R"#(None)#");
+    py::class_<ExprIntrp_Generator ,opencascade::handle<ExprIntrp_Generator>  , Standard_Transient >(m,"ExprIntrp_Generator",R"#(Implements general services for interpretation of expressions.Implements general services for interpretation of expressions.Implements general services for interpretation of expressions.)#");
+    py::class_<ExprIntrp_GenExp ,opencascade::handle<ExprIntrp_GenExp>  , ExprIntrp_Generator >(m,"ExprIntrp_GenExp",R"#(This class permits, from a string, to create any kind of expression of package Expr by using built-in functions such as Sin,Cos, etc, and by creating variables.This class permits, from a string, to create any kind of expression of package Expr by using built-in functions such as Sin,Cos, etc, and by creating variables.This class permits, from a string, to create any kind of expression of package Expr by using built-in functions such as Sin,Cos, etc, and by creating variables.)#");
+    py::class_<ExprIntrp_GenFct ,opencascade::handle<ExprIntrp_GenFct>  , ExprIntrp_Generator >(m,"ExprIntrp_GenFct",R"#(Implements an interpreter for defining functions. All its functionnalities can be found in class GenExp.Implements an interpreter for defining functions. All its functionnalities can be found in class GenExp.Implements an interpreter for defining functions. All its functionnalities can be found in class GenExp.)#");
+    py::class_<ExprIntrp_GenRel ,opencascade::handle<ExprIntrp_GenRel>  , ExprIntrp_Generator >(m,"ExprIntrp_GenRel",R"#(Implements an interpreter for equations or system of equations made of expressions of package Expr.Implements an interpreter for equations or system of equations made of expressions of package Expr.Implements an interpreter for equations or system of equations made of expressions of package Expr.)#");
 
 };
 

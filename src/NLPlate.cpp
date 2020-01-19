@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -31,11 +34,11 @@ namespace py = pybind11;
 #include <NLPlate_StackOfPlate.hxx>
 
 // template related includes
-// ./opencascade/NLPlate_StackOfPlate.hxx
-#include "NCollection.hxx"
-// ./opencascade/NLPlate_StackOfPlate.hxx
-#include "NCollection.hxx"
 // ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
+#include "NCollection.hxx"
+// ./opencascade/NLPlate_StackOfPlate.hxx
+#include "NCollection.hxx"
+// ./opencascade/NLPlate_StackOfPlate.hxx
 #include "NCollection.hxx"
 
 
@@ -71,48 +74,8 @@ py::module m = static_cast<py::module>(main_module.attr("NLPlate"));
 // classes
 
 
-    static_cast<py::class_<NLPlate_NLPlate ,std::unique_ptr<NLPlate_NLPlate>  >>(m.attr("NLPlate_NLPlate"))
-        .def(py::init< const opencascade::handle<Geom_Surface> & >()  , py::arg("InitialSurface") )
-        .def("Load",
-             (void (NLPlate_NLPlate::*)( const opencascade::handle<NLPlate_HGPPConstraint> &  ) ) static_cast<void (NLPlate_NLPlate::*)( const opencascade::handle<NLPlate_HGPPConstraint> &  ) >(&NLPlate_NLPlate::Load),
-             R"#(None)#"  , py::arg("GConst"))
-        .def("Solve",
-             (void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) >(&NLPlate_NLPlate::Solve),
-             R"#(None)#"  , py::arg("ord")=static_cast<const Standard_Integer>(2),  py::arg("InitialConsraintOrder")=static_cast<const Standard_Integer>(1))
-        .def("Solve2",
-             (void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) >(&NLPlate_NLPlate::Solve2),
-             R"#(None)#"  , py::arg("ord")=static_cast<const Standard_Integer>(2),  py::arg("InitialConsraintOrder")=static_cast<const Standard_Integer>(1))
-        .def("IncrementalSolve",
-             (void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean  ) >(&NLPlate_NLPlate::IncrementalSolve),
-             R"#(None)#"  , py::arg("ord")=static_cast<const Standard_Integer>(2),  py::arg("InitialConsraintOrder")=static_cast<const Standard_Integer>(1),  py::arg("NbIncrements")=static_cast<const Standard_Integer>(4),  py::arg("UVSliding")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("IsDone",
-             (Standard_Boolean (NLPlate_NLPlate::*)() const) static_cast<Standard_Boolean (NLPlate_NLPlate::*)() const>(&NLPlate_NLPlate::IsDone),
-             R"#(returns True if all has been correctly done.)#" )
-        .def("destroy",
-             (void (NLPlate_NLPlate::*)() ) static_cast<void (NLPlate_NLPlate::*)() >(&NLPlate_NLPlate::destroy),
-             R"#(None)#" )
-        .def("Init",
-             (void (NLPlate_NLPlate::*)() ) static_cast<void (NLPlate_NLPlate::*)() >(&NLPlate_NLPlate::Init),
-             R"#(reset the Plate in the initial state ( same as after Create((Surface)))#" )
-        .def("Evaluate",
-             (gp_XYZ (NLPlate_NLPlate::*)( const gp_XY &  ) const) static_cast<gp_XYZ (NLPlate_NLPlate::*)( const gp_XY &  ) const>(&NLPlate_NLPlate::Evaluate),
-             R"#(None)#"  , py::arg("point2d"))
-        .def("EvaluateDerivative",
-             (gp_XYZ (NLPlate_NLPlate::*)( const gp_XY & ,  const Standard_Integer ,  const Standard_Integer  ) const) static_cast<gp_XYZ (NLPlate_NLPlate::*)( const gp_XY & ,  const Standard_Integer ,  const Standard_Integer  ) const>(&NLPlate_NLPlate::EvaluateDerivative),
-             R"#(None)#"  , py::arg("point2d"),  py::arg("iu"),  py::arg("iv"))
-        .def("Continuity",
-             (Standard_Integer (NLPlate_NLPlate::*)() const) static_cast<Standard_Integer (NLPlate_NLPlate::*)() const>(&NLPlate_NLPlate::Continuity),
-             R"#(None)#" )
-        .def("ConstraintsSliding",
-             (void (NLPlate_NLPlate::*)( const Standard_Integer  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer  ) >(&NLPlate_NLPlate::ConstraintsSliding),
-             R"#(None)#"  , py::arg("NbIterations")=static_cast<const Standard_Integer>(3))
-        .def("MaxActiveConstraintOrder",
-             (Standard_Integer (NLPlate_NLPlate::*)() const) static_cast<Standard_Integer (NLPlate_NLPlate::*)() const>(&NLPlate_NLPlate::MaxActiveConstraintOrder),
-             R"#(None)#" )
-;
-
-
     static_cast<py::class_<NLPlate_HGPPConstraint ,opencascade::handle<NLPlate_HGPPConstraint> ,Py_NLPlate_HGPPConstraint , Standard_Transient >>(m.attr("NLPlate_HGPPConstraint"))
+    // methods
         .def("SetUVFreeSliding",
              (void (NLPlate_HGPPConstraint::*)( const Standard_Boolean  ) ) static_cast<void (NLPlate_HGPPConstraint::*)( const Standard_Boolean  ) >(&NLPlate_HGPPConstraint::SetUVFreeSliding),
              R"#(None)#"  , py::arg("UVFree"))
@@ -185,52 +148,70 @@ py::module m = static_cast<py::module>(main_module.attr("NLPlate"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (NLPlate_HGPPConstraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HGPPConstraint::*)() const>(&NLPlate_HGPPConstraint::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HGPPConstraint::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HGPPConstraint::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<NLPlate_HPG1Constraint ,opencascade::handle<NLPlate_HPG1Constraint>  , NLPlate_HGPPConstraint >>(m.attr("NLPlate_HPG1Constraint"))
-        .def(py::init< const gp_XY &,const Plate_D1 & >()  , py::arg("UV"),  py::arg("D1T") )
-        .def("SetIncrementalLoadAllowed",
-             (void (NLPlate_HPG1Constraint::*)( const Standard_Boolean  ) ) static_cast<void (NLPlate_HPG1Constraint::*)( const Standard_Boolean  ) >(&NLPlate_HPG1Constraint::SetIncrementalLoadAllowed),
-             R"#(None)#"  , py::arg("ILA"))
-        .def("SetOrientation",
-             (void (NLPlate_HPG1Constraint::*)( const Standard_Integer  ) ) static_cast<void (NLPlate_HPG1Constraint::*)( const Standard_Integer  ) >(&NLPlate_HPG1Constraint::SetOrientation),
-             R"#(None)#"  , py::arg("Orient")=static_cast<const Standard_Integer>(0))
-        .def("IncrementalLoadAllowed",
-             (Standard_Boolean (NLPlate_HPG1Constraint::*)() const) static_cast<Standard_Boolean (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::IncrementalLoadAllowed),
+    static_cast<py::class_<NLPlate_NLPlate , shared_ptr<NLPlate_NLPlate>  >>(m.attr("NLPlate_NLPlate"))
+        .def(py::init< const opencascade::handle<Geom_Surface> & >()  , py::arg("InitialSurface") )
+    // methods
+        .def("Load",
+             (void (NLPlate_NLPlate::*)( const opencascade::handle<NLPlate_HGPPConstraint> &  ) ) static_cast<void (NLPlate_NLPlate::*)( const opencascade::handle<NLPlate_HGPPConstraint> &  ) >(&NLPlate_NLPlate::Load),
+             R"#(None)#"  , py::arg("GConst"))
+        .def("Solve",
+             (void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) >(&NLPlate_NLPlate::Solve),
+             R"#(None)#"  , py::arg("ord")=static_cast<const Standard_Integer>(2),  py::arg("InitialConsraintOrder")=static_cast<const Standard_Integer>(1))
+        .def("Solve2",
+             (void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer  ) >(&NLPlate_NLPlate::Solve2),
+             R"#(None)#"  , py::arg("ord")=static_cast<const Standard_Integer>(2),  py::arg("InitialConsraintOrder")=static_cast<const Standard_Integer>(1))
+        .def("IncrementalSolve",
+             (void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean  ) >(&NLPlate_NLPlate::IncrementalSolve),
+             R"#(None)#"  , py::arg("ord")=static_cast<const Standard_Integer>(2),  py::arg("InitialConsraintOrder")=static_cast<const Standard_Integer>(1),  py::arg("NbIncrements")=static_cast<const Standard_Integer>(4),  py::arg("UVSliding")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("IsDone",
+             (Standard_Boolean (NLPlate_NLPlate::*)() const) static_cast<Standard_Boolean (NLPlate_NLPlate::*)() const>(&NLPlate_NLPlate::IsDone),
+             R"#(returns True if all has been correctly done.)#" )
+        .def("destroy",
+             (void (NLPlate_NLPlate::*)() ) static_cast<void (NLPlate_NLPlate::*)() >(&NLPlate_NLPlate::destroy),
              R"#(None)#" )
-        .def("ActiveOrder",
-             (Standard_Integer (NLPlate_HPG1Constraint::*)() const) static_cast<Standard_Integer (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::ActiveOrder),
+        .def("Init",
+             (void (NLPlate_NLPlate::*)() ) static_cast<void (NLPlate_NLPlate::*)() >(&NLPlate_NLPlate::Init),
+             R"#(reset the Plate in the initial state ( same as after Create((Surface)))#" )
+        .def("Evaluate",
+             (gp_XYZ (NLPlate_NLPlate::*)( const gp_XY &  ) const) static_cast<gp_XYZ (NLPlate_NLPlate::*)( const gp_XY &  ) const>(&NLPlate_NLPlate::Evaluate),
+             R"#(None)#"  , py::arg("point2d"))
+        .def("EvaluateDerivative",
+             (gp_XYZ (NLPlate_NLPlate::*)( const gp_XY & ,  const Standard_Integer ,  const Standard_Integer  ) const) static_cast<gp_XYZ (NLPlate_NLPlate::*)( const gp_XY & ,  const Standard_Integer ,  const Standard_Integer  ) const>(&NLPlate_NLPlate::EvaluateDerivative),
+             R"#(None)#"  , py::arg("point2d"),  py::arg("iu"),  py::arg("iv"))
+        .def("Continuity",
+             (Standard_Integer (NLPlate_NLPlate::*)() const) static_cast<Standard_Integer (NLPlate_NLPlate::*)() const>(&NLPlate_NLPlate::Continuity),
              R"#(None)#" )
-        .def("IsG0",
-             (Standard_Boolean (NLPlate_HPG1Constraint::*)() const) static_cast<Standard_Boolean (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::IsG0),
+        .def("ConstraintsSliding",
+             (void (NLPlate_NLPlate::*)( const Standard_Integer  ) ) static_cast<void (NLPlate_NLPlate::*)( const Standard_Integer  ) >(&NLPlate_NLPlate::ConstraintsSliding),
+             R"#(None)#"  , py::arg("NbIterations")=static_cast<const Standard_Integer>(3))
+        .def("MaxActiveConstraintOrder",
+             (Standard_Integer (NLPlate_NLPlate::*)() const) static_cast<Standard_Integer (NLPlate_NLPlate::*)() const>(&NLPlate_NLPlate::MaxActiveConstraintOrder),
              R"#(None)#" )
-        .def("Orientation",
-             (Standard_Integer (NLPlate_HPG1Constraint::*)() ) static_cast<Standard_Integer (NLPlate_HPG1Constraint::*)() >(&NLPlate_HPG1Constraint::Orientation),
-             R"#(None)#" )
-        .def("G1Target",
-             (const Plate_D1 & (NLPlate_HPG1Constraint::*)() const) static_cast<const Plate_D1 & (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::G1Target),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (NLPlate_HPG1Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG1Constraint::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG1Constraint::get_type_descriptor),
-                    R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<NLPlate_HPG0Constraint ,opencascade::handle<NLPlate_HPG0Constraint>  , NLPlate_HGPPConstraint >>(m.attr("NLPlate_HPG0Constraint"))
         .def(py::init< const gp_XY &,const gp_XYZ & >()  , py::arg("UV"),  py::arg("Value") )
+    // methods
         .def("SetUVFreeSliding",
              (void (NLPlate_HPG0Constraint::*)( const Standard_Boolean  ) ) static_cast<void (NLPlate_HPG0Constraint::*)( const Standard_Boolean  ) >(&NLPlate_HPG0Constraint::SetUVFreeSliding),
              R"#(None)#"  , py::arg("UVFree"))
@@ -255,17 +236,64 @@ py::module m = static_cast<py::module>(main_module.attr("NLPlate"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (NLPlate_HPG0Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG0Constraint::*)() const>(&NLPlate_HPG0Constraint::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG0Constraint::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG0Constraint::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<NLPlate_HPG1Constraint ,opencascade::handle<NLPlate_HPG1Constraint>  , NLPlate_HGPPConstraint >>(m.attr("NLPlate_HPG1Constraint"))
+        .def(py::init< const gp_XY &,const Plate_D1 & >()  , py::arg("UV"),  py::arg("D1T") )
+    // methods
+        .def("SetIncrementalLoadAllowed",
+             (void (NLPlate_HPG1Constraint::*)( const Standard_Boolean  ) ) static_cast<void (NLPlate_HPG1Constraint::*)( const Standard_Boolean  ) >(&NLPlate_HPG1Constraint::SetIncrementalLoadAllowed),
+             R"#(None)#"  , py::arg("ILA"))
+        .def("SetOrientation",
+             (void (NLPlate_HPG1Constraint::*)( const Standard_Integer  ) ) static_cast<void (NLPlate_HPG1Constraint::*)( const Standard_Integer  ) >(&NLPlate_HPG1Constraint::SetOrientation),
+             R"#(None)#"  , py::arg("Orient")=static_cast<const Standard_Integer>(0))
+        .def("IncrementalLoadAllowed",
+             (Standard_Boolean (NLPlate_HPG1Constraint::*)() const) static_cast<Standard_Boolean (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::IncrementalLoadAllowed),
+             R"#(None)#" )
+        .def("ActiveOrder",
+             (Standard_Integer (NLPlate_HPG1Constraint::*)() const) static_cast<Standard_Integer (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::ActiveOrder),
+             R"#(None)#" )
+        .def("IsG0",
+             (Standard_Boolean (NLPlate_HPG1Constraint::*)() const) static_cast<Standard_Boolean (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::IsG0),
+             R"#(None)#" )
+        .def("Orientation",
+             (Standard_Integer (NLPlate_HPG1Constraint::*)() ) static_cast<Standard_Integer (NLPlate_HPG1Constraint::*)() >(&NLPlate_HPG1Constraint::Orientation),
+             R"#(None)#" )
+        .def("G1Target",
+             (const Plate_D1 & (NLPlate_HPG1Constraint::*)() const) static_cast<const Plate_D1 & (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::G1Target),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (NLPlate_HPG1Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG1Constraint::*)() const>(&NLPlate_HPG1Constraint::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG1Constraint::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG1Constraint::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<NLPlate_HPG0G1Constraint ,opencascade::handle<NLPlate_HPG0G1Constraint>  , NLPlate_HPG0Constraint >>(m.attr("NLPlate_HPG0G1Constraint"))
         .def(py::init< const gp_XY &,const gp_XYZ &,const Plate_D1 & >()  , py::arg("UV"),  py::arg("Value"),  py::arg("D1T") )
+    // methods
         .def("SetOrientation",
              (void (NLPlate_HPG0G1Constraint::*)( const Standard_Integer  ) ) static_cast<void (NLPlate_HPG0G1Constraint::*)( const Standard_Integer  ) >(&NLPlate_HPG0G1Constraint::SetOrientation),
              R"#(None)#"  , py::arg("Orient")=static_cast<const Standard_Integer>(0))
@@ -281,17 +309,23 @@ py::module m = static_cast<py::module>(main_module.attr("NLPlate"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (NLPlate_HPG0G1Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG0G1Constraint::*)() const>(&NLPlate_HPG0G1Constraint::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG0G1Constraint::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG0G1Constraint::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<NLPlate_HPG2Constraint ,opencascade::handle<NLPlate_HPG2Constraint>  , NLPlate_HPG1Constraint >>(m.attr("NLPlate_HPG2Constraint"))
         .def(py::init< const gp_XY &,const Plate_D1 &,const Plate_D2 & >()  , py::arg("UV"),  py::arg("D1T"),  py::arg("D2T") )
+    // methods
         .def("ActiveOrder",
              (Standard_Integer (NLPlate_HPG2Constraint::*)() const) static_cast<Standard_Integer (NLPlate_HPG2Constraint::*)() const>(&NLPlate_HPG2Constraint::ActiveOrder),
              R"#(None)#" )
@@ -301,37 +335,23 @@ py::module m = static_cast<py::module>(main_module.attr("NLPlate"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (NLPlate_HPG2Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG2Constraint::*)() const>(&NLPlate_HPG2Constraint::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG2Constraint::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG2Constraint::get_type_descriptor),
                     R"#(None)#" )
-;
-
-
-    static_cast<py::class_<NLPlate_HPG3Constraint ,opencascade::handle<NLPlate_HPG3Constraint>  , NLPlate_HPG2Constraint >>(m.attr("NLPlate_HPG3Constraint"))
-        .def(py::init< const gp_XY &,const Plate_D1 &,const Plate_D2 &,const Plate_D3 & >()  , py::arg("UV"),  py::arg("D1T"),  py::arg("D2T"),  py::arg("D3T") )
-        .def("ActiveOrder",
-             (Standard_Integer (NLPlate_HPG3Constraint::*)() const) static_cast<Standard_Integer (NLPlate_HPG3Constraint::*)() const>(&NLPlate_HPG3Constraint::ActiveOrder),
-             R"#(None)#" )
-        .def("G3Target",
-             (const Plate_D3 & (NLPlate_HPG3Constraint::*)() const) static_cast<const Plate_D3 & (NLPlate_HPG3Constraint::*)() const>(&NLPlate_HPG3Constraint::G3Target),
-             R"#(None)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (NLPlate_HPG3Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG3Constraint::*)() const>(&NLPlate_HPG3Constraint::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG3Constraint::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG3Constraint::get_type_descriptor),
-                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<NLPlate_HPG0G2Constraint ,opencascade::handle<NLPlate_HPG0G2Constraint>  , NLPlate_HPG0G1Constraint >>(m.attr("NLPlate_HPG0G2Constraint"))
         .def(py::init< const gp_XY &,const gp_XYZ &,const Plate_D1 &,const Plate_D2 & >()  , py::arg("UV"),  py::arg("Value"),  py::arg("D1T"),  py::arg("D2T") )
+    // methods
         .def("ActiveOrder",
              (Standard_Integer (NLPlate_HPG0G2Constraint::*)() const) static_cast<Standard_Integer (NLPlate_HPG0G2Constraint::*)() const>(&NLPlate_HPG0G2Constraint::ActiveOrder),
              R"#(None)#" )
@@ -341,17 +361,49 @@ py::module m = static_cast<py::module>(main_module.attr("NLPlate"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (NLPlate_HPG0G2Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG0G2Constraint::*)() const>(&NLPlate_HPG0G2Constraint::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG0G2Constraint::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG0G2Constraint::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<NLPlate_HPG3Constraint ,opencascade::handle<NLPlate_HPG3Constraint>  , NLPlate_HPG2Constraint >>(m.attr("NLPlate_HPG3Constraint"))
+        .def(py::init< const gp_XY &,const Plate_D1 &,const Plate_D2 &,const Plate_D3 & >()  , py::arg("UV"),  py::arg("D1T"),  py::arg("D2T"),  py::arg("D3T") )
+    // methods
+        .def("ActiveOrder",
+             (Standard_Integer (NLPlate_HPG3Constraint::*)() const) static_cast<Standard_Integer (NLPlate_HPG3Constraint::*)() const>(&NLPlate_HPG3Constraint::ActiveOrder),
+             R"#(None)#" )
+        .def("G3Target",
+             (const Plate_D3 & (NLPlate_HPG3Constraint::*)() const) static_cast<const Plate_D3 & (NLPlate_HPG3Constraint::*)() const>(&NLPlate_HPG3Constraint::G3Target),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (NLPlate_HPG3Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG3Constraint::*)() const>(&NLPlate_HPG3Constraint::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG3Constraint::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG3Constraint::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<NLPlate_HPG0G3Constraint ,opencascade::handle<NLPlate_HPG0G3Constraint>  , NLPlate_HPG0G2Constraint >>(m.attr("NLPlate_HPG0G3Constraint"))
         .def(py::init< const gp_XY &,const gp_XYZ &,const Plate_D1 &,const Plate_D2 &,const Plate_D3 & >()  , py::arg("UV"),  py::arg("Value"),  py::arg("D1T"),  py::arg("D2T"),  py::arg("D3T") )
+    // methods
         .def("ActiveOrder",
              (Standard_Integer (NLPlate_HPG0G3Constraint::*)() const) static_cast<Standard_Integer (NLPlate_HPG0G3Constraint::*)() const>(&NLPlate_HPG0G3Constraint::ActiveOrder),
              R"#(None)#" )
@@ -361,45 +413,38 @@ py::module m = static_cast<py::module>(main_module.attr("NLPlate"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (NLPlate_HPG0G3Constraint::*)() const) static_cast<const opencascade::handle<Standard_Type> & (NLPlate_HPG0G3Constraint::*)() const>(&NLPlate_HPG0G3Constraint::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&NLPlate_HPG0G3Constraint::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&NLPlate_HPG0G3Constraint::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/NLPlate_HPG1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G3Constraint.hxx
+// ./opencascade/NLPlate_HPG2Constraint.hxx
+// ./opencascade/NLPlate_HPG0Constraint.hxx
 // ./opencascade/NLPlate_HPG3Constraint.hxx
-// ./opencascade/NLPlate_ListIteratorOfStackOfPlate.hxx
+// ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
+// ./opencascade/NLPlate_StackOfPlate.hxx
+// ./opencascade/NLPlate_HPG1Constraint.hxx
 // ./opencascade/NLPlate_NLPlate.hxx
 // ./opencascade/NLPlate_HGPPConstraint.hxx
-// ./opencascade/NLPlate_HPG0Constraint.hxx
-// ./opencascade/NLPlate_StackOfPlate.hxx
-// ./opencascade/NLPlate_HPG2Constraint.hxx
+// ./opencascade/NLPlate_HPG0G3Constraint.hxx
+// ./opencascade/NLPlate_ListIteratorOfStackOfPlate.hxx
+// ./opencascade/NLPlate_HPG0G1Constraint.hxx
 // ./opencascade/NLPlate_HPG0G2Constraint.hxx
-// ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/NLPlate_HPG1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G1Constraint.hxx
-// ./opencascade/NLPlate_HPG0G3Constraint.hxx
-// ./opencascade/NLPlate_HPG3Constraint.hxx
-// ./opencascade/NLPlate_ListIteratorOfStackOfPlate.hxx
-// ./opencascade/NLPlate_NLPlate.hxx
-// ./opencascade/NLPlate_HGPPConstraint.hxx
-// ./opencascade/NLPlate_HPG0Constraint.hxx
-// ./opencascade/NLPlate_StackOfPlate.hxx
-    register_template_NCollection_List<Plate_Plate>(m,"NLPlate_StackOfPlate");  
-// ./opencascade/NLPlate_HPG2Constraint.hxx
-// ./opencascade/NLPlate_HPG0G2Constraint.hxx
-// ./opencascade/NLPlate_SequenceOfHGPPConstraint.hxx
     register_template_NCollection_Sequence<opencascade::handle<NLPlate_HGPPConstraint> >(m,"NLPlate_SequenceOfHGPPConstraint");  
+    register_template_NCollection_List<Plate_Plate>(m,"NLPlate_StackOfPlate");  
 
 
 // exceptions

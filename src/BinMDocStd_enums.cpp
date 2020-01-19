@@ -41,13 +41,11 @@ py::module m = main_module.def_submodule("BinMDocStd", R"#()#");
 
 //Python trampoline classes
 
-// classes forward declarations only
-    py::class_<BinMDocStd ,std::unique_ptr<BinMDocStd>  >(m,"BinMDocStd",R"#(Storage and Retrieval drivers for TDocStd modelling attributes.)#");
-    py::class_<BinMDocStd_XLinkDriver ,opencascade::handle<BinMDocStd_XLinkDriver>  , BinMDF_ADriver >(m,"BinMDocStd_XLinkDriver",R"#(XLink attribute Driver.XLink attribute Driver.XLink attribute Driver.)#");
-
 // pre-register typdefs
-// ./opencascade/BinMDocStd.hxx
-// ./opencascade/BinMDocStd_XLinkDriver.hxx
+
+// classes forward declarations only
+    py::class_<BinMDocStd , shared_ptr<BinMDocStd>  >(m,"BinMDocStd",R"#(Storage and Retrieval drivers for TDocStd modelling attributes.)#");
+    py::class_<BinMDocStd_XLinkDriver ,opencascade::handle<BinMDocStd_XLinkDriver>  , BinMDF_ADriver >(m,"BinMDocStd_XLinkDriver",R"#(XLink attribute Driver.XLink attribute Driver.XLink attribute Driver.)#");
 
 };
 

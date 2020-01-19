@@ -103,27 +103,18 @@ py::module m = main_module.def_submodule("BRepSweep", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<BRepSweep_NumLinearRegularSweep ,std::unique_ptr<BRepSweep_NumLinearRegularSweep> ,Py_BRepSweep_NumLinearRegularSweep >(m,"BRepSweep_NumLinearRegularSweep",R"#(This a generic class is used to build Sweept primitives with a generating "shape" and a directing "line".)#");
-    py::class_<BRepSweep_Revol ,std::unique_ptr<BRepSweep_Revol>  >(m,"BRepSweep_Revol",R"#(Provides natural constructors to build BRepSweep rotated swept Primitives.)#");
-    py::class_<BRepSweep_Tool ,std::unique_ptr<BRepSweep_Tool>  >(m,"BRepSweep_Tool",R"#(Provides the indexation and type analysis services required by the TopoDS generating Shape of BRepSweep.)#");
-    py::class_<BRepSweep_Prism ,std::unique_ptr<BRepSweep_Prism>  >(m,"BRepSweep_Prism",R"#(Provides natural constructors to build BRepSweep translated swept Primitives.)#");
-    py::class_<BRepSweep_Trsf ,std::unique_ptr<BRepSweep_Trsf> ,Py_BRepSweep_Trsf , BRepSweep_NumLinearRegularSweep >(m,"BRepSweep_Trsf",R"#(This class is inherited from NumLinearRegularSweep to implement the simple swept primitives built moving a Shape with a Trsf. It often is possible to build the constructed subshapes by a simple move of the generating subshapes (shared topology and geometry). So two ways of construction are proposed :)#");
-    py::class_<BRepSweep_Rotation ,std::unique_ptr<BRepSweep_Rotation>  , BRepSweep_Trsf >(m,"BRepSweep_Rotation",R"#(Provides an algorithm to build object by Rotation sweep.)#");
-    py::class_<BRepSweep_Builder ,std::unique_ptr<BRepSweep_Builder>  >(m,"BRepSweep_Builder",R"#(implements the abstract Builder with the BRep Builder)#");
-    py::class_<BRepSweep_Iterator ,std::unique_ptr<BRepSweep_Iterator>  >(m,"BRepSweep_Iterator",R"#(This class provides iteration services required by the Generating Line (TopoDS Shape) of a BRepSweep. This tool is used to iterate on the direct sub-shapes of a Shape.)#");
-    py::class_<BRepSweep_Translation ,std::unique_ptr<BRepSweep_Translation>  , BRepSweep_Trsf >(m,"BRepSweep_Translation",R"#(Provides an algorithm to build object by translation sweep.)#");
-
 // pre-register typdefs
-// ./opencascade/BRepSweep_Revol.hxx
-// ./opencascade/BRepSweep_Rotation.hxx
-// ./opencascade/BRepSweep_Tool.hxx
-// ./opencascade/BRepSweep_NumLinearRegularSweep.hxx
-// ./opencascade/BRepSweep_Iterator.hxx
-// ./opencascade/BRepSweep_Prism.hxx
-// ./opencascade/BRepSweep_Builder.hxx
-// ./opencascade/BRepSweep_Translation.hxx
-// ./opencascade/BRepSweep_Trsf.hxx
+
+// classes forward declarations only
+    py::class_<BRepSweep_Builder , shared_ptr<BRepSweep_Builder>  >(m,"BRepSweep_Builder",R"#(implements the abstract Builder with the BRep Builder)#");
+    py::class_<BRepSweep_Iterator , shared_ptr<BRepSweep_Iterator>  >(m,"BRepSweep_Iterator",R"#(This class provides iteration services required by the Generating Line (TopoDS Shape) of a BRepSweep. This tool is used to iterate on the direct sub-shapes of a Shape.)#");
+    py::class_<BRepSweep_NumLinearRegularSweep , shared_ptr<BRepSweep_NumLinearRegularSweep> ,Py_BRepSweep_NumLinearRegularSweep >(m,"BRepSweep_NumLinearRegularSweep",R"#(This a generic class is used to build Sweept primitives with a generating "shape" and a directing "line".)#");
+    py::class_<BRepSweep_Prism , shared_ptr<BRepSweep_Prism>  >(m,"BRepSweep_Prism",R"#(Provides natural constructors to build BRepSweep translated swept Primitives.)#");
+    py::class_<BRepSweep_Revol , shared_ptr<BRepSweep_Revol>  >(m,"BRepSweep_Revol",R"#(Provides natural constructors to build BRepSweep rotated swept Primitives.)#");
+    py::class_<BRepSweep_Tool , shared_ptr<BRepSweep_Tool>  >(m,"BRepSweep_Tool",R"#(Provides the indexation and type analysis services required by the TopoDS generating Shape of BRepSweep.)#");
+    py::class_<BRepSweep_Trsf , shared_ptr<BRepSweep_Trsf> ,Py_BRepSweep_Trsf , BRepSweep_NumLinearRegularSweep >(m,"BRepSweep_Trsf",R"#(This class is inherited from NumLinearRegularSweep to implement the simple swept primitives built moving a Shape with a Trsf. It often is possible to build the constructed subshapes by a simple move of the generating subshapes (shared topology and geometry). So two ways of construction are proposed :)#");
+    py::class_<BRepSweep_Rotation , shared_ptr<BRepSweep_Rotation>  , BRepSweep_Trsf >(m,"BRepSweep_Rotation",R"#(Provides an algorithm to build object by Rotation sweep.)#");
+    py::class_<BRepSweep_Translation , shared_ptr<BRepSweep_Translation>  , BRepSweep_Trsf >(m,"BRepSweep_Translation",R"#(Provides an algorithm to build object by translation sweep.)#");
 
 };
 

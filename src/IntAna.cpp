@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,36 +13,36 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Torus.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Parab.hxx>
-#include <gp_Hypr.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Torus.hxx>
-#include <gp_Cylinder.hxx>
-#include <IntAna_Quadric.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Lin.hxx>
-#include <IntAna_Quadric.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Parab.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Pln.hxx>
 #include <gp_Pln.hxx>
 #include <gp_Sphere.hxx>
 #include <gp_Cylinder.hxx>
 #include <gp_Cone.hxx>
 #include <gp_Ax3.hxx>
+#include <gp_Lin.hxx>
+#include <IntAna_Quadric.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Hypr.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Torus.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Hypr.hxx>
+#include <gp_Cylinder.hxx>
+#include <IntAna_Quadric.hxx>
+#include <gp_Cone.hxx>
 
 // module includes
 #include <IntAna_Curve.hxx>
@@ -77,8 +80,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
 // classes
 
 
-    static_cast<py::class_<IntAna_Curve ,std::unique_ptr<IntAna_Curve>  >>(m.attr("IntAna_Curve"))
+    static_cast<py::class_<IntAna_Curve , shared_ptr<IntAna_Curve>  >>(m.attr("IntAna_Curve"))
         .def(py::init<  >()  )
+    // methods
         .def("SetCylinderQuadValues",
              (void (IntAna_Curve::*)( const gp_Cylinder & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (IntAna_Curve::*)( const gp_Cylinder & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&IntAna_Curve::SetCylinderQuadValues),
              R"#(Sets the parameters used to compute Points and Derivative on the curve.)#"  , py::arg("Cylinder"),  py::arg("Qxx"),  py::arg("Qyy"),  py::arg("Qzz"),  py::arg("Qxy"),  py::arg("Qxz"),  py::arg("Qyz"),  py::arg("Qx"),  py::arg("Qy"),  py::arg("Qz"),  py::arg("Q1"),  py::arg("Tol"),  py::arg("DomInf"),  py::arg("DomSup"),  py::arg("TwoZForATheta"),  py::arg("ZIsPositive"))
@@ -88,9 +92,6 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
         .def("IsOpen",
              (Standard_Boolean (IntAna_Curve::*)() const) static_cast<Standard_Boolean (IntAna_Curve::*)() const>(&IntAna_Curve::IsOpen),
              R"#(Returns TRUE if the curve is not infinite at the last parameter or at the first parameter of the domain.)#" )
-        .def("Domain",
-             (void (IntAna_Curve::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntAna_Curve::*)( Standard_Real & ,  Standard_Real &  ) const>(&IntAna_Curve::Domain),
-             R"#(Returns the paramatric domain of the curve.)#"  , py::arg("Theta1"),  py::arg("Theta2"))
         .def("IsConstant",
              (Standard_Boolean (IntAna_Curve::*)() const) static_cast<Standard_Boolean (IntAna_Curve::*)() const>(&IntAna_Curve::IsConstant),
              R"#(Returns TRUE if the function is constant.)#" )
@@ -115,57 +116,27 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
         .def("SetIsLastOpen",
              (void (IntAna_Curve::*)( const Standard_Boolean  ) ) static_cast<void (IntAna_Curve::*)( const Standard_Boolean  ) >(&IntAna_Curve::SetIsLastOpen),
              R"#(If flag is True, the Curve is not defined at the first parameter of its domain.)#"  , py::arg("Flag"))
-        .def("InternalUVValue",
-             (void (IntAna_Curve::*)( const Standard_Real ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntAna_Curve::*)( const Standard_Real ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&IntAna_Curve::InternalUVValue),
-             R"#(Protected function.)#"  , py::arg("Param"),  py::arg("U"),  py::arg("V"),  py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("Co"),  py::arg("Si"),  py::arg("Di"))
         .def("SetDomain",
              (void (IntAna_Curve::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_Curve::*)( const Standard_Real ,  const Standard_Real  ) >(&IntAna_Curve::SetDomain),
              R"#(None)#"  , py::arg("Theta1"),  py::arg("Theta2"))
+    // methods using call by reference i.s.o. return
+        .def("Domain",
+             []( IntAna_Curve &self   ){ Standard_Real  Theta1; Standard_Real  Theta2; self.Domain(Theta1,Theta2); return std::make_tuple(Theta1,Theta2); },
+             R"#(Returns the paramatric domain of the curve.)#" )
+        .def("InternalUVValue",
+             []( IntAna_Curve &self , const Standard_Real Param ){ Standard_Real  U; Standard_Real  V; Standard_Real  A; Standard_Real  B; Standard_Real  C; Standard_Real  Co; Standard_Real  Si; Standard_Real  Di; self.InternalUVValue(Param,U,V,A,B,C,Co,Si,Di); return std::make_tuple(U,V,A,B,C,Co,Si,Di); },
+             R"#(Protected function.)#"  , py::arg("Param"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IntAna_IntLinTorus ,std::unique_ptr<IntAna_IntLinTorus>  >>(m.attr("IntAna_IntLinTorus"))
-        .def(py::init<  >()  )
-        .def(py::init< const gp_Lin &,const gp_Torus & >()  , py::arg("L"),  py::arg("T") )
-        .def("Perform",
-             (void (IntAna_IntLinTorus::*)( const gp_Lin & ,  const gp_Torus &  ) ) static_cast<void (IntAna_IntLinTorus::*)( const gp_Lin & ,  const gp_Torus &  ) >(&IntAna_IntLinTorus::Perform),
-             R"#(Intersects a line and a torus.)#"  , py::arg("L"),  py::arg("T"))
-        .def("IsDone",
-             (Standard_Boolean (IntAna_IntLinTorus::*)() const) static_cast<Standard_Boolean (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::IsDone),
-             R"#(Returns True if the computation was successful.)#" )
-        .def("NbPoints",
-             (Standard_Integer (IntAna_IntLinTorus::*)() const) static_cast<Standard_Integer (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::NbPoints),
-             R"#(Returns the number of intersection points.)#" )
-        .def("Value",
-             (const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::Value),
-             R"#(Returns the intersection point of range Index.)#"  , py::arg("Index"))
-        .def("ParamOnLine",
-             (Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::ParamOnLine),
-             R"#(Returns the parameter on the line of the intersection point of range Index.)#"  , py::arg("Index"))
-        .def("ParamOnTorus",
-             (void (IntAna_IntLinTorus::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntAna_IntLinTorus::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const>(&IntAna_IntLinTorus::ParamOnTorus),
-             R"#(Returns the parameters on the torus of the intersection point of range Index.)#"  , py::arg("Index"),  py::arg("FI"),  py::arg("THETA"))
-        .def("IsDone",
-             (Standard_Boolean (IntAna_IntLinTorus::*)() const) static_cast<Standard_Boolean (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::IsDone),
-             R"#(Returns True if the computation was successful.)#" )
-        .def("NbPoints",
-             (Standard_Integer (IntAna_IntLinTorus::*)() const) static_cast<Standard_Integer (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::NbPoints),
-             R"#(Returns the number of intersection points.)#" )
-        .def("Value",
-             (const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::Value),
-             R"#(Returns the intersection point of range Index.)#"  , py::arg("Index"))
-        .def("ParamOnLine",
-             (Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::ParamOnLine),
-             R"#(Returns the parameter on the line of the intersection point of range Index.)#"  , py::arg("Index"))
-        .def("ParamOnTorus",
-             (void (IntAna_IntLinTorus::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntAna_IntLinTorus::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const>(&IntAna_IntLinTorus::ParamOnTorus),
-             R"#(Returns the parameters on the torus of the intersection point of range Index.)#"  , py::arg("Index"),  py::arg("FI"),  py::arg("THETA"))
-;
-
-
-    static_cast<py::class_<IntAna_Int3Pln ,std::unique_ptr<IntAna_Int3Pln>  >>(m.attr("IntAna_Int3Pln"))
+    static_cast<py::class_<IntAna_Int3Pln , shared_ptr<IntAna_Int3Pln>  >>(m.attr("IntAna_Int3Pln"))
         .def(py::init<  >()  )
         .def(py::init< const gp_Pln &,const gp_Pln &,const gp_Pln & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3") )
+    // methods
         .def("Perform",
              (void (IntAna_Int3Pln::*)( const gp_Pln & ,  const gp_Pln & ,  const gp_Pln &  ) ) static_cast<void (IntAna_Int3Pln::*)( const gp_Pln & ,  const gp_Pln & ,  const gp_Pln &  ) >(&IntAna_Int3Pln::Perform),
              R"#(Determination of the intersection point between 3 planes.)#"  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"))
@@ -187,37 +158,211 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
         .def("Value",
              (const gp_Pnt & (IntAna_Int3Pln::*)() const) static_cast<const gp_Pnt & (IntAna_Int3Pln::*)() const>(&IntAna_Int3Pln::Value),
              R"#(Returns the intersection point.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IntAna_Quadric ,std::unique_ptr<IntAna_Quadric>  >>(m.attr("IntAna_Quadric"))
+    static_cast<py::class_<IntAna_IntConicQuad , shared_ptr<IntAna_IntConicQuad>  >>(m.attr("IntAna_IntConicQuad"))
         .def(py::init<  >()  )
-        .def(py::init< const gp_Pln & >()  , py::arg("P") )
-        .def(py::init< const gp_Sphere & >()  , py::arg("Sph") )
-        .def(py::init< const gp_Cylinder & >()  , py::arg("Cyl") )
-        .def(py::init< const gp_Cone & >()  , py::arg("Cone") )
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Pln &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Pln &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initializes the quadric with a Pln)#"  , py::arg("P"))
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Sphere &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Sphere &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initialize the quadric with a Sphere)#"  , py::arg("Sph"))
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Cone &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Cone &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initializes the quadric with a Cone)#"  , py::arg("Con"))
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Cylinder &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Cylinder &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initializes the quadric with a Cylinder)#"  , py::arg("Cyl"))
-        .def("Coefficients",
-             (void (IntAna_Quadric::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntAna_Quadric::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ) const>(&IntAna_Quadric::Coefficients),
-             R"#(Returns the coefficients of the polynomial equation which define the quadric: xCXX x**2 + xCYY y**2 + xCZZ z**2 + 2 ( xCXY x y + xCXZ x z + xCYZ y z ) + 2 ( xCX x + xCY y + xCZ z ) + xCCte)#"  , py::arg("xCXX"),  py::arg("xCYY"),  py::arg("xCZZ"),  py::arg("xCXY"),  py::arg("xCXZ"),  py::arg("xCYZ"),  py::arg("xCX"),  py::arg("xCY"),  py::arg("xCZ"),  py::arg("xCCte"))
-        .def("NewCoefficients",
-             (void (IntAna_Quadric::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  const gp_Ax3 &  ) const) static_cast<void (IntAna_Quadric::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  const gp_Ax3 &  ) const>(&IntAna_Quadric::NewCoefficients),
-             R"#(Returns the coefficients of the polynomial equation ( written in the natural coordinates system ) in the local coordinates system defined by Axis)#"  , py::arg("xCXX"),  py::arg("xCYY"),  py::arg("xCZZ"),  py::arg("xCXY"),  py::arg("xCXZ"),  py::arg("xCYZ"),  py::arg("xCX"),  py::arg("xCY"),  py::arg("xCZ"),  py::arg("xCCte"),  py::arg("Axis"))
+        .def(py::init< const gp_Lin &,const IntAna_Quadric & >()  , py::arg("L"),  py::arg("Q") )
+        .def(py::init< const gp_Circ &,const IntAna_Quadric & >()  , py::arg("C"),  py::arg("Q") )
+        .def(py::init< const gp_Elips &,const IntAna_Quadric & >()  , py::arg("E"),  py::arg("Q") )
+        .def(py::init< const gp_Parab &,const IntAna_Quadric & >()  , py::arg("P"),  py::arg("Q") )
+        .def(py::init< const gp_Hypr &,const IntAna_Quadric & >()  , py::arg("H"),  py::arg("Q") )
+        .def(py::init< const gp_Lin &,const gp_Pln &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol")=static_cast<const Standard_Real>(0),  py::arg("Len")=static_cast<const Standard_Real>(0) )
+        .def(py::init< const gp_Circ &,const gp_Pln &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol") )
+        .def(py::init< const gp_Elips &,const gp_Pln &,const Standard_Real,const Standard_Real >()  , py::arg("E"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol") )
+        .def(py::init< const gp_Parab &,const gp_Pln &,const Standard_Real >()  , py::arg("Pb"),  py::arg("P"),  py::arg("Tolang") )
+        .def(py::init< const gp_Hypr &,const gp_Pln &,const Standard_Real >()  , py::arg("H"),  py::arg("P"),  py::arg("Tolang") )
+    // methods
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects a line and a quadric.)#"  , py::arg("L"),  py::arg("Q"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects a circle and a quadric.)#"  , py::arg("C"),  py::arg("Q"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects an ellipse and a quadric.)#"  , py::arg("E"),  py::arg("Q"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects a parabola and a quadric.)#"  , py::arg("P"),  py::arg("Q"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects an hyperbola and a quadric.)#"  , py::arg("H"),  py::arg("Q"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects a line and a plane. Tolang is used to determine if the angle between two vectors is null. Tol is used to check the distance between line and plane on the distance <Len> from the origin of the line.)#"  , py::arg("L"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol")=static_cast<const Standard_Real>(0),  py::arg("Len")=static_cast<const Standard_Real>(0))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects a circle and a plane. Tolang is used to determine if the angle between two vectors is null. Tol is used to determine if a distance is null.)#"  , py::arg("C"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects an ellipse and a plane. Tolang is used to determine if the angle between two vectors is null. Tol is used to determine if a distance is null.)#"  , py::arg("E"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const gp_Pln & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const gp_Pln & ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects a parabola and a plane. Tolang is used to determine if the angle between two vectors is null.)#"  , py::arg("Pb"),  py::arg("P"),  py::arg("Tolang"))
+        .def("Perform",
+             (void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const gp_Pln & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const gp_Pln & ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
+             R"#(Intersects an hyperbola and a plane. Tolang is used to determine if the angle between two vectors is null.)#"  , py::arg("H"),  py::arg("P"),  py::arg("Tolang"))
+        .def("IsDone",
+             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsDone),
+             R"#(Returns TRUE if the creation completed.)#" )
+        .def("IsInQuadric",
+             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsInQuadric),
+             R"#(Returns TRUE if the conic is in the quadric.)#" )
+        .def("IsParallel",
+             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsParallel),
+             R"#(Returns TRUE if the line is in a quadric which is parallel to the quadric.)#" )
+        .def("NbPoints",
+             (Standard_Integer (IntAna_IntConicQuad::*)() const) static_cast<Standard_Integer (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::NbPoints),
+             R"#(Returns the number of intersection point.)#" )
+        .def("Point",
+             (const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::Point),
+             R"#(Returns the point of range N.)#"  , py::arg("N"))
+        .def("ParamOnConic",
+             (Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::ParamOnConic),
+             R"#(Returns the parameter on the line of the intersection point of range N.)#"  , py::arg("N"))
+        .def("IsDone",
+             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsDone),
+             R"#(Returns TRUE if the creation completed.)#" )
+        .def("IsInQuadric",
+             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsInQuadric),
+             R"#(Returns TRUE if the conic is in the quadric.)#" )
+        .def("IsParallel",
+             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsParallel),
+             R"#(Returns TRUE if the line is in a quadric which is parallel to the quadric.)#" )
+        .def("NbPoints",
+             (Standard_Integer (IntAna_IntConicQuad::*)() const) static_cast<Standard_Integer (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::NbPoints),
+             R"#(Returns the number of intersection point.)#" )
+        .def("Point",
+             (const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::Point),
+             R"#(Returns the point of range N.)#"  , py::arg("i"))
+        .def("ParamOnConic",
+             (Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::ParamOnConic),
+             R"#(Returns the parameter on the line of the intersection point of range N.)#"  , py::arg("i"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IntAna_QuadQuadGeo ,std::unique_ptr<IntAna_QuadQuadGeo>  >>(m.attr("IntAna_QuadQuadGeo"))
+    static_cast<py::class_<IntAna_IntLinTorus , shared_ptr<IntAna_IntLinTorus>  >>(m.attr("IntAna_IntLinTorus"))
+        .def(py::init<  >()  )
+        .def(py::init< const gp_Lin &,const gp_Torus & >()  , py::arg("L"),  py::arg("T") )
+    // methods
+        .def("Perform",
+             (void (IntAna_IntLinTorus::*)( const gp_Lin & ,  const gp_Torus &  ) ) static_cast<void (IntAna_IntLinTorus::*)( const gp_Lin & ,  const gp_Torus &  ) >(&IntAna_IntLinTorus::Perform),
+             R"#(Intersects a line and a torus.)#"  , py::arg("L"),  py::arg("T"))
+        .def("IsDone",
+             (Standard_Boolean (IntAna_IntLinTorus::*)() const) static_cast<Standard_Boolean (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::IsDone),
+             R"#(Returns True if the computation was successful.)#" )
+        .def("NbPoints",
+             (Standard_Integer (IntAna_IntLinTorus::*)() const) static_cast<Standard_Integer (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::NbPoints),
+             R"#(Returns the number of intersection points.)#" )
+        .def("Value",
+             (const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::Value),
+             R"#(Returns the intersection point of range Index.)#"  , py::arg("Index"))
+        .def("ParamOnLine",
+             (Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::ParamOnLine),
+             R"#(Returns the parameter on the line of the intersection point of range Index.)#"  , py::arg("Index"))
+        .def("IsDone",
+             (Standard_Boolean (IntAna_IntLinTorus::*)() const) static_cast<Standard_Boolean (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::IsDone),
+             R"#(Returns True if the computation was successful.)#" )
+        .def("NbPoints",
+             (Standard_Integer (IntAna_IntLinTorus::*)() const) static_cast<Standard_Integer (IntAna_IntLinTorus::*)() const>(&IntAna_IntLinTorus::NbPoints),
+             R"#(Returns the number of intersection points.)#" )
+        .def("Value",
+             (const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::Value),
+             R"#(Returns the intersection point of range Index.)#"  , py::arg("Index"))
+        .def("ParamOnLine",
+             (Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntLinTorus::*)( const Standard_Integer  ) const>(&IntAna_IntLinTorus::ParamOnLine),
+             R"#(Returns the parameter on the line of the intersection point of range Index.)#"  , py::arg("Index"))
+    // methods using call by reference i.s.o. return
+        .def("ParamOnTorus",
+             []( IntAna_IntLinTorus &self , const Standard_Integer Index ){ Standard_Real  FI; Standard_Real  THETA; self.ParamOnTorus(Index,FI,THETA); return std::make_tuple(FI,THETA); },
+             R"#(Returns the parameters on the torus of the intersection point of range Index.)#"  , py::arg("Index"))
+        .def("ParamOnTorus",
+             []( IntAna_IntLinTorus &self , const Standard_Integer Index ){ Standard_Real  FI; Standard_Real  THETA; self.ParamOnTorus(Index,FI,THETA); return std::make_tuple(FI,THETA); },
+             R"#(Returns the parameters on the torus of the intersection point of range Index.)#"  , py::arg("Index"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IntAna_IntQuadQuad , shared_ptr<IntAna_IntQuadQuad>  >>(m.attr("IntAna_IntQuadQuad"))
+        .def(py::init<  >()  )
+        .def(py::init< const gp_Cylinder &,const IntAna_Quadric &,const Standard_Real >()  , py::arg("C"),  py::arg("Q"),  py::arg("Tol") )
+        .def(py::init< const gp_Cone &,const IntAna_Quadric &,const Standard_Real >()  , py::arg("C"),  py::arg("Q"),  py::arg("Tol") )
+    // methods
+        .def("Perform",
+             (void (IntAna_IntQuadQuad::*)( const gp_Cylinder & ,  const IntAna_Quadric & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntQuadQuad::*)( const gp_Cylinder & ,  const IntAna_Quadric & ,  const Standard_Real  ) >(&IntAna_IntQuadQuad::Perform),
+             R"#(Intersects a cylinder and a quadric . Tol est a definir plus precisemment.)#"  , py::arg("C"),  py::arg("Q"),  py::arg("Tol"))
+        .def("Perform",
+             (void (IntAna_IntQuadQuad::*)( const gp_Cone & ,  const IntAna_Quadric & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntQuadQuad::*)( const gp_Cone & ,  const IntAna_Quadric & ,  const Standard_Real  ) >(&IntAna_IntQuadQuad::Perform),
+             R"#(Intersects a cone and a quadric. Tol est a definir plus precisemment.)#"  , py::arg("C"),  py::arg("Q"),  py::arg("Tol"))
+        .def("IsDone",
+             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IsDone),
+             R"#(Returns True if the computation was successful.)#" )
+        .def("IdenticalElements",
+             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IdenticalElements),
+             R"#(Returns TRUE if the cylinder, the cone or the sphere is identical to the quadric.)#" )
+        .def("NbCurve",
+             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbCurve),
+             R"#(Returns the number of curves solution.)#" )
+        .def("Curve",
+             (const IntAna_Curve & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<const IntAna_Curve & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::Curve),
+             R"#(Returns the curve of range N.)#"  , py::arg("N"))
+        .def("NbPnt",
+             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbPnt),
+             R"#(Returns the number of contact point.)#" )
+        .def("Point",
+             (const gp_Pnt & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::Point),
+             R"#(Returns the point of range N.)#"  , py::arg("N"))
+        .def("HasNextCurve",
+             (Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::HasNextCurve),
+             R"#(Returns True if the Curve I shares its last bound with another curve.)#"  , py::arg("I"))
+        .def("NextCurve",
+             (Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const>(&IntAna_IntQuadQuad::NextCurve),
+             R"#(If HasNextCurve(I) returns True, this function returns the Index J of the curve which has a common bound with the curve I. If theOpposite == True , then the last parameter of the curve I, and the last parameter of the curve J give the same point. Else the last parameter of the curve I and the first parameter of the curve J are the same point.)#"  , py::arg("I"),  py::arg("theOpposite"))
+        .def("HasPreviousCurve",
+             (Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::HasPreviousCurve),
+             R"#(Returns True if the Curve I shares its first bound with another curve.)#"  , py::arg("I"))
+        .def("PreviousCurve",
+             (Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const>(&IntAna_IntQuadQuad::PreviousCurve),
+             R"#(if HasPreviousCurve(I) returns True, this function returns the Index J of the curve which has a common bound with the curve I. If theOpposite == True , then the first parameter of the curve I, and the first parameter of the curve J give the same point. Else the first parameter of the curve I and the last parameter of the curve J are the same point.)#"  , py::arg("I"),  py::arg("theOpposite"))
+        .def("IsDone",
+             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IsDone),
+             R"#(Returns True if the computation was successful.)#" )
+        .def("IdenticalElements",
+             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IdenticalElements),
+             R"#(Returns TRUE if the cylinder, the cone or the sphere is identical to the quadric.)#" )
+        .def("NbCurve",
+             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbCurve),
+             R"#(Returns the number of curves solution.)#" )
+        .def("NbPnt",
+             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbPnt),
+             R"#(Returns the number of contact point.)#" )
+    // methods using call by reference i.s.o. return
+        .def("Parameters",
+             []( IntAna_IntQuadQuad &self , const Standard_Integer N ){ Standard_Real  U1; Standard_Real  U2; self.Parameters(N,U1,U2); return std::make_tuple(U1,U2); },
+             R"#(Returns the paramaters on the "explicit quadric" (i.e the cylinder or the cone, the first argument given to the constructor) of the point of range N.)#"  , py::arg("N"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<IntAna_QuadQuadGeo , shared_ptr<IntAna_QuadQuadGeo>  >>(m.attr("IntAna_QuadQuadGeo"))
         .def(py::init<  >()  )
         .def(py::init< const gp_Pln &,const gp_Pln &,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("TolAng"),  py::arg("Tol") )
         .def(py::init< const gp_Pln &,const gp_Cylinder &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tolang"),  py::arg("Tol"),  py::arg("H")=static_cast<const Standard_Real>(0) )
@@ -234,6 +379,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
         .def(py::init< const gp_Cone &,const gp_Torus &,const Standard_Real >()  , py::arg("Con"),  py::arg("Tor"),  py::arg("Tol") )
         .def(py::init< const gp_Sphere &,const gp_Torus &,const Standard_Real >()  , py::arg("Sph"),  py::arg("Tor"),  py::arg("Tol") )
         .def(py::init< const gp_Torus &,const gp_Torus &,const Standard_Real >()  , py::arg("Tor1"),  py::arg("Tor2"),  py::arg("Tol") )
+    // methods
         .def("Perform",
              (void (IntAna_QuadQuadGeo::*)( const gp_Pln & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_QuadQuadGeo::*)( const gp_Pln & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_QuadQuadGeo::Perform),
              R"#(Intersects two planes. TolAng is the angular tolerance used to determine if the planes are parallel. Tol is the tolerance used to determine if the planes are identical (only when they are parallel).)#"  , py::arg("P1"),  py::arg("P2"),  py::arg("TolAng"),  py::arg("Tol"))
@@ -321,173 +467,62 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
         .def("NbSolutions",
              (Standard_Integer (IntAna_QuadQuadGeo::*)() const) static_cast<Standard_Integer (IntAna_QuadQuadGeo::*)() const>(&IntAna_QuadQuadGeo::NbSolutions),
              R"#(Returns the number of interesections. The possible intersections are : - 1 point - 1 or 2 line(s) - 1 Point and 1 Line - 1 circle - 1 ellipse - 1 parabola - 1 or 2 hyperbola(s).)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<IntAna_IntConicQuad ,std::unique_ptr<IntAna_IntConicQuad>  >>(m.attr("IntAna_IntConicQuad"))
+    static_cast<py::class_<IntAna_Quadric , shared_ptr<IntAna_Quadric>  >>(m.attr("IntAna_Quadric"))
         .def(py::init<  >()  )
-        .def(py::init< const gp_Lin &,const IntAna_Quadric & >()  , py::arg("L"),  py::arg("Q") )
-        .def(py::init< const gp_Circ &,const IntAna_Quadric & >()  , py::arg("C"),  py::arg("Q") )
-        .def(py::init< const gp_Elips &,const IntAna_Quadric & >()  , py::arg("E"),  py::arg("Q") )
-        .def(py::init< const gp_Parab &,const IntAna_Quadric & >()  , py::arg("P"),  py::arg("Q") )
-        .def(py::init< const gp_Hypr &,const IntAna_Quadric & >()  , py::arg("H"),  py::arg("Q") )
-        .def(py::init< const gp_Lin &,const gp_Pln &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol")=static_cast<const Standard_Real>(0),  py::arg("Len")=static_cast<const Standard_Real>(0) )
-        .def(py::init< const gp_Circ &,const gp_Pln &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol") )
-        .def(py::init< const gp_Elips &,const gp_Pln &,const Standard_Real,const Standard_Real >()  , py::arg("E"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol") )
-        .def(py::init< const gp_Parab &,const gp_Pln &,const Standard_Real >()  , py::arg("Pb"),  py::arg("P"),  py::arg("Tolang") )
-        .def(py::init< const gp_Hypr &,const gp_Pln &,const Standard_Real >()  , py::arg("H"),  py::arg("P"),  py::arg("Tolang") )
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects a line and a quadric.)#"  , py::arg("L"),  py::arg("Q"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects a circle and a quadric.)#"  , py::arg("C"),  py::arg("Q"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects an ellipse and a quadric.)#"  , py::arg("E"),  py::arg("Q"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects a parabola and a quadric.)#"  , py::arg("P"),  py::arg("Q"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects an hyperbola and a quadric.)#"  , py::arg("H"),  py::arg("Q"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects a line and a plane. Tolang is used to determine if the angle between two vectors is null. Tol is used to check the distance between line and plane on the distance <Len> from the origin of the line.)#"  , py::arg("L"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol")=static_cast<const Standard_Real>(0),  py::arg("Len")=static_cast<const Standard_Real>(0))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Circ & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects a circle and a plane. Tolang is used to determine if the angle between two vectors is null. Tol is used to determine if a distance is null.)#"  , py::arg("C"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Elips & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects an ellipse and a plane. Tolang is used to determine if the angle between two vectors is null. Tol is used to determine if a distance is null.)#"  , py::arg("E"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const gp_Pln & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Parab & ,  const gp_Pln & ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects a parabola and a plane. Tolang is used to determine if the angle between two vectors is null.)#"  , py::arg("Pb"),  py::arg("P"),  py::arg("Tolang"))
-        .def("Perform",
-             (void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const gp_Pln & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Hypr & ,  const gp_Pln & ,  const Standard_Real  ) >(&IntAna_IntConicQuad::Perform),
-             R"#(Intersects an hyperbola and a plane. Tolang is used to determine if the angle between two vectors is null.)#"  , py::arg("H"),  py::arg("P"),  py::arg("Tolang"))
-        .def("IsDone",
-             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsDone),
-             R"#(Returns TRUE if the creation completed.)#" )
-        .def("IsInQuadric",
-             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsInQuadric),
-             R"#(Returns TRUE if the conic is in the quadric.)#" )
-        .def("IsParallel",
-             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsParallel),
-             R"#(Returns TRUE if the line is in a quadric which is parallel to the quadric.)#" )
-        .def("NbPoints",
-             (Standard_Integer (IntAna_IntConicQuad::*)() const) static_cast<Standard_Integer (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::NbPoints),
-             R"#(Returns the number of intersection point.)#" )
-        .def("Point",
-             (const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::Point),
-             R"#(Returns the point of range N.)#"  , py::arg("N"))
-        .def("ParamOnConic",
-             (Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::ParamOnConic),
-             R"#(Returns the parameter on the line of the intersection point of range N.)#"  , py::arg("N"))
-        .def("IsDone",
-             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsDone),
-             R"#(Returns TRUE if the creation completed.)#" )
-        .def("IsInQuadric",
-             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsInQuadric),
-             R"#(Returns TRUE if the conic is in the quadric.)#" )
-        .def("IsParallel",
-             (Standard_Boolean (IntAna_IntConicQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::IsParallel),
-             R"#(Returns TRUE if the line is in a quadric which is parallel to the quadric.)#" )
-        .def("NbPoints",
-             (Standard_Integer (IntAna_IntConicQuad::*)() const) static_cast<Standard_Integer (IntAna_IntConicQuad::*)() const>(&IntAna_IntConicQuad::NbPoints),
-             R"#(Returns the number of intersection point.)#" )
-        .def("Point",
-             (const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::Point),
-             R"#(Returns the point of range N.)#"  , py::arg("i"))
-        .def("ParamOnConic",
-             (Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Real (IntAna_IntConicQuad::*)( const Standard_Integer  ) const>(&IntAna_IntConicQuad::ParamOnConic),
-             R"#(Returns the parameter on the line of the intersection point of range N.)#"  , py::arg("i"))
-;
-
-
-    static_cast<py::class_<IntAna_IntQuadQuad ,std::unique_ptr<IntAna_IntQuadQuad>  >>(m.attr("IntAna_IntQuadQuad"))
-        .def(py::init<  >()  )
-        .def(py::init< const gp_Cylinder &,const IntAna_Quadric &,const Standard_Real >()  , py::arg("C"),  py::arg("Q"),  py::arg("Tol") )
-        .def(py::init< const gp_Cone &,const IntAna_Quadric &,const Standard_Real >()  , py::arg("C"),  py::arg("Q"),  py::arg("Tol") )
-        .def("Perform",
-             (void (IntAna_IntQuadQuad::*)( const gp_Cylinder & ,  const IntAna_Quadric & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntQuadQuad::*)( const gp_Cylinder & ,  const IntAna_Quadric & ,  const Standard_Real  ) >(&IntAna_IntQuadQuad::Perform),
-             R"#(Intersects a cylinder and a quadric . Tol est a definir plus precisemment.)#"  , py::arg("C"),  py::arg("Q"),  py::arg("Tol"))
-        .def("Perform",
-             (void (IntAna_IntQuadQuad::*)( const gp_Cone & ,  const IntAna_Quadric & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntQuadQuad::*)( const gp_Cone & ,  const IntAna_Quadric & ,  const Standard_Real  ) >(&IntAna_IntQuadQuad::Perform),
-             R"#(Intersects a cone and a quadric. Tol est a definir plus precisemment.)#"  , py::arg("C"),  py::arg("Q"),  py::arg("Tol"))
-        .def("IsDone",
-             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IsDone),
-             R"#(Returns True if the computation was successful.)#" )
-        .def("IdenticalElements",
-             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IdenticalElements),
-             R"#(Returns TRUE if the cylinder, the cone or the sphere is identical to the quadric.)#" )
-        .def("NbCurve",
-             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbCurve),
-             R"#(Returns the number of curves solution.)#" )
-        .def("Curve",
-             (const IntAna_Curve & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<const IntAna_Curve & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::Curve),
-             R"#(Returns the curve of range N.)#"  , py::arg("N"))
-        .def("NbPnt",
-             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbPnt),
-             R"#(Returns the number of contact point.)#" )
-        .def("Point",
-             (const gp_Pnt & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::Point),
-             R"#(Returns the point of range N.)#"  , py::arg("N"))
-        .def("Parameters",
-             (void (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const) static_cast<void (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Real & ,  Standard_Real &  ) const>(&IntAna_IntQuadQuad::Parameters),
-             R"#(Returns the paramaters on the "explicit quadric" (i.e the cylinder or the cone, the first argument given to the constructor) of the point of range N.)#"  , py::arg("N"),  py::arg("U1"),  py::arg("U2"))
-        .def("HasNextCurve",
-             (Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::HasNextCurve),
-             R"#(Returns True if the Curve I shares its last bound with another curve.)#"  , py::arg("I"))
-        .def("NextCurve",
-             (Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const>(&IntAna_IntQuadQuad::NextCurve),
-             R"#(If HasNextCurve(I) returns True, this function returns the Index J of the curve which has a common bound with the curve I. If theOpposite == True , then the last parameter of the curve I, and the last parameter of the curve J give the same point. Else the last parameter of the curve I and the first parameter of the curve J are the same point.)#"  , py::arg("I"),  py::arg("theOpposite"))
-        .def("HasPreviousCurve",
-             (Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)( const Standard_Integer  ) const>(&IntAna_IntQuadQuad::HasPreviousCurve),
-             R"#(Returns True if the Curve I shares its first bound with another curve.)#"  , py::arg("I"))
-        .def("PreviousCurve",
-             (Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)( const Standard_Integer ,  Standard_Boolean &  ) const>(&IntAna_IntQuadQuad::PreviousCurve),
-             R"#(if HasPreviousCurve(I) returns True, this function returns the Index J of the curve which has a common bound with the curve I. If theOpposite == True , then the first parameter of the curve I, and the first parameter of the curve J give the same point. Else the first parameter of the curve I and the last parameter of the curve J are the same point.)#"  , py::arg("I"),  py::arg("theOpposite"))
-        .def("IsDone",
-             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IsDone),
-             R"#(Returns True if the computation was successful.)#" )
-        .def("IdenticalElements",
-             (Standard_Boolean (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Boolean (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::IdenticalElements),
-             R"#(Returns TRUE if the cylinder, the cone or the sphere is identical to the quadric.)#" )
-        .def("NbCurve",
-             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbCurve),
-             R"#(Returns the number of curves solution.)#" )
-        .def("NbPnt",
-             (Standard_Integer (IntAna_IntQuadQuad::*)() const) static_cast<Standard_Integer (IntAna_IntQuadQuad::*)() const>(&IntAna_IntQuadQuad::NbPnt),
-             R"#(Returns the number of contact point.)#" )
+        .def(py::init< const gp_Pln & >()  , py::arg("P") )
+        .def(py::init< const gp_Sphere & >()  , py::arg("Sph") )
+        .def(py::init< const gp_Cylinder & >()  , py::arg("Cyl") )
+        .def(py::init< const gp_Cone & >()  , py::arg("Cone") )
+    // methods
+        .def("SetQuadric",
+             (void (IntAna_Quadric::*)( const gp_Pln &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Pln &  ) >(&IntAna_Quadric::SetQuadric),
+             R"#(Initializes the quadric with a Pln)#"  , py::arg("P"))
+        .def("SetQuadric",
+             (void (IntAna_Quadric::*)( const gp_Sphere &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Sphere &  ) >(&IntAna_Quadric::SetQuadric),
+             R"#(Initialize the quadric with a Sphere)#"  , py::arg("Sph"))
+        .def("SetQuadric",
+             (void (IntAna_Quadric::*)( const gp_Cone &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Cone &  ) >(&IntAna_Quadric::SetQuadric),
+             R"#(Initializes the quadric with a Cone)#"  , py::arg("Con"))
+        .def("SetQuadric",
+             (void (IntAna_Quadric::*)( const gp_Cylinder &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Cylinder &  ) >(&IntAna_Quadric::SetQuadric),
+             R"#(Initializes the quadric with a Cylinder)#"  , py::arg("Cyl"))
+    // methods using call by reference i.s.o. return
+        .def("Coefficients",
+             []( IntAna_Quadric &self   ){ Standard_Real  xCXX; Standard_Real  xCYY; Standard_Real  xCZZ; Standard_Real  xCXY; Standard_Real  xCXZ; Standard_Real  xCYZ; Standard_Real  xCX; Standard_Real  xCY; Standard_Real  xCZ; Standard_Real  xCCte; self.Coefficients(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte); return std::make_tuple(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte); },
+             R"#(Returns the coefficients of the polynomial equation which define the quadric: xCXX x**2 + xCYY y**2 + xCZZ z**2 + 2 ( xCXY x y + xCXZ x z + xCYZ y z ) + 2 ( xCX x + xCY y + xCZ z ) + xCCte)#" )
+        .def("NewCoefficients",
+             []( IntAna_Quadric &self , const gp_Ax3 & Axis ){ Standard_Real  xCXX; Standard_Real  xCYY; Standard_Real  xCZZ; Standard_Real  xCXY; Standard_Real  xCXZ; Standard_Real  xCYZ; Standard_Real  xCX; Standard_Real  xCY; Standard_Real  xCZ; Standard_Real  xCCte; self.NewCoefficients(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte,Axis); return std::make_tuple(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte); },
+             R"#(Returns the coefficients of the polynomial equation ( written in the natural coordinates system ) in the local coordinates system defined by Axis)#"  , py::arg("Axis"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
+// ./opencascade/IntAna_ListOfCurve.hxx
+// ./opencascade/IntAna_IntLinTorus.hxx
+// ./opencascade/IntAna_Quadric.hxx
+// ./opencascade/IntAna_ResultType.hxx
+// ./opencascade/IntAna_IntConicQuad.hxx
 // ./opencascade/IntAna_ListIteratorOfListOfCurve.hxx
 // ./opencascade/IntAna_Curve.hxx
-// ./opencascade/IntAna_ListOfCurve.hxx
-// ./opencascade/IntAna_QuadQuadGeo.hxx
-// ./opencascade/IntAna_ResultType.hxx
-// ./opencascade/IntAna_IntLinTorus.hxx
-// ./opencascade/IntAna_IntQuadQuad.hxx
 // ./opencascade/IntAna_Int3Pln.hxx
-// ./opencascade/IntAna_IntConicQuad.hxx
-// ./opencascade/IntAna_Quadric.hxx
+// ./opencascade/IntAna_QuadQuadGeo.hxx
+// ./opencascade/IntAna_IntQuadQuad.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/IntAna_ListIteratorOfListOfCurve.hxx
-// ./opencascade/IntAna_Curve.hxx
-// ./opencascade/IntAna_ListOfCurve.hxx
     register_template_NCollection_List<IntAna_Curve>(m,"IntAna_ListOfCurve");  
-// ./opencascade/IntAna_QuadQuadGeo.hxx
-// ./opencascade/IntAna_ResultType.hxx
-// ./opencascade/IntAna_IntLinTorus.hxx
-// ./opencascade/IntAna_IntQuadQuad.hxx
-// ./opencascade/IntAna_Int3Pln.hxx
-// ./opencascade/IntAna_IntConicQuad.hxx
-// ./opencascade/IntAna_Quadric.hxx
 
 
 // exceptions

@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -43,9 +46,10 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP209"));
 // classes
 
 
-    static_cast<py::class_<StepAP209_Construct ,std::unique_ptr<StepAP209_Construct>  , STEPConstruct_Tool >>(m.attr("StepAP209_Construct"))
+    static_cast<py::class_<StepAP209_Construct , shared_ptr<StepAP209_Construct>  , STEPConstruct_Tool >>(m.attr("StepAP209_Construct"))
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> & >()  , py::arg("WS") )
+    // methods
         .def("Init",
              (Standard_Boolean (StepAP209_Construct::*)( const opencascade::handle<XSControl_WorkSession> &  ) ) static_cast<Standard_Boolean (StepAP209_Construct::*)( const opencascade::handle<XSControl_WorkSession> &  ) >(&StepAP209_Construct::Init),
              R"#(Initializes tool; returns True if succeeded)#"  , py::arg("WS"))
@@ -127,6 +131,11 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP209"));
         .def("IdealShape",
              (opencascade::handle<StepShape_ShapeRepresentation> (StepAP209_Construct::*)( const opencascade::handle<StepRepr_ProductDefinitionShape> &  ) const) static_cast<opencascade::handle<StepShape_ShapeRepresentation> (StepAP209_Construct::*)( const opencascade::handle<StepRepr_ProductDefinitionShape> &  ) const>(&StepAP209_Construct::IdealShape),
              R"#(None)#"  , py::arg("PDS"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
@@ -135,7 +144,6 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP209"));
 // operators
 
 // register typdefs
-// ./opencascade/StepAP209_Construct.hxx
 
 
 // exceptions

@@ -11,81 +11,21 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <gp_Pnt.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_XYZ.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <IntSurf_PntOn2S.hxx>
-#include <IntSurf_LineOn2S.hxx>
-#include <IntPatch_Point.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <IntPatch_HInterTool.hxx>
-#include <IntPatch_TheSurfFunction.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <IntSurf_PathPointTool.hxx>
-#include <IntSurf_InteriorPointTool.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <IntPatch_TheSurfFunction.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurface.hxx>
 #include <IntPatch_Polyhedron.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <IntPatch_PrmPrmIntersection_T3Bits.hxx>
-#include <IntSurf_LineOn2S.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <IntPatch_Point.hxx>
+#include <Adaptor3d_HVertex.hxx>
 #include <IntSurf_PntOn2S.hxx>
-#include <math_Vector.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
+#include <IntSurf_LineOn2S.hxx>
+#include <IntPatch_Point.hxx>
 #include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <math_Matrix.hxx>
 #include <Standard_DomainError.hxx>
 #include <IntPatch_Line.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_TopolTool.hxx>
-#include <IntPatch_Polyhedron.hxx>
-#include <gp_Pnt.hxx>
-#include <IntPatch_Polyhedron.hxx>
 #include <Adaptor3d_HVertex.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
-#include <IntPatch_HCurve2dTool.hxx>
-#include <IntPatch_HInterTool.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <IntPatch_ArcFunction.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <IntPatch_ALine.hxx>
-#include <IntSurf_PntOn2S.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
-#include <IntPatch_HCurve2dTool.hxx>
-#include <math_FunctionSetRoot.hxx>
-#include <Adaptor3d_TopolTool.hxx>
 #include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurfaceTool.hxx>
 #include <IntSurf_Quadric.hxx>
@@ -93,6 +33,66 @@ namespace py = pybind11;
 #include <math_Matrix.hxx>
 #include <IntPatch_WLine.hxx>
 #include <IntPatch_RLine.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <IntPatch_ALine.hxx>
+#include <IntSurf_PntOn2S.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_XYZ.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <IntPatch_HCurve2dTool.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <IntPatch_Point.hxx>
+#include <IntSurf_PntOn2S.hxx>
+#include <math_Vector.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <gp_Pnt.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <IntPatch_Polyhedron.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <IntPatch_PrmPrmIntersection_T3Bits.hxx>
+#include <IntSurf_LineOn2S.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <IntPatch_HInterTool.hxx>
+#include <IntPatch_TheSurfFunction.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <IntPatch_HCurve2dTool.hxx>
+#include <IntPatch_HInterTool.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <IntPatch_ArcFunction.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <math_Matrix.hxx>
+#include <IntSurf_PathPointTool.hxx>
+#include <IntSurf_InteriorPointTool.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <IntPatch_TheSurfFunction.hxx>
+#include <IntPatch_Polyhedron.hxx>
+#include <gp_Pnt.hxx>
 
 // module includes
 #include <IntPatch_ALine.hxx>
@@ -142,13 +142,13 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/IntPatch_SequenceOfPoint.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx
+// ./opencascade/IntPatch_SequenceOfLine.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntPatch_SequenceOfIWLineOfTheIWalking.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntPatch_SequenceOfLine.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx
 #include "NCollection.hxx"
 
 
@@ -222,92 +222,49 @@ py::module m = main_module.def_submodule("IntPatch", R"#()#");
         
     };
 
-// classes forward declarations only
-    py::class_<IntPatch_HInterTool ,std::unique_ptr<IntPatch_HInterTool>  >(m,"IntPatch_HInterTool",R"#(Tool for the intersection between 2 surfaces. Regroupe pour l instant les methodes hors Adaptor3d...)#");
-    py::class_<IntPatch_ImpImpIntersection ,std::unique_ptr<IntPatch_ImpImpIntersection>  >(m,"IntPatch_ImpImpIntersection",R"#(Implementation of the intersection between two quadric patches : Plane, Cone, Cylinder or Sphere.)#");
-    py::class_<IntPatch_TheSearchInside ,std::unique_ptr<IntPatch_TheSearchInside>  >(m,"IntPatch_TheSearchInside",R"#(None)#");
-    py::class_<IntPatch_TheIWLineOfTheIWalking ,opencascade::handle<IntPatch_TheIWLineOfTheIWalking>  , Standard_Transient >(m,"IntPatch_TheIWLineOfTheIWalking",R"#()#");
-    py::class_<IntPatch_TheIWalking ,std::unique_ptr<IntPatch_TheIWalking>  >(m,"IntPatch_TheIWalking",R"#(None)#");
-    py::class_<IntPatch_ArcFunction ,std::unique_ptr<IntPatch_ArcFunction>  , math_FunctionWithDerivative >(m,"IntPatch_ArcFunction",R"#(None)#");
-    py::class_<IntPatch_Polygo ,std::unique_ptr<IntPatch_Polygo> ,Py_IntPatch_Polygo , Intf_Polygon2d >(m,"IntPatch_Polygo",R"#(None)#");
-    py::class_<IntPatch_HCurve2dTool ,std::unique_ptr<IntPatch_HCurve2dTool>  >(m,"IntPatch_HCurve2dTool",R"#(None)#");
-    py::class_<IntPatch_Intersection ,std::unique_ptr<IntPatch_Intersection>  >(m,"IntPatch_Intersection",R"#(This class provides a generic algorithm to intersect 2 surfaces.)#");
-    py::class_<IntPatch_ImpPrmIntersection ,std::unique_ptr<IntPatch_ImpPrmIntersection>  >(m,"IntPatch_ImpPrmIntersection",R"#(Implementation of the intersection between a natural quadric patch : Plane, Cone, Cylinder or Sphere and a bi-parametrised surface.)#");
-    py::class_<IntPatch_Point ,std::unique_ptr<IntPatch_Point>  >(m,"IntPatch_Point",R"#(Definition of an intersection point between two surfaces. Such a point is contains geometrical informations (see the Value method) and logical informations.)#");
-    py::class_<IntPatch_PrmPrmIntersection_T3Bits ,std::unique_ptr<IntPatch_PrmPrmIntersection_T3Bits>  >(m,"IntPatch_PrmPrmIntersection_T3Bits",R"#(None)#");
-    py::class_<IntPatch_PolyhedronTool ,std::unique_ptr<IntPatch_PolyhedronTool>  >(m,"IntPatch_PolyhedronTool",R"#(Describe the signature of a polyedral surface with only triangular facets and the necessary informations to compute the interferences.)#");
-    py::class_<IntPatch_TheSOnBounds ,std::unique_ptr<IntPatch_TheSOnBounds>  >(m,"IntPatch_TheSOnBounds",R"#(None)#");
-    py::class_<IntPatch_CurvIntSurf ,std::unique_ptr<IntPatch_CurvIntSurf>  >(m,"IntPatch_CurvIntSurf",R"#(None)#");
-    py::class_<IntPatch_LineConstructor ,std::unique_ptr<IntPatch_LineConstructor>  >(m,"IntPatch_LineConstructor",R"#(The intersections algorithms compute the intersection on two surfaces and return the intersections lines as IntPatch_Line.)#");
-    py::class_<IntPatch_PolyLine ,std::unique_ptr<IntPatch_PolyLine>  , IntPatch_Polygo >(m,"IntPatch_PolyLine",R"#(None)#");
-    py::class_<IntPatch_PolyArc ,std::unique_ptr<IntPatch_PolyArc>  , IntPatch_Polygo >(m,"IntPatch_PolyArc",R"#(None)#");
-    py::class_<IntPatch_Line ,opencascade::handle<IntPatch_Line>  , Standard_Transient >(m,"IntPatch_Line",R"#(Definition of an intersection line between two surfaces. A line may be either geometric : line, circle, ellipse, parabola, hyperbola, as defined in the class GLine, or analytic, as defined in the class ALine, or defined by a set of points (coming from a walking algorithm) as defined in the class WLine.Definition of an intersection line between two surfaces. A line may be either geometric : line, circle, ellipse, parabola, hyperbola, as defined in the class GLine, or analytic, as defined in the class ALine, or defined by a set of points (coming from a walking algorithm) as defined in the class WLine.Definition of an intersection line between two surfaces. A line may be either geometric : line, circle, ellipse, parabola, hyperbola, as defined in the class GLine, or analytic, as defined in the class ALine, or defined by a set of points (coming from a walking algorithm) as defined in the class WLine.)#");
-    py::class_<IntPatch_TheSegmentOfTheSOnBounds ,std::unique_ptr<IntPatch_TheSegmentOfTheSOnBounds>  >(m,"IntPatch_TheSegmentOfTheSOnBounds",R"#(None)#");
-    py::class_<IntPatch_SpecialPoints ,std::unique_ptr<IntPatch_SpecialPoints>  >(m,"IntPatch_SpecialPoints",R"#(None)#");
-    py::class_<IntPatch_ALine ,opencascade::handle<IntPatch_ALine>  , IntPatch_Line >(m,"IntPatch_ALine",R"#(Implementation of an intersection line described by a parametrised curve.Implementation of an intersection line described by a parametrised curve.Implementation of an intersection line described by a parametrised curve.)#");
-    py::class_<IntPatch_CSFunction ,std::unique_ptr<IntPatch_CSFunction>  , math_FunctionSetWithDerivatives >(m,"IntPatch_CSFunction",R"#(this function is associated to the intersection between a curve on surface and a surface .)#");
-    py::class_<IntPatch_InterferencePolyhedron ,std::unique_ptr<IntPatch_InterferencePolyhedron>  , Intf_Interference >(m,"IntPatch_InterferencePolyhedron",R"#(Computes the interference between two polyhedra or the self interference of a polyhedron. Points of intersection, polylines of intersection and zones of tangence.)#");
-    py::class_<IntPatch_WLineTool ,std::unique_ptr<IntPatch_WLineTool>  >(m,"IntPatch_WLineTool",R"#(IntPatch_WLineTool provides set of static methods related to walking lines.)#");
-    py::class_<IntPatch_Polyhedron ,std::unique_ptr<IntPatch_Polyhedron>  >(m,"IntPatch_Polyhedron",R"#(This class provides a linear approximation of the PSurface. preview a constructor on a zone of a surface)#");
-    py::class_<IntPatch_PrmPrmIntersection ,std::unique_ptr<IntPatch_PrmPrmIntersection>  >(m,"IntPatch_PrmPrmIntersection",R"#(Implementation of the Intersection between two bi-parametrised surfaces.)#");
-    py::class_<IntPatch_GLine ,opencascade::handle<IntPatch_GLine>  , IntPatch_Line >(m,"IntPatch_GLine",R"#(Implementation of an intersection line represented by a conic.Implementation of an intersection line represented by a conic.Implementation of an intersection line represented by a conic.)#");
-    py::class_<IntPatch_ALineToWLine ,std::unique_ptr<IntPatch_ALineToWLine>  >(m,"IntPatch_ALineToWLine",R"#(None)#");
-    py::class_<IntPatch_PointLine ,opencascade::handle<IntPatch_PointLine> ,Py_IntPatch_PointLine , IntPatch_Line >(m,"IntPatch_PointLine",R"#(Definition of an intersection line between two surfaces. A line defined by a set of points (e.g. coming from a walking algorithm) as defined in the class WLine or RLine (Restriction line).Definition of an intersection line between two surfaces. A line defined by a set of points (e.g. coming from a walking algorithm) as defined in the class WLine or RLine (Restriction line).)#");
-    py::class_<IntPatch_WLine ,opencascade::handle<IntPatch_WLine>  , IntPatch_PointLine >(m,"IntPatch_WLine",R"#(Definition of set of points as a result of the intersection between 2 parametrised patches.Definition of set of points as a result of the intersection between 2 parametrised patches.Definition of set of points as a result of the intersection between 2 parametrised patches.)#");
-    py::class_<IntPatch_RstInt ,std::unique_ptr<IntPatch_RstInt>  >(m,"IntPatch_RstInt",R"#(trouver les points d intersection entre la ligne de cheminement et les arcs de restriction)#");
-    py::class_<IntPatch_RLine ,opencascade::handle<IntPatch_RLine>  , IntPatch_PointLine >(m,"IntPatch_RLine",R"#(Implementation of an intersection line described by a restriction line on one of the surfaces.Implementation of an intersection line described by a restriction line on one of the surfaces.Implementation of an intersection line described by a restriction line on one of the surfaces.)#");
-    py::class_<IntPatch_TheSurfFunction ,std::unique_ptr<IntPatch_TheSurfFunction>  , math_FunctionSetWithDerivatives >(m,"IntPatch_TheSurfFunction",R"#(None)#");
-    py::class_<IntPatch_ThePathPointOfTheSOnBounds ,std::unique_ptr<IntPatch_ThePathPointOfTheSOnBounds>  >(m,"IntPatch_ThePathPointOfTheSOnBounds",R"#(None)#");
-
 // pre-register typdefs
-// ./opencascade/IntPatch_PolyArc.hxx
-// ./opencascade/IntPatch_HInterTool.hxx
-// ./opencascade/IntPatch_Polyhedron.hxx
-// ./opencascade/IntPatch_ImpImpIntersection.hxx
-// ./opencascade/IntPatch_PointLine.hxx
-// ./opencascade/IntPatch_TheSearchInside.hxx
-// ./opencascade/IntPatch_SpecPntType.hxx
-// ./opencascade/IntPatch_RLine.hxx
-// ./opencascade/IntPatch_SequenceOfPoint.hxx
     preregister_template_NCollection_Sequence<IntPatch_Point>(m,"IntPatch_SequenceOfPoint");  
-// ./opencascade/IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx
-    preregister_template_NCollection_Sequence<IntPatch_ThePathPointOfTheSOnBounds>(m,"IntPatch_SequenceOfPathPointOfTheSOnBounds");  
-// ./opencascade/IntPatch_TheIWLineOfTheIWalking.hxx
-// ./opencascade/IntPatch_SearchPnt.hxx
-// ./opencascade/IntPatch_Line.hxx
-// ./opencascade/IntPatch_WLine.hxx
-// ./opencascade/IntPatch_TheIWalking.hxx
-// ./opencascade/IntPatch_TheSegmentOfTheSOnBounds.hxx
-// ./opencascade/IntPatch_ArcFunction.hxx
-// ./opencascade/IntPatch_PrmPrmIntersection.hxx
-// ./opencascade/IntPatch_Polygo.hxx
-// ./opencascade/IntPatch_SpecialPoints.hxx
-// ./opencascade/IntPatch_HCurve2dTool.hxx
-// ./opencascade/IntPatch_IType.hxx
-// ./opencascade/IntPatch_ThePathPointOfTheSOnBounds.hxx
-// ./opencascade/IntPatch_Intersection.hxx
-// ./opencascade/IntPatch_ALine.hxx
-// ./opencascade/IntPatch_ImpPrmIntersection.hxx
-// ./opencascade/IntPatch_GLine.hxx
-// ./opencascade/IntPatch_Point.hxx
-// ./opencascade/IntPatch_CSFunction.hxx
-// ./opencascade/IntPatch_PrmPrmIntersection_T3Bits.hxx
-// ./opencascade/IntPatch_RstInt.hxx
-// ./opencascade/IntPatch_PolyhedronTool.hxx
-// ./opencascade/IntPatch_InterferencePolyhedron.hxx
-// ./opencascade/IntPatch_TheSOnBounds.hxx
-// ./opencascade/IntPatch_SequenceOfIWLineOfTheIWalking.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking> >(m,"IntPatch_SequenceOfIWLineOfTheIWalking");  
-// ./opencascade/IntPatch_ALineToWLine.hxx
-// ./opencascade/IntPatch_CurvIntSurf.hxx
-// ./opencascade/IntPatch_WLineTool.hxx
-// ./opencascade/IntPatch_LineConstructor.hxx
-// ./opencascade/IntPatch_TheSurfFunction.hxx
-// ./opencascade/IntPatch_SequenceOfLine.hxx
     preregister_template_NCollection_Sequence<opencascade::handle<IntPatch_Line> >(m,"IntPatch_SequenceOfLine");  
-// ./opencascade/IntPatch_PolyLine.hxx
-// ./opencascade/IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx
+    preregister_template_NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking> >(m,"IntPatch_SequenceOfIWLineOfTheIWalking");  
     preregister_template_NCollection_Sequence<IntPatch_TheSegmentOfTheSOnBounds>(m,"IntPatch_SequenceOfSegmentOfTheSOnBounds");  
+    preregister_template_NCollection_Sequence<IntPatch_ThePathPointOfTheSOnBounds>(m,"IntPatch_SequenceOfPathPointOfTheSOnBounds");  
+
+// classes forward declarations only
+    py::class_<IntPatch_ALineToWLine , shared_ptr<IntPatch_ALineToWLine>  >(m,"IntPatch_ALineToWLine",R"#(None)#");
+    py::class_<IntPatch_ArcFunction , shared_ptr<IntPatch_ArcFunction>  , math_FunctionWithDerivative >(m,"IntPatch_ArcFunction",R"#(None)#");
+    py::class_<IntPatch_CSFunction , shared_ptr<IntPatch_CSFunction>  , math_FunctionSetWithDerivatives >(m,"IntPatch_CSFunction",R"#(this function is associated to the intersection between a curve on surface and a surface .)#");
+    py::class_<IntPatch_CurvIntSurf , shared_ptr<IntPatch_CurvIntSurf>  >(m,"IntPatch_CurvIntSurf",R"#(None)#");
+    py::class_<IntPatch_HCurve2dTool , shared_ptr<IntPatch_HCurve2dTool>  >(m,"IntPatch_HCurve2dTool",R"#(None)#");
+    py::class_<IntPatch_HInterTool , shared_ptr<IntPatch_HInterTool>  >(m,"IntPatch_HInterTool",R"#(Tool for the intersection between 2 surfaces. Regroupe pour l instant les methodes hors Adaptor3d...)#");
+    py::class_<IntPatch_ImpImpIntersection , shared_ptr<IntPatch_ImpImpIntersection>  >(m,"IntPatch_ImpImpIntersection",R"#(Implementation of the intersection between two quadric patches : Plane, Cone, Cylinder or Sphere.)#");
+    py::class_<IntPatch_ImpPrmIntersection , shared_ptr<IntPatch_ImpPrmIntersection>  >(m,"IntPatch_ImpPrmIntersection",R"#(Implementation of the intersection between a natural quadric patch : Plane, Cone, Cylinder or Sphere and a bi-parametrised surface.)#");
+    py::class_<IntPatch_InterferencePolyhedron , shared_ptr<IntPatch_InterferencePolyhedron>  , Intf_Interference >(m,"IntPatch_InterferencePolyhedron",R"#(Computes the interference between two polyhedra or the self interference of a polyhedron. Points of intersection, polylines of intersection and zones of tangence.)#");
+    py::class_<IntPatch_Intersection , shared_ptr<IntPatch_Intersection>  >(m,"IntPatch_Intersection",R"#(This class provides a generic algorithm to intersect 2 surfaces.)#");
+    py::class_<IntPatch_Line ,opencascade::handle<IntPatch_Line>  , Standard_Transient >(m,"IntPatch_Line",R"#(Definition of an intersection line between two surfaces. A line may be either geometric : line, circle, ellipse, parabola, hyperbola, as defined in the class GLine, or analytic, as defined in the class ALine, or defined by a set of points (coming from a walking algorithm) as defined in the class WLine.Definition of an intersection line between two surfaces. A line may be either geometric : line, circle, ellipse, parabola, hyperbola, as defined in the class GLine, or analytic, as defined in the class ALine, or defined by a set of points (coming from a walking algorithm) as defined in the class WLine.Definition of an intersection line between two surfaces. A line may be either geometric : line, circle, ellipse, parabola, hyperbola, as defined in the class GLine, or analytic, as defined in the class ALine, or defined by a set of points (coming from a walking algorithm) as defined in the class WLine.)#");
+    py::class_<IntPatch_LineConstructor , shared_ptr<IntPatch_LineConstructor>  >(m,"IntPatch_LineConstructor",R"#(The intersections algorithms compute the intersection on two surfaces and return the intersections lines as IntPatch_Line.)#");
+    py::class_<IntPatch_Point , shared_ptr<IntPatch_Point>  >(m,"IntPatch_Point",R"#(Definition of an intersection point between two surfaces. Such a point is contains geometrical informations (see the Value method) and logical informations.)#");
+    py::class_<IntPatch_Polygo , shared_ptr<IntPatch_Polygo> ,Py_IntPatch_Polygo , Intf_Polygon2d >(m,"IntPatch_Polygo",R"#(None)#");
+    py::class_<IntPatch_Polyhedron , shared_ptr<IntPatch_Polyhedron>  >(m,"IntPatch_Polyhedron",R"#(This class provides a linear approximation of the PSurface. preview a constructor on a zone of a surface)#");
+    py::class_<IntPatch_PolyhedronTool , shared_ptr<IntPatch_PolyhedronTool>  >(m,"IntPatch_PolyhedronTool",R"#(Describe the signature of a polyedral surface with only triangular facets and the necessary informations to compute the interferences.)#");
+    py::class_<IntPatch_PrmPrmIntersection , shared_ptr<IntPatch_PrmPrmIntersection>  >(m,"IntPatch_PrmPrmIntersection",R"#(Implementation of the Intersection between two bi-parametrised surfaces.)#");
+    py::class_<IntPatch_PrmPrmIntersection_T3Bits , shared_ptr<IntPatch_PrmPrmIntersection_T3Bits>  >(m,"IntPatch_PrmPrmIntersection_T3Bits",R"#(None)#");
+    py::class_<IntPatch_RstInt , shared_ptr<IntPatch_RstInt>  >(m,"IntPatch_RstInt",R"#(trouver les points d intersection entre la ligne de cheminement et les arcs de restriction)#");
+    py::class_<IntPatch_SpecialPoints , shared_ptr<IntPatch_SpecialPoints>  >(m,"IntPatch_SpecialPoints",R"#(None)#");
+    py::class_<IntPatch_TheIWLineOfTheIWalking ,opencascade::handle<IntPatch_TheIWLineOfTheIWalking>  , Standard_Transient >(m,"IntPatch_TheIWLineOfTheIWalking",R"#()#");
+    py::class_<IntPatch_TheIWalking , shared_ptr<IntPatch_TheIWalking>  >(m,"IntPatch_TheIWalking",R"#(None)#");
+    py::class_<IntPatch_ThePathPointOfTheSOnBounds , shared_ptr<IntPatch_ThePathPointOfTheSOnBounds>  >(m,"IntPatch_ThePathPointOfTheSOnBounds",R"#(None)#");
+    py::class_<IntPatch_TheSOnBounds , shared_ptr<IntPatch_TheSOnBounds>  >(m,"IntPatch_TheSOnBounds",R"#(None)#");
+    py::class_<IntPatch_TheSearchInside , shared_ptr<IntPatch_TheSearchInside>  >(m,"IntPatch_TheSearchInside",R"#(None)#");
+    py::class_<IntPatch_TheSegmentOfTheSOnBounds , shared_ptr<IntPatch_TheSegmentOfTheSOnBounds>  >(m,"IntPatch_TheSegmentOfTheSOnBounds",R"#(None)#");
+    py::class_<IntPatch_TheSurfFunction , shared_ptr<IntPatch_TheSurfFunction>  , math_FunctionSetWithDerivatives >(m,"IntPatch_TheSurfFunction",R"#(None)#");
+    py::class_<IntPatch_WLineTool , shared_ptr<IntPatch_WLineTool>  >(m,"IntPatch_WLineTool",R"#(IntPatch_WLineTool provides set of static methods related to walking lines.)#");
+    py::class_<IntPatch_ALine ,opencascade::handle<IntPatch_ALine>  , IntPatch_Line >(m,"IntPatch_ALine",R"#(Implementation of an intersection line described by a parametrised curve.Implementation of an intersection line described by a parametrised curve.Implementation of an intersection line described by a parametrised curve.)#");
+    py::class_<IntPatch_GLine ,opencascade::handle<IntPatch_GLine>  , IntPatch_Line >(m,"IntPatch_GLine",R"#(Implementation of an intersection line represented by a conic.Implementation of an intersection line represented by a conic.Implementation of an intersection line represented by a conic.)#");
+    py::class_<IntPatch_PointLine ,opencascade::handle<IntPatch_PointLine> ,Py_IntPatch_PointLine , IntPatch_Line >(m,"IntPatch_PointLine",R"#(Definition of an intersection line between two surfaces. A line defined by a set of points (e.g. coming from a walking algorithm) as defined in the class WLine or RLine (Restriction line).Definition of an intersection line between two surfaces. A line defined by a set of points (e.g. coming from a walking algorithm) as defined in the class WLine or RLine (Restriction line).)#");
+    py::class_<IntPatch_PolyArc , shared_ptr<IntPatch_PolyArc>  , IntPatch_Polygo >(m,"IntPatch_PolyArc",R"#(None)#");
+    py::class_<IntPatch_PolyLine , shared_ptr<IntPatch_PolyLine>  , IntPatch_Polygo >(m,"IntPatch_PolyLine",R"#(None)#");
+    py::class_<IntPatch_RLine ,opencascade::handle<IntPatch_RLine>  , IntPatch_PointLine >(m,"IntPatch_RLine",R"#(Implementation of an intersection line described by a restriction line on one of the surfaces.Implementation of an intersection line described by a restriction line on one of the surfaces.Implementation of an intersection line described by a restriction line on one of the surfaces.)#");
+    py::class_<IntPatch_WLine ,opencascade::handle<IntPatch_WLine>  , IntPatch_PointLine >(m,"IntPatch_WLine",R"#(Definition of set of points as a result of the intersection between 2 parametrised patches.Definition of set of points as a result of the intersection between 2 parametrised patches.Definition of set of points as a result of the intersection between 2 parametrised patches.)#");
 
 };
 

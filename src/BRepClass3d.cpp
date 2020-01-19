@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -10,12 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <BRepClass3d_SolidExplorer.hxx>
+#include <gp_Lin.hxx>
 #include <TopoDS_Face.hxx>
 #include <BRepAdaptor_HSurface.hxx>
 #include <TopoDS_Shell.hxx>
 #include <IntCurvesFace_Intersector.hxx>
-#include <gp_Lin.hxx>
+#include <BRepClass3d_SolidExplorer.hxx>
 #include <TopoDS_Shell.hxx>
 #include <TopoDS_Solid.hxx>
 #include <BRepClass3d_Intersector3d.hxx>
@@ -58,10 +61,148 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
 
 // classes
 
+    register_default_constructor<BRepClass3d , shared_ptr<BRepClass3d>>(m,"BRepClass3d");
 
-    static_cast<py::class_<BRepClass3d_SClassifier ,std::unique_ptr<BRepClass3d_SClassifier>  >>(m.attr("BRepClass3d_SClassifier"))
+    static_cast<py::class_<BRepClass3d , shared_ptr<BRepClass3d>  >>(m.attr("BRepClass3d"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("OuterShell_s",
+                    (TopoDS_Shell (*)( const TopoDS_Solid &  ) ) static_cast<TopoDS_Shell (*)( const TopoDS_Solid &  ) >(&BRepClass3d::OuterShell),
+                    R"#(Returns the outer most shell of <S>. Returns a Null shell if <S> has no outer shell. If <S> has only one shell, then it will return, without checking orientation.)#"  , py::arg("S"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepClass3d_BndBoxTreeSelectorLine , shared_ptr<BRepClass3d_BndBoxTreeSelectorLine>  >>(m.attr("BRepClass3d_BndBoxTreeSelectorLine"))
+        .def(py::init<  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> & >()  , py::arg("theMapOfShape") )
+    // methods
+        .def("Reject",
+             (Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)( const Bnd_Box &  ) const) static_cast<Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)( const Bnd_Box &  ) const>(&BRepClass3d_BndBoxTreeSelectorLine::Reject),
+             R"#(None)#"  , py::arg("theBox"))
+        .def("Accept",
+             (Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)( const Standard_Integer &  ) ) static_cast<Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)( const Standard_Integer &  ) >(&BRepClass3d_BndBoxTreeSelectorLine::Accept),
+             R"#(None)#"  , py::arg("theObj"))
+        .def("SetCurrentLine",
+             (void (BRepClass3d_BndBoxTreeSelectorLine::*)( const gp_Lin & ,  const Standard_Real  ) ) static_cast<void (BRepClass3d_BndBoxTreeSelectorLine::*)( const gp_Lin & ,  const Standard_Real  ) >(&BRepClass3d_BndBoxTreeSelectorLine::SetCurrentLine),
+             R"#(None)#"  , py::arg("theL"),  py::arg("theMaxParam"))
+        .def("GetNbEdgeParam",
+             (Standard_Integer (BRepClass3d_BndBoxTreeSelectorLine::*)() const) static_cast<Standard_Integer (BRepClass3d_BndBoxTreeSelectorLine::*)() const>(&BRepClass3d_BndBoxTreeSelectorLine::GetNbEdgeParam),
+             R"#(None)#" )
+        .def("GetNbVertParam",
+             (Standard_Integer (BRepClass3d_BndBoxTreeSelectorLine::*)() const) static_cast<Standard_Integer (BRepClass3d_BndBoxTreeSelectorLine::*)() const>(&BRepClass3d_BndBoxTreeSelectorLine::GetNbVertParam),
+             R"#(None)#" )
+        .def("ClearResults",
+             (void (BRepClass3d_BndBoxTreeSelectorLine::*)() ) static_cast<void (BRepClass3d_BndBoxTreeSelectorLine::*)() >(&BRepClass3d_BndBoxTreeSelectorLine::ClearResults),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("GetEdgeParam",
+             []( BRepClass3d_BndBoxTreeSelectorLine &self , const Standard_Integer i,TopoDS_Edge & theOutE ){ Standard_Real  theOutParam; Standard_Real  outLParam; self.GetEdgeParam(i,theOutE,theOutParam,outLParam); return std::make_tuple(theOutParam,outLParam); },
+             R"#(None)#"  , py::arg("i"),  py::arg("theOutE"))
+        .def("GetVertParam",
+             []( BRepClass3d_BndBoxTreeSelectorLine &self , const Standard_Integer i,TopoDS_Vertex & theOutV ){ Standard_Real  outLParam; self.GetVertParam(i,theOutV,outLParam); return std::make_tuple(outLParam); },
+             R"#(None)#"  , py::arg("i"),  py::arg("theOutV"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepClass3d_BndBoxTreeSelectorPoint , shared_ptr<BRepClass3d_BndBoxTreeSelectorPoint>  >>(m.attr("BRepClass3d_BndBoxTreeSelectorPoint"))
+        .def(py::init<  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> & >()  , py::arg("theMapOfShape") )
+    // methods
+        .def("Reject",
+             (Standard_Boolean (BRepClass3d_BndBoxTreeSelectorPoint::*)( const Bnd_Box &  ) const) static_cast<Standard_Boolean (BRepClass3d_BndBoxTreeSelectorPoint::*)( const Bnd_Box &  ) const>(&BRepClass3d_BndBoxTreeSelectorPoint::Reject),
+             R"#(None)#"  , py::arg("theBox"))
+        .def("Accept",
+             (Standard_Boolean (BRepClass3d_BndBoxTreeSelectorPoint::*)( const Standard_Integer &  ) ) static_cast<Standard_Boolean (BRepClass3d_BndBoxTreeSelectorPoint::*)( const Standard_Integer &  ) >(&BRepClass3d_BndBoxTreeSelectorPoint::Accept),
+             R"#(None)#"  , py::arg("theObj"))
+        .def("SetCurrentPoint",
+             (void (BRepClass3d_BndBoxTreeSelectorPoint::*)( const gp_Pnt &  ) ) static_cast<void (BRepClass3d_BndBoxTreeSelectorPoint::*)( const gp_Pnt &  ) >(&BRepClass3d_BndBoxTreeSelectorPoint::SetCurrentPoint),
+             R"#(None)#"  , py::arg("theP"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepClass3d_Intersector3d , shared_ptr<BRepClass3d_Intersector3d>  >>(m.attr("BRepClass3d_Intersector3d"))
+        .def(py::init<  >()  )
+    // methods
+        .def("Perform",
+             (void (BRepClass3d_Intersector3d::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face &  ) ) static_cast<void (BRepClass3d_Intersector3d::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face &  ) >(&BRepClass3d_Intersector3d::Perform),
+             R"#(Perform the intersection between the segment L(0) ... L(Prm) and the Shape <Sh>.)#"  , py::arg("L"),  py::arg("Prm"),  py::arg("Tol"),  py::arg("F"))
+        .def("IsDone",
+             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::IsDone),
+             R"#(True is returned when the intersection have been computed.)#" )
+        .def("HasAPoint",
+             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::HasAPoint),
+             R"#(True is returned if a point has been found.)#" )
+        .def("UParameter",
+             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::UParameter),
+             R"#(Returns the U parameter of the intersection point on the surface.)#" )
+        .def("VParameter",
+             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::VParameter),
+             R"#(Returns the V parameter of the intersection point on the surface.)#" )
+        .def("WParameter",
+             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::WParameter),
+             R"#(Returns the parameter of the intersection point on the line.)#" )
+        .def("Pnt",
+             (const gp_Pnt & (BRepClass3d_Intersector3d::*)() const) static_cast<const gp_Pnt & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Pnt),
+             R"#(Returns the geometric point of the intersection between the line and the surface.)#" )
+        .def("Transition",
+             (IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const) static_cast<IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Transition),
+             R"#(Returns the transition of the line on the surface.)#" )
+        .def("State",
+             (TopAbs_State (BRepClass3d_Intersector3d::*)() const) static_cast<TopAbs_State (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::State),
+             R"#(Returns the state of the point on the face. The values can be either TopAbs_IN ( the point is in the face) or TopAbs_ON ( the point is on a boudary of the face).)#" )
+        .def("Face",
+             (const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const) static_cast<const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Face),
+             R"#(Returns the significant face used to determine the intersection.)#" )
+        .def("IsDone",
+             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::IsDone),
+             R"#(True is returned when the intersection have been computed.)#" )
+        .def("HasAPoint",
+             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::HasAPoint),
+             R"#(True is returned if a point has been found.)#" )
+        .def("Pnt",
+             (const gp_Pnt & (BRepClass3d_Intersector3d::*)() const) static_cast<const gp_Pnt & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Pnt),
+             R"#(Returns the geometric point of the intersection between the line and the surface.)#" )
+        .def("UParameter",
+             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::UParameter),
+             R"#(Returns the U parameter of the intersection point on the surface.)#" )
+        .def("VParameter",
+             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::VParameter),
+             R"#(Returns the V parameter of the intersection point on the surface.)#" )
+        .def("WParameter",
+             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::WParameter),
+             R"#(Returns the parameter of the intersection point on the line.)#" )
+        .def("Transition",
+             (IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const) static_cast<IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Transition),
+             R"#(Returns the transition of the line on the surface.)#" )
+        .def("State",
+             (TopAbs_State (BRepClass3d_Intersector3d::*)() const) static_cast<TopAbs_State (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::State),
+             R"#(Returns the state of the point on the face. The values can be either TopAbs_IN ( the point is in the face) or TopAbs_ON ( the point is on a boudary of the face).)#" )
+        .def("Face",
+             (const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const) static_cast<const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Face),
+             R"#(Returns the significant face used to determine the intersection.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<BRepClass3d_SClassifier , shared_ptr<BRepClass3d_SClassifier>  >>(m.attr("BRepClass3d_SClassifier"))
         .def(py::init<  >()  )
         .def(py::init< BRepClass3d_SolidExplorer &,const gp_Pnt &,const Standard_Real >()  , py::arg("S"),  py::arg("P"),  py::arg("Tol") )
+    // methods
         .def("Perform",
              (void (BRepClass3d_SClassifier::*)( BRepClass3d_SolidExplorer & ,  const gp_Pnt & ,  const Standard_Real  ) ) static_cast<void (BRepClass3d_SClassifier::*)( BRepClass3d_SolidExplorer & ,  const gp_Pnt & ,  const Standard_Real  ) >(&BRepClass3d_SClassifier::Perform),
              R"#(Classify the point P with the tolerance Tol on the solid S.)#"  , py::arg("S"),  py::arg("P"),  py::arg("Tol"))
@@ -80,12 +221,18 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
         .def("Face",
              (TopoDS_Face (BRepClass3d_SClassifier::*)() const) static_cast<TopoDS_Face (BRepClass3d_SClassifier::*)() const>(&BRepClass3d_SClassifier::Face),
              R"#(Returns the face used to determine the classification. When the state is ON, this is the face containing the point.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepClass3d_SolidExplorer ,std::unique_ptr<BRepClass3d_SolidExplorer>  >>(m.attr("BRepClass3d_SolidExplorer"))
+    static_cast<py::class_<BRepClass3d_SolidExplorer , shared_ptr<BRepClass3d_SolidExplorer>  >>(m.attr("BRepClass3d_SolidExplorer"))
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // methods
         .def("InitShape",
              (void (BRepClass3d_SolidExplorer::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepClass3d_SolidExplorer::*)( const TopoDS_Shape &  ) >(&BRepClass3d_SolidExplorer::InitShape),
              R"#(None)#"  , py::arg("S"))
@@ -161,6 +308,8 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
         .def("Destroy",
              (void (BRepClass3d_SolidExplorer::*)() ) static_cast<void (BRepClass3d_SolidExplorer::*)() >(&BRepClass3d_SolidExplorer::Destroy),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("FindAPointInTheFace_s",
                     (Standard_Boolean (*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real &  ) >(&BRepClass3d_SolidExplorer::FindAPointInTheFace),
                     R"#(compute a point P in the face F. Param is a Real in ]0,1[ and is used to initialise the algorithm. For different values , different points are returned.)#"  , py::arg("F"),  py::arg("P"),  py::arg("Param"))
@@ -179,38 +328,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
         .def_static("FindAPointInTheFace_s",
                     (Standard_Boolean (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  ) >(&BRepClass3d_SolidExplorer::FindAPointInTheFace),
                     R"#(None)#"  , py::arg("F"),  py::arg("u"),  py::arg("v"))
-;
-
-    register_default_constructor<BRepClass3d ,std::unique_ptr<BRepClass3d>>(m,"BRepClass3d");
-
-    static_cast<py::class_<BRepClass3d ,std::unique_ptr<BRepClass3d>  >>(m.attr("BRepClass3d"))
-        .def_static("OuterShell_s",
-                    (TopoDS_Shell (*)( const TopoDS_Solid &  ) ) static_cast<TopoDS_Shell (*)( const TopoDS_Solid &  ) >(&BRepClass3d::OuterShell),
-                    R"#(Returns the outer most shell of <S>. Returns a Null shell if <S> has no outer shell. If <S> has only one shell, then it will return, without checking orientation.)#"  , py::arg("S"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepClass3d_SolidClassifier ,std::unique_ptr<BRepClass3d_SolidClassifier>  , BRepClass3d_SClassifier >>(m.attr("BRepClass3d_SolidClassifier"))
+    static_cast<py::class_<BRepClass3d_SolidPassiveClassifier , shared_ptr<BRepClass3d_SolidPassiveClassifier>  >>(m.attr("BRepClass3d_SolidPassiveClassifier"))
         .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
-        .def(py::init< const TopoDS_Shape &,const gp_Pnt &,const Standard_Real >()  , py::arg("S"),  py::arg("P"),  py::arg("Tol") )
-        .def("Load",
-             (void (BRepClass3d_SolidClassifier::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepClass3d_SolidClassifier::*)( const TopoDS_Shape &  ) >(&BRepClass3d_SolidClassifier::Load),
-             R"#(None)#"  , py::arg("S"))
-        .def("Perform",
-             (void (BRepClass3d_SolidClassifier::*)( const gp_Pnt & ,  const Standard_Real  ) ) static_cast<void (BRepClass3d_SolidClassifier::*)( const gp_Pnt & ,  const Standard_Real  ) >(&BRepClass3d_SolidClassifier::Perform),
-             R"#(Classify the point P with the tolerance Tol on the solid S.)#"  , py::arg("P"),  py::arg("Tol"))
-        .def("PerformInfinitePoint",
-             (void (BRepClass3d_SolidClassifier::*)( const Standard_Real  ) ) static_cast<void (BRepClass3d_SolidClassifier::*)( const Standard_Real  ) >(&BRepClass3d_SolidClassifier::PerformInfinitePoint),
-             R"#(Classify an infinite point with the tolerance Tol on the solid S. Useful for compute the orientation of a solid.)#"  , py::arg("Tol"))
-        .def("Destroy",
-             (void (BRepClass3d_SolidClassifier::*)() ) static_cast<void (BRepClass3d_SolidClassifier::*)() >(&BRepClass3d_SolidClassifier::Destroy),
-             R"#(None)#" )
-;
-
-
-    static_cast<py::class_<BRepClass3d_SolidPassiveClassifier ,std::unique_ptr<BRepClass3d_SolidPassiveClassifier>  >>(m.attr("BRepClass3d_SolidPassiveClassifier"))
-        .def(py::init<  >()  )
+    // methods
         .def("Reset",
              (void (BRepClass3d_SolidPassiveClassifier::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepClass3d_SolidPassiveClassifier::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) >(&BRepClass3d_SolidPassiveClassifier::Reset),
              R"#(Starts a classification process. The point to classify is the origin of the line <L>. <P> is the original length of the segment on <L> used to compute intersections. <Tol> is the tolerance attached to the intersections.)#"  , py::arg("L"),  py::arg("P"),  py::arg("Tol"))
@@ -229,94 +355,53 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
         .def("State",
              (TopAbs_State (BRepClass3d_SolidPassiveClassifier::*)() const) static_cast<TopAbs_State (BRepClass3d_SolidPassiveClassifier::*)() const>(&BRepClass3d_SolidPassiveClassifier::State),
              R"#(Returns the current state of the point.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<BRepClass3d_Intersector3d ,std::unique_ptr<BRepClass3d_Intersector3d>  >>(m.attr("BRepClass3d_Intersector3d"))
+    static_cast<py::class_<BRepClass3d_SolidClassifier , shared_ptr<BRepClass3d_SolidClassifier>  , BRepClass3d_SClassifier >>(m.attr("BRepClass3d_SolidClassifier"))
         .def(py::init<  >()  )
+        .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+        .def(py::init< const TopoDS_Shape &,const gp_Pnt &,const Standard_Real >()  , py::arg("S"),  py::arg("P"),  py::arg("Tol") )
+    // methods
+        .def("Load",
+             (void (BRepClass3d_SolidClassifier::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepClass3d_SolidClassifier::*)( const TopoDS_Shape &  ) >(&BRepClass3d_SolidClassifier::Load),
+             R"#(None)#"  , py::arg("S"))
         .def("Perform",
-             (void (BRepClass3d_Intersector3d::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face &  ) ) static_cast<void (BRepClass3d_Intersector3d::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face &  ) >(&BRepClass3d_Intersector3d::Perform),
-             R"#(Perform the intersection between the segment L(0) ... L(Prm) and the Shape <Sh>.)#"  , py::arg("L"),  py::arg("Prm"),  py::arg("Tol"),  py::arg("F"))
-        .def("IsDone",
-             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::IsDone),
-             R"#(True is returned when the intersection have been computed.)#" )
-        .def("HasAPoint",
-             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::HasAPoint),
-             R"#(True is returned if a point has been found.)#" )
-        .def("UParameter",
-             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::UParameter),
-             R"#(Returns the U parameter of the intersection point on the surface.)#" )
-        .def("VParameter",
-             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::VParameter),
-             R"#(Returns the V parameter of the intersection point on the surface.)#" )
-        .def("WParameter",
-             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::WParameter),
-             R"#(Returns the parameter of the intersection point on the line.)#" )
-        .def("Pnt",
-             (const gp_Pnt & (BRepClass3d_Intersector3d::*)() const) static_cast<const gp_Pnt & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Pnt),
-             R"#(Returns the geometric point of the intersection between the line and the surface.)#" )
-        .def("Transition",
-             (IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const) static_cast<IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Transition),
-             R"#(Returns the transition of the line on the surface.)#" )
-        .def("State",
-             (TopAbs_State (BRepClass3d_Intersector3d::*)() const) static_cast<TopAbs_State (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::State),
-             R"#(Returns the state of the point on the face. The values can be either TopAbs_IN ( the point is in the face) or TopAbs_ON ( the point is on a boudary of the face).)#" )
-        .def("Face",
-             (const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const) static_cast<const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Face),
-             R"#(Returns the significant face used to determine the intersection.)#" )
-        .def("IsDone",
-             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::IsDone),
-             R"#(True is returned when the intersection have been computed.)#" )
-        .def("HasAPoint",
-             (Standard_Boolean (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Boolean (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::HasAPoint),
-             R"#(True is returned if a point has been found.)#" )
-        .def("Pnt",
-             (const gp_Pnt & (BRepClass3d_Intersector3d::*)() const) static_cast<const gp_Pnt & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Pnt),
-             R"#(Returns the geometric point of the intersection between the line and the surface.)#" )
-        .def("UParameter",
-             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::UParameter),
-             R"#(Returns the U parameter of the intersection point on the surface.)#" )
-        .def("VParameter",
-             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::VParameter),
-             R"#(Returns the V parameter of the intersection point on the surface.)#" )
-        .def("WParameter",
-             (Standard_Real (BRepClass3d_Intersector3d::*)() const) static_cast<Standard_Real (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::WParameter),
-             R"#(Returns the parameter of the intersection point on the line.)#" )
-        .def("Transition",
-             (IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const) static_cast<IntCurveSurface_TransitionOnCurve (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Transition),
-             R"#(Returns the transition of the line on the surface.)#" )
-        .def("State",
-             (TopAbs_State (BRepClass3d_Intersector3d::*)() const) static_cast<TopAbs_State (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::State),
-             R"#(Returns the state of the point on the face. The values can be either TopAbs_IN ( the point is in the face) or TopAbs_ON ( the point is on a boudary of the face).)#" )
-        .def("Face",
-             (const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const) static_cast<const TopoDS_Face & (BRepClass3d_Intersector3d::*)() const>(&BRepClass3d_Intersector3d::Face),
-             R"#(Returns the significant face used to determine the intersection.)#" )
+             (void (BRepClass3d_SolidClassifier::*)( const gp_Pnt & ,  const Standard_Real  ) ) static_cast<void (BRepClass3d_SolidClassifier::*)( const gp_Pnt & ,  const Standard_Real  ) >(&BRepClass3d_SolidClassifier::Perform),
+             R"#(Classify the point P with the tolerance Tol on the solid S.)#"  , py::arg("P"),  py::arg("Tol"))
+        .def("PerformInfinitePoint",
+             (void (BRepClass3d_SolidClassifier::*)( const Standard_Real  ) ) static_cast<void (BRepClass3d_SolidClassifier::*)( const Standard_Real  ) >(&BRepClass3d_SolidClassifier::PerformInfinitePoint),
+             R"#(Classify an infinite point with the tolerance Tol on the solid S. Useful for compute the orientation of a solid.)#"  , py::arg("Tol"))
+        .def("Destroy",
+             (void (BRepClass3d_SolidClassifier::*)() ) static_cast<void (BRepClass3d_SolidClassifier::*)() >(&BRepClass3d_SolidClassifier::Destroy),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/BRepClass3d_SClassifier.hxx
-// ./opencascade/BRepClass3d_BndBoxTree.hxx
-// ./opencascade/BRepClass3d_SolidExplorer.hxx
 // ./opencascade/BRepClass3d_MapOfInter.hxx
 // ./opencascade/BRepClass3d_Intersector3d.hxx
-// ./opencascade/BRepClass3d_DataMapIteratorOfMapOfInter.hxx
-// ./opencascade/BRepClass3d.hxx
+// ./opencascade/BRepClass3d_SolidExplorer.hxx
 // ./opencascade/BRepClass3d_SolidPassiveClassifier.hxx
+// ./opencascade/BRepClass3d_BndBoxTree.hxx
+// ./opencascade/BRepClass3d_SClassifier.hxx
+// ./opencascade/BRepClass3d.hxx
+// ./opencascade/BRepClass3d_DataMapIteratorOfMapOfInter.hxx
 // ./opencascade/BRepClass3d_SolidClassifier.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/BRepClass3d_SClassifier.hxx
-// ./opencascade/BRepClass3d_BndBoxTree.hxx
-// ./opencascade/BRepClass3d_SolidExplorer.hxx
-// ./opencascade/BRepClass3d_MapOfInter.hxx
     register_template_NCollection_DataMap<TopoDS_Shape, Standard_Address, TopTools_ShapeMapHasher>(m,"BRepClass3d_MapOfInter");  
-// ./opencascade/BRepClass3d_Intersector3d.hxx
-// ./opencascade/BRepClass3d_DataMapIteratorOfMapOfInter.hxx
-// ./opencascade/BRepClass3d.hxx
-// ./opencascade/BRepClass3d_SolidPassiveClassifier.hxx
-// ./opencascade/BRepClass3d_SolidClassifier.hxx
 
 
 // exceptions

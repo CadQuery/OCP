@@ -1,4 +1,7 @@
 
+// std lib related includes
+#include <tuple>
+
 // pybind 11 related includes
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -13,14 +16,6 @@ namespace py = pybind11;
 #include <Resource_Manager.hxx>
 #include <Message_Messenger.hxx>
 #include <Message_ProgressIndicator.hxx>
-#include <ShapeProcess_ShapeContext.hxx>
-#include <BRepTools_Modification.hxx>
-#include <ShapeExtend_MsgRegistrator.hxx>
-#include <ShapeProcess_Context.hxx>
-#include <ShapeExtend_MsgRegistrator.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <BRepTools_Modifier.hxx>
-#include <Message_Msg.hxx>
 #include <ShapeProcess_Operator.hxx>
 #include <ShapeProcess_Context.hxx>
 #include <ShapeProcess_Context.hxx>
@@ -28,6 +23,14 @@ namespace py = pybind11;
 #include <ShapeProcess_Operator.hxx>
 #include <ShapeProcess_UOperator.hxx>
 #include <ShapeProcess_OperLibrary.hxx>
+#include <ShapeProcess_Context.hxx>
+#include <ShapeProcess_ShapeContext.hxx>
+#include <BRepTools_Modification.hxx>
+#include <ShapeExtend_MsgRegistrator.hxx>
+#include <ShapeExtend_MsgRegistrator.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <BRepTools_Modifier.hxx>
+#include <Message_Msg.hxx>
 
 // module includes
 #include <ShapeProcess.hxx>
@@ -71,10 +74,31 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
 
 // classes
 
+    register_default_constructor<ShapeProcess , shared_ptr<ShapeProcess>>(m,"ShapeProcess");
+
+    static_cast<py::class_<ShapeProcess , shared_ptr<ShapeProcess>  >>(m.attr("ShapeProcess"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("RegisterOperator_s",
+                    (Standard_Boolean (*)( const Standard_CString ,  const opencascade::handle<ShapeProcess_Operator> &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  const opencascade::handle<ShapeProcess_Operator> &  ) >(&ShapeProcess::RegisterOperator),
+                    R"#(Registers operator to make it visible for Performer)#"  , py::arg("name"),  py::arg("op"))
+        .def_static("FindOperator_s",
+                    (Standard_Boolean (*)( const Standard_CString ,  opencascade::handle<ShapeProcess_Operator> &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  opencascade::handle<ShapeProcess_Operator> &  ) >(&ShapeProcess::FindOperator),
+                    R"#(Finds operator by its name)#"  , py::arg("name"),  py::arg("op"))
+        .def_static("Perform_s",
+                    (Standard_Boolean (*)( const opencascade::handle<ShapeProcess_Context> & ,  const Standard_CString  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<ShapeProcess_Context> & ,  const Standard_CString  ) >(&ShapeProcess::Perform),
+                    R"#(Performs a specified sequence of operators on Context Resource file and other data should be already loaded to Context (including description of sequence seq))#"  , py::arg("context"),  py::arg("seq"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
 
     static_cast<py::class_<ShapeProcess_Context ,opencascade::handle<ShapeProcess_Context>  , Standard_Transient >>(m.attr("ShapeProcess_Context"))
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("file"),  py::arg("scope")=static_cast<const Standard_CString>("") )
+    // methods
         .def("Init",
              (Standard_Boolean (ShapeProcess_Context::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<Standard_Boolean (ShapeProcess_Context::*)( const Standard_CString ,  const Standard_CString  ) >(&ShapeProcess_Context::Init),
              R"#(Initialises a tool by loading resource file and (if specified) sets starting scope Returns False if resource file not found)#"  , py::arg("file"),  py::arg("scope")=static_cast<const Standard_CString>(""))
@@ -138,76 +162,63 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ShapeProcess_Context::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeProcess_Context::*)() const>(&ShapeProcess_Context::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeProcess_Context::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeProcess_Context::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
+    register_default_constructor<ShapeProcess_OperLibrary , shared_ptr<ShapeProcess_OperLibrary>>(m,"ShapeProcess_OperLibrary");
 
-    static_cast<py::class_<ShapeProcess_Operator ,opencascade::handle<ShapeProcess_Operator> ,Py_ShapeProcess_Operator , Standard_Transient >>(m.attr("ShapeProcess_Operator"))
-        .def("Perform",
-             (Standard_Boolean (ShapeProcess_Operator::*)( const opencascade::handle<ShapeProcess_Context> &  ) ) static_cast<Standard_Boolean (ShapeProcess_Operator::*)( const opencascade::handle<ShapeProcess_Context> &  ) >(&ShapeProcess_Operator::Perform),
-             R"#(Performs operation and eventually records changes in the context)#"  , py::arg("context"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeProcess_Operator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeProcess_Operator::*)() const>(&ShapeProcess_Operator::DynamicType),
-             R"#(None)#" )
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeProcess_Operator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeProcess_Operator::get_type_descriptor),
-                    R"#(None)#" )
-;
-
-    register_default_constructor<ShapeProcess ,std::unique_ptr<ShapeProcess>>(m,"ShapeProcess");
-
-    static_cast<py::class_<ShapeProcess ,std::unique_ptr<ShapeProcess>  >>(m.attr("ShapeProcess"))
-        .def_static("RegisterOperator_s",
-                    (Standard_Boolean (*)( const Standard_CString ,  const opencascade::handle<ShapeProcess_Operator> &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  const opencascade::handle<ShapeProcess_Operator> &  ) >(&ShapeProcess::RegisterOperator),
-                    R"#(Registers operator to make it visible for Performer)#"  , py::arg("name"),  py::arg("op"))
-        .def_static("FindOperator_s",
-                    (Standard_Boolean (*)( const Standard_CString ,  opencascade::handle<ShapeProcess_Operator> &  ) ) static_cast<Standard_Boolean (*)( const Standard_CString ,  opencascade::handle<ShapeProcess_Operator> &  ) >(&ShapeProcess::FindOperator),
-                    R"#(Finds operator by its name)#"  , py::arg("name"),  py::arg("op"))
-        .def_static("Perform_s",
-                    (Standard_Boolean (*)( const opencascade::handle<ShapeProcess_Context> & ,  const Standard_CString  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<ShapeProcess_Context> & ,  const Standard_CString  ) >(&ShapeProcess::Perform),
-                    R"#(Performs a specified sequence of operators on Context Resource file and other data should be already loaded to Context (including description of sequence seq))#"  , py::arg("context"),  py::arg("seq"))
-;
-
-    register_default_constructor<ShapeProcess_OperLibrary ,std::unique_ptr<ShapeProcess_OperLibrary>>(m,"ShapeProcess_OperLibrary");
-
-    static_cast<py::class_<ShapeProcess_OperLibrary ,std::unique_ptr<ShapeProcess_OperLibrary>  >>(m.attr("ShapeProcess_OperLibrary"))
+    static_cast<py::class_<ShapeProcess_OperLibrary , shared_ptr<ShapeProcess_OperLibrary>  >>(m.attr("ShapeProcess_OperLibrary"))
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("Init_s",
                     (void (*)() ) static_cast<void (*)() >(&ShapeProcess_OperLibrary::Init),
                     R"#(Registers all the operators)#" )
         .def_static("ApplyModifier_s",
                     (TopoDS_Shape (*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeProcess_ShapeContext> & ,  const opencascade::handle<BRepTools_Modification> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const opencascade::handle<ShapeExtend_MsgRegistrator> & ,  Standard_Boolean  ) ) static_cast<TopoDS_Shape (*)( const TopoDS_Shape & ,  const opencascade::handle<ShapeProcess_ShapeContext> & ,  const opencascade::handle<BRepTools_Modification> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const opencascade::handle<ShapeExtend_MsgRegistrator> & ,  Standard_Boolean  ) >(&ShapeProcess_OperLibrary::ApplyModifier),
                     R"#(Applies BRepTools_Modification to a shape, taking into account sharing of components of compounds. if theMutableInput vat is set to true then imput shape S can be modified during the modification process.)#"  , py::arg("S"),  py::arg("context"),  py::arg("M"),  py::arg("map"),  py::arg("msg")=static_cast<const opencascade::handle<ShapeExtend_MsgRegistrator> &>(0),  py::arg("theMutableInput")=static_cast<Standard_Boolean>(Standard_False))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
-    static_cast<py::class_<ShapeProcess_UOperator ,opencascade::handle<ShapeProcess_UOperator>  , ShapeProcess_Operator >>(m.attr("ShapeProcess_UOperator"))
-        .def(py::init< const ShapeProcess_OperFunc >()  , py::arg("func") )
+    static_cast<py::class_<ShapeProcess_Operator ,opencascade::handle<ShapeProcess_Operator> ,Py_ShapeProcess_Operator , Standard_Transient >>(m.attr("ShapeProcess_Operator"))
+    // methods
         .def("Perform",
-             (Standard_Boolean (ShapeProcess_UOperator::*)( const opencascade::handle<ShapeProcess_Context> &  ) ) static_cast<Standard_Boolean (ShapeProcess_UOperator::*)( const opencascade::handle<ShapeProcess_Context> &  ) >(&ShapeProcess_UOperator::Perform),
-             R"#(Performs operation and records changes in the context)#"  , py::arg("context"))
+             (Standard_Boolean (ShapeProcess_Operator::*)( const opencascade::handle<ShapeProcess_Context> &  ) ) static_cast<Standard_Boolean (ShapeProcess_Operator::*)( const opencascade::handle<ShapeProcess_Context> &  ) >(&ShapeProcess_Operator::Perform),
+             R"#(Performs operation and eventually records changes in the context)#"  , py::arg("context"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (ShapeProcess_UOperator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeProcess_UOperator::*)() const>(&ShapeProcess_UOperator::DynamicType),
+             (const opencascade::handle<Standard_Type> & (ShapeProcess_Operator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeProcess_Operator::*)() const>(&ShapeProcess_Operator::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeProcess_UOperator::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeProcess_Operator::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeProcess_UOperator::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeProcess_Operator::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 
     static_cast<py::class_<ShapeProcess_ShapeContext ,opencascade::handle<ShapeProcess_ShapeContext>  , ShapeProcess_Context >>(m.attr("ShapeProcess_ShapeContext"))
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("file"),  py::arg("seq")=static_cast<const Standard_CString>("") )
         .def(py::init< const TopoDS_Shape &,const Standard_CString,const Standard_CString >()  , py::arg("S"),  py::arg("file"),  py::arg("seq")=static_cast<const Standard_CString>("") )
+    // methods
         .def("Init",
              (void (ShapeProcess_ShapeContext::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeProcess_ShapeContext::*)( const TopoDS_Shape &  ) >(&ShapeProcess_ShapeContext::Init),
              R"#(Initializes tool by a new shape and clears all results)#"  , py::arg("S"))
@@ -268,33 +279,54 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ShapeProcess_ShapeContext::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeProcess_ShapeContext::*)() const>(&ShapeProcess_ShapeContext::DynamicType),
              R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&ShapeProcess_ShapeContext::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
                     (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeProcess_ShapeContext::get_type_descriptor),
                     R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
+;
+
+
+    static_cast<py::class_<ShapeProcess_UOperator ,opencascade::handle<ShapeProcess_UOperator>  , ShapeProcess_Operator >>(m.attr("ShapeProcess_UOperator"))
+        .def(py::init< const ShapeProcess_OperFunc >()  , py::arg("func") )
+    // methods
+        .def("Perform",
+             (Standard_Boolean (ShapeProcess_UOperator::*)( const opencascade::handle<ShapeProcess_Context> &  ) ) static_cast<Standard_Boolean (ShapeProcess_UOperator::*)( const opencascade::handle<ShapeProcess_Context> &  ) >(&ShapeProcess_UOperator::Perform),
+             R"#(Performs operation and records changes in the context)#"  , py::arg("context"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (ShapeProcess_UOperator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ShapeProcess_UOperator::*)() const>(&ShapeProcess_UOperator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&ShapeProcess_UOperator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&ShapeProcess_UOperator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // Additional methods
 ;
 
 // functions
-// ./opencascade/ShapeProcess_Context.hxx
-// ./opencascade/ShapeProcess_OperFunc.hxx
-// ./opencascade/ShapeProcess_OperLibrary.hxx
-// ./opencascade/ShapeProcess_Operator.hxx
-// ./opencascade/ShapeProcess_ShapeContext.hxx
-// ./opencascade/ShapeProcess.hxx
 // ./opencascade/ShapeProcess_UOperator.hxx
+// ./opencascade/ShapeProcess_Context.hxx
+// ./opencascade/ShapeProcess.hxx
+// ./opencascade/ShapeProcess_Operator.hxx
+// ./opencascade/ShapeProcess_OperLibrary.hxx
+// ./opencascade/ShapeProcess_OperFunc.hxx
+// ./opencascade/ShapeProcess_ShapeContext.hxx
 
 // operators
 
 // register typdefs
-// ./opencascade/ShapeProcess_Context.hxx
-// ./opencascade/ShapeProcess_OperFunc.hxx
-// ./opencascade/ShapeProcess_OperLibrary.hxx
-// ./opencascade/ShapeProcess_Operator.hxx
-// ./opencascade/ShapeProcess_ShapeContext.hxx
-// ./opencascade/ShapeProcess.hxx
-// ./opencascade/ShapeProcess_UOperator.hxx
 
 
 // exceptions

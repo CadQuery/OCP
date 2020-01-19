@@ -11,35 +11,10 @@ namespace py = pybind11;
 // user-defined inclusion per module before includes
 
 // includes to resolve forward declarations
-#include <MeshVS_DataSource.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <MeshVS_Drawer.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <SelectBasics_SensitiveEntity.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <Graphic3d_Texture2D.hxx>
-#include <Graphic3d_ArrayOfPrimitives.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <Bnd_Box.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
-#include <Bnd_Box2d.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <MeshVS_Drawer.hxx>
 #include <MeshVS_Mesh.hxx>
 #include <MeshVS_DataSource.hxx>
 #include <Graphic3d_ArrayOfPrimitives.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <MeshVS_DataSource.hxx>
 #include <SelectBasics_EntityOwner.hxx>
-#include <Bnd_Box2d.hxx>
 #include <Graphic3d_AspectFillArea3d.hxx>
 #include <MeshVS_Drawer.hxx>
 #include <Graphic3d_MaterialAspect.hxx>
@@ -47,13 +22,38 @@ namespace py = pybind11;
 #include <Graphic3d_AspectMarker3d.hxx>
 #include <Graphic3d_AspectText3d.hxx>
 #include <gp_Vec.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <MeshVS_DataSource.hxx>
 #include <SelectBasics_EntityOwner.hxx>
 #include <SelectBasics_EntityOwner.hxx>
+#include <Bnd_Box2d.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <MeshVS_DataSource.hxx>
+#include <SelectBasics_EntityOwner.hxx>
+#include <MeshVS_DataSource.hxx>
+#include <MeshVS_Drawer.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <SelectBasics_SensitiveEntity.hxx>
+#include <SelectBasics_EntityOwner.hxx>
+#include <Bnd_Box.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
+#include <Bnd_Box2d.hxx>
+#include <MeshVS_DataSource.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
 #include <MeshVS_Mesh.hxx>
 #include <MeshVS_DataSource.hxx>
 #include <Graphic3d_ArrayOfSegments.hxx>
 #include <Graphic3d_ArrayOfTriangles.hxx>
 #include <Graphic3d_ArrayOfPrimitives.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <MeshVS_DataSource.hxx>
+#include <Graphic3d_Texture2D.hxx>
+#include <Graphic3d_ArrayOfPrimitives.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
+#include <MeshVS_DataSource.hxx>
+#include <MeshVS_Drawer.hxx>
+#include <MeshVS_Mesh.hxx>
 
 // module includes
 #include <MeshVS_Array1OfSequenceOfInteger.hxx>
@@ -120,33 +120,15 @@ namespace py = pybind11;
 #include <MeshVS_VectorPrsBuilder.hxx>
 
 // template related includes
-// ./opencascade/MeshVS_TwoColorsHasher.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
-#include "NCollection.hxx"
 // ./opencascade/MeshVS_MapOfTwoNodes.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_MapOfTwoNodes.hxx
 #include "NCollection.hxx"
-// ./opencascade/MeshVS_Array1OfSequenceOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfHArray1OfSequenceOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
+// ./opencascade/MeshVS_SequenceOfPrsBuilder.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_TwoNodesHasher.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerOwner.hxx
 #include "NCollection.hxx"
@@ -154,25 +136,43 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
 #include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_SensitivePolyhedron.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_SensitivePolyhedron.hxx
-#include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/MeshVS_SequenceOfPrsBuilder.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerMeshEntityOwner.hxx
 #include "NCollection.hxx"
+// ./opencascade/MeshVS_SensitivePolyhedron.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_SensitivePolyhedron.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_Array1OfSequenceOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfHArray1OfSequenceOfInteger.hxx
+#include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_TwoColorsHasher.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_TwoNodesHasher.hxx
 #include "NCollection.hxx"
 
 
@@ -190,16 +190,19 @@ py::module m = main_module.def_submodule("MeshVS", R"#()#");
 // user-defined inclusion per module in the body
 
 // enums
-    py::enum_<MeshVS_SelectionModeFlags>(m, "MeshVS_SelectionModeFlags",R"#(None)#")
-        .value("MeshVS_SMF_Mesh",MeshVS_SelectionModeFlags::MeshVS_SMF_Mesh)
-        .value("MeshVS_SMF_Node",MeshVS_SelectionModeFlags::MeshVS_SMF_Node)
-        .value("MeshVS_SMF_0D",MeshVS_SelectionModeFlags::MeshVS_SMF_0D)
-        .value("MeshVS_SMF_Link",MeshVS_SelectionModeFlags::MeshVS_SMF_Link)
-        .value("MeshVS_SMF_Face",MeshVS_SelectionModeFlags::MeshVS_SMF_Face)
-        .value("MeshVS_SMF_Volume",MeshVS_SelectionModeFlags::MeshVS_SMF_Volume)
-        .value("MeshVS_SMF_Element",MeshVS_SelectionModeFlags::MeshVS_SMF_Element)
-        .value("MeshVS_SMF_All",MeshVS_SelectionModeFlags::MeshVS_SMF_All)
-        .value("MeshVS_SMF_Group",MeshVS_SelectionModeFlags::MeshVS_SMF_Group).export_values();
+    py::enum_<MeshVS_MeshSelectionMethod>(m, "MeshVS_MeshSelectionMethod",R"#(this enumeration describe what type of sensitive entity will be built in 0-th selection mode (it means that whole mesh is selected ))#")
+        .value("MeshVS_MSM_PRECISE",MeshVS_MeshSelectionMethod::MeshVS_MSM_PRECISE)
+        .value("MeshVS_MSM_NODES",MeshVS_MeshSelectionMethod::MeshVS_MSM_NODES)
+        .value("MeshVS_MSM_BOX",MeshVS_MeshSelectionMethod::MeshVS_MSM_BOX).export_values();
+    py::enum_<MeshVS_EntityType>(m, "MeshVS_EntityType",R"#(None)#")
+        .value("MeshVS_ET_NONE",MeshVS_EntityType::MeshVS_ET_NONE)
+        .value("MeshVS_ET_Node",MeshVS_EntityType::MeshVS_ET_Node)
+        .value("MeshVS_ET_0D",MeshVS_EntityType::MeshVS_ET_0D)
+        .value("MeshVS_ET_Link",MeshVS_EntityType::MeshVS_ET_Link)
+        .value("MeshVS_ET_Face",MeshVS_EntityType::MeshVS_ET_Face)
+        .value("MeshVS_ET_Volume",MeshVS_EntityType::MeshVS_ET_Volume)
+        .value("MeshVS_ET_Element",MeshVS_EntityType::MeshVS_ET_Element)
+        .value("MeshVS_ET_All",MeshVS_EntityType::MeshVS_ET_All).export_values();
     m.attr("MeshVS_DMF_WireFrame") = py::cast(int(MeshVS_DMF_WireFrame));
     m.attr("MeshVS_DMF_Shading") = py::cast(int(MeshVS_DMF_Shading));
     m.attr("MeshVS_DMF_Shrink") = py::cast(int(MeshVS_DMF_Shrink));
@@ -264,35 +267,18 @@ py::module m = main_module.def_submodule("MeshVS", R"#()#");
         .value("MeshVS_DA_SmoothShading",MeshVS_DrawerAttribute::MeshVS_DA_SmoothShading)
         .value("MeshVS_DA_SupressBackFaces",MeshVS_DrawerAttribute::MeshVS_DA_SupressBackFaces)
         .value("MeshVS_DA_User",MeshVS_DrawerAttribute::MeshVS_DA_User).export_values();
-    py::enum_<MeshVS_MeshSelectionMethod>(m, "MeshVS_MeshSelectionMethod",R"#(this enumeration describe what type of sensitive entity will be built in 0-th selection mode (it means that whole mesh is selected ))#")
-        .value("MeshVS_MSM_PRECISE",MeshVS_MeshSelectionMethod::MeshVS_MSM_PRECISE)
-        .value("MeshVS_MSM_NODES",MeshVS_MeshSelectionMethod::MeshVS_MSM_NODES)
-        .value("MeshVS_MSM_BOX",MeshVS_MeshSelectionMethod::MeshVS_MSM_BOX).export_values();
-    py::enum_<MeshVS_EntityType>(m, "MeshVS_EntityType",R"#(None)#")
-        .value("MeshVS_ET_NONE",MeshVS_EntityType::MeshVS_ET_NONE)
-        .value("MeshVS_ET_Node",MeshVS_EntityType::MeshVS_ET_Node)
-        .value("MeshVS_ET_0D",MeshVS_EntityType::MeshVS_ET_0D)
-        .value("MeshVS_ET_Link",MeshVS_EntityType::MeshVS_ET_Link)
-        .value("MeshVS_ET_Face",MeshVS_EntityType::MeshVS_ET_Face)
-        .value("MeshVS_ET_Volume",MeshVS_EntityType::MeshVS_ET_Volume)
-        .value("MeshVS_ET_Element",MeshVS_EntityType::MeshVS_ET_Element)
-        .value("MeshVS_ET_All",MeshVS_EntityType::MeshVS_ET_All).export_values();
+    py::enum_<MeshVS_SelectionModeFlags>(m, "MeshVS_SelectionModeFlags",R"#(None)#")
+        .value("MeshVS_SMF_Mesh",MeshVS_SelectionModeFlags::MeshVS_SMF_Mesh)
+        .value("MeshVS_SMF_Node",MeshVS_SelectionModeFlags::MeshVS_SMF_Node)
+        .value("MeshVS_SMF_0D",MeshVS_SelectionModeFlags::MeshVS_SMF_0D)
+        .value("MeshVS_SMF_Link",MeshVS_SelectionModeFlags::MeshVS_SMF_Link)
+        .value("MeshVS_SMF_Face",MeshVS_SelectionModeFlags::MeshVS_SMF_Face)
+        .value("MeshVS_SMF_Volume",MeshVS_SelectionModeFlags::MeshVS_SMF_Volume)
+        .value("MeshVS_SMF_Element",MeshVS_SelectionModeFlags::MeshVS_SMF_Element)
+        .value("MeshVS_SMF_All",MeshVS_SelectionModeFlags::MeshVS_SMF_All)
+        .value("MeshVS_SMF_Group",MeshVS_SelectionModeFlags::MeshVS_SMF_Group).export_values();
 
 //Python trampoline classes
-    class Py_MeshVS_PrsBuilder : public MeshVS_PrsBuilder{
-    public:
-        using MeshVS_PrsBuilder::MeshVS_PrsBuilder;
-        
-        // public pure virtual
-        void Build(const opencascade::handle<Prs3d_Presentation> & Prs,const TColStd_PackedMapOfInteger & IDs,TColStd_PackedMapOfInteger & IDsToExclude,const Standard_Boolean IsElement,const Standard_Integer DisplayMode) const  override { PYBIND11_OVERLOAD_PURE(void,MeshVS_PrsBuilder,Build,Prs,IDs,IDsToExclude,IsElement,DisplayMode) };
-        
-        
-        // protected pure virtual
-        
-        
-        // private pure virtual
-        
-    };
     class Py_MeshVS_DataSource : public MeshVS_DataSource{
     public:
         using MeshVS_DataSource::MeshVS_DataSource;
@@ -304,6 +290,20 @@ py::module m = main_module.def_submodule("MeshVS", R"#()#");
         Standard_Boolean GetNodesByElement(const Standard_Integer ID,NCollection_Array1<Standard_Integer> & NodeIDs,Standard_Integer & NbNodes) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,MeshVS_DataSource,GetNodesByElement,ID,NodeIDs,NbNodes) };
         const TColStd_PackedMapOfInteger & GetAllNodes() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_PackedMapOfInteger &,MeshVS_DataSource,GetAllNodes,) };
         const TColStd_PackedMapOfInteger & GetAllElements() const  override { PYBIND11_OVERLOAD_PURE(const TColStd_PackedMapOfInteger &,MeshVS_DataSource,GetAllElements,) };
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
+    class Py_MeshVS_PrsBuilder : public MeshVS_PrsBuilder{
+    public:
+        using MeshVS_PrsBuilder::MeshVS_PrsBuilder;
+        
+        // public pure virtual
+        void Build(const opencascade::handle<Prs3d_Presentation> & Prs,const TColStd_PackedMapOfInteger & IDs,TColStd_PackedMapOfInteger & IDsToExclude,const Standard_Boolean IsElement,const Standard_Integer DisplayMode) const  override { PYBIND11_OVERLOAD_PURE(void,MeshVS_PrsBuilder,Build,Prs,IDs,IDsToExclude,IsElement,DisplayMode) };
         
         
         // protected pure virtual
@@ -332,108 +332,46 @@ py::module m = main_module.def_submodule("MeshVS", R"#()#");
         
     };
 
+// pre-register typdefs
+    preregister_template_NCollection_Map<MeshVS_TwoNodes, MeshVS_TwoNodesHasher>(m,"MeshVS_MapOfTwoNodes");  
+    preregister_template_NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder> >(m,"MeshVS_SequenceOfPrsBuilder");  
+    preregister_template_NCollection_DataMap<Standard_Integer, gp_Vec, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerVector");  
+    preregister_template_NCollection_DataMap<Standard_Integer, TCollection_AsciiString, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerAsciiString");  
+    preregister_template_NCollection_DataMap<Quantity_Color, TColStd_MapOfInteger, Quantity_ColorHasher>(m,"MeshVS_DataMapOfColorMapOfInteger");  
+    preregister_template_NCollection_DataMap<Standard_Integer, Quantity_Color, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerColor");  
+    preregister_template_NCollection_List<opencascade::handle<TColgp_HArray1OfPnt> >(m,"MeshVS_PolyhedronVerts");  
+    preregister_template_NCollection_DataMap<Standard_Integer, Standard_Boolean, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerBoolean");  
+    preregister_template_NCollection_Array1<TColStd_SequenceOfInteger>(m,"MeshVS_Array1OfSequenceOfInteger");  
+    preregister_template_NCollection_DataMap<Standard_Integer, MeshVS_TwoColors, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerTwoColors");  
+    preregister_template_NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger, MeshVS_TwoColorsHasher>(m,"MeshVS_DataMapOfTwoColorsMapOfInteger");  
+    preregister_template_NCollection_DataMap<Standard_Integer, Graphic3d_MaterialAspect, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerMaterial");  
+    preregister_template_NCollection_DefaultHasher<MeshVS_TwoColors>(m,"MeshVS_TwoColorsHasher");  
+    preregister_template_NCollection_DefaultHasher<MeshVS_TwoNodes>(m,"MeshVS_TwoNodesHasher");  
+
 // classes forward declarations only
+    py::class_<MeshVS_Buffer , shared_ptr<MeshVS_Buffer>  >(m,"MeshVS_Buffer",R"#(None)#");
+    py::class_<MeshVS_CommonSensitiveEntity ,opencascade::handle<MeshVS_CommonSensitiveEntity>  , Select3D_SensitiveSet >(m,"MeshVS_CommonSensitiveEntity",R"#(Sensitive entity covering entire mesh for global selection.Sensitive entity covering entire mesh for global selection.)#");
+    py::class_<MeshVS_DataSource ,opencascade::handle<MeshVS_DataSource> ,Py_MeshVS_DataSource , Standard_Transient >(m,"MeshVS_DataSource",R"#(The deferred class using for the following tasks: 1) Receiving geometry data about single element of node by its number; 2) Receiving type of element or node by its number; 3) Receiving topological information about links between element and nodes it consist of; 4) Receiving information about what element cover this node; 5) Receiving information about all nodes and elements the object consist of 6) Activation of advanced mesh selection. In the advanced mesh selection mode there is created: - one owner for the whole mesh and for all selection modes - one sensitive entity for the whole mesh and for each selection mode Receiving of IDs of detected entities (nodes and elements) in a viewer is achieved by implementation of a group of methods GetDetectedEntities.The deferred class using for the following tasks: 1) Receiving geometry data about single element of node by its number; 2) Receiving type of element or node by its number; 3) Receiving topological information about links between element and nodes it consist of; 4) Receiving information about what element cover this node; 5) Receiving information about all nodes and elements the object consist of 6) Activation of advanced mesh selection. In the advanced mesh selection mode there is created: - one owner for the whole mesh and for all selection modes - one sensitive entity for the whole mesh and for each selection mode Receiving of IDs of detected entities (nodes and elements) in a viewer is achieved by implementation of a group of methods GetDetectedEntities.The deferred class using for the following tasks: 1) Receiving geometry data about single element of node by its number; 2) Receiving type of element or node by its number; 3) Receiving topological information about links between element and nodes it consist of; 4) Receiving information about what element cover this node; 5) Receiving information about all nodes and elements the object consist of 6) Activation of advanced mesh selection. In the advanced mesh selection mode there is created: - one owner for the whole mesh and for all selection modes - one sensitive entity for the whole mesh and for each selection mode Receiving of IDs of detected entities (nodes and elements) in a viewer is achieved by implementation of a group of methods GetDetectedEntities.)#");
+    py::class_<MeshVS_Drawer ,opencascade::handle<MeshVS_Drawer>  , Standard_Transient >(m,"MeshVS_Drawer",R"#(This class provided the common interface to share between classes big set of constants affecting to object appearance. By default, this class can store integers, doubles, OCC colors, OCC materials. Each of OCC enum members can be stored as integers.This class provided the common interface to share between classes big set of constants affecting to object appearance. By default, this class can store integers, doubles, OCC colors, OCC materials. Each of OCC enum members can be stored as integers.This class provided the common interface to share between classes big set of constants affecting to object appearance. By default, this class can store integers, doubles, OCC colors, OCC materials. Each of OCC enum members can be stored as integers.)#");
+    py::class_<MeshVS_DummySensitiveEntity ,opencascade::handle<MeshVS_DummySensitiveEntity>  , SelectBasics_SensitiveEntity >(m,"MeshVS_DummySensitiveEntity",R"#(This class allows to create owners to all elements or nodes, both hidden and shown, but these owners user cannot select "by hands" in viewer. They means for internal application tasks, for example, receiving all owners, both for hidden and shown entities.This class allows to create owners to all elements or nodes, both hidden and shown, but these owners user cannot select "by hands" in viewer. They means for internal application tasks, for example, receiving all owners, both for hidden and shown entities.)#");
+    py::class_<MeshVS_HArray1OfSequenceOfInteger ,opencascade::handle<MeshVS_HArray1OfSequenceOfInteger>  , MeshVS_Array1OfSequenceOfInteger , Standard_Transient >(m,"MeshVS_HArray1OfSequenceOfInteger",R"#()#");
+    py::class_<MeshVS_Mesh ,opencascade::handle<MeshVS_Mesh>  , AIS_InteractiveObject >(m,"MeshVS_Mesh",R"#(the main class provides interface to create mesh presentation as a wholethe main class provides interface to create mesh presentation as a wholethe main class provides interface to create mesh presentation as a whole)#");
+    py::class_<MeshVS_MeshEntityOwner ,opencascade::handle<MeshVS_MeshEntityOwner>  , SelectMgr_EntityOwner >(m,"MeshVS_MeshEntityOwner",R"#(The custom owner. This class provides methods to store owner information: 1) An address of element or node data structure 2) Type of node or element owner assigned 3) ID of node or element owner assignedThe custom owner. This class provides methods to store owner information: 1) An address of element or node data structure 2) Type of node or element owner assigned 3) ID of node or element owner assignedThe custom owner. This class provides methods to store owner information: 1) An address of element or node data structure 2) Type of node or element owner assigned 3) ID of node or element owner assigned)#");
     py::class_<MeshVS_MeshOwner ,opencascade::handle<MeshVS_MeshOwner>  , SelectMgr_EntityOwner >(m,"MeshVS_MeshOwner",R"#(The custom mesh owner used for advanced mesh selection. This class provides methods to store information: 1) IDs of hilighted mesh nodes and elements 2) IDs of mesh nodes and elements selected on the meshThe custom mesh owner used for advanced mesh selection. This class provides methods to store information: 1) IDs of hilighted mesh nodes and elements 2) IDs of mesh nodes and elements selected on the meshThe custom mesh owner used for advanced mesh selection. This class provides methods to store information: 1) IDs of hilighted mesh nodes and elements 2) IDs of mesh nodes and elements selected on the mesh)#");
     py::class_<MeshVS_PrsBuilder ,opencascade::handle<MeshVS_PrsBuilder> ,Py_MeshVS_PrsBuilder , Standard_Transient >(m,"MeshVS_PrsBuilder",R"#(This class is parent for all builders using in MeshVS_Mesh. It provides base fields and methods all buildes need.This class is parent for all builders using in MeshVS_Mesh. It provides base fields and methods all buildes need.This class is parent for all builders using in MeshVS_Mesh. It provides base fields and methods all buildes need.)#");
-    py::class_<MeshVS_NodalColorPrsBuilder ,opencascade::handle<MeshVS_NodalColorPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_NodalColorPrsBuilder",R"#(This class provides methods to create presentation of nodes with assigned color. There are two ways of presentation building 1. Without using texture. In this case colors of nodes are specified with DataMapOfIntegerColor and presentation is built with gradient fill between these nodes (default behaviour) 2. Using texture. In this case presentation is built with spectrum filling between nodes. For example, if one node has blue color and second one has violet color, parameters of this class may be set to fill presentation between nodes with solar spectrum. Methods: UseTexture - activates/deactivates this way SetColorMap - sets colors used for generation of texture SetColorindices - specifies correspondence between node IDs and indices of colors from color mapThis class provides methods to create presentation of nodes with assigned color. There are two ways of presentation building 1. Without using texture. In this case colors of nodes are specified with DataMapOfIntegerColor and presentation is built with gradient fill between these nodes (default behaviour) 2. Using texture. In this case presentation is built with spectrum filling between nodes. For example, if one node has blue color and second one has violet color, parameters of this class may be set to fill presentation between nodes with solar spectrum. Methods: UseTexture - activates/deactivates this way SetColorMap - sets colors used for generation of texture SetColorindices - specifies correspondence between node IDs and indices of colors from color mapThis class provides methods to create presentation of nodes with assigned color. There are two ways of presentation building 1. Without using texture. In this case colors of nodes are specified with DataMapOfIntegerColor and presentation is built with gradient fill between these nodes (default behaviour) 2. Using texture. In this case presentation is built with spectrum filling between nodes. For example, if one node has blue color and second one has violet color, parameters of this class may be set to fill presentation between nodes with solar spectrum. Methods: UseTexture - activates/deactivates this way SetColorMap - sets colors used for generation of texture SetColorindices - specifies correspondence between node IDs and indices of colors from color map)#");
-    py::class_<MeshVS_DummySensitiveEntity ,opencascade::handle<MeshVS_DummySensitiveEntity>  , SelectBasics_SensitiveEntity >(m,"MeshVS_DummySensitiveEntity",R"#(This class allows to create owners to all elements or nodes, both hidden and shown, but these owners user cannot select "by hands" in viewer. They means for internal application tasks, for example, receiving all owners, both for hidden and shown entities.This class allows to create owners to all elements or nodes, both hidden and shown, but these owners user cannot select "by hands" in viewer. They means for internal application tasks, for example, receiving all owners, both for hidden and shown entities.)#");
-    py::class_<MeshVS_DataSource ,opencascade::handle<MeshVS_DataSource> ,Py_MeshVS_DataSource , Standard_Transient >(m,"MeshVS_DataSource",R"#(The deferred class using for the following tasks: 1) Receiving geometry data about single element of node by its number; 2) Receiving type of element or node by its number; 3) Receiving topological information about links between element and nodes it consist of; 4) Receiving information about what element cover this node; 5) Receiving information about all nodes and elements the object consist of 6) Activation of advanced mesh selection. In the advanced mesh selection mode there is created: - one owner for the whole mesh and for all selection modes - one sensitive entity for the whole mesh and for each selection mode Receiving of IDs of detected entities (nodes and elements) in a viewer is achieved by implementation of a group of methods GetDetectedEntities.The deferred class using for the following tasks: 1) Receiving geometry data about single element of node by its number; 2) Receiving type of element or node by its number; 3) Receiving topological information about links between element and nodes it consist of; 4) Receiving information about what element cover this node; 5) Receiving information about all nodes and elements the object consist of 6) Activation of advanced mesh selection. In the advanced mesh selection mode there is created: - one owner for the whole mesh and for all selection modes - one sensitive entity for the whole mesh and for each selection mode Receiving of IDs of detected entities (nodes and elements) in a viewer is achieved by implementation of a group of methods GetDetectedEntities.The deferred class using for the following tasks: 1) Receiving geometry data about single element of node by its number; 2) Receiving type of element or node by its number; 3) Receiving topological information about links between element and nodes it consist of; 4) Receiving information about what element cover this node; 5) Receiving information about all nodes and elements the object consist of 6) Activation of advanced mesh selection. In the advanced mesh selection mode there is created: - one owner for the whole mesh and for all selection modes - one sensitive entity for the whole mesh and for each selection mode Receiving of IDs of detected entities (nodes and elements) in a viewer is achieved by implementation of a group of methods GetDetectedEntities.)#");
-    py::class_<MeshVS_HArray1OfSequenceOfInteger ,std::unique_ptr<MeshVS_HArray1OfSequenceOfInteger>  >(m,"MeshVS_HArray1OfSequenceOfInteger",R"#()#");
-    py::class_<MeshVS_ElementalColorPrsBuilder ,opencascade::handle<MeshVS_ElementalColorPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_ElementalColorPrsBuilder",R"#(This class provides methods to create presentation of elements with assigned colors. The class contains two color maps: map of same colors for front and back side of face and map of different ones,This class provides methods to create presentation of elements with assigned colors. The class contains two color maps: map of same colors for front and back side of face and map of different ones,This class provides methods to create presentation of elements with assigned colors. The class contains two color maps: map of same colors for front and back side of face and map of different ones,)#");
-    py::class_<MeshVS_Buffer ,std::unique_ptr<MeshVS_Buffer>  >(m,"MeshVS_Buffer",R"#(None)#");
-    py::class_<MeshVS_DataSource3D ,opencascade::handle<MeshVS_DataSource3D> ,Py_MeshVS_DataSource3D , MeshVS_DataSource >(m,"MeshVS_DataSource3D",R"#()#");
-    py::class_<MeshVS_SensitiveSegment ,opencascade::handle<MeshVS_SensitiveSegment>  , Select3D_SensitiveSegment >(m,"MeshVS_SensitiveSegment",R"#(This class provides custom sensitive face, which will be selected if it center is in rectangle.This class provides custom sensitive face, which will be selected if it center is in rectangle.)#");
-    py::class_<MeshVS_DeformedDataSource ,opencascade::handle<MeshVS_DeformedDataSource>  , MeshVS_DataSource >(m,"MeshVS_DeformedDataSource",R"#(The class provides default class which helps to represent node displacements by deformed mesh This class has an internal handle to canonical non-deformed mesh data source and map of displacement vectors. The displacement can be magnified to useful size. All methods is implemented with calling the corresponding methods of non-deformed data source.The class provides default class which helps to represent node displacements by deformed mesh This class has an internal handle to canonical non-deformed mesh data source and map of displacement vectors. The displacement can be magnified to useful size. All methods is implemented with calling the corresponding methods of non-deformed data source.The class provides default class which helps to represent node displacements by deformed mesh This class has an internal handle to canonical non-deformed mesh data source and map of displacement vectors. The displacement can be magnified to useful size. All methods is implemented with calling the corresponding methods of non-deformed data source.)#");
-    py::class_<MeshVS_SensitiveQuad ,opencascade::handle<MeshVS_SensitiveQuad>  , Select3D_SensitiveEntity >(m,"MeshVS_SensitiveQuad",R"#(This class contains description of planar quadrangle and defines methods for its detection by OCCT BVH selection mechanismThis class contains description of planar quadrangle and defines methods for its detection by OCCT BVH selection mechanism)#");
-    py::class_<MeshVS_MeshEntityOwner ,opencascade::handle<MeshVS_MeshEntityOwner>  , SelectMgr_EntityOwner >(m,"MeshVS_MeshEntityOwner",R"#(The custom owner. This class provides methods to store owner information: 1) An address of element or node data structure 2) Type of node or element owner assigned 3) ID of node or element owner assignedThe custom owner. This class provides methods to store owner information: 1) An address of element or node data structure 2) Type of node or element owner assigned 3) ID of node or element owner assignedThe custom owner. This class provides methods to store owner information: 1) An address of element or node data structure 2) Type of node or element owner assigned 3) ID of node or element owner assigned)#");
-    py::class_<MeshVS_TextPrsBuilder ,opencascade::handle<MeshVS_TextPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_TextPrsBuilder",R"#(This class provides methods to create text data presentation. It store map of texts assigned with nodes or elements.This class provides methods to create text data presentation. It store map of texts assigned with nodes or elements.This class provides methods to create text data presentation. It store map of texts assigned with nodes or elements.)#");
-    py::class_<MeshVS_Mesh ,opencascade::handle<MeshVS_Mesh>  , AIS_InteractiveObject >(m,"MeshVS_Mesh",R"#(the main class provides interface to create mesh presentation as a wholethe main class provides interface to create mesh presentation as a wholethe main class provides interface to create mesh presentation as a whole)#");
     py::class_<MeshVS_SensitiveFace ,opencascade::handle<MeshVS_SensitiveFace>  , Select3D_SensitiveFace >(m,"MeshVS_SensitiveFace",R"#(This class provides custom sensitive face, which will be selected if it center is in rectangle.This class provides custom sensitive face, which will be selected if it center is in rectangle.)#");
-    py::class_<MeshVS_Tool ,std::unique_ptr<MeshVS_Tool>  >(m,"MeshVS_Tool",R"#(This class provides auxiliary methods to create differents aspects)#");
-    py::class_<MeshVS_MeshPrsBuilder ,opencascade::handle<MeshVS_MeshPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_MeshPrsBuilder",R"#(This class provides methods to compute base mesh presentationThis class provides methods to compute base mesh presentationThis class provides methods to compute base mesh presentation)#");
-    py::class_<MeshVS_Drawer ,opencascade::handle<MeshVS_Drawer>  , Standard_Transient >(m,"MeshVS_Drawer",R"#(This class provided the common interface to share between classes big set of constants affecting to object appearance. By default, this class can store integers, doubles, OCC colors, OCC materials. Each of OCC enum members can be stored as integers.This class provided the common interface to share between classes big set of constants affecting to object appearance. By default, this class can store integers, doubles, OCC colors, OCC materials. Each of OCC enum members can be stored as integers.This class provided the common interface to share between classes big set of constants affecting to object appearance. By default, this class can store integers, doubles, OCC colors, OCC materials. Each of OCC enum members can be stored as integers.)#");
-    py::class_<MeshVS_VectorPrsBuilder ,opencascade::handle<MeshVS_VectorPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_VectorPrsBuilder",R"#(This class provides methods to create vector data presentation. It store map of vectors assigned with nodes or elements. In simplified mode vectors draws with thickened ends instead of arrowsThis class provides methods to create vector data presentation. It store map of vectors assigned with nodes or elements. In simplified mode vectors draws with thickened ends instead of arrowsThis class provides methods to create vector data presentation. It store map of vectors assigned with nodes or elements. In simplified mode vectors draws with thickened ends instead of arrows)#");
     py::class_<MeshVS_SensitiveMesh ,opencascade::handle<MeshVS_SensitiveMesh>  , Select3D_SensitiveEntity >(m,"MeshVS_SensitiveMesh",R"#(This class provides custom mesh sensitive entity used in advanced mesh selection.This class provides custom mesh sensitive entity used in advanced mesh selection.)#");
-    py::class_<MeshVS_CommonSensitiveEntity ,opencascade::handle<MeshVS_CommonSensitiveEntity>  , Select3D_SensitiveSet >(m,"MeshVS_CommonSensitiveEntity",R"#(Sensitive entity covering entire mesh for global selection.Sensitive entity covering entire mesh for global selection.)#");
     py::class_<MeshVS_SensitivePolyhedron ,opencascade::handle<MeshVS_SensitivePolyhedron>  , Select3D_SensitiveEntity >(m,"MeshVS_SensitivePolyhedron",R"#(This class is used to detect selection of a polyhedron. The main principle of detection algorithm is to search for overlap with each polyhedron's face separately, treating them as planar convex polygons.This class is used to detect selection of a polyhedron. The main principle of detection algorithm is to search for overlap with each polyhedron's face separately, treating them as planar convex polygons.)#");
-
-// pre-register typdefs
-// ./opencascade/MeshVS_SelectionModeFlags.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerMeshEntityOwner.hxx
-// ./opencascade/MeshVS_MeshOwner.hxx
-// ./opencascade/MeshVS_MeshPtr.hxx
-// ./opencascade/MeshVS_ColorHasher.hxx
-// ./opencascade/MeshVS_TwoColorsHasher.hxx
-    preregister_template_NCollection_DefaultHasher<MeshVS_TwoColors>(m,"MeshVS_TwoColorsHasher");  
-// ./opencascade/MeshVS_MeshEntityOwner.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerAsciiString.hxx
-// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
-    preregister_template_NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger, MeshVS_TwoColorsHasher>(m,"MeshVS_DataMapOfTwoColorsMapOfInteger");  
-// ./opencascade/MeshVS_PrsBuilder.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfTwoColorsMapOfInteger.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, Standard_Boolean, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerBoolean");  
-// ./opencascade/MeshVS_DisplayModeFlags.hxx
-// ./opencascade/MeshVS_Drawer.hxx
-// ./opencascade/MeshVS_NodalColorPrsBuilder.hxx
-// ./opencascade/MeshVS_MapOfTwoNodes.hxx
-    preregister_template_NCollection_Map<MeshVS_TwoNodes, MeshVS_TwoNodesHasher>(m,"MeshVS_MapOfTwoNodes");  
-// ./opencascade/MeshVS_Array1OfSequenceOfInteger.hxx
-    preregister_template_NCollection_Array1<TColStd_SequenceOfInteger>(m,"MeshVS_Array1OfSequenceOfInteger");  
-// ./opencascade/MeshVS_MapIteratorOfMapOfTwoNodes.hxx
-// ./opencascade/MeshVS_BuilderPriority.hxx
-// ./opencascade/MeshVS_TextPrsBuilder.hxx
-// ./opencascade/MeshVS_DataMapOfHArray1OfSequenceOfInteger.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, Quantity_Color, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerColor");  
-// ./opencascade/MeshVS_DummySensitiveEntity.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerOwner.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerVector.hxx
-// ./opencascade/MeshVS_CommonSensitiveEntity.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfColorMapOfInteger.hxx
-// ./opencascade/MeshVS_SymmetricPairHasher.hxx
-// ./opencascade/MeshVS_DrawerAttribute.hxx
-// ./opencascade/MeshVS_DataSource.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, gp_Vec, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerVector");  
-// ./opencascade/MeshVS_TwoNodesHasher.hxx
-    preregister_template_NCollection_DefaultHasher<MeshVS_TwoNodes>(m,"MeshVS_TwoNodesHasher");  
-// ./opencascade/MeshVS_Mesh.hxx
-// ./opencascade/MeshVS_HArray1OfSequenceOfInteger.hxx
-// ./opencascade/MeshVS_VectorPrsBuilder.hxx
-// ./opencascade/MeshVS_ElementalColorPrsBuilder.hxx
-// ./opencascade/MeshVS_MeshSelectionMethod.hxx
-// ./opencascade/MeshVS_EntityType.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerOwner.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, TCollection_AsciiString, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerAsciiString");  
-// ./opencascade/MeshVS_SensitiveFace.hxx
-// ./opencascade/MeshVS_TwoColors.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerColor.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, MeshVS_TwoColors, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerTwoColors");  
-// ./opencascade/MeshVS_Buffer.hxx
-// ./opencascade/MeshVS_SensitivePolyhedron.hxx
-    preregister_template_NCollection_List<opencascade::handle<TColgp_HArray1OfPnt> >(m,"MeshVS_PolyhedronVerts");  
-// ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
-    preregister_template_NCollection_DataMap<Quantity_Color, TColStd_MapOfInteger, Quantity_ColorHasher>(m,"MeshVS_DataMapOfColorMapOfInteger");  
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerMaterial.hxx
-// ./opencascade/MeshVS_DataSource3D.hxx
-// ./opencascade/MeshVS_Tool.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerBoolean.hxx
-// ./opencascade/MeshVS_SensitiveSegment.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerTwoColors.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfHArray1OfSequenceOfInteger.hxx
-// ./opencascade/MeshVS_TwoNodes.hxx
-// ./opencascade/MeshVS_SensitiveMesh.hxx
-// ./opencascade/MeshVS_DeformedDataSource.hxx
-// ./opencascade/MeshVS_SequenceOfPrsBuilder.hxx
-    preregister_template_NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder> >(m,"MeshVS_SequenceOfPrsBuilder");  
-// ./opencascade/MeshVS_MeshPrsBuilder.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerMeshEntityOwner.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
-    preregister_template_NCollection_DataMap<Standard_Integer, Graphic3d_MaterialAspect, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerMaterial");  
-// ./opencascade/MeshVS_SensitiveQuad.hxx
+    py::class_<MeshVS_SensitiveQuad ,opencascade::handle<MeshVS_SensitiveQuad>  , Select3D_SensitiveEntity >(m,"MeshVS_SensitiveQuad",R"#(This class contains description of planar quadrangle and defines methods for its detection by OCCT BVH selection mechanismThis class contains description of planar quadrangle and defines methods for its detection by OCCT BVH selection mechanism)#");
+    py::class_<MeshVS_SensitiveSegment ,opencascade::handle<MeshVS_SensitiveSegment>  , Select3D_SensitiveSegment >(m,"MeshVS_SensitiveSegment",R"#(This class provides custom sensitive face, which will be selected if it center is in rectangle.This class provides custom sensitive face, which will be selected if it center is in rectangle.)#");
+    py::class_<MeshVS_Tool , shared_ptr<MeshVS_Tool>  >(m,"MeshVS_Tool",R"#(This class provides auxiliary methods to create differents aspects)#");
+    py::class_<MeshVS_DataSource3D ,opencascade::handle<MeshVS_DataSource3D> ,Py_MeshVS_DataSource3D , MeshVS_DataSource >(m,"MeshVS_DataSource3D",R"#()#");
+    py::class_<MeshVS_DeformedDataSource ,opencascade::handle<MeshVS_DeformedDataSource>  , MeshVS_DataSource >(m,"MeshVS_DeformedDataSource",R"#(The class provides default class which helps to represent node displacements by deformed mesh This class has an internal handle to canonical non-deformed mesh data source and map of displacement vectors. The displacement can be magnified to useful size. All methods is implemented with calling the corresponding methods of non-deformed data source.The class provides default class which helps to represent node displacements by deformed mesh This class has an internal handle to canonical non-deformed mesh data source and map of displacement vectors. The displacement can be magnified to useful size. All methods is implemented with calling the corresponding methods of non-deformed data source.The class provides default class which helps to represent node displacements by deformed mesh This class has an internal handle to canonical non-deformed mesh data source and map of displacement vectors. The displacement can be magnified to useful size. All methods is implemented with calling the corresponding methods of non-deformed data source.)#");
+    py::class_<MeshVS_ElementalColorPrsBuilder ,opencascade::handle<MeshVS_ElementalColorPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_ElementalColorPrsBuilder",R"#(This class provides methods to create presentation of elements with assigned colors. The class contains two color maps: map of same colors for front and back side of face and map of different ones,This class provides methods to create presentation of elements with assigned colors. The class contains two color maps: map of same colors for front and back side of face and map of different ones,This class provides methods to create presentation of elements with assigned colors. The class contains two color maps: map of same colors for front and back side of face and map of different ones,)#");
+    py::class_<MeshVS_MeshPrsBuilder ,opencascade::handle<MeshVS_MeshPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_MeshPrsBuilder",R"#(This class provides methods to compute base mesh presentationThis class provides methods to compute base mesh presentationThis class provides methods to compute base mesh presentation)#");
+    py::class_<MeshVS_NodalColorPrsBuilder ,opencascade::handle<MeshVS_NodalColorPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_NodalColorPrsBuilder",R"#(This class provides methods to create presentation of nodes with assigned color. There are two ways of presentation building 1. Without using texture. In this case colors of nodes are specified with DataMapOfIntegerColor and presentation is built with gradient fill between these nodes (default behaviour) 2. Using texture. In this case presentation is built with spectrum filling between nodes. For example, if one node has blue color and second one has violet color, parameters of this class may be set to fill presentation between nodes with solar spectrum. Methods: UseTexture - activates/deactivates this way SetColorMap - sets colors used for generation of texture SetColorindices - specifies correspondence between node IDs and indices of colors from color mapThis class provides methods to create presentation of nodes with assigned color. There are two ways of presentation building 1. Without using texture. In this case colors of nodes are specified with DataMapOfIntegerColor and presentation is built with gradient fill between these nodes (default behaviour) 2. Using texture. In this case presentation is built with spectrum filling between nodes. For example, if one node has blue color and second one has violet color, parameters of this class may be set to fill presentation between nodes with solar spectrum. Methods: UseTexture - activates/deactivates this way SetColorMap - sets colors used for generation of texture SetColorindices - specifies correspondence between node IDs and indices of colors from color mapThis class provides methods to create presentation of nodes with assigned color. There are two ways of presentation building 1. Without using texture. In this case colors of nodes are specified with DataMapOfIntegerColor and presentation is built with gradient fill between these nodes (default behaviour) 2. Using texture. In this case presentation is built with spectrum filling between nodes. For example, if one node has blue color and second one has violet color, parameters of this class may be set to fill presentation between nodes with solar spectrum. Methods: UseTexture - activates/deactivates this way SetColorMap - sets colors used for generation of texture SetColorindices - specifies correspondence between node IDs and indices of colors from color map)#");
+    py::class_<MeshVS_TextPrsBuilder ,opencascade::handle<MeshVS_TextPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_TextPrsBuilder",R"#(This class provides methods to create text data presentation. It store map of texts assigned with nodes or elements.This class provides methods to create text data presentation. It store map of texts assigned with nodes or elements.This class provides methods to create text data presentation. It store map of texts assigned with nodes or elements.)#");
+    py::class_<MeshVS_VectorPrsBuilder ,opencascade::handle<MeshVS_VectorPrsBuilder>  , MeshVS_PrsBuilder >(m,"MeshVS_VectorPrsBuilder",R"#(This class provides methods to create vector data presentation. It store map of vectors assigned with nodes or elements. In simplified mode vectors draws with thickened ends instead of arrowsThis class provides methods to create vector data presentation. It store map of vectors assigned with nodes or elements. In simplified mode vectors draws with thickened ends instead of arrowsThis class provides methods to create vector data presentation. It store map of vectors assigned with nodes or elements. In simplified mode vectors draws with thickened ends instead of arrows)#");
 
 };
 

@@ -22,16 +22,16 @@ namespace py = pybind11;
 #include <Interface_InterfaceModel.hxx>
 
 // module includes
-#include <STEPEdit_EditContext.hxx>
-#include <STEPEdit.hxx>
 #include <STEPEdit_EditSDR.hxx>
+#include <STEPEdit.hxx>
+#include <STEPEdit_EditContext.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/STEPEdit_EditContext.hxx
-// ./opencascade/STEPEdit.hxx
 // ./opencascade/STEPEdit_EditSDR.hxx
+// ./opencascade/STEPEdit.hxx
+// ./opencascade/STEPEdit_EditContext.hxx
 
 // user-defined post
