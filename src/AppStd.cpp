@@ -36,9 +36,12 @@ py::module m = static_cast<py::module>(main_module.attr("AppStd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<AppStd_Application ,opencascade::handle<AppStd_Application>>(m,"AppStd_Application");
 
     static_cast<py::class_<AppStd_Application ,opencascade::handle<AppStd_Application>  , TDocStd_Application >>(m.attr("AppStd_Application"))
+    // constructors
+    // custom constructors
     // methods
         .def("ResourcesName",
              (Standard_CString (AppStd_Application::*)() ) static_cast<Standard_CString (AppStd_Application::*)() >(&AppStd_Application::ResourcesName),
@@ -56,7 +59,7 @@ py::module m = static_cast<py::module>(main_module.attr("AppStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

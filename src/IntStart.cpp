@@ -38,6 +38,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntStart"));
     public:
         using IntStart_SITopolTool::IntStart_SITopolTool;
         
+        
         // public pure virtual
         TopAbs_State Classify(const gp_Pnt2d & P,const Standard_Real Tol) override { PYBIND11_OVERLOAD_PURE(TopAbs_State,IntStart_SITopolTool,Classify,P,Tol) };
         
@@ -53,6 +54,8 @@ py::module m = static_cast<py::module>(main_module.attr("IntStart"));
 
 
     static_cast<py::class_<IntStart_SITopolTool ,opencascade::handle<IntStart_SITopolTool> ,Py_IntStart_SITopolTool , Standard_Transient >>(m.attr("IntStart_SITopolTool"))
+    // constructors
+    // custom constructors
     // methods
         .def("Classify",
              (TopAbs_State (IntStart_SITopolTool::*)( const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<TopAbs_State (IntStart_SITopolTool::*)( const gp_Pnt2d & ,  const Standard_Real  ) >(&IntStart_SITopolTool::Classify),
@@ -70,7 +73,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntStart"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

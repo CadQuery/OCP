@@ -12,18 +12,18 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
-#include <TopAbs.hxx>
-#include <TopAbs_ShapeEnum.hxx>
 #include <TopAbs_State.hxx>
+#include <TopAbs.hxx>
 #include <TopAbs_Orientation.hxx>
+#include <TopAbs_ShapeEnum.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/TopAbs.hxx
-// ./opencascade/TopAbs_ShapeEnum.hxx
 // ./opencascade/TopAbs_State.hxx
+// ./opencascade/TopAbs.hxx
 // ./opencascade/TopAbs_Orientation.hxx
+// ./opencascade/TopAbs_ShapeEnum.hxx
 
 // user-defined post

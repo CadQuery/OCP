@@ -13,11 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMDocStd_XLinkDriver.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 
 // module includes
 #include <BinMDocStd.hxx>
@@ -42,9 +42,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDocStd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinMDocStd , shared_ptr<BinMDocStd>>(m,"BinMDocStd");
 
     static_cast<py::class_<BinMDocStd , shared_ptr<BinMDocStd>  >>(m.attr("BinMDocStd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -53,12 +56,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDocStd"));
                     R"#(Adds the attribute drivers to <theDriverTable>.)#"  , py::arg("theDriverTable"),  py::arg("aMsgDrv"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDocStd_XLinkDriver ,opencascade::handle<BinMDocStd_XLinkDriver>  , BinMDF_ADriver >>(m.attr("BinMDocStd_XLinkDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDocStd_XLinkDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDocStd_XLinkDriver::*)() const>(&BinMDocStd_XLinkDriver::NewEmpty),
@@ -82,12 +87,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinMDocStd.hxx
 // ./opencascade/BinMDocStd_XLinkDriver.hxx
+// ./opencascade/BinMDocStd.hxx
 
 // operators
 

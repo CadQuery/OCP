@@ -13,25 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StepShape_TopologicalRepresentationItem.hxx>
-#include <StepShape_GeometricCurveSet.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <StepShape_ManifoldSolidBrep.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Shell.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <TopoDS_Solid.hxx>
-#include <StepShape_BrepWithVoids.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Solid.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <StepShape_TopologicalRepresentationItem.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDSToStep_Tool.hxx>
-#include <Transfer_FinderProcess.hxx>
 #include <StepShape_ShellBasedSurfaceModel.hxx>
 #include <StdFail_NotDone.hxx>
 #include <TopoDS_Face.hxx>
@@ -44,15 +25,36 @@ namespace py = pybind11;
 #include <Transfer_FinderProcess.hxx>
 #include <TopoDS_Solid.hxx>
 #include <StepShape_TopologicalRepresentationItem.hxx>
+#include <StepShape_TopologicalRepresentationItem.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopoDSToStep_Tool.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <StepShape_ManifoldSolidBrep.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Shell.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <TopoDS_Solid.hxx>
+#include <StepShape_TopologicalRepresentationItem.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDSToStep_Tool.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <StepShape_TopologicalRepresentationItem.hxx>
 #include <StdFail_NotDone.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDSToStep_Tool.hxx>
 #include <Transfer_FinderProcess.hxx>
 #include <StepShape_TopologicalRepresentationItem.hxx>
 #include <StdFail_NotDone.hxx>
-#include <TopoDS_Face.hxx>
+#include <TopoDS_Wire.hxx>
 #include <TopoDSToStep_Tool.hxx>
 #include <Transfer_FinderProcess.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDSToStep_Tool.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Face.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <Transfer_FinderProcess.hxx>
 #include <TopoDS_Shape.hxx>
@@ -72,25 +74,23 @@ namespace py = pybind11;
 #include <TopoDSToStep_MakeStepWire.hxx>
 #include <TopoDSToStep_MakeStepEdge.hxx>
 #include <TopoDSToStep_MakeStepVertex.hxx>
+#include <StepShape_BrepWithVoids.hxx>
 #include <StdFail_NotDone.hxx>
-#include <TopoDSToStep_Tool.hxx>
+#include <TopoDS_Solid.hxx>
 #include <Transfer_FinderProcess.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
+#include <TopoDS_Shape.hxx>
+#include <StepShape_GeometricCurveSet.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Transfer_FinderProcess.hxx>
 #include <StepShape_TopologicalRepresentationItem.hxx>
 #include <StdFail_NotDone.hxx>
-#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
 #include <TopoDSToStep_Tool.hxx>
 #include <Transfer_FinderProcess.hxx>
 #include <StepShape_FacetedBrepAndBrepWithVoids.hxx>
 #include <StdFail_NotDone.hxx>
 #include <TopoDS_Solid.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <TopoDS_Shape.hxx>
-#include <StepShape_TopologicalRepresentationItem.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDSToStep_Tool.hxx>
 #include <Transfer_FinderProcess.hxx>
 
 // module includes
@@ -136,9 +136,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TopoDSToStep , shared_ptr<TopoDSToStep>>(m,"TopoDSToStep");
 
     static_cast<py::class_<TopoDSToStep , shared_ptr<TopoDSToStep>  >>(m.attr("TopoDSToStep"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -165,12 +168,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
                     R"#(Adds all entities recorded in Tool into the map of results (binders) stored in FinderProcess)#"  , py::arg("FP"),  py::arg("Tool"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopoDSToStep_FacetedTool , shared_ptr<TopoDSToStep_FacetedTool>>(m,"TopoDSToStep_FacetedTool");
 
     static_cast<py::class_<TopoDSToStep_FacetedTool , shared_ptr<TopoDSToStep_FacetedTool>  >>(m.attr("TopoDSToStep_FacetedTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -179,11 +185,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
                     R"#(None)#"  , py::arg("SH"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_Root , shared_ptr<TopoDSToStep_Root>  >>(m.attr("TopoDSToStep_Root"))
+    // constructors
+    // custom constructors
     // methods
         .def("Tolerance",
              (Standard_Real & (TopoDSToStep_Root::*)() ) static_cast<Standard_Real & (TopoDSToStep_Root::*)() >(&TopoDSToStep_Root::Tolerance),
@@ -195,13 +203,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_Tool , shared_ptr<TopoDSToStep_Tool>  >>(m.attr("TopoDSToStep_Tool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_DataMap<TopoDS_Shape, opencascade::handle<Standard_Transient>, TopTools_ShapeMapHasher> &,const Standard_Boolean >()  , py::arg("M"),  py::arg("FacetedContext") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopoDSToStep_Tool::*)(  const NCollection_DataMap<TopoDS_Shape, opencascade::handle<Standard_Transient>, TopTools_ShapeMapHasher> & ,  const Standard_Boolean  ) ) static_cast<void (TopoDSToStep_Tool::*)(  const NCollection_DataMap<TopoDS_Shape, opencascade::handle<Standard_Transient>, TopTools_ShapeMapHasher> & ,  const Standard_Boolean  ) >(&TopoDSToStep_Tool::Init),
@@ -267,13 +277,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_Builder , shared_ptr<TopoDSToStep_Builder>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_Builder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,TopoDSToStep_Tool &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("T"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopoDSToStep_Builder::*)( const TopoDS_Shape & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) ) static_cast<void (TopoDSToStep_Builder::*)( const TopoDS_Shape & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) >(&TopoDSToStep_Builder::Init),
@@ -288,12 +300,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeBrepWithVoids , shared_ptr<TopoDSToStep_MakeBrepWithVoids>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeBrepWithVoids"))
+    // constructors
         .def(py::init< const TopoDS_Solid &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<StepShape_BrepWithVoids> & (TopoDSToStep_MakeBrepWithVoids::*)() const) static_cast<const opencascade::handle<StepShape_BrepWithVoids> & (TopoDSToStep_MakeBrepWithVoids::*)() const>(&TopoDSToStep_MakeBrepWithVoids::Value),
@@ -302,13 +316,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeFacetedBrep , shared_ptr<TopoDSToStep_MakeFacetedBrep>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeFacetedBrep"))
+    // constructors
         .def(py::init< const TopoDS_Shell &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
         .def(py::init< const TopoDS_Solid &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<StepShape_FacetedBrep> & (TopoDSToStep_MakeFacetedBrep::*)() const) static_cast<const opencascade::handle<StepShape_FacetedBrep> & (TopoDSToStep_MakeFacetedBrep::*)() const>(&TopoDSToStep_MakeFacetedBrep::Value),
@@ -317,12 +333,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeFacetedBrepAndBrepWithVoids , shared_ptr<TopoDSToStep_MakeFacetedBrepAndBrepWithVoids>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeFacetedBrepAndBrepWithVoids"))
+    // constructors
         .def(py::init< const TopoDS_Solid &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<StepShape_FacetedBrepAndBrepWithVoids> & (TopoDSToStep_MakeFacetedBrepAndBrepWithVoids::*)() const) static_cast<const opencascade::handle<StepShape_FacetedBrepAndBrepWithVoids> & (TopoDSToStep_MakeFacetedBrepAndBrepWithVoids::*)() const>(&TopoDSToStep_MakeFacetedBrepAndBrepWithVoids::Value),
@@ -331,12 +349,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeGeometricCurveSet , shared_ptr<TopoDSToStep_MakeGeometricCurveSet>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeGeometricCurveSet"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("SH"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<StepShape_GeometricCurveSet> & (TopoDSToStep_MakeGeometricCurveSet::*)() const) static_cast<const opencascade::handle<StepShape_GeometricCurveSet> & (TopoDSToStep_MakeGeometricCurveSet::*)() const>(&TopoDSToStep_MakeGeometricCurveSet::Value),
@@ -345,13 +365,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeManifoldSolidBrep , shared_ptr<TopoDSToStep_MakeManifoldSolidBrep>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeManifoldSolidBrep"))
+    // constructors
         .def(py::init< const TopoDS_Shell &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
         .def(py::init< const TopoDS_Solid &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<StepShape_ManifoldSolidBrep> & (TopoDSToStep_MakeManifoldSolidBrep::*)() const) static_cast<const opencascade::handle<StepShape_ManifoldSolidBrep> & (TopoDSToStep_MakeManifoldSolidBrep::*)() const>(&TopoDSToStep_MakeManifoldSolidBrep::Value),
@@ -360,14 +382,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeShellBasedSurfaceModel , shared_ptr<TopoDSToStep_MakeShellBasedSurfaceModel>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeShellBasedSurfaceModel"))
+    // constructors
         .def(py::init< const TopoDS_Face &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("F"),  py::arg("FP") )
         .def(py::init< const TopoDS_Shell &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
         .def(py::init< const TopoDS_Solid &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<StepShape_ShellBasedSurfaceModel> & (TopoDSToStep_MakeShellBasedSurfaceModel::*)() const) static_cast<const opencascade::handle<StepShape_ShellBasedSurfaceModel> & (TopoDSToStep_MakeShellBasedSurfaceModel::*)() const>(&TopoDSToStep_MakeShellBasedSurfaceModel::Value),
@@ -376,13 +400,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeStepEdge , shared_ptr<TopoDSToStep_MakeStepEdge>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeStepEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,TopoDSToStep_Tool &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("E"),  py::arg("T"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopoDSToStep_MakeStepEdge::*)( const TopoDS_Edge & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) ) static_cast<void (TopoDSToStep_MakeStepEdge::*)( const TopoDS_Edge & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) >(&TopoDSToStep_MakeStepEdge::Init),
@@ -397,13 +423,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeStepFace , shared_ptr<TopoDSToStep_MakeStepFace>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeStepFace"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,TopoDSToStep_Tool &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("F"),  py::arg("T"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopoDSToStep_MakeStepFace::*)( const TopoDS_Face & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) ) static_cast<void (TopoDSToStep_MakeStepFace::*)( const TopoDS_Face & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) >(&TopoDSToStep_MakeStepFace::Init),
@@ -418,13 +446,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeStepVertex , shared_ptr<TopoDSToStep_MakeStepVertex>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeStepVertex"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Vertex &,TopoDSToStep_Tool &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("V"),  py::arg("T"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopoDSToStep_MakeStepVertex::*)( const TopoDS_Vertex & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) ) static_cast<void (TopoDSToStep_MakeStepVertex::*)( const TopoDS_Vertex & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) >(&TopoDSToStep_MakeStepVertex::Init),
@@ -439,13 +469,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_MakeStepWire , shared_ptr<TopoDSToStep_MakeStepWire>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_MakeStepWire"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,TopoDSToStep_Tool &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("W"),  py::arg("T"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopoDSToStep_MakeStepWire::*)( const TopoDS_Wire & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) ) static_cast<void (TopoDSToStep_MakeStepWire::*)( const TopoDS_Wire & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) >(&TopoDSToStep_MakeStepWire::Init),
@@ -460,13 +492,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopoDSToStep_WireframeBuilder , shared_ptr<TopoDSToStep_WireframeBuilder>  , TopoDSToStep_Root >>(m.attr("TopoDSToStep_WireframeBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,TopoDSToStep_Tool &,const opencascade::handle<Transfer_FinderProcess> & >()  , py::arg("S"),  py::arg("T"),  py::arg("FP") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopoDSToStep_WireframeBuilder::*)( const TopoDS_Shape & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) ) static_cast<void (TopoDSToStep_WireframeBuilder::*)( const TopoDS_Shape & ,  TopoDSToStep_Tool & ,  const opencascade::handle<Transfer_FinderProcess> &  ) >(&TopoDSToStep_WireframeBuilder::Init),
@@ -490,32 +524,32 @@ py::module m = static_cast<py::module>(main_module.attr("TopoDSToStep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/TopoDSToStep_BuilderError.hxx
+// ./opencascade/TopoDSToStep_MakeShellBasedSurfaceModel.hxx
+// ./opencascade/TopoDSToStep_MakeFaceError.hxx
+// ./opencascade/TopoDSToStep_MakeFacetedBrep.hxx
 // ./opencascade/TopoDSToStep_Tool.hxx
-// ./opencascade/TopoDSToStep_MakeGeometricCurveSet.hxx
+// ./opencascade/TopoDSToStep_Builder.hxx
 // ./opencascade/TopoDSToStep_MakeManifoldSolidBrep.hxx
+// ./opencascade/TopoDSToStep_MakeStepVertex.hxx
+// ./opencascade/TopoDSToStep_MakeStepEdge.hxx
+// ./opencascade/TopoDSToStep_MakeEdgeError.hxx
 // ./opencascade/TopoDSToStep_FacetedError.hxx
+// ./opencascade/TopoDSToStep_MakeStepWire.hxx
+// ./opencascade/TopoDSToStep_WireframeBuilder.hxx
+// ./opencascade/TopoDSToStep.hxx
 // ./opencascade/TopoDSToStep_MakeBrepWithVoids.hxx
 // ./opencascade/TopoDSToStep_Root.hxx
-// ./opencascade/TopoDSToStep_Builder.hxx
-// ./opencascade/TopoDSToStep_MakeShellBasedSurfaceModel.hxx
-// ./opencascade/TopoDSToStep_MakeEdgeError.hxx
-// ./opencascade/TopoDSToStep_BuilderError.hxx
-// ./opencascade/TopoDSToStep_MakeFacetedBrep.hxx
-// ./opencascade/TopoDSToStep_MakeStepEdge.hxx
-// ./opencascade/TopoDSToStep_MakeStepFace.hxx
-// ./opencascade/TopoDSToStep.hxx
-// ./opencascade/TopoDSToStep_WireframeBuilder.hxx
-// ./opencascade/TopoDSToStep_MakeStepVertex.hxx
-// ./opencascade/TopoDSToStep_MakeFacetedBrepAndBrepWithVoids.hxx
 // ./opencascade/TopoDSToStep_FacetedTool.hxx
 // ./opencascade/TopoDSToStep_MakeWireError.hxx
+// ./opencascade/TopoDSToStep_MakeGeometricCurveSet.hxx
+// ./opencascade/TopoDSToStep_MakeStepFace.hxx
+// ./opencascade/TopoDSToStep_MakeFacetedBrepAndBrepWithVoids.hxx
 // ./opencascade/TopoDSToStep_MakeVertexError.hxx
-// ./opencascade/TopoDSToStep_MakeStepWire.hxx
-// ./opencascade/TopoDSToStep_MakeFaceError.hxx
 
 // operators
 

@@ -10,6 +10,8 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <TopoDS_Vertex.hxx>
+#include <gp_Pnt.hxx>
 #include <Geom_Plane.hxx>
 #include <ShapeBuild_Vertex.hxx>
 #include <ShapeBuild_Edge.hxx>
@@ -22,22 +24,20 @@ namespace py = pybind11;
 #include <Geom2d_Curve.hxx>
 #include <gp_Trsf2d.hxx>
 #include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Pnt.hxx>
 
 // module includes
+#include <ShapeBuild_Vertex.hxx>
 #include <ShapeBuild.hxx>
 #include <ShapeBuild_Edge.hxx>
-#include <ShapeBuild_Vertex.hxx>
 #include <ShapeBuild_ReShape.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/ShapeBuild_Vertex.hxx
 // ./opencascade/ShapeBuild.hxx
 // ./opencascade/ShapeBuild_Edge.hxx
-// ./opencascade/ShapeBuild_Vertex.hxx
 // ./opencascade/ShapeBuild_ReShape.hxx
 
 // user-defined post

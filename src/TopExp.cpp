@@ -13,12 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TopoDS_Iterator.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopExp_Explorer.hxx>
-#include <TopoDS_Iterator.hxx>
 
 // module includes
 #include <TopExp.hxx>
@@ -44,9 +44,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopExp"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TopExp , shared_ptr<TopExp>>(m,"TopExp");
 
     static_cast<py::class_<TopExp , shared_ptr<TopExp>  >>(m.attr("TopExp"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -82,13 +85,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopExp"));
                     R"#(Finds the vertex <V> common to the two edges <E1,E2>, returns True if this vertex exists.)#"  , py::arg("E1"),  py::arg("E2"),  py::arg("V"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopExp_Explorer , shared_ptr<TopExp_Explorer>  >>(m.attr("TopExp_Explorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const TopAbs_ShapeEnum,const TopAbs_ShapeEnum >()  , py::arg("S"),  py::arg("ToFind"),  py::arg("ToAvoid")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE) )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopExp_Explorer::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (TopExp_Explorer::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&TopExp_Explorer::Init),
@@ -99,6 +104,9 @@ py::module m = static_cast<py::module>(main_module.attr("TopExp"));
         .def("Next",
              (void (TopExp_Explorer::*)() ) static_cast<void (TopExp_Explorer::*)() >(&TopExp_Explorer::Next),
              R"#(Moves to the next Shape in the exploration. Exceptions Standard_NoMoreObject if there are no more shapes to explore.)#" )
+        .def("Value",
+             (const TopoDS_Shape & (TopExp_Explorer::*)() const) static_cast<const TopoDS_Shape & (TopExp_Explorer::*)() const>(&TopExp_Explorer::Value),
+             R"#(Returns the current shape in the exploration. Exceptions Standard_NoSuchObject if this explorer has no more shapes to explore.)#" )
         .def("Current",
              (const TopoDS_Shape & (TopExp_Explorer::*)() const) static_cast<const TopoDS_Shape & (TopExp_Explorer::*)() const>(&TopExp_Explorer::Current),
              R"#(Returns the current shape in the exploration. Exceptions Standard_NoSuchObject if this explorer has no more shapes to explore.)#" )
@@ -127,13 +135,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopExp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/TopExp_Stack.hxx
 // ./opencascade/TopExp_Explorer.hxx
 // ./opencascade/TopExp.hxx
-// ./opencascade/TopExp_Stack.hxx
 
 // operators
 

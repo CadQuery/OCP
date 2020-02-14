@@ -13,12 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <XmlMDF_ADriverTable.hxx>
-#include <PCDM_Document.hxx>
-#include <CDM_Document.hxx>
-#include <CDM_Application.hxx>
-#include <Message_Messenger.hxx>
-#include <XmlMDF_ADriver.hxx>
 #include <Standard_GUID.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <XmlMDF_ADriverTable.hxx>
@@ -30,6 +24,12 @@ namespace py = pybind11;
 #include <XmlMDF_ADriverTable.hxx>
 #include <CDM_Document.hxx>
 #include <Message_Messenger.hxx>
+#include <XmlMDF_ADriverTable.hxx>
+#include <PCDM_Document.hxx>
+#include <CDM_Document.hxx>
+#include <CDM_Application.hxx>
+#include <Message_Messenger.hxx>
+#include <XmlMDF_ADriver.hxx>
 
 // module includes
 #include <XmlLDrivers.hxx>
@@ -59,9 +59,12 @@ py::module m = static_cast<py::module>(main_module.attr("XmlLDrivers"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XmlLDrivers , shared_ptr<XmlLDrivers>>(m,"XmlLDrivers");
 
     static_cast<py::class_<XmlLDrivers , shared_ptr<XmlLDrivers>  >>(m.attr("XmlLDrivers"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -80,17 +83,16 @@ py::module m = static_cast<py::module>(main_module.attr("XmlLDrivers"));
         .def_static("StorageVersion_s",
                     (int (*)() ) static_cast<int (*)() >(&XmlLDrivers::StorageVersion),
                     R"#(None)#" )
-        .def_static("SetStorageVersion_s",
-                    (void (*)( const int  ) ) static_cast<void (*)( const int  ) >(&XmlLDrivers::SetStorageVersion),
-                    R"#(None)#"  , py::arg("version"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlLDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >>(m.attr("XmlLDrivers_DocumentRetrievalDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CreateDocument",
              (opencascade::handle<CDM_Document> (XmlLDrivers_DocumentRetrievalDriver::*)() ) static_cast<opencascade::handle<CDM_Document> (XmlLDrivers_DocumentRetrievalDriver::*)() >(&XmlLDrivers_DocumentRetrievalDriver::CreateDocument),
@@ -117,12 +119,14 @@ py::module m = static_cast<py::module>(main_module.attr("XmlLDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlLDrivers_DocumentStorageDriver ,opencascade::handle<XmlLDrivers_DocumentStorageDriver>  , PCDM_StorageDriver >>(m.attr("XmlLDrivers_DocumentStorageDriver"))
+    // constructors
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("theCopyright") )
+    // custom constructors
     // methods
         .def("Write",
              (void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) ) static_cast<void (XmlLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) >(&XmlLDrivers_DocumentStorageDriver::Write),
@@ -146,13 +150,15 @@ py::module m = static_cast<py::module>(main_module.attr("XmlLDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlLDrivers_NamespaceDef , shared_ptr<XmlLDrivers_NamespaceDef>  >>(m.attr("XmlLDrivers_NamespaceDef"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString &,const TCollection_AsciiString & >()  , py::arg("thePrefix"),  py::arg("theURI") )
+    // custom constructors
     // methods
         .def("Prefix",
              (const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const) static_cast<const TCollection_AsciiString & (XmlLDrivers_NamespaceDef::*)() const>(&XmlLDrivers_NamespaceDef::Prefix),
@@ -164,15 +170,15 @@ py::module m = static_cast<py::module>(main_module.attr("XmlLDrivers"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/XmlLDrivers.hxx
+// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
 // ./opencascade/XmlLDrivers_DocumentRetrievalDriver.hxx
 // ./opencascade/XmlLDrivers_NamespaceDef.hxx
 // ./opencascade/XmlLDrivers_SequenceOfNamespaceDef.hxx
-// ./opencascade/XmlLDrivers.hxx
-// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
 
 // operators
 

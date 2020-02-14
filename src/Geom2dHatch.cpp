@@ -55,8 +55,10 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
 
 
     static_cast<py::class_<Geom2dHatch_Classifier , shared_ptr<Geom2dHatch_Classifier>  >>(m.attr("Geom2dHatch_Classifier"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< Geom2dHatch_Elements &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("F"),  py::arg("P"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dHatch_Classifier::*)( Geom2dHatch_Elements & ,  const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<void (Geom2dHatch_Classifier::*)( Geom2dHatch_Elements & ,  const gp_Pnt2d & ,  const Standard_Real  ) >(&Geom2dHatch_Classifier::Perform),
@@ -83,14 +85,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dHatch_Element , shared_ptr<Geom2dHatch_Element>  >>(m.attr("Geom2dHatch_Element"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dHatch_Element & >()  , py::arg("Other") )
         .def(py::init< const Geom2dAdaptor_Curve &,const TopAbs_Orientation >()  , py::arg("Curve"),  py::arg("Orientation")=static_cast<const TopAbs_Orientation>(TopAbs_FORWARD) )
+    // custom constructors
     // methods
         .def("Curve",
              (const Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() const) static_cast<const Geom2dAdaptor_Curve & (Geom2dHatch_Element::*)() const>(&Geom2dHatch_Element::Curve),
@@ -108,13 +112,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dHatch_Elements , shared_ptr<Geom2dHatch_Elements>  >>(m.attr("Geom2dHatch_Elements"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dHatch_Elements & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (Geom2dHatch_Elements::*)() ) static_cast<void (Geom2dHatch_Elements::*)() >(&Geom2dHatch_Elements::Clear),
@@ -177,12 +183,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dHatch_FClass2dOfClassifier , shared_ptr<Geom2dHatch_FClass2dOfClassifier>  >>(m.attr("Geom2dHatch_FClass2dOfClassifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (Geom2dHatch_FClass2dOfClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dHatch_FClass2dOfClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dHatch_FClass2dOfClassifier::Reset),
@@ -209,12 +217,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dHatch_Hatcher , shared_ptr<Geom2dHatch_Hatcher>  >>(m.attr("Geom2dHatch_Hatcher"))
+    // constructors
         .def(py::init< const Geom2dHatch_Intersector &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Intersector"),  py::arg("Confusion2d"),  py::arg("Confusion3d"),  py::arg("KeepPnt")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("KeepSeg")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Intersector",
              (void (Geom2dHatch_Hatcher::*)( const Geom2dHatch_Intersector &  ) ) static_cast<void (Geom2dHatch_Hatcher::*)( const Geom2dHatch_Intersector &  ) >(&Geom2dHatch_Hatcher::Intersector),
@@ -373,13 +383,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dHatch_Hatching , shared_ptr<Geom2dHatch_Hatching>  >>(m.attr("Geom2dHatch_Hatching"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dAdaptor_Curve & >()  , py::arg("Curve") )
+    // custom constructors
     // methods
         .def("Curve",
              (const Geom2dAdaptor_Curve & (Geom2dHatch_Hatching::*)() const) static_cast<const Geom2dAdaptor_Curve & (Geom2dHatch_Hatching::*)() const>(&Geom2dHatch_Hatching::Curve),
@@ -451,13 +463,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dHatch_Intersector , shared_ptr<Geom2dHatch_Intersector>  , Geom2dInt_GInter >>(m.attr("Geom2dHatch_Intersector"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Confusion"),  py::arg("Tangency") )
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ConfusionTolerance",
              (Standard_Real (Geom2dHatch_Intersector::*)() const) static_cast<Standard_Real (Geom2dHatch_Intersector::*)() const>(&Geom2dHatch_Intersector::ConfusionTolerance),
@@ -499,21 +513,21 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dHatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Geom2dHatch_Elements.hxx
-// ./opencascade/Geom2dHatch_DataMapIteratorOfHatchings.hxx
-// ./opencascade/Geom2dHatch_DataMapIteratorOfMapOfElements.hxx
-// ./opencascade/Geom2dHatch_Intersector.hxx
-// ./opencascade/Geom2dHatch_FClass2dOfClassifier.hxx
-// ./opencascade/Geom2dHatch_Hatching.hxx
-// ./opencascade/Geom2dHatch_Classifier.hxx
 // ./opencascade/Geom2dHatch_Hatchings.hxx
-// ./opencascade/Geom2dHatch_MapOfElements.hxx
+// ./opencascade/Geom2dHatch_DataMapIteratorOfMapOfElements.hxx
+// ./opencascade/Geom2dHatch_DataMapIteratorOfHatchings.hxx
+// ./opencascade/Geom2dHatch_Classifier.hxx
 // ./opencascade/Geom2dHatch_Hatcher.hxx
+// ./opencascade/Geom2dHatch_MapOfElements.hxx
+// ./opencascade/Geom2dHatch_Hatching.hxx
 // ./opencascade/Geom2dHatch_Element.hxx
+// ./opencascade/Geom2dHatch_Elements.hxx
+// ./opencascade/Geom2dHatch_FClass2dOfClassifier.hxx
+// ./opencascade/Geom2dHatch_Intersector.hxx
 
 // operators
 

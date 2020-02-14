@@ -14,27 +14,27 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <StepData_SelectMember.hxx>
+#include <StepData_SelectMember.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepElement_SurfaceSectionField.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepData_SelectMember.hxx>
+#include <StepElement_SurfaceSection.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepData_SelectMember.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepRepr_RepresentationItem.hxx>
 #include <StepRepr_Representation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepElement_SurfaceSectionField.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepData_SelectMember.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepData_SelectMember.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepElement_SurfaceSection.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepData_SelectMember.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepData_SelectMember.hxx>
 #include <TCollection_HAsciiString.hxx>
 
 // module includes
@@ -107,35 +107,35 @@ namespace py = pybind11;
 #include <StepElement_VolumeElementPurposeMember.hxx>
 
 // template related includes
-// ./opencascade/StepElement_Array1OfSurfaceSection.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepElement_Array1OfHSequenceOfCurveElementPurposeMember.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepElement_SequenceOfSurfaceElementPurposeMember.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepElement_SequenceOfCurveElementSectionDefinition.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepElement_SequenceOfCurveElementPurposeMember.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepElement_Array1OfVolumeElementPurpose.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepElement_Array2OfSurfaceElementPurposeMember.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepElement_Array2OfCurveElementPurposeMember.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepElement_SequenceOfElementMaterial.hxx
+// ./opencascade/StepElement_Array1OfSurfaceSection.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepElement_Array1OfMeasureOrUnspecifiedValue.hxx
+// ./opencascade/StepElement_Array1OfCurveElementSectionDefinition.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepElement_Array2OfSurfaceElementPurpose.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember.hxx
+// ./opencascade/StepElement_SequenceOfCurveElementPurposeMember.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepElement_Array1OfVolumeElementPurposeMember.hxx
+// ./opencascade/StepElement_SequenceOfElementMaterial.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepElement_Array2OfSurfaceElementPurposeMember.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepElement_Array1OfHSequenceOfCurveElementPurposeMember.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepElement_Array1OfCurveElementEndReleasePacket.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepElement_Array1OfCurveElementSectionDefinition.hxx
+// ./opencascade/StepElement_Array1OfVolumeElementPurposeMember.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepElement_SequenceOfCurveElementSectionDefinition.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepElement_Array1OfVolumeElementPurpose.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepElement_Array1OfMeasureOrUnspecifiedValue.hxx
 #include "NCollection.hxx"
 
 
@@ -157,7 +157,9 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
 
 
     static_cast<py::class_<StepElement_AnalysisItemWithinRepresentation ,opencascade::handle<StepElement_AnalysisItemWithinRepresentation>  , Standard_Transient >>(m.attr("StepElement_AnalysisItemWithinRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_AnalysisItemWithinRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_RepresentationItem> & ,  const opencascade::handle<StepRepr_Representation> &  ) ) static_cast<void (StepElement_AnalysisItemWithinRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_RepresentationItem> & ,  const opencascade::handle<StepRepr_Representation> &  ) >(&StepElement_AnalysisItemWithinRepresentation::Init),
@@ -199,12 +201,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_CurveElementEndReleasePacket ,opencascade::handle<StepElement_CurveElementEndReleasePacket>  , Standard_Transient >>(m.attr("StepElement_CurveElementEndReleasePacket"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_CurveElementEndReleasePacket::*)( const StepElement_CurveElementFreedom & ,  const Standard_Real  ) ) static_cast<void (StepElement_CurveElementEndReleasePacket::*)( const StepElement_CurveElementFreedom & ,  const Standard_Real  ) >(&StepElement_CurveElementEndReleasePacket::Init),
@@ -234,12 +238,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_CurveElementFreedom , shared_ptr<StepElement_CurveElementFreedom>  , StepData_SelectType >>(m.attr("StepElement_CurveElementFreedom"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepElement_CurveElementFreedom::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepElement_CurveElementFreedom::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepElement_CurveElementFreedom::CaseNum),
@@ -266,12 +272,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_CurveElementFreedomMember ,opencascade::handle<StepElement_CurveElementFreedomMember>  , StepData_SelectNamed >>(m.attr("StepElement_CurveElementFreedomMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepElement_CurveElementFreedomMember::*)() const) static_cast<Standard_Boolean (StepElement_CurveElementFreedomMember::*)() const>(&StepElement_CurveElementFreedomMember::HasName),
@@ -298,12 +306,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_CurveElementPurpose , shared_ptr<StepElement_CurveElementPurpose>  , StepData_SelectType >>(m.attr("StepElement_CurveElementPurpose"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepElement_CurveElementPurpose::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepElement_CurveElementPurpose::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepElement_CurveElementPurpose::CaseNum),
@@ -330,12 +340,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_CurveElementPurposeMember ,opencascade::handle<StepElement_CurveElementPurposeMember>  , StepData_SelectNamed >>(m.attr("StepElement_CurveElementPurposeMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepElement_CurveElementPurposeMember::*)() const) static_cast<Standard_Boolean (StepElement_CurveElementPurposeMember::*)() const>(&StepElement_CurveElementPurposeMember::HasName),
@@ -362,12 +374,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_CurveElementSectionDefinition ,opencascade::handle<StepElement_CurveElementSectionDefinition>  , Standard_Transient >>(m.attr("StepElement_CurveElementSectionDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_CurveElementSectionDefinition::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real  ) ) static_cast<void (StepElement_CurveElementSectionDefinition::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real  ) >(&StepElement_CurveElementSectionDefinition::Init),
@@ -397,12 +411,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_ElementAspect , shared_ptr<StepElement_ElementAspect>  , StepData_SelectType >>(m.attr("StepElement_ElementAspect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepElement_ElementAspect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepElement_ElementAspect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepElement_ElementAspect::CaseNum),
@@ -477,12 +493,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_ElementAspectMember ,opencascade::handle<StepElement_ElementAspectMember>  , StepData_SelectNamed >>(m.attr("StepElement_ElementAspectMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepElement_ElementAspectMember::*)() const) static_cast<Standard_Boolean (StepElement_ElementAspectMember::*)() const>(&StepElement_ElementAspectMember::HasName),
@@ -509,12 +527,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_ElementDescriptor ,opencascade::handle<StepElement_ElementDescriptor>  , Standard_Transient >>(m.attr("StepElement_ElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_ElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepElement_ElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepElement_ElementDescriptor::Init),
@@ -544,12 +564,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_ElementMaterial ,opencascade::handle<StepElement_ElementMaterial>  , Standard_Transient >>(m.attr("StepElement_ElementMaterial"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_ElementMaterial::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfMaterialPropertyRepresentation> &  ) ) static_cast<void (StepElement_ElementMaterial::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfMaterialPropertyRepresentation> &  ) >(&StepElement_ElementMaterial::Init),
@@ -585,14 +607,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfCurveElementEndReleasePacket ,opencascade::handle<StepElement_HArray1OfCurveElementEndReleasePacket>  , StepElement_Array1OfCurveElementEndReleasePacket , Standard_Transient >>(m.attr("StepElement_HArray1OfCurveElementEndReleasePacket"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_CurveElementEndReleasePacket> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepElement_CurveElementEndReleasePacket> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfCurveElementEndReleasePacket & (StepElement_HArray1OfCurveElementEndReleasePacket::*)() const) static_cast<const StepElement_Array1OfCurveElementEndReleasePacket & (StepElement_HArray1OfCurveElementEndReleasePacket::*)() const>(&StepElement_HArray1OfCurveElementEndReleasePacket::Array1),
@@ -613,14 +638,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfCurveElementSectionDefinition ,opencascade::handle<StepElement_HArray1OfCurveElementSectionDefinition>  , StepElement_Array1OfCurveElementSectionDefinition , Standard_Transient >>(m.attr("StepElement_HArray1OfCurveElementSectionDefinition"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_CurveElementSectionDefinition> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepElement_CurveElementSectionDefinition> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfCurveElementSectionDefinition & (StepElement_HArray1OfCurveElementSectionDefinition::*)() const) static_cast<const StepElement_Array1OfCurveElementSectionDefinition & (StepElement_HArray1OfCurveElementSectionDefinition::*)() const>(&StepElement_HArray1OfCurveElementSectionDefinition::Array1),
@@ -641,14 +669,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfHSequenceOfCurveElementPurposeMember ,opencascade::handle<StepElement_HArray1OfHSequenceOfCurveElementPurposeMember>  , StepElement_Array1OfHSequenceOfCurveElementPurposeMember , Standard_Transient >>(m.attr("StepElement_HArray1OfHSequenceOfCurveElementPurposeMember"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_HSequenceOfCurveElementPurposeMember> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepElement_HSequenceOfCurveElementPurposeMember> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfHSequenceOfCurveElementPurposeMember & (StepElement_HArray1OfHSequenceOfCurveElementPurposeMember::*)() const) static_cast<const StepElement_Array1OfHSequenceOfCurveElementPurposeMember & (StepElement_HArray1OfHSequenceOfCurveElementPurposeMember::*)() const>(&StepElement_HArray1OfHSequenceOfCurveElementPurposeMember::Array1),
@@ -669,14 +700,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember ,opencascade::handle<StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember>  , StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember , Standard_Transient >>(m.attr("StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember & (StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember::*)() const) static_cast<const StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember & (StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember::*)() const>(&StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember::Array1),
@@ -697,14 +731,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfMeasureOrUnspecifiedValue ,opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue>  , StepElement_Array1OfMeasureOrUnspecifiedValue , Standard_Transient >>(m.attr("StepElement_HArray1OfMeasureOrUnspecifiedValue"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepElement_MeasureOrUnspecifiedValue & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepElement_MeasureOrUnspecifiedValue> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfMeasureOrUnspecifiedValue & (StepElement_HArray1OfMeasureOrUnspecifiedValue::*)() const) static_cast<const StepElement_Array1OfMeasureOrUnspecifiedValue & (StepElement_HArray1OfMeasureOrUnspecifiedValue::*)() const>(&StepElement_HArray1OfMeasureOrUnspecifiedValue::Array1),
@@ -725,14 +762,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfSurfaceSection ,opencascade::handle<StepElement_HArray1OfSurfaceSection>  , StepElement_Array1OfSurfaceSection , Standard_Transient >>(m.attr("StepElement_HArray1OfSurfaceSection"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_SurfaceSection> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepElement_SurfaceSection> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfSurfaceSection & (StepElement_HArray1OfSurfaceSection::*)() const) static_cast<const StepElement_Array1OfSurfaceSection & (StepElement_HArray1OfSurfaceSection::*)() const>(&StepElement_HArray1OfSurfaceSection::Array1),
@@ -753,14 +793,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfVolumeElementPurpose ,opencascade::handle<StepElement_HArray1OfVolumeElementPurpose>  , StepElement_Array1OfVolumeElementPurpose , Standard_Transient >>(m.attr("StepElement_HArray1OfVolumeElementPurpose"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepElement_VolumeElementPurpose & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepElement_VolumeElementPurpose> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfVolumeElementPurpose & (StepElement_HArray1OfVolumeElementPurpose::*)() const) static_cast<const StepElement_Array1OfVolumeElementPurpose & (StepElement_HArray1OfVolumeElementPurpose::*)() const>(&StepElement_HArray1OfVolumeElementPurpose::Array1),
@@ -781,14 +824,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray1OfVolumeElementPurposeMember ,opencascade::handle<StepElement_HArray1OfVolumeElementPurposeMember>  , StepElement_Array1OfVolumeElementPurposeMember , Standard_Transient >>(m.attr("StepElement_HArray1OfVolumeElementPurposeMember"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_VolumeElementPurposeMember> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepElement_VolumeElementPurposeMember> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepElement_Array1OfVolumeElementPurposeMember & (StepElement_HArray1OfVolumeElementPurposeMember::*)() const) static_cast<const StepElement_Array1OfVolumeElementPurposeMember & (StepElement_HArray1OfVolumeElementPurposeMember::*)() const>(&StepElement_HArray1OfVolumeElementPurposeMember::Array1),
@@ -809,14 +855,16 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray2OfCurveElementPurposeMember ,opencascade::handle<StepElement_HArray2OfCurveElementPurposeMember>  , StepElement_Array2OfCurveElementPurposeMember , Standard_Transient >>(m.attr("StepElement_HArray2OfCurveElementPurposeMember"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_CurveElementPurposeMember> & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<opencascade::handle<StepElement_CurveElementPurposeMember> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const StepElement_Array2OfCurveElementPurposeMember & (StepElement_HArray2OfCurveElementPurposeMember::*)() const) static_cast<const StepElement_Array2OfCurveElementPurposeMember & (StepElement_HArray2OfCurveElementPurposeMember::*)() const>(&StepElement_HArray2OfCurveElementPurposeMember::Array2),
@@ -837,14 +885,16 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray2OfSurfaceElementPurpose ,opencascade::handle<StepElement_HArray2OfSurfaceElementPurpose>  , StepElement_Array2OfSurfaceElementPurpose , Standard_Transient >>(m.attr("StepElement_HArray2OfSurfaceElementPurpose"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const StepElement_SurfaceElementPurpose & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<StepElement_SurfaceElementPurpose> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const StepElement_Array2OfSurfaceElementPurpose & (StepElement_HArray2OfSurfaceElementPurpose::*)() const) static_cast<const StepElement_Array2OfSurfaceElementPurpose & (StepElement_HArray2OfSurfaceElementPurpose::*)() const>(&StepElement_HArray2OfSurfaceElementPurpose::Array2),
@@ -865,14 +915,16 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HArray2OfSurfaceElementPurposeMember ,opencascade::handle<StepElement_HArray2OfSurfaceElementPurposeMember>  , StepElement_Array2OfSurfaceElementPurposeMember , Standard_Transient >>(m.attr("StepElement_HArray2OfSurfaceElementPurposeMember"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const opencascade::handle<StepElement_SurfaceElementPurposeMember> & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<opencascade::handle<StepElement_SurfaceElementPurposeMember> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const StepElement_Array2OfSurfaceElementPurposeMember & (StepElement_HArray2OfSurfaceElementPurposeMember::*)() const) static_cast<const StepElement_Array2OfSurfaceElementPurposeMember & (StepElement_HArray2OfSurfaceElementPurposeMember::*)() const>(&StepElement_HArray2OfSurfaceElementPurposeMember::Array2),
@@ -893,13 +945,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HSequenceOfCurveElementPurposeMember ,opencascade::handle<StepElement_HSequenceOfCurveElementPurposeMember>  , StepElement_SequenceOfCurveElementPurposeMember , Standard_Transient >>(m.attr("StepElement_HSequenceOfCurveElementPurposeMember"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepElement_CurveElementPurposeMember> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepElement_SequenceOfCurveElementPurposeMember & (StepElement_HSequenceOfCurveElementPurposeMember::*)() const) static_cast<const StepElement_SequenceOfCurveElementPurposeMember & (StepElement_HSequenceOfCurveElementPurposeMember::*)() const>(&StepElement_HSequenceOfCurveElementPurposeMember::Sequence),
@@ -926,13 +980,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HSequenceOfCurveElementSectionDefinition ,opencascade::handle<StepElement_HSequenceOfCurveElementSectionDefinition>  , StepElement_SequenceOfCurveElementSectionDefinition , Standard_Transient >>(m.attr("StepElement_HSequenceOfCurveElementSectionDefinition"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepElement_CurveElementSectionDefinition> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepElement_SequenceOfCurveElementSectionDefinition & (StepElement_HSequenceOfCurveElementSectionDefinition::*)() const) static_cast<const StepElement_SequenceOfCurveElementSectionDefinition & (StepElement_HSequenceOfCurveElementSectionDefinition::*)() const>(&StepElement_HSequenceOfCurveElementSectionDefinition::Sequence),
@@ -959,13 +1015,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HSequenceOfElementMaterial ,opencascade::handle<StepElement_HSequenceOfElementMaterial>  , StepElement_SequenceOfElementMaterial , Standard_Transient >>(m.attr("StepElement_HSequenceOfElementMaterial"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepElement_ElementMaterial> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepElement_SequenceOfElementMaterial & (StepElement_HSequenceOfElementMaterial::*)() const) static_cast<const StepElement_SequenceOfElementMaterial & (StepElement_HSequenceOfElementMaterial::*)() const>(&StepElement_HSequenceOfElementMaterial::Sequence),
@@ -992,13 +1050,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_HSequenceOfSurfaceElementPurposeMember ,opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember>  , StepElement_SequenceOfSurfaceElementPurposeMember , Standard_Transient >>(m.attr("StepElement_HSequenceOfSurfaceElementPurposeMember"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepElement_SurfaceElementPurposeMember> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepElement_SequenceOfSurfaceElementPurposeMember & (StepElement_HSequenceOfSurfaceElementPurposeMember::*)() const) static_cast<const StepElement_SequenceOfSurfaceElementPurposeMember & (StepElement_HSequenceOfSurfaceElementPurposeMember::*)() const>(&StepElement_HSequenceOfSurfaceElementPurposeMember::Sequence),
@@ -1025,12 +1085,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_MeasureOrUnspecifiedValue , shared_ptr<StepElement_MeasureOrUnspecifiedValue>  , StepData_SelectType >>(m.attr("StepElement_MeasureOrUnspecifiedValue"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepElement_MeasureOrUnspecifiedValue::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepElement_MeasureOrUnspecifiedValue::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepElement_MeasureOrUnspecifiedValue::CaseNum),
@@ -1057,12 +1119,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_MeasureOrUnspecifiedValueMember ,opencascade::handle<StepElement_MeasureOrUnspecifiedValueMember>  , StepData_SelectNamed >>(m.attr("StepElement_MeasureOrUnspecifiedValueMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepElement_MeasureOrUnspecifiedValueMember::*)() const) static_cast<Standard_Boolean (StepElement_MeasureOrUnspecifiedValueMember::*)() const>(&StepElement_MeasureOrUnspecifiedValueMember::HasName),
@@ -1089,12 +1153,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_SurfaceElementProperty ,opencascade::handle<StepElement_SurfaceElementProperty>  , Standard_Transient >>(m.attr("StepElement_SurfaceElementProperty"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_SurfaceElementProperty::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_SurfaceSectionField> &  ) ) static_cast<void (StepElement_SurfaceElementProperty::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_SurfaceSectionField> &  ) >(&StepElement_SurfaceElementProperty::Init),
@@ -1130,12 +1196,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_SurfaceElementPurpose , shared_ptr<StepElement_SurfaceElementPurpose>  , StepData_SelectType >>(m.attr("StepElement_SurfaceElementPurpose"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepElement_SurfaceElementPurpose::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepElement_SurfaceElementPurpose::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepElement_SurfaceElementPurpose::CaseNum),
@@ -1162,12 +1230,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_SurfaceElementPurposeMember ,opencascade::handle<StepElement_SurfaceElementPurposeMember>  , StepData_SelectNamed >>(m.attr("StepElement_SurfaceElementPurposeMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepElement_SurfaceElementPurposeMember::*)() const) static_cast<Standard_Boolean (StepElement_SurfaceElementPurposeMember::*)() const>(&StepElement_SurfaceElementPurposeMember::HasName),
@@ -1194,12 +1264,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_SurfaceSection ,opencascade::handle<StepElement_SurfaceSection>  , Standard_Transient >>(m.attr("StepElement_SurfaceSection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_SurfaceSection::*)( const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue &  ) ) static_cast<void (StepElement_SurfaceSection::*)( const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue &  ) >(&StepElement_SurfaceSection::Init),
@@ -1235,12 +1307,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_SurfaceSectionField ,opencascade::handle<StepElement_SurfaceSectionField>  , Standard_Transient >>(m.attr("StepElement_SurfaceSectionField"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepElement_SurfaceSectionField::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepElement_SurfaceSectionField::*)() const>(&StepElement_SurfaceSectionField::DynamicType),
@@ -1255,12 +1329,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_VolumeElementPurpose , shared_ptr<StepElement_VolumeElementPurpose>  , StepData_SelectType >>(m.attr("StepElement_VolumeElementPurpose"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepElement_VolumeElementPurpose::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepElement_VolumeElementPurpose::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepElement_VolumeElementPurpose::CaseNum),
@@ -1287,12 +1363,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_VolumeElementPurposeMember ,opencascade::handle<StepElement_VolumeElementPurposeMember>  , StepData_SelectNamed >>(m.attr("StepElement_VolumeElementPurposeMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepElement_VolumeElementPurposeMember::*)() const) static_cast<Standard_Boolean (StepElement_VolumeElementPurposeMember::*)() const>(&StepElement_VolumeElementPurposeMember::HasName),
@@ -1319,12 +1397,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_Curve3dElementDescriptor ,opencascade::handle<StepElement_Curve3dElementDescriptor>  , StepElement_ElementDescriptor >>(m.attr("StepElement_Curve3dElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_Curve3dElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_HArray1OfHSequenceOfCurveElementPurposeMember> &  ) ) static_cast<void (StepElement_Curve3dElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_HArray1OfHSequenceOfCurveElementPurposeMember> &  ) >(&StepElement_Curve3dElementDescriptor::Init),
@@ -1348,12 +1428,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_CurveElementSectionDerivedDefinitions ,opencascade::handle<StepElement_CurveElementSectionDerivedDefinitions>  , StepElement_CurveElementSectionDefinition >>(m.attr("StepElement_CurveElementSectionDerivedDefinitions"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_CurveElementSectionDerivedDefinitions::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const Standard_Real ,  const StepElement_MeasureOrUnspecifiedValue & ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue &  ) ) static_cast<void (StepElement_CurveElementSectionDerivedDefinitions::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const Standard_Real ,  const StepElement_MeasureOrUnspecifiedValue & ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const opencascade::handle<StepElement_HArray1OfMeasureOrUnspecifiedValue> & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue &  ) >(&StepElement_CurveElementSectionDerivedDefinitions::Init),
@@ -1431,12 +1513,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_Surface3dElementDescriptor ,opencascade::handle<StepElement_Surface3dElementDescriptor>  , StepElement_ElementDescriptor >>(m.attr("StepElement_Surface3dElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_Surface3dElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember> & ,  const StepElement_Element2dShape  ) ) static_cast<void (StepElement_Surface3dElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember> & ,  const StepElement_Element2dShape  ) >(&StepElement_Surface3dElementDescriptor::Init),
@@ -1466,12 +1550,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_SurfaceSectionFieldConstant ,opencascade::handle<StepElement_SurfaceSectionFieldConstant>  , StepElement_SurfaceSectionField >>(m.attr("StepElement_SurfaceSectionFieldConstant"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_SurfaceSectionFieldConstant::*)( const opencascade::handle<StepElement_SurfaceSection> &  ) ) static_cast<void (StepElement_SurfaceSectionFieldConstant::*)( const opencascade::handle<StepElement_SurfaceSection> &  ) >(&StepElement_SurfaceSectionFieldConstant::Init),
@@ -1495,12 +1581,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_SurfaceSectionFieldVarying ,opencascade::handle<StepElement_SurfaceSectionFieldVarying>  , StepElement_SurfaceSectionField >>(m.attr("StepElement_SurfaceSectionFieldVarying"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_SurfaceSectionFieldVarying::*)( const opencascade::handle<StepElement_HArray1OfSurfaceSection> & ,  const Standard_Boolean  ) ) static_cast<void (StepElement_SurfaceSectionFieldVarying::*)( const opencascade::handle<StepElement_HArray1OfSurfaceSection> & ,  const Standard_Boolean  ) >(&StepElement_SurfaceSectionFieldVarying::Init),
@@ -1530,12 +1618,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_UniformSurfaceSection ,opencascade::handle<StepElement_UniformSurfaceSection>  , StepElement_SurfaceSection >>(m.attr("StepElement_UniformSurfaceSection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_UniformSurfaceSection::*)( const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const Standard_Real ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue &  ) ) static_cast<void (StepElement_UniformSurfaceSection::*)( const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue & ,  const Standard_Real ,  const StepElement_MeasureOrUnspecifiedValue & ,  const StepElement_MeasureOrUnspecifiedValue &  ) >(&StepElement_UniformSurfaceSection::Init),
@@ -1571,12 +1661,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepElement_Volume3dElementDescriptor ,opencascade::handle<StepElement_Volume3dElementDescriptor>  , StepElement_ElementDescriptor >>(m.attr("StepElement_Volume3dElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepElement_Volume3dElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_HArray1OfVolumeElementPurposeMember> & ,  const StepElement_Volume3dElementShape  ) ) static_cast<void (StepElement_Volume3dElementDescriptor::*)( const StepElement_ElementOrder ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepElement_HArray1OfVolumeElementPurposeMember> & ,  const StepElement_Volume3dElementShape  ) >(&StepElement_Volume3dElementDescriptor::Init),
@@ -1606,96 +1698,96 @@ py::module m = static_cast<py::module>(main_module.attr("StepElement"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepElement_HSequenceOfElementMaterial.hxx
-// ./opencascade/StepElement_Array1OfSurfaceSection.hxx
-// ./opencascade/StepElement_CurveElementFreedom.hxx
-// ./opencascade/StepElement_HArray2OfSurfaceElementPurposeMember.hxx
-// ./opencascade/StepElement_CurveElementFreedomMember.hxx
-// ./opencascade/StepElement_HArray1OfMeasureOrUnspecifiedValue.hxx
-// ./opencascade/StepElement_UnspecifiedValue.hxx
-// ./opencascade/StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember.hxx
-// ./opencascade/StepElement_Array1OfHSequenceOfCurveElementPurposeMember.hxx
-// ./opencascade/StepElement_SurfaceElementPurposeMember.hxx
-// ./opencascade/StepElement_VolumeElementPurpose.hxx
-// ./opencascade/StepElement_SequenceOfSurfaceElementPurposeMember.hxx
-// ./opencascade/StepElement_AnalysisItemWithinRepresentation.hxx
-// ./opencascade/StepElement_SequenceOfCurveElementSectionDefinition.hxx
-// ./opencascade/StepElement_HArray1OfHSequenceOfCurveElementPurposeMember.hxx
-// ./opencascade/StepElement_SurfaceElementProperty.hxx
-// ./opencascade/StepElement_Element2dShape.hxx
-// ./opencascade/StepElement_EnumeratedCurveElementPurpose.hxx
-// ./opencascade/StepElement_HArray2OfCurveElementPurposeMember.hxx
-// ./opencascade/StepElement_EnumeratedSurfaceElementPurpose.hxx
-// ./opencascade/StepElement_CurveElementSectionDerivedDefinitions.hxx
-// ./opencascade/StepElement_Curve3dElementDescriptor.hxx
-// ./opencascade/StepElement_CurveElementPurposeMember.hxx
-// ./opencascade/StepElement_HArray1OfVolumeElementPurpose.hxx
-// ./opencascade/StepElement_ElementVolume.hxx
-// ./opencascade/StepElement_SurfaceElementPurpose.hxx
-// ./opencascade/StepElement_MeasureOrUnspecifiedValue.hxx
-// ./opencascade/StepElement_ElementDescriptor.hxx
-// ./opencascade/StepElement_SequenceOfCurveElementPurposeMember.hxx
-// ./opencascade/StepElement_VolumeElementPurposeMember.hxx
-// ./opencascade/StepElement_SurfaceSectionField.hxx
-// ./opencascade/StepElement_ElementAspectMember.hxx
-// ./opencascade/StepElement_HArray1OfCurveElementSectionDefinition.hxx
-// ./opencascade/StepElement_Array1OfVolumeElementPurpose.hxx
-// ./opencascade/StepElement_Array2OfSurfaceElementPurposeMember.hxx
-// ./opencascade/StepElement_Array2OfCurveElementPurposeMember.hxx
-// ./opencascade/StepElement_HSequenceOfCurveElementPurposeMember.hxx
-// ./opencascade/StepElement_SequenceOfElementMaterial.hxx
-// ./opencascade/StepElement_Array1OfMeasureOrUnspecifiedValue.hxx
-// ./opencascade/StepElement_HArray1OfSurfaceSection.hxx
-// ./opencascade/StepElement_HArray2OfSurfaceElementPurpose.hxx
-// ./opencascade/StepElement_Array2OfSurfaceElementPurpose.hxx
-// ./opencascade/StepElement_SurfaceSectionFieldConstant.hxx
-// ./opencascade/StepElement_UniformSurfaceSection.hxx
-// ./opencascade/StepElement_HSequenceOfCurveElementSectionDefinition.hxx
-// ./opencascade/StepElement_EnumeratedCurveElementFreedom.hxx
-// ./opencascade/StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember.hxx
-// ./opencascade/StepElement_EnumeratedVolumeElementPurpose.hxx
-// ./opencascade/StepElement_Array1OfVolumeElementPurposeMember.hxx
-// ./opencascade/StepElement_MeasureOrUnspecifiedValueMember.hxx
-// ./opencascade/StepElement_ElementMaterial.hxx
-// ./opencascade/StepElement_SurfaceSectionFieldVarying.hxx
-// ./opencascade/StepElement_Volume3dElementShape.hxx
 // ./opencascade/StepElement_SurfaceSection.hxx
-// ./opencascade/StepElement_Array1OfCurveElementEndReleasePacket.hxx
+// ./opencascade/StepElement_SequenceOfSurfaceElementPurposeMember.hxx
+// ./opencascade/StepElement_UnspecifiedValue.hxx
+// ./opencascade/StepElement_Array2OfCurveElementPurposeMember.hxx
+// ./opencascade/StepElement_ElementAspect.hxx
+// ./opencascade/StepElement_HArray1OfVolumeElementPurposeMember.hxx
+// ./opencascade/StepElement_CurveElementFreedom.hxx
+// ./opencascade/StepElement_SurfaceSectionFieldVarying.hxx
+// ./opencascade/StepElement_Array1OfSurfaceSection.hxx
+// ./opencascade/StepElement_EnumeratedVolumeElementPurpose.hxx
+// ./opencascade/StepElement_HSequenceOfCurveElementSectionDefinition.hxx
+// ./opencascade/StepElement_HArray1OfCurveElementSectionDefinition.hxx
+// ./opencascade/StepElement_HArray1OfHSequenceOfSurfaceElementPurposeMember.hxx
 // ./opencascade/StepElement_Array1OfCurveElementSectionDefinition.hxx
-// ./opencascade/StepElement_CurveElementPurpose.hxx
+// ./opencascade/StepElement_Volume3dElementShape.hxx
+// ./opencascade/StepElement_HArray1OfCurveElementEndReleasePacket.hxx
+// ./opencascade/StepElement_VolumeElementPurposeMember.hxx
+// ./opencascade/StepElement_Array2OfSurfaceElementPurpose.hxx
+// ./opencascade/StepElement_SurfaceElementProperty.hxx
+// ./opencascade/StepElement_SequenceOfCurveElementPurposeMember.hxx
+// ./opencascade/StepElement_HSequenceOfSurfaceElementPurposeMember.hxx
+// ./opencascade/StepElement_HArray1OfVolumeElementPurpose.hxx
+// ./opencascade/StepElement_CurveElementSectionDerivedDefinitions.hxx
+// ./opencascade/StepElement_SequenceOfElementMaterial.hxx
+// ./opencascade/StepElement_MeasureOrUnspecifiedValue.hxx
+// ./opencascade/StepElement_Array2OfSurfaceElementPurposeMember.hxx
+// ./opencascade/StepElement_Element2dShape.hxx
+// ./opencascade/StepElement_SurfaceSectionFieldConstant.hxx
+// ./opencascade/StepElement_CurveElementSectionDefinition.hxx
 // ./opencascade/StepElement_CurveEdge.hxx
-// ./opencascade/StepElement_Surface3dElementDescriptor.hxx
 // ./opencascade/StepElement_Volume3dElementDescriptor.hxx
 // ./opencascade/StepElement_ElementOrder.hxx
-// ./opencascade/StepElement_HSequenceOfSurfaceElementPurposeMember.hxx
-// ./opencascade/StepElement_ElementAspect.hxx
-// ./opencascade/StepElement_HArray1OfCurveElementEndReleasePacket.hxx
-// ./opencascade/StepElement_HArray1OfVolumeElementPurposeMember.hxx
+// ./opencascade/StepElement_Array1OfHSequenceOfCurveElementPurposeMember.hxx
+// ./opencascade/StepElement_MeasureOrUnspecifiedValueMember.hxx
+// ./opencascade/StepElement_SurfaceElementPurposeMember.hxx
+// ./opencascade/StepElement_EnumeratedCurveElementPurpose.hxx
+// ./opencascade/StepElement_HArray2OfSurfaceElementPurpose.hxx
+// ./opencascade/StepElement_EnumeratedSurfaceElementPurpose.hxx
+// ./opencascade/StepElement_HArray1OfSurfaceSection.hxx
+// ./opencascade/StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember.hxx
+// ./opencascade/StepElement_SurfaceSectionField.hxx
+// ./opencascade/StepElement_CurveElementPurpose.hxx
+// ./opencascade/StepElement_UniformSurfaceSection.hxx
+// ./opencascade/StepElement_Array1OfCurveElementEndReleasePacket.hxx
 // ./opencascade/StepElement_CurveElementEndReleasePacket.hxx
-// ./opencascade/StepElement_CurveElementSectionDefinition.hxx
+// ./opencascade/StepElement_AnalysisItemWithinRepresentation.hxx
+// ./opencascade/StepElement_CurveElementPurposeMember.hxx
+// ./opencascade/StepElement_HSequenceOfCurveElementPurposeMember.hxx
+// ./opencascade/StepElement_HArray1OfHSequenceOfCurveElementPurposeMember.hxx
+// ./opencascade/StepElement_ElementVolume.hxx
+// ./opencascade/StepElement_SurfaceElementPurpose.hxx
+// ./opencascade/StepElement_ElementAspectMember.hxx
+// ./opencascade/StepElement_HSequenceOfElementMaterial.hxx
+// ./opencascade/StepElement_VolumeElementPurpose.hxx
+// ./opencascade/StepElement_EnumeratedCurveElementFreedom.hxx
+// ./opencascade/StepElement_Array1OfVolumeElementPurposeMember.hxx
+// ./opencascade/StepElement_HArray2OfSurfaceElementPurposeMember.hxx
+// ./opencascade/StepElement_ElementMaterial.hxx
+// ./opencascade/StepElement_SequenceOfCurveElementSectionDefinition.hxx
+// ./opencascade/StepElement_ElementDescriptor.hxx
+// ./opencascade/StepElement_Array1OfVolumeElementPurpose.hxx
+// ./opencascade/StepElement_Surface3dElementDescriptor.hxx
+// ./opencascade/StepElement_Array1OfMeasureOrUnspecifiedValue.hxx
+// ./opencascade/StepElement_HArray1OfMeasureOrUnspecifiedValue.hxx
+// ./opencascade/StepElement_HArray2OfCurveElementPurposeMember.hxx
+// ./opencascade/StepElement_Curve3dElementDescriptor.hxx
+// ./opencascade/StepElement_CurveElementFreedomMember.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<StepElement_SurfaceSection> >(m,"StepElement_Array1OfSurfaceSection");  
-    register_template_NCollection_Array1<opencascade::handle<StepElement_HSequenceOfCurveElementPurposeMember> >(m,"StepElement_Array1OfHSequenceOfCurveElementPurposeMember");  
     register_template_NCollection_Sequence<opencascade::handle<StepElement_SurfaceElementPurposeMember> >(m,"StepElement_SequenceOfSurfaceElementPurposeMember");  
-    register_template_NCollection_Sequence<opencascade::handle<StepElement_CurveElementSectionDefinition> >(m,"StepElement_SequenceOfCurveElementSectionDefinition");  
-    register_template_NCollection_Sequence<opencascade::handle<StepElement_CurveElementPurposeMember> >(m,"StepElement_SequenceOfCurveElementPurposeMember");  
-    register_template_NCollection_Array1<StepElement_VolumeElementPurpose>(m,"StepElement_Array1OfVolumeElementPurpose");  
-    register_template_NCollection_Array2<opencascade::handle<StepElement_SurfaceElementPurposeMember> >(m,"StepElement_Array2OfSurfaceElementPurposeMember");  
     register_template_NCollection_Array2<opencascade::handle<StepElement_CurveElementPurposeMember> >(m,"StepElement_Array2OfCurveElementPurposeMember");  
-    register_template_NCollection_Sequence<opencascade::handle<StepElement_ElementMaterial> >(m,"StepElement_SequenceOfElementMaterial");  
-    register_template_NCollection_Array1<StepElement_MeasureOrUnspecifiedValue>(m,"StepElement_Array1OfMeasureOrUnspecifiedValue");  
-    register_template_NCollection_Array2<StepElement_SurfaceElementPurpose>(m,"StepElement_Array2OfSurfaceElementPurpose");  
-    register_template_NCollection_Array1<opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember> >(m,"StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember");  
-    register_template_NCollection_Array1<opencascade::handle<StepElement_VolumeElementPurposeMember> >(m,"StepElement_Array1OfVolumeElementPurposeMember");  
-    register_template_NCollection_Array1<opencascade::handle<StepElement_CurveElementEndReleasePacket> >(m,"StepElement_Array1OfCurveElementEndReleasePacket");  
+    register_template_NCollection_Array1<opencascade::handle<StepElement_SurfaceSection> >(m,"StepElement_Array1OfSurfaceSection");  
     register_template_NCollection_Array1<opencascade::handle<StepElement_CurveElementSectionDefinition> >(m,"StepElement_Array1OfCurveElementSectionDefinition");  
+    register_template_NCollection_Array2<StepElement_SurfaceElementPurpose>(m,"StepElement_Array2OfSurfaceElementPurpose");  
+    register_template_NCollection_Sequence<opencascade::handle<StepElement_CurveElementPurposeMember> >(m,"StepElement_SequenceOfCurveElementPurposeMember");  
+    register_template_NCollection_Sequence<opencascade::handle<StepElement_ElementMaterial> >(m,"StepElement_SequenceOfElementMaterial");  
+    register_template_NCollection_Array2<opencascade::handle<StepElement_SurfaceElementPurposeMember> >(m,"StepElement_Array2OfSurfaceElementPurposeMember");  
+    register_template_NCollection_Array1<opencascade::handle<StepElement_HSequenceOfCurveElementPurposeMember> >(m,"StepElement_Array1OfHSequenceOfCurveElementPurposeMember");  
+    register_template_NCollection_Array1<opencascade::handle<StepElement_HSequenceOfSurfaceElementPurposeMember> >(m,"StepElement_Array1OfHSequenceOfSurfaceElementPurposeMember");  
+    register_template_NCollection_Array1<opencascade::handle<StepElement_CurveElementEndReleasePacket> >(m,"StepElement_Array1OfCurveElementEndReleasePacket");  
+    register_template_NCollection_Array1<opencascade::handle<StepElement_VolumeElementPurposeMember> >(m,"StepElement_Array1OfVolumeElementPurposeMember");  
+    register_template_NCollection_Sequence<opencascade::handle<StepElement_CurveElementSectionDefinition> >(m,"StepElement_SequenceOfCurveElementSectionDefinition");  
+    register_template_NCollection_Array1<StepElement_VolumeElementPurpose>(m,"StepElement_Array1OfVolumeElementPurpose");  
+    register_template_NCollection_Array1<StepElement_MeasureOrUnspecifiedValue>(m,"StepElement_Array1OfMeasureOrUnspecifiedValue");  
 
 
 // exceptions

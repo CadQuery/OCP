@@ -13,44 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Geom_BSplineCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <IntSurf_LineOn2S.hxx>
-#include <IntSurf_PntOn2S.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_MyBSplGradientOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <AppParCurves_MultiCurve.hxx>
 #include <StdFail_NotDone.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
-#include <BRepAdaptor_Surface.hxx>
-#include <BRepApprox_SurfaceTool.hxx>
-#include <math_Matrix.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <AppParCurves_MultiCurve.hxx>
-#include <BRepAdaptor_Surface.hxx>
-#include <BRepApprox_SurfaceTool.hxx>
-#include <IntSurf_Quadric.hxx>
-#include <IntSurf_QuadricTool.hxx>
-#include <BRepApprox_ApproxLine.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <BRepAdaptor_Surface.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
 #include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepAdaptor_Surface.hxx>
-#include <BRepApprox_SurfaceTool.hxx>
-#include <IntSurf_Quadric.hxx>
-#include <IntSurf_QuadricTool.hxx>
-#include <math_Matrix.hxx>
 #include <BRepApprox_TheMultiLineOfApprox.hxx>
 #include <BRepApprox_TheMultiLineToolOfApprox.hxx>
 #include <BRepApprox_MyGradientbisOfTheComputeLineOfApprox.hxx>
@@ -58,37 +24,13 @@ namespace py = pybind11;
 #include <BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx>
 #include <BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox.hxx>
 #include <math_MultipleVarFunctionWithGradient.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_MyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_MyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_ApproxLine.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepAdaptor_Surface.hxx>
+#include <BRepAdaptor_Surface.hxx>
+#include <BRepApprox_SurfaceTool.hxx>
+#include <IntSurf_Quadric.hxx>
+#include <IntSurf_QuadricTool.hxx>
+#include <math_Matrix.hxx>
 #include <StdFail_NotDone.hxx>
 #include <BRepAdaptor_Surface.hxx>
 #include <BRepApprox_SurfaceTool.hxx>
@@ -107,20 +49,39 @@ namespace py = pybind11;
 #include <StdFail_NotDone.hxx>
 #include <BRepApprox_TheMultiLineOfApprox.hxx>
 #include <BRepApprox_TheMultiLineToolOfApprox.hxx>
-#include <BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox.hxx>
-#include <BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
 #include <BRepAdaptor_Surface.hxx>
 #include <BRepApprox_SurfaceTool.hxx>
-#include <math_FunctionSetRoot.hxx>
-#include <StdFail_NotDone.hxx>
+#include <math_Matrix.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx>
 #include <BRepApprox_TheMultiLineOfApprox.hxx>
 #include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_MyGradientOfTheComputeLineBezierOfApprox.hxx>
 #include <BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
 #include <BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
 #include <BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
-#include <BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
+#include <BRepAdaptor_Surface.hxx>
+#include <BRepApprox_SurfaceTool.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <BRepAdaptor_Surface.hxx>
+#include <BRepApprox_SurfaceTool.hxx>
+#include <IntSurf_Quadric.hxx>
+#include <IntSurf_QuadricTool.hxx>
+#include <BRepApprox_ApproxLine.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_ApproxLine.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
 #include <BRepApprox_TheMultiLineOfApprox.hxx>
 #include <BRepApprox_TheMultiLineToolOfApprox.hxx>
 #include <BRepApprox_MyBSplGradientOfTheComputeLineOfApprox.hxx>
@@ -132,9 +93,48 @@ namespace py = pybind11;
 #include <BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx>
 #include <BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox.hxx>
 #include <BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_MyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <StdFail_NotDone.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_MyBSplGradientOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
+#include <BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <IntSurf_LineOn2S.hxx>
+#include <IntSurf_PntOn2S.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
 #include <BRepAdaptor_Surface.hxx>
 #include <BRepApprox_SurfaceTool.hxx>
 #include <BRepApprox_ApproxLine.hxx>
+#include <StdFail_NotDone.hxx>
+#include <BRepApprox_TheMultiLineOfApprox.hxx>
+#include <BRepApprox_TheMultiLineToolOfApprox.hxx>
+#include <BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
+#include <BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox.hxx>
 
 // module includes
 #include <BRepApprox_Approx.hxx>
@@ -185,7 +185,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
 
 
     static_cast<py::class_<BRepApprox_Approx , shared_ptr<BRepApprox_Approx>  >>(m.attr("BRepApprox_Approx"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepApprox_Approx::*)( const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  const opencascade::handle<BRepApprox_ApproxLine> & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BRepApprox_Approx::*)( const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  const opencascade::handle<BRepApprox_ApproxLine> & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Integer  ) >(&BRepApprox_Approx::Perform),
@@ -215,13 +217,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ApproxLine ,opencascade::handle<BRepApprox_ApproxLine>  , Standard_Transient >>(m.attr("BRepApprox_ApproxLine"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_BSplineCurve> &,const opencascade::handle<Geom2d_BSplineCurve> &,const opencascade::handle<Geom2d_BSplineCurve> & >()  , py::arg("CurveXYZ"),  py::arg("CurveUV1"),  py::arg("CurveUV2") )
-        .def(py::init< const opencascade::handle<IntSurf_LineOn2S> &,const Standard_Boolean >()  , py::arg("lin"),  py::arg("Tang") )
+        .def(py::init< const opencascade::handle<IntSurf_LineOn2S> &,const Standard_Boolean >()  , py::arg("lin"),  py::arg("theTang")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("NbPnts",
              (Standard_Integer (BRepApprox_ApproxLine::*)() const) static_cast<Standard_Integer (BRepApprox_ApproxLine::*)() const>(&BRepApprox_ApproxLine::NbPnts),
@@ -242,12 +246,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox , shared_ptr<BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox>  , math_BFGS >>(m.attr("BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox::*)( math_MultipleVarFunctionWithGradient &  ) const>(&BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox::IsSolutionReached),
@@ -256,12 +262,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox , shared_ptr<BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox>  , math_MultipleVarFunctionWithGradient >>(m.attr("BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox::*)() const) static_cast<Standard_Integer (BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox::*)() const>(&BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox::NbVariables),
@@ -315,15 +323,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox , shared_ptr<BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox>  >>(m.attr("BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox::*)( const math_Vector &  ) ) static_cast<void (BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox::*)( const math_Vector &  ) >(&BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox::Perform),
@@ -380,12 +390,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox , shared_ptr<BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox>  , math_BFGS >>(m.attr("BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox::*)( math_MultipleVarFunctionWithGradient &  ) const>(&BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox::IsSolutionReached),
@@ -394,12 +406,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox , shared_ptr<BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox>  , math_BFGS >>(m.attr("BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox::*)( math_MultipleVarFunctionWithGradient &  ) const>(&BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox::IsSolutionReached),
@@ -408,13 +422,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_MyBSplGradientOfTheComputeLineOfApprox , shared_ptr<BRepApprox_MyBSplGradientOfTheComputeLineOfApprox>  >>(m.attr("BRepApprox_MyBSplGradientOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(1) )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations"),  py::arg("lambda1"),  py::arg("lambda2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepApprox_MyBSplGradientOfTheComputeLineOfApprox::*)() const) static_cast<Standard_Boolean (BRepApprox_MyBSplGradientOfTheComputeLineOfApprox::*)() const>(&BRepApprox_MyBSplGradientOfTheComputeLineOfApprox::IsDone),
@@ -438,12 +454,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_MyGradientOfTheComputeLineBezierOfApprox , shared_ptr<BRepApprox_MyGradientOfTheComputeLineBezierOfApprox>  >>(m.attr("BRepApprox_MyGradientOfTheComputeLineBezierOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepApprox_MyGradientOfTheComputeLineBezierOfApprox::*)() const) static_cast<Standard_Boolean (BRepApprox_MyGradientOfTheComputeLineBezierOfApprox::*)() const>(&BRepApprox_MyGradientOfTheComputeLineBezierOfApprox::IsDone),
@@ -467,12 +485,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_MyGradientbisOfTheComputeLineOfApprox , shared_ptr<BRepApprox_MyGradientbisOfTheComputeLineOfApprox>  >>(m.attr("BRepApprox_MyGradientbisOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepApprox_MyGradientbisOfTheComputeLineOfApprox::*)() const) static_cast<Standard_Boolean (BRepApprox_MyGradientbisOfTheComputeLineOfApprox::*)() const>(&BRepApprox_MyGradientbisOfTheComputeLineOfApprox::IsDone),
@@ -496,12 +516,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox , shared_ptr<BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox>  , math_MultipleVarFunctionWithGradient >>(m.attr("BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox::*)() const) static_cast<Standard_Integer (BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox::*)() const>(&BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox::NbVariables),
@@ -540,12 +562,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox , shared_ptr<BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox>  , math_MultipleVarFunctionWithGradient >>(m.attr("BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox::*)() const) static_cast<Standard_Integer (BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox::*)() const>(&BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox::NbVariables),
@@ -584,15 +608,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox , shared_ptr<BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox>  >>(m.attr("BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox::*)( const math_Vector &  ) ) static_cast<void (BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox::*)( const math_Vector &  ) >(&BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox::Perform),
@@ -649,15 +675,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox , shared_ptr<BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox>  >>(m.attr("BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox::*)( const math_Vector &  ) ) static_cast<void (BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox::*)( const math_Vector &  ) >(&BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox::Perform),
@@ -714,12 +742,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox , shared_ptr<BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox>  >>(m.attr("BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox::*)() const) static_cast<Standard_Boolean (BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox::*)() const>(&BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox::IsDone),
@@ -740,12 +770,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox , shared_ptr<BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox>  >>(m.attr("BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox::*)() const) static_cast<Standard_Boolean (BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox::*)() const>(&BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox::IsDone),
@@ -766,12 +798,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepApprox_SurfaceTool , shared_ptr<BRepApprox_SurfaceTool>>(m,"BRepApprox_SurfaceTool");
 
     static_cast<py::class_<BRepApprox_SurfaceTool , shared_ptr<BRepApprox_SurfaceTool>  >>(m.attr("BRepApprox_SurfaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -894,15 +929,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
                     R"#(None)#"  , py::arg("S"),  py::arg("v1"),  py::arg("v2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_TheComputeLineBezierOfApprox , shared_ptr<BRepApprox_TheComputeLineBezierOfApprox>  >>(m.attr("BRepApprox_TheComputeLineBezierOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-3),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-6),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Line"),  py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepApprox_TheComputeLineBezierOfApprox::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) ) static_cast<void (BRepApprox_TheComputeLineBezierOfApprox::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) >(&BRepApprox_TheComputeLineBezierOfApprox::Init),
@@ -950,15 +987,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_TheComputeLineOfApprox , shared_ptr<BRepApprox_TheComputeLineOfApprox>  >>(m.attr("BRepApprox_TheComputeLineOfApprox"))
+    // constructors
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-3),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-6),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const BRepApprox_TheMultiLineOfApprox &,const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Line"),  py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Interpol",
              (void (BRepApprox_TheComputeLineOfApprox::*)( const BRepApprox_TheMultiLineOfApprox &  ) ) static_cast<void (BRepApprox_TheComputeLineOfApprox::*)( const BRepApprox_TheMultiLineOfApprox &  ) >(&BRepApprox_TheComputeLineOfApprox::Interpol),
@@ -990,6 +1029,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
         .def("SetConstraints",
              (void (BRepApprox_TheComputeLineOfApprox::*)( const AppParCurves_Constraint ,  const AppParCurves_Constraint  ) ) static_cast<void (BRepApprox_TheComputeLineOfApprox::*)( const AppParCurves_Constraint ,  const AppParCurves_Constraint  ) >(&BRepApprox_TheComputeLineOfApprox::SetConstraints),
              R"#(changes the first and the last constraint points.)#"  , py::arg("firstC"),  py::arg("lastC"))
+        .def("SetPeriodic",
+             (void (BRepApprox_TheComputeLineOfApprox::*)( const Standard_Boolean  ) ) static_cast<void (BRepApprox_TheComputeLineOfApprox::*)( const Standard_Boolean  ) >(&BRepApprox_TheComputeLineOfApprox::SetPeriodic),
+             R"#(Sets periodic flag. If thePeriodic = Standard_True, algorith tries to build periodic multicurve using corresponding C1 boundary condition for first and last multipoints. Multiline must be closed.)#"  , py::arg("thePeriodic"))
         .def("IsAllApproximated",
              (Standard_Boolean (BRepApprox_TheComputeLineOfApprox::*)() const) static_cast<Standard_Boolean (BRepApprox_TheComputeLineOfApprox::*)() const>(&BRepApprox_TheComputeLineOfApprox::IsAllApproximated),
              R"#(returns False if at a moment of the approximation, the status NoApproximation has been sent by the user when more points were needed.)#" )
@@ -1012,12 +1054,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfApprox , shared_ptr<BRepApprox_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfApprox>  , math_FunctionSetWithDerivatives >>(m.attr("BRepApprox_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfApprox"))
+    // constructors
         .def(py::init< const BRepAdaptor_Surface &,const BRepAdaptor_Surface & >()  , py::arg("S1"),  py::arg("S2") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepApprox_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfApprox::*)() const) static_cast<Standard_Integer (BRepApprox_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfApprox::*)() const>(&BRepApprox_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfApprox::NbVariables),
@@ -1065,13 +1109,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_TheImpPrmSvSurfacesOfApprox , shared_ptr<BRepApprox_TheImpPrmSvSurfacesOfApprox>  >>(m.attr("BRepApprox_TheImpPrmSvSurfacesOfApprox"))
+    // constructors
         .def(py::init< const BRepAdaptor_Surface &,const IntSurf_Quadric & >()  , py::arg("Surf1"),  py::arg("Surf2") )
         .def(py::init< const IntSurf_Quadric &,const BRepAdaptor_Surface & >()  , py::arg("Surf1"),  py::arg("Surf2") )
+    // custom constructors
     // methods
         .def("Compute",
              (Standard_Boolean (BRepApprox_TheImpPrmSvSurfacesOfApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) ) static_cast<Standard_Boolean (BRepApprox_TheImpPrmSvSurfacesOfApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) >(&BRepApprox_TheImpPrmSvSurfacesOfApprox::Compute),
@@ -1098,13 +1144,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox , shared_ptr<BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox>  >>(m.attr("BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Real> &,const BRepAdaptor_Surface &,const BRepAdaptor_Surface &,const Standard_Real >()  , py::arg("Param"),  py::arg("S1"),  py::arg("S2"),  py::arg("TolTangency") )
         .def(py::init< const BRepAdaptor_Surface &,const BRepAdaptor_Surface &,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("TolTangency") )
+    // custom constructors
     // methods
         .def("Perform",
              (IntImp_ConstIsoparametric (BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox::*)(  const NCollection_Array1<Standard_Real> & ,  math_FunctionSetRoot &  ) ) static_cast<IntImp_ConstIsoparametric (BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox::*)(  const NCollection_Array1<Standard_Real> & ,  math_FunctionSetRoot &  ) >(&BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox::Perform),
@@ -1143,14 +1191,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_TheMultiLineOfApprox , shared_ptr<BRepApprox_TheMultiLineOfApprox>  >>(m.attr("BRepApprox_TheMultiLineOfApprox"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<BRepApprox_ApproxLine> &,const Standard_Address,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Integer,const Standard_Integer >()  , py::arg("line"),  py::arg("PtrSvSurfaces"),  py::arg("NbP3d"),  py::arg("NbP2d"),  py::arg("ApproxU1V1"),  py::arg("ApproxU2V2"),  py::arg("xo"),  py::arg("yo"),  py::arg("zo"),  py::arg("u1o"),  py::arg("v1o"),  py::arg("u2o"),  py::arg("v2o"),  py::arg("P2DOnFirst"),  py::arg("IndMin")=static_cast<const Standard_Integer>(0),  py::arg("IndMax")=static_cast<const Standard_Integer>(0) )
         .def(py::init< const opencascade::handle<BRepApprox_ApproxLine> &,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Integer,const Standard_Integer >()  , py::arg("line"),  py::arg("NbP3d"),  py::arg("NbP2d"),  py::arg("ApproxU1V1"),  py::arg("ApproxU2V2"),  py::arg("xo"),  py::arg("yo"),  py::arg("zo"),  py::arg("u1o"),  py::arg("v1o"),  py::arg("u2o"),  py::arg("v2o"),  py::arg("P2DOnFirst"),  py::arg("IndMin")=static_cast<const Standard_Integer>(0),  py::arg("IndMax")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("FirstPoint",
              (Standard_Integer (BRepApprox_TheMultiLineOfApprox::*)() const) static_cast<Standard_Integer (BRepApprox_TheMultiLineOfApprox::*)() const>(&BRepApprox_TheMultiLineOfApprox::FirstPoint),
@@ -1198,12 +1248,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepApprox_TheMultiLineToolOfApprox , shared_ptr<BRepApprox_TheMultiLineToolOfApprox>>(m,"BRepApprox_TheMultiLineToolOfApprox");
 
     static_cast<py::class_<BRepApprox_TheMultiLineToolOfApprox , shared_ptr<BRepApprox_TheMultiLineToolOfApprox>  >>(m.attr("BRepApprox_TheMultiLineToolOfApprox"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1260,12 +1313,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
                     R"#(Dump of the current multi-line.)#"  , py::arg("ML"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_ThePrmPrmSvSurfacesOfApprox , shared_ptr<BRepApprox_ThePrmPrmSvSurfacesOfApprox>  >>(m.attr("BRepApprox_ThePrmPrmSvSurfacesOfApprox"))
+    // constructors
         .def(py::init< const BRepAdaptor_Surface &,const BRepAdaptor_Surface & >()  , py::arg("Surf1"),  py::arg("Surf2") )
+    // custom constructors
     // methods
         .def("Compute",
              (Standard_Boolean (BRepApprox_ThePrmPrmSvSurfacesOfApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) ) static_cast<Standard_Boolean (BRepApprox_ThePrmPrmSvSurfacesOfApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) >(&BRepApprox_ThePrmPrmSvSurfacesOfApprox::Compute),
@@ -1289,14 +1344,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox , shared_ptr<BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox>  , math_FunctionSetWithDerivatives >>(m.attr("BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepAdaptor_Surface &,const IntSurf_Quadric & >()  , py::arg("PS"),  py::arg("IS") )
         .def(py::init< const IntSurf_Quadric & >()  , py::arg("IS") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox::*)( const BRepAdaptor_Surface &  ) ) static_cast<void (BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox::*)( const BRepAdaptor_Surface &  ) >(&BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox::Set),
@@ -1350,36 +1407,36 @@ py::module m = static_cast<py::module>(main_module.attr("BRepApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepApprox_ApproxLine.hxx
-// ./opencascade/BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox.hxx
-// ./opencascade/BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx
+// ./opencascade/BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox.hxx
+// ./opencascade/BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox.hxx
+// ./opencascade/BRepApprox_SurfaceTool.hxx
+// ./opencascade/BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox.hxx
+// ./opencascade/BRepApprox_Approx.hxx
 // ./opencascade/BRepApprox_MyBSplGradientOfTheComputeLineOfApprox.hxx
 // ./opencascade/BRepApprox_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfApprox.hxx
-// ./opencascade/BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx
-// ./opencascade/BRepApprox_TheImpPrmSvSurfacesOfApprox.hxx
-// ./opencascade/BRepApprox_SurfaceTool.hxx
-// ./opencascade/BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox.hxx
-// ./opencascade/BRepApprox_TheZerImpFuncOfTheImpPrmSvSurfacesOfApprox.hxx
-// ./opencascade/BRepApprox_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfApprox.hxx
-// ./opencascade/BRepApprox_TheComputeLineBezierOfApprox.hxx
-// ./opencascade/BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox.hxx
-// ./opencascade/BRepApprox_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfApprox.hxx
 // ./opencascade/BRepApprox_ParFunctionOfMyGradientbisOfTheComputeLineOfApprox.hxx
-// ./opencascade/BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox.hxx
+// ./opencascade/BRepApprox_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfApprox.hxx
+// ./opencascade/BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox.hxx
 // ./opencascade/BRepApprox_TheMultiLineToolOfApprox.hxx
+// ./opencascade/BRepApprox_TheImpPrmSvSurfacesOfApprox.hxx
+// ./opencascade/BRepApprox_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfApprox.hxx
 // ./opencascade/BRepApprox_TheMultiLineOfApprox.hxx
 // ./opencascade/BRepApprox_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfApprox.hxx
 // ./opencascade/BRepApprox_ParLeastSquareOfMyGradientbisOfTheComputeLineOfApprox.hxx
-// ./opencascade/BRepApprox_Approx.hxx
-// ./opencascade/BRepApprox_MyGradientbisOfTheComputeLineOfApprox.hxx
-// ./opencascade/BRepApprox_TheInt2SOfThePrmPrmSvSurfacesOfApprox.hxx
-// ./opencascade/BRepApprox_MyGradientOfTheComputeLineBezierOfApprox.hxx
 // ./opencascade/BRepApprox_TheComputeLineOfApprox.hxx
+// ./opencascade/BRepApprox_TheComputeLineBezierOfApprox.hxx
+// ./opencascade/BRepApprox_MyGradientbisOfTheComputeLineOfApprox.hxx
+// ./opencascade/BRepApprox_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfApprox.hxx
+// ./opencascade/BRepApprox_ResConstraintOfMyGradientbisOfTheComputeLineOfApprox.hxx
+// ./opencascade/BRepApprox_ApproxLine.hxx
+// ./opencascade/BRepApprox_ResConstraintOfMyGradientOfTheComputeLineBezierOfApprox.hxx
+// ./opencascade/BRepApprox_ParFunctionOfMyGradientOfTheComputeLineBezierOfApprox.hxx
 // ./opencascade/BRepApprox_ThePrmPrmSvSurfacesOfApprox.hxx
+// ./opencascade/BRepApprox_MyGradientOfTheComputeLineBezierOfApprox.hxx
 
 // operators
 

@@ -42,7 +42,9 @@ py::module m = static_cast<py::module>(main_module.attr("TopTrans"));
 
 
     static_cast<py::class_<TopTrans_CurveTransition , shared_ptr<TopTrans_CurveTransition>  >>(m.attr("TopTrans_CurveTransition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (TopTrans_CurveTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const Standard_Real  ) ) static_cast<void (TopTrans_CurveTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const Standard_Real  ) >(&TopTrans_CurveTransition::Reset),
@@ -63,12 +65,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopTrans"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTrans_SurfaceTransition , shared_ptr<TopTrans_SurfaceTransition>  >>(m.attr("TopTrans_SurfaceTransition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (TopTrans_SurfaceTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const gp_Dir & ,  const gp_Dir & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (TopTrans_SurfaceTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const gp_Dir & ,  const gp_Dir & ,  const Standard_Real ,  const Standard_Real  ) >(&TopTrans_SurfaceTransition::Reset),
@@ -98,7 +102,7 @@ py::module m = static_cast<py::module>(main_module.attr("TopTrans"));
                     R"#(None)#"  , py::arg("Tran"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

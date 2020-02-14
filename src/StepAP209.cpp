@@ -47,8 +47,10 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP209"));
 
 
     static_cast<py::class_<StepAP209_Construct , shared_ptr<StepAP209_Construct>  , STEPConstruct_Tool >>(m.attr("StepAP209_Construct"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> & >()  , py::arg("WS") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (StepAP209_Construct::*)( const opencascade::handle<XSControl_WorkSession> &  ) ) static_cast<Standard_Boolean (StepAP209_Construct::*)( const opencascade::handle<XSControl_WorkSession> &  ) >(&StepAP209_Construct::Init),
@@ -135,7 +137,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepAP209"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

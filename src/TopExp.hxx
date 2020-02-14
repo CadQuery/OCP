@@ -10,24 +10,24 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <TopoDS_Iterator.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopExp_Explorer.hxx>
-#include <TopoDS_Iterator.hxx>
 
 // module includes
+#include <TopExp_Stack.hxx>
 #include <TopExp_Explorer.hxx>
 #include <TopExp.hxx>
-#include <TopExp_Stack.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/TopExp_Stack.hxx
 // ./opencascade/TopExp_Explorer.hxx
 // ./opencascade/TopExp.hxx
-// ./opencascade/TopExp_Stack.hxx
 
 // user-defined post

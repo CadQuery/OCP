@@ -13,13 +13,21 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <XSControl_Controller.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Interface_CheckIterator.hxx>
 #include <XSControl_TransferReader.hxx>
 #include <Transfer_TransientProcess.hxx>
 #include <Interface_InterfaceModel.hxx>
-#include <Standard_TypeMismatch.hxx>
+#include <XSControl_TransferReader.hxx>
+#include <Transfer_ActorOfTransientProcess.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <XSControl_TransferReader.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <XSControl_WorkSession.hxx>
+#include <Interface_InterfaceModel.hxx>
 #include <XSControl_Controller.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <Interface_HGraph.hxx>
@@ -28,18 +36,12 @@ namespace py = pybind11;
 #include <Transfer_ResultFromModel.hxx>
 #include <Interface_CheckIterator.hxx>
 #include <Interface_Graph.hxx>
-#include <Geom_Geometry.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Surface.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Pnt2d.hxx>
-#include <TopoDS_Shape.hxx>
+#include <Standard_TypeMismatch.hxx>
 #include <XSControl_WorkSession.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <TopoDS_Shape.hxx>
 #include <XSControl_WorkSession.hxx>
-#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <IFSelect_WorkLibrary.hxx>
 #include <Interface_Protocol.hxx>
 #include <IFSelect_Signature.hxx>
@@ -50,6 +52,19 @@ namespace py = pybind11;
 #include <Transfer_FinderProcess.hxx>
 #include <TopoDS_Shape.hxx>
 #include <Interface_CheckIterator.hxx>
+#include <Geom_Geometry.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Pnt2d.hxx>
+#include <TopoDS_Shape.hxx>
+#include <XSControl_Controller.hxx>
+#include <XSControl_TransferReader.hxx>
+#include <XSControl_Vars.hxx>
+#include <Message_Messenger.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <TopoDS_Shape.hxx>
 #include <XSControl_WorkSession.hxx>
 #include <IFSelect_SessionPilot.hxx>
 #include <XSControl_Vars.hxx>
@@ -66,24 +81,9 @@ namespace py = pybind11;
 #include <XSControl_FuncShape.hxx>
 #include <XSControl_Utils.hxx>
 #include <XSControl_Vars.hxx>
-#include <XSControl_TransferReader.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Transfer_TransientProcess.hxx>
 #include <XSControl_Controller.hxx>
-#include <XSControl_TransferReader.hxx>
-#include <XSControl_Vars.hxx>
-#include <Message_Messenger.hxx>
-#include <Transfer_TransientProcess.hxx>
 #include <TopoDS_Shape.hxx>
-#include <XSControl_WorkSession.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <XSControl_TransferReader.hxx>
-#include <Transfer_ActorOfTransientProcess.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
+#include <Interface_CheckIterator.hxx>
 
 // module includes
 #include <XSControl.hxx>
@@ -121,6 +121,7 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
     public:
         using XSControl_Controller::XSControl_Controller;
         
+        
         // public pure virtual
         opencascade::handle<Interface_InterfaceModel> NewModel() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Interface_InterfaceModel>,XSControl_Controller,NewModel,) };
         
@@ -134,9 +135,12 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XSControl , shared_ptr<XSControl>>(m,"XSControl");
 
     static_cast<py::class_<XSControl , shared_ptr<XSControl>  >>(m.attr("XSControl"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -148,13 +152,15 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(Returns the Vars of a SessionPilot, it is brought by Session it provides access to external variables)#"  , py::arg("pilot"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_ConnectedShapes ,opencascade::handle<XSControl_ConnectedShapes>  , IFSelect_SelectExplore >>(m.attr("XSControl_ConnectedShapes"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_TransferReader> & >()  , py::arg("TR") )
+    // custom constructors
     // methods
         .def("SetReader",
              (void (XSControl_ConnectedShapes::*)( const opencascade::handle<XSControl_TransferReader> &  ) ) static_cast<void (XSControl_ConnectedShapes::*)( const opencascade::handle<XSControl_TransferReader> &  ) >(&XSControl_ConnectedShapes::SetReader),
@@ -181,11 +187,13 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_Controller ,opencascade::handle<XSControl_Controller> ,Py_XSControl_Controller , Standard_Transient >>(m.attr("XSControl_Controller"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetNames",
              (void (XSControl_Controller::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<void (XSControl_Controller::*)( const Standard_CString ,  const Standard_CString  ) >(&XSControl_Controller::SetNames),
@@ -269,12 +277,15 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<XSControl_FuncShape , shared_ptr<XSControl_FuncShape>>(m,"XSControl_FuncShape");
 
     static_cast<py::class_<XSControl_FuncShape , shared_ptr<XSControl_FuncShape>  >>(m.attr("XSControl_FuncShape"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -289,12 +300,15 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(Analyses given file name and variable name, with a default name for variables. Returns resulting file name and variable name plus status "file to read"(True) or "already read"(False) In the latter case, empty resfile means no file available)#"  , py::arg("session"),  py::arg("file"),  py::arg("var"),  py::arg("def"),  py::arg("resfile"),  py::arg("resvar"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<XSControl_Functions , shared_ptr<XSControl_Functions>>(m,"XSControl_Functions");
 
     static_cast<py::class_<XSControl_Functions , shared_ptr<XSControl_Functions>  >>(m.attr("XSControl_Functions"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -303,14 +317,16 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(Defines and loads all functions for XSControl (as ActFunc))#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_Reader , shared_ptr<XSControl_Reader>  >>(m.attr("XSControl_Reader"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("norm") )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> &,const Standard_Boolean >()  , py::arg("WS"),  py::arg("scratch")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetNorm",
              (Standard_Boolean (XSControl_Reader::*)( const Standard_CString  ) ) static_cast<Standard_Boolean (XSControl_Reader::*)( const Standard_CString  ) >(&XSControl_Reader::SetNorm),
@@ -368,7 +384,7 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
              R"#(Returns all of the results in a single shape which is: - a null shape if there are no results, - a shape if there is one result, - a compound containing the resulting shapes if there are more than one.)#" )
         .def("PrintCheckLoad",
              (void (XSControl_Reader::*)( const Standard_Boolean ,  const IFSelect_PrintCount  ) const) static_cast<void (XSControl_Reader::*)( const Standard_Boolean ,  const IFSelect_PrintCount  ) const>(&XSControl_Reader::PrintCheckLoad),
-             R"#(Prints the check list attached to loaded data, on the Standard Trace File (starts at cout) All messages or fails only, according to <failsonly> mode = 0 : per entity, prints messages mode = 1 : per message, just gives count of entities per check mode = 2 : also gives entity numbers)#"  , py::arg("failsonly"),  py::arg("mode"))
+             R"#(Prints the check list attached to loaded data, on the Standard Trace File (starts at std::cout) All messages or fails only, according to <failsonly> mode = 0 : per entity, prints messages mode = 1 : per message, just gives count of entities per check mode = 2 : also gives entity numbers)#"  , py::arg("failsonly"),  py::arg("mode"))
         .def("PrintCheckTransfer",
              (void (XSControl_Reader::*)( const Standard_Boolean ,  const IFSelect_PrintCount  ) const) static_cast<void (XSControl_Reader::*)( const Standard_Boolean ,  const IFSelect_PrintCount  ) const>(&XSControl_Reader::PrintCheckTransfer),
              R"#(Displays check results for the last translation of IGES or STEP entities to Open CASCADE entities. Only fail messages are displayed if failsonly is true. All messages are displayed if failsonly is false. mode determines the contents and the order of the messages according to the terms of the IFSelect_PrintCount enumeration.)#"  , py::arg("failsonly"),  py::arg("mode"))
@@ -382,13 +398,15 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_SelectForTransfer ,opencascade::handle<XSControl_SelectForTransfer>  , IFSelect_SelectExtract >>(m.attr("XSControl_SelectForTransfer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_TransferReader> & >()  , py::arg("TR") )
+    // custom constructors
     // methods
         .def("SetReader",
              (void (XSControl_SelectForTransfer::*)( const opencascade::handle<XSControl_TransferReader> &  ) ) static_cast<void (XSControl_SelectForTransfer::*)( const opencascade::handle<XSControl_TransferReader> &  ) >(&XSControl_SelectForTransfer::SetReader),
@@ -421,13 +439,15 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_SignTransferStatus ,opencascade::handle<XSControl_SignTransferStatus>  , IFSelect_Signature >>(m.attr("XSControl_SignTransferStatus"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_TransferReader> & >()  , py::arg("TR") )
+    // custom constructors
     // methods
         .def("SetReader",
              (void (XSControl_SignTransferStatus::*)( const opencascade::handle<XSControl_TransferReader> &  ) ) static_cast<void (XSControl_SignTransferStatus::*)( const opencascade::handle<XSControl_TransferReader> &  ) >(&XSControl_SignTransferStatus::SetReader),
@@ -457,12 +477,14 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_TransferReader ,opencascade::handle<XSControl_TransferReader>  , Standard_Transient >>(m.attr("XSControl_TransferReader"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetController",
              (void (XSControl_TransferReader::*)( const opencascade::handle<XSControl_Controller> &  ) ) static_cast<void (XSControl_TransferReader::*)( const opencascade::handle<XSControl_Controller> &  ) >(&XSControl_TransferReader::SetController),
@@ -615,12 +637,14 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_TransferWriter ,opencascade::handle<XSControl_TransferWriter>  , Standard_Transient >>(m.attr("XSControl_TransferWriter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("FinderProcess",
              (const opencascade::handle<Transfer_FinderProcess> & (XSControl_TransferWriter::*)() const) static_cast<const opencascade::handle<Transfer_FinderProcess> & (XSControl_TransferWriter::*)() const>(&XSControl_TransferWriter::FinderProcess),
@@ -677,12 +701,14 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_Utils , shared_ptr<XSControl_Utils>  >>(m.attr("XSControl_Utils"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("TraceLine",
              (void (XSControl_Utils::*)( const Standard_CString  ) const) static_cast<void (XSControl_Utils::*)( const Standard_CString  ) const>(&XSControl_Utils::TraceLine),
@@ -802,12 +828,14 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_Vars ,opencascade::handle<XSControl_Vars>  , Standard_Transient >>(m.attr("XSControl_Vars"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (XSControl_Vars::*)( const Standard_CString ,  const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (XSControl_Vars::*)( const Standard_CString ,  const opencascade::handle<Standard_Transient> &  ) >(&XSControl_Vars::Set),
@@ -834,12 +862,14 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_WorkSession ,opencascade::handle<XSControl_WorkSession>  , IFSelect_WorkSession >>(m.attr("XSControl_WorkSession"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ClearData",
              (void (XSControl_WorkSession::*)( const Standard_Integer  ) ) static_cast<void (XSControl_WorkSession::*)( const Standard_Integer  ) >(&XSControl_WorkSession::ClearData),
@@ -926,14 +956,16 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XSControl_Writer , shared_ptr<XSControl_Writer>  >>(m.attr("XSControl_Writer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("norm") )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> &,const Standard_Boolean >()  , py::arg("WS"),  py::arg("scratch")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetNorm",
              (Standard_Boolean (XSControl_Writer::*)( const Standard_CString  ) ) static_cast<Standard_Boolean (XSControl_Writer::*)( const Standard_CString  ) >(&XSControl_Writer::SetNorm),
@@ -960,24 +992,24 @@ py::module m = static_cast<py::module>(main_module.attr("XSControl"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/XSControl_TransferWriter.hxx
 // ./opencascade/XSControl_SignTransferStatus.hxx
-// ./opencascade/XSControl_Utils.hxx
-// ./opencascade/XSControl_TransferReader.hxx
-// ./opencascade/XSControl_Vars.hxx
-// ./opencascade/XSControl_Writer.hxx
-// ./opencascade/XSControl_Reader.hxx
-// ./opencascade/XSControl_Controller.hxx
-// ./opencascade/XSControl.hxx
-// ./opencascade/XSControl_ConnectedShapes.hxx
-// ./opencascade/XSControl_WorkSession.hxx
-// ./opencascade/XSControl_FuncShape.hxx
-// ./opencascade/XSControl_Functions.hxx
 // ./opencascade/XSControl_SelectForTransfer.hxx
+// ./opencascade/XSControl_ConnectedShapes.hxx
+// ./opencascade/XSControl_Reader.hxx
+// ./opencascade/XSControl_TransferReader.hxx
+// ./opencascade/XSControl_Utils.hxx
+// ./opencascade/XSControl_Functions.hxx
+// ./opencascade/XSControl_Writer.hxx
+// ./opencascade/XSControl_FuncShape.hxx
+// ./opencascade/XSControl_Controller.hxx
+// ./opencascade/XSControl_Vars.hxx
+// ./opencascade/XSControl_WorkSession.hxx
+// ./opencascade/XSControl.hxx
+// ./opencascade/XSControl_TransferWriter.hxx
 
 // operators
 

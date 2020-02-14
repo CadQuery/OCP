@@ -13,45 +13,21 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Geom2dAdaptor_Curve.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Vec2d.hxx>
+#include <math_Matrix.hxx>
 #include <StdFail_NotDone.hxx>
 #include <GccEnt_BadQualifier.hxx>
-#include <GccEnt_QualifiedCirc.hxx>
-#include <Geom2dAdaptor_Curve.hxx>
-#include <GccEnt_QualifiedLin.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GccEnt_QualifiedCirc.hxx>
-#include <Geom2dGcc_QCurve.hxx>
-#include <GccEnt_QualifiedLin.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Geom2dGcc_QualifiedCurve.hxx>
-#include <Geom2d_Point.hxx>
-#include <GccAna_Circ2d3Tan.hxx>
+#include <Geom2dGcc_Lin2d2TanIter.hxx>
+#include <Geom2dAdaptor_Curve.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Geom2dGcc_QCurve.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_NegativeValue.hxx>
-#include <Geom2dGcc_QualifiedCurve.hxx>
-#include <Geom2d_Point.hxx>
-#include <GccAna_Circ2d2TanRad.hxx>
-#include <Geom2dGcc_Circ2d2TanRadGeo.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GccEnt_BadQualifier.hxx>
-#include <Geom2dGcc_QualifiedCurve.hxx>
-#include <Geom2dGcc_Lin2d2TanIter.hxx>
-#include <Geom2dAdaptor_Curve.hxx>
-#include <math_Matrix.hxx>
-#include <math_Matrix.hxx>
-#include <StdFail_NotDone.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <Geom2dGcc_QCurve.hxx>
-#include <gp_Lin2d.hxx>
 #include <GccEnt_QualifiedLin.hxx>
-#include <Geom2dAdaptor_Curve.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
@@ -60,31 +36,30 @@ namespace py = pybind11;
 #include <Geom2d_Point.hxx>
 #include <GccAna_Circ2dTanOnRad.hxx>
 #include <Geom2dGcc_Circ2dTanOnRadGeo.hxx>
-#include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Geom2dGcc_QCurve.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
-#include <GccEnt_BadQualifier.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Geom2dGcc_IsParallel.hxx>
-#include <Geom2dGcc_QualifiedCurve.hxx>
-#include <Geom2dGcc_Lin2dTanOblIter.hxx>
-#include <Geom2dAdaptor_Curve.hxx>
-#include <Standard_NegativeValue.hxx>
-#include <GccEnt_BadQualifier.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Geom2dGcc_QCurve.hxx>
 #include <gp_Lin2d.hxx>
+#include <GccEnt_QualifiedLin.hxx>
+#include <Geom2dAdaptor_Curve.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GccEnt_BadQualifier.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <Geom2dAdaptor_Curve.hxx>
 #include <GccEnt_QualifiedLin.hxx>
-#include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Standard_NegativeValue.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <Geom2dGcc_QCurve.hxx>
 #include <GccEnt_QualifiedLin.hxx>
 #include <math_Matrix.hxx>
+#include <GccEnt_BadQualifier.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom2dGcc_QCurve.hxx>
+#include <GccEnt_QualifiedCirc.hxx>
+#include <GccEnt_BadQualifier.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom2dGcc_QualifiedCurve.hxx>
+#include <Geom2d_Point.hxx>
 #include <StdFail_NotDone.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <Geom2dGcc_QualifiedCurve.hxx>
@@ -120,8 +95,33 @@ namespace py = pybind11;
 #include <Geom2dGcc_FunctionTanCirCu.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Geom2dGcc_IsParallel.hxx>
+#include <Geom2dGcc_QualifiedCurve.hxx>
+#include <Geom2dGcc_Lin2dTanOblIter.hxx>
+#include <Geom2dAdaptor_Curve.hxx>
+#include <StdFail_NotDone.hxx>
 #include <Geom2dGcc_QualifiedCurve.hxx>
 #include <Geom2d_Point.hxx>
+#include <GccAna_Circ2d3Tan.hxx>
+#include <Geom2dAdaptor_Curve.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+#include <Standard_NegativeValue.hxx>
+#include <GccEnt_BadQualifier.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom2dGcc_QCurve.hxx>
+#include <gp_Lin2d.hxx>
+#include <GccEnt_QualifiedCirc.hxx>
+#include <Geom2dAdaptor_Curve.hxx>
+#include <GccEnt_QualifiedLin.hxx>
+#include <GccEnt_BadQualifier.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_NegativeValue.hxx>
+#include <Geom2dGcc_QualifiedCurve.hxx>
+#include <Geom2d_Point.hxx>
+#include <GccAna_Circ2d2TanRad.hxx>
+#include <Geom2dGcc_Circ2d2TanRadGeo.hxx>
+#include <math_Matrix.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Geom2dGcc_IsParallel.hxx>
@@ -177,9 +177,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Geom2dGcc , shared_ptr<Geom2dGcc>>(m,"Geom2dGcc");
 
     static_cast<py::class_<Geom2dGcc , shared_ptr<Geom2dGcc>  >>(m.attr("Geom2dGcc"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -197,14 +200,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
                     R"#(Constructs such a qualified curve that the solution computed by a construction algorithm using the qualified curve and the curve are external to one another. Warning Obj is an adapted curve, i.e. an object which is an interface between: - the services provided by a 2D curve from the package Geom2d, - and those required on the curve by a computation algorithm. The adapted curve is created in the following way: Handle(Geom2d_Curve) mycurve = ... ; Geom2dAdaptor_Curve Obj ( mycurve ) ; The qualified curve is then constructed with this object: Geom2dGcc_QualifiedCurve myQCurve = Geom2dGcc::Outside(Obj);)#"  , py::arg("Obj"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2d2TanOn , shared_ptr<Geom2dGcc_Circ2d2TanOn>  >>(m.attr("Geom2dGcc_Circ2d2TanOn"))
+    // constructors
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const Geom2dGcc_QualifiedCurve &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCurve"),  py::arg("Tolerance"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("ParamOn") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const opencascade::handle<Geom2d_Point> &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point"),  py::arg("OnCurve"),  py::arg("Tolerance"),  py::arg("Param1"),  py::arg("ParamOn") )
         .def(py::init< const opencascade::handle<Geom2d_Point> &,const opencascade::handle<Geom2d_Point> &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("Point1"),  py::arg("Point2"),  py::arg("OnCurve"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Results",
              (void (Geom2dGcc_Circ2d2TanOn::*)( const GccAna_Circ2d2TanOn &  ) ) static_cast<void (Geom2dGcc_Circ2d2TanOn::*)( const GccAna_Circ2d2TanOn &  ) >(&Geom2dGcc_Circ2d2TanOn::Results),
@@ -243,17 +248,19 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2d2TanOnGeo , shared_ptr<Geom2dGcc_Circ2d2TanOnGeo>  >>(m.attr("Geom2dGcc_Circ2d2TanOnGeo"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCurv"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedLin &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCurv"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Pnt2d &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("OnCurv"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const GccEnt_QualifiedLin &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCurv"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const gp_Pnt2d &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCurv"),  py::arg("Tolerance") )
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("Point1"),  py::arg("Point2"),  py::arg("OnCurv"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Circ2d2TanOnGeo::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Circ2d2TanOnGeo::*)() const>(&Geom2dGcc_Circ2d2TanOnGeo::IsDone),
@@ -286,11 +293,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2d2TanOnIter , shared_ptr<Geom2dGcc_Circ2d2TanOnIter>  >>(m.attr("Geom2dGcc_Circ2d2TanOnIter"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const Geom2dGcc_QCurve &,const gp_Lin2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnLine"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const Geom2dGcc_QCurve &,const gp_Lin2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnLine"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const gp_Lin2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnLine"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3"),  py::arg("Tolerance") )
@@ -303,6 +311,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
         .def(py::init< const GccEnt_QualifiedLin &,const Geom2dGcc_QCurve &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCurve"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("ParamOn"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Pnt2d &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("OnCurve"),  py::arg("Param1"),  py::arg("ParamOn"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCurve"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("ParamOn"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Circ2d2TanOnIter::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Circ2d2TanOnIter::*)() const>(&Geom2dGcc_Circ2d2TanOnIter::IsDone),
@@ -332,14 +341,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2d2TanRad , shared_ptr<Geom2dGcc_Circ2d2TanRad>  >>(m.attr("Geom2dGcc_Circ2d2TanRad"))
+    // constructors
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const Geom2dGcc_QualifiedCurve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const opencascade::handle<Geom2d_Point> &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const opencascade::handle<Geom2d_Point> &,const opencascade::handle<Geom2d_Point> &,const Standard_Real,const Standard_Real >()  , py::arg("Point1"),  py::arg("Point2"),  py::arg("Radius"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Results",
              (void (Geom2dGcc_Circ2d2TanRad::*)( const GccAna_Circ2d2TanRad &  ) ) static_cast<void (Geom2dGcc_Circ2d2TanRad::*)( const GccAna_Circ2d2TanRad &  ) >(&Geom2dGcc_Circ2d2TanRad::Results),
@@ -375,15 +386,17 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2d2TanRadGeo , shared_ptr<Geom2dGcc_Circ2d2TanRadGeo>  >>(m.attr("Geom2dGcc_Circ2d2TanRadGeo"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("Radius"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Circ2d2TanRadGeo::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Circ2d2TanRadGeo::*)() const>(&Geom2dGcc_Circ2d2TanRadGeo::IsDone),
@@ -413,15 +426,17 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2d3Tan , shared_ptr<Geom2dGcc_Circ2d3Tan>  >>(m.attr("Geom2dGcc_Circ2d3Tan"))
+    // constructors
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const Geom2dGcc_QualifiedCurve &,const Geom2dGcc_QualifiedCurve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Tolerance"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const Geom2dGcc_QualifiedCurve &,const opencascade::handle<Geom2d_Point> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Point"),  py::arg("Tolerance"),  py::arg("Param1"),  py::arg("Param2") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const opencascade::handle<Geom2d_Point> &,const opencascade::handle<Geom2d_Point> &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point1"),  py::arg("Point2"),  py::arg("Tolerance"),  py::arg("Param1") )
         .def(py::init< const opencascade::handle<Geom2d_Point> &,const opencascade::handle<Geom2d_Point> &,const opencascade::handle<Geom2d_Point> &,const Standard_Real >()  , py::arg("Point1"),  py::arg("Point2"),  py::arg("Point3"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Results",
              (void (Geom2dGcc_Circ2d3Tan::*)( const GccAna_Circ2d3Tan & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Geom2dGcc_Circ2d3Tan::*)( const GccAna_Circ2d3Tan & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&Geom2dGcc_Circ2d3Tan::Results),
@@ -460,11 +475,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2d3TanIter , shared_ptr<Geom2dGcc_Circ2d3TanIter>  >>(m.attr("Geom2dGcc_Circ2d3TanIter"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedLin &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3"),  py::arg("Tolerance") )
@@ -475,6 +491,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point1"),  py::arg("Point2"),  py::arg("Param1"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const gp_Pnt2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Point2"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Param3"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Circ2d3TanIter::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Circ2d3TanIter::*)() const>(&Geom2dGcc_Circ2d3TanIter::IsDone),
@@ -507,12 +524,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2dTanCen , shared_ptr<Geom2dGcc_Circ2dTanCen>  >>(m.attr("Geom2dGcc_Circ2dTanCen"))
+    // constructors
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const opencascade::handle<Geom2d_Point> &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Pcenter"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Circ2dTanCen::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Circ2dTanCen::*)() const>(&Geom2dGcc_Circ2dTanCen::IsDone),
@@ -536,12 +555,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2dTanCenGeo , shared_ptr<Geom2dGcc_Circ2dTanCenGeo>  >>(m.attr("Geom2dGcc_Circ2dTanCenGeo"))
+    // constructors
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Pcenter"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Circ2dTanCenGeo::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Circ2dTanCenGeo::*)() const>(&Geom2dGcc_Circ2dTanCenGeo::IsDone),
@@ -562,13 +583,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2dTanOnRad , shared_ptr<Geom2dGcc_Circ2dTanOnRad>  >>(m.attr("Geom2dGcc_Circ2dTanOnRad"))
+    // constructors
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnCurv"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const opencascade::handle<Geom2d_Point> &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("Point1"),  py::arg("OnCurv"),  py::arg("Radius"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Results",
              (void (Geom2dGcc_Circ2dTanOnRad::*)( const GccAna_Circ2dTanOnRad &  ) ) static_cast<void (Geom2dGcc_Circ2dTanOnRad::*)( const GccAna_Circ2dTanOnRad &  ) >(&Geom2dGcc_Circ2dTanOnRad::Results),
@@ -601,17 +624,19 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Circ2dTanOnRadGeo , shared_ptr<Geom2dGcc_Circ2dTanOnRadGeo>  >>(m.attr("Geom2dGcc_Circ2dTanOnRadGeo"))
+    // constructors
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Lin2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnLine"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Circ2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnCirc"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnCurv"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnCurv"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const Geom2dGcc_QCurve &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnCurv"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const gp_Pnt2d &,const Geom2dAdaptor_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("Point1"),  py::arg("OnCurv"),  py::arg("Radius"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Circ2dTanOnRadGeo::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Circ2dTanOnRadGeo::*)() const>(&Geom2dGcc_Circ2dTanOnRadGeo::IsDone),
@@ -638,12 +663,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Geom2dGcc_CurveTool , shared_ptr<Geom2dGcc_CurveTool>>(m,"Geom2dGcc_CurveTool");
 
     static_cast<py::class_<Geom2dGcc_CurveTool , shared_ptr<Geom2dGcc_CurveTool>  >>(m.attr("Geom2dGcc_CurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -673,12 +701,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U"),  py::arg("P"),  py::arg("T"),  py::arg("N"),  py::arg("dN"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_FunctionTanCirCu , shared_ptr<Geom2dGcc_FunctionTanCirCu>  , math_FunctionWithDerivative >>(m.attr("Geom2dGcc_FunctionTanCirCu"))
+    // constructors
         .def(py::init< const gp_Circ2d &,const Geom2dAdaptor_Curve & >()  , py::arg("Circ"),  py::arg("Curv") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Geom2dGcc_FunctionTanCirCu::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dGcc_FunctionTanCirCu::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dGcc_FunctionTanCirCu::Value),
@@ -693,13 +723,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_FunctionTanCuCu , shared_ptr<Geom2dGcc_FunctionTanCuCu>  , math_FunctionSetWithDerivatives >>(m.attr("Geom2dGcc_FunctionTanCuCu"))
+    // constructors
         .def(py::init< const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve & >()  , py::arg("Curv1"),  py::arg("Curv2") )
         .def(py::init< const gp_Circ2d &,const Geom2dAdaptor_Curve & >()  , py::arg("Circ1"),  py::arg("Curv2") )
+    // custom constructors
     // methods
         .def("InitDerivative",
              (void (Geom2dGcc_FunctionTanCuCu::*)( const math_Vector & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) ) static_cast<void (Geom2dGcc_FunctionTanCuCu::*)( const math_Vector & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) >(&Geom2dGcc_FunctionTanCuCu::InitDerivative),
@@ -723,17 +755,19 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_FunctionTanCuCuCu , shared_ptr<Geom2dGcc_FunctionTanCuCuCu>  , math_FunctionSetWithDerivatives >>(m.attr("Geom2dGcc_FunctionTanCuCuCu"))
+    // constructors
         .def(py::init< const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve & >()  , py::arg("C1"),  py::arg("C2"),  py::arg("C3") )
         .def(py::init< const gp_Circ2d &,const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve & >()  , py::arg("C1"),  py::arg("C2"),  py::arg("C3") )
         .def(py::init< const gp_Circ2d &,const gp_Circ2d &,const Geom2dAdaptor_Curve & >()  , py::arg("C1"),  py::arg("C2"),  py::arg("C3") )
         .def(py::init< const gp_Circ2d &,const gp_Lin2d &,const Geom2dAdaptor_Curve & >()  , py::arg("C1"),  py::arg("L2"),  py::arg("C3") )
         .def(py::init< const gp_Lin2d &,const gp_Lin2d &,const Geom2dAdaptor_Curve & >()  , py::arg("L1"),  py::arg("L2"),  py::arg("C3") )
         .def(py::init< const gp_Lin2d &,const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve & >()  , py::arg("L1"),  py::arg("C2"),  py::arg("C3") )
+    // custom constructors
     // methods
         .def("InitDerivative",
              (void (Geom2dGcc_FunctionTanCuCuCu::*)( const math_Vector & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) ) static_cast<void (Geom2dGcc_FunctionTanCuCuCu::*)( const math_Vector & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) >(&Geom2dGcc_FunctionTanCuCuCu::InitDerivative),
@@ -757,11 +791,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_FunctionTanCuCuOnCu , shared_ptr<Geom2dGcc_FunctionTanCuCuOnCu>  , math_FunctionSetWithDerivatives >>(m.attr("Geom2dGcc_FunctionTanCuCuOnCu"))
+    // constructors
         .def(py::init< const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve &,const gp_Circ2d &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("OnCi"),  py::arg("Rad") )
         .def(py::init< const gp_Circ2d &,const Geom2dAdaptor_Curve &,const gp_Circ2d &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("OnCi"),  py::arg("Rad") )
         .def(py::init< const gp_Lin2d &,const Geom2dAdaptor_Curve &,const gp_Circ2d &,const Standard_Real >()  , py::arg("L1"),  py::arg("C2"),  py::arg("OnCi"),  py::arg("Rad") )
@@ -774,6 +809,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
         .def(py::init< const gp_Circ2d &,const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("OnCu"),  py::arg("Rad") )
         .def(py::init< const gp_Lin2d &,const Geom2dAdaptor_Curve &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("L1"),  py::arg("C2"),  py::arg("OnCu"),  py::arg("Rad") )
         .def(py::init< const Geom2dAdaptor_Curve &,const gp_Pnt2d &,const Geom2dAdaptor_Curve &,const Standard_Real >()  , py::arg("C1"),  py::arg("P1"),  py::arg("OnCu"),  py::arg("Rad") )
+    // custom constructors
     // methods
         .def("InitDerivative",
              (void (Geom2dGcc_FunctionTanCuCuOnCu::*)( const math_Vector & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) ) static_cast<void (Geom2dGcc_FunctionTanCuCuOnCu::*)( const math_Vector & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d & ,  gp_Vec2d &  ) >(&Geom2dGcc_FunctionTanCuCuOnCu::InitDerivative),
@@ -797,12 +833,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_FunctionTanCuPnt , shared_ptr<Geom2dGcc_FunctionTanCuPnt>  , math_FunctionWithDerivative >>(m.attr("Geom2dGcc_FunctionTanCuPnt"))
+    // constructors
         .def(py::init< const Geom2dAdaptor_Curve &,const gp_Pnt2d & >()  , py::arg("C"),  py::arg("Point") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Geom2dGcc_FunctionTanCuPnt::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dGcc_FunctionTanCuPnt::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dGcc_FunctionTanCuPnt::Value),
@@ -817,12 +855,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_FunctionTanObl , shared_ptr<Geom2dGcc_FunctionTanObl>  , math_FunctionWithDerivative >>(m.attr("Geom2dGcc_FunctionTanObl"))
+    // constructors
         .def(py::init< const Geom2dAdaptor_Curve &,const gp_Dir2d & >()  , py::arg("Curve"),  py::arg("Dir") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Geom2dGcc_FunctionTanObl::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dGcc_FunctionTanObl::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dGcc_FunctionTanObl::Value),
@@ -837,15 +877,17 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Lin2d2Tan , shared_ptr<Geom2dGcc_Lin2d2Tan>  >>(m.attr("Geom2dGcc_Lin2d2Tan"))
+    // constructors
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const Geom2dGcc_QualifiedCurve &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Tolang") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("ThePoint"),  py::arg("Tolang") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const Geom2dGcc_QualifiedCurve &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Tolang"),  py::arg("Param1"),  py::arg("Param2") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("ThePoint"),  py::arg("Tolang"),  py::arg("Param1") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Lin2d2Tan::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Lin2d2Tan::*)() const>(&Geom2dGcc_Lin2d2Tan::IsDone),
@@ -869,14 +911,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Lin2d2TanIter , shared_ptr<Geom2dGcc_Lin2d2TanIter>  >>(m.attr("Geom2dGcc_Lin2d2TanIter"))
+    // constructors
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("ThePoint"),  py::arg("Param1"),  py::arg("Tolang") )
         .def(py::init< const GccEnt_QualifiedCirc &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Param2"),  py::arg("Tolang") )
         .def(py::init< const Geom2dGcc_QCurve &,const Geom2dGcc_QCurve &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("Tolang") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Lin2d2TanIter::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Lin2d2TanIter::*)() const>(&Geom2dGcc_Lin2d2TanIter::IsDone),
@@ -897,13 +941,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Lin2dTanObl , shared_ptr<Geom2dGcc_Lin2dTanObl>  >>(m.attr("Geom2dGcc_Lin2dTanObl"))
+    // constructors
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const gp_Lin2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("TheLin"),  py::arg("TolAng"),  py::arg("Angle") )
         .def(py::init< const Geom2dGcc_QualifiedCurve &,const gp_Lin2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("TheLin"),  py::arg("TolAng"),  py::arg("Param1"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Lin2dTanObl::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Lin2dTanObl::*)() const>(&Geom2dGcc_Lin2dTanObl::IsDone),
@@ -927,12 +973,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_Lin2dTanOblIter , shared_ptr<Geom2dGcc_Lin2dTanOblIter>  >>(m.attr("Geom2dGcc_Lin2dTanOblIter"))
+    // constructors
         .def(py::init< const Geom2dGcc_QCurve &,const gp_Lin2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("TheLin"),  py::arg("Param1"),  py::arg("TolAng"),  py::arg("Angle")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Geom2dGcc_Lin2dTanOblIter::*)() const) static_cast<Standard_Boolean (Geom2dGcc_Lin2dTanOblIter::*)() const>(&Geom2dGcc_Lin2dTanOblIter::IsDone),
@@ -956,12 +1004,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_QCurve , shared_ptr<Geom2dGcc_QCurve>  >>(m.attr("Geom2dGcc_QCurve"))
+    // constructors
         .def(py::init< const Geom2dAdaptor_Curve &,const GccEnt_Position >()  , py::arg("Curve"),  py::arg("Qualifier") )
+    // custom constructors
     // methods
         .def("Qualified",
              (Geom2dAdaptor_Curve (Geom2dGcc_QCurve::*)() const) static_cast<Geom2dAdaptor_Curve (Geom2dGcc_QCurve::*)() const>(&Geom2dGcc_QCurve::Qualified),
@@ -985,12 +1035,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dGcc_QualifiedCurve , shared_ptr<Geom2dGcc_QualifiedCurve>  >>(m.attr("Geom2dGcc_QualifiedCurve"))
+    // constructors
         .def(py::init< const Geom2dAdaptor_Curve &,const GccEnt_Position >()  , py::arg("Curve"),  py::arg("Qualifier") )
+    // custom constructors
     // methods
         .def("Qualified",
              (Geom2dAdaptor_Curve (Geom2dGcc_QualifiedCurve::*)() const) static_cast<Geom2dAdaptor_Curve (Geom2dGcc_QualifiedCurve::*)() const>(&Geom2dGcc_QualifiedCurve::Qualified),
@@ -1014,39 +1066,39 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dGcc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Geom2dGcc_CurveTool.hxx
-// ./opencascade/Geom2dGcc_QCurve.hxx
-// ./opencascade/Geom2dGcc_Circ2d2TanOnGeo.hxx
-// ./opencascade/Geom2dGcc_Circ2d3TanIter.hxx
-// ./opencascade/Geom2dGcc_Circ2d3Tan.hxx
-// ./opencascade/Geom2dGcc_Circ2dTanCenGeo.hxx
-// ./opencascade/Geom2dGcc_FunctionTanCirCu.hxx
-// ./opencascade/Geom2dGcc_Circ2d2TanRad.hxx
-// ./opencascade/Geom2dGcc_Lin2d2Tan.hxx
 // ./opencascade/Geom2dGcc_FunctionTanCuCuOnCu.hxx
-// ./opencascade/Geom2dGcc_FunctionTanCuCu.hxx
-// ./opencascade/Geom2dGcc_Circ2d2TanOnIter.hxx
-// ./opencascade/Geom2dGcc_Circ2dTanOnRad.hxx
-// ./opencascade/Geom2dGcc_FunctionTanCuPnt.hxx
-// ./opencascade/Geom2dGcc_QualifiedCurve.hxx
-// ./opencascade/Geom2dGcc_Lin2d2TanIter.hxx
-// ./opencascade/Geom2dGcc_Lin2dTanObl.hxx
-// ./opencascade/Geom2dGcc_Circ2dTanOnRadGeo.hxx
+// ./opencascade/Geom2dGcc_FunctionTanCirCu.hxx
+// ./opencascade/Geom2dGcc_QCurve.hxx
+// ./opencascade/Geom2dGcc_Lin2d2Tan.hxx
+// ./opencascade/Geom2dGcc_Circ2dTanCenGeo.hxx
 // ./opencascade/Geom2dGcc_Circ2d2TanRadGeo.hxx
-// ./opencascade/Geom2dGcc_Type1.hxx
-// ./opencascade/Geom2dGcc_FunctionTanCuCuCu.hxx
-// ./opencascade/Geom2dGcc_IsParallel.hxx
-// ./opencascade/Geom2dGcc_Circ2d2TanOn.hxx
-// ./opencascade/Geom2dGcc_Type3.hxx
-// ./opencascade/Geom2dGcc.hxx
-// ./opencascade/Geom2dGcc_Circ2dTanCen.hxx
-// ./opencascade/Geom2dGcc_Type2.hxx
-// ./opencascade/Geom2dGcc_Lin2dTanOblIter.hxx
 // ./opencascade/Geom2dGcc_FunctionTanObl.hxx
+// ./opencascade/Geom2dGcc_Circ2dTanOnRad.hxx
+// ./opencascade/Geom2dGcc_Circ2d2TanOnIter.hxx
+// ./opencascade/Geom2dGcc_Circ2d2TanOnGeo.hxx
+// ./opencascade/Geom2dGcc_Type1.hxx
+// ./opencascade/Geom2dGcc_Circ2d3TanIter.hxx
+// ./opencascade/Geom2dGcc_Type2.hxx
+// ./opencascade/Geom2dGcc_Type3.hxx
+// ./opencascade/Geom2dGcc_FunctionTanCuCu.hxx
+// ./opencascade/Geom2dGcc_Lin2d2TanIter.hxx
+// ./opencascade/Geom2dGcc_Circ2dTanCen.hxx
+// ./opencascade/Geom2dGcc_Circ2d2TanOn.hxx
+// ./opencascade/Geom2dGcc.hxx
+// ./opencascade/Geom2dGcc_Lin2dTanObl.hxx
+// ./opencascade/Geom2dGcc_Circ2d3Tan.hxx
+// ./opencascade/Geom2dGcc_CurveTool.hxx
+// ./opencascade/Geom2dGcc_Circ2dTanOnRadGeo.hxx
+// ./opencascade/Geom2dGcc_QualifiedCurve.hxx
+// ./opencascade/Geom2dGcc_FunctionTanCuPnt.hxx
+// ./opencascade/Geom2dGcc_Circ2d2TanRad.hxx
+// ./opencascade/Geom2dGcc_IsParallel.hxx
+// ./opencascade/Geom2dGcc_FunctionTanCuCuCu.hxx
+// ./opencascade/Geom2dGcc_Lin2dTanOblIter.hxx
 
 // operators
 

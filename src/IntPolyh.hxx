@@ -11,55 +11,49 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurface.hxx>
 #include <IntPolyh_Triangle.hxx>
-#include <Adaptor3d_HSurface.hxx>
+#include <IntPolyh_Triangle.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <IntPolyh_StartPoint.hxx>
-#include <IntPolyh_MaillageAffinage.hxx>
-#include <IntPolyh_Triangle.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <IntPolyh_Triangle.hxx>
+#include <IntPolyh_MaillageAffinage.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurface.hxx>
 
 // module includes
-#include <IntPolyh_ArrayOfTangentZones.hxx>
-#include <IntPolyh_Point.hxx>
+#include <IntPolyh_ArrayOfPoints.hxx>
 #include <IntPolyh_MaillageAffinage.hxx>
-#include <IntPolyh_Couple.hxx>
-#include <IntPolyh_Edge.hxx>
-#include <IntPolyh_Tools.hxx>
+#include <IntPolyh_ListOfCouples.hxx>
+#include <IntPolyh_SeqOfStartPoints.hxx>
+#include <IntPolyh_StartPoint.hxx>
+#include <IntPolyh_ArrayOfTangentZones.hxx>
 #include <IntPolyh_Triangle.hxx>
-#include <IntPolyh_PMaillageAffinage.hxx>
-#include <IntPolyh_SectionLine.hxx>
+#include <IntPolyh_Array.hxx>
 #include <IntPolyh_ArrayOfPointNormal.hxx>
 #include <IntPolyh_CoupleMapHasher.hxx>
-#include <IntPolyh_ArrayOfSectionLines.hxx>
-#include <IntPolyh_SeqOfStartPoints.hxx>
-#include <IntPolyh_Array.hxx>
-#include <IntPolyh_ListOfCouples.hxx>
-#include <IntPolyh_StartPoint.hxx>
-#include <IntPolyh_Intersection.hxx>
-#include <IntPolyh_ArrayOfEdges.hxx>
-#include <IntPolyh_ArrayOfPoints.hxx>
+#include <IntPolyh_Point.hxx>
 #include <IntPolyh_ArrayOfTriangles.hxx>
+#include <IntPolyh_ArrayOfEdges.hxx>
+#include <IntPolyh_PMaillageAffinage.hxx>
+#include <IntPolyh_Intersection.hxx>
+#include <IntPolyh_Couple.hxx>
+#include <IntPolyh_SectionLine.hxx>
+#include <IntPolyh_Tools.hxx>
+#include <IntPolyh_Edge.hxx>
+#include <IntPolyh_ArrayOfSectionLines.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/IntPolyh_ArrayOfTangentZones.hxx
-// ./opencascade/IntPolyh_Point.hxx
+// ./opencascade/IntPolyh_ArrayOfPoints.hxx
 // ./opencascade/IntPolyh_MaillageAffinage.hxx
-// ./opencascade/IntPolyh_Couple.hxx
-// ./opencascade/IntPolyh_Edge.hxx
-// ./opencascade/IntPolyh_Tools.hxx
-// ./opencascade/IntPolyh_Triangle.hxx
-// ./opencascade/IntPolyh_PMaillageAffinage.hxx
-// ./opencascade/IntPolyh_SectionLine.hxx
-// ./opencascade/IntPolyh_ArrayOfPointNormal.hxx
-// ./opencascade/IntPolyh_CoupleMapHasher.hxx
-// ./opencascade/IntPolyh_ArrayOfSectionLines.hxx
+// ./opencascade/IntPolyh_ListOfCouples.hxx
 // ./opencascade/IntPolyh_SeqOfStartPoints.hxx
+// ./opencascade/IntPolyh_StartPoint.hxx
+// ./opencascade/IntPolyh_ArrayOfTangentZones.hxx
+// ./opencascade/IntPolyh_Triangle.hxx
 // ./opencascade/IntPolyh_Array.hxx
 
 template <typename Type>
@@ -101,11 +95,17 @@ void register_template_IntPolyh_Array(py::object &m, const char *name){
              R"#(dump the contents)#" )
     ;
 };
-// ./opencascade/IntPolyh_ListOfCouples.hxx
-// ./opencascade/IntPolyh_StartPoint.hxx
-// ./opencascade/IntPolyh_Intersection.hxx
-// ./opencascade/IntPolyh_ArrayOfEdges.hxx
-// ./opencascade/IntPolyh_ArrayOfPoints.hxx
+// ./opencascade/IntPolyh_ArrayOfPointNormal.hxx
+// ./opencascade/IntPolyh_CoupleMapHasher.hxx
+// ./opencascade/IntPolyh_Point.hxx
 // ./opencascade/IntPolyh_ArrayOfTriangles.hxx
+// ./opencascade/IntPolyh_ArrayOfEdges.hxx
+// ./opencascade/IntPolyh_PMaillageAffinage.hxx
+// ./opencascade/IntPolyh_Intersection.hxx
+// ./opencascade/IntPolyh_Couple.hxx
+// ./opencascade/IntPolyh_SectionLine.hxx
+// ./opencascade/IntPolyh_Tools.hxx
+// ./opencascade/IntPolyh_Edge.hxx
+// ./opencascade/IntPolyh_ArrayOfSectionLines.hxx
 
 // user-defined post

@@ -27,8 +27,8 @@ namespace py = pybind11;
 // module includes
 #include <IntAna2d_AnaIntersection.hxx>
 #include <IntAna2d_Conic.hxx>
-#include <IntAna2d_IntPoint.hxx>
 #include <IntAna2d_Outils.hxx>
+#include <IntAna2d_IntPoint.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
@@ -36,7 +36,7 @@ namespace py = pybind11;
 // Class template handling functions
 // ./opencascade/IntAna2d_AnaIntersection.hxx
 // ./opencascade/IntAna2d_Conic.hxx
-// ./opencascade/IntAna2d_IntPoint.hxx
 // ./opencascade/IntAna2d_Outils.hxx
+// ./opencascade/IntAna2d_IntPoint.hxx
 
 // user-defined post

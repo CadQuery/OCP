@@ -21,9 +21,9 @@ namespace py = pybind11;
 #include <TDocStd_Application.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
-#include <XmlMDF_ADriver.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
+#include <XmlMDF_ADriver.hxx>
 
 // module includes
 #include <XmlDrivers.hxx>
@@ -49,9 +49,12 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XmlDrivers , shared_ptr<XmlDrivers>>(m,"XmlDrivers");
 
     static_cast<py::class_<XmlDrivers , shared_ptr<XmlDrivers>  >>(m.attr("XmlDrivers"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -66,12 +69,14 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
                     R"#(None)#"  , py::arg("theMsgDriver"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlDrivers_DocumentRetrievalDriver ,opencascade::handle<XmlDrivers_DocumentRetrievalDriver>  , XmlLDrivers_DocumentRetrievalDriver >>(m.attr("XmlDrivers_DocumentRetrievalDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AttributeDrivers",
              (opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlDrivers_DocumentRetrievalDriver::AttributeDrivers),
@@ -82,9 +87,6 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
         .def("ShapeSetCleaning",
              (void (XmlDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<XmlMDF_ADriver> &  ) ) static_cast<void (XmlDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<XmlMDF_ADriver> &  ) >(&XmlDrivers_DocumentRetrievalDriver::ShapeSetCleaning),
              R"#(None)#"  , py::arg("theDriver"))
-        .def("PropagateDocumentVersion",
-             (void (XmlDrivers_DocumentRetrievalDriver::*)( const Standard_Integer  ) ) static_cast<void (XmlDrivers_DocumentRetrievalDriver::*)( const Standard_Integer  ) >(&XmlDrivers_DocumentRetrievalDriver::PropagateDocumentVersion),
-             R"#(None)#"  , py::arg("theDocVersion"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlDrivers_DocumentRetrievalDriver::*)() const>(&XmlDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
@@ -98,12 +100,14 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlDrivers_DocumentStorageDriver ,opencascade::handle<XmlDrivers_DocumentStorageDriver>  , XmlLDrivers_DocumentStorageDriver >>(m.attr("XmlDrivers_DocumentStorageDriver"))
+    // constructors
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("theCopyright") )
+    // custom constructors
     // methods
         .def("AttributeDrivers",
              (opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<XmlMDF_ADriverTable> (XmlDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&XmlDrivers_DocumentStorageDriver::AttributeDrivers),
@@ -124,13 +128,13 @@ py::module m = static_cast<py::module>(main_module.attr("XmlDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/XmlDrivers.hxx
-// ./opencascade/XmlDrivers_DocumentRetrievalDriver.hxx
 // ./opencascade/XmlDrivers_DocumentStorageDriver.hxx
+// ./opencascade/XmlDrivers_DocumentRetrievalDriver.hxx
 
 // operators
 

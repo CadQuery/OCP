@@ -13,50 +13,24 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
-#include <BinMDataStd_NameDriver.hxx>
-#include <BinMDataStd_IntegerDriver.hxx>
-#include <BinMDataStd_RealDriver.hxx>
-#include <BinMDataStd_IntegerArrayDriver.hxx>
-#include <BinMDataStd_RealArrayDriver.hxx>
-#include <BinMDataStd_UAttributeDriver.hxx>
-#include <BinMDataStd_DirectoryDriver.hxx>
-#include <BinMDataStd_CommentDriver.hxx>
-#include <BinMDataStd_VariableDriver.hxx>
-#include <BinMDataStd_ExpressionDriver.hxx>
-#include <BinMDataStd_RelationDriver.hxx>
-#include <BinMDataStd_NoteBookDriver.hxx>
-#include <BinMDataStd_TreeNodeDriver.hxx>
-#include <BinMDataStd_ExtStringArrayDriver.hxx>
-#include <BinMDataStd_TickDriver.hxx>
-#include <BinMDataStd_AsciiStringDriver.hxx>
-#include <BinMDataStd_IntPackedMapDriver.hxx>
-#include <BinMDataStd_IntegerListDriver.hxx>
-#include <BinMDataStd_RealListDriver.hxx>
-#include <BinMDataStd_ExtStringListDriver.hxx>
-#include <BinMDataStd_BooleanListDriver.hxx>
-#include <BinMDataStd_ReferenceListDriver.hxx>
-#include <BinMDataStd_BooleanArrayDriver.hxx>
-#include <BinMDataStd_ReferenceArrayDriver.hxx>
-#include <BinMDataStd_ByteArrayDriver.hxx>
-#include <BinMDataStd_NamedDataDriver.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
@@ -142,29 +116,28 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinMDataStd , shared_ptr<BinMDataStd>>(m,"BinMDataStd");
 
     static_cast<py::class_<BinMDataStd , shared_ptr<BinMDataStd>  >>(m.attr("BinMDataStd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("AddDrivers_s",
                     (void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) >(&BinMDataStd::AddDrivers),
                     R"#(Adds the attribute drivers to <theDriverTable>.)#"  , py::arg("theDriverTable"),  py::arg("aMsgDrv"))
-        .def_static("SetDocumentVersion_s",
-                    (void (*)( const Standard_Integer  ) ) static_cast<void (*)( const Standard_Integer  ) >(&BinMDataStd::SetDocumentVersion),
-                    R"#(None)#"  , py::arg("DocVersion"))
-        .def_static("DocumentVersion_s",
-                    (Standard_Integer (*)() ) static_cast<Standard_Integer (*)() >(&BinMDataStd::DocumentVersion),
-                    R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_AsciiStringDriver ,opencascade::handle<BinMDataStd_AsciiStringDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_AsciiStringDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_AsciiStringDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_AsciiStringDriver::*)() const>(&BinMDataStd_AsciiStringDriver::NewEmpty),
@@ -188,12 +161,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_BooleanArrayDriver ,opencascade::handle<BinMDataStd_BooleanArrayDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_BooleanArrayDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_BooleanArrayDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_BooleanArrayDriver::*)() const>(&BinMDataStd_BooleanArrayDriver::NewEmpty),
@@ -217,12 +192,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_BooleanListDriver ,opencascade::handle<BinMDataStd_BooleanListDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_BooleanListDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_BooleanListDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_BooleanListDriver::*)() const>(&BinMDataStd_BooleanListDriver::NewEmpty),
@@ -246,12 +223,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_ByteArrayDriver ,opencascade::handle<BinMDataStd_ByteArrayDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_ByteArrayDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_ByteArrayDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_ByteArrayDriver::*)() const>(&BinMDataStd_ByteArrayDriver::NewEmpty),
@@ -275,12 +254,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_CommentDriver ,opencascade::handle<BinMDataStd_CommentDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_CommentDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_CommentDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_CommentDriver::*)() const>(&BinMDataStd_CommentDriver::NewEmpty),
@@ -304,12 +285,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_DirectoryDriver ,opencascade::handle<BinMDataStd_DirectoryDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_DirectoryDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_DirectoryDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_DirectoryDriver::*)() const>(&BinMDataStd_DirectoryDriver::NewEmpty),
@@ -333,12 +316,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_ExpressionDriver ,opencascade::handle<BinMDataStd_ExpressionDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_ExpressionDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_ExpressionDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_ExpressionDriver::*)() const>(&BinMDataStd_ExpressionDriver::NewEmpty),
@@ -362,12 +347,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_ExtStringArrayDriver ,opencascade::handle<BinMDataStd_ExtStringArrayDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_ExtStringArrayDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_ExtStringArrayDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_ExtStringArrayDriver::*)() const>(&BinMDataStd_ExtStringArrayDriver::NewEmpty),
@@ -391,12 +378,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_ExtStringListDriver ,opencascade::handle<BinMDataStd_ExtStringListDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_ExtStringListDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_ExtStringListDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_ExtStringListDriver::*)() const>(&BinMDataStd_ExtStringListDriver::NewEmpty),
@@ -420,12 +409,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_IntPackedMapDriver ,opencascade::handle<BinMDataStd_IntPackedMapDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_IntPackedMapDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_IntPackedMapDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_IntPackedMapDriver::*)() const>(&BinMDataStd_IntPackedMapDriver::NewEmpty),
@@ -449,12 +440,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_IntegerArrayDriver ,opencascade::handle<BinMDataStd_IntegerArrayDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_IntegerArrayDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_IntegerArrayDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_IntegerArrayDriver::*)() const>(&BinMDataStd_IntegerArrayDriver::NewEmpty),
@@ -478,12 +471,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_IntegerDriver ,opencascade::handle<BinMDataStd_IntegerDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_IntegerDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_IntegerDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_IntegerDriver::*)() const>(&BinMDataStd_IntegerDriver::NewEmpty),
@@ -507,12 +502,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_IntegerListDriver ,opencascade::handle<BinMDataStd_IntegerListDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_IntegerListDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_IntegerListDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_IntegerListDriver::*)() const>(&BinMDataStd_IntegerListDriver::NewEmpty),
@@ -536,12 +533,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_NameDriver ,opencascade::handle<BinMDataStd_NameDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_NameDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_NameDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_NameDriver::*)() const>(&BinMDataStd_NameDriver::NewEmpty),
@@ -565,12 +564,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_NamedDataDriver ,opencascade::handle<BinMDataStd_NamedDataDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_NamedDataDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_NamedDataDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_NamedDataDriver::*)() const>(&BinMDataStd_NamedDataDriver::NewEmpty),
@@ -594,12 +595,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_NoteBookDriver ,opencascade::handle<BinMDataStd_NoteBookDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_NoteBookDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_NoteBookDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_NoteBookDriver::*)() const>(&BinMDataStd_NoteBookDriver::NewEmpty),
@@ -623,12 +626,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_RealArrayDriver ,opencascade::handle<BinMDataStd_RealArrayDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_RealArrayDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_RealArrayDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_RealArrayDriver::*)() const>(&BinMDataStd_RealArrayDriver::NewEmpty),
@@ -652,12 +657,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_RealDriver ,opencascade::handle<BinMDataStd_RealDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_RealDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_RealDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_RealDriver::*)() const>(&BinMDataStd_RealDriver::NewEmpty),
@@ -681,12 +688,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_RealListDriver ,opencascade::handle<BinMDataStd_RealListDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_RealListDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_RealListDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_RealListDriver::*)() const>(&BinMDataStd_RealListDriver::NewEmpty),
@@ -710,12 +719,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_ReferenceArrayDriver ,opencascade::handle<BinMDataStd_ReferenceArrayDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_ReferenceArrayDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_ReferenceArrayDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_ReferenceArrayDriver::*)() const>(&BinMDataStd_ReferenceArrayDriver::NewEmpty),
@@ -739,12 +750,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_ReferenceListDriver ,opencascade::handle<BinMDataStd_ReferenceListDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_ReferenceListDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_ReferenceListDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_ReferenceListDriver::*)() const>(&BinMDataStd_ReferenceListDriver::NewEmpty),
@@ -768,12 +781,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_RelationDriver ,opencascade::handle<BinMDataStd_RelationDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_RelationDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_RelationDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_RelationDriver::*)() const>(&BinMDataStd_RelationDriver::NewEmpty),
@@ -797,12 +812,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_TickDriver ,opencascade::handle<BinMDataStd_TickDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_TickDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_TickDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_TickDriver::*)() const>(&BinMDataStd_TickDriver::NewEmpty),
@@ -826,12 +843,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_TreeNodeDriver ,opencascade::handle<BinMDataStd_TreeNodeDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_TreeNodeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_TreeNodeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_TreeNodeDriver::*)() const>(&BinMDataStd_TreeNodeDriver::NewEmpty),
@@ -855,12 +874,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_UAttributeDriver ,opencascade::handle<BinMDataStd_UAttributeDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_UAttributeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_UAttributeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_UAttributeDriver::*)() const>(&BinMDataStd_UAttributeDriver::NewEmpty),
@@ -884,12 +905,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataStd_VariableDriver ,opencascade::handle<BinMDataStd_VariableDriver>  , BinMDF_ADriver >>(m.attr("BinMDataStd_VariableDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataStd_VariableDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataStd_VariableDriver::*)() const>(&BinMDataStd_VariableDriver::NewEmpty),
@@ -913,37 +936,37 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinMDataStd.hxx
-// ./opencascade/BinMDataStd_IntegerListDriver.hxx
-// ./opencascade/BinMDataStd_ReferenceListDriver.hxx
-// ./opencascade/BinMDataStd_TreeNodeDriver.hxx
-// ./opencascade/BinMDataStd_CommentDriver.hxx
-// ./opencascade/BinMDataStd_AsciiStringDriver.hxx
-// ./opencascade/BinMDataStd_RealListDriver.hxx
-// ./opencascade/BinMDataStd_NameDriver.hxx
-// ./opencascade/BinMDataStd_IntPackedMapDriver.hxx
-// ./opencascade/BinMDataStd_ExtStringListDriver.hxx
-// ./opencascade/BinMDataStd_IntegerDriver.hxx
-// ./opencascade/BinMDataStd_ReferenceArrayDriver.hxx
-// ./opencascade/BinMDataStd_ExtStringArrayDriver.hxx
-// ./opencascade/BinMDataStd_RealArrayDriver.hxx
-// ./opencascade/BinMDataStd_TickDriver.hxx
-// ./opencascade/BinMDataStd_BooleanListDriver.hxx
-// ./opencascade/BinMDataStd_ByteArrayDriver.hxx
-// ./opencascade/BinMDataStd_IntegerArrayDriver.hxx
-// ./opencascade/BinMDataStd_UAttributeDriver.hxx
-// ./opencascade/BinMDataStd_NoteBookDriver.hxx
-// ./opencascade/BinMDataStd_BooleanArrayDriver.hxx
-// ./opencascade/BinMDataStd_NamedDataDriver.hxx
-// ./opencascade/BinMDataStd_RelationDriver.hxx
-// ./opencascade/BinMDataStd_DirectoryDriver.hxx
 // ./opencascade/BinMDataStd_RealDriver.hxx
+// ./opencascade/BinMDataStd_IntegerArrayDriver.hxx
+// ./opencascade/BinMDataStd_RealArrayDriver.hxx
+// ./opencascade/BinMDataStd_UAttributeDriver.hxx
 // ./opencascade/BinMDataStd_ExpressionDriver.hxx
+// ./opencascade/BinMDataStd_TreeNodeDriver.hxx
+// ./opencascade/BinMDataStd_ReferenceListDriver.hxx
+// ./opencascade/BinMDataStd_IntegerDriver.hxx
+// ./opencascade/BinMDataStd.hxx
+// ./opencascade/BinMDataStd_NoteBookDriver.hxx
+// ./opencascade/BinMDataStd_IntegerListDriver.hxx
+// ./opencascade/BinMDataStd_DirectoryDriver.hxx
+// ./opencascade/BinMDataStd_RelationDriver.hxx
+// ./opencascade/BinMDataStd_BooleanArrayDriver.hxx
+// ./opencascade/BinMDataStd_ByteArrayDriver.hxx
+// ./opencascade/BinMDataStd_RealListDriver.hxx
+// ./opencascade/BinMDataStd_AsciiStringDriver.hxx
+// ./opencascade/BinMDataStd_CommentDriver.hxx
+// ./opencascade/BinMDataStd_NameDriver.hxx
+// ./opencascade/BinMDataStd_ExtStringListDriver.hxx
+// ./opencascade/BinMDataStd_BooleanListDriver.hxx
+// ./opencascade/BinMDataStd_NamedDataDriver.hxx
+// ./opencascade/BinMDataStd_IntPackedMapDriver.hxx
 // ./opencascade/BinMDataStd_VariableDriver.hxx
+// ./opencascade/BinMDataStd_ExtStringArrayDriver.hxx
+// ./opencascade/BinMDataStd_ReferenceArrayDriver.hxx
+// ./opencascade/BinMDataStd_TickDriver.hxx
 
 // operators
 

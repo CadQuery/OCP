@@ -13,15 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_FileReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_Check.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <StepData_PDescr.hxx>
-#include <StepData_SelectMember.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <StepData_StepWriter.hxx>
 #include <Interface_Check.hxx>
 #include <StepData_PDescr.hxx>
 #include <StepData_SelectMember.hxx>
@@ -31,39 +28,6 @@ namespace py = pybind11;
 #include <StepData_SelectType.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepData_EnumTool.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <StepData_Protocol.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <StepData_Field.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_InterfaceMismatch.hxx>
-#include <StepData_ECDescr.hxx>
-#include <StepData_Simple.hxx>
-#include <StepData_Field.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_Described.hxx>
-#include <StepData_StepModel.hxx>
-#include <Interface_InterfaceMismatch.hxx>
-#include <StepData_Protocol.hxx>
-#include <Message_Messenger.hxx>
-#include <StepData_ESDescr.hxx>
-#include <StepData_Described.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Interface_UndefinedContent.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_Protocol.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepData_StepWriter.hxx>
 #include <StepData_Protocol.hxx>
 #include <StepData_StepModel.hxx>
 #include <StepData_UndefinedEntity.hxx>
@@ -90,11 +54,7 @@ namespace py = pybind11;
 #include <StepData_GeneralModule.hxx>
 #include <StepData_FileRecognizer.hxx>
 #include <StepData_FileProtocol.hxx>
-#include <StepData_HeaderTool.hxx>
 #include <StepData_EnumTool.hxx>
-#include <StepData_DescrProtocol.hxx>
-#include <StepData_DescrGeneral.hxx>
-#include <StepData_DescrReadWrite.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <StepData_StepReaderTool.hxx>
 #include <StepData_ReadWriteModule.hxx>
@@ -104,58 +64,48 @@ namespace py = pybind11;
 #include <StepData_DefaultGeneral.hxx>
 #include <StepData_GlobalNodeOfWriterLib.hxx>
 #include <StepData_NodeOfWriterLib.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Check.hxx>
-#include <Message_Messenger.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <StepData_Protocol.hxx>
-#include <StepData_FileProtocol.hxx>
-#include <StepData_FileRecognizer.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <StepData_Protocol.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <StepData_GlobalNodeOfWriterLib.hxx>
 #include <StepData_ReadWriteModule.hxx>
 #include <StepData_Protocol.hxx>
 #include <StepData_WriterLib.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <StepData_EDescr.hxx>
-#include <StepData_ESDescr.hxx>
-#include <StepData_ECDescr.hxx>
-#include <StepData_PDescr.hxx>
 #include <StepData_NodeOfWriterLib.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <StepData_ReadWriteModule.hxx>
+#include <StepData_StepModel.hxx>
+#include <Interface_InterfaceMismatch.hxx>
 #include <StepData_Protocol.hxx>
-#include <StepData_GlobalNodeOfWriterLib.hxx>
+#include <Message_Messenger.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
 #include <StepData_EDescr.hxx>
 #include <Interface_InterfaceMismatch.hxx>
 #include <StepData_Simple.hxx>
 #include <StepData_Field.hxx>
 #include <Interface_Check.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <Interface_FileReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TCollection_AsciiString.hxx>
+#include <StepData_SelectMember.hxx>
+#include <StepData_GlobalNodeOfWriterLib.hxx>
 #include <StepData_ReadWriteModule.hxx>
 #include <StepData_Protocol.hxx>
 #include <StepData_WriterLib.hxx>
-#include <StepData_NodeOfWriterLib.hxx>
 #include <Interface_InterfaceMismatch.hxx>
 #include <StepData_ESDescr.hxx>
 #include <Interface_Check.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <StepData_PDescr.hxx>
 #include <StepData_Described.hxx>
-#include <StepData_SelectMember.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <Interface_UndefinedContent.hxx>
+#include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
+#include <StepData_StepWriter.hxx>
 #include <Interface_CopyTool.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_NodeOfWriterLib.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <StepData_ReadWriteModule.hxx>
+#include <StepData_Protocol.hxx>
+#include <StepData_GlobalNodeOfWriterLib.hxx>
 #include <StepData_StepModel.hxx>
 #include <Interface_InterfaceMismatch.hxx>
 #include <StepData_Protocol.hxx>
@@ -168,15 +118,46 @@ namespace py = pybind11;
 #include <StepData_EDescr.hxx>
 #include <StepData_Field.hxx>
 #include <Interface_Check.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <StepData_Field.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <StepData_EDescr.hxx>
+#include <StepData_ESDescr.hxx>
+#include <StepData_ECDescr.hxx>
+#include <StepData_PDescr.hxx>
+#include <StepData_PDescr.hxx>
+#include <StepData_Described.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Check.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <StepData_PDescr.hxx>
+#include <StepData_SelectMember.hxx>
+#include <StepData_FileRecognizer.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <StepData_Protocol.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceMismatch.hxx>
+#include <StepData_ECDescr.hxx>
+#include <StepData_Simple.hxx>
+#include <StepData_Field.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_ESDescr.hxx>
+#include <StepData_Described.hxx>
 
 // module includes
 #include <StepData.hxx>
 #include <StepData_Array1OfField.hxx>
 #include <StepData_DefaultGeneral.hxx>
-#include <StepData_DescrGeneral.hxx>
 #include <StepData_Described.hxx>
-#include <StepData_DescrProtocol.hxx>
-#include <StepData_DescrReadWrite.hxx>
 #include <StepData_ECDescr.hxx>
 #include <StepData_EDescr.hxx>
 #include <StepData_EnumTool.hxx>
@@ -192,7 +173,6 @@ namespace py = pybind11;
 #include <StepData_GeneralModule.hxx>
 #include <StepData_GlobalNodeOfWriterLib.hxx>
 #include <StepData_HArray1OfField.hxx>
-#include <StepData_HeaderTool.hxx>
 #include <StepData_Logical.hxx>
 #include <StepData_NodeOfWriterLib.hxx>
 #include <StepData_PDescr.hxx>
@@ -236,6 +216,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     public:
         using StepData_Described::StepData_Described;
         
+        
         // public pure virtual
         Standard_Boolean IsComplex() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,StepData_Described,IsComplex,) };
         Standard_Boolean Matches(const Standard_CString steptype) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,StepData_Described,Matches,steptype) };
@@ -257,6 +238,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     public:
         using StepData_EDescr::StepData_EDescr;
         
+        
         // public pure virtual
         Standard_Boolean Matches(const Standard_CString steptype) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,StepData_EDescr,Matches,steptype) };
         Standard_Boolean IsComplex() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,StepData_EDescr,IsComplex,) };
@@ -273,6 +255,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     public:
         using StepData_FileRecognizer::StepData_FileRecognizer;
         
+        
         // public pure virtual
         
         
@@ -287,11 +270,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     public:
         using StepData_GeneralModule::StepData_GeneralModule;
         
+        
         // public pure virtual
         void FillSharedCase(const Standard_Integer casenum,const opencascade::handle<Standard_Transient> & ent,Interface_EntityIterator & iter) const  override { PYBIND11_OVERLOAD_PURE(void,StepData_GeneralModule,FillSharedCase,casenum,ent,iter) };
         void CheckCase(const Standard_Integer casenum,const opencascade::handle<Standard_Transient> & ent,const Interface_ShareTool & shares,opencascade::handle<Interface_Check> & ach) const  override { PYBIND11_OVERLOAD_PURE(void,StepData_GeneralModule,CheckCase,casenum,ent,shares,ach) };
         void CopyCase(const Standard_Integer casenum,const opencascade::handle<Standard_Transient> & entfrom,const opencascade::handle<Standard_Transient> & entto,Interface_CopyTool & TC) const  override { PYBIND11_OVERLOAD_PURE(void,StepData_GeneralModule,CopyCase,casenum,entfrom,entto,TC) };
         
+        Standard_Boolean NewVoid(const Standard_Integer CN,opencascade::handle<Standard_Transient> & entto) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Interface_GeneralModule,NewVoid,CN,entto) };
         
         // protected pure virtual
         
@@ -302,6 +287,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     class Py_StepData_ReadWriteModule : public StepData_ReadWriteModule{
     public:
         using StepData_ReadWriteModule::StepData_ReadWriteModule;
+        
         
         // public pure virtual
         Standard_Integer CaseStep(const TCollection_AsciiString & atype) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,StepData_ReadWriteModule,CaseStep,atype) };
@@ -320,6 +306,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     public:
         using StepData_SelectType::StepData_SelectType;
         
+        
         // public pure virtual
         Standard_Integer CaseNum(const opencascade::handle<Standard_Transient> & ent) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,StepData_SelectType,CaseNum,ent) };
         
@@ -333,9 +320,12 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StepData , shared_ptr<StepData>>(m,"StepData");
 
     static_cast<py::class_<StepData , shared_ptr<StepData>  >>(m.attr("StepData"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -353,11 +343,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(Returns a Protocol from StepData (avoids to create it))#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_Described ,opencascade::handle<StepData_Described> ,Py_StepData_Described , Standard_Transient >>(m.attr("StepData_Described"))
+    // constructors
+    // custom constructors
     // methods
         .def("Description",
              (opencascade::handle<StepData_EDescr> (StepData_Described::*)() const) static_cast<opencascade::handle<StepData_EDescr> (StepData_Described::*)() const>(&StepData_Described::Description),
@@ -399,11 +391,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_EDescr ,opencascade::handle<StepData_EDescr> ,Py_StepData_EDescr , Standard_Transient >>(m.attr("StepData_EDescr"))
+    // constructors
+    // custom constructors
     // methods
         .def("Matches",
              (Standard_Boolean (StepData_EDescr::*)( const Standard_CString  ) const) static_cast<Standard_Boolean (StepData_EDescr::*)( const Standard_CString  ) const>(&StepData_EDescr::Matches),
@@ -427,12 +421,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_EnumTool , shared_ptr<StepData_EnumTool>  >>(m.attr("StepData_EnumTool"))
+    // constructors
         .def(py::init< const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString,const Standard_CString >()  , py::arg("e0")=static_cast<const Standard_CString>(""),  py::arg("e1")=static_cast<const Standard_CString>(""),  py::arg("e2")=static_cast<const Standard_CString>(""),  py::arg("e3")=static_cast<const Standard_CString>(""),  py::arg("e4")=static_cast<const Standard_CString>(""),  py::arg("e5")=static_cast<const Standard_CString>(""),  py::arg("e6")=static_cast<const Standard_CString>(""),  py::arg("e7")=static_cast<const Standard_CString>(""),  py::arg("e8")=static_cast<const Standard_CString>(""),  py::arg("e9")=static_cast<const Standard_CString>(""),  py::arg("e10")=static_cast<const Standard_CString>(""),  py::arg("e11")=static_cast<const Standard_CString>(""),  py::arg("e12")=static_cast<const Standard_CString>(""),  py::arg("e13")=static_cast<const Standard_CString>(""),  py::arg("e14")=static_cast<const Standard_CString>(""),  py::arg("e15")=static_cast<const Standard_CString>(""),  py::arg("e16")=static_cast<const Standard_CString>(""),  py::arg("e17")=static_cast<const Standard_CString>(""),  py::arg("e18")=static_cast<const Standard_CString>(""),  py::arg("e19")=static_cast<const Standard_CString>(""),  py::arg("e20")=static_cast<const Standard_CString>(""),  py::arg("e21")=static_cast<const Standard_CString>(""),  py::arg("e22")=static_cast<const Standard_CString>(""),  py::arg("e23")=static_cast<const Standard_CString>(""),  py::arg("e24")=static_cast<const Standard_CString>(""),  py::arg("e25")=static_cast<const Standard_CString>(""),  py::arg("e26")=static_cast<const Standard_CString>(""),  py::arg("e27")=static_cast<const Standard_CString>(""),  py::arg("e28")=static_cast<const Standard_CString>(""),  py::arg("e29")=static_cast<const Standard_CString>(""),  py::arg("e30")=static_cast<const Standard_CString>(""),  py::arg("e31")=static_cast<const Standard_CString>(""),  py::arg("e32")=static_cast<const Standard_CString>(""),  py::arg("e33")=static_cast<const Standard_CString>(""),  py::arg("e34")=static_cast<const Standard_CString>(""),  py::arg("e35")=static_cast<const Standard_CString>(""),  py::arg("e36")=static_cast<const Standard_CString>(""),  py::arg("e37")=static_cast<const Standard_CString>(""),  py::arg("e38")=static_cast<const Standard_CString>(""),  py::arg("e39")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("AddDefinition",
              (void (StepData_EnumTool::*)( const Standard_CString  ) ) static_cast<void (StepData_EnumTool::*)( const Standard_CString  ) >(&StepData_EnumTool::AddDefinition),
@@ -462,13 +458,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_Field , shared_ptr<StepData_Field>  >>(m.attr("StepData_Field"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const StepData_Field &,const Standard_Boolean >()  , py::arg("other"),  py::arg("copy")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("CopyFrom",
              (void (StepData_Field::*)( const StepData_Field &  ) ) static_cast<void (StepData_Field::*)( const StepData_Field &  ) >(&StepData_Field::CopyFrom),
@@ -597,12 +595,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_FieldList , shared_ptr<StepData_FieldList>  >>(m.attr("StepData_FieldList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbFields",
              (Standard_Integer (StepData_FieldList::*)() const) static_cast<Standard_Integer (StepData_FieldList::*)() const>(&StepData_FieldList::NbFields),
@@ -620,11 +620,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_FileRecognizer ,opencascade::handle<StepData_FileRecognizer> ,Py_StepData_FileRecognizer , Standard_Transient >>(m.attr("StepData_FileRecognizer"))
+    // constructors
+    // custom constructors
     // methods
         .def("Evaluate",
              (Standard_Boolean (StepData_FileRecognizer::*)( const TCollection_AsciiString & ,  opencascade::handle<Standard_Transient> &  ) ) static_cast<Standard_Boolean (StepData_FileRecognizer::*)( const TCollection_AsciiString & ,  opencascade::handle<Standard_Transient> &  ) >(&StepData_FileRecognizer::Evaluate),
@@ -648,11 +650,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_FreeFormEntity ,opencascade::handle<StepData_FreeFormEntity>  , Standard_Transient >>(m.attr("StepData_FreeFormEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetStepType",
              (void (StepData_FreeFormEntity::*)( const Standard_CString  ) ) static_cast<void (StepData_FreeFormEntity::*)( const Standard_CString  ) >(&StepData_FreeFormEntity::SetStepType),
@@ -703,11 +707,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_GeneralModule ,opencascade::handle<StepData_GeneralModule> ,Py_StepData_GeneralModule , Interface_GeneralModule >>(m.attr("StepData_GeneralModule"))
+    // constructors
+    // custom constructors
     // methods
         .def("FillSharedCase",
              (void (StepData_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const) static_cast<void (StepData_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const>(&StepData_GeneralModule::FillSharedCase),
@@ -731,12 +737,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_GlobalNodeOfWriterLib ,opencascade::handle<StepData_GlobalNodeOfWriterLib>  , Standard_Transient >>(m.attr("StepData_GlobalNodeOfWriterLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (StepData_GlobalNodeOfWriterLib::*)( const opencascade::handle<StepData_ReadWriteModule> & ,  const opencascade::handle<StepData_Protocol> &  ) ) static_cast<void (StepData_GlobalNodeOfWriterLib::*)( const opencascade::handle<StepData_ReadWriteModule> & ,  const opencascade::handle<StepData_Protocol> &  ) >(&StepData_GlobalNodeOfWriterLib::Add),
@@ -763,14 +771,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_HArray1OfField ,opencascade::handle<StepData_HArray1OfField>  , StepData_Array1OfField , Standard_Transient >>(m.attr("StepData_HArray1OfField"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepData_Field & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepData_Field> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepData_Array1OfField & (StepData_HArray1OfField::*)() const) static_cast<const StepData_Array1OfField & (StepData_HArray1OfField::*)() const>(&StepData_HArray1OfField::Array1),
@@ -791,51 +802,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<StepData_HeaderTool , shared_ptr<StepData_HeaderTool>  >>(m.attr("StepData_HeaderTool"))
-        .def(py::init< const opencascade::handle<StepData_StepReaderData> & >()  , py::arg("data") )
-        .def(py::init<  const NCollection_Sequence<TCollection_AsciiString> & >()  , py::arg("names") )
-    // methods
-        .def("NbSchemaNames",
-             (Standard_Integer (StepData_HeaderTool::*)() const) static_cast<Standard_Integer (StepData_HeaderTool::*)() const>(&StepData_HeaderTool::NbSchemaNames),
-             R"#(Returns the count of SchemaNames)#" )
-        .def("SchemaName",
-             (const TCollection_AsciiString & (StepData_HeaderTool::*)( const Standard_Integer  ) const) static_cast<const TCollection_AsciiString & (StepData_HeaderTool::*)( const Standard_Integer  ) const>(&StepData_HeaderTool::SchemaName),
-             R"#(Returns a SchemaName, given its rank)#"  , py::arg("num"))
-        .def("NamedProtocol",
-             (opencascade::handle<StepData_Protocol> (StepData_HeaderTool::*)( const TCollection_AsciiString &  ) const) static_cast<opencascade::handle<StepData_Protocol> (StepData_HeaderTool::*)( const TCollection_AsciiString &  ) const>(&StepData_HeaderTool::NamedProtocol),
-             R"#(Returns the Protocol which corresponds to a Schema Name Returns a Null Handle if this Schema Name is attached to no Protocol recorded in the Global List of ReaderLib)#"  , py::arg("name"))
-        .def("Build",
-             (void (StepData_HeaderTool::*)( const opencascade::handle<StepData_FileProtocol> &  ) ) static_cast<void (StepData_HeaderTool::*)( const opencascade::handle<StepData_FileProtocol> &  ) >(&StepData_HeaderTool::Build),
-             R"#(Fills a FileProtocol with the list of Protocols attached to the list of Schema Names. It can remain empty ...)#"  , py::arg("protocol"))
-        .def("Protocol",
-             (opencascade::handle<StepData_Protocol> (StepData_HeaderTool::*)() ) static_cast<opencascade::handle<StepData_Protocol> (StepData_HeaderTool::*)() >(&StepData_HeaderTool::Protocol),
-             R"#(Returns a Protocol computed from the list of Schema Names : - a Null Handle if no SchemaName has been recognized (or list empty) - a single Protocol if only one SchemaName has been recognized - a FileProtocol with its componants if several SchemaNames have been recognized)#" )
-        .def("IsDone",
-             (Standard_Boolean (StepData_HeaderTool::*)() const) static_cast<Standard_Boolean (StepData_HeaderTool::*)() const>(&StepData_HeaderTool::IsDone),
-             R"#(Returns True if either Build or Protocol has been called If it is False, Ignored and NbIgnored should not be called)#" )
-        .def("NbIgnoreds",
-             (Standard_Integer (StepData_HeaderTool::*)() const) static_cast<Standard_Integer (StepData_HeaderTool::*)() const>(&StepData_HeaderTool::NbIgnoreds),
-             R"#(Returns the count of ignored SchemaNames (0 if all were OK))#" )
-        .def("Ignored",
-             (const TCollection_AsciiString & (StepData_HeaderTool::*)( const Standard_Integer  ) const) static_cast<const TCollection_AsciiString & (StepData_HeaderTool::*)( const Standard_Integer  ) const>(&StepData_HeaderTool::Ignored),
-             R"#(Returns an ignored SchemaName, given its rank in the list of Ignored SchemaNames (not in the total list))#"  , py::arg("num"))
-        .def("Print",
-             (void (StepData_HeaderTool::*)( std::ostream &  ) const) static_cast<void (StepData_HeaderTool::*)( std::ostream &  ) const>(&StepData_HeaderTool::Print),
-             R"#(Sends the state of the HeaderTool in a comprehensive way, to an output stream)#"  , py::arg("S"))
-    // methods using call by reference i.s.o. return
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_NodeOfWriterLib ,opencascade::handle<StepData_NodeOfWriterLib>  , Standard_Transient >>(m.attr("StepData_NodeOfWriterLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddNode",
              (void (StepData_NodeOfWriterLib::*)( const opencascade::handle<StepData_GlobalNodeOfWriterLib> &  ) ) static_cast<void (StepData_NodeOfWriterLib::*)( const opencascade::handle<StepData_GlobalNodeOfWriterLib> &  ) >(&StepData_NodeOfWriterLib::AddNode),
@@ -862,12 +836,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_PDescr ,opencascade::handle<StepData_PDescr>  , Standard_Transient >>(m.attr("StepData_PDescr"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetName",
              (void (StepData_PDescr::*)( const Standard_CString  ) ) static_cast<void (StepData_PDescr::*)( const Standard_CString  ) >(&StepData_PDescr::SetName),
@@ -1014,12 +990,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_Protocol ,opencascade::handle<StepData_Protocol>  , Interface_Protocol >>(m.attr("StepData_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (StepData_Protocol::*)() const) static_cast<Standard_Integer (StepData_Protocol::*)() const>(&StepData_Protocol::NbResources),
@@ -1094,11 +1072,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_ReadWriteModule ,opencascade::handle<StepData_ReadWriteModule> ,Py_StepData_ReadWriteModule , Interface_ReaderModule >>(m.attr("StepData_ReadWriteModule"))
+    // constructors
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepData_ReadWriteModule::*)( const opencascade::handle<Interface_FileReaderData> & ,  const Standard_Integer  ) const) static_cast<Standard_Integer (StepData_ReadWriteModule::*)( const opencascade::handle<Interface_FileReaderData> & ,  const Standard_Integer  ) const>(&StepData_ReadWriteModule::CaseNum),
@@ -1143,12 +1123,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_SelectMember ,opencascade::handle<StepData_SelectMember>  , Standard_Transient >>(m.attr("StepData_SelectMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepData_SelectMember::*)() const) static_cast<Standard_Boolean (StepData_SelectMember::*)() const>(&StepData_SelectMember::HasName),
@@ -1232,11 +1214,13 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_SelectType , shared_ptr<StepData_SelectType> ,Py_StepData_SelectType >>(m.attr("StepData_SelectType"))
+    // constructors
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepData_SelectType::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepData_SelectType::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepData_SelectType::CaseNum),
@@ -1314,12 +1298,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_StepDumper , shared_ptr<StepData_StepDumper>  >>(m.attr("StepData_StepDumper"))
+    // constructors
         .def(py::init< const opencascade::handle<StepData_StepModel> &,const opencascade::handle<StepData_Protocol> &,const Standard_Integer >()  , py::arg("amodel"),  py::arg("protocol"),  py::arg("mode")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("StepWriter",
              (StepData_StepWriter & (StepData_StepDumper::*)() ) static_cast<StepData_StepWriter & (StepData_StepDumper::*)() >(&StepData_StepDumper::StepWriter),
@@ -1334,12 +1320,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_StepModel ,opencascade::handle<StepData_StepModel>  , Interface_InterfaceModel >>(m.attr("StepData_StepModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Entity",
              (opencascade::handle<Standard_Transient> (StepData_StepModel::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<Standard_Transient> (StepData_StepModel::*)( const Standard_Integer  ) const>(&StepData_StepModel::Entity),
@@ -1399,12 +1387,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_StepReaderData ,opencascade::handle<StepData_StepReaderData>  , Interface_FileReaderData >>(m.attr("StepData_StepReaderData"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("nbheader"),  py::arg("nbtotal"),  py::arg("nbpar") )
+    // custom constructors
     // methods
         .def("SetRecord",
              (void (StepData_StepReaderData::*)( const Standard_Integer ,  const Standard_CString ,  const Standard_CString ,  const Standard_Integer  ) ) static_cast<void (StepData_StepReaderData::*)( const Standard_Integer ,  const Standard_CString ,  const Standard_CString ,  const Standard_Integer  ) >(&StepData_StepReaderData::SetRecord),
@@ -1530,12 +1520,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_StepReaderTool , shared_ptr<StepData_StepReaderTool>  , Interface_FileReaderTool >>(m.attr("StepData_StepReaderTool"))
+    // constructors
         .def(py::init< const opencascade::handle<StepData_StepReaderData> &,const opencascade::handle<StepData_Protocol> & >()  , py::arg("reader"),  py::arg("protocol") )
+    // custom constructors
     // methods
         .def("Prepare",
              (void (StepData_StepReaderTool::*)( const Standard_Boolean  ) ) static_cast<void (StepData_StepReaderTool::*)( const Standard_Boolean  ) >(&StepData_StepReaderTool::Prepare),
@@ -1562,12 +1554,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_StepWriter , shared_ptr<StepData_StepWriter>  >>(m.attr("StepData_StepWriter"))
+    // constructors
         .def(py::init< const opencascade::handle<StepData_StepModel> & >()  , py::arg("amodel") )
+    // custom constructors
     // methods
         .def("LabelMode",
              (Standard_Integer & (StepData_StepWriter::*)() ) static_cast<Standard_Integer & (StepData_StepWriter::*)() >(&StepData_StepWriter::LabelMode),
@@ -1717,13 +1711,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_UndefinedEntity ,opencascade::handle<StepData_UndefinedEntity>  , Standard_Transient >>(m.attr("StepData_UndefinedEntity"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean >()  , py::arg("issub") )
+    // custom constructors
     // methods
         .def("UndefinedContent",
              (opencascade::handle<Interface_UndefinedContent> (StepData_UndefinedEntity::*)() const) static_cast<opencascade::handle<Interface_UndefinedContent> (StepData_UndefinedEntity::*)() const>(&StepData_UndefinedEntity::UndefinedContent),
@@ -1765,13 +1761,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_WriterLib , shared_ptr<StepData_WriterLib>  >>(m.attr("StepData_WriterLib"))
+    // constructors
         .def(py::init< const opencascade::handle<StepData_Protocol> & >()  , py::arg("aprotocol") )
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddProtocol",
              (void (StepData_WriterLib::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (StepData_WriterLib::*)( const opencascade::handle<Standard_Transient> &  ) >(&StepData_WriterLib::AddProtocol),
@@ -1807,12 +1805,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(Adds a couple (Module-Protocol) into the global definition set for this class of Library.)#"  , py::arg("amodule"),  py::arg("aprotocol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_DefaultGeneral ,opencascade::handle<StepData_DefaultGeneral>  , StepData_GeneralModule >>(m.attr("StepData_DefaultGeneral"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("FillSharedCase",
              (void (StepData_DefaultGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const) static_cast<void (StepData_DefaultGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const>(&StepData_DefaultGeneral::FillSharedCase),
@@ -1839,85 +1839,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<StepData_DescrGeneral ,opencascade::handle<StepData_DescrGeneral>  , StepData_GeneralModule >>(m.attr("StepData_DescrGeneral"))
-        .def(py::init< const opencascade::handle<StepData_Protocol> & >()  , py::arg("proto") )
-    // methods
-        .def("FillSharedCase",
-             (void (StepData_DescrGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const) static_cast<void (StepData_DescrGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const>(&StepData_DescrGeneral::FillSharedCase),
-             R"#(None)#"  , py::arg("CN"),  py::arg("ent"),  py::arg("iter"))
-        .def("CheckCase",
-             (void (StepData_DescrGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_ShareTool & ,  opencascade::handle<Interface_Check> &  ) const) static_cast<void (StepData_DescrGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_ShareTool & ,  opencascade::handle<Interface_Check> &  ) const>(&StepData_DescrGeneral::CheckCase),
-             R"#(None)#"  , py::arg("CN"),  py::arg("ent"),  py::arg("shares"),  py::arg("ach"))
-        .def("CopyCase",
-             (void (StepData_DescrGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Standard_Transient> & ,  Interface_CopyTool &  ) const) static_cast<void (StepData_DescrGeneral::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Standard_Transient> & ,  Interface_CopyTool &  ) const>(&StepData_DescrGeneral::CopyCase),
-             R"#(None)#"  , py::arg("CN"),  py::arg("entfrom"),  py::arg("entto"),  py::arg("TC"))
-        .def("NewVoid",
-             (Standard_Boolean (StepData_DescrGeneral::*)( const Standard_Integer ,  opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Boolean (StepData_DescrGeneral::*)( const Standard_Integer ,  opencascade::handle<Standard_Transient> &  ) const>(&StepData_DescrGeneral::NewVoid),
-             R"#(None)#"  , py::arg("CN"),  py::arg("ent"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (StepData_DescrGeneral::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepData_DescrGeneral::*)() const>(&StepData_DescrGeneral::DynamicType),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&StepData_DescrGeneral::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepData_DescrGeneral::get_type_descriptor),
-                    R"#(None)#" )
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<StepData_DescrReadWrite ,opencascade::handle<StepData_DescrReadWrite>  , StepData_ReadWriteModule >>(m.attr("StepData_DescrReadWrite"))
-        .def(py::init< const opencascade::handle<StepData_Protocol> & >()  , py::arg("proto") )
-    // methods
-        .def("CaseStep",
-             (Standard_Integer (StepData_DescrReadWrite::*)( const TCollection_AsciiString &  ) const) static_cast<Standard_Integer (StepData_DescrReadWrite::*)( const TCollection_AsciiString &  ) const>(&StepData_DescrReadWrite::CaseStep),
-             R"#(None)#"  , py::arg("atype"))
-        .def("CaseStep",
-             (Standard_Integer (StepData_DescrReadWrite::*)(  const NCollection_Sequence<TCollection_AsciiString> &  ) const) static_cast<Standard_Integer (StepData_DescrReadWrite::*)(  const NCollection_Sequence<TCollection_AsciiString> &  ) const>(&StepData_DescrReadWrite::CaseStep),
-             R"#(None)#"  , py::arg("types"))
-        .def("IsComplex",
-             (Standard_Boolean (StepData_DescrReadWrite::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (StepData_DescrReadWrite::*)( const Standard_Integer  ) const>(&StepData_DescrReadWrite::IsComplex),
-             R"#(None)#"  , py::arg("CN"))
-        .def("StepType",
-             (const TCollection_AsciiString & (StepData_DescrReadWrite::*)( const Standard_Integer  ) const) static_cast<const TCollection_AsciiString & (StepData_DescrReadWrite::*)( const Standard_Integer  ) const>(&StepData_DescrReadWrite::StepType),
-             R"#(None)#"  , py::arg("CN"))
-        .def("ComplexType",
-             (Standard_Boolean (StepData_DescrReadWrite::*)( const Standard_Integer ,  NCollection_Sequence<TCollection_AsciiString> &  ) const) static_cast<Standard_Boolean (StepData_DescrReadWrite::*)( const Standard_Integer ,  NCollection_Sequence<TCollection_AsciiString> &  ) const>(&StepData_DescrReadWrite::ComplexType),
-             R"#(None)#"  , py::arg("CN"),  py::arg("types"))
-        .def("ReadStep",
-             (void (StepData_DescrReadWrite::*)( const Standard_Integer ,  const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<Standard_Transient> &  ) const) static_cast<void (StepData_DescrReadWrite::*)( const Standard_Integer ,  const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<Standard_Transient> &  ) const>(&StepData_DescrReadWrite::ReadStep),
-             R"#(None)#"  , py::arg("CN"),  py::arg("data"),  py::arg("num"),  py::arg("ach"),  py::arg("ent"))
-        .def("WriteStep",
-             (void (StepData_DescrReadWrite::*)( const Standard_Integer ,  StepData_StepWriter & ,  const opencascade::handle<Standard_Transient> &  ) const) static_cast<void (StepData_DescrReadWrite::*)( const Standard_Integer ,  StepData_StepWriter & ,  const opencascade::handle<Standard_Transient> &  ) const>(&StepData_DescrReadWrite::WriteStep),
-             R"#(None)#"  , py::arg("CN"),  py::arg("SW"),  py::arg("ent"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (StepData_DescrReadWrite::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepData_DescrReadWrite::*)() const>(&StepData_DescrReadWrite::DynamicType),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&StepData_DescrReadWrite::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepData_DescrReadWrite::get_type_descriptor),
-                    R"#(None)#" )
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_ECDescr ,opencascade::handle<StepData_ECDescr>  , StepData_EDescr >>(m.attr("StepData_ECDescr"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (StepData_ECDescr::*)( const opencascade::handle<StepData_ESDescr> &  ) ) static_cast<void (StepData_ECDescr::*)( const opencascade::handle<StepData_ESDescr> &  ) >(&StepData_ECDescr::Add),
@@ -1953,12 +1882,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_ESDescr ,opencascade::handle<StepData_ESDescr>  , StepData_EDescr >>(m.attr("StepData_ESDescr"))
+    // constructors
         .def(py::init< const Standard_CString >()  , py::arg("name") )
+    // custom constructors
     // methods
         .def("SetNbFields",
              (void (StepData_ESDescr::*)( const Standard_Integer  ) ) static_cast<void (StepData_ESDescr::*)( const Standard_Integer  ) >(&StepData_ESDescr::SetNbFields),
@@ -2024,12 +1955,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_FieldList1 , shared_ptr<StepData_FieldList1>  , StepData_FieldList >>(m.attr("StepData_FieldList1"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbFields",
              (Standard_Integer (StepData_FieldList1::*)() const) static_cast<Standard_Integer (StepData_FieldList1::*)() const>(&StepData_FieldList1::NbFields),
@@ -2044,12 +1977,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_FieldListD , shared_ptr<StepData_FieldListD>  , StepData_FieldList >>(m.attr("StepData_FieldListD"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("nb") )
+    // custom constructors
     // methods
         .def("SetNb",
              (void (StepData_FieldListD::*)( const Standard_Integer  ) ) static_cast<void (StepData_FieldListD::*)( const Standard_Integer  ) >(&StepData_FieldListD::SetNb),
@@ -2067,12 +2002,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_FieldListN , shared_ptr<StepData_FieldListN>  , StepData_FieldList >>(m.attr("StepData_FieldListN"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("nb") )
+    // custom constructors
     // methods
         .def("NbFields",
              (Standard_Integer (StepData_FieldListN::*)() const) static_cast<Standard_Integer (StepData_FieldListN::*)() const>(&StepData_FieldListN::NbFields),
@@ -2087,12 +2024,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_FileProtocol ,opencascade::handle<StepData_FileProtocol>  , StepData_Protocol >>(m.attr("StepData_FileProtocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (StepData_FileProtocol::*)( const opencascade::handle<StepData_Protocol> &  ) ) static_cast<void (StepData_FileProtocol::*)( const opencascade::handle<StepData_Protocol> &  ) >(&StepData_FileProtocol::Add),
@@ -2125,12 +2064,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_Plex ,opencascade::handle<StepData_Plex>  , StepData_Described >>(m.attr("StepData_Plex"))
+    // constructors
         .def(py::init< const opencascade::handle<StepData_ECDescr> & >()  , py::arg("descr") )
+    // custom constructors
     // methods
         .def("Add",
              (void (StepData_Plex::*)( const opencascade::handle<StepData_Simple> &  ) ) static_cast<void (StepData_Plex::*)( const opencascade::handle<StepData_Simple> &  ) >(&StepData_Plex::Add),
@@ -2184,12 +2125,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_SelectInt ,opencascade::handle<StepData_SelectInt>  , StepData_SelectMember >>(m.attr("StepData_SelectInt"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Kind",
              (Standard_Integer (StepData_SelectInt::*)() const) static_cast<Standard_Integer (StepData_SelectInt::*)() const>(&StepData_SelectInt::Kind),
@@ -2216,12 +2159,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_SelectNamed ,opencascade::handle<StepData_SelectNamed>  , StepData_SelectMember >>(m.attr("StepData_SelectNamed"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepData_SelectNamed::*)() const) static_cast<Standard_Boolean (StepData_SelectNamed::*)() const>(&StepData_SelectNamed::HasName),
@@ -2275,12 +2220,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_SelectReal ,opencascade::handle<StepData_SelectReal>  , StepData_SelectMember >>(m.attr("StepData_SelectReal"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Kind",
              (Standard_Integer (StepData_SelectReal::*)() const) static_cast<Standard_Integer (StepData_SelectReal::*)() const>(&StepData_SelectReal::Kind),
@@ -2304,12 +2251,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_Simple ,opencascade::handle<StepData_Simple>  , StepData_Described >>(m.attr("StepData_Simple"))
+    // constructors
         .def(py::init< const opencascade::handle<StepData_ESDescr> & >()  , py::arg("descr") )
+    // custom constructors
     // methods
         .def("ESDescr",
              (opencascade::handle<StepData_ESDescr> (StepData_Simple::*)() const) static_cast<opencascade::handle<StepData_ESDescr> (StepData_Simple::*)() const>(&StepData_Simple::ESDescr),
@@ -2369,41 +2318,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<StepData_DescrProtocol ,opencascade::handle<StepData_DescrProtocol>  , StepData_FileProtocol >>(m.attr("StepData_DescrProtocol"))
-        .def(py::init<  >()  )
-    // methods
-        .def("SetSchemaName",
-             (void (StepData_DescrProtocol::*)( const Standard_CString  ) ) static_cast<void (StepData_DescrProtocol::*)( const Standard_CString  ) >(&StepData_DescrProtocol::SetSchemaName),
-             R"#(Defines a specific Schema Name for this Protocol)#"  , py::arg("name"))
-        .def("LibRecord",
-             (void (StepData_DescrProtocol::*)() const) static_cast<void (StepData_DescrProtocol::*)() const>(&StepData_DescrProtocol::LibRecord),
-             R"#(Records this Protocol in the service libraries, with a DescrGeneral and a DescrReadWrite Does nothing if the Protocol brings no proper description)#" )
-        .def("SchemaName",
-             (Standard_CString (StepData_DescrProtocol::*)() const) static_cast<Standard_CString (StepData_DescrProtocol::*)() const>(&StepData_DescrProtocol::SchemaName),
-             R"#(Returns the Schema Name attached to each class of Protocol here, returns the SchemaName set by SetSchemaName was C++ : return const)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (StepData_DescrProtocol::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepData_DescrProtocol::*)() const>(&StepData_DescrProtocol::DynamicType),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&StepData_DescrProtocol::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepData_DescrProtocol::get_type_descriptor),
-                    R"#(None)#" )
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepData_SelectArrReal ,opencascade::handle<StepData_SelectArrReal>  , StepData_SelectNamed >>(m.attr("StepData_SelectArrReal"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Kind",
              (Standard_Integer (StepData_SelectArrReal::*)() const) static_cast<Standard_Integer (StepData_SelectArrReal::*)() const>(&StepData_SelectArrReal::Kind),
@@ -2427,53 +2349,49 @@ py::module m = static_cast<py::module>(main_module.attr("StepData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepData_HArray1OfField.hxx
-// ./opencascade/StepData_GeneralModule.hxx
-// ./opencascade/StepData_SelectInt.hxx
-// ./opencascade/StepData_FileProtocol.hxx
-// ./opencascade/StepData_SelectArrReal.hxx
-// ./opencascade/StepData_SelectType.hxx
-// ./opencascade/StepData_SelectNamed.hxx
-// ./opencascade/StepData_SelectMember.hxx
-// ./opencascade/StepData_StepReaderData.hxx
-// ./opencascade/StepData_DescrProtocol.hxx
-// ./opencascade/StepData_FieldList1.hxx
-// ./opencascade/StepData_DescrGeneral.hxx
-// ./opencascade/StepData_FieldListN.hxx
-// ./opencascade/StepData_FieldList.hxx
-// ./opencascade/StepData_Plex.hxx
-// ./opencascade/StepData_FreeFormEntity.hxx
-// ./opencascade/StepData_EDescr.hxx
-// ./opencascade/StepData_StepDumper.hxx
-// ./opencascade/StepData_ECDescr.hxx
-// ./opencascade/StepData_UndefinedEntity.hxx
-// ./opencascade/StepData_Array1OfField.hxx
-// ./opencascade/StepData_DescrReadWrite.hxx
-// ./opencascade/StepData.hxx
-// ./opencascade/StepData_StepModel.hxx
-// ./opencascade/StepData_FieldListD.hxx
-// ./opencascade/StepData_HeaderTool.hxx
-// ./opencascade/StepData_StepReaderTool.hxx
-// ./opencascade/StepData_NodeOfWriterLib.hxx
-// ./opencascade/StepData_Logical.hxx
-// ./opencascade/StepData_Protocol.hxx
-// ./opencascade/StepData_WriterLib.hxx
-// ./opencascade/StepData_Described.hxx
-// ./opencascade/StepData_ReadWriteModule.hxx
 // ./opencascade/StepData_FileRecognizer.hxx
-// ./opencascade/StepData_GlobalNodeOfWriterLib.hxx
+// ./opencascade/StepData_ReadWriteModule.hxx
+// ./opencascade/StepData_StepReaderData.hxx
 // ./opencascade/StepData_EnumTool.hxx
-// ./opencascade/StepData_Simple.hxx
-// ./opencascade/StepData_ESDescr.hxx
-// ./opencascade/StepData_Field.hxx
+// ./opencascade/StepData.hxx
 // ./opencascade/StepData_SelectReal.hxx
+// ./opencascade/StepData_SelectArrReal.hxx
+// ./opencascade/StepData_GlobalNodeOfWriterLib.hxx
+// ./opencascade/StepData_StepDumper.hxx
+// ./opencascade/StepData_FileProtocol.hxx
 // ./opencascade/StepData_DefaultGeneral.hxx
+// ./opencascade/StepData_HArray1OfField.hxx
+// ./opencascade/StepData_Described.hxx
+// ./opencascade/StepData_Field.hxx
+// ./opencascade/StepData_NodeOfWriterLib.hxx
+// ./opencascade/StepData_Simple.hxx
+// ./opencascade/StepData_EDescr.hxx
+// ./opencascade/StepData_FieldListD.hxx
+// ./opencascade/StepData_UndefinedEntity.hxx
+// ./opencascade/StepData_SelectMember.hxx
+// ./opencascade/StepData_FreeFormEntity.hxx
+// ./opencascade/StepData_WriterLib.hxx
+// ./opencascade/StepData_Array1OfField.hxx
+// ./opencascade/StepData_Logical.hxx
 // ./opencascade/StepData_StepWriter.hxx
 // ./opencascade/StepData_PDescr.hxx
+// ./opencascade/StepData_FieldListN.hxx
+// ./opencascade/StepData_FieldList1.hxx
+// ./opencascade/StepData_FieldList.hxx
+// ./opencascade/StepData_Protocol.hxx
+// ./opencascade/StepData_SelectNamed.hxx
+// ./opencascade/StepData_ESDescr.hxx
+// ./opencascade/StepData_GeneralModule.hxx
+// ./opencascade/StepData_StepModel.hxx
+// ./opencascade/StepData_SelectInt.hxx
+// ./opencascade/StepData_SelectType.hxx
+// ./opencascade/StepData_StepReaderTool.hxx
+// ./opencascade/StepData_Plex.hxx
+// ./opencascade/StepData_ECDescr.hxx
 
 // operators
 

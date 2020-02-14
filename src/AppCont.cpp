@@ -39,6 +39,7 @@ py::module m = static_cast<py::module>(main_module.attr("AppCont"));
     public:
         using AppCont_Function::AppCont_Function;
         
+        
         // public pure virtual
         Standard_Real FirstParameter() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,AppCont_Function,FirstParameter,) };
         Standard_Real LastParameter() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,AppCont_Function,LastParameter,) };
@@ -57,7 +58,9 @@ py::module m = static_cast<py::module>(main_module.attr("AppCont"));
 
 
     static_cast<py::class_<AppCont_Function , shared_ptr<AppCont_Function> ,Py_AppCont_Function >>(m.attr("AppCont_Function"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GetNbOf3dPoints",
              (Standard_Integer (AppCont_Function::*)() const) static_cast<Standard_Integer (AppCont_Function::*)() const>(&AppCont_Function::GetNbOf3dPoints),
@@ -84,12 +87,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppCont"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppCont_LeastSquare , shared_ptr<AppCont_LeastSquare>  >>(m.attr("AppCont_LeastSquare"))
+    // constructors
         .def(py::init< const AppCont_Function &,const Standard_Real,const Standard_Real,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer,const Standard_Integer >()  , py::arg("SSP"),  py::arg("U0"),  py::arg("U1"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Deg"),  py::arg("NbPoints") )
+    // custom constructors
     // methods
         .def("Value",
              (const AppParCurves_MultiCurve & (AppCont_LeastSquare::*)() ) static_cast<const AppParCurves_MultiCurve & (AppCont_LeastSquare::*)() >(&AppCont_LeastSquare::Value),
@@ -104,11 +109,26 @@ py::module m = static_cast<py::module>(main_module.attr("AppCont"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<PeriodicityInfo , shared_ptr<PeriodicityInfo>>(m,"PeriodicityInfo");
+
+    static_cast<py::class_<PeriodicityInfo , shared_ptr<PeriodicityInfo>  >>(m.attr("PeriodicityInfo"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/AppCont_Function.hxx
+// ./opencascade/AppCont_LeastSquare.hxx
 // ./opencascade/AppCont_ContMatrices.hxx
     m.def("InvMMatrix", 
           (void (*)( const Standard_Integer ,  math_Matrix &  ))  static_cast<void (*)( const Standard_Integer ,  math_Matrix &  )>(&InvMMatrix),
@@ -125,7 +145,6 @@ py::module m = static_cast<py::module>(main_module.attr("AppCont"));
     m.def("VBernstein", 
           (void (*)( const Standard_Integer ,  const Standard_Integer ,  math_Matrix &  ))  static_cast<void (*)( const Standard_Integer ,  const Standard_Integer ,  math_Matrix &  )>(&VBernstein),
           R"#(None)#"  , py::arg("classe"),  py::arg("nbpoints"),  py::arg("M"));
-// ./opencascade/AppCont_LeastSquare.hxx
 
 // operators
 

@@ -17,10 +17,10 @@ namespace py = pybind11;
 #include <StdFail_NotDone.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Shell.hxx>
-#include <TopoDS_Solid.hxx>
 #include <StdFail_NotDone.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Shell.hxx>
+#include <TopoDS_Solid.hxx>
 #include <StdFail_NotDone.hxx>
 
 // module includes
@@ -57,6 +57,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     public:
         using BRepPrimAPI_MakeOneAxis::BRepPrimAPI_MakeOneAxis;
         
+        
         // public pure virtual
         Standard_Address OneAxis() override { PYBIND11_OVERLOAD_PURE(Standard_Address,BRepPrimAPI_MakeOneAxis,OneAxis,) };
         
@@ -70,6 +71,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     class Py_BRepPrimAPI_MakeSweep : public BRepPrimAPI_MakeSweep{
     public:
         using BRepPrimAPI_MakeSweep::BRepPrimAPI_MakeSweep;
+        
         
         // public pure virtual
         TopoDS_Shape FirstShape() override { PYBIND11_OVERLOAD_PURE(TopoDS_Shape,BRepPrimAPI_MakeSweep,FirstShape,) };
@@ -87,10 +89,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
 
 
     static_cast<py::class_<BRepPrimAPI_MakeBox , shared_ptr<BRepPrimAPI_MakeBox>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepPrimAPI_MakeBox"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("dx"),  py::arg("dy"),  py::arg("dz") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz") )
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz") )
+    // custom constructors
     // methods
         .def("Wedge",
              (BRepPrim_Wedge & (BRepPrimAPI_MakeBox::*)() ) static_cast<BRepPrim_Wedge & (BRepPrimAPI_MakeBox::*)() >(&BRepPrimAPI_MakeBox::Wedge),
@@ -126,13 +130,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeHalfSpace , shared_ptr<BRepPrimAPI_MakeHalfSpace>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepPrimAPI_MakeHalfSpace"))
+    // constructors
         .def(py::init< const TopoDS_Face &,const gp_Pnt & >()  , py::arg("Face"),  py::arg("RefPnt") )
         .def(py::init< const TopoDS_Shell &,const gp_Pnt & >()  , py::arg("Shell"),  py::arg("RefPnt") )
+    // custom constructors
     // methods
         .def("Solid",
              (const TopoDS_Solid & (BRepPrimAPI_MakeHalfSpace::*)() const) static_cast<const TopoDS_Solid & (BRepPrimAPI_MakeHalfSpace::*)() const>(&BRepPrimAPI_MakeHalfSpace::Solid),
@@ -141,11 +147,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeOneAxis , shared_ptr<BRepPrimAPI_MakeOneAxis> ,Py_BRepPrimAPI_MakeOneAxis , BRepBuilderAPI_MakeShape >>(m.attr("BRepPrimAPI_MakeOneAxis"))
+    // constructors
+    // custom constructors
     // methods
         .def("OneAxis",
              (Standard_Address (BRepPrimAPI_MakeOneAxis::*)() ) static_cast<Standard_Address (BRepPrimAPI_MakeOneAxis::*)() >(&BRepPrimAPI_MakeOneAxis::OneAxis),
@@ -166,11 +174,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeSweep , shared_ptr<BRepPrimAPI_MakeSweep> ,Py_BRepPrimAPI_MakeSweep , BRepBuilderAPI_MakeShape >>(m.attr("BRepPrimAPI_MakeSweep"))
+    // constructors
+    // custom constructors
     // methods
         .def("FirstShape",
              (TopoDS_Shape (BRepPrimAPI_MakeSweep::*)() ) static_cast<TopoDS_Shape (BRepPrimAPI_MakeSweep::*)() >(&BRepPrimAPI_MakeSweep::FirstShape),
@@ -182,15 +192,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeWedge , shared_ptr<BRepPrimAPI_MakeWedge>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepPrimAPI_MakeWedge"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("dx"),  py::arg("dy"),  py::arg("dz"),  py::arg("ltx") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz"),  py::arg("ltx") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("dx"),  py::arg("dy"),  py::arg("dz"),  py::arg("xmin"),  py::arg("zmin"),  py::arg("xmax"),  py::arg("zmax") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz"),  py::arg("xmin"),  py::arg("zmin"),  py::arg("xmax"),  py::arg("zmax") )
+    // custom constructors
     // methods
         .def("Wedge",
              (BRepPrim_Wedge & (BRepPrimAPI_MakeWedge::*)() ) static_cast<BRepPrim_Wedge & (BRepPrimAPI_MakeWedge::*)() >(&BRepPrimAPI_MakeWedge::Wedge),
@@ -208,15 +220,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeCone , shared_ptr<BRepPrimAPI_MakeCone>  , BRepPrimAPI_MakeOneAxis >>(m.attr("BRepPrimAPI_MakeCone"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("R1"),  py::arg("R2"),  py::arg("H") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("R1"),  py::arg("R2"),  py::arg("H"),  py::arg("angle") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R1"),  py::arg("R2"),  py::arg("H") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R1"),  py::arg("R2"),  py::arg("H"),  py::arg("angle") )
+    // custom constructors
     // methods
         .def("OneAxis",
              (Standard_Address (BRepPrimAPI_MakeCone::*)() ) static_cast<Standard_Address (BRepPrimAPI_MakeCone::*)() >(&BRepPrimAPI_MakeCone::OneAxis),
@@ -228,15 +242,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeCylinder , shared_ptr<BRepPrimAPI_MakeCylinder>  , BRepPrimAPI_MakeOneAxis >>(m.attr("BRepPrimAPI_MakeCylinder"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("R"),  py::arg("H") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("R"),  py::arg("H"),  py::arg("Angle") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R"),  py::arg("H") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R"),  py::arg("H"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("OneAxis",
              (Standard_Address (BRepPrimAPI_MakeCylinder::*)() ) static_cast<Standard_Address (BRepPrimAPI_MakeCylinder::*)() >(&BRepPrimAPI_MakeCylinder::OneAxis),
@@ -248,13 +264,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakePrism , shared_ptr<BRepPrimAPI_MakePrism>  , BRepPrimAPI_MakeSweep >>(m.attr("BRepPrimAPI_MakePrism"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const gp_Vec &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("V"),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Canonize")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const TopoDS_Shape &,const gp_Dir &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("D"),  py::arg("Inf")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Canonize")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Prism",
              (const BRepSweep_Prism & (BRepPrimAPI_MakePrism::*)() const) static_cast<const BRepSweep_Prism & (BRepPrimAPI_MakePrism::*)() const>(&BRepPrimAPI_MakePrism::Prism),
@@ -271,6 +289,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
         .def("Generated",
              (const TopTools_ListOfShape & (BRepPrimAPI_MakePrism::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepPrimAPI_MakePrism::*)( const TopoDS_Shape &  ) >(&BRepPrimAPI_MakePrism::Generated),
              R"#(Returns ListOfShape from TopTools.)#"  , py::arg("S"))
+        .def("IsDeleted",
+             (Standard_Boolean (BRepPrimAPI_MakePrism::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepPrimAPI_MakePrism::*)( const TopoDS_Shape &  ) >(&BRepPrimAPI_MakePrism::IsDeleted),
+             R"#(Returns true if the shape S has been deleted.)#"  , py::arg("S"))
         .def("FirstShape",
              (TopoDS_Shape (BRepPrimAPI_MakePrism::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepPrimAPI_MakePrism::*)( const TopoDS_Shape &  ) >(&BRepPrimAPI_MakePrism::FirstShape),
              R"#(Returns the TopoDS Shape of the bottom of the prism. generated with theShape (subShape of the generating shape).)#"  , py::arg("theShape"))
@@ -281,13 +302,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeRevol , shared_ptr<BRepPrimAPI_MakeRevol>  , BRepPrimAPI_MakeSweep >>(m.attr("BRepPrimAPI_MakeRevol"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const gp_Ax1 &,const Standard_Real,const Standard_Boolean >()  , py::arg("S"),  py::arg("A"),  py::arg("D"),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Shape &,const gp_Ax1 &,const Standard_Boolean >()  , py::arg("S"),  py::arg("A"),  py::arg("Copy")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Revol",
              (const BRepSweep_Revol & (BRepPrimAPI_MakeRevol::*)() const) static_cast<const BRepSweep_Revol & (BRepPrimAPI_MakeRevol::*)() const>(&BRepPrimAPI_MakeRevol::Revol),
@@ -303,7 +326,10 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
              R"#(Returns the TopoDS Shape of the end of the revol.)#" )
         .def("Generated",
              (const TopTools_ListOfShape & (BRepPrimAPI_MakeRevol::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepPrimAPI_MakeRevol::*)( const TopoDS_Shape &  ) >(&BRepPrimAPI_MakeRevol::Generated),
-             R"#(None)#"  , py::arg("S"))
+             R"#(Returns list of shape generated from shape S Warning: shape S must be shape of type VERTEX, EDGE, FACE, SOLID. For shapes of other types method always returns empty list)#"  , py::arg("S"))
+        .def("IsDeleted",
+             (Standard_Boolean (BRepPrimAPI_MakeRevol::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepPrimAPI_MakeRevol::*)( const TopoDS_Shape &  ) >(&BRepPrimAPI_MakeRevol::IsDeleted),
+             R"#(Returns true if the shape S has been deleted.)#"  , py::arg("S"))
         .def("FirstShape",
              (TopoDS_Shape (BRepPrimAPI_MakeRevol::*)( const TopoDS_Shape &  ) ) static_cast<TopoDS_Shape (BRepPrimAPI_MakeRevol::*)( const TopoDS_Shape &  ) >(&BRepPrimAPI_MakeRevol::FirstShape),
              R"#(Returns the TopoDS Shape of the beginning of the revolution, generated with theShape (subShape of the generating shape).)#"  , py::arg("theShape"))
@@ -315,16 +341,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
              R"#(Check if there are degenerated edges in the result.)#" )
         .def("Degenerated",
              (const TopTools_ListOfShape & (BRepPrimAPI_MakeRevol::*)() const) static_cast<const TopTools_ListOfShape & (BRepPrimAPI_MakeRevol::*)() const>(&BRepPrimAPI_MakeRevol::Degenerated),
-             R"#(None)#" )
+             R"#(Returns the list of degenerated edges)#" )
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeRevolution , shared_ptr<BRepPrimAPI_MakeRevolution>  , BRepPrimAPI_MakeOneAxis >>(m.attr("BRepPrimAPI_MakeRevolution"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> & >()  , py::arg("Meridian") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real >()  , py::arg("Meridian"),  py::arg("angle") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("Meridian"),  py::arg("VMin"),  py::arg("VMax") )
@@ -333,6 +360,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
         .def(py::init< const gp_Ax2 &,const opencascade::handle<Geom_Curve> &,const Standard_Real >()  , py::arg("Axes"),  py::arg("Meridian"),  py::arg("angle") )
         .def(py::init< const gp_Ax2 &,const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("Meridian"),  py::arg("VMin"),  py::arg("VMax") )
         .def(py::init< const gp_Ax2 &,const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("Meridian"),  py::arg("VMin"),  py::arg("VMax"),  py::arg("angle") )
+    // custom constructors
     // methods
         .def("OneAxis",
              (Standard_Address (BRepPrimAPI_MakeRevolution::*)() ) static_cast<Standard_Address (BRepPrimAPI_MakeRevolution::*)() >(&BRepPrimAPI_MakeRevolution::OneAxis),
@@ -344,11 +372,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeSphere , shared_ptr<BRepPrimAPI_MakeSphere>  , BRepPrimAPI_MakeOneAxis >>(m.attr("BRepPrimAPI_MakeSphere"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("R") )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("R"),  py::arg("angle") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("R"),  py::arg("angle1"),  py::arg("angle2") )
@@ -361,6 +390,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("Axis"),  py::arg("R"),  py::arg("angle") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axis"),  py::arg("R"),  py::arg("angle1"),  py::arg("angle2") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axis"),  py::arg("R"),  py::arg("angle1"),  py::arg("angle2"),  py::arg("angle3") )
+    // custom constructors
     // methods
         .def("OneAxis",
              (Standard_Address (BRepPrimAPI_MakeSphere::*)() ) static_cast<Standard_Address (BRepPrimAPI_MakeSphere::*)() >(&BRepPrimAPI_MakeSphere::OneAxis),
@@ -372,11 +402,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrimAPI_MakeTorus , shared_ptr<BRepPrimAPI_MakeTorus>  , BRepPrimAPI_MakeOneAxis >>(m.attr("BRepPrimAPI_MakeTorus"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("R1"),  py::arg("R2") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("R1"),  py::arg("R2"),  py::arg("angle") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("R1"),  py::arg("R2"),  py::arg("angle1"),  py::arg("angle2") )
@@ -385,6 +416,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R1"),  py::arg("R2"),  py::arg("angle") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R1"),  py::arg("R2"),  py::arg("angle1"),  py::arg("angle2") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R1"),  py::arg("R2"),  py::arg("angle1"),  py::arg("angle2"),  py::arg("angle") )
+    // custom constructors
     // methods
         .def("OneAxis",
              (Standard_Address (BRepPrimAPI_MakeTorus::*)() ) static_cast<Standard_Address (BRepPrimAPI_MakeTorus::*)() >(&BRepPrimAPI_MakeTorus::OneAxis),
@@ -396,21 +428,21 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrimAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepPrimAPI_MakeRevolution.hxx
 // ./opencascade/BRepPrimAPI_MakeBox.hxx
-// ./opencascade/BRepPrimAPI_MakeSweep.hxx
-// ./opencascade/BRepPrimAPI_MakeCone.hxx
-// ./opencascade/BRepPrimAPI_MakeOneAxis.hxx
-// ./opencascade/BRepPrimAPI_MakePrism.hxx
-// ./opencascade/BRepPrimAPI_MakeRevol.hxx
-// ./opencascade/BRepPrimAPI_MakeHalfSpace.hxx
 // ./opencascade/BRepPrimAPI_MakeSphere.hxx
-// ./opencascade/BRepPrimAPI_MakeCylinder.hxx
 // ./opencascade/BRepPrimAPI_MakeTorus.hxx
+// ./opencascade/BRepPrimAPI_MakePrism.hxx
+// ./opencascade/BRepPrimAPI_MakeHalfSpace.hxx
+// ./opencascade/BRepPrimAPI_MakeOneAxis.hxx
+// ./opencascade/BRepPrimAPI_MakeRevolution.hxx
+// ./opencascade/BRepPrimAPI_MakeCylinder.hxx
+// ./opencascade/BRepPrimAPI_MakeCone.hxx
+// ./opencascade/BRepPrimAPI_MakeRevol.hxx
+// ./opencascade/BRepPrimAPI_MakeSweep.hxx
 // ./opencascade/BRepPrimAPI_MakeWedge.hxx
 
 // operators

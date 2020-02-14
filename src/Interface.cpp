@@ -13,61 +13,20 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Interface_InterfaceError.hxx>
+#include <Interface_GeneralLib.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_GTool.hxx>
 #include <Interface_GeneralModule.hxx>
 #include <Interface_Protocol.hxx>
 #include <Interface_GeneralLib.hxx>
 #include <Interface_NodeOfGeneralLib.hxx>
+#include <Standard_DomainError.hxx>
 #include <Standard_OutOfRange.hxx>
-#include <Interface_InterfaceError.hxx>
 #include <Standard_NullObject.hxx>
+#include <Interface_EntityList.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_ParamSet.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_FileParameter.hxx>
-#include <Interface_ParamList.hxx>
-#include <Interface_NodeOfGeneralLib.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Interface_GeneralModule.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_GlobalNodeOfGeneralLib.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_ReaderModule.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_ReaderLib.hxx>
-#include <Interface_NodeOfReaderLib.hxx>
-#include <Interface_GeneralLib.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_GTool.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_CopyControl.hxx>
-#include <Interface_CopyMap.hxx>
-#include <Interface_GeneralModule.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_GlobalNodeOfReaderLib.hxx>
-#include <Interface_ReaderModule.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_ReaderLib.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_GeneralLib.hxx>
-#include <Interface_GTool.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_GlobalNodeOfGeneralLib.hxx>
-#include <Interface_GeneralModule.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_GeneralLib.hxx>
+#include <Message_Msg.hxx>
+#include <Message_Messenger.hxx>
 #include <Interface_Check.hxx>
 #include <Interface_GTool.hxx>
 #include <Interface_InterfaceMismatch.hxx>
@@ -77,22 +36,17 @@ namespace py = pybind11;
 #include <Interface_GeneralLib.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Message_Messenger.hxx>
-#include <Interface_ParamList.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Interface_FileParameter.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <Interface_GeneralLib.hxx>
+#include <Standard_OutOfMemory.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Interface_InterfaceMismatch.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_CopyTool.hxx>
 #include <Interface_Protocol.hxx>
-#include <Interface_GTool.hxx>
+#include <Interface_SignType.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_GeneralModule.hxx>
 #include <Interface_Protocol.hxx>
 #include <Interface_FileReaderData.hxx>
 #include <Interface_InterfaceModel.hxx>
@@ -101,24 +55,32 @@ namespace py = pybind11;
 #include <Interface_Check.hxx>
 #include <Interface_GeneralLib.hxx>
 #include <Interface_ReaderLib.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Message_Messenger.hxx>
+#include <Interface_GlobalNodeOfReaderLib.hxx>
+#include <Interface_ReaderModule.hxx>
 #include <Interface_Protocol.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Standard_DomainError.hxx>
-#include <Interface_FileReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Standard_DomainError.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Standard_NullObject.hxx>
-#include <Interface_EntityList.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Interface_InterfaceMismatch.hxx>
+#include <Interface_ReaderLib.hxx>
 #include <Interface_InterfaceError.hxx>
-#include <Interface_CopyTool.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_GeneralLib.hxx>
+#include <Interface_GTool.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_IntVal.hxx>
+#include <Message_Messenger.hxx>
+#include <Interface_NodeOfGeneralLib.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Interface_GeneralModule.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_GlobalNodeOfGeneralLib.hxx>
 #include <Interface_HGraph.hxx>
 #include <Standard_DomainError.hxx>
 #include <Interface_InterfaceError.hxx>
@@ -129,13 +91,32 @@ namespace py = pybind11;
 #include <Interface_Graph.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Message_Messenger.hxx>
+#include <Interface_ParamSet.hxx>
+#include <Standard_NoSuchObject.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Message_Msg.hxx>
-#include <Message_Messenger.hxx>
+#include <Interface_FileParameter.hxx>
+#include <Interface_ParamList.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_IntVal.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <Interface_GeneralLib.hxx>
 #include <Interface_Protocol.hxx>
-#include <Interface_SignType.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_GeneralModule.hxx>
+#include <Interface_GTool.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Standard_DomainError.hxx>
+#include <Interface_FileReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_NodeOfReaderLib.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Interface_ReaderModule.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_GlobalNodeOfReaderLib.hxx>
+#include <Interface_ReaderModule.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_ReaderLib.hxx>
+#include <Interface_NodeOfReaderLib.hxx>
+#include <Interface_Check.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <Interface_GTool.hxx>
 #include <Interface_CheckFailure.hxx>
 #include <Interface_InterfaceModel.hxx>
@@ -146,19 +127,38 @@ namespace py = pybind11;
 #include <Message_Messenger.hxx>
 #include <Interface_CheckIterator.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <Interface_NodeOfReaderLib.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Interface_ReaderModule.hxx>
+#include <Interface_GlobalNodeOfGeneralLib.hxx>
+#include <Interface_GeneralModule.hxx>
 #include <Interface_Protocol.hxx>
-#include <Interface_GlobalNodeOfReaderLib.hxx>
+#include <Interface_GeneralLib.hxx>
 #include <Interface_InterfaceModel.hxx>
-#include <Interface_IntVal.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_OutOfMemory.hxx>
-#include <Interface_IntVal.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Interface_InterfaceError.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
 #include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_CopyControl.hxx>
+#include <Interface_CopyMap.hxx>
+#include <Interface_GeneralModule.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_ParamList.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Interface_FileParameter.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Message_Messenger.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Standard_NullObject.hxx>
+#include <Interface_EntityIterator.hxx>
 
 // module includes
 #include <Interface_Array1OfFileParameter.hxx>
@@ -230,19 +230,19 @@ namespace py = pybind11;
 #include <Interface_Version.hxx>
 
 // template related includes
-// ./opencascade/Interface_IndexedMapOfAsciiString.hxx
-#include "NCollection.hxx"
 // ./opencascade/Interface_SequenceOfCheck.hxx
 #include "NCollection.hxx"
-// ./opencascade/Interface_DataMapOfTransientInteger.hxx
+// ./opencascade/Interface_VectorOfFileParameter.hxx
+#include "NCollection.hxx"
+// ./opencascade/Interface_IndexedMapOfAsciiString.hxx
 #include "NCollection.hxx"
 // ./opencascade/Interface_DataMapOfTransientInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/Interface_Array1OfFileParameter.hxx
+// ./opencascade/Interface_DataMapOfTransientInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/Interface_Array1OfHAsciiString.hxx
 #include "NCollection.hxx"
-// ./opencascade/Interface_VectorOfFileParameter.hxx
+// ./opencascade/Interface_Array1OfFileParameter.hxx
 #include "NCollection.hxx"
 
 
@@ -263,6 +263,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     public:
         using Interface_CopyControl::Interface_CopyControl;
         
+        
         // public pure virtual
         void Clear() override { PYBIND11_OVERLOAD_PURE(void,Interface_CopyControl,Clear,) };
         void Bind(const opencascade::handle<Standard_Transient> & ent,const opencascade::handle<Standard_Transient> & res) override { PYBIND11_OVERLOAD_PURE(void,Interface_CopyControl,Bind,ent,res) };
@@ -279,6 +280,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     public:
         using Interface_FileReaderData::Interface_FileReaderData;
         
+        
         // public pure virtual
         Standard_Integer FindNextRecord(const Standard_Integer num) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Interface_FileReaderData,FindNextRecord,num) };
         
@@ -292,6 +294,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     class Py_Interface_FileReaderTool : public Interface_FileReaderTool{
     public:
         using Interface_FileReaderTool::Interface_FileReaderTool;
+        
         
         // public pure virtual
         Standard_Boolean Recognize(const Standard_Integer num,opencascade::handle<Interface_Check> & ach,opencascade::handle<Standard_Transient> & ent) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Interface_FileReaderTool,Recognize,num,ach,ent) };
@@ -309,6 +312,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     public:
         using Interface_GeneralModule::Interface_GeneralModule;
         
+        
         // public pure virtual
         void FillSharedCase(const Standard_Integer CN,const opencascade::handle<Standard_Transient> & ent,Interface_EntityIterator & iter) const  override { PYBIND11_OVERLOAD_PURE(void,Interface_GeneralModule,FillSharedCase,CN,ent,iter) };
         void CheckCase(const Standard_Integer CN,const opencascade::handle<Standard_Transient> & ent,const Interface_ShareTool & shares,opencascade::handle<Interface_Check> & ach) const  override { PYBIND11_OVERLOAD_PURE(void,Interface_GeneralModule,CheckCase,CN,ent,shares,ach) };
@@ -325,6 +329,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     class Py_Interface_InterfaceModel : public Interface_InterfaceModel{
     public:
         using Interface_InterfaceModel::Interface_InterfaceModel;
+        
         
         // public pure virtual
         void ClearLabels() override { PYBIND11_OVERLOAD_PURE(void,Interface_InterfaceModel,ClearLabels,) };
@@ -346,6 +351,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     public:
         using Interface_Protocol::Interface_Protocol;
         
+        
         // public pure virtual
         Standard_Integer NbResources() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Interface_Protocol,NbResources,) };
         opencascade::handle<Interface_Protocol> Resource(const Standard_Integer num) const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Interface_Protocol>,Interface_Protocol,Resource,num) };
@@ -366,6 +372,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     public:
         using Interface_ReaderModule::Interface_ReaderModule;
         
+        
         // public pure virtual
         Standard_Integer CaseNum(const opencascade::handle<Interface_FileReaderData> & data,const Standard_Integer num) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Interface_ReaderModule,CaseNum,data,num) };
         void Read(const Standard_Integer casenum,const opencascade::handle<Interface_FileReaderData> & data,const Standard_Integer num,opencascade::handle<Interface_Check> & ach,const opencascade::handle<Standard_Transient> & ent) const  override { PYBIND11_OVERLOAD_PURE(void,Interface_ReaderModule,Read,casenum,data,num,ach,ent) };
@@ -380,6 +387,7 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     class Py_Interface_SignType : public Interface_SignType{
     public:
         using Interface_SignType::Interface_SignType;
+        
         
         // public pure virtual
         Standard_CString Value(const opencascade::handle<Standard_Transient> & ent,const opencascade::handle<Interface_InterfaceModel> & model) const  override { PYBIND11_OVERLOAD_PURE(Standard_CString,Interface_SignType,Value,ent,model) };
@@ -396,9 +404,11 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
 
 
     static_cast<py::class_<Interface_BitMap , shared_ptr<Interface_BitMap>  >>(m.attr("Interface_BitMap"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("nbitems"),  py::arg("resflags")=static_cast<const Standard_Integer>(0) )
         .def(py::init< const Interface_BitMap &,const Standard_Boolean >()  , py::arg("other"),  py::arg("copied")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Interface_BitMap::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Interface_BitMap::*)( const Standard_Integer ,  const Standard_Integer  ) >(&Interface_BitMap::Initialize),
@@ -467,14 +477,16 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_Category , shared_ptr<Interface_Category>  >>(m.attr("Interface_Category"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Interface_Protocol> & >()  , py::arg("theProtocol") )
         .def(py::init< const opencascade::handle<Interface_GTool> & >()  , py::arg("theGTool") )
+    // custom constructors
     // methods
         .def("SetProtocol",
              (void (Interface_Category::*)( const opencascade::handle<Interface_Protocol> &  ) ) static_cast<void (Interface_Category::*)( const opencascade::handle<Interface_Protocol> &  ) >(&Interface_Category::SetProtocol),
@@ -510,13 +522,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(Default initialisation (protected against several calls : passes only once))#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_Check ,opencascade::handle<Interface_Check>  , Standard_Transient >>(m.attr("Interface_Check"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Standard_Transient> & >()  , py::arg("anentity") )
+    // custom constructors
     // methods
         .def("SendFail",
              (void (Interface_Check::*)( const Message_Msg &  ) ) static_cast<void (Interface_Check::*)( const Message_Msg &  ) >(&Interface_Check::SendFail),
@@ -657,13 +671,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_CheckIterator , shared_ptr<Interface_CheckIterator>  >>(m.attr("Interface_CheckIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("name") )
+    // custom constructors
     // methods
         .def("SetName",
              (void (Interface_CheckIterator::*)( const Standard_CString  ) ) static_cast<void (Interface_CheckIterator::*)( const Standard_CString  ) >(&Interface_CheckIterator::SetName),
@@ -747,15 +763,17 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_CheckTool , shared_ptr<Interface_CheckTool>  >>(m.attr("Interface_CheckTool"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> & >()  , py::arg("model"),  py::arg("protocol") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("model") )
         .def(py::init< const Interface_Graph & >()  , py::arg("graph") )
         .def(py::init< const opencascade::handle<Interface_HGraph> & >()  , py::arg("hgraph") )
+    // custom constructors
     // methods
         .def("FillCheck",
              (void (Interface_CheckTool::*)( const opencascade::handle<Standard_Transient> & ,  const Interface_ShareTool & ,  opencascade::handle<Interface_Check> &  ) ) static_cast<void (Interface_CheckTool::*)( const opencascade::handle<Standard_Transient> & ,  const Interface_ShareTool & ,  opencascade::handle<Interface_Check> &  ) >(&Interface_CheckTool::FillCheck),
@@ -794,11 +812,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_CopyControl ,opencascade::handle<Interface_CopyControl> ,Py_Interface_CopyControl , Standard_Transient >>(m.attr("Interface_CopyControl"))
+    // constructors
+    // custom constructors
     // methods
         .def("Clear",
              (void (Interface_CopyControl::*)() ) static_cast<void (Interface_CopyControl::*)() >(&Interface_CopyControl::Clear),
@@ -822,14 +842,16 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_CopyTool , shared_ptr<Interface_CopyTool>  >>(m.attr("Interface_CopyTool"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Interface_GeneralLib & >()  , py::arg("amodel"),  py::arg("lib") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> & >()  , py::arg("amodel"),  py::arg("protocol") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("amodel") )
+    // custom constructors
     // methods
         .def("Model",
              (opencascade::handle<Interface_InterfaceModel> (Interface_CopyTool::*)() const) static_cast<opencascade::handle<Interface_InterfaceModel> (Interface_CopyTool::*)() const>(&Interface_CopyTool::Model),
@@ -880,15 +902,17 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_EntityCluster ,opencascade::handle<Interface_EntityCluster>  , Standard_Transient >>(m.attr("Interface_EntityCluster"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Standard_Transient> & >()  , py::arg("ent") )
         .def(py::init< const opencascade::handle<Interface_EntityCluster> & >()  , py::arg("ec") )
         .def(py::init< const opencascade::handle<Standard_Transient> &,const opencascade::handle<Interface_EntityCluster> & >()  , py::arg("ant"),  py::arg("ec") )
+    // custom constructors
     // methods
         .def("Append",
              (void (Interface_EntityCluster::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (Interface_EntityCluster::*)( const opencascade::handle<Standard_Transient> &  ) >(&Interface_EntityCluster::Append),
@@ -924,13 +948,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_EntityIterator , shared_ptr<Interface_EntityIterator>  >>(m.attr("Interface_EntityIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TColStd_HSequenceOfTransient> & >()  , py::arg("list") )
+    // custom constructors
     // methods
         .def("AddList",
              (void (Interface_EntityIterator::*)( const opencascade::handle<TColStd_HSequenceOfTransient> &  ) ) static_cast<void (Interface_EntityIterator::*)( const opencascade::handle<TColStd_HSequenceOfTransient> &  ) >(&Interface_EntityIterator::AddList),
@@ -975,12 +1001,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_EntityList , shared_ptr<Interface_EntityList>  >>(m.attr("Interface_EntityList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (Interface_EntityList::*)() ) static_cast<void (Interface_EntityList::*)() >(&Interface_EntityList::Clear),
@@ -1022,12 +1050,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_FileParameter , shared_ptr<Interface_FileParameter>  >>(m.attr("Interface_FileParameter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (Interface_FileParameter::*)( const TCollection_AsciiString & ,  const Interface_ParamType  ) ) static_cast<void (Interface_FileParameter::*)( const TCollection_AsciiString & ,  const Interface_ParamType  ) >(&Interface_FileParameter::Init),
@@ -1057,11 +1087,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_FileReaderData ,opencascade::handle<Interface_FileReaderData> ,Py_Interface_FileReaderData , Standard_Transient >>(m.attr("Interface_FileReaderData"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbRecords",
              (Standard_Integer (Interface_FileReaderData::*)() const) static_cast<Standard_Integer (Interface_FileReaderData::*)() const>(&Interface_FileReaderData::NbRecords),
@@ -1151,11 +1183,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_FileReaderTool , shared_ptr<Interface_FileReaderTool> ,Py_Interface_FileReaderTool >>(m.attr("Interface_FileReaderTool"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetData",
              (void (Interface_FileReaderTool::*)( const opencascade::handle<Interface_FileReaderData> & ,  const opencascade::handle<Interface_Protocol> &  ) ) static_cast<void (Interface_FileReaderTool::*)( const opencascade::handle<Interface_FileReaderData> & ,  const opencascade::handle<Interface_Protocol> &  ) >(&Interface_FileReaderTool::SetData),
@@ -1227,12 +1261,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_FloatWriter , shared_ptr<Interface_FloatWriter>  >>(m.attr("Interface_FloatWriter"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("chars")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("SetFormat",
              (void (Interface_FloatWriter::*)( const Standard_CString ,  const Standard_Boolean  ) ) static_cast<void (Interface_FloatWriter::*)( const Standard_CString ,  const Standard_Boolean  ) >(&Interface_FloatWriter::SetFormat),
@@ -1265,13 +1301,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(This class method converts a Real Value to a string, given options given as arguments. It can be called independantly. Warning : even if declared in, content of <text> will be modified)#"  , py::arg("val"),  py::arg("text"),  py::arg("zerosup"),  py::arg("Range1"),  py::arg("Range2"),  py::arg("mainform"),  py::arg("rangeform"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_GTool ,opencascade::handle<Interface_GTool>  , Standard_Transient >>(m.attr("Interface_GTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Interface_Protocol> &,const Standard_Integer >()  , py::arg("proto"),  py::arg("nbent")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("SetSignType",
              (void (Interface_GTool::*)( const opencascade::handle<Interface_SignType> &  ) ) static_cast<void (Interface_GTool::*)( const opencascade::handle<Interface_SignType> &  ) >(&Interface_GTool::SetSignType),
@@ -1316,13 +1354,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_GeneralLib , shared_ptr<Interface_GeneralLib>  >>(m.attr("Interface_GeneralLib"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_Protocol> & >()  , py::arg("aprotocol") )
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddProtocol",
              (void (Interface_GeneralLib::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (Interface_GeneralLib::*)( const opencascade::handle<Standard_Transient> &  ) >(&Interface_GeneralLib::AddProtocol),
@@ -1358,11 +1398,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(Adds a couple (Module-Protocol) into the global definition set for this class of Library.)#"  , py::arg("amodule"),  py::arg("aprotocol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_GeneralModule ,opencascade::handle<Interface_GeneralModule> ,Py_Interface_GeneralModule , Standard_Transient >>(m.attr("Interface_GeneralModule"))
+    // constructors
+    // custom constructors
     // methods
         .def("FillShared",
              (void (Interface_GeneralModule::*)( const opencascade::handle<Interface_InterfaceModel> & ,  const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const) static_cast<void (Interface_GeneralModule::*)( const opencascade::handle<Interface_InterfaceModel> & ,  const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const>(&Interface_GeneralModule::FillShared),
@@ -1422,12 +1464,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_GlobalNodeOfGeneralLib ,opencascade::handle<Interface_GlobalNodeOfGeneralLib>  , Standard_Transient >>(m.attr("Interface_GlobalNodeOfGeneralLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (Interface_GlobalNodeOfGeneralLib::*)( const opencascade::handle<Interface_GeneralModule> & ,  const opencascade::handle<Interface_Protocol> &  ) ) static_cast<void (Interface_GlobalNodeOfGeneralLib::*)( const opencascade::handle<Interface_GeneralModule> & ,  const opencascade::handle<Interface_Protocol> &  ) >(&Interface_GlobalNodeOfGeneralLib::Add),
@@ -1454,12 +1498,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_GlobalNodeOfReaderLib ,opencascade::handle<Interface_GlobalNodeOfReaderLib>  , Standard_Transient >>(m.attr("Interface_GlobalNodeOfReaderLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (Interface_GlobalNodeOfReaderLib::*)( const opencascade::handle<Interface_ReaderModule> & ,  const opencascade::handle<Interface_Protocol> &  ) ) static_cast<void (Interface_GlobalNodeOfReaderLib::*)( const opencascade::handle<Interface_ReaderModule> & ,  const opencascade::handle<Interface_Protocol> &  ) >(&Interface_GlobalNodeOfReaderLib::Add),
@@ -1486,16 +1532,18 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_Graph , shared_ptr<Interface_Graph>  >>(m.attr("Interface_Graph"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Interface_GeneralLib &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("lib"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("protocol"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_GTool> &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("gtool"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("copied")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Reset",
              (void (Interface_Graph::*)() ) static_cast<void (Interface_Graph::*)() >(&Interface_Graph::Reset),
@@ -1600,14 +1648,17 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_HArray1OfHAsciiString ,opencascade::handle<Interface_HArray1OfHAsciiString>  , Interface_Array1OfHAsciiString , Standard_Transient >>(m.attr("Interface_HArray1OfHAsciiString"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<TCollection_HAsciiString> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<TCollection_HAsciiString> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Interface_Array1OfHAsciiString & (Interface_HArray1OfHAsciiString::*)() const) static_cast<const Interface_Array1OfHAsciiString & (Interface_HArray1OfHAsciiString::*)() const>(&Interface_HArray1OfHAsciiString::Array1),
@@ -1628,16 +1679,18 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_HGraph ,opencascade::handle<Interface_HGraph>  , Standard_Transient >>(m.attr("Interface_HGraph"))
+    // constructors
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Interface_GeneralLib &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("lib"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("protocol"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_GTool> &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("gtool"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Standard_Boolean >()  , py::arg("amodel"),  py::arg("theModeStats")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Graph",
              (const Interface_Graph & (Interface_HGraph::*)() const) static_cast<const Interface_Graph & (Interface_HGraph::*)() const>(&Interface_HGraph::Graph),
@@ -1658,13 +1711,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_HSequenceOfCheck ,opencascade::handle<Interface_HSequenceOfCheck>  , Interface_SequenceOfCheck , Standard_Transient >>(m.attr("Interface_HSequenceOfCheck"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Interface_Check> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const Interface_SequenceOfCheck & (Interface_HSequenceOfCheck::*)() const) static_cast<const Interface_SequenceOfCheck & (Interface_HSequenceOfCheck::*)() const>(&Interface_HSequenceOfCheck::Sequence),
@@ -1691,14 +1746,16 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_IntList , shared_ptr<Interface_IntList>  >>(m.attr("Interface_IntList"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("nbe") )
         .def(py::init< const Interface_IntList &,const Standard_Boolean >()  , py::arg("other"),  py::arg("copied") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Interface_IntList::*)( const Standard_Integer  ) ) static_cast<void (Interface_IntList::*)( const Standard_Integer  ) >(&Interface_IntList::Initialize),
@@ -1752,12 +1809,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_IntVal ,opencascade::handle<Interface_IntVal>  , Standard_Transient >>(m.attr("Interface_IntVal"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Integer (Interface_IntVal::*)() const) static_cast<Standard_Integer (Interface_IntVal::*)() const>(&Interface_IntVal::Value),
@@ -1778,11 +1837,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_InterfaceModel ,opencascade::handle<Interface_InterfaceModel> ,Py_Interface_InterfaceModel , Standard_Transient >>(m.attr("Interface_InterfaceModel"))
+    // constructors
+    // custom constructors
     // methods
         .def("Destroy",
              (void (Interface_InterfaceModel::*)() ) static_cast<void (Interface_InterfaceModel::*)() >(&Interface_InterfaceModel::Destroy),
@@ -1977,12 +2038,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_LineBuffer , shared_ptr<Interface_LineBuffer>  >>(m.attr("Interface_LineBuffer"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("size")=static_cast<const Standard_Integer>(10) )
+    // custom constructors
     // methods
         .def("SetMax",
              (void (Interface_LineBuffer::*)( const Standard_Integer  ) ) static_cast<void (Interface_LineBuffer::*)( const Standard_Integer  ) >(&Interface_LineBuffer::SetMax),
@@ -2033,17 +2096,19 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_MSG , shared_ptr<Interface_MSG>  >>(m.attr("Interface_MSG"))
+    // constructors
         .def(py::init< const Standard_CString >()  , py::arg("key") )
         .def(py::init< const Standard_CString,const Standard_Integer >()  , py::arg("key"),  py::arg("i1") )
         .def(py::init< const Standard_CString,const Standard_Integer,const Standard_Integer >()  , py::arg("key"),  py::arg("i1"),  py::arg("i2") )
         .def(py::init< const Standard_CString,const Standard_Real,const Standard_Integer >()  , py::arg("key"),  py::arg("r1"),  py::arg("intervals")=static_cast<const Standard_Integer>(- 1) )
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("key"),  py::arg("str") )
         .def(py::init< const Standard_CString,const Standard_Integer,const Standard_CString >()  , py::arg("key"),  py::arg("ival"),  py::arg("str") )
+    // custom constructors
     // methods
         .def("Destroy",
              (void (Interface_MSG::*)() ) static_cast<void (Interface_MSG::*)() >(&Interface_MSG::Destroy),
@@ -2106,29 +2171,34 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(Prints a String on an Output Stream, as follows : Accompagned with blanks, to give up to <max> charis at all, justified according just : -1 (D) : left 0 : center 1 : right Maximum 76 characters)#"  , py::arg("S"),  py::arg("val"),  py::arg("max"),  py::arg("just")=static_cast<const Standard_Integer>(- 1))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Interface_MapAsciiStringHasher , shared_ptr<Interface_MapAsciiStringHasher>>(m,"Interface_MapAsciiStringHasher");
 
     static_cast<py::class_<Interface_MapAsciiStringHasher , shared_ptr<Interface_MapAsciiStringHasher>  >>(m.attr("Interface_MapAsciiStringHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const TCollection_AsciiString & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TCollection_AsciiString & ,  const Standard_Integer  ) >(&Interface_MapAsciiStringHasher::HashCode),
-                    R"#(None)#"  , py::arg("K"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const TCollection_AsciiString & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TCollection_AsciiString & ,  Standard_Integer  ) >(&Interface_MapAsciiStringHasher::HashCode),
+                    R"#(Computes a hash code for the given ASCII string, in the range [1, theUpperBound])#"  , py::arg("theAsciiString"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) ) static_cast<Standard_Boolean (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) >(&Interface_MapAsciiStringHasher::IsEqual),
                     R"#(None)#"  , py::arg("K1"),  py::arg("K2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_NodeOfGeneralLib ,opencascade::handle<Interface_NodeOfGeneralLib>  , Standard_Transient >>(m.attr("Interface_NodeOfGeneralLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddNode",
              (void (Interface_NodeOfGeneralLib::*)( const opencascade::handle<Interface_GlobalNodeOfGeneralLib> &  ) ) static_cast<void (Interface_NodeOfGeneralLib::*)( const opencascade::handle<Interface_GlobalNodeOfGeneralLib> &  ) >(&Interface_NodeOfGeneralLib::AddNode),
@@ -2155,12 +2225,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_NodeOfReaderLib ,opencascade::handle<Interface_NodeOfReaderLib>  , Standard_Transient >>(m.attr("Interface_NodeOfReaderLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddNode",
              (void (Interface_NodeOfReaderLib::*)( const opencascade::handle<Interface_GlobalNodeOfReaderLib> &  ) ) static_cast<void (Interface_NodeOfReaderLib::*)( const opencascade::handle<Interface_GlobalNodeOfReaderLib> &  ) >(&Interface_NodeOfReaderLib::AddNode),
@@ -2187,12 +2259,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_ParamList ,opencascade::handle<Interface_ParamList>  , Standard_Transient >>(m.attr("Interface_ParamList"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("theIncrement")=static_cast<const Standard_Integer>(256) )
+    // custom constructors
     // methods
         .def("Length",
              (Standard_Integer (Interface_ParamList::*)() const) static_cast<Standard_Integer (Interface_ParamList::*)() const>(&Interface_ParamList::Length),
@@ -2237,12 +2311,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_ParamSet ,opencascade::handle<Interface_ParamSet>  , Standard_Transient >>(m.attr("Interface_ParamSet"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("nres"),  py::arg("nst")=static_cast<const Standard_Integer>(1) )
+    // custom constructors
     // methods
         .def("Append",
              (Standard_Integer (Interface_ParamSet::*)( const Standard_CString ,  const Standard_Integer ,  const Interface_ParamType ,  const Standard_Integer  ) ) static_cast<Standard_Integer (Interface_ParamSet::*)( const Standard_CString ,  const Standard_Integer ,  const Interface_ParamType ,  const Standard_Integer  ) >(&Interface_ParamSet::Append),
@@ -2281,11 +2357,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_Protocol ,opencascade::handle<Interface_Protocol> ,Py_Interface_Protocol , Standard_Transient >>(m.attr("Interface_Protocol"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (Interface_Protocol::*)() const) static_cast<Standard_Integer (Interface_Protocol::*)() const>(&Interface_Protocol::NbResources),
@@ -2345,13 +2423,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_ReaderLib , shared_ptr<Interface_ReaderLib>  >>(m.attr("Interface_ReaderLib"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_Protocol> & >()  , py::arg("aprotocol") )
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddProtocol",
              (void (Interface_ReaderLib::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (Interface_ReaderLib::*)( const opencascade::handle<Standard_Transient> &  ) >(&Interface_ReaderLib::AddProtocol),
@@ -2387,11 +2467,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(Adds a couple (Module-Protocol) into the global definition set for this class of Library.)#"  , py::arg("amodule"),  py::arg("aprotocol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_ReaderModule ,opencascade::handle<Interface_ReaderModule> ,Py_Interface_ReaderModule , Standard_Transient >>(m.attr("Interface_ReaderModule"))
+    // constructors
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (Interface_ReaderModule::*)( const opencascade::handle<Interface_FileReaderData> & ,  const Standard_Integer  ) const) static_cast<Standard_Integer (Interface_ReaderModule::*)( const opencascade::handle<Interface_FileReaderData> & ,  const Standard_Integer  ) const>(&Interface_ReaderModule::CaseNum),
@@ -2415,13 +2497,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_ReportEntity ,opencascade::handle<Interface_ReportEntity>  , Standard_Transient >>(m.attr("Interface_ReportEntity"))
+    // constructors
         .def(py::init< const opencascade::handle<Standard_Transient> & >()  , py::arg("unknown") )
         .def(py::init< const opencascade::handle<Interface_Check> &,const opencascade::handle<Standard_Transient> & >()  , py::arg("acheck"),  py::arg("concerned") )
+    // custom constructors
     // methods
         .def("SetContent",
              (void (Interface_ReportEntity::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (Interface_ReportEntity::*)( const opencascade::handle<Standard_Transient> &  ) >(&Interface_ReportEntity::SetContent),
@@ -2463,13 +2547,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_STAT , shared_ptr<Interface_STAT>  >>(m.attr("Interface_STAT"))
+    // constructors
         .def(py::init< const Standard_CString >()  , py::arg("title")=static_cast<const Standard_CString>("") )
         .def(py::init< const Interface_STAT & >()  , py::arg("other") )
+    // custom constructors
     // methods
         .def("AddPhase",
              (void (Interface_STAT::*)( const Standard_Real ,  const Standard_CString  ) ) static_cast<void (Interface_STAT::*)( const Standard_Real ,  const Standard_CString  ) >(&Interface_STAT::AddPhase),
@@ -2517,16 +2603,18 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(Returns the advancement as a percentage : <phase> True : inside the current phase <phase> False (D) : relative to the whole process)#"  , py::arg("phase")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_ShareFlags , shared_ptr<Interface_ShareFlags>  >>(m.attr("Interface_ShareFlags"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Interface_GeneralLib & >()  , py::arg("amodel"),  py::arg("lib") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_GTool> & >()  , py::arg("amodel"),  py::arg("gtool") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> & >()  , py::arg("amodel"),  py::arg("protocol") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("amodel") )
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+    // custom constructors
     // methods
         .def("Model",
              (opencascade::handle<Interface_InterfaceModel> (Interface_ShareFlags::*)() const) static_cast<opencascade::handle<Interface_InterfaceModel> (Interface_ShareFlags::*)() const>(&Interface_ShareFlags::Model),
@@ -2547,17 +2635,19 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_ShareTool , shared_ptr<Interface_ShareTool>  >>(m.attr("Interface_ShareTool"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Interface_GeneralLib & >()  , py::arg("amodel"),  py::arg("lib") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_GTool> & >()  , py::arg("amodel"),  py::arg("gtool") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> & >()  , py::arg("amodel"),  py::arg("protocol") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("amodel") )
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
         .def(py::init< const opencascade::handle<Interface_HGraph> & >()  , py::arg("ahgraph") )
+    // custom constructors
     // methods
         .def("Model",
              (opencascade::handle<Interface_InterfaceModel> (Interface_ShareTool::*)() const) static_cast<opencascade::handle<Interface_InterfaceModel> (Interface_ShareTool::*)() const>(&Interface_ShareTool::Model),
@@ -2593,12 +2683,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_SignLabel ,opencascade::handle<Interface_SignLabel>  >>(m.attr("Interface_SignLabel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Name",
              (Standard_CString (Interface_SignLabel::*)() const) static_cast<Standard_CString (Interface_SignLabel::*)() const>(&Interface_SignLabel::Name),
@@ -2619,11 +2711,13 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_SignType ,opencascade::handle<Interface_SignType> ,Py_Interface_SignType >>(m.attr("Interface_SignType"))
+    // constructors
+    // custom constructors
     // methods
         .def("Text",
              (TCollection_AsciiString (Interface_SignType::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Standard_Transient> &  ) const) static_cast<TCollection_AsciiString (Interface_SignType::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Standard_Transient> &  ) const>(&Interface_SignType::Text),
@@ -2647,12 +2741,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_TypedValue ,opencascade::handle<Interface_TypedValue>  >>(m.attr("Interface_TypedValue"))
+    // constructors
         .def(py::init< const Standard_CString,const Interface_ParamType,const Standard_CString >()  , py::arg("name"),  py::arg("type")=static_cast<const Interface_ParamType>(Interface_ParamText),  py::arg("init")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("Type",
              (Interface_ParamType (Interface_TypedValue::*)() const) static_cast<Interface_ParamType (Interface_TypedValue::*)() const>(&Interface_TypedValue::Type),
@@ -2676,12 +2772,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_UndefinedContent ,opencascade::handle<Interface_UndefinedContent>  , Standard_Transient >>(m.attr("Interface_UndefinedContent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbParams",
              (Standard_Integer (Interface_UndefinedContent::*)() const) static_cast<Standard_Integer (Interface_UndefinedContent::*)() const>(&Interface_UndefinedContent::NbParams),
@@ -2744,12 +2842,14 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_CopyMap ,opencascade::handle<Interface_CopyMap>  , Interface_CopyControl >>(m.attr("Interface_CopyMap"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("amodel") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (Interface_CopyMap::*)() ) static_cast<void (Interface_CopyMap::*)() >(&Interface_CopyMap::Clear),
@@ -2776,15 +2876,17 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_GraphContent , shared_ptr<Interface_GraphContent>  , Interface_EntityIterator >>(m.attr("Interface_GraphContent"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
         .def(py::init< const Interface_Graph &,const Standard_Integer >()  , py::arg("agraph"),  py::arg("stat") )
         .def(py::init< const Interface_Graph &,const opencascade::handle<Standard_Transient> & >()  , py::arg("agraph"),  py::arg("ent") )
+    // custom constructors
     // methods
         .def("GetFromGraph",
              (void (Interface_GraphContent::*)( const Interface_Graph &  ) ) static_cast<void (Interface_GraphContent::*)( const Interface_Graph &  ) >(&Interface_GraphContent::GetFromGraph),
@@ -2805,13 +2907,15 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interface_Static ,opencascade::handle<Interface_Static>  , Interface_TypedValue >>(m.attr("Interface_Static"))
+    // constructors
         .def(py::init< const Standard_CString,const Standard_CString,const Interface_ParamType,const Standard_CString >()  , py::arg("family"),  py::arg("name"),  py::arg("type")=static_cast<const Interface_ParamType>(Interface_ParamText),  py::arg("init")=static_cast<const Standard_CString>("") )
         .def(py::init< const Standard_CString,const Standard_CString,const opencascade::handle<Interface_Static> & >()  , py::arg("family"),  py::arg("name"),  py::arg("other") )
+    // custom constructors
     // methods
         .def("PrintStatic",
              (void (Interface_Static::*)( const opencascade::handle<Message_Messenger> &  ) const) static_cast<void (Interface_Static::*)( const opencascade::handle<Message_Messenger> &  ) const>(&Interface_Static::PrintStatic),
@@ -2895,87 +2999,87 @@ py::module m = static_cast<py::module>(main_module.attr("Interface"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Interface_CopyControl.hxx
-// ./opencascade/Interface_IndexedMapOfAsciiString.hxx
-// ./opencascade/Interface_GlobalNodeOfGeneralLib.hxx
-// ./opencascade/Interface_EntityList.hxx
-// ./opencascade/Interface_GraphContent.hxx
-// ./opencascade/Interface_CopyMap.hxx
-// ./opencascade/Interface_SignType.hxx
-// ./opencascade/Interface_DataState.hxx
-// ./opencascade/Interface_Macros.hxx
-// ./opencascade/Interface_StaticSatisfies.hxx
-// ./opencascade/Interface_FileReaderData.hxx
-// ./opencascade/Interface_GeneralLib.hxx
-// ./opencascade/Interface_MapAsciiStringHasher.hxx
-// ./opencascade/Interface_GlobalNodeOfReaderLib.hxx
-// ./opencascade/Interface_FloatWriter.hxx
-// ./opencascade/Interface_Version.hxx
-// ./opencascade/Interface_IntVal.hxx
-// ./opencascade/Interface_Graph.hxx
-// ./opencascade/Interface_SequenceOfCheck.hxx
-// ./opencascade/Interface_BitMap.hxx
-// ./opencascade/Interface_CopyTool.hxx
-// ./opencascade/Interface_NodeOfReaderLib.hxx
 // ./opencascade/Interface_InterfaceError.hxx
-// ./opencascade/Interface_ShareFlags.hxx
-// ./opencascade/Interface_Statics.hxx
-// ./opencascade/Interface_SignLabel.hxx
-// ./opencascade/Interface_DataMapOfTransientInteger.hxx
-// ./opencascade/Interface_NodeOfGeneralLib.hxx
-// ./opencascade/Interface_InterfaceModel.hxx
-// ./opencascade/Interface_HSequenceOfCheck.hxx
-// ./opencascade/Interface_InterfaceMismatch.hxx
-// ./opencascade/Interface_ParamType.hxx
-// ./opencascade/Interface_ParamSet.hxx
-// ./opencascade/Interface_Protocol.hxx
-// ./opencascade/Interface_GeneralModule.hxx
-// ./opencascade/Interface_Translates.hxx
-// ./opencascade/Interface_ValueInterpret.hxx
 // ./opencascade/Interface_HGraph.hxx
-// ./opencascade/Interface_FileReaderTool.hxx
-// ./opencascade/Interface_Static.hxx
-// ./opencascade/Interface_Category.hxx
-// ./opencascade/Interface_IntList.hxx
-// ./opencascade/Interface_ReaderModule.hxx
-// ./opencascade/Interface_STAT.hxx
+// ./opencascade/Interface_GlobalNodeOfGeneralLib.hxx
 // ./opencascade/Interface_MSG.hxx
 // ./opencascade/Interface_EntityCluster.hxx
-// ./opencascade/Interface_UndefinedContent.hxx
-// ./opencascade/Interface_ShareTool.hxx
-// ./opencascade/Interface_FileParameter.hxx
-// ./opencascade/Interface_Array1OfFileParameter.hxx
 // ./opencascade/Interface_Check.hxx
+// ./opencascade/Interface_InterfaceModel.hxx
+// ./opencascade/Interface_STAT.hxx
+// ./opencascade/Interface_SequenceOfCheck.hxx
+// ./opencascade/Interface_FloatWriter.hxx
+// ./opencascade/Interface_ParamList.hxx
+// ./opencascade/Interface_TypedValue.hxx
+// ./opencascade/Interface_UndefinedContent.hxx
 // ./opencascade/Interface_GTool.hxx
-// ./opencascade/Interface_CheckTool.hxx
+// ./opencascade/Interface_VectorOfFileParameter.hxx
+// ./opencascade/Interface_FileReaderTool.hxx
+// ./opencascade/Interface_NodeOfReaderLib.hxx
+// ./opencascade/Interface_InterfaceMismatch.hxx
+// ./opencascade/Interface_Protocol.hxx
 // ./opencascade/Interface_CheckStatus.hxx
+// ./opencascade/Interface_ShareFlags.hxx
+// ./opencascade/Interface_SignLabel.hxx
+// ./opencascade/Interface_CopyControl.hxx
+// ./opencascade/Interface_Macros.hxx
+// ./opencascade/Interface_ParamType.hxx
+// ./opencascade/Interface_CopyMap.hxx
+// ./opencascade/Interface_CheckIterator.hxx
+// ./opencascade/Interface_GeneralLib.hxx
+// ./opencascade/Interface_ShareTool.hxx
+// ./opencascade/Interface_HArray1OfHAsciiString.hxx
+// ./opencascade/Interface_BitMap.hxx
+// ./opencascade/Interface_FileReaderData.hxx
+// ./opencascade/Interface_GraphContent.hxx
+// ./opencascade/Interface_DataState.hxx
 // ./opencascade/Interface_CheckFailure.hxx
 // ./opencascade/Interface_LineBuffer.hxx
-// ./opencascade/Interface_ReaderLib.hxx
-// ./opencascade/Interface_HArray1OfHAsciiString.hxx
-// ./opencascade/Interface_CheckIterator.hxx
 // ./opencascade/Interface_DataMapIteratorOfDataMapOfTransientInteger.hxx
-// ./opencascade/Interface_ParamList.hxx
-// ./opencascade/Interface_ValueSatisfies.hxx
 // ./opencascade/Interface_EntityIterator.hxx
-// ./opencascade/Interface_Array1OfHAsciiString.hxx
-// ./opencascade/Interface_VectorOfFileParameter.hxx
-// ./opencascade/Interface_TypedValue.hxx
+// ./opencascade/Interface_Graph.hxx
+// ./opencascade/Interface_ReaderModule.hxx
+// ./opencascade/Interface_ReaderLib.hxx
+// ./opencascade/Interface_GlobalNodeOfReaderLib.hxx
 // ./opencascade/Interface_ReportEntity.hxx
+// ./opencascade/Interface_FileParameter.hxx
+// ./opencascade/Interface_ValueSatisfies.hxx
+// ./opencascade/Interface_Translates.hxx
+// ./opencascade/Interface_StaticSatisfies.hxx
+// ./opencascade/Interface_CheckTool.hxx
+// ./opencascade/Interface_IndexedMapOfAsciiString.hxx
+// ./opencascade/Interface_NodeOfGeneralLib.hxx
+// ./opencascade/Interface_DataMapOfTransientInteger.hxx
+// ./opencascade/Interface_GeneralModule.hxx
+// ./opencascade/Interface_Category.hxx
+// ./opencascade/Interface_HSequenceOfCheck.hxx
+// ./opencascade/Interface_Array1OfHAsciiString.hxx
+// ./opencascade/Interface_CopyTool.hxx
+// ./opencascade/Interface_SignType.hxx
+// ./opencascade/Interface_Version.hxx
+// ./opencascade/Interface_ParamSet.hxx
+// ./opencascade/Interface_Static.hxx
+// ./opencascade/Interface_IntList.hxx
+// ./opencascade/Interface_Array1OfFileParameter.hxx
+// ./opencascade/Interface_Statics.hxx
+// ./opencascade/Interface_ValueInterpret.hxx
+// ./opencascade/Interface_MapAsciiStringHasher.hxx
+// ./opencascade/Interface_EntityList.hxx
+// ./opencascade/Interface_IntVal.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_IndexedMap<TCollection_AsciiString, Interface_MapAsciiStringHasher>(m,"Interface_IndexedMapOfAsciiString");  
     register_template_NCollection_Sequence<opencascade::handle<Interface_Check> >(m,"Interface_SequenceOfCheck");  
-    register_template_NCollection_DataMap<opencascade::handle<Standard_Transient>, Standard_Integer, TColStd_MapTransientHasher>(m,"Interface_DataMapOfTransientInteger");  
-    register_template_NCollection_Array1<Interface_FileParameter>(m,"Interface_Array1OfFileParameter");  
-    register_template_NCollection_Array1<opencascade::handle<TCollection_HAsciiString> >(m,"Interface_Array1OfHAsciiString");  
     register_template_NCollection_Vector<Interface_FileParameter>(m,"Interface_VectorOfFileParameter");  
+    register_template_NCollection_IndexedMap<TCollection_AsciiString, Interface_MapAsciiStringHasher>(m,"Interface_IndexedMapOfAsciiString");  
+    register_template_NCollection_DataMap<opencascade::handle<Standard_Transient>, Standard_Integer, TColStd_MapTransientHasher>(m,"Interface_DataMapOfTransientInteger");  
+    register_template_NCollection_Array1<opencascade::handle<TCollection_HAsciiString> >(m,"Interface_Array1OfHAsciiString");  
+    register_template_NCollection_Array1<Interface_FileParameter>(m,"Interface_Array1OfFileParameter");  
 
 
 // exceptions

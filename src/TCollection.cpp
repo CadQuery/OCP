@@ -13,31 +13,22 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TCollection_SeqNode.hxx>
+#include <TCollection_BasicMapIterator.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <TCollection_BasicMap.hxx>
 #include <Standard_NullObject.hxx>
 #include <Standard_NumericError.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_ExtendedString.hxx>
-#include <TCollection_MapNode.hxx>
-#include <Standard_NullObject.hxx>
-#include <Standard_NumericError.hxx>
-#include <Standard_NegativeValue.hxx>
-#include <TCollection_HExtendedString.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_OutOfRange.hxx>
 #include <Standard_NullObject.hxx>
 #include <Standard_OutOfRange.hxx>
 #include <Standard_NumericError.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <TCollection_BasicMapIterator.hxx>
-#include <TCollection_BasicMap.hxx>
-#include <Standard_NullObject.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Standard_NumericError.hxx>
-#include <Standard_NegativeValue.hxx>
-#include <TCollection_AsciiString.hxx>
+#include <TCollection_SeqNode.hxx>
+#include <TCollection_MapNode.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TCollection_ExtendedString.hxx>
 #include <TCollection_HAsciiString.hxx>
@@ -47,6 +38,15 @@ namespace py = pybind11;
 #include <TCollection_BasicMap.hxx>
 #include <TCollection_MapNode.hxx>
 #include <TCollection_BasicMapIterator.hxx>
+#include <Standard_NullObject.hxx>
+#include <Standard_NumericError.hxx>
+#include <Standard_NegativeValue.hxx>
+#include <TCollection_HExtendedString.hxx>
+#include <Standard_NullObject.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Standard_NumericError.hxx>
+#include <Standard_NegativeValue.hxx>
+#include <TCollection_AsciiString.hxx>
 
 // module includes
 #include <TCollection.hxx>
@@ -82,9 +82,12 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TCollection , shared_ptr<TCollection>>(m,"TCollection");
 
     static_cast<py::class_<TCollection , shared_ptr<TCollection>  >>(m.attr("TCollection"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -93,11 +96,12 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
                     R"#(Returns a prime number greater than <I> suitable to dimension a Map. When <I> becomes great there is a limit on the result (today the limit is around 1 000 000). This is not a limit of the number of items but a limit in the number of buckets. i.e. there will be more collisions in the map.)#"  , py::arg("I"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_AsciiString , shared_ptr<TCollection_AsciiString>  >>(m.attr("TCollection_AsciiString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("message") )
         .def(py::init< const Standard_CString,const Standard_Integer >()  , py::arg("message"),  py::arg("aLen") )
@@ -111,6 +115,7 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
         .def(py::init< const TCollection_AsciiString &,const TCollection_AsciiString & >()  , py::arg("astring"),  py::arg("message") )
         .def(py::init< const TCollection_ExtendedString &,const Standard_Character >()  , py::arg("astring"),  py::arg("replaceNonAscii")=static_cast<const Standard_Character>(0) )
         .def(py::init< const Standard_WideChar * >()  , py::arg("theStringUtf") )
+    // custom constructors
     // methods
         .def("AssignCat",
              (void (TCollection_AsciiString::*)( const Standard_Character  ) ) static_cast<void (TCollection_AsciiString::*)( const Standard_Character  ) >(&TCollection_AsciiString::AssignCat),
@@ -346,8 +351,8 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const TCollection_AsciiString & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TCollection_AsciiString & ,  const Standard_Integer  ) >(&TCollection_AsciiString::HashCode),
-                    R"#(Hash function for AsciiString (returns the same Integer value that the hash function for ExtendedString))#"  , py::arg("astring"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const TCollection_AsciiString & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TCollection_AsciiString & ,  Standard_Integer  ) >(&TCollection_AsciiString::HashCode),
+                    R"#(Computes a hash code for the given ASCII string, in the range [1, theUpperBound]. Returns the same integer value as the hash function for TCollection_ExtendedString)#"  , py::arg("theAsciiString"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) ) static_cast<Standard_Boolean (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) >(&TCollection_AsciiString::IsEqual),
                     R"#(Returns True when the two strings are the same. (Just for HashCode for AsciiString))#"  , py::arg("string1"),  py::arg("string2"))
@@ -399,11 +404,13 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
              (TCollection_AsciiString (TCollection_AsciiString::*)( const TCollection_AsciiString &  ) const) static_cast<TCollection_AsciiString (TCollection_AsciiString::*)( const TCollection_AsciiString &  ) const>(&TCollection_AsciiString::operator+),
              py::is_operator(),
              R"#(None)#"  , py::arg("other"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_BaseSequence , shared_ptr<TCollection_BaseSequence>  >>(m.attr("TCollection_BaseSequence"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TCollection_BaseSequence::*)() const) static_cast<Standard_Boolean (TCollection_BaseSequence::*)() const>(&TCollection_BaseSequence::IsEmpty),
@@ -427,11 +434,13 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_BasicMap , shared_ptr<TCollection_BasicMap>  >>(m.attr("TCollection_BasicMap"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbBuckets",
              (Standard_Integer (TCollection_BasicMap::*)() const) static_cast<Standard_Integer (TCollection_BasicMap::*)() const>(&TCollection_BasicMap::NbBuckets),
@@ -458,11 +467,13 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_BasicMapIterator , shared_ptr<TCollection_BasicMapIterator>  >>(m.attr("TCollection_BasicMapIterator"))
+    // constructors
+    // custom constructors
     // methods
         .def("Reset",
              (void (TCollection_BasicMapIterator::*)() ) static_cast<void (TCollection_BasicMapIterator::*)() >(&TCollection_BasicMapIterator::Reset),
@@ -480,11 +491,12 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_ExtendedString , shared_ptr<TCollection_ExtendedString>  >>(m.attr("TCollection_ExtendedString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString,const Standard_Boolean >()  , py::arg("astring"),  py::arg("isMultiByte")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_ExtString >()  , py::arg("astring") )
@@ -496,6 +508,7 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
         .def(py::init< const Standard_Real >()  , py::arg("value") )
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("astring") )
         .def(py::init< const TCollection_AsciiString & >()  , py::arg("astring") )
+    // custom constructors
     // methods
         .def("AssignCat",
              (void (TCollection_ExtendedString::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TCollection_ExtendedString::*)( const TCollection_ExtendedString &  ) >(&TCollection_ExtendedString::AssignCat),
@@ -603,7 +616,7 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
     // static methods
         .def_static("HashCode_s",
                     (Standard_Integer (*)( const TCollection_ExtendedString & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TCollection_ExtendedString & ,  const Standard_Integer  ) >(&TCollection_ExtendedString::HashCode),
-                    R"#(Returns a hashed value for the extended string within the range 1..theUpper. Note: if string is ASCII, the computed value is the same as the value computed with the HashCode function on a TCollection_AsciiString string composed with equivalent ASCII characters.)#"  , py::arg("theString"),  py::arg("theUpper"))
+                    R"#(Returns a hashed value for the extended string within the range 1 .. theUpper. Note: if string is ASCII, the computed value is the same as the value computed with the HashCode function on a TCollection_AsciiString string composed with equivalent ASCII characters.)#"  , py::arg("theString"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const TCollection_ExtendedString & ,  const TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (*)( const TCollection_ExtendedString & ,  const TCollection_ExtendedString &  ) >(&TCollection_ExtendedString::IsEqual),
                     R"#(Returns true if the characters in this extended string are identical to the characters in the other extended string. Note that this method is an alias of operator ==.)#"  , py::arg("theString1"),  py::arg("theString2"))
@@ -617,11 +630,12 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
              (TCollection_ExtendedString (TCollection_ExtendedString::*)( const TCollection_ExtendedString &  ) const) static_cast<TCollection_ExtendedString (TCollection_ExtendedString::*)( const TCollection_ExtendedString &  ) const>(&TCollection_ExtendedString::operator+),
              py::is_operator(),
              R"#(None)#"  , py::arg("other"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_HAsciiString ,opencascade::handle<TCollection_HAsciiString>  , Standard_Transient >>(m.attr("TCollection_HAsciiString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("message") )
         .def(py::init< const Standard_Character >()  , py::arg("aChar") )
@@ -631,6 +645,7 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
         .def(py::init< const TCollection_AsciiString & >()  , py::arg("aString") )
         .def(py::init< const opencascade::handle<TCollection_HAsciiString> & >()  , py::arg("aString") )
         .def(py::init< const opencascade::handle<TCollection_HExtendedString> &,const Standard_Character >()  , py::arg("aString"),  py::arg("replaceNonAscii") )
+    // custom constructors
     // methods
         .def("AssignCat",
              (void (TCollection_HAsciiString::*)( const Standard_CString  ) ) static_cast<void (TCollection_HAsciiString::*)( const Standard_CString  ) >(&TCollection_HAsciiString::AssignCat),
@@ -828,11 +843,12 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_HExtendedString ,opencascade::handle<TCollection_HExtendedString>  , Standard_Transient >>(m.attr("TCollection_HExtendedString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("message") )
         .def(py::init< const Standard_ExtString >()  , py::arg("message") )
@@ -841,6 +857,7 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("aString") )
         .def(py::init< const opencascade::handle<TCollection_HAsciiString> & >()  , py::arg("aString") )
         .def(py::init< const opencascade::handle<TCollection_HExtendedString> & >()  , py::arg("aString") )
+    // custom constructors
     // methods
         .def("AssignCat",
              (void (TCollection_HExtendedString::*)( const opencascade::handle<TCollection_HExtendedString> &  ) ) static_cast<void (TCollection_HExtendedString::*)( const opencascade::handle<TCollection_HExtendedString> &  ) >(&TCollection_HExtendedString::AssignCat),
@@ -930,11 +947,13 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_MapNode ,opencascade::handle<TCollection_MapNode>  , Standard_Transient >>(m.attr("TCollection_MapNode"))
+    // constructors
+    // custom constructors
     // methods
         .def("Next",
              (TCollection_MapNodePtr & (TCollection_MapNode::*)() const) static_cast<TCollection_MapNodePtr & (TCollection_MapNode::*)() const>(&TCollection_MapNode::Next),
@@ -955,11 +974,13 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TCollection_SeqNode ,opencascade::handle<TCollection_SeqNode>  , Standard_Transient >>(m.attr("TCollection_SeqNode"))
+    // constructors
+    // custom constructors
     // methods
         .def("Next",
              (TCollection_SeqNodePtr & (TCollection_SeqNode::*)() const) static_cast<TCollection_SeqNodePtr & (TCollection_SeqNode::*)() const>(&TCollection_SeqNode::Next),
@@ -986,32 +1007,32 @@ py::module m = static_cast<py::module>(main_module.attr("TCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TCollection_Side.hxx
-// ./opencascade/TCollection_SeqNode.hxx
-// ./opencascade/TCollection_SeqNodePtr.hxx
+// ./opencascade/TCollection_BasicMap.hxx
+// ./opencascade/TCollection_BaseSequence.hxx
+// ./opencascade/TCollection_BasicMapIterator.hxx
 // ./opencascade/TCollection_AsciiString.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const TCollection_AsciiString & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const TCollection_AsciiString & ,  const Standard_Integer  )>(&HashCode),
-          R"#(None)#"  , py::arg("astring"),  py::arg("Upper"));
+          R"#(Computes a hash code for the given ASCII string, in the range [1, theUpperBound])#"  , py::arg("theAsciiString"),  py::arg("theUpperBound"));
     m.def("IsEqual", 
           (Standard_Boolean (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ))  static_cast<Standard_Boolean (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  )>(&IsEqual),
           R"#(None)#"  , py::arg("string1"),  py::arg("string2"));
-// ./opencascade/TCollection_MapNodePtr.hxx
-// ./opencascade/TCollection_HAsciiString.hxx
-// ./opencascade/TCollection_BaseSequence.hxx
 // ./opencascade/TCollection_HExtendedString.hxx
+// ./opencascade/TCollection_Side.hxx
+// ./opencascade/TCollection_SeqNodePtr.hxx
+// ./opencascade/TCollection_MapNodePtr.hxx
+// ./opencascade/TCollection.hxx
 // ./opencascade/TCollection_MapNode.hxx
-// ./opencascade/TCollection_BasicMap.hxx
-// ./opencascade/TCollection_BasicMapIterator.hxx
+// ./opencascade/TCollection_SeqNode.hxx
+// ./opencascade/TCollection_HAsciiString.hxx
 // ./opencascade/TCollection_ExtendedString.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const TCollection_ExtendedString & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const TCollection_ExtendedString & ,  const Standard_Integer  )>(&HashCode),
-          R"#(Compute hash code for extended string)#"  , py::arg("theString"),  py::arg("theUpper"));
-// ./opencascade/TCollection.hxx
+          R"#(Computes a hash code for the given extended string, in the range [1, theUpperBound])#"  , py::arg("theExtendedString"),  py::arg("theUpperBound"));
 
 // operators
 

@@ -10,24 +10,22 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
-#include <Bnd_Box.hxx>
-#include <SelectBasics_EntityOwner.hxx>
 
 // module includes
-#include <SelectBasics_SelectingVolumeManager.hxx>
-#include <SelectBasics.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <SelectBasics_SensitiveEntity.hxx>
 #include <SelectBasics_PickResult.hxx>
+#include <SelectBasics_EntityOwner.hxx>
+#include <SelectBasics_SelectingVolumeManager.hxx>
+#include <SelectBasics_SensitiveEntity.hxx>
+#include <SelectBasics.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/SelectBasics_SelectingVolumeManager.hxx
-// ./opencascade/SelectBasics.hxx
-// ./opencascade/SelectBasics_EntityOwner.hxx
-// ./opencascade/SelectBasics_SensitiveEntity.hxx
 // ./opencascade/SelectBasics_PickResult.hxx
+// ./opencascade/SelectBasics_EntityOwner.hxx
+// ./opencascade/SelectBasics_SelectingVolumeManager.hxx
+// ./opencascade/SelectBasics_SensitiveEntity.hxx
+// ./opencascade/SelectBasics.hxx
 
 // user-defined post

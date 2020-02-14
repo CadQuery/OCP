@@ -75,65 +75,65 @@ namespace py = pybind11;
 #include <TColgp_SequenceOfXYZ.hxx>
 
 // template related includes
-// ./opencascade/TColgp_Array2OfDir2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfPnt2d.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfVec2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfVec.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfPnt.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfVec.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfPnt.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfPnt.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfVec2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfXYZ.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfXY.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfDir.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfXYZ.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfDir.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_Array2OfVec.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfDir2d.hxx
+// ./opencascade/TColgp_SequenceOfArray1OfPnt2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfDir.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfXYZ.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfVec.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_Array1OfVec2d.hxx
 #include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfPnt.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfDir2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfVec.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfPnt2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfXY.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfDir.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfPnt.hxx
+#include "NCollection.hxx"
 // ./opencascade/TColgp_Array2OfPnt2d.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfCirc2d.hxx
+// ./opencascade/TColgp_Array1OfDir2d.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfLin2d.hxx
+// ./opencascade/TColgp_Array2OfXYZ.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_SequenceOfPnt2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfPnt.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array1OfCirc2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfDir2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_Array1OfLin2d.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfAx1.hxx
+// ./opencascade/TColgp_Array2OfCirc2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfXYZ.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfArray1OfPnt2d.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfXY.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_Array1OfXY.hxx
+// ./opencascade/TColgp_Array2OfVec2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfXY.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColgp_Array2OfLin2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColgp_SequenceOfDir.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColgp_SequenceOfPnt2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColgp_Array2OfCirc2d.hxx
+// ./opencascade/TColgp_SequenceOfAx1.hxx
 #include "NCollection.hxx"
 
 
@@ -155,9 +155,12 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
 
 
     static_cast<py::class_<TColgp_HArray1OfCirc2d ,opencascade::handle<TColgp_HArray1OfCirc2d>  , TColgp_Array1OfCirc2d , Standard_Transient >>(m.attr("TColgp_HArray1OfCirc2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Circ2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Circ2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfCirc2d & (TColgp_HArray1OfCirc2d::*)() const) static_cast<const TColgp_Array1OfCirc2d & (TColgp_HArray1OfCirc2d::*)() const>(&TColgp_HArray1OfCirc2d::Array1),
@@ -178,14 +181,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfDir ,opencascade::handle<TColgp_HArray1OfDir>  , TColgp_Array1OfDir , Standard_Transient >>(m.attr("TColgp_HArray1OfDir"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Dir & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Dir> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfDir & (TColgp_HArray1OfDir::*)() const) static_cast<const TColgp_Array1OfDir & (TColgp_HArray1OfDir::*)() const>(&TColgp_HArray1OfDir::Array1),
@@ -206,14 +212,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfDir2d ,opencascade::handle<TColgp_HArray1OfDir2d>  , TColgp_Array1OfDir2d , Standard_Transient >>(m.attr("TColgp_HArray1OfDir2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Dir2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Dir2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfDir2d & (TColgp_HArray1OfDir2d::*)() const) static_cast<const TColgp_Array1OfDir2d & (TColgp_HArray1OfDir2d::*)() const>(&TColgp_HArray1OfDir2d::Array1),
@@ -234,14 +243,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfLin2d ,opencascade::handle<TColgp_HArray1OfLin2d>  , TColgp_Array1OfLin2d , Standard_Transient >>(m.attr("TColgp_HArray1OfLin2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Lin2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Lin2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfLin2d & (TColgp_HArray1OfLin2d::*)() const) static_cast<const TColgp_Array1OfLin2d & (TColgp_HArray1OfLin2d::*)() const>(&TColgp_HArray1OfLin2d::Array1),
@@ -262,14 +274,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfPnt ,opencascade::handle<TColgp_HArray1OfPnt>  , TColgp_Array1OfPnt , Standard_Transient >>(m.attr("TColgp_HArray1OfPnt"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Pnt & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfPnt & (TColgp_HArray1OfPnt::*)() const) static_cast<const TColgp_Array1OfPnt & (TColgp_HArray1OfPnt::*)() const>(&TColgp_HArray1OfPnt::Array1),
@@ -290,14 +305,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfPnt2d ,opencascade::handle<TColgp_HArray1OfPnt2d>  , TColgp_Array1OfPnt2d , Standard_Transient >>(m.attr("TColgp_HArray1OfPnt2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Pnt2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfPnt2d & (TColgp_HArray1OfPnt2d::*)() const) static_cast<const TColgp_Array1OfPnt2d & (TColgp_HArray1OfPnt2d::*)() const>(&TColgp_HArray1OfPnt2d::Array1),
@@ -318,14 +336,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfVec ,opencascade::handle<TColgp_HArray1OfVec>  , TColgp_Array1OfVec , Standard_Transient >>(m.attr("TColgp_HArray1OfVec"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Vec & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Vec> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfVec & (TColgp_HArray1OfVec::*)() const) static_cast<const TColgp_Array1OfVec & (TColgp_HArray1OfVec::*)() const>(&TColgp_HArray1OfVec::Array1),
@@ -346,14 +367,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfVec2d ,opencascade::handle<TColgp_HArray1OfVec2d>  , TColgp_Array1OfVec2d , Standard_Transient >>(m.attr("TColgp_HArray1OfVec2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Vec2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Vec2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfVec2d & (TColgp_HArray1OfVec2d::*)() const) static_cast<const TColgp_Array1OfVec2d & (TColgp_HArray1OfVec2d::*)() const>(&TColgp_HArray1OfVec2d::Array1),
@@ -374,14 +398,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfXY ,opencascade::handle<TColgp_HArray1OfXY>  , TColgp_Array1OfXY , Standard_Transient >>(m.attr("TColgp_HArray1OfXY"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_XY & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_XY> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfXY & (TColgp_HArray1OfXY::*)() const) static_cast<const TColgp_Array1OfXY & (TColgp_HArray1OfXY::*)() const>(&TColgp_HArray1OfXY::Array1),
@@ -402,14 +429,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray1OfXYZ ,opencascade::handle<TColgp_HArray1OfXYZ>  , TColgp_Array1OfXYZ , Standard_Transient >>(m.attr("TColgp_HArray1OfXYZ"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_XYZ & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_XYZ> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColgp_Array1OfXYZ & (TColgp_HArray1OfXYZ::*)() const) static_cast<const TColgp_Array1OfXYZ & (TColgp_HArray1OfXYZ::*)() const>(&TColgp_HArray1OfXYZ::Array1),
@@ -430,14 +460,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfCirc2d ,opencascade::handle<TColgp_HArray2OfCirc2d>  , TColgp_Array2OfCirc2d , Standard_Transient >>(m.attr("TColgp_HArray2OfCirc2d"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Circ2d & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Circ2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfCirc2d & (TColgp_HArray2OfCirc2d::*)() const) static_cast<const TColgp_Array2OfCirc2d & (TColgp_HArray2OfCirc2d::*)() const>(&TColgp_HArray2OfCirc2d::Array2),
@@ -458,14 +490,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfDir ,opencascade::handle<TColgp_HArray2OfDir>  , TColgp_Array2OfDir , Standard_Transient >>(m.attr("TColgp_HArray2OfDir"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Dir & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Dir> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfDir & (TColgp_HArray2OfDir::*)() const) static_cast<const TColgp_Array2OfDir & (TColgp_HArray2OfDir::*)() const>(&TColgp_HArray2OfDir::Array2),
@@ -486,14 +520,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfDir2d ,opencascade::handle<TColgp_HArray2OfDir2d>  , TColgp_Array2OfDir2d , Standard_Transient >>(m.attr("TColgp_HArray2OfDir2d"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Dir2d & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Dir2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfDir2d & (TColgp_HArray2OfDir2d::*)() const) static_cast<const TColgp_Array2OfDir2d & (TColgp_HArray2OfDir2d::*)() const>(&TColgp_HArray2OfDir2d::Array2),
@@ -514,14 +550,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfLin2d ,opencascade::handle<TColgp_HArray2OfLin2d>  , TColgp_Array2OfLin2d , Standard_Transient >>(m.attr("TColgp_HArray2OfLin2d"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Lin2d & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Lin2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfLin2d & (TColgp_HArray2OfLin2d::*)() const) static_cast<const TColgp_Array2OfLin2d & (TColgp_HArray2OfLin2d::*)() const>(&TColgp_HArray2OfLin2d::Array2),
@@ -542,14 +580,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfPnt ,opencascade::handle<TColgp_HArray2OfPnt>  , TColgp_Array2OfPnt , Standard_Transient >>(m.attr("TColgp_HArray2OfPnt"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Pnt & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Pnt> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfPnt & (TColgp_HArray2OfPnt::*)() const) static_cast<const TColgp_Array2OfPnt & (TColgp_HArray2OfPnt::*)() const>(&TColgp_HArray2OfPnt::Array2),
@@ -570,14 +610,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfPnt2d ,opencascade::handle<TColgp_HArray2OfPnt2d>  , TColgp_Array2OfPnt2d , Standard_Transient >>(m.attr("TColgp_HArray2OfPnt2d"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Pnt2d & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Pnt2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfPnt2d & (TColgp_HArray2OfPnt2d::*)() const) static_cast<const TColgp_Array2OfPnt2d & (TColgp_HArray2OfPnt2d::*)() const>(&TColgp_HArray2OfPnt2d::Array2),
@@ -598,14 +640,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfVec ,opencascade::handle<TColgp_HArray2OfVec>  , TColgp_Array2OfVec , Standard_Transient >>(m.attr("TColgp_HArray2OfVec"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Vec & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Vec> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfVec & (TColgp_HArray2OfVec::*)() const) static_cast<const TColgp_Array2OfVec & (TColgp_HArray2OfVec::*)() const>(&TColgp_HArray2OfVec::Array2),
@@ -626,14 +670,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfVec2d ,opencascade::handle<TColgp_HArray2OfVec2d>  , TColgp_Array2OfVec2d , Standard_Transient >>(m.attr("TColgp_HArray2OfVec2d"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_Vec2d & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_Vec2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfVec2d & (TColgp_HArray2OfVec2d::*)() const) static_cast<const TColgp_Array2OfVec2d & (TColgp_HArray2OfVec2d::*)() const>(&TColgp_HArray2OfVec2d::Array2),
@@ -654,14 +700,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfXY ,opencascade::handle<TColgp_HArray2OfXY>  , TColgp_Array2OfXY , Standard_Transient >>(m.attr("TColgp_HArray2OfXY"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_XY & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_XY> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfXY & (TColgp_HArray2OfXY::*)() const) static_cast<const TColgp_Array2OfXY & (TColgp_HArray2OfXY::*)() const>(&TColgp_HArray2OfXY::Array2),
@@ -682,14 +730,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HArray2OfXYZ ,opencascade::handle<TColgp_HArray2OfXYZ>  , TColgp_Array2OfXYZ , Standard_Transient >>(m.attr("TColgp_HArray2OfXYZ"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const gp_XYZ & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<gp_XYZ> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColgp_Array2OfXYZ & (TColgp_HArray2OfXYZ::*)() const) static_cast<const TColgp_Array2OfXYZ & (TColgp_HArray2OfXYZ::*)() const>(&TColgp_HArray2OfXYZ::Array2),
@@ -710,13 +760,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfDir ,opencascade::handle<TColgp_HSequenceOfDir>  , TColgp_SequenceOfDir , Standard_Transient >>(m.attr("TColgp_HSequenceOfDir"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_Dir> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfDir & (TColgp_HSequenceOfDir::*)() const) static_cast<const TColgp_SequenceOfDir & (TColgp_HSequenceOfDir::*)() const>(&TColgp_HSequenceOfDir::Sequence),
@@ -743,13 +795,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfDir2d ,opencascade::handle<TColgp_HSequenceOfDir2d>  , TColgp_SequenceOfDir2d , Standard_Transient >>(m.attr("TColgp_HSequenceOfDir2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_Dir2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfDir2d & (TColgp_HSequenceOfDir2d::*)() const) static_cast<const TColgp_SequenceOfDir2d & (TColgp_HSequenceOfDir2d::*)() const>(&TColgp_HSequenceOfDir2d::Sequence),
@@ -776,13 +830,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfPnt ,opencascade::handle<TColgp_HSequenceOfPnt>  , TColgp_SequenceOfPnt , Standard_Transient >>(m.attr("TColgp_HSequenceOfPnt"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_Pnt> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfPnt & (TColgp_HSequenceOfPnt::*)() const) static_cast<const TColgp_SequenceOfPnt & (TColgp_HSequenceOfPnt::*)() const>(&TColgp_HSequenceOfPnt::Sequence),
@@ -809,13 +865,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfPnt2d ,opencascade::handle<TColgp_HSequenceOfPnt2d>  , TColgp_SequenceOfPnt2d , Standard_Transient >>(m.attr("TColgp_HSequenceOfPnt2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_Pnt2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfPnt2d & (TColgp_HSequenceOfPnt2d::*)() const) static_cast<const TColgp_SequenceOfPnt2d & (TColgp_HSequenceOfPnt2d::*)() const>(&TColgp_HSequenceOfPnt2d::Sequence),
@@ -842,13 +900,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfVec ,opencascade::handle<TColgp_HSequenceOfVec>  , TColgp_SequenceOfVec , Standard_Transient >>(m.attr("TColgp_HSequenceOfVec"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_Vec> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfVec & (TColgp_HSequenceOfVec::*)() const) static_cast<const TColgp_SequenceOfVec & (TColgp_HSequenceOfVec::*)() const>(&TColgp_HSequenceOfVec::Sequence),
@@ -875,13 +935,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfVec2d ,opencascade::handle<TColgp_HSequenceOfVec2d>  , TColgp_SequenceOfVec2d , Standard_Transient >>(m.attr("TColgp_HSequenceOfVec2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_Vec2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfVec2d & (TColgp_HSequenceOfVec2d::*)() const) static_cast<const TColgp_SequenceOfVec2d & (TColgp_HSequenceOfVec2d::*)() const>(&TColgp_HSequenceOfVec2d::Sequence),
@@ -908,13 +970,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfXY ,opencascade::handle<TColgp_HSequenceOfXY>  , TColgp_SequenceOfXY , Standard_Transient >>(m.attr("TColgp_HSequenceOfXY"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_XY> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfXY & (TColgp_HSequenceOfXY::*)() const) static_cast<const TColgp_SequenceOfXY & (TColgp_HSequenceOfXY::*)() const>(&TColgp_HSequenceOfXY::Sequence),
@@ -941,13 +1005,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColgp_HSequenceOfXYZ ,opencascade::handle<TColgp_HSequenceOfXYZ>  , TColgp_SequenceOfXYZ , Standard_Transient >>(m.attr("TColgp_HSequenceOfXYZ"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_XYZ> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColgp_SequenceOfXYZ & (TColgp_HSequenceOfXYZ::*)() const) static_cast<const TColgp_SequenceOfXYZ & (TColgp_HSequenceOfXYZ::*)() const>(&TColgp_HSequenceOfXYZ::Sequence),
@@ -974,102 +1040,102 @@ py::module m = static_cast<py::module>(main_module.attr("TColgp"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TColgp_Array2OfDir2d.hxx
-// ./opencascade/TColgp_Array1OfPnt2d.hxx
-// ./opencascade/TColgp_HArray1OfPnt2d.hxx
-// ./opencascade/TColgp_HArray1OfLin2d.hxx
-// ./opencascade/TColgp_HArray1OfXY.hxx
-// ./opencascade/TColgp_HArray2OfPnt2d.hxx
-// ./opencascade/TColgp_SequenceOfVec2d.hxx
-// ./opencascade/TColgp_Array1OfVec.hxx
-// ./opencascade/TColgp_HArray2OfLin2d.hxx
-// ./opencascade/TColgp_Array2OfPnt.hxx
-// ./opencascade/TColgp_SequenceOfVec.hxx
-// ./opencascade/TColgp_HArray2OfDir.hxx
-// ./opencascade/TColgp_Array1OfPnt.hxx
-// ./opencascade/TColgp_HSequenceOfPnt2d.hxx
-// ./opencascade/TColgp_HArray2OfVec.hxx
-// ./opencascade/TColgp_HArray1OfDir2d.hxx
-// ./opencascade/TColgp_SequenceOfPnt.hxx
-// ./opencascade/TColgp_HArray1OfVec2d.hxx
 // ./opencascade/TColgp_HArray2OfXY.hxx
-// ./opencascade/TColgp_HArray1OfPnt.hxx
-// ./opencascade/TColgp_HArray2OfXYZ.hxx
-// ./opencascade/TColgp_Array2OfVec2d.hxx
-// ./opencascade/TColgp_Array1OfXYZ.hxx
-// ./opencascade/TColgp_HSequenceOfXY.hxx
-// ./opencascade/TColgp_Array2OfXY.hxx
-// ./opencascade/TColgp_Array2OfDir.hxx
-// ./opencascade/TColgp_Array2OfXYZ.hxx
-// ./opencascade/TColgp_HArray1OfXYZ.hxx
-// ./opencascade/TColgp_Array1OfDir.hxx
+// ./opencascade/TColgp_SequenceOfVec2d.hxx
+// ./opencascade/TColgp_HArray1OfPnt2d.hxx
 // ./opencascade/TColgp_Array2OfVec.hxx
-// ./opencascade/TColgp_HArray2OfDir2d.hxx
-// ./opencascade/TColgp_Array1OfDir2d.hxx
+// ./opencascade/TColgp_SequenceOfArray1OfPnt2d.hxx
+// ./opencascade/TColgp_HArray1OfPnt.hxx
+// ./opencascade/TColgp_Array2OfDir.hxx
+// ./opencascade/TColgp_HArray2OfVec.hxx
+// ./opencascade/TColgp_HArray1OfDir.hxx
+// ./opencascade/TColgp_Array1OfXYZ.hxx
+// ./opencascade/TColgp_SequenceOfVec.hxx
+// ./opencascade/TColgp_HArray1OfLin2d.hxx
 // ./opencascade/TColgp_Array1OfVec2d.hxx
-// ./opencascade/TColgp_HSequenceOfDir.hxx
-// ./opencascade/TColgp_Array2OfPnt2d.hxx
-// ./opencascade/TColgp_HArray2OfVec2d.hxx
-// ./opencascade/TColgp_Array1OfCirc2d.hxx
+// ./opencascade/TColgp_HSequenceOfVec2d.hxx
+// ./opencascade/TColgp_HArray2OfDir.hxx
+// ./opencascade/TColgp_SequenceOfPnt.hxx
+// ./opencascade/TColgp_Array2OfDir2d.hxx
+// ./opencascade/TColgp_Array1OfVec.hxx
+// ./opencascade/TColgp_Array1OfPnt2d.hxx
+// ./opencascade/TColgp_Array1OfXY.hxx
+// ./opencascade/TColgp_Array1OfDir.hxx
 // ./opencascade/TColgp_HArray2OfCirc2d.hxx
-// ./opencascade/TColgp_Array2OfLin2d.hxx
+// ./opencascade/TColgp_HArray1OfXYZ.hxx
+// ./opencascade/TColgp_HArray1OfDir2d.hxx
+// ./opencascade/TColgp_Array1OfPnt.hxx
+// ./opencascade/TColgp_Array2OfPnt2d.hxx
+// ./opencascade/TColgp_HArray2OfPnt.hxx
+// ./opencascade/TColgp_Array1OfDir2d.hxx
+// ./opencascade/TColgp_HArray1OfCirc2d.hxx
+// ./opencascade/TColgp_HArray2OfVec2d.hxx
+// ./opencascade/TColgp_Array2OfXYZ.hxx
+// ./opencascade/TColgp_HSequenceOfVec.hxx
+// ./opencascade/TColgp_SequenceOfPnt2d.hxx
+// ./opencascade/TColgp_Array2OfPnt.hxx
+// ./opencascade/TColgp_HArray1OfXY.hxx
+// ./opencascade/TColgp_Array1OfCirc2d.hxx
+// ./opencascade/TColgp_HSequenceOfDir2d.hxx
+// ./opencascade/TColgp_HArray2OfDir2d.hxx
+// ./opencascade/TColgp_HSequenceOfXY.hxx
 // ./opencascade/TColgp_SequenceOfDir2d.hxx
 // ./opencascade/TColgp_Array1OfLin2d.hxx
-// ./opencascade/TColgp_SequenceOfAx1.hxx
 // ./opencascade/TColgp_HSequenceOfPnt.hxx
-// ./opencascade/TColgp_HSequenceOfVec.hxx
-// ./opencascade/TColgp_HSequenceOfVec2d.hxx
-// ./opencascade/TColgp_SequenceOfXYZ.hxx
 // ./opencascade/TColgp_HArray1OfVec.hxx
-// ./opencascade/TColgp_HArray1OfCirc2d.hxx
-// ./opencascade/TColgp_SequenceOfArray1OfPnt2d.hxx
-// ./opencascade/TColgp_HSequenceOfXYZ.hxx
-// ./opencascade/TColgp_SequenceOfXY.hxx
-// ./opencascade/TColgp_HSequenceOfDir2d.hxx
-// ./opencascade/TColgp_HArray1OfDir.hxx
-// ./opencascade/TColgp_Array1OfXY.hxx
-// ./opencascade/TColgp_HArray2OfPnt.hxx
-// ./opencascade/TColgp_SequenceOfDir.hxx
-// ./opencascade/TColgp_SequenceOfPnt2d.hxx
 // ./opencascade/TColgp_Array2OfCirc2d.hxx
+// ./opencascade/TColgp_SequenceOfXYZ.hxx
+// ./opencascade/TColgp_SequenceOfXY.hxx
+// ./opencascade/TColgp_HSequenceOfXYZ.hxx
+// ./opencascade/TColgp_HArray2OfLin2d.hxx
+// ./opencascade/TColgp_HSequenceOfPnt2d.hxx
+// ./opencascade/TColgp_HArray2OfPnt2d.hxx
+// ./opencascade/TColgp_Array2OfVec2d.hxx
+// ./opencascade/TColgp_Array2OfXY.hxx
+// ./opencascade/TColgp_HArray2OfXYZ.hxx
+// ./opencascade/TColgp_HSequenceOfDir.hxx
+// ./opencascade/TColgp_Array2OfLin2d.hxx
+// ./opencascade/TColgp_SequenceOfDir.hxx
+// ./opencascade/TColgp_HArray1OfVec2d.hxx
+// ./opencascade/TColgp_SequenceOfAx1.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array2<gp_Dir2d>(m,"TColgp_Array2OfDir2d");  
-    register_template_NCollection_Array1<gp_Pnt2d>(m,"TColgp_Array1OfPnt2d");  
     register_template_NCollection_Sequence<gp_Vec2d>(m,"TColgp_SequenceOfVec2d");  
-    register_template_NCollection_Array1<gp_Vec>(m,"TColgp_Array1OfVec");  
-    register_template_NCollection_Array2<gp_Pnt>(m,"TColgp_Array2OfPnt");  
-    register_template_NCollection_Sequence<gp_Vec>(m,"TColgp_SequenceOfVec");  
-    register_template_NCollection_Array1<gp_Pnt>(m,"TColgp_Array1OfPnt");  
-    register_template_NCollection_Sequence<gp_Pnt>(m,"TColgp_SequenceOfPnt");  
-    register_template_NCollection_Array2<gp_Vec2d>(m,"TColgp_Array2OfVec2d");  
-    register_template_NCollection_Array1<gp_XYZ>(m,"TColgp_Array1OfXYZ");  
-    register_template_NCollection_Array2<gp_XY>(m,"TColgp_Array2OfXY");  
-    register_template_NCollection_Array2<gp_Dir>(m,"TColgp_Array2OfDir");  
-    register_template_NCollection_Array2<gp_XYZ>(m,"TColgp_Array2OfXYZ");  
-    register_template_NCollection_Array1<gp_Dir>(m,"TColgp_Array1OfDir");  
     register_template_NCollection_Array2<gp_Vec>(m,"TColgp_Array2OfVec");  
-    register_template_NCollection_Array1<gp_Dir2d>(m,"TColgp_Array1OfDir2d");  
+    register_template_NCollection_Sequence<opencascade::handle<TColgp_HArray1OfPnt2d> >(m,"TColgp_SequenceOfArray1OfPnt2d");  
+    register_template_NCollection_Array2<gp_Dir>(m,"TColgp_Array2OfDir");  
+    register_template_NCollection_Array1<gp_XYZ>(m,"TColgp_Array1OfXYZ");  
+    register_template_NCollection_Sequence<gp_Vec>(m,"TColgp_SequenceOfVec");  
     register_template_NCollection_Array1<gp_Vec2d>(m,"TColgp_Array1OfVec2d");  
+    register_template_NCollection_Sequence<gp_Pnt>(m,"TColgp_SequenceOfPnt");  
+    register_template_NCollection_Array2<gp_Dir2d>(m,"TColgp_Array2OfDir2d");  
+    register_template_NCollection_Array1<gp_Vec>(m,"TColgp_Array1OfVec");  
+    register_template_NCollection_Array1<gp_Pnt2d>(m,"TColgp_Array1OfPnt2d");  
+    register_template_NCollection_Array1<gp_XY>(m,"TColgp_Array1OfXY");  
+    register_template_NCollection_Array1<gp_Dir>(m,"TColgp_Array1OfDir");  
+    register_template_NCollection_Array1<gp_Pnt>(m,"TColgp_Array1OfPnt");  
     register_template_NCollection_Array2<gp_Pnt2d>(m,"TColgp_Array2OfPnt2d");  
+    register_template_NCollection_Array1<gp_Dir2d>(m,"TColgp_Array1OfDir2d");  
+    register_template_NCollection_Array2<gp_XYZ>(m,"TColgp_Array2OfXYZ");  
+    register_template_NCollection_Sequence<gp_Pnt2d>(m,"TColgp_SequenceOfPnt2d");  
+    register_template_NCollection_Array2<gp_Pnt>(m,"TColgp_Array2OfPnt");  
     register_template_NCollection_Array1<gp_Circ2d>(m,"TColgp_Array1OfCirc2d");  
-    register_template_NCollection_Array2<gp_Lin2d>(m,"TColgp_Array2OfLin2d");  
     register_template_NCollection_Sequence<gp_Dir2d>(m,"TColgp_SequenceOfDir2d");  
     register_template_NCollection_Array1<gp_Lin2d>(m,"TColgp_Array1OfLin2d");  
-    register_template_NCollection_Sequence<gp_Ax1>(m,"TColgp_SequenceOfAx1");  
-    register_template_NCollection_Sequence<gp_XYZ>(m,"TColgp_SequenceOfXYZ");  
-    register_template_NCollection_Sequence<opencascade::handle<TColgp_HArray1OfPnt2d> >(m,"TColgp_SequenceOfArray1OfPnt2d");  
-    register_template_NCollection_Sequence<gp_XY>(m,"TColgp_SequenceOfXY");  
-    register_template_NCollection_Array1<gp_XY>(m,"TColgp_Array1OfXY");  
-    register_template_NCollection_Sequence<gp_Dir>(m,"TColgp_SequenceOfDir");  
-    register_template_NCollection_Sequence<gp_Pnt2d>(m,"TColgp_SequenceOfPnt2d");  
     register_template_NCollection_Array2<gp_Circ2d>(m,"TColgp_Array2OfCirc2d");  
+    register_template_NCollection_Sequence<gp_XYZ>(m,"TColgp_SequenceOfXYZ");  
+    register_template_NCollection_Sequence<gp_XY>(m,"TColgp_SequenceOfXY");  
+    register_template_NCollection_Array2<gp_Vec2d>(m,"TColgp_Array2OfVec2d");  
+    register_template_NCollection_Array2<gp_XY>(m,"TColgp_Array2OfXY");  
+    register_template_NCollection_Array2<gp_Lin2d>(m,"TColgp_Array2OfLin2d");  
+    register_template_NCollection_Sequence<gp_Dir>(m,"TColgp_SequenceOfDir");  
+    register_template_NCollection_Sequence<gp_Ax1>(m,"TColgp_SequenceOfAx1");  
 
 
 // exceptions

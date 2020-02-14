@@ -13,6 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <Message_ProgressIndicator.hxx>
+#include <Geom2d_Curve.hxx>
 #include <Geom_Surface.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
@@ -21,11 +26,6 @@ namespace py = pybind11;
 #include <GeomTools_SurfaceSet.hxx>
 #include <GeomTools_CurveSet.hxx>
 #include <GeomTools_Curve2dSet.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Surface.hxx>
-#include <Message_ProgressIndicator.hxx>
-#include <Geom2d_Curve.hxx>
 #include <Message_ProgressIndicator.hxx>
 #include <Geom_Surface.hxx>
 #include <Message_ProgressIndicator.hxx>
@@ -57,9 +57,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomTools"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomTools , shared_ptr<GeomTools>>(m,"GeomTools");
 
     static_cast<py::class_<GeomTools , shared_ptr<GeomTools>  >>(m.attr("GeomTools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -101,12 +104,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomTools"));
                     []( std::istream & IS ){ Standard_Real  theValue; GeomTools::GetReal(IS,theValue); return std::make_tuple(theValue); },
                     R"#(Reads the Standard_Real value from the stream. Zero is read in case of error)#"  , py::arg("IS"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomTools_Curve2dSet , shared_ptr<GeomTools_Curve2dSet>  >>(m.attr("GeomTools_Curve2dSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (GeomTools_Curve2dSet::*)() ) static_cast<void (GeomTools_Curve2dSet::*)() >(&GeomTools_Curve2dSet::Clear),
@@ -145,12 +150,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomTools"));
                     R"#(Reads the curve from the stream. The curve is assumed to have been written with the Print method (compact = True).)#"  , py::arg("IS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomTools_CurveSet , shared_ptr<GeomTools_CurveSet>  >>(m.attr("GeomTools_CurveSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (GeomTools_CurveSet::*)() ) static_cast<void (GeomTools_CurveSet::*)() >(&GeomTools_CurveSet::Clear),
@@ -189,12 +196,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomTools"));
                     R"#(Reads the curve from the stream. The curve is assumed to have been written with the Print method (compact = True).)#"  , py::arg("IS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomTools_SurfaceSet , shared_ptr<GeomTools_SurfaceSet>  >>(m.attr("GeomTools_SurfaceSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (GeomTools_SurfaceSet::*)() ) static_cast<void (GeomTools_SurfaceSet::*)() >(&GeomTools_SurfaceSet::Clear),
@@ -233,12 +242,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomTools"));
                     R"#(Reads the surface from the stream. The surface is assumed to have been written with the Print method (compact = True).)#"  , py::arg("IS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomTools_UndefinedTypeHandler ,opencascade::handle<GeomTools_UndefinedTypeHandler>  , Standard_Transient >>(m.attr("GeomTools_UndefinedTypeHandler"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("PrintCurve",
              (void (GeomTools_UndefinedTypeHandler::*)( const opencascade::handle<Geom_Curve> & ,  std::ostream & ,  const Standard_Boolean  ) const) static_cast<void (GeomTools_UndefinedTypeHandler::*)( const opencascade::handle<Geom_Curve> & ,  std::ostream & ,  const Standard_Boolean  ) const>(&GeomTools_UndefinedTypeHandler::PrintCurve),
@@ -271,13 +282,13 @@ py::module m = static_cast<py::module>(main_module.attr("GeomTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomTools.hxx
 // ./opencascade/GeomTools_UndefinedTypeHandler.hxx
 // ./opencascade/GeomTools_Curve2dSet.hxx
+// ./opencascade/GeomTools.hxx
 // ./opencascade/GeomTools_SurfaceSet.hxx
 // ./opencascade/GeomTools_CurveSet.hxx
 

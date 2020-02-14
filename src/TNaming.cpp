@@ -14,6 +14,26 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_NoMoreObject.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TNaming_TranslateTool.hxx>
+#include <TopLoc_Location.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <TNaming_UsedShapes.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <TDF_Label.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TNaming_UsedShapes.hxx>
+#include <TDF_Label.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TNaming_Localizer.hxx>
+#include <TNaming_OldShapeIterator.hxx>
+#include <TNaming_UsedShapes.hxx>
+#include <TNaming_Localizer.hxx>
+#include <TNaming_DeltaOnModification.hxx>
+#include <TNaming_NamedShape.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <TNaming_Tool.hxx>
@@ -24,9 +44,51 @@ namespace py = pybind11;
 #include <TDF_Label.hxx>
 #include <TNaming_Iterator.hxx>
 #include <TNaming_NamedShape.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TNaming_Tool.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TNaming_UsedShapes.hxx>
+#include <TDF_Label.hxx>
+#include <TNaming_Builder.hxx>
+#include <TNaming_Iterator.hxx>
+#include <TNaming_NewShapeIterator.hxx>
+#include <TNaming_OldShapeIterator.hxx>
+#include <Standard_GUID.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TDF_DeltaOnModification.hxx>
+#include <TDF_DeltaOnRemoval.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
+#include <TDF_AttributeDelta.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TNaming_Tool.hxx>
+#include <TNaming_Name.hxx>
+#include <TNaming_Naming.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TNaming_UsedShapes.hxx>
+#include <TDF_Label.hxx>
+#include <TNaming_Iterator.hxx>
 #include <TNaming_NamedShape.hxx>
 #include <TNaming_NamedShape.hxx>
 #include <TopoDS_Shape.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <TDF_Label.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TNaming_NewShapeIterator.hxx>
+#include <TNaming_OldShapeIterator.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <TDF_Label.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
+#include <TDF_IDFilter.hxx>
 #include <TDF_Label.hxx>
 #include <TNaming_NamedShape.hxx>
 #include <TopoDS_Face.hxx>
@@ -56,23 +118,6 @@ namespace py = pybind11;
 #include <TNaming_ShapesSet.hxx>
 #include <TNaming_IteratorOnShapesSet.hxx>
 #include <TNaming_NamingTool.hxx>
-#include <TDF_Label.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <TNaming_Builder.hxx>
-#include <TNaming_Iterator.hxx>
-#include <TNaming_NewShapeIterator.hxx>
-#include <TNaming_OldShapeIterator.hxx>
-#include <Standard_GUID.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TDF_DeltaOnModification.hxx>
-#include <TDF_DeltaOnRemoval.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
-#include <TDF_AttributeDelta.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <TNaming_Localizer.hxx>
-#include <TNaming_OldShapeIterator.hxx>
-#include <TNaming_UsedShapes.hxx>
 #include <TNaming_Builder.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_AttributeDelta.hxx>
@@ -80,51 +125,6 @@ namespace py = pybind11;
 #include <TDF_DeltaOnRemoval.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TNaming_NewShapeIterator.hxx>
-#include <TNaming_OldShapeIterator.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <TDF_Label.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TNaming_UsedShapes.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <TDF_Label.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TNaming_TranslateTool.hxx>
-#include <TopLoc_Location.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TNaming_Tool.hxx>
-#include <TNaming_Name.hxx>
-#include <TNaming_Naming.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TNaming_UsedShapes.hxx>
-#include <TDF_Label.hxx>
-#include <TNaming_Iterator.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TNaming_Tool.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TNaming_UsedShapes.hxx>
-#include <TDF_Label.hxx>
-#include <TNaming_UsedShapes.hxx>
-#include <TDF_Label.hxx>
-#include <TNaming_DeltaOnModification.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
-#include <TDF_IDFilter.hxx>
-#include <TNaming_Localizer.hxx>
 #include <TNaming_RefShape.hxx>
 
 // module includes
@@ -173,29 +173,29 @@ namespace py = pybind11;
 #include <TNaming_UsedShapes.hxx>
 
 // template related includes
-// ./opencascade/TNaming_MapOfNamedShape.hxx
+// ./opencascade/TNaming_NamedShapeHasher.hxx
 #include "NCollection.hxx"
-// ./opencascade/TNaming_MapOfNamedShape.hxx
+// ./opencascade/TNaming_ListOfNamedShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TNaming_ListOfNamedShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TNaming_ListOfMapOfShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TNaming_ListOfMapOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TNaming_DataMapOfShapePtrRefShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TNaming_ListOfNamedShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TNaming_ListOfNamedShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TNaming_ListOfIndexedDataMapOfShapeListOfShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TNaming_ListOfIndexedDataMapOfShapeListOfShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TNaming_ListOfMapOfShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TNaming_ListOfMapOfShape.hxx
-#include "NCollection.hxx"
 // ./opencascade/TNaming_DataMapOfShapeShapesSet.hxx
 #include "NCollection.hxx"
 // ./opencascade/TNaming_DataMapOfShapeShapesSet.hxx
 #include "NCollection.hxx"
-// ./opencascade/TNaming_NamedShapeHasher.hxx
+// ./opencascade/TNaming_MapOfNamedShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TNaming_MapOfNamedShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TNaming_ListOfIndexedDataMapOfShapeListOfShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TNaming_ListOfIndexedDataMapOfShapeListOfShape.hxx
 #include "NCollection.hxx"
 
 
@@ -215,9 +215,12 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TNaming , shared_ptr<TNaming>>(m,"TNaming");
 
     static_cast<py::class_<TNaming , shared_ptr<TNaming>  >>(m.attr("TNaming"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -274,12 +277,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(Prints the content of UsedShapes private attribute as a String Table on the Stream <S> and returns <S>.)#"  , py::arg("ACCESS"),  py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Builder , shared_ptr<TNaming_Builder>  >>(m.attr("TNaming_Builder"))
+    // constructors
         .def(py::init< const TDF_Label & >()  , py::arg("aLabel") )
+    // custom constructors
     // methods
         .def("Generated",
              (void (TNaming_Builder::*)( const TopoDS_Shape &  ) ) static_cast<void (TNaming_Builder::*)( const TopoDS_Shape &  ) >(&TNaming_Builder::Generated),
@@ -303,12 +308,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TNaming_CopyShape , shared_ptr<TNaming_CopyShape>>(m,"TNaming_CopyShape");
 
     static_cast<py::class_<TNaming_CopyShape , shared_ptr<TNaming_CopyShape>  >>(m.attr("TNaming_CopyShape"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -323,12 +331,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(Translates a Topological Location to an other Top. Location)#"  , py::arg("L"),  py::arg("aMap"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_DeltaOnModification ,opencascade::handle<TNaming_DeltaOnModification>  , TDF_DeltaOnModification >>(m.attr("TNaming_DeltaOnModification"))
+    // constructors
         .def(py::init< const opencascade::handle<TNaming_NamedShape> & >()  , py::arg("NS") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TNaming_DeltaOnModification::*)() ) static_cast<void (TNaming_DeltaOnModification::*)() >(&TNaming_DeltaOnModification::Apply),
@@ -346,12 +356,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_DeltaOnRemoval ,opencascade::handle<TNaming_DeltaOnRemoval>  , TDF_DeltaOnRemoval >>(m.attr("TNaming_DeltaOnRemoval"))
+    // constructors
         .def(py::init< const opencascade::handle<TNaming_NamedShape> & >()  , py::arg("NS") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TNaming_DeltaOnRemoval::*)() ) static_cast<void (TNaming_DeltaOnRemoval::*)() >(&TNaming_DeltaOnRemoval::Apply),
@@ -369,13 +381,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Identifier , shared_ptr<TNaming_Identifier>  >>(m.attr("TNaming_Identifier"))
+    // constructors
         .def(py::init< const TDF_Label &,const TopoDS_Shape &,const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("Lab"),  py::arg("S"),  py::arg("Context"),  py::arg("Geom") )
         .def(py::init< const TDF_Label &,const TopoDS_Shape &,const opencascade::handle<TNaming_NamedShape> &,const Standard_Boolean >()  , py::arg("Lab"),  py::arg("S"),  py::arg("ContextNS"),  py::arg("Geom") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (TNaming_Identifier::*)() const) static_cast<Standard_Boolean (TNaming_Identifier::*)() const>(&TNaming_Identifier::IsDone),
@@ -429,14 +443,16 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Iterator , shared_ptr<TNaming_Iterator>  >>(m.attr("TNaming_Iterator"))
+    // constructors
         .def(py::init< const opencascade::handle<TNaming_NamedShape> & >()  , py::arg("anAtt") )
         .def(py::init< const TDF_Label & >()  , py::arg("aLabel") )
         .def(py::init< const TDF_Label &,const Standard_Integer >()  , py::arg("aLabel"),  py::arg("aTrans") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TNaming_Iterator::*)() const) static_cast<Standard_Boolean (TNaming_Iterator::*)() const>(&TNaming_Iterator::More),
@@ -463,13 +479,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_IteratorOnShapesSet , shared_ptr<TNaming_IteratorOnShapesSet>  >>(m.attr("TNaming_IteratorOnShapesSet"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TNaming_ShapesSet & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TNaming_IteratorOnShapesSet::*)( const TNaming_ShapesSet &  ) ) static_cast<void (TNaming_IteratorOnShapesSet::*)( const TNaming_ShapesSet &  ) >(&TNaming_IteratorOnShapesSet::Init),
@@ -499,12 +517,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Localizer , shared_ptr<TNaming_Localizer>  >>(m.attr("TNaming_Localizer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TNaming_Localizer::*)( const opencascade::handle<TNaming_UsedShapes> & ,  const Standard_Integer  ) ) static_cast<void (TNaming_Localizer::*)( const opencascade::handle<TNaming_UsedShapes> & ,  const Standard_Integer  ) >(&TNaming_Localizer::Init),
@@ -540,12 +560,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(Finds context of the shape <S>.)#"  , py::arg("NS"),  py::arg("theS"),  py::arg("theSC"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Name , shared_ptr<TNaming_Name>  >>(m.attr("TNaming_Name"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Type",
              (void (TNaming_Name::*)( const TNaming_NameType  ) ) static_cast<void (TNaming_Name::*)( const TNaming_NameType  ) >(&TNaming_Name::Type),
@@ -605,12 +627,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_NamedShape ,opencascade::handle<TNaming_NamedShape>  , TDF_Attribute >>(m.attr("TNaming_NamedShape"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TNaming_NamedShape::*)() const) static_cast<Standard_Boolean (TNaming_NamedShape::*)() const>(&TNaming_NamedShape::IsEmpty),
@@ -697,12 +721,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Naming ,opencascade::handle<TNaming_Naming>  , TDF_Attribute >>(m.attr("TNaming_Naming"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsDefined",
              (Standard_Boolean (TNaming_Naming::*)() const) static_cast<Standard_Boolean (TNaming_Naming::*)() const>(&TNaming_Naming::IsDefined),
@@ -762,12 +788,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TNaming_NamingTool , shared_ptr<TNaming_NamingTool>>(m,"TNaming_NamingTool");
 
     static_cast<py::class_<TNaming_NamingTool , shared_ptr<TNaming_NamingTool>  >>(m.attr("TNaming_NamingTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -782,15 +811,17 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(None)#"  , py::arg("NS"),  py::arg("Labels"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_NewShapeIterator , shared_ptr<TNaming_NewShapeIterator>  >>(m.attr("TNaming_NewShapeIterator"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Integer,const TDF_Label & >()  , py::arg("aShape"),  py::arg("Transaction"),  py::arg("access") )
         .def(py::init< const TopoDS_Shape &,const TDF_Label & >()  , py::arg("aShape"),  py::arg("access") )
         .def(py::init< const TNaming_NewShapeIterator & >()  , py::arg("anIterator") )
         .def(py::init< const TNaming_Iterator & >()  , py::arg("anIterator") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TNaming_NewShapeIterator::*)() const) static_cast<Standard_Boolean (TNaming_NewShapeIterator::*)() const>(&TNaming_NewShapeIterator::More),
@@ -817,15 +848,17 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_OldShapeIterator , shared_ptr<TNaming_OldShapeIterator>  >>(m.attr("TNaming_OldShapeIterator"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Integer,const TDF_Label & >()  , py::arg("aShape"),  py::arg("Transaction"),  py::arg("access") )
         .def(py::init< const TopoDS_Shape &,const TDF_Label & >()  , py::arg("aShape"),  py::arg("access") )
         .def(py::init< const TNaming_OldShapeIterator & >()  , py::arg("anIterator") )
         .def(py::init< const TNaming_Iterator & >()  , py::arg("anIterator") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TNaming_OldShapeIterator::*)() const) static_cast<Standard_Boolean (TNaming_OldShapeIterator::*)() const>(&TNaming_OldShapeIterator::More),
@@ -852,13 +885,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_RefShape , shared_ptr<TNaming_RefShape>  >>(m.attr("TNaming_RefShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Shape",
              (void (TNaming_RefShape::*)( const TopoDS_Shape &  ) ) static_cast<void (TNaming_RefShape::*)( const TopoDS_Shape &  ) >(&TNaming_RefShape::Shape),
@@ -882,12 +917,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_SameShapeIterator , shared_ptr<TNaming_SameShapeIterator>  >>(m.attr("TNaming_SameShapeIterator"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TDF_Label & >()  , py::arg("aShape"),  py::arg("access") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TNaming_SameShapeIterator::*)() const) static_cast<Standard_Boolean (TNaming_SameShapeIterator::*)() const>(&TNaming_SameShapeIterator::More),
@@ -905,14 +942,16 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Scope , shared_ptr<TNaming_Scope>  >>(m.attr("TNaming_Scope"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean >()  , py::arg("WithValid") )
         .def(py::init< NCollection_Map<TDF_Label, TDF_LabelMapHasher> & >()  , py::arg("valid") )
+    // custom constructors
     // methods
         .def("WithValid",
              (Standard_Boolean (TNaming_Scope::*)() const) static_cast<Standard_Boolean (TNaming_Scope::*)() const>(&TNaming_Scope::WithValid),
@@ -951,12 +990,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Selector , shared_ptr<TNaming_Selector>  >>(m.attr("TNaming_Selector"))
+    // constructors
         .def(py::init< const TDF_Label & >()  , py::arg("aLabel") )
+    // custom constructors
     // methods
         .def("Select",
              (Standard_Boolean (TNaming_Selector::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (TNaming_Selector::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean  ) const>(&TNaming_Selector::Select),
@@ -980,13 +1021,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(To know if a shape is already identified (not selected) =======================================================)#"  , py::arg("access"),  py::arg("selection"),  py::arg("NS"),  py::arg("Geometry")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_ShapesSet , shared_ptr<TNaming_ShapesSet>  >>(m.attr("TNaming_ShapesSet"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const TopAbs_ShapeEnum >()  , py::arg("S"),  py::arg("Type")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE) )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TNaming_ShapesSet::*)() ) static_cast<void (TNaming_ShapesSet::*)() >(&TNaming_ShapesSet::Clear),
@@ -1049,12 +1092,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TNaming_Tool , shared_ptr<TNaming_Tool>>(m,"TNaming_Tool");
 
     static_cast<py::class_<TNaming_Tool , shared_ptr<TNaming_Tool>  >>(m.attr("TNaming_Tool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1102,12 +1148,15 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(Returns the current shape (a Wire or a Shell) built (in the data framework) from the the shapes of the argument named shape. It is used for IDENTITY name type computation.)#"  , py::arg("Valid"),  py::arg("Forbiden"),  py::arg("Arg"),  py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TNaming_TranslateTool ,opencascade::handle<TNaming_TranslateTool>>(m,"TNaming_TranslateTool");
 
     static_cast<py::class_<TNaming_TranslateTool ,opencascade::handle<TNaming_TranslateTool>  , Standard_Transient >>(m.attr("TNaming_TranslateTool"))
+    // constructors
+    // custom constructors
     // methods
         .def("Add",
              (void (TNaming_TranslateTool::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const) static_cast<void (TNaming_TranslateTool::*)( TopoDS_Shape & ,  const TopoDS_Shape &  ) const>(&TNaming_TranslateTool::Add),
@@ -1161,12 +1210,14 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_Translator , shared_ptr<TNaming_Translator>  >>(m.attr("TNaming_Translator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (TNaming_Translator::*)( const TopoDS_Shape &  ) ) static_cast<void (TNaming_Translator::*)( const TopoDS_Shape &  ) >(&TNaming_Translator::Add),
@@ -1190,11 +1241,13 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TNaming_UsedShapes ,opencascade::handle<TNaming_UsedShapes>  , TDF_Attribute >>(m.attr("TNaming_UsedShapes"))
+    // constructors
+    // custom constructors
     // methods
         .def("Destroy",
              (void (TNaming_UsedShapes::*)() ) static_cast<void (TNaming_UsedShapes::*)() >(&TNaming_UsedShapes::Destroy),
@@ -1257,63 +1310,63 @@ py::module m = static_cast<py::module>(main_module.attr("TNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TNaming_MapIteratorOfMapOfNamedShape.hxx
 // ./opencascade/TNaming_IteratorOnShapesSet.hxx
-// ./opencascade/TNaming_OldShapeIterator.hxx
-// ./opencascade/TNaming_PtrAttribute.hxx
-// ./opencascade/TNaming_DeltaOnModification.hxx
-// ./opencascade/TNaming_MapOfNamedShape.hxx
-// ./opencascade/TNaming_TranslateTool.hxx
-// ./opencascade/TNaming.hxx
-// ./opencascade/TNaming_ListIteratorOfListOfIndexedDataMapOfShapeListOfShape.hxx
-// ./opencascade/TNaming_ListIteratorOfListOfMapOfShape.hxx
-// ./opencascade/TNaming_RefShape.hxx
-// ./opencascade/TNaming_NamedShape.hxx
-// ./opencascade/TNaming_NamingTool.hxx
-// ./opencascade/TNaming_PtrNode.hxx
-// ./opencascade/TNaming_DataMapIteratorOfDataMapOfShapePtrRefShape.hxx
-// ./opencascade/TNaming_Tool.hxx
-// ./opencascade/TNaming_UsedShapes.hxx
-// ./opencascade/TNaming_Iterator.hxx
-// ./opencascade/TNaming_Evolution.hxx
-// ./opencascade/TNaming_Builder.hxx
 // ./opencascade/TNaming_CopyShape.hxx
-// ./opencascade/TNaming_ListIteratorOfListOfNamedShape.hxx
-// ./opencascade/TNaming_NCollections.hxx
-// ./opencascade/TNaming_NewShapeIterator.hxx
-// ./opencascade/TNaming_SameShapeIterator.hxx
-// ./opencascade/TNaming_Translator.hxx
-// ./opencascade/TNaming_DataMapOfShapePtrRefShape.hxx
-// ./opencascade/TNaming_Localizer.hxx
-// ./opencascade/TNaming_ListOfNamedShape.hxx
-// ./opencascade/TNaming_DataMapIteratorOfDataMapOfShapeShapesSet.hxx
-// ./opencascade/TNaming_DeltaOnRemoval.hxx
-// ./opencascade/TNaming_ListOfIndexedDataMapOfShapeListOfShape.hxx
-// ./opencascade/TNaming_ShapesSet.hxx
-// ./opencascade/TNaming_Name.hxx
-// ./opencascade/TNaming_Selector.hxx
+// ./opencascade/TNaming_PtrAttribute.hxx
 // ./opencascade/TNaming_Scope.hxx
-// ./opencascade/TNaming_ListOfMapOfShape.hxx
-// ./opencascade/TNaming_Naming.hxx
-// ./opencascade/TNaming_Identifier.hxx
-// ./opencascade/TNaming_PtrRefShape.hxx
-// ./opencascade/TNaming_DataMapOfShapeShapesSet.hxx
+// ./opencascade/TNaming_ListIteratorOfListOfNamedShape.hxx
+// ./opencascade/TNaming_Builder.hxx
 // ./opencascade/TNaming_NamedShapeHasher.hxx
+// ./opencascade/TNaming_Localizer.hxx
+// ./opencascade/TNaming_ShapesSet.hxx
+// ./opencascade/TNaming_TranslateTool.hxx
+// ./opencascade/TNaming_ListOfNamedShape.hxx
+// ./opencascade/TNaming_ListOfMapOfShape.hxx
+// ./opencascade/TNaming_Tool.hxx
+// ./opencascade/TNaming_Identifier.hxx
+// ./opencascade/TNaming_DeltaOnRemoval.hxx
+// ./opencascade/TNaming_ListIteratorOfListOfMapOfShape.hxx
+// ./opencascade/TNaming_MapIteratorOfMapOfNamedShape.hxx
+// ./opencascade/TNaming_DataMapOfShapePtrRefShape.hxx
+// ./opencascade/TNaming_OldShapeIterator.hxx
+// ./opencascade/TNaming_ListIteratorOfListOfIndexedDataMapOfShapeListOfShape.hxx
+// ./opencascade/TNaming_SameShapeIterator.hxx
+// ./opencascade/TNaming_NamedShape.hxx
+// ./opencascade/TNaming_NewShapeIterator.hxx
+// ./opencascade/TNaming_DataMapIteratorOfDataMapOfShapePtrRefShape.hxx
+// ./opencascade/TNaming_DeltaOnModification.hxx
+// ./opencascade/TNaming_Selector.hxx
+// ./opencascade/TNaming_Translator.hxx
+// ./opencascade/TNaming_RefShape.hxx
+// ./opencascade/TNaming_NamingTool.hxx
+// ./opencascade/TNaming_Iterator.hxx
 // ./opencascade/TNaming_NameType.hxx
+// ./opencascade/TNaming_Name.hxx
+// ./opencascade/TNaming_Naming.hxx
+// ./opencascade/TNaming_DataMapOfShapeShapesSet.hxx
+// ./opencascade/TNaming_MapOfNamedShape.hxx
+// ./opencascade/TNaming_Evolution.hxx
+// ./opencascade/TNaming_NCollections.hxx
+// ./opencascade/TNaming.hxx
+// ./opencascade/TNaming_DataMapIteratorOfDataMapOfShapeShapesSet.hxx
+// ./opencascade/TNaming_ListOfIndexedDataMapOfShapeListOfShape.hxx
+// ./opencascade/TNaming_UsedShapes.hxx
+// ./opencascade/TNaming_PtrNode.hxx
+// ./opencascade/TNaming_PtrRefShape.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Map<opencascade::handle<TNaming_NamedShape>, TNaming_NamedShapeHasher>(m,"TNaming_MapOfNamedShape");  
+    register_template_NCollection_DefaultHasher<opencascade::handle<TNaming_NamedShape> >(m,"TNaming_NamedShapeHasher");  
     register_template_NCollection_List<opencascade::handle<TNaming_NamedShape> >(m,"TNaming_ListOfNamedShape");  
-    register_template_NCollection_List<TopTools_IndexedDataMapOfShapeListOfShape>(m,"TNaming_ListOfIndexedDataMapOfShapeListOfShape");  
     register_template_NCollection_List<TopTools_MapOfShape>(m,"TNaming_ListOfMapOfShape");  
     register_template_NCollection_DataMap<TopoDS_Shape, TNaming_ShapesSet, TopTools_ShapeMapHasher>(m,"TNaming_DataMapOfShapeShapesSet");  
-    register_template_NCollection_DefaultHasher<opencascade::handle<TNaming_NamedShape> >(m,"TNaming_NamedShapeHasher");  
+    register_template_NCollection_Map<opencascade::handle<TNaming_NamedShape>, TNaming_NamedShapeHasher>(m,"TNaming_MapOfNamedShape");  
+    register_template_NCollection_List<TopTools_IndexedDataMapOfShapeListOfShape>(m,"TNaming_ListOfIndexedDataMapOfShapeListOfShape");  
 
 
 // exceptions

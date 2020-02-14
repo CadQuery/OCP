@@ -13,11 +13,17 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Law_Function.hxx>
+#include <ChFiDS_HElSpine.hxx>
+#include <ChFiDS_Spine.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <BRepAdaptor_HCurve2d.hxx>
+#include <BRepBlend_Line.hxx>
 #include <Geom_Curve.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
 #include <ChFiDS_Spine.hxx>
-#include <Geom_Surface.hxx>
 #include <ChFiDS_HElSpine.hxx>
 #include <BRepAdaptor_HSurface.hxx>
 #include <Adaptor3d_TopolTool.hxx>
@@ -33,17 +39,8 @@ namespace py = pybind11;
 #include <Blend_RstRstFunction.hxx>
 #include <Blend_CurvPointFuncInv.hxx>
 #include <BRepTopAdaptor_TopolTool.hxx>
-#include <TopoDS_Face.hxx>
 #include <AppBlend_Approx.hxx>
 #include <Geom2d_Curve.hxx>
-#include <Law_Function.hxx>
-#include <ChFiDS_HElSpine.hxx>
-#include <ChFiDS_Spine.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <BRepAdaptor_HCurve2d.hxx>
-#include <BRepBlend_Line.hxx>
-#include <TopoDS_Face.hxx>
 #include <ChFiDS_HElSpine.hxx>
 #include <ChFiDS_Spine.hxx>
 #include <BRepAdaptor_HSurface.hxx>
@@ -85,6 +82,7 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
     public:
         using ChFi3d_Builder::ChFi3d_Builder;
         
+        
         // public pure virtual
         
         
@@ -107,9 +105,12 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ChFi3d , shared_ptr<ChFi3d>>(m,"ChFi3d");
 
     static_cast<py::class_<ChFi3d , shared_ptr<ChFi3d>  >>(m.attr("ChFi3d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -127,11 +128,13 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
                     R"#(Enables to determine while processing an angle, if two fillets or chamfers constituting a face have identic or opposed concave edges.)#"  , py::arg("Or"),  py::arg("OrSave1"),  py::arg("OrSave2"),  py::arg("OrFace1"),  py::arg("OrFace2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi3d_Builder , shared_ptr<ChFi3d_Builder> ,Py_ChFi3d_Builder >>(m.attr("ChFi3d_Builder"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetParams",
              (void (ChFi3d_Builder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFi3d_Builder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&ChFi3d_Builder::SetParams),
@@ -230,12 +233,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi3d_SearchSing , shared_ptr<ChFi3d_SearchSing>  , math_FunctionWithDerivative >>(m.attr("ChFi3d_SearchSing"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> & >()  , py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (ChFi3d_SearchSing::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (ChFi3d_SearchSing::*)( const Standard_Real ,  Standard_Real &  ) >(&ChFi3d_SearchSing::Value),
@@ -250,19 +255,21 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi3d_ChBuilder , shared_ptr<ChFi3d_ChBuilder>  , ChFi3d_Builder >>(m.attr("ChFi3d_ChBuilder"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Real >()  , py::arg("S"),  py::arg("Ta")=static_cast<const Standard_Real>(1.0e-2) )
+    // custom constructors
     // methods
         .def("Add",
              (void (ChFi3d_ChBuilder::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFi3d_ChBuilder::*)( const TopoDS_Edge &  ) >(&ChFi3d_ChBuilder::Add),
              R"#(initializes a contour with the edge <E> as first (the next are found by propagation ). The two distances (parameters of the chamfer) must be set after. if the edge <E> has more than 2 adjacent faces)#"  , py::arg("E"))
         .def("Add",
-             (void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&ChFi3d_ChBuilder::Add),
-             R"#(initializes a new contour with the edge <E> as first (the next are found by propagation ), and the distance <Dis> if the edge <E> has more than 2 adjacent faces)#"  , py::arg("Dis"),  py::arg("E"),  py::arg("F"))
+             (void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const TopoDS_Edge &  ) ) static_cast<void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const TopoDS_Edge &  ) >(&ChFi3d_ChBuilder::Add),
+             R"#(initializes a new contour with the edge <E> as first (the next are found by propagation ), and the distance <Dis> if the edge <E> has more than 2 adjacent faces)#"  , py::arg("Dis"),  py::arg("E"))
         .def("SetDist",
              (void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&ChFi3d_ChBuilder::SetDist),
              R"#(set the distance <Dis> of the fillet contour of index <IC> in the DS with <Dis> on <F>. if the face <F> is not one of common faces of an edge of the contour <IC>)#"  , py::arg("Dis"),  py::arg("IC"),  py::arg("F"))
@@ -278,9 +285,15 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
         .def("SetDistAngle",
              (void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (ChFi3d_ChBuilder::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&ChFi3d_ChBuilder::SetDistAngle),
              R"#(set the distance <Dis> and <Angle> of the fillet contour of index <IC> in the DS with <Dis> on <F>. if the face <F> is not one of common faces of an edge of the contour <IC>)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("IC"),  py::arg("F"))
+        .def("SetMode",
+             (void (ChFi3d_ChBuilder::*)( const ChFiDS_ChamfMode  ) ) static_cast<void (ChFi3d_ChBuilder::*)( const ChFiDS_ChamfMode  ) >(&ChFi3d_ChBuilder::SetMode),
+             R"#(set the mode of shamfer)#"  , py::arg("theMode"))
         .def("IsChamfer",
              (ChFiDS_ChamfMethod (ChFi3d_ChBuilder::*)( const Standard_Integer  ) const) static_cast<ChFiDS_ChamfMethod (ChFi3d_ChBuilder::*)( const Standard_Integer  ) const>(&ChFi3d_ChBuilder::IsChamfer),
              R"#(renvoi la methode des chanfreins utilisee)#"  , py::arg("IC"))
+        .def("Mode",
+             (ChFiDS_ChamfMode (ChFi3d_ChBuilder::*)() const) static_cast<ChFiDS_ChamfMode (ChFi3d_ChBuilder::*)() const>(&ChFi3d_ChBuilder::Mode),
+             R"#(returns the mode of chamfer used)#" )
         .def("ResetContour",
              (void (ChFi3d_ChBuilder::*)( const Standard_Integer  ) ) static_cast<void (ChFi3d_ChBuilder::*)( const Standard_Integer  ) >(&ChFi3d_ChBuilder::ResetContour),
              R"#(Reset tous rayons du contour IC.)#"  , py::arg("IC"))
@@ -296,9 +309,6 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
         .def("PerformSurf",
              (Standard_Boolean (ChFi3d_ChBuilder::*)( NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > & ,  const opencascade::handle<ChFiDS_HElSpine> & ,  const opencascade::handle<ChFiDS_Spine> & ,  const Standard_Integer ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const math_Vector & ,  Standard_Integer & ,  Standard_Integer &  ) ) static_cast<Standard_Boolean (ChFi3d_ChBuilder::*)( NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > & ,  const opencascade::handle<ChFiDS_HElSpine> & ,  const opencascade::handle<ChFiDS_Spine> & ,  const Standard_Integer ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  Standard_Real & ,  Standard_Real & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const math_Vector & ,  Standard_Integer & ,  Standard_Integer &  ) >(&ChFi3d_ChBuilder::PerformSurf),
              R"#(Methode, implemented in inheritants, calculates the elements of construction of the surface (fillet or chamfer).)#"  , py::arg("Data"),  py::arg("Guide"),  py::arg("Spine"),  py::arg("Choix"),  py::arg("S1"),  py::arg("I1"),  py::arg("S2"),  py::arg("I2"),  py::arg("MaxStep"),  py::arg("Fleche"),  py::arg("TolGuide"),  py::arg("First"),  py::arg("Last"),  py::arg("Inside"),  py::arg("Appro"),  py::arg("Forward"),  py::arg("RecOnS1"),  py::arg("RecOnS2"),  py::arg("Soldep"),  py::arg("Intf"),  py::arg("Intl"))
-        .def("FindChoiceDistAngle",
-             (Standard_Integer (ChFi3d_ChBuilder::*)( const Standard_Integer ,  const Standard_Boolean  ) const) static_cast<Standard_Integer (ChFi3d_ChBuilder::*)( const Standard_Integer ,  const Standard_Boolean  ) const>(&ChFi3d_ChBuilder::FindChoiceDistAngle),
-             R"#(None)#"  , py::arg("Choice"),  py::arg("DisOnF1"))
     // methods using call by reference i.s.o. return
         .def("GetDist",
              []( ChFi3d_ChBuilder &self , const Standard_Integer IC ){ Standard_Real  Dis; self.GetDist(IC,Dis); return std::make_tuple(Dis); },
@@ -307,7 +317,7 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
              []( ChFi3d_ChBuilder &self , const Standard_Integer IC ){ Standard_Real  Dis1; Standard_Real  Dis2; self.Dists(IC,Dis1,Dis2); return std::make_tuple(Dis1,Dis2); },
              R"#(gives the distances <Dis1> and <Dis2> of the fillet contour of index <IC> in the DS)#"  , py::arg("IC"))
         .def("GetDistAngle",
-             []( ChFi3d_ChBuilder &self , const Standard_Integer IC ){ Standard_Real  Dis; Standard_Real  Angle; Standard_Boolean  DisOnFace1; self.GetDistAngle(IC,Dis,Angle,DisOnFace1); return std::make_tuple(Dis,Angle,DisOnFace1); },
+             []( ChFi3d_ChBuilder &self , const Standard_Integer IC ){ Standard_Real  Dis; Standard_Real  Angle; self.GetDistAngle(IC,Dis,Angle); return std::make_tuple(Dis,Angle); },
              R"#(gives the distances <Dis> and <Angle> of the fillet contour of index <IC> in the DS)#"  , py::arg("IC"))
         .def("SimulSurf",
              []( ChFi3d_ChBuilder &self , opencascade::handle<ChFiDS_SurfData> & Data,const opencascade::handle<ChFiDS_HElSpine> & Guide,const opencascade::handle<ChFiDS_Spine> & Spine,const Standard_Integer Choix,const opencascade::handle<BRepAdaptor_HSurface> & S1,const opencascade::handle<Adaptor3d_TopolTool> & I1,const opencascade::handle<BRepAdaptor_HCurve2d> & PC1,const opencascade::handle<BRepAdaptor_HSurface> & Sref1,const opencascade::handle<BRepAdaptor_HCurve2d> & PCref1,const opencascade::handle<BRepAdaptor_HSurface> & S2,const opencascade::handle<Adaptor3d_TopolTool> & I2,const TopAbs_Orientation Or2,const Standard_Real Fleche,const Standard_Real TolGuide,const Standard_Boolean Inside,const Standard_Boolean Appro,const Standard_Boolean Forward,const Standard_Boolean RecP,const Standard_Boolean RecS,const Standard_Boolean RecRst,const math_Vector & Soldep ){ Standard_Boolean  Decroch1; Standard_Real  First; Standard_Real  Last; self.SimulSurf(Data,Guide,Spine,Choix,S1,I1,PC1,Sref1,PCref1,Decroch1,S2,I2,Or2,Fleche,TolGuide,First,Last,Inside,Appro,Forward,RecP,RecS,RecRst,Soldep); return std::make_tuple(Decroch1,First,Last); },
@@ -330,12 +340,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi3d_FilBuilder , shared_ptr<ChFi3d_FilBuilder>  , ChFi3d_Builder >>(m.attr("ChFi3d_FilBuilder"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const ChFi3d_FilletShape,const Standard_Real >()  , py::arg("S"),  py::arg("FShape")=static_cast<const ChFi3d_FilletShape>(ChFi3d_Rational),  py::arg("Ta")=static_cast<const Standard_Real>(1.0e-2) )
+    // custom constructors
     // methods
         .def("SetFilletShape",
              (void (ChFi3d_FilBuilder::*)( const ChFi3d_FilletShape  ) ) static_cast<void (ChFi3d_FilBuilder::*)( const ChFi3d_FilletShape  ) >(&ChFi3d_FilBuilder::SetFilletShape),
@@ -404,11 +416,15 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/ChFi3d_FilBuilder.hxx
 // ./opencascade/ChFi3d_SearchSing.hxx
+// ./opencascade/ChFi3d_Builder.hxx
+// ./opencascade/ChFi3d_ChBuilder.hxx
+// ./opencascade/ChFi3d.hxx
 // ./opencascade/ChFi3d_Builder_0.hxx
     m.def("ChFi3d_InPeriod", 
           (Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ))  static_cast<Standard_Real (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  )>(&ChFi3d_InPeriod),
@@ -588,8 +604,8 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
           (void (*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  opencascade::handle<Geom_TrimmedCurve> &  ))  static_cast<void (*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  opencascade::handle<Geom_TrimmedCurve> &  )>(&ChFi3d_TrimCurve),
           R"#(None)#"  , py::arg("gc"),  py::arg("FirstP"),  py::arg("LastP"),  py::arg("gtc"));
     m.def("ChFi3d_PerformElSpine", 
-          (void (*)( opencascade::handle<ChFiDS_HElSpine> & ,  opencascade::handle<ChFiDS_Spine> & ,  const GeomAbs_Shape ,  const Standard_Real  ))  static_cast<void (*)( opencascade::handle<ChFiDS_HElSpine> & ,  opencascade::handle<ChFiDS_Spine> & ,  const GeomAbs_Shape ,  const Standard_Real  )>(&ChFi3d_PerformElSpine),
-          R"#(None)#"  , py::arg("HES"),  py::arg("Spine"),  py::arg("continuity"),  py::arg("tol"));
+          (void (*)( opencascade::handle<ChFiDS_HElSpine> & ,  opencascade::handle<ChFiDS_Spine> & ,  const GeomAbs_Shape ,  const Standard_Real ,  const Standard_Boolean  ))  static_cast<void (*)( opencascade::handle<ChFiDS_HElSpine> & ,  opencascade::handle<ChFiDS_Spine> & ,  const GeomAbs_Shape ,  const Standard_Real ,  const Standard_Boolean  )>(&ChFi3d_PerformElSpine),
+          R"#(None)#"  , py::arg("HES"),  py::arg("Spine"),  py::arg("continuity"),  py::arg("tol"),  py::arg("IsOffset")=static_cast<const Standard_Boolean>(Standard_False));
     m.def("ChFi3d_cherche_face1", 
           (void (*)(  const NCollection_List<TopoDS_Shape> & ,  const TopoDS_Face & ,  TopoDS_Face &  ))  static_cast<void (*)(  const NCollection_List<TopoDS_Shape> & ,  const TopoDS_Face & ,  TopoDS_Face &  )>(&ChFi3d_cherche_face1),
           R"#(None)#"  , py::arg("map"),  py::arg("F1"),  py::arg("F"));
@@ -641,11 +657,7 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi3d"));
     m.def("ChFi3d_IsSmooth", 
           (Standard_Boolean (*)( const opencascade::handle<Geom_Curve> &  ))  static_cast<Standard_Boolean (*)( const opencascade::handle<Geom_Curve> &  )>(&ChFi3d_IsSmooth),
           R"#(None)#"  , py::arg("C"));
-// ./opencascade/ChFi3d_Builder.hxx
 // ./opencascade/ChFi3d_FilletShape.hxx
-// ./opencascade/ChFi3d_FilBuilder.hxx
-// ./opencascade/ChFi3d_ChBuilder.hxx
-// ./opencascade/ChFi3d.hxx
 
 // operators
 

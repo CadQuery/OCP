@@ -13,20 +13,20 @@ namespace py = pybind11;
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
-#include <TopoDS_Shape.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMNaming_NamedShapeDriver.hxx>
 #include <XmlMNaming_NamingDriver.hxx>
 #include <XmlMNaming_Shape1.hxx>
+#include <TopoDS_Shape.hxx>
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
 
 // module includes
 #include <XmlMNaming_NamedShapeDriver.hxx>
-#include <XmlMNaming_Shape1.hxx>
 #include <XmlMNaming.hxx>
+#include <XmlMNaming_Shape1.hxx>
 #include <XmlMNaming_NamingDriver.hxx>
 
 // user-defined pre
@@ -34,8 +34,8 @@ namespace py = pybind11;
 
 // Class template handling functions
 // ./opencascade/XmlMNaming_NamedShapeDriver.hxx
-// ./opencascade/XmlMNaming_Shape1.hxx
 // ./opencascade/XmlMNaming.hxx
+// ./opencascade/XmlMNaming_Shape1.hxx
 // ./opencascade/XmlMNaming_NamingDriver.hxx
 
 // user-defined post

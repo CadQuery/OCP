@@ -43,9 +43,11 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
 
 
     static_cast<py::class_<Intrv_Interval , shared_ptr<Intrv_Interval>  >>(m.attr("Intrv_Interval"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Start"),  py::arg("End") )
         .def(py::init< const Standard_Real,const Standard_ShortReal,const Standard_Real,const Standard_ShortReal >()  , py::arg("Start"),  py::arg("TolStart"),  py::arg("End"),  py::arg("TolEnd") )
+    // custom constructors
     // methods
         .def("Start",
              (Standard_Real (Intrv_Interval::*)() const) static_cast<Standard_Real (Intrv_Interval::*)() const>(&Intrv_Interval::Start),
@@ -204,14 +206,16 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intrv_Intervals , shared_ptr<Intrv_Intervals>  >>(m.attr("Intrv_Intervals"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Intrv_Interval & >()  , py::arg("Int") )
         .def(py::init< const Intrv_Intervals & >()  , py::arg("Int") )
+    // custom constructors
     // methods
         .def("Intersect",
              (void (Intrv_Intervals::*)( const Intrv_Interval &  ) ) static_cast<void (Intrv_Intervals::*)( const Intrv_Interval &  ) >(&Intrv_Intervals::Intersect),
@@ -253,17 +257,17 @@ py::module m = static_cast<py::module>(main_module.attr("Intrv"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Intrv_SequenceOfInterval.hxx
-// ./opencascade/Intrv_Intervals.hxx
-// ./opencascade/Intrv_Position.hxx
 // ./opencascade/Intrv_Interval.hxx
     m.def("AreFused", 
           (Standard_Boolean (*)( const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  ))  static_cast<Standard_Boolean (*)( const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  )>(&AreFused),
           R"#(None)#"  , py::arg("c1"),  py::arg("t1"),  py::arg("c2"),  py::arg("t2"));
+// ./opencascade/Intrv_Position.hxx
+// ./opencascade/Intrv_Intervals.hxx
+// ./opencascade/Intrv_SequenceOfInterval.hxx
 
 // operators
 

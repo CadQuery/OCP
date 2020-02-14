@@ -17,28 +17,28 @@ namespace py = pybind11;
 #include <TDF_Data.hxx>
 
 // module includes
-#include <BinObjMgt_Persistent.hxx>
+#include <BinObjMgt_PByte.hxx>
 #include <BinObjMgt_PShortReal.hxx>
 #include <BinObjMgt_PChar.hxx>
-#include <BinObjMgt_PReal.hxx>
-#include <BinObjMgt_RRelocationTable.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <BinObjMgt_PInteger.hxx>
-#include <BinObjMgt_PByte.hxx>
+#include <BinObjMgt_PReal.hxx>
 #include <BinObjMgt_SRelocationTable.hxx>
 #include <BinObjMgt_PExtChar.hxx>
+#include <BinObjMgt_RRelocationTable.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BinObjMgt_Persistent.hxx
+// ./opencascade/BinObjMgt_PByte.hxx
 // ./opencascade/BinObjMgt_PShortReal.hxx
 // ./opencascade/BinObjMgt_PChar.hxx
-// ./opencascade/BinObjMgt_PReal.hxx
-// ./opencascade/BinObjMgt_RRelocationTable.hxx
+// ./opencascade/BinObjMgt_Persistent.hxx
 // ./opencascade/BinObjMgt_PInteger.hxx
-// ./opencascade/BinObjMgt_PByte.hxx
+// ./opencascade/BinObjMgt_PReal.hxx
 // ./opencascade/BinObjMgt_SRelocationTable.hxx
 // ./opencascade/BinObjMgt_PExtChar.hxx
+// ./opencascade/BinObjMgt_RRelocationTable.hxx
 
 // user-defined post

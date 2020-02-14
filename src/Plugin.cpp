@@ -44,9 +44,12 @@ py::module m = static_cast<py::module>(main_module.attr("Plugin"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Plugin , shared_ptr<Plugin>>(m,"Plugin");
 
     static_cast<py::class_<Plugin , shared_ptr<Plugin>  >>(m.attr("Plugin"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -55,15 +58,15 @@ py::module m = static_cast<py::module>(main_module.attr("Plugin"));
                     R"#(None)#"  , py::arg("aGUID"),  py::arg("theVerbose")=static_cast<const Standard_Boolean>(Standard_True))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Plugin_DataMapIteratorOfMapOfFunctions.hxx
+// ./opencascade/Plugin_Failure.hxx
 // ./opencascade/Plugin_Macro.hxx
 // ./opencascade/Plugin_MapOfFunctions.hxx
 // ./opencascade/Plugin.hxx
-// ./opencascade/Plugin_Failure.hxx
+// ./opencascade/Plugin_DataMapIteratorOfMapOfFunctions.hxx
 
 // operators
 

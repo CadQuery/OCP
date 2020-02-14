@@ -15,22 +15,7 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepAP203_CcDesignCertification.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepAP203_CcDesignContract.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepAP203_CcDesignSecurityClassification.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepAP203_CcDesignSpecificationReference.hxx>
+#include <StepAP203_CcDesignApproval.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -40,12 +25,12 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepAP203_Change.hxx>
+#include <StepAP203_CcDesignCertification.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepAP203_CcDesignPersonAndOrganizationAssignment.hxx>
+#include <StepAP203_StartRequest.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -55,17 +40,32 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
+#include <StepAP203_CcDesignContract.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepAP203_CcDesignPersonAndOrganizationAssignment.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepAP203_CcDesignSpecificationReference.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepAP203_Change.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepAP203_CcDesignSecurityClassification.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
 #include <StepAP203_CcDesignDateAndTimeAssignment.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepAP203_CcDesignApproval.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepAP203_StartRequest.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 
@@ -103,7 +103,9 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
 
 
     static_cast<py::class_<RWStepAP203_RWCcDesignApproval , shared_ptr<RWStepAP203_RWCcDesignApproval>  >>(m.attr("RWStepAP203_RWCcDesignApproval"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWCcDesignApproval::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignApproval> &  ) const) static_cast<void (RWStepAP203_RWCcDesignApproval::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignApproval> &  ) const>(&RWStepAP203_RWCcDesignApproval::ReadStep),
@@ -118,12 +120,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWCcDesignCertification , shared_ptr<RWStepAP203_RWCcDesignCertification>  >>(m.attr("RWStepAP203_RWCcDesignCertification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWCcDesignCertification::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignCertification> &  ) const) static_cast<void (RWStepAP203_RWCcDesignCertification::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignCertification> &  ) const>(&RWStepAP203_RWCcDesignCertification::ReadStep),
@@ -138,12 +142,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWCcDesignContract , shared_ptr<RWStepAP203_RWCcDesignContract>  >>(m.attr("RWStepAP203_RWCcDesignContract"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWCcDesignContract::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignContract> &  ) const) static_cast<void (RWStepAP203_RWCcDesignContract::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignContract> &  ) const>(&RWStepAP203_RWCcDesignContract::ReadStep),
@@ -158,12 +164,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWCcDesignDateAndTimeAssignment , shared_ptr<RWStepAP203_RWCcDesignDateAndTimeAssignment>  >>(m.attr("RWStepAP203_RWCcDesignDateAndTimeAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWCcDesignDateAndTimeAssignment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignDateAndTimeAssignment> &  ) const) static_cast<void (RWStepAP203_RWCcDesignDateAndTimeAssignment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignDateAndTimeAssignment> &  ) const>(&RWStepAP203_RWCcDesignDateAndTimeAssignment::ReadStep),
@@ -178,12 +186,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWCcDesignPersonAndOrganizationAssignment , shared_ptr<RWStepAP203_RWCcDesignPersonAndOrganizationAssignment>  >>(m.attr("RWStepAP203_RWCcDesignPersonAndOrganizationAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWCcDesignPersonAndOrganizationAssignment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignPersonAndOrganizationAssignment> &  ) const) static_cast<void (RWStepAP203_RWCcDesignPersonAndOrganizationAssignment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignPersonAndOrganizationAssignment> &  ) const>(&RWStepAP203_RWCcDesignPersonAndOrganizationAssignment::ReadStep),
@@ -198,12 +208,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWCcDesignSecurityClassification , shared_ptr<RWStepAP203_RWCcDesignSecurityClassification>  >>(m.attr("RWStepAP203_RWCcDesignSecurityClassification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWCcDesignSecurityClassification::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignSecurityClassification> &  ) const) static_cast<void (RWStepAP203_RWCcDesignSecurityClassification::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignSecurityClassification> &  ) const>(&RWStepAP203_RWCcDesignSecurityClassification::ReadStep),
@@ -218,12 +230,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWCcDesignSpecificationReference , shared_ptr<RWStepAP203_RWCcDesignSpecificationReference>  >>(m.attr("RWStepAP203_RWCcDesignSpecificationReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWCcDesignSpecificationReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignSpecificationReference> &  ) const) static_cast<void (RWStepAP203_RWCcDesignSpecificationReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_CcDesignSpecificationReference> &  ) const>(&RWStepAP203_RWCcDesignSpecificationReference::ReadStep),
@@ -238,12 +252,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWChange , shared_ptr<RWStepAP203_RWChange>  >>(m.attr("RWStepAP203_RWChange"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWChange::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_Change> &  ) const) static_cast<void (RWStepAP203_RWChange::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_Change> &  ) const>(&RWStepAP203_RWChange::ReadStep),
@@ -258,12 +274,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWChangeRequest , shared_ptr<RWStepAP203_RWChangeRequest>  >>(m.attr("RWStepAP203_RWChangeRequest"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWChangeRequest::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_ChangeRequest> &  ) const) static_cast<void (RWStepAP203_RWChangeRequest::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_ChangeRequest> &  ) const>(&RWStepAP203_RWChangeRequest::ReadStep),
@@ -278,12 +296,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWStartRequest , shared_ptr<RWStepAP203_RWStartRequest>  >>(m.attr("RWStepAP203_RWStartRequest"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWStartRequest::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_StartRequest> &  ) const) static_cast<void (RWStepAP203_RWStartRequest::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_StartRequest> &  ) const>(&RWStepAP203_RWStartRequest::ReadStep),
@@ -298,12 +318,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepAP203_RWStartWork , shared_ptr<RWStepAP203_RWStartWork>  >>(m.attr("RWStepAP203_RWStartWork"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepAP203_RWStartWork::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_StartWork> &  ) const) static_cast<void (RWStepAP203_RWStartWork::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepAP203_StartWork> &  ) const>(&RWStepAP203_RWStartWork::ReadStep),
@@ -318,21 +340,21 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepAP203"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/RWStepAP203_RWCcDesignCertification.hxx
-// ./opencascade/RWStepAP203_RWCcDesignContract.hxx
-// ./opencascade/RWStepAP203_RWCcDesignSecurityClassification.hxx
-// ./opencascade/RWStepAP203_RWCcDesignSpecificationReference.hxx
-// ./opencascade/RWStepAP203_RWChangeRequest.hxx
-// ./opencascade/RWStepAP203_RWChange.hxx
-// ./opencascade/RWStepAP203_RWCcDesignPersonAndOrganizationAssignment.hxx
-// ./opencascade/RWStepAP203_RWStartWork.hxx
-// ./opencascade/RWStepAP203_RWCcDesignDateAndTimeAssignment.hxx
 // ./opencascade/RWStepAP203_RWCcDesignApproval.hxx
+// ./opencascade/RWStepAP203_RWChangeRequest.hxx
+// ./opencascade/RWStepAP203_RWCcDesignCertification.hxx
 // ./opencascade/RWStepAP203_RWStartRequest.hxx
+// ./opencascade/RWStepAP203_RWStartWork.hxx
+// ./opencascade/RWStepAP203_RWCcDesignContract.hxx
+// ./opencascade/RWStepAP203_RWCcDesignPersonAndOrganizationAssignment.hxx
+// ./opencascade/RWStepAP203_RWCcDesignSpecificationReference.hxx
+// ./opencascade/RWStepAP203_RWChange.hxx
+// ./opencascade/RWStepAP203_RWCcDesignSecurityClassification.hxx
+// ./opencascade/RWStepAP203_RWCcDesignDateAndTimeAssignment.hxx
 
 // operators
 

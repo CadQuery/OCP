@@ -10,11 +10,11 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <ShapeFix_Shape.hxx>
+#include <ShapeFix_EdgeProjAux.hxx>
 #include <ShapeAlgo_AlgoContainer.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAlgo_AlgoContainer.hxx>
-#include <ShapeFix_Shape.hxx>
-#include <ShapeFix_EdgeProjAux.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAnalysis_Wire.hxx>
 #include <ShapeExtend_WireData.hxx>
@@ -27,16 +27,16 @@ namespace py = pybind11;
 #include <TopoDS_Face.hxx>
 
 // module includes
-#include <ShapeAlgo.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
+#include <ShapeAlgo.hxx>
 #include <ShapeAlgo_AlgoContainer.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/ShapeAlgo.hxx
 // ./opencascade/ShapeAlgo_ToolContainer.hxx
+// ./opencascade/ShapeAlgo.hxx
 // ./opencascade/ShapeAlgo_AlgoContainer.hxx
 
 // user-defined post

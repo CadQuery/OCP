@@ -13,6 +13,17 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+#include <gp_Lin2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <Geom2d_BezierCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Standard_TypeMismatch.hxx>
@@ -26,19 +37,6 @@ namespace py = pybind11;
 #include <Geom2d_BezierCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Vec2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <Geom2d_BezierCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <gp_Lin2d.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <gp_Circ2d.hxx>
@@ -47,11 +45,11 @@ namespace py = pybind11;
 #include <gp_Parab2d.hxx>
 #include <Geom2d_BezierCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
-#include <Adaptor2d_Curve2d.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_NoSuchObject.hxx>
 
 // module includes
 #include <Adaptor2d_Curve2d.hxx>
-#include <Adaptor2d_Curve2dPtr.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor2d_HLine2d.hxx>
 #include <Adaptor2d_HOffsetCurve.hxx>
@@ -78,6 +76,7 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
     public:
         using Adaptor2d_HCurve2d::Adaptor2d_HCurve2d;
         
+        
         // public pure virtual
         const Adaptor2d_Curve2d & Curve2d() const  override { PYBIND11_OVERLOAD_PURE(const Adaptor2d_Curve2d &,Adaptor2d_HCurve2d,Curve2d,) };
         
@@ -91,9 +90,12 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Adaptor2d_Curve2d , shared_ptr<Adaptor2d_Curve2d>>(m,"Adaptor2d_Curve2d");
 
     static_cast<py::class_<Adaptor2d_Curve2d , shared_ptr<Adaptor2d_Curve2d>  >>(m.attr("Adaptor2d_Curve2d"))
+    // constructors
+    // custom constructors
     // methods
         .def("FirstParameter",
              (Standard_Real (Adaptor2d_Curve2d::*)() const) static_cast<Standard_Real (Adaptor2d_Curve2d::*)() const>(&Adaptor2d_Curve2d::FirstParameter),
@@ -186,11 +188,13 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor2d_HCurve2d ,opencascade::handle<Adaptor2d_HCurve2d> ,Py_Adaptor2d_HCurve2d , Standard_Transient >>(m.attr("Adaptor2d_HCurve2d"))
+    // constructors
+    // custom constructors
     // methods
         .def("Curve2d",
              (const Adaptor2d_Curve2d & (Adaptor2d_HCurve2d::*)() const) static_cast<const Adaptor2d_Curve2d & (Adaptor2d_HCurve2d::*)() const>(&Adaptor2d_HCurve2d::Curve2d),
@@ -376,13 +380,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor2d_HLine2d ,opencascade::handle<Adaptor2d_HLine2d>  , Adaptor2d_HCurve2d >>(m.attr("Adaptor2d_HLine2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor2d_Line2d & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Adaptor2d_HLine2d::*)( const Adaptor2d_Line2d &  ) ) static_cast<void (Adaptor2d_HLine2d::*)( const Adaptor2d_Line2d &  ) >(&Adaptor2d_HLine2d::Set),
@@ -406,13 +412,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor2d_HOffsetCurve ,opencascade::handle<Adaptor2d_HOffsetCurve>  , Adaptor2d_HCurve2d >>(m.attr("Adaptor2d_HOffsetCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor2d_OffsetCurve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Adaptor2d_HOffsetCurve::*)( const Adaptor2d_OffsetCurve &  ) ) static_cast<void (Adaptor2d_HOffsetCurve::*)( const Adaptor2d_OffsetCurve &  ) >(&Adaptor2d_HOffsetCurve::Set),
@@ -436,13 +444,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor2d_Line2d , shared_ptr<Adaptor2d_Line2d>  , Adaptor2d_Curve2d >>(m.attr("Adaptor2d_Line2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const gp_Dir2d &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("D"),  py::arg("UFirst"),  py::arg("ULast") )
+    // custom constructors
     // methods
         .def("Load",
              (void (Adaptor2d_Line2d::*)( const gp_Lin2d &  ) ) static_cast<void (Adaptor2d_Line2d::*)( const gp_Lin2d &  ) >(&Adaptor2d_Line2d::Load),
@@ -538,15 +548,17 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor2d_OffsetCurve , shared_ptr<Adaptor2d_OffsetCurve>  , Adaptor2d_Curve2d >>(m.attr("Adaptor2d_OffsetCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> & >()  , py::arg("C") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real >()  , py::arg("C"),  py::arg("Offset") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Offset"),  py::arg("WFirst"),  py::arg("WLast") )
+    // custom constructors
     // methods
         .def("Load",
              (void (Adaptor2d_OffsetCurve::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (Adaptor2d_OffsetCurve::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&Adaptor2d_OffsetCurve::Load),
@@ -647,6 +659,9 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
         .def("BSpline",
              (opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_OffsetCurve::*)() const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (Adaptor2d_OffsetCurve::*)() const>(&Adaptor2d_OffsetCurve::BSpline),
              R"#(None)#" )
+        .def("NbSamples",
+             (Standard_Integer (Adaptor2d_OffsetCurve::*)() const) static_cast<Standard_Integer (Adaptor2d_OffsetCurve::*)() const>(&Adaptor2d_OffsetCurve::NbSamples),
+             R"#(None)#" )
         .def("Curve",
              (const opencascade::handle<Adaptor2d_HCurve2d> & (Adaptor2d_OffsetCurve::*)() const) static_cast<const opencascade::handle<Adaptor2d_HCurve2d> & (Adaptor2d_OffsetCurve::*)() const>(&Adaptor2d_OffsetCurve::Curve),
              R"#(None)#" )
@@ -663,17 +678,16 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Adaptor2d_HCurve2d.hxx
-// ./opencascade/Adaptor2d_OffsetCurve.hxx
 // ./opencascade/Adaptor2d_Curve2d.hxx
-// ./opencascade/Adaptor2d_HLine2d.hxx
-// ./opencascade/Adaptor2d_HOffsetCurve.hxx
+// ./opencascade/Adaptor2d_OffsetCurve.hxx
 // ./opencascade/Adaptor2d_Line2d.hxx
-// ./opencascade/Adaptor2d_Curve2dPtr.hxx
+// ./opencascade/Adaptor2d_HCurve2d.hxx
+// ./opencascade/Adaptor2d_HOffsetCurve.hxx
+// ./opencascade/Adaptor2d_HLine2d.hxx
 
 // operators
 

@@ -41,6 +41,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
     public:
         using Geom2dEvaluator_Curve::Geom2dEvaluator_Curve;
         
+        
         // public pure virtual
         void D0(const Standard_Real theU,gp_Pnt2d & theValue) const  override { PYBIND11_OVERLOAD_PURE(void,Geom2dEvaluator_Curve,D0,theU,theValue) };
         void D1(const Standard_Real theU,gp_Pnt2d & theValue,gp_Vec2d & theD1) const  override { PYBIND11_OVERLOAD_PURE(void,Geom2dEvaluator_Curve,D1,theU,theValue,theD1) };
@@ -60,7 +61,9 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
 
 
     static_cast<py::class_<Geom2dEvaluator_Curve ,opencascade::handle<Geom2dEvaluator_Curve> ,Py_Geom2dEvaluator_Curve , Standard_Transient >>(m.attr("Geom2dEvaluator_Curve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("D0",
              (void (Geom2dEvaluator_Curve::*)( const Standard_Real ,  gp_Pnt2d &  ) const) static_cast<void (Geom2dEvaluator_Curve::*)( const Standard_Real ,  gp_Pnt2d &  ) const>(&Geom2dEvaluator_Curve::D0),
@@ -90,13 +93,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dEvaluator_OffsetCurve ,opencascade::handle<Geom2dEvaluator_OffsetCurve>  , Geom2dEvaluator_Curve >>(m.attr("Geom2dEvaluator_OffsetCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real >()  , py::arg("theBase"),  py::arg("theOffset") )
         .def(py::init< const opencascade::handle<Geom2dAdaptor_HCurve> &,const Standard_Real >()  , py::arg("theBase"),  py::arg("theOffset") )
+    // custom constructors
     // methods
         .def("SetOffsetValue",
              (void (Geom2dEvaluator_OffsetCurve::*)( Standard_Real  ) ) static_cast<void (Geom2dEvaluator_OffsetCurve::*)( Standard_Real  ) >(&Geom2dEvaluator_OffsetCurve::SetOffsetValue),
@@ -129,7 +134,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

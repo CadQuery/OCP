@@ -10,6 +10,10 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <ShapeAnalysis_Surface.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
@@ -27,24 +31,20 @@ namespace py = pybind11;
 #include <gp_Pnt2d.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
-#include <ShapeAnalysis_Surface.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
 
 // module includes
+#include <ShapeConstruct_ProjectCurveOnSurface.hxx>
 #include <ShapeConstruct_MakeTriangulation.hxx>
 #include <ShapeConstruct.hxx>
 #include <ShapeConstruct_Curve.hxx>
-#include <ShapeConstruct_ProjectCurveOnSurface.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/ShapeConstruct_ProjectCurveOnSurface.hxx
 // ./opencascade/ShapeConstruct_MakeTriangulation.hxx
 // ./opencascade/ShapeConstruct.hxx
 // ./opencascade/ShapeConstruct_Curve.hxx
-// ./opencascade/ShapeConstruct_ProjectCurveOnSurface.hxx
 
 // user-defined post

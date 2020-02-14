@@ -47,9 +47,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdPersistent"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdPersistent , shared_ptr<StdPersistent>>(m,"StdPersistent");
 
     static_cast<py::class_<StdPersistent , shared_ptr<StdPersistent>  >>(m.attr("StdPersistent"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -58,23 +61,29 @@ py::module m = static_cast<py::module>(main_module.attr("StdPersistent"));
                     R"#(Register types.)#"  , py::arg("theMap"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_DataXtd , shared_ptr<StdPersistent_DataXtd>>(m,"StdPersistent_DataXtd");
 
     static_cast<py::class_<StdPersistent_DataXtd , shared_ptr<StdPersistent_DataXtd>  >>(m.attr("StdPersistent_DataXtd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_DataXtd_Constraint , shared_ptr<StdPersistent_DataXtd_Constraint>>(m,"StdPersistent_DataXtd_Constraint");
 
     static_cast<py::class_<StdPersistent_DataXtd_Constraint , shared_ptr<StdPersistent_DataXtd_Constraint>  >>(m.attr("StdPersistent_DataXtd_Constraint"))
+    // constructors
+    // custom constructors
     // methods
         .def("Read",
              (void (StdPersistent_DataXtd_Constraint::*)( StdObjMgt_ReadData &  ) ) static_cast<void (StdPersistent_DataXtd_Constraint::*)( StdObjMgt_ReadData &  ) >(&StdPersistent_DataXtd_Constraint::Read),
@@ -95,12 +104,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPersistent"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_DataXtd_PatternStd , shared_ptr<StdPersistent_DataXtd_PatternStd>>(m,"StdPersistent_DataXtd_PatternStd");
 
     static_cast<py::class_<StdPersistent_DataXtd_PatternStd , shared_ptr<StdPersistent_DataXtd_PatternStd>  >>(m.attr("StdPersistent_DataXtd_PatternStd"))
+    // constructors
+    // custom constructors
     // methods
         .def("Read",
              (void (StdPersistent_DataXtd_PatternStd::*)( StdObjMgt_ReadData &  ) ) static_cast<void (StdPersistent_DataXtd_PatternStd::*)( StdObjMgt_ReadData &  ) >(&StdPersistent_DataXtd_PatternStd::Read),
@@ -121,25 +133,31 @@ py::module m = static_cast<py::module>(main_module.attr("StdPersistent"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_HArray1 , shared_ptr<StdPersistent_HArray1>>(m,"StdPersistent_HArray1");
 
     static_cast<py::class_<StdPersistent_HArray1 , shared_ptr<StdPersistent_HArray1>  >>(m.attr("StdPersistent_HArray1"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdPersistent_HArray1OfShape1 ,opencascade::handle<StdPersistent_HArray1OfShape1>  , Standard_Transient >>(m.attr("StdPersistent_HArray1OfShape1"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StdObject_Shape & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init< const NCollection_Array1<StdObject_Shape> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const NCollection_Array1<StdObject_Shape> & (StdPersistent_HArray1OfShape1::*)() const) static_cast<const NCollection_Array1<StdObject_Shape> & (StdPersistent_HArray1OfShape1::*)() const>(&StdPersistent_HArray1OfShape1::Array1),
@@ -160,34 +178,43 @@ py::module m = static_cast<py::module>(main_module.attr("StdPersistent"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_Naming , shared_ptr<StdPersistent_Naming>>(m,"StdPersistent_Naming");
 
     static_cast<py::class_<StdPersistent_Naming , shared_ptr<StdPersistent_Naming>  >>(m.attr("StdPersistent_Naming"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_PPrsStd , shared_ptr<StdPersistent_PPrsStd>>(m,"StdPersistent_PPrsStd");
 
     static_cast<py::class_<StdPersistent_PPrsStd , shared_ptr<StdPersistent_PPrsStd>  >>(m.attr("StdPersistent_PPrsStd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_TopLoc , shared_ptr<StdPersistent_TopLoc>>(m,"StdPersistent_TopLoc");
 
     static_cast<py::class_<StdPersistent_TopLoc , shared_ptr<StdPersistent_TopLoc>  >>(m.attr("StdPersistent_TopLoc"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -199,30 +226,33 @@ py::module m = static_cast<py::module>(main_module.attr("StdPersistent"));
                     R"#(None)#"  , py::arg("theDatum"),  py::arg("theMap"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPersistent_TopoDS , shared_ptr<StdPersistent_TopoDS>>(m,"StdPersistent_TopoDS");
 
     static_cast<py::class_<StdPersistent_TopoDS , shared_ptr<StdPersistent_TopoDS>  >>(m.attr("StdPersistent_TopoDS"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdPersistent_TopoDS.hxx
-// ./opencascade/StdPersistent.hxx
-// ./opencascade/StdPersistent_DataXtd.hxx
-// ./opencascade/StdPersistent_DataXtd_PatternStd.hxx
-// ./opencascade/StdPersistent_DataXtd_Constraint.hxx
 // ./opencascade/StdPersistent_PPrsStd.hxx
+// ./opencascade/StdPersistent_DataXtd.hxx
+// ./opencascade/StdPersistent_Naming.hxx
+// ./opencascade/StdPersistent_TopoDS.hxx
+// ./opencascade/StdPersistent_DataXtd_Constraint.hxx
 // ./opencascade/StdPersistent_TopLoc.hxx
 // ./opencascade/StdPersistent_HArray1.hxx
-// ./opencascade/StdPersistent_Naming.hxx
+// ./opencascade/StdPersistent_DataXtd_PatternStd.hxx
+// ./opencascade/StdPersistent.hxx
 
 // operators
 

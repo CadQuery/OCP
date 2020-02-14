@@ -13,113 +13,114 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StepVisual_PreDefinedItem.hxx>
-#include <StepVisual_AnnotationCurveOccurrence.hxx>
-#include <StepVisual_AnnotationFillAreaOccurrence.hxx>
-#include <StepVisual_AnnotationTextOccurrence.hxx>
-#include <StepVisual_TessellatedAnnotationOccurrence.hxx>
-#include <StepVisual_StyledItem.hxx>
 #include <StepVisual_PresentationLayerAssignment.hxx>
 #include <StepVisual_PresentationRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_Colour.hxx>
-#include <StepGeom_Axis2Placement3d.hxx>
-#include <StepVisual_ViewVolume.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_PresentationRepresentation.hxx>
-#include <StepVisual_PresentationSet.hxx>
-#include <StepVisual_PresentationLayerAssignment.hxx>
-#include <StepVisual_PresentationRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_TextStyleForDefinedFont.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_FillAreaStyleColour.hxx>
-#include <StepVisual_FillAreaStyle.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_GeometricRepresentationItem.hxx>
-#include <StepRepr_MappedItem.hxx>
-#include <StepRepr_Representation.hxx>
-#include <StepShape_TopologicalRepresentationItem.hxx>
-#include <StepVisual_PresentedItem.hxx>
-#include <StepVisual_CurveStyleFont.hxx>
-#include <StepVisual_PreDefinedCurveFont.hxx>
-#include <StepVisual_ExternallyDefinedCurveFont.hxx>
-#include <StepVisual_CurveStyle.hxx>
-#include <StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_PlanarExtent.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_CurveStyle.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_Colour.hxx>
 #include <StepVisual_PlanarBox.hxx>
-#include <StepVisual_CurveStyle.hxx>
-#include <StepGeom_Plane.hxx>
-#include <StepVisual_CameraModelD3MultiClippingUnion.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <StepVisual_PresentationRepresentation.hxx>
 #include <StepRepr_RepresentationItem.hxx>
-#include <StepGeom_Plane.hxx>
-#include <StepVisual_CameraModelD3MultiClippingIntersection.hxx>
-#include <StepVisual_CurveStyle.hxx>
-#include <StepVisual_CurveStyle.hxx>
 #include <StepData_SelectMember.hxx>
 #include <StepVisual_MarkerMember.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepVisual_TextStyleForDefinedFont.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepRepr_Representation.hxx>
-#include <StepRepr_RepresentationItem.hxx>
+#include <StepVisual_Colour.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepVisual_CurveStyle.hxx>
+#include <StepVisual_PresentationRepresentation.hxx>
 #include <StepVisual_PresentationSet.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepVisual_Colour.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepVisual_Colour.hxx>
+#include <StepVisual_PreDefinedTextFont.hxx>
+#include <StepVisual_ExternallyDefinedTextFont.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepVisual_CurveStyle.hxx>
+#include <StepVisual_CurveStyle.hxx>
 #include <StepVisual_PresentationView.hxx>
 #include <StepVisual_PresentationArea.hxx>
 #include <StepVisual_AreaInSet.hxx>
-#include <StepVisual_PresentationArea.hxx>
-#include <StepVisual_PresentationSet.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepVisual_PreDefinedTextFont.hxx>
-#include <StepVisual_ExternallyDefinedTextFont.hxx>
-#include <StepVisual_PresentationArea.hxx>
-#include <StepVisual_PresentationView.hxx>
 #include <StepVisual_PointStyle.hxx>
 #include <StepVisual_CurveStyle.hxx>
 #include <StepVisual_NullStyleMember.hxx>
 #include <StepVisual_SurfaceStyleUsage.hxx>
+#include <StepVisual_FillAreaStyleColour.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepVisual_PlanarBox.hxx>
-#include <StepVisual_SurfaceSideStyle.hxx>
 #include <StepVisual_AnnotationText.hxx>
 #include <StepVisual_CompositeText.hxx>
 #include <StepVisual_TextLiteral.hxx>
+#include <StepVisual_SurfaceSideStyle.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepVisual_PlanarBox.hxx>
+#include <StepVisual_PreDefinedItem.hxx>
+#include <StepVisual_PlanarExtent.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepVisual_AnnotationCurveOccurrence.hxx>
+#include <StepVisual_AnnotationFillAreaOccurrence.hxx>
+#include <StepVisual_AnnotationTextOccurrence.hxx>
+#include <StepVisual_TessellatedAnnotationOccurrence.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Plane.hxx>
+#include <StepVisual_CameraModelD3MultiClippingIntersection.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepVisual_PresentationArea.hxx>
+#include <StepVisual_PresentationView.hxx>
+#include <StepVisual_StyledItem.hxx>
+#include <StepVisual_PresentationLayerAssignment.hxx>
+#include <StepVisual_PresentationRepresentation.hxx>
+#include <StepGeom_GeometricRepresentationItem.hxx>
+#include <StepRepr_MappedItem.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepShape_TopologicalRepresentationItem.hxx>
+#include <StepVisual_CurveStyle.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <MeshVS_TwoColors.hxx>
+#include <StepVisual_SurfaceStyleFillArea.hxx>
+#include <StepVisual_SurfaceStyleBoundary.hxx>
+#include <StepVisual_SurfaceStyleParameterLine.hxx>
+#include <StepVisual_CurveStyle.hxx>
+#include <StepVisual_CurveStyleFont.hxx>
+#include <StepVisual_PreDefinedCurveFont.hxx>
+#include <StepVisual_ExternallyDefinedCurveFont.hxx>
+#include <StepGeom_Plane.hxx>
+#include <StepVisual_CameraModelD3MultiClippingUnion.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Axis2Placement3d.hxx>
+#include <StepVisual_ViewVolume.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
 #include <StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect.hxx>
 #include <StepVisual_ViewVolume.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepVisual_FillAreaStyle.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepVisual_Colour.hxx>
-#include <StepVisual_SurfaceStyleFillArea.hxx>
-#include <StepVisual_SurfaceStyleBoundary.hxx>
-#include <StepVisual_SurfaceStyleParameterLine.hxx>
-#include <StepVisual_DraughtingCallout.hxx>
-#include <StepVisual_StyledItem.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepVisual_TextStyleForDefinedFont.hxx>
+#include <StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <StepVisual_DraughtingModel.hxx>
 #include <StepVisual_PresentationRepresentation.hxx>
 #include <StepVisual_PresentationSet.hxx>
-#include <StepVisual_Colour.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
+#include <StepVisual_DraughtingCallout.hxx>
+#include <StepVisual_StyledItem.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <StepVisual_PresentationSet.hxx>
+#include <StepVisual_PresentedItem.hxx>
+#include <StepVisual_PresentationArea.hxx>
+#include <StepVisual_PresentationSet.hxx>
 #include <StepVisual_PlanarBox.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepVisual_TextStyleForDefinedFont.hxx>
-#include <TCollection_HAsciiString.hxx>
 
 // module includes
 #include <StepVisual_AnnotationCurveOccurrence.hxx>
@@ -265,39 +266,39 @@ namespace py = pybind11;
 #include <StepVisual_ViewVolume.hxx>
 
 // template related includes
-// ./opencascade/StepVisual_Array1OfLayeredItem.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepVisual_TessellatedCurveSet.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfAnnotationPlaneElement.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfTextOrCharacter.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepVisual_Array1OfPresentationStyleAssignment.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfCurveStyleFontPattern.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepVisual_TessellatedGeometricSet.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfFillStyleSelect.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfBoxCharacteristicSelect.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect.hxx
+// ./opencascade/StepVisual_Array1OfPresentationStyleSelect.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepVisual_Array1OfSurfaceStyleElementSelect.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfInvisibleItem.hxx
+// ./opencascade/StepVisual_Array1OfCurveStyleFontPattern.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepVisual_Array1OfStyleContextSelect.hxx
 #include "NCollection.hxx"
+// ./opencascade/StepVisual_Array1OfDraughtingCalloutElement.hxx
+#include "NCollection.hxx"
 // ./opencascade/StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepVisual_Array1OfTextOrCharacter.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepVisual_Array1OfAnnotationPlaneElement.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepVisual_TessellatedGeometricSet.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepVisual_Array1OfBoxCharacteristicSelect.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepVisual_Array1OfFillStyleSelect.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepVisual_TessellatedCurveSet.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepVisual_Array1OfLayeredItem.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepVisual_Array1OfDirectionCountSelect.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfDraughtingCalloutElement.hxx
+// ./opencascade/StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepVisual_Array1OfPresentationStyleSelect.hxx
+// ./opencascade/StepVisual_Array1OfInvisibleItem.hxx
 #include "NCollection.hxx"
 
 
@@ -319,7 +320,9 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
 
 
     static_cast<py::class_<StepVisual_AnnotationFillArea ,opencascade::handle<StepVisual_AnnotationFillArea>  , StepShape_GeometricCurveSet >>(m.attr("StepVisual_AnnotationFillArea"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_AnnotationFillArea::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_AnnotationFillArea::*)() const>(&StepVisual_AnnotationFillArea::DynamicType),
@@ -334,12 +337,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationPlaneElement , shared_ptr<StepVisual_AnnotationPlaneElement>  , StepData_SelectType >>(m.attr("StepVisual_AnnotationPlaneElement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_AnnotationPlaneElement::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_AnnotationPlaneElement::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_AnnotationPlaneElement::CaseNum),
@@ -354,12 +359,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationText ,opencascade::handle<StepVisual_AnnotationText>  , StepRepr_MappedItem >>(m.attr("StepVisual_AnnotationText"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_AnnotationText::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_AnnotationText::*)() const>(&StepVisual_AnnotationText::DynamicType),
@@ -374,12 +381,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AreaInSet ,opencascade::handle<StepVisual_AreaInSet>  , Standard_Transient >>(m.attr("StepVisual_AreaInSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_AreaInSet::*)( const opencascade::handle<StepVisual_PresentationArea> & ,  const opencascade::handle<StepVisual_PresentationSet> &  ) ) static_cast<void (StepVisual_AreaInSet::*)( const opencascade::handle<StepVisual_PresentationArea> & ,  const opencascade::handle<StepVisual_PresentationSet> &  ) >(&StepVisual_AreaInSet::Init),
@@ -409,12 +418,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AreaOrView , shared_ptr<StepVisual_AreaOrView>  , StepData_SelectType >>(m.attr("StepVisual_AreaOrView"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_AreaOrView::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_AreaOrView::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_AreaOrView::CaseNum),
@@ -429,12 +440,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_BoxCharacteristicSelect , shared_ptr<StepVisual_BoxCharacteristicSelect>  >>(m.attr("StepVisual_BoxCharacteristicSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("TypeOfContent",
              (Standard_Integer (StepVisual_BoxCharacteristicSelect::*)() const) static_cast<Standard_Integer (StepVisual_BoxCharacteristicSelect::*)() const>(&StepVisual_BoxCharacteristicSelect::TypeOfContent),
@@ -452,12 +465,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraImage ,opencascade::handle<StepVisual_CameraImage>  , StepRepr_MappedItem >>(m.attr("StepVisual_CameraImage"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_CameraImage::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_CameraImage::*)() const>(&StepVisual_CameraImage::DynamicType),
@@ -472,12 +487,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModel ,opencascade::handle<StepVisual_CameraModel>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_CameraModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_CameraModel::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_CameraModel::*)() const>(&StepVisual_CameraModel::DynamicType),
@@ -492,12 +509,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModelD3MultiClippingInterectionSelect , shared_ptr<StepVisual_CameraModelD3MultiClippingInterectionSelect>  , StepData_SelectType >>(m.attr("StepVisual_CameraModelD3MultiClippingInterectionSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_CameraModelD3MultiClippingInterectionSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_CameraModelD3MultiClippingInterectionSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_CameraModelD3MultiClippingInterectionSelect::CaseNum),
@@ -512,12 +531,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModelD3MultiClippingIntersection ,opencascade::handle<StepVisual_CameraModelD3MultiClippingIntersection>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_CameraModelD3MultiClippingIntersection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CameraModelD3MultiClippingIntersection::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect> &  ) ) static_cast<void (StepVisual_CameraModelD3MultiClippingIntersection::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect> &  ) >(&StepVisual_CameraModelD3MultiClippingIntersection::Init),
@@ -541,12 +562,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModelD3MultiClippingUnion ,opencascade::handle<StepVisual_CameraModelD3MultiClippingUnion>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_CameraModelD3MultiClippingUnion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CameraModelD3MultiClippingUnion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect> &  ) ) static_cast<void (StepVisual_CameraModelD3MultiClippingUnion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect> &  ) >(&StepVisual_CameraModelD3MultiClippingUnion::Init),
@@ -570,12 +593,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModelD3MultiClippingUnionSelect , shared_ptr<StepVisual_CameraModelD3MultiClippingUnionSelect>  , StepData_SelectType >>(m.attr("StepVisual_CameraModelD3MultiClippingUnionSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_CameraModelD3MultiClippingUnionSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_CameraModelD3MultiClippingUnionSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_CameraModelD3MultiClippingUnionSelect::CaseNum),
@@ -590,12 +615,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraUsage ,opencascade::handle<StepVisual_CameraUsage>  , StepRepr_RepresentationMap >>(m.attr("StepVisual_CameraUsage"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_CameraUsage::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_CameraUsage::*)() const>(&StepVisual_CameraUsage::DynamicType),
@@ -610,12 +637,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_Colour ,opencascade::handle<StepVisual_Colour>  , Standard_Transient >>(m.attr("StepVisual_Colour"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_Colour::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_Colour::*)() const>(&StepVisual_Colour::DynamicType),
@@ -630,12 +659,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CompositeText ,opencascade::handle<StepVisual_CompositeText>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_CompositeText"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CompositeText::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfTextOrCharacter> &  ) ) static_cast<void (StepVisual_CompositeText::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfTextOrCharacter> &  ) >(&StepVisual_CompositeText::Init),
@@ -665,12 +696,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CurveStyle ,opencascade::handle<StepVisual_CurveStyle>  , Standard_Transient >>(m.attr("StepVisual_CurveStyle"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CurveStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepVisual_CurveStyleFontSelect & ,  const StepBasic_SizeSelect & ,  const opencascade::handle<StepVisual_Colour> &  ) ) static_cast<void (StepVisual_CurveStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepVisual_CurveStyleFontSelect & ,  const StepBasic_SizeSelect & ,  const opencascade::handle<StepVisual_Colour> &  ) >(&StepVisual_CurveStyle::Init),
@@ -712,12 +745,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CurveStyleFont ,opencascade::handle<StepVisual_CurveStyleFont>  , Standard_Transient >>(m.attr("StepVisual_CurveStyleFont"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CurveStyleFont::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfCurveStyleFontPattern> &  ) ) static_cast<void (StepVisual_CurveStyleFont::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfCurveStyleFontPattern> &  ) >(&StepVisual_CurveStyleFont::Init),
@@ -753,12 +788,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CurveStyleFontPattern ,opencascade::handle<StepVisual_CurveStyleFontPattern>  , Standard_Transient >>(m.attr("StepVisual_CurveStyleFontPattern"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CurveStyleFontPattern::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepVisual_CurveStyleFontPattern::*)( const Standard_Real ,  const Standard_Real  ) >(&StepVisual_CurveStyleFontPattern::Init),
@@ -788,12 +825,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CurveStyleFontSelect , shared_ptr<StepVisual_CurveStyleFontSelect>  , StepData_SelectType >>(m.attr("StepVisual_CurveStyleFontSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_CurveStyleFontSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_CurveStyleFontSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_CurveStyleFontSelect::CaseNum),
@@ -811,12 +850,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_DirectionCountSelect , shared_ptr<StepVisual_DirectionCountSelect>  >>(m.attr("StepVisual_DirectionCountSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetTypeOfContent",
              (void (StepVisual_DirectionCountSelect::*)( const Standard_Integer  ) ) static_cast<void (StepVisual_DirectionCountSelect::*)( const Standard_Integer  ) >(&StepVisual_DirectionCountSelect::SetTypeOfContent),
@@ -840,12 +881,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_DraughtingCallout ,opencascade::handle<StepVisual_DraughtingCallout>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_DraughtingCallout"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_DraughtingCallout::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfDraughtingCalloutElement> &  ) ) static_cast<void (StepVisual_DraughtingCallout::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfDraughtingCalloutElement> &  ) >(&StepVisual_DraughtingCallout::Init),
@@ -878,12 +921,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_DraughtingCalloutElement , shared_ptr<StepVisual_DraughtingCalloutElement>  , StepData_SelectType >>(m.attr("StepVisual_DraughtingCalloutElement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_DraughtingCalloutElement::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_DraughtingCalloutElement::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_DraughtingCalloutElement::CaseNum),
@@ -904,12 +949,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_DraughtingModel ,opencascade::handle<StepVisual_DraughtingModel>  , StepRepr_Representation >>(m.attr("StepVisual_DraughtingModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_DraughtingModel::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_DraughtingModel::*)() const>(&StepVisual_DraughtingModel::DynamicType),
@@ -924,12 +971,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_ExternallyDefinedCurveFont ,opencascade::handle<StepVisual_ExternallyDefinedCurveFont>  , StepBasic_ExternallyDefinedItem >>(m.attr("StepVisual_ExternallyDefinedCurveFont"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_ExternallyDefinedCurveFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_ExternallyDefinedCurveFont::*)() const>(&StepVisual_ExternallyDefinedCurveFont::DynamicType),
@@ -944,12 +993,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_ExternallyDefinedTextFont ,opencascade::handle<StepVisual_ExternallyDefinedTextFont>  , StepBasic_ExternallyDefinedItem >>(m.attr("StepVisual_ExternallyDefinedTextFont"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_ExternallyDefinedTextFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_ExternallyDefinedTextFont::*)() const>(&StepVisual_ExternallyDefinedTextFont::DynamicType),
@@ -964,12 +1015,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_FillAreaStyle ,opencascade::handle<StepVisual_FillAreaStyle>  , Standard_Transient >>(m.attr("StepVisual_FillAreaStyle"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_FillAreaStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfFillStyleSelect> &  ) ) static_cast<void (StepVisual_FillAreaStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfFillStyleSelect> &  ) >(&StepVisual_FillAreaStyle::Init),
@@ -1005,12 +1058,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_FillAreaStyleColour ,opencascade::handle<StepVisual_FillAreaStyleColour>  , Standard_Transient >>(m.attr("StepVisual_FillAreaStyleColour"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_FillAreaStyleColour::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_Colour> &  ) ) static_cast<void (StepVisual_FillAreaStyleColour::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_Colour> &  ) >(&StepVisual_FillAreaStyleColour::Init),
@@ -1040,12 +1095,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_FillStyleSelect , shared_ptr<StepVisual_FillStyleSelect>  , StepData_SelectType >>(m.attr("StepVisual_FillStyleSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_FillStyleSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_FillStyleSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_FillStyleSelect::CaseNum),
@@ -1057,12 +1114,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_FontSelect , shared_ptr<StepVisual_FontSelect>  , StepData_SelectType >>(m.attr("StepVisual_FontSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_FontSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_FontSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_FontSelect::CaseNum),
@@ -1077,14 +1136,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfAnnotationPlaneElement ,opencascade::handle<StepVisual_HArray1OfAnnotationPlaneElement>  , StepVisual_Array1OfAnnotationPlaneElement , Standard_Transient >>(m.attr("StepVisual_HArray1OfAnnotationPlaneElement"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_AnnotationPlaneElement & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_AnnotationPlaneElement> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfAnnotationPlaneElement & (StepVisual_HArray1OfAnnotationPlaneElement::*)() const) static_cast<const StepVisual_Array1OfAnnotationPlaneElement & (StepVisual_HArray1OfAnnotationPlaneElement::*)() const>(&StepVisual_HArray1OfAnnotationPlaneElement::Array1),
@@ -1105,14 +1167,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfBoxCharacteristicSelect ,opencascade::handle<StepVisual_HArray1OfBoxCharacteristicSelect>  , StepVisual_Array1OfBoxCharacteristicSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfBoxCharacteristicSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_BoxCharacteristicSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_BoxCharacteristicSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfBoxCharacteristicSelect & (StepVisual_HArray1OfBoxCharacteristicSelect::*)() const) static_cast<const StepVisual_Array1OfBoxCharacteristicSelect & (StepVisual_HArray1OfBoxCharacteristicSelect::*)() const>(&StepVisual_HArray1OfBoxCharacteristicSelect::Array1),
@@ -1133,14 +1198,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect ,opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect>  , StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_CameraModelD3MultiClippingInterectionSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_CameraModelD3MultiClippingInterectionSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect & (StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect::*)() const) static_cast<const StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect & (StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect::*)() const>(&StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect::Array1),
@@ -1161,14 +1229,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect ,opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect>  , StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_CameraModelD3MultiClippingUnionSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_CameraModelD3MultiClippingUnionSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect & (StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect::*)() const) static_cast<const StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect & (StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect::*)() const>(&StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect::Array1),
@@ -1189,14 +1260,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfCurveStyleFontPattern ,opencascade::handle<StepVisual_HArray1OfCurveStyleFontPattern>  , StepVisual_Array1OfCurveStyleFontPattern , Standard_Transient >>(m.attr("StepVisual_HArray1OfCurveStyleFontPattern"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepVisual_CurveStyleFontPattern> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepVisual_CurveStyleFontPattern> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfCurveStyleFontPattern & (StepVisual_HArray1OfCurveStyleFontPattern::*)() const) static_cast<const StepVisual_Array1OfCurveStyleFontPattern & (StepVisual_HArray1OfCurveStyleFontPattern::*)() const>(&StepVisual_HArray1OfCurveStyleFontPattern::Array1),
@@ -1217,14 +1291,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfDirectionCountSelect ,opencascade::handle<StepVisual_HArray1OfDirectionCountSelect>  , StepVisual_Array1OfDirectionCountSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfDirectionCountSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_DirectionCountSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_DirectionCountSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfDirectionCountSelect & (StepVisual_HArray1OfDirectionCountSelect::*)() const) static_cast<const StepVisual_Array1OfDirectionCountSelect & (StepVisual_HArray1OfDirectionCountSelect::*)() const>(&StepVisual_HArray1OfDirectionCountSelect::Array1),
@@ -1245,14 +1322,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfDraughtingCalloutElement ,opencascade::handle<StepVisual_HArray1OfDraughtingCalloutElement>  , StepVisual_Array1OfDraughtingCalloutElement , Standard_Transient >>(m.attr("StepVisual_HArray1OfDraughtingCalloutElement"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_DraughtingCalloutElement & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_DraughtingCalloutElement> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfDraughtingCalloutElement & (StepVisual_HArray1OfDraughtingCalloutElement::*)() const) static_cast<const StepVisual_Array1OfDraughtingCalloutElement & (StepVisual_HArray1OfDraughtingCalloutElement::*)() const>(&StepVisual_HArray1OfDraughtingCalloutElement::Array1),
@@ -1273,14 +1353,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfFillStyleSelect ,opencascade::handle<StepVisual_HArray1OfFillStyleSelect>  , StepVisual_Array1OfFillStyleSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfFillStyleSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_FillStyleSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_FillStyleSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfFillStyleSelect & (StepVisual_HArray1OfFillStyleSelect::*)() const) static_cast<const StepVisual_Array1OfFillStyleSelect & (StepVisual_HArray1OfFillStyleSelect::*)() const>(&StepVisual_HArray1OfFillStyleSelect::Array1),
@@ -1301,14 +1384,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfInvisibleItem ,opencascade::handle<StepVisual_HArray1OfInvisibleItem>  , StepVisual_Array1OfInvisibleItem , Standard_Transient >>(m.attr("StepVisual_HArray1OfInvisibleItem"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_InvisibleItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_InvisibleItem> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfInvisibleItem & (StepVisual_HArray1OfInvisibleItem::*)() const) static_cast<const StepVisual_Array1OfInvisibleItem & (StepVisual_HArray1OfInvisibleItem::*)() const>(&StepVisual_HArray1OfInvisibleItem::Array1),
@@ -1329,14 +1415,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfLayeredItem ,opencascade::handle<StepVisual_HArray1OfLayeredItem>  , StepVisual_Array1OfLayeredItem , Standard_Transient >>(m.attr("StepVisual_HArray1OfLayeredItem"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_LayeredItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_LayeredItem> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfLayeredItem & (StepVisual_HArray1OfLayeredItem::*)() const) static_cast<const StepVisual_Array1OfLayeredItem & (StepVisual_HArray1OfLayeredItem::*)() const>(&StepVisual_HArray1OfLayeredItem::Array1),
@@ -1357,14 +1446,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfPresentationStyleAssignment ,opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment>  , StepVisual_Array1OfPresentationStyleAssignment , Standard_Transient >>(m.attr("StepVisual_HArray1OfPresentationStyleAssignment"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepVisual_PresentationStyleAssignment> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepVisual_PresentationStyleAssignment> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfPresentationStyleAssignment & (StepVisual_HArray1OfPresentationStyleAssignment::*)() const) static_cast<const StepVisual_Array1OfPresentationStyleAssignment & (StepVisual_HArray1OfPresentationStyleAssignment::*)() const>(&StepVisual_HArray1OfPresentationStyleAssignment::Array1),
@@ -1385,14 +1477,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfPresentationStyleSelect ,opencascade::handle<StepVisual_HArray1OfPresentationStyleSelect>  , StepVisual_Array1OfPresentationStyleSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfPresentationStyleSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_PresentationStyleSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_PresentationStyleSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfPresentationStyleSelect & (StepVisual_HArray1OfPresentationStyleSelect::*)() const) static_cast<const StepVisual_Array1OfPresentationStyleSelect & (StepVisual_HArray1OfPresentationStyleSelect::*)() const>(&StepVisual_HArray1OfPresentationStyleSelect::Array1),
@@ -1413,14 +1508,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfStyleContextSelect ,opencascade::handle<StepVisual_HArray1OfStyleContextSelect>  , StepVisual_Array1OfStyleContextSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfStyleContextSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_StyleContextSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_StyleContextSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfStyleContextSelect & (StepVisual_HArray1OfStyleContextSelect::*)() const) static_cast<const StepVisual_Array1OfStyleContextSelect & (StepVisual_HArray1OfStyleContextSelect::*)() const>(&StepVisual_HArray1OfStyleContextSelect::Array1),
@@ -1441,14 +1539,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfSurfaceStyleElementSelect ,opencascade::handle<StepVisual_HArray1OfSurfaceStyleElementSelect>  , StepVisual_Array1OfSurfaceStyleElementSelect , Standard_Transient >>(m.attr("StepVisual_HArray1OfSurfaceStyleElementSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_SurfaceStyleElementSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_SurfaceStyleElementSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfSurfaceStyleElementSelect & (StepVisual_HArray1OfSurfaceStyleElementSelect::*)() const) static_cast<const StepVisual_Array1OfSurfaceStyleElementSelect & (StepVisual_HArray1OfSurfaceStyleElementSelect::*)() const>(&StepVisual_HArray1OfSurfaceStyleElementSelect::Array1),
@@ -1469,14 +1570,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_HArray1OfTextOrCharacter ,opencascade::handle<StepVisual_HArray1OfTextOrCharacter>  , StepVisual_Array1OfTextOrCharacter , Standard_Transient >>(m.attr("StepVisual_HArray1OfTextOrCharacter"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepVisual_TextOrCharacter & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepVisual_TextOrCharacter> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepVisual_Array1OfTextOrCharacter & (StepVisual_HArray1OfTextOrCharacter::*)() const) static_cast<const StepVisual_Array1OfTextOrCharacter & (StepVisual_HArray1OfTextOrCharacter::*)() const>(&StepVisual_HArray1OfTextOrCharacter::Array1),
@@ -1497,12 +1601,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_Invisibility ,opencascade::handle<StepVisual_Invisibility>  , Standard_Transient >>(m.attr("StepVisual_Invisibility"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_Invisibility::*)( const opencascade::handle<StepVisual_HArray1OfInvisibleItem> &  ) ) static_cast<void (StepVisual_Invisibility::*)( const opencascade::handle<StepVisual_HArray1OfInvisibleItem> &  ) >(&StepVisual_Invisibility::Init),
@@ -1532,12 +1638,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_InvisibilityContext , shared_ptr<StepVisual_InvisibilityContext>  , StepData_SelectType >>(m.attr("StepVisual_InvisibilityContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_InvisibilityContext::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_InvisibilityContext::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_InvisibilityContext::CaseNum),
@@ -1555,12 +1663,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_InvisibleItem , shared_ptr<StepVisual_InvisibleItem>  , StepData_SelectType >>(m.attr("StepVisual_InvisibleItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_InvisibleItem::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_InvisibleItem::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_InvisibleItem::CaseNum),
@@ -1578,12 +1688,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_LayeredItem , shared_ptr<StepVisual_LayeredItem>  , StepData_SelectType >>(m.attr("StepVisual_LayeredItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_LayeredItem::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_LayeredItem::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_LayeredItem::CaseNum),
@@ -1598,12 +1710,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_MarkerMember ,opencascade::handle<StepVisual_MarkerMember>  , StepData_SelectInt >>(m.attr("StepVisual_MarkerMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepVisual_MarkerMember::*)() const) static_cast<Standard_Boolean (StepVisual_MarkerMember::*)() const>(&StepVisual_MarkerMember::HasName),
@@ -1639,12 +1753,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_MarkerSelect , shared_ptr<StepVisual_MarkerSelect>  , StepData_SelectType >>(m.attr("StepVisual_MarkerSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_MarkerSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_MarkerSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_MarkerSelect::CaseNum),
@@ -1662,12 +1778,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_NullStyleMember ,opencascade::handle<StepVisual_NullStyleMember>  , StepData_SelectInt >>(m.attr("StepVisual_NullStyleMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepVisual_NullStyleMember::*)() const) static_cast<Standard_Boolean (StepVisual_NullStyleMember::*)() const>(&StepVisual_NullStyleMember::HasName),
@@ -1706,12 +1824,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PlanarExtent ,opencascade::handle<StepVisual_PlanarExtent>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_PlanarExtent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PlanarExtent::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepVisual_PlanarExtent::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real  ) >(&StepVisual_PlanarExtent::Init),
@@ -1741,12 +1861,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PointStyle ,opencascade::handle<StepVisual_PointStyle>  , Standard_Transient >>(m.attr("StepVisual_PointStyle"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PointStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepVisual_MarkerSelect & ,  const StepBasic_SizeSelect & ,  const opencascade::handle<StepVisual_Colour> &  ) ) static_cast<void (StepVisual_PointStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepVisual_MarkerSelect & ,  const StepBasic_SizeSelect & ,  const opencascade::handle<StepVisual_Colour> &  ) >(&StepVisual_PointStyle::Init),
@@ -1788,12 +1910,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PreDefinedItem ,opencascade::handle<StepVisual_PreDefinedItem>  , Standard_Transient >>(m.attr("StepVisual_PreDefinedItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PreDefinedItem::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepVisual_PreDefinedItem::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepVisual_PreDefinedItem::Init),
@@ -1817,12 +1941,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationLayerAssignment ,opencascade::handle<StepVisual_PresentationLayerAssignment>  , Standard_Transient >>(m.attr("StepVisual_PresentationLayerAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PresentationLayerAssignment::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfLayeredItem> &  ) ) static_cast<void (StepVisual_PresentationLayerAssignment::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfLayeredItem> &  ) >(&StepVisual_PresentationLayerAssignment::Init),
@@ -1864,12 +1990,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationLayerUsage ,opencascade::handle<StepVisual_PresentationLayerUsage>  , Standard_Transient >>(m.attr("StepVisual_PresentationLayerUsage"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PresentationLayerUsage::*)( const opencascade::handle<StepVisual_PresentationLayerAssignment> & ,  const opencascade::handle<StepVisual_PresentationRepresentation> &  ) ) static_cast<void (StepVisual_PresentationLayerUsage::*)( const opencascade::handle<StepVisual_PresentationLayerAssignment> & ,  const opencascade::handle<StepVisual_PresentationRepresentation> &  ) >(&StepVisual_PresentationLayerUsage::Init),
@@ -1899,12 +2027,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationRepresentation ,opencascade::handle<StepVisual_PresentationRepresentation>  , StepRepr_Representation >>(m.attr("StepVisual_PresentationRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_PresentationRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_PresentationRepresentation::*)() const>(&StepVisual_PresentationRepresentation::DynamicType),
@@ -1919,12 +2049,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationRepresentationSelect , shared_ptr<StepVisual_PresentationRepresentationSelect>  , StepData_SelectType >>(m.attr("StepVisual_PresentationRepresentationSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_PresentationRepresentationSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_PresentationRepresentationSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_PresentationRepresentationSelect::CaseNum),
@@ -1939,12 +2071,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationSet ,opencascade::handle<StepVisual_PresentationSet>  , Standard_Transient >>(m.attr("StepVisual_PresentationSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_PresentationSet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_PresentationSet::*)() const>(&StepVisual_PresentationSet::DynamicType),
@@ -1959,12 +2093,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationSize ,opencascade::handle<StepVisual_PresentationSize>  , Standard_Transient >>(m.attr("StepVisual_PresentationSize"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PresentationSize::*)( const StepVisual_PresentationSizeAssignmentSelect & ,  const opencascade::handle<StepVisual_PlanarBox> &  ) ) static_cast<void (StepVisual_PresentationSize::*)( const StepVisual_PresentationSizeAssignmentSelect & ,  const opencascade::handle<StepVisual_PlanarBox> &  ) >(&StepVisual_PresentationSize::Init),
@@ -1994,12 +2130,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationSizeAssignmentSelect , shared_ptr<StepVisual_PresentationSizeAssignmentSelect>  , StepData_SelectType >>(m.attr("StepVisual_PresentationSizeAssignmentSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_PresentationSizeAssignmentSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_PresentationSizeAssignmentSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_PresentationSizeAssignmentSelect::CaseNum),
@@ -2017,12 +2155,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationStyleAssignment ,opencascade::handle<StepVisual_PresentationStyleAssignment>  , Standard_Transient >>(m.attr("StepVisual_PresentationStyleAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PresentationStyleAssignment::*)( const opencascade::handle<StepVisual_HArray1OfPresentationStyleSelect> &  ) ) static_cast<void (StepVisual_PresentationStyleAssignment::*)( const opencascade::handle<StepVisual_HArray1OfPresentationStyleSelect> &  ) >(&StepVisual_PresentationStyleAssignment::Init),
@@ -2052,12 +2192,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationStyleSelect , shared_ptr<StepVisual_PresentationStyleSelect>  , StepData_SelectType >>(m.attr("StepVisual_PresentationStyleSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_PresentationStyleSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_PresentationStyleSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_PresentationStyleSelect::CaseNum),
@@ -2078,12 +2220,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepVisual_PresentedItem ,opencascade::handle<StepVisual_PresentedItem>>(m,"StepVisual_PresentedItem");
 
     static_cast<py::class_<StepVisual_PresentedItem ,opencascade::handle<StepVisual_PresentedItem>  , Standard_Transient >>(m.attr("StepVisual_PresentedItem"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_PresentedItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_PresentedItem::*)() const>(&StepVisual_PresentedItem::DynamicType),
@@ -2098,12 +2243,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentedItemRepresentation ,opencascade::handle<StepVisual_PresentedItemRepresentation>  , Standard_Transient >>(m.attr("StepVisual_PresentedItemRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PresentedItemRepresentation::*)( const StepVisual_PresentationRepresentationSelect & ,  const opencascade::handle<StepVisual_PresentedItem> &  ) ) static_cast<void (StepVisual_PresentedItemRepresentation::*)( const StepVisual_PresentationRepresentationSelect & ,  const opencascade::handle<StepVisual_PresentedItem> &  ) >(&StepVisual_PresentedItemRepresentation::Init),
@@ -2133,12 +2280,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_StyleContextSelect , shared_ptr<StepVisual_StyleContextSelect>  , StepData_SelectType >>(m.attr("StepVisual_StyleContextSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_StyleContextSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_StyleContextSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_StyleContextSelect::CaseNum),
@@ -2156,12 +2305,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_StyledItem ,opencascade::handle<StepVisual_StyledItem>  , StepRepr_RepresentationItem >>(m.attr("StepVisual_StyledItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_StyledItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (StepVisual_StyledItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> &  ) >(&StepVisual_StyledItem::Init),
@@ -2170,10 +2321,10 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
              (void (StepVisual_StyledItem::*)( const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> &  ) ) static_cast<void (StepVisual_StyledItem::*)( const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> &  ) >(&StepVisual_StyledItem::SetStyles),
              R"#(None)#"  , py::arg("aStyles"))
         .def("Styles",
-             (opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> (StepVisual_StyledItem::*)() const) static_cast<opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> (StepVisual_StyledItem::*)() const>(&StepVisual_StyledItem::Styles),
+             (const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & (StepVisual_StyledItem::*)() const) static_cast<const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & (StepVisual_StyledItem::*)() const>(&StepVisual_StyledItem::Styles),
              R"#(None)#" )
         .def("StylesValue",
-             (opencascade::handle<StepVisual_PresentationStyleAssignment> (StepVisual_StyledItem::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<StepVisual_PresentationStyleAssignment> (StepVisual_StyledItem::*)( const Standard_Integer  ) const>(&StepVisual_StyledItem::StylesValue),
+             (const opencascade::handle<StepVisual_PresentationStyleAssignment> & (StepVisual_StyledItem::*)( const Standard_Integer  ) const) static_cast<const opencascade::handle<StepVisual_PresentationStyleAssignment> & (StepVisual_StyledItem::*)( const Standard_Integer  ) const>(&StepVisual_StyledItem::StylesValue),
              R"#(None)#"  , py::arg("num"))
         .def("NbStyles",
              (Standard_Integer (StepVisual_StyledItem::*)() const) static_cast<Standard_Integer (StepVisual_StyledItem::*)() const>(&StepVisual_StyledItem::NbStyles),
@@ -2182,7 +2333,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
              (void (StepVisual_StyledItem::*)( const opencascade::handle<StepRepr_RepresentationItem> &  ) ) static_cast<void (StepVisual_StyledItem::*)( const opencascade::handle<StepRepr_RepresentationItem> &  ) >(&StepVisual_StyledItem::SetItem),
              R"#(None)#"  , py::arg("aItem"))
         .def("Item",
-             (opencascade::handle<StepRepr_RepresentationItem> (StepVisual_StyledItem::*)() const) static_cast<opencascade::handle<StepRepr_RepresentationItem> (StepVisual_StyledItem::*)() const>(&StepVisual_StyledItem::Item),
+             (const opencascade::handle<StepRepr_RepresentationItem> & (StepVisual_StyledItem::*)() const) static_cast<const opencascade::handle<StepRepr_RepresentationItem> & (StepVisual_StyledItem::*)() const>(&StepVisual_StyledItem::Item),
              R"#(None)#" )
         .def("SetItem",
              (void (StepVisual_StyledItem::*)( const StepVisual_StyledItemTarget &  ) ) static_cast<void (StepVisual_StyledItem::*)( const StepVisual_StyledItemTarget &  ) >(&StepVisual_StyledItem::SetItem),
@@ -2203,12 +2354,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_StyledItemTarget , shared_ptr<StepVisual_StyledItemTarget>  , StepData_SelectType >>(m.attr("StepVisual_StyledItemTarget"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_StyledItemTarget::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_StyledItemTarget::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_StyledItemTarget::CaseNum),
@@ -2229,12 +2382,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceSideStyle ,opencascade::handle<StepVisual_SurfaceSideStyle>  , Standard_Transient >>(m.attr("StepVisual_SurfaceSideStyle"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceSideStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfSurfaceStyleElementSelect> &  ) ) static_cast<void (StepVisual_SurfaceSideStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfSurfaceStyleElementSelect> &  ) >(&StepVisual_SurfaceSideStyle::Init),
@@ -2270,12 +2425,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleBoundary ,opencascade::handle<StepVisual_SurfaceStyleBoundary>  , Standard_Transient >>(m.attr("StepVisual_SurfaceStyleBoundary"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceStyleBoundary::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) ) static_cast<void (StepVisual_SurfaceStyleBoundary::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) >(&StepVisual_SurfaceStyleBoundary::Init),
@@ -2299,12 +2456,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleControlGrid ,opencascade::handle<StepVisual_SurfaceStyleControlGrid>  , Standard_Transient >>(m.attr("StepVisual_SurfaceStyleControlGrid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceStyleControlGrid::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) ) static_cast<void (StepVisual_SurfaceStyleControlGrid::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) >(&StepVisual_SurfaceStyleControlGrid::Init),
@@ -2328,12 +2487,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleElementSelect , shared_ptr<StepVisual_SurfaceStyleElementSelect>  , StepData_SelectType >>(m.attr("StepVisual_SurfaceStyleElementSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_SurfaceStyleElementSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_SurfaceStyleElementSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_SurfaceStyleElementSelect::CaseNum),
@@ -2351,12 +2512,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleFillArea ,opencascade::handle<StepVisual_SurfaceStyleFillArea>  , Standard_Transient >>(m.attr("StepVisual_SurfaceStyleFillArea"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceStyleFillArea::*)( const opencascade::handle<StepVisual_FillAreaStyle> &  ) ) static_cast<void (StepVisual_SurfaceStyleFillArea::*)( const opencascade::handle<StepVisual_FillAreaStyle> &  ) >(&StepVisual_SurfaceStyleFillArea::Init),
@@ -2380,12 +2543,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleParameterLine ,opencascade::handle<StepVisual_SurfaceStyleParameterLine>  , Standard_Transient >>(m.attr("StepVisual_SurfaceStyleParameterLine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceStyleParameterLine::*)( const opencascade::handle<StepVisual_CurveStyle> & ,  const opencascade::handle<StepVisual_HArray1OfDirectionCountSelect> &  ) ) static_cast<void (StepVisual_SurfaceStyleParameterLine::*)( const opencascade::handle<StepVisual_CurveStyle> & ,  const opencascade::handle<StepVisual_HArray1OfDirectionCountSelect> &  ) >(&StepVisual_SurfaceStyleParameterLine::Init),
@@ -2421,12 +2586,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleSegmentationCurve ,opencascade::handle<StepVisual_SurfaceStyleSegmentationCurve>  , Standard_Transient >>(m.attr("StepVisual_SurfaceStyleSegmentationCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceStyleSegmentationCurve::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) ) static_cast<void (StepVisual_SurfaceStyleSegmentationCurve::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) >(&StepVisual_SurfaceStyleSegmentationCurve::Init),
@@ -2450,12 +2617,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleSilhouette ,opencascade::handle<StepVisual_SurfaceStyleSilhouette>  , Standard_Transient >>(m.attr("StepVisual_SurfaceStyleSilhouette"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceStyleSilhouette::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) ) static_cast<void (StepVisual_SurfaceStyleSilhouette::*)( const opencascade::handle<StepVisual_CurveStyle> &  ) >(&StepVisual_SurfaceStyleSilhouette::Init),
@@ -2479,12 +2648,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_SurfaceStyleUsage ,opencascade::handle<StepVisual_SurfaceStyleUsage>  , Standard_Transient >>(m.attr("StepVisual_SurfaceStyleUsage"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_SurfaceStyleUsage::*)( const StepVisual_SurfaceSide ,  const opencascade::handle<StepVisual_SurfaceSideStyle> &  ) ) static_cast<void (StepVisual_SurfaceStyleUsage::*)( const StepVisual_SurfaceSide ,  const opencascade::handle<StepVisual_SurfaceSideStyle> &  ) >(&StepVisual_SurfaceStyleUsage::Init),
@@ -2514,12 +2685,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_Template ,opencascade::handle<StepVisual_Template>  , StepRepr_Representation >>(m.attr("StepVisual_Template"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_Template::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_Template::*)() const>(&StepVisual_Template::DynamicType),
@@ -2534,12 +2707,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TemplateInstance ,opencascade::handle<StepVisual_TemplateInstance>  , StepRepr_MappedItem >>(m.attr("StepVisual_TemplateInstance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_TemplateInstance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_TemplateInstance::*)() const>(&StepVisual_TemplateInstance::DynamicType),
@@ -2554,12 +2729,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TessellatedItem ,opencascade::handle<StepVisual_TessellatedItem>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_TessellatedItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_TessellatedItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_TessellatedItem::*)() const>(&StepVisual_TessellatedItem::DynamicType),
@@ -2574,12 +2751,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TextLiteral ,opencascade::handle<StepVisual_TextLiteral>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepVisual_TextLiteral"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_TextLiteral::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepVisual_TextPath ,  const StepVisual_FontSelect &  ) ) static_cast<void (StepVisual_TextLiteral::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepVisual_TextPath ,  const StepVisual_FontSelect &  ) >(&StepVisual_TextLiteral::Init),
@@ -2627,12 +2806,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TextOrCharacter , shared_ptr<StepVisual_TextOrCharacter>  , StepData_SelectType >>(m.attr("StepVisual_TextOrCharacter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepVisual_TextOrCharacter::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepVisual_TextOrCharacter::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepVisual_TextOrCharacter::CaseNum),
@@ -2650,12 +2831,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TextStyle ,opencascade::handle<StepVisual_TextStyle>  , Standard_Transient >>(m.attr("StepVisual_TextStyle"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_TextStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_TextStyleForDefinedFont> &  ) ) static_cast<void (StepVisual_TextStyle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_TextStyleForDefinedFont> &  ) >(&StepVisual_TextStyle::Init),
@@ -2685,12 +2868,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TextStyleForDefinedFont ,opencascade::handle<StepVisual_TextStyleForDefinedFont>  , Standard_Transient >>(m.attr("StepVisual_TextStyleForDefinedFont"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_TextStyleForDefinedFont::*)( const opencascade::handle<StepVisual_Colour> &  ) ) static_cast<void (StepVisual_TextStyleForDefinedFont::*)( const opencascade::handle<StepVisual_Colour> &  ) >(&StepVisual_TextStyleForDefinedFont::Init),
@@ -2714,12 +2899,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_ViewVolume ,opencascade::handle<StepVisual_ViewVolume>  , Standard_Transient >>(m.attr("StepVisual_ViewVolume"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_ViewVolume::*)( const StepVisual_CentralOrParallel ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean ,  const opencascade::handle<StepVisual_PlanarBox> &  ) ) static_cast<void (StepVisual_ViewVolume::*)( const StepVisual_CentralOrParallel ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean ,  const opencascade::handle<StepVisual_PlanarBox> &  ) >(&StepVisual_ViewVolume::Init),
@@ -2791,12 +2978,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationOccurrence ,opencascade::handle<StepVisual_AnnotationOccurrence>  , StepVisual_StyledItem >>(m.attr("StepVisual_AnnotationOccurrence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_AnnotationOccurrence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_AnnotationOccurrence::*)() const>(&StepVisual_AnnotationOccurrence::DynamicType),
@@ -2811,12 +3000,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_BackgroundColour ,opencascade::handle<StepVisual_BackgroundColour>  , StepVisual_Colour >>(m.attr("StepVisual_BackgroundColour"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_BackgroundColour::*)( const StepVisual_AreaOrView &  ) ) static_cast<void (StepVisual_BackgroundColour::*)( const StepVisual_AreaOrView &  ) >(&StepVisual_BackgroundColour::Init),
@@ -2840,12 +3031,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraImage2dWithScale ,opencascade::handle<StepVisual_CameraImage2dWithScale>  , StepVisual_CameraImage >>(m.attr("StepVisual_CameraImage2dWithScale"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_CameraImage2dWithScale::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_CameraImage2dWithScale::*)() const>(&StepVisual_CameraImage2dWithScale::DynamicType),
@@ -2860,12 +3053,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraImage3dWithScale ,opencascade::handle<StepVisual_CameraImage3dWithScale>  , StepVisual_CameraImage >>(m.attr("StepVisual_CameraImage3dWithScale"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_CameraImage3dWithScale::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_CameraImage3dWithScale::*)() const>(&StepVisual_CameraImage3dWithScale::DynamicType),
@@ -2880,12 +3075,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModelD2 ,opencascade::handle<StepVisual_CameraModelD2>  , StepVisual_CameraModel >>(m.attr("StepVisual_CameraModelD2"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CameraModelD2::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_PlanarBox> & ,  const Standard_Boolean  ) ) static_cast<void (StepVisual_CameraModelD2::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_PlanarBox> & ,  const Standard_Boolean  ) >(&StepVisual_CameraModelD2::Init),
@@ -2915,12 +3112,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModelD3 ,opencascade::handle<StepVisual_CameraModelD3>  , StepVisual_CameraModel >>(m.attr("StepVisual_CameraModelD3"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CameraModelD3::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepVisual_ViewVolume> &  ) ) static_cast<void (StepVisual_CameraModelD3::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepVisual_ViewVolume> &  ) >(&StepVisual_CameraModelD3::Init),
@@ -2950,12 +3149,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation ,opencascade::handle<StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation>  , StepVisual_DraughtingModel >>(m.attr("StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation::*)() const>(&StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation::DynamicType),
@@ -2970,12 +3171,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_ColourSpecification ,opencascade::handle<StepVisual_ColourSpecification>  , StepVisual_Colour >>(m.attr("StepVisual_ColourSpecification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_ColourSpecification::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepVisual_ColourSpecification::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepVisual_ColourSpecification::Init),
@@ -2999,12 +3202,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CompositeTextWithExtent ,opencascade::handle<StepVisual_CompositeTextWithExtent>  , StepVisual_CompositeText >>(m.attr("StepVisual_CompositeTextWithExtent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CompositeTextWithExtent::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfTextOrCharacter> & ,  const opencascade::handle<StepVisual_PlanarExtent> &  ) ) static_cast<void (StepVisual_CompositeTextWithExtent::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfTextOrCharacter> & ,  const opencascade::handle<StepVisual_PlanarExtent> &  ) >(&StepVisual_CompositeTextWithExtent::Init),
@@ -3028,12 +3233,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_ContextDependentInvisibility ,opencascade::handle<StepVisual_ContextDependentInvisibility>  , StepVisual_Invisibility >>(m.attr("StepVisual_ContextDependentInvisibility"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_ContextDependentInvisibility::*)( const opencascade::handle<StepVisual_HArray1OfInvisibleItem> & ,  const StepVisual_InvisibilityContext &  ) ) static_cast<void (StepVisual_ContextDependentInvisibility::*)( const opencascade::handle<StepVisual_HArray1OfInvisibleItem> & ,  const StepVisual_InvisibilityContext &  ) >(&StepVisual_ContextDependentInvisibility::Init),
@@ -3057,12 +3264,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CoordinatesList ,opencascade::handle<StepVisual_CoordinatesList>  , StepVisual_TessellatedItem >>(m.attr("StepVisual_CoordinatesList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CoordinatesList::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> &  ) ) static_cast<void (StepVisual_CoordinatesList::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> &  ) >(&StepVisual_CoordinatesList::Init),
@@ -3083,12 +3292,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_MechanicalDesignGeometricPresentationRepresentation ,opencascade::handle<StepVisual_MechanicalDesignGeometricPresentationRepresentation>  , StepVisual_PresentationRepresentation >>(m.attr("StepVisual_MechanicalDesignGeometricPresentationRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_MechanicalDesignGeometricPresentationRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_MechanicalDesignGeometricPresentationRepresentation::*)() const>(&StepVisual_MechanicalDesignGeometricPresentationRepresentation::DynamicType),
@@ -3103,12 +3314,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_OverRidingStyledItem ,opencascade::handle<StepVisual_OverRidingStyledItem>  , StepVisual_StyledItem >>(m.attr("StepVisual_OverRidingStyledItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_OverRidingStyledItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepVisual_StyledItem> &  ) ) static_cast<void (StepVisual_OverRidingStyledItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepVisual_StyledItem> &  ) >(&StepVisual_OverRidingStyledItem::Init),
@@ -3132,12 +3345,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PlanarBox ,opencascade::handle<StepVisual_PlanarBox>  , StepVisual_PlanarExtent >>(m.attr("StepVisual_PlanarBox"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PlanarBox::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real ,  const StepGeom_Axis2Placement &  ) ) static_cast<void (StepVisual_PlanarBox::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real ,  const StepGeom_Axis2Placement &  ) >(&StepVisual_PlanarBox::Init),
@@ -3161,12 +3376,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PreDefinedColour ,opencascade::handle<StepVisual_PreDefinedColour>  , StepVisual_Colour >>(m.attr("StepVisual_PreDefinedColour"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetPreDefinedItem",
              (void (StepVisual_PreDefinedColour::*)( const opencascade::handle<StepVisual_PreDefinedItem> &  ) ) static_cast<void (StepVisual_PreDefinedColour::*)( const opencascade::handle<StepVisual_PreDefinedItem> &  ) >(&StepVisual_PreDefinedColour::SetPreDefinedItem),
@@ -3187,12 +3404,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PreDefinedCurveFont ,opencascade::handle<StepVisual_PreDefinedCurveFont>  , StepVisual_PreDefinedItem >>(m.attr("StepVisual_PreDefinedCurveFont"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_PreDefinedCurveFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_PreDefinedCurveFont::*)() const>(&StepVisual_PreDefinedCurveFont::DynamicType),
@@ -3207,12 +3426,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PreDefinedTextFont ,opencascade::handle<StepVisual_PreDefinedTextFont>  , StepVisual_PreDefinedItem >>(m.attr("StepVisual_PreDefinedTextFont"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_PreDefinedTextFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_PreDefinedTextFont::*)() const>(&StepVisual_PreDefinedTextFont::DynamicType),
@@ -3227,12 +3448,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationArea ,opencascade::handle<StepVisual_PresentationArea>  , StepVisual_PresentationRepresentation >>(m.attr("StepVisual_PresentationArea"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_PresentationArea::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_PresentationArea::*)() const>(&StepVisual_PresentationArea::DynamicType),
@@ -3247,12 +3470,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationStyleByContext ,opencascade::handle<StepVisual_PresentationStyleByContext>  , StepVisual_PresentationStyleAssignment >>(m.attr("StepVisual_PresentationStyleByContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_PresentationStyleByContext::*)( const opencascade::handle<StepVisual_HArray1OfPresentationStyleSelect> & ,  const StepVisual_StyleContextSelect &  ) ) static_cast<void (StepVisual_PresentationStyleByContext::*)( const opencascade::handle<StepVisual_HArray1OfPresentationStyleSelect> & ,  const StepVisual_StyleContextSelect &  ) >(&StepVisual_PresentationStyleByContext::Init),
@@ -3276,12 +3501,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_PresentationView ,opencascade::handle<StepVisual_PresentationView>  , StepVisual_PresentationRepresentation >>(m.attr("StepVisual_PresentationView"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_PresentationView::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_PresentationView::*)() const>(&StepVisual_PresentationView::DynamicType),
@@ -3296,12 +3523,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TessellatedAnnotationOccurrence ,opencascade::handle<StepVisual_TessellatedAnnotationOccurrence>  , StepVisual_StyledItem >>(m.attr("StepVisual_TessellatedAnnotationOccurrence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_TessellatedAnnotationOccurrence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_TessellatedAnnotationOccurrence::*)() const>(&StepVisual_TessellatedAnnotationOccurrence::DynamicType),
@@ -3316,12 +3545,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TessellatedCurveSet ,opencascade::handle<StepVisual_TessellatedCurveSet>  , StepVisual_TessellatedItem >>(m.attr("StepVisual_TessellatedCurveSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_TessellatedCurveSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_CoordinatesList> & ,  const NCollection_Handle<StepVisual_VectorOfHSequenceOfInteger> &  ) ) static_cast<void (StepVisual_TessellatedCurveSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_CoordinatesList> & ,  const NCollection_Handle<StepVisual_VectorOfHSequenceOfInteger> &  ) >(&StepVisual_TessellatedCurveSet::Init),
@@ -3345,12 +3576,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TessellatedGeometricSet ,opencascade::handle<StepVisual_TessellatedGeometricSet>  , StepVisual_TessellatedItem >>(m.attr("StepVisual_TessellatedGeometricSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_TessellatedGeometricSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const NCollection_Handle<StepVisual_Array1OfTessellatedItem> &  ) ) static_cast<void (StepVisual_TessellatedGeometricSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const NCollection_Handle<StepVisual_Array1OfTessellatedItem> &  ) >(&StepVisual_TessellatedGeometricSet::Init),
@@ -3371,12 +3604,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_TextStyleWithBoxCharacteristics ,opencascade::handle<StepVisual_TextStyleWithBoxCharacteristics>  , StepVisual_TextStyle >>(m.attr("StepVisual_TextStyleWithBoxCharacteristics"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_TextStyleWithBoxCharacteristics::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_TextStyleForDefinedFont> & ,  const opencascade::handle<StepVisual_HArray1OfBoxCharacteristicSelect> &  ) ) static_cast<void (StepVisual_TextStyleWithBoxCharacteristics::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_TextStyleForDefinedFont> & ,  const opencascade::handle<StepVisual_HArray1OfBoxCharacteristicSelect> &  ) >(&StepVisual_TextStyleWithBoxCharacteristics::Init),
@@ -3406,12 +3641,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationCurveOccurrence ,opencascade::handle<StepVisual_AnnotationCurveOccurrence>  , StepVisual_AnnotationOccurrence >>(m.attr("StepVisual_AnnotationCurveOccurrence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_AnnotationCurveOccurrence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_AnnotationCurveOccurrence::*)() const>(&StepVisual_AnnotationCurveOccurrence::DynamicType),
@@ -3426,12 +3663,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationFillAreaOccurrence ,opencascade::handle<StepVisual_AnnotationFillAreaOccurrence>  , StepVisual_AnnotationOccurrence >>(m.attr("StepVisual_AnnotationFillAreaOccurrence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_AnnotationFillAreaOccurrence::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepGeom_GeometricRepresentationItem> &  ) ) static_cast<void (StepVisual_AnnotationFillAreaOccurrence::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepGeom_GeometricRepresentationItem> &  ) >(&StepVisual_AnnotationFillAreaOccurrence::Init),
@@ -3455,12 +3694,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationPlane ,opencascade::handle<StepVisual_AnnotationPlane>  , StepVisual_AnnotationOccurrence >>(m.attr("StepVisual_AnnotationPlane"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_AnnotationPlane::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepVisual_HArray1OfAnnotationPlaneElement> &  ) ) static_cast<void (StepVisual_AnnotationPlane::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepVisual_HArray1OfAnnotationPlaneElement> &  ) >(&StepVisual_AnnotationPlane::Init),
@@ -3493,12 +3734,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationTextOccurrence ,opencascade::handle<StepVisual_AnnotationTextOccurrence>  , StepVisual_AnnotationOccurrence >>(m.attr("StepVisual_AnnotationTextOccurrence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_AnnotationTextOccurrence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_AnnotationTextOccurrence::*)() const>(&StepVisual_AnnotationTextOccurrence::DynamicType),
@@ -3513,12 +3756,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_CameraModelD3MultiClipping ,opencascade::handle<StepVisual_CameraModelD3MultiClipping>  , StepVisual_CameraModelD3 >>(m.attr("StepVisual_CameraModelD3MultiClipping"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_CameraModelD3MultiClipping::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepVisual_ViewVolume> & ,  const opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect> &  ) ) static_cast<void (StepVisual_CameraModelD3MultiClipping::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepVisual_ViewVolume> & ,  const opencascade::handle<StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect> &  ) >(&StepVisual_CameraModelD3MultiClipping::Init),
@@ -3542,12 +3787,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_ColourRgb ,opencascade::handle<StepVisual_ColourRgb>  , StepVisual_ColourSpecification >>(m.attr("StepVisual_ColourRgb"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_ColourRgb::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepVisual_ColourRgb::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&StepVisual_ColourRgb::Init),
@@ -3583,12 +3830,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_ContextDependentOverRidingStyledItem ,opencascade::handle<StepVisual_ContextDependentOverRidingStyledItem>  , StepVisual_OverRidingStyledItem >>(m.attr("StepVisual_ContextDependentOverRidingStyledItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepVisual_ContextDependentOverRidingStyledItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepVisual_StyledItem> & ,  const opencascade::handle<StepVisual_HArray1OfStyleContextSelect> &  ) ) static_cast<void (StepVisual_ContextDependentOverRidingStyledItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepVisual_HArray1OfPresentationStyleAssignment> & ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<StepVisual_StyledItem> & ,  const opencascade::handle<StepVisual_HArray1OfStyleContextSelect> &  ) >(&StepVisual_ContextDependentOverRidingStyledItem::Init),
@@ -3618,12 +3867,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_DraughtingAnnotationOccurrence ,opencascade::handle<StepVisual_DraughtingAnnotationOccurrence>  , StepVisual_AnnotationOccurrence >>(m.attr("StepVisual_DraughtingAnnotationOccurrence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_DraughtingAnnotationOccurrence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_DraughtingAnnotationOccurrence::*)() const>(&StepVisual_DraughtingAnnotationOccurrence::DynamicType),
@@ -3638,12 +3889,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_DraughtingPreDefinedColour ,opencascade::handle<StepVisual_DraughtingPreDefinedColour>  , StepVisual_PreDefinedColour >>(m.attr("StepVisual_DraughtingPreDefinedColour"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_DraughtingPreDefinedColour::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_DraughtingPreDefinedColour::*)() const>(&StepVisual_DraughtingPreDefinedColour::DynamicType),
@@ -3658,12 +3911,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_DraughtingPreDefinedCurveFont ,opencascade::handle<StepVisual_DraughtingPreDefinedCurveFont>  , StepVisual_PreDefinedCurveFont >>(m.attr("StepVisual_DraughtingPreDefinedCurveFont"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_DraughtingPreDefinedCurveFont::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_DraughtingPreDefinedCurveFont::*)() const>(&StepVisual_DraughtingPreDefinedCurveFont::DynamicType),
@@ -3678,12 +3933,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_MechanicalDesignGeometricPresentationArea ,opencascade::handle<StepVisual_MechanicalDesignGeometricPresentationArea>  , StepVisual_PresentationArea >>(m.attr("StepVisual_MechanicalDesignGeometricPresentationArea"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_MechanicalDesignGeometricPresentationArea::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_MechanicalDesignGeometricPresentationArea::*)() const>(&StepVisual_MechanicalDesignGeometricPresentationArea::DynamicType),
@@ -3698,12 +3955,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem ,opencascade::handle<StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem>  , StepVisual_AnnotationCurveOccurrence >>(m.attr("StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem::*)() const>(&StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem::DynamicType),
@@ -3718,172 +3977,172 @@ py::module m = static_cast<py::module>(main_module.attr("StepVisual"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect.hxx
-// ./opencascade/StepVisual_MarkerType.hxx
-// ./opencascade/StepVisual_PreDefinedColour.hxx
-// ./opencascade/StepVisual_PresentationArea.hxx
-// ./opencascade/StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem.hxx
-// ./opencascade/StepVisual_Array1OfLayeredItem.hxx
-// ./opencascade/StepVisual_TessellatedAnnotationOccurrence.hxx
-// ./opencascade/StepVisual_TemplateInstance.hxx
-// ./opencascade/StepVisual_CentralOrParallel.hxx
-// ./opencascade/StepVisual_TessellatedItem.hxx
-// ./opencascade/StepVisual_DraughtingCalloutElement.hxx
-// ./opencascade/StepVisual_AnnotationText.hxx
-// ./opencascade/StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect.hxx
-// ./opencascade/StepVisual_InvisibleItem.hxx
-// ./opencascade/StepVisual_PointStyle.hxx
-// ./opencascade/StepVisual_PreDefinedCurveFont.hxx
-// ./opencascade/StepVisual_HArray1OfAnnotationPlaneElement.hxx
-// ./opencascade/StepVisual_DraughtingAnnotationOccurrence.hxx
-// ./opencascade/StepVisual_ExternallyDefinedTextFont.hxx
-// ./opencascade/StepVisual_CameraModelD3.hxx
-// ./opencascade/StepVisual_AnnotationCurveOccurrence.hxx
-// ./opencascade/StepVisual_PresentationRepresentationSelect.hxx
 // ./opencascade/StepVisual_PresentationLayerUsage.hxx
-// ./opencascade/StepVisual_HArray1OfStyleContextSelect.hxx
-// ./opencascade/StepVisual_TextStyleWithBoxCharacteristics.hxx
-// ./opencascade/StepVisual_TessellatedCurveSet.hxx
-// ./opencascade/StepVisual_TextLiteral.hxx
-// ./opencascade/StepVisual_DraughtingPreDefinedColour.hxx
-// ./opencascade/StepVisual_Array1OfAnnotationPlaneElement.hxx
-// ./opencascade/StepVisual_Invisibility.hxx
-// ./opencascade/StepVisual_PlanarBox.hxx
-// ./opencascade/StepVisual_FillStyleSelect.hxx
-// ./opencascade/StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation.hxx
-// ./opencascade/StepVisual_Array1OfTextOrCharacter.hxx
-// ./opencascade/StepVisual_HArray1OfInvisibleItem.hxx
-// ./opencascade/StepVisual_AnnotationFillAreaOccurrence.hxx
-// ./opencascade/StepVisual_SurfaceStyleFillArea.hxx
-// ./opencascade/StepVisual_AnnotationFillArea.hxx
-// ./opencascade/StepVisual_HArray1OfBoxCharacteristicSelect.hxx
-// ./opencascade/StepVisual_CameraImage2dWithScale.hxx
-// ./opencascade/StepVisual_HArray1OfFillStyleSelect.hxx
-// ./opencascade/StepVisual_StyledItemTarget.hxx
-// ./opencascade/StepVisual_CoordinatesList.hxx
-// ./opencascade/StepVisual_PresentedItemRepresentation.hxx
-// ./opencascade/StepVisual_CurveStyleFontSelect.hxx
+// ./opencascade/StepVisual_CameraModelD2.hxx
 // ./opencascade/StepVisual_Array1OfPresentationStyleAssignment.hxx
-// ./opencascade/StepVisual_Array1OfCurveStyleFontPattern.hxx
-// ./opencascade/StepVisual_SurfaceSide.hxx
-// ./opencascade/StepVisual_SurfaceStyleControlGrid.hxx
-// ./opencascade/StepVisual_CameraModelD3MultiClippingIntersection.hxx
-// ./opencascade/StepVisual_StyledItem.hxx
-// ./opencascade/StepVisual_MarkerMember.hxx
-// ./opencascade/StepVisual_TessellatedGeometricSet.hxx
-// ./opencascade/StepVisual_CompositeTextWithExtent.hxx
-// ./opencascade/StepVisual_PlanarExtent.hxx
-// ./opencascade/StepVisual_HArray1OfLayeredItem.hxx
-// ./opencascade/StepVisual_CameraModelD3MultiClippingUnion.hxx
-// ./opencascade/StepVisual_CameraImage3dWithScale.hxx
-// ./opencascade/StepVisual_Array1OfFillStyleSelect.hxx
-// ./opencascade/StepVisual_CurveStyleFontPattern.hxx
-// ./opencascade/StepVisual_Array1OfBoxCharacteristicSelect.hxx
-// ./opencascade/StepVisual_SurfaceStyleSegmentationCurve.hxx
-// ./opencascade/StepVisual_FillAreaStyleColour.hxx
-// ./opencascade/StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect.hxx
-// ./opencascade/StepVisual_CameraImage.hxx
-// ./opencascade/StepVisual_PresentationSize.hxx
-// ./opencascade/StepVisual_SurfaceStyleParameterLine.hxx
-// ./opencascade/StepVisual_MechanicalDesignGeometricPresentationArea.hxx
-// ./opencascade/StepVisual_Array1OfSurfaceStyleElementSelect.hxx
-// ./opencascade/StepVisual_HArray1OfDirectionCountSelect.hxx
-// ./opencascade/StepVisual_CameraModelD3MultiClippingInterectionSelect.hxx
-// ./opencascade/StepVisual_HArray1OfSurfaceStyleElementSelect.hxx
+// ./opencascade/StepVisual_PlanarBox.hxx
+// ./opencascade/StepVisual_MechanicalDesignGeometricPresentationRepresentation.hxx
 // ./opencascade/StepVisual_LayeredItem.hxx
+// ./opencascade/StepVisual_Template.hxx
+// ./opencascade/StepVisual_MarkerSelect.hxx
+// ./opencascade/StepVisual_DraughtingAnnotationOccurrence.hxx
+// ./opencascade/StepVisual_Array1OfPresentationStyleSelect.hxx
+// ./opencascade/StepVisual_BackgroundColour.hxx
+// ./opencascade/StepVisual_TextStyle.hxx
+// ./opencascade/StepVisual_PointStyle.hxx
 // ./opencascade/StepVisual_Colour.hxx
 // ./opencascade/StepVisual_BoxCharacteristicSelect.hxx
-// ./opencascade/StepVisual_Template.hxx
-// ./opencascade/StepVisual_Array1OfInvisibleItem.hxx
-// ./opencascade/StepVisual_NullStyleMember.hxx
-// ./opencascade/StepVisual_CameraModelD3MultiClippingUnionSelect.hxx
+// ./opencascade/StepVisual_AnnotationFillArea.hxx
+// ./opencascade/StepVisual_Array1OfSurfaceStyleElementSelect.hxx
 // ./opencascade/StepVisual_SurfaceStyleSilhouette.hxx
-// ./opencascade/StepVisual_AnnotationOccurrence.hxx
-// ./opencascade/StepVisual_DraughtingPreDefinedCurveFont.hxx
-// ./opencascade/StepVisual_AnnotationPlane.hxx
-// ./opencascade/StepVisual_SurfaceStyleBoundary.hxx
-// ./opencascade/StepVisual_MarkerSelect.hxx
-// ./opencascade/StepVisual_PresentationView.hxx
-// ./opencascade/StepVisual_FillAreaStyle.hxx
-// ./opencascade/StepVisual_HArray1OfTextOrCharacter.hxx
-// ./opencascade/StepVisual_HArray1OfCurveStyleFontPattern.hxx
-// ./opencascade/StepVisual_Array1OfStyleContextSelect.hxx
-// ./opencascade/StepVisual_SurfaceSideStyle.hxx
-// ./opencascade/StepVisual_HArray1OfPresentationStyleSelect.hxx
-// ./opencascade/StepVisual_StyleContextSelect.hxx
-// ./opencascade/StepVisual_PresentedItem.hxx
-// ./opencascade/StepVisual_ExternallyDefinedCurveFont.hxx
-// ./opencascade/StepVisual_OverRidingStyledItem.hxx
-// ./opencascade/StepVisual_AnnotationTextOccurrence.hxx
-// ./opencascade/StepVisual_ContextDependentInvisibility.hxx
-// ./opencascade/StepVisual_PreDefinedItem.hxx
-// ./opencascade/StepVisual_CameraModel.hxx
-// ./opencascade/StepVisual_PresentationSizeAssignmentSelect.hxx
-// ./opencascade/StepVisual_MechanicalDesignGeometricPresentationRepresentation.hxx
-// ./opencascade/StepVisual_AreaInSet.hxx
-// ./opencascade/StepVisual_PreDefinedTextFont.hxx
-// ./opencascade/StepVisual_PresentationSet.hxx
-// ./opencascade/StepVisual_CurveStyleFont.hxx
-// ./opencascade/StepVisual_FontSelect.hxx
-// ./opencascade/StepVisual_AreaOrView.hxx
+// ./opencascade/StepVisual_HArray1OfStyleContextSelect.hxx
+// ./opencascade/StepVisual_PresentationRepresentationSelect.hxx
 // ./opencascade/StepVisual_NullStyle.hxx
-// ./opencascade/StepVisual_PresentationStyleSelect.hxx
-// ./opencascade/StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect.hxx
-// ./opencascade/StepVisual_PresentationLayerAssignment.hxx
-// ./opencascade/StepVisual_ViewVolume.hxx
-// ./opencascade/StepVisual_HArray1OfDraughtingCalloutElement.hxx
-// ./opencascade/StepVisual_SurfaceStyleUsage.hxx
-// ./opencascade/StepVisual_TextOrCharacter.hxx
-// ./opencascade/StepVisual_CameraModelD3MultiClipping.hxx
-// ./opencascade/StepVisual_CurveStyle.hxx
-// ./opencascade/StepVisual_SurfaceStyleElementSelect.hxx
-// ./opencascade/StepVisual_TextPath.hxx
-// ./opencascade/StepVisual_PresentationStyleAssignment.hxx
-// ./opencascade/StepVisual_AnnotationPlaneElement.hxx
-// ./opencascade/StepVisual_PresentationStyleByContext.hxx
-// ./opencascade/StepVisual_Array1OfDirectionCountSelect.hxx
-// ./opencascade/StepVisual_PresentationRepresentation.hxx
-// ./opencascade/StepVisual_InvisibilityContext.hxx
+// ./opencascade/StepVisual_Array1OfCurveStyleFontPattern.hxx
+// ./opencascade/StepVisual_Array1OfStyleContextSelect.hxx
+// ./opencascade/StepVisual_TessellatedItem.hxx
 // ./opencascade/StepVisual_Array1OfDraughtingCalloutElement.hxx
+// ./opencascade/StepVisual_PresentedItem.hxx
+// ./opencascade/StepVisual_HArray1OfCurveStyleFontPattern.hxx
+// ./opencascade/StepVisual_HArray1OfLayeredItem.hxx
+// ./opencascade/StepVisual_PreDefinedItem.hxx
 // ./opencascade/StepVisual_HArray1OfPresentationStyleAssignment.hxx
-// ./opencascade/StepVisual_Array1OfPresentationStyleSelect.hxx
 // ./opencascade/StepVisual_TextStyleForDefinedFont.hxx
-// ./opencascade/StepVisual_BackgroundColour.hxx
-// ./opencascade/StepVisual_CompositeText.hxx
-// ./opencascade/StepVisual_ContextDependentOverRidingStyledItem.hxx
+// ./opencascade/StepVisual_TessellatedAnnotationOccurrence.hxx
+// ./opencascade/StepVisual_TextPath.hxx
+// ./opencascade/StepVisual_AnnotationCurveOccurrence.hxx
+// ./opencascade/StepVisual_AnnotationTextOccurrence.hxx
+// ./opencascade/StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect.hxx
+// ./opencascade/StepVisual_SurfaceSide.hxx
+// ./opencascade/StepVisual_FillAreaStyleColour.hxx
+// ./opencascade/StepVisual_AnnotationPlane.hxx
+// ./opencascade/StepVisual_FontSelect.hxx
+// ./opencascade/StepVisual_StyledItem.hxx
+// ./opencascade/StepVisual_ExternallyDefinedCurveFont.hxx
+// ./opencascade/StepVisual_SurfaceStyleBoundary.hxx
+// ./opencascade/StepVisual_Array1OfTextOrCharacter.hxx
+// ./opencascade/StepVisual_SurfaceStyleControlGrid.hxx
+// ./opencascade/StepVisual_PreDefinedTextFont.hxx
+// ./opencascade/StepVisual_HArray1OfDraughtingCalloutElement.hxx
+// ./opencascade/StepVisual_HArray1OfInvisibleItem.hxx
+// ./opencascade/StepVisual_PresentationSizeAssignmentSelect.hxx
+// ./opencascade/StepVisual_OverRidingStyledItem.hxx
+// ./opencascade/StepVisual_CameraImage.hxx
+// ./opencascade/StepVisual_MarkerType.hxx
+// ./opencascade/StepVisual_PresentationStyleSelect.hxx
+// ./opencascade/StepVisual_FillStyleSelect.hxx
 // ./opencascade/StepVisual_DirectionCountSelect.hxx
-// ./opencascade/StepVisual_CameraUsage.hxx
+// ./opencascade/StepVisual_DraughtingPreDefinedColour.hxx
+// ./opencascade/StepVisual_HArray1OfAnnotationPlaneElement.hxx
 // ./opencascade/StepVisual_ColourSpecification.hxx
-// ./opencascade/StepVisual_CameraModelD2.hxx
-// ./opencascade/StepVisual_DraughtingModel.hxx
+// ./opencascade/StepVisual_TextOrCharacter.hxx
+// ./opencascade/StepVisual_SurfaceStyleUsage.hxx
+// ./opencascade/StepVisual_ViewVolume.hxx
+// ./opencascade/StepVisual_NullStyleMember.hxx
+// ./opencascade/StepVisual_HArray1OfPresentationStyleSelect.hxx
+// ./opencascade/StepVisual_CameraUsage.hxx
+// ./opencascade/StepVisual_AnnotationOccurrence.hxx
 // ./opencascade/StepVisual_DraughtingCallout.hxx
-// ./opencascade/StepVisual_TextStyle.hxx
+// ./opencascade/StepVisual_HArray1OfCameraModelD3MultiClippingInterectionSelect.hxx
+// ./opencascade/StepVisual_PreDefinedColour.hxx
+// ./opencascade/StepVisual_CompositeTextWithExtent.hxx
+// ./opencascade/StepVisual_ContextDependentOverRidingStyledItem.hxx
+// ./opencascade/StepVisual_CharacterizedObjectAndCharacterizedRepresentationAndDraughtingModelAndRepresentation.hxx
+// ./opencascade/StepVisual_CameraModelD3MultiClippingIntersection.hxx
+// ./opencascade/StepVisual_AnnotationCurveOccurrenceAndAnnotationOccurrenceAndGeomReprItemAndReprItemAndStyledItem.hxx
+// ./opencascade/StepVisual_CurveStyleFontPattern.hxx
+// ./opencascade/StepVisual_MechanicalDesignGeometricPresentationArea.hxx
+// ./opencascade/StepVisual_DraughtingCalloutElement.hxx
+// ./opencascade/StepVisual_CompositeText.hxx
+// ./opencascade/StepVisual_CameraModelD3MultiClippingUnionSelect.hxx
+// ./opencascade/StepVisual_PresentationArea.hxx
 // ./opencascade/StepVisual_ColourRgb.hxx
+// ./opencascade/StepVisual_CameraImage3dWithScale.hxx
+// ./opencascade/StepVisual_Array1OfAnnotationPlaneElement.hxx
+// ./opencascade/StepVisual_TemplateInstance.hxx
+// ./opencascade/StepVisual_ExternallyDefinedTextFont.hxx
+// ./opencascade/StepVisual_PlanarExtent.hxx
+// ./opencascade/StepVisual_TessellatedGeometricSet.hxx
+// ./opencascade/StepVisual_Array1OfBoxCharacteristicSelect.hxx
+// ./opencascade/StepVisual_PresentationLayerAssignment.hxx
+// ./opencascade/StepVisual_AreaOrView.hxx
+// ./opencascade/StepVisual_MarkerMember.hxx
+// ./opencascade/StepVisual_InvisibleItem.hxx
+// ./opencascade/StepVisual_HArray1OfSurfaceStyleElementSelect.hxx
+// ./opencascade/StepVisual_PresentationRepresentation.hxx
+// ./opencascade/StepVisual_PresentationView.hxx
+// ./opencascade/StepVisual_Array1OfFillStyleSelect.hxx
+// ./opencascade/StepVisual_CameraModel.hxx
+// ./opencascade/StepVisual_HArray1OfBoxCharacteristicSelect.hxx
+// ./opencascade/StepVisual_StyledItemTarget.hxx
+// ./opencascade/StepVisual_SurfaceStyleSegmentationCurve.hxx
+// ./opencascade/StepVisual_FillAreaStyle.hxx
+// ./opencascade/StepVisual_PresentationSet.hxx
+// ./opencascade/StepVisual_HArray1OfDirectionCountSelect.hxx
+// ./opencascade/StepVisual_TessellatedCurveSet.hxx
+// ./opencascade/StepVisual_SurfaceStyleElementSelect.hxx
+// ./opencascade/StepVisual_SurfaceStyleParameterLine.hxx
+// ./opencascade/StepVisual_CurveStyleFontSelect.hxx
+// ./opencascade/StepVisual_CameraModelD3MultiClippingInterectionSelect.hxx
+// ./opencascade/StepVisual_TextLiteral.hxx
+// ./opencascade/StepVisual_AnnotationText.hxx
+// ./opencascade/StepVisual_PresentationStyleAssignment.hxx
+// ./opencascade/StepVisual_CameraModelD3.hxx
+// ./opencascade/StepVisual_CameraImage2dWithScale.hxx
+// ./opencascade/StepVisual_Invisibility.hxx
+// ./opencascade/StepVisual_CurveStyleFont.hxx
+// ./opencascade/StepVisual_SurfaceSideStyle.hxx
+// ./opencascade/StepVisual_DraughtingPreDefinedCurveFont.hxx
+// ./opencascade/StepVisual_CameraModelD3MultiClipping.hxx
+// ./opencascade/StepVisual_SurfaceStyleFillArea.hxx
+// ./opencascade/StepVisual_AnnotationFillAreaOccurrence.hxx
+// ./opencascade/StepVisual_Array1OfLayeredItem.hxx
+// ./opencascade/StepVisual_CurveStyle.hxx
+// ./opencascade/StepVisual_CentralOrParallel.hxx
+// ./opencascade/StepVisual_HArray1OfFillStyleSelect.hxx
+// ./opencascade/StepVisual_TextStyleWithBoxCharacteristics.hxx
+// ./opencascade/StepVisual_PresentationStyleByContext.hxx
+// ./opencascade/StepVisual_CameraModelD3MultiClippingUnion.hxx
+// ./opencascade/StepVisual_InvisibilityContext.hxx
+// ./opencascade/StepVisual_AnnotationPlaneElement.hxx
+// ./opencascade/StepVisual_StyleContextSelect.hxx
+// ./opencascade/StepVisual_ContextDependentInvisibility.hxx
+// ./opencascade/StepVisual_PresentedItemRepresentation.hxx
+// ./opencascade/StepVisual_AreaInSet.hxx
+// ./opencascade/StepVisual_Array1OfDirectionCountSelect.hxx
+// ./opencascade/StepVisual_PreDefinedCurveFont.hxx
+// ./opencascade/StepVisual_HArray1OfCameraModelD3MultiClippingUnionSelect.hxx
+// ./opencascade/StepVisual_HArray1OfTextOrCharacter.hxx
+// ./opencascade/StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect.hxx
+// ./opencascade/StepVisual_DraughtingModel.hxx
+// ./opencascade/StepVisual_Array1OfInvisibleItem.hxx
+// ./opencascade/StepVisual_CoordinatesList.hxx
+// ./opencascade/StepVisual_PresentationSize.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<StepVisual_LayeredItem>(m,"StepVisual_Array1OfLayeredItem");  
-    register_template_NCollection_Vector<opencascade::handle<TColStd_HSequenceOfInteger> >(m,"StepVisual_VectorOfHSequenceOfInteger");  
-    register_template_NCollection_Array1<StepVisual_AnnotationPlaneElement>(m,"StepVisual_Array1OfAnnotationPlaneElement");  
-    register_template_NCollection_Array1<StepVisual_TextOrCharacter>(m,"StepVisual_Array1OfTextOrCharacter");  
     register_template_NCollection_Array1<opencascade::handle<StepVisual_PresentationStyleAssignment> >(m,"StepVisual_Array1OfPresentationStyleAssignment");  
-    register_template_NCollection_Array1<opencascade::handle<StepVisual_CurveStyleFontPattern> >(m,"StepVisual_Array1OfCurveStyleFontPattern");  
-    register_template_NCollection_Array1<opencascade::handle<StepVisual_TessellatedItem> >(m,"StepVisual_Array1OfTessellatedItem");  
-    register_template_NCollection_Array1<StepVisual_FillStyleSelect>(m,"StepVisual_Array1OfFillStyleSelect");  
-    register_template_NCollection_Array1<StepVisual_BoxCharacteristicSelect>(m,"StepVisual_Array1OfBoxCharacteristicSelect");  
-    register_template_NCollection_Array1<StepVisual_CameraModelD3MultiClippingUnionSelect>(m,"StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect");  
-    register_template_NCollection_Array1<StepVisual_SurfaceStyleElementSelect>(m,"StepVisual_Array1OfSurfaceStyleElementSelect");  
-    register_template_NCollection_Array1<StepVisual_InvisibleItem>(m,"StepVisual_Array1OfInvisibleItem");  
-    register_template_NCollection_Array1<StepVisual_StyleContextSelect>(m,"StepVisual_Array1OfStyleContextSelect");  
-    register_template_NCollection_Array1<StepVisual_CameraModelD3MultiClippingInterectionSelect>(m,"StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect");  
-    register_template_NCollection_Array1<StepVisual_DirectionCountSelect>(m,"StepVisual_Array1OfDirectionCountSelect");  
-    register_template_NCollection_Array1<StepVisual_DraughtingCalloutElement>(m,"StepVisual_Array1OfDraughtingCalloutElement");  
     register_template_NCollection_Array1<StepVisual_PresentationStyleSelect>(m,"StepVisual_Array1OfPresentationStyleSelect");  
+    register_template_NCollection_Array1<StepVisual_SurfaceStyleElementSelect>(m,"StepVisual_Array1OfSurfaceStyleElementSelect");  
+    register_template_NCollection_Array1<opencascade::handle<StepVisual_CurveStyleFontPattern> >(m,"StepVisual_Array1OfCurveStyleFontPattern");  
+    register_template_NCollection_Array1<StepVisual_StyleContextSelect>(m,"StepVisual_Array1OfStyleContextSelect");  
+    register_template_NCollection_Array1<StepVisual_DraughtingCalloutElement>(m,"StepVisual_Array1OfDraughtingCalloutElement");  
+    register_template_NCollection_Array1<StepVisual_CameraModelD3MultiClippingInterectionSelect>(m,"StepVisual_Array1OfCameraModelD3MultiClippingInterectionSelect");  
+    register_template_NCollection_Array1<StepVisual_TextOrCharacter>(m,"StepVisual_Array1OfTextOrCharacter");  
+    register_template_NCollection_Array1<StepVisual_AnnotationPlaneElement>(m,"StepVisual_Array1OfAnnotationPlaneElement");  
+    register_template_NCollection_Array1<opencascade::handle<StepVisual_TessellatedItem> >(m,"StepVisual_Array1OfTessellatedItem");  
+    register_template_NCollection_Array1<StepVisual_BoxCharacteristicSelect>(m,"StepVisual_Array1OfBoxCharacteristicSelect");  
+    register_template_NCollection_Array1<StepVisual_FillStyleSelect>(m,"StepVisual_Array1OfFillStyleSelect");  
+    register_template_NCollection_Vector<opencascade::handle<TColStd_HSequenceOfInteger> >(m,"StepVisual_VectorOfHSequenceOfInteger");  
+    register_template_NCollection_Array1<StepVisual_LayeredItem>(m,"StepVisual_Array1OfLayeredItem");  
+    register_template_NCollection_Array1<StepVisual_DirectionCountSelect>(m,"StepVisual_Array1OfDirectionCountSelect");  
+    register_template_NCollection_Array1<StepVisual_CameraModelD3MultiClippingUnionSelect>(m,"StepVisual_Array1OfCameraModelD3MultiClippingUnionSelect");  
+    register_template_NCollection_Array1<StepVisual_InvisibleItem>(m,"StepVisual_Array1OfInvisibleItem");  
 
 
 // exceptions

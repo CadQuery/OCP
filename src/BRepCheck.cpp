@@ -13,14 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Solid.hxx>
-#include <BRep_CurveRepresentation.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_HSurface.hxx>
 #include <BRepCheck_Result.hxx>
 #include <BRepCheck_Vertex.hxx>
 #include <BRepCheck_Edge.hxx>
@@ -30,9 +27,14 @@ namespace py = pybind11;
 #include <BRepCheck_Solid.hxx>
 #include <BRepCheck_Analyzer.hxx>
 #include <TopoDS_Shell.hxx>
-#include <TopoDS_Face.hxx>
+#include <TopoDS_Solid.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
+#include <BRep_CurveRepresentation.hxx>
+#include <Adaptor3d_HCurve.hxx>
 #include <TopoDS_Edge.hxx>
 #include <Standard_NullObject.hxx>
 
@@ -55,15 +57,15 @@ namespace py = pybind11;
 #include <BRepCheck_Wire.hxx>
 
 // template related includes
+// ./opencascade/BRepCheck_ListOfStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepCheck_ListOfStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
+#include "NCollection.hxx"
 // ./opencascade/BRepCheck_DataMapOfShapeResult.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepCheck_ListOfStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepCheck_ListOfStatus.hxx
 #include "NCollection.hxx"
 
 
@@ -84,6 +86,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
     public:
         using BRepCheck_Result::BRepCheck_Result;
         
+        
         // public pure virtual
         void InContext(const TopoDS_Shape & ContextShape) override { PYBIND11_OVERLOAD_PURE(void,BRepCheck_Result,InContext,ContextShape) };
         void Minimum() override { PYBIND11_OVERLOAD_PURE(void,BRepCheck_Result,Minimum,) };
@@ -99,9 +102,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepCheck , shared_ptr<BRepCheck>>(m,"BRepCheck");
 
     static_cast<py::class_<BRepCheck , shared_ptr<BRepCheck>  >>(m.attr("BRepCheck"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -114,14 +120,22 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
         .def_static("SelfIntersection_s",
                     (Standard_Boolean (*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  TopoDS_Edge & ,  TopoDS_Edge &  ) >(&BRepCheck::SelfIntersection),
                     R"#(None)#"  , py::arg("W"),  py::arg("F"),  py::arg("E1"),  py::arg("E2"))
+        .def_static("PrecCurve_s",
+                    (Standard_Real (*)( const Adaptor3d_Curve &  ) ) static_cast<Standard_Real (*)( const Adaptor3d_Curve &  ) >(&BRepCheck::PrecCurve),
+                    R"#(Returns the resolution on the 3d curve)#"  , py::arg("aAC3D"))
+        .def_static("PrecSurface_s",
+                    (Standard_Real (*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<Standard_Real (*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&BRepCheck::PrecSurface),
+                    R"#(Returns the resolution on the surface)#"  , py::arg("aAHSurf"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Analyzer , shared_ptr<BRepCheck_Analyzer>  >>(m.attr("BRepCheck_Analyzer"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("S"),  py::arg("GeomControls")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepCheck_Analyzer::*)( const TopoDS_Shape & ,  const Standard_Boolean  ) ) static_cast<void (BRepCheck_Analyzer::*)( const TopoDS_Shape & ,  const Standard_Boolean  ) >(&BRepCheck_Analyzer::Init),
@@ -145,11 +159,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Result ,opencascade::handle<BRepCheck_Result> ,Py_BRepCheck_Result , Standard_Transient >>(m.attr("BRepCheck_Result"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepCheck_Result::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepCheck_Result::*)( const TopoDS_Shape &  ) >(&BRepCheck_Result::Init),
@@ -224,12 +240,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Edge ,opencascade::handle<BRepCheck_Edge>  , BRepCheck_Result >>(m.attr("BRepCheck_Edge"))
+    // constructors
         .def(py::init< const TopoDS_Edge & >()  , py::arg("E") )
+    // custom constructors
     // methods
         .def("InContext",
              (void (BRepCheck_Edge::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepCheck_Edge::*)( const TopoDS_Shape &  ) >(&BRepCheck_Edge::InContext),
@@ -268,12 +286,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Face ,opencascade::handle<BRepCheck_Face>  , BRepCheck_Result >>(m.attr("BRepCheck_Face"))
+    // constructors
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // custom constructors
     // methods
         .def("InContext",
              (void (BRepCheck_Face::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepCheck_Face::*)( const TopoDS_Shape &  ) >(&BRepCheck_Face::InContext),
@@ -321,12 +341,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Shell ,opencascade::handle<BRepCheck_Shell>  , BRepCheck_Result >>(m.attr("BRepCheck_Shell"))
+    // constructors
         .def(py::init< const TopoDS_Shell & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("InContext",
              (void (BRepCheck_Shell::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepCheck_Shell::*)( const TopoDS_Shape &  ) >(&BRepCheck_Shell::InContext),
@@ -365,12 +387,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Solid ,opencascade::handle<BRepCheck_Solid>  , BRepCheck_Result >>(m.attr("BRepCheck_Solid"))
+    // constructors
         .def(py::init< const TopoDS_Solid & >()  , py::arg("theS") )
+    // custom constructors
     // methods
         .def("InContext",
              (void (BRepCheck_Solid::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepCheck_Solid::*)( const TopoDS_Shape &  ) >(&BRepCheck_Solid::InContext),
@@ -394,12 +418,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Vertex ,opencascade::handle<BRepCheck_Vertex>  , BRepCheck_Result >>(m.attr("BRepCheck_Vertex"))
+    // constructors
         .def(py::init< const TopoDS_Vertex & >()  , py::arg("V") )
+    // custom constructors
     // methods
         .def("InContext",
              (void (BRepCheck_Vertex::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepCheck_Vertex::*)( const TopoDS_Shape &  ) >(&BRepCheck_Vertex::InContext),
@@ -426,12 +452,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepCheck_Wire ,opencascade::handle<BRepCheck_Wire>  , BRepCheck_Result >>(m.attr("BRepCheck_Wire"))
+    // constructors
         .def(py::init< const TopoDS_Wire & >()  , py::arg("W") )
+    // custom constructors
     // methods
         .def("InContext",
              (void (BRepCheck_Wire::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepCheck_Wire::*)( const TopoDS_Shape &  ) >(&BRepCheck_Wire::InContext),
@@ -476,32 +504,32 @@ py::module m = static_cast<py::module>(main_module.attr("BRepCheck"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepCheck_Vertex.hxx
-// ./opencascade/BRepCheck_DataMapOfShapeResult.hxx
-// ./opencascade/BRepCheck_DataMapIteratorOfDataMapOfShapeResult.hxx
-// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
-// ./opencascade/BRepCheck_Status.hxx
-// ./opencascade/BRepCheck_Solid.hxx
-// ./opencascade/BRepCheck_DataMapIteratorOfDataMapOfShapeListOfStatus.hxx
-// ./opencascade/BRepCheck_Edge.hxx
 // ./opencascade/BRepCheck.hxx
-// ./opencascade/BRepCheck_ListOfStatus.hxx
-// ./opencascade/BRepCheck_ListIteratorOfListOfStatus.hxx
 // ./opencascade/BRepCheck_Shell.hxx
+// ./opencascade/BRepCheck_Solid.hxx
+// ./opencascade/BRepCheck_ListOfStatus.hxx
+// ./opencascade/BRepCheck_DataMapIteratorOfDataMapOfShapeResult.hxx
 // ./opencascade/BRepCheck_Result.hxx
-// ./opencascade/BRepCheck_Face.hxx
+// ./opencascade/BRepCheck_Status.hxx
+// ./opencascade/BRepCheck_ListIteratorOfListOfStatus.hxx
 // ./opencascade/BRepCheck_Wire.hxx
+// ./opencascade/BRepCheck_Vertex.hxx
+// ./opencascade/BRepCheck_Face.hxx
+// ./opencascade/BRepCheck_DataMapOfShapeListOfStatus.hxx
+// ./opencascade/BRepCheck_DataMapOfShapeResult.hxx
+// ./opencascade/BRepCheck_Edge.hxx
+// ./opencascade/BRepCheck_DataMapIteratorOfDataMapOfShapeListOfStatus.hxx
 // ./opencascade/BRepCheck_Analyzer.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<TopoDS_Shape, BRepCheck_ListOfStatus, TopTools_ShapeMapHasher>(m,"BRepCheck_DataMapOfShapeListOfStatus");  
     register_template_NCollection_List<BRepCheck_Status>(m,"BRepCheck_ListOfStatus");  
+    register_template_NCollection_DataMap<TopoDS_Shape, BRepCheck_ListOfStatus, TopTools_ShapeMapHasher>(m,"BRepCheck_DataMapOfShapeListOfStatus");  
 
 
 // exceptions

@@ -44,9 +44,12 @@ py::module m = static_cast<py::module>(main_module.attr("UTL"));
 
 // classes
 
+    // default constructor
     register_default_constructor<UTL , shared_ptr<UTL>>(m,"UTL");
 
     static_cast<py::class_<UTL , shared_ptr<UTL>  >>(m.attr("UTL"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -106,7 +109,7 @@ py::module m = static_cast<py::module>(main_module.attr("UTL"));
                     R"#(None)#"  , py::arg("aFileName"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

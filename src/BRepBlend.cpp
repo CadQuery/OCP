@@ -16,6 +16,25 @@ namespace py = pybind11;
 #include <BRepBlend_Line.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Blend_SurfRstFunction.hxx>
+#include <Blend_FuncInv.hxx>
+#include <Blend_SurfPointFuncInv.hxx>
+#include <Blend_SurfCurvFuncInv.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <IntSurf_Transition.hxx>
+#include <BRepBlend_Extremity.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Law_Function.hxx>
+#include <math_Matrix.hxx>
+#include <Blend_Point.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <BRepBlend_Line.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
 #include <ChFiDS_HElSpine.hxx>
 #include <Adaptor3d_HVertex.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
@@ -28,27 +47,33 @@ namespace py = pybind11;
 #include <Blend_Function.hxx>
 #include <Blend_FuncInv.hxx>
 #include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Approx_SweepFunction.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
 #include <BRepBlend_Line.hxx>
+#include <Blend_Function.hxx>
+#include <Blend_AppFunction.hxx>
 #include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
-#include <Blend_SurfRstFunction.hxx>
-#include <Blend_FuncInv.hxx>
-#include <Blend_SurfPointFuncInv.hxx>
-#include <Blend_SurfCurvFuncInv.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <IntSurf_Transition.hxx>
-#include <BRepBlend_Extremity.hxx>
-#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
+#include <Blend_Point.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
+#include <BRepBlend_Line.hxx>
+#include <Blend_AppFunction.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <Law_Function.hxx>
 #include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
+#include <Blend_Point.hxx>
+#include <BRepBlend_Line.hxx>
+#include <Blend_SurfRstFunction.hxx>
+#include <Blend_AppFunction.hxx>
 #include <BRepBlend_Line.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
@@ -62,48 +87,19 @@ namespace py = pybind11;
 #include <BRepBlend_Extremity.hxx>
 #include <Blend_CSFunction.hxx>
 #include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <math_Matrix.hxx>
-#include <Blend_AppFunction.hxx>
-#include <BRepBlend_Line.hxx>
-#include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Law_Function.hxx>
 #include <math_Matrix.hxx>
 #include <Blend_Point.hxx>
 #include <BRepBlend_Line.hxx>
-#include <Blend_Function.hxx>
-#include <Blend_AppFunction.hxx>
-#include <BRepBlend_Line.hxx>
-#include <Blend_SurfRstFunction.hxx>
+#include <Blend_RstRstFunction.hxx>
 #include <Blend_AppFunction.hxx>
 #include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <math_Matrix.hxx>
-#include <Blend_Point.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <math_Matrix.hxx>
-#include <Blend_Point.hxx>
-#include <BRepBlend_Line.hxx>
-#include <Blend_AppFunction.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <math_Matrix.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Law_Function.hxx>
 #include <math_Matrix.hxx>
-#include <Blend_Point.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <BRepBlend_Line.hxx>
 #include <Adaptor3d_HSurface.hxx>
@@ -115,14 +111,17 @@ namespace py = pybind11;
 #include <Adaptor3d_HVertex.hxx>
 #include <IntSurf_Transition.hxx>
 #include <BRepBlend_Extremity.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Law_Function.hxx>
 #include <math_Matrix.hxx>
-#include <BRepBlend_Line.hxx>
-#include <Blend_RstRstFunction.hxx>
 #include <Blend_AppFunction.hxx>
+#include <BRepBlend_Line.hxx>
 
 // module includes
 #include <BRepBlend_AppFunc.hxx>
@@ -130,7 +129,6 @@ namespace py = pybind11;
 #include <BRepBlend_AppFuncRst.hxx>
 #include <BRepBlend_AppFuncRstRst.hxx>
 #include <BRepBlend_AppSurf.hxx>
-#include <BRepBlend_AppSurface.hxx>
 #include <BRepBlend_BlendTool.hxx>
 #include <BRepBlend_Chamfer.hxx>
 #include <BRepBlend_ChamfInv.hxx>
@@ -138,6 +136,10 @@ namespace py = pybind11;
 #include <BRepBlend_ChAsymInv.hxx>
 #include <BRepBlend_ConstRad.hxx>
 #include <BRepBlend_ConstRadInv.hxx>
+#include <BRepBlend_ConstThroat.hxx>
+#include <BRepBlend_ConstThroatInv.hxx>
+#include <BRepBlend_ConstThroatWithPenetration.hxx>
+#include <BRepBlend_ConstThroatWithPenetrationInv.hxx>
 #include <BRepBlend_CSCircular.hxx>
 #include <BRepBlend_CSConstRad.hxx>
 #include <BRepBlend_CSWalking.hxx>
@@ -189,6 +191,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     public:
         using BRepBlend_AppFuncRoot::BRepBlend_AppFuncRoot;
         
+        
         // public pure virtual
         void Point(const Blend_AppFunction & Func,const Standard_Real Param,const math_Vector & Sol,Blend_Point & Pnt) const  override { PYBIND11_OVERLOAD_PURE(void,BRepBlend_AppFuncRoot,Point,Func,Param,Sol,Pnt) };
         void Vec(math_Vector & Sol,const Blend_Point & Pnt) const  override { PYBIND11_OVERLOAD_PURE(void,BRepBlend_AppFuncRoot,Vec,Sol,Pnt) };
@@ -205,6 +208,8 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
 
 
     static_cast<py::class_<BRepBlend_AppFuncRoot ,opencascade::handle<BRepBlend_AppFuncRoot> ,Py_BRepBlend_AppFuncRoot , Approx_SweepFunction >>(m.attr("BRepBlend_AppFuncRoot"))
+    // constructors
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (BRepBlend_AppFuncRoot::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (BRepBlend_AppFuncRoot::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) >(&BRepBlend_AppFuncRoot::D0),
@@ -276,13 +281,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_AppSurf , shared_ptr<BRepBlend_AppSurf>  , AppBlend_Approx >>(m.attr("BRepBlend_AppSurf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean >()  , py::arg("Degmin"),  py::arg("Degmax"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIt"),  py::arg("KnownParameters")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepBlend_AppSurf::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (BRepBlend_AppSurf::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean  ) >(&BRepBlend_AppSurf::Init),
@@ -378,131 +385,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
-
-    static_cast<py::class_<BRepBlend_AppSurface , shared_ptr<BRepBlend_AppSurface>  , AppBlend_Approx >>(m.attr("BRepBlend_AppSurface"))
-        .def(py::init< const opencascade::handle<Approx_SweepFunction> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("Funct"),  py::arg("First"),  py::arg("Last"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("TolAngular"),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C0),  py::arg("Degmax")=static_cast<const Standard_Integer>(11),  py::arg("Segmax")=static_cast<const Standard_Integer>(50) )
-    // methods
-        .def("IsDone",
-             (Standard_Boolean (BRepBlend_AppSurface::*)() const) static_cast<Standard_Boolean (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::IsDone),
-             R"#(None)#" )
-        .def("Surface",
-             (void (BRepBlend_AppSurface::*)( NCollection_Array2<gp_Pnt> & ,  NCollection_Array2<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> & ,  NCollection_Array1<Standard_Integer> &  ) const) static_cast<void (BRepBlend_AppSurface::*)( NCollection_Array2<gp_Pnt> & ,  NCollection_Array2<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> & ,  NCollection_Array1<Standard_Integer> &  ) const>(&BRepBlend_AppSurface::Surface),
-             R"#(None)#"  , py::arg("TPoles"),  py::arg("TWeights"),  py::arg("TUKnots"),  py::arg("TVKnots"),  py::arg("TUMults"),  py::arg("TVMults"))
-        .def("UDegree",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::UDegree),
-             R"#(None)#" )
-        .def("VDegree",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::VDegree),
-             R"#(None)#" )
-        .def("SurfPoles",
-             (const TColgp_Array2OfPnt & (BRepBlend_AppSurface::*)() const) static_cast<const TColgp_Array2OfPnt & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfPoles),
-             R"#(None)#" )
-        .def("SurfWeights",
-             (const TColStd_Array2OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array2OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfWeights),
-             R"#(None)#" )
-        .def("SurfUKnots",
-             (const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfUKnots),
-             R"#(None)#" )
-        .def("SurfVKnots",
-             (const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfVKnots),
-             R"#(None)#" )
-        .def("SurfUMults",
-             (const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfUMults),
-             R"#(None)#" )
-        .def("SurfVMults",
-             (const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfVMults),
-             R"#(None)#" )
-        .def("MaxErrorOnSurf",
-             (Standard_Real (BRepBlend_AppSurface::*)() const) static_cast<Standard_Real (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::MaxErrorOnSurf),
-             R"#(returns the maximum error in the suface approximation.)#" )
-        .def("NbCurves2d",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::NbCurves2d),
-             R"#(None)#" )
-        .def("Curve2d",
-             (void (BRepBlend_AppSurface::*)( const Standard_Integer ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> &  ) const) static_cast<void (BRepBlend_AppSurface::*)( const Standard_Integer ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Integer> &  ) const>(&BRepBlend_AppSurface::Curve2d),
-             R"#(None)#"  , py::arg("Index"),  py::arg("TPoles"),  py::arg("TKnots"),  py::arg("TMults"))
-        .def("Curves2dDegree",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::Curves2dDegree),
-             R"#(None)#" )
-        .def("Curve2dPoles",
-             (const TColgp_Array1OfPnt2d & (BRepBlend_AppSurface::*)( const Standard_Integer  ) const) static_cast<const TColgp_Array1OfPnt2d & (BRepBlend_AppSurface::*)( const Standard_Integer  ) const>(&BRepBlend_AppSurface::Curve2dPoles),
-             R"#(None)#"  , py::arg("Index"))
-        .def("Curves2dKnots",
-             (const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::Curves2dKnots),
-             R"#(None)#" )
-        .def("Curves2dMults",
-             (const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::Curves2dMults),
-             R"#(None)#" )
-        .def("Max2dError",
-             (Standard_Real (BRepBlend_AppSurface::*)( const Standard_Integer  ) const) static_cast<Standard_Real (BRepBlend_AppSurface::*)( const Standard_Integer  ) const>(&BRepBlend_AppSurface::Max2dError),
-             R"#(returns the maximum error in the <Index> 2d curve approximation.)#"  , py::arg("Index"))
-        .def("TolCurveOnSurf",
-             (Standard_Real (BRepBlend_AppSurface::*)( const Standard_Integer  ) const) static_cast<Standard_Real (BRepBlend_AppSurface::*)( const Standard_Integer  ) const>(&BRepBlend_AppSurface::TolCurveOnSurf),
-             R"#(None)#"  , py::arg("Index"))
-        .def("Dump",
-             (void (BRepBlend_AppSurface::*)( std::ostream &  ) const) static_cast<void (BRepBlend_AppSurface::*)( std::ostream &  ) const>(&BRepBlend_AppSurface::Dump),
-             R"#(diplay information on approximation.)#"  , py::arg("o"))
-        .def("IsDone",
-             (Standard_Boolean (BRepBlend_AppSurface::*)() const) static_cast<Standard_Boolean (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::IsDone),
-             R"#(None)#" )
-        .def("UDegree",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::UDegree),
-             R"#(None)#" )
-        .def("VDegree",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::VDegree),
-             R"#(None)#" )
-        .def("SurfPoles",
-             (const TColgp_Array2OfPnt & (BRepBlend_AppSurface::*)() const) static_cast<const TColgp_Array2OfPnt & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfPoles),
-             R"#(None)#" )
-        .def("SurfWeights",
-             (const TColStd_Array2OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array2OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfWeights),
-             R"#(None)#" )
-        .def("SurfUKnots",
-             (const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfUKnots),
-             R"#(None)#" )
-        .def("SurfVKnots",
-             (const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfVKnots),
-             R"#(None)#" )
-        .def("SurfUMults",
-             (const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfUMults),
-             R"#(None)#" )
-        .def("SurfVMults",
-             (const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::SurfVMults),
-             R"#(None)#" )
-        .def("NbCurves2d",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::NbCurves2d),
-             R"#(None)#" )
-        .def("Curves2dDegree",
-             (Standard_Integer (BRepBlend_AppSurface::*)() const) static_cast<Standard_Integer (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::Curves2dDegree),
-             R"#(None)#" )
-        .def("Curve2dPoles",
-             (const TColgp_Array1OfPnt2d & (BRepBlend_AppSurface::*)( const Standard_Integer  ) const) static_cast<const TColgp_Array1OfPnt2d & (BRepBlend_AppSurface::*)( const Standard_Integer  ) const>(&BRepBlend_AppSurface::Curve2dPoles),
-             R"#(None)#"  , py::arg("Index"))
-        .def("Curves2dKnots",
-             (const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfReal & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::Curves2dKnots),
-             R"#(None)#" )
-        .def("Curves2dMults",
-             (const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const) static_cast<const TColStd_Array1OfInteger & (BRepBlend_AppSurface::*)() const>(&BRepBlend_AppSurface::Curves2dMults),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-        .def("SurfShape",
-             []( BRepBlend_AppSurface &self   ){ Standard_Integer  UDegree; Standard_Integer  VDegree; Standard_Integer  NbUPoles; Standard_Integer  NbVPoles; Standard_Integer  NbUKnots; Standard_Integer  NbVKnots; self.SurfShape(UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots); return std::make_tuple(UDegree,VDegree,NbUPoles,NbVPoles,NbUKnots,NbVKnots); },
-             R"#(None)#" )
-        .def("Curves2dShape",
-             []( BRepBlend_AppSurface &self   ){ Standard_Integer  Degree; Standard_Integer  NbPoles; Standard_Integer  NbKnots; self.Curves2dShape(Degree,NbPoles,NbKnots); return std::make_tuple(Degree,NbPoles,NbKnots); },
-             R"#(None)#" )
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
+    // default constructor
     register_default_constructor<BRepBlend_BlendTool , shared_ptr<BRepBlend_BlendTool>>(m,"BRepBlend_BlendTool");
 
     static_cast<py::class_<BRepBlend_BlendTool , shared_ptr<BRepBlend_BlendTool>  >>(m.attr("BRepBlend_BlendTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -544,12 +435,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     []( const opencascade::handle<Adaptor2d_HCurve2d> & C ){ Standard_Real  Ufirst; Standard_Real  Ulast; BRepBlend_BlendTool::Bounds(C,Ufirst,Ulast); return std::make_tuple(Ufirst,Ulast); },
                     R"#(Returns the parametric limits on the arc C. These limits must be finite : they are either the real limits of the arc, for a finite arc, or a bounding box for an infinite arc.)#"  , py::arg("C"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_CSWalking , shared_ptr<BRepBlend_CSWalking>  >>(m.attr("BRepBlend_CSWalking"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> & >()  , py::arg("Curv"),  py::arg("Surf"),  py::arg("Domain") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepBlend_CSWalking::*)( Blend_CSFunction & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (BRepBlend_CSWalking::*)( Blend_CSFunction & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&BRepBlend_CSWalking::Perform),
@@ -567,12 +460,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_CurvPointRadInv , shared_ptr<BRepBlend_CurvPointRadInv>  , Blend_CurvPointFuncInv >>(m.attr("BRepBlend_CurvPointRadInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepBlend_CurvPointRadInv::*)( const Standard_Integer  ) ) static_cast<void (BRepBlend_CurvPointRadInv::*)( const Standard_Integer  ) >(&BRepBlend_CurvPointRadInv::Set),
@@ -605,15 +500,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_Extremity , shared_ptr<BRepBlend_Extremity>  >>(m.attr("BRepBlend_Extremity"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("U"),  py::arg("V"),  py::arg("Param"),  py::arg("Tol") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const opencascade::handle<Adaptor3d_HVertex> & >()  , py::arg("P"),  py::arg("U"),  py::arg("V"),  py::arg("Param"),  py::arg("Tol"),  py::arg("Vtx") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("W"),  py::arg("Param"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (BRepBlend_Extremity::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepBlend_Extremity::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&BRepBlend_Extremity::SetValue),
@@ -706,12 +603,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepBlend_HCurve2dTool , shared_ptr<BRepBlend_HCurve2dTool>>(m,"BRepBlend_HCurve2dTool");
 
     static_cast<py::class_<BRepBlend_HCurve2dTool , shared_ptr<BRepBlend_HCurve2dTool>  >>(m.attr("BRepBlend_HCurve2dTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -789,12 +689,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U0"),  py::arg("U1"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepBlend_HCurveTool , shared_ptr<BRepBlend_HCurveTool>>(m,"BRepBlend_HCurveTool");
 
     static_cast<py::class_<BRepBlend_HCurveTool , shared_ptr<BRepBlend_HCurveTool>  >>(m.attr("BRepBlend_HCurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -872,12 +775,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U0"),  py::arg("U1"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_Line ,opencascade::handle<BRepBlend_Line>  , Standard_Transient >>(m.attr("BRepBlend_Line"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepBlend_Line::*)() ) static_cast<void (BRepBlend_Line::*)() >(&BRepBlend_Line::Clear),
@@ -991,13 +896,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_PointOnRst , shared_ptr<BRepBlend_PointOnRst>  >>(m.attr("BRepBlend_PointOnRst"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real,const IntSurf_Transition &,const IntSurf_Transition & >()  , py::arg("A"),  py::arg("Param"),  py::arg("TLine"),  py::arg("TArc") )
+    // custom constructors
     // methods
         .def("SetArc",
              (void (BRepBlend_PointOnRst::*)( const opencascade::handle<Adaptor2d_HCurve2d> & ,  const Standard_Real ,  const IntSurf_Transition & ,  const IntSurf_Transition &  ) ) static_cast<void (BRepBlend_PointOnRst::*)( const opencascade::handle<Adaptor2d_HCurve2d> & ,  const Standard_Real ,  const IntSurf_Transition & ,  const IntSurf_Transition &  ) >(&BRepBlend_PointOnRst::SetArc),
@@ -1030,12 +937,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_RstRstConstRad , shared_ptr<BRepBlend_RstRstConstRad>  , Blend_RstRstFunction >>(m.attr("BRepBlend_RstRstConstRad"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("Surf1"),  py::arg("Rst1"),  py::arg("Surf2"),  py::arg("Rst2"),  py::arg("CGuide") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepBlend_RstRstConstRad::*)() const) static_cast<Standard_Integer (BRepBlend_RstRstConstRad::*)() const>(&BRepBlend_RstRstConstRad::NbVariables),
@@ -1164,12 +1073,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_RstRstEvolRad , shared_ptr<BRepBlend_RstRstEvolRad>  , Blend_RstRstFunction >>(m.attr("BRepBlend_RstRstEvolRad"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Law_Function> & >()  , py::arg("Surf1"),  py::arg("Rst1"),  py::arg("Surf2"),  py::arg("Rst2"),  py::arg("CGuide"),  py::arg("Evol") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepBlend_RstRstEvolRad::*)() const) static_cast<Standard_Integer (BRepBlend_RstRstEvolRad::*)() const>(&BRepBlend_RstRstEvolRad::NbVariables),
@@ -1298,12 +1209,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_RstRstLineBuilder , shared_ptr<BRepBlend_RstRstLineBuilder>  >>(m.attr("BRepBlend_RstRstLineBuilder"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_TopolTool> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_TopolTool> & >()  , py::arg("Surf1"),  py::arg("Rst1"),  py::arg("Domain1"),  py::arg("Surf2"),  py::arg("Rst2"),  py::arg("Domain2") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepBlend_RstRstLineBuilder::*)( Blend_RstRstFunction & ,  Blend_SurfCurvFuncInv & ,  Blend_CurvPointFuncInv & ,  Blend_SurfCurvFuncInv & ,  Blend_CurvPointFuncInv & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (BRepBlend_RstRstLineBuilder::*)( Blend_RstRstFunction & ,  Blend_SurfCurvFuncInv & ,  Blend_CurvPointFuncInv & ,  Blend_SurfCurvFuncInv & ,  Blend_CurvPointFuncInv & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&BRepBlend_RstRstLineBuilder::Perform),
@@ -1354,12 +1267,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_SurfCurvConstRadInv , shared_ptr<BRepBlend_SurfCurvConstRadInv>  , Blend_SurfCurvFuncInv >>(m.attr("BRepBlend_SurfCurvConstRadInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("C"),  py::arg("Cg") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepBlend_SurfCurvConstRadInv::*)( const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BRepBlend_SurfCurvConstRadInv::*)( const Standard_Real ,  const Standard_Integer  ) >(&BRepBlend_SurfCurvConstRadInv::Set),
@@ -1392,12 +1307,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_SurfCurvEvolRadInv , shared_ptr<BRepBlend_SurfCurvEvolRadInv>  , Blend_SurfCurvFuncInv >>(m.attr("BRepBlend_SurfCurvEvolRadInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Law_Function> & >()  , py::arg("S"),  py::arg("C"),  py::arg("Cg"),  py::arg("Evol") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepBlend_SurfCurvEvolRadInv::*)( const Standard_Integer  ) ) static_cast<void (BRepBlend_SurfCurvEvolRadInv::*)( const Standard_Integer  ) >(&BRepBlend_SurfCurvEvolRadInv::Set),
@@ -1430,12 +1347,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_SurfPointConstRadInv , shared_ptr<BRepBlend_SurfPointConstRadInv>  , Blend_SurfPointFuncInv >>(m.attr("BRepBlend_SurfPointConstRadInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepBlend_SurfPointConstRadInv::*)( const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BRepBlend_SurfPointConstRadInv::*)( const Standard_Real ,  const Standard_Integer  ) >(&BRepBlend_SurfPointConstRadInv::Set),
@@ -1468,12 +1387,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_SurfPointEvolRadInv , shared_ptr<BRepBlend_SurfPointEvolRadInv>  , Blend_SurfPointFuncInv >>(m.attr("BRepBlend_SurfPointEvolRadInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Law_Function> & >()  , py::arg("S"),  py::arg("C"),  py::arg("Evol") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepBlend_SurfPointEvolRadInv::*)( const Standard_Integer  ) ) static_cast<void (BRepBlend_SurfPointEvolRadInv::*)( const Standard_Integer  ) >(&BRepBlend_SurfPointEvolRadInv::Set),
@@ -1506,12 +1427,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_SurfRstConstRad , shared_ptr<BRepBlend_SurfRstConstRad>  , Blend_SurfRstFunction >>(m.attr("BRepBlend_SurfRstConstRad"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("Surf"),  py::arg("SurfRst"),  py::arg("Rst"),  py::arg("CGuide") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepBlend_SurfRstConstRad::*)() const) static_cast<Standard_Integer (BRepBlend_SurfRstConstRad::*)() const>(&BRepBlend_SurfRstConstRad::NbVariables),
@@ -1634,12 +1557,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_SurfRstEvolRad , shared_ptr<BRepBlend_SurfRstEvolRad>  , Blend_SurfRstFunction >>(m.attr("BRepBlend_SurfRstEvolRad"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Law_Function> & >()  , py::arg("Surf"),  py::arg("SurfRst"),  py::arg("Rst"),  py::arg("CGuide"),  py::arg("Evol") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BRepBlend_SurfRstEvolRad::*)() const) static_cast<Standard_Integer (BRepBlend_SurfRstEvolRad::*)() const>(&BRepBlend_SurfRstEvolRad::NbVariables),
@@ -1762,12 +1687,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_SurfRstLineBuilder , shared_ptr<BRepBlend_SurfRstLineBuilder>  >>(m.attr("BRepBlend_SurfRstLineBuilder"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_TopolTool> & >()  , py::arg("Surf1"),  py::arg("Domain1"),  py::arg("Surf2"),  py::arg("Rst"),  py::arg("Domain2") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepBlend_SurfRstLineBuilder::*)( Blend_SurfRstFunction & ,  Blend_FuncInv & ,  Blend_SurfPointFuncInv & ,  Blend_SurfCurvFuncInv & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (BRepBlend_SurfRstLineBuilder::*)( Blend_SurfRstFunction & ,  Blend_FuncInv & ,  Blend_SurfPointFuncInv & ,  Blend_SurfCurvFuncInv & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&BRepBlend_SurfRstLineBuilder::Perform),
@@ -1809,12 +1736,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_Walking , shared_ptr<BRepBlend_Walking>  >>(m.attr("BRepBlend_Walking"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const opencascade::handle<Adaptor3d_TopolTool> &,const opencascade::handle<ChFiDS_HElSpine> & >()  , py::arg("Surf1"),  py::arg("Surf2"),  py::arg("Domain1"),  py::arg("Domain2"),  py::arg("HGuide") )
+    // custom constructors
     // methods
         .def("SetDomainsToRecadre",
              (void (BRepBlend_Walking::*)( const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_TopolTool> &  ) ) static_cast<void (BRepBlend_Walking::*)( const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_TopolTool> &  ) >(&BRepBlend_Walking::SetDomainsToRecadre),
@@ -1868,12 +1797,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_AppFunc ,opencascade::handle<BRepBlend_AppFunc>  , BRepBlend_AppFuncRoot >>(m.attr("BRepBlend_AppFunc"))
+    // constructors
         .def(py::init< opencascade::handle<BRepBlend_Line> &,Blend_Function &,const Standard_Real,const Standard_Real >()  , py::arg("Line"),  py::arg("Func"),  py::arg("Tol3d"),  py::arg("Tol2d") )
+    // custom constructors
     // methods
         .def("Point",
              (void (BRepBlend_AppFunc::*)( const Blend_AppFunction & ,  const Standard_Real ,  const math_Vector & ,  Blend_Point &  ) const) static_cast<void (BRepBlend_AppFunc::*)( const Blend_AppFunction & ,  const Standard_Real ,  const math_Vector & ,  Blend_Point &  ) const>(&BRepBlend_AppFunc::Point),
@@ -1894,12 +1825,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_AppFuncRst ,opencascade::handle<BRepBlend_AppFuncRst>  , BRepBlend_AppFuncRoot >>(m.attr("BRepBlend_AppFuncRst"))
+    // constructors
         .def(py::init< opencascade::handle<BRepBlend_Line> &,Blend_SurfRstFunction &,const Standard_Real,const Standard_Real >()  , py::arg("Line"),  py::arg("Func"),  py::arg("Tol3d"),  py::arg("Tol2d") )
+    // custom constructors
     // methods
         .def("Point",
              (void (BRepBlend_AppFuncRst::*)( const Blend_AppFunction & ,  const Standard_Real ,  const math_Vector & ,  Blend_Point &  ) const) static_cast<void (BRepBlend_AppFuncRst::*)( const Blend_AppFunction & ,  const Standard_Real ,  const math_Vector & ,  Blend_Point &  ) const>(&BRepBlend_AppFuncRst::Point),
@@ -1920,12 +1853,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepBlend_AppFuncRstRst ,opencascade::handle<BRepBlend_AppFuncRstRst>  , BRepBlend_AppFuncRoot >>(m.attr("BRepBlend_AppFuncRstRst"))
+    // constructors
         .def(py::init< opencascade::handle<BRepBlend_Line> &,Blend_RstRstFunction &,const Standard_Real,const Standard_Real >()  , py::arg("Line"),  py::arg("Func"),  py::arg("Tol3d"),  py::arg("Tol2d") )
+    // custom constructors
     // methods
         .def("Point",
              (void (BRepBlend_AppFuncRstRst::*)( const Blend_AppFunction & ,  const Standard_Real ,  const math_Vector & ,  Blend_Point &  ) const) static_cast<void (BRepBlend_AppFuncRstRst::*)( const Blend_AppFunction & ,  const Standard_Real ,  const math_Vector & ,  Blend_Point &  ) const>(&BRepBlend_AppFuncRstRst::Point),
@@ -1946,49 +1881,52 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBlend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepBlend_Walking.hxx
-// ./opencascade/BRepBlend_EvolRadInv.hxx
-// ./opencascade/BRepBlend_ConstRad.hxx
-// ./opencascade/BRepBlend_EvolRad.hxx
-// ./opencascade/BRepBlend_ChAsym.hxx
-// ./opencascade/BRepBlend_BlendTool.hxx
-// ./opencascade/BRepBlend_HCurve2dTool.hxx
-// ./opencascade/BRepBlend_AppSurface.hxx
-// ./opencascade/BRepBlend_ChamfInv.hxx
 // ./opencascade/BRepBlend_SurfRstLineBuilder.hxx
-// ./opencascade/BRepBlend_Extremity.hxx
-// ./opencascade/BRepBlend_Ruled.hxx
-// ./opencascade/BRepBlend_SurfPointEvolRadInv.hxx
-// ./opencascade/BRepBlend_CSWalking.hxx
-// ./opencascade/BRepBlend_ConstRadInv.hxx
-// ./opencascade/BRepBlend_Line.hxx
-// ./opencascade/BRepBlend_CSCircular.hxx
-// ./opencascade/BRepBlend_SurfPointConstRadInv.hxx
-// ./opencascade/BRepBlend_AppSurf.hxx
 // ./opencascade/BRepBlend_SequenceOfPointOnRst.hxx
+// ./opencascade/BRepBlend_Line.hxx
 // ./opencascade/BRepBlend_SurfRstEvolRad.hxx
-// ./opencascade/BRepBlend_AppFunc.hxx
-// ./opencascade/BRepBlend_SequenceOfLine.hxx
-// ./opencascade/BRepBlend_AppFuncRst.hxx
-// ./opencascade/BRepBlend_RuledInv.hxx
-// ./opencascade/BRepBlend_SurfRstConstRad.hxx
-// ./opencascade/BRepBlend_RstRstConstRad.hxx
-// ./opencascade/BRepBlend_AppFuncRoot.hxx
-// ./opencascade/BRepBlend_SurfCurvConstRadInv.hxx
 // ./opencascade/BRepBlend_HCurveTool.hxx
-// ./opencascade/BRepBlend_RstRstEvolRad.hxx
-// ./opencascade/BRepBlend_CurvPointRadInv.hxx
-// ./opencascade/BRepBlend_CSConstRad.hxx
-// ./opencascade/BRepBlend_PointOnRst.hxx
-// ./opencascade/BRepBlend_RstRstLineBuilder.hxx
-// ./opencascade/BRepBlend_SurfCurvEvolRadInv.hxx
-// ./opencascade/BRepBlend_Chamfer.hxx
-// ./opencascade/BRepBlend_AppFuncRstRst.hxx
 // ./opencascade/BRepBlend_ChAsymInv.hxx
+// ./opencascade/BRepBlend_ConstThroatInv.hxx
+// ./opencascade/BRepBlend_SequenceOfLine.hxx
+// ./opencascade/BRepBlend_Walking.hxx
+// ./opencascade/BRepBlend_ConstRadInv.hxx
+// ./opencascade/BRepBlend_SurfCurvConstRadInv.hxx
+// ./opencascade/BRepBlend_CurvPointRadInv.hxx
+// ./opencascade/BRepBlend_ConstRad.hxx
+// ./opencascade/BRepBlend_AppFunc.hxx
+// ./opencascade/BRepBlend_Chamfer.hxx
+// ./opencascade/BRepBlend_SurfRstConstRad.hxx
+// ./opencascade/BRepBlend_PointOnRst.hxx
+// ./opencascade/BRepBlend_AppFuncRoot.hxx
+// ./opencascade/BRepBlend_EvolRad.hxx
+// ./opencascade/BRepBlend_SurfPointConstRadInv.hxx
+// ./opencascade/BRepBlend_RstRstConstRad.hxx
+// ./opencascade/BRepBlend_Ruled.hxx
+// ./opencascade/BRepBlend_RuledInv.hxx
+// ./opencascade/BRepBlend_ChAsym.hxx
+// ./opencascade/BRepBlend_ChamfInv.hxx
+// ./opencascade/BRepBlend_ConstThroat.hxx
+// ./opencascade/BRepBlend_ConstThroatWithPenetrationInv.hxx
+// ./opencascade/BRepBlend_AppFuncRst.hxx
+// ./opencascade/BRepBlend_CSWalking.hxx
+// ./opencascade/BRepBlend_RstRstEvolRad.hxx
+// ./opencascade/BRepBlend_AppFuncRstRst.hxx
+// ./opencascade/BRepBlend_SurfPointEvolRadInv.hxx
+// ./opencascade/BRepBlend_CSCircular.hxx
+// ./opencascade/BRepBlend_BlendTool.hxx
+// ./opencascade/BRepBlend_RstRstLineBuilder.hxx
+// ./opencascade/BRepBlend_HCurve2dTool.hxx
+// ./opencascade/BRepBlend_EvolRadInv.hxx
+// ./opencascade/BRepBlend_CSConstRad.hxx
+// ./opencascade/BRepBlend_Extremity.hxx
+// ./opencascade/BRepBlend_SurfCurvEvolRadInv.hxx
+// ./opencascade/BRepBlend_AppSurf.hxx
+// ./opencascade/BRepBlend_ConstThroatWithPenetration.hxx
 
 // operators
 

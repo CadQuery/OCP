@@ -13,18 +13,55 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <GeomAdaptor_HSurface.hxx>
+#include <IntTools_Context.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Standard_OutOfMemory.hxx>
+#include <IntTools_CurveRangeSample.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Face.hxx>
+#include <gp_Pnt2d.hxx>
+#include <TopoDS_Edge.hxx>
+#include <IntTools_CommonPrt.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
+#include <Geom_Curve.hxx>
+#include <Bnd_Box.hxx>
+#include <IntTools_Range.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Pln.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <IntTools_FClass2d.hxx>
+#include <GeomAPI_ProjectPointOnSurf.hxx>
+#include <GeomAPI_ProjectPointOnCurve.hxx>
+#include <TopoDS_Edge.hxx>
+#include <IntTools_SurfaceRangeLocalizeData.hxx>
+#include <BRepClass3d_SolidClassifier.hxx>
+#include <TopoDS_Solid.hxx>
+#include <Geom2dHatch_Hatcher.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <IntTools_Curve.hxx>
+#include <Bnd_Box.hxx>
+#include <Bnd_OBB.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <IntTools_Context.hxx>
+#include <IntTools_Context.hxx>
+#include <IntTools_Context.hxx>
+#include <Bnd_Box.hxx>
+#include <IntTools_CurveRangeLocalizeData.hxx>
+#include <IntTools_SurfaceRangeLocalizeData.hxx>
+#include <IntTools_Range.hxx>
+#include <IntTools_CArray1OfReal.hxx>
+#include <IntTools_Range.hxx>
+#include <IntTools_Range.hxx>
 #include <TopoDS_Face.hxx>
 #include <GeomAdaptor_HSurface.hxx>
 #include <GeomInt_LineConstructor.hxx>
 #include <IntTools_Context.hxx>
 #include <Adaptor3d_TopolTool.hxx>
-#include <IntTools_CurveRangeSample.hxx>
-#include <Bnd_Box.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Pnt.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <IntTools_Range.hxx>
 #include <TopoDS_Edge.hxx>
 #include <gp_Pnt.hxx>
 #include <Geom_Curve.hxx>
@@ -54,50 +91,13 @@ namespace py = pybind11;
 #include <IntTools_CArray1OfReal.hxx>
 #include <IntTools_CurveRangeSampleMapHasher.hxx>
 #include <IntTools_SurfaceRangeSampleMapHasher.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_OutOfMemory.hxx>
-#include <IntTools_Context.hxx>
-#include <IntTools_FClass2d.hxx>
-#include <GeomAPI_ProjectPointOnSurf.hxx>
-#include <GeomAPI_ProjectPointOnCurve.hxx>
-#include <TopoDS_Edge.hxx>
-#include <IntTools_SurfaceRangeLocalizeData.hxx>
-#include <BRepClass3d_SolidClassifier.hxx>
-#include <TopoDS_Solid.hxx>
-#include <Geom2dHatch_Hatcher.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <IntTools_Curve.hxx>
-#include <Bnd_Box.hxx>
-#include <Bnd_OBB.hxx>
-#include <IntTools_Context.hxx>
-#include <Bnd_Box.hxx>
-#include <IntTools_CurveRangeLocalizeData.hxx>
-#include <IntTools_SurfaceRangeLocalizeData.hxx>
-#include <IntTools_CArray1OfReal.hxx>
-#include <IntTools_Range.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_OutOfMemory.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
-#include <gp_Pnt2d.hxx>
-#include <TopoDS_Edge.hxx>
-#include <IntTools_CommonPrt.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Geom_Curve.hxx>
-#include <Bnd_Box.hxx>
-#include <IntTools_Range.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pln.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Surface.hxx>
-#include <IntTools_Range.hxx>
-#include <IntTools_Context.hxx>
-#include <GeomAdaptor_HSurface.hxx>
-#include <IntTools_Context.hxx>
-#include <Adaptor3d_TopolTool.hxx>
 #include <IntTools_SurfaceRangeSample.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Standard_OutOfMemory.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <gp_Pnt.hxx>
+#include <Bnd_Box.hxx>
 
 // module includes
 #include <IntTools.hxx>
@@ -152,21 +152,17 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/IntTools_SequenceOfRanges.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntTools_DataMapOfCurveSampleBox.hxx
-#include "NCollection.hxx"
-// ./opencascade/IntTools_DataMapOfCurveSampleBox.hxx
-#include "NCollection.hxx"
-// ./opencascade/IntTools_Array1OfRoots.hxx
-#include "NCollection.hxx"
-// ./opencascade/IntTools_Array1OfRange.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntTools_MapOfCurveSample.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntTools_MapOfCurveSample.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntTools_ListOfCurveRangeSample.hxx
+// ./opencascade/IntTools_DataMapOfCurveSampleBox.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntTools_ListOfCurveRangeSample.hxx
+// ./opencascade/IntTools_DataMapOfCurveSampleBox.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntTools_ListOfSurfaceRangeSample.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntTools_ListOfSurfaceRangeSample.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntTools_DataMapOfSurfaceSampleBox.hxx
 #include "NCollection.hxx"
@@ -175,22 +171,26 @@ namespace py = pybind11;
 // ./opencascade/IntTools_MapOfSurfaceSample.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntTools_MapOfSurfaceSample.hxx
-#include "NCollection.hxx"
-// ./opencascade/IntTools_ListOfBox.hxx
-#include "NCollection.hxx"
-// ./opencascade/IntTools_ListOfBox.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntTools_SequenceOfCurves.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntTools_ListOfSurfaceRangeSample.hxx
+// ./opencascade/IntTools_Array1OfRoots.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntTools_ListOfSurfaceRangeSample.hxx
-#include "NCollection.hxx"
-// ./opencascade/IntTools_SequenceOfCommonPrts.hxx
+// ./opencascade/IntTools_SequenceOfRoots.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntTools_SequenceOfPntOn2Faces.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntTools_SequenceOfRoots.hxx
+// ./opencascade/IntTools_ListOfBox.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntTools_ListOfBox.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntTools_Array1OfRange.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntTools_SequenceOfCommonPrts.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntTools_ListOfCurveRangeSample.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntTools_ListOfCurveRangeSample.hxx
 #include "NCollection.hxx"
 
 
@@ -210,9 +210,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IntTools , shared_ptr<IntTools>>(m,"IntTools");
 
     static_cast<py::class_<IntTools , shared_ptr<IntTools>  >>(m.attr("IntTools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -239,13 +242,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
                     R"#(None)#"  , py::arg("C"),  py::arg("tMax"),  py::arg("tMin"),  py::arg("Discret"),  py::arg("Deflect"),  py::arg("anArgs"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_BaseRangeSample , shared_ptr<IntTools_BaseRangeSample>  >>(m.attr("IntTools_BaseRangeSample"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("theDepth") )
+    // custom constructors
     // methods
         .def("SetDepth",
              (void (IntTools_BaseRangeSample::*)( const Standard_Integer  ) ) static_cast<void (IntTools_BaseRangeSample::*)( const Standard_Integer  ) >(&IntTools_BaseRangeSample::SetDepth),
@@ -263,15 +268,17 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_BeanFaceIntersector , shared_ptr<IntTools_BeanFaceIntersector>  >>(m.attr("IntTools_BeanFaceIntersector"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("theEdge"),  py::arg("theFace") )
         .def(py::init< const BRepAdaptor_Curve &,const BRepAdaptor_Surface &,const Standard_Real,const Standard_Real >()  , py::arg("theCurve"),  py::arg("theSurface"),  py::arg("theBeanTolerance"),  py::arg("theFaceTolerance") )
         .def(py::init< const BRepAdaptor_Curve &,const BRepAdaptor_Surface &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theCurve"),  py::arg("theSurface"),  py::arg("theFirstParOnCurve"),  py::arg("theLastParOnCurve"),  py::arg("theUMinParameter"),  py::arg("theUMaxParameter"),  py::arg("theVMinParameter"),  py::arg("theVMaxParameter"),  py::arg("theBeanTolerance"),  py::arg("theFaceTolerance") )
+    // custom constructors
     // methods
         .def("Init",
              (void (IntTools_BeanFaceIntersector::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (IntTools_BeanFaceIntersector::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&IntTools_BeanFaceIntersector::Init),
@@ -310,13 +317,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_CArray1OfInteger , shared_ptr<IntTools_CArray1OfInteger>  >>(m.attr("IntTools_CArray1OfInteger"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("Length")=static_cast<const Standard_Integer>(0) )
         .def(py::init< const Standard_Integer &,const Standard_Integer >()  , py::arg("Item"),  py::arg("Length") )
+    // custom constructors
     // methods
         .def("Init",
              (void (IntTools_CArray1OfInteger::*)( const Standard_Integer &  ) ) static_cast<void (IntTools_CArray1OfInteger::*)( const Standard_Integer &  ) >(&IntTools_CArray1OfInteger::Init),
@@ -349,13 +358,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_CArray1OfReal , shared_ptr<IntTools_CArray1OfReal>  >>(m.attr("IntTools_CArray1OfReal"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("Length")=static_cast<const Standard_Integer>(0) )
         .def(py::init< const Standard_Real &,const Standard_Integer >()  , py::arg("Item"),  py::arg("Length") )
+    // custom constructors
     // methods
         .def("Init",
              (void (IntTools_CArray1OfReal::*)( const Standard_Real &  ) ) static_cast<void (IntTools_CArray1OfReal::*)( const Standard_Real &  ) >(&IntTools_CArray1OfReal::Init),
@@ -388,13 +399,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_CommonPrt , shared_ptr<IntTools_CommonPrt>  >>(m.attr("IntTools_CommonPrt"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntTools_CommonPrt & >()  , py::arg("aCPrt") )
+    // custom constructors
     // methods
         .def("Assign",
              (IntTools_CommonPrt & (IntTools_CommonPrt::*)( const IntTools_CommonPrt &  ) ) static_cast<IntTools_CommonPrt & (IntTools_CommonPrt::*)( const IntTools_CommonPrt &  ) >(&IntTools_CommonPrt::Assign),
@@ -472,13 +485,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_Context ,opencascade::handle<IntTools_Context>  , Standard_Transient >>(m.attr("IntTools_Context"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator") )
+    // custom constructors
     // methods
         .def("FClass2d",
              (IntTools_FClass2d & (IntTools_Context::*)( const TopoDS_Face &  ) ) static_cast<IntTools_FClass2d & (IntTools_Context::*)( const TopoDS_Face &  ) >(&IntTools_Context::FClass2d),
@@ -574,13 +589,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_Curve , shared_ptr<IntTools_Curve>  >>(m.attr("IntTools_Curve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("the3dCurve3d"),  py::arg("the2dCurve1"),  py::arg("the2dCurve2"),  py::arg("theTolerance")=static_cast<const Standard_Real>(0.0),  py::arg("theTangentialTolerance")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("SetCurves",
              (void (IntTools_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (IntTools_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) >(&IntTools_Curve::SetCurves),
@@ -631,12 +648,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_CurveRangeLocalizeData , shared_ptr<IntTools_CurveRangeLocalizeData>  >>(m.attr("IntTools_CurveRangeLocalizeData"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("theNbSample"),  py::arg("theMinRange") )
+    // custom constructors
     // methods
         .def("GetNbSample",
              (Standard_Integer (IntTools_CurveRangeLocalizeData::*)() const) static_cast<Standard_Integer (IntTools_CurveRangeLocalizeData::*)() const>(&IntTools_CurveRangeLocalizeData::GetNbSample),
@@ -669,31 +688,36 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntTools_CurveRangeSampleMapHasher , shared_ptr<IntTools_CurveRangeSampleMapHasher>>(m,"IntTools_CurveRangeSampleMapHasher");
 
     static_cast<py::class_<IntTools_CurveRangeSampleMapHasher , shared_ptr<IntTools_CurveRangeSampleMapHasher>  >>(m.attr("IntTools_CurveRangeSampleMapHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
                     (Standard_Integer (*)( const IntTools_CurveRangeSample & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const IntTools_CurveRangeSample & ,  const Standard_Integer  ) >(&IntTools_CurveRangeSampleMapHasher::HashCode),
-                    R"#(Returns a HasCode value for the Key <K> in the range 0..Upper.)#"  , py::arg("K"),  py::arg("Upper"))
+                    R"#(Computes a hash code for the given key, in the range [1, theUpperBound])#"  , py::arg("theKey"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const IntTools_CurveRangeSample & ,  const IntTools_CurveRangeSample &  ) ) static_cast<Standard_Boolean (*)( const IntTools_CurveRangeSample & ,  const IntTools_CurveRangeSample &  ) >(&IntTools_CurveRangeSampleMapHasher::IsEqual),
                     R"#(Returns True when the two keys are the same. Two same keys must have the same hashcode, the contrary is not necessary.)#"  , py::arg("S1"),  py::arg("S2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_EdgeEdge , shared_ptr<IntTools_EdgeEdge>  >>(m.attr("IntTools_EdgeEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge & >()  , py::arg("theEdge1"),  py::arg("theEdge2") )
         .def(py::init< const TopoDS_Edge &,const Standard_Real,const Standard_Real,const TopoDS_Edge &,const Standard_Real,const Standard_Real >()  , py::arg("theEdge1"),  py::arg("aT11"),  py::arg("aT12"),  py::arg("theEdge2"),  py::arg("aT21"),  py::arg("aT22") )
+    // custom constructors
     // methods
         .def("SetEdge1",
              (void (IntTools_EdgeEdge::*)( const TopoDS_Edge &  ) ) static_cast<void (IntTools_EdgeEdge::*)( const TopoDS_Edge &  ) >(&IntTools_EdgeEdge::SetEdge1),
@@ -780,12 +804,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_EdgeFace , shared_ptr<IntTools_EdgeFace>  >>(m.attr("IntTools_EdgeFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetEdge",
              (void (IntTools_EdgeFace::*)( const TopoDS_Edge &  ) ) static_cast<void (IntTools_EdgeFace::*)( const TopoDS_Edge &  ) >(&IntTools_EdgeFace::SetEdge),
@@ -842,13 +868,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_FClass2d , shared_ptr<IntTools_FClass2d>  >>(m.attr("IntTools_FClass2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,const Standard_Real >()  , py::arg("F"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Init",
              (void (IntTools_FClass2d::*)( const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<void (IntTools_FClass2d::*)( const TopoDS_Face & ,  const Standard_Real  ) >(&IntTools_FClass2d::Init),
@@ -872,12 +900,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_FaceFace , shared_ptr<IntTools_FaceFace>  >>(m.attr("IntTools_FaceFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetParameters",
              (void (IntTools_FaceFace::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (IntTools_FaceFace::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Real  ) >(&IntTools_FaceFace::SetParameters),
@@ -925,14 +955,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_MarkedRangeSet , shared_ptr<IntTools_MarkedRangeSet>  >>(m.attr("IntTools_MarkedRangeSet"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("theFirstBoundary"),  py::arg("theLastBoundary"),  py::arg("theInitFlag") )
         .def(py::init< const IntTools_CArray1OfReal &,const Standard_Integer >()  , py::arg("theSortedArray"),  py::arg("theInitFlag") )
+    // custom constructors
     // methods
         .def("SetBoundaries",
              (void (IntTools_MarkedRangeSet::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (IntTools_MarkedRangeSet::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&IntTools_MarkedRangeSet::SetBoundaries),
@@ -980,13 +1012,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_PntOn2Faces , shared_ptr<IntTools_PntOn2Faces>  >>(m.attr("IntTools_PntOn2Faces"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntTools_PntOnFace &,const IntTools_PntOnFace & >()  , py::arg("aP1"),  py::arg("aP2") )
+    // custom constructors
     // methods
         .def("SetP1",
              (void (IntTools_PntOn2Faces::*)( const IntTools_PntOnFace &  ) ) static_cast<void (IntTools_PntOn2Faces::*)( const IntTools_PntOnFace &  ) >(&IntTools_PntOn2Faces::SetP1),
@@ -1010,12 +1044,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_PntOnFace , shared_ptr<IntTools_PntOnFace>  >>(m.attr("IntTools_PntOnFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IntTools_PntOnFace::*)( const TopoDS_Face & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntTools_PntOnFace::*)( const TopoDS_Face & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) >(&IntTools_PntOnFace::Init),
@@ -1048,13 +1084,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_Range , shared_ptr<IntTools_Range>  >>(m.attr("IntTools_Range"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("aFirst"),  py::arg("aLast") )
+    // custom constructors
     // methods
         .def("SetFirst",
              (void (IntTools_Range::*)( const Standard_Real  ) ) static_cast<void (IntTools_Range::*)( const Standard_Real  ) >(&IntTools_Range::SetFirst),
@@ -1075,13 +1113,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_Root , shared_ptr<IntTools_Root>  >>(m.attr("IntTools_Root"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Integer >()  , py::arg("aRoot"),  py::arg("aType") )
+    // custom constructors
     // methods
         .def("SetRoot",
              (void (IntTools_Root::*)( const Standard_Real  ) ) static_cast<void (IntTools_Root::*)( const Standard_Real  ) >(&IntTools_Root::SetRoot),
@@ -1126,12 +1166,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_ShrunkRange , shared_ptr<IntTools_ShrunkRange>  >>(m.attr("IntTools_ShrunkRange"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetData",
              (void (IntTools_ShrunkRange::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) ) static_cast<void (IntTools_ShrunkRange::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) >(&IntTools_ShrunkRange::SetData),
@@ -1160,6 +1202,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
         .def("IsSplittable",
              (Standard_Boolean (IntTools_ShrunkRange::*)() const) static_cast<Standard_Boolean (IntTools_ShrunkRange::*)() const>(&IntTools_ShrunkRange::IsSplittable),
              R"#(Returns FALSE in case the shrunk range is too short and the edge cannot be split, otherwise returns TRUE)#" )
+        .def("Length",
+             (Standard_Real (IntTools_ShrunkRange::*)() const) static_cast<Standard_Real (IntTools_ShrunkRange::*)() const>(&IntTools_ShrunkRange::Length),
+             R"#(Returns the length of the edge if computed.)#" )
     // methods using call by reference i.s.o. return
         .def("ShrunkRange",
              []( IntTools_ShrunkRange &self   ){ Standard_Real  aT1; Standard_Real  aT2; self.ShrunkRange(aT1,aT2); return std::make_tuple(aT1,aT2); },
@@ -1167,14 +1212,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_SurfaceRangeLocalizeData , shared_ptr<IntTools_SurfaceRangeLocalizeData>  >>(m.attr("IntTools_SurfaceRangeLocalizeData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("theNbSampleU"),  py::arg("theNbSampleV"),  py::arg("theMinRangeU"),  py::arg("theMinRangeV") )
         .def(py::init< const IntTools_SurfaceRangeLocalizeData & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("Assign",
              (IntTools_SurfaceRangeLocalizeData & (IntTools_SurfaceRangeLocalizeData::*)( const IntTools_SurfaceRangeLocalizeData &  ) ) static_cast<IntTools_SurfaceRangeLocalizeData & (IntTools_SurfaceRangeLocalizeData::*)( const IntTools_SurfaceRangeLocalizeData &  ) >(&IntTools_SurfaceRangeLocalizeData::Assign),
@@ -1318,15 +1365,17 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_SurfaceRangeSample , shared_ptr<IntTools_SurfaceRangeSample>  >>(m.attr("IntTools_SurfaceRangeSample"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theIndexU"),  py::arg("theDepthU"),  py::arg("theIndexV"),  py::arg("theDepthV") )
         .def(py::init< const IntTools_CurveRangeSample &,const IntTools_CurveRangeSample & >()  , py::arg("theRangeU"),  py::arg("theRangeV") )
         .def(py::init< const IntTools_SurfaceRangeSample & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("Assign",
              (IntTools_SurfaceRangeSample & (IntTools_SurfaceRangeSample::*)( const IntTools_SurfaceRangeSample &  ) ) static_cast<IntTools_SurfaceRangeSample & (IntTools_SurfaceRangeSample::*)( const IntTools_SurfaceRangeSample &  ) >(&IntTools_SurfaceRangeSample::Assign),
@@ -1461,29 +1510,35 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntTools_SurfaceRangeSampleMapHasher , shared_ptr<IntTools_SurfaceRangeSampleMapHasher>>(m,"IntTools_SurfaceRangeSampleMapHasher");
 
     static_cast<py::class_<IntTools_SurfaceRangeSampleMapHasher , shared_ptr<IntTools_SurfaceRangeSampleMapHasher>  >>(m.attr("IntTools_SurfaceRangeSampleMapHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const IntTools_SurfaceRangeSample & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const IntTools_SurfaceRangeSample & ,  const Standard_Integer  ) >(&IntTools_SurfaceRangeSampleMapHasher::HashCode),
-                    R"#(Returns a HasCode value for the Key <K> in the range 0..Upper.)#"  , py::arg("K"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const IntTools_SurfaceRangeSample & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const IntTools_SurfaceRangeSample & ,  Standard_Integer  ) >(&IntTools_SurfaceRangeSampleMapHasher::HashCode),
+                    R"#(Computes a hash code for the given key, in the range [1, theUpperBound])#"  , py::arg("theKey"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const IntTools_SurfaceRangeSample & ,  const IntTools_SurfaceRangeSample &  ) ) static_cast<Standard_Boolean (*)( const IntTools_SurfaceRangeSample & ,  const IntTools_SurfaceRangeSample &  ) >(&IntTools_SurfaceRangeSampleMapHasher::IsEqual),
                     R"#(Returns True when the two keys are the same. Two same keys must have the same hashcode, the contrary is not necessary.)#"  , py::arg("S1"),  py::arg("S2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntTools_Tools , shared_ptr<IntTools_Tools>>(m,"IntTools_Tools");
 
     static_cast<py::class_<IntTools_Tools , shared_ptr<IntTools_Tools>  >>(m.attr("IntTools_Tools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1564,13 +1619,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
                     []( const IntTools_CommonPrt & theCP ){ Standard_Real  theT; IntTools_Tools::VertexParameter(theCP,theT); return std::make_tuple(theT); },
                     R"#(None)#"  , py::arg("theCP"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_TopolTool ,opencascade::handle<IntTools_TopolTool>  , Adaptor3d_TopolTool >>(m.attr("IntTools_TopolTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("theSurface") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (IntTools_TopolTool::*)() ) static_cast<void (IntTools_TopolTool::*)() >(&IntTools_TopolTool::Initialize),
@@ -1609,12 +1666,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntTools_WLineTool , shared_ptr<IntTools_WLineTool>>(m,"IntTools_WLineTool");
 
     static_cast<py::class_<IntTools_WLineTool , shared_ptr<IntTools_WLineTool>  >>(m.attr("IntTools_WLineTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1626,13 +1686,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
                     R"#(None)#"  , py::arg("theWLine"),  py::arg("theSurface1"),  py::arg("theSurface2"),  py::arg("theFace1"),  py::arg("theFace2"),  py::arg("theLConstructor"),  py::arg("theAvoidLConstructor"),  py::arg("theTol"),  py::arg("theNewLines"),  py::arg("theReachedTol3d"),  py::arg(""))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntTools_CurveRangeSample , shared_ptr<IntTools_CurveRangeSample>  , IntTools_BaseRangeSample >>(m.attr("IntTools_CurveRangeSample"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("theIndex") )
+    // custom constructors
     // methods
         .def("SetRangeIndex",
              (void (IntTools_CurveRangeSample::*)( const Standard_Integer  ) ) static_cast<void (IntTools_CurveRangeSample::*)( const Standard_Integer  ) >(&IntTools_CurveRangeSample::SetRangeIndex),
@@ -1665,76 +1727,76 @@ py::module m = static_cast<py::module>(main_module.attr("IntTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IntTools_SequenceOfRanges.hxx
-// ./opencascade/IntTools_WLineTool.hxx
-// ./opencascade/IntTools_CurveRangeSampleMapHasher.hxx
-// ./opencascade/IntTools_EdgeEdge.hxx
-// ./opencascade/IntTools_Curve.hxx
-// ./opencascade/IntTools_Range.hxx
-// ./opencascade/IntTools_DataMapOfCurveSampleBox.hxx
-// ./opencascade/IntTools_DataMapIteratorOfDataMapOfCurveSampleBox.hxx
-// ./opencascade/IntTools_Array1OfRoots.hxx
-// ./opencascade/IntTools_TopolTool.hxx
-// ./opencascade/IntTools_CurveRangeSample.hxx
-// ./opencascade/IntTools.hxx
-// ./opencascade/IntTools_CArray1OfInteger.hxx
-// ./opencascade/IntTools_ListIteratorOfListOfCurveRangeSample.hxx
-// ./opencascade/IntTools_EdgeFace.hxx
-// ./opencascade/IntTools_PntOnFace.hxx
-// ./opencascade/IntTools_Context.hxx
-// ./opencascade/IntTools_Array1OfRange.hxx
-// ./opencascade/IntTools_MapOfCurveSample.hxx
-// ./opencascade/IntTools_CommonPrt.hxx
-// ./opencascade/IntTools_ListOfCurveRangeSample.hxx
-// ./opencascade/IntTools_DataMapOfSurfaceSampleBox.hxx
-// ./opencascade/IntTools_MapOfSurfaceSample.hxx
-// ./opencascade/IntTools_BaseRangeSample.hxx
-// ./opencascade/IntTools_PntOn2Faces.hxx
-// ./opencascade/IntTools_BeanFaceIntersector.hxx
-// ./opencascade/IntTools_MarkedRangeSet.hxx
-// ./opencascade/IntTools_CArray1OfReal.hxx
-// ./opencascade/IntTools_CurveRangeLocalizeData.hxx
-// ./opencascade/IntTools_MapIteratorOfMapOfSurfaceSample.hxx
-// ./opencascade/IntTools_ListOfBox.hxx
-// ./opencascade/IntTools_SequenceOfCurves.hxx
-// ./opencascade/IntTools_Tools.hxx
-// ./opencascade/IntTools_SurfaceRangeSample.hxx
-// ./opencascade/IntTools_ListIteratorOfListOfSurfaceRangeSample.hxx
-// ./opencascade/IntTools_MapIteratorOfMapOfCurveSample.hxx
-// ./opencascade/IntTools_ShrunkRange.hxx
-// ./opencascade/IntTools_DataMapIteratorOfDataMapOfSurfaceSampleBox.hxx
 // ./opencascade/IntTools_FaceFace.hxx
-// ./opencascade/IntTools_ListOfSurfaceRangeSample.hxx
+// ./opencascade/IntTools_SequenceOfRanges.hxx
+// ./opencascade/IntTools_CArray1OfInteger.hxx
+// ./opencascade/IntTools_CurveRangeSampleMapHasher.hxx
+// ./opencascade/IntTools_Tools.hxx
+// ./opencascade/IntTools_CommonPrt.hxx
+// ./opencascade/IntTools_CurveRangeLocalizeData.hxx
 // ./opencascade/IntTools_Root.hxx
-// ./opencascade/IntTools_SequenceOfCommonPrts.hxx
-// ./opencascade/IntTools_SurfaceRangeLocalizeData.hxx
-// ./opencascade/IntTools_SequenceOfPntOn2Faces.hxx
-// ./opencascade/IntTools_SurfaceRangeSampleMapHasher.hxx
-// ./opencascade/IntTools_FClass2d.hxx
+// ./opencascade/IntTools_PntOnFace.hxx
+// ./opencascade/IntTools_MapIteratorOfMapOfSurfaceSample.hxx
+// ./opencascade/IntTools_ListIteratorOfListOfSurfaceRangeSample.hxx
+// ./opencascade/IntTools_Context.hxx
+// ./opencascade/IntTools_TopolTool.hxx
+// ./opencascade/IntTools_EdgeFace.hxx
+// ./opencascade/IntTools_MapOfCurveSample.hxx
+// ./opencascade/IntTools_DataMapOfCurveSampleBox.hxx
+// ./opencascade/IntTools_ListIteratorOfListOfCurveRangeSample.hxx
+// ./opencascade/IntTools_ShrunkRange.hxx
+// ./opencascade/IntTools_BeanFaceIntersector.hxx
+// ./opencascade/IntTools_ListOfSurfaceRangeSample.hxx
+// ./opencascade/IntTools_DataMapOfSurfaceSampleBox.hxx
 // ./opencascade/IntTools_ListIteratorOfListOfBox.hxx
+// ./opencascade/IntTools_MapOfSurfaceSample.hxx
+// ./opencascade/IntTools_SequenceOfCurves.hxx
+// ./opencascade/IntTools_Array1OfRoots.hxx
+// ./opencascade/IntTools_CurveRangeSample.hxx
+// ./opencascade/IntTools_FClass2d.hxx
+// ./opencascade/IntTools_SurfaceRangeLocalizeData.hxx
+// ./opencascade/IntTools_Range.hxx
 // ./opencascade/IntTools_SequenceOfRoots.hxx
+// ./opencascade/IntTools_MarkedRangeSet.hxx
+// ./opencascade/IntTools_SurfaceRangeSample.hxx
+// ./opencascade/IntTools_WLineTool.hxx
+// ./opencascade/IntTools_SequenceOfPntOn2Faces.hxx
+// ./opencascade/IntTools.hxx
+// ./opencascade/IntTools_ListOfBox.hxx
+// ./opencascade/IntTools_DataMapIteratorOfDataMapOfCurveSampleBox.hxx
+// ./opencascade/IntTools_SurfaceRangeSampleMapHasher.hxx
+// ./opencascade/IntTools_CArray1OfReal.hxx
+// ./opencascade/IntTools_PntOn2Faces.hxx
+// ./opencascade/IntTools_MapIteratorOfMapOfCurveSample.hxx
+// ./opencascade/IntTools_Array1OfRange.hxx
+// ./opencascade/IntTools_DataMapIteratorOfDataMapOfSurfaceSampleBox.hxx
+// ./opencascade/IntTools_BaseRangeSample.hxx
+// ./opencascade/IntTools_SequenceOfCommonPrts.hxx
+// ./opencascade/IntTools_Curve.hxx
+// ./opencascade/IntTools_EdgeEdge.hxx
+// ./opencascade/IntTools_ListOfCurveRangeSample.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_Sequence<IntTools_Range>(m,"IntTools_SequenceOfRanges");  
-    register_template_NCollection_DataMap<IntTools_CurveRangeSample, Bnd_Box, IntTools_CurveRangeSampleMapHasher>(m,"IntTools_DataMapOfCurveSampleBox");  
-    register_template_NCollection_Array1<IntTools_Root>(m,"IntTools_Array1OfRoots");  
-    register_template_NCollection_Array1<IntTools_Range>(m,"IntTools_Array1OfRange");  
     register_template_NCollection_Map<IntTools_CurveRangeSample, IntTools_CurveRangeSampleMapHasher>(m,"IntTools_MapOfCurveSample");  
-    register_template_NCollection_List<IntTools_CurveRangeSample>(m,"IntTools_ListOfCurveRangeSample");  
+    register_template_NCollection_DataMap<IntTools_CurveRangeSample, Bnd_Box, IntTools_CurveRangeSampleMapHasher>(m,"IntTools_DataMapOfCurveSampleBox");  
+    register_template_NCollection_List<IntTools_SurfaceRangeSample>(m,"IntTools_ListOfSurfaceRangeSample");  
     register_template_NCollection_DataMap<IntTools_SurfaceRangeSample, Bnd_Box, IntTools_SurfaceRangeSampleMapHasher>(m,"IntTools_DataMapOfSurfaceSampleBox");  
     register_template_NCollection_Map<IntTools_SurfaceRangeSample, IntTools_SurfaceRangeSampleMapHasher>(m,"IntTools_MapOfSurfaceSample");  
-    register_template_NCollection_List<Bnd_Box>(m,"IntTools_ListOfBox");  
     register_template_NCollection_Sequence<IntTools_Curve>(m,"IntTools_SequenceOfCurves");  
-    register_template_NCollection_List<IntTools_SurfaceRangeSample>(m,"IntTools_ListOfSurfaceRangeSample");  
-    register_template_NCollection_Sequence<IntTools_CommonPrt>(m,"IntTools_SequenceOfCommonPrts");  
-    register_template_NCollection_Sequence<IntTools_PntOn2Faces>(m,"IntTools_SequenceOfPntOn2Faces");  
+    register_template_NCollection_Array1<IntTools_Root>(m,"IntTools_Array1OfRoots");  
     register_template_NCollection_Sequence<IntTools_Root>(m,"IntTools_SequenceOfRoots");  
+    register_template_NCollection_Sequence<IntTools_PntOn2Faces>(m,"IntTools_SequenceOfPntOn2Faces");  
+    register_template_NCollection_List<Bnd_Box>(m,"IntTools_ListOfBox");  
+    register_template_NCollection_Array1<IntTools_Range>(m,"IntTools_Array1OfRange");  
+    register_template_NCollection_Sequence<IntTools_CommonPrt>(m,"IntTools_SequenceOfCommonPrts");  
+    register_template_NCollection_List<IntTools_CurveRangeSample>(m,"IntTools_ListOfCurveRangeSample");  
 
 
 // exceptions

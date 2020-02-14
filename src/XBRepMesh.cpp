@@ -36,15 +36,18 @@ py::module m = static_cast<py::module>(main_module.attr("XBRepMesh"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XBRepMesh , shared_ptr<XBRepMesh>>(m,"XBRepMesh");
 
     static_cast<py::class_<XBRepMesh , shared_ptr<XBRepMesh>  >>(m.attr("XBRepMesh"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

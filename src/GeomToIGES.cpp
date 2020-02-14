@@ -13,6 +13,24 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <IGESData_IGESEntity.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_BoundedCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_TrimmedCurve.hxx>
+#include <Geom_Conic.hxx>
+#include <Geom_Circle.hxx>
+#include <Geom_Ellipse.hxx>
+#include <Geom_Hyperbola.hxx>
+#include <Geom_Line.hxx>
+#include <Geom_Parabola.hxx>
+#include <Geom_OffsetCurve.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <Geom_Vector.hxx>
+#include <Geom_VectorWithMagnitude.hxx>
+#include <Geom_Direction.hxx>
 #include <IGESGeom_Point.hxx>
 #include <Geom_Point.hxx>
 #include <Geom_CartesianPoint.hxx>
@@ -32,24 +50,6 @@ namespace py = pybind11;
 #include <Geom_SurfaceOfLinearExtrusion.hxx>
 #include <Geom_SurfaceOfRevolution.hxx>
 #include <Geom_OffsetSurface.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <Geom_Vector.hxx>
-#include <Geom_VectorWithMagnitude.hxx>
-#include <Geom_Direction.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_BoundedCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_TrimmedCurve.hxx>
-#include <Geom_Conic.hxx>
-#include <Geom_Circle.hxx>
-#include <Geom_Ellipse.hxx>
-#include <Geom_Hyperbola.hxx>
-#include <Geom_Line.hxx>
-#include <Geom_Parabola.hxx>
-#include <Geom_OffsetCurve.hxx>
-#include <IGESData_IGESModel.hxx>
 
 // module includes
 #include <GeomToIGES_GeomCurve.hxx>
@@ -79,8 +79,10 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
 
 
     static_cast<py::class_<GeomToIGES_GeomEntity , shared_ptr<GeomToIGES_GeomEntity>  >>(m.attr("GeomToIGES_GeomEntity"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (GeomToIGES_GeomEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) ) static_cast<void (GeomToIGES_GeomEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) >(&GeomToIGES_GeomEntity::SetModel),
@@ -98,13 +100,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomToIGES_GeomCurve , shared_ptr<GeomToIGES_GeomCurve>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // custom constructors
     // methods
         .def("TransferCurve",
              (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomCurve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomCurve::TransferCurve),
@@ -146,13 +150,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomToIGES_GeomPoint , shared_ptr<GeomToIGES_GeomPoint>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // custom constructors
     // methods
         .def("TransferPoint",
              (opencascade::handle<IGESGeom_Point> (GeomToIGES_GeomPoint::*)( const opencascade::handle<Geom_Point> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (GeomToIGES_GeomPoint::*)( const opencascade::handle<Geom_Point> &  ) >(&GeomToIGES_GeomPoint::TransferPoint),
@@ -164,13 +170,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomToIGES_GeomSurface , shared_ptr<GeomToIGES_GeomSurface>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // custom constructors
     // methods
         .def("TransferSurface",
              (opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (GeomToIGES_GeomSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&GeomToIGES_GeomSurface::TransferSurface),
@@ -251,13 +259,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomToIGES_GeomVector , shared_ptr<GeomToIGES_GeomVector>  , GeomToIGES_GeomEntity >>(m.attr("GeomToIGES_GeomVector"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomToIGES_GeomEntity & >()  , py::arg("GE") )
+    // custom constructors
     // methods
         .def("TransferVector",
              (opencascade::handle<IGESGeom_Direction> (GeomToIGES_GeomVector::*)( const opencascade::handle<Geom_Vector> &  ) ) static_cast<opencascade::handle<IGESGeom_Direction> (GeomToIGES_GeomVector::*)( const opencascade::handle<Geom_Vector> &  ) >(&GeomToIGES_GeomVector::TransferVector),
@@ -272,15 +282,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomToIGES_GeomPoint.hxx
-// ./opencascade/GeomToIGES_GeomSurface.hxx
-// ./opencascade/GeomToIGES_GeomVector.hxx
 // ./opencascade/GeomToIGES_GeomCurve.hxx
 // ./opencascade/GeomToIGES_GeomEntity.hxx
+// ./opencascade/GeomToIGES_GeomVector.hxx
+// ./opencascade/GeomToIGES_GeomPoint.hxx
+// ./opencascade/GeomToIGES_GeomSurface.hxx
 
 // operators
 

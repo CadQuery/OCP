@@ -14,53 +14,53 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <StdFail_NotDone.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GccInt_Bisec.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GccInt_Bisec.hxx>
-#include <GccInt_Bisec.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Pnt2d.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GccInt_Bisec.hxx>
 #include <StdFail_NotDone.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <gp_Lin2d.hxx>
-#include <GccEnt_QualifiedLin.hxx>
-#include <Standard_NegativeValue.hxx>
-#include <GccEnt_BadQualifier.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GccEnt_QualifiedCirc.hxx>
 #include <GccEnt_QualifiedLin.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
 #include <gp_Circ2d.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <StdFail_NotDone.hxx>
-#include <GccEnt_BadQualifier.hxx>
-#include <GccEnt_QualifiedCirc.hxx>
-#include <GccEnt_QualifiedLin.hxx>
-#include <StdFail_NotDone.hxx>
+#include <GccInt_Bisec.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <StdFail_NotDone.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <gp_Lin2d.hxx>
 #include <GccEnt_QualifiedLin.hxx>
-#include <GccEnt_BadQualifier.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GccEnt_QualifiedCirc.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <StdFail_NotDone.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
 #include <gp_Lin2d.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GccInt_Bisec.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GccEnt_BadQualifier.hxx>
+#include <GccEnt_QualifiedCirc.hxx>
+#include <GccEnt_QualifiedLin.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GccInt_Bisec.hxx>
+#include <GccEnt_BadQualifier.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GccEnt_QualifiedCirc.hxx>
+#include <Standard_NegativeValue.hxx>
+#include <GccEnt_BadQualifier.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GccEnt_QualifiedCirc.hxx>
+#include <GccEnt_QualifiedLin.hxx>
+#include <GccInt_Bisec.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Lin2d.hxx>
+#include <gp_Pnt2d.hxx>
 #include <GccEnt_BadQualifier.hxx>
 #include <StdFail_NotDone.hxx>
 #include <GccEnt_QualifiedCirc.hxx>
@@ -104,6 +104,7 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
 
 
     static_cast<py::class_<GccAna_Circ2d2TanOn , shared_ptr<GccAna_Circ2d2TanOn>  >>(m.attr("GccAna_Circ2d2TanOn"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const gp_Lin2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnLine"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedLin &,const gp_Lin2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnLine"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const GccEnt_QualifiedLin &,const gp_Lin2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnLine"),  py::arg("Tolerance") )
@@ -116,6 +117,7 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
         .def(py::init< const GccEnt_QualifiedLin &,const GccEnt_QualifiedLin &,const gp_Circ2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("OnCirc"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const gp_Pnt2d &,const gp_Circ2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("OnCirc"),  py::arg("Tolerance") )
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const gp_Circ2d &,const Standard_Real >()  , py::arg("Point1"),  py::arg("Point2"),  py::arg("OnCirc"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Circ2d2TanOn::*)() const) static_cast<Standard_Boolean (GccAna_Circ2d2TanOn::*)() const>(&GccAna_Circ2d2TanOn::IsDone),
@@ -148,17 +150,19 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Circ2d2TanRad , shared_ptr<GccAna_Circ2d2TanRad>  >>(m.attr("GccAna_Circ2d2TanRad"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedLin &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const GccEnt_QualifiedLin &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Point1"),  py::arg("Point2"),  py::arg("Radius"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Circ2d2TanRad::*)() const) static_cast<Standard_Boolean (GccAna_Circ2d2TanRad::*)() const>(&GccAna_Circ2d2TanRad::IsDone),
@@ -188,11 +192,12 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Circ2d3Tan , shared_ptr<GccAna_Circ2d3Tan>  >>(m.attr("GccAna_Circ2d3Tan"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const GccEnt_QualifiedLin &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedLin &,const GccEnt_QualifiedLin &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Qualified3"),  py::arg("Tolerance") )
@@ -203,6 +208,7 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("Point3"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Point2"),  py::arg("Point3"),  py::arg("Tolerance") )
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Point1"),  py::arg("Point2"),  py::arg("Point3"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Circ2d3Tan::*)() const) static_cast<Standard_Boolean (GccAna_Circ2d3Tan::*)() const>(&GccAna_Circ2d3Tan::IsDone),
@@ -238,12 +244,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Circ2dBisec , shared_ptr<GccAna_Circ2dBisec>  >>(m.attr("GccAna_Circ2dBisec"))
+    // constructors
         .def(py::init< const gp_Circ2d &,const gp_Circ2d & >()  , py::arg("Circ1"),  py::arg("Circ2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Circ2dBisec::*)() const) static_cast<Standard_Boolean (GccAna_Circ2dBisec::*)() const>(&GccAna_Circ2dBisec::IsDone),
@@ -258,14 +266,16 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Circ2dTanCen , shared_ptr<GccAna_Circ2dTanCen>  >>(m.attr("GccAna_Circ2dTanCen"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Pcenter"),  py::arg("Tolerance") )
         .def(py::init< const gp_Lin2d &,const gp_Pnt2d & >()  , py::arg("Linetan"),  py::arg("Pcenter") )
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d & >()  , py::arg("Point1"),  py::arg("Pcenter") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Circ2dTanCen::*)() const) static_cast<Standard_Boolean (GccAna_Circ2dTanCen::*)() const>(&GccAna_Circ2dTanCen::IsDone),
@@ -289,17 +299,19 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Circ2dTanOnRad , shared_ptr<GccAna_Circ2dTanOnRad>  >>(m.attr("GccAna_Circ2dTanOnRad"))
+    // constructors
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Lin2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnLine"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const gp_Lin2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnLine"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const gp_Pnt2d &,const gp_Lin2d &,const Standard_Real,const Standard_Real >()  , py::arg("Point1"),  py::arg("OnLine"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Circ2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnCirc"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedLin &,const gp_Circ2d &,const Standard_Real,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("OnCirc"),  py::arg("Radius"),  py::arg("Tolerance") )
         .def(py::init< const gp_Pnt2d &,const gp_Circ2d &,const Standard_Real,const Standard_Real >()  , py::arg("Point1"),  py::arg("OnCirc"),  py::arg("Radius"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Circ2dTanOnRad::*)() const) static_cast<Standard_Boolean (GccAna_Circ2dTanOnRad::*)() const>(&GccAna_Circ2dTanOnRad::IsDone),
@@ -326,12 +338,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_CircLin2dBisec , shared_ptr<GccAna_CircLin2dBisec>  >>(m.attr("GccAna_CircLin2dBisec"))
+    // constructors
         .def(py::init< const gp_Circ2d &,const gp_Lin2d & >()  , py::arg("Circle"),  py::arg("Line") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_CircLin2dBisec::*)() const) static_cast<Standard_Boolean (GccAna_CircLin2dBisec::*)() const>(&GccAna_CircLin2dBisec::IsDone),
@@ -346,13 +360,15 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_CircPnt2dBisec , shared_ptr<GccAna_CircPnt2dBisec>  >>(m.attr("GccAna_CircPnt2dBisec"))
+    // constructors
         .def(py::init< const gp_Circ2d &,const gp_Pnt2d & >()  , py::arg("Circle1"),  py::arg("Point2") )
         .def(py::init< const gp_Circ2d &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Circle1"),  py::arg("Point2"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_CircPnt2dBisec::*)() const) static_cast<Standard_Boolean (GccAna_CircPnt2dBisec::*)() const>(&GccAna_CircPnt2dBisec::IsDone),
@@ -367,14 +383,16 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Lin2d2Tan , shared_ptr<GccAna_Lin2d2Tan>  >>(m.attr("GccAna_Lin2d2Tan"))
+    // constructors
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("ThePoint1"),  py::arg("ThePoint2"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("ThePoint"),  py::arg("Tolerance") )
         .def(py::init< const GccEnt_QualifiedCirc &,const GccEnt_QualifiedCirc &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("Qualified2"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Lin2d2Tan::*)() const) static_cast<Standard_Boolean (GccAna_Lin2d2Tan::*)() const>(&GccAna_Lin2d2Tan::IsDone),
@@ -398,12 +416,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Lin2dBisec , shared_ptr<GccAna_Lin2dBisec>  >>(m.attr("GccAna_Lin2dBisec"))
+    // constructors
         .def(py::init< const gp_Lin2d &,const gp_Lin2d & >()  , py::arg("Lin1"),  py::arg("Lin2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Lin2dBisec::*)() const) static_cast<Standard_Boolean (GccAna_Lin2dBisec::*)() const>(&GccAna_Lin2dBisec::IsDone),
@@ -424,13 +444,15 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Lin2dTanObl , shared_ptr<GccAna_Lin2dTanObl>  >>(m.attr("GccAna_Lin2dTanObl"))
+    // constructors
         .def(py::init< const gp_Pnt2d &,const gp_Lin2d &,const Standard_Real >()  , py::arg("ThePoint"),  py::arg("TheLine"),  py::arg("TheAngle") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Lin2d &,const Standard_Real >()  , py::arg("Qualified1"),  py::arg("TheLine"),  py::arg("TheAngle") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Lin2dTanObl::*)() const) static_cast<Standard_Boolean (GccAna_Lin2dTanObl::*)() const>(&GccAna_Lin2dTanObl::IsDone),
@@ -454,13 +476,15 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Lin2dTanPar , shared_ptr<GccAna_Lin2dTanPar>  >>(m.attr("GccAna_Lin2dTanPar"))
+    // constructors
         .def(py::init< const gp_Pnt2d &,const gp_Lin2d & >()  , py::arg("ThePoint"),  py::arg("Lin1") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Lin2d & >()  , py::arg("Qualified1"),  py::arg("Lin1") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Lin2dTanPar::*)() const) static_cast<Standard_Boolean (GccAna_Lin2dTanPar::*)() const>(&GccAna_Lin2dTanPar::IsDone),
@@ -481,15 +505,17 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Lin2dTanPer , shared_ptr<GccAna_Lin2dTanPer>  >>(m.attr("GccAna_Lin2dTanPer"))
+    // constructors
         .def(py::init< const gp_Pnt2d &,const gp_Lin2d & >()  , py::arg("ThePnt"),  py::arg("TheLin") )
         .def(py::init< const gp_Pnt2d &,const gp_Circ2d & >()  , py::arg("ThePnt"),  py::arg("TheCircle") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Lin2d & >()  , py::arg("Qualified1"),  py::arg("TheLin") )
         .def(py::init< const GccEnt_QualifiedCirc &,const gp_Circ2d & >()  , py::arg("Qualified1"),  py::arg("TheCircle") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Lin2dTanPer::*)() const) static_cast<Standard_Boolean (GccAna_Lin2dTanPer::*)() const>(&GccAna_Lin2dTanPer::IsDone),
@@ -513,12 +539,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_LinPnt2dBisec , shared_ptr<GccAna_LinPnt2dBisec>  >>(m.attr("GccAna_LinPnt2dBisec"))
+    // constructors
         .def(py::init< const gp_Lin2d &,const gp_Pnt2d & >()  , py::arg("Line1"),  py::arg("Point2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_LinPnt2dBisec::*)() const) static_cast<Standard_Boolean (GccAna_LinPnt2dBisec::*)() const>(&GccAna_LinPnt2dBisec::IsDone),
@@ -530,12 +558,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccAna_Pnt2dBisec , shared_ptr<GccAna_Pnt2dBisec>  >>(m.attr("GccAna_Pnt2dBisec"))
+    // constructors
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d & >()  , py::arg("Point1"),  py::arg("Point2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GccAna_Pnt2dBisec::*)() const) static_cast<Standard_Boolean (GccAna_Pnt2dBisec::*)() const>(&GccAna_Pnt2dBisec::IsDone),
@@ -550,26 +580,26 @@ py::module m = static_cast<py::module>(main_module.attr("GccAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/GccAna_Lin2dBisec.hxx
-// ./opencascade/GccAna_CircPnt2dBisec.hxx
-// ./opencascade/GccAna_Circ2dBisec.hxx
-// ./opencascade/GccAna_LinPnt2dBisec.hxx
-// ./opencascade/GccAna_Lin2d2Tan.hxx
-// ./opencascade/GccAna_CircLin2dBisec.hxx
+// ./opencascade/GccAna_NoSolution.hxx
+// ./opencascade/GccAna_Lin2dTanPar.hxx
 // ./opencascade/GccAna_Circ2d2TanOn.hxx
-// ./opencascade/GccAna_Circ2d2TanRad.hxx
 // ./opencascade/GccAna_Lin2dTanPer.hxx
+// ./opencascade/GccAna_CircLin2dBisec.hxx
+// ./opencascade/GccAna_Circ2dTanOnRad.hxx
+// ./opencascade/GccAna_Circ2dTanCen.hxx
+// ./opencascade/GccAna_Circ2dBisec.hxx
 // ./opencascade/GccAna_Circ2d3Tan.hxx
 // ./opencascade/GccAna_Pnt2dBisec.hxx
-// ./opencascade/GccAna_Circ2dTanOnRad.hxx
+// ./opencascade/GccAna_CircPnt2dBisec.hxx
 // ./opencascade/GccAna_Lin2dTanObl.hxx
-// ./opencascade/GccAna_NoSolution.hxx
-// ./opencascade/GccAna_Circ2dTanCen.hxx
-// ./opencascade/GccAna_Lin2dTanPar.hxx
+// ./opencascade/GccAna_Circ2d2TanRad.hxx
+// ./opencascade/GccAna_LinPnt2dBisec.hxx
+// ./opencascade/GccAna_Lin2d2Tan.hxx
 
 // operators
 

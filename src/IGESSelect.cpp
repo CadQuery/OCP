@@ -13,6 +13,88 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <IGESSelect_ViewSorter.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_IntParam.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_SessionPilot.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_CopyControl.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Message_Messenger.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_SessionFile.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IGESSelect_ViewSorter.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IFSelect_ContextWrite.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <IFSelect_ContextModif.hxx>
 #include <IGESData_IGESModel.hxx>
 #include <Interface_CopyTool.hxx>
@@ -22,12 +104,66 @@ namespace py = pybind11;
 #include <IGESData_IGESModel.hxx>
 #include <Interface_CopyTool.hxx>
 #include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_IntParam.hxx>
 #include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_ContextWrite.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <IFSelect_ContextModif.hxx>
 #include <IGESData_IGESModel.hxx>
 #include <Interface_CopyTool.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Interface_InterfaceModel.hxx>
+#include <Interface_Protocol.hxx>
+#include <IFSelect_ContextWrite.hxx>
+#include <IGESData_Protocol.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <IFSelect_ContextWrite.hxx>
+#include <IFSelect_EditForm.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_EditForm.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Graph.hxx>
+#include <IFSelect_PacketList.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Interface_Graph.hxx>
 #include <IGESSelect_EditHeader.hxx>
@@ -76,146 +212,10 @@ namespace py = pybind11;
 #include <IGESSelect_WorkLibrary.hxx>
 #include <IGESSelect_Activator.hxx>
 #include <IGESSelect_Dumper.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_EditForm.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceModel.hxx>
 #include <Interface_InterfaceError.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Interface_Graph.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_CopyControl.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CheckIterator.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_IntParam.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IFSelect_ContextWrite.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_IntParam.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IGESSelect_ViewSorter.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IFSelect_EditForm.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Message_Messenger.hxx>
-#include <IFSelect_ContextWrite.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Graph.hxx>
-#include <IFSelect_PacketList.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_SessionFile.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <IFSelect_ContextWrite.hxx>
-#include <IGESData_Protocol.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESSelect_ViewSorter.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IFSelect_SessionPilot.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <IFSelect_ContextWrite.hxx>
 
 // module includes
 #include <IGESSelect.hxx>
@@ -286,9 +286,11 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
     public:
         using IGESSelect_FileModifier::IGESSelect_FileModifier;
         
+        
         // public pure virtual
         void Perform(IFSelect_ContextWrite & ctx,IGESData_IGESWriter & writer) const  override { PYBIND11_OVERLOAD_PURE(void,IGESSelect_FileModifier,Perform,ctx,writer) };
         
+        TCollection_AsciiString Label() const  override { PYBIND11_OVERLOAD_PURE(TCollection_AsciiString,IFSelect_GeneralModifier,Label,) };
         
         // protected pure virtual
         
@@ -300,9 +302,11 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
     public:
         using IGESSelect_ModelModifier::IGESSelect_ModelModifier;
         
+        
         // public pure virtual
         void Performing(IFSelect_ContextModif & ctx,const opencascade::handle<IGESData_IGESModel> & target,Interface_CopyTool & TC) const  override { PYBIND11_OVERLOAD_PURE(void,IGESSelect_ModelModifier,Performing,ctx,target,TC) };
         
+        TCollection_AsciiString Label() const  override { PYBIND11_OVERLOAD_PURE(TCollection_AsciiString,IFSelect_GeneralModifier,Label,) };
         
         // protected pure virtual
         
@@ -313,9 +317,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESSelect , shared_ptr<IGESSelect>>(m,"IGESSelect");
 
     static_cast<py::class_<IGESSelect , shared_ptr<IGESSelect>  >>(m.attr("IGESSelect"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -327,12 +334,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(Gives a quick analysis of an IGES Entity in the context of a model (i.e. a File) described by a Graph. Returned values are : : the most meaningfull super entity, if any (else Null) <index> : meaningfull index relating to super entity, if any <returned> : a status which helps exploitation of , by giving a case (normally, types of <ent> and should suffice to known the case))#"  , py::arg("ent"),  py::arg("G"),  py::arg("sup"),  py::arg("index"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_Activator ,opencascade::handle<IGESSelect_Activator>  , IFSelect_Activator >>(m.attr("IGESSelect_Activator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Do",
              (IFSelect_ReturnStatus (IGESSelect_Activator::*)( const Standard_Integer ,  const opencascade::handle<IFSelect_SessionPilot> &  ) ) static_cast<IFSelect_ReturnStatus (IGESSelect_Activator::*)( const Standard_Integer ,  const opencascade::handle<IFSelect_SessionPilot> &  ) >(&IGESSelect_Activator::Do),
@@ -353,12 +362,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_CounterOfLevelNumber ,opencascade::handle<IGESSelect_CounterOfLevelNumber>  , IFSelect_SignCounter >>(m.attr("IGESSelect_CounterOfLevelNumber"))
+    // constructors
         .def(py::init< const Standard_Boolean,const Standard_Boolean >()  , py::arg("withmap")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("withlist")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Clear",
              (void (IGESSelect_CounterOfLevelNumber::*)() ) static_cast<void (IGESSelect_CounterOfLevelNumber::*)() >(&IGESSelect_CounterOfLevelNumber::Clear),
@@ -397,12 +408,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_DispPerDrawing ,opencascade::handle<IGESSelect_DispPerDrawing>  , IFSelect_Dispatch >>(m.attr("IGESSelect_DispPerDrawing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (IGESSelect_DispPerDrawing::*)() const) static_cast<TCollection_AsciiString (IGESSelect_DispPerDrawing::*)() const>(&IGESSelect_DispPerDrawing::Label),
@@ -429,12 +442,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_DispPerSingleView ,opencascade::handle<IGESSelect_DispPerSingleView>  , IFSelect_Dispatch >>(m.attr("IGESSelect_DispPerSingleView"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (IGESSelect_DispPerSingleView::*)() const) static_cast<TCollection_AsciiString (IGESSelect_DispPerSingleView::*)() const>(&IGESSelect_DispPerSingleView::Label),
@@ -461,12 +476,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_Dumper ,opencascade::handle<IGESSelect_Dumper>  , IFSelect_SessionDumper >>(m.attr("IGESSelect_Dumper"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("WriteOwn",
              (Standard_Boolean (IGESSelect_Dumper::*)( IFSelect_SessionFile & ,  const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Boolean (IGESSelect_Dumper::*)( IFSelect_SessionFile & ,  const opencascade::handle<Standard_Transient> &  ) const>(&IGESSelect_Dumper::WriteOwn),
@@ -487,12 +504,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_EditDirPart ,opencascade::handle<IGESSelect_EditDirPart>  , IFSelect_Editor >>(m.attr("IGESSelect_EditDirPart"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (IGESSelect_EditDirPart::*)() const) static_cast<TCollection_AsciiString (IGESSelect_EditDirPart::*)() const>(&IGESSelect_EditDirPart::Label),
@@ -525,12 +544,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_EditHeader ,opencascade::handle<IGESSelect_EditHeader>  , IFSelect_Editor >>(m.attr("IGESSelect_EditHeader"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (IGESSelect_EditHeader::*)() const) static_cast<TCollection_AsciiString (IGESSelect_EditHeader::*)() const>(&IGESSelect_EditHeader::Label),
@@ -563,11 +584,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_FileModifier ,opencascade::handle<IGESSelect_FileModifier> ,Py_IGESSelect_FileModifier , IFSelect_GeneralModifier >>(m.attr("IGESSelect_FileModifier"))
+    // constructors
+    // custom constructors
     // methods
         .def("Perform",
              (void (IGESSelect_FileModifier::*)( IFSelect_ContextWrite & ,  IGESData_IGESWriter &  ) const) static_cast<void (IGESSelect_FileModifier::*)( IFSelect_ContextWrite & ,  IGESData_IGESWriter &  ) const>(&IGESSelect_FileModifier::Perform),
@@ -585,12 +608,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_IGESName ,opencascade::handle<IGESSelect_IGESName>  , IFSelect_Signature >>(m.attr("IGESSelect_IGESName"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_CString (IGESSelect_IGESName::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_CString (IGESSelect_IGESName::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IGESSelect_IGESName::Value),
@@ -608,12 +633,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_IGESTypeForm ,opencascade::handle<IGESSelect_IGESTypeForm>  , IFSelect_Signature >>(m.attr("IGESSelect_IGESTypeForm"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("withform")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetForm",
              (void (IGESSelect_IGESTypeForm::*)( const Standard_Boolean  ) ) static_cast<void (IGESSelect_IGESTypeForm::*)( const Standard_Boolean  ) >(&IGESSelect_IGESTypeForm::SetForm),
@@ -634,11 +661,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_ModelModifier ,opencascade::handle<IGESSelect_ModelModifier> ,Py_IGESSelect_ModelModifier , IFSelect_Modifier >>(m.attr("IGESSelect_ModelModifier"))
+    // constructors
+    // custom constructors
     // methods
         .def("Perform",
              (void (IGESSelect_ModelModifier::*)( IFSelect_ContextModif & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_ModelModifier::*)( IFSelect_ContextModif & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CopyTool &  ) const>(&IGESSelect_ModelModifier::Perform),
@@ -662,12 +691,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectBasicGeom ,opencascade::handle<IGESSelect_SelectBasicGeom>  , IFSelect_SelectExplore >>(m.attr("IGESSelect_SelectBasicGeom"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("mode") )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (IGESSelect_SelectBasicGeom::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (IGESSelect_SelectBasicGeom::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&IGESSelect_SelectBasicGeom::Explore),
@@ -691,12 +722,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectBypassGroup ,opencascade::handle<IGESSelect_SelectBypassGroup>  , IFSelect_SelectExplore >>(m.attr("IGESSelect_SelectBypassGroup"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("level")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (IGESSelect_SelectBypassGroup::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (IGESSelect_SelectBypassGroup::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&IGESSelect_SelectBypassGroup::Explore),
@@ -717,12 +750,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectBypassSubfigure ,opencascade::handle<IGESSelect_SelectBypassSubfigure>  , IFSelect_SelectExplore >>(m.attr("IGESSelect_SelectBypassSubfigure"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("level")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (IGESSelect_SelectBypassSubfigure::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (IGESSelect_SelectBypassSubfigure::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&IGESSelect_SelectBypassSubfigure::Explore),
@@ -743,12 +778,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectDrawingFrom ,opencascade::handle<IGESSelect_SelectDrawingFrom>  , IFSelect_SelectDeduct >>(m.attr("IGESSelect_SelectDrawingFrom"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IGESSelect_SelectDrawingFrom::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IGESSelect_SelectDrawingFrom::*)( const Interface_Graph &  ) const>(&IGESSelect_SelectDrawingFrom::RootResult),
@@ -769,12 +806,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectFaces ,opencascade::handle<IGESSelect_SelectFaces>  , IFSelect_SelectExplore >>(m.attr("IGESSelect_SelectFaces"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (IGESSelect_SelectFaces::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (IGESSelect_SelectFaces::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&IGESSelect_SelectFaces::Explore),
@@ -795,12 +834,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectFromDrawing ,opencascade::handle<IGESSelect_SelectFromDrawing>  , IFSelect_SelectDeduct >>(m.attr("IGESSelect_SelectFromDrawing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IGESSelect_SelectFromDrawing::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IGESSelect_SelectFromDrawing::*)( const Interface_Graph &  ) const>(&IGESSelect_SelectFromDrawing::RootResult),
@@ -821,12 +862,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectFromSingleView ,opencascade::handle<IGESSelect_SelectFromSingleView>  , IFSelect_SelectDeduct >>(m.attr("IGESSelect_SelectFromSingleView"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IGESSelect_SelectFromSingleView::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IGESSelect_SelectFromSingleView::*)( const Interface_Graph &  ) const>(&IGESSelect_SelectFromSingleView::RootResult),
@@ -847,12 +890,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectLevelNumber ,opencascade::handle<IGESSelect_SelectLevelNumber>  , IFSelect_SelectExtract >>(m.attr("IGESSelect_SelectLevelNumber"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetLevelNumber",
              (void (IGESSelect_SelectLevelNumber::*)( const opencascade::handle<IFSelect_IntParam> &  ) ) static_cast<void (IGESSelect_SelectLevelNumber::*)( const opencascade::handle<IFSelect_IntParam> &  ) >(&IGESSelect_SelectLevelNumber::SetLevelNumber),
@@ -879,12 +924,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectName ,opencascade::handle<IGESSelect_SelectName>  , IFSelect_SelectExtract >>(m.attr("IGESSelect_SelectName"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Sort",
              (Standard_Boolean (IGESSelect_SelectName::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (IGESSelect_SelectName::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IGESSelect_SelectName::Sort),
@@ -911,12 +958,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectPCurves ,opencascade::handle<IGESSelect_SelectPCurves>  , IFSelect_SelectExplore >>(m.attr("IGESSelect_SelectPCurves"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("basic") )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (IGESSelect_SelectPCurves::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (IGESSelect_SelectPCurves::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&IGESSelect_SelectPCurves::Explore),
@@ -937,12 +986,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectSingleViewFrom ,opencascade::handle<IGESSelect_SelectSingleViewFrom>  , IFSelect_SelectDeduct >>(m.attr("IGESSelect_SelectSingleViewFrom"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IGESSelect_SelectSingleViewFrom::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IGESSelect_SelectSingleViewFrom::*)( const Interface_Graph &  ) const>(&IGESSelect_SelectSingleViewFrom::RootResult),
@@ -963,12 +1014,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectSubordinate ,opencascade::handle<IGESSelect_SelectSubordinate>  , IFSelect_SelectExtract >>(m.attr("IGESSelect_SelectSubordinate"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("status") )
+    // custom constructors
     // methods
         .def("Status",
              (Standard_Integer (IGESSelect_SelectSubordinate::*)() const) static_cast<Standard_Integer (IGESSelect_SelectSubordinate::*)() const>(&IGESSelect_SelectSubordinate::Status),
@@ -992,12 +1045,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SelectVisibleStatus ,opencascade::handle<IGESSelect_SelectVisibleStatus>  , IFSelect_SelectExtract >>(m.attr("IGESSelect_SelectVisibleStatus"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Sort",
              (Standard_Boolean (IGESSelect_SelectVisibleStatus::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (IGESSelect_SelectVisibleStatus::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IGESSelect_SelectVisibleStatus::Sort),
@@ -1018,12 +1073,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SignColor ,opencascade::handle<IGESSelect_SignColor>  , IFSelect_Signature >>(m.attr("IGESSelect_SignColor"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("mode") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_CString (IGESSelect_SignColor::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_CString (IGESSelect_SignColor::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IGESSelect_SignColor::Value),
@@ -1041,12 +1098,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SignLevelNumber ,opencascade::handle<IGESSelect_SignLevelNumber>  , IFSelect_Signature >>(m.attr("IGESSelect_SignLevelNumber"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("countmode") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_CString (IGESSelect_SignLevelNumber::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_CString (IGESSelect_SignLevelNumber::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IGESSelect_SignLevelNumber::Value),
@@ -1064,12 +1123,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SignStatus ,opencascade::handle<IGESSelect_SignStatus>  , IFSelect_Signature >>(m.attr("IGESSelect_SignStatus"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_CString (IGESSelect_SignStatus::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_CString (IGESSelect_SignStatus::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IGESSelect_SignStatus::Value),
@@ -1090,12 +1151,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SplineToBSpline ,opencascade::handle<IGESSelect_SplineToBSpline>  , IFSelect_Transformer >>(m.attr("IGESSelect_SplineToBSpline"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("tryC2") )
+    // custom constructors
     // methods
         .def("OptionTryC2",
              (Standard_Boolean (IGESSelect_SplineToBSpline::*)() const) static_cast<Standard_Boolean (IGESSelect_SplineToBSpline::*)() const>(&IGESSelect_SplineToBSpline::OptionTryC2),
@@ -1122,12 +1185,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_ViewSorter ,opencascade::handle<IGESSelect_ViewSorter>  , Standard_Transient >>(m.attr("IGESSelect_ViewSorter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (IGESSelect_ViewSorter::*)( const opencascade::handle<IGESData_IGESModel> &  ) ) static_cast<void (IGESSelect_ViewSorter::*)( const opencascade::handle<IGESData_IGESModel> &  ) >(&IGESSelect_ViewSorter::SetModel),
@@ -1178,12 +1243,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_WorkLibrary ,opencascade::handle<IGESSelect_WorkLibrary>  , IFSelect_WorkLibrary >>(m.attr("IGESSelect_WorkLibrary"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("modefnes")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("ReadFile",
              (Standard_Integer (IGESSelect_WorkLibrary::*)( const Standard_CString ,  opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> &  ) const) static_cast<Standard_Integer (IGESSelect_WorkLibrary::*)( const Standard_CString ,  opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> &  ) const>(&IGESSelect_WorkLibrary::ReadFile),
@@ -1210,12 +1277,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_AddFileComment ,opencascade::handle<IGESSelect_AddFileComment>  , IGESSelect_FileModifier >>(m.attr("IGESSelect_AddFileComment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (IGESSelect_AddFileComment::*)() ) static_cast<void (IGESSelect_AddFileComment::*)() >(&IGESSelect_AddFileComment::Clear),
@@ -1254,12 +1323,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_AddGroup ,opencascade::handle<IGESSelect_AddGroup>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_AddGroup"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_AddGroup::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_AddGroup::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_AddGroup::Performing),
@@ -1280,12 +1351,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_AutoCorrect ,opencascade::handle<IGESSelect_AutoCorrect>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_AutoCorrect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_AutoCorrect::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_AutoCorrect::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_AutoCorrect::Performing),
@@ -1306,12 +1379,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_ChangeLevelList ,opencascade::handle<IGESSelect_ChangeLevelList>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_ChangeLevelList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasOldNumber",
              (Standard_Boolean (IGESSelect_ChangeLevelList::*)() const) static_cast<Standard_Boolean (IGESSelect_ChangeLevelList::*)() const>(&IGESSelect_ChangeLevelList::HasOldNumber),
@@ -1350,12 +1425,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_ChangeLevelNumber ,opencascade::handle<IGESSelect_ChangeLevelNumber>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_ChangeLevelNumber"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasOldNumber",
              (Standard_Boolean (IGESSelect_ChangeLevelNumber::*)() const) static_cast<Standard_Boolean (IGESSelect_ChangeLevelNumber::*)() const>(&IGESSelect_ChangeLevelNumber::HasOldNumber),
@@ -1391,12 +1468,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_ComputeStatus ,opencascade::handle<IGESSelect_ComputeStatus>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_ComputeStatus"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_ComputeStatus::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_ComputeStatus::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_ComputeStatus::Performing),
@@ -1417,12 +1496,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_FloatFormat ,opencascade::handle<IGESSelect_FloatFormat>  , IGESSelect_FileModifier >>(m.attr("IGESSelect_FloatFormat"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetDefault",
              (void (IGESSelect_FloatFormat::*)( const Standard_Integer  ) ) static_cast<void (IGESSelect_FloatFormat::*)( const Standard_Integer  ) >(&IGESSelect_FloatFormat::SetDefault),
@@ -1458,12 +1539,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_RebuildDrawings ,opencascade::handle<IGESSelect_RebuildDrawings>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_RebuildDrawings"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_RebuildDrawings::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_RebuildDrawings::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_RebuildDrawings::Performing),
@@ -1484,12 +1567,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_RebuildGroups ,opencascade::handle<IGESSelect_RebuildGroups>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_RebuildGroups"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_RebuildGroups::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_RebuildGroups::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_RebuildGroups::Performing),
@@ -1510,12 +1595,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_RemoveCurves ,opencascade::handle<IGESSelect_RemoveCurves>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_RemoveCurves"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("UV") )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_RemoveCurves::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_RemoveCurves::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_RemoveCurves::Performing),
@@ -1536,12 +1623,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SetGlobalParameter ,opencascade::handle<IGESSelect_SetGlobalParameter>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_SetGlobalParameter"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("numpar") )
+    // custom constructors
     // methods
         .def("GlobalNumber",
              (Standard_Integer (IGESSelect_SetGlobalParameter::*)() const) static_cast<Standard_Integer (IGESSelect_SetGlobalParameter::*)() const>(&IGESSelect_SetGlobalParameter::GlobalNumber),
@@ -1571,12 +1660,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SetLabel ,opencascade::handle<IGESSelect_SetLabel>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_SetLabel"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Boolean >()  , py::arg("mode"),  py::arg("enforce") )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_SetLabel::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_SetLabel::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_SetLabel::Performing),
@@ -1597,12 +1688,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_SetVersion5 ,opencascade::handle<IGESSelect_SetVersion5>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_SetVersion5"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_SetVersion5::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_SetVersion5::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_SetVersion5::Performing),
@@ -1623,12 +1716,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_UpdateCreationDate ,opencascade::handle<IGESSelect_UpdateCreationDate>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_UpdateCreationDate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_UpdateCreationDate::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_UpdateCreationDate::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_UpdateCreationDate::Performing),
@@ -1649,12 +1744,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_UpdateFileName ,opencascade::handle<IGESSelect_UpdateFileName>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_UpdateFileName"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_UpdateFileName::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_UpdateFileName::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_UpdateFileName::Performing),
@@ -1675,12 +1772,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSelect_UpdateLastChange ,opencascade::handle<IGESSelect_UpdateLastChange>  , IGESSelect_ModelModifier >>(m.attr("IGESSelect_UpdateLastChange"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Performing",
              (void (IGESSelect_UpdateLastChange::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const) static_cast<void (IGESSelect_UpdateLastChange::*)( IFSelect_ContextModif & ,  const opencascade::handle<IGESData_IGESModel> & ,  Interface_CopyTool &  ) const>(&IGESSelect_UpdateLastChange::Performing),
@@ -1701,57 +1800,57 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESSelect_RemoveCurves.hxx
-// ./opencascade/IGESSelect_ChangeLevelList.hxx
-// ./opencascade/IGESSelect_SignColor.hxx
-// ./opencascade/IGESSelect_UpdateFileName.hxx
-// ./opencascade/IGESSelect_SignLevelNumber.hxx
-// ./opencascade/IGESSelect.hxx
-// ./opencascade/IGESSelect_SelectVisibleStatus.hxx
-// ./opencascade/IGESSelect_UpdateCreationDate.hxx
-// ./opencascade/IGESSelect_IGESTypeForm.hxx
-// ./opencascade/IGESSelect_EditHeader.hxx
-// ./opencascade/IGESSelect_SignStatus.hxx
-// ./opencascade/IGESSelect_SelectFromSingleView.hxx
-// ./opencascade/IGESSelect_IGESName.hxx
-// ./opencascade/IGESSelect_SelectBypassGroup.hxx
-// ./opencascade/IGESSelect_SplineToBSpline.hxx
-// ./opencascade/IGESSelect_RebuildGroups.hxx
-// ./opencascade/IGESSelect_SelectLevelNumber.hxx
-// ./opencascade/IGESSelect_SelectSingleViewFrom.hxx
-// ./opencascade/IGESSelect_SelectBypassSubfigure.hxx
-// ./opencascade/IGESSelect_ModelModifier.hxx
-// ./opencascade/IGESSelect_AddFileComment.hxx
-// ./opencascade/IGESSelect_SetGlobalParameter.hxx
-// ./opencascade/IGESSelect_ChangeLevelNumber.hxx
-// ./opencascade/IGESSelect_UpdateLastChange.hxx
-// ./opencascade/IGESSelect_SetVersion5.hxx
 // ./opencascade/IGESSelect_DispPerSingleView.hxx
-// ./opencascade/IGESSelect_EditDirPart.hxx
+// ./opencascade/IGESSelect_SelectFromDrawing.hxx
+// ./opencascade/IGESSelect_ChangeLevelNumber.hxx
+// ./opencascade/IGESSelect_SelectBasicGeom.hxx
+// ./opencascade/IGESSelect_SignColor.hxx
+// ./opencascade/IGESSelect_SetVersion5.hxx
+// ./opencascade/IGESSelect_SelectPCurves.hxx
+// ./opencascade/IGESSelect_SelectBypassGroup.hxx
+// ./opencascade/IGESSelect_Activator.hxx
+// ./opencascade/IGESSelect_AutoCorrect.hxx
+// ./opencascade/IGESSelect_SplineToBSpline.hxx
 // ./opencascade/IGESSelect_CounterOfLevelNumber.hxx
+// ./opencascade/IGESSelect_SelectVisibleStatus.hxx
+// ./opencascade/IGESSelect_IGESName.hxx
+// ./opencascade/IGESSelect_IGESTypeForm.hxx
+// ./opencascade/IGESSelect_UpdateLastChange.hxx
+// ./opencascade/IGESSelect_Dumper.hxx
+// ./opencascade/IGESSelect_RebuildGroups.hxx
+// ./opencascade/IGESSelect_SelectFaces.hxx
+// ./opencascade/IGESSelect_SetLabel.hxx
+// ./opencascade/IGESSelect_DispPerDrawing.hxx
+// ./opencascade/IGESSelect_AddFileComment.hxx
+// ./opencascade/IGESSelect_SignLevelNumber.hxx
+// ./opencascade/IGESSelect_UpdateCreationDate.hxx
+// ./opencascade/IGESSelect_ComputeStatus.hxx
+// ./opencascade/IGESSelect_SignStatus.hxx
+// ./opencascade/IGESSelect_SetGlobalParameter.hxx
+// ./opencascade/IGESSelect_ChangeLevelList.hxx
+// ./opencascade/IGESSelect_SelectSingleViewFrom.hxx
+// ./opencascade/IGESSelect_SelectLevelNumber.hxx
 // ./opencascade/IGESSelect_FloatFormat.hxx
 // ./opencascade/IGESSelect_SelectSubordinate.hxx
-// ./opencascade/IGESSelect_SelectPCurves.hxx
-// ./opencascade/IGESSelect_SetLabel.hxx
-// ./opencascade/IGESSelect_ViewSorter.hxx
-// ./opencascade/IGESSelect_ComputeStatus.hxx
-// ./opencascade/IGESSelect_SelectDrawingFrom.hxx
-// ./opencascade/IGESSelect_SelectBasicGeom.hxx
-// ./opencascade/IGESSelect_SelectName.hxx
-// ./opencascade/IGESSelect_SelectFaces.hxx
-// ./opencascade/IGESSelect_Dumper.hxx
-// ./opencascade/IGESSelect_RebuildDrawings.hxx
+// ./opencascade/IGESSelect_SelectFromSingleView.hxx
+// ./opencascade/IGESSelect_SelectBypassSubfigure.hxx
+// ./opencascade/IGESSelect_RemoveCurves.hxx
 // ./opencascade/IGESSelect_WorkLibrary.hxx
-// ./opencascade/IGESSelect_DispPerDrawing.hxx
-// ./opencascade/IGESSelect_Activator.hxx
-// ./opencascade/IGESSelect_AddGroup.hxx
-// ./opencascade/IGESSelect_AutoCorrect.hxx
-// ./opencascade/IGESSelect_SelectFromDrawing.hxx
 // ./opencascade/IGESSelect_FileModifier.hxx
+// ./opencascade/IGESSelect_EditDirPart.hxx
+// ./opencascade/IGESSelect_EditHeader.hxx
+// ./opencascade/IGESSelect_ViewSorter.hxx
+// ./opencascade/IGESSelect_SelectName.hxx
+// ./opencascade/IGESSelect_RebuildDrawings.hxx
+// ./opencascade/IGESSelect_AddGroup.hxx
+// ./opencascade/IGESSelect_ModelModifier.hxx
+// ./opencascade/IGESSelect_UpdateFileName.hxx
+// ./opencascade/IGESSelect.hxx
+// ./opencascade/IGESSelect_SelectDrawingFrom.hxx
 
 // operators
 

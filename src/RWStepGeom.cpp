@@ -15,89 +15,12 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext.hxx>
+#include <StepGeom_UniformCurve.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_Ellipse.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_UniformSurfaceAndRationalBSplineSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_OuterBoundaryCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BezierSurfaceAndRationalBSplineSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_GeometricRepresentationContextAndParametricRepresentationContext.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_SurfaceOfRevolution.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BezierCurveAndRationalBSplineCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_CurveReplica.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_QuasiUniformSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_PointOnCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_SurfacePatch.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_OffsetCurve3d.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_CartesianTransformationOperator3d.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_SurfaceReplica.hxx>
+#include <StepGeom_BSplineSurface.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -107,83 +30,26 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_UniformCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_GeometricRepresentationContext.hxx>
+#include <StepGeom_Curve.hxx>
 #include <StepData_StepWriter.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_Direction.hxx>
+#include <StepGeom_Point.hxx>
 #include <StepData_StepWriter.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_QuasiUniformCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
 #include <StepGeom_BoundedCurve.hxx>
 #include <StepData_StepWriter.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_Plane.hxx>
+#include <StepGeom_QuasiUniformSurface.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_SeamCurve.hxx>
+#include <StepGeom_DegenerateToroidalSurface.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_CylindricalSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_RationalBSplineCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_ToroidalSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_RectangularCompositeSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_GeometricRepresentationItem.hxx>
-#include <StepData_StepWriter.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BoundedSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_OrientedSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Vector.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
 #include <StepGeom_SurfaceCurve.hxx>
@@ -191,48 +57,7 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_Conic.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_PointReplica.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BezierCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_CompositeCurveOnSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_RationalBSplineSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BezierSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_EvaluatedDegeneratePcurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Axis2Placement2d.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_TrimmedCurve.hxx>
+#include <StepGeom_QuasiUniformCurveAndRationalBSplineCurve.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -242,98 +67,17 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_RectangularTrimmedSurface.hxx>
+#include <StepGeom_PointOnCurve.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_BSplineCurve.hxx>
+#include <StepGeom_RectangularCompositeSurface.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepData_StepWriter.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_SurfaceOfLinearExtrusion.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BSplineCurveWithKnots.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_CartesianTransformationOperator.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_CompositeCurveSegment.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Line.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Axis2Placement3d.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_SweptSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Circle.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Axis1Placement.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_ConicalSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_UniformSurface.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Pcurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BoundaryCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_SurfaceCurveAndBoundedCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_BSplineSurfaceWithKnots.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_ShareTool.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_SphericalSurface.hxx>
+#include <StepGeom_PointReplica.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -344,45 +88,12 @@ namespace py = pybind11;
 #include <Interface_ShareTool.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_Point.hxx>
-#include <StepData_StepWriter.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_OffsetSurface.hxx>
+#include <StepGeom_Conic.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_IntersectionCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Curve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_DegeneratePcurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Placement.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_Parabola.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_CompositeCurve.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepGeom_PointOnSurface.hxx>
+#include <StepGeom_EvaluatedDegeneratePcurve.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -391,17 +102,22 @@ namespace py = pybind11;
 #include <StepData_StepWriter.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_Hyperbola.hxx>
+#include <StepGeom_Axis1Placement.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_BSplineSurface.hxx>
+#include <StepGeom_Line.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_ReparametrisedCompositeCurveSegment.hxx>
+#include <StepGeom_OffsetSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_UniformSurfaceAndRationalBSplineSurface.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -411,17 +127,301 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
+#include <StepGeom_Axis2Placement2d.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BSplineCurveWithKnots.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Vector.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_IntersectionCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Hyperbola.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_RationalBSplineSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_GeometricRepresentationContextAndParametricRepresentationContext.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BSplineCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_OuterBoundaryCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BoundaryCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_UniformSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BezierCurveAndRationalBSplineCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Pcurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BoundedSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Parabola.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_CartesianTransformationOperator.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Ellipse.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SurfaceReplica.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
 #include <StepGeom_Polyline.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_QuasiUniformCurveAndRationalBSplineCurve.hxx>
+#include <StepGeom_CurveReplica.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepGeom_DegenerateToroidalSurface.hxx>
+#include <StepGeom_RectangularTrimmedSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_CompositeCurveOnSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_ReparametrisedCompositeCurveSegment.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Axis2Placement3d.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_CylindricalSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_GeometricRepresentationContext.hxx>
+#include <StepData_StepWriter.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_CompositeCurveSegment.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Circle.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SurfaceCurveAndBoundedCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SeamCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_GeometricRepresentationItem.hxx>
+#include <StepData_StepWriter.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BezierCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_QuasiUniformCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_DegeneratePcurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_RationalBSplineCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Placement.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BSplineSurfaceWithKnots.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_CompositeCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Plane.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepData_StepWriter.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_TrimmedCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_ConicalSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_OffsetCurve3d.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_ToroidalSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SphericalSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_Direction.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_ShareTool.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_OrientedSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SurfacePatch.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SurfaceOfRevolution.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SurfaceOfLinearExtrusion.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_SweptSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_CartesianTransformationOperator3d.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BezierSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_BezierSurfaceAndRationalBSplineSurface.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepGeom_PointOnSurface.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 
@@ -530,7 +530,9 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
 
 
     static_cast<py::class_<RWStepGeom_RWAxis1Placement , shared_ptr<RWStepGeom_RWAxis1Placement>  >>(m.attr("RWStepGeom_RWAxis1Placement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWAxis1Placement::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Axis1Placement> &  ) const) static_cast<void (RWStepGeom_RWAxis1Placement::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Axis1Placement> &  ) const>(&RWStepGeom_RWAxis1Placement::ReadStep),
@@ -545,12 +547,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWAxis2Placement2d , shared_ptr<RWStepGeom_RWAxis2Placement2d>  >>(m.attr("RWStepGeom_RWAxis2Placement2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWAxis2Placement2d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Axis2Placement2d> &  ) const) static_cast<void (RWStepGeom_RWAxis2Placement2d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Axis2Placement2d> &  ) const>(&RWStepGeom_RWAxis2Placement2d::ReadStep),
@@ -565,12 +569,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWAxis2Placement3d , shared_ptr<RWStepGeom_RWAxis2Placement3d>  >>(m.attr("RWStepGeom_RWAxis2Placement3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWAxis2Placement3d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) const) static_cast<void (RWStepGeom_RWAxis2Placement3d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) const>(&RWStepGeom_RWAxis2Placement3d::ReadStep),
@@ -585,12 +591,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBSplineCurve , shared_ptr<RWStepGeom_RWBSplineCurve>  >>(m.attr("RWStepGeom_RWBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineCurve> &  ) const) static_cast<void (RWStepGeom_RWBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineCurve> &  ) const>(&RWStepGeom_RWBSplineCurve::ReadStep),
@@ -605,12 +613,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBSplineCurveWithKnots , shared_ptr<RWStepGeom_RWBSplineCurveWithKnots>  >>(m.attr("RWStepGeom_RWBSplineCurveWithKnots"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBSplineCurveWithKnots::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineCurveWithKnots> &  ) const) static_cast<void (RWStepGeom_RWBSplineCurveWithKnots::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineCurveWithKnots> &  ) const>(&RWStepGeom_RWBSplineCurveWithKnots::ReadStep),
@@ -628,12 +638,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve , shared_ptr<RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve>  >>(m.attr("RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve> &  ) const) static_cast<void (RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve> &  ) const>(&RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve::ReadStep),
@@ -651,12 +663,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBSplineSurface , shared_ptr<RWStepGeom_RWBSplineSurface>  >>(m.attr("RWStepGeom_RWBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineSurface> &  ) const) static_cast<void (RWStepGeom_RWBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineSurface> &  ) const>(&RWStepGeom_RWBSplineSurface::ReadStep),
@@ -671,12 +685,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBSplineSurfaceWithKnots , shared_ptr<RWStepGeom_RWBSplineSurfaceWithKnots>  >>(m.attr("RWStepGeom_RWBSplineSurfaceWithKnots"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBSplineSurfaceWithKnots::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineSurfaceWithKnots> &  ) const) static_cast<void (RWStepGeom_RWBSplineSurfaceWithKnots::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineSurfaceWithKnots> &  ) const>(&RWStepGeom_RWBSplineSurfaceWithKnots::ReadStep),
@@ -694,12 +710,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface , shared_ptr<RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface>  >>(m.attr("RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface> &  ) const) static_cast<void (RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface> &  ) const>(&RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface::ReadStep),
@@ -717,12 +735,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBezierCurve , shared_ptr<RWStepGeom_RWBezierCurve>  >>(m.attr("RWStepGeom_RWBezierCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBezierCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierCurve> &  ) const) static_cast<void (RWStepGeom_RWBezierCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierCurve> &  ) const>(&RWStepGeom_RWBezierCurve::ReadStep),
@@ -737,12 +757,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBezierCurveAndRationalBSplineCurve , shared_ptr<RWStepGeom_RWBezierCurveAndRationalBSplineCurve>  >>(m.attr("RWStepGeom_RWBezierCurveAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBezierCurveAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierCurveAndRationalBSplineCurve> &  ) const) static_cast<void (RWStepGeom_RWBezierCurveAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierCurveAndRationalBSplineCurve> &  ) const>(&RWStepGeom_RWBezierCurveAndRationalBSplineCurve::ReadStep),
@@ -757,12 +779,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBezierSurface , shared_ptr<RWStepGeom_RWBezierSurface>  >>(m.attr("RWStepGeom_RWBezierSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBezierSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierSurface> &  ) const) static_cast<void (RWStepGeom_RWBezierSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierSurface> &  ) const>(&RWStepGeom_RWBezierSurface::ReadStep),
@@ -777,12 +801,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface , shared_ptr<RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface>  >>(m.attr("RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierSurfaceAndRationalBSplineSurface> &  ) const) static_cast<void (RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BezierSurfaceAndRationalBSplineSurface> &  ) const>(&RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface::ReadStep),
@@ -797,12 +823,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBoundaryCurve , shared_ptr<RWStepGeom_RWBoundaryCurve>  >>(m.attr("RWStepGeom_RWBoundaryCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBoundaryCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BoundaryCurve> &  ) const) static_cast<void (RWStepGeom_RWBoundaryCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BoundaryCurve> &  ) const>(&RWStepGeom_RWBoundaryCurve::ReadStep),
@@ -817,12 +845,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBoundedCurve , shared_ptr<RWStepGeom_RWBoundedCurve>  >>(m.attr("RWStepGeom_RWBoundedCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBoundedCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BoundedCurve> &  ) const) static_cast<void (RWStepGeom_RWBoundedCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BoundedCurve> &  ) const>(&RWStepGeom_RWBoundedCurve::ReadStep),
@@ -834,12 +864,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWBoundedSurface , shared_ptr<RWStepGeom_RWBoundedSurface>  >>(m.attr("RWStepGeom_RWBoundedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWBoundedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BoundedSurface> &  ) const) static_cast<void (RWStepGeom_RWBoundedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_BoundedSurface> &  ) const>(&RWStepGeom_RWBoundedSurface::ReadStep),
@@ -851,12 +883,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCartesianPoint , shared_ptr<RWStepGeom_RWCartesianPoint>  >>(m.attr("RWStepGeom_RWCartesianPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCartesianPoint::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) const) static_cast<void (RWStepGeom_RWCartesianPoint::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) const>(&RWStepGeom_RWCartesianPoint::ReadStep),
@@ -868,12 +902,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCartesianTransformationOperator , shared_ptr<RWStepGeom_RWCartesianTransformationOperator>  >>(m.attr("RWStepGeom_RWCartesianTransformationOperator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCartesianTransformationOperator::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator> &  ) const) static_cast<void (RWStepGeom_RWCartesianTransformationOperator::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator> &  ) const>(&RWStepGeom_RWCartesianTransformationOperator::ReadStep),
@@ -888,12 +924,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCartesianTransformationOperator3d , shared_ptr<RWStepGeom_RWCartesianTransformationOperator3d>  >>(m.attr("RWStepGeom_RWCartesianTransformationOperator3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCartesianTransformationOperator3d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator3d> &  ) const) static_cast<void (RWStepGeom_RWCartesianTransformationOperator3d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator3d> &  ) const>(&RWStepGeom_RWCartesianTransformationOperator3d::ReadStep),
@@ -908,12 +946,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCircle , shared_ptr<RWStepGeom_RWCircle>  >>(m.attr("RWStepGeom_RWCircle"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCircle::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Circle> &  ) const) static_cast<void (RWStepGeom_RWCircle::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Circle> &  ) const>(&RWStepGeom_RWCircle::ReadStep),
@@ -928,12 +968,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCompositeCurve , shared_ptr<RWStepGeom_RWCompositeCurve>  >>(m.attr("RWStepGeom_RWCompositeCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCompositeCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CompositeCurve> &  ) const) static_cast<void (RWStepGeom_RWCompositeCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CompositeCurve> &  ) const>(&RWStepGeom_RWCompositeCurve::ReadStep),
@@ -948,12 +990,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCompositeCurveOnSurface , shared_ptr<RWStepGeom_RWCompositeCurveOnSurface>  >>(m.attr("RWStepGeom_RWCompositeCurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCompositeCurveOnSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CompositeCurveOnSurface> &  ) const) static_cast<void (RWStepGeom_RWCompositeCurveOnSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CompositeCurveOnSurface> &  ) const>(&RWStepGeom_RWCompositeCurveOnSurface::ReadStep),
@@ -968,12 +1012,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCompositeCurveSegment , shared_ptr<RWStepGeom_RWCompositeCurveSegment>  >>(m.attr("RWStepGeom_RWCompositeCurveSegment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCompositeCurveSegment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CompositeCurveSegment> &  ) const) static_cast<void (RWStepGeom_RWCompositeCurveSegment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CompositeCurveSegment> &  ) const>(&RWStepGeom_RWCompositeCurveSegment::ReadStep),
@@ -988,12 +1034,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWConic , shared_ptr<RWStepGeom_RWConic>  >>(m.attr("RWStepGeom_RWConic"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWConic::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Conic> &  ) const) static_cast<void (RWStepGeom_RWConic::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Conic> &  ) const>(&RWStepGeom_RWConic::ReadStep),
@@ -1008,12 +1056,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWConicalSurface , shared_ptr<RWStepGeom_RWConicalSurface>  >>(m.attr("RWStepGeom_RWConicalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWConicalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ConicalSurface> &  ) const) static_cast<void (RWStepGeom_RWConicalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ConicalSurface> &  ) const>(&RWStepGeom_RWConicalSurface::ReadStep),
@@ -1028,12 +1078,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCurve , shared_ptr<RWStepGeom_RWCurve>  >>(m.attr("RWStepGeom_RWCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Curve> &  ) const) static_cast<void (RWStepGeom_RWCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Curve> &  ) const>(&RWStepGeom_RWCurve::ReadStep),
@@ -1045,12 +1097,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCurveBoundedSurface , shared_ptr<RWStepGeom_RWCurveBoundedSurface>  >>(m.attr("RWStepGeom_RWCurveBoundedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCurveBoundedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> &  ) const) static_cast<void (RWStepGeom_RWCurveBoundedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> &  ) const>(&RWStepGeom_RWCurveBoundedSurface::ReadStep),
@@ -1065,12 +1119,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCurveReplica , shared_ptr<RWStepGeom_RWCurveReplica>  >>(m.attr("RWStepGeom_RWCurveReplica"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCurveReplica::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CurveReplica> &  ) const) static_cast<void (RWStepGeom_RWCurveReplica::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CurveReplica> &  ) const>(&RWStepGeom_RWCurveReplica::ReadStep),
@@ -1085,12 +1141,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWCylindricalSurface , shared_ptr<RWStepGeom_RWCylindricalSurface>  >>(m.attr("RWStepGeom_RWCylindricalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWCylindricalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CylindricalSurface> &  ) const) static_cast<void (RWStepGeom_RWCylindricalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_CylindricalSurface> &  ) const>(&RWStepGeom_RWCylindricalSurface::ReadStep),
@@ -1105,12 +1163,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWDegeneratePcurve , shared_ptr<RWStepGeom_RWDegeneratePcurve>  >>(m.attr("RWStepGeom_RWDegeneratePcurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWDegeneratePcurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_DegeneratePcurve> &  ) const) static_cast<void (RWStepGeom_RWDegeneratePcurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_DegeneratePcurve> &  ) const>(&RWStepGeom_RWDegeneratePcurve::ReadStep),
@@ -1125,12 +1185,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWDegenerateToroidalSurface , shared_ptr<RWStepGeom_RWDegenerateToroidalSurface>  >>(m.attr("RWStepGeom_RWDegenerateToroidalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWDegenerateToroidalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_DegenerateToroidalSurface> &  ) const) static_cast<void (RWStepGeom_RWDegenerateToroidalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_DegenerateToroidalSurface> &  ) const>(&RWStepGeom_RWDegenerateToroidalSurface::ReadStep),
@@ -1145,12 +1207,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWDirection , shared_ptr<RWStepGeom_RWDirection>  >>(m.attr("RWStepGeom_RWDirection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWDirection::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Direction> &  ) const) static_cast<void (RWStepGeom_RWDirection::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Direction> &  ) const>(&RWStepGeom_RWDirection::ReadStep),
@@ -1165,12 +1229,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWElementarySurface , shared_ptr<RWStepGeom_RWElementarySurface>  >>(m.attr("RWStepGeom_RWElementarySurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWElementarySurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ElementarySurface> &  ) const) static_cast<void (RWStepGeom_RWElementarySurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ElementarySurface> &  ) const>(&RWStepGeom_RWElementarySurface::ReadStep),
@@ -1185,12 +1251,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWEllipse , shared_ptr<RWStepGeom_RWEllipse>  >>(m.attr("RWStepGeom_RWEllipse"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWEllipse::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Ellipse> &  ) const) static_cast<void (RWStepGeom_RWEllipse::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Ellipse> &  ) const>(&RWStepGeom_RWEllipse::ReadStep),
@@ -1208,12 +1276,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWEvaluatedDegeneratePcurve , shared_ptr<RWStepGeom_RWEvaluatedDegeneratePcurve>  >>(m.attr("RWStepGeom_RWEvaluatedDegeneratePcurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWEvaluatedDegeneratePcurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_EvaluatedDegeneratePcurve> &  ) const) static_cast<void (RWStepGeom_RWEvaluatedDegeneratePcurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_EvaluatedDegeneratePcurve> &  ) const>(&RWStepGeom_RWEvaluatedDegeneratePcurve::ReadStep),
@@ -1228,12 +1298,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx , shared_ptr<RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx>  >>(m.attr("RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx> &  ) const) static_cast<void (RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx> &  ) const>(&RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx::ReadStep),
@@ -1248,12 +1320,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWGeometricRepresentationContext , shared_ptr<RWStepGeom_RWGeometricRepresentationContext>  >>(m.attr("RWStepGeom_RWGeometricRepresentationContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWGeometricRepresentationContext::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> &  ) const) static_cast<void (RWStepGeom_RWGeometricRepresentationContext::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> &  ) const>(&RWStepGeom_RWGeometricRepresentationContext::ReadStep),
@@ -1265,12 +1339,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext , shared_ptr<RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext>  >>(m.attr("RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext> &  ) const) static_cast<void (RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext> &  ) const>(&RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext::ReadStep),
@@ -1285,12 +1361,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext , shared_ptr<RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext>  >>(m.attr("RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContextAndParametricRepresentationContext> &  ) const) static_cast<void (RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContextAndParametricRepresentationContext> &  ) const>(&RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext::ReadStep),
@@ -1305,12 +1383,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWGeometricRepresentationItem , shared_ptr<RWStepGeom_RWGeometricRepresentationItem>  >>(m.attr("RWStepGeom_RWGeometricRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWGeometricRepresentationItem::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationItem> &  ) const) static_cast<void (RWStepGeom_RWGeometricRepresentationItem::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_GeometricRepresentationItem> &  ) const>(&RWStepGeom_RWGeometricRepresentationItem::ReadStep),
@@ -1322,12 +1402,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWHyperbola , shared_ptr<RWStepGeom_RWHyperbola>  >>(m.attr("RWStepGeom_RWHyperbola"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWHyperbola::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Hyperbola> &  ) const) static_cast<void (RWStepGeom_RWHyperbola::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Hyperbola> &  ) const>(&RWStepGeom_RWHyperbola::ReadStep),
@@ -1342,12 +1424,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWIntersectionCurve , shared_ptr<RWStepGeom_RWIntersectionCurve>  >>(m.attr("RWStepGeom_RWIntersectionCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWIntersectionCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_IntersectionCurve> &  ) const) static_cast<void (RWStepGeom_RWIntersectionCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_IntersectionCurve> &  ) const>(&RWStepGeom_RWIntersectionCurve::ReadStep),
@@ -1362,12 +1446,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWLine , shared_ptr<RWStepGeom_RWLine>  >>(m.attr("RWStepGeom_RWLine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWLine::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Line> &  ) const) static_cast<void (RWStepGeom_RWLine::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Line> &  ) const>(&RWStepGeom_RWLine::ReadStep),
@@ -1382,12 +1468,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWOffsetCurve3d , shared_ptr<RWStepGeom_RWOffsetCurve3d>  >>(m.attr("RWStepGeom_RWOffsetCurve3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWOffsetCurve3d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OffsetCurve3d> &  ) const) static_cast<void (RWStepGeom_RWOffsetCurve3d::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OffsetCurve3d> &  ) const>(&RWStepGeom_RWOffsetCurve3d::ReadStep),
@@ -1402,12 +1490,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWOffsetSurface , shared_ptr<RWStepGeom_RWOffsetSurface>  >>(m.attr("RWStepGeom_RWOffsetSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWOffsetSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OffsetSurface> &  ) const) static_cast<void (RWStepGeom_RWOffsetSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OffsetSurface> &  ) const>(&RWStepGeom_RWOffsetSurface::ReadStep),
@@ -1422,12 +1512,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWOrientedSurface , shared_ptr<RWStepGeom_RWOrientedSurface>  >>(m.attr("RWStepGeom_RWOrientedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWOrientedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OrientedSurface> &  ) const) static_cast<void (RWStepGeom_RWOrientedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OrientedSurface> &  ) const>(&RWStepGeom_RWOrientedSurface::ReadStep),
@@ -1442,12 +1534,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWOuterBoundaryCurve , shared_ptr<RWStepGeom_RWOuterBoundaryCurve>  >>(m.attr("RWStepGeom_RWOuterBoundaryCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWOuterBoundaryCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OuterBoundaryCurve> &  ) const) static_cast<void (RWStepGeom_RWOuterBoundaryCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_OuterBoundaryCurve> &  ) const>(&RWStepGeom_RWOuterBoundaryCurve::ReadStep),
@@ -1462,12 +1556,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWParabola , shared_ptr<RWStepGeom_RWParabola>  >>(m.attr("RWStepGeom_RWParabola"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWParabola::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Parabola> &  ) const) static_cast<void (RWStepGeom_RWParabola::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Parabola> &  ) const>(&RWStepGeom_RWParabola::ReadStep),
@@ -1482,12 +1578,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPcurve , shared_ptr<RWStepGeom_RWPcurve>  >>(m.attr("RWStepGeom_RWPcurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPcurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Pcurve> &  ) const) static_cast<void (RWStepGeom_RWPcurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Pcurve> &  ) const>(&RWStepGeom_RWPcurve::ReadStep),
@@ -1502,12 +1600,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPlacement , shared_ptr<RWStepGeom_RWPlacement>  >>(m.attr("RWStepGeom_RWPlacement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPlacement::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Placement> &  ) const) static_cast<void (RWStepGeom_RWPlacement::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Placement> &  ) const>(&RWStepGeom_RWPlacement::ReadStep),
@@ -1522,12 +1622,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPlane , shared_ptr<RWStepGeom_RWPlane>  >>(m.attr("RWStepGeom_RWPlane"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPlane::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Plane> &  ) const) static_cast<void (RWStepGeom_RWPlane::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Plane> &  ) const>(&RWStepGeom_RWPlane::ReadStep),
@@ -1542,12 +1644,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPoint , shared_ptr<RWStepGeom_RWPoint>  >>(m.attr("RWStepGeom_RWPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPoint::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Point> &  ) const) static_cast<void (RWStepGeom_RWPoint::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Point> &  ) const>(&RWStepGeom_RWPoint::ReadStep),
@@ -1559,12 +1663,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPointOnCurve , shared_ptr<RWStepGeom_RWPointOnCurve>  >>(m.attr("RWStepGeom_RWPointOnCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPointOnCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_PointOnCurve> &  ) const) static_cast<void (RWStepGeom_RWPointOnCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_PointOnCurve> &  ) const>(&RWStepGeom_RWPointOnCurve::ReadStep),
@@ -1579,12 +1685,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPointOnSurface , shared_ptr<RWStepGeom_RWPointOnSurface>  >>(m.attr("RWStepGeom_RWPointOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPointOnSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_PointOnSurface> &  ) const) static_cast<void (RWStepGeom_RWPointOnSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_PointOnSurface> &  ) const>(&RWStepGeom_RWPointOnSurface::ReadStep),
@@ -1599,12 +1707,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPointReplica , shared_ptr<RWStepGeom_RWPointReplica>  >>(m.attr("RWStepGeom_RWPointReplica"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPointReplica::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_PointReplica> &  ) const) static_cast<void (RWStepGeom_RWPointReplica::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_PointReplica> &  ) const>(&RWStepGeom_RWPointReplica::ReadStep),
@@ -1619,12 +1729,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWPolyline , shared_ptr<RWStepGeom_RWPolyline>  >>(m.attr("RWStepGeom_RWPolyline"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWPolyline::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Polyline> &  ) const) static_cast<void (RWStepGeom_RWPolyline::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Polyline> &  ) const>(&RWStepGeom_RWPolyline::ReadStep),
@@ -1639,12 +1751,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWQuasiUniformCurve , shared_ptr<RWStepGeom_RWQuasiUniformCurve>  >>(m.attr("RWStepGeom_RWQuasiUniformCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWQuasiUniformCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformCurve> &  ) const) static_cast<void (RWStepGeom_RWQuasiUniformCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformCurve> &  ) const>(&RWStepGeom_RWQuasiUniformCurve::ReadStep),
@@ -1659,12 +1773,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve , shared_ptr<RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve>  >>(m.attr("RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformCurveAndRationalBSplineCurve> &  ) const) static_cast<void (RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformCurveAndRationalBSplineCurve> &  ) const>(&RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve::ReadStep),
@@ -1679,12 +1795,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWQuasiUniformSurface , shared_ptr<RWStepGeom_RWQuasiUniformSurface>  >>(m.attr("RWStepGeom_RWQuasiUniformSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWQuasiUniformSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformSurface> &  ) const) static_cast<void (RWStepGeom_RWQuasiUniformSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformSurface> &  ) const>(&RWStepGeom_RWQuasiUniformSurface::ReadStep),
@@ -1699,12 +1817,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface , shared_ptr<RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface>  >>(m.attr("RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface> &  ) const) static_cast<void (RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface> &  ) const>(&RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface::ReadStep),
@@ -1719,12 +1839,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWRationalBSplineCurve , shared_ptr<RWStepGeom_RWRationalBSplineCurve>  >>(m.attr("RWStepGeom_RWRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) const) static_cast<void (RWStepGeom_RWRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) const>(&RWStepGeom_RWRationalBSplineCurve::ReadStep),
@@ -1742,12 +1864,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWRationalBSplineSurface , shared_ptr<RWStepGeom_RWRationalBSplineSurface>  >>(m.attr("RWStepGeom_RWRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) const) static_cast<void (RWStepGeom_RWRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) const>(&RWStepGeom_RWRationalBSplineSurface::ReadStep),
@@ -1765,12 +1889,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWRectangularCompositeSurface , shared_ptr<RWStepGeom_RWRectangularCompositeSurface>  >>(m.attr("RWStepGeom_RWRectangularCompositeSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWRectangularCompositeSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RectangularCompositeSurface> &  ) const) static_cast<void (RWStepGeom_RWRectangularCompositeSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RectangularCompositeSurface> &  ) const>(&RWStepGeom_RWRectangularCompositeSurface::ReadStep),
@@ -1785,12 +1911,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWRectangularTrimmedSurface , shared_ptr<RWStepGeom_RWRectangularTrimmedSurface>  >>(m.attr("RWStepGeom_RWRectangularTrimmedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWRectangularTrimmedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RectangularTrimmedSurface> &  ) const) static_cast<void (RWStepGeom_RWRectangularTrimmedSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_RectangularTrimmedSurface> &  ) const>(&RWStepGeom_RWRectangularTrimmedSurface::ReadStep),
@@ -1805,12 +1933,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWReparametrisedCompositeCurveSegment , shared_ptr<RWStepGeom_RWReparametrisedCompositeCurveSegment>  >>(m.attr("RWStepGeom_RWReparametrisedCompositeCurveSegment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWReparametrisedCompositeCurveSegment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ReparametrisedCompositeCurveSegment> &  ) const) static_cast<void (RWStepGeom_RWReparametrisedCompositeCurveSegment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ReparametrisedCompositeCurveSegment> &  ) const>(&RWStepGeom_RWReparametrisedCompositeCurveSegment::ReadStep),
@@ -1825,12 +1955,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSeamCurve , shared_ptr<RWStepGeom_RWSeamCurve>  >>(m.attr("RWStepGeom_RWSeamCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSeamCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SeamCurve> &  ) const) static_cast<void (RWStepGeom_RWSeamCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SeamCurve> &  ) const>(&RWStepGeom_RWSeamCurve::ReadStep),
@@ -1845,12 +1977,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSphericalSurface , shared_ptr<RWStepGeom_RWSphericalSurface>  >>(m.attr("RWStepGeom_RWSphericalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSphericalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SphericalSurface> &  ) const) static_cast<void (RWStepGeom_RWSphericalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SphericalSurface> &  ) const>(&RWStepGeom_RWSphericalSurface::ReadStep),
@@ -1865,12 +1999,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSurface , shared_ptr<RWStepGeom_RWSurface>  >>(m.attr("RWStepGeom_RWSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Surface> &  ) const) static_cast<void (RWStepGeom_RWSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Surface> &  ) const>(&RWStepGeom_RWSurface::ReadStep),
@@ -1882,12 +2018,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSurfaceCurve , shared_ptr<RWStepGeom_RWSurfaceCurve>  >>(m.attr("RWStepGeom_RWSurfaceCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSurfaceCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceCurve> &  ) const) static_cast<void (RWStepGeom_RWSurfaceCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceCurve> &  ) const>(&RWStepGeom_RWSurfaceCurve::ReadStep),
@@ -1902,12 +2040,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSurfaceCurveAndBoundedCurve , shared_ptr<RWStepGeom_RWSurfaceCurveAndBoundedCurve>  >>(m.attr("RWStepGeom_RWSurfaceCurveAndBoundedCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSurfaceCurveAndBoundedCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceCurveAndBoundedCurve> &  ) const) static_cast<void (RWStepGeom_RWSurfaceCurveAndBoundedCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceCurveAndBoundedCurve> &  ) const>(&RWStepGeom_RWSurfaceCurveAndBoundedCurve::ReadStep),
@@ -1922,12 +2062,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSurfaceOfLinearExtrusion , shared_ptr<RWStepGeom_RWSurfaceOfLinearExtrusion>  >>(m.attr("RWStepGeom_RWSurfaceOfLinearExtrusion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSurfaceOfLinearExtrusion::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceOfLinearExtrusion> &  ) const) static_cast<void (RWStepGeom_RWSurfaceOfLinearExtrusion::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceOfLinearExtrusion> &  ) const>(&RWStepGeom_RWSurfaceOfLinearExtrusion::ReadStep),
@@ -1942,12 +2084,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSurfaceOfRevolution , shared_ptr<RWStepGeom_RWSurfaceOfRevolution>  >>(m.attr("RWStepGeom_RWSurfaceOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSurfaceOfRevolution::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceOfRevolution> &  ) const) static_cast<void (RWStepGeom_RWSurfaceOfRevolution::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceOfRevolution> &  ) const>(&RWStepGeom_RWSurfaceOfRevolution::ReadStep),
@@ -1962,12 +2106,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSurfacePatch , shared_ptr<RWStepGeom_RWSurfacePatch>  >>(m.attr("RWStepGeom_RWSurfacePatch"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSurfacePatch::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfacePatch> &  ) const) static_cast<void (RWStepGeom_RWSurfacePatch::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfacePatch> &  ) const>(&RWStepGeom_RWSurfacePatch::ReadStep),
@@ -1982,12 +2128,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSurfaceReplica , shared_ptr<RWStepGeom_RWSurfaceReplica>  >>(m.attr("RWStepGeom_RWSurfaceReplica"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSurfaceReplica::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceReplica> &  ) const) static_cast<void (RWStepGeom_RWSurfaceReplica::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SurfaceReplica> &  ) const>(&RWStepGeom_RWSurfaceReplica::ReadStep),
@@ -2002,12 +2150,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWSweptSurface , shared_ptr<RWStepGeom_RWSweptSurface>  >>(m.attr("RWStepGeom_RWSweptSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWSweptSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SweptSurface> &  ) const) static_cast<void (RWStepGeom_RWSweptSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_SweptSurface> &  ) const>(&RWStepGeom_RWSweptSurface::ReadStep),
@@ -2022,12 +2172,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWToroidalSurface , shared_ptr<RWStepGeom_RWToroidalSurface>  >>(m.attr("RWStepGeom_RWToroidalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWToroidalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ToroidalSurface> &  ) const) static_cast<void (RWStepGeom_RWToroidalSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_ToroidalSurface> &  ) const>(&RWStepGeom_RWToroidalSurface::ReadStep),
@@ -2045,12 +2197,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWTrimmedCurve , shared_ptr<RWStepGeom_RWTrimmedCurve>  >>(m.attr("RWStepGeom_RWTrimmedCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWTrimmedCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_TrimmedCurve> &  ) const) static_cast<void (RWStepGeom_RWTrimmedCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_TrimmedCurve> &  ) const>(&RWStepGeom_RWTrimmedCurve::ReadStep),
@@ -2065,12 +2219,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWUniformCurve , shared_ptr<RWStepGeom_RWUniformCurve>  >>(m.attr("RWStepGeom_RWUniformCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWUniformCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformCurve> &  ) const) static_cast<void (RWStepGeom_RWUniformCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformCurve> &  ) const>(&RWStepGeom_RWUniformCurve::ReadStep),
@@ -2085,12 +2241,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWUniformCurveAndRationalBSplineCurve , shared_ptr<RWStepGeom_RWUniformCurveAndRationalBSplineCurve>  >>(m.attr("RWStepGeom_RWUniformCurveAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWUniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformCurveAndRationalBSplineCurve> &  ) const) static_cast<void (RWStepGeom_RWUniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformCurveAndRationalBSplineCurve> &  ) const>(&RWStepGeom_RWUniformCurveAndRationalBSplineCurve::ReadStep),
@@ -2105,12 +2263,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWUniformSurface , shared_ptr<RWStepGeom_RWUniformSurface>  >>(m.attr("RWStepGeom_RWUniformSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWUniformSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformSurface> &  ) const) static_cast<void (RWStepGeom_RWUniformSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformSurface> &  ) const>(&RWStepGeom_RWUniformSurface::ReadStep),
@@ -2125,12 +2285,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface , shared_ptr<RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface>  >>(m.attr("RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformSurfaceAndRationalBSplineSurface> &  ) const) static_cast<void (RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_UniformSurfaceAndRationalBSplineSurface> &  ) const>(&RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface::ReadStep),
@@ -2145,12 +2307,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepGeom_RWVector , shared_ptr<RWStepGeom_RWVector>  >>(m.attr("RWStepGeom_RWVector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepGeom_RWVector::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Vector> &  ) const) static_cast<void (RWStepGeom_RWVector::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepGeom_Vector> &  ) const>(&RWStepGeom_RWVector::ReadStep),
@@ -2168,92 +2332,92 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext.hxx
-// ./opencascade/RWStepGeom_RWEllipse.hxx
-// ./opencascade/RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface.hxx
-// ./opencascade/RWStepGeom_RWOuterBoundaryCurve.hxx
-// ./opencascade/RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve.hxx
-// ./opencascade/RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface.hxx
-// ./opencascade/RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext.hxx
-// ./opencascade/RWStepGeom_RWSurfaceOfRevolution.hxx
-// ./opencascade/RWStepGeom_RWBezierCurveAndRationalBSplineCurve.hxx
-// ./opencascade/RWStepGeom_RWCurveReplica.hxx
-// ./opencascade/RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface.hxx
-// ./opencascade/RWStepGeom_RWQuasiUniformSurface.hxx
-// ./opencascade/RWStepGeom_RWPointOnCurve.hxx
-// ./opencascade/RWStepGeom_RWSurfacePatch.hxx
-// ./opencascade/RWStepGeom_RWOffsetCurve3d.hxx
-// ./opencascade/RWStepGeom_RWCartesianTransformationOperator3d.hxx
-// ./opencascade/RWStepGeom_RWSurfaceReplica.hxx
-// ./opencascade/RWStepGeom_RWElementarySurface.hxx
 // ./opencascade/RWStepGeom_RWUniformCurve.hxx
-// ./opencascade/RWStepGeom_RWGeometricRepresentationContext.hxx
-// ./opencascade/RWStepGeom_RWDirection.hxx
-// ./opencascade/RWStepGeom_RWQuasiUniformCurve.hxx
-// ./opencascade/RWStepGeom_RWBoundedCurve.hxx
-// ./opencascade/RWStepGeom_RWPlane.hxx
-// ./opencascade/RWStepGeom_RWSeamCurve.hxx
-// ./opencascade/RWStepGeom_RWCylindricalSurface.hxx
-// ./opencascade/RWStepGeom_RWRationalBSplineCurve.hxx
-// ./opencascade/RWStepGeom_RWToroidalSurface.hxx
-// ./opencascade/RWStepGeom_RWRectangularCompositeSurface.hxx
-// ./opencascade/RWStepGeom_RWGeometricRepresentationItem.hxx
-// ./opencascade/RWStepGeom_RWBoundedSurface.hxx
-// ./opencascade/RWStepGeom_RWOrientedSurface.hxx
-// ./opencascade/RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx.hxx
-// ./opencascade/RWStepGeom_RWVector.hxx
-// ./opencascade/RWStepGeom_RWSurfaceCurve.hxx
-// ./opencascade/RWStepGeom_RWConic.hxx
-// ./opencascade/RWStepGeom_RWPointReplica.hxx
-// ./opencascade/RWStepGeom_RWBezierCurve.hxx
-// ./opencascade/RWStepGeom_RWCompositeCurveOnSurface.hxx
-// ./opencascade/RWStepGeom_RWRationalBSplineSurface.hxx
-// ./opencascade/RWStepGeom_RWBezierSurface.hxx
-// ./opencascade/RWStepGeom_RWEvaluatedDegeneratePcurve.hxx
-// ./opencascade/RWStepGeom_RWAxis2Placement2d.hxx
-// ./opencascade/RWStepGeom_RWTrimmedCurve.hxx
-// ./opencascade/RWStepGeom_RWUniformCurveAndRationalBSplineCurve.hxx
-// ./opencascade/RWStepGeom_RWRectangularTrimmedSurface.hxx
-// ./opencascade/RWStepGeom_RWBSplineCurve.hxx
-// ./opencascade/RWStepGeom_RWCartesianPoint.hxx
-// ./opencascade/RWStepGeom_RWSurfaceOfLinearExtrusion.hxx
-// ./opencascade/RWStepGeom_RWBSplineCurveWithKnots.hxx
-// ./opencascade/RWStepGeom_RWCartesianTransformationOperator.hxx
-// ./opencascade/RWStepGeom_RWCompositeCurveSegment.hxx
-// ./opencascade/RWStepGeom_RWLine.hxx
-// ./opencascade/RWStepGeom_RWAxis2Placement3d.hxx
-// ./opencascade/RWStepGeom_RWSweptSurface.hxx
-// ./opencascade/RWStepGeom_RWCircle.hxx
-// ./opencascade/RWStepGeom_RWAxis1Placement.hxx
-// ./opencascade/RWStepGeom_RWConicalSurface.hxx
-// ./opencascade/RWStepGeom_RWUniformSurface.hxx
-// ./opencascade/RWStepGeom_RWPcurve.hxx
-// ./opencascade/RWStepGeom_RWBoundaryCurve.hxx
-// ./opencascade/RWStepGeom_RWSurfaceCurveAndBoundedCurve.hxx
-// ./opencascade/RWStepGeom_RWBSplineSurfaceWithKnots.hxx
-// ./opencascade/RWStepGeom_RWSphericalSurface.hxx
-// ./opencascade/RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface.hxx
-// ./opencascade/RWStepGeom_RWPoint.hxx
-// ./opencascade/RWStepGeom_RWOffsetSurface.hxx
-// ./opencascade/RWStepGeom_RWIntersectionCurve.hxx
-// ./opencascade/RWStepGeom_RWCurve.hxx
-// ./opencascade/RWStepGeom_RWDegeneratePcurve.hxx
-// ./opencascade/RWStepGeom_RWPlacement.hxx
-// ./opencascade/RWStepGeom_RWParabola.hxx
-// ./opencascade/RWStepGeom_RWCompositeCurve.hxx
-// ./opencascade/RWStepGeom_RWPointOnSurface.hxx
-// ./opencascade/RWStepGeom_RWSurface.hxx
-// ./opencascade/RWStepGeom_RWHyperbola.hxx
 // ./opencascade/RWStepGeom_RWBSplineSurface.hxx
-// ./opencascade/RWStepGeom_RWReparametrisedCompositeCurveSegment.hxx
-// ./opencascade/RWStepGeom_RWCurveBoundedSurface.hxx
-// ./opencascade/RWStepGeom_RWPolyline.hxx
-// ./opencascade/RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve.hxx
+// ./opencascade/RWStepGeom_RWElementarySurface.hxx
+// ./opencascade/RWStepGeom_RWCurve.hxx
+// ./opencascade/RWStepGeom_RWPoint.hxx
+// ./opencascade/RWStepGeom_RWBoundedCurve.hxx
+// ./opencascade/RWStepGeom_RWQuasiUniformSurface.hxx
 // ./opencascade/RWStepGeom_RWDegenerateToroidalSurface.hxx
+// ./opencascade/RWStepGeom_RWSurfaceCurve.hxx
+// ./opencascade/RWStepGeom_RWQuasiUniformCurveAndRationalBSplineCurve.hxx
+// ./opencascade/RWStepGeom_RWUniformCurveAndRationalBSplineCurve.hxx
+// ./opencascade/RWStepGeom_RWPointOnCurve.hxx
+// ./opencascade/RWStepGeom_RWRectangularCompositeSurface.hxx
+// ./opencascade/RWStepGeom_RWPointReplica.hxx
+// ./opencascade/RWStepGeom_RWBSplineSurfaceWithKnotsAndRationalBSplineSurface.hxx
+// ./opencascade/RWStepGeom_RWConic.hxx
+// ./opencascade/RWStepGeom_RWEvaluatedDegeneratePcurve.hxx
+// ./opencascade/RWStepGeom_RWSurface.hxx
+// ./opencascade/RWStepGeom_RWAxis1Placement.hxx
+// ./opencascade/RWStepGeom_RWLine.hxx
+// ./opencascade/RWStepGeom_RWOffsetSurface.hxx
+// ./opencascade/RWStepGeom_RWUniformSurfaceAndRationalBSplineSurface.hxx
+// ./opencascade/RWStepGeom_RWCurveBoundedSurface.hxx
+// ./opencascade/RWStepGeom_RWAxis2Placement2d.hxx
+// ./opencascade/RWStepGeom_RWBSplineCurveWithKnots.hxx
+// ./opencascade/RWStepGeom_RWVector.hxx
+// ./opencascade/RWStepGeom_RWIntersectionCurve.hxx
+// ./opencascade/RWStepGeom_RWHyperbola.hxx
+// ./opencascade/RWStepGeom_RWRationalBSplineSurface.hxx
+// ./opencascade/RWStepGeom_RWGeometricRepresentationContextAndParametricRepresentationContext.hxx
+// ./opencascade/RWStepGeom_RWBSplineCurve.hxx
+// ./opencascade/RWStepGeom_RWOuterBoundaryCurve.hxx
+// ./opencascade/RWStepGeom_RWBoundaryCurve.hxx
+// ./opencascade/RWStepGeom_RWUniformSurface.hxx
+// ./opencascade/RWStepGeom_RWBezierCurveAndRationalBSplineCurve.hxx
+// ./opencascade/RWStepGeom_RWPcurve.hxx
+// ./opencascade/RWStepGeom_RWBoundedSurface.hxx
+// ./opencascade/RWStepGeom_RWGeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx.hxx
+// ./opencascade/RWStepGeom_RWParabola.hxx
+// ./opencascade/RWStepGeom_RWCartesianTransformationOperator.hxx
+// ./opencascade/RWStepGeom_RWEllipse.hxx
+// ./opencascade/RWStepGeom_RWGeometricRepresentationContextAndGlobalUnitAssignedContext.hxx
+// ./opencascade/RWStepGeom_RWSurfaceReplica.hxx
+// ./opencascade/RWStepGeom_RWPolyline.hxx
+// ./opencascade/RWStepGeom_RWCurveReplica.hxx
+// ./opencascade/RWStepGeom_RWRectangularTrimmedSurface.hxx
+// ./opencascade/RWStepGeom_RWCompositeCurveOnSurface.hxx
+// ./opencascade/RWStepGeom_RWReparametrisedCompositeCurveSegment.hxx
+// ./opencascade/RWStepGeom_RWAxis2Placement3d.hxx
+// ./opencascade/RWStepGeom_RWCylindricalSurface.hxx
+// ./opencascade/RWStepGeom_RWGeometricRepresentationContext.hxx
+// ./opencascade/RWStepGeom_RWCompositeCurveSegment.hxx
+// ./opencascade/RWStepGeom_RWCircle.hxx
+// ./opencascade/RWStepGeom_RWSurfaceCurveAndBoundedCurve.hxx
+// ./opencascade/RWStepGeom_RWSeamCurve.hxx
+// ./opencascade/RWStepGeom_RWGeometricRepresentationItem.hxx
+// ./opencascade/RWStepGeom_RWBezierCurve.hxx
+// ./opencascade/RWStepGeom_RWQuasiUniformCurve.hxx
+// ./opencascade/RWStepGeom_RWDegeneratePcurve.hxx
+// ./opencascade/RWStepGeom_RWRationalBSplineCurve.hxx
+// ./opencascade/RWStepGeom_RWPlacement.hxx
+// ./opencascade/RWStepGeom_RWBSplineSurfaceWithKnots.hxx
+// ./opencascade/RWStepGeom_RWCompositeCurve.hxx
+// ./opencascade/RWStepGeom_RWPlane.hxx
+// ./opencascade/RWStepGeom_RWCartesianPoint.hxx
+// ./opencascade/RWStepGeom_RWTrimmedCurve.hxx
+// ./opencascade/RWStepGeom_RWConicalSurface.hxx
+// ./opencascade/RWStepGeom_RWOffsetCurve3d.hxx
+// ./opencascade/RWStepGeom_RWToroidalSurface.hxx
+// ./opencascade/RWStepGeom_RWSphericalSurface.hxx
+// ./opencascade/RWStepGeom_RWDirection.hxx
+// ./opencascade/RWStepGeom_RWBSplineCurveWithKnotsAndRationalBSplineCurve.hxx
+// ./opencascade/RWStepGeom_RWQuasiUniformSurfaceAndRationalBSplineSurface.hxx
+// ./opencascade/RWStepGeom_RWOrientedSurface.hxx
+// ./opencascade/RWStepGeom_RWSurfacePatch.hxx
+// ./opencascade/RWStepGeom_RWSurfaceOfRevolution.hxx
+// ./opencascade/RWStepGeom_RWSurfaceOfLinearExtrusion.hxx
+// ./opencascade/RWStepGeom_RWSweptSurface.hxx
+// ./opencascade/RWStepGeom_RWCartesianTransformationOperator3d.hxx
+// ./opencascade/RWStepGeom_RWBezierSurface.hxx
+// ./opencascade/RWStepGeom_RWBezierSurfaceAndRationalBSplineSurface.hxx
+// ./opencascade/RWStepGeom_RWPointOnSurface.hxx
 
 // operators
 

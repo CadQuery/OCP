@@ -39,8 +39,10 @@ py::module m = static_cast<py::module>(main_module.attr("BRepProj"));
 
 
     static_cast<py::class_<BRepProj_Projection , shared_ptr<BRepProj_Projection>  >>(m.attr("BRepProj_Projection"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const gp_Dir & >()  , py::arg("Wire"),  py::arg("Shape"),  py::arg("D") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const gp_Pnt & >()  , py::arg("Wire"),  py::arg("Shape"),  py::arg("P") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepProj_Projection::*)() const) static_cast<Standard_Boolean (BRepProj_Projection::*)() const>(&BRepProj_Projection::IsDone),
@@ -82,7 +84,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepProj"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

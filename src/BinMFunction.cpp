@@ -13,13 +13,13 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMFunction_FunctionDriver.hxx>
 #include <BinMFunction_GraphNodeDriver.hxx>
 #include <BinMFunction_ScopeDriver.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
@@ -50,9 +50,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinMFunction"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinMFunction , shared_ptr<BinMFunction>>(m,"BinMFunction");
 
     static_cast<py::class_<BinMFunction , shared_ptr<BinMFunction>  >>(m.attr("BinMFunction"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -61,12 +64,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMFunction"));
                     R"#(Adds the attribute drivers to <theDriverTable>.)#"  , py::arg("theDriverTable"),  py::arg("aMsgDrv"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMFunction_FunctionDriver ,opencascade::handle<BinMFunction_FunctionDriver>  , BinMDF_ADriver >>(m.attr("BinMFunction_FunctionDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMFunction_FunctionDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMFunction_FunctionDriver::*)() const>(&BinMFunction_FunctionDriver::NewEmpty),
@@ -90,12 +95,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMFunction_GraphNodeDriver ,opencascade::handle<BinMFunction_GraphNodeDriver>  , BinMDF_ADriver >>(m.attr("BinMFunction_GraphNodeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMFunction_GraphNodeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMFunction_GraphNodeDriver::*)() const>(&BinMFunction_GraphNodeDriver::NewEmpty),
@@ -119,12 +126,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMFunction_ScopeDriver ,opencascade::handle<BinMFunction_ScopeDriver>  , BinMDF_ADriver >>(m.attr("BinMFunction_ScopeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMFunction_ScopeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMFunction_ScopeDriver::*)() const>(&BinMFunction_ScopeDriver::NewEmpty),
@@ -148,13 +157,13 @@ py::module m = static_cast<py::module>(main_module.attr("BinMFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinMFunction_GraphNodeDriver.hxx
 // ./opencascade/BinMFunction.hxx
 // ./opencascade/BinMFunction_ScopeDriver.hxx
+// ./opencascade/BinMFunction_GraphNodeDriver.hxx
 // ./opencascade/BinMFunction_FunctionDriver.hxx
 
 // operators

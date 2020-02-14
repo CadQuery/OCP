@@ -14,24 +14,7 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_DomainError.hxx>
-#include <IGESSolid_ManifoldSolid.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <IGESBasic_HArray1OfHArray1OfInteger.hxx>
-#include <IGESBasic_HArray1OfHArray1OfIGESEntity.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_Loop.hxx>
+#include <IGESSolid_ConeFrustum.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -44,10 +27,30 @@ namespace py = pybind11;
 #include <Message_Messenger.hxx>
 #include <IGESGeom_Point.hxx>
 #include <IGESGeom_Direction.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <IGESSolid_BooleanTree.hxx>
-#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_ConicalSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_SolidOfLinearExtrusion.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESSolid_Block.hxx>
 #include <IGESData_IGESReaderData.hxx>
@@ -60,8 +63,15 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESSolid_EdgeList.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_CylindricalSurface.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -78,9 +88,208 @@ namespace py = pybind11;
 #include <Interface_ShareTool.hxx>
 #include <Interface_Check.hxx>
 #include <Interface_CopyTool.hxx>
+#include <IGESGeom_Point.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_Cylinder.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_ToroidalSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESGeom_Point.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <gp_Pnt.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
 #include <gp_Pnt.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESSolid_Sphere.hxx>
+#include <IGESSolid_SolidInstance.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_SolidAssembly.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESGeom_Point.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_SphericalSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESSolid_BooleanTree.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_PlaneSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_SolidOfRevolution.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_BooleanTree.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESGeom_Point.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_ManifoldSolid.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_Face.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_VertexList.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESBasic_HArray1OfHArray1OfInteger.hxx>
+#include <IGESBasic_HArray1OfHArray1OfIGESEntity.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_Ellipsoid.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_RightAngularWedge.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_Loop.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Dir.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_SelectedComponent.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -98,6 +307,54 @@ namespace py = pybind11;
 #include <IGESSolid_Loop.hxx>
 #include <IGESSolid_EdgeList.hxx>
 #include <IGESSolid_VertexList.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_Sphere.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_EdgeList.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_Shell.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESSolid_Torus.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 #include <IGESSolid_Protocol.hxx>
 #include <IGESSolid_Block.hxx>
 #include <IGESSolid_RightAngularWedge.hxx>
@@ -152,263 +409,6 @@ namespace py = pybind11;
 #include <IGESSolid_GeneralModule.hxx>
 #include <IGESSolid_SpecificModule.hxx>
 #include <IGESSolid_TopoBuilder.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_ToroidalSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_SolidOfLinearExtrusion.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_PlaneSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_SolidAssembly.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_SolidInstance.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESGeom_Point.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_VertexList.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_BooleanTree.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_Ellipsoid.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_Shell.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_CylindricalSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_SphericalSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_ConicalSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_ConeFrustum.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <IGESGeom_Point.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_Face.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_SelectedComponent.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESGeom_Point.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_Torus.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_Cylinder.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESGeom_Point.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_RightAngularWedge.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESSolid_SolidOfRevolution.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
 
 // module includes
 #include <IGESSolid.hxx>
@@ -475,11 +475,11 @@ namespace py = pybind11;
 #include <IGESSolid_VertexList.hxx>
 
 // template related includes
-// ./opencascade/IGESSolid_Array1OfLoop.hxx
-#include "NCollection.hxx"
 // ./opencascade/IGESSolid_Array1OfFace.hxx
 #include "NCollection.hxx"
 // ./opencascade/IGESSolid_Array1OfShell.hxx
+#include "NCollection.hxx"
+// ./opencascade/IGESSolid_Array1OfLoop.hxx
 #include "NCollection.hxx"
 // ./opencascade/IGESSolid_Array1OfVertexList.hxx
 #include "NCollection.hxx"
@@ -501,9 +501,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESSolid , shared_ptr<IGESSolid>>(m,"IGESSolid");
 
     static_cast<py::class_<IGESSolid , shared_ptr<IGESSolid>  >>(m.attr("IGESSolid"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -515,12 +518,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(Returns the Protocol for this Package)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Block ,opencascade::handle<IGESSolid_Block>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Block"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Block::*)( const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_Block::*)( const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESSolid_Block::Init),
@@ -574,12 +579,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_BooleanTree ,opencascade::handle<IGESSolid_BooleanTree>  , IGESData_IGESEntity >>(m.attr("IGESSolid_BooleanTree"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_BooleanTree::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESSolid_BooleanTree::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESSolid_BooleanTree::Init),
@@ -609,12 +616,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ConeFrustum ,opencascade::handle<IGESSolid_ConeFrustum>  , IGESData_IGESEntity >>(m.attr("IGESSolid_ConeFrustum"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_ConeFrustum::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_ConeFrustum::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESSolid_ConeFrustum::Init),
@@ -653,12 +662,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ConicalSurface ,opencascade::handle<IGESSolid_ConicalSurface>  , IGESData_IGESEntity >>(m.attr("IGESSolid_ConicalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_ConicalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> &  ) ) static_cast<void (IGESSolid_ConicalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> &  ) >(&IGESSolid_ConicalSurface::Init),
@@ -694,12 +705,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Cylinder ,opencascade::handle<IGESSolid_Cylinder>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Cylinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Cylinder::*)( const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_Cylinder::*)( const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESSolid_Cylinder::Init),
@@ -735,12 +748,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_CylindricalSurface ,opencascade::handle<IGESSolid_CylindricalSurface>  , IGESData_IGESEntity >>(m.attr("IGESSolid_CylindricalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_CylindricalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> &  ) ) static_cast<void (IGESSolid_CylindricalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> &  ) >(&IGESSolid_CylindricalSurface::Init),
@@ -773,12 +788,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_EdgeList ,opencascade::handle<IGESSolid_EdgeList>  , IGESData_IGESEntity >>(m.attr("IGESSolid_EdgeList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_EdgeList::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<IGESSolid_HArray1OfVertexList> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESSolid_HArray1OfVertexList> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESSolid_EdgeList::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<IGESSolid_HArray1OfVertexList> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESSolid_HArray1OfVertexList> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESSolid_EdgeList::Init),
@@ -814,12 +831,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Ellipsoid ,opencascade::handle<IGESSolid_Ellipsoid>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Ellipsoid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Ellipsoid::*)( const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_Ellipsoid::*)( const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESSolid_Ellipsoid::Init),
@@ -873,12 +892,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Face ,opencascade::handle<IGESSolid_Face>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Face"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Face::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Boolean ,  const opencascade::handle<IGESSolid_HArray1OfLoop> &  ) ) static_cast<void (IGESSolid_Face::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Boolean ,  const opencascade::handle<IGESSolid_HArray1OfLoop> &  ) >(&IGESSolid_Face::Init),
@@ -908,12 +929,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_GeneralModule ,opencascade::handle<IGESSolid_GeneralModule>  , IGESData_GeneralModule >>(m.attr("IGESSolid_GeneralModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnSharedCase",
              (void (IGESSolid_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESSolid_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const>(&IGESSolid_GeneralModule::OwnSharedCase),
@@ -946,14 +969,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_HArray1OfFace ,opencascade::handle<IGESSolid_HArray1OfFace>  , IGESSolid_Array1OfFace , Standard_Transient >>(m.attr("IGESSolid_HArray1OfFace"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESSolid_Face> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESSolid_Face> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESSolid_Array1OfFace & (IGESSolid_HArray1OfFace::*)() const) static_cast<const IGESSolid_Array1OfFace & (IGESSolid_HArray1OfFace::*)() const>(&IGESSolid_HArray1OfFace::Array1),
@@ -974,14 +1000,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_HArray1OfLoop ,opencascade::handle<IGESSolid_HArray1OfLoop>  , IGESSolid_Array1OfLoop , Standard_Transient >>(m.attr("IGESSolid_HArray1OfLoop"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESSolid_Loop> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESSolid_Loop> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESSolid_Array1OfLoop & (IGESSolid_HArray1OfLoop::*)() const) static_cast<const IGESSolid_Array1OfLoop & (IGESSolid_HArray1OfLoop::*)() const>(&IGESSolid_HArray1OfLoop::Array1),
@@ -1002,14 +1031,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_HArray1OfShell ,opencascade::handle<IGESSolid_HArray1OfShell>  , IGESSolid_Array1OfShell , Standard_Transient >>(m.attr("IGESSolid_HArray1OfShell"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESSolid_Shell> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESSolid_Shell> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESSolid_Array1OfShell & (IGESSolid_HArray1OfShell::*)() const) static_cast<const IGESSolid_Array1OfShell & (IGESSolid_HArray1OfShell::*)() const>(&IGESSolid_HArray1OfShell::Array1),
@@ -1030,14 +1062,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_HArray1OfVertexList ,opencascade::handle<IGESSolid_HArray1OfVertexList>  , IGESSolid_Array1OfVertexList , Standard_Transient >>(m.attr("IGESSolid_HArray1OfVertexList"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESSolid_VertexList> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESSolid_VertexList> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESSolid_Array1OfVertexList & (IGESSolid_HArray1OfVertexList::*)() const) static_cast<const IGESSolid_Array1OfVertexList & (IGESSolid_HArray1OfVertexList::*)() const>(&IGESSolid_HArray1OfVertexList::Array1),
@@ -1058,12 +1093,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Loop ,opencascade::handle<IGESSolid_Loop>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Loop"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Loop::*)( const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfIGESEntity> &  ) ) static_cast<void (IGESSolid_Loop::*)( const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfIGESEntity> &  ) >(&IGESSolid_Loop::Init),
@@ -1111,12 +1148,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ManifoldSolid ,opencascade::handle<IGESSolid_ManifoldSolid>  , IGESData_IGESEntity >>(m.attr("IGESSolid_ManifoldSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_ManifoldSolid::*)( const opencascade::handle<IGESSolid_Shell> & ,  const Standard_Boolean ,  const opencascade::handle<IGESSolid_HArray1OfShell> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESSolid_ManifoldSolid::*)( const opencascade::handle<IGESSolid_Shell> & ,  const Standard_Boolean ,  const opencascade::handle<IGESSolid_HArray1OfShell> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESSolid_ManifoldSolid::Init),
@@ -1149,12 +1188,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_PlaneSurface ,opencascade::handle<IGESSolid_PlaneSurface>  , IGESData_IGESEntity >>(m.attr("IGESSolid_PlaneSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_PlaneSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const opencascade::handle<IGESGeom_Direction> &  ) ) static_cast<void (IGESSolid_PlaneSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const opencascade::handle<IGESGeom_Direction> &  ) >(&IGESSolid_PlaneSurface::Init),
@@ -1184,12 +1225,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Protocol ,opencascade::handle<IGESSolid_Protocol>  , IGESData_Protocol >>(m.attr("IGESSolid_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (IGESSolid_Protocol::*)() const) static_cast<Standard_Integer (IGESSolid_Protocol::*)() const>(&IGESSolid_Protocol::NbResources),
@@ -1213,12 +1256,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ReadWriteModule ,opencascade::handle<IGESSolid_ReadWriteModule>  , IGESData_ReadWriteModule >>(m.attr("IGESSolid_ReadWriteModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseIGES",
              (Standard_Integer (IGESSolid_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Integer (IGESSolid_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&IGESSolid_ReadWriteModule::CaseIGES),
@@ -1242,12 +1287,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_RightAngularWedge ,opencascade::handle<IGESSolid_RightAngularWedge>  , IGESData_IGESEntity >>(m.attr("IGESSolid_RightAngularWedge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_RightAngularWedge::*)( const gp_XYZ & ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_RightAngularWedge::*)( const gp_XYZ & ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESSolid_RightAngularWedge::Init),
@@ -1304,12 +1351,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_SelectedComponent ,opencascade::handle<IGESSolid_SelectedComponent>  , IGESData_IGESEntity >>(m.attr("IGESSolid_SelectedComponent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_SelectedComponent::*)( const opencascade::handle<IGESSolid_BooleanTree> & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_SelectedComponent::*)( const opencascade::handle<IGESSolid_BooleanTree> & ,  const gp_XYZ &  ) >(&IGESSolid_SelectedComponent::Init),
@@ -1336,12 +1385,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Shell ,opencascade::handle<IGESSolid_Shell>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Shell"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Shell::*)( const opencascade::handle<IGESSolid_HArray1OfFace> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESSolid_Shell::*)( const opencascade::handle<IGESSolid_HArray1OfFace> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESSolid_Shell::Init),
@@ -1374,12 +1425,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_SolidAssembly ,opencascade::handle<IGESSolid_SolidAssembly>  , IGESData_IGESEntity >>(m.attr("IGESSolid_SolidAssembly"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_SolidAssembly::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<IGESGeom_HArray1OfTransformationMatrix> &  ) ) static_cast<void (IGESSolid_SolidAssembly::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<IGESGeom_HArray1OfTransformationMatrix> &  ) >(&IGESSolid_SolidAssembly::Init),
@@ -1412,12 +1465,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_SolidInstance ,opencascade::handle<IGESSolid_SolidInstance>  , IGESData_IGESEntity >>(m.attr("IGESSolid_SolidInstance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_SolidInstance::*)( const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<void (IGESSolid_SolidInstance::*)( const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESSolid_SolidInstance::Init),
@@ -1444,12 +1499,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_SolidOfLinearExtrusion ,opencascade::handle<IGESSolid_SolidOfLinearExtrusion>  , IGESData_IGESEntity >>(m.attr("IGESSolid_SolidOfLinearExtrusion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_SolidOfLinearExtrusion::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_SolidOfLinearExtrusion::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const gp_XYZ &  ) >(&IGESSolid_SolidOfLinearExtrusion::Init),
@@ -1479,12 +1536,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_SolidOfRevolution ,opencascade::handle<IGESSolid_SolidOfRevolution>  , IGESData_IGESEntity >>(m.attr("IGESSolid_SolidOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_SolidOfRevolution::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_SolidOfRevolution::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESSolid_SolidOfRevolution::Init),
@@ -1526,12 +1585,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_SpecificModule ,opencascade::handle<IGESSolid_SpecificModule>  , IGESData_SpecificModule >>(m.attr("IGESSolid_SpecificModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESSolid_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESSolid_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESSolid_SpecificModule::OwnDump),
@@ -1549,12 +1610,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Sphere ,opencascade::handle<IGESSolid_Sphere>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Sphere"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Sphere::*)( const Standard_Real ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_Sphere::*)( const Standard_Real ,  const gp_XYZ &  ) >(&IGESSolid_Sphere::Init),
@@ -1581,12 +1644,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_SphericalSurface ,opencascade::handle<IGESSolid_SphericalSurface>  , IGESData_IGESEntity >>(m.attr("IGESSolid_SphericalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_SphericalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> & ,  const opencascade::handle<IGESGeom_Direction> &  ) ) static_cast<void (IGESSolid_SphericalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> & ,  const opencascade::handle<IGESGeom_Direction> &  ) >(&IGESSolid_SphericalSurface::Init),
@@ -1622,12 +1687,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolBlock , shared_ptr<IGESSolid_ToolBlock>  >>(m.attr("IGESSolid_ToolBlock"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolBlock::*)( const opencascade::handle<IGESSolid_Block> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolBlock::*)( const opencascade::handle<IGESSolid_Block> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolBlock::ReadOwnParams),
@@ -1654,12 +1721,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolBooleanTree , shared_ptr<IGESSolid_ToolBooleanTree>  >>(m.attr("IGESSolid_ToolBooleanTree"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolBooleanTree::*)( const opencascade::handle<IGESSolid_BooleanTree> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolBooleanTree::*)( const opencascade::handle<IGESSolid_BooleanTree> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolBooleanTree::ReadOwnParams),
@@ -1686,12 +1755,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolConeFrustum , shared_ptr<IGESSolid_ToolConeFrustum>  >>(m.attr("IGESSolid_ToolConeFrustum"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolConeFrustum::*)( const opencascade::handle<IGESSolid_ConeFrustum> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolConeFrustum::*)( const opencascade::handle<IGESSolid_ConeFrustum> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolConeFrustum::ReadOwnParams),
@@ -1718,12 +1789,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolConicalSurface , shared_ptr<IGESSolid_ToolConicalSurface>  >>(m.attr("IGESSolid_ToolConicalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolConicalSurface::*)( const opencascade::handle<IGESSolid_ConicalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolConicalSurface::*)( const opencascade::handle<IGESSolid_ConicalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolConicalSurface::ReadOwnParams),
@@ -1750,12 +1823,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolCylinder , shared_ptr<IGESSolid_ToolCylinder>  >>(m.attr("IGESSolid_ToolCylinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolCylinder::*)( const opencascade::handle<IGESSolid_Cylinder> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolCylinder::*)( const opencascade::handle<IGESSolid_Cylinder> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolCylinder::ReadOwnParams),
@@ -1782,12 +1857,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolCylindricalSurface , shared_ptr<IGESSolid_ToolCylindricalSurface>  >>(m.attr("IGESSolid_ToolCylindricalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolCylindricalSurface::*)( const opencascade::handle<IGESSolid_CylindricalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolCylindricalSurface::*)( const opencascade::handle<IGESSolid_CylindricalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolCylindricalSurface::ReadOwnParams),
@@ -1814,12 +1891,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolEdgeList , shared_ptr<IGESSolid_ToolEdgeList>  >>(m.attr("IGESSolid_ToolEdgeList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolEdgeList::*)( const opencascade::handle<IGESSolid_EdgeList> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolEdgeList::*)( const opencascade::handle<IGESSolid_EdgeList> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolEdgeList::ReadOwnParams),
@@ -1846,12 +1925,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolEllipsoid , shared_ptr<IGESSolid_ToolEllipsoid>  >>(m.attr("IGESSolid_ToolEllipsoid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolEllipsoid::*)( const opencascade::handle<IGESSolid_Ellipsoid> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolEllipsoid::*)( const opencascade::handle<IGESSolid_Ellipsoid> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolEllipsoid::ReadOwnParams),
@@ -1878,12 +1959,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolFace , shared_ptr<IGESSolid_ToolFace>  >>(m.attr("IGESSolid_ToolFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolFace::*)( const opencascade::handle<IGESSolid_Face> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolFace::*)( const opencascade::handle<IGESSolid_Face> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolFace::ReadOwnParams),
@@ -1910,12 +1993,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolLoop , shared_ptr<IGESSolid_ToolLoop>  >>(m.attr("IGESSolid_ToolLoop"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolLoop::*)( const opencascade::handle<IGESSolid_Loop> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolLoop::*)( const opencascade::handle<IGESSolid_Loop> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolLoop::ReadOwnParams),
@@ -1942,12 +2027,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolManifoldSolid , shared_ptr<IGESSolid_ToolManifoldSolid>  >>(m.attr("IGESSolid_ToolManifoldSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolManifoldSolid::*)( const opencascade::handle<IGESSolid_ManifoldSolid> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolManifoldSolid::*)( const opencascade::handle<IGESSolid_ManifoldSolid> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolManifoldSolid::ReadOwnParams),
@@ -1974,12 +2061,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolPlaneSurface , shared_ptr<IGESSolid_ToolPlaneSurface>  >>(m.attr("IGESSolid_ToolPlaneSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolPlaneSurface::*)( const opencascade::handle<IGESSolid_PlaneSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolPlaneSurface::*)( const opencascade::handle<IGESSolid_PlaneSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolPlaneSurface::ReadOwnParams),
@@ -2006,12 +2095,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolRightAngularWedge , shared_ptr<IGESSolid_ToolRightAngularWedge>  >>(m.attr("IGESSolid_ToolRightAngularWedge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolRightAngularWedge::*)( const opencascade::handle<IGESSolid_RightAngularWedge> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolRightAngularWedge::*)( const opencascade::handle<IGESSolid_RightAngularWedge> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolRightAngularWedge::ReadOwnParams),
@@ -2038,12 +2129,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolSelectedComponent , shared_ptr<IGESSolid_ToolSelectedComponent>  >>(m.attr("IGESSolid_ToolSelectedComponent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolSelectedComponent::*)( const opencascade::handle<IGESSolid_SelectedComponent> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolSelectedComponent::*)( const opencascade::handle<IGESSolid_SelectedComponent> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolSelectedComponent::ReadOwnParams),
@@ -2070,12 +2163,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolShell , shared_ptr<IGESSolid_ToolShell>  >>(m.attr("IGESSolid_ToolShell"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolShell::*)( const opencascade::handle<IGESSolid_Shell> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolShell::*)( const opencascade::handle<IGESSolid_Shell> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolShell::ReadOwnParams),
@@ -2102,12 +2197,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolSolidAssembly , shared_ptr<IGESSolid_ToolSolidAssembly>  >>(m.attr("IGESSolid_ToolSolidAssembly"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolSolidAssembly::*)( const opencascade::handle<IGESSolid_SolidAssembly> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolSolidAssembly::*)( const opencascade::handle<IGESSolid_SolidAssembly> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolSolidAssembly::ReadOwnParams),
@@ -2134,12 +2231,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolSolidInstance , shared_ptr<IGESSolid_ToolSolidInstance>  >>(m.attr("IGESSolid_ToolSolidInstance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolSolidInstance::*)( const opencascade::handle<IGESSolid_SolidInstance> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolSolidInstance::*)( const opencascade::handle<IGESSolid_SolidInstance> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolSolidInstance::ReadOwnParams),
@@ -2166,12 +2265,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolSolidOfLinearExtrusion , shared_ptr<IGESSolid_ToolSolidOfLinearExtrusion>  >>(m.attr("IGESSolid_ToolSolidOfLinearExtrusion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolSolidOfLinearExtrusion::*)( const opencascade::handle<IGESSolid_SolidOfLinearExtrusion> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolSolidOfLinearExtrusion::*)( const opencascade::handle<IGESSolid_SolidOfLinearExtrusion> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolSolidOfLinearExtrusion::ReadOwnParams),
@@ -2198,12 +2299,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolSolidOfRevolution , shared_ptr<IGESSolid_ToolSolidOfRevolution>  >>(m.attr("IGESSolid_ToolSolidOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolSolidOfRevolution::*)( const opencascade::handle<IGESSolid_SolidOfRevolution> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolSolidOfRevolution::*)( const opencascade::handle<IGESSolid_SolidOfRevolution> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolSolidOfRevolution::ReadOwnParams),
@@ -2230,12 +2333,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolSphere , shared_ptr<IGESSolid_ToolSphere>  >>(m.attr("IGESSolid_ToolSphere"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolSphere::*)( const opencascade::handle<IGESSolid_Sphere> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolSphere::*)( const opencascade::handle<IGESSolid_Sphere> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolSphere::ReadOwnParams),
@@ -2262,12 +2367,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolSphericalSurface , shared_ptr<IGESSolid_ToolSphericalSurface>  >>(m.attr("IGESSolid_ToolSphericalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolSphericalSurface::*)( const opencascade::handle<IGESSolid_SphericalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolSphericalSurface::*)( const opencascade::handle<IGESSolid_SphericalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolSphericalSurface::ReadOwnParams),
@@ -2294,12 +2401,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolToroidalSurface , shared_ptr<IGESSolid_ToolToroidalSurface>  >>(m.attr("IGESSolid_ToolToroidalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolToroidalSurface::*)( const opencascade::handle<IGESSolid_ToroidalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolToroidalSurface::*)( const opencascade::handle<IGESSolid_ToroidalSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolToroidalSurface::ReadOwnParams),
@@ -2326,12 +2435,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolTorus , shared_ptr<IGESSolid_ToolTorus>  >>(m.attr("IGESSolid_ToolTorus"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolTorus::*)( const opencascade::handle<IGESSolid_Torus> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolTorus::*)( const opencascade::handle<IGESSolid_Torus> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolTorus::ReadOwnParams),
@@ -2358,12 +2469,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToolVertexList , shared_ptr<IGESSolid_ToolVertexList>  >>(m.attr("IGESSolid_ToolVertexList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESSolid_ToolVertexList::*)( const opencascade::handle<IGESSolid_VertexList> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESSolid_ToolVertexList::*)( const opencascade::handle<IGESSolid_VertexList> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESSolid_ToolVertexList::ReadOwnParams),
@@ -2390,12 +2503,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_TopoBuilder , shared_ptr<IGESSolid_TopoBuilder>  >>(m.attr("IGESSolid_TopoBuilder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (IGESSolid_TopoBuilder::*)() ) static_cast<void (IGESSolid_TopoBuilder::*)() >(&IGESSolid_TopoBuilder::Clear),
@@ -2473,12 +2588,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_ToroidalSurface ,opencascade::handle<IGESSolid_ToroidalSurface>  , IGESData_IGESEntity >>(m.attr("IGESSolid_ToroidalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_ToroidalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> &  ) ) static_cast<void (IGESSolid_ToroidalSurface::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESGeom_Direction> & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Direction> &  ) >(&IGESSolid_ToroidalSurface::Init),
@@ -2517,12 +2634,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_Torus ,opencascade::handle<IGESSolid_Torus>  , IGESData_IGESEntity >>(m.attr("IGESSolid_Torus"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_Torus::*)( const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESSolid_Torus::*)( const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESSolid_Torus::Init),
@@ -2558,12 +2677,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESSolid_VertexList ,opencascade::handle<IGESSolid_VertexList>  , IGESData_IGESEntity >>(m.attr("IGESSolid_VertexList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESSolid_VertexList::*)( const opencascade::handle<TColgp_HArray1OfXYZ> &  ) ) static_cast<void (IGESSolid_VertexList::*)( const opencascade::handle<TColgp_HArray1OfXYZ> &  ) >(&IGESSolid_VertexList::Init),
@@ -2587,79 +2708,79 @@ py::module m = static_cast<py::module>(main_module.attr("IGESSolid"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESSolid_ToolManifoldSolid.hxx
-// ./opencascade/IGESSolid_VertexList.hxx
-// ./opencascade/IGESSolid_Loop.hxx
-// ./opencascade/IGESSolid_Face.hxx
-// ./opencascade/IGESSolid_Ellipsoid.hxx
-// ./opencascade/IGESSolid_Shell.hxx
-// ./opencascade/IGESSolid_ToolLoop.hxx
-// ./opencascade/IGESSolid_CylindricalSurface.hxx
-// ./opencascade/IGESSolid_Torus.hxx
-// ./opencascade/IGESSolid_SelectedComponent.hxx
-// ./opencascade/IGESSolid_ToolBlock.hxx
-// ./opencascade/IGESSolid_ToolEdgeList.hxx
-// ./opencascade/IGESSolid_Array1OfLoop.hxx
-// ./opencascade/IGESSolid_SolidAssembly.hxx
-// ./opencascade/IGESSolid_GeneralModule.hxx
-// ./opencascade/IGESSolid_Sphere.hxx
-// ./opencascade/IGESSolid_ToolSphere.hxx
-// ./opencascade/IGESSolid_TopoBuilder.hxx
-// ./opencascade/IGESSolid_EdgeList.hxx
-// ./opencascade/IGESSolid.hxx
-// ./opencascade/IGESSolid_ToolToroidalSurface.hxx
-// ./opencascade/IGESSolid_HArray1OfVertexList.hxx
-// ./opencascade/IGESSolid_HArray1OfShell.hxx
-// ./opencascade/IGESSolid_Protocol.hxx
-// ./opencascade/IGESSolid_ToolSolidOfLinearExtrusion.hxx
-// ./opencascade/IGESSolid_ConeFrustum.hxx
-// ./opencascade/IGESSolid_ToolPlaneSurface.hxx
-// ./opencascade/IGESSolid_BooleanTree.hxx
-// ./opencascade/IGESSolid_ToolSolidAssembly.hxx
-// ./opencascade/IGESSolid_Block.hxx
-// ./opencascade/IGESSolid_ToolSolidInstance.hxx
-// ./opencascade/IGESSolid_ToroidalSurface.hxx
-// ./opencascade/IGESSolid_HArray1OfFace.hxx
-// ./opencascade/IGESSolid_SolidOfRevolution.hxx
-// ./opencascade/IGESSolid_ToolVertexList.hxx
-// ./opencascade/IGESSolid_SolidInstance.hxx
-// ./opencascade/IGESSolid_ToolBooleanTree.hxx
-// ./opencascade/IGESSolid_ToolEllipsoid.hxx
-// ./opencascade/IGESSolid_HArray1OfLoop.hxx
-// ./opencascade/IGESSolid_SolidOfLinearExtrusion.hxx
-// ./opencascade/IGESSolid_Array1OfFace.hxx
-// ./opencascade/IGESSolid_ManifoldSolid.hxx
-// ./opencascade/IGESSolid_ToolShell.hxx
-// ./opencascade/IGESSolid_ToolCylindricalSurface.hxx
-// ./opencascade/IGESSolid_ToolSphericalSurface.hxx
-// ./opencascade/IGESSolid_ToolConicalSurface.hxx
 // ./opencascade/IGESSolid_ToolConeFrustum.hxx
-// ./opencascade/IGESSolid_ReadWriteModule.hxx
-// ./opencascade/IGESSolid_RightAngularWedge.hxx
+// ./opencascade/IGESSolid_HArray1OfShell.hxx
 // ./opencascade/IGESSolid_PlaneSurface.hxx
-// ./opencascade/IGESSolid_ToolFace.hxx
-// ./opencascade/IGESSolid_ToolSelectedComponent.hxx
-// ./opencascade/IGESSolid_SphericalSurface.hxx
-// ./opencascade/IGESSolid_ToolTorus.hxx
-// ./opencascade/IGESSolid_ToolCylinder.hxx
-// ./opencascade/IGESSolid_ConicalSurface.hxx
+// ./opencascade/IGESSolid_ManifoldSolid.hxx
+// ./opencascade/IGESSolid_ToolConicalSurface.hxx
+// ./opencascade/IGESSolid_ToolSolidOfLinearExtrusion.hxx
+// ./opencascade/IGESSolid_ToolBlock.hxx
 // ./opencascade/IGESSolid_Cylinder.hxx
-// ./opencascade/IGESSolid_Array1OfShell.hxx
-// ./opencascade/IGESSolid_ToolRightAngularWedge.hxx
+// ./opencascade/IGESSolid_Shell.hxx
+// ./opencascade/IGESSolid_ReadWriteModule.hxx
+// ./opencascade/IGESSolid_ToolCylindricalSurface.hxx
+// ./opencascade/IGESSolid_GeneralModule.hxx
+// ./opencascade/IGESSolid_Protocol.hxx
+// ./opencascade/IGESSolid_SphericalSurface.hxx
+// ./opencascade/IGESSolid_Block.hxx
+// ./opencascade/IGESSolid_ToolCylinder.hxx
+// ./opencascade/IGESSolid_Array1OfFace.hxx
+// ./opencascade/IGESSolid_ToolToroidalSurface.hxx
+// ./opencascade/IGESSolid_ToroidalSurface.hxx
 // ./opencascade/IGESSolid_SpecificModule.hxx
-// ./opencascade/IGESSolid_Array1OfVertexList.hxx
+// ./opencascade/IGESSolid_Ellipsoid.hxx
+// ./opencascade/IGESSolid_Array1OfShell.hxx
+// ./opencascade/IGESSolid_Sphere.hxx
+// ./opencascade/IGESSolid_ToolSolidInstance.hxx
+// ./opencascade/IGESSolid_HArray1OfFace.hxx
+// ./opencascade/IGESSolid_ToolSolidAssembly.hxx
+// ./opencascade/IGESSolid_ConicalSurface.hxx
+// ./opencascade/IGESSolid_Array1OfLoop.hxx
+// ./opencascade/IGESSolid_ToolSphericalSurface.hxx
+// ./opencascade/IGESSolid_EdgeList.hxx
+// ./opencascade/IGESSolid_SelectedComponent.hxx
+// ./opencascade/IGESSolid_ToolPlaneSurface.hxx
 // ./opencascade/IGESSolid_ToolSolidOfRevolution.hxx
+// ./opencascade/IGESSolid_Torus.hxx
+// ./opencascade/IGESSolid_ConeFrustum.hxx
+// ./opencascade/IGESSolid_SolidOfRevolution.hxx
+// ./opencascade/IGESSolid_HArray1OfLoop.hxx
+// ./opencascade/IGESSolid_VertexList.hxx
+// ./opencascade/IGESSolid_HArray1OfVertexList.hxx
+// ./opencascade/IGESSolid_RightAngularWedge.hxx
+// ./opencascade/IGESSolid_ToolBooleanTree.hxx
+// ./opencascade/IGESSolid_CylindricalSurface.hxx
+// ./opencascade/IGESSolid_BooleanTree.hxx
+// ./opencascade/IGESSolid_Array1OfVertexList.hxx
+// ./opencascade/IGESSolid_SolidAssembly.hxx
+// ./opencascade/IGESSolid_ToolManifoldSolid.hxx
+// ./opencascade/IGESSolid_ToolFace.hxx
+// ./opencascade/IGESSolid_ToolVertexList.hxx
+// ./opencascade/IGESSolid_Loop.hxx
+// ./opencascade/IGESSolid_ToolEllipsoid.hxx
+// ./opencascade/IGESSolid_Face.hxx
+// ./opencascade/IGESSolid_ToolRightAngularWedge.hxx
+// ./opencascade/IGESSolid_ToolLoop.hxx
+// ./opencascade/IGESSolid_SolidOfLinearExtrusion.hxx
+// ./opencascade/IGESSolid_ToolSelectedComponent.hxx
+// ./opencascade/IGESSolid_TopoBuilder.hxx
+// ./opencascade/IGESSolid_ToolSphere.hxx
+// ./opencascade/IGESSolid_ToolEdgeList.hxx
+// ./opencascade/IGESSolid_ToolShell.hxx
+// ./opencascade/IGESSolid_ToolTorus.hxx
+// ./opencascade/IGESSolid_SolidInstance.hxx
+// ./opencascade/IGESSolid.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<IGESSolid_Loop> >(m,"IGESSolid_Array1OfLoop");  
     register_template_NCollection_Array1<opencascade::handle<IGESSolid_Face> >(m,"IGESSolid_Array1OfFace");  
     register_template_NCollection_Array1<opencascade::handle<IGESSolid_Shell> >(m,"IGESSolid_Array1OfShell");  
+    register_template_NCollection_Array1<opencascade::handle<IGESSolid_Loop> >(m,"IGESSolid_Array1OfLoop");  
     register_template_NCollection_Array1<opencascade::handle<IGESSolid_VertexList> >(m,"IGESSolid_Array1OfVertexList");  
 
 

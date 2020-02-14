@@ -13,16 +13,16 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <gp_Cylinder.hxx>
 #include <gp_Torus.hxx>
-#include <gp_Cone.hxx>
+#include <gp_Sphere.hxx>
 #include <gp_Elips2d.hxx>
 #include <gp_Parab2d.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Sphere.hxx>
-#include <Standard_ConstructionError.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Standard_ConstructionError.hxx>
 #include <gp_Hypr2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Cone.hxx>
 
 // module includes
 #include <Convert_CircleToBSplineCurve.hxx>
@@ -68,7 +68,9 @@ py::module m = static_cast<py::module>(main_module.attr("Convert"));
 
 
     static_cast<py::class_<Convert_CompBezierCurves2dToBSplineCurve2d , shared_ptr<Convert_CompBezierCurves2dToBSplineCurve2d>  >>(m.attr("Convert_CompBezierCurves2dToBSplineCurve2d"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("AngularTolerance")=static_cast<const Standard_Real>(1.0e-4) )
+    // custom constructors
     // methods
         .def("AddCurve",
              (void (Convert_CompBezierCurves2dToBSplineCurve2d::*)(  const NCollection_Array1<gp_Pnt2d> &  ) ) static_cast<void (Convert_CompBezierCurves2dToBSplineCurve2d::*)(  const NCollection_Array1<gp_Pnt2d> &  ) >(&Convert_CompBezierCurves2dToBSplineCurve2d::AddCurve),
@@ -95,12 +97,14 @@ py::module m = static_cast<py::module>(main_module.attr("Convert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_CompBezierCurvesToBSplineCurve , shared_ptr<Convert_CompBezierCurvesToBSplineCurve>  >>(m.attr("Convert_CompBezierCurvesToBSplineCurve"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("AngularTolerance")=static_cast<const Standard_Real>(1.0e-4) )
+    // custom constructors
     // methods
         .def("AddCurve",
              (void (Convert_CompBezierCurvesToBSplineCurve::*)(  const NCollection_Array1<gp_Pnt> &  ) ) static_cast<void (Convert_CompBezierCurvesToBSplineCurve::*)(  const NCollection_Array1<gp_Pnt> &  ) >(&Convert_CompBezierCurvesToBSplineCurve::AddCurve),
@@ -127,14 +131,16 @@ py::module m = static_cast<py::module>(main_module.attr("Convert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_CompPolynomialToPoles , shared_ptr<Convert_CompPolynomialToPoles>  >>(m.attr("Convert_CompPolynomialToPoles"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfInteger> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> & >()  , py::arg("NumCurves"),  py::arg("Continuity"),  py::arg("Dimension"),  py::arg("MaxDegree"),  py::arg("NumCoeffPerCurve"),  py::arg("Coefficients"),  py::arg("PolynomialIntervals"),  py::arg("TrueIntervals") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer, const NCollection_Array1<Standard_Integer> &, const NCollection_Array1<Standard_Integer> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array2<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("NumCurves"),  py::arg("Dimension"),  py::arg("MaxDegree"),  py::arg("Continuity"),  py::arg("NumCoeffPerCurve"),  py::arg("Coefficients"),  py::arg("PolynomialIntervals"),  py::arg("TrueIntervals") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Dimension"),  py::arg("MaxDegree"),  py::arg("Degree"),  py::arg("Coefficients"),  py::arg("PolynomialIntervals"),  py::arg("TrueIntervals") )
+    // custom constructors
     // methods
         .def("NbPoles",
              (Standard_Integer (Convert_CompPolynomialToPoles::*)() const) static_cast<Standard_Integer (Convert_CompPolynomialToPoles::*)() const>(&Convert_CompPolynomialToPoles::NbPoles),
@@ -161,11 +167,13 @@ py::module m = static_cast<py::module>(main_module.attr("Convert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_ConicToBSplineCurve , shared_ptr<Convert_ConicToBSplineCurve>  >>(m.attr("Convert_ConicToBSplineCurve"))
+    // constructors
+    // custom constructors
     // methods
         .def("Degree",
              (Standard_Integer (Convert_ConicToBSplineCurve::*)() const) static_cast<Standard_Integer (Convert_ConicToBSplineCurve::*)() const>(&Convert_ConicToBSplineCurve::Degree),
@@ -201,11 +209,13 @@ py::module m = static_cast<py::module>(main_module.attr("Convert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_ElementarySurfaceToBSplineSurface , shared_ptr<Convert_ElementarySurfaceToBSplineSurface>  >>(m.attr("Convert_ElementarySurfaceToBSplineSurface"))
+    // constructors
+    // custom constructors
     // methods
         .def("UDegree",
              (Standard_Integer (Convert_ElementarySurfaceToBSplineSurface::*)() const) static_cast<Standard_Integer (Convert_ElementarySurfaceToBSplineSurface::*)() const>(&Convert_ElementarySurfaceToBSplineSurface::UDegree),
@@ -253,13 +263,15 @@ py::module m = static_cast<py::module>(main_module.attr("Convert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_GridPolynomialToPoles , shared_ptr<Convert_GridPolynomialToPoles>  >>(m.attr("Convert_GridPolynomialToPoles"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfInteger> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> & >()  , py::arg("MaxUDegree"),  py::arg("MaxVDegree"),  py::arg("NumCoeff"),  py::arg("Coefficients"),  py::arg("PolynomialUIntervals"),  py::arg("PolynomialVIntervals") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray2OfInteger> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> & >()  , py::arg("NbUSurfaces"),  py::arg("NBVSurfaces"),  py::arg("UContinuity"),  py::arg("VContinuity"),  py::arg("MaxUDegree"),  py::arg("MaxVDegree"),  py::arg("NumCoeffPerSurface"),  py::arg("Coefficients"),  py::arg("PolynomialUIntervals"),  py::arg("PolynomialVIntervals"),  py::arg("TrueUIntervals"),  py::arg("TrueVIntervals") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Convert_GridPolynomialToPoles::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray2OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (Convert_GridPolynomialToPoles::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray2OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&Convert_GridPolynomialToPoles::Perform),
@@ -304,128 +316,144 @@ py::module m = static_cast<py::module>(main_module.attr("Convert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_CircleToBSplineCurve , shared_ptr<Convert_CircleToBSplineCurve>  , Convert_ConicToBSplineCurve >>(m.attr("Convert_CircleToBSplineCurve"))
+    // constructors
         .def(py::init< const gp_Circ2d &,const Convert_ParameterisationType >()  , py::arg("C"),  py::arg("Parameterisation")=static_cast<const Convert_ParameterisationType>(Convert_TgtThetaOver2) )
         .def(py::init< const gp_Circ2d &,const Standard_Real,const Standard_Real,const Convert_ParameterisationType >()  , py::arg("C"),  py::arg("U1"),  py::arg("U2"),  py::arg("Parameterisation")=static_cast<const Convert_ParameterisationType>(Convert_TgtThetaOver2) )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_ConeToBSplineSurface , shared_ptr<Convert_ConeToBSplineSurface>  , Convert_ElementarySurfaceToBSplineSurface >>(m.attr("Convert_ConeToBSplineSurface"))
+    // constructors
         .def(py::init< const gp_Cone &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2") )
         .def(py::init< const gp_Cone &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("V1"),  py::arg("V2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_CylinderToBSplineSurface , shared_ptr<Convert_CylinderToBSplineSurface>  , Convert_ElementarySurfaceToBSplineSurface >>(m.attr("Convert_CylinderToBSplineSurface"))
+    // constructors
         .def(py::init< const gp_Cylinder &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Cyl"),  py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2") )
         .def(py::init< const gp_Cylinder &,const Standard_Real,const Standard_Real >()  , py::arg("Cyl"),  py::arg("V1"),  py::arg("V2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_EllipseToBSplineCurve , shared_ptr<Convert_EllipseToBSplineCurve>  , Convert_ConicToBSplineCurve >>(m.attr("Convert_EllipseToBSplineCurve"))
+    // constructors
         .def(py::init< const gp_Elips2d &,const Convert_ParameterisationType >()  , py::arg("E"),  py::arg("Parameterisation")=static_cast<const Convert_ParameterisationType>(Convert_TgtThetaOver2) )
         .def(py::init< const gp_Elips2d &,const Standard_Real,const Standard_Real,const Convert_ParameterisationType >()  , py::arg("E"),  py::arg("U1"),  py::arg("U2"),  py::arg("Parameterisation")=static_cast<const Convert_ParameterisationType>(Convert_TgtThetaOver2) )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_HyperbolaToBSplineCurve , shared_ptr<Convert_HyperbolaToBSplineCurve>  , Convert_ConicToBSplineCurve >>(m.attr("Convert_HyperbolaToBSplineCurve"))
+    // constructors
         .def(py::init< const gp_Hypr2d &,const Standard_Real,const Standard_Real >()  , py::arg("H"),  py::arg("U1"),  py::arg("U2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_ParabolaToBSplineCurve , shared_ptr<Convert_ParabolaToBSplineCurve>  , Convert_ConicToBSplineCurve >>(m.attr("Convert_ParabolaToBSplineCurve"))
+    // constructors
         .def(py::init< const gp_Parab2d &,const Standard_Real,const Standard_Real >()  , py::arg("Prb"),  py::arg("U1"),  py::arg("U2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_SphereToBSplineSurface , shared_ptr<Convert_SphereToBSplineSurface>  , Convert_ElementarySurfaceToBSplineSurface >>(m.attr("Convert_SphereToBSplineSurface"))
+    // constructors
         .def(py::init< const gp_Sphere &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Sph"),  py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2") )
         .def(py::init< const gp_Sphere &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Sph"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("UTrim")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const gp_Sphere & >()  , py::arg("Sph") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Convert_TorusToBSplineSurface , shared_ptr<Convert_TorusToBSplineSurface>  , Convert_ElementarySurfaceToBSplineSurface >>(m.attr("Convert_TorusToBSplineSurface"))
+    // constructors
         .def(py::init< const gp_Torus &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("T"),  py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2") )
         .def(py::init< const gp_Torus &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("T"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("UTrim")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const gp_Torus & >()  , py::arg("T") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Convert_TorusToBSplineSurface.hxx
-// ./opencascade/Convert_ConeToBSplineSurface.hxx
-// ./opencascade/Convert_EllipseToBSplineCurve.hxx
-// ./opencascade/Convert_ParabolaToBSplineCurve.hxx
 // ./opencascade/Convert_CylinderToBSplineSurface.hxx
-// ./opencascade/Convert_CompBezierCurvesToBSplineCurve.hxx
-// ./opencascade/Convert_CircleToBSplineCurve.hxx
-// ./opencascade/Convert_SphereToBSplineSurface.hxx
-// ./opencascade/Convert_CompPolynomialToPoles.hxx
 // ./opencascade/Convert_CompBezierCurves2dToBSplineCurve2d.hxx
+// ./opencascade/Convert_ParameterisationType.hxx
+// ./opencascade/Convert_CosAndSinEvalFunction.hxx
+// ./opencascade/Convert_CompBezierCurvesToBSplineCurve.hxx
+// ./opencascade/Convert_TorusToBSplineSurface.hxx
 // ./opencascade/Convert_PolynomialCosAndSin.hxx
     m.def("BuildPolynomialCosAndSin", 
           (void (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  opencascade::handle<TColStd_HArray1OfReal> & ,  opencascade::handle<TColStd_HArray1OfReal> & ,  opencascade::handle<TColStd_HArray1OfReal> &  ))  static_cast<void (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  opencascade::handle<TColStd_HArray1OfReal> & ,  opencascade::handle<TColStd_HArray1OfReal> & ,  opencascade::handle<TColStd_HArray1OfReal> &  )>(&BuildPolynomialCosAndSin),
           R"#(None)#"  , py::arg(""),  py::arg(""),  py::arg(""),  py::arg(""),  py::arg(""),  py::arg(""));
-// ./opencascade/Convert_ElementarySurfaceToBSplineSurface.hxx
-// ./opencascade/Convert_ConicToBSplineCurve.hxx
-// ./opencascade/Convert_GridPolynomialToPoles.hxx
-// ./opencascade/Convert_CosAndSinEvalFunction.hxx
+// ./opencascade/Convert_SphereToBSplineSurface.hxx
 // ./opencascade/Convert_SequenceOfArray1OfPoles2d.hxx
+// ./opencascade/Convert_EllipseToBSplineCurve.hxx
+// ./opencascade/Convert_ConicToBSplineCurve.hxx
+// ./opencascade/Convert_ParabolaToBSplineCurve.hxx
+// ./opencascade/Convert_GridPolynomialToPoles.hxx
+// ./opencascade/Convert_CompPolynomialToPoles.hxx
 // ./opencascade/Convert_HyperbolaToBSplineCurve.hxx
+// ./opencascade/Convert_CircleToBSplineCurve.hxx
 // ./opencascade/Convert_SequenceOfArray1OfPoles.hxx
-// ./opencascade/Convert_ParameterisationType.hxx
+// ./opencascade/Convert_ConeToBSplineSurface.hxx
+// ./opencascade/Convert_ElementarySurfaceToBSplineSurface.hxx
 
 // operators
 

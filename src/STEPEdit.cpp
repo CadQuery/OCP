@@ -13,14 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IFSelect_EditForm.hxx>
-#include <Interface_InterfaceModel.hxx>
 #include <Interface_Protocol.hxx>
 #include <StepData_StepModel.hxx>
 #include <IFSelect_Signature.hxx>
 #include <IFSelect_SelectSignature.hxx>
 #include <STEPEdit_EditContext.hxx>
 #include <STEPEdit_EditSDR.hxx>
+#include <IFSelect_EditForm.hxx>
+#include <Interface_InterfaceModel.hxx>
 #include <IFSelect_EditForm.hxx>
 #include <Interface_InterfaceModel.hxx>
 
@@ -48,9 +48,12 @@ py::module m = static_cast<py::module>(main_module.attr("STEPEdit"));
 
 // classes
 
+    // default constructor
     register_default_constructor<STEPEdit , shared_ptr<STEPEdit>>(m,"STEPEdit");
 
     static_cast<py::class_<STEPEdit , shared_ptr<STEPEdit>  >>(m.attr("STEPEdit"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -74,12 +77,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPEdit"));
                     R"#(Creates a Selection for ShapeRepresentation and its sub-types, plus ContextDependentShapeRepresentation (which is not a sub-type of ShapeRepresentation) By default in the whole StepModel)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPEdit_EditContext ,opencascade::handle<STEPEdit_EditContext>  , IFSelect_Editor >>(m.attr("STEPEdit_EditContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (STEPEdit_EditContext::*)() const) static_cast<TCollection_AsciiString (STEPEdit_EditContext::*)() const>(&STEPEdit_EditContext::Label),
@@ -109,12 +114,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPEdit"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPEdit_EditSDR ,opencascade::handle<STEPEdit_EditSDR>  , IFSelect_Editor >>(m.attr("STEPEdit_EditSDR"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (STEPEdit_EditSDR::*)() const) static_cast<TCollection_AsciiString (STEPEdit_EditSDR::*)() const>(&STEPEdit_EditSDR::Label),
@@ -144,13 +151,13 @@ py::module m = static_cast<py::module>(main_module.attr("STEPEdit"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/STEPEdit_EditSDR.hxx
 // ./opencascade/STEPEdit.hxx
 // ./opencascade/STEPEdit_EditContext.hxx
+// ./opencascade/STEPEdit_EditSDR.hxx
 
 // operators
 

@@ -15,17 +15,7 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_PerpendicularityTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeometricToleranceRelationship.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_DatumFeature.hxx>
+#include <StepDimTol_ModifiedGeometricTolerance.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -35,62 +25,12 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_GeneralDatumReference.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeoTolAndGeoTolWthMod.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
 #include <StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_UnequallyDisposedGeometricTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeometricTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_ToleranceZoneDefinition.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_DatumReferenceModifierWithValue.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_RunoutZoneDefinition.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_AngularityTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_CoaxialityTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_StraightnessTolerance.hxx>
+#include <StepDimTol_GeoTolAndGeoTolWthDatRef.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -100,67 +40,12 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_ToleranceZone.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_ParallelismTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeometricToleranceWithDefinedAreaUnit.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_PositionTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_DatumReferenceCompartment.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_FlatnessTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_DatumReference.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_NonUniformZoneDefinition.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeometricToleranceWithMaximumTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_DatumReferenceElement.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_Datum.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
 #include <StepDimTol_GeoTolAndGeoTolWthMaxTol.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_UnequallyDisposedGeometricTolerance.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -170,60 +55,7 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_ProjectedZoneDefinition.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_TotalRunoutTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_CylindricityTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_DatumSystem.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_LineProfileTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_SymmetryTolerance.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_ToleranceZoneForm.hxx>
-#include <StepData_StepWriter.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_DatumTarget.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_RunoutZoneOrientation.hxx>
-#include <StepData_StepWriter.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_GeoTolAndGeoTolWthDatRef.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepDimTol_ModifiedGeometricTolerance.hxx>
+#include <StepDimTol_AngularityTolerance.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -233,12 +65,37 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_RoundnessTolerance.hxx>
+#include <StepDimTol_Datum.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod.hxx>
+#include <StepDimTol_StraightnessTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeometricToleranceRelationship.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_DatumTarget.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeometricToleranceWithDefinedAreaUnit.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_DatumReference.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeoTolAndGeoTolWthMod.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -248,7 +105,17 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepDimTol_SurfaceProfileTolerance.hxx>
+#include <StepDimTol_ToleranceZoneDefinition.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_ProjectedZoneDefinition.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_SymmetryTolerance.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -256,6 +123,139 @@ namespace py = pybind11;
 #include <StepDimTol_GeometricToleranceWithModifiers.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_DatumReferenceModifierWithValue.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_DatumReferenceCompartment.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_PositionTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeneralDatumReference.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_FlatnessTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_TotalRunoutTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_ToleranceZone.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_RunoutZoneOrientation.hxx>
+#include <StepData_StepWriter.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_SurfaceProfileTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_RunoutZoneDefinition.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_NonUniformZoneDefinition.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_CylindricityTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_PerpendicularityTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeometricTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_ParallelismTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_LineProfileTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_CoaxialityTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_GeometricToleranceWithMaximumTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_DatumFeature.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_DatumReferenceElement.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_DatumSystem.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_RoundnessTolerance.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepDimTol_ToleranceZoneForm.hxx>
+#include <StepData_StepWriter.hxx>
 
 // module includes
 #include <RWStepDimTol_RWAngularityTolerance.hxx>
@@ -329,7 +329,9 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
 
 
     static_cast<py::class_<RWStepDimTol_RWAngularityTolerance , shared_ptr<RWStepDimTol_RWAngularityTolerance>  >>(m.attr("RWStepDimTol_RWAngularityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWAngularityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_AngularityTolerance> &  ) const) static_cast<void (RWStepDimTol_RWAngularityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_AngularityTolerance> &  ) const>(&RWStepDimTol_RWAngularityTolerance::ReadStep),
@@ -344,12 +346,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWCircularRunoutTolerance , shared_ptr<RWStepDimTol_RWCircularRunoutTolerance>  >>(m.attr("RWStepDimTol_RWCircularRunoutTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWCircularRunoutTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CircularRunoutTolerance> &  ) const) static_cast<void (RWStepDimTol_RWCircularRunoutTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CircularRunoutTolerance> &  ) const>(&RWStepDimTol_RWCircularRunoutTolerance::ReadStep),
@@ -364,12 +368,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWCoaxialityTolerance , shared_ptr<RWStepDimTol_RWCoaxialityTolerance>  >>(m.attr("RWStepDimTol_RWCoaxialityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWCoaxialityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CoaxialityTolerance> &  ) const) static_cast<void (RWStepDimTol_RWCoaxialityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CoaxialityTolerance> &  ) const>(&RWStepDimTol_RWCoaxialityTolerance::ReadStep),
@@ -384,12 +390,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWCommonDatum , shared_ptr<RWStepDimTol_RWCommonDatum>  >>(m.attr("RWStepDimTol_RWCommonDatum"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWCommonDatum::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CommonDatum> &  ) const) static_cast<void (RWStepDimTol_RWCommonDatum::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CommonDatum> &  ) const>(&RWStepDimTol_RWCommonDatum::ReadStep),
@@ -404,12 +412,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWConcentricityTolerance , shared_ptr<RWStepDimTol_RWConcentricityTolerance>  >>(m.attr("RWStepDimTol_RWConcentricityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWConcentricityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ConcentricityTolerance> &  ) const) static_cast<void (RWStepDimTol_RWConcentricityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ConcentricityTolerance> &  ) const>(&RWStepDimTol_RWConcentricityTolerance::ReadStep),
@@ -424,12 +434,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWCylindricityTolerance , shared_ptr<RWStepDimTol_RWCylindricityTolerance>  >>(m.attr("RWStepDimTol_RWCylindricityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWCylindricityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CylindricityTolerance> &  ) const) static_cast<void (RWStepDimTol_RWCylindricityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_CylindricityTolerance> &  ) const>(&RWStepDimTol_RWCylindricityTolerance::ReadStep),
@@ -444,12 +456,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatum , shared_ptr<RWStepDimTol_RWDatum>  >>(m.attr("RWStepDimTol_RWDatum"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatum::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_Datum> &  ) const) static_cast<void (RWStepDimTol_RWDatum::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_Datum> &  ) const>(&RWStepDimTol_RWDatum::ReadStep),
@@ -464,12 +478,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatumFeature , shared_ptr<RWStepDimTol_RWDatumFeature>  >>(m.attr("RWStepDimTol_RWDatumFeature"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatumFeature::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumFeature> &  ) const) static_cast<void (RWStepDimTol_RWDatumFeature::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumFeature> &  ) const>(&RWStepDimTol_RWDatumFeature::ReadStep),
@@ -484,12 +500,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatumReference , shared_ptr<RWStepDimTol_RWDatumReference>  >>(m.attr("RWStepDimTol_RWDatumReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatumReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReference> &  ) const) static_cast<void (RWStepDimTol_RWDatumReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReference> &  ) const>(&RWStepDimTol_RWDatumReference::ReadStep),
@@ -504,12 +522,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatumReferenceCompartment , shared_ptr<RWStepDimTol_RWDatumReferenceCompartment>  >>(m.attr("RWStepDimTol_RWDatumReferenceCompartment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatumReferenceCompartment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReferenceCompartment> &  ) const) static_cast<void (RWStepDimTol_RWDatumReferenceCompartment::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReferenceCompartment> &  ) const>(&RWStepDimTol_RWDatumReferenceCompartment::ReadStep),
@@ -524,12 +544,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatumReferenceElement , shared_ptr<RWStepDimTol_RWDatumReferenceElement>  >>(m.attr("RWStepDimTol_RWDatumReferenceElement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatumReferenceElement::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReferenceElement> &  ) const) static_cast<void (RWStepDimTol_RWDatumReferenceElement::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReferenceElement> &  ) const>(&RWStepDimTol_RWDatumReferenceElement::ReadStep),
@@ -544,12 +566,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatumReferenceModifierWithValue , shared_ptr<RWStepDimTol_RWDatumReferenceModifierWithValue>  >>(m.attr("RWStepDimTol_RWDatumReferenceModifierWithValue"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatumReferenceModifierWithValue::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReferenceModifierWithValue> &  ) const) static_cast<void (RWStepDimTol_RWDatumReferenceModifierWithValue::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumReferenceModifierWithValue> &  ) const>(&RWStepDimTol_RWDatumReferenceModifierWithValue::ReadStep),
@@ -561,12 +585,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatumSystem , shared_ptr<RWStepDimTol_RWDatumSystem>  >>(m.attr("RWStepDimTol_RWDatumSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatumSystem::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumSystem> &  ) const) static_cast<void (RWStepDimTol_RWDatumSystem::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumSystem> &  ) const>(&RWStepDimTol_RWDatumSystem::ReadStep),
@@ -581,12 +607,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWDatumTarget , shared_ptr<RWStepDimTol_RWDatumTarget>  >>(m.attr("RWStepDimTol_RWDatumTarget"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWDatumTarget::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumTarget> &  ) const) static_cast<void (RWStepDimTol_RWDatumTarget::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_DatumTarget> &  ) const>(&RWStepDimTol_RWDatumTarget::ReadStep),
@@ -601,12 +629,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWFlatnessTolerance , shared_ptr<RWStepDimTol_RWFlatnessTolerance>  >>(m.attr("RWStepDimTol_RWFlatnessTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWFlatnessTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_FlatnessTolerance> &  ) const) static_cast<void (RWStepDimTol_RWFlatnessTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_FlatnessTolerance> &  ) const>(&RWStepDimTol_RWFlatnessTolerance::ReadStep),
@@ -621,12 +651,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeneralDatumReference , shared_ptr<RWStepDimTol_RWGeneralDatumReference>  >>(m.attr("RWStepDimTol_RWGeneralDatumReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeneralDatumReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeneralDatumReference> &  ) const) static_cast<void (RWStepDimTol_RWGeneralDatumReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeneralDatumReference> &  ) const>(&RWStepDimTol_RWGeneralDatumReference::ReadStep),
@@ -641,12 +673,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeoTolAndGeoTolWthDatRef , shared_ptr<RWStepDimTol_RWGeoTolAndGeoTolWthDatRef>  >>(m.attr("RWStepDimTol_RWGeoTolAndGeoTolWthDatRef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRef::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRef> &  ) const) static_cast<void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRef::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRef> &  ) const>(&RWStepDimTol_RWGeoTolAndGeoTolWthDatRef::ReadStep),
@@ -661,12 +695,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol , shared_ptr<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol>  >>(m.attr("RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol> &  ) const) static_cast<void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol> &  ) const>(&RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol::ReadStep),
@@ -681,12 +717,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod , shared_ptr<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod>  >>(m.attr("RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod> &  ) const) static_cast<void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod> &  ) const>(&RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod::ReadStep),
@@ -701,12 +739,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol , shared_ptr<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol>  >>(m.attr("RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol> &  ) const) static_cast<void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol> &  ) const>(&RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol::ReadStep),
@@ -721,12 +761,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol , shared_ptr<RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol>  >>(m.attr("RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol> &  ) const) static_cast<void (RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol> &  ) const>(&RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol::ReadStep),
@@ -741,12 +783,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol , shared_ptr<RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol>  >>(m.attr("RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthMaxTol> &  ) const) static_cast<void (RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthMaxTol> &  ) const>(&RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol::ReadStep),
@@ -761,12 +805,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeoTolAndGeoTolWthMod , shared_ptr<RWStepDimTol_RWGeoTolAndGeoTolWthMod>  >>(m.attr("RWStepDimTol_RWGeoTolAndGeoTolWthMod"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeoTolAndGeoTolWthMod::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthMod> &  ) const) static_cast<void (RWStepDimTol_RWGeoTolAndGeoTolWthMod::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeoTolAndGeoTolWthMod> &  ) const>(&RWStepDimTol_RWGeoTolAndGeoTolWthMod::ReadStep),
@@ -781,12 +827,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeometricTolerance , shared_ptr<RWStepDimTol_RWGeometricTolerance>  >>(m.attr("RWStepDimTol_RWGeometricTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeometricTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricTolerance> &  ) const) static_cast<void (RWStepDimTol_RWGeometricTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricTolerance> &  ) const>(&RWStepDimTol_RWGeometricTolerance::ReadStep),
@@ -801,12 +849,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeometricToleranceRelationship , shared_ptr<RWStepDimTol_RWGeometricToleranceRelationship>  >>(m.attr("RWStepDimTol_RWGeometricToleranceRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeometricToleranceRelationship::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceRelationship> &  ) const) static_cast<void (RWStepDimTol_RWGeometricToleranceRelationship::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceRelationship> &  ) const>(&RWStepDimTol_RWGeometricToleranceRelationship::ReadStep),
@@ -821,12 +871,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeometricToleranceWithDatumReference , shared_ptr<RWStepDimTol_RWGeometricToleranceWithDatumReference>  >>(m.attr("RWStepDimTol_RWGeometricToleranceWithDatumReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeometricToleranceWithDatumReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> &  ) const) static_cast<void (RWStepDimTol_RWGeometricToleranceWithDatumReference::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> &  ) const>(&RWStepDimTol_RWGeometricToleranceWithDatumReference::ReadStep),
@@ -841,12 +893,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit , shared_ptr<RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit>  >>(m.attr("RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDefinedAreaUnit> &  ) const) static_cast<void (RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDefinedAreaUnit> &  ) const>(&RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit::ReadStep),
@@ -861,12 +915,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeometricToleranceWithDefinedUnit , shared_ptr<RWStepDimTol_RWGeometricToleranceWithDefinedUnit>  >>(m.attr("RWStepDimTol_RWGeometricToleranceWithDefinedUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeometricToleranceWithDefinedUnit::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDefinedUnit> &  ) const) static_cast<void (RWStepDimTol_RWGeometricToleranceWithDefinedUnit::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDefinedUnit> &  ) const>(&RWStepDimTol_RWGeometricToleranceWithDefinedUnit::ReadStep),
@@ -881,12 +937,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeometricToleranceWithMaximumTolerance , shared_ptr<RWStepDimTol_RWGeometricToleranceWithMaximumTolerance>  >>(m.attr("RWStepDimTol_RWGeometricToleranceWithMaximumTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeometricToleranceWithMaximumTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithMaximumTolerance> &  ) const) static_cast<void (RWStepDimTol_RWGeometricToleranceWithMaximumTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithMaximumTolerance> &  ) const>(&RWStepDimTol_RWGeometricToleranceWithMaximumTolerance::ReadStep),
@@ -901,12 +959,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWGeometricToleranceWithModifiers , shared_ptr<RWStepDimTol_RWGeometricToleranceWithModifiers>  >>(m.attr("RWStepDimTol_RWGeometricToleranceWithModifiers"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWGeometricToleranceWithModifiers::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> &  ) const) static_cast<void (RWStepDimTol_RWGeometricToleranceWithModifiers::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> &  ) const>(&RWStepDimTol_RWGeometricToleranceWithModifiers::ReadStep),
@@ -921,12 +981,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWLineProfileTolerance , shared_ptr<RWStepDimTol_RWLineProfileTolerance>  >>(m.attr("RWStepDimTol_RWLineProfileTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWLineProfileTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_LineProfileTolerance> &  ) const) static_cast<void (RWStepDimTol_RWLineProfileTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_LineProfileTolerance> &  ) const>(&RWStepDimTol_RWLineProfileTolerance::ReadStep),
@@ -941,12 +1003,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWModifiedGeometricTolerance , shared_ptr<RWStepDimTol_RWModifiedGeometricTolerance>  >>(m.attr("RWStepDimTol_RWModifiedGeometricTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWModifiedGeometricTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ModifiedGeometricTolerance> &  ) const) static_cast<void (RWStepDimTol_RWModifiedGeometricTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ModifiedGeometricTolerance> &  ) const>(&RWStepDimTol_RWModifiedGeometricTolerance::ReadStep),
@@ -961,12 +1025,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWNonUniformZoneDefinition , shared_ptr<RWStepDimTol_RWNonUniformZoneDefinition>  >>(m.attr("RWStepDimTol_RWNonUniformZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWNonUniformZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_NonUniformZoneDefinition> &  ) const) static_cast<void (RWStepDimTol_RWNonUniformZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_NonUniformZoneDefinition> &  ) const>(&RWStepDimTol_RWNonUniformZoneDefinition::ReadStep),
@@ -981,12 +1047,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWParallelismTolerance , shared_ptr<RWStepDimTol_RWParallelismTolerance>  >>(m.attr("RWStepDimTol_RWParallelismTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWParallelismTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ParallelismTolerance> &  ) const) static_cast<void (RWStepDimTol_RWParallelismTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ParallelismTolerance> &  ) const>(&RWStepDimTol_RWParallelismTolerance::ReadStep),
@@ -1001,12 +1069,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWPerpendicularityTolerance , shared_ptr<RWStepDimTol_RWPerpendicularityTolerance>  >>(m.attr("RWStepDimTol_RWPerpendicularityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWPerpendicularityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_PerpendicularityTolerance> &  ) const) static_cast<void (RWStepDimTol_RWPerpendicularityTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_PerpendicularityTolerance> &  ) const>(&RWStepDimTol_RWPerpendicularityTolerance::ReadStep),
@@ -1021,12 +1091,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWPlacedDatumTargetFeature , shared_ptr<RWStepDimTol_RWPlacedDatumTargetFeature>  >>(m.attr("RWStepDimTol_RWPlacedDatumTargetFeature"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWPlacedDatumTargetFeature::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_PlacedDatumTargetFeature> &  ) const) static_cast<void (RWStepDimTol_RWPlacedDatumTargetFeature::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_PlacedDatumTargetFeature> &  ) const>(&RWStepDimTol_RWPlacedDatumTargetFeature::ReadStep),
@@ -1041,12 +1113,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWPositionTolerance , shared_ptr<RWStepDimTol_RWPositionTolerance>  >>(m.attr("RWStepDimTol_RWPositionTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWPositionTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_PositionTolerance> &  ) const) static_cast<void (RWStepDimTol_RWPositionTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_PositionTolerance> &  ) const>(&RWStepDimTol_RWPositionTolerance::ReadStep),
@@ -1061,12 +1135,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWProjectedZoneDefinition , shared_ptr<RWStepDimTol_RWProjectedZoneDefinition>  >>(m.attr("RWStepDimTol_RWProjectedZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWProjectedZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ProjectedZoneDefinition> &  ) const) static_cast<void (RWStepDimTol_RWProjectedZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ProjectedZoneDefinition> &  ) const>(&RWStepDimTol_RWProjectedZoneDefinition::ReadStep),
@@ -1081,12 +1157,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWRoundnessTolerance , shared_ptr<RWStepDimTol_RWRoundnessTolerance>  >>(m.attr("RWStepDimTol_RWRoundnessTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWRoundnessTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_RoundnessTolerance> &  ) const) static_cast<void (RWStepDimTol_RWRoundnessTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_RoundnessTolerance> &  ) const>(&RWStepDimTol_RWRoundnessTolerance::ReadStep),
@@ -1101,12 +1179,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWRunoutZoneDefinition , shared_ptr<RWStepDimTol_RWRunoutZoneDefinition>  >>(m.attr("RWStepDimTol_RWRunoutZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWRunoutZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_RunoutZoneDefinition> &  ) const) static_cast<void (RWStepDimTol_RWRunoutZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_RunoutZoneDefinition> &  ) const>(&RWStepDimTol_RWRunoutZoneDefinition::ReadStep),
@@ -1121,12 +1201,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWRunoutZoneOrientation , shared_ptr<RWStepDimTol_RWRunoutZoneOrientation>  >>(m.attr("RWStepDimTol_RWRunoutZoneOrientation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWRunoutZoneOrientation::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_RunoutZoneOrientation> &  ) const) static_cast<void (RWStepDimTol_RWRunoutZoneOrientation::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_RunoutZoneOrientation> &  ) const>(&RWStepDimTol_RWRunoutZoneOrientation::ReadStep),
@@ -1138,12 +1220,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWStraightnessTolerance , shared_ptr<RWStepDimTol_RWStraightnessTolerance>  >>(m.attr("RWStepDimTol_RWStraightnessTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWStraightnessTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_StraightnessTolerance> &  ) const) static_cast<void (RWStepDimTol_RWStraightnessTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_StraightnessTolerance> &  ) const>(&RWStepDimTol_RWStraightnessTolerance::ReadStep),
@@ -1158,12 +1242,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWSurfaceProfileTolerance , shared_ptr<RWStepDimTol_RWSurfaceProfileTolerance>  >>(m.attr("RWStepDimTol_RWSurfaceProfileTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWSurfaceProfileTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_SurfaceProfileTolerance> &  ) const) static_cast<void (RWStepDimTol_RWSurfaceProfileTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_SurfaceProfileTolerance> &  ) const>(&RWStepDimTol_RWSurfaceProfileTolerance::ReadStep),
@@ -1178,12 +1264,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWSymmetryTolerance , shared_ptr<RWStepDimTol_RWSymmetryTolerance>  >>(m.attr("RWStepDimTol_RWSymmetryTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWSymmetryTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_SymmetryTolerance> &  ) const) static_cast<void (RWStepDimTol_RWSymmetryTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_SymmetryTolerance> &  ) const>(&RWStepDimTol_RWSymmetryTolerance::ReadStep),
@@ -1198,12 +1286,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWToleranceZone , shared_ptr<RWStepDimTol_RWToleranceZone>  >>(m.attr("RWStepDimTol_RWToleranceZone"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWToleranceZone::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ToleranceZone> &  ) const) static_cast<void (RWStepDimTol_RWToleranceZone::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ToleranceZone> &  ) const>(&RWStepDimTol_RWToleranceZone::ReadStep),
@@ -1218,12 +1308,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWToleranceZoneDefinition , shared_ptr<RWStepDimTol_RWToleranceZoneDefinition>  >>(m.attr("RWStepDimTol_RWToleranceZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWToleranceZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ToleranceZoneDefinition> &  ) const) static_cast<void (RWStepDimTol_RWToleranceZoneDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ToleranceZoneDefinition> &  ) const>(&RWStepDimTol_RWToleranceZoneDefinition::ReadStep),
@@ -1238,12 +1330,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWToleranceZoneForm , shared_ptr<RWStepDimTol_RWToleranceZoneForm>  >>(m.attr("RWStepDimTol_RWToleranceZoneForm"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWToleranceZoneForm::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ToleranceZoneForm> &  ) const) static_cast<void (RWStepDimTol_RWToleranceZoneForm::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_ToleranceZoneForm> &  ) const>(&RWStepDimTol_RWToleranceZoneForm::ReadStep),
@@ -1255,12 +1349,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWTotalRunoutTolerance , shared_ptr<RWStepDimTol_RWTotalRunoutTolerance>  >>(m.attr("RWStepDimTol_RWTotalRunoutTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWTotalRunoutTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_TotalRunoutTolerance> &  ) const) static_cast<void (RWStepDimTol_RWTotalRunoutTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_TotalRunoutTolerance> &  ) const>(&RWStepDimTol_RWTotalRunoutTolerance::ReadStep),
@@ -1275,12 +1371,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepDimTol_RWUnequallyDisposedGeometricTolerance , shared_ptr<RWStepDimTol_RWUnequallyDisposedGeometricTolerance>  >>(m.attr("RWStepDimTol_RWUnequallyDisposedGeometricTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepDimTol_RWUnequallyDisposedGeometricTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_UnequallyDisposedGeometricTolerance> &  ) const) static_cast<void (RWStepDimTol_RWUnequallyDisposedGeometricTolerance::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepDimTol_UnequallyDisposedGeometricTolerance> &  ) const>(&RWStepDimTol_RWUnequallyDisposedGeometricTolerance::ReadStep),
@@ -1295,59 +1393,59 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/RWStepDimTol_RWPerpendicularityTolerance.hxx
-// ./opencascade/RWStepDimTol_RWGeometricToleranceRelationship.hxx
-// ./opencascade/RWStepDimTol_RWDatumFeature.hxx
-// ./opencascade/RWStepDimTol_RWConcentricityTolerance.hxx
-// ./opencascade/RWStepDimTol_RWGeneralDatumReference.hxx
-// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthMod.hxx
-// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol.hxx
-// ./opencascade/RWStepDimTol_RWUnequallyDisposedGeometricTolerance.hxx
-// ./opencascade/RWStepDimTol_RWGeometricTolerance.hxx
-// ./opencascade/RWStepDimTol_RWToleranceZoneDefinition.hxx
-// ./opencascade/RWStepDimTol_RWDatumReferenceModifierWithValue.hxx
-// ./opencascade/RWStepDimTol_RWRunoutZoneDefinition.hxx
-// ./opencascade/RWStepDimTol_RWAngularityTolerance.hxx
-// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol.hxx
-// ./opencascade/RWStepDimTol_RWCoaxialityTolerance.hxx
-// ./opencascade/RWStepDimTol_RWStraightnessTolerance.hxx
-// ./opencascade/RWStepDimTol_RWCommonDatum.hxx
-// ./opencascade/RWStepDimTol_RWToleranceZone.hxx
-// ./opencascade/RWStepDimTol_RWParallelismTolerance.hxx
-// ./opencascade/RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit.hxx
-// ./opencascade/RWStepDimTol_RWPositionTolerance.hxx
-// ./opencascade/RWStepDimTol_RWDatumReferenceCompartment.hxx
-// ./opencascade/RWStepDimTol_RWFlatnessTolerance.hxx
-// ./opencascade/RWStepDimTol_RWDatumReference.hxx
-// ./opencascade/RWStepDimTol_RWNonUniformZoneDefinition.hxx
-// ./opencascade/RWStepDimTol_RWGeometricToleranceWithMaximumTolerance.hxx
-// ./opencascade/RWStepDimTol_RWDatumReferenceElement.hxx
-// ./opencascade/RWStepDimTol_RWGeometricToleranceWithDatumReference.hxx
-// ./opencascade/RWStepDimTol_RWDatum.hxx
-// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol.hxx
-// ./opencascade/RWStepDimTol_RWPlacedDatumTargetFeature.hxx
-// ./opencascade/RWStepDimTol_RWProjectedZoneDefinition.hxx
-// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol.hxx
-// ./opencascade/RWStepDimTol_RWTotalRunoutTolerance.hxx
-// ./opencascade/RWStepDimTol_RWCylindricityTolerance.hxx
-// ./opencascade/RWStepDimTol_RWDatumSystem.hxx
-// ./opencascade/RWStepDimTol_RWLineProfileTolerance.hxx
-// ./opencascade/RWStepDimTol_RWSymmetryTolerance.hxx
-// ./opencascade/RWStepDimTol_RWToleranceZoneForm.hxx
-// ./opencascade/RWStepDimTol_RWDatumTarget.hxx
-// ./opencascade/RWStepDimTol_RWRunoutZoneOrientation.hxx
-// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRef.hxx
 // ./opencascade/RWStepDimTol_RWModifiedGeometricTolerance.hxx
+// ./opencascade/RWStepDimTol_RWConcentricityTolerance.hxx
+// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol.hxx
+// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRef.hxx
+// ./opencascade/RWStepDimTol_RWCommonDatum.hxx
+// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthMaxTol.hxx
+// ./opencascade/RWStepDimTol_RWUnequallyDisposedGeometricTolerance.hxx
+// ./opencascade/RWStepDimTol_RWPlacedDatumTargetFeature.hxx
+// ./opencascade/RWStepDimTol_RWAngularityTolerance.hxx
 // ./opencascade/RWStepDimTol_RWGeometricToleranceWithDefinedUnit.hxx
-// ./opencascade/RWStepDimTol_RWRoundnessTolerance.hxx
-// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod.hxx
+// ./opencascade/RWStepDimTol_RWDatum.hxx
+// ./opencascade/RWStepDimTol_RWStraightnessTolerance.hxx
+// ./opencascade/RWStepDimTol_RWGeometricToleranceRelationship.hxx
+// ./opencascade/RWStepDimTol_RWDatumTarget.hxx
+// ./opencascade/RWStepDimTol_RWGeometricToleranceWithDefinedAreaUnit.hxx
+// ./opencascade/RWStepDimTol_RWDatumReference.hxx
+// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthMod.hxx
 // ./opencascade/RWStepDimTol_RWCircularRunoutTolerance.hxx
-// ./opencascade/RWStepDimTol_RWSurfaceProfileTolerance.hxx
+// ./opencascade/RWStepDimTol_RWToleranceZoneDefinition.hxx
+// ./opencascade/RWStepDimTol_RWProjectedZoneDefinition.hxx
+// ./opencascade/RWStepDimTol_RWSymmetryTolerance.hxx
 // ./opencascade/RWStepDimTol_RWGeometricToleranceWithModifiers.hxx
+// ./opencascade/RWStepDimTol_RWDatumReferenceModifierWithValue.hxx
+// ./opencascade/RWStepDimTol_RWDatumReferenceCompartment.hxx
+// ./opencascade/RWStepDimTol_RWPositionTolerance.hxx
+// ./opencascade/RWStepDimTol_RWGeneralDatumReference.hxx
+// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndUneqDisGeoTol.hxx
+// ./opencascade/RWStepDimTol_RWFlatnessTolerance.hxx
+// ./opencascade/RWStepDimTol_RWTotalRunoutTolerance.hxx
+// ./opencascade/RWStepDimTol_RWToleranceZone.hxx
+// ./opencascade/RWStepDimTol_RWRunoutZoneOrientation.hxx
+// ./opencascade/RWStepDimTol_RWSurfaceProfileTolerance.hxx
+// ./opencascade/RWStepDimTol_RWRunoutZoneDefinition.hxx
+// ./opencascade/RWStepDimTol_RWNonUniformZoneDefinition.hxx
+// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMod.hxx
+// ./opencascade/RWStepDimTol_RWCylindricityTolerance.hxx
+// ./opencascade/RWStepDimTol_RWPerpendicularityTolerance.hxx
+// ./opencascade/RWStepDimTol_RWGeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol.hxx
+// ./opencascade/RWStepDimTol_RWGeometricTolerance.hxx
+// ./opencascade/RWStepDimTol_RWGeometricToleranceWithDatumReference.hxx
+// ./opencascade/RWStepDimTol_RWParallelismTolerance.hxx
+// ./opencascade/RWStepDimTol_RWLineProfileTolerance.hxx
+// ./opencascade/RWStepDimTol_RWCoaxialityTolerance.hxx
+// ./opencascade/RWStepDimTol_RWGeometricToleranceWithMaximumTolerance.hxx
+// ./opencascade/RWStepDimTol_RWDatumFeature.hxx
+// ./opencascade/RWStepDimTol_RWDatumReferenceElement.hxx
+// ./opencascade/RWStepDimTol_RWDatumSystem.hxx
+// ./opencascade/RWStepDimTol_RWRoundnessTolerance.hxx
+// ./opencascade/RWStepDimTol_RWToleranceZoneForm.hxx
 
 // operators
 

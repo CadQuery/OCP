@@ -13,32 +13,33 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TopoDS_Vertex.hxx>
 #include <Adaptor3d_HSurface.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <Adaptor3d_HSurface.hxx>
 #include <HLRBRep_Data.hxx>
 #include <TopoDS_Shape.hxx>
 #include <HLRAlgo_Projector.hxx>
 #include <BRepAdaptor_Curve.hxx>
-#include <Adaptor3d_Curve.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Geom_Point.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Prs3d_Projector.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Graphic3d_ArrayOfPoints.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Adaptor3d_Surface.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <BRepAdaptor_HSurface.hxx>
+#include <Adaptor3d_Curve.hxx>
 #include <Graphic3d_ArrayOfSegments.hxx>
 #include <Graphic3d_ArrayOfTriangles.hxx>
 #include <TopoDS_Shape.hxx>
 #include <BRep_Builder.hxx>
 #include <TopoDS_Compound.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <Geom_Point.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Prs3d_Projector.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <BRepAdaptor_HSurface.hxx>
+#include <Adaptor3d_Curve.hxx>
 
 // module includes
 #include <StdPrs_BndBox.hxx>
@@ -89,23 +90,47 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdPrs_BndBox , shared_ptr<StdPrs_BndBox>>(m,"StdPrs_BndBox");
 
     static_cast<py::class_<StdPrs_BndBox , shared_ptr<StdPrs_BndBox>  , Prs3d_Root >>(m.attr("StdPrs_BndBox"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("Add_s",
                     (void (*)( const opencascade::handle<Prs3d_Presentation> & ,  const Bnd_Box & ,  const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<void (*)( const opencascade::handle<Prs3d_Presentation> & ,  const Bnd_Box & ,  const opencascade::handle<Prs3d_Drawer> &  ) >(&StdPrs_BndBox::Add),
                     R"#(Computes presentation of a bounding box.)#"  , py::arg("thePresentation"),  py::arg("theBndBox"),  py::arg("theDrawer"))
+        .def_static("Add_s",
+                    (void (*)( const opencascade::handle<Prs3d_Presentation> & ,  const Bnd_OBB & ,  const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<void (*)( const opencascade::handle<Prs3d_Presentation> & ,  const Bnd_OBB & ,  const opencascade::handle<Prs3d_Drawer> &  ) >(&StdPrs_BndBox::Add),
+                    R"#(Computes presentation of a bounding box.)#"  , py::arg("thePresentation"),  py::arg("theBndBox"),  py::arg("theDrawer"))
+        .def_static("FillSegments_s",
+                    (opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const Bnd_OBB &  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const Bnd_OBB &  ) >(&StdPrs_BndBox::FillSegments),
+                    R"#(Create primitive array with line segments for displaying a box.)#"  , py::arg("theBox"))
+        .def_static("FillSegments_s",
+                    (opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const Bnd_Box &  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const Bnd_Box &  ) >(&StdPrs_BndBox::FillSegments),
+                    R"#(Create primitive array with line segments for displaying a box.)#"  , py::arg("theBox"))
+        .def_static("FillSegments_s",
+                    (void (*)( const opencascade::handle<Graphic3d_ArrayOfSegments> & ,  const Bnd_OBB &  ) ) static_cast<void (*)( const opencascade::handle<Graphic3d_ArrayOfSegments> & ,  const Bnd_OBB &  ) >(&StdPrs_BndBox::FillSegments),
+                    R"#(Create primitive array with line segments for displaying a box.)#"  , py::arg("theSegments"),  py::arg("theBox"))
+        .def_static("FillSegments_s",
+                    (void (*)( const opencascade::handle<Graphic3d_ArrayOfSegments> & ,  const Bnd_Box &  ) ) static_cast<void (*)( const opencascade::handle<Graphic3d_ArrayOfSegments> & ,  const Bnd_Box &  ) >(&StdPrs_BndBox::FillSegments),
+                    R"#(Create primitive array with line segments for displaying a box.)#"  , py::arg("theSegments"),  py::arg("theBox"))
+        .def_static("fillSegments_s",
+                    (void (*)( const opencascade::handle<Graphic3d_ArrayOfSegments> & ,  const gp_Pnt *  ) ) static_cast<void (*)( const opencascade::handle<Graphic3d_ArrayOfSegments> & ,  const gp_Pnt *  ) >(&StdPrs_BndBox::fillSegments),
+                    R"#(Create primitive array with line segments for displaying a box.)#"  , py::arg("theSegments"),  py::arg("theBox"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_Curve , shared_ptr<StdPrs_Curve>>(m,"StdPrs_Curve");
 
     static_cast<py::class_<StdPrs_Curve , shared_ptr<StdPrs_Curve>  , Prs3d_Root >>(m.attr("StdPrs_Curve"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -135,12 +160,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(returns true if the distance between the point (X,Y,Z) and the drawing of the curve aCurve is less than aDistance. The drawing is considered between the points of parameter U1 and U2;)#"  , py::arg("X"),  py::arg("Y"),  py::arg("Z"),  py::arg("aDistance"),  py::arg("aCurve"),  py::arg("U1"),  py::arg("U2"),  py::arg("aDeflection"),  py::arg("aNbPoints"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_DeflectionCurve , shared_ptr<StdPrs_DeflectionCurve>>(m,"StdPrs_DeflectionCurve");
 
     static_cast<py::class_<StdPrs_DeflectionCurve , shared_ptr<StdPrs_DeflectionCurve>  , Prs3d_Root >>(m.attr("StdPrs_DeflectionCurve"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -173,12 +201,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(Returns true if the distance between the point (theX, theY, theZ) and the drawing with respect of the maximal chordial deviation theDeflection is less then theDistance. The drawing is considered between the points of parameter theU1 and theU2.)#"  , py::arg("theX"),  py::arg("theY"),  py::arg("theZ"),  py::arg("theDistance"),  py::arg("theCurve"),  py::arg("theU1"),  py::arg("theU2"),  py::arg("theDeflection"),  py::arg("theAngle"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_HLRPolyShape , shared_ptr<StdPrs_HLRPolyShape>>(m,"StdPrs_HLRPolyShape");
 
     static_cast<py::class_<StdPrs_HLRPolyShape , shared_ptr<StdPrs_HLRPolyShape>  , Prs3d_Root >>(m.attr("StdPrs_HLRPolyShape"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -187,23 +218,28 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(Defines the hidden line removal display of the topology aShape in the projection defined by aProjector. The shape and the projection are added to the display aPresentation, and the attributes of the elements present in the aPresentation are defined by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aShape"),  py::arg("aDrawer"),  py::arg("aProjector"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_HLRShape , shared_ptr<StdPrs_HLRShape>>(m,"StdPrs_HLRShape");
 
     static_cast<py::class_<StdPrs_HLRShape , shared_ptr<StdPrs_HLRShape>  , Prs3d_Root >>(m.attr("StdPrs_HLRShape"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdPrs_HLRToolShape , shared_ptr<StdPrs_HLRToolShape>  >>(m.attr("StdPrs_HLRToolShape"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const HLRAlgo_Projector & >()  , py::arg("TheShape"),  py::arg("TheProjector") )
+    // custom constructors
     // methods
         .def("NbEdges",
              (Standard_Integer (StdPrs_HLRToolShape::*)() const) static_cast<Standard_Integer (StdPrs_HLRToolShape::*)() const>(&StdPrs_HLRToolShape::NbEdges),
@@ -236,12 +272,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_Isolines , shared_ptr<StdPrs_Isolines>>(m,"StdPrs_Isolines");
 
     static_cast<py::class_<StdPrs_Isolines , shared_ptr<StdPrs_Isolines>  , Prs3d_Root >>(m.attr("StdPrs_Isolines"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -269,17 +308,20 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
         .def_static("AddOnSurface_s",
                     (void (*)( const opencascade::handle<Prs3d_Presentation> & ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Real ,   const NCollection_Sequence<Standard_Real> & ,   const NCollection_Sequence<Standard_Real> &  ) ) static_cast<void (*)( const opencascade::handle<Prs3d_Presentation> & ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  const opencascade::handle<Prs3d_Drawer> & ,  const Standard_Real ,   const NCollection_Sequence<Standard_Real> & ,   const NCollection_Sequence<Standard_Real> &  ) >(&StdPrs_Isolines::AddOnSurface),
                     R"#(Computes isolines on surface and adds them to presentation.)#"  , py::arg("thePresentation"),  py::arg("theSurface"),  py::arg("theDrawer"),  py::arg("theDeflection"),  py::arg("theUIsoParams"),  py::arg("theVIsoParams"))
-        .def_static("UVIsoParameters_s",
-                    (void (*)( const TopoDS_Face & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  NCollection_Sequence<Standard_Real> & ,  NCollection_Sequence<Standard_Real> &  ) ) static_cast<void (*)( const TopoDS_Face & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  NCollection_Sequence<Standard_Real> & ,  NCollection_Sequence<Standard_Real> &  ) >(&StdPrs_Isolines::UVIsoParameters),
-                    R"#(Evalute sequence of parameters for drawing uv isolines for a given face.)#"  , py::arg("theFace"),  py::arg("theNbIsoU"),  py::arg("theNbIsoV"),  py::arg("theUVLimit"),  py::arg("theUIsoParams"),  py::arg("theVIsoParams"))
     // static methods using call by reference i.s.o. return
+        .def_static("UVIsoParameters_s",
+                    []( const TopoDS_Face & theFace,const Standard_Integer theNbIsoU,const Standard_Integer theNbIsoV,const Standard_Real theUVLimit,NCollection_Sequence<Standard_Real> & theUIsoParams,NCollection_Sequence<Standard_Real> & theVIsoParams ){ Standard_Real  theUmin; Standard_Real  theUmax; Standard_Real  theVmin; Standard_Real  theVmax; StdPrs_Isolines::UVIsoParameters(theFace,theNbIsoU,theNbIsoV,theUVLimit,theUIsoParams,theVIsoParams,theUmin,theUmax,theVmin,theVmax); return std::make_tuple(theUmin,theUmax,theVmin,theVmax); },
+                    R"#(Evalute sequence of parameters for drawing uv isolines for a given face.)#"  , py::arg("theFace"),  py::arg("theNbIsoU"),  py::arg("theNbIsoV"),  py::arg("theUVLimit"),  py::arg("theUIsoParams"),  py::arg("theVIsoParams"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_Plane , shared_ptr<StdPrs_Plane>>(m,"StdPrs_Plane");
 
     static_cast<py::class_<StdPrs_Plane , shared_ptr<StdPrs_Plane>  , Prs3d_Root >>(m.attr("StdPrs_Plane"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -291,12 +333,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(returns true if the distance between the point (X,Y,Z) and the plane is less than aDistance.)#"  , py::arg("X"),  py::arg("Y"),  py::arg("Z"),  py::arg("aDistance"),  py::arg("aPlane"),  py::arg("aDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_PoleCurve , shared_ptr<StdPrs_PoleCurve>>(m,"StdPrs_PoleCurve");
 
     static_cast<py::class_<StdPrs_PoleCurve , shared_ptr<StdPrs_PoleCurve>  , Prs3d_Root >>(m.attr("StdPrs_PoleCurve"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -311,12 +356,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(returns the pole the most near of the point (X,Y,Z) and returns its range. The distance between the pole and (X,Y,Z) must be less then aDistance. If no pole corresponds, 0 is returned.)#"  , py::arg("X"),  py::arg("Y"),  py::arg("Z"),  py::arg("aDistance"),  py::arg("aCurve"),  py::arg("aDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_ShadedShape , shared_ptr<StdPrs_ShadedShape>>(m,"StdPrs_ShadedShape");
 
     static_cast<py::class_<StdPrs_ShadedShape , shared_ptr<StdPrs_ShadedShape>  , Prs3d_Root >>(m.attr("StdPrs_ShadedShape"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -342,16 +390,19 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     (opencascade::handle<Graphic3d_ArrayOfTriangles> (*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfTriangles> (*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&StdPrs_ShadedShape::FillTriangles),
                     R"#(Create primitive array of triangles for specified shape.)#"  , py::arg("theShape"),  py::arg("theHasTexels"),  py::arg("theUVOrigin"),  py::arg("theUVRepeat"),  py::arg("theUVScale"))
         .def_static("FillFaceBoundaries_s",
-                    (opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const TopoDS_Shape &  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const TopoDS_Shape &  ) >(&StdPrs_ShadedShape::FillFaceBoundaries),
-                    R"#(Define primitive array of boundary segments for specified shape.)#"  , py::arg("theShape"))
+                    (opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const TopoDS_Shape & ,  GeomAbs_Shape  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfSegments> (*)( const TopoDS_Shape & ,  GeomAbs_Shape  ) >(&StdPrs_ShadedShape::FillFaceBoundaries),
+                    R"#(Define primitive array of boundary segments for specified shape.)#"  , py::arg("theShape"),  py::arg("theUpperContinuity")=static_cast<GeomAbs_Shape>(GeomAbs_CN))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_ShadedSurface , shared_ptr<StdPrs_ShadedSurface>>(m,"StdPrs_ShadedSurface");
 
     static_cast<py::class_<StdPrs_ShadedSurface , shared_ptr<StdPrs_ShadedSurface>  , Prs3d_Root >>(m.attr("StdPrs_ShadedSurface"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -360,12 +411,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(Adds the surface aSurface to the presentation object aPresentation. The surface's display attributes are set in the attribute manager aDrawer. The surface object from Adaptor3d provides data from a Geom surface in order to use the surface in an algorithm.)#"  , py::arg("aPresentation"),  py::arg("aSurface"),  py::arg("aDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_ToolPoint , shared_ptr<StdPrs_ToolPoint>>(m,"StdPrs_ToolPoint");
 
     static_cast<py::class_<StdPrs_ToolPoint , shared_ptr<StdPrs_ToolPoint>  >>(m.attr("StdPrs_ToolPoint"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -374,42 +428,50 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     []( const opencascade::handle<Geom_Point> & aPoint ){ Standard_Real  X; Standard_Real  Y; Standard_Real  Z; StdPrs_ToolPoint::Coord(aPoint,X,Y,Z); return std::make_tuple(X,Y,Z); },
                     R"#(None)#"  , py::arg("aPoint"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdPrs_ToolRFace , shared_ptr<StdPrs_ToolRFace>  >>(m.attr("StdPrs_ToolRFace"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<BRepAdaptor_HSurface> & >()  , py::arg("aSurface") )
+    // custom constructors
     // methods
         .def("IsOriented",
              (Standard_Boolean (StdPrs_ToolRFace::*)() const) static_cast<Standard_Boolean (StdPrs_ToolRFace::*)() const>(&StdPrs_ToolRFace::IsOriented),
-             R"#(None)#" )
+             R"#(Return TRUE indicating that iterator looks only for oriented edges.)#" )
         .def("Init",
              (void (StdPrs_ToolRFace::*)() ) static_cast<void (StdPrs_ToolRFace::*)() >(&StdPrs_ToolRFace::Init),
-             R"#(None)#" )
+             R"#(Move iterator to the first element.)#" )
         .def("More",
              (Standard_Boolean (StdPrs_ToolRFace::*)() const) static_cast<Standard_Boolean (StdPrs_ToolRFace::*)() const>(&StdPrs_ToolRFace::More),
-             R"#(None)#" )
+             R"#(Return TRUE if iterator points to the curve.)#" )
         .def("Next",
              (void (StdPrs_ToolRFace::*)() ) static_cast<void (StdPrs_ToolRFace::*)() >(&StdPrs_ToolRFace::Next),
-             R"#(None)#" )
+             R"#(Go to the next curve in the face.)#" )
         .def("Value",
-             (Adaptor2d_Curve2dPtr (StdPrs_ToolRFace::*)() const) static_cast<Adaptor2d_Curve2dPtr (StdPrs_ToolRFace::*)() const>(&StdPrs_ToolRFace::Value),
-             R"#(None)#" )
+             (const Adaptor2d_Curve2d & (StdPrs_ToolRFace::*)() const) static_cast<const Adaptor2d_Curve2d & (StdPrs_ToolRFace::*)() const>(&StdPrs_ToolRFace::Value),
+             R"#(Return current curve.)#" )
         .def("Orientation",
              (TopAbs_Orientation (StdPrs_ToolRFace::*)() const) static_cast<TopAbs_Orientation (StdPrs_ToolRFace::*)() const>(&StdPrs_ToolRFace::Orientation),
-             R"#(None)#" )
+             R"#(Return current edge orientation.)#" )
+        .def("IsInvalidGeometry",
+             (Standard_Boolean (StdPrs_ToolRFace::*)() const) static_cast<Standard_Boolean (StdPrs_ToolRFace::*)() const>(&StdPrs_ToolRFace::IsInvalidGeometry),
+             R"#(Return TRUE if NULL curves have been skipped.)#" )
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_ToolTriangulatedShape , shared_ptr<StdPrs_ToolTriangulatedShape>>(m,"StdPrs_ToolTriangulatedShape");
 
     static_cast<py::class_<StdPrs_ToolTriangulatedShape , shared_ptr<StdPrs_ToolTriangulatedShape>  >>(m.attr("StdPrs_ToolTriangulatedShape"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -439,12 +501,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(If presentation has own deviation coefficient and IsAutoTriangulation() is true, function will compare actual coefficients with previous values and will clear triangulation on their change (regardless actual tessellation quality). Function is placed here for compatibility reasons - new code should avoid using IsAutoTriangulation().)#"  , py::arg("theShape"),  py::arg("theDrawer"),  py::arg("theToResetCoeff"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_ToolVertex , shared_ptr<StdPrs_ToolVertex>>(m,"StdPrs_ToolVertex");
 
     static_cast<py::class_<StdPrs_ToolVertex , shared_ptr<StdPrs_ToolVertex>  >>(m.attr("StdPrs_ToolVertex"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -453,12 +518,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     []( const TopoDS_Vertex & aPoint ){ Standard_Real  X; Standard_Real  Y; Standard_Real  Z; StdPrs_ToolVertex::Coord(aPoint,X,Y,Z); return std::make_tuple(X,Y,Z); },
                     R"#(None)#"  , py::arg("aPoint"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_WFDeflectionRestrictedFace , shared_ptr<StdPrs_WFDeflectionRestrictedFace>>(m,"StdPrs_WFDeflectionRestrictedFace");
 
     static_cast<py::class_<StdPrs_WFDeflectionRestrictedFace , shared_ptr<StdPrs_WFDeflectionRestrictedFace>  , Prs3d_Root >>(m.attr("StdPrs_WFDeflectionRestrictedFace"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -488,12 +556,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(None)#"  , py::arg("X"),  py::arg("Y"),  py::arg("Z"),  py::arg("aDistance"),  py::arg("aFace"),  py::arg("aDrawer"),  py::arg("DrawUIso"),  py::arg("DrawVIso"),  py::arg("aDeflection"),  py::arg("NBUiso"),  py::arg("NBViso"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_WFDeflectionSurface , shared_ptr<StdPrs_WFDeflectionSurface>>(m,"StdPrs_WFDeflectionSurface");
 
     static_cast<py::class_<StdPrs_WFDeflectionSurface , shared_ptr<StdPrs_WFDeflectionSurface>  , Prs3d_Root >>(m.attr("StdPrs_WFDeflectionSurface"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -502,12 +573,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(Adds the surface aSurface to the presentation object aPresentation, and defines its boundaries and isoparameters. The shape's display attributes are set in the attribute manager aDrawer. These include whether deflection is absolute or relative to the size of the shape. The surface aSurface is a surface object from Adaptor, and provides data from a Geom surface. This makes it possible to use the surface in a geometric algorithm. Note that this surface object is manipulated by handles.)#"  , py::arg("aPresentation"),  py::arg("aSurface"),  py::arg("aDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_WFPoleSurface , shared_ptr<StdPrs_WFPoleSurface>>(m,"StdPrs_WFPoleSurface");
 
     static_cast<py::class_<StdPrs_WFPoleSurface , shared_ptr<StdPrs_WFPoleSurface>  , Prs3d_Root >>(m.attr("StdPrs_WFPoleSurface"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -516,12 +590,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(Adds the surface aSurface to the presentation object aPresentation. The shape's display attributes are set in the attribute manager aDrawer. The surface aSurface is a surface object from Adaptor3d, and provides data from a Geom surface. This makes it possible to use the surface in a geometric algorithm.)#"  , py::arg("aPresentation"),  py::arg("aSurface"),  py::arg("aDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_WFRestrictedFace , shared_ptr<StdPrs_WFRestrictedFace>>(m,"StdPrs_WFRestrictedFace");
 
     static_cast<py::class_<StdPrs_WFRestrictedFace , shared_ptr<StdPrs_WFRestrictedFace>  , Prs3d_Root >>(m.attr("StdPrs_WFRestrictedFace"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -551,12 +628,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(None)#"  , py::arg("thePresentation"),  py::arg("theFace"),  py::arg("theDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_WFShape , shared_ptr<StdPrs_WFShape>>(m,"StdPrs_WFShape");
 
     static_cast<py::class_<StdPrs_WFShape , shared_ptr<StdPrs_WFShape>  , Prs3d_Root >>(m.attr("StdPrs_WFShape"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -569,14 +649,23 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
         .def_static("AddEdgesOnTriangulation_s",
                     (void (*)( NCollection_Sequence<gp_Pnt> & ,  const TopoDS_Shape & ,  const Standard_Boolean  ) ) static_cast<void (*)( NCollection_Sequence<gp_Pnt> & ,  const TopoDS_Shape & ,  const Standard_Boolean  ) >(&StdPrs_WFShape::AddEdgesOnTriangulation),
                     R"#(Compute free and boundary edges on a triangulation of each face in the given shape.)#"  , py::arg("theSegments"),  py::arg("theShape"),  py::arg("theToExcludeGeometric")=static_cast<const Standard_Boolean>(Standard_True))
+        .def_static("AddAllEdges_s",
+                    (opencascade::handle<Graphic3d_ArrayOfPrimitives> (*)( const TopoDS_Shape & ,  const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfPrimitives> (*)( const TopoDS_Shape & ,  const opencascade::handle<Prs3d_Drawer> &  ) >(&StdPrs_WFShape::AddAllEdges),
+                    R"#(Compute all edges (wire, free, unfree) and put them into single primitive array.)#"  , py::arg("theShape"),  py::arg("theDrawer"))
+        .def_static("AddVertexes_s",
+                    (opencascade::handle<Graphic3d_ArrayOfPoints> (*)( const TopoDS_Shape & ,  Prs3d_VertexDrawMode  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfPoints> (*)( const TopoDS_Shape & ,  Prs3d_VertexDrawMode  ) >(&StdPrs_WFShape::AddVertexes),
+                    R"#(Compute vertex presentation for a shape.)#"  , py::arg("theShape"),  py::arg("theVertexMode"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdPrs_WFSurface , shared_ptr<StdPrs_WFSurface>>(m,"StdPrs_WFSurface");
 
     static_cast<py::class_<StdPrs_WFSurface , shared_ptr<StdPrs_WFSurface>  , Prs3d_Root >>(m.attr("StdPrs_WFSurface"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -585,34 +674,34 @@ py::module m = static_cast<py::module>(main_module.attr("StdPrs"));
                     R"#(Draws a surface by drawing the isoparametric curves with respect to a fixed number of points given by the Drawer. The number of isoparametric curves to be drawn and their color are controlled by the furnished Drawer.)#"  , py::arg("aPresentation"),  py::arg("aSurface"),  py::arg("aDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdPrs_HLRShape.hxx
-// ./opencascade/StdPrs_Isolines.hxx
-// ./opencascade/StdPrs_ToolVertex.hxx
+// ./opencascade/StdPrs_BndBox.hxx
+// ./opencascade/StdPrs_WFSurface.hxx
+// ./opencascade/StdPrs_ShadedSurface.hxx
 // ./opencascade/StdPrs_WFDeflectionSurface.hxx
-// ./opencascade/StdPrs_ToolTriangulatedShape.hxx
-// ./opencascade/StdPrs_PoleCurve.hxx
 // ./opencascade/StdPrs_Vertex.hxx
 // ./opencascade/StdPrs_HLRToolShape.hxx
-// ./opencascade/StdPrs_Curve.hxx
-// ./opencascade/StdPrs_WFRestrictedFace.hxx
-// ./opencascade/StdPrs_DeflectionCurve.hxx
-// ./opencascade/StdPrs_WFPoleSurface.hxx
-// ./opencascade/StdPrs_Point.hxx
-// ./opencascade/StdPrs_WFSurface.hxx
 // ./opencascade/StdPrs_ToolRFace.hxx
-// ./opencascade/StdPrs_ShadedShape.hxx
-// ./opencascade/StdPrs_WFShape.hxx
-// ./opencascade/StdPrs_Plane.hxx
-// ./opencascade/StdPrs_Volume.hxx
+// ./opencascade/StdPrs_Isolines.hxx
+// ./opencascade/StdPrs_WFDeflectionRestrictedFace.hxx
+// ./opencascade/StdPrs_ToolVertex.hxx
+// ./opencascade/StdPrs_HLRShape.hxx
 // ./opencascade/StdPrs_ToolPoint.hxx
 // ./opencascade/StdPrs_HLRPolyShape.hxx
-// ./opencascade/StdPrs_ShadedSurface.hxx
-// ./opencascade/StdPrs_BndBox.hxx
-// ./opencascade/StdPrs_WFDeflectionRestrictedFace.hxx
+// ./opencascade/StdPrs_Volume.hxx
+// ./opencascade/StdPrs_WFPoleSurface.hxx
+// ./opencascade/StdPrs_ToolTriangulatedShape.hxx
+// ./opencascade/StdPrs_WFShape.hxx
+// ./opencascade/StdPrs_WFRestrictedFace.hxx
+// ./opencascade/StdPrs_DeflectionCurve.hxx
+// ./opencascade/StdPrs_Plane.hxx
+// ./opencascade/StdPrs_Curve.hxx
+// ./opencascade/StdPrs_ShadedShape.hxx
+// ./opencascade/StdPrs_Point.hxx
+// ./opencascade/StdPrs_PoleCurve.hxx
 
 // operators
 

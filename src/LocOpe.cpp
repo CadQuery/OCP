@@ -13,6 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Face.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
@@ -39,36 +43,28 @@ namespace py = pybind11;
 #include <LocOpe_SplitDrafts.hxx>
 #include <LocOpe_BuildWires.hxx>
 #include <StdFail_NotDone.hxx>
+#include <LocOpe_PntFace.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <TopoDS_Edge.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StdFail_NotDone.hxx>
 #include <Standard_NullObject.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Wire.hxx>
 #include <gp_Pln.hxx>
-#include <Standard_NullObject.hxx>
-#include <LocOpe_WiresOnShape.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TopoDS_Edge.hxx>
 #include <gp_Ax1.hxx>
 #include <gp_Circ.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StdFail_NotDone.hxx>
-#include <LocOpe_PntFace.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Face.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TopoDS_Edge.hxx>
+#include <LocOpe_WiresOnShape.hxx>
+#include <Standard_NullObject.hxx>
+#include <LocOpe_WiresOnShape.hxx>
 #include <LocOpe_GeneratedShape.hxx>
 #include <Standard_NullObject.hxx>
 #include <TopoDS_Face.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <TopoDS_Edge.hxx>
 #include <StdFail_NotDone.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
@@ -77,8 +73,12 @@ namespace py = pybind11;
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
-#include <StdFail_NotDone.hxx>
-#include <LocOpe_WiresOnShape.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
 
 // module includes
 #include <LocOpe.hxx>
@@ -111,15 +111,15 @@ namespace py = pybind11;
 #include <LocOpe_WiresOnShape.hxx>
 
 // template related includes
+// ./opencascade/LocOpe_DataMapOfShapePnt.hxx
+#include "NCollection.hxx"
+// ./opencascade/LocOpe_DataMapOfShapePnt.hxx
+#include "NCollection.hxx"
 // ./opencascade/LocOpe_SequenceOfCirc.hxx
 #include "NCollection.hxx"
-// ./opencascade/LocOpe_DataMapOfShapePnt.hxx
-#include "NCollection.hxx"
-// ./opencascade/LocOpe_DataMapOfShapePnt.hxx
+// ./opencascade/LocOpe_SequenceOfLin.hxx
 #include "NCollection.hxx"
 // ./opencascade/LocOpe_SequenceOfPntFace.hxx
-#include "NCollection.hxx"
-// ./opencascade/LocOpe_SequenceOfLin.hxx
 #include "NCollection.hxx"
 
 
@@ -140,6 +140,7 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     public:
         using LocOpe_GeneratedShape::LocOpe_GeneratedShape;
         
+        
         // public pure virtual
         const TopTools_ListOfShape & GeneratingEdges() override { PYBIND11_OVERLOAD_PURE(const TopTools_ListOfShape &,LocOpe_GeneratedShape,GeneratingEdges,) };
         TopoDS_Edge Generated(const TopoDS_Vertex & V) override { PYBIND11_OVERLOAD_PURE(TopoDS_Edge,LocOpe_GeneratedShape,Generated,V) };
@@ -156,9 +157,12 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
 
 // classes
 
+    // default constructor
     register_default_constructor<LocOpe , shared_ptr<LocOpe>>(m,"LocOpe");
 
     static_cast<py::class_<LocOpe , shared_ptr<LocOpe>  >>(m.attr("LocOpe"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -176,13 +180,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
                     R"#(None)#"  , py::arg("S"),  py::arg("Pt"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_BuildShape , shared_ptr<LocOpe_BuildShape>  >>(m.attr("LocOpe_BuildShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_List<TopoDS_Shape> & >()  , py::arg("L") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (LocOpe_BuildShape::*)(  const NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (LocOpe_BuildShape::*)(  const NCollection_List<TopoDS_Shape> &  ) >(&LocOpe_BuildShape::Perform),
@@ -197,13 +203,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_BuildWires , shared_ptr<LocOpe_BuildWires>  >>(m.attr("LocOpe_BuildWires"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_List<TopoDS_Shape> &,const opencascade::handle<LocOpe_WiresOnShape> & >()  , py::arg("Ledges"),  py::arg("PW") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (LocOpe_BuildWires::*)(  const NCollection_List<TopoDS_Shape> & ,  const opencascade::handle<LocOpe_WiresOnShape> &  ) ) static_cast<void (LocOpe_BuildWires::*)(  const NCollection_List<TopoDS_Shape> & ,  const opencascade::handle<LocOpe_WiresOnShape> &  ) >(&LocOpe_BuildWires::Perform),
@@ -218,13 +226,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_CSIntersector , shared_ptr<LocOpe_CSIntersector>  >>(m.attr("LocOpe_CSIntersector"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_CSIntersector::*)( const TopoDS_Shape &  ) ) static_cast<void (LocOpe_CSIntersector::*)( const TopoDS_Shape &  ) >(&LocOpe_CSIntersector::Init),
@@ -269,14 +279,16 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_CurveShapeIntersector , shared_ptr<LocOpe_CurveShapeIntersector>  >>(m.attr("LocOpe_CurveShapeIntersector"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax1 &,const TopoDS_Shape & >()  , py::arg("Axis"),  py::arg("S") )
         .def(py::init< const gp_Circ &,const TopoDS_Shape & >()  , py::arg("C"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_CurveShapeIntersector::*)( const gp_Ax1 & ,  const TopoDS_Shape &  ) ) static_cast<void (LocOpe_CurveShapeIntersector::*)( const gp_Ax1 & ,  const TopoDS_Shape &  ) >(&LocOpe_CurveShapeIntersector::Init),
@@ -318,13 +330,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_DPrism , shared_ptr<LocOpe_DPrism>  >>(m.attr("LocOpe_DPrism"))
+    // constructors
         .def(py::init< const TopoDS_Face &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Spine"),  py::arg("Height1"),  py::arg("Height2"),  py::arg("Angle") )
         .def(py::init< const TopoDS_Face &,const Standard_Real,const Standard_Real >()  , py::arg("Spine"),  py::arg("Height"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (LocOpe_DPrism::*)() const) static_cast<Standard_Boolean (LocOpe_DPrism::*)() const>(&LocOpe_DPrism::IsDone),
@@ -357,13 +371,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_FindEdges , shared_ptr<LocOpe_FindEdges>  >>(m.attr("LocOpe_FindEdges"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("FFrom"),  py::arg("FTo") )
+    // custom constructors
     // methods
         .def("Set",
              (void (LocOpe_FindEdges::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (LocOpe_FindEdges::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&LocOpe_FindEdges::Set),
@@ -402,13 +418,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_FindEdgesInFace , shared_ptr<LocOpe_FindEdgesInFace>  >>(m.attr("LocOpe_FindEdgesInFace"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Face & >()  , py::arg("S"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Set",
              (void (LocOpe_FindEdgesInFace::*)( const TopoDS_Shape & ,  const TopoDS_Face &  ) ) static_cast<void (LocOpe_FindEdgesInFace::*)( const TopoDS_Shape & ,  const TopoDS_Face &  ) >(&LocOpe_FindEdgesInFace::Set),
@@ -441,11 +459,13 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_GeneratedShape ,opencascade::handle<LocOpe_GeneratedShape> ,Py_LocOpe_GeneratedShape , Standard_Transient >>(m.attr("LocOpe_GeneratedShape"))
+    // constructors
+    // custom constructors
     // methods
         .def("GeneratingEdges",
              (const TopTools_ListOfShape & (LocOpe_GeneratedShape::*)() ) static_cast<const TopTools_ListOfShape & (LocOpe_GeneratedShape::*)() >(&LocOpe_GeneratedShape::GeneratingEdges),
@@ -472,13 +492,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_Generator , shared_ptr<LocOpe_Generator>  >>(m.attr("LocOpe_Generator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_Generator::*)( const TopoDS_Shape &  ) ) static_cast<void (LocOpe_Generator::*)( const TopoDS_Shape &  ) >(&LocOpe_Generator::Init),
@@ -514,13 +536,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_Gluer , shared_ptr<LocOpe_Gluer>  >>(m.attr("LocOpe_Gluer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("Sbase"),  py::arg("Snew") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_Gluer::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (LocOpe_Gluer::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&LocOpe_Gluer::Init),
@@ -583,14 +607,16 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_LinearForm , shared_ptr<LocOpe_LinearForm>  >>(m.attr("LocOpe_LinearForm"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const gp_Vec &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("Base"),  py::arg("V"),  py::arg("Pnt1"),  py::arg("Pnt2") )
         .def(py::init< const TopoDS_Shape &,const gp_Vec &,const gp_Vec &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("Base"),  py::arg("V"),  py::arg("Vectra"),  py::arg("Pnt1"),  py::arg("Pnt2") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (LocOpe_LinearForm::*)( const TopoDS_Shape & ,  const gp_Vec & ,  const gp_Pnt & ,  const gp_Pnt &  ) ) static_cast<void (LocOpe_LinearForm::*)( const TopoDS_Shape & ,  const gp_Vec & ,  const gp_Pnt & ,  const gp_Pnt &  ) >(&LocOpe_LinearForm::Perform),
@@ -614,12 +640,14 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_Pipe , shared_ptr<LocOpe_Pipe>  >>(m.attr("LocOpe_Pipe"))
+    // constructors
         .def(py::init< const TopoDS_Wire &,const TopoDS_Shape & >()  , py::arg("Spine"),  py::arg("Profile") )
+    // custom constructors
     // methods
         .def("Spine",
              (const TopoDS_Shape & (LocOpe_Pipe::*)() const) static_cast<const TopoDS_Shape & (LocOpe_Pipe::*)() const>(&LocOpe_Pipe::Spine),
@@ -661,13 +689,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_PntFace , shared_ptr<LocOpe_PntFace>  >>(m.attr("LocOpe_PntFace"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const TopoDS_Face &,const TopAbs_Orientation,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("F"),  py::arg("Or"),  py::arg("Param"),  py::arg("UPar"),  py::arg("VPar") )
+    // custom constructors
     // methods
         .def("Pnt",
              (const gp_Pnt & (LocOpe_PntFace::*)() const) static_cast<const gp_Pnt & (LocOpe_PntFace::*)() const>(&LocOpe_PntFace::Pnt),
@@ -694,14 +724,16 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_Prism , shared_ptr<LocOpe_Prism>  >>(m.attr("LocOpe_Prism"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const gp_Vec & >()  , py::arg("Base"),  py::arg("V") )
         .def(py::init< const TopoDS_Shape &,const gp_Vec &,const gp_Vec & >()  , py::arg("Base"),  py::arg("V"),  py::arg("Vectra") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (LocOpe_Prism::*)( const TopoDS_Shape & ,  const gp_Vec &  ) ) static_cast<void (LocOpe_Prism::*)( const TopoDS_Shape & ,  const gp_Vec &  ) >(&LocOpe_Prism::Perform),
@@ -731,12 +763,14 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_Revol , shared_ptr<LocOpe_Revol>  >>(m.attr("LocOpe_Revol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (LocOpe_Revol::*)( const TopoDS_Shape & ,  const gp_Ax1 & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (LocOpe_Revol::*)( const TopoDS_Shape & ,  const gp_Ax1 & ,  const Standard_Real ,  const Standard_Real  ) >(&LocOpe_Revol::Perform),
@@ -766,12 +800,14 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_RevolutionForm , shared_ptr<LocOpe_RevolutionForm>  >>(m.attr("LocOpe_RevolutionForm"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (LocOpe_RevolutionForm::*)( const TopoDS_Shape & ,  const gp_Ax1 & ,  const Standard_Real  ) ) static_cast<void (LocOpe_RevolutionForm::*)( const TopoDS_Shape & ,  const gp_Ax1 & ,  const Standard_Real  ) >(&LocOpe_RevolutionForm::Perform),
@@ -792,13 +828,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_SplitDrafts , shared_ptr<LocOpe_SplitDrafts>  >>(m.attr("LocOpe_SplitDrafts"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_SplitDrafts::*)( const TopoDS_Shape &  ) ) static_cast<void (LocOpe_SplitDrafts::*)( const TopoDS_Shape &  ) >(&LocOpe_SplitDrafts::Init),
@@ -831,13 +869,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_SplitShape , shared_ptr<LocOpe_SplitShape>  >>(m.attr("LocOpe_SplitShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_SplitShape::*)( const TopoDS_Shape &  ) ) static_cast<void (LocOpe_SplitShape::*)( const TopoDS_Shape &  ) >(&LocOpe_SplitShape::Init),
@@ -870,13 +910,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_Spliter , shared_ptr<LocOpe_Spliter>  >>(m.attr("LocOpe_Spliter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_Spliter::*)( const TopoDS_Shape &  ) ) static_cast<void (LocOpe_Spliter::*)( const TopoDS_Shape &  ) >(&LocOpe_Spliter::Init),
@@ -918,12 +960,14 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_WiresOnShape ,opencascade::handle<LocOpe_WiresOnShape>  , Standard_Transient >>(m.attr("LocOpe_WiresOnShape"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_WiresOnShape::*)( const TopoDS_Shape &  ) ) static_cast<void (LocOpe_WiresOnShape::*)( const TopoDS_Shape &  ) >(&LocOpe_WiresOnShape::Init),
@@ -1004,13 +1048,15 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LocOpe_GluedShape ,opencascade::handle<LocOpe_GluedShape>  , LocOpe_GeneratedShape >>(m.attr("LocOpe_GluedShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (LocOpe_GluedShape::*)( const TopoDS_Shape &  ) ) static_cast<void (LocOpe_GluedShape::*)( const TopoDS_Shape &  ) >(&LocOpe_GluedShape::Init),
@@ -1043,46 +1089,46 @@ py::module m = static_cast<py::module>(main_module.attr("LocOpe"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/LocOpe_SequenceOfCirc.hxx
-// ./opencascade/LocOpe.hxx
-// ./opencascade/LocOpe_DataMapIteratorOfDataMapOfShapePnt.hxx
-// ./opencascade/LocOpe_SplitDrafts.hxx
-// ./opencascade/LocOpe_Spliter.hxx
-// ./opencascade/LocOpe_DPrism.hxx
-// ./opencascade/LocOpe_Pipe.hxx
-// ./opencascade/LocOpe_GluedShape.hxx
-// ./opencascade/LocOpe_FindEdgesInFace.hxx
-// ./opencascade/LocOpe_CurveShapeIntersector.hxx
-// ./opencascade/LocOpe_DataMapOfShapePnt.hxx
-// ./opencascade/LocOpe_PntFace.hxx
-// ./opencascade/LocOpe_SequenceOfPntFace.hxx
-// ./opencascade/LocOpe_LinearForm.hxx
-// ./opencascade/LocOpe_Prism.hxx
-// ./opencascade/LocOpe_CSIntersector.hxx
-// ./opencascade/LocOpe_Operation.hxx
 // ./opencascade/LocOpe_SplitShape.hxx
-// ./opencascade/LocOpe_SequenceOfLin.hxx
-// ./opencascade/LocOpe_GeneratedShape.hxx
-// ./opencascade/LocOpe_FindEdges.hxx
-// ./opencascade/LocOpe_Generator.hxx
-// ./opencascade/LocOpe_RevolutionForm.hxx
+// ./opencascade/LocOpe.hxx
 // ./opencascade/LocOpe_Revol.hxx
-// ./opencascade/LocOpe_WiresOnShape.hxx
-// ./opencascade/LocOpe_Gluer.hxx
+// ./opencascade/LocOpe_CSIntersector.hxx
+// ./opencascade/LocOpe_FindEdges.hxx
+// ./opencascade/LocOpe_DataMapOfShapePnt.hxx
+// ./opencascade/LocOpe_LinearForm.hxx
+// ./opencascade/LocOpe_Operation.hxx
+// ./opencascade/LocOpe_SplitDrafts.hxx
+// ./opencascade/LocOpe_Pipe.hxx
+// ./opencascade/LocOpe_CurveShapeIntersector.hxx
+// ./opencascade/LocOpe_DPrism.hxx
+// ./opencascade/LocOpe_SequenceOfCirc.hxx
 // ./opencascade/LocOpe_BuildWires.hxx
 // ./opencascade/LocOpe_BuildShape.hxx
+// ./opencascade/LocOpe_Spliter.hxx
+// ./opencascade/LocOpe_SequenceOfLin.hxx
+// ./opencascade/LocOpe_Generator.hxx
+// ./opencascade/LocOpe_RevolutionForm.hxx
+// ./opencascade/LocOpe_PntFace.hxx
+// ./opencascade/LocOpe_FindEdgesInFace.hxx
+// ./opencascade/LocOpe_Prism.hxx
+// ./opencascade/LocOpe_WiresOnShape.hxx
+// ./opencascade/LocOpe_GluedShape.hxx
+// ./opencascade/LocOpe_GeneratedShape.hxx
+// ./opencascade/LocOpe_SequenceOfPntFace.hxx
+// ./opencascade/LocOpe_Gluer.hxx
+// ./opencascade/LocOpe_DataMapIteratorOfDataMapOfShapePnt.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<gp_Circ>(m,"LocOpe_SequenceOfCirc");  
     register_template_NCollection_DataMap<TopoDS_Shape, gp_Pnt, TopTools_ShapeMapHasher>(m,"LocOpe_DataMapOfShapePnt");  
-    register_template_NCollection_Sequence<LocOpe_PntFace>(m,"LocOpe_SequenceOfPntFace");  
+    register_template_NCollection_Sequence<gp_Circ>(m,"LocOpe_SequenceOfCirc");  
     register_template_NCollection_Sequence<gp_Lin>(m,"LocOpe_SequenceOfLin");  
+    register_template_NCollection_Sequence<LocOpe_PntFace>(m,"LocOpe_SequenceOfPntFace");  
 
 
 // exceptions

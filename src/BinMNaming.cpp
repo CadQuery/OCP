@@ -13,12 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMNaming_NamedShapeDriver.hxx>
 #include <BinMNaming_NamingDriver.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
 
@@ -46,29 +46,28 @@ py::module m = static_cast<py::module>(main_module.attr("BinMNaming"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinMNaming , shared_ptr<BinMNaming>>(m,"BinMNaming");
 
     static_cast<py::class_<BinMNaming , shared_ptr<BinMNaming>  >>(m.attr("BinMNaming"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("AddDrivers_s",
                     (void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (*)( const opencascade::handle<BinMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) >(&BinMNaming::AddDrivers),
                     R"#(Adds the attribute drivers to <theDriverTable>.)#"  , py::arg("theDriverTable"),  py::arg("aMsgDrv"))
-        .def_static("SetDocumentVersion_s",
-                    (void (*)( const Standard_Integer  ) ) static_cast<void (*)( const Standard_Integer  ) >(&BinMNaming::SetDocumentVersion),
-                    R"#(None)#"  , py::arg("DocVersion"))
-        .def_static("DocumentVersion_s",
-                    (Standard_Integer (*)() ) static_cast<Standard_Integer (*)() >(&BinMNaming::DocumentVersion),
-                    R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMNaming_NamedShapeDriver ,opencascade::handle<BinMNaming_NamedShapeDriver>  , BinMDF_ADriver >>(m.attr("BinMNaming_NamedShapeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMNaming_NamedShapeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMNaming_NamedShapeDriver::*)() const>(&BinMNaming_NamedShapeDriver::NewEmpty),
@@ -128,12 +127,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMNaming_NamingDriver ,opencascade::handle<BinMNaming_NamingDriver>  , BinMDF_ADriver >>(m.attr("BinMNaming_NamingDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMNaming_NamingDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMNaming_NamingDriver::*)() const>(&BinMNaming_NamingDriver::NewEmpty),
@@ -157,13 +158,13 @@ py::module m = static_cast<py::module>(main_module.attr("BinMNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinMNaming_NamedShapeDriver.hxx
 // ./opencascade/BinMNaming.hxx
 // ./opencascade/BinMNaming_NamingDriver.hxx
+// ./opencascade/BinMNaming_NamedShapeDriver.hxx
 
 // operators
 

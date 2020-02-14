@@ -13,15 +13,15 @@ namespace py = pybind11;
 
 // module includes
 #include <AppCont_Function.hxx>
-#include <AppCont_ContMatrices.hxx>
 #include <AppCont_LeastSquare.hxx>
+#include <AppCont_ContMatrices.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
 // ./opencascade/AppCont_Function.hxx
-// ./opencascade/AppCont_ContMatrices.hxx
 // ./opencascade/AppCont_LeastSquare.hxx
+// ./opencascade/AppCont_ContMatrices.hxx
 
 // user-defined post

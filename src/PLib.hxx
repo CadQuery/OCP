@@ -11,28 +11,28 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_ConstructionError.hxx>
+#include <PLib_JacobiPolynomial.hxx>
 #include <math_Matrix.hxx>
 #include <PLib_Base.hxx>
 #include <PLib_JacobiPolynomial.hxx>
 #include <PLib_HermitJacobi.hxx>
 #include <PLib_DoubleJacobiPolynomial.hxx>
-#include <PLib_JacobiPolynomial.hxx>
 
 // module includes
 #include <PLib_JacobiPolynomial.hxx>
-#include <PLib_HermitJacobi.hxx>
-#include <PLib.hxx>
 #include <PLib_DoubleJacobiPolynomial.hxx>
+#include <PLib.hxx>
 #include <PLib_Base.hxx>
+#include <PLib_HermitJacobi.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
 // ./opencascade/PLib_JacobiPolynomial.hxx
-// ./opencascade/PLib_HermitJacobi.hxx
-// ./opencascade/PLib.hxx
 // ./opencascade/PLib_DoubleJacobiPolynomial.hxx
+// ./opencascade/PLib.hxx
 // ./opencascade/PLib_Base.hxx
+// ./opencascade/PLib_HermitJacobi.hxx
 
 // user-defined post

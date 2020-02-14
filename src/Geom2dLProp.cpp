@@ -15,16 +15,16 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <Geom2d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
+#include <LProp_CurAndInf.hxx>
+#include <Geom2d_Curve.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Vec2d.hxx>
+#include <Geom2d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <Geom2dLProp_Curve2dTool.hxx>
-#include <Geom2d_Curve.hxx>
-#include <LProp_CurAndInf.hxx>
-#include <Geom2d_Curve.hxx>
 
 // module includes
 #include <Geom2dLProp_CLProps2d.hxx>
@@ -55,9 +55,11 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
 
 
     static_cast<py::class_<Geom2dLProp_CLProps2d , shared_ptr<Geom2dLProp_CLProps2d>  >>(m.attr("Geom2dLProp_CLProps2d"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("U"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetParameter",
              (void (Geom2dLProp_CLProps2d::*)( const Standard_Real  ) ) static_cast<void (Geom2dLProp_CLProps2d::*)( const Standard_Real  ) >(&Geom2dLProp_CLProps2d::SetParameter),
@@ -96,12 +98,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dLProp_CurAndInf2d , shared_ptr<Geom2dLProp_CurAndInf2d>  , LProp_CurAndInf >>(m.attr("Geom2dLProp_CurAndInf2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dLProp_CurAndInf2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dLProp_CurAndInf2d::Perform),
@@ -119,12 +123,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Geom2dLProp_Curve2dTool , shared_ptr<Geom2dLProp_Curve2dTool>>(m,"Geom2dLProp_Curve2dTool");
 
     static_cast<py::class_<Geom2dLProp_Curve2dTool , shared_ptr<Geom2dLProp_Curve2dTool>  >>(m.attr("Geom2dLProp_Curve2dTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -151,12 +158,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
                     R"#(returns the last parameter bound of the curve. FirstParameter must be less than LastParameter.)#"  , py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dLProp_FuncCurExt , shared_ptr<Geom2dLProp_FuncCurExt>  , math_FunctionWithDerivative >>(m.attr("Geom2dLProp_FuncCurExt"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real >()  , py::arg("C"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Geom2dLProp_FuncCurExt::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurExt::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurExt::Value),
@@ -174,12 +183,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dLProp_FuncCurNul , shared_ptr<Geom2dLProp_FuncCurNul>  , math_FunctionWithDerivative >>(m.attr("Geom2dLProp_FuncCurNul"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dLProp_FuncCurNul::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dLProp_FuncCurNul::Value),
@@ -194,12 +205,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dLProp_NumericCurInf2d , shared_ptr<Geom2dLProp_NumericCurInf2d>  >>(m.attr("Geom2dLProp_NumericCurInf2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("PerformCurExt",
              (void (Geom2dLProp_NumericCurInf2d::*)( const opencascade::handle<Geom2d_Curve> & ,  LProp_CurAndInf &  ) ) static_cast<void (Geom2dLProp_NumericCurInf2d::*)( const opencascade::handle<Geom2d_Curve> & ,  LProp_CurAndInf &  ) >(&Geom2dLProp_NumericCurInf2d::PerformCurExt),
@@ -220,16 +233,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Geom2dLProp_CurAndInf2d.hxx
-// ./opencascade/Geom2dLProp_Curve2dTool.hxx
 // ./opencascade/Geom2dLProp_FuncCurNul.hxx
-// ./opencascade/Geom2dLProp_CLProps2d.hxx
 // ./opencascade/Geom2dLProp_NumericCurInf2d.hxx
+// ./opencascade/Geom2dLProp_Curve2dTool.hxx
 // ./opencascade/Geom2dLProp_FuncCurExt.hxx
+// ./opencascade/Geom2dLProp_CurAndInf2d.hxx
+// ./opencascade/Geom2dLProp_CLProps2d.hxx
 
 // operators
 

@@ -13,20 +13,20 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <ShapeExtend_WireData.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <TopoDS_Shape.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <XSControl_WorkSession.hxx>
-#include <IGESData_IGESModel.hxx>
 #include <Transfer_FinderProcess.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <Transfer_ActorOfTransientProcess.hxx>
 #include <TopoDS_Shape.hxx>
 #include <Transfer_FinderProcess.hxx>
 #include <XSControl_WorkSession.hxx>
+#include <ShapeExtend_WireData.hxx>
 #include <IGESToBRep_IGESBoundary.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <TopoDS_Shape.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <XSControl_WorkSession.hxx>
+#include <IGESData_IGESModel.hxx>
 
 // module includes
 #include <IGESControl_ActorWrite.hxx>
@@ -58,7 +58,9 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
 
 
     static_cast<py::class_<IGESControl_ActorWrite ,opencascade::handle<IGESControl_ActorWrite>  , Transfer_ActorOfFinderProcess >>(m.attr("IGESControl_ActorWrite"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Recognize",
              (Standard_Boolean (IGESControl_ActorWrite::*)( const opencascade::handle<Transfer_Finder> &  ) ) static_cast<Standard_Boolean (IGESControl_ActorWrite::*)( const opencascade::handle<Transfer_Finder> &  ) >(&IGESControl_ActorWrite::Recognize),
@@ -79,12 +81,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESControl_AlgoContainer ,opencascade::handle<IGESControl_AlgoContainer>  , IGESToBRep_AlgoContainer >>(m.attr("IGESControl_AlgoContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IGESControl_AlgoContainer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IGESControl_AlgoContainer::*)() const>(&IGESControl_AlgoContainer::DynamicType),
@@ -99,12 +103,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESControl_Controller ,opencascade::handle<IGESControl_Controller>  , XSControl_Controller >>(m.attr("IGESControl_Controller"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("modefnes")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("NewModel",
              (opencascade::handle<Interface_InterfaceModel> (IGESControl_Controller::*)() const) static_cast<opencascade::handle<Interface_InterfaceModel> (IGESControl_Controller::*)() const>(&IGESControl_Controller::NewModel),
@@ -134,13 +140,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESControl_IGESBoundary ,opencascade::handle<IGESControl_IGESBoundary>  , IGESToBRep_IGESBoundary >>(m.attr("IGESControl_IGESBoundary"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
+    // custom constructors
     // methods
         .def("Check",
              (void (IGESControl_IGESBoundary::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (IGESControl_IGESBoundary::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&IGESControl_IGESBoundary::Check),
@@ -158,13 +166,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESControl_Reader , shared_ptr<IGESControl_Reader>  , XSControl_Reader >>(m.attr("IGESControl_Reader"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> &,const Standard_Boolean >()  , py::arg("WS"),  py::arg("scratch")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetReadVisible",
              (void (IGESControl_Reader::*)( const Standard_Boolean  ) ) static_cast<void (IGESControl_Reader::*)( const Standard_Boolean  ) >(&IGESControl_Reader::SetReadVisible),
@@ -191,12 +201,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESControl_ToolContainer ,opencascade::handle<IGESControl_ToolContainer>  , IGESToBRep_ToolContainer >>(m.attr("IGESControl_ToolContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IGESBoundary",
              (opencascade::handle<IGESToBRep_IGESBoundary> (IGESControl_ToolContainer::*)() const) static_cast<opencascade::handle<IGESToBRep_IGESBoundary> (IGESControl_ToolContainer::*)() const>(&IGESControl_ToolContainer::IGESBoundary),
@@ -214,14 +226,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESControl_Writer , shared_ptr<IGESControl_Writer>  >>(m.attr("IGESControl_Writer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString,const Standard_Integer >()  , py::arg("unit"),  py::arg("modecr")=static_cast<const Standard_Integer>(0) )
         .def(py::init< const opencascade::handle<IGESData_IGESModel> &,const Standard_Integer >()  , py::arg("model"),  py::arg("modecr")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("Model",
              (const opencascade::handle<IGESData_IGESModel> & (IGESControl_Writer::*)() const) static_cast<const opencascade::handle<IGESData_IGESModel> & (IGESControl_Writer::*)() const>(&IGESControl_Writer::Model),
@@ -254,17 +268,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESControl"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESControl_IGESBoundary.hxx
-// ./opencascade/IGESControl_Writer.hxx
-// ./opencascade/IGESControl_AlgoContainer.hxx
-// ./opencascade/IGESControl_Reader.hxx
 // ./opencascade/IGESControl_ActorWrite.hxx
 // ./opencascade/IGESControl_Controller.hxx
+// ./opencascade/IGESControl_IGESBoundary.hxx
+// ./opencascade/IGESControl_AlgoContainer.hxx
 // ./opencascade/IGESControl_ToolContainer.hxx
+// ./opencascade/IGESControl_Writer.hxx
+// ./opencascade/IGESControl_Reader.hxx
 
 // operators
 

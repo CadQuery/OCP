@@ -39,9 +39,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBndLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepBndLib , shared_ptr<BRepBndLib>>(m,"BRepBndLib");
 
     static_cast<py::class_<BRepBndLib , shared_ptr<BRepBndLib>  >>(m.attr("BRepBndLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -56,10 +59,10 @@ py::module m = static_cast<py::module>(main_module.attr("BRepBndLib"));
                     R"#(Adds the shape S to the bounding box B. This algorith builds precise bounding box, which differs from exact geometry boundaries of shape only on shape entities tolerances Algorithm is the same as for method Add(..), but uses more precise methods for building boxes for geometry objects. If useShapeTolerance = True, bounding box is enlardged by shape tolerances and these tolerances are used for numerical methods of bounding box size calculations, otherwise bounding box is built according to sizes of uderlined geometrical entities, numerical calculation use tolerance Precision::Confusion().)#"  , py::arg("S"),  py::arg("B"),  py::arg("useTriangulation")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("useShapeTolerance")=static_cast<const Standard_Boolean>(Standard_False))
         .def_static("AddOBB_s",
                     (void (*)( const TopoDS_Shape & ,  Bnd_OBB & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (*)( const TopoDS_Shape & ,  Bnd_OBB & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&BRepBndLib::AddOBB),
-                    R"#(Computes the Oriented Bounding box for the shape <theS>. Two independent methods of computation are implemented: first method based on set of points (so, it demands the triangulated shape or shape with planar faces and linear edges). The second method is based on use of inertia axes and is called if use of the first method is impossible. If theIsTriangulationUsed == FALSE then the triangulation will be ignored at all. If theIsShapeToleranceUsed == TRUE then resulting box will be extended on the tolerance of the shape. theIsOptimal flag defines the algorithm for construction of initial Bnd_Box for the second method (if theIsOptimal == TRUE then this box will be created by AddOptimal(...) method).)#"  , py::arg("theS"),  py::arg("theOBB"),  py::arg("theIsTriangulationUsed")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theIsOptimal")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theIsShapeToleranceUsed")=static_cast<const Standard_Boolean>(Standard_True))
+                    R"#(Computes the Oriented Bounding box for the shape <theS>. Two independent methods of computation are implemented: first method based on set of points (so, it demands the triangulated shape or shape with planar faces and linear edges). The second method is based on use of inertia axes and is called if use of the first method is impossible. If theIsTriangulationUsed == FALSE then the triangulation will be ignored at all. If theIsShapeToleranceUsed == TRUE then resulting box will be extended on the tolerance of the shape. theIsOptimal flag defines whether to look for the more tight OBB for the cost of performance or not.)#"  , py::arg("theS"),  py::arg("theOBB"),  py::arg("theIsTriangulationUsed")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theIsOptimal")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theIsShapeToleranceUsed")=static_cast<const Standard_Boolean>(Standard_True))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

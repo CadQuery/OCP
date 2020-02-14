@@ -19,23 +19,23 @@ namespace py = pybind11;
 #include <GeomLProp_SurfaceTool.hxx>
 #include <GeomLProp_CLProps.hxx>
 #include <GeomLProp_SLProps.hxx>
+#include <Geom_Surface.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <GeomLProp_SurfaceTool.hxx>
 #include <Geom_Curve.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
 #include <Geom_Surface.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
-#include <Geom_Surface.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <GeomLProp_SurfaceTool.hxx>
 
 // module includes
 #include <GeomLProp_CLProps.hxx>
 #include <GeomLProp.hxx>
+#include <GeomLProp_SLProps.hxx>
 #include <GeomLProp_CurveTool.hxx>
 #include <GeomLProp_SurfaceTool.hxx>
-#include <GeomLProp_SLProps.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
@@ -43,8 +43,8 @@ namespace py = pybind11;
 // Class template handling functions
 // ./opencascade/GeomLProp_CLProps.hxx
 // ./opencascade/GeomLProp.hxx
+// ./opencascade/GeomLProp_SLProps.hxx
 // ./opencascade/GeomLProp_CurveTool.hxx
 // ./opencascade/GeomLProp_SurfaceTool.hxx
-// ./opencascade/GeomLProp_SLProps.hxx
 
 // user-defined post

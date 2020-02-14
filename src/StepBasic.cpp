@@ -13,158 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ApplicationContext.hxx>
-#include <StepBasic_Product.hxx>
-#include <StepBasic_ProductDefinitionFormation.hxx>
-#include <StepBasic_ProductDefinition.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ApplicationContext.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Document.hxx>
-#include <StepBasic_MeasureValueMember.hxx>
-#include <StepBasic_VolumeUnit.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_SecurityClassificationLevel.hxx>
-#include <StepBasic_Document.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ExternalSource.hxx>
-#include <StepBasic_Action.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Document.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_TimeUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepBasic_CharacterizedObject.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_DocumentType.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ExternalSource.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_CertificationType.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ContractType.hxx>
-#include <StepBasic_Date.hxx>
-#include <StepBasic_LocalTime.hxx>
-#include <StepBasic_DateAndTime.hxx>
-#include <StepBasic_RatioUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_PlaneAngleUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ProductDefinitionFormation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureValueMember.hxx>
-#include <StepBasic_ProductDefinitionRelationship.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Product.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ApplicationContext.hxx>
-#include <StepBasic_DateAndTime.hxx>
-#include <StepBasic_DateTimeRole.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Group.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MassUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepBasic_Document.hxx>
-#include <StepBasic_NamedUnit.hxx>
-#include <StepBasic_DerivedUnit.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_IdentificationRole.hxx>
-#include <StepBasic_Date.hxx>
-#include <StepBasic_LocalTime.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ApplicationContext.hxx>
-#include <StepBasic_LengthUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
 #include <StepBasic_Approval.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ObjectRole.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ProductDefinition.hxx>
-#include <StepBasic_Person.hxx>
-#include <StepBasic_Organization.hxx>
-#include <StepBasic_Organization.hxx>
-#include <StepBasic_OrganizationRole.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <StepBasic_ExternalSource.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_IdentificationRole.hxx>
-#include <StepBasic_Effectivity.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MassUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <StepBasic_LengthUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <StepBasic_SolidAngleUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Certification.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_AreaUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
-#include <StepBasic_ApprovalStatus.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_VersionedActionRequest.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ExternalSource.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ProductCategory.hxx>
-#include <StepData_SelectMember.hxx>
-#include <StepBasic_ProductDefinition.hxx>
-#include <StepBasic_ProductDefinitionReference.hxx>
-#include <StepBasic_ProductDefinitionReferenceWithLocalRepresentation.hxx>
-#include <StepBasic_Group.hxx>
-#include <StepBasic_SecurityClassification.hxx>
-#include <StepBasic_Date.hxx>
-#include <StepBasic_DateRole.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_DocumentType.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ProductDefinitionFormation.hxx>
-#include <StepBasic_ProductDefinitionContext.hxx>
-#include <StepBasic_ActionMethod.hxx>
-#include <StepBasic_VersionedActionRequest.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Approval.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ProductDefinitionFormation.hxx>
-#include <StepBasic_ProductDefinitionContext.hxx>
-#include <StepBasic_Person.hxx>
-#include <StepBasic_Organization.hxx>
-#include <StepBasic_PersonAndOrganization.hxx>
-#include <StepBasic_Approval.hxx>
-#include <StepBasic_ApprovalRole.hxx>
 #include <StepBasic_ActionAssignment.hxx>
 #include <StepBasic_ActionRequestAssignment.hxx>
 #include <StepBasic_ApprovalAssignment.hxx>
@@ -177,16 +31,118 @@ namespace py = pybind11;
 #include <StepBasic_NameAssignment.hxx>
 #include <StepBasic_SecurityClassificationAssignment.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Product.hxx>
-#include <StepBasic_ThermodynamicTemperatureUnit.hxx>
+#include <StepBasic_SecurityClassificationLevel.hxx>
+#include <StepBasic_Group.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Group.hxx>
+#include <StepBasic_AreaUnit.hxx>
 #include <StepBasic_DimensionalExponents.hxx>
-#include <StepBasic_VolumeUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
+#include <StepBasic_PersonAndOrganization.hxx>
+#include <StepBasic_PersonAndOrganizationRole.hxx>
 #include <StepBasic_Document.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_CoordinatedUniversalTimeOffset.hxx>
-#include <StepBasic_AreaUnit.hxx>
+#include <StepBasic_RatioUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <StepBasic_NamedUnit.hxx>
+#include <StepBasic_DerivedUnit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Document.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ApplicationContext.hxx>
 #include <StepBasic_PlaneAngleUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_IdentificationRole.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_DocumentType.hxx>
+#include <StepBasic_VolumeUnit.hxx>
+#include <StepBasic_Organization.hxx>
+#include <StepBasic_OrganizationRole.hxx>
+#include <StepBasic_CoordinatedUniversalTimeOffset.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_SecurityClassification.hxx>
+#include <StepBasic_Date.hxx>
+#include <StepBasic_LocalTime.hxx>
+#include <StepBasic_DateAndTime.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ApplicationContext.hxx>
+#include <StepData_SelectMember.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <StepBasic_DateAndTime.hxx>
+#include <StepBasic_DateTimeRole.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_RatioUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <StepBasic_ThermodynamicTemperatureUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <StepBasic_MassUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Approval.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_SolidAngleUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ActionMethod.hxx>
+#include <StepBasic_VersionedActionRequest.hxx>
+#include <StepBasic_PlaneAngleUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepBasic_ProductDefinitionContext.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Product.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_Effectivity.hxx>
+#include <StepBasic_VolumeUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ApplicationContext.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepBasic_ApprovalStatus.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ActionMethod.hxx>
+#include <StepBasic_Date.hxx>
+#include <StepBasic_DateRole.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_IdentificationRole.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Product.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ProductCategory.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_SolidAngleUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <StepBasic_Certification.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureValueMember.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_ProductDefinitionReference.hxx>
+#include <StepBasic_ProductDefinitionReferenceWithLocalRepresentation.hxx>
+#include <StepBasic_LengthUnit.hxx>
 #include <StepBasic_DimensionalExponents.hxx>
 #include <StepBasic_TimeUnit.hxx>
 #include <StepBasic_DimensionalExponents.hxx>
@@ -194,25 +150,69 @@ namespace py = pybind11;
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ContractType.hxx>
+#include <StepBasic_VersionedActionRequest.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Person.hxx>
+#include <StepBasic_Organization.hxx>
+#include <StepBasic_PersonAndOrganization.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepBasic_ProductDefinitionContext.hxx>
+#include <StepBasic_Document.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_TimeUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <StepBasic_MassUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ApplicationContext.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Contract.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepBasic_AreaUnit.hxx>
+#include <StepBasic_Date.hxx>
+#include <StepBasic_LocalTime.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <StepBasic_MeasureValueMember.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Person.hxx>
+#include <StepBasic_Organization.hxx>
+#include <StepBasic_Action.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepBasic_ApprovalRole.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Document.hxx>
+#include <StepBasic_DimensionalExponents.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <StepBasic_ApplicationContext.hxx>
 #include <StepData_SelectMember.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepBasic_CertificationType.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Product.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ObjectRole.hxx>
 #include <StepBasic_NamedUnit.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ActionMethod.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_Approval.hxx>
-#include <StepBasic_Contract.hxx>
-#include <StepBasic_SolidAngleUnit.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <StepBasic_LengthUnit.hxx>
 #include <StepBasic_DimensionalExponents.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
-#include <StepBasic_RatioUnit.hxx>
-#include <StepBasic_DimensionalExponents.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_PersonAndOrganization.hxx>
-#include <StepBasic_PersonAndOrganizationRole.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <TCollection_HAsciiString.hxx>
 
 // module includes
 #include <StepBasic_Action.hxx>
@@ -383,25 +383,25 @@ namespace py = pybind11;
 #include <StepBasic_WeekOfYearAndDayDate.hxx>
 
 // template related includes
-// ./opencascade/StepBasic_Array1OfDocument.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepBasic_Array1OfPerson.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepBasic_Array1OfProductContext.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepBasic_Array1OfNamedUnit.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepBasic_Array1OfDerivedUnitElement.hxx
+// ./opencascade/StepBasic_Array1OfProductDefinition.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepBasic_Array1OfApproval.hxx
 #include "NCollection.hxx"
+// ./opencascade/StepBasic_Array1OfNamedUnit.hxx
+#include "NCollection.hxx"
 // ./opencascade/StepBasic_Array1OfUncertaintyMeasureWithUnit.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepBasic_Array1OfDerivedUnitElement.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepBasic_Array1OfPerson.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepBasic_Array1OfDocument.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepBasic_Array1OfProduct.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepBasic_Array1OfProductDefinition.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepBasic_Array1OfOrganization.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepBasic_Array1OfProductContext.hxx
 #include "NCollection.hxx"
 
 
@@ -423,7 +423,9 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
 
 
     static_cast<py::class_<StepBasic_Action ,opencascade::handle<StepBasic_Action>  , Standard_Transient >>(m.attr("StepBasic_Action"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Action::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ActionMethod> &  ) ) static_cast<void (StepBasic_Action::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ActionMethod> &  ) >(&StepBasic_Action::Init),
@@ -462,12 +464,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ActionAssignment ,opencascade::handle<StepBasic_ActionAssignment>  , Standard_Transient >>(m.attr("StepBasic_ActionAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ActionAssignment::*)( const opencascade::handle<StepBasic_Action> &  ) ) static_cast<void (StepBasic_ActionAssignment::*)( const opencascade::handle<StepBasic_Action> &  ) >(&StepBasic_ActionAssignment::Init),
@@ -491,12 +495,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ActionMethod ,opencascade::handle<StepBasic_ActionMethod>  , Standard_Transient >>(m.attr("StepBasic_ActionMethod"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ActionMethod::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ActionMethod::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ActionMethod::Init),
@@ -541,12 +547,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ActionRequestAssignment ,opencascade::handle<StepBasic_ActionRequestAssignment>  , Standard_Transient >>(m.attr("StepBasic_ActionRequestAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ActionRequestAssignment::*)( const opencascade::handle<StepBasic_VersionedActionRequest> &  ) ) static_cast<void (StepBasic_ActionRequestAssignment::*)( const opencascade::handle<StepBasic_VersionedActionRequest> &  ) >(&StepBasic_ActionRequestAssignment::Init),
@@ -570,12 +578,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ActionRequestSolution ,opencascade::handle<StepBasic_ActionRequestSolution>  , Standard_Transient >>(m.attr("StepBasic_ActionRequestSolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ActionRequestSolution::*)( const opencascade::handle<StepBasic_ActionMethod> & ,  const opencascade::handle<StepBasic_VersionedActionRequest> &  ) ) static_cast<void (StepBasic_ActionRequestSolution::*)( const opencascade::handle<StepBasic_ActionMethod> & ,  const opencascade::handle<StepBasic_VersionedActionRequest> &  ) >(&StepBasic_ActionRequestSolution::Init),
@@ -605,12 +615,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Address ,opencascade::handle<StepBasic_Address>  , Standard_Transient >>(m.attr("StepBasic_Address"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Address::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_Address::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_Address::Init),
@@ -772,12 +784,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApplicationContext ,opencascade::handle<StepBasic_ApplicationContext>  , Standard_Transient >>(m.attr("StepBasic_ApplicationContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApplicationContext::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ApplicationContext::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ApplicationContext::Init),
@@ -801,12 +815,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApplicationContextElement ,opencascade::handle<StepBasic_ApplicationContextElement>  , Standard_Transient >>(m.attr("StepBasic_ApplicationContextElement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApplicationContextElement::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> &  ) ) static_cast<void (StepBasic_ApplicationContextElement::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> &  ) >(&StepBasic_ApplicationContextElement::Init),
@@ -836,12 +852,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApplicationProtocolDefinition ,opencascade::handle<StepBasic_ApplicationProtocolDefinition>  , Standard_Transient >>(m.attr("StepBasic_ApplicationProtocolDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApplicationProtocolDefinition::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepBasic_ApplicationContext> &  ) ) static_cast<void (StepBasic_ApplicationProtocolDefinition::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepBasic_ApplicationContext> &  ) >(&StepBasic_ApplicationProtocolDefinition::Init),
@@ -883,12 +901,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Approval ,opencascade::handle<StepBasic_Approval>  , Standard_Transient >>(m.attr("StepBasic_Approval"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Approval::*)( const opencascade::handle<StepBasic_ApprovalStatus> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_Approval::*)( const opencascade::handle<StepBasic_ApprovalStatus> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_Approval::Init),
@@ -918,12 +938,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepBasic_ApprovalAssignment ,opencascade::handle<StepBasic_ApprovalAssignment>>(m,"StepBasic_ApprovalAssignment");
 
     static_cast<py::class_<StepBasic_ApprovalAssignment ,opencascade::handle<StepBasic_ApprovalAssignment>  , Standard_Transient >>(m.attr("StepBasic_ApprovalAssignment"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApprovalAssignment::*)( const opencascade::handle<StepBasic_Approval> &  ) ) static_cast<void (StepBasic_ApprovalAssignment::*)( const opencascade::handle<StepBasic_Approval> &  ) >(&StepBasic_ApprovalAssignment::Init),
@@ -947,12 +970,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApprovalDateTime ,opencascade::handle<StepBasic_ApprovalDateTime>  , Standard_Transient >>(m.attr("StepBasic_ApprovalDateTime"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApprovalDateTime::*)( const StepBasic_DateTimeSelect & ,  const opencascade::handle<StepBasic_Approval> &  ) ) static_cast<void (StepBasic_ApprovalDateTime::*)( const StepBasic_DateTimeSelect & ,  const opencascade::handle<StepBasic_Approval> &  ) >(&StepBasic_ApprovalDateTime::Init),
@@ -982,12 +1007,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApprovalPersonOrganization ,opencascade::handle<StepBasic_ApprovalPersonOrganization>  , Standard_Transient >>(m.attr("StepBasic_ApprovalPersonOrganization"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApprovalPersonOrganization::*)( const StepBasic_PersonOrganizationSelect & ,  const opencascade::handle<StepBasic_Approval> & ,  const opencascade::handle<StepBasic_ApprovalRole> &  ) ) static_cast<void (StepBasic_ApprovalPersonOrganization::*)( const StepBasic_PersonOrganizationSelect & ,  const opencascade::handle<StepBasic_Approval> & ,  const opencascade::handle<StepBasic_ApprovalRole> &  ) >(&StepBasic_ApprovalPersonOrganization::Init),
@@ -1023,12 +1050,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApprovalRelationship ,opencascade::handle<StepBasic_ApprovalRelationship>  , Standard_Transient >>(m.attr("StepBasic_ApprovalRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApprovalRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Approval> & ,  const opencascade::handle<StepBasic_Approval> &  ) ) static_cast<void (StepBasic_ApprovalRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Approval> & ,  const opencascade::handle<StepBasic_Approval> &  ) >(&StepBasic_ApprovalRelationship::Init),
@@ -1070,12 +1099,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApprovalRole ,opencascade::handle<StepBasic_ApprovalRole>  , Standard_Transient >>(m.attr("StepBasic_ApprovalRole"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApprovalRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ApprovalRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ApprovalRole::Init),
@@ -1099,12 +1130,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ApprovalStatus ,opencascade::handle<StepBasic_ApprovalStatus>  , Standard_Transient >>(m.attr("StepBasic_ApprovalStatus"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ApprovalStatus::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ApprovalStatus::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ApprovalStatus::Init),
@@ -1128,12 +1161,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Certification ,opencascade::handle<StepBasic_Certification>  , Standard_Transient >>(m.attr("StepBasic_Certification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Certification::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_CertificationType> &  ) ) static_cast<void (StepBasic_Certification::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_CertificationType> &  ) >(&StepBasic_Certification::Init),
@@ -1169,12 +1204,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_CertificationAssignment ,opencascade::handle<StepBasic_CertificationAssignment>  , Standard_Transient >>(m.attr("StepBasic_CertificationAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_CertificationAssignment::*)( const opencascade::handle<StepBasic_Certification> &  ) ) static_cast<void (StepBasic_CertificationAssignment::*)( const opencascade::handle<StepBasic_Certification> &  ) >(&StepBasic_CertificationAssignment::Init),
@@ -1198,12 +1235,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_CertificationType ,opencascade::handle<StepBasic_CertificationType>  , Standard_Transient >>(m.attr("StepBasic_CertificationType"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_CertificationType::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_CertificationType::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_CertificationType::Init),
@@ -1227,12 +1266,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_CharacterizedObject ,opencascade::handle<StepBasic_CharacterizedObject>  , Standard_Transient >>(m.attr("StepBasic_CharacterizedObject"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_CharacterizedObject::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_CharacterizedObject::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_CharacterizedObject::Init),
@@ -1265,12 +1306,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Contract ,opencascade::handle<StepBasic_Contract>  , Standard_Transient >>(m.attr("StepBasic_Contract"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Contract::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ContractType> &  ) ) static_cast<void (StepBasic_Contract::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ContractType> &  ) >(&StepBasic_Contract::Init),
@@ -1306,12 +1349,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ContractAssignment ,opencascade::handle<StepBasic_ContractAssignment>  , Standard_Transient >>(m.attr("StepBasic_ContractAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ContractAssignment::*)( const opencascade::handle<StepBasic_Contract> &  ) ) static_cast<void (StepBasic_ContractAssignment::*)( const opencascade::handle<StepBasic_Contract> &  ) >(&StepBasic_ContractAssignment::Init),
@@ -1335,12 +1380,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ContractType ,opencascade::handle<StepBasic_ContractType>  , Standard_Transient >>(m.attr("StepBasic_ContractType"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ContractType::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ContractType::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ContractType::Init),
@@ -1364,12 +1411,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_CoordinatedUniversalTimeOffset ,opencascade::handle<StepBasic_CoordinatedUniversalTimeOffset>  , Standard_Transient >>(m.attr("StepBasic_CoordinatedUniversalTimeOffset"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_CoordinatedUniversalTimeOffset::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer ,  const StepBasic_AheadOrBehind  ) ) static_cast<void (StepBasic_CoordinatedUniversalTimeOffset::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer ,  const StepBasic_AheadOrBehind  ) >(&StepBasic_CoordinatedUniversalTimeOffset::Init),
@@ -1411,12 +1460,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Date ,opencascade::handle<StepBasic_Date>  , Standard_Transient >>(m.attr("StepBasic_Date"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Date::*)( const Standard_Integer  ) ) static_cast<void (StepBasic_Date::*)( const Standard_Integer  ) >(&StepBasic_Date::Init),
@@ -1440,12 +1491,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DateAndTime ,opencascade::handle<StepBasic_DateAndTime>  , Standard_Transient >>(m.attr("StepBasic_DateAndTime"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DateAndTime::*)( const opencascade::handle<StepBasic_Date> & ,  const opencascade::handle<StepBasic_LocalTime> &  ) ) static_cast<void (StepBasic_DateAndTime::*)( const opencascade::handle<StepBasic_Date> & ,  const opencascade::handle<StepBasic_LocalTime> &  ) >(&StepBasic_DateAndTime::Init),
@@ -1475,12 +1528,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepBasic_DateAndTimeAssignment ,opencascade::handle<StepBasic_DateAndTimeAssignment>>(m,"StepBasic_DateAndTimeAssignment");
 
     static_cast<py::class_<StepBasic_DateAndTimeAssignment ,opencascade::handle<StepBasic_DateAndTimeAssignment>  , Standard_Transient >>(m.attr("StepBasic_DateAndTimeAssignment"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DateAndTimeAssignment::*)( const opencascade::handle<StepBasic_DateAndTime> & ,  const opencascade::handle<StepBasic_DateTimeRole> &  ) ) static_cast<void (StepBasic_DateAndTimeAssignment::*)( const opencascade::handle<StepBasic_DateAndTime> & ,  const opencascade::handle<StepBasic_DateTimeRole> &  ) >(&StepBasic_DateAndTimeAssignment::Init),
@@ -1510,12 +1566,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepBasic_DateAssignment ,opencascade::handle<StepBasic_DateAssignment>>(m,"StepBasic_DateAssignment");
 
     static_cast<py::class_<StepBasic_DateAssignment ,opencascade::handle<StepBasic_DateAssignment>  , Standard_Transient >>(m.attr("StepBasic_DateAssignment"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DateAssignment::*)( const opencascade::handle<StepBasic_Date> & ,  const opencascade::handle<StepBasic_DateRole> &  ) ) static_cast<void (StepBasic_DateAssignment::*)( const opencascade::handle<StepBasic_Date> & ,  const opencascade::handle<StepBasic_DateRole> &  ) >(&StepBasic_DateAssignment::Init),
@@ -1545,12 +1604,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DateRole ,opencascade::handle<StepBasic_DateRole>  , Standard_Transient >>(m.attr("StepBasic_DateRole"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DateRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_DateRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_DateRole::Init),
@@ -1574,12 +1635,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DateTimeRole ,opencascade::handle<StepBasic_DateTimeRole>  , Standard_Transient >>(m.attr("StepBasic_DateTimeRole"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DateTimeRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_DateTimeRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_DateTimeRole::Init),
@@ -1603,12 +1666,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DateTimeSelect , shared_ptr<StepBasic_DateTimeSelect>  , StepData_SelectType >>(m.attr("StepBasic_DateTimeSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_DateTimeSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_DateTimeSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_DateTimeSelect::CaseNum),
@@ -1626,12 +1691,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DerivedUnit ,opencascade::handle<StepBasic_DerivedUnit>  , Standard_Transient >>(m.attr("StepBasic_DerivedUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DerivedUnit::*)( const opencascade::handle<StepBasic_HArray1OfDerivedUnitElement> &  ) ) static_cast<void (StepBasic_DerivedUnit::*)( const opencascade::handle<StepBasic_HArray1OfDerivedUnitElement> &  ) >(&StepBasic_DerivedUnit::Init),
@@ -1661,12 +1728,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DerivedUnitElement ,opencascade::handle<StepBasic_DerivedUnitElement>  , Standard_Transient >>(m.attr("StepBasic_DerivedUnitElement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DerivedUnitElement::*)( const opencascade::handle<StepBasic_NamedUnit> & ,  const Standard_Real  ) ) static_cast<void (StepBasic_DerivedUnitElement::*)( const opencascade::handle<StepBasic_NamedUnit> & ,  const Standard_Real  ) >(&StepBasic_DerivedUnitElement::Init),
@@ -1696,12 +1765,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DimensionalExponents ,opencascade::handle<StepBasic_DimensionalExponents>  , Standard_Transient >>(m.attr("StepBasic_DimensionalExponents"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DimensionalExponents::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepBasic_DimensionalExponents::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&StepBasic_DimensionalExponents::Init),
@@ -1761,12 +1832,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Document ,opencascade::handle<StepBasic_Document>  , Standard_Transient >>(m.attr("StepBasic_Document"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Document::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_DocumentType> &  ) ) static_cast<void (StepBasic_Document::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_DocumentType> &  ) >(&StepBasic_Document::Init),
@@ -1811,12 +1884,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DocumentProductAssociation ,opencascade::handle<StepBasic_DocumentProductAssociation>  , Standard_Transient >>(m.attr("StepBasic_DocumentProductAssociation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DocumentProductAssociation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Document> & ,  const StepBasic_ProductOrFormationOrDefinition &  ) ) static_cast<void (StepBasic_DocumentProductAssociation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Document> & ,  const StepBasic_ProductOrFormationOrDefinition &  ) >(&StepBasic_DocumentProductAssociation::Init),
@@ -1861,12 +1936,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepBasic_DocumentReference ,opencascade::handle<StepBasic_DocumentReference>>(m,"StepBasic_DocumentReference");
 
     static_cast<py::class_<StepBasic_DocumentReference ,opencascade::handle<StepBasic_DocumentReference>  , Standard_Transient >>(m.attr("StepBasic_DocumentReference"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init0",
              (void (StepBasic_DocumentReference::*)( const opencascade::handle<StepBasic_Document> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_DocumentReference::*)( const opencascade::handle<StepBasic_Document> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_DocumentReference::Init0),
@@ -1896,12 +1974,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DocumentRelationship ,opencascade::handle<StepBasic_DocumentRelationship>  , Standard_Transient >>(m.attr("StepBasic_DocumentRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DocumentRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Document> & ,  const opencascade::handle<StepBasic_Document> &  ) ) static_cast<void (StepBasic_DocumentRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Document> & ,  const opencascade::handle<StepBasic_Document> &  ) >(&StepBasic_DocumentRelationship::Init),
@@ -1943,12 +2023,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DocumentRepresentationType ,opencascade::handle<StepBasic_DocumentRepresentationType>  , Standard_Transient >>(m.attr("StepBasic_DocumentRepresentationType"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DocumentRepresentationType::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Document> &  ) ) static_cast<void (StepBasic_DocumentRepresentationType::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Document> &  ) >(&StepBasic_DocumentRepresentationType::Init),
@@ -1978,12 +2060,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DocumentType ,opencascade::handle<StepBasic_DocumentType>  , Standard_Transient >>(m.attr("StepBasic_DocumentType"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DocumentType::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_DocumentType::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_DocumentType::Init),
@@ -2007,12 +2091,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DocumentUsageConstraint ,opencascade::handle<StepBasic_DocumentUsageConstraint>  , Standard_Transient >>(m.attr("StepBasic_DocumentUsageConstraint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DocumentUsageConstraint::*)( const opencascade::handle<StepBasic_Document> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_DocumentUsageConstraint::*)( const opencascade::handle<StepBasic_Document> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_DocumentUsageConstraint::Init),
@@ -2048,12 +2134,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Effectivity ,opencascade::handle<StepBasic_Effectivity>  , Standard_Transient >>(m.attr("StepBasic_Effectivity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Effectivity::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_Effectivity::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_Effectivity::Init),
@@ -2077,12 +2165,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_EffectivityAssignment ,opencascade::handle<StepBasic_EffectivityAssignment>  , Standard_Transient >>(m.attr("StepBasic_EffectivityAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_EffectivityAssignment::*)( const opencascade::handle<StepBasic_Effectivity> &  ) ) static_cast<void (StepBasic_EffectivityAssignment::*)( const opencascade::handle<StepBasic_Effectivity> &  ) >(&StepBasic_EffectivityAssignment::Init),
@@ -2106,12 +2196,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_EulerAngles ,opencascade::handle<StepBasic_EulerAngles>  , Standard_Transient >>(m.attr("StepBasic_EulerAngles"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_EulerAngles::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (StepBasic_EulerAngles::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&StepBasic_EulerAngles::Init),
@@ -2135,12 +2227,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ExternalSource ,opencascade::handle<StepBasic_ExternalSource>  , Standard_Transient >>(m.attr("StepBasic_ExternalSource"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ExternalSource::*)( const StepBasic_SourceItem &  ) ) static_cast<void (StepBasic_ExternalSource::*)( const StepBasic_SourceItem &  ) >(&StepBasic_ExternalSource::Init),
@@ -2164,12 +2258,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ExternallyDefinedItem ,opencascade::handle<StepBasic_ExternallyDefinedItem>  , Standard_Transient >>(m.attr("StepBasic_ExternallyDefinedItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ExternallyDefinedItem::*)( const StepBasic_SourceItem & ,  const opencascade::handle<StepBasic_ExternalSource> &  ) ) static_cast<void (StepBasic_ExternallyDefinedItem::*)( const StepBasic_SourceItem & ,  const opencascade::handle<StepBasic_ExternalSource> &  ) >(&StepBasic_ExternallyDefinedItem::Init),
@@ -2199,12 +2295,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_GeneralProperty ,opencascade::handle<StepBasic_GeneralProperty>  , Standard_Transient >>(m.attr("StepBasic_GeneralProperty"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_GeneralProperty::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_GeneralProperty::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_GeneralProperty::Init),
@@ -2243,12 +2341,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Group ,opencascade::handle<StepBasic_Group>  , Standard_Transient >>(m.attr("StepBasic_Group"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Group::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_Group::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_Group::Init),
@@ -2281,12 +2381,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_GroupAssignment ,opencascade::handle<StepBasic_GroupAssignment>  , Standard_Transient >>(m.attr("StepBasic_GroupAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_GroupAssignment::*)( const opencascade::handle<StepBasic_Group> &  ) ) static_cast<void (StepBasic_GroupAssignment::*)( const opencascade::handle<StepBasic_Group> &  ) >(&StepBasic_GroupAssignment::Init),
@@ -2310,12 +2412,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_GroupRelationship ,opencascade::handle<StepBasic_GroupRelationship>  , Standard_Transient >>(m.attr("StepBasic_GroupRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_GroupRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Group> & ,  const opencascade::handle<StepBasic_Group> &  ) ) static_cast<void (StepBasic_GroupRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Group> & ,  const opencascade::handle<StepBasic_Group> &  ) >(&StepBasic_GroupRelationship::Init),
@@ -2360,14 +2464,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfApproval ,opencascade::handle<StepBasic_HArray1OfApproval>  , StepBasic_Array1OfApproval , Standard_Transient >>(m.attr("StepBasic_HArray1OfApproval"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_Approval> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_Approval> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfApproval & (StepBasic_HArray1OfApproval::*)() const) static_cast<const StepBasic_Array1OfApproval & (StepBasic_HArray1OfApproval::*)() const>(&StepBasic_HArray1OfApproval::Array1),
@@ -2388,14 +2495,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfDerivedUnitElement ,opencascade::handle<StepBasic_HArray1OfDerivedUnitElement>  , StepBasic_Array1OfDerivedUnitElement , Standard_Transient >>(m.attr("StepBasic_HArray1OfDerivedUnitElement"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_DerivedUnitElement> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_DerivedUnitElement> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfDerivedUnitElement & (StepBasic_HArray1OfDerivedUnitElement::*)() const) static_cast<const StepBasic_Array1OfDerivedUnitElement & (StepBasic_HArray1OfDerivedUnitElement::*)() const>(&StepBasic_HArray1OfDerivedUnitElement::Array1),
@@ -2416,14 +2526,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfDocument ,opencascade::handle<StepBasic_HArray1OfDocument>  , StepBasic_Array1OfDocument , Standard_Transient >>(m.attr("StepBasic_HArray1OfDocument"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_Document> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_Document> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfDocument & (StepBasic_HArray1OfDocument::*)() const) static_cast<const StepBasic_Array1OfDocument & (StepBasic_HArray1OfDocument::*)() const>(&StepBasic_HArray1OfDocument::Array1),
@@ -2444,14 +2557,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfNamedUnit ,opencascade::handle<StepBasic_HArray1OfNamedUnit>  , StepBasic_Array1OfNamedUnit , Standard_Transient >>(m.attr("StepBasic_HArray1OfNamedUnit"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_NamedUnit> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_NamedUnit> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfNamedUnit & (StepBasic_HArray1OfNamedUnit::*)() const) static_cast<const StepBasic_Array1OfNamedUnit & (StepBasic_HArray1OfNamedUnit::*)() const>(&StepBasic_HArray1OfNamedUnit::Array1),
@@ -2472,14 +2588,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfOrganization ,opencascade::handle<StepBasic_HArray1OfOrganization>  , StepBasic_Array1OfOrganization , Standard_Transient >>(m.attr("StepBasic_HArray1OfOrganization"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_Organization> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_Organization> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfOrganization & (StepBasic_HArray1OfOrganization::*)() const) static_cast<const StepBasic_Array1OfOrganization & (StepBasic_HArray1OfOrganization::*)() const>(&StepBasic_HArray1OfOrganization::Array1),
@@ -2500,14 +2619,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfPerson ,opencascade::handle<StepBasic_HArray1OfPerson>  , StepBasic_Array1OfPerson , Standard_Transient >>(m.attr("StepBasic_HArray1OfPerson"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_Person> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_Person> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfPerson & (StepBasic_HArray1OfPerson::*)() const) static_cast<const StepBasic_Array1OfPerson & (StepBasic_HArray1OfPerson::*)() const>(&StepBasic_HArray1OfPerson::Array1),
@@ -2528,14 +2650,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfProduct ,opencascade::handle<StepBasic_HArray1OfProduct>  , StepBasic_Array1OfProduct , Standard_Transient >>(m.attr("StepBasic_HArray1OfProduct"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_Product> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_Product> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfProduct & (StepBasic_HArray1OfProduct::*)() const) static_cast<const StepBasic_Array1OfProduct & (StepBasic_HArray1OfProduct::*)() const>(&StepBasic_HArray1OfProduct::Array1),
@@ -2556,14 +2681,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfProductContext ,opencascade::handle<StepBasic_HArray1OfProductContext>  , StepBasic_Array1OfProductContext , Standard_Transient >>(m.attr("StepBasic_HArray1OfProductContext"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_ProductContext> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_ProductContext> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfProductContext & (StepBasic_HArray1OfProductContext::*)() const) static_cast<const StepBasic_Array1OfProductContext & (StepBasic_HArray1OfProductContext::*)() const>(&StepBasic_HArray1OfProductContext::Array1),
@@ -2584,14 +2712,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfProductDefinition ,opencascade::handle<StepBasic_HArray1OfProductDefinition>  , StepBasic_Array1OfProductDefinition , Standard_Transient >>(m.attr("StepBasic_HArray1OfProductDefinition"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_ProductDefinition> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_ProductDefinition> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfProductDefinition & (StepBasic_HArray1OfProductDefinition::*)() const) static_cast<const StepBasic_Array1OfProductDefinition & (StepBasic_HArray1OfProductDefinition::*)() const>(&StepBasic_HArray1OfProductDefinition::Array1),
@@ -2612,14 +2743,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_HArray1OfUncertaintyMeasureWithUnit ,opencascade::handle<StepBasic_HArray1OfUncertaintyMeasureWithUnit>  , StepBasic_Array1OfUncertaintyMeasureWithUnit , Standard_Transient >>(m.attr("StepBasic_HArray1OfUncertaintyMeasureWithUnit"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepBasic_UncertaintyMeasureWithUnit> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepBasic_UncertaintyMeasureWithUnit> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepBasic_Array1OfUncertaintyMeasureWithUnit & (StepBasic_HArray1OfUncertaintyMeasureWithUnit::*)() const) static_cast<const StepBasic_Array1OfUncertaintyMeasureWithUnit & (StepBasic_HArray1OfUncertaintyMeasureWithUnit::*)() const>(&StepBasic_HArray1OfUncertaintyMeasureWithUnit::Array1),
@@ -2640,12 +2774,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_IdentificationAssignment ,opencascade::handle<StepBasic_IdentificationAssignment>  , Standard_Transient >>(m.attr("StepBasic_IdentificationAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_IdentificationAssignment::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_IdentificationRole> &  ) ) static_cast<void (StepBasic_IdentificationAssignment::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_IdentificationRole> &  ) >(&StepBasic_IdentificationAssignment::Init),
@@ -2675,12 +2811,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_IdentificationRole ,opencascade::handle<StepBasic_IdentificationRole>  , Standard_Transient >>(m.attr("StepBasic_IdentificationRole"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_IdentificationRole::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_IdentificationRole::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_IdentificationRole::Init),
@@ -2713,12 +2851,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_LocalTime ,opencascade::handle<StepBasic_LocalTime>  , Standard_Transient >>(m.attr("StepBasic_LocalTime"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_LocalTime::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Real ,  const opencascade::handle<StepBasic_CoordinatedUniversalTimeOffset> &  ) ) static_cast<void (StepBasic_LocalTime::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Real ,  const opencascade::handle<StepBasic_CoordinatedUniversalTimeOffset> &  ) >(&StepBasic_LocalTime::Init),
@@ -2772,12 +2912,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_MeasureValueMember ,opencascade::handle<StepBasic_MeasureValueMember>  , StepData_SelectReal >>(m.attr("StepBasic_MeasureValueMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepBasic_MeasureValueMember::*)() const) static_cast<Standard_Boolean (StepBasic_MeasureValueMember::*)() const>(&StepBasic_MeasureValueMember::HasName),
@@ -2801,12 +2943,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_MeasureWithUnit ,opencascade::handle<StepBasic_MeasureWithUnit>  , Standard_Transient >>(m.attr("StepBasic_MeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_MeasureWithUnit::*)( const opencascade::handle<StepBasic_MeasureValueMember> & ,  const StepBasic_Unit &  ) ) static_cast<void (StepBasic_MeasureWithUnit::*)( const opencascade::handle<StepBasic_MeasureValueMember> & ,  const StepBasic_Unit &  ) >(&StepBasic_MeasureWithUnit::Init),
@@ -2842,12 +2986,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_NameAssignment ,opencascade::handle<StepBasic_NameAssignment>  , Standard_Transient >>(m.attr("StepBasic_NameAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_NameAssignment::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_NameAssignment::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_NameAssignment::Init),
@@ -2871,12 +3017,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_NamedUnit ,opencascade::handle<StepBasic_NamedUnit>  , Standard_Transient >>(m.attr("StepBasic_NamedUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_NamedUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> &  ) ) static_cast<void (StepBasic_NamedUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> &  ) >(&StepBasic_NamedUnit::Init),
@@ -2900,12 +3048,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ObjectRole ,opencascade::handle<StepBasic_ObjectRole>  , Standard_Transient >>(m.attr("StepBasic_ObjectRole"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ObjectRole::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ObjectRole::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ObjectRole::Init),
@@ -2938,12 +3088,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Organization ,opencascade::handle<StepBasic_Organization>  , Standard_Transient >>(m.attr("StepBasic_Organization"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Organization::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_Organization::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_Organization::Init),
@@ -2985,12 +3137,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepBasic_OrganizationAssignment ,opencascade::handle<StepBasic_OrganizationAssignment>>(m,"StepBasic_OrganizationAssignment");
 
     static_cast<py::class_<StepBasic_OrganizationAssignment ,opencascade::handle<StepBasic_OrganizationAssignment>  , Standard_Transient >>(m.attr("StepBasic_OrganizationAssignment"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_OrganizationAssignment::*)( const opencascade::handle<StepBasic_Organization> & ,  const opencascade::handle<StepBasic_OrganizationRole> &  ) ) static_cast<void (StepBasic_OrganizationAssignment::*)( const opencascade::handle<StepBasic_Organization> & ,  const opencascade::handle<StepBasic_OrganizationRole> &  ) >(&StepBasic_OrganizationAssignment::Init),
@@ -3020,12 +3175,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_OrganizationRole ,opencascade::handle<StepBasic_OrganizationRole>  , Standard_Transient >>(m.attr("StepBasic_OrganizationRole"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_OrganizationRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_OrganizationRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_OrganizationRole::Init),
@@ -3049,12 +3206,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Person ,opencascade::handle<StepBasic_Person>  , Standard_Transient >>(m.attr("StepBasic_Person"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Person::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<Interface_HArray1OfHAsciiString> &  ) ) static_cast<void (StepBasic_Person::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<Interface_HArray1OfHAsciiString> &  ) >(&StepBasic_Person::Init),
@@ -3156,12 +3315,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_PersonAndOrganization ,opencascade::handle<StepBasic_PersonAndOrganization>  , Standard_Transient >>(m.attr("StepBasic_PersonAndOrganization"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_PersonAndOrganization::*)( const opencascade::handle<StepBasic_Person> & ,  const opencascade::handle<StepBasic_Organization> &  ) ) static_cast<void (StepBasic_PersonAndOrganization::*)( const opencascade::handle<StepBasic_Person> & ,  const opencascade::handle<StepBasic_Organization> &  ) >(&StepBasic_PersonAndOrganization::Init),
@@ -3191,12 +3352,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepBasic_PersonAndOrganizationAssignment ,opencascade::handle<StepBasic_PersonAndOrganizationAssignment>>(m,"StepBasic_PersonAndOrganizationAssignment");
 
     static_cast<py::class_<StepBasic_PersonAndOrganizationAssignment ,opencascade::handle<StepBasic_PersonAndOrganizationAssignment>  , Standard_Transient >>(m.attr("StepBasic_PersonAndOrganizationAssignment"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_PersonAndOrganizationAssignment::*)( const opencascade::handle<StepBasic_PersonAndOrganization> & ,  const opencascade::handle<StepBasic_PersonAndOrganizationRole> &  ) ) static_cast<void (StepBasic_PersonAndOrganizationAssignment::*)( const opencascade::handle<StepBasic_PersonAndOrganization> & ,  const opencascade::handle<StepBasic_PersonAndOrganizationRole> &  ) >(&StepBasic_PersonAndOrganizationAssignment::Init),
@@ -3226,12 +3390,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_PersonAndOrganizationRole ,opencascade::handle<StepBasic_PersonAndOrganizationRole>  , Standard_Transient >>(m.attr("StepBasic_PersonAndOrganizationRole"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_PersonAndOrganizationRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_PersonAndOrganizationRole::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_PersonAndOrganizationRole::Init),
@@ -3255,12 +3421,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_PersonOrganizationSelect , shared_ptr<StepBasic_PersonOrganizationSelect>  , StepData_SelectType >>(m.attr("StepBasic_PersonOrganizationSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_PersonOrganizationSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_PersonOrganizationSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_PersonOrganizationSelect::CaseNum),
@@ -3278,12 +3446,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Product ,opencascade::handle<StepBasic_Product>  , Standard_Transient >>(m.attr("StepBasic_Product"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_Product::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfProductContext> &  ) ) static_cast<void (StepBasic_Product::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfProductContext> &  ) >(&StepBasic_Product::Init),
@@ -3331,12 +3501,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductCategory ,opencascade::handle<StepBasic_ProductCategory>  , Standard_Transient >>(m.attr("StepBasic_ProductCategory"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductCategory::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ProductCategory::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ProductCategory::Init),
@@ -3372,12 +3544,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductCategoryRelationship ,opencascade::handle<StepBasic_ProductCategoryRelationship>  , Standard_Transient >>(m.attr("StepBasic_ProductCategoryRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductCategoryRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductCategory> & ,  const opencascade::handle<StepBasic_ProductCategory> &  ) ) static_cast<void (StepBasic_ProductCategoryRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductCategory> & ,  const opencascade::handle<StepBasic_ProductCategory> &  ) >(&StepBasic_ProductCategoryRelationship::Init),
@@ -3422,12 +3596,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinition ,opencascade::handle<StepBasic_ProductDefinition>  , Standard_Transient >>(m.attr("StepBasic_ProductDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinition::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionContext> &  ) ) static_cast<void (StepBasic_ProductDefinition::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionContext> &  ) >(&StepBasic_ProductDefinition::Init),
@@ -3469,12 +3645,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionFormation ,opencascade::handle<StepBasic_ProductDefinitionFormation>  , Standard_Transient >>(m.attr("StepBasic_ProductDefinitionFormation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionFormation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Product> &  ) ) static_cast<void (StepBasic_ProductDefinitionFormation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Product> &  ) >(&StepBasic_ProductDefinitionFormation::Init),
@@ -3510,12 +3688,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionFormationRelationship ,opencascade::handle<StepBasic_ProductDefinitionFormationRelationship>  , Standard_Transient >>(m.attr("StepBasic_ProductDefinitionFormationRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionFormationRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> &  ) ) static_cast<void (StepBasic_ProductDefinitionFormationRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> &  ) >(&StepBasic_ProductDefinitionFormationRelationship::Init),
@@ -3563,12 +3743,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionOrReference , shared_ptr<StepBasic_ProductDefinitionOrReference>  , StepData_SelectType >>(m.attr("StepBasic_ProductDefinitionOrReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_ProductDefinitionOrReference::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_ProductDefinitionOrReference::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_ProductDefinitionOrReference::CaseNum),
@@ -3586,12 +3768,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionReference ,opencascade::handle<StepBasic_ProductDefinitionReference>  , Standard_Transient >>(m.attr("StepBasic_ProductDefinitionReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionReference::*)( const opencascade::handle<StepBasic_ExternalSource> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ProductDefinitionReference::*)( const opencascade::handle<StepBasic_ExternalSource> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ProductDefinitionReference::Init),
@@ -3645,12 +3829,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionRelationship ,opencascade::handle<StepBasic_ProductDefinitionRelationship>  , Standard_Transient >>(m.attr("StepBasic_ProductDefinitionRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinition> & ,  const opencascade::handle<StepBasic_ProductDefinition> &  ) ) static_cast<void (StepBasic_ProductDefinitionRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinition> & ,  const opencascade::handle<StepBasic_ProductDefinition> &  ) >(&StepBasic_ProductDefinitionRelationship::Init),
@@ -3716,12 +3902,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductOrFormationOrDefinition , shared_ptr<StepBasic_ProductOrFormationOrDefinition>  , StepData_SelectType >>(m.attr("StepBasic_ProductOrFormationOrDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_ProductOrFormationOrDefinition::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_ProductOrFormationOrDefinition::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_ProductOrFormationOrDefinition::CaseNum),
@@ -3739,12 +3927,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_RoleAssociation ,opencascade::handle<StepBasic_RoleAssociation>  , Standard_Transient >>(m.attr("StepBasic_RoleAssociation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_RoleAssociation::*)( const opencascade::handle<StepBasic_ObjectRole> & ,  const StepBasic_RoleSelect &  ) ) static_cast<void (StepBasic_RoleAssociation::*)( const opencascade::handle<StepBasic_ObjectRole> & ,  const StepBasic_RoleSelect &  ) >(&StepBasic_RoleAssociation::Init),
@@ -3774,12 +3964,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_RoleSelect , shared_ptr<StepBasic_RoleSelect>  , StepData_SelectType >>(m.attr("StepBasic_RoleSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_RoleSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_RoleSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_RoleSelect::CaseNum),
@@ -3821,12 +4013,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SecurityClassification ,opencascade::handle<StepBasic_SecurityClassification>  , Standard_Transient >>(m.attr("StepBasic_SecurityClassification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SecurityClassification::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_SecurityClassificationLevel> &  ) ) static_cast<void (StepBasic_SecurityClassification::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_SecurityClassificationLevel> &  ) >(&StepBasic_SecurityClassification::Init),
@@ -3862,12 +4056,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepBasic_SecurityClassificationAssignment ,opencascade::handle<StepBasic_SecurityClassificationAssignment>>(m,"StepBasic_SecurityClassificationAssignment");
 
     static_cast<py::class_<StepBasic_SecurityClassificationAssignment ,opencascade::handle<StepBasic_SecurityClassificationAssignment>  , Standard_Transient >>(m.attr("StepBasic_SecurityClassificationAssignment"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SecurityClassificationAssignment::*)( const opencascade::handle<StepBasic_SecurityClassification> &  ) ) static_cast<void (StepBasic_SecurityClassificationAssignment::*)( const opencascade::handle<StepBasic_SecurityClassification> &  ) >(&StepBasic_SecurityClassificationAssignment::Init),
@@ -3891,12 +4088,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SecurityClassificationLevel ,opencascade::handle<StepBasic_SecurityClassificationLevel>  , Standard_Transient >>(m.attr("StepBasic_SecurityClassificationLevel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SecurityClassificationLevel::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_SecurityClassificationLevel::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_SecurityClassificationLevel::Init),
@@ -3920,12 +4119,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SizeMember ,opencascade::handle<StepBasic_SizeMember>  , StepData_SelectReal >>(m.attr("StepBasic_SizeMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepBasic_SizeMember::*)() const) static_cast<Standard_Boolean (StepBasic_SizeMember::*)() const>(&StepBasic_SizeMember::HasName),
@@ -3949,12 +4150,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SizeSelect , shared_ptr<StepBasic_SizeSelect>  , StepData_SelectType >>(m.attr("StepBasic_SizeSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_SizeSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_SizeSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_SizeSelect::CaseNum),
@@ -3975,12 +4178,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SourceItem , shared_ptr<StepBasic_SourceItem>  , StepData_SelectType >>(m.attr("StepBasic_SourceItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_SourceItem::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_SourceItem::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_SourceItem::CaseNum),
@@ -3995,12 +4200,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_Unit , shared_ptr<StepBasic_Unit>  , StepData_SelectType >>(m.attr("StepBasic_Unit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepBasic_Unit::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepBasic_Unit::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepBasic_Unit::CaseNum),
@@ -4015,12 +4222,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_VersionedActionRequest ,opencascade::handle<StepBasic_VersionedActionRequest>  , Standard_Transient >>(m.attr("StepBasic_VersionedActionRequest"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_VersionedActionRequest::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_VersionedActionRequest::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_VersionedActionRequest::Init),
@@ -4065,12 +4274,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_AreaUnit ,opencascade::handle<StepBasic_AreaUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_AreaUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_AreaUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_AreaUnit::*)() const>(&StepBasic_AreaUnit::DynamicType),
@@ -4085,12 +4296,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_CalendarDate ,opencascade::handle<StepBasic_CalendarDate>  , StepBasic_Date >>(m.attr("StepBasic_CalendarDate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_CalendarDate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (StepBasic_CalendarDate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&StepBasic_CalendarDate::Init),
@@ -4120,12 +4333,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnit ,opencascade::handle<StepBasic_ConversionBasedUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_ConversionBasedUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ConversionBasedUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepBasic_ConversionBasedUnit::Init),
@@ -4155,12 +4370,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DigitalDocument ,opencascade::handle<StepBasic_DigitalDocument>  , StepBasic_Document >>(m.attr("StepBasic_DigitalDocument"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_DigitalDocument::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_DigitalDocument::*)() const>(&StepBasic_DigitalDocument::DynamicType),
@@ -4175,12 +4392,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DocumentFile ,opencascade::handle<StepBasic_DocumentFile>  , StepBasic_Document >>(m.attr("StepBasic_DocumentFile"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_DocumentFile::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_DocumentType> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_DocumentFile::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_DocumentType> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_DocumentFile::Init),
@@ -4204,12 +4423,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DocumentProductEquivalence ,opencascade::handle<StepBasic_DocumentProductEquivalence>  , StepBasic_DocumentProductAssociation >>(m.attr("StepBasic_DocumentProductEquivalence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_DocumentProductEquivalence::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_DocumentProductEquivalence::*)() const>(&StepBasic_DocumentProductEquivalence::DynamicType),
@@ -4224,12 +4445,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ExternalIdentificationAssignment ,opencascade::handle<StepBasic_ExternalIdentificationAssignment>  , StepBasic_IdentificationAssignment >>(m.attr("StepBasic_ExternalIdentificationAssignment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ExternalIdentificationAssignment::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_IdentificationRole> & ,  const opencascade::handle<StepBasic_ExternalSource> &  ) ) static_cast<void (StepBasic_ExternalIdentificationAssignment::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_IdentificationRole> & ,  const opencascade::handle<StepBasic_ExternalSource> &  ) >(&StepBasic_ExternalIdentificationAssignment::Init),
@@ -4253,12 +4476,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_LengthMeasureWithUnit ,opencascade::handle<StepBasic_LengthMeasureWithUnit>  , StepBasic_MeasureWithUnit >>(m.attr("StepBasic_LengthMeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_LengthMeasureWithUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_LengthMeasureWithUnit::*)() const>(&StepBasic_LengthMeasureWithUnit::DynamicType),
@@ -4273,12 +4498,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_LengthUnit ,opencascade::handle<StepBasic_LengthUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_LengthUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_LengthUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_LengthUnit::*)() const>(&StepBasic_LengthUnit::DynamicType),
@@ -4293,12 +4520,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_MassMeasureWithUnit ,opencascade::handle<StepBasic_MassMeasureWithUnit>  , StepBasic_MeasureWithUnit >>(m.attr("StepBasic_MassMeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_MassMeasureWithUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_MassMeasureWithUnit::*)() const>(&StepBasic_MassMeasureWithUnit::DynamicType),
@@ -4313,12 +4542,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_MassUnit ,opencascade::handle<StepBasic_MassUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_MassUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_MassUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_MassUnit::*)() const>(&StepBasic_MassUnit::DynamicType),
@@ -4333,12 +4564,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_OrdinalDate ,opencascade::handle<StepBasic_OrdinalDate>  , StepBasic_Date >>(m.attr("StepBasic_OrdinalDate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_OrdinalDate::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (StepBasic_OrdinalDate::*)( const Standard_Integer ,  const Standard_Integer  ) >(&StepBasic_OrdinalDate::Init),
@@ -4362,12 +4595,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_OrganizationalAddress ,opencascade::handle<StepBasic_OrganizationalAddress>  , StepBasic_Address >>(m.attr("StepBasic_OrganizationalAddress"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_OrganizationalAddress::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfOrganization> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_OrganizationalAddress::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfOrganization> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_OrganizationalAddress::Init),
@@ -4403,12 +4638,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_PersonalAddress ,opencascade::handle<StepBasic_PersonalAddress>  , StepBasic_Address >>(m.attr("StepBasic_PersonalAddress"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_PersonalAddress::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfPerson> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_PersonalAddress::*)( const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfPerson> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_PersonalAddress::Init),
@@ -4444,12 +4681,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_PhysicallyModeledProductDefinition ,opencascade::handle<StepBasic_PhysicallyModeledProductDefinition>  , StepBasic_ProductDefinition >>(m.attr("StepBasic_PhysicallyModeledProductDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_PhysicallyModeledProductDefinition::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_PhysicallyModeledProductDefinition::*)() const>(&StepBasic_PhysicallyModeledProductDefinition::DynamicType),
@@ -4464,12 +4703,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_PlaneAngleMeasureWithUnit ,opencascade::handle<StepBasic_PlaneAngleMeasureWithUnit>  , StepBasic_MeasureWithUnit >>(m.attr("StepBasic_PlaneAngleMeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_PlaneAngleMeasureWithUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_PlaneAngleMeasureWithUnit::*)() const>(&StepBasic_PlaneAngleMeasureWithUnit::DynamicType),
@@ -4484,12 +4725,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_PlaneAngleUnit ,opencascade::handle<StepBasic_PlaneAngleUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_PlaneAngleUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_PlaneAngleUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_PlaneAngleUnit::*)() const>(&StepBasic_PlaneAngleUnit::DynamicType),
@@ -4504,12 +4747,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductConceptContext ,opencascade::handle<StepBasic_ProductConceptContext>  , StepBasic_ApplicationContextElement >>(m.attr("StepBasic_ProductConceptContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductConceptContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ProductConceptContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ProductConceptContext::Init),
@@ -4533,12 +4778,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductContext ,opencascade::handle<StepBasic_ProductContext>  , StepBasic_ApplicationContextElement >>(m.attr("StepBasic_ProductContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ProductContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ProductContext::Init),
@@ -4562,12 +4809,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionContext ,opencascade::handle<StepBasic_ProductDefinitionContext>  , StepBasic_ApplicationContextElement >>(m.attr("StepBasic_ProductDefinitionContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_ProductDefinitionContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_ProductDefinitionContext::Init),
@@ -4591,12 +4840,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionEffectivity ,opencascade::handle<StepBasic_ProductDefinitionEffectivity>  , StepBasic_Effectivity >>(m.attr("StepBasic_ProductDefinitionEffectivity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionEffectivity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionRelationship> &  ) ) static_cast<void (StepBasic_ProductDefinitionEffectivity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionRelationship> &  ) >(&StepBasic_ProductDefinitionEffectivity::Init),
@@ -4620,12 +4871,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionFormationWithSpecifiedSource ,opencascade::handle<StepBasic_ProductDefinitionFormationWithSpecifiedSource>  , StepBasic_ProductDefinitionFormation >>(m.attr("StepBasic_ProductDefinitionFormationWithSpecifiedSource"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionFormationWithSpecifiedSource::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Product> & ,  const StepBasic_Source  ) ) static_cast<void (StepBasic_ProductDefinitionFormationWithSpecifiedSource::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_Product> & ,  const StepBasic_Source  ) >(&StepBasic_ProductDefinitionFormationWithSpecifiedSource::Init),
@@ -4649,12 +4902,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionReferenceWithLocalRepresentation ,opencascade::handle<StepBasic_ProductDefinitionReferenceWithLocalRepresentation>  , StepBasic_ProductDefinition >>(m.attr("StepBasic_ProductDefinitionReferenceWithLocalRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionReferenceWithLocalRepresentation::*)( const opencascade::handle<StepBasic_ExternalSource> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionContext> &  ) ) static_cast<void (StepBasic_ProductDefinitionReferenceWithLocalRepresentation::*)( const opencascade::handle<StepBasic_ExternalSource> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionContext> &  ) >(&StepBasic_ProductDefinitionReferenceWithLocalRepresentation::Init),
@@ -4678,12 +4933,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductDefinitionWithAssociatedDocuments ,opencascade::handle<StepBasic_ProductDefinitionWithAssociatedDocuments>  , StepBasic_ProductDefinition >>(m.attr("StepBasic_ProductDefinitionWithAssociatedDocuments"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductDefinitionWithAssociatedDocuments::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionContext> & ,  const opencascade::handle<StepBasic_HArray1OfDocument> &  ) ) static_cast<void (StepBasic_ProductDefinitionWithAssociatedDocuments::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ProductDefinitionFormation> & ,  const opencascade::handle<StepBasic_ProductDefinitionContext> & ,  const opencascade::handle<StepBasic_HArray1OfDocument> &  ) >(&StepBasic_ProductDefinitionWithAssociatedDocuments::Init),
@@ -4716,12 +4973,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductRelatedProductCategory ,opencascade::handle<StepBasic_ProductRelatedProductCategory>  , StepBasic_ProductCategory >>(m.attr("StepBasic_ProductRelatedProductCategory"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ProductRelatedProductCategory::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfProduct> &  ) ) static_cast<void (StepBasic_ProductRelatedProductCategory::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_HArray1OfProduct> &  ) >(&StepBasic_ProductRelatedProductCategory::Init),
@@ -4751,12 +5010,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_RatioMeasureWithUnit ,opencascade::handle<StepBasic_RatioMeasureWithUnit>  , StepBasic_MeasureWithUnit >>(m.attr("StepBasic_RatioMeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_RatioMeasureWithUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_RatioMeasureWithUnit::*)() const>(&StepBasic_RatioMeasureWithUnit::DynamicType),
@@ -4771,12 +5032,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_RatioUnit ,opencascade::handle<StepBasic_RatioUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_RatioUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_RatioUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_RatioUnit::*)() const>(&StepBasic_RatioUnit::DynamicType),
@@ -4791,12 +5054,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnit ,opencascade::handle<StepBasic_SiUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_SiUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnit::Init),
@@ -4838,12 +5103,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SolidAngleMeasureWithUnit ,opencascade::handle<StepBasic_SolidAngleMeasureWithUnit>  , StepBasic_MeasureWithUnit >>(m.attr("StepBasic_SolidAngleMeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_SolidAngleMeasureWithUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_SolidAngleMeasureWithUnit::*)() const>(&StepBasic_SolidAngleMeasureWithUnit::DynamicType),
@@ -4858,12 +5125,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SolidAngleUnit ,opencascade::handle<StepBasic_SolidAngleUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_SolidAngleUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_SolidAngleUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_SolidAngleUnit::*)() const>(&StepBasic_SolidAngleUnit::DynamicType),
@@ -4878,12 +5147,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ThermodynamicTemperatureUnit ,opencascade::handle<StepBasic_ThermodynamicTemperatureUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_ThermodynamicTemperatureUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_ThermodynamicTemperatureUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_ThermodynamicTemperatureUnit::*)() const>(&StepBasic_ThermodynamicTemperatureUnit::DynamicType),
@@ -4898,12 +5169,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_TimeMeasureWithUnit ,opencascade::handle<StepBasic_TimeMeasureWithUnit>  , StepBasic_MeasureWithUnit >>(m.attr("StepBasic_TimeMeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_TimeMeasureWithUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_TimeMeasureWithUnit::*)() const>(&StepBasic_TimeMeasureWithUnit::DynamicType),
@@ -4918,12 +5191,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_TimeUnit ,opencascade::handle<StepBasic_TimeUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_TimeUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_TimeUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_TimeUnit::*)() const>(&StepBasic_TimeUnit::DynamicType),
@@ -4938,12 +5213,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_UncertaintyMeasureWithUnit ,opencascade::handle<StepBasic_UncertaintyMeasureWithUnit>  , StepBasic_MeasureWithUnit >>(m.attr("StepBasic_UncertaintyMeasureWithUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_UncertaintyMeasureWithUnit::*)( const opencascade::handle<StepBasic_MeasureValueMember> & ,  const StepBasic_Unit & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepBasic_UncertaintyMeasureWithUnit::*)( const opencascade::handle<StepBasic_MeasureValueMember> & ,  const StepBasic_Unit & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepBasic_UncertaintyMeasureWithUnit::Init),
@@ -4973,12 +5250,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_VolumeUnit ,opencascade::handle<StepBasic_VolumeUnit>  , StepBasic_NamedUnit >>(m.attr("StepBasic_VolumeUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_VolumeUnit::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_VolumeUnit::*)() const>(&StepBasic_VolumeUnit::DynamicType),
@@ -4993,12 +5272,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_WeekOfYearAndDayDate ,opencascade::handle<StepBasic_WeekOfYearAndDayDate>  , StepBasic_Date >>(m.attr("StepBasic_WeekOfYearAndDayDate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_WeekOfYearAndDayDate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (StepBasic_WeekOfYearAndDayDate::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) >(&StepBasic_WeekOfYearAndDayDate::Init),
@@ -5034,12 +5315,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndAreaUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndAreaUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndAreaUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetAreaUnit",
              (void (StepBasic_ConversionBasedUnitAndAreaUnit::*)( const opencascade::handle<StepBasic_AreaUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndAreaUnit::*)( const opencascade::handle<StepBasic_AreaUnit> &  ) >(&StepBasic_ConversionBasedUnitAndAreaUnit::SetAreaUnit),
@@ -5060,12 +5343,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndLengthUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndLengthUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndLengthUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ConversionBasedUnitAndLengthUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndLengthUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepBasic_ConversionBasedUnitAndLengthUnit::Init),
@@ -5089,12 +5374,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndMassUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndMassUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndMassUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ConversionBasedUnitAndMassUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndMassUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepBasic_ConversionBasedUnitAndMassUnit::Init),
@@ -5118,12 +5405,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndPlaneAngleUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndPlaneAngleUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndPlaneAngleUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ConversionBasedUnitAndPlaneAngleUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndPlaneAngleUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepBasic_ConversionBasedUnitAndPlaneAngleUnit::Init),
@@ -5147,12 +5436,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndRatioUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndRatioUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndRatioUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ConversionBasedUnitAndRatioUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndRatioUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepBasic_ConversionBasedUnitAndRatioUnit::Init),
@@ -5176,12 +5467,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndSolidAngleUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndSolidAngleUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndSolidAngleUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ConversionBasedUnitAndSolidAngleUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndSolidAngleUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepBasic_ConversionBasedUnitAndSolidAngleUnit::Init),
@@ -5205,12 +5498,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndTimeUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndTimeUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndTimeUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_ConversionBasedUnitAndTimeUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndTimeUnit::*)( const opencascade::handle<StepBasic_DimensionalExponents> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepBasic_ConversionBasedUnitAndTimeUnit::Init),
@@ -5234,12 +5529,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ConversionBasedUnitAndVolumeUnit ,opencascade::handle<StepBasic_ConversionBasedUnitAndVolumeUnit>  , StepBasic_ConversionBasedUnit >>(m.attr("StepBasic_ConversionBasedUnitAndVolumeUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetVolumeUnit",
              (void (StepBasic_ConversionBasedUnitAndVolumeUnit::*)( const opencascade::handle<StepBasic_VolumeUnit> &  ) ) static_cast<void (StepBasic_ConversionBasedUnitAndVolumeUnit::*)( const opencascade::handle<StepBasic_VolumeUnit> &  ) >(&StepBasic_ConversionBasedUnitAndVolumeUnit::SetVolumeUnit),
@@ -5260,12 +5557,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_DesignContext ,opencascade::handle<StepBasic_DesignContext>  , StepBasic_ProductDefinitionContext >>(m.attr("StepBasic_DesignContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_DesignContext::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_DesignContext::*)() const>(&StepBasic_DesignContext::DynamicType),
@@ -5280,12 +5579,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_MechanicalContext ,opencascade::handle<StepBasic_MechanicalContext>  , StepBasic_ProductContext >>(m.attr("StepBasic_MechanicalContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_MechanicalContext::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_MechanicalContext::*)() const>(&StepBasic_MechanicalContext::DynamicType),
@@ -5300,12 +5601,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_ProductType ,opencascade::handle<StepBasic_ProductType>  , StepBasic_ProductRelatedProductCategory >>(m.attr("StepBasic_ProductType"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepBasic_ProductType::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepBasic_ProductType::*)() const>(&StepBasic_ProductType::DynamicType),
@@ -5320,12 +5623,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndAreaUnit ,opencascade::handle<StepBasic_SiUnitAndAreaUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndAreaUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetAreaUnit",
              (void (StepBasic_SiUnitAndAreaUnit::*)( const opencascade::handle<StepBasic_AreaUnit> &  ) ) static_cast<void (StepBasic_SiUnitAndAreaUnit::*)( const opencascade::handle<StepBasic_AreaUnit> &  ) >(&StepBasic_SiUnitAndAreaUnit::SetAreaUnit),
@@ -5346,12 +5651,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndLengthUnit ,opencascade::handle<StepBasic_SiUnitAndLengthUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndLengthUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnitAndLengthUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnitAndLengthUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnitAndLengthUnit::Init),
@@ -5375,12 +5682,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndMassUnit ,opencascade::handle<StepBasic_SiUnitAndMassUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndMassUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnitAndMassUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnitAndMassUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnitAndMassUnit::Init),
@@ -5404,12 +5713,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndPlaneAngleUnit ,opencascade::handle<StepBasic_SiUnitAndPlaneAngleUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndPlaneAngleUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnitAndPlaneAngleUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnitAndPlaneAngleUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnitAndPlaneAngleUnit::Init),
@@ -5433,12 +5744,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndRatioUnit ,opencascade::handle<StepBasic_SiUnitAndRatioUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndRatioUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnitAndRatioUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnitAndRatioUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnitAndRatioUnit::Init),
@@ -5462,12 +5775,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndSolidAngleUnit ,opencascade::handle<StepBasic_SiUnitAndSolidAngleUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndSolidAngleUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnitAndSolidAngleUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnitAndSolidAngleUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnitAndSolidAngleUnit::Init),
@@ -5491,12 +5806,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndThermodynamicTemperatureUnit ,opencascade::handle<StepBasic_SiUnitAndThermodynamicTemperatureUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndThermodynamicTemperatureUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnitAndThermodynamicTemperatureUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnitAndThermodynamicTemperatureUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnitAndThermodynamicTemperatureUnit::Init),
@@ -5520,12 +5837,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndTimeUnit ,opencascade::handle<StepBasic_SiUnitAndTimeUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndTimeUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepBasic_SiUnitAndTimeUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) ) static_cast<void (StepBasic_SiUnitAndTimeUnit::*)( const Standard_Boolean ,  const StepBasic_SiPrefix ,  const StepBasic_SiUnitName  ) >(&StepBasic_SiUnitAndTimeUnit::Init),
@@ -5549,12 +5868,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepBasic_SiUnitAndVolumeUnit ,opencascade::handle<StepBasic_SiUnitAndVolumeUnit>  , StepBasic_SiUnit >>(m.attr("StepBasic_SiUnitAndVolumeUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetVolumeUnit",
              (void (StepBasic_SiUnitAndVolumeUnit::*)( const opencascade::handle<StepBasic_VolumeUnit> &  ) ) static_cast<void (StepBasic_SiUnitAndVolumeUnit::*)( const opencascade::handle<StepBasic_VolumeUnit> &  ) >(&StepBasic_SiUnitAndVolumeUnit::SetVolumeUnit),
@@ -5575,190 +5896,190 @@ py::module m = static_cast<py::module>(main_module.attr("StepBasic"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepBasic_Organization.hxx
-// ./opencascade/StepBasic_ProductContext.hxx
-// ./opencascade/StepBasic_Array1OfDocument.hxx
-// ./opencascade/StepBasic_HArray1OfApproval.hxx
-// ./opencascade/StepBasic_ProductOrFormationOrDefinition.hxx
-// ./opencascade/StepBasic_CalendarDate.hxx
-// ./opencascade/StepBasic_OrdinalDate.hxx
-// ./opencascade/StepBasic_SiPrefix.hxx
-// ./opencascade/StepBasic_PlaneAngleUnit.hxx
-// ./opencascade/StepBasic_DocumentProductEquivalence.hxx
-// ./opencascade/StepBasic_ApplicationProtocolDefinition.hxx
-// ./opencascade/StepBasic_DocumentProductAssociation.hxx
-// ./opencascade/StepBasic_MeasureWithUnit.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndVolumeUnit.hxx
-// ./opencascade/StepBasic_SecurityClassification.hxx
-// ./opencascade/StepBasic_DocumentReference.hxx
-// ./opencascade/StepBasic_ProductDefinitionReference.hxx
-// ./opencascade/StepBasic_ActionAssignment.hxx
-// ./opencascade/StepBasic_DocumentRelationship.hxx
-// ./opencascade/StepBasic_DocumentType.hxx
-// ./opencascade/StepBasic_Array1OfPerson.hxx
-// ./opencascade/StepBasic_ProductRelatedProductCategory.hxx
-// ./opencascade/StepBasic_SiUnitAndTimeUnit.hxx
-// ./opencascade/StepBasic_OrganizationalAddress.hxx
 // ./opencascade/StepBasic_DocumentFile.hxx
-// ./opencascade/StepBasic_ActionMethod.hxx
-// ./opencascade/StepBasic_ProductDefinitionReferenceWithLocalRepresentation.hxx
-// ./opencascade/StepBasic_AreaUnit.hxx
-// ./opencascade/StepBasic_Certification.hxx
-// ./opencascade/StepBasic_MechanicalContext.hxx
-// ./opencascade/StepBasic_LengthUnit.hxx
-// ./opencascade/StepBasic_Contract.hxx
-// ./opencascade/StepBasic_DateTimeSelect.hxx
-// ./opencascade/StepBasic_Array1OfProductContext.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndRatioUnit.hxx
-// ./opencascade/StepBasic_NameAssignment.hxx
-// ./opencascade/StepBasic_GeneralProperty.hxx
-// ./opencascade/StepBasic_HArray1OfDocument.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndPlaneAngleUnit.hxx
-// ./opencascade/StepBasic_ProductDefinitionFormationRelationship.hxx
-// ./opencascade/StepBasic_UncertaintyMeasureWithUnit.hxx
-// ./opencascade/StepBasic_ProductDefinitionEffectivity.hxx
-// ./opencascade/StepBasic_ProductDefinitionFormation.hxx
-// ./opencascade/StepBasic_ProductConceptContext.hxx
-// ./opencascade/StepBasic_MassMeasureWithUnit.hxx
-// ./opencascade/StepBasic_DateAndTimeAssignment.hxx
-// ./opencascade/StepBasic_IdentificationRole.hxx
-// ./opencascade/StepBasic_ApplicationContext.hxx
-// ./opencascade/StepBasic_GroupRelationship.hxx
-// ./opencascade/StepBasic_Address.hxx
-// ./opencascade/StepBasic_HArray1OfProduct.hxx
-// ./opencascade/StepBasic_CharacterizedObject.hxx
-// ./opencascade/StepBasic_Array1OfNamedUnit.hxx
-// ./opencascade/StepBasic_SiUnitAndMassUnit.hxx
-// ./opencascade/StepBasic_SolidAngleUnit.hxx
-// ./opencascade/StepBasic_DocumentRepresentationType.hxx
-// ./opencascade/StepBasic_Unit.hxx
-// ./opencascade/StepBasic_HArray1OfDerivedUnitElement.hxx
-// ./opencascade/StepBasic_DateRole.hxx
-// ./opencascade/StepBasic_DesignContext.hxx
-// ./opencascade/StepBasic_DateTimeRole.hxx
-// ./opencascade/StepBasic_ConversionBasedUnit.hxx
-// ./opencascade/StepBasic_SiUnit.hxx
-// ./opencascade/StepBasic_HArray1OfProductContext.hxx
-// ./opencascade/StepBasic_RatioMeasureWithUnit.hxx
-// ./opencascade/StepBasic_IdentificationAssignment.hxx
-// ./opencascade/StepBasic_DateAndTime.hxx
-// ./opencascade/StepBasic_Array1OfDerivedUnitElement.hxx
-// ./opencascade/StepBasic_VolumeUnit.hxx
-// ./opencascade/StepBasic_ApplicationContextElement.hxx
-// ./opencascade/StepBasic_SiUnitAndLengthUnit.hxx
+// ./opencascade/StepBasic_DocumentRelationship.hxx
 // ./opencascade/StepBasic_ApprovalAssignment.hxx
-// ./opencascade/StepBasic_ApprovalStatus.hxx
-// ./opencascade/StepBasic_RoleAssociation.hxx
-// ./opencascade/StepBasic_ProductDefinitionRelationship.hxx
-// ./opencascade/StepBasic_PersonAndOrganization.hxx
-// ./opencascade/StepBasic_OrganizationAssignment.hxx
-// ./opencascade/StepBasic_ProductCategory.hxx
-// ./opencascade/StepBasic_Array1OfApproval.hxx
-// ./opencascade/StepBasic_PersonAndOrganizationRole.hxx
-// ./opencascade/StepBasic_NamedUnit.hxx
-// ./opencascade/StepBasic_ExternalIdentificationAssignment.hxx
-// ./opencascade/StepBasic_EffectivityAssignment.hxx
-// ./opencascade/StepBasic_Person.hxx
-// ./opencascade/StepBasic_SolidAngleMeasureWithUnit.hxx
-// ./opencascade/StepBasic_ObjectRole.hxx
-// ./opencascade/StepBasic_AheadOrBehind.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndMassUnit.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndLengthUnit.hxx
-// ./opencascade/StepBasic_SiUnitAndSolidAngleUnit.hxx
-// ./opencascade/StepBasic_SecurityClassificationLevel.hxx
-// ./opencascade/StepBasic_Array1OfUncertaintyMeasureWithUnit.hxx
-// ./opencascade/StepBasic_CertificationAssignment.hxx
-// ./opencascade/StepBasic_ThermodynamicTemperatureUnit.hxx
-// ./opencascade/StepBasic_ProductType.hxx
-// ./opencascade/StepBasic_Effectivity.hxx
-// ./opencascade/StepBasic_Product.hxx
-// ./opencascade/StepBasic_HArray1OfPerson.hxx
-// ./opencascade/StepBasic_EulerAngles.hxx
-// ./opencascade/StepBasic_MeasureValueMember.hxx
-// ./opencascade/StepBasic_ApprovalRole.hxx
-// ./opencascade/StepBasic_PersonalAddress.hxx
-// ./opencascade/StepBasic_SiUnitAndAreaUnit.hxx
-// ./opencascade/StepBasic_Approval.hxx
-// ./opencascade/StepBasic_DerivedUnit.hxx
-// ./opencascade/StepBasic_ActionRequestAssignment.hxx
-// ./opencascade/StepBasic_HArray1OfProductDefinition.hxx
-// ./opencascade/StepBasic_Group.hxx
-// ./opencascade/StepBasic_ExternallyDefinedItem.hxx
-// ./opencascade/StepBasic_ProductCategoryRelationship.hxx
-// ./opencascade/StepBasic_SizeSelect.hxx
-// ./opencascade/StepBasic_ExternalSource.hxx
-// ./opencascade/StepBasic_ProductDefinitionOrReference.hxx
-// ./opencascade/StepBasic_TimeMeasureWithUnit.hxx
-// ./opencascade/StepBasic_GroupAssignment.hxx
-// ./opencascade/StepBasic_SecurityClassificationAssignment.hxx
-// ./opencascade/StepBasic_Array1OfProduct.hxx
-// ./opencascade/StepBasic_TimeUnit.hxx
-// ./opencascade/StepBasic_DateAssignment.hxx
-// ./opencascade/StepBasic_PhysicallyModeledProductDefinition.hxx
-// ./opencascade/StepBasic_SizeMember.hxx
-// ./opencascade/StepBasic_Document.hxx
-// ./opencascade/StepBasic_ProductDefinitionWithAssociatedDocuments.hxx
-// ./opencascade/StepBasic_ActionRequestSolution.hxx
-// ./opencascade/StepBasic_OrganizationRole.hxx
-// ./opencascade/StepBasic_MassUnit.hxx
-// ./opencascade/StepBasic_ApprovalDateTime.hxx
-// ./opencascade/StepBasic_ProductDefinition.hxx
-// ./opencascade/StepBasic_DimensionalExponents.hxx
-// ./opencascade/StepBasic_PersonOrganizationSelect.hxx
-// ./opencascade/StepBasic_ApprovalPersonOrganization.hxx
 // ./opencascade/StepBasic_RoleSelect.hxx
+// ./opencascade/StepBasic_AheadOrBehind.hxx
 // ./opencascade/StepBasic_Array1OfProductDefinition.hxx
-// ./opencascade/StepBasic_LengthMeasureWithUnit.hxx
-// ./opencascade/StepBasic_ProductDefinitionFormationWithSpecifiedSource.hxx
-// ./opencascade/StepBasic_WeekOfYearAndDayDate.hxx
-// ./opencascade/StepBasic_SiUnitAndThermodynamicTemperatureUnit.hxx
-// ./opencascade/StepBasic_SiUnitAndVolumeUnit.hxx
-// ./opencascade/StepBasic_DocumentUsageConstraint.hxx
-// ./opencascade/StepBasic_LocalTime.hxx
-// ./opencascade/StepBasic_Date.hxx
-// ./opencascade/StepBasic_DigitalDocument.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndAreaUnit.hxx
-// ./opencascade/StepBasic_SiUnitAndPlaneAngleUnit.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndTimeUnit.hxx
-// ./opencascade/StepBasic_CoordinatedUniversalTimeOffset.hxx
-// ./opencascade/StepBasic_VersionedActionRequest.hxx
-// ./opencascade/StepBasic_ProductDefinitionContext.hxx
-// ./opencascade/StepBasic_SourceItem.hxx
-// ./opencascade/StepBasic_HArray1OfOrganization.hxx
-// ./opencascade/StepBasic_DerivedUnitElement.hxx
-// ./opencascade/StepBasic_HArray1OfUncertaintyMeasureWithUnit.hxx
-// ./opencascade/StepBasic_Action.hxx
-// ./opencascade/StepBasic_Array1OfOrganization.hxx
-// ./opencascade/StepBasic_ApprovalRelationship.hxx
+// ./opencascade/StepBasic_SolidAngleUnit.hxx
+// ./opencascade/StepBasic_SecurityClassification.hxx
+// ./opencascade/StepBasic_GroupAssignment.hxx
+// ./opencascade/StepBasic_MassUnit.hxx
+// ./opencascade/StepBasic_GroupRelationship.hxx
 // ./opencascade/StepBasic_SiUnitName.hxx
-// ./opencascade/StepBasic_ContractAssignment.hxx
-// ./opencascade/StepBasic_ConversionBasedUnitAndSolidAngleUnit.hxx
-// ./opencascade/StepBasic_SiUnitAndRatioUnit.hxx
-// ./opencascade/StepBasic_PlaneAngleMeasureWithUnit.hxx
-// ./opencascade/StepBasic_CertificationType.hxx
-// ./opencascade/StepBasic_RatioUnit.hxx
-// ./opencascade/StepBasic_ContractType.hxx
-// ./opencascade/StepBasic_HArray1OfNamedUnit.hxx
+// ./opencascade/StepBasic_SiUnitAndAreaUnit.hxx
+// ./opencascade/StepBasic_EulerAngles.hxx
 // ./opencascade/StepBasic_PersonAndOrganizationAssignment.hxx
+// ./opencascade/StepBasic_DocumentReference.hxx
+// ./opencascade/StepBasic_SiUnitAndRatioUnit.hxx
+// ./opencascade/StepBasic_HArray1OfProduct.hxx
+// ./opencascade/StepBasic_Unit.hxx
+// ./opencascade/StepBasic_DocumentProductAssociation.hxx
+// ./opencascade/StepBasic_SolidAngleMeasureWithUnit.hxx
+// ./opencascade/StepBasic_ProductConceptContext.hxx
+// ./opencascade/StepBasic_SiUnitAndPlaneAngleUnit.hxx
+// ./opencascade/StepBasic_IdentificationAssignment.hxx
+// ./opencascade/StepBasic_Array1OfApproval.hxx
+// ./opencascade/StepBasic_Document.hxx
+// ./opencascade/StepBasic_Array1OfNamedUnit.hxx
+// ./opencascade/StepBasic_RatioMeasureWithUnit.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndVolumeUnit.hxx
+// ./opencascade/StepBasic_OrganizationAssignment.hxx
+// ./opencascade/StepBasic_LocalTime.hxx
+// ./opencascade/StepBasic_NameAssignment.hxx
+// ./opencascade/StepBasic_SecurityClassificationAssignment.hxx
+// ./opencascade/StepBasic_DateTimeSelect.hxx
+// ./opencascade/StepBasic_VersionedActionRequest.hxx
+// ./opencascade/StepBasic_ProductContext.hxx
+// ./opencascade/StepBasic_SourceItem.hxx
 // ./opencascade/StepBasic_Source.hxx
+// ./opencascade/StepBasic_Array1OfUncertaintyMeasureWithUnit.hxx
+// ./opencascade/StepBasic_AreaUnit.hxx
+// ./opencascade/StepBasic_ProductDefinitionReference.hxx
+// ./opencascade/StepBasic_DateAndTimeAssignment.hxx
+// ./opencascade/StepBasic_CertificationType.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndRatioUnit.hxx
+// ./opencascade/StepBasic_SiUnitAndThermodynamicTemperatureUnit.hxx
+// ./opencascade/StepBasic_Array1OfDerivedUnitElement.hxx
+// ./opencascade/StepBasic_HArray1OfOrganization.hxx
+// ./opencascade/StepBasic_CalendarDate.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndMassUnit.hxx
+// ./opencascade/StepBasic_ProductRelatedProductCategory.hxx
+// ./opencascade/StepBasic_ApprovalRelationship.hxx
+// ./opencascade/StepBasic_HArray1OfProductDefinition.hxx
+// ./opencascade/StepBasic_Product.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndSolidAngleUnit.hxx
+// ./opencascade/StepBasic_Array1OfPerson.hxx
+// ./opencascade/StepBasic_Group.hxx
+// ./opencascade/StepBasic_ActionRequestSolution.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndPlaneAngleUnit.hxx
+// ./opencascade/StepBasic_ApprovalRole.hxx
+// ./opencascade/StepBasic_ProductDefinition.hxx
+// ./opencascade/StepBasic_PlaneAngleUnit.hxx
+// ./opencascade/StepBasic_GeneralProperty.hxx
+// ./opencascade/StepBasic_ProductOrFormationOrDefinition.hxx
+// ./opencascade/StepBasic_EffectivityAssignment.hxx
+// ./opencascade/StepBasic_HArray1OfApproval.hxx
+// ./opencascade/StepBasic_SiUnitAndVolumeUnit.hxx
+// ./opencascade/StepBasic_ProductType.hxx
+// ./opencascade/StepBasic_ApplicationContext.hxx
+// ./opencascade/StepBasic_CoordinatedUniversalTimeOffset.hxx
+// ./opencascade/StepBasic_ApplicationProtocolDefinition.hxx
+// ./opencascade/StepBasic_Address.hxx
+// ./opencascade/StepBasic_ProductDefinitionFormationRelationship.hxx
+// ./opencascade/StepBasic_Approval.hxx
+// ./opencascade/StepBasic_Action.hxx
+// ./opencascade/StepBasic_DateAssignment.hxx
+// ./opencascade/StepBasic_ExternalIdentificationAssignment.hxx
+// ./opencascade/StepBasic_DocumentType.hxx
+// ./opencascade/StepBasic_ProductDefinitionFormationWithSpecifiedSource.hxx
+// ./opencascade/StepBasic_RatioUnit.hxx
+// ./opencascade/StepBasic_ThermodynamicTemperatureUnit.hxx
+// ./opencascade/StepBasic_ProductCategoryRelationship.hxx
+// ./opencascade/StepBasic_LengthMeasureWithUnit.hxx
+// ./opencascade/StepBasic_ActionMethod.hxx
+// ./opencascade/StepBasic_SizeMember.hxx
+// ./opencascade/StepBasic_SiUnitAndSolidAngleUnit.hxx
+// ./opencascade/StepBasic_CertificationAssignment.hxx
+// ./opencascade/StepBasic_Array1OfDocument.hxx
+// ./opencascade/StepBasic_DateRole.hxx
+// ./opencascade/StepBasic_UncertaintyMeasureWithUnit.hxx
+// ./opencascade/StepBasic_ExternallyDefinedItem.hxx
+// ./opencascade/StepBasic_Effectivity.hxx
+// ./opencascade/StepBasic_ProductDefinitionOrReference.hxx
+// ./opencascade/StepBasic_SiUnitAndLengthUnit.hxx
+// ./opencascade/StepBasic_DocumentProductEquivalence.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndTimeUnit.hxx
+// ./opencascade/StepBasic_SiPrefix.hxx
+// ./opencascade/StepBasic_CharacterizedObject.hxx
+// ./opencascade/StepBasic_PersonalAddress.hxx
+// ./opencascade/StepBasic_HArray1OfUncertaintyMeasureWithUnit.hxx
+// ./opencascade/StepBasic_Contract.hxx
+// ./opencascade/StepBasic_ActionRequestAssignment.hxx
+// ./opencascade/StepBasic_SiUnit.hxx
+// ./opencascade/StepBasic_DateTimeRole.hxx
+// ./opencascade/StepBasic_PersonAndOrganizationRole.hxx
+// ./opencascade/StepBasic_PersonOrganizationSelect.hxx
+// ./opencascade/StepBasic_ProductDefinitionWithAssociatedDocuments.hxx
+// ./opencascade/StepBasic_VolumeUnit.hxx
+// ./opencascade/StepBasic_DerivedUnit.hxx
+// ./opencascade/StepBasic_DocumentUsageConstraint.hxx
+// ./opencascade/StepBasic_Date.hxx
+// ./opencascade/StepBasic_SecurityClassificationLevel.hxx
+// ./opencascade/StepBasic_Array1OfProduct.hxx
+// ./opencascade/StepBasic_SiUnitAndTimeUnit.hxx
+// ./opencascade/StepBasic_MassMeasureWithUnit.hxx
+// ./opencascade/StepBasic_PhysicallyModeledProductDefinition.hxx
+// ./opencascade/StepBasic_Array1OfOrganization.hxx
+// ./opencascade/StepBasic_SiUnitAndMassUnit.hxx
+// ./opencascade/StepBasic_ProductDefinitionContext.hxx
+// ./opencascade/StepBasic_DesignContext.hxx
+// ./opencascade/StepBasic_WeekOfYearAndDayDate.hxx
+// ./opencascade/StepBasic_ApprovalStatus.hxx
+// ./opencascade/StepBasic_Person.hxx
+// ./opencascade/StepBasic_ContractAssignment.hxx
+// ./opencascade/StepBasic_ExternalSource.hxx
+// ./opencascade/StepBasic_ApprovalDateTime.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndAreaUnit.hxx
+// ./opencascade/StepBasic_DateAndTime.hxx
+// ./opencascade/StepBasic_ConversionBasedUnit.hxx
+// ./opencascade/StepBasic_MeasureWithUnit.hxx
+// ./opencascade/StepBasic_ProductDefinitionEffectivity.hxx
+// ./opencascade/StepBasic_MechanicalContext.hxx
+// ./opencascade/StepBasic_IdentificationRole.hxx
+// ./opencascade/StepBasic_HArray1OfPerson.hxx
+// ./opencascade/StepBasic_HArray1OfProductContext.hxx
+// ./opencascade/StepBasic_ProductCategory.hxx
+// ./opencascade/StepBasic_PersonAndOrganization.hxx
+// ./opencascade/StepBasic_ActionAssignment.hxx
+// ./opencascade/StepBasic_ApprovalPersonOrganization.hxx
+// ./opencascade/StepBasic_ContractType.hxx
+// ./opencascade/StepBasic_MeasureValueMember.hxx
+// ./opencascade/StepBasic_DimensionalExponents.hxx
+// ./opencascade/StepBasic_DocumentRepresentationType.hxx
+// ./opencascade/StepBasic_NamedUnit.hxx
+// ./opencascade/StepBasic_OrganizationalAddress.hxx
+// ./opencascade/StepBasic_TimeUnit.hxx
+// ./opencascade/StepBasic_ApplicationContextElement.hxx
+// ./opencascade/StepBasic_LengthUnit.hxx
+// ./opencascade/StepBasic_SizeSelect.hxx
+// ./opencascade/StepBasic_Certification.hxx
+// ./opencascade/StepBasic_ProductDefinitionFormation.hxx
+// ./opencascade/StepBasic_OrganizationRole.hxx
+// ./opencascade/StepBasic_RoleAssociation.hxx
+// ./opencascade/StepBasic_OrdinalDate.hxx
+// ./opencascade/StepBasic_Array1OfProductContext.hxx
+// ./opencascade/StepBasic_DerivedUnitElement.hxx
+// ./opencascade/StepBasic_DigitalDocument.hxx
+// ./opencascade/StepBasic_ProductDefinitionReferenceWithLocalRepresentation.hxx
+// ./opencascade/StepBasic_TimeMeasureWithUnit.hxx
+// ./opencascade/StepBasic_PlaneAngleMeasureWithUnit.hxx
+// ./opencascade/StepBasic_HArray1OfDocument.hxx
+// ./opencascade/StepBasic_ConversionBasedUnitAndLengthUnit.hxx
+// ./opencascade/StepBasic_HArray1OfDerivedUnitElement.hxx
+// ./opencascade/StepBasic_ObjectRole.hxx
+// ./opencascade/StepBasic_ProductDefinitionRelationship.hxx
+// ./opencascade/StepBasic_Organization.hxx
+// ./opencascade/StepBasic_HArray1OfNamedUnit.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_Document> >(m,"StepBasic_Array1OfDocument");  
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_Person> >(m,"StepBasic_Array1OfPerson");  
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_ProductContext> >(m,"StepBasic_Array1OfProductContext");  
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_NamedUnit> >(m,"StepBasic_Array1OfNamedUnit");  
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_DerivedUnitElement> >(m,"StepBasic_Array1OfDerivedUnitElement");  
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_Approval> >(m,"StepBasic_Array1OfApproval");  
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_UncertaintyMeasureWithUnit> >(m,"StepBasic_Array1OfUncertaintyMeasureWithUnit");  
-    register_template_NCollection_Array1<opencascade::handle<StepBasic_Product> >(m,"StepBasic_Array1OfProduct");  
     register_template_NCollection_Array1<opencascade::handle<StepBasic_ProductDefinition> >(m,"StepBasic_Array1OfProductDefinition");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_Approval> >(m,"StepBasic_Array1OfApproval");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_NamedUnit> >(m,"StepBasic_Array1OfNamedUnit");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_UncertaintyMeasureWithUnit> >(m,"StepBasic_Array1OfUncertaintyMeasureWithUnit");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_DerivedUnitElement> >(m,"StepBasic_Array1OfDerivedUnitElement");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_Person> >(m,"StepBasic_Array1OfPerson");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_Document> >(m,"StepBasic_Array1OfDocument");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_Product> >(m,"StepBasic_Array1OfProduct");  
     register_template_NCollection_Array1<opencascade::handle<StepBasic_Organization> >(m,"StepBasic_Array1OfOrganization");  
+    register_template_NCollection_Array1<opencascade::handle<StepBasic_ProductContext> >(m,"StepBasic_Array1OfProductContext");  
 
 
 // exceptions

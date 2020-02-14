@@ -13,7 +13,9 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IGESBasic_SubfigureDef.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
 #include <gp_Pnt.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESGeom_Line.hxx>
@@ -28,7 +30,25 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_CircularArc.hxx>
+#include <IGESGeom_SplineCurve.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_Direction.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -40,7 +60,20 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_OffsetCurve.hxx>
+#include <IGESGeom_BSplineSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_BSplineCurve.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -52,7 +85,7 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_RuledSurface.hxx>
+#include <IGESGeom_SurfaceOfRevolution.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -76,7 +109,7 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_BSplineSurface.hxx>
+#include <IGESGeom_TrimmedSurface.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -87,8 +120,9 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_OffsetSurface.hxx>
+#include <IGESGeom_Boundary.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -99,6 +133,49 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_BoundedSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESBasic_HArray1OfHArray1OfIGESEntity.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_ConicArc.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_TransformationMatrix.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Dir.hxx>
 #include <IGESGeom_Protocol.hxx>
 #include <IGESGeom_CircularArc.hxx>
 #include <IGESGeom_CompositeCurve.hxx>
@@ -151,7 +228,31 @@ namespace py = pybind11;
 #include <IGESGeom_GeneralModule.hxx>
 #include <IGESGeom_SpecificModule.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_TransformationMatrix.hxx>
+#include <IGESGeom_CompositeCurve.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_SplineSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_TabulatedCylinder.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -163,16 +264,8 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <gp_Vec.hxx>
-#include <IGESBasic_HArray1OfHArray1OfIGESEntity.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Pnt.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_ConicArc.hxx>
+#include <IGESGeom_CircularArc.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -183,12 +276,52 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_OffsetSurface.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_Plane.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Vec.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <IGESData_DirChecker.hxx>
 #include <Interface_ShareTool.hxx>
 #include <Interface_Check.hxx>
 #include <Interface_CopyTool.hxx>
+#include <gp_Vec.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGeom_CopiousData.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 #include <gp_GTrsf.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESGeom_Flash.hxx>
@@ -203,74 +336,6 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_TrimmedSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_SplineSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_CopiousData.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <IGESGeom_Line.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_CompositeCurve.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_BoundedSurface.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Vec.hxx>
-#include <Standard_DomainError.hxx>
 #include <IGESGeom_CurveOnSurface.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
@@ -282,61 +347,10 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_TabulatedCylinder.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_Boundary.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_BSplineCurve.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_SurfaceOfRevolution.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Vec.hxx>
+#include <IGESBasic_SubfigureDef.hxx>
 #include <gp_Pnt.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_Plane.hxx>
+#include <IGESGeom_OffsetCurve.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -347,26 +361,12 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGeom_SplineCurve.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <IGESGeom_Line.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGeom_Direction.hxx>
+#include <IGESGeom_RuledSurface.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -462,9 +462,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESGeom , shared_ptr<IGESGeom>>(m,"IGESGeom");
 
     static_cast<py::class_<IGESGeom , shared_ptr<IGESGeom>  >>(m.attr("IGESGeom"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -476,12 +479,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(Returns the Protocol for this Package)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_BSplineCurve ,opencascade::handle<IGESGeom_BSplineCurve>  , IGESData_IGESEntity >>(m.attr("IGESGeom_BSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_BSplineCurve::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const Standard_Real ,  const Standard_Real ,  const gp_XYZ &  ) ) static_cast<void (IGESGeom_BSplineCurve::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const Standard_Real ,  const Standard_Real ,  const gp_XYZ &  ) >(&IGESGeom_BSplineCurve::Init),
@@ -547,12 +552,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_BSplineSurface ,opencascade::handle<IGESGeom_BSplineSurface>  , IGESData_IGESEntity >>(m.attr("IGESGeom_BSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_BSplineSurface::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColgp_HArray2OfXYZ> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IGESGeom_BSplineSurface::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColgp_HArray2OfXYZ> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IGESGeom_BSplineSurface::Init),
@@ -639,12 +646,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_Boundary ,opencascade::handle<IGESGeom_Boundary>  , IGESData_IGESEntity >>(m.attr("IGESGeom_Boundary"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_Boundary::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfIGESEntity> &  ) ) static_cast<void (IGESGeom_Boundary::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfIGESEntity> &  ) >(&IGESGeom_Boundary::Init),
@@ -689,12 +698,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_BoundedSurface ,opencascade::handle<IGESGeom_BoundedSurface>  , IGESData_IGESEntity >>(m.attr("IGESGeom_BoundedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_BoundedSurface::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESGeom_HArray1OfBoundary> &  ) ) static_cast<void (IGESGeom_BoundedSurface::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESGeom_HArray1OfBoundary> &  ) >(&IGESGeom_BoundedSurface::Init),
@@ -724,12 +735,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_CircularArc ,opencascade::handle<IGESGeom_CircularArc>  , IGESData_IGESEntity >>(m.attr("IGESGeom_CircularArc"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_CircularArc::*)( const Standard_Real ,  const gp_XY & ,  const gp_XY & ,  const gp_XY &  ) ) static_cast<void (IGESGeom_CircularArc::*)( const Standard_Real ,  const gp_XY & ,  const gp_XY & ,  const gp_XY &  ) >(&IGESGeom_CircularArc::Init),
@@ -783,12 +796,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_CompositeCurve ,opencascade::handle<IGESGeom_CompositeCurve>  , IGESData_IGESEntity >>(m.attr("IGESGeom_CompositeCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_CompositeCurve::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESGeom_CompositeCurve::*)( const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESGeom_CompositeCurve::Init),
@@ -812,12 +827,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ConicArc ,opencascade::handle<IGESGeom_ConicArc>  , IGESData_IGESEntity >>(m.attr("IGESGeom_ConicArc"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_ConicArc::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XY & ,  const gp_XY &  ) ) static_cast<void (IGESGeom_ConicArc::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XY & ,  const gp_XY &  ) >(&IGESGeom_ConicArc::Init),
@@ -886,12 +903,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_CopiousData ,opencascade::handle<IGESGeom_CopiousData>  , IGESData_IGESEntity >>(m.attr("IGESGeom_CopiousData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_CopiousData::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (IGESGeom_CopiousData::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&IGESGeom_CopiousData::Init),
@@ -948,12 +967,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_CurveOnSurface ,opencascade::handle<IGESGeom_CurveOnSurface>  , IGESData_IGESEntity >>(m.attr("IGESGeom_CurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_CurveOnSurface::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer  ) ) static_cast<void (IGESGeom_CurveOnSurface::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer  ) >(&IGESGeom_CurveOnSurface::Init),
@@ -986,12 +1007,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_Direction ,opencascade::handle<IGESGeom_Direction>  , IGESData_IGESEntity >>(m.attr("IGESGeom_Direction"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_Direction::*)( const gp_XYZ &  ) ) static_cast<void (IGESGeom_Direction::*)( const gp_XYZ &  ) >(&IGESGeom_Direction::Init),
@@ -1015,12 +1038,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_Flash ,opencascade::handle<IGESGeom_Flash>  , IGESData_IGESEntity >>(m.attr("IGESGeom_Flash"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_Flash::*)( const gp_XY & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<void (IGESGeom_Flash::*)( const gp_XY & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESGeom_Flash::Init),
@@ -1062,12 +1087,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_GeneralModule ,opencascade::handle<IGESGeom_GeneralModule>  , IGESData_GeneralModule >>(m.attr("IGESGeom_GeneralModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnSharedCase",
              (void (IGESGeom_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESGeom_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const>(&IGESGeom_GeneralModule::OwnSharedCase),
@@ -1100,14 +1127,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_HArray1OfBoundary ,opencascade::handle<IGESGeom_HArray1OfBoundary>  , IGESGeom_Array1OfBoundary , Standard_Transient >>(m.attr("IGESGeom_HArray1OfBoundary"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESGeom_Boundary> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESGeom_Boundary> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESGeom_Array1OfBoundary & (IGESGeom_HArray1OfBoundary::*)() const) static_cast<const IGESGeom_Array1OfBoundary & (IGESGeom_HArray1OfBoundary::*)() const>(&IGESGeom_HArray1OfBoundary::Array1),
@@ -1128,14 +1158,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_HArray1OfCurveOnSurface ,opencascade::handle<IGESGeom_HArray1OfCurveOnSurface>  , IGESGeom_Array1OfCurveOnSurface , Standard_Transient >>(m.attr("IGESGeom_HArray1OfCurveOnSurface"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESGeom_CurveOnSurface> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESGeom_CurveOnSurface> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESGeom_Array1OfCurveOnSurface & (IGESGeom_HArray1OfCurveOnSurface::*)() const) static_cast<const IGESGeom_Array1OfCurveOnSurface & (IGESGeom_HArray1OfCurveOnSurface::*)() const>(&IGESGeom_HArray1OfCurveOnSurface::Array1),
@@ -1156,14 +1189,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_HArray1OfTransformationMatrix ,opencascade::handle<IGESGeom_HArray1OfTransformationMatrix>  , IGESGeom_Array1OfTransformationMatrix , Standard_Transient >>(m.attr("IGESGeom_HArray1OfTransformationMatrix"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESGeom_TransformationMatrix> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESGeom_TransformationMatrix> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESGeom_Array1OfTransformationMatrix & (IGESGeom_HArray1OfTransformationMatrix::*)() const) static_cast<const IGESGeom_Array1OfTransformationMatrix & (IGESGeom_HArray1OfTransformationMatrix::*)() const>(&IGESGeom_HArray1OfTransformationMatrix::Array1),
@@ -1184,12 +1220,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_Line ,opencascade::handle<IGESGeom_Line>  , IGESData_IGESEntity >>(m.attr("IGESGeom_Line"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_Line::*)( const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (IGESGeom_Line::*)( const gp_XYZ & ,  const gp_XYZ &  ) >(&IGESGeom_Line::Init),
@@ -1225,12 +1263,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_OffsetCurve ,opencascade::handle<IGESGeom_OffsetCurve>  , IGESData_IGESEntity >>(m.attr("IGESGeom_OffsetCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_OffsetCurve::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IGESGeom_OffsetCurve::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XYZ & ,  const Standard_Real ,  const Standard_Real  ) >(&IGESGeom_OffsetCurve::Init),
@@ -1293,12 +1333,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_OffsetSurface ,opencascade::handle<IGESGeom_OffsetSurface>  , IGESData_IGESEntity >>(m.attr("IGESGeom_OffsetSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_OffsetSurface::*)( const gp_XYZ & ,  const Standard_Real ,  const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<void (IGESGeom_OffsetSurface::*)( const gp_XYZ & ,  const Standard_Real ,  const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESGeom_OffsetSurface::Init),
@@ -1328,12 +1370,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_Plane ,opencascade::handle<IGESGeom_Plane>  , IGESData_IGESEntity >>(m.attr("IGESGeom_Plane"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_Plane::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESData_IGESEntity> & ,  const gp_XYZ & ,  const Standard_Real  ) ) static_cast<void (IGESGeom_Plane::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESData_IGESEntity> & ,  const gp_XYZ & ,  const Standard_Real  ) >(&IGESGeom_Plane::Init),
@@ -1381,12 +1425,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_Point ,opencascade::handle<IGESGeom_Point>  , IGESData_IGESEntity >>(m.attr("IGESGeom_Point"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_Point::*)( const gp_XYZ & ,  const opencascade::handle<IGESBasic_SubfigureDef> &  ) ) static_cast<void (IGESGeom_Point::*)( const gp_XYZ & ,  const opencascade::handle<IGESBasic_SubfigureDef> &  ) >(&IGESGeom_Point::Init),
@@ -1416,12 +1462,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_Protocol ,opencascade::handle<IGESGeom_Protocol>  , IGESData_Protocol >>(m.attr("IGESGeom_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (IGESGeom_Protocol::*)() const) static_cast<Standard_Integer (IGESGeom_Protocol::*)() const>(&IGESGeom_Protocol::NbResources),
@@ -1445,12 +1493,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ReadWriteModule ,opencascade::handle<IGESGeom_ReadWriteModule>  , IGESData_ReadWriteModule >>(m.attr("IGESGeom_ReadWriteModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseIGES",
              (Standard_Integer (IGESGeom_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Integer (IGESGeom_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&IGESGeom_ReadWriteModule::CaseIGES),
@@ -1474,12 +1524,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_RuledSurface ,opencascade::handle<IGESGeom_RuledSurface>  , IGESData_IGESEntity >>(m.attr("IGESGeom_RuledSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_RuledSurface::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IGESGeom_RuledSurface::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Integer  ) >(&IGESGeom_RuledSurface::Init),
@@ -1515,12 +1567,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_SpecificModule ,opencascade::handle<IGESGeom_SpecificModule>  , IGESData_SpecificModule >>(m.attr("IGESGeom_SpecificModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESGeom_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESGeom_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESGeom_SpecificModule::OwnDump),
@@ -1541,12 +1595,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_SplineCurve ,opencascade::handle<IGESGeom_SplineCurve>  , IGESData_IGESEntity >>(m.attr("IGESGeom_SplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_SplineCurve::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (IGESGeom_SplineCurve::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColStd_HArray2OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&IGESGeom_SplineCurve::Init),
@@ -1597,12 +1653,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_SplineSurface ,opencascade::handle<IGESGeom_SplineSurface>  , IGESData_IGESEntity >>(m.attr("IGESGeom_SplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_SplineSurface::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray2OfHArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray2OfHArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray2OfHArray1OfReal> &  ) ) static_cast<void (IGESGeom_SplineSurface::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray2OfHArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray2OfHArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray2OfHArray1OfReal> &  ) >(&IGESGeom_SplineSurface::Init),
@@ -1650,12 +1708,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_SurfaceOfRevolution ,opencascade::handle<IGESGeom_SurfaceOfRevolution>  , IGESData_IGESEntity >>(m.attr("IGESGeom_SurfaceOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_SurfaceOfRevolution::*)( const opencascade::handle<IGESGeom_Line> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IGESGeom_SurfaceOfRevolution::*)( const opencascade::handle<IGESGeom_Line> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const Standard_Real  ) >(&IGESGeom_SurfaceOfRevolution::Init),
@@ -1685,12 +1745,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_TabulatedCylinder ,opencascade::handle<IGESGeom_TabulatedCylinder>  , IGESData_IGESEntity >>(m.attr("IGESGeom_TabulatedCylinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_TabulatedCylinder::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const gp_XYZ &  ) ) static_cast<void (IGESGeom_TabulatedCylinder::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const gp_XYZ &  ) >(&IGESGeom_TabulatedCylinder::Init),
@@ -1717,12 +1779,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolBSplineCurve , shared_ptr<IGESGeom_ToolBSplineCurve>  >>(m.attr("IGESGeom_ToolBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolBSplineCurve::*)( const opencascade::handle<IGESGeom_BSplineCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolBSplineCurve::*)( const opencascade::handle<IGESGeom_BSplineCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolBSplineCurve::ReadOwnParams),
@@ -1749,12 +1813,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolBSplineSurface , shared_ptr<IGESGeom_ToolBSplineSurface>  >>(m.attr("IGESGeom_ToolBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolBSplineSurface::*)( const opencascade::handle<IGESGeom_BSplineSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolBSplineSurface::*)( const opencascade::handle<IGESGeom_BSplineSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolBSplineSurface::ReadOwnParams),
@@ -1781,12 +1847,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolBoundary , shared_ptr<IGESGeom_ToolBoundary>  >>(m.attr("IGESGeom_ToolBoundary"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolBoundary::*)( const opencascade::handle<IGESGeom_Boundary> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolBoundary::*)( const opencascade::handle<IGESGeom_Boundary> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolBoundary::ReadOwnParams),
@@ -1816,12 +1884,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolBoundedSurface , shared_ptr<IGESGeom_ToolBoundedSurface>  >>(m.attr("IGESGeom_ToolBoundedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolBoundedSurface::*)( const opencascade::handle<IGESGeom_BoundedSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolBoundedSurface::*)( const opencascade::handle<IGESGeom_BoundedSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolBoundedSurface::ReadOwnParams),
@@ -1848,12 +1918,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolCircularArc , shared_ptr<IGESGeom_ToolCircularArc>  >>(m.attr("IGESGeom_ToolCircularArc"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolCircularArc::*)( const opencascade::handle<IGESGeom_CircularArc> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolCircularArc::*)( const opencascade::handle<IGESGeom_CircularArc> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolCircularArc::ReadOwnParams),
@@ -1880,12 +1952,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolCompositeCurve , shared_ptr<IGESGeom_ToolCompositeCurve>  >>(m.attr("IGESGeom_ToolCompositeCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolCompositeCurve::*)( const opencascade::handle<IGESGeom_CompositeCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolCompositeCurve::*)( const opencascade::handle<IGESGeom_CompositeCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolCompositeCurve::ReadOwnParams),
@@ -1912,12 +1986,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolConicArc , shared_ptr<IGESGeom_ToolConicArc>  >>(m.attr("IGESGeom_ToolConicArc"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolConicArc::*)( const opencascade::handle<IGESGeom_ConicArc> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolConicArc::*)( const opencascade::handle<IGESGeom_ConicArc> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolConicArc::ReadOwnParams),
@@ -1947,12 +2023,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolCopiousData , shared_ptr<IGESGeom_ToolCopiousData>  >>(m.attr("IGESGeom_ToolCopiousData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolCopiousData::*)( const opencascade::handle<IGESGeom_CopiousData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolCopiousData::*)( const opencascade::handle<IGESGeom_CopiousData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolCopiousData::ReadOwnParams),
@@ -1979,12 +2057,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolCurveOnSurface , shared_ptr<IGESGeom_ToolCurveOnSurface>  >>(m.attr("IGESGeom_ToolCurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolCurveOnSurface::*)( const opencascade::handle<IGESGeom_CurveOnSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolCurveOnSurface::*)( const opencascade::handle<IGESGeom_CurveOnSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolCurveOnSurface::ReadOwnParams),
@@ -2014,12 +2094,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolDirection , shared_ptr<IGESGeom_ToolDirection>  >>(m.attr("IGESGeom_ToolDirection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolDirection::*)( const opencascade::handle<IGESGeom_Direction> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolDirection::*)( const opencascade::handle<IGESGeom_Direction> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolDirection::ReadOwnParams),
@@ -2046,12 +2128,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolFlash , shared_ptr<IGESGeom_ToolFlash>  >>(m.attr("IGESGeom_ToolFlash"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolFlash::*)( const opencascade::handle<IGESGeom_Flash> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolFlash::*)( const opencascade::handle<IGESGeom_Flash> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolFlash::ReadOwnParams),
@@ -2081,12 +2165,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolLine , shared_ptr<IGESGeom_ToolLine>  >>(m.attr("IGESGeom_ToolLine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolLine::*)( const opencascade::handle<IGESGeom_Line> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolLine::*)( const opencascade::handle<IGESGeom_Line> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolLine::ReadOwnParams),
@@ -2113,12 +2199,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolOffsetCurve , shared_ptr<IGESGeom_ToolOffsetCurve>  >>(m.attr("IGESGeom_ToolOffsetCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolOffsetCurve::*)( const opencascade::handle<IGESGeom_OffsetCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolOffsetCurve::*)( const opencascade::handle<IGESGeom_OffsetCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolOffsetCurve::ReadOwnParams),
@@ -2148,12 +2236,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolOffsetSurface , shared_ptr<IGESGeom_ToolOffsetSurface>  >>(m.attr("IGESGeom_ToolOffsetSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolOffsetSurface::*)( const opencascade::handle<IGESGeom_OffsetSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolOffsetSurface::*)( const opencascade::handle<IGESGeom_OffsetSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolOffsetSurface::ReadOwnParams),
@@ -2180,12 +2270,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolPlane , shared_ptr<IGESGeom_ToolPlane>  >>(m.attr("IGESGeom_ToolPlane"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolPlane::*)( const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolPlane::*)( const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolPlane::ReadOwnParams),
@@ -2212,12 +2304,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolPoint , shared_ptr<IGESGeom_ToolPoint>  >>(m.attr("IGESGeom_ToolPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolPoint::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolPoint::*)( const opencascade::handle<IGESGeom_Point> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolPoint::ReadOwnParams),
@@ -2244,12 +2338,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolRuledSurface , shared_ptr<IGESGeom_ToolRuledSurface>  >>(m.attr("IGESGeom_ToolRuledSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolRuledSurface::*)( const opencascade::handle<IGESGeom_RuledSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolRuledSurface::*)( const opencascade::handle<IGESGeom_RuledSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolRuledSurface::ReadOwnParams),
@@ -2276,12 +2372,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolSplineCurve , shared_ptr<IGESGeom_ToolSplineCurve>  >>(m.attr("IGESGeom_ToolSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolSplineCurve::*)( const opencascade::handle<IGESGeom_SplineCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolSplineCurve::*)( const opencascade::handle<IGESGeom_SplineCurve> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolSplineCurve::ReadOwnParams),
@@ -2308,12 +2406,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolSplineSurface , shared_ptr<IGESGeom_ToolSplineSurface>  >>(m.attr("IGESGeom_ToolSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolSplineSurface::*)( const opencascade::handle<IGESGeom_SplineSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolSplineSurface::*)( const opencascade::handle<IGESGeom_SplineSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolSplineSurface::ReadOwnParams),
@@ -2340,12 +2440,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolSurfaceOfRevolution , shared_ptr<IGESGeom_ToolSurfaceOfRevolution>  >>(m.attr("IGESGeom_ToolSurfaceOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolSurfaceOfRevolution::*)( const opencascade::handle<IGESGeom_SurfaceOfRevolution> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolSurfaceOfRevolution::*)( const opencascade::handle<IGESGeom_SurfaceOfRevolution> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolSurfaceOfRevolution::ReadOwnParams),
@@ -2372,12 +2474,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolTabulatedCylinder , shared_ptr<IGESGeom_ToolTabulatedCylinder>  >>(m.attr("IGESGeom_ToolTabulatedCylinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolTabulatedCylinder::*)( const opencascade::handle<IGESGeom_TabulatedCylinder> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolTabulatedCylinder::*)( const opencascade::handle<IGESGeom_TabulatedCylinder> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolTabulatedCylinder::ReadOwnParams),
@@ -2404,12 +2508,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolTransformationMatrix , shared_ptr<IGESGeom_ToolTransformationMatrix>  >>(m.attr("IGESGeom_ToolTransformationMatrix"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolTransformationMatrix::*)( const opencascade::handle<IGESGeom_TransformationMatrix> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolTransformationMatrix::*)( const opencascade::handle<IGESGeom_TransformationMatrix> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolTransformationMatrix::ReadOwnParams),
@@ -2439,12 +2545,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_ToolTrimmedSurface , shared_ptr<IGESGeom_ToolTrimmedSurface>  >>(m.attr("IGESGeom_ToolTrimmedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGeom_ToolTrimmedSurface::*)( const opencascade::handle<IGESGeom_TrimmedSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGeom_ToolTrimmedSurface::*)( const opencascade::handle<IGESGeom_TrimmedSurface> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGeom_ToolTrimmedSurface::ReadOwnParams),
@@ -2471,12 +2579,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_TransformationMatrix ,opencascade::handle<IGESGeom_TransformationMatrix>  , IGESData_TransfEntity >>(m.attr("IGESGeom_TransformationMatrix"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_TransformationMatrix::*)( const opencascade::handle<TColStd_HArray2OfReal> &  ) ) static_cast<void (IGESGeom_TransformationMatrix::*)( const opencascade::handle<TColStd_HArray2OfReal> &  ) >(&IGESGeom_TransformationMatrix::Init),
@@ -2503,12 +2613,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGeom_TrimmedSurface ,opencascade::handle<IGESGeom_TrimmedSurface>  , IGESData_IGESEntity >>(m.attr("IGESGeom_TrimmedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGeom_TrimmedSurface::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const opencascade::handle<IGESGeom_CurveOnSurface> & ,  const opencascade::handle<IGESGeom_HArray1OfCurveOnSurface> &  ) ) static_cast<void (IGESGeom_TrimmedSurface::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const opencascade::handle<IGESGeom_CurveOnSurface> & ,  const opencascade::handle<IGESGeom_HArray1OfCurveOnSurface> &  ) >(&IGESGeom_TrimmedSurface::Init),
@@ -2544,67 +2656,67 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESGeom_BoundedSurface.hxx
-// ./opencascade/IGESGeom_Point.hxx
-// ./opencascade/IGESGeom_ToolLine.hxx
-// ./opencascade/IGESGeom_ToolCircularArc.hxx
-// ./opencascade/IGESGeom_ToolOffsetCurve.hxx
-// ./opencascade/IGESGeom_ToolRuledSurface.hxx
-// ./opencascade/IGESGeom_ToolPoint.hxx
-// ./opencascade/IGESGeom_ToolBSplineSurface.hxx
-// ./opencascade/IGESGeom_SplineSurface.hxx
-// ./opencascade/IGESGeom_ToolOffsetSurface.hxx
-// ./opencascade/IGESGeom.hxx
-// ./opencascade/IGESGeom_ToolTransformationMatrix.hxx
-// ./opencascade/IGESGeom_OffsetCurve.hxx
-// ./opencascade/IGESGeom_Boundary.hxx
+// ./opencascade/IGESGeom_ConicArc.hxx
 // ./opencascade/IGESGeom_Line.hxx
+// ./opencascade/IGESGeom_ToolLine.hxx
+// ./opencascade/IGESGeom_SplineCurve.hxx
+// ./opencascade/IGESGeom_ToolSplineCurve.hxx
+// ./opencascade/IGESGeom_SplineSurface.hxx
+// ./opencascade/IGESGeom_TrimmedSurface.hxx
+// ./opencascade/IGESGeom_HArray1OfBoundary.hxx
 // ./opencascade/IGESGeom_TabulatedCylinder.hxx
 // ./opencascade/IGESGeom_ReadWriteModule.hxx
-// ./opencascade/IGESGeom_ToolConicArc.hxx
-// ./opencascade/IGESGeom_GeneralModule.hxx
-// ./opencascade/IGESGeom_TransformationMatrix.hxx
-// ./opencascade/IGESGeom_Array1OfBoundary.hxx
-// ./opencascade/IGESGeom_ToolFlash.hxx
-// ./opencascade/IGESGeom_ToolTrimmedSurface.hxx
-// ./opencascade/IGESGeom_HArray1OfTransformationMatrix.hxx
-// ./opencascade/IGESGeom_BSplineCurve.hxx
 // ./opencascade/IGESGeom_CompositeCurve.hxx
-// ./opencascade/IGESGeom_TrimmedSurface.hxx
-// ./opencascade/IGESGeom_ToolSplineSurface.hxx
-// ./opencascade/IGESGeom_ToolCopiousData.hxx
-// ./opencascade/IGESGeom_Plane.hxx
-// ./opencascade/IGESGeom_SurfaceOfRevolution.hxx
-// ./opencascade/IGESGeom_ToolCompositeCurve.hxx
-// ./opencascade/IGESGeom_HArray1OfBoundary.hxx
-// ./opencascade/IGESGeom_SplineCurve.hxx
-// ./opencascade/IGESGeom_CopiousData.hxx
-// ./opencascade/IGESGeom_Flash.hxx
-// ./opencascade/IGESGeom_ToolBoundedSurface.hxx
-// ./opencascade/IGESGeom_Direction.hxx
-// ./opencascade/IGESGeom_HArray1OfCurveOnSurface.hxx
-// ./opencascade/IGESGeom_Array1OfTransformationMatrix.hxx
-// ./opencascade/IGESGeom_ToolCurveOnSurface.hxx
-// ./opencascade/IGESGeom_CircularArc.hxx
-// ./opencascade/IGESGeom_ToolTabulatedCylinder.hxx
-// ./opencascade/IGESGeom_ToolBoundary.hxx
-// ./opencascade/IGESGeom_Protocol.hxx
-// ./opencascade/IGESGeom_RuledSurface.hxx
-// ./opencascade/IGESGeom_Array1OfCurveOnSurface.hxx
-// ./opencascade/IGESGeom_CurveOnSurface.hxx
+// ./opencascade/IGESGeom_Array1OfBoundary.hxx
+// ./opencascade/IGESGeom_ToolDirection.hxx
+// ./opencascade/IGESGeom_ToolBSplineSurface.hxx
+// ./opencascade/IGESGeom_BSplineCurve.hxx
 // ./opencascade/IGESGeom_ToolBSplineCurve.hxx
 // ./opencascade/IGESGeom_ToolSurfaceOfRevolution.hxx
-// ./opencascade/IGESGeom_OffsetSurface.hxx
+// ./opencascade/IGESGeom_ToolPoint.hxx
+// ./opencascade/IGESGeom_ToolTrimmedSurface.hxx
+// ./opencascade/IGESGeom_Plane.hxx
+// ./opencascade/IGESGeom_HArray1OfTransformationMatrix.hxx
+// ./opencascade/IGESGeom_ToolBoundary.hxx
+// ./opencascade/IGESGeom_Flash.hxx
+// ./opencascade/IGESGeom_ToolBoundedSurface.hxx
+// ./opencascade/IGESGeom_Boundary.hxx
+// ./opencascade/IGESGeom_ToolConicArc.hxx
 // ./opencascade/IGESGeom_BSplineSurface.hxx
+// ./opencascade/IGESGeom_ToolTransformationMatrix.hxx
+// ./opencascade/IGESGeom_CircularArc.hxx
+// ./opencascade/IGESGeom.hxx
+// ./opencascade/IGESGeom_ToolCompositeCurve.hxx
+// ./opencascade/IGESGeom_ToolSplineSurface.hxx
+// ./opencascade/IGESGeom_ToolTabulatedCylinder.hxx
+// ./opencascade/IGESGeom_OffsetSurface.hxx
+// ./opencascade/IGESGeom_ToolCircularArc.hxx
+// ./opencascade/IGESGeom_ToolOffsetSurface.hxx
 // ./opencascade/IGESGeom_ToolPlane.hxx
-// ./opencascade/IGESGeom_ToolSplineCurve.hxx
-// ./opencascade/IGESGeom_ConicArc.hxx
+// ./opencascade/IGESGeom_Protocol.hxx
+// ./opencascade/IGESGeom_OffsetCurve.hxx
+// ./opencascade/IGESGeom_BoundedSurface.hxx
+// ./opencascade/IGESGeom_CopiousData.hxx
+// ./opencascade/IGESGeom_GeneralModule.hxx
+// ./opencascade/IGESGeom_Direction.hxx
+// ./opencascade/IGESGeom_ToolCopiousData.hxx
+// ./opencascade/IGESGeom_Array1OfTransformationMatrix.hxx
+// ./opencascade/IGESGeom_RuledSurface.hxx
+// ./opencascade/IGESGeom_TransformationMatrix.hxx
+// ./opencascade/IGESGeom_ToolFlash.hxx
+// ./opencascade/IGESGeom_HArray1OfCurveOnSurface.hxx
+// ./opencascade/IGESGeom_ToolCurveOnSurface.hxx
+// ./opencascade/IGESGeom_Array1OfCurveOnSurface.hxx
+// ./opencascade/IGESGeom_Point.hxx
+// ./opencascade/IGESGeom_ToolOffsetCurve.hxx
 // ./opencascade/IGESGeom_SpecificModule.hxx
-// ./opencascade/IGESGeom_ToolDirection.hxx
+// ./opencascade/IGESGeom_SurfaceOfRevolution.hxx
+// ./opencascade/IGESGeom_ToolRuledSurface.hxx
+// ./opencascade/IGESGeom_CurveOnSurface.hxx
 
 // operators
 

@@ -14,9 +14,9 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <BRepAdaptor_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <BRepAdaptor_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <BRepTopAdaptor_TopolTool.hxx>
 #include <Adaptor3d_HSurface.hxx>
@@ -56,7 +56,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTopAdaptor"));
 
 
     static_cast<py::class_<BRepTopAdaptor_FClass2d , shared_ptr<BRepTopAdaptor_FClass2d>  >>(m.attr("BRepTopAdaptor_FClass2d"))
+    // constructors
         .def(py::init< const TopoDS_Face &,const Standard_Real >()  , py::arg("F"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("PerformInfinitePoint",
              (TopAbs_State (BRepTopAdaptor_FClass2d::*)() const) static_cast<TopAbs_State (BRepTopAdaptor_FClass2d::*)() const>(&BRepTopAdaptor_FClass2d::PerformInfinitePoint),
@@ -77,12 +79,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTopAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTopAdaptor_HVertex ,opencascade::handle<BRepTopAdaptor_HVertex>  , Adaptor3d_HVertex >>(m.attr("BRepTopAdaptor_HVertex"))
+    // constructors
         .def(py::init< const TopoDS_Vertex &,const opencascade::handle<BRepAdaptor_HCurve2d> & >()  , py::arg("Vtx"),  py::arg("Curve") )
+    // custom constructors
     // methods
         .def("Vertex",
              (const TopoDS_Vertex & (BRepTopAdaptor_HVertex::*)() const) static_cast<const TopoDS_Vertex & (BRepTopAdaptor_HVertex::*)() const>(&BRepTopAdaptor_HVertex::Vertex),
@@ -124,14 +128,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTopAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTopAdaptor_Tool , shared_ptr<BRepTopAdaptor_Tool>  >>(m.attr("BRepTopAdaptor_Tool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,const Standard_Real >()  , py::arg("F"),  py::arg("Tol2d") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("Surface"),  py::arg("Tol2d") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepTopAdaptor_Tool::*)( const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<void (BRepTopAdaptor_Tool::*)( const TopoDS_Face & ,  const Standard_Real  ) >(&BRepTopAdaptor_Tool::Init),
@@ -155,13 +161,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTopAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTopAdaptor_TopolTool ,opencascade::handle<BRepTopAdaptor_TopolTool>  , Adaptor3d_TopolTool >>(m.attr("BRepTopAdaptor_TopolTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("Surface") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepTopAdaptor_TopolTool::*)() ) static_cast<void (BRepTopAdaptor_TopolTool::*)() >(&BRepTopAdaptor_TopolTool::Initialize),
@@ -257,17 +265,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTopAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepTopAdaptor_SeqOfPtr.hxx
-// ./opencascade/BRepTopAdaptor_TopolTool.hxx
 // ./opencascade/BRepTopAdaptor_HVertex.hxx
 // ./opencascade/BRepTopAdaptor_DataMapIteratorOfMapOfShapeTool.hxx
-// ./opencascade/BRepTopAdaptor_Tool.hxx
 // ./opencascade/BRepTopAdaptor_MapOfShapeTool.hxx
 // ./opencascade/BRepTopAdaptor_FClass2d.hxx
+// ./opencascade/BRepTopAdaptor_TopolTool.hxx
+// ./opencascade/BRepTopAdaptor_SeqOfPtr.hxx
+// ./opencascade/BRepTopAdaptor_Tool.hxx
 
 // operators
 

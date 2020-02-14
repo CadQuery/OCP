@@ -14,6 +14,38 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Standard_NullObject.hxx>
+#include <BRepTools_Modification.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <gp_Pnt.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Poly_Triangulation.hxx>
+#include <Poly_Polygon3D.hxx>
+#include <Poly_PolygonOnTriangulation.hxx>
+#include <TopoDS_Face.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Edge.hxx>
 #include <Bnd_Box2d.hxx>
@@ -36,42 +68,10 @@ namespace py = pybind11;
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom_Surface.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Standard_NullObject.hxx>
-#include <BRepTools_Modification.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Surface.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Pnt.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Poly_Polygon3D.hxx>
-#include <Poly_PolygonOnTriangulation.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
 #include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
 #include <TopoDS_Edge.hxx>
 #include <Geom_Curve.hxx>
 #include <TopoDS_Vertex.hxx>
@@ -117,6 +117,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
     public:
         using BRepTools_Modification::BRepTools_Modification;
         
+        
         // public pure virtual
         Standard_Boolean NewSurface(const TopoDS_Face & F,opencascade::handle<Geom_Surface> & S,TopLoc_Location & L,Standard_Real & Tol,Standard_Boolean & RevWires,Standard_Boolean & RevFace) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepTools_Modification,NewSurface,F,S,L,Tol,RevWires,RevFace) };
         Standard_Boolean NewCurve(const TopoDS_Edge & E,opencascade::handle<Geom_Curve> & C,TopLoc_Location & L,Standard_Real & Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepTools_Modification,NewCurve,E,C,L,Tol) };
@@ -135,9 +136,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepTools , shared_ptr<BRepTools>>(m,"BRepTools");
 
     static_cast<py::class_<BRepTools , shared_ptr<BRepTools>  >>(m.attr("BRepTools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -183,6 +187,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def_static("Clean_s",
                     (void (*)( const TopoDS_Shape &  ) ) static_cast<void (*)( const TopoDS_Shape &  ) >(&BRepTools::Clean),
                     R"#(Removes all the triangulations of the faces of <S> and removes all polygons on triangulations of the edges.)#"  , py::arg("S"))
+        .def_static("CleanGeometry_s",
+                    (void (*)( const TopoDS_Shape &  ) ) static_cast<void (*)( const TopoDS_Shape &  ) >(&BRepTools::CleanGeometry),
+                    R"#(Removes geometry (curves and surfaces) from all edges and faces of the shape)#"  , py::arg("theShape"))
         .def_static("RemoveUnusedPCurves_s",
                     (void (*)( const TopoDS_Shape &  ) ) static_cast<void (*)( const TopoDS_Shape &  ) >(&BRepTools::RemoveUnusedPCurves),
                     R"#(Removes all the pcurves of the edges of <S> that refer to surfaces not belonging to any face of <S>)#"  , py::arg("S"))
@@ -236,12 +243,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
                     []( const TopoDS_Face & theFace ){ Standard_Boolean  theUclosed; Standard_Boolean  theVclosed; BRepTools::DetectClosedness(theFace,theUclosed,theVclosed); return std::make_tuple(theUclosed,theVclosed); },
                     R"#(Detect closedness of face in U and V directions)#"  , py::arg("theFace"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_History ,opencascade::handle<BRepTools_History>  , Standard_Transient >>(m.attr("BRepTools_History"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddGenerated",
              (void (BRepTools_History::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (BRepTools_History::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepTools_History::AddGenerated),
@@ -270,6 +279,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
         .def("IsRemoved",
              (Standard_Boolean (BRepTools_History::*)( const TopoDS_Shape &  ) const) static_cast<Standard_Boolean (BRepTools_History::*)( const TopoDS_Shape &  ) const>(&BRepTools_History::IsRemoved),
              R"#(Returns 'true' if the shape is removed.)#"  , py::arg("theInitial"))
+        .def("HasGenerated",
+             (Standard_Boolean (BRepTools_History::*)() const) static_cast<Standard_Boolean (BRepTools_History::*)() const>(&BRepTools_History::HasGenerated),
+             R"#(Returns 'true' if there any shapes with Generated elements present)#" )
+        .def("HasModified",
+             (Standard_Boolean (BRepTools_History::*)() const) static_cast<Standard_Boolean (BRepTools_History::*)() const>(&BRepTools_History::HasModified),
+             R"#(Returns 'true' if there any Modified shapes present)#" )
+        .def("HasRemoved",
+             (Standard_Boolean (BRepTools_History::*)() const) static_cast<Standard_Boolean (BRepTools_History::*)() const>(&BRepTools_History::HasRemoved),
+             R"#(Returns 'true' if there any removed shapes present)#" )
         .def("Merge",
              (void (BRepTools_History::*)( const opencascade::handle<BRepTools_History> &  ) ) static_cast<void (BRepTools_History::*)( const opencascade::handle<BRepTools_History> &  ) >(&BRepTools_History::Merge),
              R"#(Merges the next history to this history.)#"  , py::arg("theHistory23"))
@@ -295,11 +313,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_Modification ,opencascade::handle<BRepTools_Modification> ,Py_BRepTools_Modification , Standard_Transient >>(m.attr("BRepTools_Modification"))
+    // constructors
+    // custom constructors
     // methods
         .def("NewSurface",
              (Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_Modification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_Modification::NewSurface),
@@ -341,14 +361,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_Modifier , shared_ptr<BRepTools_Modifier>  >>(m.attr("BRepTools_Modifier"))
+    // constructors
         .def(py::init< Standard_Boolean >()  , py::arg("theMutableInput")=static_cast<Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
         .def(py::init< const TopoDS_Shape &,const opencascade::handle<BRepTools_Modification> & >()  , py::arg("S"),  py::arg("M") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepTools_Modifier::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepTools_Modifier::*)( const TopoDS_Shape &  ) >(&BRepTools_Modifier::Init),
@@ -378,12 +400,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_Quilt , shared_ptr<BRepTools_Quilt>  >>(m.attr("BRepTools_Quilt"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Bind",
              (void (BRepTools_Quilt::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) ) static_cast<void (BRepTools_Quilt::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) >(&BRepTools_Quilt::Bind),
@@ -407,12 +431,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_ReShape ,opencascade::handle<BRepTools_ReShape>  , Standard_Transient >>(m.attr("BRepTools_ReShape"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepTools_ReShape::*)() ) static_cast<void (BRepTools_ReShape::*)() >(&BRepTools_ReShape::Clear),
@@ -463,13 +489,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_ShapeSet , shared_ptr<BRepTools_ShapeSet>  , TopTools_ShapeSet >>(m.attr("BRepTools_ShapeSet"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("isWithTriangles")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const BRep_Builder &,const Standard_Boolean >()  , py::arg("B"),  py::arg("isWithTriangles")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepTools_ShapeSet::*)() ) static_cast<void (BRepTools_ShapeSet::*)() >(&BRepTools_ShapeSet::Clear),
@@ -532,12 +560,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_Substitution , shared_ptr<BRepTools_Substitution>  >>(m.attr("BRepTools_Substitution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepTools_Substitution::*)() ) static_cast<void (BRepTools_Substitution::*)() >(&BRepTools_Substitution::Clear),
@@ -558,14 +588,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_WireExplorer , shared_ptr<BRepTools_WireExplorer>  >>(m.attr("BRepTools_WireExplorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire & >()  , py::arg("W") )
         .def(py::init< const TopoDS_Wire &,const TopoDS_Face & >()  , py::arg("W"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepTools_WireExplorer::*)( const TopoDS_Wire &  ) ) static_cast<void (BRepTools_WireExplorer::*)( const TopoDS_Wire &  ) >(&BRepTools_WireExplorer::Init),
@@ -598,12 +630,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_GTrsfModification ,opencascade::handle<BRepTools_GTrsfModification>  , BRepTools_Modification >>(m.attr("BRepTools_GTrsfModification"))
+    // constructors
         .def(py::init< const gp_GTrsf & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("GTrsf",
              (gp_GTrsf & (BRepTools_GTrsfModification::*)() ) static_cast<gp_GTrsf & (BRepTools_GTrsfModification::*)() >(&BRepTools_GTrsfModification::GTrsf),
@@ -639,12 +673,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_NurbsConvertModification ,opencascade::handle<BRepTools_NurbsConvertModification>  , BRepTools_Modification >>(m.attr("BRepTools_NurbsConvertModification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NewSurface",
              (Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (BRepTools_NurbsConvertModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&BRepTools_NurbsConvertModification::NewSurface),
@@ -680,12 +716,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepTools_TrsfModification ,opencascade::handle<BRepTools_TrsfModification>  , BRepTools_Modification >>(m.attr("BRepTools_TrsfModification"))
+    // constructors
         .def(py::init< const gp_Trsf & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("Trsf",
              (gp_Trsf & (BRepTools_TrsfModification::*)() ) static_cast<gp_Trsf & (BRepTools_TrsfModification::*)() >(&BRepTools_TrsfModification::Trsf),
@@ -721,24 +759,24 @@ py::module m = static_cast<py::module>(main_module.attr("BRepTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepTools.hxx
 // ./opencascade/BRepTools_MapOfVertexPnt2d.hxx
-// ./opencascade/BRepTools_TrsfModification.hxx
-// ./opencascade/BRepTools_ShapeSet.hxx
-// ./opencascade/BRepTools_Substitution.hxx
+// ./opencascade/BRepTools_GTrsfModification.hxx
 // ./opencascade/BRepTools_Modifier.hxx
-// ./opencascade/BRepTools_NurbsConvertModification.hxx
-// ./opencascade/BRepTools_Modification.hxx
-// ./opencascade/BRepTools_ReShape.hxx
+// ./opencascade/BRepTools_TrsfModification.hxx
 // ./opencascade/BRepTools_Quilt.hxx
 // ./opencascade/BRepTools_History.hxx
+// ./opencascade/BRepTools_ReShape.hxx
+// ./opencascade/BRepTools_Modification.hxx
+// ./opencascade/BRepTools.hxx
+// ./opencascade/BRepTools_Substitution.hxx
+// ./opencascade/BRepTools_ShapeSet.hxx
 // ./opencascade/BRepTools_WireExplorer.hxx
+// ./opencascade/BRepTools_NurbsConvertModification.hxx
 // ./opencascade/BRepTools_DataMapIteratorOfMapOfVertexPnt2d.hxx
-// ./opencascade/BRepTools_GTrsfModification.hxx
 
 // operators
 

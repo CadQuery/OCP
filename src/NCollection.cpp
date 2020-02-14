@@ -15,6 +15,7 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <gp_XYZ.hxx>
 #include <gp_XY.hxx>
+#include <Standard_Mutex.hxx>
 
 // module includes
 #include <NCollection_AccAllocator.hxx>
@@ -81,14 +82,6 @@ namespace py = pybind11;
 #include <NCollection_WinHeapAllocator.hxx>
 
 // template related includes
-// ./opencascade/NCollection_UtfString.hxx
-#include "NCollection.hxx"
-// ./opencascade/NCollection_UtfString.hxx
-#include "NCollection.hxx"
-// ./opencascade/NCollection_UtfString.hxx
-#include "NCollection.hxx"
-// ./opencascade/NCollection_UtfString.hxx
-#include "NCollection.hxx"
 // ./opencascade/NCollection_UtfIterator.hxx
 #include "NCollection.hxx"
 // ./opencascade/NCollection_UtfIterator.hxx
@@ -96,6 +89,14 @@ namespace py = pybind11;
 // ./opencascade/NCollection_UtfIterator.hxx
 #include "NCollection.hxx"
 // ./opencascade/NCollection_UtfIterator.hxx
+#include "NCollection.hxx"
+// ./opencascade/NCollection_UtfString.hxx
+#include "NCollection.hxx"
+// ./opencascade/NCollection_UtfString.hxx
+#include "NCollection.hxx"
+// ./opencascade/NCollection_UtfString.hxx
+#include "NCollection.hxx"
+// ./opencascade/NCollection_UtfString.hxx
 #include "NCollection.hxx"
 
 
@@ -117,6 +118,7 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
     public:
         using NCollection_SparseArrayBase::NCollection_SparseArrayBase;
         
+        
         // public pure virtual
         
         
@@ -134,6 +136,8 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
 
 
     static_cast<py::class_<NCollection_BaseAllocator ,opencascade::handle<NCollection_BaseAllocator>  , Standard_Transient >>(m.attr("NCollection_BaseAllocator"))
+    // constructors
+    // custom constructors
     // methods
         .def("Allocate",
              (void * (NCollection_BaseAllocator::*)( const size_t  ) ) static_cast<void * (NCollection_BaseAllocator::*)( const size_t  ) >(&NCollection_BaseAllocator::Allocate),
@@ -163,11 +167,13 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_BaseList , shared_ptr<NCollection_BaseList>  >>(m.attr("NCollection_BaseList"))
+    // constructors
+    // custom constructors
     // methods
         .def("Extent",
              (Standard_Integer (NCollection_BaseList::*)() const) static_cast<Standard_Integer (NCollection_BaseList::*)() const>(&NCollection_BaseList::Extent),
@@ -182,11 +188,13 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_BaseMap , shared_ptr_nodelete<NCollection_BaseMap>  >>(m.attr("NCollection_BaseMap"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbBuckets",
              (Standard_Integer (NCollection_BaseMap::*)() const) static_cast<Standard_Integer (NCollection_BaseMap::*)() const>(&NCollection_BaseMap::NbBuckets),
@@ -207,11 +215,13 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_BaseSequence , shared_ptr_nodelete<NCollection_BaseSequence>  >>(m.attr("NCollection_BaseSequence"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (NCollection_BaseSequence::*)() const) static_cast<Standard_Boolean (NCollection_BaseSequence::*)() const>(&NCollection_BaseSequence::IsEmpty),
@@ -226,11 +236,13 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_BaseVector , shared_ptr_nodelete<NCollection_BaseVector>  >>(m.attr("NCollection_BaseVector"))
+    // constructors
+    // custom constructors
     // methods
         .def("Clear",
              (void (NCollection_BaseVector::*)() ) static_cast<void (NCollection_BaseVector::*)() >(&NCollection_BaseVector::Clear),
@@ -245,12 +257,14 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_Buffer ,opencascade::handle<NCollection_Buffer>  , Standard_Transient >>(m.attr("NCollection_Buffer"))
+    // constructors
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> &,const Standard_Size,Standard_Byte * >()  , py::arg("theAlloc"),  py::arg("theSize")=static_cast<const Standard_Size>(0),  py::arg("theData")=static_cast<Standard_Byte *>(NULL) )
+    // custom constructors
     // methods
         .def("Data",
              (const Standard_Byte * (NCollection_Buffer::*)() const) static_cast<const Standard_Byte * (NCollection_Buffer::*)() const>(&NCollection_Buffer::Data),
@@ -289,11 +303,53 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<NCollection_CellFilter_InspectorXY , shared_ptr<NCollection_CellFilter_InspectorXY>>(m,"NCollection_CellFilter_InspectorXY");
+
+    static_cast<py::class_<NCollection_CellFilter_InspectorXY , shared_ptr<NCollection_CellFilter_InspectorXY>  >>(m.attr("NCollection_CellFilter_InspectorXY"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("Shift",
+             (NCollection_CellFilter_InspectorXY::Point (NCollection_CellFilter_InspectorXY::*)(  const gp_XY & ,  Standard_Real  ) const) static_cast<NCollection_CellFilter_InspectorXY::Point (NCollection_CellFilter_InspectorXY::*)(  const gp_XY & ,  Standard_Real  ) const>(&NCollection_CellFilter_InspectorXY::Shift),
+             R"#(Auxiliary method to shift point by each coordinate on given value; useful for preparing a points range for Inspect with tolerance)#"  , py::arg("thePnt"),  py::arg("theTol"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Coord_s",
+                    (Standard_Real (*)( int ,   const gp_XY &  ) ) static_cast<Standard_Real (*)( int ,   const gp_XY &  ) >(&NCollection_CellFilter_InspectorXY::Coord),
+                    R"#(Access to co-ordinate)#"  , py::arg("i"),  py::arg("thePnt"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<NCollection_CellFilter_InspectorXYZ , shared_ptr<NCollection_CellFilter_InspectorXYZ>>(m,"NCollection_CellFilter_InspectorXYZ");
+
+    static_cast<py::class_<NCollection_CellFilter_InspectorXYZ , shared_ptr<NCollection_CellFilter_InspectorXYZ>  >>(m.attr("NCollection_CellFilter_InspectorXYZ"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("Shift",
+             (NCollection_CellFilter_InspectorXYZ::Point (NCollection_CellFilter_InspectorXYZ::*)(  const gp_XYZ & ,  Standard_Real  ) const) static_cast<NCollection_CellFilter_InspectorXYZ::Point (NCollection_CellFilter_InspectorXYZ::*)(  const gp_XYZ & ,  Standard_Real  ) const>(&NCollection_CellFilter_InspectorXYZ::Shift),
+             R"#(Auxiliary method to shift point by each coordinate on given value; useful for preparing a points range for Inspect with tolerance)#"  , py::arg("thePnt"),  py::arg("theTol"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Coord_s",
+                    (Standard_Real (*)( int ,   const gp_XYZ &  ) ) static_cast<Standard_Real (*)( int ,   const gp_XYZ &  ) >(&NCollection_CellFilter_InspectorXYZ::Coord),
+                    R"#(Access to co-ordinate)#"  , py::arg("i"),  py::arg("thePnt"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_SparseArrayBase , shared_ptr_nodelete<NCollection_SparseArrayBase> ,Py_NCollection_SparseArrayBase >>(m.attr("NCollection_SparseArrayBase"))
+    // constructors
+    // custom constructors
     // methods
         .def("Clear",
              (void (NCollection_SparseArrayBase::*)() ) static_cast<void (NCollection_SparseArrayBase::*)() >(&NCollection_SparseArrayBase::Clear),
@@ -311,14 +367,16 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_StdAllocator<void> , shared_ptr<NCollection_StdAllocator<void>>  >>(m.attr("NCollection_StdAllocator_void"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAlloc") )
         .def(py::init< const NCollection_StdAllocator<void> & >()  , py::arg("X") )
+    // custom constructors
     // methods
         .def("Allocator",
              (const opencascade::handle<NCollection_BaseAllocator> & (NCollection_StdAllocator<void>::*)() const) static_cast<const opencascade::handle<NCollection_BaseAllocator> & (NCollection_StdAllocator<void>::*)() const>(&NCollection_StdAllocator<void>::Allocator),
@@ -327,12 +385,14 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_UtfStringTool , shared_ptr<NCollection_UtfStringTool>  >>(m.attr("NCollection_UtfStringTool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("FromLocale",
              (wchar_t * (NCollection_UtfStringTool::*)( const char *  ) ) static_cast<wchar_t * (NCollection_UtfStringTool::*)( const char *  ) >(&NCollection_UtfStringTool::FromLocale),
@@ -344,12 +404,14 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(Convert the UNICODE (wide characters) string into locale using system APIs.)#"  , py::arg("theWideString"),  py::arg("theBuffer"),  py::arg("theSizeBytes"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_AccAllocator ,opencascade::handle<NCollection_AccAllocator>  , NCollection_BaseAllocator >>(m.attr("NCollection_AccAllocator"))
+    // constructors
         .def(py::init< const size_t >()  , py::arg("theBlockSize")=static_cast<const size_t>(DefaultBlockSize) )
+    // custom constructors
     // methods
         .def("Allocate",
              (void * (NCollection_AccAllocator::*)( const size_t  ) ) static_cast<void * (NCollection_AccAllocator::*)( const size_t  ) >(&NCollection_AccAllocator::Allocate),
@@ -370,12 +432,14 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_AlignedAllocator ,opencascade::handle<NCollection_AlignedAllocator>  , NCollection_BaseAllocator >>(m.attr("NCollection_AlignedAllocator"))
+    // constructors
         .def(py::init< const size_t >()  , py::arg("theAlignment") )
+    // custom constructors
     // methods
         .def("Allocate",
              (void * (NCollection_AlignedAllocator::*)( const size_t  ) ) static_cast<void * (NCollection_AlignedAllocator::*)( const size_t  ) >(&NCollection_AlignedAllocator::Allocate),
@@ -396,11 +460,13 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_HeapAllocator ,opencascade::handle<NCollection_HeapAllocator>  , NCollection_BaseAllocator >>(m.attr("NCollection_HeapAllocator"))
+    // constructors
+    // custom constructors
     // methods
         .def("Allocate",
              (void * (NCollection_HeapAllocator::*)( const Standard_Size  ) ) static_cast<void * (NCollection_HeapAllocator::*)( const Standard_Size  ) >(&NCollection_HeapAllocator::Allocate),
@@ -424,13 +490,18 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_IncAllocator ,opencascade::handle<NCollection_IncAllocator>  , NCollection_BaseAllocator >>(m.attr("NCollection_IncAllocator"))
-        .def(py::init< const size_t >()  , py::arg("theBlockSize")=static_cast<const size_t>(DefaultBlockSize) )
+    // constructors
+        .def(py::init< size_t >()  , py::arg("theBlockSize")=static_cast<size_t>(DefaultBlockSize) )
+    // custom constructors
     // methods
+        .def("SetThreadSafe",
+             (void (NCollection_IncAllocator::*)( bool  ) ) static_cast<void (NCollection_IncAllocator::*)( bool  ) >(&NCollection_IncAllocator::SetThreadSafe),
+             R"#(Setup mutex for thread-safe allocations.)#"  , py::arg("theIsThreadSafe")=static_cast<bool>(true))
         .def("Allocate",
              (void * (NCollection_IncAllocator::*)( const size_t  ) ) static_cast<void * (NCollection_IncAllocator::*)( const size_t  ) >(&NCollection_IncAllocator::Allocate),
              R"#(Allocate memory with given size. Returns NULL on failure)#"  , py::arg("size"))
@@ -459,12 +530,14 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<NCollection_WinHeapAllocator ,opencascade::handle<NCollection_WinHeapAllocator>  , NCollection_BaseAllocator >>(m.attr("NCollection_WinHeapAllocator"))
+    // constructors
         .def(py::init< const size_t >()  , py::arg("theInitSizeBytes")=static_cast<const size_t>(0x80000) )
+    // custom constructors
     // methods
         .def("Allocate",
              (void * (NCollection_WinHeapAllocator::*)( const Standard_Size  ) ) static_cast<void * (NCollection_WinHeapAllocator::*)( const Standard_Size  ) >(&NCollection_WinHeapAllocator::Allocate),
@@ -485,87 +558,87 @@ py::module m = static_cast<py::module>(main_module.attr("NCollection"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/NCollection_HSequence.hxx
+// ./opencascade/NCollection_DefineList.hxx
+// ./opencascade/NCollection_HeapAllocator.hxx
+// ./opencascade/NCollection_Map.hxx
+// ./opencascade/NCollection_HArray1.hxx
+// ./opencascade/NCollection_EBTree.hxx
 // ./opencascade/NCollection_BaseMap.hxx
-// ./opencascade/NCollection_UBTreeFiller.hxx
-// ./opencascade/NCollection_DefineDoubleMap.hxx
+// ./opencascade/NCollection_String.hxx
+// ./opencascade/NCollection_TListIterator.hxx
+// ./opencascade/NCollection_BaseSequence.hxx
+// ./opencascade/NCollection_DefineDataMap.hxx
+// ./opencascade/NCollection_SparseArrayBase.hxx
+// ./opencascade/NCollection_AlignedAllocator.hxx
+// ./opencascade/NCollection_Array1.hxx
 // ./opencascade/NCollection_DefineArray1.hxx
-// ./opencascade/NCollection_ListNode.hxx
-// ./opencascade/NCollection_UtfString.hxx
-// ./opencascade/NCollection_TListNode.hxx
+// ./opencascade/NCollection_DefaultHasher.hxx
+// ./opencascade/NCollection_SparseArray.hxx
+// ./opencascade/NCollection_DefineMap.hxx
+// ./opencascade/NCollection_DoubleMap.hxx
+// ./opencascade/NCollection_Lerp.hxx
 // ./opencascade/NCollection_HArray2.hxx
-// ./opencascade/NCollection_IncAllocator.hxx
-// ./opencascade/NCollection_StlIterator.hxx
 // ./opencascade/NCollection_BaseVector.hxx
     m.def("GetCapacity", 
           (Standard_Integer (*)( const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer  )>(&GetCapacity),
           R"#(None)#"  , py::arg("theIncrement"));
-// ./opencascade/NCollection_TListIterator.hxx
-// ./opencascade/NCollection_Vec2.hxx
-// ./opencascade/NCollection_DefineIndexedDataMap.hxx
-// ./opencascade/NCollection_Vec3.hxx
-// ./opencascade/NCollection_EBTree.hxx
-// ./opencascade/NCollection_Comparator.hxx
-// ./opencascade/NCollection_DefineVector.hxx
-// ./opencascade/NCollection_Lerp.hxx
-// ./opencascade/NCollection_DefineList.hxx
-// ./opencascade/NCollection_WinHeapAllocator.hxx
-// ./opencascade/NCollection_BaseList.hxx
-// ./opencascade/NCollection_Handle.hxx
-// ./opencascade/NCollection_Sequence.hxx
-// ./opencascade/NCollection_Buffer.hxx
-// ./opencascade/NCollection_DoubleMap.hxx
-// ./opencascade/NCollection_Map.hxx
-// ./opencascade/NCollection_DefineArray2.hxx
-// ./opencascade/NCollection_DefineDataMap.hxx
-// ./opencascade/NCollection_HArray1.hxx
-// ./opencascade/NCollection_Array2.hxx
-// ./opencascade/NCollection_DefineHSequence.hxx
-// ./opencascade/NCollection_DefaultHasher.hxx
+// ./opencascade/NCollection_HSequence.hxx
 // ./opencascade/NCollection_DefineAlloc.hxx
-// ./opencascade/NCollection_AlignedAllocator.hxx
+// ./opencascade/NCollection_DefineDoubleMap.hxx
+// ./opencascade/NCollection_Comparator.hxx
+// ./opencascade/NCollection_UBTreeFiller.hxx
 // ./opencascade/NCollection_BaseAllocator.hxx
-// ./opencascade/NCollection_AccAllocator.hxx
-// ./opencascade/NCollection_IndexedDataMap.hxx
-// ./opencascade/NCollection_SparseArray.hxx
-// ./opencascade/NCollection_DataMap.hxx
-// ./opencascade/NCollection_List.hxx
-// ./opencascade/NCollection_SparseArrayBase.hxx
-// ./opencascade/NCollection_DefineSequence.hxx
-// ./opencascade/NCollection_UtfIterator.hxx
-// ./opencascade/NCollection_TypeDef.hxx
-// ./opencascade/NCollection_Vec4.hxx
-// ./opencascade/NCollection_LocalArray.hxx
-// ./opencascade/NCollection_HeapAllocator.hxx
-// ./opencascade/NCollection_DefineMap.hxx
-// ./opencascade/NCollection_BaseSequence.hxx
-// ./opencascade/NCollection_StdAllocator.hxx
-// ./opencascade/NCollection_Array1.hxx
-// ./opencascade/NCollection_IndexedMap.hxx
-// ./opencascade/NCollection_Vector.hxx
-// ./opencascade/NCollection_DefineHArray1.hxx
-// ./opencascade/NCollection_DefineHArray2.hxx
-// ./opencascade/NCollection_CellFilter.hxx
-// ./opencascade/NCollection_String.hxx
-// ./opencascade/NCollection_Mat4.hxx
 // ./opencascade/NCollection_DefineIndexedMap.hxx
+// ./opencascade/NCollection_IndexedDataMap.hxx
+// ./opencascade/NCollection_BaseList.hxx
+// ./opencascade/NCollection_DefineHArray2.hxx
+// ./opencascade/NCollection_TypeDef.hxx
+// ./opencascade/NCollection_Array2.hxx
+// ./opencascade/NCollection_DefineHArray1.hxx
+// ./opencascade/NCollection_List.hxx
+// ./opencascade/NCollection_TListNode.hxx
+// ./opencascade/NCollection_WinHeapAllocator.hxx
+// ./opencascade/NCollection_CellFilter.hxx
+// ./opencascade/NCollection_DefineVector.hxx
+// ./opencascade/NCollection_Vec4.hxx
+// ./opencascade/NCollection_Vec2.hxx
+// ./opencascade/NCollection_DefineHSequence.hxx
+// ./opencascade/NCollection_IndexedMap.hxx
+// ./opencascade/NCollection_Handle.hxx
+// ./opencascade/NCollection_StlIterator.hxx
+// ./opencascade/NCollection_Vec3.hxx
+// ./opencascade/NCollection_ListNode.hxx
+// ./opencascade/NCollection_LocalArray.hxx
+// ./opencascade/NCollection_DataMap.hxx
+// ./opencascade/NCollection_Mat4.hxx
+// ./opencascade/NCollection_Sequence.hxx
+// ./opencascade/NCollection_StdAllocator.hxx
+// ./opencascade/NCollection_DefineIndexedDataMap.hxx
+// ./opencascade/NCollection_IncAllocator.hxx
+// ./opencascade/NCollection_Vector.hxx
+// ./opencascade/NCollection_UtfIterator.hxx
+// ./opencascade/NCollection_AccAllocator.hxx
+// ./opencascade/NCollection_DefineArray2.hxx
+// ./opencascade/NCollection_Buffer.hxx
+// ./opencascade/NCollection_UtfString.hxx
 // ./opencascade/NCollection_UBTree.hxx
+// ./opencascade/NCollection_DefineSequence.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_UtfString<Standard_Utf8Char>(m,"NCollection_Utf8String");  
-    register_template_NCollection_UtfString<Standard_Utf16Char>(m,"NCollection_Utf16String");  
-    register_template_NCollection_UtfString<Standard_Utf32Char>(m,"NCollection_Utf32String");  
-    register_template_NCollection_UtfString<Standard_WideChar>(m,"NCollection_UtfWideString");  
     register_template_NCollection_UtfIterator<Standard_Utf8Char>(m,"NCollection_Utf8Iter");  
     register_template_NCollection_UtfIterator<Standard_Utf16Char>(m,"NCollection_Utf16Iter");  
     register_template_NCollection_UtfIterator<Standard_Utf32Char>(m,"NCollection_Utf32Iter");  
     register_template_NCollection_UtfIterator<Standard_WideChar>(m,"NCollection_UtfWideIter");  
+    register_template_NCollection_UtfString<Standard_Utf8Char>(m,"NCollection_Utf8String");  
+    register_template_NCollection_UtfString<Standard_Utf16Char>(m,"NCollection_Utf16String");  
+    register_template_NCollection_UtfString<Standard_Utf32Char>(m,"NCollection_Utf32String");  
+    register_template_NCollection_UtfString<Standard_WideChar>(m,"NCollection_UtfWideString");  
 
 
 // exceptions

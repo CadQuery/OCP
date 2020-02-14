@@ -13,13 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_EntityOwner.hxx>
 #include <Graphic3d_StructureManager.hxx>
-#include <TopoDS_Face.hxx>
-#include <Prs3d_Projector.hxx>
-#include <V3d_View.hxx>
-#include <SelectMgr_EntityOwner.hxx>
+#include <StdSelect_Shape.hxx>
 #include <StdSelect_BRepSelectionTool.hxx>
 #include <StdSelect_BRepOwner.hxx>
 #include <StdSelect_EdgeFilter.hxx>
@@ -27,7 +22,10 @@ namespace py = pybind11;
 #include <StdSelect_ShapeTypeFilter.hxx>
 #include <StdSelect_Prs.hxx>
 #include <StdSelect_Shape.hxx>
-#include <StdSelect_Shape.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <TopoDS_Face.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <V3d_View.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 
 // module includes
@@ -55,6 +53,7 @@ namespace py = pybind11;
 #include "OCP_specific.inc"
 
 // user-defined inclusion per module
+#include <Prs3d_Projector.hxx>
 
 // Module definiiton
 void register_StdSelect(py::module &main_module) {
@@ -67,9 +66,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdSelect , shared_ptr<StdSelect>>(m,"StdSelect");
 
     static_cast<py::class_<StdSelect , shared_ptr<StdSelect>  >>(m.attr("StdSelect"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -78,14 +80,16 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(puts The same drawer in every BRepOwner Of SensitivePrimitive Used Only for hilight Of BRepOwner...)#"  , py::arg("aSelection"),  py::arg("aDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdSelect_BRepOwner ,opencascade::handle<StdSelect_BRepOwner>  , SelectMgr_EntityOwner >>(m.attr("StdSelect_BRepOwner"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("aPriority") )
         .def(py::init< const TopoDS_Shape &,const Standard_Integer,const Standard_Boolean >()  , py::arg("aShape"),  py::arg("aPriority")=static_cast<const Standard_Integer>(0),  py::arg("ComesFromDecomposition")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Shape &,const opencascade::handle<SelectMgr_SelectableObject> &,const Standard_Integer,const Standard_Boolean >()  , py::arg("aShape"),  py::arg("theOrigin"),  py::arg("aPriority")=static_cast<const Standard_Integer>(0),  py::arg("FromDecomposition")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdSelect_BRepOwner::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdSelect_BRepOwner::*)() const>(&StdSelect_BRepOwner::DynamicType),
@@ -95,7 +99,7 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
              R"#(returns False if no shape was set)#" )
         .def("Shape",
              (const TopoDS_Shape & (StdSelect_BRepOwner::*)() const) static_cast<const TopoDS_Shape & (StdSelect_BRepOwner::*)() const>(&StdSelect_BRepOwner::Shape),
-             R"#(None)#" )
+             R"#(Returns the shape.)#" )
         .def("HasHilightMode",
              (Standard_Boolean (StdSelect_BRepOwner::*)() const) static_cast<Standard_Boolean (StdSelect_BRepOwner::*)() const>(&StdSelect_BRepOwner::HasHilightMode),
              R"#(Returns true if this framework has a highlight mode defined for it.)#" )
@@ -123,9 +127,6 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
         .def("SetLocation",
              (void (StdSelect_BRepOwner::*)( const TopLoc_Location &  ) ) static_cast<void (StdSelect_BRepOwner::*)( const TopLoc_Location &  ) >(&StdSelect_BRepOwner::SetLocation),
              R"#(None)#"  , py::arg("aLoc"))
-        .def("ResetLocation",
-             (void (StdSelect_BRepOwner::*)() ) static_cast<void (StdSelect_BRepOwner::*)() >(&StdSelect_BRepOwner::ResetLocation),
-             R"#(None)#" )
         .def("UpdateHighlightTrsf",
              (void (StdSelect_BRepOwner::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const Standard_Integer  ) ) static_cast<void (StdSelect_BRepOwner::*)( const opencascade::handle<V3d_Viewer> & ,  const opencascade::handle<PrsMgr_PresentationManager3d> & ,  const Standard_Integer  ) >(&StdSelect_BRepOwner::UpdateHighlightTrsf),
              R"#(Implements immediate application of location transformation of parent object to dynamic highlight structure)#"  , py::arg("theViewer"),  py::arg("theManager"),  py::arg("theDispMode"))
@@ -139,12 +140,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdSelect_BRepSelectionTool , shared_ptr<StdSelect_BRepSelectionTool>>(m,"StdSelect_BRepSelectionTool");
 
     static_cast<py::class_<StdSelect_BRepSelectionTool , shared_ptr<StdSelect_BRepSelectionTool>  >>(m.attr("StdSelect_BRepSelectionTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -171,12 +175,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(Traverses the selection given and pre-builds BVH trees for heavyweight sensitive entities containing more than BVH_PRIMITIVE_LIMIT (defined in .cxx file) sub-elements.)#"  , py::arg("theSelection"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdSelect_EdgeFilter ,opencascade::handle<StdSelect_EdgeFilter>  , SelectMgr_Filter >>(m.attr("StdSelect_EdgeFilter"))
+    // constructors
         .def(py::init< const StdSelect_TypeOfEdge >()  , py::arg("Edge") )
+    // custom constructors
     // methods
         .def("SetType",
              (void (StdSelect_EdgeFilter::*)( const StdSelect_TypeOfEdge  ) ) static_cast<void (StdSelect_EdgeFilter::*)( const StdSelect_TypeOfEdge  ) >(&StdSelect_EdgeFilter::SetType),
@@ -203,12 +209,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdSelect_FaceFilter ,opencascade::handle<StdSelect_FaceFilter>  , SelectMgr_Filter >>(m.attr("StdSelect_FaceFilter"))
+    // constructors
         .def(py::init< const StdSelect_TypeOfFace >()  , py::arg("aTypeOfFace") )
+    // custom constructors
     // methods
         .def("SetType",
              (void (StdSelect_FaceFilter::*)( const StdSelect_TypeOfFace  ) ) static_cast<void (StdSelect_FaceFilter::*)( const StdSelect_TypeOfFace  ) >(&StdSelect_FaceFilter::SetType),
@@ -235,12 +243,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<StdSelect_Prs ,opencascade::handle<StdSelect_Prs>  , Prs3d_Presentation >>(m.attr("StdSelect_Prs"))
+    static_cast<py::class_<StdSelect_Prs , shared_ptr<StdSelect_Prs>  >>(m.attr("StdSelect_Prs"))
+    // constructors
         .def(py::init< const opencascade::handle<Graphic3d_StructureManager> & >()  , py::arg("aStructureManager") )
+    // custom constructors
     // methods
         .def("Manager",
              (const opencascade::handle<Graphic3d_StructureManager> & (StdSelect_Prs::*)() const) static_cast<const opencascade::handle<Graphic3d_StructureManager> & (StdSelect_Prs::*)() const>(&StdSelect_Prs::Manager),
@@ -261,12 +271,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdSelect_Shape ,opencascade::handle<StdSelect_Shape>  , PrsMgr_PresentableObject >>(m.attr("StdSelect_Shape"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const opencascade::handle<Prs3d_Drawer> & >()  , py::arg("theShape"),  py::arg("theDrawer")=static_cast<const opencascade::handle<Prs3d_Drawer> &>(Handle ( Prs3d_Drawer ) ( )) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdSelect_Shape::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdSelect_Shape::*)() const>(&StdSelect_Shape::DynamicType),
@@ -293,12 +305,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdSelect_ShapeTypeFilter ,opencascade::handle<StdSelect_ShapeTypeFilter>  , SelectMgr_Filter >>(m.attr("StdSelect_ShapeTypeFilter"))
+    // constructors
         .def(py::init< const TopAbs_ShapeEnum >()  , py::arg("aType") )
+    // custom constructors
     // methods
         .def("IsOk",
              (Standard_Boolean (StdSelect_ShapeTypeFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const) static_cast<Standard_Boolean (StdSelect_ShapeTypeFilter::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const>(&StdSelect_ShapeTypeFilter::IsOk),
@@ -325,12 +339,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdSelect_ViewerSelector3d ,opencascade::handle<StdSelect_ViewerSelector3d>  , SelectMgr_ViewerSelector >>(m.attr("StdSelect_ViewerSelector3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetPixelTolerance",
              (void (StdSelect_ViewerSelector3d::*)( const Standard_Integer  ) ) static_cast<void (StdSelect_ViewerSelector3d::*)( const Standard_Integer  ) >(&StdSelect_ViewerSelector3d::SetPixelTolerance),
@@ -359,9 +375,6 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
         .def("DisplaySensitive",
              (void (StdSelect_ViewerSelector3d::*)( const opencascade::handle<SelectMgr_Selection> & ,  const gp_Trsf & ,  const opencascade::handle<V3d_View> & ,  const Standard_Boolean  ) ) static_cast<void (StdSelect_ViewerSelector3d::*)( const opencascade::handle<SelectMgr_Selection> & ,  const gp_Trsf & ,  const opencascade::handle<V3d_View> & ,  const Standard_Boolean  ) >(&StdSelect_ViewerSelector3d::DisplaySensitive),
              R"#(None)#"  , py::arg("theSel"),  py::arg("theTrsf"),  py::arg("theView"),  py::arg("theToClearOthers")=static_cast<const Standard_Boolean>(Standard_True))
-        .def("HasDepthClipping",
-             (Standard_Boolean (StdSelect_ViewerSelector3d::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const) static_cast<Standard_Boolean (StdSelect_ViewerSelector3d::*)( const opencascade::handle<SelectMgr_EntityOwner> &  ) const>(&StdSelect_ViewerSelector3d::HasDepthClipping),
-             R"#(None)#"  , py::arg("theOwner"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdSelect_ViewerSelector3d::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdSelect_ViewerSelector3d::*)() const>(&StdSelect_ViewerSelector3d::DynamicType),
              R"#(None)#" )
@@ -375,26 +388,26 @@ py::module m = static_cast<py::module>(main_module.attr("StdSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdSelect_TypeOfSelectionImage.hxx
-// ./opencascade/StdSelect_ShapeTypeFilter.hxx
-// ./opencascade/StdSelect_FaceFilter.hxx
-// ./opencascade/StdSelect_Prs.hxx
-// ./opencascade/StdSelect_TypeOfResult.hxx
-// ./opencascade/StdSelect_BRepSelectionTool.hxx
-// ./opencascade/StdSelect_TypeOfFace.hxx
-// ./opencascade/StdSelect_Shape.hxx
-// ./opencascade/StdSelect_ViewerSelector3d.hxx
-// ./opencascade/StdSelect_TypeOfEdge.hxx
-// ./opencascade/StdSelect.hxx
-// ./opencascade/StdSelect_SensitivityMode.hxx
-// ./opencascade/StdSelect_DisplayMode.hxx
-// ./opencascade/StdSelect_BRepOwner.hxx
-// ./opencascade/StdSelect_EdgeFilter.hxx
 // ./opencascade/StdSelect_IndexedDataMapOfOwnerPrs.hxx
+// ./opencascade/StdSelect_TypeOfEdge.hxx
+// ./opencascade/StdSelect_Prs.hxx
+// ./opencascade/StdSelect_TypeOfSelectionImage.hxx
+// ./opencascade/StdSelect_BRepOwner.hxx
+// ./opencascade/StdSelect.hxx
+// ./opencascade/StdSelect_DisplayMode.hxx
+// ./opencascade/StdSelect_Shape.hxx
+// ./opencascade/StdSelect_ShapeTypeFilter.hxx
+// ./opencascade/StdSelect_BRepSelectionTool.hxx
+// ./opencascade/StdSelect_FaceFilter.hxx
+// ./opencascade/StdSelect_ViewerSelector3d.hxx
+// ./opencascade/StdSelect_SensitivityMode.hxx
+// ./opencascade/StdSelect_TypeOfResult.hxx
+// ./opencascade/StdSelect_EdgeFilter.hxx
+// ./opencascade/StdSelect_TypeOfFace.hxx
 
 // operators
 

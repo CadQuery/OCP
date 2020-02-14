@@ -39,9 +39,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopAbs"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TopAbs , shared_ptr<TopAbs>>(m,"TopAbs");
 
     static_cast<py::class_<TopAbs , shared_ptr<TopAbs>  >>(m.attr("TopAbs"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -83,14 +86,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopAbs"));
                     R"#(Determines the shape orientation from the given string identifier (using case-insensitive comparison).)#"  , py::arg("theOrientationString"),  py::arg("theOrientation"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TopAbs.hxx
-// ./opencascade/TopAbs_ShapeEnum.hxx
 // ./opencascade/TopAbs_State.hxx
+// ./opencascade/TopAbs.hxx
 // ./opencascade/TopAbs_Orientation.hxx
+// ./opencascade/TopAbs_ShapeEnum.hxx
 
 // operators
 

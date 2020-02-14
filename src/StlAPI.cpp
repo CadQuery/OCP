@@ -14,9 +14,9 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TopoDS_Shape.hxx>
+#include <TopoDS_Shape.hxx>
 #include <StlAPI_Writer.hxx>
 #include <StlAPI_Reader.hxx>
-#include <TopoDS_Shape.hxx>
 #include <TopoDS_Shape.hxx>
 
 // module includes
@@ -43,9 +43,12 @@ py::module m = static_cast<py::module>(main_module.attr("StlAPI"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StlAPI , shared_ptr<StlAPI>>(m,"StlAPI");
 
     static_cast<py::class_<StlAPI , shared_ptr<StlAPI>  >>(m.attr("StlAPI"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -57,12 +60,15 @@ py::module m = static_cast<py::module>(main_module.attr("StlAPI"));
                     R"#(None)#"  , py::arg("theShape"),  py::arg("aFile"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StlAPI_Reader , shared_ptr<StlAPI_Reader>>(m,"StlAPI_Reader");
 
     static_cast<py::class_<StlAPI_Reader , shared_ptr<StlAPI_Reader>  >>(m.attr("StlAPI_Reader"))
+    // constructors
+    // custom constructors
     // methods
         .def("Read",
              (Standard_Boolean (StlAPI_Reader::*)( TopoDS_Shape & ,  const Standard_CString  ) ) static_cast<Standard_Boolean (StlAPI_Reader::*)( TopoDS_Shape & ,  const Standard_CString  ) >(&StlAPI_Reader::Read),
@@ -71,12 +77,14 @@ py::module m = static_cast<py::module>(main_module.attr("StlAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StlAPI_Writer , shared_ptr<StlAPI_Writer>  >>(m.attr("StlAPI_Writer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ASCIIMode",
              (Standard_Boolean & (StlAPI_Writer::*)() ) static_cast<Standard_Boolean & (StlAPI_Writer::*)() >(&StlAPI_Writer::ASCIIMode),
@@ -88,12 +96,12 @@ py::module m = static_cast<py::module>(main_module.attr("StlAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StlAPI.hxx
 // ./opencascade/StlAPI_Writer.hxx
+// ./opencascade/StlAPI.hxx
 // ./opencascade/StlAPI_Reader.hxx
 
 // operators

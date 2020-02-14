@@ -38,9 +38,12 @@ py::module m = static_cast<py::module>(main_module.attr("Hermit"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Hermit , shared_ptr<Hermit>>(m,"Hermit");
 
     static_cast<py::class_<Hermit , shared_ptr<Hermit>  >>(m.attr("Hermit"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -55,7 +58,7 @@ py::module m = static_cast<py::module>(main_module.attr("Hermit"));
                     []( const opencascade::handle<Geom_BSplineCurve> & BS,const Standard_Real TolPoles,const Standard_Real TolKnots ){ Standard_Real  Knotmin; Standard_Real  Knotmax; Hermit::Solutionbis(BS,Knotmin,Knotmax,TolPoles,TolKnots); return std::make_tuple(Knotmin,Knotmax); },
                     R"#(returns the knots to insert to a(u) to stay with a constant sign and in the tolerances.)#"  , py::arg("BS"),  py::arg("TolPoles")=static_cast<const Standard_Real>(0.000001),  py::arg("TolKnots")=static_cast<const Standard_Real>(0.000001))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

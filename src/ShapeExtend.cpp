@@ -13,6 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <gp_Trsf.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <Message_Msg.hxx>
+#include <TopoDS_Shape.hxx>
 #include <ShapeExtend_ComplexCurve.hxx>
 #include <ShapeExtend_CompositeSurface.hxx>
 #include <ShapeExtend_WireData.hxx>
@@ -20,19 +25,14 @@ namespace py = pybind11;
 #include <ShapeExtend_MsgRegistrator.hxx>
 #include <ShapeExtend_Explorer.hxx>
 #include <Standard_TypeMismatch.hxx>
-#include <TopoDS_Wire.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Trsf2d.hxx>
 #include <gp_Trsf.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
-#include <Message_Msg.hxx>
-#include <TopoDS_Shape.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Face.hxx>
 
 // module includes
 #include <ShapeExtend.hxx>
@@ -50,13 +50,13 @@ namespace py = pybind11;
 #include <ShapeExtend_WireData.hxx>
 
 // template related includes
-// ./opencascade/ShapeExtend_DataMapOfShapeListOfMsg.hxx
-#include "NCollection.hxx"
-// ./opencascade/ShapeExtend_DataMapOfShapeListOfMsg.hxx
-#include "NCollection.hxx"
 // ./opencascade/ShapeExtend_DataMapOfTransientListOfMsg.hxx
 #include "NCollection.hxx"
 // ./opencascade/ShapeExtend_DataMapOfTransientListOfMsg.hxx
+#include "NCollection.hxx"
+// ./opencascade/ShapeExtend_DataMapOfShapeListOfMsg.hxx
+#include "NCollection.hxx"
+// ./opencascade/ShapeExtend_DataMapOfShapeListOfMsg.hxx
 #include "NCollection.hxx"
 
 
@@ -77,6 +77,7 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
     public:
         using ShapeExtend_ComplexCurve::ShapeExtend_ComplexCurve;
         
+        
         // public pure virtual
         Standard_Integer NbCurves() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,ShapeExtend_ComplexCurve,NbCurves,) };
         const opencascade::handle<Geom_Curve> & Curve(const Standard_Integer index) const  override { PYBIND11_OVERLOAD_PURE(const opencascade::handle<Geom_Curve> &,ShapeExtend_ComplexCurve,Curve,index) };
@@ -84,6 +85,8 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
         Standard_Real LocalToGlobal(const Standard_Integer index,const Standard_Real Ulocal) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,ShapeExtend_ComplexCurve,LocalToGlobal,index,Ulocal) };
         Standard_Real GetScaleFactor(const Standard_Integer ind) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,ShapeExtend_ComplexCurve,GetScaleFactor,ind) };
         
+        void Reverse() override { PYBIND11_OVERLOAD_PURE(void,Geom_Curve,Reverse,) };
+        opencascade::handle<Geom_Geometry> Copy() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Geom_Geometry>,Geom_Geometry,Copy,) };
         
         // protected pure virtual
         
@@ -94,9 +97,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeExtend , shared_ptr<ShapeExtend>>(m,"ShapeExtend");
 
     static_cast<py::class_<ShapeExtend , shared_ptr<ShapeExtend>  >>(m.attr("ShapeExtend"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -111,12 +117,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
                     R"#(Tells if a bit flag contains bit corresponding to enumerated status)#"  , py::arg("flag"),  py::arg("status"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeExtend_BasicMsgRegistrator ,opencascade::handle<ShapeExtend_BasicMsgRegistrator>  , Standard_Transient >>(m.attr("ShapeExtend_BasicMsgRegistrator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Send",
              (void (ShapeExtend_BasicMsgRegistrator::*)( const opencascade::handle<Standard_Transient> & ,  const Message_Msg & ,  const Message_Gravity  ) ) static_cast<void (ShapeExtend_BasicMsgRegistrator::*)( const opencascade::handle<Standard_Transient> & ,  const Message_Msg & ,  const Message_Gravity  ) >(&ShapeExtend_BasicMsgRegistrator::Send),
@@ -140,11 +148,13 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeExtend_ComplexCurve ,opencascade::handle<ShapeExtend_ComplexCurve> ,Py_ShapeExtend_ComplexCurve , Geom_Curve >>(m.attr("ShapeExtend_ComplexCurve"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbCurves",
              (Standard_Integer (ShapeExtend_ComplexCurve::*)() const) static_cast<Standard_Integer (ShapeExtend_ComplexCurve::*)() const>(&ShapeExtend_ComplexCurve::NbCurves),
@@ -237,14 +247,16 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeExtend_CompositeSurface ,opencascade::handle<ShapeExtend_CompositeSurface>  , Geom_Surface >>(m.attr("ShapeExtend_CompositeSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TColGeom_HArray2OfSurface> &,const ShapeExtend_Parametrisation >()  , py::arg("GridSurf"),  py::arg("param")=static_cast<const ShapeExtend_Parametrisation>(ShapeExtend_Natural) )
         .def(py::init< const opencascade::handle<TColGeom_HArray2OfSurface> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("GridSurf"),  py::arg("UJoints"),  py::arg("VJoints") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (ShapeExtend_CompositeSurface::*)( const opencascade::handle<TColGeom_HArray2OfSurface> & ,  const ShapeExtend_Parametrisation  ) ) static_cast<Standard_Boolean (ShapeExtend_CompositeSurface::*)( const opencascade::handle<TColGeom_HArray2OfSurface> & ,  const ShapeExtend_Parametrisation  ) >(&ShapeExtend_CompositeSurface::Init),
@@ -409,12 +421,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeExtend_Explorer , shared_ptr<ShapeExtend_Explorer>  >>(m.attr("ShapeExtend_Explorer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CompoundFromSeq",
              (TopoDS_Shape (ShapeExtend_Explorer::*)( const opencascade::handle<TopTools_HSequenceOfShape> &  ) const) static_cast<TopoDS_Shape (ShapeExtend_Explorer::*)( const opencascade::handle<TopTools_HSequenceOfShape> &  ) const>(&ShapeExtend_Explorer::CompoundFromSeq),
@@ -441,13 +455,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeExtend_WireData ,opencascade::handle<ShapeExtend_WireData>  , Standard_Transient >>(m.attr("ShapeExtend_WireData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("wire"),  py::arg("chained")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theManifoldMode")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeExtend_WireData::*)( const opencascade::handle<ShapeExtend_WireData> &  ) ) static_cast<void (ShapeExtend_WireData::*)( const opencascade::handle<ShapeExtend_WireData> &  ) >(&ShapeExtend_WireData::Init),
@@ -543,12 +559,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeExtend_MsgRegistrator ,opencascade::handle<ShapeExtend_MsgRegistrator>  , ShapeExtend_BasicMsgRegistrator >>(m.attr("ShapeExtend_MsgRegistrator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Send",
              (void (ShapeExtend_MsgRegistrator::*)( const opencascade::handle<Standard_Transient> & ,  const Message_Msg & ,  const Message_Gravity  ) ) static_cast<void (ShapeExtend_MsgRegistrator::*)( const opencascade::handle<Standard_Transient> & ,  const Message_Msg & ,  const Message_Gravity  ) >(&ShapeExtend_MsgRegistrator::Send),
@@ -581,29 +599,29 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeExtend"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ShapeExtend_DataMapIteratorOfDataMapOfShapeListOfMsg.hxx
-// ./opencascade/ShapeExtend.hxx
-// ./opencascade/ShapeExtend_DataMapOfShapeListOfMsg.hxx
-// ./opencascade/ShapeExtend_Explorer.hxx
 // ./opencascade/ShapeExtend_DataMapOfTransientListOfMsg.hxx
-// ./opencascade/ShapeExtend_WireData.hxx
+// ./opencascade/ShapeExtend_ComplexCurve.hxx
+// ./opencascade/ShapeExtend_DataMapIteratorOfDataMapOfShapeListOfMsg.hxx
 // ./opencascade/ShapeExtend_MsgRegistrator.hxx
+// ./opencascade/ShapeExtend_BasicMsgRegistrator.hxx
+// ./opencascade/ShapeExtend.hxx
 // ./opencascade/ShapeExtend_Status.hxx
 // ./opencascade/ShapeExtend_DataMapIteratorOfDataMapOfTransientListOfMsg.hxx
-// ./opencascade/ShapeExtend_CompositeSurface.hxx
-// ./opencascade/ShapeExtend_BasicMsgRegistrator.hxx
+// ./opencascade/ShapeExtend_Explorer.hxx
 // ./opencascade/ShapeExtend_Parametrisation.hxx
-// ./opencascade/ShapeExtend_ComplexCurve.hxx
+// ./opencascade/ShapeExtend_CompositeSurface.hxx
+// ./opencascade/ShapeExtend_WireData.hxx
+// ./opencascade/ShapeExtend_DataMapOfShapeListOfMsg.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<TopoDS_Shape, Message_ListOfMsg, TopTools_ShapeMapHasher>(m,"ShapeExtend_DataMapOfShapeListOfMsg");  
     register_template_NCollection_DataMap<opencascade::handle<Standard_Transient>, Message_ListOfMsg, TColStd_MapTransientHasher>(m,"ShapeExtend_DataMapOfTransientListOfMsg");  
+    register_template_NCollection_DataMap<TopoDS_Shape, Message_ListOfMsg, TopTools_ShapeMapHasher>(m,"ShapeExtend_DataMapOfShapeListOfMsg");  
 
 
 // exceptions

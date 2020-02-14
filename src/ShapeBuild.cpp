@@ -13,6 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TopoDS_Vertex.hxx>
+#include <gp_Pnt.hxx>
 #include <Geom_Plane.hxx>
 #include <ShapeBuild_Vertex.hxx>
 #include <ShapeBuild_Edge.hxx>
@@ -25,8 +27,6 @@ namespace py = pybind11;
 #include <Geom2d_Curve.hxx>
 #include <gp_Trsf2d.hxx>
 #include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Pnt.hxx>
 
 // module includes
 #include <ShapeBuild.hxx>
@@ -53,9 +53,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeBuild"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeBuild , shared_ptr<ShapeBuild>>(m,"ShapeBuild");
 
     static_cast<py::class_<ShapeBuild , shared_ptr<ShapeBuild>  >>(m.attr("ShapeBuild"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -64,12 +67,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeBuild"));
                     R"#(Rebuilds a shape with substitution of some components Returns a Geom_Surface which is the Plane XOY (Z positive) This allows to consider an UV space homologous to a 3D space, with this support surface)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeBuild_Edge , shared_ptr<ShapeBuild_Edge>>(m,"ShapeBuild_Edge");
 
     static_cast<py::class_<ShapeBuild_Edge , shared_ptr<ShapeBuild_Edge>  >>(m.attr("ShapeBuild_Edge"))
+    // constructors
+    // custom constructors
     // methods
         .def("CopyReplaceVertices",
              (TopoDS_Edge (ShapeBuild_Edge::*)( const TopoDS_Edge & ,  const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) const) static_cast<TopoDS_Edge (ShapeBuild_Edge::*)( const TopoDS_Edge & ,  const TopoDS_Vertex & ,  const TopoDS_Vertex &  ) const>(&ShapeBuild_Edge::CopyReplaceVertices),
@@ -132,12 +138,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeBuild_ReShape ,opencascade::handle<ShapeBuild_ReShape>  , BRepTools_ReShape >>(m.attr("ShapeBuild_ReShape"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Apply",
              (TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const Standard_Integer  ) ) static_cast<TopoDS_Shape (ShapeBuild_ReShape::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const Standard_Integer  ) >(&ShapeBuild_ReShape::Apply),
@@ -164,12 +172,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeBuild"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeBuild_Vertex , shared_ptr<ShapeBuild_Vertex>>(m,"ShapeBuild_Vertex");
 
     static_cast<py::class_<ShapeBuild_Vertex , shared_ptr<ShapeBuild_Vertex>  >>(m.attr("ShapeBuild_Vertex"))
+    // constructors
+    // custom constructors
     // methods
         .def("CombineVertex",
              (TopoDS_Vertex (ShapeBuild_Vertex::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex & ,  const Standard_Real  ) const) static_cast<TopoDS_Vertex (ShapeBuild_Vertex::*)( const TopoDS_Vertex & ,  const TopoDS_Vertex & ,  const Standard_Real  ) const>(&ShapeBuild_Vertex::CombineVertex),
@@ -181,13 +192,13 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/ShapeBuild_Vertex.hxx
 // ./opencascade/ShapeBuild.hxx
 // ./opencascade/ShapeBuild_Edge.hxx
-// ./opencascade/ShapeBuild_Vertex.hxx
 // ./opencascade/ShapeBuild_ReShape.hxx
 
 // operators

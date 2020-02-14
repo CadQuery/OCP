@@ -13,11 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_NullValue.hxx>
+#include <math_MultipleVarFunctionWithHessian.hxx>
+#include <math_Matrix.hxx>
 #include <Standard_NullValue.hxx>
 #include <Geom2d_BSplineCurve.hxx>
-#include <math_Matrix.hxx>
-#include <math_MultipleVarFunctionWithHessian.hxx>
+#include <Standard_NullValue.hxx>
 
 // module includes
 #include <FairCurve_AnalysisCode.hxx>
@@ -53,8 +53,10 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     public:
         using FairCurve_DistributionOfEnergy::FairCurve_DistributionOfEnergy;
         
+        
         // public pure virtual
         
+        Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,math_FunctionSet,Value,X,F) };
         
         // protected pure virtual
         
@@ -65,6 +67,7 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     class Py_FairCurve_Energy : public FairCurve_Energy{
     public:
         using FairCurve_Energy::FairCurve_Energy;
+        
         
         // public pure virtual
         
@@ -81,7 +84,9 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
 
 
     static_cast<py::class_<FairCurve_Batten , shared_ptr<FairCurve_Batten>  >>(m.attr("FairCurve_Batten"))
+    // constructors
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("Height"),  py::arg("Slope")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
         .def("SetFreeSliding",
              (void (FairCurve_Batten::*)( const Standard_Boolean  ) ) static_cast<void (FairCurve_Batten::*)( const Standard_Boolean  ) >(&FairCurve_Batten::SetFreeSliding),
@@ -213,12 +218,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_BattenLaw , shared_ptr<FairCurve_BattenLaw>  , math_Function >>(m.attr("FairCurve_BattenLaw"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Heigth"),  py::arg("Slope"),  py::arg("Sliding") )
+    // custom constructors
     // methods
         .def("SetSliding",
              (void (FairCurve_BattenLaw::*)( const Standard_Real  ) ) static_cast<void (FairCurve_BattenLaw::*)( const Standard_Real  ) >(&FairCurve_BattenLaw::SetSliding),
@@ -248,11 +255,13 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_DistributionOfEnergy , shared_ptr<FairCurve_DistributionOfEnergy> ,Py_FairCurve_DistributionOfEnergy , math_FunctionSet >>(m.attr("FairCurve_DistributionOfEnergy"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (FairCurve_DistributionOfEnergy::*)() const) static_cast<Standard_Integer (FairCurve_DistributionOfEnergy::*)() const>(&FairCurve_DistributionOfEnergy::NbVariables),
@@ -267,11 +276,13 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_Energy , shared_ptr<FairCurve_Energy> ,Py_FairCurve_Energy , math_MultipleVarFunctionWithHessian >>(m.attr("FairCurve_Energy"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (FairCurve_Energy::*)() const) static_cast<Standard_Integer (FairCurve_Energy::*)() const>(&FairCurve_Energy::NbVariables),
@@ -304,12 +315,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_Newton , shared_ptr<FairCurve_Newton>  , math_NewtonMinimum >>(m.attr("FairCurve_Newton"))
+    // constructors
         .def(py::init< const math_MultipleVarFunctionWithHessian &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Boolean >()  , py::arg("theFunction"),  py::arg("theSpatialTolerance")=static_cast<const Standard_Real>(1.0e-7),  py::arg("theCriteriumTolerance")=static_cast<const Standard_Real>(1.0e-7),  py::arg("theNbIterations")=static_cast<const Standard_Integer>(40),  py::arg("theConvexity")=static_cast<const Standard_Real>(1.0e-6),  py::arg("theWithSingularity")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("IsConverged",
              (Standard_Boolean (FairCurve_Newton::*)() const) static_cast<Standard_Boolean (FairCurve_Newton::*)() const>(&FairCurve_Newton::IsConverged),
@@ -318,12 +331,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_DistributionOfJerk , shared_ptr<FairCurve_DistributionOfJerk>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfJerk"))
+    // constructors
         .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Integer >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (FairCurve_DistributionOfJerk::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfJerk::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfJerk::Value),
@@ -332,12 +347,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_DistributionOfSagging , shared_ptr<FairCurve_DistributionOfSagging>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfSagging"))
+    // constructors
         .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Integer >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (FairCurve_DistributionOfSagging::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (FairCurve_DistributionOfSagging::*)( const math_Vector & ,  math_Vector &  ) >(&FairCurve_DistributionOfSagging::Value),
@@ -346,12 +363,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_DistributionOfTension , shared_ptr<FairCurve_DistributionOfTension>  , FairCurve_DistributionOfEnergy >>(m.attr("FairCurve_DistributionOfTension"))
+    // constructors
         .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Real,const FairCurve_BattenLaw &,const Standard_Integer,const Standard_Boolean >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("DerivativeOrder"),  py::arg("LengthSliding"),  py::arg("Law"),  py::arg("NbValAux")=static_cast<const Standard_Integer>(0),  py::arg("Uniform")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("SetLengthSliding",
              (void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) ) static_cast<void (FairCurve_DistributionOfTension::*)( const Standard_Real  ) >(&FairCurve_DistributionOfTension::SetLengthSliding),
@@ -366,12 +385,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_EnergyOfBatten , shared_ptr<FairCurve_EnergyOfBatten>  , FairCurve_Energy >>(m.attr("FairCurve_EnergyOfBatten"))
+    // constructors
         .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Real >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("ContrOrder1"),  py::arg("ContrOrder2"),  py::arg("Law"),  py::arg("LengthSliding"),  py::arg("FreeSliding")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Angle1")=static_cast<const Standard_Real>(0),  py::arg("Angle2")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
         .def("LengthSliding",
              (Standard_Real (FairCurve_EnergyOfBatten::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfBatten::*)() const>(&FairCurve_EnergyOfBatten::LengthSliding),
@@ -392,12 +413,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_EnergyOfMVC , shared_ptr<FairCurve_EnergyOfMVC>  , FairCurve_Energy >>(m.attr("FairCurve_EnergyOfMVC"))
+    // constructors
         .def(py::init< const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Integer,const Standard_Integer,const FairCurve_BattenLaw &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("BSplOrder"),  py::arg("FlatKnots"),  py::arg("Poles"),  py::arg("ContrOrder1"),  py::arg("ContrOrder2"),  py::arg("Law"),  py::arg("PhysicalRatio"),  py::arg("LengthSliding"),  py::arg("FreeSliding")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Angle1")=static_cast<const Standard_Real>(0),  py::arg("Angle2")=static_cast<const Standard_Real>(0),  py::arg("Curvature1")=static_cast<const Standard_Real>(0),  py::arg("Curvature2")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
         .def("LengthSliding",
              (Standard_Real (FairCurve_EnergyOfMVC::*)() const) static_cast<Standard_Real (FairCurve_EnergyOfMVC::*)() const>(&FairCurve_EnergyOfMVC::LengthSliding),
@@ -418,12 +441,14 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FairCurve_MinimalVariation , shared_ptr<FairCurve_MinimalVariation>  , FairCurve_Batten >>(m.attr("FairCurve_MinimalVariation"))
+    // constructors
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("Heigth"),  py::arg("Slope")=static_cast<const Standard_Real>(0),  py::arg("PhysicalRatio")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
         .def("SetCurvature1",
              (void (FairCurve_MinimalVariation::*)( const Standard_Real  ) ) static_cast<void (FairCurve_MinimalVariation::*)( const Standard_Real  ) >(&FairCurve_MinimalVariation::SetCurvature1),
@@ -471,22 +496,22 @@ py::module m = static_cast<py::module>(main_module.attr("FairCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/FairCurve_EnergyOfBatten.hxx
-// ./opencascade/FairCurve_MinimalVariation.hxx
-// ./opencascade/FairCurve_BattenLaw.hxx
-// ./opencascade/FairCurve_DistributionOfTension.hxx
-// ./opencascade/FairCurve_Batten.hxx
-// ./opencascade/FairCurve_EnergyOfMVC.hxx
-// ./opencascade/FairCurve_Energy.hxx
 // ./opencascade/FairCurve_DistributionOfEnergy.hxx
-// ./opencascade/FairCurve_DistributionOfJerk.hxx
+// ./opencascade/FairCurve_BattenLaw.hxx
 // ./opencascade/FairCurve_Newton.hxx
-// ./opencascade/FairCurve_DistributionOfSagging.hxx
+// ./opencascade/FairCurve_EnergyOfBatten.hxx
+// ./opencascade/FairCurve_Energy.hxx
+// ./opencascade/FairCurve_Batten.hxx
 // ./opencascade/FairCurve_AnalysisCode.hxx
+// ./opencascade/FairCurve_DistributionOfTension.hxx
+// ./opencascade/FairCurve_DistributionOfJerk.hxx
+// ./opencascade/FairCurve_DistributionOfSagging.hxx
+// ./opencascade/FairCurve_MinimalVariation.hxx
+// ./opencascade/FairCurve_EnergyOfMVC.hxx
 
 // operators
 

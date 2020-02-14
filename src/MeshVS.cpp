@@ -16,33 +16,6 @@ namespace py = pybind11;
 #include <MeshVS_Mesh.hxx>
 #include <MeshVS_DataSource.hxx>
 #include <Graphic3d_ArrayOfPrimitives.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <Graphic3d_AspectFillArea3d.hxx>
-#include <MeshVS_Drawer.hxx>
-#include <Graphic3d_MaterialAspect.hxx>
-#include <Graphic3d_AspectLine3d.hxx>
-#include <Graphic3d_AspectMarker3d.hxx>
-#include <Graphic3d_AspectText3d.hxx>
-#include <gp_Vec.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <Bnd_Box2d.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <MeshVS_Drawer.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <SelectBasics_SensitiveEntity.hxx>
-#include <SelectBasics_EntityOwner.hxx>
-#include <Bnd_Box.hxx>
-#include <MeshVS_Mesh.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
-#include <Bnd_Box2d.hxx>
-#include <MeshVS_DataSource.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
 #include <MeshVS_Mesh.hxx>
 #include <MeshVS_DataSource.hxx>
 #include <Graphic3d_ArrayOfSegments.hxx>
@@ -50,12 +23,35 @@ namespace py = pybind11;
 #include <Graphic3d_ArrayOfPrimitives.hxx>
 #include <MeshVS_Mesh.hxx>
 #include <MeshVS_DataSource.hxx>
+#include <Bnd_Box.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
+#include <Bnd_Box2d.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <MeshVS_DataSource.hxx>
 #include <Graphic3d_Texture2D.hxx>
 #include <Graphic3d_ArrayOfPrimitives.hxx>
 #include <TColStd_HPackedMapOfInteger.hxx>
 #include <MeshVS_DataSource.hxx>
 #include <MeshVS_Drawer.hxx>
+#include <Graphic3d_AspectFillArea3d.hxx>
+#include <MeshVS_Drawer.hxx>
+#include <Graphic3d_MaterialAspect.hxx>
+#include <Graphic3d_AspectLine3d.hxx>
+#include <Graphic3d_AspectMarker3d.hxx>
+#include <Graphic3d_AspectText3d.hxx>
+#include <gp_Vec.hxx>
+#include <MeshVS_DataSource.hxx>
+#include <MeshVS_Drawer.hxx>
 #include <MeshVS_Mesh.hxx>
+#include <Select3D_SensitiveEntity.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <MeshVS_DataSource.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
+#include <Bnd_Box2d.hxx>
+#include <MeshVS_Mesh.hxx>
+#include <MeshVS_DataSource.hxx>
 
 // module includes
 #include <MeshVS_Array1OfSequenceOfInteger.hxx>
@@ -122,59 +118,59 @@ namespace py = pybind11;
 #include <MeshVS_VectorPrsBuilder.hxx>
 
 // template related includes
-// ./opencascade/MeshVS_MapOfTwoNodes.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
 #include "NCollection.hxx"
-// ./opencascade/MeshVS_MapOfTwoNodes.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
 #include "NCollection.hxx"
-// ./opencascade/MeshVS_SequenceOfPrsBuilder.hxx
+// ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
+// ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_DataMapOfIntegerOwner.hxx
 #include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerMeshEntityOwner.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_SensitivePolyhedron.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_SensitivePolyhedron.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
-#include "NCollection.hxx"
 // ./opencascade/MeshVS_Array1OfSequenceOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfHArray1OfSequenceOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
-#include "NCollection.hxx"
-// ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
 #include "NCollection.hxx"
 // ./opencascade/MeshVS_TwoColorsHasher.hxx
 #include "NCollection.hxx"
+// ./opencascade/MeshVS_SequenceOfPrsBuilder.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_MapOfTwoNodes.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_MapOfTwoNodes.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerMeshEntityOwner.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfHArray1OfSequenceOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
+#include "NCollection.hxx"
 // ./opencascade/MeshVS_TwoNodesHasher.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_SensitivePolyhedron.hxx
+#include "NCollection.hxx"
+// ./opencascade/MeshVS_SensitivePolyhedron.hxx
 #include "NCollection.hxx"
 
 
@@ -195,6 +191,7 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
     public:
         using MeshVS_DataSource::MeshVS_DataSource;
         
+        
         // public pure virtual
         Standard_Boolean GetGeom(const Standard_Integer ID,const Standard_Boolean IsElement,NCollection_Array1<Standard_Real> & Coords,Standard_Integer & NbNodes,MeshVS_EntityType & Type) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,MeshVS_DataSource,GetGeom,ID,IsElement,Coords,NbNodes,Type) };
         Standard_Boolean GetGeomType(const Standard_Integer ID,const Standard_Boolean IsElement,MeshVS_EntityType & Type) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,MeshVS_DataSource,GetGeomType,ID,IsElement,Type) };
@@ -214,6 +211,7 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
     public:
         using MeshVS_PrsBuilder::MeshVS_PrsBuilder;
         
+        
         // public pure virtual
         void Build(const opencascade::handle<Prs3d_Presentation> & Prs,const TColStd_PackedMapOfInteger & IDs,TColStd_PackedMapOfInteger & IDsToExclude,const Standard_Boolean IsElement,const Standard_Integer DisplayMode) const  override { PYBIND11_OVERLOAD_PURE(void,MeshVS_PrsBuilder,Build,Prs,IDs,IDsToExclude,IsElement,DisplayMode) };
         
@@ -227,6 +225,7 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
     class Py_MeshVS_DataSource3D : public MeshVS_DataSource3D{
     public:
         using MeshVS_DataSource3D::MeshVS_DataSource3D;
+        
         
         // public pure virtual
         
@@ -248,18 +247,22 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
 
 
     static_cast<py::class_<MeshVS_Buffer , shared_ptr<MeshVS_Buffer>  >>(m.attr("MeshVS_Buffer"))
+    // constructors
         .def(py::init< const Standard_Size >()  , py::arg("theSize") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_CommonSensitiveEntity ,opencascade::handle<MeshVS_CommonSensitiveEntity>  , Select3D_SensitiveSet >>(m.attr("MeshVS_CommonSensitiveEntity"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const opencascade::handle<MeshVS_Mesh> &,const MeshVS_MeshSelectionMethod >()  , py::arg("theOwner"),  py::arg("theParentMesh"),  py::arg("theSelMethod") )
+    // constructors
+        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &,const opencascade::handle<MeshVS_Mesh> &,const MeshVS_MeshSelectionMethod >()  , py::arg("theOwner"),  py::arg("theParentMesh"),  py::arg("theSelMethod") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (MeshVS_CommonSensitiveEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (MeshVS_CommonSensitiveEntity::*)() const>(&MeshVS_CommonSensitiveEntity::DynamicType),
@@ -298,11 +301,13 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_DataSource ,opencascade::handle<MeshVS_DataSource> ,Py_MeshVS_DataSource , Standard_Transient >>(m.attr("MeshVS_DataSource"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetGeom",
              (Standard_Boolean (MeshVS_DataSource::*)( const Standard_Integer ,  const Standard_Boolean ,  NCollection_Array1<Standard_Real> & ,  Standard_Integer & ,  MeshVS_EntityType &  ) const) static_cast<Standard_Boolean (MeshVS_DataSource::*)( const Standard_Integer ,  const Standard_Boolean ,  NCollection_Array1<Standard_Real> & ,  Standard_Integer & ,  MeshVS_EntityType &  ) const>(&MeshVS_DataSource::GetGeom),
@@ -374,12 +379,15 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<MeshVS_Drawer ,opencascade::handle<MeshVS_Drawer>>(m,"MeshVS_Drawer");
 
     static_cast<py::class_<MeshVS_Drawer ,opencascade::handle<MeshVS_Drawer>  , Standard_Transient >>(m.attr("MeshVS_Drawer"))
+    // constructors
+    // custom constructors
     // methods
         .def("Assign",
              (void (MeshVS_Drawer::*)( const opencascade::handle<MeshVS_Drawer> &  ) ) static_cast<void (MeshVS_Drawer::*)( const opencascade::handle<MeshVS_Drawer> &  ) >(&MeshVS_Drawer::Assign),
@@ -451,12 +459,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<MeshVS_DummySensitiveEntity ,opencascade::handle<MeshVS_DummySensitiveEntity>  , SelectBasics_SensitiveEntity >>(m.attr("MeshVS_DummySensitiveEntity"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> & >()  , py::arg("theOwnerId") )
+    static_cast<py::class_<MeshVS_DummySensitiveEntity ,opencascade::handle<MeshVS_DummySensitiveEntity>  , Select3D_SensitiveEntity >>(m.attr("MeshVS_DummySensitiveEntity"))
+    // constructors
+        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> & >()  , py::arg("theOwnerId") )
+    // custom constructors
     // methods
         .def("Matches",
              (Standard_Boolean (MeshVS_DummySensitiveEntity::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (MeshVS_DummySensitiveEntity::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&MeshVS_DummySensitiveEntity::Matches),
@@ -479,6 +489,9 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
         .def("InvInitLocation",
              (gp_GTrsf (MeshVS_DummySensitiveEntity::*)() const) static_cast<gp_GTrsf (MeshVS_DummySensitiveEntity::*)() const>(&MeshVS_DummySensitiveEntity::InvInitLocation),
              R"#(None)#" )
+        .def("CenterOfGeometry",
+             (gp_Pnt (MeshVS_DummySensitiveEntity::*)() const) static_cast<gp_Pnt (MeshVS_DummySensitiveEntity::*)() const>(&MeshVS_DummySensitiveEntity::CenterOfGeometry),
+             R"#(None)#" )
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (MeshVS_DummySensitiveEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (MeshVS_DummySensitiveEntity::*)() const>(&MeshVS_DummySensitiveEntity::DynamicType),
              R"#(None)#" )
@@ -492,14 +505,17 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_HArray1OfSequenceOfInteger ,opencascade::handle<MeshVS_HArray1OfSequenceOfInteger>  , MeshVS_Array1OfSequenceOfInteger , Standard_Transient >>(m.attr("MeshVS_HArray1OfSequenceOfInteger"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const NCollection_Sequence<int> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TColStd_SequenceOfInteger> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const MeshVS_Array1OfSequenceOfInteger & (MeshVS_HArray1OfSequenceOfInteger::*)() const) static_cast<const MeshVS_Array1OfSequenceOfInteger & (MeshVS_HArray1OfSequenceOfInteger::*)() const>(&MeshVS_HArray1OfSequenceOfInteger::Array1),
@@ -520,12 +536,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_Mesh ,opencascade::handle<MeshVS_Mesh>  , AIS_InteractiveObject >>(m.attr("MeshVS_Mesh"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("theIsAllowOverlapped")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("AcceptDisplayMode",
              (Standard_Boolean (MeshVS_Mesh::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (MeshVS_Mesh::*)( const Standard_Integer  ) const>(&MeshVS_Mesh::AcceptDisplayMode),
@@ -651,11 +669,13 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_MeshEntityOwner ,opencascade::handle<MeshVS_MeshEntityOwner>  , SelectMgr_EntityOwner >>(m.attr("MeshVS_MeshEntityOwner"))
+    // constructors
+    // custom constructors
     // methods
         .def("Owner",
              (Standard_Address (MeshVS_MeshEntityOwner::*)() const) static_cast<Standard_Address (MeshVS_MeshEntityOwner::*)() const>(&MeshVS_MeshEntityOwner::Owner),
@@ -694,11 +714,13 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_MeshOwner ,opencascade::handle<MeshVS_MeshOwner>  , SelectMgr_EntityOwner >>(m.attr("MeshVS_MeshOwner"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetDataSource",
              (const opencascade::handle<MeshVS_DataSource> & (MeshVS_MeshOwner::*)() const) static_cast<const opencascade::handle<MeshVS_DataSource> & (MeshVS_MeshOwner::*)() const>(&MeshVS_MeshOwner::GetDataSource),
@@ -746,11 +768,13 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_PrsBuilder ,opencascade::handle<MeshVS_PrsBuilder> ,Py_MeshVS_PrsBuilder , Standard_Transient >>(m.attr("MeshVS_PrsBuilder"))
+    // constructors
+    // custom constructors
     // methods
         .def("Build",
              (void (MeshVS_PrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<void (MeshVS_PrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const>(&MeshVS_PrsBuilder::Build),
@@ -759,7 +783,7 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
              (void (MeshVS_PrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Integer  ) const) static_cast<void (MeshVS_PrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Integer  ) const>(&MeshVS_PrsBuilder::CustomBuild),
              R"#(This method is called to build presentation of custom elements (they have MeshVS_ET_0D type). IDs is set of numeric identificators of elements for custom building. IDsToExclude is set of IDs to exclude from processing. If some entity has been excluded, it is not processed by other builders. DisplayMode is numeric constant describing display mode (see MeshVS_DisplayModeFlags.hxx))#"  , py::arg("Prs"),  py::arg("IDs"),  py::arg("IDsToExclude"),  py::arg("DisplayMode"))
         .def("CustomSensitiveEntity",
-             (opencascade::handle<SelectBasics_SensitiveEntity> (MeshVS_PrsBuilder::*)( const opencascade::handle<SelectBasics_EntityOwner> & ,  const Standard_Integer  ) const) static_cast<opencascade::handle<SelectBasics_SensitiveEntity> (MeshVS_PrsBuilder::*)( const opencascade::handle<SelectBasics_EntityOwner> & ,  const Standard_Integer  ) const>(&MeshVS_PrsBuilder::CustomSensitiveEntity),
+             (opencascade::handle<Select3D_SensitiveEntity> (MeshVS_PrsBuilder::*)( const opencascade::handle<SelectMgr_EntityOwner> & ,  const Standard_Integer  ) const) static_cast<opencascade::handle<Select3D_SensitiveEntity> (MeshVS_PrsBuilder::*)( const opencascade::handle<SelectMgr_EntityOwner> & ,  const Standard_Integer  ) const>(&MeshVS_PrsBuilder::CustomSensitiveEntity),
              R"#(This method is called to build sensitive of custom elements ( they have MeshVS_ET_0D type ))#"  , py::arg("Owner"),  py::arg("SelectMode"))
         .def("GetFlags",
              (Standard_Integer (MeshVS_PrsBuilder::*)() const) static_cast<Standard_Integer (MeshVS_PrsBuilder::*)() const>(&MeshVS_PrsBuilder::GetFlags),
@@ -810,12 +834,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_SensitiveFace ,opencascade::handle<MeshVS_SensitiveFace>  , Select3D_SensitiveFace >>(m.attr("MeshVS_SensitiveFace"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwner"),  py::arg("thePoints"),  py::arg("theSensType")=static_cast<const Select3D_TypeOfSensitivity>(Select3D_TOS_INTERIOR) )
+    // constructors
+        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const Select3D_TypeOfSensitivity >()  , py::arg("theOwner"),  py::arg("thePoints"),  py::arg("theSensType")=static_cast<const Select3D_TypeOfSensitivity>(Select3D_TOS_INTERIOR) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (MeshVS_SensitiveFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (MeshVS_SensitiveFace::*)() const>(&MeshVS_SensitiveFace::DynamicType),
@@ -830,12 +856,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_SensitiveMesh ,opencascade::handle<MeshVS_SensitiveMesh>  , Select3D_SensitiveEntity >>(m.attr("MeshVS_SensitiveMesh"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const Standard_Integer >()  , py::arg("theOwner"),  py::arg("theMode")=static_cast<const Standard_Integer>(0) )
+    // constructors
+        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &,const Standard_Integer >()  , py::arg("theOwner"),  py::arg("theMode")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("GetMode",
              (Standard_Integer (MeshVS_SensitiveMesh::*)() const) static_cast<Standard_Integer (MeshVS_SensitiveMesh::*)() const>(&MeshVS_SensitiveMesh::GetMode),
@@ -843,6 +871,9 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
         .def("GetConnected",
              (opencascade::handle<Select3D_SensitiveEntity> (MeshVS_SensitiveMesh::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (MeshVS_SensitiveMesh::*)() >(&MeshVS_SensitiveMesh::GetConnected),
              R"#(None)#" )
+        .def("Matches",
+             (Standard_Boolean (MeshVS_SensitiveMesh::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) ) static_cast<Standard_Boolean (MeshVS_SensitiveMesh::*)( SelectBasics_SelectingVolumeManager & ,  SelectBasics_PickResult &  ) >(&MeshVS_SensitiveMesh::Matches),
+             R"#(Checks whether sensitive overlaps current selecting volume.)#"  , py::arg("theMgr"),  py::arg("thePickResult"))
         .def("NbSubElements",
              (Standard_Integer (MeshVS_SensitiveMesh::*)() ) static_cast<Standard_Integer (MeshVS_SensitiveMesh::*)() >(&MeshVS_SensitiveMesh::NbSubElements),
              R"#(Returns the amount of mesh nodes)#" )
@@ -865,12 +896,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_SensitivePolyhedron ,opencascade::handle<MeshVS_SensitivePolyhedron>  , Select3D_SensitiveEntity >>(m.attr("MeshVS_SensitivePolyhedron"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const opencascade::handle<MeshVS_HArray1OfSequenceOfInteger> & >()  , py::arg("theOwner"),  py::arg("theNodes"),  py::arg("theTopo") )
+    // constructors
+        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &, const NCollection_Array1<gp_Pnt> &,const opencascade::handle<MeshVS_HArray1OfSequenceOfInteger> & >()  , py::arg("theOwner"),  py::arg("theNodes"),  py::arg("theTopo") )
+    // custom constructors
     // methods
         .def("GetConnected",
              (opencascade::handle<Select3D_SensitiveEntity> (MeshVS_SensitivePolyhedron::*)() ) static_cast<opencascade::handle<Select3D_SensitiveEntity> (MeshVS_SensitivePolyhedron::*)() >(&MeshVS_SensitivePolyhedron::GetConnected),
@@ -900,13 +933,15 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_SensitiveQuad ,opencascade::handle<MeshVS_SensitiveQuad>  , Select3D_SensitiveEntity >>(m.attr("MeshVS_SensitiveQuad"))
+    // constructors
         .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("theOwner"),  py::arg("theQuadVerts") )
         .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &,const gp_Pnt &,const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("theOwner"),  py::arg("thePnt1"),  py::arg("thePnt2"),  py::arg("thePnt3"),  py::arg("thePnt4") )
+    // custom constructors
     // methods
         .def("NbSubElements",
              (Standard_Integer (MeshVS_SensitiveQuad::*)() ) static_cast<Standard_Integer (MeshVS_SensitiveQuad::*)() >(&MeshVS_SensitiveQuad::NbSubElements),
@@ -936,12 +971,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_SensitiveSegment ,opencascade::handle<MeshVS_SensitiveSegment>  , Select3D_SensitiveSegment >>(m.attr("MeshVS_SensitiveSegment"))
-        .def(py::init< const opencascade::handle<SelectBasics_EntityOwner> &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("theOwner"),  py::arg("theFirstPnt"),  py::arg("theLastPnt") )
+    // constructors
+        .def(py::init< const opencascade::handle<SelectMgr_EntityOwner> &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("theOwner"),  py::arg("theFirstPnt"),  py::arg("theLastPnt") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (MeshVS_SensitiveSegment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (MeshVS_SensitiveSegment::*)() const>(&MeshVS_SensitiveSegment::DynamicType),
@@ -956,12 +993,35 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
+    register_default_constructor<MeshVS_SymmetricPairHasher , shared_ptr<MeshVS_SymmetricPairHasher>>(m,"MeshVS_SymmetricPairHasher");
+
+    static_cast<py::class_<MeshVS_SymmetricPairHasher , shared_ptr<MeshVS_SymmetricPairHasher>  >>(m.attr("MeshVS_SymmetricPairHasher"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("HashCode_s",
+                    (Standard_Integer (*)(  const std::pair<Standard_Integer, Standard_Integer> & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)(  const std::pair<Standard_Integer, Standard_Integer> & ,  const Standard_Integer  ) >(&MeshVS_SymmetricPairHasher::HashCode),
+                    R"#(Computes a hash code for the node pair, in the range [1, theUpperBound])#"  , py::arg("theNodePair"),  py::arg("theUpperBound"))
+        .def_static("IsEqual_s",
+                    (Standard_Boolean (*)(  const std::pair<Standard_Integer, Standard_Integer> & ,   const std::pair<Standard_Integer, Standard_Integer> &  ) ) static_cast<Standard_Boolean (*)(  const std::pair<Standard_Integer, Standard_Integer> & ,   const std::pair<Standard_Integer, Standard_Integer> &  ) >(&MeshVS_SymmetricPairHasher::IsEqual),
+                    R"#(None)#"  , py::arg("thePair1"),  py::arg("thePair2"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
     register_default_constructor<MeshVS_Tool , shared_ptr<MeshVS_Tool>>(m,"MeshVS_Tool");
 
     static_cast<py::class_<MeshVS_Tool , shared_ptr<MeshVS_Tool>  >>(m.attr("MeshVS_Tool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -988,11 +1048,40 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(Get an average of normals to non-planar polygon described by these points or compute normal of planar polygon. If the polygon isn't planar, function returns false)#"  , py::arg("Nodes"),  py::arg("Norm"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<MeshVS_TwoColors , shared_ptr<MeshVS_TwoColors>>(m,"MeshVS_TwoColors");
+
+    static_cast<py::class_<MeshVS_TwoColors , shared_ptr<MeshVS_TwoColors>  >>(m.attr("MeshVS_TwoColors"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<MeshVS_TwoNodes , shared_ptr<MeshVS_TwoNodes>  >>(m.attr("MeshVS_TwoNodes"))
+    // constructors
+        .def(py::init< Standard_Integer,Standard_Integer >()  , py::arg("aFirst")=static_cast<Standard_Integer>(0),  py::arg("aSecond")=static_cast<Standard_Integer>(0) )
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_DataSource3D ,opencascade::handle<MeshVS_DataSource3D> ,Py_MeshVS_DataSource3D , MeshVS_DataSource >>(m.attr("MeshVS_DataSource3D"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetPrismTopology",
              (opencascade::handle<MeshVS_HArray1OfSequenceOfInteger> (MeshVS_DataSource3D::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<MeshVS_HArray1OfSequenceOfInteger> (MeshVS_DataSource3D::*)( const Standard_Integer  ) const>(&MeshVS_DataSource3D::GetPrismTopology),
@@ -1019,12 +1108,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_DeformedDataSource ,opencascade::handle<MeshVS_DeformedDataSource>  , MeshVS_DataSource >>(m.attr("MeshVS_DeformedDataSource"))
+    // constructors
         .def(py::init< const opencascade::handle<MeshVS_DataSource> &,const Standard_Real >()  , py::arg("theNonDeformDS"),  py::arg("theMagnify") )
+    // custom constructors
     // methods
         .def("GetGeom",
              (Standard_Boolean (MeshVS_DeformedDataSource::*)( const Standard_Integer ,  const Standard_Boolean ,  NCollection_Array1<Standard_Real> & ,  Standard_Integer & ,  MeshVS_EntityType &  ) const) static_cast<Standard_Boolean (MeshVS_DeformedDataSource::*)( const Standard_Integer ,  const Standard_Boolean ,  NCollection_Array1<Standard_Real> & ,  Standard_Integer & ,  MeshVS_EntityType &  ) const>(&MeshVS_DeformedDataSource::GetGeom),
@@ -1084,12 +1175,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_ElementalColorPrsBuilder ,opencascade::handle<MeshVS_ElementalColorPrsBuilder>  , MeshVS_PrsBuilder >>(m.attr("MeshVS_ElementalColorPrsBuilder"))
+    // constructors
         .def(py::init< const opencascade::handle<MeshVS_Mesh> &,const MeshVS_DisplayModeFlags &,const opencascade::handle<MeshVS_DataSource> &,const Standard_Integer,const MeshVS_BuilderPriority & >()  , py::arg("Parent"),  py::arg("Flags")=static_cast<const MeshVS_DisplayModeFlags &>(MeshVS_DMF_ElementalColorDataPrs),  py::arg("DS")=static_cast<const opencascade::handle<MeshVS_DataSource> &>(0),  py::arg("Id")=static_cast<const Standard_Integer>(- 1),  py::arg("Priority")=static_cast<const MeshVS_BuilderPriority &>(MeshVS_BP_ElemColor) )
+    // custom constructors
     // methods
         .def("Build",
              (void (MeshVS_ElementalColorPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<void (MeshVS_ElementalColorPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const>(&MeshVS_ElementalColorPrsBuilder::Build),
@@ -1143,12 +1236,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_MeshPrsBuilder ,opencascade::handle<MeshVS_MeshPrsBuilder>  , MeshVS_PrsBuilder >>(m.attr("MeshVS_MeshPrsBuilder"))
+    // constructors
         .def(py::init< const opencascade::handle<MeshVS_Mesh> &,const MeshVS_DisplayModeFlags &,const opencascade::handle<MeshVS_DataSource> &,const Standard_Integer,const MeshVS_BuilderPriority & >()  , py::arg("Parent"),  py::arg("Flags")=static_cast<const MeshVS_DisplayModeFlags &>(MeshVS_DMF_OCCMask),  py::arg("DS")=static_cast<const opencascade::handle<MeshVS_DataSource> &>(0),  py::arg("Id")=static_cast<const Standard_Integer>(- 1),  py::arg("Priority")=static_cast<const MeshVS_BuilderPriority &>(MeshVS_BP_Mesh) )
+    // custom constructors
     // methods
         .def("Build",
              (void (MeshVS_MeshPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<void (MeshVS_MeshPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const>(&MeshVS_MeshPrsBuilder::Build),
@@ -1181,12 +1276,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     []( const opencascade::handle<MeshVS_HArray1OfSequenceOfInteger> & Topo,const Standard_Boolean AsPolygons,const Standard_Boolean IsSelect,const Standard_Integer NbNodes ){ Standard_Integer  Vertices; Standard_Integer  Bounds; MeshVS_MeshPrsBuilder::HowManyPrimitives(Topo,AsPolygons,IsSelect,NbNodes,Vertices,Bounds); return std::make_tuple(Vertices,Bounds); },
                     R"#(Calculate how many polygons or polylines are necessary to draw passed topology)#"  , py::arg("Topo"),  py::arg("AsPolygons"),  py::arg("IsSelect"),  py::arg("NbNodes"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_NodalColorPrsBuilder ,opencascade::handle<MeshVS_NodalColorPrsBuilder>  , MeshVS_PrsBuilder >>(m.attr("MeshVS_NodalColorPrsBuilder"))
+    // constructors
         .def(py::init< const opencascade::handle<MeshVS_Mesh> &,const MeshVS_DisplayModeFlags &,const opencascade::handle<MeshVS_DataSource> &,const Standard_Integer,const MeshVS_BuilderPriority & >()  , py::arg("Parent"),  py::arg("Flags")=static_cast<const MeshVS_DisplayModeFlags &>(MeshVS_DMF_NodalColorDataPrs),  py::arg("DS")=static_cast<const opencascade::handle<MeshVS_DataSource> &>(0),  py::arg("Id")=static_cast<const Standard_Integer>(- 1),  py::arg("Priority")=static_cast<const MeshVS_BuilderPriority &>(MeshVS_BP_NodalColor) )
+    // custom constructors
     // methods
         .def("Build",
              (void (MeshVS_NodalColorPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<void (MeshVS_NodalColorPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const>(&MeshVS_NodalColorPrsBuilder::Build),
@@ -1252,12 +1349,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_TextPrsBuilder ,opencascade::handle<MeshVS_TextPrsBuilder>  , MeshVS_PrsBuilder >>(m.attr("MeshVS_TextPrsBuilder"))
+    // constructors
         .def(py::init< const opencascade::handle<MeshVS_Mesh> &,const Standard_Real,const Quantity_Color &,const MeshVS_DisplayModeFlags &,const opencascade::handle<MeshVS_DataSource> &,const Standard_Integer,const MeshVS_BuilderPriority & >()  , py::arg("Parent"),  py::arg("Height"),  py::arg("Color"),  py::arg("Flags")=static_cast<const MeshVS_DisplayModeFlags &>(MeshVS_DMF_TextDataPrs),  py::arg("DS")=static_cast<const opencascade::handle<MeshVS_DataSource> &>(0),  py::arg("Id")=static_cast<const Standard_Integer>(- 1),  py::arg("Priority")=static_cast<const MeshVS_BuilderPriority &>(MeshVS_BP_Text) )
+    // custom constructors
     // methods
         .def("Build",
              (void (MeshVS_TextPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<void (MeshVS_TextPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const>(&MeshVS_TextPrsBuilder::Build),
@@ -1290,12 +1389,14 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MeshVS_VectorPrsBuilder ,opencascade::handle<MeshVS_VectorPrsBuilder>  , MeshVS_PrsBuilder >>(m.attr("MeshVS_VectorPrsBuilder"))
+    // constructors
         .def(py::init< const opencascade::handle<MeshVS_Mesh> &,const Standard_Real,const Quantity_Color &,const MeshVS_DisplayModeFlags &,const opencascade::handle<MeshVS_DataSource> &,const Standard_Integer,const MeshVS_BuilderPriority &,const Standard_Boolean >()  , py::arg("Parent"),  py::arg("MaxLength"),  py::arg("VectorColor"),  py::arg("Flags")=static_cast<const MeshVS_DisplayModeFlags &>(MeshVS_DMF_VectorDataPrs),  py::arg("DS")=static_cast<const opencascade::handle<MeshVS_DataSource> &>(0),  py::arg("Id")=static_cast<const Standard_Integer>(- 1),  py::arg("Priority")=static_cast<const MeshVS_BuilderPriority &>(MeshVS_BP_Vector),  py::arg("IsSimplePrs")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Build",
              (void (MeshVS_VectorPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const) static_cast<void (MeshVS_VectorPrsBuilder::*)( const opencascade::handle<Prs3d_Presentation> & ,  const TColStd_PackedMapOfInteger & ,  TColStd_PackedMapOfInteger & ,  const Standard_Boolean ,  const Standard_Integer  ) const>(&MeshVS_VectorPrsBuilder::Build),
@@ -1343,16 +1444,37 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/MeshVS_MapOfTwoNodes.hxx
-// ./opencascade/MeshVS_SensitiveQuad.hxx
+// ./opencascade/MeshVS_SensitiveSegment.hxx
+// ./opencascade/MeshVS_Buffer.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerBoolean.hxx
+// ./opencascade/MeshVS_SymmetricPairHasher.hxx
+// ./opencascade/MeshVS_DummySensitiveEntity.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerTwoColors.hxx
+// ./opencascade/MeshVS_SelectionModeFlags.hxx
+// ./opencascade/MeshVS_Drawer.hxx
+// ./opencascade/MeshVS_VectorPrsBuilder.hxx
+// ./opencascade/MeshVS_BuilderPriority.hxx
+// ./opencascade/MeshVS_HArray1OfSequenceOfInteger.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
+// ./opencascade/MeshVS_MeshPrsBuilder.hxx
+// ./opencascade/MeshVS_DataSource3D.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfTwoColorsMapOfInteger.hxx
+// ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerOwner.hxx
+// ./opencascade/MeshVS_Array1OfSequenceOfInteger.hxx
+// ./opencascade/MeshVS_DisplayModeFlags.hxx
+// ./opencascade/MeshVS_ElementalColorPrsBuilder.hxx
+// ./opencascade/MeshVS_TwoColorsHasher.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerMaterial.hxx
+// ./opencascade/MeshVS_DataSource.hxx
 // ./opencascade/MeshVS_TwoColors.hxx
     m.def("HashCode", 
-          (Standard_Integer (*)( const MeshVS_TwoColors & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const MeshVS_TwoColors & ,  const Standard_Integer  )>(&HashCode),
-          R"#(None)#"  , py::arg("theKey"),  py::arg("theUpper"));
+          (Standard_Integer (*)( const MeshVS_TwoColors & ,  Standard_Integer  ))  static_cast<Standard_Integer (*)( const MeshVS_TwoColors & ,  Standard_Integer  )>(&HashCode),
+          R"#(Computes a hash code for the key, in the range [1, theUpperBound])#"  , py::arg("theKey"),  py::arg("theUpperBound"));
     m.def("IsEqual", 
           (Standard_Boolean (*)( const MeshVS_TwoColors & ,  const MeshVS_TwoColors &  ))  static_cast<Standard_Boolean (*)( const MeshVS_TwoColors & ,  const MeshVS_TwoColors &  )>(&IsEqual),
           R"#(None)#"  , py::arg("K1"),  py::arg("K2"));
@@ -1365,86 +1487,65 @@ py::module m = static_cast<py::module>(main_module.attr("MeshVS"));
     m.def("ExtractColors", 
           (void (*)( MeshVS_TwoColors & ,  Quantity_Color & ,  Quantity_Color &  ))  static_cast<void (*)( MeshVS_TwoColors & ,  Quantity_Color & ,  Quantity_Color &  )>(&ExtractColors),
           R"#(None)#"  , py::arg(""),  py::arg(""),  py::arg(""));
-// ./opencascade/MeshVS_SymmetricPairHasher.hxx
-// ./opencascade/MeshVS_VectorPrsBuilder.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerMeshEntityOwner.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfColorMapOfInteger.hxx
-// ./opencascade/MeshVS_SequenceOfPrsBuilder.hxx
-// ./opencascade/MeshVS_SensitiveMesh.hxx
-// ./opencascade/MeshVS_Tool.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
-// ./opencascade/MeshVS_TextPrsBuilder.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerOwner.hxx
-// ./opencascade/MeshVS_DummySensitiveEntity.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerTwoColors.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerAsciiString.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerAsciiString.hxx
-// ./opencascade/MeshVS_DataSource3D.hxx
-// ./opencascade/MeshVS_DataMapOfColorMapOfInteger.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfHArray1OfSequenceOfInteger.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerMeshEntityOwner.hxx
-// ./opencascade/MeshVS_SensitivePolyhedron.hxx
-// ./opencascade/MeshVS_ElementalColorPrsBuilder.hxx
-// ./opencascade/MeshVS_SensitiveSegment.hxx
-// ./opencascade/MeshVS_DeformedDataSource.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
-// ./opencascade/MeshVS_PrsBuilder.hxx
-// ./opencascade/MeshVS_HArray1OfSequenceOfInteger.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerBoolean.hxx
-// ./opencascade/MeshVS_MapIteratorOfMapOfTwoNodes.hxx
-// ./opencascade/MeshVS_MeshSelectionMethod.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerMaterial.hxx
-// ./opencascade/MeshVS_Array1OfSequenceOfInteger.hxx
-// ./opencascade/MeshVS_DataSource.hxx
-// ./opencascade/MeshVS_MeshEntityOwner.hxx
-// ./opencascade/MeshVS_EntityType.hxx
-// ./opencascade/MeshVS_CommonSensitiveEntity.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
-// ./opencascade/MeshVS_Drawer.hxx
+// ./opencascade/MeshVS_NodalColorPrsBuilder.hxx
 // ./opencascade/MeshVS_SensitiveFace.hxx
 // ./opencascade/MeshVS_ColorHasher.hxx
-// ./opencascade/MeshVS_DisplayModeFlags.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfTwoColorsMapOfInteger.hxx
-// ./opencascade/MeshVS_BuilderPriority.hxx
-// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
-// ./opencascade/MeshVS_MeshOwner.hxx
+// ./opencascade/MeshVS_SequenceOfPrsBuilder.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerMeshEntityOwner.hxx
+// ./opencascade/MeshVS_DrawerAttribute.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
+// ./opencascade/MeshVS_CommonSensitiveEntity.hxx
+// ./opencascade/MeshVS_Mesh.hxx
+// ./opencascade/MeshVS_SensitiveMesh.hxx
+// ./opencascade/MeshVS_MapOfTwoNodes.hxx
+// ./opencascade/MeshVS_Tool.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerVector.hxx
+// ./opencascade/MeshVS_PrsBuilder.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerAsciiString.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerMeshEntityOwner.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerVector.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerColor.hxx
+// ./opencascade/MeshVS_DeformedDataSource.hxx
 // ./opencascade/MeshVS_DataMapOfHArray1OfSequenceOfInteger.hxx
+// ./opencascade/MeshVS_MeshEntityOwner.hxx
+// ./opencascade/MeshVS_MeshPtr.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerColor.hxx
+// ./opencascade/MeshVS_MapIteratorOfMapOfTwoNodes.hxx
+// ./opencascade/MeshVS_MeshSelectionMethod.hxx
+// ./opencascade/MeshVS_MeshOwner.hxx
+// ./opencascade/MeshVS_DataMapOfIntegerBoolean.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfColorMapOfInteger.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfHArray1OfSequenceOfInteger.hxx
+// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerOwner.hxx
+// ./opencascade/MeshVS_TwoNodesHasher.hxx
+// ./opencascade/MeshVS_DataMapOfTwoColorsMapOfInteger.hxx
 // ./opencascade/MeshVS_TwoNodes.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const MeshVS_TwoNodes & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const MeshVS_TwoNodes & ,  const Standard_Integer  )>(&HashCode),
-          R"#(None)#"  , py::arg("obj"),  py::arg("Upper"));
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerColor.hxx
-// ./opencascade/MeshVS_MeshPrsBuilder.hxx
-// ./opencascade/MeshVS_DrawerAttribute.hxx
-// ./opencascade/MeshVS_Buffer.hxx
-// ./opencascade/MeshVS_DataMapOfIntegerMaterial.hxx
-// ./opencascade/MeshVS_NodalColorPrsBuilder.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerOwner.hxx
-// ./opencascade/MeshVS_SelectionModeFlags.hxx
-// ./opencascade/MeshVS_DataMapIteratorOfDataMapOfIntegerVector.hxx
-// ./opencascade/MeshVS_TwoColorsHasher.hxx
-// ./opencascade/MeshVS_Mesh.hxx
-// ./opencascade/MeshVS_MeshPtr.hxx
-// ./opencascade/MeshVS_TwoNodesHasher.hxx
+          R"#(Computes a hash code for two nodes, in the range [1, theUpperBound])#"  , py::arg("theTwoNodes"),  py::arg("theUpperBound"));
+// ./opencascade/MeshVS_DataMapOfIntegerTwoColors.hxx
+// ./opencascade/MeshVS_SensitiveQuad.hxx
+// ./opencascade/MeshVS_SensitivePolyhedron.hxx
+// ./opencascade/MeshVS_TextPrsBuilder.hxx
+// ./opencascade/MeshVS_EntityType.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Map<MeshVS_TwoNodes, MeshVS_TwoNodesHasher>(m,"MeshVS_MapOfTwoNodes");  
-    register_template_NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder> >(m,"MeshVS_SequenceOfPrsBuilder");  
-    register_template_NCollection_DataMap<Standard_Integer, gp_Vec, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerVector");  
     register_template_NCollection_DataMap<Standard_Integer, TCollection_AsciiString, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerAsciiString");  
     register_template_NCollection_DataMap<Quantity_Color, TColStd_MapOfInteger, Quantity_ColorHasher>(m,"MeshVS_DataMapOfColorMapOfInteger");  
-    register_template_NCollection_DataMap<Standard_Integer, Quantity_Color, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerColor");  
-    register_template_NCollection_List<opencascade::handle<TColgp_HArray1OfPnt> >(m,"MeshVS_PolyhedronVerts");  
-    register_template_NCollection_DataMap<Standard_Integer, Standard_Boolean, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerBoolean");  
     register_template_NCollection_Array1<TColStd_SequenceOfInteger>(m,"MeshVS_Array1OfSequenceOfInteger");  
-    register_template_NCollection_DataMap<Standard_Integer, MeshVS_TwoColors, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerTwoColors");  
-    register_template_NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger, MeshVS_TwoColorsHasher>(m,"MeshVS_DataMapOfTwoColorsMapOfInteger");  
-    register_template_NCollection_DataMap<Standard_Integer, Graphic3d_MaterialAspect, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerMaterial");  
     register_template_NCollection_DefaultHasher<MeshVS_TwoColors>(m,"MeshVS_TwoColorsHasher");  
+    register_template_NCollection_Sequence<opencascade::handle<MeshVS_PrsBuilder> >(m,"MeshVS_SequenceOfPrsBuilder");  
+    register_template_NCollection_DataMap<Standard_Integer, Graphic3d_MaterialAspect, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerMaterial");  
+    register_template_NCollection_Map<MeshVS_TwoNodes, MeshVS_TwoNodesHasher>(m,"MeshVS_MapOfTwoNodes");  
+    register_template_NCollection_DataMap<Standard_Integer, gp_Vec, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerVector");  
+    register_template_NCollection_DataMap<Standard_Integer, Quantity_Color, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerColor");  
+    register_template_NCollection_DataMap<Standard_Integer, Standard_Boolean, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerBoolean");  
     register_template_NCollection_DefaultHasher<MeshVS_TwoNodes>(m,"MeshVS_TwoNodesHasher");  
+    register_template_NCollection_DataMap<MeshVS_TwoColors, TColStd_MapOfInteger, MeshVS_TwoColorsHasher>(m,"MeshVS_DataMapOfTwoColorsMapOfInteger");  
+    register_template_NCollection_DataMap<Standard_Integer, MeshVS_TwoColors, TColStd_MapIntegerHasher>(m,"MeshVS_DataMapOfIntegerTwoColors");  
+    register_template_NCollection_List<opencascade::handle<TColgp_HArray1OfPnt> >(m,"MeshVS_PolyhedronVerts");  
 
 
 // exceptions

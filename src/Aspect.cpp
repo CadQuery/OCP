@@ -13,12 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Aspect_IdentDefinitionError.hxx>
+#include <Aspect_DisplayConnection.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <Standard_NullValue.hxx>
 #include <Standard_NumericError.hxx>
-#include <Aspect_IdentDefinitionError.hxx>
-#include <Aspect_WindowDefinitionError.hxx>
-#include <Aspect_WindowError.hxx>
 #include <Standard_NegativeValue.hxx>
 #include <Standard_NullValue.hxx>
 #include <Standard_NumericError.hxx>
@@ -51,7 +50,10 @@ namespace py = pybind11;
 #include <Aspect_PolygonOffsetMode.hxx>
 #include <Aspect_RectangularGrid.hxx>
 #include <Aspect_RenderingContext.hxx>
+#include <Aspect_ScrollDelta.hxx>
 #include <Aspect_SequenceOfColor.hxx>
+#include <Aspect_Touch.hxx>
+#include <Aspect_TouchMap.hxx>
 #include <Aspect_TypeOfColorScaleData.hxx>
 #include <Aspect_TypeOfColorScaleOrientation.hxx>
 #include <Aspect_TypeOfColorScalePosition.hxx>
@@ -65,6 +67,8 @@ namespace py = pybind11;
 #include <Aspect_TypeOfStyleText.hxx>
 #include <Aspect_TypeOfTriedronPosition.hxx>
 #include <Aspect_Units.hxx>
+#include <Aspect_VKey.hxx>
+#include <Aspect_VKeyFlags.hxx>
 #include <Aspect_WidthOfLine.hxx>
 #include <Aspect_Window.hxx>
 #include <Aspect_WindowDefinitionError.hxx>
@@ -73,6 +77,8 @@ namespace py = pybind11;
 #include <Aspect_XWD.hxx>
 
 // template related includes
+// ./opencascade/Aspect_TouchMap.hxx
+#include "NCollection.hxx"
 // ./opencascade/Aspect_SequenceOfColor.hxx
 #include "NCollection.hxx"
 
@@ -95,6 +101,7 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
     public:
         using Aspect_Grid::Aspect_Grid;
         
+        
         // public pure virtual
         void Display() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Display,) };
         void Erase() const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Erase,) };
@@ -113,6 +120,7 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
     class Py_Aspect_Window : public Aspect_Window{
     public:
         using Aspect_Window::Aspect_Window;
+        
         
         // public pure virtual
         void Map() const  override { PYBIND11_OVERLOAD_PURE(void,Aspect_Window,Map,) };
@@ -137,6 +145,7 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
     public:
         using Aspect_CircularGrid::Aspect_CircularGrid;
         
+        
         // public pure virtual
         
         void Display() override { PYBIND11_OVERLOAD_PURE(void,Aspect_Grid,Display,) };
@@ -153,6 +162,7 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
     class Py_Aspect_RectangularGrid : public Aspect_RectangularGrid{
     public:
         using Aspect_RectangularGrid::Aspect_RectangularGrid;
+        
         
         // public pure virtual
         
@@ -172,8 +182,10 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
 
 
     static_cast<py::class_<Aspect_Background , shared_ptr<Aspect_Background>  >>(m.attr("Aspect_Background"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Quantity_Color & >()  , py::arg("AColor") )
+    // custom constructors
     // methods
         .def("SetColor",
              (void (Aspect_Background::*)( const Quantity_Color &  ) ) static_cast<void (Aspect_Background::*)( const Quantity_Color &  ) >(&Aspect_Background::SetColor),
@@ -185,14 +197,19 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_DisplayConnection ,opencascade::handle<Aspect_DisplayConnection>  , Standard_Transient >>(m.attr("Aspect_DisplayConnection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString & >()  , py::arg("theDisplayName") )
+    // custom constructors
     // methods
+        .def("IsOwnDisplay",
+             (Standard_Boolean (Aspect_DisplayConnection::*)() const) static_cast<Standard_Boolean (Aspect_DisplayConnection::*)() const>(&Aspect_DisplayConnection::IsOwnDisplay),
+             R"#(Returns TRUE if X Display has been allocated by this class)#" )
         .def("GetAtom",
              (Atom (Aspect_DisplayConnection::*)( const Aspect_XAtom  ) const) static_cast<Atom (Aspect_DisplayConnection::*)( const Aspect_XAtom  ) const>(&Aspect_DisplayConnection::GetAtom),
              R"#(Returns identifier(atom) for custom named property associated with windows that use current connection to X server.)#"  , py::arg("theAtom"))
@@ -209,13 +226,15 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_GenId , shared_ptr<Aspect_GenId>  >>(m.attr("Aspect_GenId"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLow"),  py::arg("theUpper") )
+    // custom constructors
     // methods
         .def("Free",
              (void (Aspect_GenId::*)() ) static_cast<void (Aspect_GenId::*)() >(&Aspect_GenId::Free),
@@ -235,6 +254,9 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("Next",
              (Standard_Integer (Aspect_GenId::*)() ) static_cast<Standard_Integer (Aspect_GenId::*)() >(&Aspect_GenId::Next),
              R"#(Returns the next available identifier. Warning: Raises IdentDefinitionError if all identifiers are busy.)#" )
+        .def("Next",
+             (Standard_Boolean (Aspect_GenId::*)( Standard_Integer &  ) ) static_cast<Standard_Boolean (Aspect_GenId::*)( Standard_Integer &  ) >(&Aspect_GenId::Next),
+             R"#(Generates the next available identifier.)#"  , py::arg("theId"))
         .def("Upper",
              (Standard_Integer (Aspect_GenId::*)() const) static_cast<Standard_Integer (Aspect_GenId::*)() const>(&Aspect_GenId::Upper),
              R"#(Returns the upper identifier in range.)#" )
@@ -242,11 +264,13 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_Grid ,opencascade::handle<Aspect_Grid> ,Py_Aspect_Grid , Standard_Transient >>(m.attr("Aspect_Grid"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_Grid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_Grid::*)() const>(&Aspect_Grid::DynamicType),
@@ -324,11 +348,52 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<Aspect_ScrollDelta , shared_ptr<Aspect_ScrollDelta>  >>(m.attr("Aspect_ScrollDelta"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const NCollection_Vec2<int> &,Standard_Real,Aspect_VKeyFlags >()  , py::arg("thePnt"),  py::arg("theValue"),  py::arg("theFlags")=static_cast<Aspect_VKeyFlags>(Aspect_VKeyFlags_NONE) )
+        .def(py::init< Standard_Real,Aspect_VKeyFlags >()  , py::arg("theValue"),  py::arg("theFlags")=static_cast<Aspect_VKeyFlags>(Aspect_VKeyFlags_NONE) )
+    // custom constructors
+    // methods
+        .def("HasPoint",
+             (bool (Aspect_ScrollDelta::*)() const) static_cast<bool (Aspect_ScrollDelta::*)() const>(&Aspect_ScrollDelta::HasPoint),
+             R"#(Return true if action has point defined.)#" )
+        .def("ResetPoint",
+             (void (Aspect_ScrollDelta::*)() ) static_cast<void (Aspect_ScrollDelta::*)() >(&Aspect_ScrollDelta::ResetPoint),
+             R"#(Reset at point.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<Aspect_Touch , shared_ptr<Aspect_Touch>  >>(m.attr("Aspect_Touch"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const NCollection_Vec2<Standard_Real> &,Standard_Boolean >()  , py::arg("thePnt"),  py::arg("theIsPreciseDevice") )
+        .def(py::init< Standard_Real,Standard_Real,Standard_Boolean >()  , py::arg("theX"),  py::arg("theY"),  py::arg("theIsPreciseDevice") )
+    // custom constructors
+    // methods
+        .def("Delta",
+             (NCollection_Vec2<Standard_Real> (Aspect_Touch::*)() const) static_cast<NCollection_Vec2<Standard_Real> (Aspect_Touch::*)() const>(&Aspect_Touch::Delta),
+             R"#(Return values delta.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_Window ,opencascade::handle<Aspect_Window> ,Py_Aspect_Window , Standard_Transient >>(m.attr("Aspect_Window"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetBackground",
              (void (Aspect_Window::*)( const Aspect_Background &  ) ) static_cast<void (Aspect_Window::*)( const Aspect_Background &  ) >(&Aspect_Window::SetBackground),
@@ -381,6 +446,12 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
         .def("NativeParentHandle",
              (Aspect_Drawable (Aspect_Window::*)() const) static_cast<Aspect_Drawable (Aspect_Window::*)() const>(&Aspect_Window::NativeParentHandle),
              R"#(Returns parent of native Window handle (HWND on Windows, Window with Xlib, and so on))#" )
+        .def("SetTitle",
+             (void (Aspect_Window::*)( const TCollection_AsciiString &  ) ) static_cast<void (Aspect_Window::*)( const TCollection_AsciiString &  ) >(&Aspect_Window::SetTitle),
+             R"#(Sets window title.)#"  , py::arg("theTitle"))
+        .def("InvalidateContent",
+             (void (Aspect_Window::*)( const opencascade::handle<Aspect_DisplayConnection> &  ) ) static_cast<void (Aspect_Window::*)( const opencascade::handle<Aspect_DisplayConnection> &  ) >(&Aspect_Window::InvalidateContent),
+             R"#(Invalidate entire window content.)#"  , py::arg("theDisp"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_Window::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_Window::*)() const>(&Aspect_Window::DynamicType),
              R"#(None)#" )
@@ -400,12 +471,14 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_CircularGrid ,opencascade::handle<Aspect_CircularGrid> ,Py_Aspect_CircularGrid , Aspect_Grid >>(m.attr("Aspect_CircularGrid"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("aRadiusStep"),  py::arg("aDivisionNumber"),  py::arg("XOrigin")=static_cast<const Standard_Real>(0),  py::arg("anYOrigin")=static_cast<const Standard_Real>(0),  py::arg("aRotationAngle")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_CircularGrid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_CircularGrid::*)() const>(&Aspect_CircularGrid::DynamicType),
@@ -441,13 +514,15 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_GradientBackground , shared_ptr<Aspect_GradientBackground>  , Aspect_Background >>(m.attr("Aspect_GradientBackground"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Quantity_Color &,const Quantity_Color &,const Aspect_GradientFillMethod >()  , py::arg("AColor1"),  py::arg("AColor2"),  py::arg("AMethod")=static_cast<const Aspect_GradientFillMethod>(Aspect_GFM_HOR) )
+    // custom constructors
     // methods
         .def("SetColors",
              (void (Aspect_GradientBackground::*)( const Quantity_Color & ,  const Quantity_Color & ,  const Aspect_GradientFillMethod  ) ) static_cast<void (Aspect_GradientBackground::*)( const Quantity_Color & ,  const Quantity_Color & ,  const Aspect_GradientFillMethod  ) >(&Aspect_GradientBackground::SetColors),
@@ -462,12 +537,14 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_NeutralWindow ,opencascade::handle<Aspect_NeutralWindow>  , Aspect_Window >>(m.attr("Aspect_NeutralWindow"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_NeutralWindow::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_NeutralWindow::*)() const>(&Aspect_NeutralWindow::DynamicType),
@@ -524,12 +601,14 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Aspect_RectangularGrid ,opencascade::handle<Aspect_RectangularGrid> ,Py_Aspect_RectangularGrid , Aspect_Grid >>(m.attr("Aspect_RectangularGrid"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("aXStep"),  py::arg("aYStep"),  py::arg("anXOrigin")=static_cast<const Standard_Real>(0),  py::arg("anYOrigin")=static_cast<const Standard_Real>(0),  py::arg("aFirstAngle")=static_cast<const Standard_Real>(0),  py::arg("aSecondAngle")=static_cast<const Standard_Real>(0),  py::arg("aRotationAngle")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Aspect_RectangularGrid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Aspect_RectangularGrid::*)() const>(&Aspect_RectangularGrid::DynamicType),
@@ -574,61 +653,70 @@ py::module m = static_cast<py::module>(main_module.attr("Aspect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Aspect_PolygonOffsetMode.hxx
 // ./opencascade/Aspect_InteriorStyle.hxx
-// ./opencascade/Aspect_TypeOfHighlightMethod.hxx
-// ./opencascade/Aspect_TypeOfFacingModel.hxx
-// ./opencascade/Aspect_DisplayConnection.hxx
-// ./opencascade/Aspect_FillMethod.hxx
-// ./opencascade/Aspect_SequenceOfColor.hxx
-// ./opencascade/Aspect_TypeOfColorScalePosition.hxx
-// ./opencascade/Aspect_TypeOfTriedronPosition.hxx
-// ./opencascade/Aspect_GridDrawMode.hxx
-// ./opencascade/Aspect_AspectMarkerDefinitionError.hxx
-// ./opencascade/Aspect_GradientBackground.hxx
+// ./opencascade/Aspect_WindowDefinitionError.hxx
+// ./opencascade/Aspect_RenderingContext.hxx
 // ./opencascade/Aspect_Grid.hxx
-// ./opencascade/Aspect_WidthOfLine.hxx
-// ./opencascade/Aspect_XWD.hxx
-// ./opencascade/Aspect_GradientFillMethod.hxx
-// ./opencascade/Aspect_NeutralWindow.hxx
-// ./opencascade/Aspect_TypeOfLine.hxx
-// ./opencascade/Aspect_CircularGrid.hxx
 // ./opencascade/Aspect_TypeOfResize.hxx
 // ./opencascade/Aspect_XAtom.hxx
-// ./opencascade/Aspect_TypeOfColorScaleData.hxx
-// ./opencascade/Aspect_RenderingContext.hxx
-// ./opencascade/Aspect_GraphicDeviceDefinitionError.hxx
-// ./opencascade/Aspect_DisplayConnectionDefinitionError.hxx
-// ./opencascade/Aspect_Units.hxx
-// ./opencascade/Aspect_Drawable.hxx
-// ./opencascade/Aspect_WindowError.hxx
-// ./opencascade/Aspect_WindowDefinitionError.hxx
-// ./opencascade/Aspect_AspectFillAreaDefinitionError.hxx
-// ./opencascade/Aspect_Handle.hxx
-// ./opencascade/Aspect_TypeOfMarker.hxx
-// ./opencascade/Aspect_TypeOfDeflection.hxx
-// ./opencascade/Aspect_IdentDefinitionError.hxx
-// ./opencascade/Aspect_HatchStyle.hxx
-// ./opencascade/Aspect_TypeOfDisplayText.hxx
 // ./opencascade/Aspect_GenId.hxx
-// ./opencascade/Aspect_Display.hxx
+// ./opencascade/Aspect_HatchStyle.hxx
 // ./opencascade/Aspect_TypeOfStyleText.hxx
-// ./opencascade/Aspect_Window.hxx
-// ./opencascade/Aspect_Convert.hxx
-// ./opencascade/Aspect_Background.hxx
-// ./opencascade/Aspect_AspectLineDefinitionError.hxx
+// ./opencascade/Aspect_TypeOfLine.hxx
+// ./opencascade/Aspect_Display.hxx
+// ./opencascade/Aspect_TouchMap.hxx
+// ./opencascade/Aspect_TypeOfTriedronPosition.hxx
+// ./opencascade/Aspect_AspectMarkerDefinitionError.hxx
+// ./opencascade/Aspect_TypeOfFacingModel.hxx
+// ./opencascade/Aspect_XWD.hxx
+// ./opencascade/Aspect_GradientBackground.hxx
+// ./opencascade/Aspect_VKey.hxx
+    m.def("Aspect_VKey2Modifier", 
+          (Aspect_VKeyFlags (*)( Aspect_VKey  ))  static_cast<Aspect_VKeyFlags (*)( Aspect_VKey  )>(&Aspect_VKey2Modifier),
+          R"#(Return modifier flags for specified modifier key.)#"  , py::arg("theKey"));
+// ./opencascade/Aspect_WindowError.hxx
+// ./opencascade/Aspect_PolygonOffsetMode.hxx
+// ./opencascade/Aspect_VKeyFlags.hxx
 // ./opencascade/Aspect_FBConfig.hxx
-// ./opencascade/Aspect_TypeOfColorScaleOrientation.hxx
-// ./opencascade/Aspect_RectangularGrid.hxx
 // ./opencascade/Aspect_GridType.hxx
+// ./opencascade/Aspect_IdentDefinitionError.hxx
+// ./opencascade/Aspect_TypeOfColorScalePosition.hxx
+// ./opencascade/Aspect_SequenceOfColor.hxx
+// ./opencascade/Aspect_Convert.hxx
+// ./opencascade/Aspect_AspectLineDefinitionError.hxx
+// ./opencascade/Aspect_GradientFillMethod.hxx
+// ./opencascade/Aspect_TypeOfMarker.hxx
+// ./opencascade/Aspect_DisplayConnectionDefinitionError.hxx
+// ./opencascade/Aspect_AspectFillAreaDefinitionError.hxx
+// ./opencascade/Aspect_Background.hxx
+// ./opencascade/Aspect_GraphicDeviceDefinitionError.hxx
+// ./opencascade/Aspect_TypeOfDeflection.hxx
+// ./opencascade/Aspect_GridDrawMode.hxx
+// ./opencascade/Aspect_DisplayConnection.hxx
+// ./opencascade/Aspect_NeutralWindow.hxx
+// ./opencascade/Aspect_Window.hxx
+// ./opencascade/Aspect_RectangularGrid.hxx
+// ./opencascade/Aspect_TypeOfDisplayText.hxx
+// ./opencascade/Aspect_Units.hxx
+// ./opencascade/Aspect_FillMethod.hxx
+// ./opencascade/Aspect_TypeOfColorScaleOrientation.hxx
+// ./opencascade/Aspect_TypeOfColorScaleData.hxx
+// ./opencascade/Aspect_Handle.hxx
+// ./opencascade/Aspect_WidthOfLine.hxx
+// ./opencascade/Aspect_Touch.hxx
+// ./opencascade/Aspect_ScrollDelta.hxx
+// ./opencascade/Aspect_TypeOfHighlightMethod.hxx
+// ./opencascade/Aspect_Drawable.hxx
+// ./opencascade/Aspect_CircularGrid.hxx
 
 // operators
 
 // register typdefs
+    register_template_NCollection_IndexedDataMap<Standard_Size, Aspect_Touch>(m,"Aspect_TouchMap");  
     register_template_NCollection_Sequence<Quantity_Color>(m,"Aspect_SequenceOfColor");  
 
 

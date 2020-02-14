@@ -13,6 +13,15 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <gp_Pnt.hxx>
+#include <gp_XYZ.hxx>
+#include <Intf_Polygon2d.hxx>
+#include <Intf_SectionPoint.hxx>
+#include <Intf_SectionLine.hxx>
+#include <Intf_TangentZone.hxx>
+#include <Intf_Interference.hxx>
+#include <Intf_Tool.hxx>
+#include <Intf_InterferencePolygon2d.hxx>
 #include <Standard_OutOfRange.hxx>
 #include <gp_Lin2d.hxx>
 #include <Bnd_Box2d.hxx>
@@ -23,15 +32,6 @@ namespace py = pybind11;
 #include <gp_Hypr.hxx>
 #include <gp_Parab.hxx>
 #include <Intf_Polygon2d.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_XYZ.hxx>
-#include <Intf_Polygon2d.hxx>
-#include <Intf_SectionPoint.hxx>
-#include <Intf_SectionLine.hxx>
-#include <Intf_TangentZone.hxx>
-#include <Intf_Interference.hxx>
-#include <Intf_Tool.hxx>
-#include <Intf_InterferencePolygon2d.hxx>
 
 // module includes
 #include <Intf.hxx>
@@ -51,11 +51,11 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/Intf_SeqOfSectionLine.hxx
 #include "NCollection.hxx"
-// ./opencascade/Intf_SeqOfTangentZone.hxx
+// ./opencascade/Intf_Array1OfLin.hxx
 #include "NCollection.hxx"
 // ./opencascade/Intf_SeqOfSectionPoint.hxx
 #include "NCollection.hxx"
-// ./opencascade/Intf_Array1OfLin.hxx
+// ./opencascade/Intf_SeqOfTangentZone.hxx
 #include "NCollection.hxx"
 
 
@@ -76,6 +76,7 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     public:
         using Intf_Polygon2d::Intf_Polygon2d;
         
+        
         // public pure virtual
         Standard_Real DeflectionOverEstimation() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Intf_Polygon2d,DeflectionOverEstimation,) };
         Standard_Integer NbSegments() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Intf_Polygon2d,NbSegments,) };
@@ -91,9 +92,12 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Intf , shared_ptr<Intf>>(m,"Intf");
 
     static_cast<py::class_<Intf , shared_ptr<Intf>  >>(m.attr("Intf"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -105,11 +109,13 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
                     []( const gp_Pnt & P1,const gp_Pnt & P2,const gp_Pnt & P3,gp_XYZ & NormalVector ){ Standard_Real  PolarDistance; Intf::PlaneEquation(P1,P2,P3,NormalVector,PolarDistance); return std::make_tuple(PolarDistance); },
                     R"#(Computes the interference between two polygons in 2d. Result : points of intersections and zones of tangence. Computes the interference between a polygon or a straight line and a polyhedron. Points of intersection and zones of tangence. Give the plane equation of the triangle <P1> <P2> <P3>.)#"  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("NormalVector"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intf_Interference , shared_ptr_nodelete<Intf_Interference>  >>(m.attr("Intf_Interference"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbSectionPoints",
              (Standard_Integer (Intf_Interference::*)() const) static_cast<Standard_Integer (Intf_Interference::*)() const>(&Intf_Interference::NbSectionPoints),
@@ -169,11 +175,13 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intf_Polygon2d , shared_ptr<Intf_Polygon2d> ,Py_Intf_Polygon2d >>(m.attr("Intf_Polygon2d"))
+    // constructors
+    // custom constructors
     // methods
         .def("Bounding",
              (const Bnd_Box2d & (Intf_Polygon2d::*)() const) static_cast<const Bnd_Box2d & (Intf_Polygon2d::*)() const>(&Intf_Polygon2d::Bounding),
@@ -197,13 +205,15 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intf_SectionLine , shared_ptr<Intf_SectionLine>  >>(m.attr("Intf_SectionLine"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Intf_SectionLine & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("NumberOfPoints",
              (Standard_Integer (Intf_SectionLine::*)() const) static_cast<Standard_Integer (Intf_SectionLine::*)() const>(&Intf_SectionLine::NumberOfPoints),
@@ -251,14 +261,16 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intf_SectionPoint , shared_ptr<Intf_SectionPoint>  >>(m.attr("Intf_SectionPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Intf_PIType,const Standard_Integer,const Standard_Integer,const Standard_Real,const Intf_PIType,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("Where"),  py::arg("DimeO"),  py::arg("AddrO1"),  py::arg("AddrO2"),  py::arg("ParamO"),  py::arg("DimeT"),  py::arg("AddrT1"),  py::arg("AddrT2"),  py::arg("ParamT"),  py::arg("Incid") )
         .def(py::init< const gp_Pnt2d &,const Intf_PIType,const Standard_Integer,const Standard_Real,const Intf_PIType,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("Where"),  py::arg("DimeO"),  py::arg("AddrO1"),  py::arg("ParamO"),  py::arg("DimeT"),  py::arg("AddrT1"),  py::arg("ParamT"),  py::arg("Incid") )
+    // custom constructors
     // methods
         .def("Pnt",
              (const gp_Pnt & (Intf_SectionPoint::*)() const) static_cast<const gp_Pnt & (Intf_SectionPoint::*)() const>(&Intf_SectionPoint::Pnt),
@@ -321,13 +333,15 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intf_TangentZone , shared_ptr<Intf_TangentZone>  >>(m.attr("Intf_TangentZone"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Intf_TangentZone & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("NumberOfPoints",
              (Standard_Integer (Intf_TangentZone::*)() const) static_cast<Standard_Integer (Intf_TangentZone::*)() const>(&Intf_TangentZone::NumberOfPoints),
@@ -393,12 +407,14 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intf_Tool , shared_ptr<Intf_Tool>  >>(m.attr("Intf_Tool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Lin2dBox",
              (void (Intf_Tool::*)( const gp_Lin2d & ,  const Bnd_Box2d & ,  Bnd_Box2d &  ) ) static_cast<void (Intf_Tool::*)( const gp_Lin2d & ,  const Bnd_Box2d & ,  Bnd_Box2d &  ) >(&Intf_Tool::Lin2dBox),
@@ -431,14 +447,16 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Intf_InterferencePolygon2d , shared_ptr<Intf_InterferencePolygon2d>  , Intf_Interference >>(m.attr("Intf_InterferencePolygon2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Intf_Polygon2d &,const Intf_Polygon2d & >()  , py::arg("Obje1"),  py::arg("Obje2") )
         .def(py::init< const Intf_Polygon2d & >()  , py::arg("Obje") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Intf_InterferencePolygon2d::*)( const Intf_Polygon2d & ,  const Intf_Polygon2d &  ) ) static_cast<void (Intf_InterferencePolygon2d::*)( const Intf_Polygon2d & ,  const Intf_Polygon2d &  ) >(&Intf_InterferencePolygon2d::Perform),
@@ -453,31 +471,31 @@ py::module m = static_cast<py::module>(main_module.attr("Intf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/Intf.hxx
 // ./opencascade/Intf_SeqOfSectionLine.hxx
-// ./opencascade/Intf_SeqOfTangentZone.hxx
-// ./opencascade/Intf_SeqOfSectionPoint.hxx
+// ./opencascade/Intf_SectionPoint.hxx
+// ./opencascade/Intf_Interference.hxx
 // ./opencascade/Intf_PIType.hxx
 // ./opencascade/Intf_Array1OfLin.hxx
-// ./opencascade/Intf_SectionLine.hxx
-// ./opencascade/Intf_Polygon2d.hxx
-// ./opencascade/Intf_Interference.hxx
-// ./opencascade/Intf_TangentZone.hxx
+// ./opencascade/Intf_SeqOfSectionPoint.hxx
 // ./opencascade/Intf_Tool.hxx
+// ./opencascade/Intf_Polygon2d.hxx
+// ./opencascade/Intf_TangentZone.hxx
 // ./opencascade/Intf_InterferencePolygon2d.hxx
-// ./opencascade/Intf_SectionPoint.hxx
-// ./opencascade/Intf.hxx
+// ./opencascade/Intf_SectionLine.hxx
+// ./opencascade/Intf_SeqOfTangentZone.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_Sequence<Intf_SectionLine>(m,"Intf_SeqOfSectionLine");  
-    register_template_NCollection_Sequence<Intf_TangentZone>(m,"Intf_SeqOfTangentZone");  
-    register_template_NCollection_Sequence<Intf_SectionPoint>(m,"Intf_SeqOfSectionPoint");  
     register_template_NCollection_Array1<gp_Lin>(m,"Intf_Array1OfLin");  
+    register_template_NCollection_Sequence<Intf_SectionPoint>(m,"Intf_SeqOfSectionPoint");  
+    register_template_NCollection_Sequence<Intf_TangentZone>(m,"Intf_SeqOfTangentZone");  
 
 
 // exceptions

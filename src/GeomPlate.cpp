@@ -13,31 +13,32 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <GeomPlate_Surface.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <AdvApp2Var_Criterion.hxx>
+#include <AdvApp2Var_Patch.hxx>
+#include <AdvApp2Var_Context.hxx>
 #include <Geom_Plane.hxx>
 #include <Geom_Line.hxx>
+#include <AdvApp2Var_Patch.hxx>
+#include <AdvApp2Var_Context.hxx>
+#include <Adaptor3d_HCurveOnSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Law_Function.hxx>
+#include <GeomPlate_BuildAveragePlane.hxx>
+#include <Geom_Surface.hxx>
+#include <GeomPlate_Surface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Message_ProgressIndicator.hxx>
+#include <Geom_Surface.hxx>
 #include <Geom_UndefinedDerivative.hxx>
 #include <Geom_UndefinedValue.hxx>
 #include <gp_Trsf.hxx>
 #include <gp_GTrsf2d.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
-#include <Geom_Surface.hxx>
-#include <GeomPlate_Surface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HCurveOnSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Law_Function.hxx>
-#include <AdvApp2Var_Patch.hxx>
-#include <AdvApp2Var_Context.hxx>
-#include <GeomPlate_Surface.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <AdvApp2Var_Criterion.hxx>
-#include <GeomPlate_BuildAveragePlane.hxx>
-#include <AdvApp2Var_Patch.hxx>
-#include <AdvApp2Var_Context.hxx>
-#include <Geom_Surface.hxx>
 
 // module includes
 #include <GeomPlate_Aij.hxx>
@@ -60,15 +61,15 @@ namespace py = pybind11;
 #include <GeomPlate_Surface.hxx>
 
 // template related includes
-// ./opencascade/GeomPlate_Array1OfHCurve.hxx
-#include "NCollection.hxx"
-// ./opencascade/GeomPlate_SequenceOfCurveConstraint.hxx
+// ./opencascade/GeomPlate_Array1OfSequenceOfReal.hxx
 #include "NCollection.hxx"
 // ./opencascade/GeomPlate_SequenceOfAij.hxx
 #include "NCollection.hxx"
-// ./opencascade/GeomPlate_SequenceOfPointConstraint.hxx
+// ./opencascade/GeomPlate_SequenceOfCurveConstraint.hxx
 #include "NCollection.hxx"
-// ./opencascade/GeomPlate_Array1OfSequenceOfReal.hxx
+// ./opencascade/GeomPlate_Array1OfHCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/GeomPlate_SequenceOfPointConstraint.hxx
 #include "NCollection.hxx"
 
 
@@ -90,20 +91,24 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
 
 
     static_cast<py::class_<GeomPlate_Aij , shared_ptr<GeomPlate_Aij>  >>(m.attr("GeomPlate_Aij"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const gp_Vec & >()  , py::arg("anInd1"),  py::arg("anInd2"),  py::arg("aVec") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_BuildAveragePlane , shared_ptr<GeomPlate_BuildAveragePlane>  >>(m.attr("GeomPlate_BuildAveragePlane"))
+    // constructors
         .def(py::init< const opencascade::handle<TColgp_HArray1OfPnt> &,const Standard_Integer,const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("Pts"),  py::arg("NbBoundPoints"),  py::arg("Tol"),  py::arg("POption"),  py::arg("NOption") )
         .def(py::init<  const NCollection_Sequence<gp_Vec> &,const opencascade::handle<TColgp_HArray1OfPnt> & >()  , py::arg("Normals"),  py::arg("Pts") )
+    // custom constructors
     // methods
         .def("Plane",
              (opencascade::handle<Geom_Plane> (GeomPlate_BuildAveragePlane::*)() const) static_cast<opencascade::handle<Geom_Plane> (GeomPlate_BuildAveragePlane::*)() const>(&GeomPlate_BuildAveragePlane::Plane),
@@ -127,14 +132,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#"  , py::arg("NewNormals"),  py::arg("Normals"),  py::arg("Bset"),  py::arg("LinTol"),  py::arg("AngTol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_BuildPlateSurface , shared_ptr<GeomPlate_BuildPlateSurface>  >>(m.attr("GeomPlate_BuildPlateSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<TColStd_HArray1OfInteger> &,const opencascade::handle<GeomPlate_HArray1OfHCurve> &,const opencascade::handle<TColStd_HArray1OfInteger> &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("NPoints"),  py::arg("TabCurve"),  py::arg("Tang"),  py::arg("Degree"),  py::arg("NbIter")=static_cast<const Standard_Integer>(3),  py::arg("Tol2d")=static_cast<const Standard_Real>(0.00001),  py::arg("Tol3d")=static_cast<const Standard_Real>(0.0001),  py::arg("TolAng")=static_cast<const Standard_Real>(0.01),  py::arg("TolCurv")=static_cast<const Standard_Real>(0.1),  py::arg("Anisotropie")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Surf"),  py::arg("Degree")=static_cast<const Standard_Integer>(3),  py::arg("NbPtsOnCur")=static_cast<const Standard_Integer>(10),  py::arg("NbIter")=static_cast<const Standard_Integer>(3),  py::arg("Tol2d")=static_cast<const Standard_Real>(0.00001),  py::arg("Tol3d")=static_cast<const Standard_Real>(0.0001),  py::arg("TolAng")=static_cast<const Standard_Real>(0.01),  py::arg("TolCurv")=static_cast<const Standard_Real>(0.1),  py::arg("Anisotropie")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Degree")=static_cast<const Standard_Integer>(3),  py::arg("NbPtsOnCur")=static_cast<const Standard_Integer>(10),  py::arg("NbIter")=static_cast<const Standard_Integer>(3),  py::arg("Tol2d")=static_cast<const Standard_Real>(0.00001),  py::arg("Tol3d")=static_cast<const Standard_Real>(0.0001),  py::arg("TolAng")=static_cast<const Standard_Real>(0.01),  py::arg("TolCurv")=static_cast<const Standard_Real>(0.1),  py::arg("Anisotropie")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomPlate_BuildPlateSurface::*)() ) static_cast<void (GeomPlate_BuildPlateSurface::*)() >(&GeomPlate_BuildPlateSurface::Init),
@@ -152,8 +159,8 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
              (void (GeomPlate_BuildPlateSurface::*)( const opencascade::handle<GeomPlate_PointConstraint> &  ) ) static_cast<void (GeomPlate_BuildPlateSurface::*)( const opencascade::handle<GeomPlate_PointConstraint> &  ) >(&GeomPlate_BuildPlateSurface::Add),
              R"#(Adds the point constraint cont.)#"  , py::arg("Cont"))
         .def("Perform",
-             (void (GeomPlate_BuildPlateSurface::*)() ) static_cast<void (GeomPlate_BuildPlateSurface::*)() >(&GeomPlate_BuildPlateSurface::Perform),
-             R"#(Calls the algorithm and computes the plate surface using the loaded constraints. If no initial surface is given, the algorithm automatically computes one. Exceptions Standard_RangeError if the value of the constraint is null or if plate is not done.)#" )
+             (void (GeomPlate_BuildPlateSurface::*)( const opencascade::handle<Message_ProgressIndicator> &  ) ) static_cast<void (GeomPlate_BuildPlateSurface::*)( const opencascade::handle<Message_ProgressIndicator> &  ) >(&GeomPlate_BuildPlateSurface::Perform),
+             R"#(Calls the algorithm and computes the plate surface using the loaded constraints. If no initial surface is given, the algorithm automatically computes one. Exceptions Standard_RangeError if the value of the constraint is null or if plate is not done.)#"  , py::arg("aProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
         .def("CurveConstraint",
              (opencascade::handle<GeomPlate_CurveConstraint> (GeomPlate_BuildPlateSurface::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<GeomPlate_CurveConstraint> (GeomPlate_BuildPlateSurface::*)( const Standard_Integer  ) const>(&GeomPlate_BuildPlateSurface::CurveConstraint),
              R"#(returns the CurveConstraints of order order)#"  , py::arg("order"))
@@ -206,13 +213,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_CurveConstraint ,opencascade::handle<GeomPlate_CurveConstraint>  , Standard_Transient >>(m.attr("GeomPlate_CurveConstraint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Boundary"),  py::arg("Order"),  py::arg("NPt")=static_cast<const Standard_Integer>(10),  py::arg("TolDist")=static_cast<const Standard_Real>(0.0001),  py::arg("TolAng")=static_cast<const Standard_Real>(0.01),  py::arg("TolCurv")=static_cast<const Standard_Real>(0.1) )
+    // custom constructors
     // methods
         .def("SetOrder",
              (void (GeomPlate_CurveConstraint::*)( const Standard_Integer  ) ) static_cast<void (GeomPlate_CurveConstraint::*)( const Standard_Integer  ) >(&GeomPlate_CurveConstraint::SetOrder),
@@ -293,14 +302,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_HArray1OfHCurve ,opencascade::handle<GeomPlate_HArray1OfHCurve>  , GeomPlate_Array1OfHCurve , Standard_Transient >>(m.attr("GeomPlate_HArray1OfHCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Adaptor3d_HCurve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const GeomPlate_Array1OfHCurve & (GeomPlate_HArray1OfHCurve::*)() const) static_cast<const GeomPlate_Array1OfHCurve & (GeomPlate_HArray1OfHCurve::*)() const>(&GeomPlate_HArray1OfHCurve::Array1),
@@ -321,14 +333,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_HArray1OfSequenceOfReal ,opencascade::handle<GeomPlate_HArray1OfSequenceOfReal>  , GeomPlate_Array1OfSequenceOfReal , Standard_Transient >>(m.attr("GeomPlate_HArray1OfSequenceOfReal"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const NCollection_Sequence<double> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TColStd_SequenceOfReal> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const GeomPlate_Array1OfSequenceOfReal & (GeomPlate_HArray1OfSequenceOfReal::*)() const) static_cast<const GeomPlate_Array1OfSequenceOfReal & (GeomPlate_HArray1OfSequenceOfReal::*)() const>(&GeomPlate_HArray1OfSequenceOfReal::Array1),
@@ -349,13 +364,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_HSequenceOfCurveConstraint ,opencascade::handle<GeomPlate_HSequenceOfCurveConstraint>  , GeomPlate_SequenceOfCurveConstraint , Standard_Transient >>(m.attr("GeomPlate_HSequenceOfCurveConstraint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<GeomPlate_CurveConstraint> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const GeomPlate_SequenceOfCurveConstraint & (GeomPlate_HSequenceOfCurveConstraint::*)() const) static_cast<const GeomPlate_SequenceOfCurveConstraint & (GeomPlate_HSequenceOfCurveConstraint::*)() const>(&GeomPlate_HSequenceOfCurveConstraint::Sequence),
@@ -382,13 +399,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_HSequenceOfPointConstraint ,opencascade::handle<GeomPlate_HSequenceOfPointConstraint>  , GeomPlate_SequenceOfPointConstraint , Standard_Transient >>(m.attr("GeomPlate_HSequenceOfPointConstraint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<GeomPlate_PointConstraint> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const GeomPlate_SequenceOfPointConstraint & (GeomPlate_HSequenceOfPointConstraint::*)() const) static_cast<const GeomPlate_SequenceOfPointConstraint & (GeomPlate_HSequenceOfPointConstraint::*)() const>(&GeomPlate_HSequenceOfPointConstraint::Sequence),
@@ -415,13 +434,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_MakeApprox , shared_ptr<GeomPlate_MakeApprox>  >>(m.attr("GeomPlate_MakeApprox"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomPlate_Surface> &,const AdvApp2Var_Criterion &,const Standard_Real,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("SurfPlate"),  py::arg("PlateCrit"),  py::arg("Tol3d"),  py::arg("Nbmax"),  py::arg("dgmax"),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C1),  py::arg("EnlargeCoeff")=static_cast<const Standard_Real>(1.1) )
         .def(py::init< const opencascade::handle<GeomPlate_Surface> &,const Standard_Real,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("SurfPlate"),  py::arg("Tol3d"),  py::arg("Nbmax"),  py::arg("dgmax"),  py::arg("dmax"),  py::arg("CritOrder")=static_cast<const Standard_Integer>(0),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C1),  py::arg("EnlargeCoeff")=static_cast<const Standard_Real>(1.1) )
+    // custom constructors
     // methods
         .def("Surface",
              (opencascade::handle<Geom_BSplineSurface> (GeomPlate_MakeApprox::*)() const) static_cast<opencascade::handle<Geom_BSplineSurface> (GeomPlate_MakeApprox::*)() const>(&GeomPlate_MakeApprox::Surface),
@@ -436,12 +457,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_PlateG0Criterion , shared_ptr<GeomPlate_PlateG0Criterion>  , AdvApp2Var_Criterion >>(m.attr("GeomPlate_PlateG0Criterion"))
+    // constructors
         .def(py::init<  const NCollection_Sequence<gp_XY> &, const NCollection_Sequence<gp_XYZ> &,const Standard_Real,const AdvApp2Var_CriterionType,const AdvApp2Var_CriterionRepartition >()  , py::arg("Data"),  py::arg("G0Data"),  py::arg("Maximum"),  py::arg("Type")=static_cast<const AdvApp2Var_CriterionType>(AdvApp2Var_Absolute),  py::arg("Repart")=static_cast<const AdvApp2Var_CriterionRepartition>(AdvApp2Var_Regular) )
+    // custom constructors
     // methods
         .def("Value",
              (void (GeomPlate_PlateG0Criterion::*)( AdvApp2Var_Patch & ,  const AdvApp2Var_Context &  ) const) static_cast<void (GeomPlate_PlateG0Criterion::*)( AdvApp2Var_Patch & ,  const AdvApp2Var_Context &  ) const>(&GeomPlate_PlateG0Criterion::Value),
@@ -453,12 +476,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_PlateG1Criterion , shared_ptr<GeomPlate_PlateG1Criterion>  , AdvApp2Var_Criterion >>(m.attr("GeomPlate_PlateG1Criterion"))
+    // constructors
         .def(py::init<  const NCollection_Sequence<gp_XY> &, const NCollection_Sequence<gp_XYZ> &,const Standard_Real,const AdvApp2Var_CriterionType,const AdvApp2Var_CriterionRepartition >()  , py::arg("Data"),  py::arg("G1Data"),  py::arg("Maximum"),  py::arg("Type")=static_cast<const AdvApp2Var_CriterionType>(AdvApp2Var_Absolute),  py::arg("Repart")=static_cast<const AdvApp2Var_CriterionRepartition>(AdvApp2Var_Regular) )
+    // custom constructors
     // methods
         .def("Value",
              (void (GeomPlate_PlateG1Criterion::*)( AdvApp2Var_Patch & ,  const AdvApp2Var_Context &  ) const) static_cast<void (GeomPlate_PlateG1Criterion::*)( AdvApp2Var_Patch & ,  const AdvApp2Var_Context &  ) const>(&GeomPlate_PlateG1Criterion::Value),
@@ -470,13 +495,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_PointConstraint ,opencascade::handle<GeomPlate_PointConstraint>  , Standard_Transient >>(m.attr("GeomPlate_PointConstraint"))
+    // constructors
         .def(py::init< const gp_Pnt &,const Standard_Integer,const Standard_Real >()  , py::arg("Pt"),  py::arg("Order"),  py::arg("TolDist")=static_cast<const Standard_Real>(0.0001) )
         .def(py::init< const Standard_Real,const Standard_Real,const opencascade::handle<Geom_Surface> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("U"),  py::arg("V"),  py::arg("Surf"),  py::arg("Order"),  py::arg("TolDist")=static_cast<const Standard_Real>(0.0001),  py::arg("TolAng")=static_cast<const Standard_Real>(0.01),  py::arg("TolCurv")=static_cast<const Standard_Real>(0.1) )
+    // custom constructors
     // methods
         .def("SetOrder",
              (void (GeomPlate_PointConstraint::*)( const Standard_Integer  ) ) static_cast<void (GeomPlate_PointConstraint::*)( const Standard_Integer  ) >(&GeomPlate_PointConstraint::SetOrder),
@@ -536,12 +563,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomPlate_Surface ,opencascade::handle<GeomPlate_Surface>  , Geom_Surface >>(m.attr("GeomPlate_Surface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Plate_Plate & >()  , py::arg("Surfinit"),  py::arg("Surfinter") )
+    // custom constructors
     // methods
         .def("UReverse",
              (void (GeomPlate_Surface::*)() ) static_cast<void (GeomPlate_Surface::*)() >(&GeomPlate_Surface::UReverse),
@@ -643,37 +672,37 @@ py::module m = static_cast<py::module>(main_module.attr("GeomPlate"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomPlate_HSequenceOfPointConstraint.hxx
-// ./opencascade/GeomPlate_BuildAveragePlane.hxx
-// ./opencascade/GeomPlate_Surface.hxx
-// ./opencascade/GeomPlate_BuildPlateSurface.hxx
-// ./opencascade/GeomPlate_CurveConstraint.hxx
-// ./opencascade/GeomPlate_PlateG1Criterion.hxx
-// ./opencascade/GeomPlate_Array1OfHCurve.hxx
-// ./opencascade/GeomPlate_SequenceOfCurveConstraint.hxx
 // ./opencascade/GeomPlate_MakeApprox.hxx
-// ./opencascade/GeomPlate_SequenceOfAij.hxx
-// ./opencascade/GeomPlate_HSequenceOfCurveConstraint.hxx
-// ./opencascade/GeomPlate_Aij.hxx
-// ./opencascade/GeomPlate_PlateG0Criterion.hxx
-// ./opencascade/GeomPlate_SequenceOfPointConstraint.hxx
-// ./opencascade/GeomPlate_Array1OfSequenceOfReal.hxx
-// ./opencascade/GeomPlate_PointConstraint.hxx
-// ./opencascade/GeomPlate_HArray1OfSequenceOfReal.hxx
+// ./opencascade/GeomPlate_PlateG1Criterion.hxx
 // ./opencascade/GeomPlate_HArray1OfHCurve.hxx
+// ./opencascade/GeomPlate_BuildAveragePlane.hxx
+// ./opencascade/GeomPlate_Array1OfSequenceOfReal.hxx
+// ./opencascade/GeomPlate_SequenceOfAij.hxx
+// ./opencascade/GeomPlate_PlateG0Criterion.hxx
+// ./opencascade/GeomPlate_HSequenceOfCurveConstraint.hxx
+// ./opencascade/GeomPlate_HSequenceOfPointConstraint.hxx
+// ./opencascade/GeomPlate_SequenceOfCurveConstraint.hxx
+// ./opencascade/GeomPlate_HArray1OfSequenceOfReal.hxx
+// ./opencascade/GeomPlate_CurveConstraint.hxx
+// ./opencascade/GeomPlate_Array1OfHCurve.hxx
+// ./opencascade/GeomPlate_SequenceOfPointConstraint.hxx
+// ./opencascade/GeomPlate_Aij.hxx
+// ./opencascade/GeomPlate_BuildPlateSurface.hxx
+// ./opencascade/GeomPlate_PointConstraint.hxx
+// ./opencascade/GeomPlate_Surface.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<Adaptor3d_HCurve> >(m,"GeomPlate_Array1OfHCurve");  
-    register_template_NCollection_Sequence<opencascade::handle<GeomPlate_CurveConstraint> >(m,"GeomPlate_SequenceOfCurveConstraint");  
-    register_template_NCollection_Sequence<GeomPlate_Aij>(m,"GeomPlate_SequenceOfAij");  
-    register_template_NCollection_Sequence<opencascade::handle<GeomPlate_PointConstraint> >(m,"GeomPlate_SequenceOfPointConstraint");  
     register_template_NCollection_Array1<TColStd_SequenceOfReal>(m,"GeomPlate_Array1OfSequenceOfReal");  
+    register_template_NCollection_Sequence<GeomPlate_Aij>(m,"GeomPlate_SequenceOfAij");  
+    register_template_NCollection_Sequence<opencascade::handle<GeomPlate_CurveConstraint> >(m,"GeomPlate_SequenceOfCurveConstraint");  
+    register_template_NCollection_Array1<opencascade::handle<Adaptor3d_HCurve> >(m,"GeomPlate_Array1OfHCurve");  
+    register_template_NCollection_Sequence<opencascade::handle<GeomPlate_PointConstraint> >(m,"GeomPlate_SequenceOfPointConstraint");  
 
 
 // exceptions

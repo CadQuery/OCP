@@ -13,10 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Shape.hxx>
 #include <gp_Pnt.hxx>
+#include <TopoDS_Vertex.hxx>
 #include <Bnd_Box.hxx>
 #include <TopoDS_Vertex.hxx>
 
@@ -41,9 +41,9 @@ namespace py = pybind11;
 #include <BRepExtrema_UnCompatibleShape.hxx>
 
 // template related includes
-// ./opencascade/BRepExtrema_SeqOfSolution.hxx
-#include "NCollection.hxx"
 // ./opencascade/BRepExtrema_TriangleSet.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepExtrema_SeqOfSolution.hxx
 #include "NCollection.hxx"
 
 
@@ -65,9 +65,11 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
 
 
     static_cast<py::class_<BRepExtrema_DistShapeShape , shared_ptr<BRepExtrema_DistShapeShape>  >>(m.attr("BRepExtrema_DistShapeShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("Shape1"),  py::arg("Shape2"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const Standard_Real,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("Shape1"),  py::arg("Shape2"),  py::arg("theDeflection"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
+    // custom constructors
     // methods
         .def("SetDeflection",
              (void (BRepExtrema_DistShapeShape::*)( const Standard_Real  ) ) static_cast<void (BRepExtrema_DistShapeShape::*)( const Standard_Real  ) >(&BRepExtrema_DistShapeShape::SetDeflection),
@@ -136,13 +138,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_DistanceSS , shared_ptr<BRepExtrema_DistanceSS>  >>(m.attr("BRepExtrema_DistanceSS"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const Bnd_Box &,const Bnd_Box &,const Standard_Real,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("S1"),  py::arg("S2"),  py::arg("B1"),  py::arg("B2"),  py::arg("DstRef"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const Bnd_Box &,const Bnd_Box &,const Standard_Real,const Standard_Real,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("S1"),  py::arg("S2"),  py::arg("B1"),  py::arg("B2"),  py::arg("DstRef"),  py::arg("aDeflection"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepExtrema_DistanceSS::*)() const) static_cast<Standard_Boolean (BRepExtrema_DistanceSS::*)() const>(&BRepExtrema_DistanceSS::IsDone),
@@ -166,13 +170,32 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<BRepExtrema_ElementFilter , shared_ptr<BRepExtrema_ElementFilter>>(m,"BRepExtrema_ElementFilter");
+
+    static_cast<py::class_<BRepExtrema_ElementFilter , shared_ptr<BRepExtrema_ElementFilter>  >>(m.attr("BRepExtrema_ElementFilter"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("PreCheckElements",
+             (BRepExtrema_ElementFilter::FilterResult (BRepExtrema_ElementFilter::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<BRepExtrema_ElementFilter::FilterResult (BRepExtrema_ElementFilter::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BRepExtrema_ElementFilter::PreCheckElements),
+             R"#(Checks if two mesh elements should be tested for overlapping/intersection (used for detection correct/incorrect cases of shared edges and vertices).)#"  , py::arg(""),  py::arg(""))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_ExtCC , shared_ptr<BRepExtrema_ExtCC>  >>(m.attr("BRepExtrema_ExtCC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge & >()  , py::arg("E1"),  py::arg("E2") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepExtrema_ExtCC::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepExtrema_ExtCC::*)( const TopoDS_Edge &  ) >(&BRepExtrema_ExtCC::Initialize),
@@ -211,13 +234,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_ExtCF , shared_ptr<BRepExtrema_ExtCF>  >>(m.attr("BRepExtrema_ExtCF"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepExtrema_ExtCF::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepExtrema_ExtCF::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepExtrema_ExtCF::Initialize),
@@ -253,13 +278,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_ExtFF , shared_ptr<BRepExtrema_ExtFF>  >>(m.attr("BRepExtrema_ExtFF"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,const TopoDS_Face & >()  , py::arg("F1"),  py::arg("F2") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepExtrema_ExtFF::*)( const TopoDS_Face &  ) ) static_cast<void (BRepExtrema_ExtFF::*)( const TopoDS_Face &  ) >(&BRepExtrema_ExtFF::Initialize),
@@ -295,13 +322,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_ExtPC , shared_ptr<BRepExtrema_ExtPC>  >>(m.attr("BRepExtrema_ExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Vertex &,const TopoDS_Edge & >()  , py::arg("V"),  py::arg("E") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepExtrema_ExtPC::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepExtrema_ExtPC::*)( const TopoDS_Edge &  ) >(&BRepExtrema_ExtPC::Initialize),
@@ -334,13 +363,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_ExtPF , shared_ptr<BRepExtrema_ExtPF>  >>(m.attr("BRepExtrema_ExtPF"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Vertex &,const TopoDS_Face &,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("TheVertex"),  py::arg("TheFace"),  py::arg("TheFlag")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("TheAlgo")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepExtrema_ExtPF::*)( const TopoDS_Face & ,  const Extrema_ExtFlag ,  const Extrema_ExtAlgo  ) ) static_cast<void (BRepExtrema_ExtPF::*)( const TopoDS_Face & ,  const Extrema_ExtFlag ,  const Extrema_ExtAlgo  ) >(&BRepExtrema_ExtPF::Initialize),
@@ -373,13 +404,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_OverlapTool , shared_ptr<BRepExtrema_OverlapTool>  >>(m.attr("BRepExtrema_OverlapTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<BRepExtrema_TriangleSet> &,const opencascade::handle<BRepExtrema_TriangleSet> & >()  , py::arg("theSet1"),  py::arg("theSet2") )
+    // custom constructors
     // methods
         .def("LoadTriangleSets",
              (void (BRepExtrema_OverlapTool::*)( const opencascade::handle<BRepExtrema_TriangleSet> & ,  const opencascade::handle<BRepExtrema_TriangleSet> &  ) ) static_cast<void (BRepExtrema_OverlapTool::*)( const opencascade::handle<BRepExtrema_TriangleSet> & ,  const opencascade::handle<BRepExtrema_TriangleSet> &  ) >(&BRepExtrema_OverlapTool::LoadTriangleSets),
@@ -402,16 +435,25 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
         .def("SetElementFilter",
              (void (BRepExtrema_OverlapTool::*)( BRepExtrema_ElementFilter *  ) ) static_cast<void (BRepExtrema_OverlapTool::*)( BRepExtrema_ElementFilter *  ) >(&BRepExtrema_OverlapTool::SetElementFilter),
              R"#(Sets filtering tool for preliminary checking pairs of mesh elements.)#"  , py::arg("theFilter"))
+        .def("RejectNode",
+             (Standard_Boolean (BRepExtrema_OverlapTool::*)(  const BVH::VectorType<Standard_Real, 3>::Type & ,   const BVH::VectorType<Standard_Real, 3>::Type & ,   const BVH::VectorType<Standard_Real, 3>::Type & ,   const BVH::VectorType<Standard_Real, 3>::Type & ,  Standard_Real &  ) const) static_cast<Standard_Boolean (BRepExtrema_OverlapTool::*)(  const BVH::VectorType<Standard_Real, 3>::Type & ,   const BVH::VectorType<Standard_Real, 3>::Type & ,   const BVH::VectorType<Standard_Real, 3>::Type & ,   const BVH::VectorType<Standard_Real, 3>::Type & ,  Standard_Real &  ) const>(&BRepExtrema_OverlapTool::RejectNode),
+             R"#(Defines the rules for node rejection by bounding box)#"  , py::arg("theCornerMin1"),  py::arg("theCornerMax1"),  py::arg("theCornerMin2"),  py::arg("theCornerMax2"),  py::arg(""))
+        .def("Accept",
+             (Standard_Boolean (BRepExtrema_OverlapTool::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<Standard_Boolean (BRepExtrema_OverlapTool::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BRepExtrema_OverlapTool::Accept),
+             R"#(Defines the rules for leaf acceptance)#"  , py::arg("theLeaf1"),  py::arg("theLeaf2"))
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepExtrema_Poly , shared_ptr<BRepExtrema_Poly>>(m,"BRepExtrema_Poly");
 
     static_cast<py::class_<BRepExtrema_Poly , shared_ptr<BRepExtrema_Poly>  >>(m.attr("BRepExtrema_Poly"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -420,49 +462,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
                     R"#(returns Standard_True if OK.)#"  , py::arg("S1"),  py::arg("S2"),  py::arg("P1"),  py::arg("P2"),  py::arg("dist"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepExtrema_SelfIntersection , shared_ptr<BRepExtrema_SelfIntersection>  >>(m.attr("BRepExtrema_SelfIntersection"))
-        .def(py::init< const Standard_Real >()  , py::arg("theTolerance")=static_cast<const Standard_Real>(0.0) )
-        .def(py::init< const TopoDS_Shape &,const Standard_Real >()  , py::arg("theShape"),  py::arg("theTolerance")=static_cast<const Standard_Real>(0.0) )
-    // methods
-        .def("Tolerance",
-             (Standard_Real (BRepExtrema_SelfIntersection::*)() const) static_cast<Standard_Real (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::Tolerance),
-             R"#(Returns tolerance value used for self-intersection test.)#" )
-        .def("SetTolerance",
-             (void (BRepExtrema_SelfIntersection::*)( const Standard_Real  ) ) static_cast<void (BRepExtrema_SelfIntersection::*)( const Standard_Real  ) >(&BRepExtrema_SelfIntersection::SetTolerance),
-             R"#(Sets tolerance value used for self-intersection test.)#"  , py::arg("theTolerance"))
-        .def("LoadShape",
-             (Standard_Boolean (BRepExtrema_SelfIntersection::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepExtrema_SelfIntersection::*)( const TopoDS_Shape &  ) >(&BRepExtrema_SelfIntersection::LoadShape),
-             R"#(Loads shape for detection of self-intersections.)#"  , py::arg("theShape"))
-        .def("Perform",
-             (void (BRepExtrema_SelfIntersection::*)() ) static_cast<void (BRepExtrema_SelfIntersection::*)() >(&BRepExtrema_SelfIntersection::Perform),
-             R"#(Performs detection of self-intersections.)#" )
-        .def("IsDone",
-             (Standard_Boolean (BRepExtrema_SelfIntersection::*)() const) static_cast<Standard_Boolean (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::IsDone),
-             R"#(True if the detection is completed.)#" )
-        .def("OverlapElements",
-             (const BRepExtrema_MapOfIntegerPackedMapOfInteger & (BRepExtrema_SelfIntersection::*)() const) static_cast<const BRepExtrema_MapOfIntegerPackedMapOfInteger & (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::OverlapElements),
-             R"#(Returns set of IDs of overlapped sub-shapes (started from 0).)#" )
-        .def("GetSubShape",
-             (const TopoDS_Face & (BRepExtrema_SelfIntersection::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Face & (BRepExtrema_SelfIntersection::*)( const Standard_Integer  ) const>(&BRepExtrema_SelfIntersection::GetSubShape),
-             R"#(Returns sub-shape from the shape for the given index (started from 0).)#"  , py::arg("theID"))
-        .def("ElementSet",
-             (const opencascade::handle<BRepExtrema_TriangleSet> & (BRepExtrema_SelfIntersection::*)() const) static_cast<const opencascade::handle<BRepExtrema_TriangleSet> & (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::ElementSet),
-             R"#(Returns set of all the face triangles of the shape.)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_ShapeProximity , shared_ptr<BRepExtrema_ShapeProximity>  >>(m.attr("BRepExtrema_ShapeProximity"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("theTolerance")=static_cast<const Standard_Real>(0.0) )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const Standard_Real >()  , py::arg("theShape1"),  py::arg("theShape2"),  py::arg("theTolerance")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("Tolerance",
              (Standard_Real (BRepExtrema_ShapeProximity::*)() const) static_cast<Standard_Real (BRepExtrema_ShapeProximity::*)() const>(&BRepExtrema_ShapeProximity::Tolerance),
@@ -504,15 +512,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_SolutionElem , shared_ptr<BRepExtrema_SolutionElem>  >>(m.attr("BRepExtrema_SolutionElem"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const gp_Pnt &,const BRepExtrema_SupportType,const TopoDS_Vertex & >()  , py::arg("theDist"),  py::arg("thePoint"),  py::arg("theSolType"),  py::arg("theVertex") )
         .def(py::init< const Standard_Real,const gp_Pnt &,const BRepExtrema_SupportType,const TopoDS_Edge &,const Standard_Real >()  , py::arg("theDist"),  py::arg("thePoint"),  py::arg("theSolType"),  py::arg("theEdge"),  py::arg("theParam") )
         .def(py::init< const Standard_Real,const gp_Pnt &,const BRepExtrema_SupportType,const TopoDS_Face &,const Standard_Real,const Standard_Real >()  , py::arg("theDist"),  py::arg("thePoint"),  py::arg("theSolType"),  py::arg("theFace"),  py::arg("theU"),  py::arg("theV") )
+    // custom constructors
     // methods
         .def("Dist",
              (Standard_Real (BRepExtrema_SolutionElem::*)() const) static_cast<Standard_Real (BRepExtrema_SolutionElem::*)() const>(&BRepExtrema_SolutionElem::Dist),
@@ -542,13 +552,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepExtrema_TriangleSet , shared_ptr<BRepExtrema_TriangleSet>  >>(m.attr("BRepExtrema_TriangleSet"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Vector<TopoDS_Face> & >()  , py::arg("theFaces") )
+    // custom constructors
     // methods
         .def("Size",
              (Standard_Integer (BRepExtrema_TriangleSet::*)() const) static_cast<Standard_Integer (BRepExtrema_TriangleSet::*)() const>(&BRepExtrema_TriangleSet::Size),
@@ -587,34 +599,72 @@ py::module m = static_cast<py::module>(main_module.attr("BRepExtrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepExtrema_SelfIntersection , shared_ptr<BRepExtrema_SelfIntersection>  , BRepExtrema_ElementFilter >>(m.attr("BRepExtrema_SelfIntersection"))
+    // constructors
+        .def(py::init< const Standard_Real >()  , py::arg("theTolerance")=static_cast<const Standard_Real>(0.0) )
+        .def(py::init< const TopoDS_Shape &,const Standard_Real >()  , py::arg("theShape"),  py::arg("theTolerance")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
+    // methods
+        .def("Tolerance",
+             (Standard_Real (BRepExtrema_SelfIntersection::*)() const) static_cast<Standard_Real (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::Tolerance),
+             R"#(Returns tolerance value used for self-intersection test.)#" )
+        .def("SetTolerance",
+             (void (BRepExtrema_SelfIntersection::*)( const Standard_Real  ) ) static_cast<void (BRepExtrema_SelfIntersection::*)( const Standard_Real  ) >(&BRepExtrema_SelfIntersection::SetTolerance),
+             R"#(Sets tolerance value used for self-intersection test.)#"  , py::arg("theTolerance"))
+        .def("LoadShape",
+             (Standard_Boolean (BRepExtrema_SelfIntersection::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepExtrema_SelfIntersection::*)( const TopoDS_Shape &  ) >(&BRepExtrema_SelfIntersection::LoadShape),
+             R"#(Loads shape for detection of self-intersections.)#"  , py::arg("theShape"))
+        .def("Perform",
+             (void (BRepExtrema_SelfIntersection::*)() ) static_cast<void (BRepExtrema_SelfIntersection::*)() >(&BRepExtrema_SelfIntersection::Perform),
+             R"#(Performs detection of self-intersections.)#" )
+        .def("IsDone",
+             (Standard_Boolean (BRepExtrema_SelfIntersection::*)() const) static_cast<Standard_Boolean (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::IsDone),
+             R"#(True if the detection is completed.)#" )
+        .def("OverlapElements",
+             (const BRepExtrema_MapOfIntegerPackedMapOfInteger & (BRepExtrema_SelfIntersection::*)() const) static_cast<const BRepExtrema_MapOfIntegerPackedMapOfInteger & (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::OverlapElements),
+             R"#(Returns set of IDs of overlapped sub-shapes (started from 0).)#" )
+        .def("GetSubShape",
+             (const TopoDS_Face & (BRepExtrema_SelfIntersection::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Face & (BRepExtrema_SelfIntersection::*)( const Standard_Integer  ) const>(&BRepExtrema_SelfIntersection::GetSubShape),
+             R"#(Returns sub-shape from the shape for the given index (started from 0).)#"  , py::arg("theID"))
+        .def("ElementSet",
+             (const opencascade::handle<BRepExtrema_TriangleSet> & (BRepExtrema_SelfIntersection::*)() const) static_cast<const opencascade::handle<BRepExtrema_TriangleSet> & (BRepExtrema_SelfIntersection::*)() const>(&BRepExtrema_SelfIntersection::ElementSet),
+             R"#(Returns set of all the face triangles of the shape.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepExtrema_MapOfIntegerPackedMapOfInteger.hxx
-// ./opencascade/BRepExtrema_ExtPF.hxx
-// ./opencascade/BRepExtrema_DistShapeShape.hxx
-// ./opencascade/BRepExtrema_OverlapTool.hxx
 // ./opencascade/BRepExtrema_SelfIntersection.hxx
-// ./opencascade/BRepExtrema_ElementFilter.hxx
-// ./opencascade/BRepExtrema_ExtCF.hxx
 // ./opencascade/BRepExtrema_SolutionElem.hxx
-// ./opencascade/BRepExtrema_SeqOfSolution.hxx
-// ./opencascade/BRepExtrema_Poly.hxx
-// ./opencascade/BRepExtrema_DistanceSS.hxx
-// ./opencascade/BRepExtrema_UnCompatibleShape.hxx
-// ./opencascade/BRepExtrema_ExtPC.hxx
-// ./opencascade/BRepExtrema_TriangleSet.hxx
-// ./opencascade/BRepExtrema_SupportType.hxx
+// ./opencascade/BRepExtrema_MapOfIntegerPackedMapOfInteger.hxx
+// ./opencascade/BRepExtrema_ExtCF.hxx
 // ./opencascade/BRepExtrema_ShapeProximity.hxx
+// ./opencascade/BRepExtrema_Poly.hxx
+// ./opencascade/BRepExtrema_DistShapeShape.hxx
+// ./opencascade/BRepExtrema_ExtPC.hxx
 // ./opencascade/BRepExtrema_ExtFF.hxx
+// ./opencascade/BRepExtrema_DistanceSS.hxx
+// ./opencascade/BRepExtrema_OverlapTool.hxx
+// ./opencascade/BRepExtrema_ElementFilter.hxx
+// ./opencascade/BRepExtrema_TriangleSet.hxx
+// ./opencascade/BRepExtrema_ExtPF.hxx
+// ./opencascade/BRepExtrema_UnCompatibleShape.hxx
+// ./opencascade/BRepExtrema_SeqOfSolution.hxx
 // ./opencascade/BRepExtrema_ExtCC.hxx
+// ./opencascade/BRepExtrema_SupportType.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<BRepExtrema_SolutionElem>(m,"BRepExtrema_SeqOfSolution");  
     register_template_NCollection_Vector<TopoDS_Face>(m,"BRepExtrema_ShapeList");  
+    register_template_NCollection_Sequence<BRepExtrema_SolutionElem>(m,"BRepExtrema_SeqOfSolution");  
 
 
 // exceptions

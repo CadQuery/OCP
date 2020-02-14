@@ -13,12 +13,82 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <StdFail_NotDone.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
 #include <GeomInt_TheMultiLineOfWLApprox.hxx>
 #include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
 #include <GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox.hxx>
 #include <GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
 #include <GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
 #include <math_MultipleVarFunctionWithGradient.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <IntSurf_Quadric.hxx>
+#include <IntSurf_QuadricTool.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <GeomAdaptor_HSurface.hxx>
+#include <IntPatch_Line.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <IntSurf_Quadric.hxx>
+#include <IntSurf_QuadricTool.hxx>
+#include <IntPatch_WLine.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <IntPatch_Point.hxx>
+#include <IntPatch_WLine.hxx>
+#include <GeomAdaptor_HSurface.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_MyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <IntPatch_WLine.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <AppParCurves_MultiCurve.hxx>
 #include <GeomInt_TheMultiLineOfWLApprox.hxx>
 #include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
 #include <GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox.hxx>
@@ -26,33 +96,9 @@ namespace py = pybind11;
 #include <GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
 #include <GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
 #include <GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_MyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <IntPatch_WLine.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <IntSurf_Quadric.hxx>
-#include <IntSurf_QuadricTool.hxx>
-#include <math_Matrix.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <math_FunctionSetRoot.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurfaceTool.hxx>
 #include <math_Matrix.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
 #include <GeomInt_TheMultiLineOfWLApprox.hxx>
 #include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
 #include <GeomInt_MyGradientbisOfTheComputeLineOfWLApprox.hxx>
@@ -60,62 +106,14 @@ namespace py = pybind11;
 #include <GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
 #include <GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
 #include <math_MultipleVarFunctionWithGradient.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <AppParCurves_MultiCurve.hxx>
-#include <IntPatch_Point.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
 #include <IntPatch_WLine.hxx>
-#include <GeomAdaptor_HSurface.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <GeomAdaptor_HSurface.hxx>
-#include <IntPatch_Line.hxx>
 #include <GeomAdaptor_HSurface.hxx>
 #include <IntPatch_RLine.hxx>
 #include <Bnd_Box2d.hxx>
 #include <Adaptor3d_TopolTool.hxx>
 #include <IntPatch_WLine.hxx>
-#include <StdFail_NotDone.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <IntSurf_Quadric.hxx>
-#include <IntSurf_QuadricTool.hxx>
-#include <IntPatch_WLine.hxx>
-#include <GeomInt_ThePrmPrmSvSurfacesOfWLApprox.hxx>
-#include <GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox.hxx>
-#include <GeomInt_TheImpPrmSvSurfacesOfWLApprox.hxx>
-#include <GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_MyGradientbisOfTheComputeLineOfWLApprox.hxx>
-#include <GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
 #include <GeomInt_IntSS.hxx>
 #include <GeomInt_LineConstructor.hxx>
 #include <GeomInt_LineTool.hxx>
@@ -144,30 +142,32 @@ namespace py = pybind11;
 #include <GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
 #include <GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox.hxx>
 #include <GeomInt_TheComputeLineBezierOfWLApprox.hxx>
+#include <StdFail_NotDone.hxx>
+#include <GeomInt_TheMultiLineOfWLApprox.hxx>
+#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
+#include <GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <StdFail_NotDone.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurfaceTool.hxx>
 #include <IntSurf_Quadric.hxx>
 #include <IntSurf_QuadricTool.hxx>
 #include <IntPatch_WLine.hxx>
-#include <StdFail_NotDone.hxx>
+#include <GeomInt_ThePrmPrmSvSurfacesOfWLApprox.hxx>
+#include <GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox.hxx>
+#include <GeomInt_TheImpPrmSvSurfacesOfWLApprox.hxx>
+#include <GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox.hxx>
 #include <GeomInt_TheMultiLineOfWLApprox.hxx>
 #include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_MyGradientbisOfTheComputeLineOfWLApprox.hxx>
+#include <GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <GeomInt_TheMultiLineOfWLApprox.hxx>
 #include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <IntPatch_WLine.hxx>
-#include <GeomInt_TheMultiLineOfWLApprox.hxx>
-#include <GeomInt_TheMultiLineToolOfWLApprox.hxx>
-#include <AppParCurves_MultiCurve.hxx>
 
 // module includes
 #include <GeomInt.hxx>
@@ -225,9 +225,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomInt , shared_ptr<GeomInt>>(m,"GeomInt");
 
     static_cast<py::class_<GeomInt , shared_ptr<GeomInt>  >>(m.attr("GeomInt"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -236,12 +239,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
                     R"#(Adjusts the parameter <thePar> to the range [theParMin, theParMax])#"  , py::arg("thePar"),  py::arg("theParMin"),  py::arg("theParMax"),  py::arg("thePeriod"),  py::arg("theNewPar"),  py::arg("theOffset"),  py::arg("theEps")=static_cast<const Standard_Real>(0.0))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox>  , math_BFGS >>(m.attr("GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox::*)( math_MultipleVarFunctionWithGradient &  ) const>(&GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox::IsSolutionReached),
@@ -250,12 +255,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox>  , math_MultipleVarFunctionWithGradient >>(m.attr("GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox::*)() const) static_cast<Standard_Integer (GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox::*)() const>(&GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox::NbVariables),
@@ -309,15 +316,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox>  >>(m.attr("GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox::*)( const math_Vector &  ) ) static_cast<void (GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox::*)( const math_Vector &  ) >(&GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox::Perform),
@@ -374,12 +383,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox , shared_ptr<GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox>  , math_BFGS >>(m.attr("GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox::*)( math_MultipleVarFunctionWithGradient &  ) const>(&GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox::IsSolutionReached),
@@ -388,12 +399,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox>  , math_BFGS >>(m.attr("GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox::*)( math_MultipleVarFunctionWithGradient &  ) const>(&GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox::IsSolutionReached),
@@ -402,13 +415,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_IntSS , shared_ptr<GeomInt_IntSS>  >>(m.attr("GeomInt_IntSS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S1"),  py::arg("S2"),  py::arg("Tol"),  py::arg("Approx")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("ApproxS1")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("ApproxS2")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomInt_IntSS::*)( const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (GeomInt_IntSS::*)( const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&GeomInt_IntSS::Perform),
@@ -510,12 +525,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
                     []( const Standard_Real f,const Standard_Real l,const opencascade::handle<Geom_Surface> & S,const opencascade::handle<Geom_Curve> & C,opencascade::handle<Geom2d_Curve> & C2d ){ Standard_Real  Tol; GeomInt_IntSS::BuildPCurves(f,l,Tol,S,C,C2d); return std::make_tuple(Tol); },
                     R"#(creates 2D-curve on given surface from given 3D-curve)#"  , py::arg("f"),  py::arg("l"),  py::arg("S"),  py::arg("C"),  py::arg("C2d"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_LineConstructor , shared_ptr<GeomInt_LineConstructor>  >>(m.attr("GeomInt_LineConstructor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Load",
              (void (GeomInt_LineConstructor::*)( const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<GeomAdaptor_HSurface> & ,  const opencascade::handle<GeomAdaptor_HSurface> &  ) ) static_cast<void (GeomInt_LineConstructor::*)( const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<GeomAdaptor_HSurface> & ,  const opencascade::handle<GeomAdaptor_HSurface> &  ) >(&GeomInt_LineConstructor::Load),
@@ -548,12 +565,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<GeomInt_LineTool , shared_ptr<GeomInt_LineTool>>(m,"GeomInt_LineTool");
 
     static_cast<py::class_<GeomInt_LineTool , shared_ptr<GeomInt_LineTool>  >>(m.attr("GeomInt_LineTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -574,13 +594,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
                     R"#(None)#"  , py::arg("theWLine"),  py::arg("theSurface1"),  py::arg("theSurface2"),  py::arg("aTolSum"),  py::arg("theLConstructor"),  py::arg("theNewLines"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox>  >>(m.attr("GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(1) )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations"),  py::arg("lambda1"),  py::arg("lambda2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox::*)() const) static_cast<Standard_Boolean (GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox::*)() const>(&GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox::IsDone),
@@ -604,12 +626,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox , shared_ptr<GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox>  >>(m.attr("GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox::*)() const) static_cast<Standard_Boolean (GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox::*)() const>(&GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox::IsDone),
@@ -633,12 +657,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_MyGradientbisOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_MyGradientbisOfTheComputeLineOfWLApprox>  >>(m.attr("GeomInt_MyGradientbisOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomInt_MyGradientbisOfTheComputeLineOfWLApprox::*)() const) static_cast<Standard_Boolean (GeomInt_MyGradientbisOfTheComputeLineOfWLApprox::*)() const>(&GeomInt_MyGradientbisOfTheComputeLineOfWLApprox::IsDone),
@@ -662,12 +688,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox , shared_ptr<GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox>  , math_MultipleVarFunctionWithGradient >>(m.attr("GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox::*)() const) static_cast<Standard_Integer (GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox::*)() const>(&GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox::NbVariables),
@@ -706,12 +734,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox>  , math_MultipleVarFunctionWithGradient >>(m.attr("GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox::*)() const) static_cast<Standard_Integer (GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox::*)() const>(&GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox::NbVariables),
@@ -750,15 +780,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox , shared_ptr<GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox>  >>(m.attr("GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox::*)( const math_Vector &  ) ) static_cast<void (GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox::*)( const math_Vector &  ) >(&GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox::Perform),
@@ -815,15 +847,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox>  >>(m.attr("GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox::*)( const math_Vector &  ) ) static_cast<void (GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox::*)( const math_Vector &  ) >(&GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox::Perform),
@@ -880,13 +914,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ParameterAndOrientation , shared_ptr<GeomInt_ParameterAndOrientation>  >>(m.attr("GeomInt_ParameterAndOrientation"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const TopAbs_Orientation,const TopAbs_Orientation >()  , py::arg("P"),  py::arg("Or1"),  py::arg("Or2") )
+    // custom constructors
     // methods
         .def("SetOrientation1",
              (void (GeomInt_ParameterAndOrientation::*)( const TopAbs_Orientation  ) ) static_cast<void (GeomInt_ParameterAndOrientation::*)( const TopAbs_Orientation  ) >(&GeomInt_ParameterAndOrientation::SetOrientation1),
@@ -907,12 +943,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox , shared_ptr<GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox>  >>(m.attr("GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox::*)() const) static_cast<Standard_Boolean (GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox::*)() const>(&GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox::IsDone),
@@ -933,12 +971,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox , shared_ptr<GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox>  >>(m.attr("GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox::*)() const) static_cast<Standard_Boolean (GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox::*)() const>(&GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox::IsDone),
@@ -959,15 +999,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_TheComputeLineBezierOfWLApprox , shared_ptr<GeomInt_TheComputeLineBezierOfWLApprox>  >>(m.attr("GeomInt_TheComputeLineBezierOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-3),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-6),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Line"),  py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomInt_TheComputeLineBezierOfWLApprox::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) ) static_cast<void (GeomInt_TheComputeLineBezierOfWLApprox::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) >(&GeomInt_TheComputeLineBezierOfWLApprox::Init),
@@ -1015,15 +1057,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_TheComputeLineOfWLApprox , shared_ptr<GeomInt_TheComputeLineOfWLApprox>  >>(m.attr("GeomInt_TheComputeLineOfWLApprox"))
+    // constructors
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-3),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-6),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const GeomInt_TheMultiLineOfWLApprox &,const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Line"),  py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Interpol",
              (void (GeomInt_TheComputeLineOfWLApprox::*)( const GeomInt_TheMultiLineOfWLApprox &  ) ) static_cast<void (GeomInt_TheComputeLineOfWLApprox::*)( const GeomInt_TheMultiLineOfWLApprox &  ) >(&GeomInt_TheComputeLineOfWLApprox::Interpol),
@@ -1055,6 +1099,9 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
         .def("SetConstraints",
              (void (GeomInt_TheComputeLineOfWLApprox::*)( const AppParCurves_Constraint ,  const AppParCurves_Constraint  ) ) static_cast<void (GeomInt_TheComputeLineOfWLApprox::*)( const AppParCurves_Constraint ,  const AppParCurves_Constraint  ) >(&GeomInt_TheComputeLineOfWLApprox::SetConstraints),
              R"#(changes the first and the last constraint points.)#"  , py::arg("firstC"),  py::arg("lastC"))
+        .def("SetPeriodic",
+             (void (GeomInt_TheComputeLineOfWLApprox::*)( const Standard_Boolean  ) ) static_cast<void (GeomInt_TheComputeLineOfWLApprox::*)( const Standard_Boolean  ) >(&GeomInt_TheComputeLineOfWLApprox::SetPeriodic),
+             R"#(Sets periodic flag. If thePeriodic = Standard_True, algorith tries to build periodic multicurve using corresponding C1 boundary condition for first and last multipoints. Multiline must be closed.)#"  , py::arg("thePeriodic"))
         .def("IsAllApproximated",
              (Standard_Boolean (GeomInt_TheComputeLineOfWLApprox::*)() const) static_cast<Standard_Boolean (GeomInt_TheComputeLineOfWLApprox::*)() const>(&GeomInt_TheComputeLineOfWLApprox::IsAllApproximated),
              R"#(returns False if at a moment of the approximation, the status NoApproximation has been sent by the user when more points were needed.)#" )
@@ -1077,12 +1124,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox , shared_ptr<GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox>  , math_FunctionSetWithDerivatives >>(m.attr("GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("S1"),  py::arg("S2") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox::*)() const) static_cast<Standard_Integer (GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox::*)() const>(&GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox::NbVariables),
@@ -1130,13 +1179,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_TheImpPrmSvSurfacesOfWLApprox , shared_ptr<GeomInt_TheImpPrmSvSurfacesOfWLApprox>  >>(m.attr("GeomInt_TheImpPrmSvSurfacesOfWLApprox"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const IntSurf_Quadric & >()  , py::arg("Surf1"),  py::arg("Surf2") )
         .def(py::init< const IntSurf_Quadric &,const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("Surf1"),  py::arg("Surf2") )
+    // custom constructors
     // methods
         .def("Compute",
              (Standard_Boolean (GeomInt_TheImpPrmSvSurfacesOfWLApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) ) static_cast<Standard_Boolean (GeomInt_TheImpPrmSvSurfacesOfWLApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) >(&GeomInt_TheImpPrmSvSurfacesOfWLApprox::Compute),
@@ -1163,13 +1214,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox , shared_ptr<GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox>  >>(m.attr("GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Real> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("Param"),  py::arg("S1"),  py::arg("S2"),  py::arg("TolTangency") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("TolTangency") )
+    // custom constructors
     // methods
         .def("Perform",
              (IntImp_ConstIsoparametric (GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox::*)(  const NCollection_Array1<Standard_Real> & ,  math_FunctionSetRoot &  ) ) static_cast<IntImp_ConstIsoparametric (GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox::*)(  const NCollection_Array1<Standard_Real> & ,  math_FunctionSetRoot &  ) >(&GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox::Perform),
@@ -1208,14 +1261,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_TheMultiLineOfWLApprox , shared_ptr<GeomInt_TheMultiLineOfWLApprox>  >>(m.attr("GeomInt_TheMultiLineOfWLApprox"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<IntPatch_WLine> &,const Standard_Address,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Integer,const Standard_Integer >()  , py::arg("line"),  py::arg("PtrSvSurfaces"),  py::arg("NbP3d"),  py::arg("NbP2d"),  py::arg("ApproxU1V1"),  py::arg("ApproxU2V2"),  py::arg("xo"),  py::arg("yo"),  py::arg("zo"),  py::arg("u1o"),  py::arg("v1o"),  py::arg("u2o"),  py::arg("v2o"),  py::arg("P2DOnFirst"),  py::arg("IndMin")=static_cast<const Standard_Integer>(0),  py::arg("IndMax")=static_cast<const Standard_Integer>(0) )
         .def(py::init< const opencascade::handle<IntPatch_WLine> &,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Integer,const Standard_Integer >()  , py::arg("line"),  py::arg("NbP3d"),  py::arg("NbP2d"),  py::arg("ApproxU1V1"),  py::arg("ApproxU2V2"),  py::arg("xo"),  py::arg("yo"),  py::arg("zo"),  py::arg("u1o"),  py::arg("v1o"),  py::arg("u2o"),  py::arg("v2o"),  py::arg("P2DOnFirst"),  py::arg("IndMin")=static_cast<const Standard_Integer>(0),  py::arg("IndMax")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("FirstPoint",
              (Standard_Integer (GeomInt_TheMultiLineOfWLApprox::*)() const) static_cast<Standard_Integer (GeomInt_TheMultiLineOfWLApprox::*)() const>(&GeomInt_TheMultiLineOfWLApprox::FirstPoint),
@@ -1263,12 +1318,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<GeomInt_TheMultiLineToolOfWLApprox , shared_ptr<GeomInt_TheMultiLineToolOfWLApprox>>(m,"GeomInt_TheMultiLineToolOfWLApprox");
 
     static_cast<py::class_<GeomInt_TheMultiLineToolOfWLApprox , shared_ptr<GeomInt_TheMultiLineToolOfWLApprox>  >>(m.attr("GeomInt_TheMultiLineToolOfWLApprox"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1325,12 +1383,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
                     R"#(Dump of the current multi-line.)#"  , py::arg("ML"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_ThePrmPrmSvSurfacesOfWLApprox , shared_ptr<GeomInt_ThePrmPrmSvSurfacesOfWLApprox>  >>(m.attr("GeomInt_ThePrmPrmSvSurfacesOfWLApprox"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("Surf1"),  py::arg("Surf2") )
+    // custom constructors
     // methods
         .def("Compute",
              (Standard_Boolean (GeomInt_ThePrmPrmSvSurfacesOfWLApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) ) static_cast<Standard_Boolean (GeomInt_ThePrmPrmSvSurfacesOfWLApprox::*)( Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  gp_Pnt & ,  gp_Vec & ,  gp_Vec2d & ,  gp_Vec2d &  ) >(&GeomInt_ThePrmPrmSvSurfacesOfWLApprox::Compute),
@@ -1354,14 +1414,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox , shared_ptr<GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox>  , math_FunctionSetWithDerivatives >>(m.attr("GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const IntSurf_Quadric & >()  , py::arg("PS"),  py::arg("IS") )
         .def(py::init< const IntSurf_Quadric & >()  , py::arg("IS") )
+    // custom constructors
     // methods
         .def("Set",
              (void (GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox::Set),
@@ -1415,12 +1477,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomInt_WLApprox , shared_ptr<GeomInt_WLApprox>  >>(m.attr("GeomInt_WLApprox"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomInt_WLApprox::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<IntPatch_WLine> & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (GeomInt_WLApprox::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<IntPatch_WLine> & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Integer  ) >(&GeomInt_WLApprox::Perform),
@@ -1450,41 +1514,41 @@ py::module m = static_cast<py::module>(main_module.attr("GeomInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx
-// ./opencascade/GeomInt_TheComputeLineBezierOfWLApprox.hxx
-// ./opencascade/GeomInt_TheComputeLineOfWLApprox.hxx
-// ./opencascade/GeomInt_TheMultiLineOfWLApprox.hxx
-// ./opencascade/GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox.hxx
-// ./opencascade/GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox.hxx
-// ./opencascade/GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox.hxx
-// ./opencascade/GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx
-// ./opencascade/GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox.hxx
-// ./opencascade/GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx
-// ./opencascade/GeomInt_LineTool.hxx
-// ./opencascade/GeomInt_SequenceOfParameterAndOrientation.hxx
-// ./opencascade/GeomInt_MyGradientbisOfTheComputeLineOfWLApprox.hxx
-// ./opencascade/GeomInt_LineConstructor.hxx
-// ./opencascade/GeomInt_IntSS.hxx
-// ./opencascade/GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox.hxx
 // ./opencascade/GeomInt_Gradient_BFGSOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx
-// ./opencascade/GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx
-// ./opencascade/GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx
-// ./opencascade/GeomInt_WLApprox.hxx
-// ./opencascade/GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx
-// ./opencascade/GeomInt.hxx
+// ./opencascade/GeomInt_BSpGradient_BFGSOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_TheInt2SOfThePrmPrmSvSurfacesOfWLApprox.hxx
+// ./opencascade/GeomInt_ParameterAndOrientation.hxx
+// ./opencascade/GeomInt_TheZerImpFuncOfTheImpPrmSvSurfacesOfWLApprox.hxx
+// ./opencascade/GeomInt_LineConstructor.hxx
+// ./opencascade/GeomInt_ResConstraintOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx
+// ./opencascade/GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox.hxx
 // ./opencascade/GeomInt_TheImpPrmSvSurfacesOfWLApprox.hxx
 // ./opencascade/GeomInt_MyGradientOfTheComputeLineBezierOfWLApprox.hxx
-// ./opencascade/GeomInt_ParFunctionOfMyGradientbisOfTheComputeLineOfWLApprox.hxx
-// ./opencascade/GeomInt_ParameterAndOrientation.hxx
-// ./opencascade/GeomInt_ParLeastSquareOfMyGradientbisOfTheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_SequenceOfParameterAndOrientation.hxx
+// ./opencascade/GeomInt_LineTool.hxx
+// ./opencascade/GeomInt_TheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_ParLeastSquareOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx
+// ./opencascade/GeomInt_TheMultiLineOfWLApprox.hxx
+// ./opencascade/GeomInt_ParFunctionOfMyGradientOfTheComputeLineBezierOfWLApprox.hxx
+// ./opencascade/GeomInt_MyBSplGradientOfTheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_BSpParFunctionOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx
 // ./opencascade/GeomInt_TheMultiLineToolOfWLApprox.hxx
-// ./opencascade/GeomInt_VectorOfReal.hxx
-// ./opencascade/GeomInt_ThePrmPrmSvSurfacesOfWLApprox.hxx
 // ./opencascade/GeomInt_ResConstraintOfMyGradientbisOfTheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_TheComputeLineBezierOfWLApprox.hxx
+// ./opencascade/GeomInt_TheFunctionOfTheInt2SOfThePrmPrmSvSurfacesOfWLApprox.hxx
+// ./opencascade/GeomInt_Gradient_BFGSOfMyGradientbisOfTheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_ThePrmPrmSvSurfacesOfWLApprox.hxx
+// ./opencascade/GeomInt_IntSS.hxx
+// ./opencascade/GeomInt_VectorOfReal.hxx
+// ./opencascade/GeomInt.hxx
+// ./opencascade/GeomInt_MyGradientbisOfTheComputeLineOfWLApprox.hxx
+// ./opencascade/GeomInt_WLApprox.hxx
+// ./opencascade/GeomInt_BSpParLeastSquareOfMyBSplGradientOfTheComputeLineOfWLApprox.hxx
 
 // operators
 

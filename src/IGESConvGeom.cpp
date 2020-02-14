@@ -48,9 +48,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESConvGeom"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESConvGeom , shared_ptr<IGESConvGeom>>(m,"IGESConvGeom");
 
     static_cast<py::class_<IGESConvGeom , shared_ptr<IGESConvGeom>  >>(m.attr("IGESConvGeom"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -71,12 +74,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESConvGeom"));
                     R"#(Tries to increase Surface continuity with tolerance <epsgeom> <continuity> is the new desired continuity, can be 1 or 2 (more than 2 is considered as 2). Returns the new maximum continuity obtained on all knots. Remark that, for instance with <continuity> = 2, even if not all the knots can be passed to C2, all knots which can be are.)#"  , py::arg("surface"),  py::arg("epsgeom"),  py::arg("continuity")=static_cast<const Standard_Integer>(2))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESConvGeom_GeomBuilder , shared_ptr<IGESConvGeom_GeomBuilder>  >>(m.attr("IGESConvGeom_GeomBuilder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (IGESConvGeom_GeomBuilder::*)() ) static_cast<void (IGESConvGeom_GeomBuilder::*)() >(&IGESConvGeom_GeomBuilder::Clear),
@@ -133,7 +138,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESConvGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

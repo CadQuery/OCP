@@ -54,6 +54,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna2d"));
 
 
     static_cast<py::class_<IntAna2d_AnaIntersection , shared_ptr<IntAna2d_AnaIntersection>  >>(m.attr("IntAna2d_AnaIntersection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin2d &,const gp_Lin2d & >()  , py::arg("L1"),  py::arg("L2") )
         .def(py::init< const gp_Circ2d &,const gp_Circ2d & >()  , py::arg("C1"),  py::arg("C2") )
@@ -63,6 +64,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna2d"));
         .def(py::init< const gp_Elips2d &,const IntAna2d_Conic & >()  , py::arg("E"),  py::arg("C") )
         .def(py::init< const gp_Parab2d &,const IntAna2d_Conic & >()  , py::arg("P"),  py::arg("C") )
         .def(py::init< const gp_Hypr2d &,const IntAna2d_Conic & >()  , py::arg("H"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntAna2d_AnaIntersection::*)( const gp_Lin2d & ,  const gp_Lin2d &  ) ) static_cast<void (IntAna2d_AnaIntersection::*)( const gp_Lin2d & ,  const gp_Lin2d &  ) >(&IntAna2d_AnaIntersection::Perform),
@@ -128,16 +130,18 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna2d_Conic , shared_ptr<IntAna2d_Conic>  >>(m.attr("IntAna2d_Conic"))
+    // constructors
         .def(py::init< const gp_Circ2d & >()  , py::arg("C") )
         .def(py::init< const gp_Lin2d & >()  , py::arg("C") )
         .def(py::init< const gp_Parab2d & >()  , py::arg("C") )
         .def(py::init< const gp_Hypr2d & >()  , py::arg("C") )
         .def(py::init< const gp_Elips2d & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Real (IntAna2d_Conic::*)( const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Real (IntAna2d_Conic::*)( const Standard_Real ,  const Standard_Real  ) const>(&IntAna2d_Conic::Value),
@@ -158,14 +162,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna2d_IntPoint , shared_ptr<IntAna2d_IntPoint>  >>(m.attr("IntAna2d_IntPoint"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("X"),  py::arg("Y"),  py::arg("U1"),  py::arg("U2") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("X"),  py::arg("Y"),  py::arg("U1") )
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntAna2d_IntPoint::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna2d_IntPoint::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna2d_IntPoint::SetValue),
@@ -201,13 +207,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MyDirectPolynomialRoots , shared_ptr<MyDirectPolynomialRoots>  >>(m.attr("MyDirectPolynomialRoots"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A4"),  py::arg("A3"),  py::arg("A2"),  py::arg("A1"),  py::arg("A0") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("A1"),  py::arg("A0") )
+    // custom constructors
     // methods
         .def("NbSolutions",
              (Standard_Integer (MyDirectPolynomialRoots::*)() const) static_cast<Standard_Integer (MyDirectPolynomialRoots::*)() const>(&MyDirectPolynomialRoots::NbSolutions),
@@ -225,13 +233,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/IntAna2d_AnaIntersection.hxx
 // ./opencascade/IntAna2d_Conic.hxx
-// ./opencascade/IntAna2d_IntPoint.hxx
 // ./opencascade/IntAna2d_Outils.hxx
     m.def("Points_Confondus", 
           (Standard_Boolean (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ))  static_cast<Standard_Boolean (*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  )>(&Points_Confondus),
@@ -242,6 +249,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna2d"));
     m.def("Coord_Ancien_Repere", 
           (void (*)( Standard_Real & ,  Standard_Real & ,  const gp_Ax2d  ))  static_cast<void (*)( Standard_Real & ,  Standard_Real & ,  const gp_Ax2d  )>(&Coord_Ancien_Repere),
           R"#(None)#"  , py::arg("Ancien_X"),  py::arg("Ancien_Y"),  py::arg("Axe_Nouveau_Repere"));
+// ./opencascade/IntAna2d_IntPoint.hxx
 
 // operators
 

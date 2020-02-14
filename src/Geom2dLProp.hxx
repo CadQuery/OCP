@@ -12,34 +12,34 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <Geom2d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
+#include <LProp_CurAndInf.hxx>
+#include <Geom2d_Curve.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Vec2d.hxx>
+#include <Geom2d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <Geom2dLProp_Curve2dTool.hxx>
-#include <Geom2d_Curve.hxx>
-#include <LProp_CurAndInf.hxx>
-#include <Geom2d_Curve.hxx>
 
 // module includes
-#include <Geom2dLProp_CurAndInf2d.hxx>
-#include <Geom2dLProp_Curve2dTool.hxx>
 #include <Geom2dLProp_FuncCurNul.hxx>
-#include <Geom2dLProp_CLProps2d.hxx>
 #include <Geom2dLProp_NumericCurInf2d.hxx>
+#include <Geom2dLProp_Curve2dTool.hxx>
 #include <Geom2dLProp_FuncCurExt.hxx>
+#include <Geom2dLProp_CurAndInf2d.hxx>
+#include <Geom2dLProp_CLProps2d.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/Geom2dLProp_CurAndInf2d.hxx
-// ./opencascade/Geom2dLProp_Curve2dTool.hxx
 // ./opencascade/Geom2dLProp_FuncCurNul.hxx
-// ./opencascade/Geom2dLProp_CLProps2d.hxx
 // ./opencascade/Geom2dLProp_NumericCurInf2d.hxx
+// ./opencascade/Geom2dLProp_Curve2dTool.hxx
 // ./opencascade/Geom2dLProp_FuncCurExt.hxx
+// ./opencascade/Geom2dLProp_CurAndInf2d.hxx
+// ./opencascade/Geom2dLProp_CLProps2d.hxx
 
 // user-defined post

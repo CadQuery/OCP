@@ -13,16 +13,32 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
+#include <TopOpeBRepDS_Point.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TopOpeBRepDS_Curve.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
 #include <TopOpeBRepDS_Curve.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_CurveIterator.hxx>
+#include <TopOpeBRepDS_PointIterator.hxx>
+#include <TopOpeBRepDS_SurfaceIterator.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
 #include <Geom2d_Curve.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
 #include <TopOpeBRepDS_InterferenceIterator.hxx>
@@ -69,42 +85,14 @@ namespace py = pybind11;
 #include <TopOpeBRepDS_ListOfShapeOn1State.hxx>
 #include <TopOpeBRepDS_Explorer.hxx>
 #include <TopOpeBRepDS_ShapeWithState.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopoDS_Edge.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <Geom_Curve.hxx>
-#include <TopOpeBRepDS_Interference.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopOpeBRepDS_SurfaceExplorer.hxx>
-#include <TopOpeBRepDS_CurveExplorer.hxx>
-#include <TopOpeBRepDS_PointExplorer.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_Curve.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <Geom_Surface.hxx>
-#include <TopOpeBRepDS_Interference.hxx>
-#include <TopOpeBRepDS_Curve.hxx>
 #include <TopOpeBRepDS_Point.hxx>
 #include <TopOpeBRepDS_Curve.hxx>
 #include <TopOpeBRepDS_DataStructure.hxx>
 #include <TopOpeBRepDS_Surface.hxx>
 #include <TopoDS_Edge.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopOpeBRepDS_Interference.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TopOpeBRepDS_CurveIterator.hxx>
-#include <TopOpeBRepDS_PointIterator.hxx>
-#include <TopOpeBRepDS_SurfaceIterator.hxx>
-#include <TopOpeBRepDS_Interference.hxx>
-#include <TopOpeBRepDS_Transition.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <Geom2d_Curve.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <Standard_NoMoreObject.hxx>
@@ -113,17 +101,29 @@ namespace py = pybind11;
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
+#include <TopOpeBRepDS_Transition.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Geom_Curve.hxx>
+#include <TopOpeBRepDS_Interference.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopOpeBRepDS_SurfaceExplorer.hxx>
+#include <TopOpeBRepDS_CurveExplorer.hxx>
+#include <TopOpeBRepDS_PointExplorer.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepDS_GapTool.hxx>
 #include <TopOpeBRepDS_Association.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopOpeBRepDS_Interference.hxx>
-#include <TopOpeBRepDS_Point.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
 
 // module includes
 #include <TopOpeBRepDS.hxx>
@@ -216,35 +216,27 @@ namespace py = pybind11;
 #include <TopOpeBRepDS_Transition.hxx>
 
 // template related includes
-// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_IndexedDataMapOfVertexPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
+// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_IndexedDataMapOfShapeWithState.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
+// ./opencascade/TopOpeBRepDS_IndexedDataMapOfVertexPoint.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_ShapeSurface.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
 #include "NCollection.hxx"
@@ -252,27 +244,35 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_MapOfShapeData.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepDS_ShapeSurface.hxx
+// ./opencascade/TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
 #include "NCollection.hxx"
 
 
@@ -292,9 +292,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TopOpeBRepDS , shared_ptr<TopOpeBRepDS>>(m,"TopOpeBRepDS");
 
     static_cast<py::class_<TopOpeBRepDS , shared_ptr<TopOpeBRepDS>  >>(m.attr("TopOpeBRepDS"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -348,12 +351,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#"  , py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Association ,opencascade::handle<TopOpeBRepDS_Association>  , Standard_Transient >>(m.attr("TopOpeBRepDS_Association"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Associate",
              (void (TopOpeBRepDS_Association::*)( const opencascade::handle<TopOpeBRepDS_Interference> & ,  const opencascade::handle<TopOpeBRepDS_Interference> &  ) ) static_cast<void (TopOpeBRepDS_Association::*)( const opencascade::handle<TopOpeBRepDS_Interference> & ,  const opencascade::handle<TopOpeBRepDS_Interference> &  ) >(&TopOpeBRepDS_Association::Associate),
@@ -383,14 +388,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_BuildTool , shared_ptr<TopOpeBRepDS_BuildTool>  >>(m.attr("TopOpeBRepDS_BuildTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepTool_OutCurveType >()  , py::arg("OutCurveType") )
         .def(py::init< const TopOpeBRepTool_GeomTool & >()  , py::arg("GT") )
+    // custom constructors
     // methods
         .def("GetGeomTool",
              (const TopOpeBRepTool_GeomTool & (TopOpeBRepDS_BuildTool::*)() const) static_cast<const TopOpeBRepTool_GeomTool & (TopOpeBRepDS_BuildTool::*)() const>(&TopOpeBRepDS_BuildTool::GetGeomTool),
@@ -522,13 +529,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Check ,opencascade::handle<TopOpeBRepDS_Check>  , Standard_Transient >>(m.attr("TopOpeBRepDS_Check"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> & >()  , py::arg("HDS") )
+    // custom constructors
     // methods
         .def("ChkIntg",
              (Standard_Boolean (TopOpeBRepDS_Check::*)() ) static_cast<Standard_Boolean (TopOpeBRepDS_Check::*)() >(&TopOpeBRepDS_Check::ChkIntg),
@@ -579,13 +588,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Curve , shared_ptr<TopOpeBRepDS_Curve>  >>(m.attr("TopOpeBRepDS_Curve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Boolean >()  , py::arg("P"),  py::arg("T"),  py::arg("IsWalk")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("DefineCurve",
              (void (TopOpeBRepDS_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepDS_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real ,  const Standard_Boolean  ) >(&TopOpeBRepDS_Curve::DefineCurve),
@@ -681,13 +692,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_CurveExplorer , shared_ptr<TopOpeBRepDS_CurveExplorer>  >>(m.attr("TopOpeBRepDS_CurveExplorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_DataStructure &,const Standard_Boolean >()  , py::arg("DS"),  py::arg("FindOnlyKeep")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_CurveExplorer::*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepDS_CurveExplorer::*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Boolean  ) >(&TopOpeBRepDS_CurveExplorer::Init),
@@ -720,12 +733,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_DataStructure , shared_ptr<TopOpeBRepDS_DataStructure>  >>(m.attr("TopOpeBRepDS_DataStructure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_DataStructure::*)() ) static_cast<void (TopOpeBRepDS_DataStructure::*)() >(&TopOpeBRepDS_DataStructure::Init),
@@ -1019,12 +1034,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Dumper , shared_ptr<TopOpeBRepDS_Dumper>  >>(m.attr("TopOpeBRepDS_Dumper"))
+    // constructors
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> & >()  , py::arg("HDS") )
+    // custom constructors
     // methods
         .def("SDumpRefOri",
              (TCollection_AsciiString (TopOpeBRepDS_Dumper::*)( const TopOpeBRepDS_Kind ,  const Standard_Integer  ) const) static_cast<TCollection_AsciiString (TopOpeBRepDS_Dumper::*)( const TopOpeBRepDS_Kind ,  const Standard_Integer  ) const>(&TopOpeBRepDS_Dumper::SDumpRefOri),
@@ -1048,12 +1065,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_EIR , shared_ptr<TopOpeBRepDS_EIR>  >>(m.attr("TopOpeBRepDS_EIR"))
+    // constructors
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> & >()  , py::arg("HDS") )
+    // custom constructors
     // methods
         .def("ProcessEdgeInterferences",
              (void (TopOpeBRepDS_EIR::*)() ) static_cast<void (TopOpeBRepDS_EIR::*)() >(&TopOpeBRepDS_EIR::ProcessEdgeInterferences),
@@ -1065,12 +1084,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Edge3dInterferenceTool , shared_ptr<TopOpeBRepDS_Edge3dInterferenceTool>  >>(m.attr("TopOpeBRepDS_Edge3dInterferenceTool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("InitPointVertex",
              (void (TopOpeBRepDS_Edge3dInterferenceTool::*)( const Standard_Integer ,  const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRepDS_Edge3dInterferenceTool::*)( const Standard_Integer ,  const TopoDS_Shape &  ) >(&TopOpeBRepDS_Edge3dInterferenceTool::InitPointVertex),
@@ -1088,12 +1109,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_EdgeInterferenceTool , shared_ptr<TopOpeBRepDS_EdgeInterferenceTool>  >>(m.attr("TopOpeBRepDS_EdgeInterferenceTool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_EdgeInterferenceTool::*)( const TopoDS_Shape & ,  const opencascade::handle<TopOpeBRepDS_Interference> &  ) ) static_cast<void (TopOpeBRepDS_EdgeInterferenceTool::*)( const TopoDS_Shape & ,  const opencascade::handle<TopOpeBRepDS_Interference> &  ) >(&TopOpeBRepDS_EdgeInterferenceTool::Init),
@@ -1111,13 +1134,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Explorer , shared_ptr<TopOpeBRepDS_Explorer>  >>(m.attr("TopOpeBRepDS_Explorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> &,const TopAbs_ShapeEnum,const Standard_Boolean >()  , py::arg("HDS"),  py::arg("T")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE),  py::arg("findkeep")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_Explorer::*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const TopAbs_ShapeEnum ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepDS_Explorer::*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const TopAbs_ShapeEnum ,  const Standard_Boolean  ) >(&TopOpeBRepDS_Explorer::Init),
@@ -1150,12 +1175,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_FIR , shared_ptr<TopOpeBRepDS_FIR>  >>(m.attr("TopOpeBRepDS_FIR"))
+    // constructors
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> & >()  , py::arg("HDS") )
+    // custom constructors
     // methods
         .def("ProcessFaceInterferences",
              (void (TopOpeBRepDS_FIR::*)(  const NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher> &  ) ) static_cast<void (TopOpeBRepDS_FIR::*)(  const NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher> &  ) >(&TopOpeBRepDS_FIR::ProcessFaceInterferences),
@@ -1167,11 +1194,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_FaceInterferenceTool , shared_ptr<TopOpeBRepDS_FaceInterferenceTool>  >>(m.attr("TopOpeBRepDS_FaceInterferenceTool"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_FaceInterferenceTool::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  const Standard_Boolean ,  const opencascade::handle<TopOpeBRepDS_Interference> &  ) ) static_cast<void (TopOpeBRepDS_FaceInterferenceTool::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  const Standard_Boolean ,  const opencascade::handle<TopOpeBRepDS_Interference> &  ) >(&TopOpeBRepDS_FaceInterferenceTool::Init),
@@ -1198,11 +1227,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Filter , shared_ptr<TopOpeBRepDS_Filter>  >>(m.attr("TopOpeBRepDS_Filter"))
+    // constructors
+    // custom constructors
     // methods
         .def("ProcessInterferences",
              (void (TopOpeBRepDS_Filter::*)() ) static_cast<void (TopOpeBRepDS_Filter::*)() >(&TopOpeBRepDS_Filter::ProcessInterferences),
@@ -1229,12 +1260,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_GapFiller , shared_ptr<TopOpeBRepDS_GapFiller>  >>(m.attr("TopOpeBRepDS_GapFiller"))
+    // constructors
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> & >()  , py::arg("HDS") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (TopOpeBRepDS_GapFiller::*)() ) static_cast<void (TopOpeBRepDS_GapFiller::*)() >(&TopOpeBRepDS_GapFiller::Perform),
@@ -1276,13 +1309,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_GapTool ,opencascade::handle<TopOpeBRepDS_GapTool>  , Standard_Transient >>(m.attr("TopOpeBRepDS_GapTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> & >()  , py::arg("HDS") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_GapTool::*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) ) static_cast<void (TopOpeBRepDS_GapTool::*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) >(&TopOpeBRepDS_GapTool::Init),
@@ -1327,13 +1362,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_GeometryData , shared_ptr<TopOpeBRepDS_GeometryData>  >>(m.attr("TopOpeBRepDS_GeometryData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_GeometryData & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("Assign",
              (void (TopOpeBRepDS_GeometryData::*)( const TopOpeBRepDS_GeometryData &  ) ) static_cast<void (TopOpeBRepDS_GeometryData::*)( const TopOpeBRepDS_GeometryData &  ) >(&TopOpeBRepDS_GeometryData::Assign),
@@ -1351,14 +1388,17 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference ,opencascade::handle<TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference>  , TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference , Standard_Transient >>(m.attr("TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const NCollection_DataMap<int, NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> >, NCollection_DefaultHasher<int> > & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference & (TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference::*)() const) static_cast<const TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference & (TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference::*)() const>(&TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference::Array1),
@@ -1379,12 +1419,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_HDataStructure ,opencascade::handle<TopOpeBRepDS_HDataStructure>  , Standard_Transient >>(m.attr("TopOpeBRepDS_HDataStructure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddAncestors",
              (void (TopOpeBRepDS_HDataStructure::*)( const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRepDS_HDataStructure::*)( const TopoDS_Shape &  ) >(&TopOpeBRepDS_HDataStructure::AddAncestors),
@@ -1537,14 +1579,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Interference ,opencascade::handle<TopOpeBRepDS_Interference>  , Standard_Transient >>(m.attr("TopOpeBRepDS_Interference"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_Transition &,const TopOpeBRepDS_Kind,const Standard_Integer,const TopOpeBRepDS_Kind,const Standard_Integer >()  , py::arg("Transition"),  py::arg("SupportType"),  py::arg("Support"),  py::arg("GeometryType"),  py::arg("Geometry") )
         .def(py::init< const opencascade::handle<TopOpeBRepDS_Interference> & >()  , py::arg("I") )
+    // custom constructors
     // methods
         .def("Transition",
              (const TopOpeBRepDS_Transition & (TopOpeBRepDS_Interference::*)() const) static_cast<const TopOpeBRepDS_Transition & (TopOpeBRepDS_Interference::*)() const>(&TopOpeBRepDS_Interference::Transition),
@@ -1604,13 +1648,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_InterferenceIterator , shared_ptr<TopOpeBRepDS_InterferenceIterator>  >>(m.attr("TopOpeBRepDS_InterferenceIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & >()  , py::arg("L") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_InterferenceIterator::*)(  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ) ) static_cast<void (TopOpeBRepDS_InterferenceIterator::*)(  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ) >(&TopOpeBRepDS_InterferenceIterator::Init),
@@ -1649,12 +1695,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepDS_InterferenceTool , shared_ptr<TopOpeBRepDS_InterferenceTool>>(m,"TopOpeBRepDS_InterferenceTool");
 
     static_cast<py::class_<TopOpeBRepDS_InterferenceTool , shared_ptr<TopOpeBRepDS_InterferenceTool>  >>(m.attr("TopOpeBRepDS_InterferenceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1687,12 +1736,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#"  , py::arg("CPI"),  py::arg("Par"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_ListOfShapeOn1State , shared_ptr<TopOpeBRepDS_ListOfShapeOn1State>  >>(m.attr("TopOpeBRepDS_ListOfShapeOn1State"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ListOnState",
              (const TopTools_ListOfShape & (TopOpeBRepDS_ListOfShapeOn1State::*)() const) static_cast<const TopTools_ListOfShape & (TopOpeBRepDS_ListOfShapeOn1State::*)() const>(&TopOpeBRepDS_ListOfShapeOn1State::ListOnState),
@@ -1713,12 +1764,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Marker ,opencascade::handle<TopOpeBRepDS_Marker>  , Standard_Transient >>(m.attr("TopOpeBRepDS_Marker"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (TopOpeBRepDS_Marker::*)() ) static_cast<void (TopOpeBRepDS_Marker::*)() >(&TopOpeBRepDS_Marker::Reset),
@@ -1748,14 +1801,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Point , shared_ptr<TopOpeBRepDS_Point>  >>(m.attr("TopOpeBRepDS_Point"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real >()  , py::arg("P"),  py::arg("T") )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("IsEqual",
              (Standard_Boolean (TopOpeBRepDS_Point::*)( const TopOpeBRepDS_Point &  ) const) static_cast<Standard_Boolean (TopOpeBRepDS_Point::*)( const TopOpeBRepDS_Point &  ) const>(&TopOpeBRepDS_Point::IsEqual),
@@ -1782,13 +1837,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_PointExplorer , shared_ptr<TopOpeBRepDS_PointExplorer>  >>(m.attr("TopOpeBRepDS_PointExplorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_DataStructure &,const Standard_Boolean >()  , py::arg("DS"),  py::arg("FindOnlyKeep")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_PointExplorer::*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepDS_PointExplorer::*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Boolean  ) >(&TopOpeBRepDS_PointExplorer::Init),
@@ -1821,12 +1878,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Reducer , shared_ptr<TopOpeBRepDS_Reducer>  >>(m.attr("TopOpeBRepDS_Reducer"))
+    // constructors
         .def(py::init< const opencascade::handle<TopOpeBRepDS_HDataStructure> & >()  , py::arg("HDS") )
+    // custom constructors
     // methods
         .def("ProcessFaceInterferences",
              (void (TopOpeBRepDS_Reducer::*)(  const NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher> &  ) ) static_cast<void (TopOpeBRepDS_Reducer::*)(  const NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher> &  ) >(&TopOpeBRepDS_Reducer::ProcessFaceInterferences),
@@ -1838,12 +1897,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_ShapeData , shared_ptr<TopOpeBRepDS_ShapeData>  >>(m.attr("TopOpeBRepDS_ShapeData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Interferences",
              (const TopOpeBRepDS_ListOfInterference & (TopOpeBRepDS_ShapeData::*)() const) static_cast<const TopOpeBRepDS_ListOfInterference & (TopOpeBRepDS_ShapeData::*)() const>(&TopOpeBRepDS_ShapeData::Interferences),
@@ -1861,12 +1922,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_ShapeWithState , shared_ptr<TopOpeBRepDS_ShapeWithState>  >>(m.attr("TopOpeBRepDS_ShapeWithState"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Part",
              (const TopTools_ListOfShape & (TopOpeBRepDS_ShapeWithState::*)( const TopAbs_State  ) const) static_cast<const TopTools_ListOfShape & (TopOpeBRepDS_ShapeWithState::*)( const TopAbs_State  ) const>(&TopOpeBRepDS_ShapeWithState::Part),
@@ -1893,14 +1956,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Surface , shared_ptr<TopOpeBRepDS_Surface>  >>(m.attr("TopOpeBRepDS_Surface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real >()  , py::arg("P"),  py::arg("T") )
         .def(py::init< const TopOpeBRepDS_Surface & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("Assign",
              (void (TopOpeBRepDS_Surface::*)( const TopOpeBRepDS_Surface &  ) ) static_cast<void (TopOpeBRepDS_Surface::*)( const TopOpeBRepDS_Surface &  ) >(&TopOpeBRepDS_Surface::Assign),
@@ -1912,25 +1977,27 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
              (Standard_Real (TopOpeBRepDS_Surface::*)() const) static_cast<Standard_Real (TopOpeBRepDS_Surface::*)() const>(&TopOpeBRepDS_Surface::Tolerance),
              R"#(None)#" )
         .def("Tolerance",
-             (void (TopOpeBRepDS_Surface::*)( const Standard_Real  ) ) static_cast<void (TopOpeBRepDS_Surface::*)( const Standard_Real  ) >(&TopOpeBRepDS_Surface::Tolerance),
-             R"#(Update the tolerance)#"  , py::arg("tol"))
+             (void (TopOpeBRepDS_Surface::*)( Standard_Real  ) ) static_cast<void (TopOpeBRepDS_Surface::*)( Standard_Real  ) >(&TopOpeBRepDS_Surface::Tolerance),
+             R"#(Update the tolerance)#"  , py::arg("theTol"))
         .def("Keep",
              (Standard_Boolean (TopOpeBRepDS_Surface::*)() const) static_cast<Standard_Boolean (TopOpeBRepDS_Surface::*)() const>(&TopOpeBRepDS_Surface::Keep),
              R"#(None)#" )
         .def("ChangeKeep",
-             (void (TopOpeBRepDS_Surface::*)( const Standard_Boolean  ) ) static_cast<void (TopOpeBRepDS_Surface::*)( const Standard_Boolean  ) >(&TopOpeBRepDS_Surface::ChangeKeep),
-             R"#(None)#"  , py::arg("B"))
+             (void (TopOpeBRepDS_Surface::*)( Standard_Boolean  ) ) static_cast<void (TopOpeBRepDS_Surface::*)( Standard_Boolean  ) >(&TopOpeBRepDS_Surface::ChangeKeep),
+             R"#(None)#"  , py::arg("theToKeep"))
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_SurfaceExplorer , shared_ptr<TopOpeBRepDS_SurfaceExplorer>  >>(m.attr("TopOpeBRepDS_SurfaceExplorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_DataStructure &,const Standard_Boolean >()  , py::arg("DS"),  py::arg("FindOnlyKeep")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepDS_SurfaceExplorer::*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepDS_SurfaceExplorer::*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Boolean  ) >(&TopOpeBRepDS_SurfaceExplorer::Init),
@@ -1963,12 +2030,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_TKI , shared_ptr<TopOpeBRepDS_TKI>  >>(m.attr("TopOpeBRepDS_TKI"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TopOpeBRepDS_TKI::*)() ) static_cast<void (TopOpeBRepDS_TKI::*)() >(&TopOpeBRepDS_TKI::Clear),
@@ -2019,12 +2088,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepDS_TOOL , shared_ptr<TopOpeBRepDS_TOOL>>(m,"TopOpeBRepDS_TOOL");
 
     static_cast<py::class_<TopOpeBRepDS_TOOL , shared_ptr<TopOpeBRepDS_TOOL>  >>(m.attr("TopOpeBRepDS_TOOL"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -2045,14 +2117,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#"  , py::arg("HDS"),  py::arg("MEspON"),  py::arg("ie"),  py::arg("iesd"),  py::arg("conf"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_Transition , shared_ptr<TopOpeBRepDS_Transition>  >>(m.attr("TopOpeBRepDS_Transition"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopAbs_State,const TopAbs_State,const TopAbs_ShapeEnum,const TopAbs_ShapeEnum >()  , py::arg("StateBefore"),  py::arg("StateAfter"),  py::arg("ShapeBefore")=static_cast<const TopAbs_ShapeEnum>(TopAbs_FACE),  py::arg("ShapeAfter")=static_cast<const TopAbs_ShapeEnum>(TopAbs_FACE) )
         .def(py::init< const TopAbs_Orientation >()  , py::arg("O") )
+    // custom constructors
     // methods
         .def("Set",
              (void (TopOpeBRepDS_Transition::*)( const TopAbs_State ,  const TopAbs_State ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (TopOpeBRepDS_Transition::*)( const TopAbs_State ,  const TopAbs_State ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&TopOpeBRepDS_Transition::Set),
@@ -2127,24 +2201,28 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_CurveData , shared_ptr<TopOpeBRepDS_CurveData>  , TopOpeBRepDS_GeometryData >>(m.attr("TopOpeBRepDS_CurveData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_Curve & >()  , py::arg("C") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_CurveIterator , shared_ptr<TopOpeBRepDS_CurveIterator>  , TopOpeBRepDS_InterferenceIterator >>(m.attr("TopOpeBRepDS_CurveIterator"))
+    // constructors
         .def(py::init<  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & >()  , py::arg("L") )
+    // custom constructors
     // methods
         .def("MatchInterference",
              (Standard_Boolean (TopOpeBRepDS_CurveIterator::*)( const opencascade::handle<TopOpeBRepDS_Interference> &  ) const) static_cast<Standard_Boolean (TopOpeBRepDS_CurveIterator::*)( const opencascade::handle<TopOpeBRepDS_Interference> &  ) const>(&TopOpeBRepDS_CurveIterator::MatchInterference),
@@ -2162,12 +2240,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_CurvePointInterference ,opencascade::handle<TopOpeBRepDS_CurvePointInterference>  , TopOpeBRepDS_Interference >>(m.attr("TopOpeBRepDS_CurvePointInterference"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_Transition &,const TopOpeBRepDS_Kind,const Standard_Integer,const TopOpeBRepDS_Kind,const Standard_Integer,const Standard_Real >()  , py::arg("T"),  py::arg("ST"),  py::arg("S"),  py::arg("GT"),  py::arg("G"),  py::arg("P") )
+    // custom constructors
     // methods
         .def("Parameter",
              (Standard_Real (TopOpeBRepDS_CurvePointInterference::*)() const) static_cast<Standard_Real (TopOpeBRepDS_CurvePointInterference::*)() const>(&TopOpeBRepDS_CurvePointInterference::Parameter),
@@ -2188,14 +2268,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_PointData , shared_ptr<TopOpeBRepDS_PointData>  , TopOpeBRepDS_GeometryData >>(m.attr("TopOpeBRepDS_PointData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_Point & >()  , py::arg("P") )
         .def(py::init< const TopOpeBRepDS_Point &,const Standard_Integer,const Standard_Integer >()  , py::arg("P"),  py::arg("I1"),  py::arg("I2") )
+    // custom constructors
     // methods
         .def("SetShapes",
              (void (TopOpeBRepDS_PointData::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (TopOpeBRepDS_PointData::*)( const Standard_Integer ,  const Standard_Integer  ) >(&TopOpeBRepDS_PointData::SetShapes),
@@ -2207,12 +2289,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_PointIterator , shared_ptr<TopOpeBRepDS_PointIterator>  , TopOpeBRepDS_InterferenceIterator >>(m.attr("TopOpeBRepDS_PointIterator"))
+    // constructors
         .def(py::init<  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & >()  , py::arg("L") )
+    // custom constructors
     // methods
         .def("MatchInterference",
              (Standard_Boolean (TopOpeBRepDS_PointIterator::*)( const opencascade::handle<TopOpeBRepDS_Interference> &  ) const) static_cast<Standard_Boolean (TopOpeBRepDS_PointIterator::*)( const opencascade::handle<TopOpeBRepDS_Interference> &  ) const>(&TopOpeBRepDS_PointIterator::MatchInterference),
@@ -2245,12 +2329,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_ShapeShapeInterference ,opencascade::handle<TopOpeBRepDS_ShapeShapeInterference>  , TopOpeBRepDS_Interference >>(m.attr("TopOpeBRepDS_ShapeShapeInterference"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_Transition &,const TopOpeBRepDS_Kind,const Standard_Integer,const TopOpeBRepDS_Kind,const Standard_Integer,const Standard_Boolean,const TopOpeBRepDS_Config >()  , py::arg("T"),  py::arg("ST"),  py::arg("S"),  py::arg("GT"),  py::arg("G"),  py::arg("GBound"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Config",
              (TopOpeBRepDS_Config (TopOpeBRepDS_ShapeShapeInterference::*)() const) static_cast<TopOpeBRepDS_Config (TopOpeBRepDS_ShapeShapeInterference::*)() const>(&TopOpeBRepDS_ShapeShapeInterference::Config),
@@ -2274,12 +2360,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_SolidSurfaceInterference ,opencascade::handle<TopOpeBRepDS_SolidSurfaceInterference>  , TopOpeBRepDS_Interference >>(m.attr("TopOpeBRepDS_SolidSurfaceInterference"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_Transition &,const TopOpeBRepDS_Kind,const Standard_Integer,const TopOpeBRepDS_Kind,const Standard_Integer >()  , py::arg("Transition"),  py::arg("SupportType"),  py::arg("Support"),  py::arg("GeometryType"),  py::arg("Geometry") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TopOpeBRepDS_SolidSurfaceInterference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopOpeBRepDS_SolidSurfaceInterference::*)() const>(&TopOpeBRepDS_SolidSurfaceInterference::DynamicType),
@@ -2294,14 +2382,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_SurfaceCurveInterference ,opencascade::handle<TopOpeBRepDS_SurfaceCurveInterference>  , TopOpeBRepDS_Interference >>(m.attr("TopOpeBRepDS_SurfaceCurveInterference"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_Transition &,const TopOpeBRepDS_Kind,const Standard_Integer,const TopOpeBRepDS_Kind,const Standard_Integer,const opencascade::handle<Geom2d_Curve> & >()  , py::arg("Transition"),  py::arg("SupportType"),  py::arg("Support"),  py::arg("GeometryType"),  py::arg("Geometry"),  py::arg("PC") )
         .def(py::init< const opencascade::handle<TopOpeBRepDS_Interference> & >()  , py::arg("I") )
+    // custom constructors
     // methods
         .def("PCurve",
              (const opencascade::handle<Geom2d_Curve> & (TopOpeBRepDS_SurfaceCurveInterference::*)() const) static_cast<const opencascade::handle<Geom2d_Curve> & (TopOpeBRepDS_SurfaceCurveInterference::*)() const>(&TopOpeBRepDS_SurfaceCurveInterference::PCurve),
@@ -2322,24 +2412,28 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_SurfaceData , shared_ptr<TopOpeBRepDS_SurfaceData>  , TopOpeBRepDS_GeometryData >>(m.attr("TopOpeBRepDS_SurfaceData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepDS_Surface & >()  , py::arg("S") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_SurfaceIterator , shared_ptr<TopOpeBRepDS_SurfaceIterator>  , TopOpeBRepDS_InterferenceIterator >>(m.attr("TopOpeBRepDS_SurfaceIterator"))
+    // constructors
         .def(py::init<  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & >()  , py::arg("L") )
+    // custom constructors
     // methods
         .def("Current",
              (Standard_Integer (TopOpeBRepDS_SurfaceIterator::*)() const) static_cast<Standard_Integer (TopOpeBRepDS_SurfaceIterator::*)() const>(&TopOpeBRepDS_SurfaceIterator::Current),
@@ -2351,13 +2445,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_EdgeVertexInterference ,opencascade::handle<TopOpeBRepDS_EdgeVertexInterference>  , TopOpeBRepDS_ShapeShapeInterference >>(m.attr("TopOpeBRepDS_EdgeVertexInterference"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_Transition &,const TopOpeBRepDS_Kind,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const TopOpeBRepDS_Config,const Standard_Real >()  , py::arg("T"),  py::arg("ST"),  py::arg("S"),  py::arg("G"),  py::arg("GIsBound"),  py::arg("C"),  py::arg("P") )
         .def(py::init< const TopOpeBRepDS_Transition &,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const TopOpeBRepDS_Config,const Standard_Real >()  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("GIsBound"),  py::arg("C"),  py::arg("P") )
+    // custom constructors
     // methods
         .def("Parameter",
              (Standard_Real (TopOpeBRepDS_EdgeVertexInterference::*)() const) static_cast<Standard_Real (TopOpeBRepDS_EdgeVertexInterference::*)() const>(&TopOpeBRepDS_EdgeVertexInterference::Parameter),
@@ -2378,12 +2474,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepDS_FaceEdgeInterference ,opencascade::handle<TopOpeBRepDS_FaceEdgeInterference>  , TopOpeBRepDS_ShapeShapeInterference >>(m.attr("TopOpeBRepDS_FaceEdgeInterference"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_Transition &,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const TopOpeBRepDS_Config >()  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("GIsBound"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TopOpeBRepDS_FaceEdgeInterference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TopOpeBRepDS_FaceEdgeInterference::*)() const>(&TopOpeBRepDS_FaceEdgeInterference::DynamicType),
@@ -2398,123 +2496,11 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TopOpeBRepDS_Dumper.hxx
-// ./opencascade/TopOpeBRepDS_ListIteratorOfListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_PDataStructure.hxx
-// ./opencascade/TopOpeBRepDS_GapTool.hxx
-// ./opencascade/TopOpeBRepDS_PointIterator.hxx
-// ./opencascade/TopOpeBRepDS_repvg.hxx
-    m.def("FDS_repvg", 
-          (void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FDS_repvg),
-          R"#(None)#"  , py::arg("BDS"),  py::arg("EIX"),  py::arg("GT"),  py::arg("LI"),  py::arg("reducedLI"));
-    m.def("FDS_repvg2", 
-          (void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FDS_repvg2),
-          R"#(None)#"  , py::arg("BDS"),  py::arg("EIX"),  py::arg("GT"),  py::arg("LI"),  py::arg("reducedLI"));
-// ./opencascade/TopOpeBRepDS_Reducer.hxx
-// ./opencascade/TopOpeBRepDS_ProcessInterferencesTool.hxx
-    m.def("MakeCPVInterference", 
-          (opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind  ))  static_cast<opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind  )>(&MakeCPVInterference),
-          R"#(None)#"  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("P"),  py::arg("GK"));
-    m.def("MakeEPVInterference", 
-          (opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  ))  static_cast<opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  )>(&MakeEPVInterference),
-          R"#(None)#"  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("P"),  py::arg("GK"),  py::arg("B"));
-    m.def("MakeEPVInterference", 
-          (opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  ))  static_cast<opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  )>(&MakeEPVInterference),
-          R"#(None)#"  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("P"),  py::arg("GK"),  py::arg("SK"),  py::arg("B"));
-    m.def("FUN_hasStateShape", 
-          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopAbs_State ,  const TopAbs_ShapeEnum  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopAbs_State ,  const TopAbs_ShapeEnum  )>(&FUN_hasStateShape),
-          R"#(None)#"  , py::arg("T"),  py::arg("state"),  py::arg("shape"));
-    m.def("FUN_selectTRASHAinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectTRASHAinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("sha"),  py::arg("L2"));
-    m.def("FUN_selectITRASHAinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectITRASHAinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("Index"),  py::arg("L2"));
-    m.def("FUN_selectTRAUNKinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectTRAUNKinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("L2"));
-    m.def("FUN_selectTRAORIinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_Orientation ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_Orientation ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectTRAORIinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("O"),  py::arg("L2"));
-    m.def("FUN_selectGKinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectGKinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("GK"),  py::arg("L2"));
-    m.def("FUN_selectSKinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectSKinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("SK"),  py::arg("L2"));
-    m.def("FUN_selectGIinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectGIinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("GI"),  py::arg("L2"));
-    m.def("FUN_selectSIinterference", 
-          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectSIinterference),
-          R"#(None)#"  , py::arg("L1"),  py::arg("SI"),  py::arg("L2"));
-    m.def("FUN_interfhassupport", 
-          (Standard_Boolean (*)( const TopOpeBRepDS_DataStructure & ,  const opencascade::handle<TopOpeBRepDS_Interference> & ,  const TopoDS_Shape &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_DataStructure & ,  const opencascade::handle<TopOpeBRepDS_Interference> & ,  const TopoDS_Shape &  )>(&FUN_interfhassupport),
-          R"#(None)#"  , py::arg("DS"),  py::arg("I"),  py::arg("S"));
-    m.def("FUN_transitionEQUAL", 
-          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionEQUAL),
-          R"#(None)#"  , py::arg(""),  py::arg(""));
-    m.def("FUN_transitionSTATEEQUAL", 
-          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionSTATEEQUAL),
-          R"#(None)#"  , py::arg(""),  py::arg(""));
-    m.def("FUN_transitionSHAPEEQUAL", 
-          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionSHAPEEQUAL),
-          R"#(None)#"  , py::arg(""),  py::arg(""));
-    m.def("FUN_transitionINDEXEQUAL", 
-          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionINDEXEQUAL),
-          R"#(None)#"  , py::arg(""),  py::arg(""));
-    m.def("FUN_reducedoublons", 
-          (void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_DataStructure & ,  const Standard_Integer  ))  static_cast<void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_DataStructure & ,  const Standard_Integer  )>(&FUN_reducedoublons),
-          R"#(None)#"  , py::arg("LI"),  py::arg("BDS"),  py::arg("SIX"));
-    m.def("FUN_unkeepUNKNOWN", 
-          (void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  TopOpeBRepDS_DataStructure & ,  const Standard_Integer  ))  static_cast<void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  TopOpeBRepDS_DataStructure & ,  const Standard_Integer  )>(&FUN_unkeepUNKNOWN),
-          R"#(None)#"  , py::arg("LI"),  py::arg("BDS"),  py::arg("SIX"));
-    m.def("FUN_select2dI", 
-          (Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_select2dI),
-          R"#(None)#"  , py::arg("SIX"),  py::arg("BDS"),  py::arg("TRASHAk"),  py::arg("lI"),  py::arg("l2dI"));
-    m.def("FUN_selectpure2dI", 
-          (Standard_Integer (*)(  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)(  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectpure2dI),
-          R"#(None)#"  , py::arg("lF"),  py::arg("lFE"),  py::arg("l2dFE"));
-    m.def("FUN_select1dI", 
-          (Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_select1dI),
-          R"#(None)#"  , py::arg("SIX"),  py::arg("BDS"),  py::arg("LI"),  py::arg("l1dI"));
-    m.def("FUN_select3dinterference", 
-          (void (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<void (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_select3dinterference),
-          R"#(None)#"  , py::arg("SIX"),  py::arg("BDS"),  py::arg("lF"),  py::arg("l3dF"),  py::arg("lFE"),  py::arg("lFEresi"),  py::arg("l3dFE"),  py::arg("l3dFEresi"),  py::arg("l2dFE"));
-// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_CurveIterator.hxx
-// ./opencascade/TopOpeBRepDS_PointData.hxx
-// ./opencascade/TopOpeBRepDS_Transition.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
-// ./opencascade/TopOpeBRepDS_SurfaceIterator.hxx
-// ./opencascade/TopOpeBRepDS_Marker.hxx
-// ./opencascade/TopOpeBRepDS_Config.hxx
-// ./opencascade/TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_IndexedDataMapOfVertexPoint.hxx
-// ./opencascade/TopOpeBRepDS.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfPoint.hxx
-// ./opencascade/TopOpeBRepDS_TOOL.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
-// ./opencascade/TopOpeBRepDS_EdgeVertexInterference.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_SurfaceExplorer.hxx
-// ./opencascade/TopOpeBRepDS_PointExplorer.hxx
-// ./opencascade/TopOpeBRepDS_SolidSurfaceInterference.hxx
-// ./opencascade/TopOpeBRepDS_DoubleMapIteratorOfDoubleMapOfIntegerShape.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfCheckStatus.hxx
-// ./opencascade/TopOpeBRepDS_Curve.hxx
-// ./opencascade/TopOpeBRepDS_DataStructure.hxx
-// ./opencascade/TopOpeBRepDS_ShapeShapeInterference.hxx
-// ./opencascade/TopOpeBRepDS_define.hxx
-// ./opencascade/TopOpeBRepDS_CurveExplorer.hxx
-// ./opencascade/TopOpeBRepDS_Check.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_CurvePointInterference.hxx
-// ./opencascade/TopOpeBRepDS_Surface.hxx
+// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
 // ./opencascade/TopOpeBRepDS_EXPORT.hxx
     m.def("FUN_ds_redu2d1d", 
           (Standard_Boolean (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const opencascade::handle<TopOpeBRepDS_Interference> & ,   const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const opencascade::handle<TopOpeBRepDS_Interference> & ,   const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  TopOpeBRepDS_Transition &  )>(&FUN_ds_redu2d1d),
@@ -2675,8 +2661,164 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     m.def("FUN_ds_FEIGb1TO0", 
           (void (*)( opencascade::handle<TopOpeBRepDS_HDataStructure> & ,   const NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher> &  ))  static_cast<void (*)( opencascade::handle<TopOpeBRepDS_HDataStructure> & ,   const NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher> &  )>(&FUN_ds_FEIGb1TO0),
           R"#(None)#"  , py::arg("HDS"),  py::arg("MEspON"));
+// ./opencascade/TopOpeBRepDS_EdgeInterferenceTool.hxx
+// ./opencascade/TopOpeBRepDS_Edge3dInterferenceTool.hxx
+// ./opencascade/TopOpeBRepDS_CurvePointInterference.hxx
+// ./opencascade/TopOpeBRepDS_ListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_Dumper.hxx
+// ./opencascade/TopOpeBRepDS_FaceEdgeInterference.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfPoint.hxx
+// ./opencascade/TopOpeBRepDS_IndexedDataMapOfShapeWithState.hxx
+// ./opencascade/TopOpeBRepDS_IndexedDataMapOfVertexPoint.hxx
+// ./opencascade/TopOpeBRepDS_Check.hxx
+// ./opencascade/TopOpeBRepDS_EdgeVertexInterference.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_CurveExplorer.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfCheckStatus.hxx
+// ./opencascade/TopOpeBRepDS_ListIteratorOfListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_ShapeSurface.hxx
+// ./opencascade/TopOpeBRepDS_Kind.hxx
+// ./opencascade/TopOpeBRepDS_Transition.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfIntegerShapeData.hxx
+// ./opencascade/TopOpeBRepDS_InterferenceIterator.hxx
+// ./opencascade/TopOpeBRepDS_ListOfShapeOn1State.hxx
+// ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
+// ./opencascade/TopOpeBRepDS_samdom.hxx
+    m.def("FDSSDM_prepare", 
+          (void (*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ))  static_cast<void (*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> &  )>(&FDSSDM_prepare),
+          R"#(None)#"  , py::arg(""));
+    m.def("FDSSDM_makes1s2", 
+          (void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_makes1s2),
+          R"#(None)#"  , py::arg("S"),  py::arg("L1"),  py::arg("L2"));
+    m.def("FDSSDM_s1s2", 
+          (void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_s1s2),
+          R"#(None)#"  , py::arg("S"),  py::arg("LS1"),  py::arg("LS2"));
+    m.def("FDSSDM_sordor", 
+          (void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_sordor),
+          R"#(None)#"  , py::arg("S"),  py::arg("LSO"),  py::arg("LDO"));
+    m.def("FDSSDM_contains", 
+          (Standard_Boolean (*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  ))  static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_contains),
+          R"#(None)#"  , py::arg("S"),  py::arg("L"));
+    m.def("FDSSDM_copylist", 
+          (void (*)(  const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Integer ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)(  const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Integer ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_copylist),
+          R"#(None)#"  , py::arg("Lin"),  py::arg("I1"),  py::arg("I2"),  py::arg("Lou"));
+    m.def("FDSSDM_copylist", 
+          (void (*)(  const NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)(  const NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_copylist),
+          R"#(None)#"  , py::arg("Lin"),  py::arg("Lou"));
 // ./opencascade/TopOpeBRepDS_FaceInterferenceTool.hxx
+// ./opencascade/TopOpeBRepDS_Filter.hxx
+// ./opencascade/TopOpeBRepDS_MapOfShapeData.hxx
+// ./opencascade/TopOpeBRepDS_HDataStructure.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceShape.hxx
+// ./opencascade/TopOpeBRepDS_Point.hxx
+// ./opencascade/TopOpeBRepDS_DoubleMapIteratorOfDoubleMapOfIntegerShape.hxx
+// ./opencascade/TopOpeBRepDS_PDataStructure.hxx
 // ./opencascade/TopOpeBRepDS_DataMapOfShapeState.hxx
+// ./opencascade/TopOpeBRepDS_SurfaceCurveInterference.hxx
+// ./opencascade/TopOpeBRepDS_GapTool.hxx
+// ./opencascade/TopOpeBRepDS_ShapeShapeInterference.hxx
+// ./opencascade/TopOpeBRepDS_Surface.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_FIR.hxx
+// ./opencascade/TopOpeBRepDS_Marker.hxx
+// ./opencascade/TopOpeBRepDS_TKI.hxx
+// ./opencascade/TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_DRAW.hxx
+// ./opencascade/TopOpeBRepDS_SurfaceIterator.hxx
+// ./opencascade/TopOpeBRepDS_SurfaceExplorer.hxx
+// ./opencascade/TopOpeBRepDS_Association.hxx
+// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
+// ./opencascade/TopOpeBRepDS_PointData.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfShapeListOfShapeOn1State.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State.hxx
+// ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
+// ./opencascade/TopOpeBRepDS.hxx
+// ./opencascade/TopOpeBRepDS_ShapeWithState.hxx
+// ./opencascade/TopOpeBRepDS_CurveData.hxx
+// ./opencascade/TopOpeBRepDS_TOOL.hxx
+// ./opencascade/TopOpeBRepDS_BuildTool.hxx
+// ./opencascade/TopOpeBRepDS_Explorer.hxx
+// ./opencascade/TopOpeBRepDS_InterferenceTool.hxx
+// ./opencascade/TopOpeBRepDS_ShapeData.hxx
+// ./opencascade/TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_ProcessInterferencesTool.hxx
+    m.def("MakeCPVInterference", 
+          (opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind  ))  static_cast<opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind  )>(&MakeCPVInterference),
+          R"#(None)#"  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("P"),  py::arg("GK"));
+    m.def("MakeEPVInterference", 
+          (opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  ))  static_cast<opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  )>(&MakeEPVInterference),
+          R"#(None)#"  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("P"),  py::arg("GK"),  py::arg("B"));
+    m.def("MakeEPVInterference", 
+          (opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  ))  static_cast<opencascade::handle<TopOpeBRepDS_Interference> (*)( const TopOpeBRepDS_Transition & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const TopOpeBRepDS_Kind ,  const TopOpeBRepDS_Kind ,  const Standard_Boolean  )>(&MakeEPVInterference),
+          R"#(None)#"  , py::arg("T"),  py::arg("S"),  py::arg("G"),  py::arg("P"),  py::arg("GK"),  py::arg("SK"),  py::arg("B"));
+    m.def("FUN_hasStateShape", 
+          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopAbs_State ,  const TopAbs_ShapeEnum  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopAbs_State ,  const TopAbs_ShapeEnum  )>(&FUN_hasStateShape),
+          R"#(None)#"  , py::arg("T"),  py::arg("state"),  py::arg("shape"));
+    m.def("FUN_selectTRASHAinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectTRASHAinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("sha"),  py::arg("L2"));
+    m.def("FUN_selectITRASHAinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectITRASHAinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("Index"),  py::arg("L2"));
+    m.def("FUN_selectTRAUNKinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectTRAUNKinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("L2"));
+    m.def("FUN_selectTRAORIinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_Orientation ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopAbs_Orientation ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectTRAORIinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("O"),  py::arg("L2"));
+    m.def("FUN_selectGKinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectGKinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("GK"),  py::arg("L2"));
+    m.def("FUN_selectSKinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectSKinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("SK"),  py::arg("L2"));
+    m.def("FUN_selectGIinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectGIinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("GI"),  py::arg("L2"));
+    m.def("FUN_selectSIinterference", 
+          (Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const Standard_Integer ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectSIinterference),
+          R"#(None)#"  , py::arg("L1"),  py::arg("SI"),  py::arg("L2"));
+    m.def("FUN_interfhassupport", 
+          (Standard_Boolean (*)( const TopOpeBRepDS_DataStructure & ,  const opencascade::handle<TopOpeBRepDS_Interference> & ,  const TopoDS_Shape &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_DataStructure & ,  const opencascade::handle<TopOpeBRepDS_Interference> & ,  const TopoDS_Shape &  )>(&FUN_interfhassupport),
+          R"#(None)#"  , py::arg("DS"),  py::arg("I"),  py::arg("S"));
+    m.def("FUN_transitionEQUAL", 
+          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionEQUAL),
+          R"#(None)#"  , py::arg(""),  py::arg(""));
+    m.def("FUN_transitionSTATEEQUAL", 
+          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionSTATEEQUAL),
+          R"#(None)#"  , py::arg(""),  py::arg(""));
+    m.def("FUN_transitionSHAPEEQUAL", 
+          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionSHAPEEQUAL),
+          R"#(None)#"  , py::arg(""),  py::arg(""));
+    m.def("FUN_transitionINDEXEQUAL", 
+          (Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  ))  static_cast<Standard_Boolean (*)( const TopOpeBRepDS_Transition & ,  const TopOpeBRepDS_Transition &  )>(&FUN_transitionINDEXEQUAL),
+          R"#(None)#"  , py::arg(""),  py::arg(""));
+    m.def("FUN_reducedoublons", 
+          (void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_DataStructure & ,  const Standard_Integer  ))  static_cast<void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  const TopOpeBRepDS_DataStructure & ,  const Standard_Integer  )>(&FUN_reducedoublons),
+          R"#(None)#"  , py::arg("LI"),  py::arg("BDS"),  py::arg("SIX"));
+    m.def("FUN_unkeepUNKNOWN", 
+          (void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  TopOpeBRepDS_DataStructure & ,  const Standard_Integer  ))  static_cast<void (*)( NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  TopOpeBRepDS_DataStructure & ,  const Standard_Integer  )>(&FUN_unkeepUNKNOWN),
+          R"#(None)#"  , py::arg("LI"),  py::arg("BDS"),  py::arg("SIX"));
+    m.def("FUN_select2dI", 
+          (Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  const TopAbs_ShapeEnum ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_select2dI),
+          R"#(None)#"  , py::arg("SIX"),  py::arg("BDS"),  py::arg("TRASHAk"),  py::arg("lI"),  py::arg("l2dI"));
+    m.def("FUN_selectpure2dI", 
+          (Standard_Integer (*)(  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)(  const NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_selectpure2dI),
+          R"#(None)#"  , py::arg("lF"),  py::arg("lFE"),  py::arg("l2dFE"));
+    m.def("FUN_select1dI", 
+          (Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_select1dI),
+          R"#(None)#"  , py::arg("SIX"),  py::arg("BDS"),  py::arg("LI"),  py::arg("l1dI"));
+    m.def("FUN_select3dinterference", 
+          (void (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<void (*)( const Standard_Integer ,  TopOpeBRepDS_DataStructure & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FUN_select3dinterference),
+          R"#(None)#"  , py::arg("SIX"),  py::arg("BDS"),  py::arg("lF"),  py::arg("l3dF"),  py::arg("lFE"),  py::arg("lFEresi"),  py::arg("l3dFE"),  py::arg("l3dFEresi"),  py::arg("l2dFE"));
+// ./opencascade/TopOpeBRepDS_Reducer.hxx
+// ./opencascade/TopOpeBRepDS_Interference.hxx
+// ./opencascade/TopOpeBRepDS_SolidSurfaceInterference.hxx
+// ./opencascade/TopOpeBRepDS_Curve.hxx
+// ./opencascade/TopOpeBRepDS_GeometryData.hxx
+// ./opencascade/TopOpeBRepDS_Config.hxx
+// ./opencascade/TopOpeBRepDS_define.hxx
 // ./opencascade/TopOpeBRepDS_connex.hxx
     m.def("FDSCNX_EdgeConnexityShapeIndex", 
           (const TopTools_ListOfShape & (*)( const TopoDS_Shape & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const Standard_Integer  ))  static_cast<const TopTools_ListOfShape & (*)( const TopoDS_Shape & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const Standard_Integer  )>(&FDSCNX_EdgeConnexityShapeIndex),
@@ -2702,93 +2844,49 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepDS"));
     m.def("FDSCNX_DumpIndex", 
           (void (*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const Standard_Integer  ))  static_cast<void (*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const Standard_Integer  )>(&FDSCNX_DumpIndex),
           R"#(None)#"  , py::arg("HDS"),  py::arg("I"));
-// ./opencascade/TopOpeBRepDS_BuildTool.hxx
-// ./opencascade/TopOpeBRepDS_Point.hxx
-// ./opencascade/TopOpeBRepDS_IndexedDataMapOfShapeWithState.hxx
-// ./opencascade/TopOpeBRepDS_Edge3dInterferenceTool.hxx
-// ./opencascade/TopOpeBRepDS_Association.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceShape.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfShapeSurface.hxx
-// ./opencascade/TopOpeBRepDS_InterferenceIterator.hxx
+// ./opencascade/TopOpeBRepDS_PointIterator.hxx
+// ./opencascade/TopOpeBRepDS_repvg.hxx
+    m.def("FDS_repvg", 
+          (void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FDS_repvg),
+          R"#(None)#"  , py::arg("BDS"),  py::arg("EIX"),  py::arg("GT"),  py::arg("LI"),  py::arg("reducedLI"));
+    m.def("FDS_repvg2", 
+          (void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  ))  static_cast<void (*)( const TopOpeBRepDS_DataStructure & ,  const Standard_Integer ,  const TopOpeBRepDS_Kind ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > & ,  NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> > &  )>(&FDS_repvg2),
+          R"#(None)#"  , py::arg("BDS"),  py::arg("EIX"),  py::arg("GT"),  py::arg("LI"),  py::arg("reducedLI"));
+// ./opencascade/TopOpeBRepDS_DataStructure.hxx
 // ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfSurface.hxx
-// ./opencascade/TopOpeBRepDS_MapOfPoint.hxx
-// ./opencascade/TopOpeBRepDS_MapOfShapeData.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfCurve.hxx
-// ./opencascade/TopOpeBRepDS_HArray1OfDataMapOfIntegerListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_Filter.hxx
-// ./opencascade/TopOpeBRepDS_TKI.hxx
-// ./opencascade/TopOpeBRepDS_CurveData.hxx
-// ./opencascade/TopOpeBRepDS_MapOfIntegerShapeData.hxx
-// ./opencascade/TopOpeBRepDS_Interference.hxx
-// ./opencascade/TopOpeBRepDS_DataMapOfIntegerListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfIntegerListOfInterference.hxx
-// ./opencascade/TopOpeBRepDS_HDataStructure.hxx
-// ./opencascade/TopOpeBRepDS_InterferenceTool.hxx
-// ./opencascade/TopOpeBRepDS_FaceEdgeInterference.hxx
-// ./opencascade/TopOpeBRepDS_FIR.hxx
-// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
-// ./opencascade/TopOpeBRepDS_SurfaceCurveInterference.hxx
 // ./opencascade/TopOpeBRepDS_CheckStatus.hxx
-// ./opencascade/TopOpeBRepDS_EIR.hxx
-// ./opencascade/TopOpeBRepDS_Kind.hxx
-// ./opencascade/TopOpeBRepDS_DRAW.hxx
-// ./opencascade/TopOpeBRepDS_Explorer.hxx
-// ./opencascade/TopOpeBRepDS_GapFiller.hxx
-// ./opencascade/TopOpeBRepDS_ListOfShapeOn1State.hxx
-// ./opencascade/TopOpeBRepDS_MapOfCurve.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfShapeListOfShapeOn1State.hxx
-// ./opencascade/TopOpeBRepDS_EdgeInterferenceTool.hxx
-// ./opencascade/TopOpeBRepDS_MapOfSurface.hxx
-// ./opencascade/TopOpeBRepDS_ShapeWithState.hxx
-// ./opencascade/TopOpeBRepDS_samdom.hxx
-    m.def("FDSSDM_prepare", 
-          (void (*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ))  static_cast<void (*)( const opencascade::handle<TopOpeBRepDS_HDataStructure> &  )>(&FDSSDM_prepare),
-          R"#(None)#"  , py::arg(""));
-    m.def("FDSSDM_makes1s2", 
-          (void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_makes1s2),
-          R"#(None)#"  , py::arg("S"),  py::arg("L1"),  py::arg("L2"));
-    m.def("FDSSDM_s1s2", 
-          (void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_s1s2),
-          R"#(None)#"  , py::arg("S"),  py::arg("LS1"),  py::arg("LS2"));
-    m.def("FDSSDM_sordor", 
-          (void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)( const TopoDS_Shape & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_sordor),
-          R"#(None)#"  , py::arg("S"),  py::arg("LSO"),  py::arg("LDO"));
-    m.def("FDSSDM_contains", 
-          (Standard_Boolean (*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  ))  static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,   const NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_contains),
-          R"#(None)#"  , py::arg("S"),  py::arg("L"));
-    m.def("FDSSDM_copylist", 
-          (void (*)(  const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Integer ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)(  const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer ,  const Standard_Integer ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_copylist),
-          R"#(None)#"  , py::arg("Lin"),  py::arg("I1"),  py::arg("I2"),  py::arg("Lou"));
-    m.def("FDSSDM_copylist", 
-          (void (*)(  const NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  ))  static_cast<void (*)(  const NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> &  )>(&FDSSDM_copylist),
-          R"#(None)#"  , py::arg("Lin"),  py::arg("Lou"));
-// ./opencascade/TopOpeBRepDS_GeometryData.hxx
-// ./opencascade/TopOpeBRepDS_ShapeSurface.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfInterferenceShape.hxx
-// ./opencascade/TopOpeBRepDS_ShapeData.hxx
-// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfIntegerShapeData.hxx
 // ./opencascade/TopOpeBRepDS_SurfaceData.hxx
+// ./opencascade/TopOpeBRepDS_PointExplorer.hxx
+// ./opencascade/TopOpeBRepDS_CurveIterator.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfIntegerListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_EIR.hxx
+// ./opencascade/TopOpeBRepDS_DoubleMapOfIntegerShape.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfCheckStatus.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfMapOfCurve.hxx
 // ./opencascade/TopOpeBRepDS_DataMapIteratorOfDataMapOfShapeState.hxx
+// ./opencascade/TopOpeBRepDS_DataMapIteratorOfShapeSurface.hxx
+// ./opencascade/TopOpeBRepDS_DataMapOfInterferenceListOfInterference.hxx
+// ./opencascade/TopOpeBRepDS_GapFiller.hxx
 
 // operators
 
 // register typdefs
+    register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CurveData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfCurve");  
     register_template_NCollection_List<opencascade::handle<TopOpeBRepDS_Interference> >(m,"TopOpeBRepDS_ListOfInterference");  
-    register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State");  
-    register_template_NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference>(m,"TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference");  
-    register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_Point, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_IndexedDataMapOfVertexPoint");  
-    register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CheckStatus, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_DataMapOfCheckStatus");  
-    register_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopOpeBRepDS_ListOfInterference, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceListOfInterference");  
-    register_template_NCollection_DataMap<TopoDS_Shape, TopAbs_State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeState");  
     register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_ShapeWithState, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_IndexedDataMapOfShapeWithState");  
-    register_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceShape");  
+    register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_Point, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_IndexedDataMapOfVertexPoint");  
+    register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ListOfInterference, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_DataMapOfIntegerListOfInterference");  
+    register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CheckStatus, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_DataMapOfCheckStatus");  
     register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_PointData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfPoint");  
     register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepDS_ShapeData, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_MapOfShapeData");  
+    register_template_NCollection_DataMap<TopoDS_Shape, TopAbs_State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeState");  
     register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ShapeData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfIntegerShapeData");  
-    register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_ListOfInterference, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_DataMapOfIntegerListOfInterference");  
-    register_template_NCollection_DoubleMap<Standard_Integer, TopoDS_Shape, TColStd_MapIntegerHasher, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DoubleMapOfIntegerShape");  
-    register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_CurveData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfCurve");  
+    register_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceShape");  
+    register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepDS_ListOfShapeOn1State, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DataMapOfShapeListOfShapeOn1State");  
     register_template_NCollection_DataMap<Standard_Integer, TopOpeBRepDS_SurfaceData, TColStd_MapIntegerHasher>(m,"TopOpeBRepDS_MapOfSurface");  
+    register_template_NCollection_Array1<TopOpeBRepDS_DataMapOfIntegerListOfInterference>(m,"TopOpeBRepDS_Array1OfDataMapOfIntegerListOfInterference");  
+    register_template_NCollection_DoubleMap<Standard_Integer, TopoDS_Shape, TColStd_MapIntegerHasher, TopTools_ShapeMapHasher>(m,"TopOpeBRepDS_DoubleMapOfIntegerShape");  
+    register_template_NCollection_DataMap<opencascade::handle<TopOpeBRepDS_Interference>, TopOpeBRepDS_ListOfInterference, TColStd_MapTransientHasher>(m,"TopOpeBRepDS_DataMapOfInterferenceListOfInterference");  
 
 
 // exceptions

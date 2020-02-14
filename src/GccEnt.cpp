@@ -49,9 +49,12 @@ py::module m = static_cast<py::module>(main_module.attr("GccEnt"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GccEnt , shared_ptr<GccEnt>>(m,"GccEnt");
 
     static_cast<py::class_<GccEnt , shared_ptr<GccEnt>  >>(m.attr("GccEnt"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -90,12 +93,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccEnt"));
                     R"#(Constructs a qualified circle so that the solution computed by a construction algorithm using the qualified circle or line and the circle or line are external to one another.)#"  , py::arg("Obj"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccEnt_QualifiedCirc , shared_ptr<GccEnt_QualifiedCirc>  >>(m.attr("GccEnt_QualifiedCirc"))
+    // constructors
         .def(py::init< const gp_Circ2d &,const GccEnt_Position >()  , py::arg("Qualified"),  py::arg("Qualifier") )
+    // custom constructors
     // methods
         .def("Qualified",
              (gp_Circ2d (GccEnt_QualifiedCirc::*)() const) static_cast<gp_Circ2d (GccEnt_QualifiedCirc::*)() const>(&GccEnt_QualifiedCirc::Qualified),
@@ -119,12 +124,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccEnt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccEnt_QualifiedLin , shared_ptr<GccEnt_QualifiedLin>  >>(m.attr("GccEnt_QualifiedLin"))
+    // constructors
         .def(py::init< const gp_Lin2d &,const GccEnt_Position >()  , py::arg("Qualified"),  py::arg("Qualifier") )
+    // custom constructors
     // methods
         .def("Qualified",
              (gp_Lin2d (GccEnt_QualifiedLin::*)() const) static_cast<gp_Lin2d (GccEnt_QualifiedLin::*)() const>(&GccEnt_QualifiedLin::Qualified),
@@ -145,16 +152,16 @@ py::module m = static_cast<py::module>(main_module.attr("GccEnt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GccEnt.hxx
 // ./opencascade/GccEnt_QualifiedLin.hxx
-// ./opencascade/GccEnt_QualifiedCirc.hxx
+// ./opencascade/GccEnt_Position.hxx
+// ./opencascade/GccEnt.hxx
 // ./opencascade/GccEnt_BadQualifier.hxx
 // ./opencascade/GccEnt_Array1OfPosition.hxx
-// ./opencascade/GccEnt_Position.hxx
+// ./opencascade/GccEnt_QualifiedCirc.hxx
 
 // operators
 

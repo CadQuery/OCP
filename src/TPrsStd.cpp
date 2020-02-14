@@ -15,11 +15,6 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
-#include <TDataXtd_Constraint.hxx>
-#include <AIS_InteractiveObject.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Geom_Geometry.hxx>
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <TDF_Label.hxx>
@@ -36,6 +31,11 @@ namespace py = pybind11;
 #include <TDF_RelocationTable.hxx>
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
+#include <TDataXtd_Constraint.hxx>
+#include <AIS_InteractiveObject.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Geom_Geometry.hxx>
 #include <TDF_Label.hxx>
 #include <AIS_InteractiveObject.hxx>
 #include <TDF_Label.hxx>
@@ -78,6 +78,7 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
     public:
         using TPrsStd_Driver::TPrsStd_Driver;
         
+        
         // public pure virtual
         Standard_Boolean Update(const TDF_Label & L,opencascade::handle<AIS_InteractiveObject> & ais) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TPrsStd_Driver,Update,L,ais) };
         
@@ -93,7 +94,9 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
 
 
     static_cast<py::class_<TPrsStd_AISPresentation ,opencascade::handle<TPrsStd_AISPresentation>  , TDF_Attribute >>(m.attr("TPrsStd_AISPresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetDisplayed",
              (void (TPrsStd_AISPresentation::*)( const Standard_Boolean  ) ) static_cast<void (TPrsStd_AISPresentation::*)( const Standard_Boolean  ) >(&TPrsStd_AISPresentation::SetDisplayed),
@@ -179,18 +182,24 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
         .def("UnsetMode",
              (void (TPrsStd_AISPresentation::*)() ) static_cast<void (TPrsStd_AISPresentation::*)() >(&TPrsStd_AISPresentation::UnsetMode),
              R"#(None)#" )
+        .def("GetNbSelectionModes",
+             (Standard_Integer (TPrsStd_AISPresentation::*)() const) static_cast<Standard_Integer (TPrsStd_AISPresentation::*)() const>(&TPrsStd_AISPresentation::GetNbSelectionModes),
+             R"#(Returns selection mode(s) of the attribute. It starts with 1 .. GetNbSelectionModes().)#" )
         .def("SelectionMode",
-             (Standard_Integer (TPrsStd_AISPresentation::*)() const) static_cast<Standard_Integer (TPrsStd_AISPresentation::*)() const>(&TPrsStd_AISPresentation::SelectionMode),
-             R"#(None)#" )
+             (Standard_Integer (TPrsStd_AISPresentation::*)( const int  ) const) static_cast<Standard_Integer (TPrsStd_AISPresentation::*)( const int  ) const>(&TPrsStd_AISPresentation::SelectionMode),
+             R"#(None)#"  , py::arg("index")=static_cast<const int>(1))
         .def("SetSelectionMode",
-             (void (TPrsStd_AISPresentation::*)( const Standard_Integer  ) ) static_cast<void (TPrsStd_AISPresentation::*)( const Standard_Integer  ) >(&TPrsStd_AISPresentation::SetSelectionMode),
-             R"#(None)#"  , py::arg("theSelectionMode"))
+             (void (TPrsStd_AISPresentation::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (TPrsStd_AISPresentation::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&TPrsStd_AISPresentation::SetSelectionMode),
+             R"#(Sets selection mode. If "theTransaction" flag is OFF, modification of the attribute doesn't influence the transaction mechanism (the attribute doesn't participate in undo/redo because of this modification). Certainly, if any other data of the attribute is modified (display mode, color, ...), the attribute will be included into undo/redo.)#"  , py::arg("theSelectionMode"),  py::arg("theTransaction")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("AddSelectionMode",
+             (void (TPrsStd_AISPresentation::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (TPrsStd_AISPresentation::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&TPrsStd_AISPresentation::AddSelectionMode),
+             R"#(None)#"  , py::arg("theSelectionMode"),  py::arg("theTransaction")=static_cast<const Standard_Boolean>(Standard_True))
         .def("HasOwnSelectionMode",
              (Standard_Boolean (TPrsStd_AISPresentation::*)() const) static_cast<Standard_Boolean (TPrsStd_AISPresentation::*)() const>(&TPrsStd_AISPresentation::HasOwnSelectionMode),
              R"#(None)#" )
         .def("UnsetSelectionMode",
              (void (TPrsStd_AISPresentation::*)() ) static_cast<void (TPrsStd_AISPresentation::*)() >(&TPrsStd_AISPresentation::UnsetSelectionMode),
-             R"#(None)#" )
+             R"#(Clears all selection modes of the attribute.)#" )
         .def("ID",
              (const Standard_GUID & (TPrsStd_AISPresentation::*)() const) static_cast<const Standard_GUID & (TPrsStd_AISPresentation::*)() const>(&TPrsStd_AISPresentation::ID),
              R"#(None)#" )
@@ -249,12 +258,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_AISViewer ,opencascade::handle<TPrsStd_AISViewer>  , TDF_Attribute >>(m.attr("TPrsStd_AISViewer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (void (TPrsStd_AISViewer::*)() const) static_cast<void (TPrsStd_AISViewer::*)() const>(&TPrsStd_AISViewer::Update),
@@ -314,12 +325,15 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TPrsStd_ConstraintTools , shared_ptr<TPrsStd_ConstraintTools>>(m,"TPrsStd_ConstraintTools");
 
     static_cast<py::class_<TPrsStd_ConstraintTools , shared_ptr<TPrsStd_ConstraintTools>  >>(m.attr("TPrsStd_ConstraintTools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -394,11 +408,13 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     []( const opencascade::handle<TDataXtd_Constraint> & aConst,TCollection_ExtendedString & aText,const Standard_Boolean anIsAngle ){ Standard_Real  aValue; TPrsStd_ConstraintTools::ComputeTextAndValue(aConst,aValue,aText,anIsAngle); return std::make_tuple(aValue); },
                     R"#(None)#"  , py::arg("aConst"),  py::arg("aText"),  py::arg("anIsAngle"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_Driver ,opencascade::handle<TPrsStd_Driver> ,Py_TPrsStd_Driver , Standard_Transient >>(m.attr("TPrsStd_Driver"))
+    // constructors
+    // custom constructors
     // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_Driver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_Driver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_Driver::Update),
@@ -416,12 +432,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_DriverTable ,opencascade::handle<TPrsStd_DriverTable>  , Standard_Transient >>(m.attr("TPrsStd_DriverTable"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("InitStandardDrivers",
              (void (TPrsStd_DriverTable::*)() ) static_cast<void (TPrsStd_DriverTable::*)() >(&TPrsStd_DriverTable::InitStandardDrivers),
@@ -454,12 +472,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_AxisDriver ,opencascade::handle<TPrsStd_AxisDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_AxisDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_AxisDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_AxisDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_AxisDriver::Update),
@@ -477,12 +497,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_ConstraintDriver ,opencascade::handle<TPrsStd_ConstraintDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_ConstraintDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_ConstraintDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_ConstraintDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_ConstraintDriver::Update),
@@ -500,12 +522,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_GeometryDriver ,opencascade::handle<TPrsStd_GeometryDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_GeometryDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_GeometryDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_GeometryDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_GeometryDriver::Update),
@@ -523,12 +547,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_NamedShapeDriver ,opencascade::handle<TPrsStd_NamedShapeDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_NamedShapeDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_NamedShapeDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_NamedShapeDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_NamedShapeDriver::Update),
@@ -546,12 +572,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_PlaneDriver ,opencascade::handle<TPrsStd_PlaneDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_PlaneDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_PlaneDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_PlaneDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_PlaneDriver::Update),
@@ -569,12 +597,14 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TPrsStd_PointDriver ,opencascade::handle<TPrsStd_PointDriver>  , TPrsStd_Driver >>(m.attr("TPrsStd_PointDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (Standard_Boolean (TPrsStd_PointDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) ) static_cast<Standard_Boolean (TPrsStd_PointDriver::*)( const TDF_Label & ,  opencascade::handle<AIS_InteractiveObject> &  ) >(&TPrsStd_PointDriver::Update),
@@ -592,23 +622,23 @@ py::module m = static_cast<py::module>(main_module.attr("TPrsStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TPrsStd_GeometryDriver.hxx
-// ./opencascade/TPrsStd_ConstraintTools.hxx
-// ./opencascade/TPrsStd_ConstraintDriver.hxx
 // ./opencascade/TPrsStd_DriverTable.hxx
-// ./opencascade/TPrsStd_DataMapOfGUIDDriver.hxx
+// ./opencascade/TPrsStd_AxisDriver.hxx
+// ./opencascade/TPrsStd_GeometryDriver.hxx
 // ./opencascade/TPrsStd_Driver.hxx
 // ./opencascade/TPrsStd_AISPresentation.hxx
-// ./opencascade/TPrsStd_PointDriver.hxx
-// ./opencascade/TPrsStd_AISViewer.hxx
 // ./opencascade/TPrsStd_NamedShapeDriver.hxx
-// ./opencascade/TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx
-// ./opencascade/TPrsStd_AxisDriver.hxx
+// ./opencascade/TPrsStd_AISViewer.hxx
 // ./opencascade/TPrsStd_PlaneDriver.hxx
+// ./opencascade/TPrsStd_ConstraintTools.hxx
+// ./opencascade/TPrsStd_ConstraintDriver.hxx
+// ./opencascade/TPrsStd_DataMapOfGUIDDriver.hxx
+// ./opencascade/TPrsStd_PointDriver.hxx
+// ./opencascade/TPrsStd_DataMapIteratorOfDataMapOfGUIDDriver.hxx
 
 // operators
 

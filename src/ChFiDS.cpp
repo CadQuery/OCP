@@ -13,13 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_TypeMismatch.hxx>
-#include <ChFiDS_Spine.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Law_Composite.hxx>
-#include <Geom2d_Curve.hxx>
 #include <ChFiDS_SurfData.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <gp_Lin.hxx>
@@ -29,9 +22,17 @@ namespace py = pybind11;
 #include <gp_Parab.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <ChFiDS_Spine.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Law_Composite.hxx>
 
 // module includes
 #include <ChFiDS_ChamfMethod.hxx>
+#include <ChFiDS_ChamfMode.hxx>
 #include <ChFiDS_ChamfSpine.hxx>
 #include <ChFiDS_CircSection.hxx>
 #include <ChFiDS_CommonPoint.hxx>
@@ -62,18 +63,6 @@ namespace py = pybind11;
 #include <ChFiDS_SurfData.hxx>
 
 // template related includes
-// ./opencascade/ChFiDS_SecArray1.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_SequenceOfSurfData.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfStripe.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfStripe.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfHElSpine.hxx
-#include "NCollection.hxx"
-// ./opencascade/ChFiDS_ListOfHElSpine.hxx
-#include "NCollection.hxx"
 // ./opencascade/ChFiDS_IndexedDataMapOfVertexListOfStripe.hxx
 #include "NCollection.hxx"
 // ./opencascade/ChFiDS_Regularities.hxx
@@ -81,6 +70,18 @@ namespace py = pybind11;
 // ./opencascade/ChFiDS_Regularities.hxx
 #include "NCollection.hxx"
 // ./opencascade/ChFiDS_StripeArray1.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfHElSpine.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfHElSpine.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfStripe.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_ListOfStripe.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_SecArray1.hxx
+#include "NCollection.hxx"
+// ./opencascade/ChFiDS_SequenceOfSurfData.hxx
 #include "NCollection.hxx"
 // ./opencascade/ChFiDS_SequenceOfSpine.hxx
 #include "NCollection.hxx"
@@ -104,7 +105,9 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
 
 
     static_cast<py::class_<ChFiDS_CircSection , shared_ptr<ChFiDS_CircSection>  >>(m.attr("ChFiDS_CircSection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (ChFiDS_CircSection::*)( const gp_Circ & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_CircSection::*)( const gp_Circ & ,  const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_CircSection::Set),
@@ -122,19 +125,21 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_CommonPoint , shared_ptr<ChFiDS_CommonPoint>  >>(m.attr("ChFiDS_CommonPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (ChFiDS_CommonPoint::*)() ) static_cast<void (ChFiDS_CommonPoint::*)() >(&ChFiDS_CommonPoint::Reset),
              R"#(default value for all fields)#" )
         .def("SetVertex",
              (void (ChFiDS_CommonPoint::*)( const TopoDS_Vertex &  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const TopoDS_Vertex &  ) >(&ChFiDS_CommonPoint::SetVertex),
-             R"#(Sets the values of a point which is a vertex on the initial facet of restriction of one of the surface.)#"  , py::arg("V"))
+             R"#(Sets the values of a point which is a vertex on the initial facet of restriction of one of the surface.)#"  , py::arg("theVertex"))
         .def("SetArc",
              (void (ChFiDS_CommonPoint::*)( const Standard_Real ,  const TopoDS_Edge & ,  const Standard_Real ,  const TopAbs_Orientation  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const Standard_Real ,  const TopoDS_Edge & ,  const Standard_Real ,  const TopAbs_Orientation  ) >(&ChFiDS_CommonPoint::SetArc),
              R"#(Sets the values of a point which is on the arc A, at parameter Param.)#"  , py::arg("Tol"),  py::arg("A"),  py::arg("Param"),  py::arg("TArc"))
@@ -143,10 +148,10 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
              R"#(Sets the value of the parameter on the spine)#"  , py::arg("Param"))
         .def("SetPoint",
              (void (ChFiDS_CommonPoint::*)( const gp_Pnt &  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const gp_Pnt &  ) >(&ChFiDS_CommonPoint::SetPoint),
-             R"#(Set the 3d point for a commonpoint that is not a vertex or on an arc.)#"  , py::arg("Point"))
+             R"#(Set the 3d point for a commonpoint that is not a vertex or on an arc.)#"  , py::arg("thePoint"))
         .def("SetVector",
              (void (ChFiDS_CommonPoint::*)( const gp_Vec &  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const gp_Vec &  ) >(&ChFiDS_CommonPoint::SetVector),
-             R"#(Set the output 3d vector)#"  , py::arg("Vector"))
+             R"#(Set the output 3d vector)#"  , py::arg("theVector"))
         .def("SetTolerance",
              (void (ChFiDS_CommonPoint::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const Standard_Real  ) >(&ChFiDS_CommonPoint::SetTolerance),
              R"#(This method set the fuzziness on the point.)#"  , py::arg("Tol"))
@@ -183,49 +188,18 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("Vector",
              (const gp_Vec & (ChFiDS_CommonPoint::*)() const) static_cast<const gp_Vec & (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::Vector),
              R"#(Returns the output 3d vector)#" )
-        .def("SetVertex",
-             (void (ChFiDS_CommonPoint::*)( const TopoDS_Vertex &  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const TopoDS_Vertex &  ) >(&ChFiDS_CommonPoint::SetVertex),
-             R"#(Sets the values of a point which is a vertex on the initial facet of restriction of one of the surface.)#"  , py::arg("V"))
-        .def("SetPoint",
-             (void (ChFiDS_CommonPoint::*)( const gp_Pnt &  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const gp_Pnt &  ) >(&ChFiDS_CommonPoint::SetPoint),
-             R"#(Set the 3d point for a commonpoint that is not a vertex or on an arc.)#"  , py::arg("Point"))
-        .def("SetVector",
-             (void (ChFiDS_CommonPoint::*)( const gp_Vec &  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const gp_Vec &  ) >(&ChFiDS_CommonPoint::SetVector),
-             R"#(Set the output 3d vector)#"  , py::arg("Vector"))
-        .def("SetTolerance",
-             (void (ChFiDS_CommonPoint::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_CommonPoint::*)( const Standard_Real  ) >(&ChFiDS_CommonPoint::SetTolerance),
-             R"#(This method set the fuzziness on the point.)#"  , py::arg("Tol"))
-        .def("Tolerance",
-             (Standard_Real (ChFiDS_CommonPoint::*)() const) static_cast<Standard_Real (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::Tolerance),
-             R"#(This method returns the fuzziness on the point.)#" )
-        .def("IsVertex",
-             (Standard_Boolean (ChFiDS_CommonPoint::*)() const) static_cast<Standard_Boolean (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::IsVertex),
-             R"#(Returns TRUE if the point is a vertex on the initial restriction facet of the surface.)#" )
-        .def("Vertex",
-             (const TopoDS_Vertex & (ChFiDS_CommonPoint::*)() const) static_cast<const TopoDS_Vertex & (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::Vertex),
-             R"#(Returns the information about the point when it is on the domain of the first patch, i-e when the function IsVertex returns True. Otherwise, an exception is raised.)#" )
-        .def("Point",
-             (const gp_Pnt & (ChFiDS_CommonPoint::*)() const) static_cast<const gp_Pnt & (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::Point),
-             R"#(Returns the 3d point)#" )
-        .def("HasVector",
-             (Standard_Boolean (ChFiDS_CommonPoint::*)() const) static_cast<Standard_Boolean (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::HasVector),
-             R"#(Returns TRUE if the output vector is stored.)#" )
-        .def("Vector",
-             (const gp_Vec & (ChFiDS_CommonPoint::*)() const) static_cast<const gp_Vec & (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::Vector),
-             R"#(Returns the output 3d vector)#" )
-        .def("IsOnArc",
-             (Standard_Boolean (ChFiDS_CommonPoint::*)() const) static_cast<Standard_Boolean (ChFiDS_CommonPoint::*)() const>(&ChFiDS_CommonPoint::IsOnArc),
-             R"#(Returns TRUE if the point is a on an edge of the initial restriction facet of the surface.)#" )
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_ElSpine , shared_ptr<ChFiDS_ElSpine>  , Adaptor3d_Curve >>(m.attr("ChFiDS_ElSpine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("FirstParameter",
              (Standard_Real (ChFiDS_ElSpine::*)() const) static_cast<Standard_Real (ChFiDS_ElSpine::*)() const>(&ChFiDS_ElSpine::FirstParameter),
@@ -357,12 +331,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_FaceInterference , shared_ptr<ChFiDS_FaceInterference>  >>(m.attr("ChFiDS_FaceInterference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetInterference",
              (void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (ChFiDS_FaceInterference::*)( const Standard_Integer ,  const TopAbs_Orientation ,  const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> &  ) >(&ChFiDS_FaceInterference::SetInterference),
@@ -449,13 +425,15 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_HData ,opencascade::handle<ChFiDS_HData>  , ChFiDS_SequenceOfSurfData , Standard_Transient >>(m.attr("ChFiDS_HData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() const) static_cast<const ChFiDS_SequenceOfSurfData & (ChFiDS_HData::*)() const>(&ChFiDS_HData::Sequence),
@@ -482,13 +460,15 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_HElSpine ,opencascade::handle<ChFiDS_HElSpine>  , Adaptor3d_HCurve >>(m.attr("ChFiDS_HElSpine"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const ChFiDS_ElSpine & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (ChFiDS_HElSpine::*)( const ChFiDS_ElSpine &  ) ) static_cast<void (ChFiDS_HElSpine::*)( const ChFiDS_ElSpine &  ) >(&ChFiDS_HElSpine::Set),
@@ -515,12 +495,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_Map , shared_ptr<ChFiDS_Map>  >>(m.attr("ChFiDS_Map"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Fill",
              (void (ChFiDS_Map::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (ChFiDS_Map::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&ChFiDS_Map::Fill),
@@ -538,12 +520,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_Regul , shared_ptr<ChFiDS_Regul>  >>(m.attr("ChFiDS_Regul"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (ChFiDS_Regul::*)( const Standard_Integer  ) ) static_cast<void (ChFiDS_Regul::*)( const Standard_Integer  ) >(&ChFiDS_Regul::SetCurve),
@@ -573,14 +557,17 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_SecHArray1 ,opencascade::handle<ChFiDS_SecHArray1>  , ChFiDS_SecArray1 , Standard_Transient >>(m.attr("ChFiDS_SecHArray1"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const ChFiDS_CircSection & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<ChFiDS_CircSection> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() const) static_cast<const ChFiDS_SecArray1 & (ChFiDS_SecHArray1::*)() const>(&ChFiDS_SecHArray1::Array1),
@@ -601,25 +588,36 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_Spine ,opencascade::handle<ChFiDS_Spine>  , Standard_Transient >>(m.attr("ChFiDS_Spine"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real >()  , py::arg("Tol") )
+    // custom constructors
     // methods
         .def("SetEdges",
              (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::SetEdges),
              R"#(store edges composing the guideline)#"  , py::arg("E"))
+        .def("SetOffsetEdges",
+             (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::SetOffsetEdges),
+             R"#(store offset edges composing the offset guideline)#"  , py::arg("E"))
         .def("PutInFirst",
              (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::PutInFirst),
              R"#(store the edge at the first position before all others)#"  , py::arg("E"))
+        .def("PutInFirstOffset",
+             (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::PutInFirstOffset),
+             R"#(store the offset edge at the first position before all others)#"  , py::arg("E"))
         .def("NbEdges",
              (Standard_Integer (ChFiDS_Spine::*)() const) static_cast<Standard_Integer (ChFiDS_Spine::*)() const>(&ChFiDS_Spine::NbEdges),
              R"#(None)#" )
         .def("Edges",
              (const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const>(&ChFiDS_Spine::Edges),
+             R"#(None)#"  , py::arg("I"))
+        .def("OffsetEdges",
+             (const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const>(&ChFiDS_Spine::OffsetEdges),
              R"#(None)#"  , py::arg("I"))
         .def("SetFirstStatus",
              (void (ChFiDS_Spine::*)( const ChFiDS_State  ) ) static_cast<void (ChFiDS_Spine::*)( const ChFiDS_State  ) >(&ChFiDS_Spine::SetFirstStatus),
@@ -629,6 +627,9 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
              R"#(stores if the end of a set of edges starts on a section of free border or forms a closed contour)#"  , py::arg("S"))
         .def("AppendElSpine",
              (void (ChFiDS_Spine::*)( const opencascade::handle<ChFiDS_HElSpine> &  ) ) static_cast<void (ChFiDS_Spine::*)( const opencascade::handle<ChFiDS_HElSpine> &  ) >(&ChFiDS_Spine::AppendElSpine),
+             R"#(None)#"  , py::arg("Els"))
+        .def("AppendOffsetElSpine",
+             (void (ChFiDS_Spine::*)( const opencascade::handle<ChFiDS_HElSpine> &  ) ) static_cast<void (ChFiDS_Spine::*)( const opencascade::handle<ChFiDS_HElSpine> &  ) >(&ChFiDS_Spine::AppendOffsetElSpine),
              R"#(None)#"  , py::arg("Els"))
         .def("ElSpine",
              (opencascade::handle<ChFiDS_HElSpine> (ChFiDS_Spine::*)( const Standard_Integer  ) const) static_cast<opencascade::handle<ChFiDS_HElSpine> (ChFiDS_Spine::*)( const Standard_Integer  ) const>(&ChFiDS_Spine::ElSpine),
@@ -641,6 +642,9 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
              R"#(None)#"  , py::arg("W"))
         .def("ChangeElSpines",
              (ChFiDS_ListOfHElSpine & (ChFiDS_Spine::*)() ) static_cast<ChFiDS_ListOfHElSpine & (ChFiDS_Spine::*)() >(&ChFiDS_Spine::ChangeElSpines),
+             R"#(None)#" )
+        .def("ChangeOffsetElSpines",
+             (ChFiDS_ListOfHElSpine & (ChFiDS_Spine::*)() ) static_cast<ChFiDS_ListOfHElSpine & (ChFiDS_Spine::*)() >(&ChFiDS_Spine::ChangeOffsetElSpines),
              R"#(None)#" )
         .def("Reset",
              (void (ChFiDS_Spine::*)( const Standard_Boolean  ) ) static_cast<void (ChFiDS_Spine::*)( const Standard_Boolean  ) >(&ChFiDS_Spine::Reset),
@@ -783,6 +787,9 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("ErrorStatus",
              (ChFiDS_ErrorStatus (ChFiDS_Spine::*)() const) static_cast<ChFiDS_ErrorStatus (ChFiDS_Spine::*)() const>(&ChFiDS_Spine::ErrorStatus),
              R"#(None)#" )
+        .def("Mode",
+             (ChFiDS_ChamfMode (ChFiDS_Spine::*)() const) static_cast<ChFiDS_ChamfMode (ChFiDS_Spine::*)() const>(&ChFiDS_Spine::Mode),
+             R"#(Return the mode of chamfers used)#" )
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (ChFiDS_Spine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (ChFiDS_Spine::*)() const>(&ChFiDS_Spine::DynamicType),
              R"#(None)#" )
@@ -816,15 +823,27 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
         .def("Edges",
              (const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const>(&ChFiDS_Spine::Edges),
              R"#(None)#"  , py::arg("I"))
+        .def("OffsetEdges",
+             (const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const) static_cast<const TopoDS_Edge & (ChFiDS_Spine::*)( const Standard_Integer  ) const>(&ChFiDS_Spine::OffsetEdges),
+             R"#(None)#"  , py::arg("I"))
         .def("SetEdges",
              (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::SetEdges),
              R"#(store edges composing the guideline)#"  , py::arg("E"))
+        .def("SetOffsetEdges",
+             (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::SetOffsetEdges),
+             R"#(store offset edges composing the offset guideline)#"  , py::arg("E"))
         .def("PutInFirst",
              (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::PutInFirst),
              R"#(store the edge at the first position before all others)#"  , py::arg("E"))
+        .def("PutInFirstOffset",
+             (void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) ) static_cast<void (ChFiDS_Spine::*)( const TopoDS_Edge &  ) >(&ChFiDS_Spine::PutInFirstOffset),
+             R"#(store the offset edge at the first position before all others)#"  , py::arg("E"))
         .def("CurrentIndexOfElementarySpine",
              (Standard_Integer (ChFiDS_Spine::*)() const) static_cast<Standard_Integer (ChFiDS_Spine::*)() const>(&ChFiDS_Spine::CurrentIndexOfElementarySpine),
              R"#(None)#" )
+        .def("Mode",
+             (ChFiDS_ChamfMode (ChFiDS_Spine::*)() const) static_cast<ChFiDS_ChamfMode (ChFiDS_Spine::*)() const>(&ChFiDS_Spine::Mode),
+             R"#(Return the mode of chamfers used)#" )
     // methods using call by reference i.s.o. return
         .def("Parameter",
              []( ChFiDS_Spine &self , const Standard_Real AbsC,const Standard_Boolean Oriented ){ Standard_Real  U; self.Parameter(AbsC,U,Oriented); return std::make_tuple(U); },
@@ -841,12 +860,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_Stripe ,opencascade::handle<ChFiDS_Stripe>  , Standard_Transient >>(m.attr("ChFiDS_Stripe"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (ChFiDS_Stripe::*)() ) static_cast<void (ChFiDS_Stripe::*)() >(&ChFiDS_Stripe::Reset),
@@ -1116,12 +1137,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_StripeMap , shared_ptr<ChFiDS_StripeMap>  >>(m.attr("ChFiDS_StripeMap"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (ChFiDS_StripeMap::*)( const TopoDS_Vertex & ,  const opencascade::handle<ChFiDS_Stripe> &  ) ) static_cast<void (ChFiDS_StripeMap::*)( const TopoDS_Vertex & ,  const opencascade::handle<ChFiDS_Stripe> &  ) >(&ChFiDS_StripeMap::Add),
@@ -1151,12 +1174,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_SurfData ,opencascade::handle<ChFiDS_SurfData>  , Standard_Transient >>(m.attr("ChFiDS_SurfData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Copy",
              (void (ChFiDS_SurfData::*)( const opencascade::handle<ChFiDS_SurfData> &  ) ) static_cast<void (ChFiDS_SurfData::*)( const opencascade::handle<ChFiDS_SurfData> &  ) >(&ChFiDS_SurfData::Copy),
@@ -1423,13 +1448,15 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_ChamfSpine ,opencascade::handle<ChFiDS_ChamfSpine>  , ChFiDS_Spine >>(m.attr("ChFiDS_ChamfSpine"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real >()  , py::arg("Tol") )
+    // custom constructors
     // methods
         .def("SetDist",
              (void (ChFiDS_ChamfSpine::*)( const Standard_Real  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real  ) >(&ChFiDS_ChamfSpine::SetDist),
@@ -1438,8 +1465,11 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
              (void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_ChamfSpine::SetDists),
              R"#(None)#"  , py::arg("Dis1"),  py::arg("Dis2"))
         .def("SetDistAngle",
-             (void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&ChFiDS_ChamfSpine::SetDistAngle),
-             R"#(None)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("DisOnF1"))
+             (void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const Standard_Real ,  const Standard_Real  ) >(&ChFiDS_ChamfSpine::SetDistAngle),
+             R"#(None)#"  , py::arg("Dis"),  py::arg("Angle"))
+        .def("SetMode",
+             (void (ChFiDS_ChamfSpine::*)( const ChFiDS_ChamfMode  ) ) static_cast<void (ChFiDS_ChamfSpine::*)( const ChFiDS_ChamfMode  ) >(&ChFiDS_ChamfSpine::SetMode),
+             R"#(None)#"  , py::arg("theMode"))
         .def("IsChamfer",
              (ChFiDS_ChamfMethod (ChFiDS_ChamfSpine::*)() const) static_cast<ChFiDS_ChamfMethod (ChFiDS_ChamfSpine::*)() const>(&ChFiDS_ChamfSpine::IsChamfer),
              R"#(Return the method of chamfers used)#" )
@@ -1454,7 +1484,7 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
              []( ChFiDS_ChamfSpine &self   ){ Standard_Real  Dis1; Standard_Real  Dis2; self.Dists(Dis1,Dis2); return std::make_tuple(Dis1,Dis2); },
              R"#(None)#" )
         .def("GetDistAngle",
-             []( ChFiDS_ChamfSpine &self   ){ Standard_Real  Dis; Standard_Real  Angle; Standard_Boolean  DisOnF1; self.GetDistAngle(Dis,Angle,DisOnF1); return std::make_tuple(Dis,Angle,DisOnF1); },
+             []( ChFiDS_ChamfSpine &self   ){ Standard_Real  Dis; Standard_Real  Angle; self.GetDistAngle(Dis,Angle); return std::make_tuple(Dis,Angle); },
              R"#(None)#" )
     // static methods
         .def_static("get_type_name_s",
@@ -1465,13 +1495,15 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFiDS_FilSpine ,opencascade::handle<ChFiDS_FilSpine>  , ChFiDS_Spine >>(m.attr("ChFiDS_FilSpine"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real >()  , py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Reset",
              (void (ChFiDS_FilSpine::*)( const Standard_Boolean  ) ) static_cast<void (ChFiDS_FilSpine::*)( const Standard_Boolean  ) >(&ChFiDS_FilSpine::Reset),
@@ -1537,50 +1569,51 @@ py::module m = static_cast<py::module>(main_module.attr("ChFiDS"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ChFiDS_HElSpine.hxx
-// ./opencascade/ChFiDS_CircSection.hxx
-// ./opencascade/ChFiDS_ListIteratorOfListOfHElSpine.hxx
-// ./opencascade/ChFiDS_CommonPoint.hxx
-// ./opencascade/ChFiDS_SecArray1.hxx
-// ./opencascade/ChFiDS_Stripe.hxx
-// ./opencascade/ChFiDS_SequenceOfSurfData.hxx
-// ./opencascade/ChFiDS_ErrorStatus.hxx
-// ./opencascade/ChFiDS_Regul.hxx
-// ./opencascade/ChFiDS_ListIteratorOfRegularities.hxx
-// ./opencascade/ChFiDS_ChamfMethod.hxx
-// ./opencascade/ChFiDS_State.hxx
-// ./opencascade/ChFiDS_ListOfStripe.hxx
-// ./opencascade/ChFiDS_SurfData.hxx
 // ./opencascade/ChFiDS_HData.hxx
-// ./opencascade/ChFiDS_Spine.hxx
-// ./opencascade/ChFiDS_StripeMap.hxx
-// ./opencascade/ChFiDS_ListOfHElSpine.hxx
-// ./opencascade/ChFiDS_FilSpine.hxx
+// ./opencascade/ChFiDS_ListIteratorOfListOfHElSpine.hxx
+// ./opencascade/ChFiDS_ElSpine.hxx
+// ./opencascade/ChFiDS_FaceInterference.hxx
+// ./opencascade/ChFiDS_ChamfSpine.hxx
+// ./opencascade/ChFiDS_Stripe.hxx
 // ./opencascade/ChFiDS_IndexedDataMapOfVertexListOfStripe.hxx
-// ./opencascade/ChFiDS_Map.hxx
-// ./opencascade/ChFiDS_ListIteratorOfListOfStripe.hxx
+// ./opencascade/ChFiDS_State.hxx
+// ./opencascade/ChFiDS_CircSection.hxx
+// ./opencascade/ChFiDS_HElSpine.hxx
 // ./opencascade/ChFiDS_Regularities.hxx
 // ./opencascade/ChFiDS_StripeArray1.hxx
-// ./opencascade/ChFiDS_FaceInterference.hxx
-// ./opencascade/ChFiDS_SequenceOfSpine.hxx
-// ./opencascade/ChFiDS_ElSpine.hxx
-// ./opencascade/ChFiDS_ChamfSpine.hxx
+// ./opencascade/ChFiDS_CommonPoint.hxx
+// ./opencascade/ChFiDS_ListOfHElSpine.hxx
+// ./opencascade/ChFiDS_ListOfStripe.hxx
+// ./opencascade/ChFiDS_ChamfMethod.hxx
+// ./opencascade/ChFiDS_SecArray1.hxx
+// ./opencascade/ChFiDS_ErrorStatus.hxx
+// ./opencascade/ChFiDS_Regul.hxx
+// ./opencascade/ChFiDS_StripeMap.hxx
+// ./opencascade/ChFiDS_SequenceOfSurfData.hxx
 // ./opencascade/ChFiDS_SecHArray1.hxx
+// ./opencascade/ChFiDS_SurfData.hxx
+// ./opencascade/ChFiDS_ChamfMode.hxx
+// ./opencascade/ChFiDS_ListIteratorOfRegularities.hxx
+// ./opencascade/ChFiDS_Map.hxx
+// ./opencascade/ChFiDS_Spine.hxx
+// ./opencascade/ChFiDS_ListIteratorOfListOfStripe.hxx
+// ./opencascade/ChFiDS_SequenceOfSpine.hxx
+// ./opencascade/ChFiDS_FilSpine.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<ChFiDS_CircSection>(m,"ChFiDS_SecArray1");  
-    register_template_NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> >(m,"ChFiDS_SequenceOfSurfData");  
-    register_template_NCollection_List<opencascade::handle<ChFiDS_Stripe> >(m,"ChFiDS_ListOfStripe");  
-    register_template_NCollection_List<opencascade::handle<ChFiDS_HElSpine> >(m,"ChFiDS_ListOfHElSpine");  
     register_template_NCollection_IndexedDataMap<TopoDS_Vertex, ChFiDS_ListOfStripe, TopTools_ShapeMapHasher>(m,"ChFiDS_IndexedDataMapOfVertexListOfStripe");  
     register_template_NCollection_List<ChFiDS_Regul>(m,"ChFiDS_Regularities");  
     register_template_NCollection_Array1<opencascade::handle<ChFiDS_Stripe> >(m,"ChFiDS_StripeArray1");  
+    register_template_NCollection_List<opencascade::handle<ChFiDS_HElSpine> >(m,"ChFiDS_ListOfHElSpine");  
+    register_template_NCollection_List<opencascade::handle<ChFiDS_Stripe> >(m,"ChFiDS_ListOfStripe");  
+    register_template_NCollection_Array1<ChFiDS_CircSection>(m,"ChFiDS_SecArray1");  
+    register_template_NCollection_Sequence<opencascade::handle<ChFiDS_SurfData> >(m,"ChFiDS_SequenceOfSurfData");  
     register_template_NCollection_Sequence<opencascade::handle<ChFiDS_Spine> >(m,"ChFiDS_SequenceOfSpine");  
 
 

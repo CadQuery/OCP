@@ -15,22 +15,27 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
+#include <gp_Circ.hxx>
+#include <Blend_Point.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
 #include <Law_Function.hxx>
 #include <math_Matrix.hxx>
 #include <gp_Circ.hxx>
 #include <Blend_Point.hxx>
-#include <math_Matrix.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <math_Matrix.hxx>
+#include <gp_Lin.hxx>
+#include <Blend_Point.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <math_Matrix.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Law_Function.hxx>
-#include <gp_Circ.hxx>
+#include <gp_Lin.hxx>
 #include <Blend_Point.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
@@ -39,7 +44,30 @@ namespace py = pybind11;
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
-#include <Law_Function.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
+#include <Blend_Point.hxx>
+#include <gp_Ax1.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
+#include <gp_Lin.hxx>
+#include <Blend_Point.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
 #include <math_Matrix.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
@@ -48,9 +76,29 @@ namespace py = pybind11;
 #include <gp_Ax1.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Law_Function.hxx>
 #include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
+#include <gp_Lin.hxx>
 #include <Blend_Point.hxx>
-#include <gp_Ax1.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Law_Function.hxx>
+#include <gp_Circ.hxx>
+#include <Blend_Point.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <math_Matrix.hxx>
+#include <gp_Lin.hxx>
+#include <Blend_Point.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Vec.hxx>
@@ -68,27 +116,6 @@ namespace py = pybind11;
 #include <BlendFunc_ChAsym.hxx>
 #include <BlendFunc_ChAsymInv.hxx>
 #include <BlendFunc_Tensor.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <gp_Lin.hxx>
-#include <Blend_Point.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <math_Matrix.hxx>
-#include <gp_Lin.hxx>
-#include <Blend_Point.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <math_Matrix.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <math_Matrix.hxx>
-#include <gp_Circ.hxx>
-#include <Blend_Point.hxx>
 
 // module includes
 #include <BlendFunc.hxx>
@@ -98,11 +125,17 @@ namespace py = pybind11;
 #include <BlendFunc_ChAsymInv.hxx>
 #include <BlendFunc_ConstRad.hxx>
 #include <BlendFunc_ConstRadInv.hxx>
+#include <BlendFunc_ConstThroat.hxx>
+#include <BlendFunc_ConstThroatInv.hxx>
+#include <BlendFunc_ConstThroatWithPenetration.hxx>
+#include <BlendFunc_ConstThroatWithPenetrationInv.hxx>
 #include <BlendFunc_Corde.hxx>
 #include <BlendFunc_CSCircular.hxx>
 #include <BlendFunc_CSConstRad.hxx>
 #include <BlendFunc_EvolRad.hxx>
 #include <BlendFunc_EvolRadInv.hxx>
+#include <BlendFunc_GenChamfer.hxx>
+#include <BlendFunc_GenChamfInv.hxx>
 #include <BlendFunc_Ruled.hxx>
 #include <BlendFunc_RuledInv.hxx>
 #include <BlendFunc_SectionShape.hxx>
@@ -124,12 +157,65 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
 
 
 //Python trampoline classes
+    class Py_BlendFunc_GenChamfInv : public BlendFunc_GenChamfInv{
+    public:
+        using BlendFunc_GenChamfInv::BlendFunc_GenChamfInv;
+        
+        
+        // public pure virtual
+        void Set(const Standard_Real Dist1,const Standard_Real Dist2,const Standard_Integer Choix) override { PYBIND11_OVERLOAD_PURE(void,BlendFunc_GenChamfInv,Set,Dist1,Dist2,Choix) };
+        
+        Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_FuncInv,Value,X,F) };
+        Standard_Boolean Derivatives(const math_Vector & X,math_Matrix & D) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_FuncInv,Derivatives,X,D) };
+        Standard_Boolean IsSolution(const math_Vector & Sol,const Standard_Real Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_FuncInv,IsSolution,Sol,Tol) };
+        Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,math_FunctionSetWithDerivatives,NbVariables,) };
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
+    class Py_BlendFunc_GenChamfer : public BlendFunc_GenChamfer{
+    public:
+        using BlendFunc_GenChamfer::BlendFunc_GenChamfer;
+        
+        
+        // public pure virtual
+        void Set(const Standard_Real Param) override { PYBIND11_OVERLOAD_PURE(void,BlendFunc_GenChamfer,Set,Param) };
+        void Set(const Standard_Real Dist1,const Standard_Real Dist2,const Standard_Integer Choix) override { PYBIND11_OVERLOAD_PURE(void,BlendFunc_GenChamfer,Set,Dist1,Dist2,Choix) };
+        
+        const gp_Pnt & PointOnS1() const  override { PYBIND11_OVERLOAD_PURE(const gp_Pnt &,Blend_Function,PointOnS1,) };
+        const gp_Pnt & PointOnS2() const  override { PYBIND11_OVERLOAD_PURE(const gp_Pnt &,Blend_Function,PointOnS2,) };
+        Standard_Boolean IsTangencyPoint() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_Function,IsTangencyPoint,) };
+        const gp_Vec & TangentOnS1() const  override { PYBIND11_OVERLOAD_PURE(const gp_Vec &,Blend_Function,TangentOnS1,) };
+        const gp_Vec2d & Tangent2dOnS1() const  override { PYBIND11_OVERLOAD_PURE(const gp_Vec2d &,Blend_Function,Tangent2dOnS1,) };
+        const gp_Vec & TangentOnS2() const  override { PYBIND11_OVERLOAD_PURE(const gp_Vec &,Blend_Function,TangentOnS2,) };
+        const gp_Vec2d & Tangent2dOnS2() const  override { PYBIND11_OVERLOAD_PURE(const gp_Vec2d &,Blend_Function,Tangent2dOnS2,) };
+        void Tangent(const Standard_Real U1,const Standard_Real V1,const Standard_Real U2,const Standard_Real V2,gp_Vec & TgFirst,gp_Vec & TgLast,gp_Vec & NormFirst,gp_Vec & NormLast) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,Tangent,U1,V1,U2,V2,TgFirst,TgLast,NormFirst,NormLast) };
+        Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_AppFunction,NbVariables,) };
+        Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,Value,X,F) };
+        Standard_Boolean Derivatives(const math_Vector & X,math_Matrix & D) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,Derivatives,X,D) };
+        Standard_Boolean IsSolution(const math_Vector & Sol,const Standard_Real Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,IsSolution,Sol,Tol) };
+        const gp_Pnt & Pnt1() const  override { PYBIND11_OVERLOAD_PURE(const gp_Pnt &,Blend_AppFunction,Pnt1,) };
+        const gp_Pnt & Pnt2() const  override { PYBIND11_OVERLOAD_PURE(const gp_Pnt &,Blend_AppFunction,Pnt2,) };
+        Standard_Real GetSectionSize() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Blend_AppFunction,GetSectionSize,) };
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
 
 // classes
 
+    // default constructor
     register_default_constructor<BlendFunc , shared_ptr<BlendFunc>>(m,"BlendFunc");
 
     static_cast<py::class_<BlendFunc , shared_ptr<BlendFunc>  >>(m.attr("BlendFunc"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -150,12 +236,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
                     []( const BlendFunc_SectionShape SectShape,const Standard_Real MaxAng,Convert_ParameterisationType & TypeConv ){ Standard_Integer  NbPoles; Standard_Integer  NbKnots; Standard_Integer  Degree; BlendFunc::GetShape(SectShape,MaxAng,NbPoles,NbKnots,Degree,TypeConv); return std::make_tuple(NbPoles,NbKnots,Degree); },
                     R"#(None)#"  , py::arg("SectShape"),  py::arg("MaxAng"),  py::arg("TypeConv"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_CSCircular , shared_ptr<BlendFunc_CSCircular>  , Blend_CSFunction >>(m.attr("BlendFunc_CSCircular"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Law_Function> & >()  , py::arg("S"),  py::arg("C"),  py::arg("CGuide"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (BlendFunc_CSCircular::*)() const) static_cast<Standard_Integer (BlendFunc_CSCircular::*)() const>(&BlendFunc_CSCircular::NbVariables),
@@ -269,12 +357,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_CSConstRad , shared_ptr<BlendFunc_CSConstRad>  , Blend_CSFunction >>(m.attr("BlendFunc_CSConstRad"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("C"),  py::arg("CGuide") )
+    // custom constructors
     // methods
         .def("NbEquations",
              (Standard_Integer (BlendFunc_CSConstRad::*)() const) static_cast<Standard_Integer (BlendFunc_CSConstRad::*)() const>(&BlendFunc_CSConstRad::NbEquations),
@@ -385,12 +475,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_ChAsym , shared_ptr<BlendFunc_ChAsym>  , Blend_Function >>(m.attr("BlendFunc_ChAsym"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("NbEquations",
              (Standard_Integer (BlendFunc_ChAsym::*)() const) static_cast<Standard_Integer (BlendFunc_ChAsym::*)() const>(&BlendFunc_ChAsym::NbEquations),
@@ -504,12 +596,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_ChAsymInv , shared_ptr<BlendFunc_ChAsymInv>  , Blend_FuncInv >>(m.attr("BlendFunc_ChAsymInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BlendFunc_ChAsymInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (BlendFunc_ChAsymInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&BlendFunc_ChAsymInv::Set),
@@ -545,160 +639,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BlendFunc_ChamfInv , shared_ptr<BlendFunc_ChamfInv>  , Blend_FuncInv >>(m.attr("BlendFunc_ChamfInv"))
-        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
-    // methods
-        .def("Set",
-             (void (BlendFunc_ChamfInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (BlendFunc_ChamfInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&BlendFunc_ChamfInv::Set),
-             R"#(None)#"  , py::arg("OnFirst"),  py::arg("COnSurf"))
-        .def("GetTolerance",
-             (void (BlendFunc_ChamfInv::*)( math_Vector & ,  const Standard_Real  ) const) static_cast<void (BlendFunc_ChamfInv::*)( math_Vector & ,  const Standard_Real  ) const>(&BlendFunc_ChamfInv::GetTolerance),
-             R"#(None)#"  , py::arg("Tolerance"),  py::arg("Tol"))
-        .def("GetBounds",
-             (void (BlendFunc_ChamfInv::*)( math_Vector & ,  math_Vector &  ) const) static_cast<void (BlendFunc_ChamfInv::*)( math_Vector & ,  math_Vector &  ) const>(&BlendFunc_ChamfInv::GetBounds),
-             R"#(None)#"  , py::arg("InfBound"),  py::arg("SupBound"))
-        .def("IsSolution",
-             (Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_ChamfInv::IsSolution),
-             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
-        .def("NbEquations",
-             (Standard_Integer (BlendFunc_ChamfInv::*)() const) static_cast<Standard_Integer (BlendFunc_ChamfInv::*)() const>(&BlendFunc_ChamfInv::NbEquations),
-             R"#(returns the number of equations of the function.)#" )
-        .def("Value",
-             (Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_ChamfInv::Value),
-             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
-        .def("Derivatives",
-             (Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_ChamfInv::Derivatives),
-             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
-        .def("Values",
-             (Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) >(&BlendFunc_ChamfInv::Values),
-             R"#(returns the values <F> of the functions and the derivatives <D> for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"),  py::arg("D"))
-        .def("Set",
-             (void (BlendFunc_ChamfInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_ChamfInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_ChamfInv::Set),
-             R"#(None)#"  , py::arg("Dist1"),  py::arg("Dist2"),  py::arg("Choix"))
-    // methods using call by reference i.s.o. return
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BlendFunc_Chamfer , shared_ptr<BlendFunc_Chamfer>  , Blend_Function >>(m.attr("BlendFunc_Chamfer"))
-        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("CG") )
-    // methods
-        .def("NbEquations",
-             (Standard_Integer (BlendFunc_Chamfer::*)() const) static_cast<Standard_Integer (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::NbEquations),
-             R"#(returns the number of equations of the function.)#" )
-        .def("Value",
-             (Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_Chamfer::Value),
-             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
-        .def("Derivatives",
-             (Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_Chamfer::Derivatives),
-             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
-        .def("Values",
-             (Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) >(&BlendFunc_Chamfer::Values),
-             R"#(returns the values <F> of the functions and the derivatives <D> for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"),  py::arg("D"))
-        .def("Set",
-             (void (BlendFunc_Chamfer::*)( const Standard_Real  ) ) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real  ) >(&BlendFunc_Chamfer::Set),
-             R"#(None)#"  , py::arg("Param"))
-        .def("Set",
-             (void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real  ) >(&BlendFunc_Chamfer::Set),
-             R"#(None)#"  , py::arg("First"),  py::arg("Last"))
-        .def("GetTolerance",
-             (void (BlendFunc_Chamfer::*)( math_Vector & ,  const Standard_Real  ) const) static_cast<void (BlendFunc_Chamfer::*)( math_Vector & ,  const Standard_Real  ) const>(&BlendFunc_Chamfer::GetTolerance),
-             R"#(None)#"  , py::arg("Tolerance"),  py::arg("Tol"))
-        .def("GetBounds",
-             (void (BlendFunc_Chamfer::*)( math_Vector & ,  math_Vector &  ) const) static_cast<void (BlendFunc_Chamfer::*)( math_Vector & ,  math_Vector &  ) const>(&BlendFunc_Chamfer::GetBounds),
-             R"#(None)#"  , py::arg("InfBound"),  py::arg("SupBound"))
-        .def("IsSolution",
-             (Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_Chamfer::IsSolution),
-             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
-        .def("GetMinimalDistance",
-             (Standard_Real (BlendFunc_Chamfer::*)() const) static_cast<Standard_Real (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::GetMinimalDistance),
-             R"#(Returns the minimal Distance beetween two extremitys of calculed sections.)#" )
-        .def("PointOnS1",
-             (const gp_Pnt & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Pnt & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::PointOnS1),
-             R"#(None)#" )
-        .def("PointOnS2",
-             (const gp_Pnt & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Pnt & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::PointOnS2),
-             R"#(None)#" )
-        .def("IsTangencyPoint",
-             (Standard_Boolean (BlendFunc_Chamfer::*)() const) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::IsTangencyPoint),
-             R"#(None)#" )
-        .def("TangentOnS1",
-             (const gp_Vec & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::TangentOnS1),
-             R"#(None)#" )
-        .def("Tangent2dOnS1",
-             (const gp_Vec2d & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec2d & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::Tangent2dOnS1),
-             R"#(None)#" )
-        .def("TangentOnS2",
-             (const gp_Vec & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::TangentOnS2),
-             R"#(None)#" )
-        .def("Tangent2dOnS2",
-             (const gp_Vec2d & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec2d & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::Tangent2dOnS2),
-             R"#(None)#" )
-        .def("Tangent",
-             (void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const>(&BlendFunc_Chamfer::Tangent),
-             R"#(Returns the tangent vector at the section, at the beginning and the end of the section, and returns the normal (of the surfaces) at these points.)#"  , py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("TgFirst"),  py::arg("TgLast"),  py::arg("NormFirst"),  py::arg("NormLast"))
-        .def("Set",
-             (void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_Chamfer::Set),
-             R"#(Sets the distances and the "quadrant".)#"  , py::arg("Dist1"),  py::arg("Dist2"),  py::arg("Choix"))
-        .def("IsRational",
-             (Standard_Boolean (BlendFunc_Chamfer::*)() const) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::IsRational),
-             R"#(Returns False)#" )
-        .def("GetSectionSize",
-             (Standard_Real (BlendFunc_Chamfer::*)() const) static_cast<Standard_Real (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::GetSectionSize),
-             R"#(Returns the length of the maximum section)#" )
-        .def("GetMinimalWeight",
-             (void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Real> &  ) const) static_cast<void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Real> &  ) const>(&BlendFunc_Chamfer::GetMinimalWeight),
-             R"#(Compute the minimal value of weight for each poles of all sections.)#"  , py::arg("Weigths"))
-        .def("NbIntervals",
-             (Standard_Integer (BlendFunc_Chamfer::*)( const GeomAbs_Shape  ) const) static_cast<Standard_Integer (BlendFunc_Chamfer::*)( const GeomAbs_Shape  ) const>(&BlendFunc_Chamfer::NbIntervals),
-             R"#(Returns the number of intervals for continuity <S>. May be one if Continuity(me) >= <S>)#"  , py::arg("S"))
-        .def("Intervals",
-             (void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const) static_cast<void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const>(&BlendFunc_Chamfer::Intervals),
-             R"#(Stores in <T> the parameters bounding the intervals of continuity <S>.)#"  , py::arg("T"),  py::arg("S"))
-        .def("GetTolerance",
-             (void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_Vector & ,  math_Vector &  ) const) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_Vector & ,  math_Vector &  ) const>(&BlendFunc_Chamfer::GetTolerance),
-             R"#(Returns the tolerance to reach in approximation to respecte BoundTol error at the Boundary AngleTol tangent error at the Boundary SurfTol error inside the surface.)#"  , py::arg("BoundTol"),  py::arg("SurfTol"),  py::arg("AngleTol"),  py::arg("Tol3d"),  py::arg("Tol1D"))
-        .def("Knots",
-             (void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Real> &  ) ) static_cast<void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_Chamfer::Knots),
-             R"#(None)#"  , py::arg("TKnots"))
-        .def("Mults",
-             (void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Integer> &  ) ) static_cast<void (BlendFunc_Chamfer::*)( NCollection_Array1<Standard_Integer> &  ) >(&BlendFunc_Chamfer::Mults),
-             R"#(None)#"  , py::arg("TMults"))
-        .def("Section",
-             (Standard_Boolean (BlendFunc_Chamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_Chamfer::Section),
-             R"#(Used for the first and last section)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("DPoles"),  py::arg("D2Poles"),  py::arg("Poles2d"),  py::arg("DPoles2d"),  py::arg("D2Poles2d"),  py::arg("Weigths"),  py::arg("DWeigths"),  py::arg("D2Weigths"))
-        .def("Section",
-             (Standard_Boolean (BlendFunc_Chamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_Chamfer::Section),
-             R"#(Used for the first and last section)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("DPoles"),  py::arg("Poles2d"),  py::arg("DPoles2d"),  py::arg("Weigths"),  py::arg("DWeigths"))
-        .def("Section",
-             (void (BlendFunc_Chamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<void (BlendFunc_Chamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_Chamfer::Section),
-             R"#(None)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("Poles2d"),  py::arg("Weigths"))
-    // methods using call by reference i.s.o. return
-        .def("GetShape",
-             []( BlendFunc_Chamfer &self   ){ Standard_Integer  NbPoles; Standard_Integer  NbKnots; Standard_Integer  Degree; Standard_Integer  NbPoles2d; self.GetShape(NbPoles,NbKnots,Degree,NbPoles2d); return std::make_tuple(NbPoles,NbKnots,Degree,NbPoles2d); },
-             R"#(None)#" )
-        .def("Section",
-             []( BlendFunc_Chamfer &self , const Standard_Real Param,const Standard_Real U1,const Standard_Real V1,const Standard_Real U2,const Standard_Real V2,gp_Lin & C ){ Standard_Real  Pdeb; Standard_Real  Pfin; self.Section(Param,U1,V1,U2,V2,Pdeb,Pfin,C); return std::make_tuple(Pdeb,Pfin); },
-             R"#(Obsolete method)#"  , py::arg("Param"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("C"))
-        .def("Resolution",
-             []( BlendFunc_Chamfer &self , const Standard_Integer IC2d,const Standard_Real Tol ){ Standard_Real  TolU; Standard_Real  TolV; self.Resolution(IC2d,Tol,TolU,TolV); return std::make_tuple(TolU,TolV); },
-             R"#(None)#"  , py::arg("IC2d"),  py::arg("Tol"))
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_ConstRad , shared_ptr<BlendFunc_ConstRad>  , Blend_Function >>(m.attr("BlendFunc_ConstRad"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("NbEquations",
              (Standard_Integer (BlendFunc_ConstRad::*)() const) static_cast<Standard_Integer (BlendFunc_ConstRad::*)() const>(&BlendFunc_ConstRad::NbEquations),
@@ -815,12 +763,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_ConstRadInv , shared_ptr<BlendFunc_ConstRadInv>  , Blend_FuncInv >>(m.attr("BlendFunc_ConstRadInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BlendFunc_ConstRadInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (BlendFunc_ConstRadInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&BlendFunc_ConstRadInv::Set),
@@ -853,12 +803,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_Corde , shared_ptr<BlendFunc_Corde>  >>(m.attr("BlendFunc_Corde"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("CGuide") )
+    // custom constructors
     // methods
         .def("SetParam",
              (void (BlendFunc_Corde::*)( const Standard_Real  ) ) static_cast<void (BlendFunc_Corde::*)( const Standard_Real  ) >(&BlendFunc_Corde::SetParam),
@@ -900,12 +852,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_EvolRad , shared_ptr<BlendFunc_EvolRad>  , Blend_Function >>(m.attr("BlendFunc_EvolRad"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Law_Function> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C"),  py::arg("Law") )
+    // custom constructors
     // methods
         .def("NbEquations",
              (Standard_Integer (BlendFunc_EvolRad::*)() const) static_cast<Standard_Integer (BlendFunc_EvolRad::*)() const>(&BlendFunc_EvolRad::NbEquations),
@@ -1019,12 +973,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_EvolRadInv , shared_ptr<BlendFunc_EvolRadInv>  , Blend_FuncInv >>(m.attr("BlendFunc_EvolRadInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Law_Function> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C"),  py::arg("Law") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BlendFunc_EvolRadInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (BlendFunc_EvolRadInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&BlendFunc_EvolRadInv::Set),
@@ -1057,12 +1013,121 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_GenChamfInv , shared_ptr<BlendFunc_GenChamfInv> ,Py_BlendFunc_GenChamfInv , Blend_FuncInv >>(m.attr("BlendFunc_GenChamfInv"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
+    // methods
+        .def("Set",
+             (void (BlendFunc_GenChamfInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (BlendFunc_GenChamfInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&BlendFunc_GenChamfInv::Set),
+             R"#(None)#"  , py::arg("OnFirst"),  py::arg("COnSurf"))
+        .def("GetTolerance",
+             (void (BlendFunc_GenChamfInv::*)( math_Vector & ,  const Standard_Real  ) const) static_cast<void (BlendFunc_GenChamfInv::*)( math_Vector & ,  const Standard_Real  ) const>(&BlendFunc_GenChamfInv::GetTolerance),
+             R"#(None)#"  , py::arg("Tolerance"),  py::arg("Tol"))
+        .def("GetBounds",
+             (void (BlendFunc_GenChamfInv::*)( math_Vector & ,  math_Vector &  ) const) static_cast<void (BlendFunc_GenChamfInv::*)( math_Vector & ,  math_Vector &  ) const>(&BlendFunc_GenChamfInv::GetBounds),
+             R"#(None)#"  , py::arg("InfBound"),  py::arg("SupBound"))
+        .def("NbEquations",
+             (Standard_Integer (BlendFunc_GenChamfInv::*)() const) static_cast<Standard_Integer (BlendFunc_GenChamfInv::*)() const>(&BlendFunc_GenChamfInv::NbEquations),
+             R"#(returns the number of equations of the function.)#" )
+        .def("Values",
+             (Standard_Boolean (BlendFunc_GenChamfInv::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_GenChamfInv::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) >(&BlendFunc_GenChamfInv::Values),
+             R"#(returns the values <F> of the functions and the derivatives <D> for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"),  py::arg("D"))
+        .def("Set",
+             (void (BlendFunc_GenChamfInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_GenChamfInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_GenChamfInv::Set),
+             R"#(None)#"  , py::arg("Dist1"),  py::arg("Dist2"),  py::arg("Choix"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_GenChamfer , shared_ptr<BlendFunc_GenChamfer> ,Py_BlendFunc_GenChamfer , Blend_Function >>(m.attr("BlendFunc_GenChamfer"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("CG") )
+    // custom constructors
+    // methods
+        .def("NbEquations",
+             (Standard_Integer (BlendFunc_GenChamfer::*)() const) static_cast<Standard_Integer (BlendFunc_GenChamfer::*)() const>(&BlendFunc_GenChamfer::NbEquations),
+             R"#(returns the number of equations of the function.)#" )
+        .def("Values",
+             (Standard_Boolean (BlendFunc_GenChamfer::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_GenChamfer::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) >(&BlendFunc_GenChamfer::Values),
+             R"#(returns the values <F> of the functions and the derivatives <D> for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"),  py::arg("D"))
+        .def("Set",
+             (void (BlendFunc_GenChamfer::*)( const Standard_Real  ) ) static_cast<void (BlendFunc_GenChamfer::*)( const Standard_Real  ) >(&BlendFunc_GenChamfer::Set),
+             R"#(Sets the value of the parameter along the guide line. This determines the plane in which the solution has to be found.)#"  , py::arg("Param"))
+        .def("Set",
+             (void (BlendFunc_GenChamfer::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BlendFunc_GenChamfer::*)( const Standard_Real ,  const Standard_Real  ) >(&BlendFunc_GenChamfer::Set),
+             R"#(Sets the bounds of the parametric interval on the guide line. This determines the derivatives in these values if the function is not Cn.)#"  , py::arg("First"),  py::arg("Last"))
+        .def("GetTolerance",
+             (void (BlendFunc_GenChamfer::*)( math_Vector & ,  const Standard_Real  ) const) static_cast<void (BlendFunc_GenChamfer::*)( math_Vector & ,  const Standard_Real  ) const>(&BlendFunc_GenChamfer::GetTolerance),
+             R"#(None)#"  , py::arg("Tolerance"),  py::arg("Tol"))
+        .def("GetBounds",
+             (void (BlendFunc_GenChamfer::*)( math_Vector & ,  math_Vector &  ) const) static_cast<void (BlendFunc_GenChamfer::*)( math_Vector & ,  math_Vector &  ) const>(&BlendFunc_GenChamfer::GetBounds),
+             R"#(None)#"  , py::arg("InfBound"),  py::arg("SupBound"))
+        .def("GetMinimalDistance",
+             (Standard_Real (BlendFunc_GenChamfer::*)() const) static_cast<Standard_Real (BlendFunc_GenChamfer::*)() const>(&BlendFunc_GenChamfer::GetMinimalDistance),
+             R"#(Returns the minimal Distance beetween two extremitys of calculed sections.)#" )
+        .def("Set",
+             (void (BlendFunc_GenChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_GenChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_GenChamfer::Set),
+             R"#(Sets the distances and the "quadrant".)#"  , py::arg("Dist1"),  py::arg("Dist2"),  py::arg("Choix"))
+        .def("IsRational",
+             (Standard_Boolean (BlendFunc_GenChamfer::*)() const) static_cast<Standard_Boolean (BlendFunc_GenChamfer::*)() const>(&BlendFunc_GenChamfer::IsRational),
+             R"#(Returns False)#" )
+        .def("GetMinimalWeight",
+             (void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Real> &  ) const) static_cast<void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Real> &  ) const>(&BlendFunc_GenChamfer::GetMinimalWeight),
+             R"#(Compute the minimal value of weight for each poles of all sections.)#"  , py::arg("Weigths"))
+        .def("NbIntervals",
+             (Standard_Integer (BlendFunc_GenChamfer::*)( const GeomAbs_Shape  ) const) static_cast<Standard_Integer (BlendFunc_GenChamfer::*)( const GeomAbs_Shape  ) const>(&BlendFunc_GenChamfer::NbIntervals),
+             R"#(Returns the number of intervals for continuity <S>. May be one if Continuity(me) >= <S>)#"  , py::arg("S"))
+        .def("Intervals",
+             (void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const) static_cast<void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Real> & ,  const GeomAbs_Shape  ) const>(&BlendFunc_GenChamfer::Intervals),
+             R"#(Stores in <T> the parameters bounding the intervals of continuity <S>.)#"  , py::arg("T"),  py::arg("S"))
+        .def("GetTolerance",
+             (void (BlendFunc_GenChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_Vector & ,  math_Vector &  ) const) static_cast<void (BlendFunc_GenChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_Vector & ,  math_Vector &  ) const>(&BlendFunc_GenChamfer::GetTolerance),
+             R"#(Returns the tolerance to reach in approximation to respecte BoundTol error at the Boundary AngleTol tangent error at the Boundary SurfTol error inside the surface.)#"  , py::arg("BoundTol"),  py::arg("SurfTol"),  py::arg("AngleTol"),  py::arg("Tol3d"),  py::arg("Tol1D"))
+        .def("Knots",
+             (void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Real> &  ) ) static_cast<void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_GenChamfer::Knots),
+             R"#(None)#"  , py::arg("TKnots"))
+        .def("Mults",
+             (void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Integer> &  ) ) static_cast<void (BlendFunc_GenChamfer::*)( NCollection_Array1<Standard_Integer> &  ) >(&BlendFunc_GenChamfer::Mults),
+             R"#(None)#"  , py::arg("TMults"))
+        .def("Section",
+             (Standard_Boolean (BlendFunc_GenChamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (BlendFunc_GenChamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_GenChamfer::Section),
+             R"#(Used for the first and last section)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("DPoles"),  py::arg("D2Poles"),  py::arg("Poles2d"),  py::arg("DPoles2d"),  py::arg("D2Poles2d"),  py::arg("Weigths"),  py::arg("DWeigths"),  py::arg("D2Weigths"))
+        .def("Section",
+             (Standard_Boolean (BlendFunc_GenChamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (BlendFunc_GenChamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_GenChamfer::Section),
+             R"#(Used for the first and last section)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("DPoles"),  py::arg("Poles2d"),  py::arg("DPoles2d"),  py::arg("Weigths"),  py::arg("DWeigths"))
+        .def("Section",
+             (void (BlendFunc_GenChamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<void (BlendFunc_GenChamfer::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) >(&BlendFunc_GenChamfer::Section),
+             R"#(None)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("Poles2d"),  py::arg("Weigths"))
+    // methods using call by reference i.s.o. return
+        .def("GetShape",
+             []( BlendFunc_GenChamfer &self   ){ Standard_Integer  NbPoles; Standard_Integer  NbKnots; Standard_Integer  Degree; Standard_Integer  NbPoles2d; self.GetShape(NbPoles,NbKnots,Degree,NbPoles2d); return std::make_tuple(NbPoles,NbKnots,Degree,NbPoles2d); },
+             R"#(None)#" )
+        .def("Section",
+             []( BlendFunc_GenChamfer &self , const Standard_Real Param,const Standard_Real U1,const Standard_Real V1,const Standard_Real U2,const Standard_Real V2,gp_Lin & C ){ Standard_Real  Pdeb; Standard_Real  Pfin; self.Section(Param,U1,V1,U2,V2,Pdeb,Pfin,C); return std::make_tuple(Pdeb,Pfin); },
+             R"#(Obsolete method)#"  , py::arg("Param"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("C"))
+        .def("Resolution",
+             []( BlendFunc_GenChamfer &self , const Standard_Integer IC2d,const Standard_Real Tol ){ Standard_Real  TolU; Standard_Real  TolV; self.Resolution(IC2d,Tol,TolU,TolV); return std::make_tuple(TolU,TolV); },
+             R"#(None)#"  , py::arg("IC2d"),  py::arg("Tol"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_Ruled , shared_ptr<BlendFunc_Ruled>  , Blend_Function >>(m.attr("BlendFunc_Ruled"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("NbEquations",
              (Standard_Integer (BlendFunc_Ruled::*)() const) static_cast<Standard_Integer (BlendFunc_Ruled::*)() const>(&BlendFunc_Ruled::NbEquations),
@@ -1167,12 +1232,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_RuledInv , shared_ptr<BlendFunc_RuledInv>  , Blend_FuncInv >>(m.attr("BlendFunc_RuledInv"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BlendFunc_RuledInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (BlendFunc_RuledInv::*)( const Standard_Boolean ,  const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&BlendFunc_RuledInv::Set),
@@ -1202,12 +1269,14 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BlendFunc_Tensor , shared_ptr<BlendFunc_Tensor>  >>(m.attr("BlendFunc_Tensor"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("NbRow"),  py::arg("NbCol"),  py::arg("NbMat") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BlendFunc_Tensor::*)( const Standard_Real  ) ) static_cast<void (BlendFunc_Tensor::*)( const Standard_Real  ) >(&BlendFunc_Tensor::Init),
@@ -1231,26 +1300,251 @@ py::module m = static_cast<py::module>(main_module.attr("BlendFunc"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_ChamfInv , shared_ptr<BlendFunc_ChamfInv>  , BlendFunc_GenChamfInv >>(m.attr("BlendFunc_ChamfInv"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
+    // methods
+        .def("IsSolution",
+             (Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_ChamfInv::IsSolution),
+             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
+        .def("Value",
+             (Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_ChamfInv::Value),
+             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+        .def("Derivatives",
+             (Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_ChamfInv::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_ChamfInv::Derivatives),
+             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
+        .def("Set",
+             (void (BlendFunc_ChamfInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_ChamfInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_ChamfInv::Set),
+             R"#(None)#"  , py::arg("Dist1"),  py::arg("Dist2"),  py::arg("Choix"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_Chamfer , shared_ptr<BlendFunc_Chamfer>  , BlendFunc_GenChamfer >>(m.attr("BlendFunc_Chamfer"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("CG") )
+    // custom constructors
+    // methods
+        .def("Value",
+             (Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_Chamfer::Value),
+             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+        .def("Derivatives",
+             (Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_Chamfer::Derivatives),
+             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
+        .def("Set",
+             (void (BlendFunc_Chamfer::*)( const Standard_Real  ) ) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real  ) >(&BlendFunc_Chamfer::Set),
+             R"#(None)#"  , py::arg("Param"))
+        .def("IsSolution",
+             (Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_Chamfer::IsSolution),
+             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
+        .def("PointOnS1",
+             (const gp_Pnt & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Pnt & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::PointOnS1),
+             R"#(None)#" )
+        .def("PointOnS2",
+             (const gp_Pnt & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Pnt & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::PointOnS2),
+             R"#(None)#" )
+        .def("IsTangencyPoint",
+             (Standard_Boolean (BlendFunc_Chamfer::*)() const) static_cast<Standard_Boolean (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::IsTangencyPoint),
+             R"#(None)#" )
+        .def("TangentOnS1",
+             (const gp_Vec & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::TangentOnS1),
+             R"#(None)#" )
+        .def("Tangent2dOnS1",
+             (const gp_Vec2d & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec2d & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::Tangent2dOnS1),
+             R"#(None)#" )
+        .def("TangentOnS2",
+             (const gp_Vec & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::TangentOnS2),
+             R"#(None)#" )
+        .def("Tangent2dOnS2",
+             (const gp_Vec2d & (BlendFunc_Chamfer::*)() const) static_cast<const gp_Vec2d & (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::Tangent2dOnS2),
+             R"#(None)#" )
+        .def("Tangent",
+             (void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const>(&BlendFunc_Chamfer::Tangent),
+             R"#(Returns the tangent vector at the section, at the beginning and the end of the section, and returns the normal (of the surfaces) at these points.)#"  , py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("TgFirst"),  py::arg("TgLast"),  py::arg("NormFirst"),  py::arg("NormLast"))
+        .def("Set",
+             (void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_Chamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_Chamfer::Set),
+             R"#(Sets the distances and the "quadrant".)#"  , py::arg("Dist1"),  py::arg("Dist2"),  py::arg("Choix"))
+        .def("GetSectionSize",
+             (Standard_Real (BlendFunc_Chamfer::*)() const) static_cast<Standard_Real (BlendFunc_Chamfer::*)() const>(&BlendFunc_Chamfer::GetSectionSize),
+             R"#(Returns the length of the maximum section)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_ConstThroat , shared_ptr<BlendFunc_ConstThroat>  , BlendFunc_GenChamfer >>(m.attr("BlendFunc_ConstThroat"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
+    // methods
+        .def("Value",
+             (Standard_Boolean (BlendFunc_ConstThroat::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroat::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_ConstThroat::Value),
+             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+        .def("Derivatives",
+             (Standard_Boolean (BlendFunc_ConstThroat::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroat::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_ConstThroat::Derivatives),
+             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
+        .def("Set",
+             (void (BlendFunc_ConstThroat::*)( const Standard_Real  ) ) static_cast<void (BlendFunc_ConstThroat::*)( const Standard_Real  ) >(&BlendFunc_ConstThroat::Set),
+             R"#(None)#"  , py::arg("Param"))
+        .def("IsSolution",
+             (Standard_Boolean (BlendFunc_ConstThroat::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroat::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_ConstThroat::IsSolution),
+             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
+        .def("PointOnS1",
+             (const gp_Pnt & (BlendFunc_ConstThroat::*)() const) static_cast<const gp_Pnt & (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::PointOnS1),
+             R"#(None)#" )
+        .def("PointOnS2",
+             (const gp_Pnt & (BlendFunc_ConstThroat::*)() const) static_cast<const gp_Pnt & (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::PointOnS2),
+             R"#(None)#" )
+        .def("IsTangencyPoint",
+             (Standard_Boolean (BlendFunc_ConstThroat::*)() const) static_cast<Standard_Boolean (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::IsTangencyPoint),
+             R"#(None)#" )
+        .def("TangentOnS1",
+             (const gp_Vec & (BlendFunc_ConstThroat::*)() const) static_cast<const gp_Vec & (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::TangentOnS1),
+             R"#(None)#" )
+        .def("Tangent2dOnS1",
+             (const gp_Vec2d & (BlendFunc_ConstThroat::*)() const) static_cast<const gp_Vec2d & (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::Tangent2dOnS1),
+             R"#(None)#" )
+        .def("TangentOnS2",
+             (const gp_Vec & (BlendFunc_ConstThroat::*)() const) static_cast<const gp_Vec & (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::TangentOnS2),
+             R"#(None)#" )
+        .def("Tangent2dOnS2",
+             (const gp_Vec2d & (BlendFunc_ConstThroat::*)() const) static_cast<const gp_Vec2d & (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::Tangent2dOnS2),
+             R"#(None)#" )
+        .def("Tangent",
+             (void (BlendFunc_ConstThroat::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const) static_cast<void (BlendFunc_ConstThroat::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  gp_Vec & ,  gp_Vec & ,  gp_Vec & ,  gp_Vec &  ) const>(&BlendFunc_ConstThroat::Tangent),
+             R"#(Returns the tangent vector at the section, at the beginning and the end of the section, and returns the normal (of the surfaces) at these points.)#"  , py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("TgFirst"),  py::arg("TgLast"),  py::arg("NormFirst"),  py::arg("NormLast"))
+        .def("Set",
+             (void (BlendFunc_ConstThroat::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_ConstThroat::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_ConstThroat::Set),
+             R"#(Sets the throat and the "quadrant".)#"  , py::arg("aThroat"),  py::arg(""),  py::arg("Choix"))
+        .def("GetSectionSize",
+             (Standard_Real (BlendFunc_ConstThroat::*)() const) static_cast<Standard_Real (BlendFunc_ConstThroat::*)() const>(&BlendFunc_ConstThroat::GetSectionSize),
+             R"#(Returns the length of the maximum section)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_ConstThroatInv , shared_ptr<BlendFunc_ConstThroatInv>  , BlendFunc_GenChamfInv >>(m.attr("BlendFunc_ConstThroatInv"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
+    // methods
+        .def("IsSolution",
+             (Standard_Boolean (BlendFunc_ConstThroatInv::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatInv::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_ConstThroatInv::IsSolution),
+             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
+        .def("Value",
+             (Standard_Boolean (BlendFunc_ConstThroatInv::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatInv::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_ConstThroatInv::Value),
+             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+        .def("Derivatives",
+             (Standard_Boolean (BlendFunc_ConstThroatInv::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatInv::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_ConstThroatInv::Derivatives),
+             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
+        .def("Set",
+             (void (BlendFunc_ConstThroatInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (BlendFunc_ConstThroatInv::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&BlendFunc_ConstThroatInv::Set),
+             R"#(None)#"  , py::arg("theThroat"),  py::arg(""),  py::arg("Choix"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_ConstThroatWithPenetration , shared_ptr<BlendFunc_ConstThroatWithPenetration>  , BlendFunc_ConstThroat >>(m.attr("BlendFunc_ConstThroatWithPenetration"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
+    // methods
+        .def("Value",
+             (Standard_Boolean (BlendFunc_ConstThroatWithPenetration::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatWithPenetration::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_ConstThroatWithPenetration::Value),
+             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+        .def("Derivatives",
+             (Standard_Boolean (BlendFunc_ConstThroatWithPenetration::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatWithPenetration::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_ConstThroatWithPenetration::Derivatives),
+             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
+        .def("IsSolution",
+             (Standard_Boolean (BlendFunc_ConstThroatWithPenetration::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatWithPenetration::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_ConstThroatWithPenetration::IsSolution),
+             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
+        .def("TangentOnS1",
+             (const gp_Vec & (BlendFunc_ConstThroatWithPenetration::*)() const) static_cast<const gp_Vec & (BlendFunc_ConstThroatWithPenetration::*)() const>(&BlendFunc_ConstThroatWithPenetration::TangentOnS1),
+             R"#(None)#" )
+        .def("Tangent2dOnS1",
+             (const gp_Vec2d & (BlendFunc_ConstThroatWithPenetration::*)() const) static_cast<const gp_Vec2d & (BlendFunc_ConstThroatWithPenetration::*)() const>(&BlendFunc_ConstThroatWithPenetration::Tangent2dOnS1),
+             R"#(None)#" )
+        .def("TangentOnS2",
+             (const gp_Vec & (BlendFunc_ConstThroatWithPenetration::*)() const) static_cast<const gp_Vec & (BlendFunc_ConstThroatWithPenetration::*)() const>(&BlendFunc_ConstThroatWithPenetration::TangentOnS2),
+             R"#(None)#" )
+        .def("Tangent2dOnS2",
+             (const gp_Vec2d & (BlendFunc_ConstThroatWithPenetration::*)() const) static_cast<const gp_Vec2d & (BlendFunc_ConstThroatWithPenetration::*)() const>(&BlendFunc_ConstThroatWithPenetration::Tangent2dOnS2),
+             R"#(None)#" )
+        .def("GetSectionSize",
+             (Standard_Real (BlendFunc_ConstThroatWithPenetration::*)() const) static_cast<Standard_Real (BlendFunc_ConstThroatWithPenetration::*)() const>(&BlendFunc_ConstThroatWithPenetration::GetSectionSize),
+             R"#(Returns the length of the maximum section)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BlendFunc_ConstThroatWithPenetrationInv , shared_ptr<BlendFunc_ConstThroatWithPenetrationInv>  , BlendFunc_ConstThroatInv >>(m.attr("BlendFunc_ConstThroatWithPenetrationInv"))
+    // constructors
+        .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("C") )
+    // custom constructors
+    // methods
+        .def("IsSolution",
+             (Standard_Boolean (BlendFunc_ConstThroatWithPenetrationInv::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatWithPenetrationInv::*)( const math_Vector & ,  const Standard_Real  ) >(&BlendFunc_ConstThroatWithPenetrationInv::IsSolution),
+             R"#(None)#"  , py::arg("Sol"),  py::arg("Tol"))
+        .def("Value",
+             (Standard_Boolean (BlendFunc_ConstThroatWithPenetrationInv::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatWithPenetrationInv::*)( const math_Vector & ,  math_Vector &  ) >(&BlendFunc_ConstThroatWithPenetrationInv::Value),
+             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
+        .def("Derivatives",
+             (Standard_Boolean (BlendFunc_ConstThroatWithPenetrationInv::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (BlendFunc_ConstThroatWithPenetrationInv::*)( const math_Vector & ,  math_Matrix &  ) >(&BlendFunc_ConstThroatWithPenetrationInv::Derivatives),
+             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/BlendFunc_CSConstRad.hxx
+// ./opencascade/BlendFunc_ConstThroatWithPenetrationInv.hxx
 // ./opencascade/BlendFunc_CSCircular.hxx
-// ./opencascade/BlendFunc_Tensor.hxx
-// ./opencascade/BlendFunc_Corde.hxx
-// ./opencascade/BlendFunc_RuledInv.hxx
-// ./opencascade/BlendFunc_EvolRad.hxx
-// ./opencascade/BlendFunc_ChamfInv.hxx
-// ./opencascade/BlendFunc_EvolRadInv.hxx
-// ./opencascade/BlendFunc_ConstRad.hxx
-// ./opencascade/BlendFunc_Ruled.hxx
-// ./opencascade/BlendFunc.hxx
+// ./opencascade/BlendFunc_ConstThroatWithPenetration.hxx
 // ./opencascade/BlendFunc_ChAsym.hxx
 // ./opencascade/BlendFunc_SectionShape.hxx
-// ./opencascade/BlendFunc_ChAsymInv.hxx
-// ./opencascade/BlendFunc_Chamfer.hxx
+// ./opencascade/BlendFunc_ChamfInv.hxx
 // ./opencascade/BlendFunc_ConstRadInv.hxx
-// ./opencascade/BlendFunc_CSConstRad.hxx
+// ./opencascade/BlendFunc_Ruled.hxx
+// ./opencascade/BlendFunc_GenChamfInv.hxx
+// ./opencascade/BlendFunc_ConstThroatInv.hxx
+// ./opencascade/BlendFunc_GenChamfer.hxx
+// ./opencascade/BlendFunc_ChAsymInv.hxx
+// ./opencascade/BlendFunc_Corde.hxx
+// ./opencascade/BlendFunc_ConstRad.hxx
+// ./opencascade/BlendFunc_EvolRadInv.hxx
+// ./opencascade/BlendFunc_RuledInv.hxx
+// ./opencascade/BlendFunc_Chamfer.hxx
+// ./opencascade/BlendFunc_EvolRad.hxx
+// ./opencascade/BlendFunc_Tensor.hxx
+// ./opencascade/BlendFunc_ConstThroat.hxx
+// ./opencascade/BlendFunc.hxx
 
 // operators
 

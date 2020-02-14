@@ -15,42 +15,7 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepElement_CurveElementSectionDefinition.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepElement_SurfaceSectionFieldConstant.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepElement_CurveElementEndReleasePacket.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepElement_CurveElementSectionDerivedDefinitions.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
 #include <StepElement_Volume3dElementDescriptor.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepElement_SurfaceSectionField.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepElement_SurfaceSection.hxx>
-#include <StepData_StepWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <StepData_StepReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <StepElement_ElementDescriptor.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -60,17 +25,47 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
+#include <StepElement_AnalysisItemWithinRepresentation.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepElement_Curve3dElementDescriptor.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepElement_CurveElementEndReleasePacket.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepElement_CurveElementSectionDefinition.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepElement_SurfaceSectionField.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepElement_ElementDescriptor.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
 #include <StepElement_SurfaceSectionFieldVarying.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepElement_Surface3dElementDescriptor.hxx>
+#include <StepElement_SurfaceSectionFieldConstant.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepElement_AnalysisItemWithinRepresentation.hxx>
+#include <StepElement_CurveElementSectionDerivedDefinitions.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
@@ -80,12 +75,17 @@ namespace py = pybind11;
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepElement_SurfaceElementProperty.hxx>
+#include <StepElement_SurfaceSection.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <Interface_Check.hxx>
-#include <StepElement_Curve3dElementDescriptor.hxx>
+#include <StepElement_Surface3dElementDescriptor.hxx>
+#include <StepData_StepWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <StepData_StepReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <StepElement_SurfaceElementProperty.hxx>
 #include <StepData_StepWriter.hxx>
 #include <Interface_EntityIterator.hxx>
 
@@ -127,7 +127,9 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
 
 
     static_cast<py::class_<RWStepElement_RWAnalysisItemWithinRepresentation , shared_ptr<RWStepElement_RWAnalysisItemWithinRepresentation>  >>(m.attr("RWStepElement_RWAnalysisItemWithinRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWAnalysisItemWithinRepresentation::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> &  ) const) static_cast<void (RWStepElement_RWAnalysisItemWithinRepresentation::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> &  ) const>(&RWStepElement_RWAnalysisItemWithinRepresentation::ReadStep),
@@ -142,12 +144,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWCurve3dElementDescriptor , shared_ptr<RWStepElement_RWCurve3dElementDescriptor>  >>(m.attr("RWStepElement_RWCurve3dElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWCurve3dElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_Curve3dElementDescriptor> &  ) const) static_cast<void (RWStepElement_RWCurve3dElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_Curve3dElementDescriptor> &  ) const>(&RWStepElement_RWCurve3dElementDescriptor::ReadStep),
@@ -162,12 +166,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWCurveElementEndReleasePacket , shared_ptr<RWStepElement_RWCurveElementEndReleasePacket>  >>(m.attr("RWStepElement_RWCurveElementEndReleasePacket"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWCurveElementEndReleasePacket::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_CurveElementEndReleasePacket> &  ) const) static_cast<void (RWStepElement_RWCurveElementEndReleasePacket::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_CurveElementEndReleasePacket> &  ) const>(&RWStepElement_RWCurveElementEndReleasePacket::ReadStep),
@@ -182,12 +188,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWCurveElementSectionDefinition , shared_ptr<RWStepElement_RWCurveElementSectionDefinition>  >>(m.attr("RWStepElement_RWCurveElementSectionDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWCurveElementSectionDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_CurveElementSectionDefinition> &  ) const) static_cast<void (RWStepElement_RWCurveElementSectionDefinition::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_CurveElementSectionDefinition> &  ) const>(&RWStepElement_RWCurveElementSectionDefinition::ReadStep),
@@ -202,12 +210,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWCurveElementSectionDerivedDefinitions , shared_ptr<RWStepElement_RWCurveElementSectionDerivedDefinitions>  >>(m.attr("RWStepElement_RWCurveElementSectionDerivedDefinitions"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWCurveElementSectionDerivedDefinitions::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_CurveElementSectionDerivedDefinitions> &  ) const) static_cast<void (RWStepElement_RWCurveElementSectionDerivedDefinitions::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_CurveElementSectionDerivedDefinitions> &  ) const>(&RWStepElement_RWCurveElementSectionDerivedDefinitions::ReadStep),
@@ -222,12 +232,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWElementDescriptor , shared_ptr<RWStepElement_RWElementDescriptor>  >>(m.attr("RWStepElement_RWElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_ElementDescriptor> &  ) const) static_cast<void (RWStepElement_RWElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_ElementDescriptor> &  ) const>(&RWStepElement_RWElementDescriptor::ReadStep),
@@ -242,12 +254,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWElementMaterial , shared_ptr<RWStepElement_RWElementMaterial>  >>(m.attr("RWStepElement_RWElementMaterial"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWElementMaterial::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) const) static_cast<void (RWStepElement_RWElementMaterial::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) const>(&RWStepElement_RWElementMaterial::ReadStep),
@@ -262,12 +276,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWSurface3dElementDescriptor , shared_ptr<RWStepElement_RWSurface3dElementDescriptor>  >>(m.attr("RWStepElement_RWSurface3dElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWSurface3dElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_Surface3dElementDescriptor> &  ) const) static_cast<void (RWStepElement_RWSurface3dElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_Surface3dElementDescriptor> &  ) const>(&RWStepElement_RWSurface3dElementDescriptor::ReadStep),
@@ -282,12 +298,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWSurfaceElementProperty , shared_ptr<RWStepElement_RWSurfaceElementProperty>  >>(m.attr("RWStepElement_RWSurfaceElementProperty"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWSurfaceElementProperty::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceElementProperty> &  ) const) static_cast<void (RWStepElement_RWSurfaceElementProperty::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceElementProperty> &  ) const>(&RWStepElement_RWSurfaceElementProperty::ReadStep),
@@ -302,12 +320,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWSurfaceSection , shared_ptr<RWStepElement_RWSurfaceSection>  >>(m.attr("RWStepElement_RWSurfaceSection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWSurfaceSection::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSection> &  ) const) static_cast<void (RWStepElement_RWSurfaceSection::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSection> &  ) const>(&RWStepElement_RWSurfaceSection::ReadStep),
@@ -322,12 +342,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWSurfaceSectionField , shared_ptr<RWStepElement_RWSurfaceSectionField>  >>(m.attr("RWStepElement_RWSurfaceSectionField"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWSurfaceSectionField::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSectionField> &  ) const) static_cast<void (RWStepElement_RWSurfaceSectionField::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSectionField> &  ) const>(&RWStepElement_RWSurfaceSectionField::ReadStep),
@@ -342,12 +364,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWSurfaceSectionFieldConstant , shared_ptr<RWStepElement_RWSurfaceSectionFieldConstant>  >>(m.attr("RWStepElement_RWSurfaceSectionFieldConstant"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWSurfaceSectionFieldConstant::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSectionFieldConstant> &  ) const) static_cast<void (RWStepElement_RWSurfaceSectionFieldConstant::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSectionFieldConstant> &  ) const>(&RWStepElement_RWSurfaceSectionFieldConstant::ReadStep),
@@ -362,12 +386,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWSurfaceSectionFieldVarying , shared_ptr<RWStepElement_RWSurfaceSectionFieldVarying>  >>(m.attr("RWStepElement_RWSurfaceSectionFieldVarying"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWSurfaceSectionFieldVarying::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSectionFieldVarying> &  ) const) static_cast<void (RWStepElement_RWSurfaceSectionFieldVarying::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_SurfaceSectionFieldVarying> &  ) const>(&RWStepElement_RWSurfaceSectionFieldVarying::ReadStep),
@@ -382,12 +408,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWUniformSurfaceSection , shared_ptr<RWStepElement_RWUniformSurfaceSection>  >>(m.attr("RWStepElement_RWUniformSurfaceSection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWUniformSurfaceSection::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_UniformSurfaceSection> &  ) const) static_cast<void (RWStepElement_RWUniformSurfaceSection::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_UniformSurfaceSection> &  ) const>(&RWStepElement_RWUniformSurfaceSection::ReadStep),
@@ -402,12 +430,14 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStepElement_RWVolume3dElementDescriptor , shared_ptr<RWStepElement_RWVolume3dElementDescriptor>  >>(m.attr("RWStepElement_RWVolume3dElementDescriptor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadStep",
              (void (RWStepElement_RWVolume3dElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_Volume3dElementDescriptor> &  ) const) static_cast<void (RWStepElement_RWVolume3dElementDescriptor::*)( const opencascade::handle<StepData_StepReaderData> & ,  const Standard_Integer ,  opencascade::handle<Interface_Check> & ,  const opencascade::handle<StepElement_Volume3dElementDescriptor> &  ) const>(&RWStepElement_RWVolume3dElementDescriptor::ReadStep),
@@ -422,25 +452,25 @@ py::module m = static_cast<py::module>(main_module.attr("RWStepElement"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/RWStepElement_RWCurveElementSectionDefinition.hxx
-// ./opencascade/RWStepElement_RWSurfaceSectionFieldConstant.hxx
-// ./opencascade/RWStepElement_RWCurveElementEndReleasePacket.hxx
-// ./opencascade/RWStepElement_RWCurveElementSectionDerivedDefinitions.hxx
 // ./opencascade/RWStepElement_RWVolume3dElementDescriptor.hxx
-// ./opencascade/RWStepElement_RWSurfaceSectionField.hxx
-// ./opencascade/RWStepElement_RWSurfaceSection.hxx
-// ./opencascade/RWStepElement_RWElementDescriptor.hxx
 // ./opencascade/RWStepElement_RWElementMaterial.hxx
-// ./opencascade/RWStepElement_RWSurfaceSectionFieldVarying.hxx
-// ./opencascade/RWStepElement_RWSurface3dElementDescriptor.hxx
 // ./opencascade/RWStepElement_RWAnalysisItemWithinRepresentation.hxx
-// ./opencascade/RWStepElement_RWUniformSurfaceSection.hxx
-// ./opencascade/RWStepElement_RWSurfaceElementProperty.hxx
 // ./opencascade/RWStepElement_RWCurve3dElementDescriptor.hxx
+// ./opencascade/RWStepElement_RWCurveElementEndReleasePacket.hxx
+// ./opencascade/RWStepElement_RWCurveElementSectionDefinition.hxx
+// ./opencascade/RWStepElement_RWSurfaceSectionField.hxx
+// ./opencascade/RWStepElement_RWElementDescriptor.hxx
+// ./opencascade/RWStepElement_RWSurfaceSectionFieldVarying.hxx
+// ./opencascade/RWStepElement_RWSurfaceSectionFieldConstant.hxx
+// ./opencascade/RWStepElement_RWCurveElementSectionDerivedDefinitions.hxx
+// ./opencascade/RWStepElement_RWUniformSurfaceSection.hxx
+// ./opencascade/RWStepElement_RWSurfaceSection.hxx
+// ./opencascade/RWStepElement_RWSurface3dElementDescriptor.hxx
+// ./opencascade/RWStepElement_RWSurfaceElementProperty.hxx
 
 // operators
 

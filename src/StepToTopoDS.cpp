@@ -14,22 +14,57 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <StdFail_NotDone.hxx>
+#include <StepShape_ManifoldSolidBrep.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <StepShape_BrepWithVoids.hxx>
+#include <StepShape_FacetedBrep.hxx>
+#include <StepShape_FacetedBrepAndBrepWithVoids.hxx>
+#include <StepShape_ShellBasedSurfaceModel.hxx>
+#include <StepToTopoDS_NMTool.hxx>
+#include <StepShape_GeometricSet.hxx>
+#include <StepShape_EdgeBasedWireframeModel.hxx>
+#include <StepShape_FaceBasedSurfaceModel.hxx>
+#include <Transfer_ActorOfTransientProcess.hxx>
+#include <StepGeom_SurfaceCurve.hxx>
+#include <StepGeom_Surface.hxx>
+#include <StepGeom_Pcurve.hxx>
+#include <StepShape_Edge.hxx>
+#include <StepShape_EdgeLoop.hxx>
+#include <Geom_Curve.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepToTopoDS_PointPairHasher.hxx>
+#include <StdFail_NotDone.hxx>
 #include <StepShape_PolyLoop.hxx>
 #include <StepToTopoDS_Tool.hxx>
 #include <Geom_Surface.hxx>
 #include <TopoDS_Face.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StepShape_FaceBound.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <StepGeom_Surface.hxx>
+#include <StepShape_Edge.hxx>
 #include <StepToTopoDS_Tool.hxx>
 #include <StepToTopoDS_NMTool.hxx>
-#include <StepGeom_Axis2Placement3d.hxx>
-#include <StepGeom_CartesianTransformationOperator3d.hxx>
-#include <TopoDS_Shape.hxx>
-#include <StepRepr_MappedItem.hxx>
+#include <StepGeom_Curve.hxx>
+#include <StepShape_EdgeCurve.hxx>
+#include <StepShape_Vertex.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Geom2d_Curve.hxx>
+#include <StepGeom_Pcurve.hxx>
+#include <Geom_Surface.hxx>
+#include <StepGeom_CartesianPoint.hxx>
 #include <Transfer_TransientProcess.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StepShape_Vertex.hxx>
+#include <StepToTopoDS_Tool.hxx>
+#include <StepToTopoDS_NMTool.hxx>
+#include <StepGeom_CurveBoundedSurface.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StepShape_VertexLoop.hxx>
+#include <StepToTopoDS_Tool.hxx>
+#include <StepToTopoDS_NMTool.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepToTopoDS_Root.hxx>
 #include <StepToTopoDS_TranslateShell.hxx>
@@ -49,66 +84,31 @@ namespace py = pybind11;
 #include <StepToTopoDS_PointPair.hxx>
 #include <StepToTopoDS_PointPairHasher.hxx>
 #include <StepToTopoDS_NMTool.hxx>
+#include <StepToTopoDS_PointPair.hxx>
+#include <StepGeom_Axis2Placement3d.hxx>
+#include <StepGeom_CartesianTransformationOperator3d.hxx>
+#include <TopoDS_Shape.hxx>
+#include <StepRepr_MappedItem.hxx>
+#include <Transfer_TransientProcess.hxx>
 #include <StepGeom_CompositeCurve.hxx>
 #include <Transfer_TransientProcess.hxx>
 #include <StepGeom_Surface.hxx>
 #include <Geom_Surface.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepGeom_CurveBoundedSurface.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StepShape_Vertex.hxx>
-#include <StepToTopoDS_Tool.hxx>
-#include <StepToTopoDS_NMTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StepShape_Edge.hxx>
-#include <StepToTopoDS_Tool.hxx>
-#include <StepToTopoDS_NMTool.hxx>
-#include <StepGeom_Curve.hxx>
-#include <StepShape_EdgeCurve.hxx>
-#include <StepShape_Vertex.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Geom2d_Curve.hxx>
-#include <StepGeom_Pcurve.hxx>
-#include <Geom_Surface.hxx>
-#include <StepToTopoDS_PointPair.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StepShape_FaceSurface.hxx>
-#include <StepToTopoDS_Tool.hxx>
-#include <StepToTopoDS_NMTool.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StepShape_ConnectedFaceSet.hxx>
 #include <StepToTopoDS_Tool.hxx>
 #include <StepToTopoDS_NMTool.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepToTopoDS_PointPairHasher.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StepShape_VertexLoop.hxx>
+#include <StepShape_FaceBound.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <StepGeom_Surface.hxx>
 #include <StepToTopoDS_Tool.hxx>
 #include <StepToTopoDS_NMTool.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StepShape_ManifoldSolidBrep.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <StepShape_BrepWithVoids.hxx>
-#include <StepShape_FacetedBrep.hxx>
-#include <StepShape_FacetedBrepAndBrepWithVoids.hxx>
-#include <StepShape_ShellBasedSurfaceModel.hxx>
+#include <StepShape_FaceSurface.hxx>
+#include <StepToTopoDS_Tool.hxx>
 #include <StepToTopoDS_NMTool.hxx>
-#include <StepShape_GeometricSet.hxx>
-#include <StepShape_EdgeBasedWireframeModel.hxx>
-#include <StepShape_FaceBasedSurfaceModel.hxx>
-#include <Transfer_ActorOfTransientProcess.hxx>
-#include <StepGeom_SurfaceCurve.hxx>
-#include <StepGeom_Surface.hxx>
-#include <StepGeom_Pcurve.hxx>
-#include <StepShape_Edge.hxx>
-#include <StepShape_EdgeLoop.hxx>
-#include <Geom_Curve.hxx>
 
 // module includes
 #include <StepToTopoDS.hxx>
@@ -151,14 +151,6 @@ namespace py = pybind11;
 #include <StepToTopoDS_TranslateVertexLoopError.hxx>
 
 // template related includes
-// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepToTopoDS_DataMapOfRI.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepToTopoDS_DataMapOfRI.hxx
@@ -166,6 +158,14 @@ namespace py = pybind11;
 // ./opencascade/StepToTopoDS_PointVertexMap.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepToTopoDS_PointVertexMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepToTopoDS_PointEdgeMap.hxx
 #include "NCollection.hxx"
@@ -189,9 +189,12 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StepToTopoDS , shared_ptr<StepToTopoDS>>(m,"StepToTopoDS");
 
     static_cast<py::class_<StepToTopoDS , shared_ptr<StepToTopoDS>  >>(m.attr("StepToTopoDS"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -221,29 +224,35 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
                     R"#(None)#"  , py::arg("Error"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepToTopoDS_CartesianPointHasher , shared_ptr<StepToTopoDS_CartesianPointHasher>>(m,"StepToTopoDS_CartesianPointHasher");
 
     static_cast<py::class_<StepToTopoDS_CartesianPointHasher , shared_ptr<StepToTopoDS_CartesianPointHasher>  >>(m.attr("StepToTopoDS_CartesianPointHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Integer  ) >(&StepToTopoDS_CartesianPointHasher::HashCode),
-                    R"#(Returns a HasCode value for the CartesianPoint)#"  , py::arg("K"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  Standard_Integer  ) >(&StepToTopoDS_CartesianPointHasher::HashCode),
+                    R"#(Computes a hash code for the cartesian point, in the range [1, theUpperBound])#"  , py::arg("theCartesianPoint"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) >(&StepToTopoDS_CartesianPointHasher::IsEqual),
                     R"#(Returns True when the two CartesianPoint are the same)#"  , py::arg("K1"),  py::arg("K2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepToTopoDS_GeometricTool , shared_ptr<StepToTopoDS_GeometricTool>>(m,"StepToTopoDS_GeometricTool");
 
     static_cast<py::class_<StepToTopoDS_GeometricTool , shared_ptr<StepToTopoDS_GeometricTool>  >>(m.attr("StepToTopoDS_GeometricTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -261,13 +270,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
                     R"#(None)#"  , py::arg("C"),  py::arg("w1"),  py::arg("w2"),  py::arg("preci"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_NMTool , shared_ptr<StepToTopoDS_NMTool>  >>(m.attr("StepToTopoDS_NMTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_DataMap<opencascade::handle<StepRepr_RepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher> &, const NCollection_DataMap<TCollection_AsciiString, TopoDS_Shape, TCollection_AsciiString> & >()  , py::arg("MapOfRI"),  py::arg("MapOfRINames") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_NMTool::*)(  const NCollection_DataMap<opencascade::handle<StepRepr_RepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher> & ,   const NCollection_DataMap<TCollection_AsciiString, TopoDS_Shape, TCollection_AsciiString> &  ) ) static_cast<void (StepToTopoDS_NMTool::*)(  const NCollection_DataMap<opencascade::handle<StepRepr_RepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher> & ,   const NCollection_DataMap<TCollection_AsciiString, TopoDS_Shape, TCollection_AsciiString> &  ) >(&StepToTopoDS_NMTool::Init),
@@ -318,39 +329,46 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_PointPair , shared_ptr<StepToTopoDS_PointPair>  >>(m.attr("StepToTopoDS_PointPair"))
+    // constructors
         .def(py::init< const opencascade::handle<StepGeom_CartesianPoint> &,const opencascade::handle<StepGeom_CartesianPoint> & >()  , py::arg("P1"),  py::arg("P2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StepToTopoDS_PointPairHasher , shared_ptr<StepToTopoDS_PointPairHasher>>(m,"StepToTopoDS_PointPairHasher");
 
     static_cast<py::class_<StepToTopoDS_PointPairHasher , shared_ptr<StepToTopoDS_PointPairHasher>  >>(m.attr("StepToTopoDS_PointPairHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const StepToTopoDS_PointPair & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const StepToTopoDS_PointPair & ,  const Standard_Integer  ) >(&StepToTopoDS_PointPairHasher::HashCode),
-                    R"#(Returns a HasCode value for the PointPair)#"  , py::arg("K"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const StepToTopoDS_PointPair & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const StepToTopoDS_PointPair & ,  Standard_Integer  ) >(&StepToTopoDS_PointPairHasher::HashCode),
+                    R"#(Computes a hash code for the point pair, in the range [1, theUpperBound])#"  , py::arg("thePointPair"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const StepToTopoDS_PointPair & ,  const StepToTopoDS_PointPair &  ) ) static_cast<Standard_Boolean (*)( const StepToTopoDS_PointPair & ,  const StepToTopoDS_PointPair &  ) >(&StepToTopoDS_PointPairHasher::IsEqual),
                     R"#(Returns True when the two PointPair are the same)#"  , py::arg("K1"),  py::arg("K2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_Root , shared_ptr<StepToTopoDS_Root>  >>(m.attr("StepToTopoDS_Root"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (StepToTopoDS_Root::*)() const) static_cast<Standard_Boolean (StepToTopoDS_Root::*)() const>(&StepToTopoDS_Root::IsDone),
@@ -386,13 +404,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_Tool , shared_ptr<StepToTopoDS_Tool>  >>(m.attr("StepToTopoDS_Tool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("Map"),  py::arg("TP") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_Tool::*)(  const NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) ) static_cast<void (StepToTopoDS_Tool::*)(  const NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) >(&StepToTopoDS_Tool::Init),
@@ -479,17 +499,19 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_Builder , shared_ptr<StepToTopoDS_Builder>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_Builder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_ManifoldSolidBrep> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("S"),  py::arg("TP") )
         .def(py::init< const opencascade::handle<StepShape_BrepWithVoids> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("S"),  py::arg("TP") )
         .def(py::init< const opencascade::handle<StepShape_FacetedBrep> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("S"),  py::arg("TP") )
         .def(py::init< const opencascade::handle<StepShape_FacetedBrepAndBrepWithVoids> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("S"),  py::arg("TP") )
         .def(py::init< const opencascade::handle<StepShape_ShellBasedSurfaceModel> &,const opencascade::handle<Transfer_TransientProcess> &,StepToTopoDS_NMTool & >()  , py::arg("S"),  py::arg("TP"),  py::arg("NMTool") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_Builder::*)( const opencascade::handle<StepShape_ManifoldSolidBrep> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) ) static_cast<void (StepToTopoDS_Builder::*)( const opencascade::handle<StepShape_ManifoldSolidBrep> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) >(&StepToTopoDS_Builder::Init),
@@ -525,12 +547,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_MakeTransformed , shared_ptr<StepToTopoDS_MakeTransformed>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_MakeTransformed"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Compute",
              (Standard_Boolean (StepToTopoDS_MakeTransformed::*)( const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) ) static_cast<Standard_Boolean (StepToTopoDS_MakeTransformed::*)( const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) >(&StepToTopoDS_MakeTransformed::Compute),
@@ -551,14 +575,16 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateCompositeCurve , shared_ptr<StepToTopoDS_TranslateCompositeCurve>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateCompositeCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepGeom_CompositeCurve> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("CC"),  py::arg("TP") )
         .def(py::init< const opencascade::handle<StepGeom_CompositeCurve> &,const opencascade::handle<Transfer_TransientProcess> &,const opencascade::handle<StepGeom_Surface> &,const opencascade::handle<Geom_Surface> & >()  , py::arg("CC"),  py::arg("TP"),  py::arg("S"),  py::arg("Surf") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (StepToTopoDS_TranslateCompositeCurve::*)( const opencascade::handle<StepGeom_CompositeCurve> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) ) static_cast<Standard_Boolean (StepToTopoDS_TranslateCompositeCurve::*)( const opencascade::handle<StepGeom_CompositeCurve> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) >(&StepToTopoDS_TranslateCompositeCurve::Init),
@@ -579,13 +605,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateCurveBoundedSurface , shared_ptr<StepToTopoDS_TranslateCurveBoundedSurface>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateCurveBoundedSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepGeom_CurveBoundedSurface> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("CBS"),  py::arg("TP") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (StepToTopoDS_TranslateCurveBoundedSurface::*)( const opencascade::handle<StepGeom_CurveBoundedSurface> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) ) static_cast<Standard_Boolean (StepToTopoDS_TranslateCurveBoundedSurface::*)( const opencascade::handle<StepGeom_CurveBoundedSurface> & ,  const opencascade::handle<Transfer_TransientProcess> &  ) >(&StepToTopoDS_TranslateCurveBoundedSurface::Init),
@@ -597,13 +625,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateEdge , shared_ptr<StepToTopoDS_TranslateEdge>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_Edge> &,StepToTopoDS_Tool &,StepToTopoDS_NMTool & >()  , py::arg("E"),  py::arg("T"),  py::arg("NMTool") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_TranslateEdge::*)( const opencascade::handle<StepShape_Edge> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) ) static_cast<void (StepToTopoDS_TranslateEdge::*)( const opencascade::handle<StepShape_Edge> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) >(&StepToTopoDS_TranslateEdge::Init),
@@ -624,13 +654,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateEdgeLoop , shared_ptr<StepToTopoDS_TranslateEdgeLoop>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateEdgeLoop"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_FaceBound> &,const TopoDS_Face &,const opencascade::handle<Geom_Surface> &,const opencascade::handle<StepGeom_Surface> &,const Standard_Boolean,StepToTopoDS_Tool &,StepToTopoDS_NMTool & >()  , py::arg("FB"),  py::arg("F"),  py::arg("S"),  py::arg("SS"),  py::arg("ss"),  py::arg("T"),  py::arg("NMTool") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_TranslateEdgeLoop::*)( const opencascade::handle<StepShape_FaceBound> & ,  const TopoDS_Face & ,  const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) ) static_cast<void (StepToTopoDS_TranslateEdgeLoop::*)( const opencascade::handle<StepShape_FaceBound> & ,  const TopoDS_Face & ,  const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) >(&StepToTopoDS_TranslateEdgeLoop::Init),
@@ -645,13 +677,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateFace , shared_ptr<StepToTopoDS_TranslateFace>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateFace"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_FaceSurface> &,StepToTopoDS_Tool &,StepToTopoDS_NMTool & >()  , py::arg("FS"),  py::arg("T"),  py::arg("NMTool") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_TranslateFace::*)( const opencascade::handle<StepShape_FaceSurface> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) ) static_cast<void (StepToTopoDS_TranslateFace::*)( const opencascade::handle<StepShape_FaceSurface> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) >(&StepToTopoDS_TranslateFace::Init),
@@ -666,13 +700,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslatePolyLoop , shared_ptr<StepToTopoDS_TranslatePolyLoop>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslatePolyLoop"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_PolyLoop> &,StepToTopoDS_Tool &,const opencascade::handle<Geom_Surface> &,const TopoDS_Face & >()  , py::arg("PL"),  py::arg("T"),  py::arg("S"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_TranslatePolyLoop::*)( const opencascade::handle<StepShape_PolyLoop> & ,  StepToTopoDS_Tool & ,  const opencascade::handle<Geom_Surface> & ,  const TopoDS_Face &  ) ) static_cast<void (StepToTopoDS_TranslatePolyLoop::*)( const opencascade::handle<StepShape_PolyLoop> & ,  StepToTopoDS_Tool & ,  const opencascade::handle<Geom_Surface> & ,  const TopoDS_Face &  ) >(&StepToTopoDS_TranslatePolyLoop::Init),
@@ -687,13 +723,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateShell , shared_ptr<StepToTopoDS_TranslateShell>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateShell"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_ConnectedFaceSet> &,StepToTopoDS_Tool &,StepToTopoDS_NMTool & >()  , py::arg("CFS"),  py::arg("T"),  py::arg("NMTool") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_TranslateShell::*)( const opencascade::handle<StepShape_ConnectedFaceSet> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) ) static_cast<void (StepToTopoDS_TranslateShell::*)( const opencascade::handle<StepShape_ConnectedFaceSet> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) >(&StepToTopoDS_TranslateShell::Init),
@@ -708,13 +746,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateVertex , shared_ptr<StepToTopoDS_TranslateVertex>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateVertex"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_Vertex> &,StepToTopoDS_Tool &,StepToTopoDS_NMTool & >()  , py::arg("V"),  py::arg("T"),  py::arg("NMTool") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_TranslateVertex::*)( const opencascade::handle<StepShape_Vertex> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) ) static_cast<void (StepToTopoDS_TranslateVertex::*)( const opencascade::handle<StepShape_Vertex> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) >(&StepToTopoDS_TranslateVertex::Init),
@@ -729,13 +769,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepToTopoDS_TranslateVertexLoop , shared_ptr<StepToTopoDS_TranslateVertexLoop>  , StepToTopoDS_Root >>(m.attr("StepToTopoDS_TranslateVertexLoop"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_VertexLoop> &,StepToTopoDS_Tool &,StepToTopoDS_NMTool & >()  , py::arg("VL"),  py::arg("T"),  py::arg("NMTool") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepToTopoDS_TranslateVertexLoop::*)( const opencascade::handle<StepShape_VertexLoop> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) ) static_cast<void (StepToTopoDS_TranslateVertexLoop::*)( const opencascade::handle<StepShape_VertexLoop> & ,  StepToTopoDS_Tool & ,  StepToTopoDS_NMTool &  ) >(&StepToTopoDS_TranslateVertexLoop::Init),
@@ -750,56 +792,56 @@ py::module m = static_cast<py::module>(main_module.attr("StepToTopoDS"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepToTopoDS_TranslateShellError.hxx
+// ./opencascade/StepToTopoDS_Builder.hxx
+// ./opencascade/StepToTopoDS_GeometricTool.hxx
+// ./opencascade/StepToTopoDS_TranslateVertexLoopError.hxx
+// ./opencascade/StepToTopoDS_DataMapOfRI.hxx
+// ./opencascade/StepToTopoDS_PointPair.hxx
 // ./opencascade/StepToTopoDS_TranslatePolyLoop.hxx
-// ./opencascade/StepToTopoDS_TranslateEdgeLoop.hxx
+// ./opencascade/StepToTopoDS_TranslateEdge.hxx
+// ./opencascade/StepToTopoDS_Root.hxx
+// ./opencascade/StepToTopoDS_GeometricToolError.hxx
+// ./opencascade/StepToTopoDS_TranslateShellError.hxx
+// ./opencascade/StepToTopoDS_TranslateEdgeLoopError.hxx
+// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfRINames.hxx
+// ./opencascade/StepToTopoDS_CartesianPointHasher.hxx
+// ./opencascade/StepToTopoDS_Tool.hxx
+// ./opencascade/StepToTopoDS_NMTool.hxx
+// ./opencascade/StepToTopoDS_PointVertexMap.hxx
+// ./opencascade/StepToTopoDS_TranslateVertex.hxx
+// ./opencascade/StepToTopoDS_TranslateCurveBoundedSurface.hxx
+// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfTRI.hxx
 // ./opencascade/StepToTopoDS_TranslateEdgeError.hxx
+// ./opencascade/StepToTopoDS_TranslateVertexLoop.hxx
 // ./opencascade/StepToTopoDS_DataMapOfTRI.hxx
+// ./opencascade/StepToTopoDS.hxx
+// ./opencascade/StepToTopoDS_PointPairHasher.hxx
+// ./opencascade/StepToTopoDS_DataMapIteratorOfPointEdgeMap.hxx
 // ./opencascade/StepToTopoDS_DataMapOfRINames.hxx
-// ./opencascade/StepToTopoDS_TranslateVertexError.hxx
 // ./opencascade/StepToTopoDS_BuilderError.hxx
 // ./opencascade/StepToTopoDS_MakeTransformed.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfPointVertexMap.hxx
-// ./opencascade/StepToTopoDS.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfRINames.hxx
-// ./opencascade/StepToTopoDS_Root.hxx
-// ./opencascade/StepToTopoDS_TranslateCompositeCurve.hxx
-// ./opencascade/StepToTopoDS_NMTool.hxx
-// ./opencascade/StepToTopoDS_TranslatePolyLoopError.hxx
-// ./opencascade/StepToTopoDS_CartesianPointHasher.hxx
-// ./opencascade/StepToTopoDS_TranslateCurveBoundedSurface.hxx
-// ./opencascade/StepToTopoDS_TranslateEdgeLoopError.hxx
-// ./opencascade/StepToTopoDS_GeometricToolError.hxx
-// ./opencascade/StepToTopoDS_TranslateVertex.hxx
-// ./opencascade/StepToTopoDS_DataMapOfRI.hxx
-// ./opencascade/StepToTopoDS_TranslateFaceError.hxx
-// ./opencascade/StepToTopoDS_TranslateEdge.hxx
-// ./opencascade/StepToTopoDS_TranslateVertexLoopError.hxx
-// ./opencascade/StepToTopoDS_PointPairHasher.hxx
-// ./opencascade/StepToTopoDS_PointVertexMap.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfTRI.hxx
-// ./opencascade/StepToTopoDS_TranslateFace.hxx
-// ./opencascade/StepToTopoDS_TranslateShell.hxx
-// ./opencascade/StepToTopoDS_PointPair.hxx
-// ./opencascade/StepToTopoDS_TranslateVertexLoop.hxx
-// ./opencascade/StepToTopoDS_Tool.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfRI.hxx
-// ./opencascade/StepToTopoDS_DataMapIteratorOfPointEdgeMap.hxx
-// ./opencascade/StepToTopoDS_Builder.hxx
 // ./opencascade/StepToTopoDS_PointEdgeMap.hxx
-// ./opencascade/StepToTopoDS_GeometricTool.hxx
+// ./opencascade/StepToTopoDS_TranslateCompositeCurve.hxx
+// ./opencascade/StepToTopoDS_DataMapIteratorOfDataMapOfRI.hxx
+// ./opencascade/StepToTopoDS_TranslatePolyLoopError.hxx
+// ./opencascade/StepToTopoDS_DataMapIteratorOfPointVertexMap.hxx
+// ./opencascade/StepToTopoDS_TranslateShell.hxx
+// ./opencascade/StepToTopoDS_TranslateEdgeLoop.hxx
+// ./opencascade/StepToTopoDS_TranslateVertexError.hxx
+// ./opencascade/StepToTopoDS_TranslateFace.hxx
+// ./opencascade/StepToTopoDS_TranslateFaceError.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"StepToTopoDS_DataMapOfTRI");  
-    register_template_NCollection_DataMap<TCollection_AsciiString, TopoDS_Shape, TCollection_AsciiString>(m,"StepToTopoDS_DataMapOfRINames");  
     register_template_NCollection_DataMap<opencascade::handle<StepRepr_RepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"StepToTopoDS_DataMapOfRI");  
     register_template_NCollection_DataMap<opencascade::handle<StepGeom_CartesianPoint>, TopoDS_Vertex, StepToTopoDS_CartesianPointHasher>(m,"StepToTopoDS_PointVertexMap");  
+    register_template_NCollection_DataMap<opencascade::handle<StepShape_TopologicalRepresentationItem>, TopoDS_Shape, TColStd_MapTransientHasher>(m,"StepToTopoDS_DataMapOfTRI");  
+    register_template_NCollection_DataMap<TCollection_AsciiString, TopoDS_Shape, TCollection_AsciiString>(m,"StepToTopoDS_DataMapOfRINames");  
     register_template_NCollection_DataMap<StepToTopoDS_PointPair, TopoDS_Edge, StepToTopoDS_PointPairHasher>(m,"StepToTopoDS_PointEdgeMap");  
 
 

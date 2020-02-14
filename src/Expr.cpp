@@ -13,10 +13,158 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_InvalidOperand.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedFunction.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <Expr_GeneralRelation.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <Expr_GeneralFunction.hxx>
 #include <Expr_InvalidFunction.hxx>
 #include <Standard_NumericError.hxx>
 #include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Expr_GeneralFunction.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_InvalidOperand.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Expr_NotAssigned.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_InvalidAssignment.hxx>
+#include <Expr_InvalidOperand.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_InvalidOperand.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_DimensionMismatch.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_GeneralExpression.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <Expr_NamedUnknown.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Expr_GeneralExpression.hxx>
@@ -76,139 +224,6 @@ namespace py = pybind11;
 #include <Expr_NotEvaluable.hxx>
 #include <Expr_NamedUnknown.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Standard_DimensionMismatch.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_InvalidOperand.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Expr_GeneralFunction.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Expr_NotAssigned.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_InvalidAssignment.hxx>
-#include <Expr_InvalidOperand.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_InvalidOperand.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_InvalidOperand.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <Expr_GeneralRelation.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Expr_GeneralExpression.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedFunction.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <Expr_GeneralFunction.hxx>
 #include <Expr_InvalidFunction.hxx>
 #include <Standard_NumericError.hxx>
@@ -216,29 +231,9 @@ namespace py = pybind11;
 #include <Expr_NamedUnknown.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <Expr_GeneralExpression.hxx>
-#include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NoMoreObject.hxx>
 #include <Standard_NumericError.hxx>
 #include <Expr_NotEvaluable.hxx>
 #include <Expr_NamedUnknown.hxx>
@@ -249,12 +244,17 @@ namespace py = pybind11;
 #include <TCollection_AsciiString.hxx>
 #include <Standard_NumericError.hxx>
 #include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
+#include <Expr_NotEvaluable.hxx>
+#include <Expr_NamedUnknown.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Standard_NumericError.hxx>
 #include <Expr_InvalidOperand.hxx>
 #include <Expr_NamedUnknown.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <Standard_NumericError.hxx>
-#include <Expr_NotEvaluable.hxx>
-#include <Expr_NamedUnknown.hxx>
+#include <Expr_GeneralExpression.hxx>
 #include <TCollection_AsciiString.hxx>
 
 // module includes
@@ -325,17 +325,17 @@ namespace py = pybind11;
 #include <Expr_UnknownIterator.hxx>
 
 // template related includes
+// ./opencascade/Expr_Array1OfNamedUnknown.hxx
+#include "NCollection.hxx"
+// ./opencascade/Expr_Array1OfGeneralExpression.hxx
+#include "NCollection.hxx"
 // ./opencascade/Expr_SequenceOfGeneralExpression.hxx
 #include "NCollection.hxx"
-// ./opencascade/Expr_Array1OfNamedUnknown.hxx
+// ./opencascade/Expr_SequenceOfGeneralRelation.hxx
 #include "NCollection.hxx"
 // ./opencascade/Expr_MapOfNamedUnknown.hxx
 #include "NCollection.hxx"
 // ./opencascade/Expr_Array1OfSingleRelation.hxx
-#include "NCollection.hxx"
-// ./opencascade/Expr_SequenceOfGeneralRelation.hxx
-#include "NCollection.hxx"
-// ./opencascade/Expr_Array1OfGeneralExpression.hxx
 #include "NCollection.hxx"
 
 
@@ -355,6 +355,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     class Py_Expr_GeneralExpression : public Expr_GeneralExpression{
     public:
         using Expr_GeneralExpression::Expr_GeneralExpression;
+        
         
         // public pure virtual
         Standard_Integer NbSubExpressions() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Expr_GeneralExpression,NbSubExpressions,) };
@@ -382,6 +383,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     public:
         using Expr_GeneralFunction::Expr_GeneralFunction;
         
+        
         // public pure virtual
         Standard_Integer NbOfVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Expr_GeneralFunction,NbOfVariables,) };
         opencascade::handle<Expr_NamedUnknown> Variable(const Standard_Integer index) const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Expr_NamedUnknown>,Expr_GeneralFunction,Variable,index) };
@@ -403,6 +405,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     class Py_Expr_GeneralRelation : public Expr_GeneralRelation{
     public:
         using Expr_GeneralRelation::Expr_GeneralRelation;
+        
         
         // public pure virtual
         Standard_Boolean IsSatisfied() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Expr_GeneralRelation,IsSatisfied,) };
@@ -428,6 +431,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     public:
         using Expr_BinaryExpression::Expr_BinaryExpression;
         
+        
         // public pure virtual
         
         opencascade::handle<Expr_GeneralExpression> ShallowSimplified() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Expr_GeneralExpression>,Expr_GeneralExpression,ShallowSimplified,) };
@@ -447,6 +451,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     class Py_Expr_NamedExpression : public Expr_NamedExpression{
     public:
         using Expr_NamedExpression::Expr_NamedExpression;
+        
         
         // public pure virtual
         
@@ -472,6 +477,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     public:
         using Expr_PolyExpression::Expr_PolyExpression;
         
+        
         // public pure virtual
         
         opencascade::handle<Expr_GeneralExpression> ShallowSimplified() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Expr_GeneralExpression>,Expr_GeneralExpression,ShallowSimplified,) };
@@ -492,6 +498,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     public:
         using Expr_SingleRelation::Expr_SingleRelation;
         
+        
         // public pure virtual
         
         Standard_Boolean IsSatisfied() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Expr_GeneralRelation,IsSatisfied,) };
@@ -509,6 +516,7 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     class Py_Expr_UnaryExpression : public Expr_UnaryExpression{
     public:
         using Expr_UnaryExpression::Expr_UnaryExpression;
+        
         
         // public pure virtual
         
@@ -529,9 +537,12 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Expr , shared_ptr<Expr>>(m,"Expr");
 
     static_cast<py::class_<Expr , shared_ptr<Expr>  >>(m.attr("Expr"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -549,11 +560,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#"  , py::arg("val"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_GeneralExpression ,opencascade::handle<Expr_GeneralExpression> ,Py_Expr_GeneralExpression , Standard_Transient >>(m.attr("Expr_GeneralExpression"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbSubExpressions",
              (Standard_Integer (Expr_GeneralExpression::*)() const) static_cast<Standard_Integer (Expr_GeneralExpression::*)() const>(&Expr_GeneralExpression::NbSubExpressions),
@@ -616,11 +629,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_GeneralFunction ,opencascade::handle<Expr_GeneralFunction> ,Py_Expr_GeneralFunction , Standard_Transient >>(m.attr("Expr_GeneralFunction"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbOfVariables",
              (Standard_Integer (Expr_GeneralFunction::*)() const) static_cast<Standard_Integer (Expr_GeneralFunction::*)() const>(&Expr_GeneralFunction::NbOfVariables),
@@ -662,11 +677,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_GeneralRelation ,opencascade::handle<Expr_GeneralRelation> ,Py_Expr_GeneralRelation , Standard_Transient >>(m.attr("Expr_GeneralRelation"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsSatisfied",
              (Standard_Boolean (Expr_GeneralRelation::*)() const) static_cast<Standard_Boolean (Expr_GeneralRelation::*)() const>(&Expr_GeneralRelation::IsSatisfied),
@@ -714,12 +731,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_RUIterator , shared_ptr<Expr_RUIterator>  >>(m.attr("Expr_RUIterator"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralRelation> & >()  , py::arg("rel") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (Expr_RUIterator::*)() const) static_cast<Standard_Boolean (Expr_RUIterator::*)() const>(&Expr_RUIterator::More),
@@ -734,12 +753,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_RelationIterator , shared_ptr<Expr_RelationIterator>  >>(m.attr("Expr_RelationIterator"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralRelation> & >()  , py::arg("rel") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (Expr_RelationIterator::*)() const) static_cast<Standard_Boolean (Expr_RelationIterator::*)() const>(&Expr_RelationIterator::More),
@@ -754,12 +775,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_UnknownIterator , shared_ptr<Expr_UnknownIterator>  >>(m.attr("Expr_UnknownIterator"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (Expr_UnknownIterator::*)() const) static_cast<Standard_Boolean (Expr_UnknownIterator::*)() const>(&Expr_UnknownIterator::More),
@@ -774,11 +797,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_BinaryExpression ,opencascade::handle<Expr_BinaryExpression> ,Py_Expr_BinaryExpression , Expr_GeneralExpression >>(m.attr("Expr_BinaryExpression"))
+    // constructors
+    // custom constructors
     // methods
         .def("FirstOperand",
              (const opencascade::handle<Expr_GeneralExpression> & (Expr_BinaryExpression::*)() const) static_cast<const opencascade::handle<Expr_GeneralExpression> & (Expr_BinaryExpression::*)() const>(&Expr_BinaryExpression::FirstOperand),
@@ -829,12 +854,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_FunctionDerivative ,opencascade::handle<Expr_FunctionDerivative>  , Expr_GeneralFunction >>(m.attr("Expr_FunctionDerivative"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralFunction> &,const opencascade::handle<Expr_NamedUnknown> &,const Standard_Integer >()  , py::arg("func"),  py::arg("withX"),  py::arg("deg") )
+    // custom constructors
     // methods
         .def("NbOfVariables",
              (Standard_Integer (Expr_FunctionDerivative::*)() const) static_cast<Standard_Integer (Expr_FunctionDerivative::*)() const>(&Expr_FunctionDerivative::NbOfVariables),
@@ -891,11 +918,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_NamedExpression ,opencascade::handle<Expr_NamedExpression> ,Py_Expr_NamedExpression , Expr_GeneralExpression >>(m.attr("Expr_NamedExpression"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetName",
              (const TCollection_AsciiString & (Expr_NamedExpression::*)() const) static_cast<const TCollection_AsciiString & (Expr_NamedExpression::*)() const>(&Expr_NamedExpression::GetName),
@@ -925,12 +954,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_NamedFunction ,opencascade::handle<Expr_NamedFunction>  , Expr_GeneralFunction >>(m.attr("Expr_NamedFunction"))
+    // constructors
         .def(py::init< const TCollection_AsciiString &,const opencascade::handle<Expr_GeneralExpression> &, const NCollection_Array1<opencascade::handle<Expr_NamedUnknown> > & >()  , py::arg("name"),  py::arg("exp"),  py::arg("vars") )
+    // custom constructors
     // methods
         .def("SetName",
              (void (Expr_NamedFunction::*)( const TCollection_AsciiString &  ) ) static_cast<void (Expr_NamedFunction::*)( const TCollection_AsciiString &  ) >(&Expr_NamedFunction::SetName),
@@ -984,12 +1015,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_NumericValue ,opencascade::handle<Expr_NumericValue>  , Expr_GeneralExpression >>(m.attr("Expr_NumericValue"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("val") )
+    // custom constructors
     // methods
         .def("GetValue",
              (Standard_Real (Expr_NumericValue::*)() const) static_cast<Standard_Real (Expr_NumericValue::*)() const>(&Expr_NumericValue::GetValue),
@@ -1052,11 +1085,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_PolyExpression ,opencascade::handle<Expr_PolyExpression> ,Py_Expr_PolyExpression , Expr_GeneralExpression >>(m.attr("Expr_PolyExpression"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbOperands",
              (Standard_Integer (Expr_PolyExpression::*)() const) static_cast<Standard_Integer (Expr_PolyExpression::*)() const>(&Expr_PolyExpression::NbOperands),
@@ -1101,11 +1136,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_SingleRelation ,opencascade::handle<Expr_SingleRelation> ,Py_Expr_SingleRelation , Expr_GeneralRelation >>(m.attr("Expr_SingleRelation"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetFirstMember",
              (void (Expr_SingleRelation::*)( const opencascade::handle<Expr_GeneralExpression> &  ) ) static_cast<void (Expr_SingleRelation::*)( const opencascade::handle<Expr_GeneralExpression> &  ) >(&Expr_SingleRelation::SetFirstMember),
@@ -1150,12 +1187,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_SystemRelation ,opencascade::handle<Expr_SystemRelation>  , Expr_GeneralRelation >>(m.attr("Expr_SystemRelation"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralRelation> & >()  , py::arg("relation") )
+    // custom constructors
     // methods
         .def("Add",
              (void (Expr_SystemRelation::*)( const opencascade::handle<Expr_GeneralRelation> &  ) ) static_cast<void (Expr_SystemRelation::*)( const opencascade::handle<Expr_GeneralRelation> &  ) >(&Expr_SystemRelation::Add),
@@ -1209,11 +1248,13 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_UnaryExpression ,opencascade::handle<Expr_UnaryExpression> ,Py_Expr_UnaryExpression , Expr_GeneralExpression >>(m.attr("Expr_UnaryExpression"))
+    // constructors
+    // custom constructors
     // methods
         .def("Operand",
              (const opencascade::handle<Expr_GeneralExpression> & (Expr_UnaryExpression::*)() const) static_cast<const opencascade::handle<Expr_GeneralExpression> & (Expr_UnaryExpression::*)() const>(&Expr_UnaryExpression::Operand),
@@ -1255,12 +1296,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Absolute ,opencascade::handle<Expr_Absolute>  , Expr_UnaryExpression >>(m.attr("Expr_Absolute"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Absolute::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Absolute::*)() const>(&Expr_Absolute::ShallowSimplified),
@@ -1296,12 +1339,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_ArcCosine ,opencascade::handle<Expr_ArcCosine>  , Expr_UnaryExpression >>(m.attr("Expr_ArcCosine"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_ArcCosine::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_ArcCosine::*)() const>(&Expr_ArcCosine::ShallowSimplified),
@@ -1337,12 +1382,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_ArcSine ,opencascade::handle<Expr_ArcSine>  , Expr_UnaryExpression >>(m.attr("Expr_ArcSine"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_ArcSine::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_ArcSine::*)() const>(&Expr_ArcSine::ShallowSimplified),
@@ -1378,12 +1425,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_ArcTangent ,opencascade::handle<Expr_ArcTangent>  , Expr_UnaryExpression >>(m.attr("Expr_ArcTangent"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_ArcTangent::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_ArcTangent::*)() const>(&Expr_ArcTangent::ShallowSimplified),
@@ -1419,12 +1468,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_ArgCosh ,opencascade::handle<Expr_ArgCosh>  , Expr_UnaryExpression >>(m.attr("Expr_ArgCosh"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_ArgCosh::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_ArgCosh::*)() const>(&Expr_ArgCosh::ShallowSimplified),
@@ -1460,12 +1511,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_ArgSinh ,opencascade::handle<Expr_ArgSinh>  , Expr_UnaryExpression >>(m.attr("Expr_ArgSinh"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_ArgSinh::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_ArgSinh::*)() const>(&Expr_ArgSinh::ShallowSimplified),
@@ -1501,12 +1554,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_ArgTanh ,opencascade::handle<Expr_ArgTanh>  , Expr_UnaryExpression >>(m.attr("Expr_ArgTanh"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_ArgTanh::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_ArgTanh::*)() const>(&Expr_ArgTanh::ShallowSimplified),
@@ -1542,12 +1597,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_BinaryFunction ,opencascade::handle<Expr_BinaryFunction>  , Expr_BinaryExpression >>(m.attr("Expr_BinaryFunction"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralFunction> &,const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("func"),  py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("Function",
              (opencascade::handle<Expr_GeneralFunction> (Expr_BinaryFunction::*)() const) static_cast<opencascade::handle<Expr_GeneralFunction> (Expr_BinaryFunction::*)() const>(&Expr_BinaryFunction::Function),
@@ -1586,12 +1643,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Cosh ,opencascade::handle<Expr_Cosh>  , Expr_UnaryExpression >>(m.attr("Expr_Cosh"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Cosh::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Cosh::*)() const>(&Expr_Cosh::ShallowSimplified),
@@ -1627,12 +1686,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Cosine ,opencascade::handle<Expr_Cosine>  , Expr_UnaryExpression >>(m.attr("Expr_Cosine"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("Exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Cosine::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Cosine::*)() const>(&Expr_Cosine::ShallowSimplified),
@@ -1668,12 +1729,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Difference ,opencascade::handle<Expr_Difference>  , Expr_BinaryExpression >>(m.attr("Expr_Difference"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Difference::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Difference::*)() const>(&Expr_Difference::ShallowSimplified),
@@ -1712,12 +1775,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Different ,opencascade::handle<Expr_Different>  , Expr_SingleRelation >>(m.attr("Expr_Different"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("IsSatisfied",
              (Standard_Boolean (Expr_Different::*)() const) static_cast<Standard_Boolean (Expr_Different::*)() const>(&Expr_Different::IsSatisfied),
@@ -1747,12 +1812,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Division ,opencascade::handle<Expr_Division>  , Expr_BinaryExpression >>(m.attr("Expr_Division"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Division::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Division::*)() const>(&Expr_Division::ShallowSimplified),
@@ -1788,12 +1855,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Equal ,opencascade::handle<Expr_Equal>  , Expr_SingleRelation >>(m.attr("Expr_Equal"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("IsSatisfied",
              (Standard_Boolean (Expr_Equal::*)() const) static_cast<Standard_Boolean (Expr_Equal::*)() const>(&Expr_Equal::IsSatisfied),
@@ -1823,12 +1892,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Exponential ,opencascade::handle<Expr_Exponential>  , Expr_UnaryExpression >>(m.attr("Expr_Exponential"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Exponential::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Exponential::*)() const>(&Expr_Exponential::ShallowSimplified),
@@ -1864,12 +1935,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Exponentiate ,opencascade::handle<Expr_Exponentiate>  , Expr_BinaryExpression >>(m.attr("Expr_Exponentiate"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Exponentiate::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Exponentiate::*)() const>(&Expr_Exponentiate::ShallowSimplified),
@@ -1905,12 +1978,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_GreaterThan ,opencascade::handle<Expr_GreaterThan>  , Expr_SingleRelation >>(m.attr("Expr_GreaterThan"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("IsSatisfied",
              (Standard_Boolean (Expr_GreaterThan::*)() const) static_cast<Standard_Boolean (Expr_GreaterThan::*)() const>(&Expr_GreaterThan::IsSatisfied),
@@ -1940,12 +2015,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_GreaterThanOrEqual ,opencascade::handle<Expr_GreaterThanOrEqual>  , Expr_SingleRelation >>(m.attr("Expr_GreaterThanOrEqual"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("IsSatisfied",
              (Standard_Boolean (Expr_GreaterThanOrEqual::*)() const) static_cast<Standard_Boolean (Expr_GreaterThanOrEqual::*)() const>(&Expr_GreaterThanOrEqual::IsSatisfied),
@@ -1975,12 +2052,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_LessThan ,opencascade::handle<Expr_LessThan>  , Expr_SingleRelation >>(m.attr("Expr_LessThan"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("IsSatisfied",
              (Standard_Boolean (Expr_LessThan::*)() const) static_cast<Standard_Boolean (Expr_LessThan::*)() const>(&Expr_LessThan::IsSatisfied),
@@ -2010,12 +2089,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_LessThanOrEqual ,opencascade::handle<Expr_LessThanOrEqual>  , Expr_SingleRelation >>(m.attr("Expr_LessThanOrEqual"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("IsSatisfied",
              (Standard_Boolean (Expr_LessThanOrEqual::*)() const) static_cast<Standard_Boolean (Expr_LessThanOrEqual::*)() const>(&Expr_LessThanOrEqual::IsSatisfied),
@@ -2045,12 +2126,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_LogOf10 ,opencascade::handle<Expr_LogOf10>  , Expr_UnaryExpression >>(m.attr("Expr_LogOf10"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_LogOf10::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_LogOf10::*)() const>(&Expr_LogOf10::ShallowSimplified),
@@ -2086,12 +2169,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_LogOfe ,opencascade::handle<Expr_LogOfe>  , Expr_UnaryExpression >>(m.attr("Expr_LogOfe"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_LogOfe::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_LogOfe::*)() const>(&Expr_LogOfe::ShallowSimplified),
@@ -2127,12 +2212,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_NamedConstant ,opencascade::handle<Expr_NamedConstant>  , Expr_NamedExpression >>(m.attr("Expr_NamedConstant"))
+    // constructors
         .def(py::init< const TCollection_AsciiString &,const Standard_Real >()  , py::arg("name"),  py::arg("value") )
+    // custom constructors
     // methods
         .def("GetValue",
              (Standard_Real (Expr_NamedConstant::*)() const) static_cast<Standard_Real (Expr_NamedConstant::*)() const>(&Expr_NamedConstant::GetValue),
@@ -2189,12 +2276,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_NamedUnknown ,opencascade::handle<Expr_NamedUnknown>  , Expr_NamedExpression >>(m.attr("Expr_NamedUnknown"))
+    // constructors
         .def(py::init< const TCollection_AsciiString & >()  , py::arg("name") )
+    // custom constructors
     // methods
         .def("IsAssigned",
              (Standard_Boolean (Expr_NamedUnknown::*)() const) static_cast<Standard_Boolean (Expr_NamedUnknown::*)() const>(&Expr_NamedUnknown::IsAssigned),
@@ -2260,12 +2349,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_PolyFunction ,opencascade::handle<Expr_PolyFunction>  , Expr_PolyExpression >>(m.attr("Expr_PolyFunction"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralFunction> &, const NCollection_Array1<opencascade::handle<Expr_GeneralExpression> > & >()  , py::arg("func"),  py::arg("exps") )
+    // custom constructors
     // methods
         .def("Function",
              (opencascade::handle<Expr_GeneralFunction> (Expr_PolyFunction::*)() const) static_cast<opencascade::handle<Expr_GeneralFunction> (Expr_PolyFunction::*)() const>(&Expr_PolyFunction::Function),
@@ -2304,13 +2395,15 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Product ,opencascade::handle<Expr_Product>  , Expr_PolyExpression >>(m.attr("Expr_Product"))
+    // constructors
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Expr_GeneralExpression> > & >()  , py::arg("exps") )
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Product::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Product::*)() const>(&Expr_Product::ShallowSimplified),
@@ -2346,12 +2439,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Sign ,opencascade::handle<Expr_Sign>  , Expr_UnaryExpression >>(m.attr("Expr_Sign"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Sign::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Sign::*)() const>(&Expr_Sign::ShallowSimplified),
@@ -2387,12 +2482,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Sine ,opencascade::handle<Expr_Sine>  , Expr_UnaryExpression >>(m.attr("Expr_Sine"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Sine::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Sine::*)() const>(&Expr_Sine::ShallowSimplified),
@@ -2428,12 +2525,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Sinh ,opencascade::handle<Expr_Sinh>  , Expr_UnaryExpression >>(m.attr("Expr_Sinh"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Sinh::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Sinh::*)() const>(&Expr_Sinh::ShallowSimplified),
@@ -2469,12 +2568,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Square ,opencascade::handle<Expr_Square>  , Expr_UnaryExpression >>(m.attr("Expr_Square"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Square::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Square::*)() const>(&Expr_Square::ShallowSimplified),
@@ -2510,12 +2611,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_SquareRoot ,opencascade::handle<Expr_SquareRoot>  , Expr_UnaryExpression >>(m.attr("Expr_SquareRoot"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_SquareRoot::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_SquareRoot::*)() const>(&Expr_SquareRoot::ShallowSimplified),
@@ -2551,13 +2654,15 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Sum ,opencascade::handle<Expr_Sum>  , Expr_PolyExpression >>(m.attr("Expr_Sum"))
+    // constructors
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Expr_GeneralExpression> > & >()  , py::arg("exps") )
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp1"),  py::arg("exp2") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Sum::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Sum::*)() const>(&Expr_Sum::ShallowSimplified),
@@ -2596,12 +2701,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Tangent ,opencascade::handle<Expr_Tangent>  , Expr_UnaryExpression >>(m.attr("Expr_Tangent"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Tangent::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Tangent::*)() const>(&Expr_Tangent::ShallowSimplified),
@@ -2637,12 +2744,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_Tanh ,opencascade::handle<Expr_Tanh>  , Expr_UnaryExpression >>(m.attr("Expr_Tanh"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_Tanh::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_Tanh::*)() const>(&Expr_Tanh::ShallowSimplified),
@@ -2678,12 +2787,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_UnaryFunction ,opencascade::handle<Expr_UnaryFunction>  , Expr_UnaryExpression >>(m.attr("Expr_UnaryFunction"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralFunction> &,const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("func"),  py::arg("exp") )
+    // custom constructors
     // methods
         .def("Function",
              (opencascade::handle<Expr_GeneralFunction> (Expr_UnaryFunction::*)() const) static_cast<opencascade::handle<Expr_GeneralFunction> (Expr_UnaryFunction::*)() const>(&Expr_UnaryFunction::Function),
@@ -2722,12 +2833,14 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Expr_UnaryMinus ,opencascade::handle<Expr_UnaryMinus>  , Expr_UnaryExpression >>(m.attr("Expr_UnaryMinus"))
+    // constructors
         .def(py::init< const opencascade::handle<Expr_GeneralExpression> & >()  , py::arg("exp") )
+    // custom constructors
     // methods
         .def("ShallowSimplified",
              (opencascade::handle<Expr_GeneralExpression> (Expr_UnaryMinus::*)() const) static_cast<opencascade::handle<Expr_GeneralExpression> (Expr_UnaryMinus::*)() const>(&Expr_UnaryMinus::ShallowSimplified),
@@ -2766,75 +2879,75 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Expr_BinaryFunction.hxx
-// ./opencascade/Expr_SequenceOfGeneralExpression.hxx
-// ./opencascade/Expr.hxx
-// ./opencascade/Expr_GeneralFunction.hxx
-// ./opencascade/Expr_SystemRelation.hxx
-// ./opencascade/Expr_SquareRoot.hxx
-// ./opencascade/Expr_PolyExpression.hxx
-// ./opencascade/Expr_RelationIterator.hxx
-// ./opencascade/Expr_ArcSine.hxx
-// ./opencascade/Expr_Equal.hxx
-// ./opencascade/Expr_Array1OfNamedUnknown.hxx
-// ./opencascade/Expr_MapOfNamedUnknown.hxx
-// ./opencascade/Expr_Difference.hxx
-// ./opencascade/Expr_ArcTangent.hxx
-// ./opencascade/Expr_NamedConstant.hxx
-// ./opencascade/Expr_InvalidFunction.hxx
-// ./opencascade/Expr_Operators.hxx
-// ./opencascade/Expr_ArgCosh.hxx
-// ./opencascade/Expr_GeneralRelation.hxx
-// ./opencascade/Expr_Cosine.hxx
-// ./opencascade/Expr_Different.hxx
-// ./opencascade/Expr_PolyFunction.hxx
-// ./opencascade/Expr_NamedUnknown.hxx
-// ./opencascade/Expr_Absolute.hxx
-// ./opencascade/Expr_UnknownIterator.hxx
-// ./opencascade/Expr_GreaterThanOrEqual.hxx
-// ./opencascade/Expr_NamedExpression.hxx
-// ./opencascade/Expr_UnaryExpression.hxx
-// ./opencascade/Expr_GreaterThan.hxx
-// ./opencascade/Expr_Division.hxx
-// ./opencascade/Expr_LessThan.hxx
-// ./opencascade/Expr_LessThanOrEqual.hxx
-// ./opencascade/Expr_InvalidAssignment.hxx
-// ./opencascade/Expr_ExprFailure.hxx
-// ./opencascade/Expr_BinaryExpression.hxx
-// ./opencascade/Expr_Sinh.hxx
-// ./opencascade/Expr_LogOf10.hxx
-// ./opencascade/Expr_SingleRelation.hxx
-// ./opencascade/Expr_Tanh.hxx
-// ./opencascade/Expr_RUIterator.hxx
-// ./opencascade/Expr_Sum.hxx
-// ./opencascade/Expr_NotEvaluable.hxx
-// ./opencascade/Expr_Tangent.hxx
-// ./opencascade/Expr_FunctionDerivative.hxx
-// ./opencascade/Expr_NotAssigned.hxx
-// ./opencascade/Expr_NumericValue.hxx
-// ./opencascade/Expr_Array1OfSingleRelation.hxx
-// ./opencascade/Expr_SequenceOfGeneralRelation.hxx
-// ./opencascade/Expr_Cosh.hxx
-// ./opencascade/Expr_ArcCosine.hxx
-// ./opencascade/Expr_Product.hxx
 // ./opencascade/Expr_ArgSinh.hxx
-// ./opencascade/Expr_UnaryFunction.hxx
-// ./opencascade/Expr_UnaryMinus.hxx
-// ./opencascade/Expr_Exponentiate.hxx
-// ./opencascade/Expr_ArgTanh.hxx
-// ./opencascade/Expr_LogOfe.hxx
-// ./opencascade/Expr_Square.hxx
-// ./opencascade/Expr_NamedFunction.hxx
-// ./opencascade/Expr_InvalidOperand.hxx
-// ./opencascade/Expr_Sign.hxx
 // ./opencascade/Expr_Sine.hxx
-// ./opencascade/Expr_Array1OfGeneralExpression.hxx
+// ./opencascade/Expr_NotEvaluable.hxx
+// ./opencascade/Expr_ArcTangent.hxx
 // ./opencascade/Expr_GeneralExpression.hxx
+// ./opencascade/Expr_FunctionDerivative.hxx
+// ./opencascade/Expr_SquareRoot.hxx
+// ./opencascade/Expr_Division.hxx
+// ./opencascade/Expr_LogOfe.hxx
+// ./opencascade/Expr_RUIterator.hxx
+// ./opencascade/Expr_GeneralFunction.hxx
+// ./opencascade/Expr_Tanh.hxx
+// ./opencascade/Expr_GeneralRelation.hxx
+// ./opencascade/Expr_RelationIterator.hxx
+// ./opencascade/Expr_Cosine.hxx
+// ./opencascade/Expr_UnaryFunction.hxx
+// ./opencascade/Expr_InvalidFunction.hxx
+// ./opencascade/Expr_PolyFunction.hxx
+// ./opencascade/Expr_NotAssigned.hxx
+// ./opencascade/Expr_Array1OfNamedUnknown.hxx
+// ./opencascade/Expr_Product.hxx
+// ./opencascade/Expr_Array1OfGeneralExpression.hxx
+// ./opencascade/Expr_Absolute.hxx
+// ./opencascade/Expr_UnaryExpression.hxx
+// ./opencascade/Expr_Equal.hxx
+// ./opencascade/Expr_NamedExpression.hxx
+// ./opencascade/Expr_ArcCosine.hxx
+// ./opencascade/Expr_NamedFunction.hxx
+// ./opencascade/Expr_ExprFailure.hxx
+// ./opencascade/Expr_Different.hxx
+// ./opencascade/Expr_NamedUnknown.hxx
+// ./opencascade/Expr_Difference.hxx
+// ./opencascade/Expr_PolyExpression.hxx
+// ./opencascade/Expr_Sinh.hxx
+// ./opencascade/Expr_LessThanOrEqual.hxx
+// ./opencascade/Expr_GreaterThan.hxx
+// ./opencascade/Expr_Cosh.hxx
+// ./opencascade/Expr_ArcSine.hxx
+// ./opencascade/Expr_Tangent.hxx
+// ./opencascade/Expr_SequenceOfGeneralExpression.hxx
 // ./opencascade/Expr_Exponential.hxx
+// ./opencascade/Expr_SingleRelation.hxx
+// ./opencascade/Expr_LogOf10.hxx
+// ./opencascade/Expr_Sum.hxx
+// ./opencascade/Expr_NamedConstant.hxx
+// ./opencascade/Expr_Sign.hxx
+// ./opencascade/Expr_InvalidAssignment.hxx
+// ./opencascade/Expr_SystemRelation.hxx
+// ./opencascade/Expr_InvalidOperand.hxx
+// ./opencascade/Expr_NumericValue.hxx
+// ./opencascade/Expr.hxx
+// ./opencascade/Expr_SequenceOfGeneralRelation.hxx
+// ./opencascade/Expr_Exponentiate.hxx
+// ./opencascade/Expr_BinaryFunction.hxx
+// ./opencascade/Expr_LessThan.hxx
+// ./opencascade/Expr_UnknownIterator.hxx
+// ./opencascade/Expr_MapOfNamedUnknown.hxx
+// ./opencascade/Expr_Square.hxx
+// ./opencascade/Expr_UnaryMinus.hxx
+// ./opencascade/Expr_ArgCosh.hxx
+// ./opencascade/Expr_ArgTanh.hxx
+// ./opencascade/Expr_BinaryExpression.hxx
+// ./opencascade/Expr_GreaterThanOrEqual.hxx
+// ./opencascade/Expr_Operators.hxx
+// ./opencascade/Expr_Array1OfSingleRelation.hxx
 
 // operators
     m.def("__add__", 
@@ -2903,12 +3016,12 @@ py::module m = static_cast<py::module>(main_module.attr("Expr"));
           R"#(None)#"  , py::arg("x"),  py::arg("y"));
 
 // register typdefs
-    register_template_NCollection_Sequence<opencascade::handle<Expr_GeneralExpression> >(m,"Expr_SequenceOfGeneralExpression");  
     register_template_NCollection_Array1<opencascade::handle<Expr_NamedUnknown> >(m,"Expr_Array1OfNamedUnknown");  
+    register_template_NCollection_Array1<opencascade::handle<Expr_GeneralExpression> >(m,"Expr_Array1OfGeneralExpression");  
+    register_template_NCollection_Sequence<opencascade::handle<Expr_GeneralExpression> >(m,"Expr_SequenceOfGeneralExpression");  
+    register_template_NCollection_Sequence<opencascade::handle<Expr_GeneralRelation> >(m,"Expr_SequenceOfGeneralRelation");  
     register_template_NCollection_IndexedMap<opencascade::handle<Expr_NamedUnknown>, TColStd_MapTransientHasher>(m,"Expr_MapOfNamedUnknown");  
     register_template_NCollection_Array1<opencascade::handle<Expr_SingleRelation> >(m,"Expr_Array1OfSingleRelation");  
-    register_template_NCollection_Sequence<opencascade::handle<Expr_GeneralRelation> >(m,"Expr_SequenceOfGeneralRelation");  
-    register_template_NCollection_Array1<opencascade::handle<Expr_GeneralExpression> >(m,"Expr_Array1OfGeneralExpression");  
 
 
 // exceptions

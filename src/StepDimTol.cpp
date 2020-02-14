@@ -13,86 +13,86 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StepDimTol_GeometricToleranceWithModifiers.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_LengthMeasureWithUnit.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepRepr_ProductDefinitionShape.hxx>
 #include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
 #include <StepDimTol_GeometricToleranceWithModifiers.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_LengthMeasureWithUnit.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepDimTol_GeometricToleranceWithModifiers.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <StepRepr_ShapeAspect.hxx>
-#include <StepBasic_LengthMeasureWithUnit.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <TCollection_HAsciiString.hxx>
+#include <StepShape_DimensionalLocation.hxx>
+#include <StepShape_DimensionalSize.hxx>
 #include <StepRepr_ProductDefinitionShape.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepDimTol_GeometricToleranceWithModifiers.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepDimTol_GeometricTolerance.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepDimTol_GeometricTolerance.hxx>
-#include <StepShape_PlusMinusTolerance.hxx>
+#include <StepDimTol_GeneralDatumReference.hxx>
+#include <StepShape_DimensionalLocation.hxx>
+#include <StepShape_DimensionalSize.hxx>
 #include <StepDimTol_Datum.hxx>
-#include <StepDimTol_HArray1OfDatumReferenceElement.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
 #include <StepBasic_LengthMeasureWithUnit.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
-#include <StepRepr_ShapeAspect.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
 #include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
 #include <StepDimTol_UnequallyDisposedGeometricTolerance.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
-#include <StepDimTol_Datum.hxx>
+#include <StepDimTol_GeometricToleranceWithModifiers.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <StepShape_DimensionalLocation.hxx>
-#include <StepShape_DimensionalSize.hxx>
-#include <StepRepr_ProductDefinitionShape.hxx>
-#include <StepRepr_ShapeAspect.hxx>
-#include <StepDimTol_GeometricTolerance.hxx>
-#include <StepDimTol_GeneralDatumReference.hxx>
-#include <StepShape_DimensionalLocation.hxx>
-#include <StepShape_DimensionalSize.hxx>
-#include <StepDimTol_DatumSystem.hxx>
-#include <StepDimTol_DatumReference.hxx>
-#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_LengthMeasureWithUnit.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
-#include <StepRepr_ShapeAspect.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
 #include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
 #include <StepDimTol_GeometricToleranceWithModifiers.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepBasic_LengthMeasureWithUnit.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
+#include <StepBasic_LengthMeasureWithUnit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepDimTol_Datum.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_ProductDefinitionShape.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_ProductDefinitionShape.hxx>
+#include <StepDimTol_Datum.hxx>
+#include <StepDimTol_HArray1OfDatumReferenceElement.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepDimTol_GeometricTolerance.hxx>
+#include <StepShape_PlusMinusTolerance.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepDimTol_GeometricTolerance.hxx>
+#include <StepDimTol_DatumSystem.hxx>
+#include <StepDimTol_DatumReference.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_ProductDefinitionShape.hxx>
 #include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
 #include <StepDimTol_ModifiedGeometricTolerance.hxx>
 #include <StepDimTol_PositionTolerance.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepRepr_ShapeAspect.hxx>
-#include <StepDimTol_Datum.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepRepr_ProductDefinitionShape.hxx>
 
 // module includes
 #include <StepDimTol_AngularityTolerance.hxx>
@@ -173,19 +173,19 @@ namespace py = pybind11;
 #include <StepDimTol_UnequallyDisposedGeometricTolerance.hxx>
 
 // template related includes
-// ./opencascade/StepDimTol_Array1OfDatumReferenceModifier.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepDimTol_Array1OfDatumReferenceElement.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepDimTol_Array1OfGeometricToleranceModifier.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepDimTol_Array1OfDatumSystemOrReference.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepDimTol_Array1OfDatumReferenceCompartment.hxx
+// ./opencascade/StepDimTol_Array1OfToleranceZoneTarget.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepDimTol_Array1OfDatumReference.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepDimTol_Array1OfToleranceZoneTarget.hxx
+// ./opencascade/StepDimTol_Array1OfDatumReferenceCompartment.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepDimTol_Array1OfGeometricToleranceModifier.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepDimTol_Array1OfDatumReferenceModifier.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepDimTol_Array1OfDatumSystemOrReference.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepDimTol_Array1OfDatumReferenceElement.hxx
 #include "NCollection.hxx"
 
 
@@ -207,7 +207,9 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
 
 
     static_cast<py::class_<StepDimTol_CommonDatum ,opencascade::handle<StepDimTol_CommonDatum>  , StepRepr_CompositeShapeAspect >>(m.attr("StepDimTol_CommonDatum"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_CommonDatum::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepDimTol_CommonDatum::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepDimTol_CommonDatum::Init),
@@ -231,12 +233,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_Datum ,opencascade::handle<StepDimTol_Datum>  , StepRepr_ShapeAspect >>(m.attr("StepDimTol_Datum"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_Datum::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepDimTol_Datum::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepDimTol_Datum::Init),
@@ -260,12 +264,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumFeature ,opencascade::handle<StepDimTol_DatumFeature>  , StepRepr_ShapeAspect >>(m.attr("StepDimTol_DatumFeature"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_DatumFeature::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_DatumFeature::*)() const>(&StepDimTol_DatumFeature::DynamicType),
@@ -280,12 +286,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumOrCommonDatum , shared_ptr<StepDimTol_DatumOrCommonDatum>  , StepData_SelectType >>(m.attr("StepDimTol_DatumOrCommonDatum"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepDimTol_DatumOrCommonDatum::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepDimTol_DatumOrCommonDatum::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepDimTol_DatumOrCommonDatum::CaseNum),
@@ -300,12 +308,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumReference ,opencascade::handle<StepDimTol_DatumReference>  , Standard_Transient >>(m.attr("StepDimTol_DatumReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_DatumReference::*)( const Standard_Integer ,  const opencascade::handle<StepDimTol_Datum> &  ) ) static_cast<void (StepDimTol_DatumReference::*)( const Standard_Integer ,  const opencascade::handle<StepDimTol_Datum> &  ) >(&StepDimTol_DatumReference::Init),
@@ -335,12 +345,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumReferenceModifier , shared_ptr<StepDimTol_DatumReferenceModifier>  , StepData_SelectType >>(m.attr("StepDimTol_DatumReferenceModifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepDimTol_DatumReferenceModifier::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepDimTol_DatumReferenceModifier::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepDimTol_DatumReferenceModifier::CaseNum),
@@ -355,12 +367,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumReferenceModifierWithValue ,opencascade::handle<StepDimTol_DatumReferenceModifierWithValue>  , Standard_Transient >>(m.attr("StepDimTol_DatumReferenceModifierWithValue"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_DatumReferenceModifierWithValue::*)( const StepDimTol_DatumReferenceModifierType & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) ) static_cast<void (StepDimTol_DatumReferenceModifierWithValue::*)( const StepDimTol_DatumReferenceModifierType & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) >(&StepDimTol_DatumReferenceModifierWithValue::Init),
@@ -390,12 +404,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumSystem ,opencascade::handle<StepDimTol_DatumSystem>  , StepRepr_ShapeAspect >>(m.attr("StepDimTol_DatumSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_DatumSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<StepDimTol_HArray1OfDatumReferenceCompartment> &  ) ) static_cast<void (StepDimTol_DatumSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<StepDimTol_HArray1OfDatumReferenceCompartment> &  ) >(&StepDimTol_DatumSystem::Init),
@@ -428,12 +444,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumSystemOrReference , shared_ptr<StepDimTol_DatumSystemOrReference>  , StepData_SelectType >>(m.attr("StepDimTol_DatumSystemOrReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepDimTol_DatumSystemOrReference::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepDimTol_DatumSystemOrReference::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepDimTol_DatumSystemOrReference::CaseNum),
@@ -448,12 +466,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumTarget ,opencascade::handle<StepDimTol_DatumTarget>  , StepRepr_ShapeAspect >>(m.attr("StepDimTol_DatumTarget"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_DatumTarget::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepDimTol_DatumTarget::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepDimTol_DatumTarget::Init),
@@ -477,12 +497,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeneralDatumReference ,opencascade::handle<StepDimTol_GeneralDatumReference>  , StepRepr_ShapeAspect >>(m.attr("StepDimTol_GeneralDatumReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeneralDatumReference::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const StepDimTol_DatumOrCommonDatum & ,  const Standard_Boolean ,  const opencascade::handle<StepDimTol_HArray1OfDatumReferenceModifier> &  ) ) static_cast<void (StepDimTol_GeneralDatumReference::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const StepDimTol_DatumOrCommonDatum & ,  const Standard_Boolean ,  const opencascade::handle<StepDimTol_HArray1OfDatumReferenceModifier> &  ) >(&StepDimTol_GeneralDatumReference::Init),
@@ -524,12 +546,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricTolerance ,opencascade::handle<StepDimTol_GeometricTolerance>  , Standard_Transient >>(m.attr("StepDimTol_GeometricTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeometricTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> &  ) ) static_cast<void (StepDimTol_GeometricTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> &  ) >(&StepDimTol_GeometricTolerance::Init),
@@ -577,12 +601,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricToleranceRelationship ,opencascade::handle<StepDimTol_GeometricToleranceRelationship>  , Standard_Transient >>(m.attr("StepDimTol_GeometricToleranceRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeometricToleranceRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepDimTol_GeometricTolerance> & ,  const opencascade::handle<StepDimTol_GeometricTolerance> &  ) ) static_cast<void (StepDimTol_GeometricToleranceRelationship::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepDimTol_GeometricTolerance> & ,  const opencascade::handle<StepDimTol_GeometricTolerance> &  ) >(&StepDimTol_GeometricToleranceRelationship::Init),
@@ -624,12 +650,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricToleranceTarget , shared_ptr<StepDimTol_GeometricToleranceTarget>  , StepData_SelectType >>(m.attr("StepDimTol_GeometricToleranceTarget"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepDimTol_GeometricToleranceTarget::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepDimTol_GeometricToleranceTarget::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepDimTol_GeometricToleranceTarget::CaseNum),
@@ -650,14 +678,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_HArray1OfDatumReference ,opencascade::handle<StepDimTol_HArray1OfDatumReference>  , StepDimTol_Array1OfDatumReference , Standard_Transient >>(m.attr("StepDimTol_HArray1OfDatumReference"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepDimTol_DatumReference> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepDimTol_DatumReference> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepDimTol_Array1OfDatumReference & (StepDimTol_HArray1OfDatumReference::*)() const) static_cast<const StepDimTol_Array1OfDatumReference & (StepDimTol_HArray1OfDatumReference::*)() const>(&StepDimTol_HArray1OfDatumReference::Array1),
@@ -678,14 +709,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_HArray1OfDatumReferenceCompartment ,opencascade::handle<StepDimTol_HArray1OfDatumReferenceCompartment>  , StepDimTol_Array1OfDatumReferenceCompartment , Standard_Transient >>(m.attr("StepDimTol_HArray1OfDatumReferenceCompartment"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepDimTol_DatumReferenceCompartment> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepDimTol_DatumReferenceCompartment> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepDimTol_Array1OfDatumReferenceCompartment & (StepDimTol_HArray1OfDatumReferenceCompartment::*)() const) static_cast<const StepDimTol_Array1OfDatumReferenceCompartment & (StepDimTol_HArray1OfDatumReferenceCompartment::*)() const>(&StepDimTol_HArray1OfDatumReferenceCompartment::Array1),
@@ -706,14 +740,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_HArray1OfDatumReferenceElement ,opencascade::handle<StepDimTol_HArray1OfDatumReferenceElement>  , StepDimTol_Array1OfDatumReferenceElement , Standard_Transient >>(m.attr("StepDimTol_HArray1OfDatumReferenceElement"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepDimTol_DatumReferenceElement> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepDimTol_DatumReferenceElement> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepDimTol_Array1OfDatumReferenceElement & (StepDimTol_HArray1OfDatumReferenceElement::*)() const) static_cast<const StepDimTol_Array1OfDatumReferenceElement & (StepDimTol_HArray1OfDatumReferenceElement::*)() const>(&StepDimTol_HArray1OfDatumReferenceElement::Array1),
@@ -734,14 +771,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_HArray1OfDatumReferenceModifier ,opencascade::handle<StepDimTol_HArray1OfDatumReferenceModifier>  , StepDimTol_Array1OfDatumReferenceModifier , Standard_Transient >>(m.attr("StepDimTol_HArray1OfDatumReferenceModifier"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepDimTol_DatumReferenceModifier & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepDimTol_DatumReferenceModifier> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepDimTol_Array1OfDatumReferenceModifier & (StepDimTol_HArray1OfDatumReferenceModifier::*)() const) static_cast<const StepDimTol_Array1OfDatumReferenceModifier & (StepDimTol_HArray1OfDatumReferenceModifier::*)() const>(&StepDimTol_HArray1OfDatumReferenceModifier::Array1),
@@ -762,14 +802,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_HArray1OfDatumSystemOrReference ,opencascade::handle<StepDimTol_HArray1OfDatumSystemOrReference>  , StepDimTol_Array1OfDatumSystemOrReference , Standard_Transient >>(m.attr("StepDimTol_HArray1OfDatumSystemOrReference"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepDimTol_DatumSystemOrReference & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepDimTol_DatumSystemOrReference> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepDimTol_Array1OfDatumSystemOrReference & (StepDimTol_HArray1OfDatumSystemOrReference::*)() const) static_cast<const StepDimTol_Array1OfDatumSystemOrReference & (StepDimTol_HArray1OfDatumSystemOrReference::*)() const>(&StepDimTol_HArray1OfDatumSystemOrReference::Array1),
@@ -790,14 +833,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_HArray1OfGeometricToleranceModifier ,opencascade::handle<StepDimTol_HArray1OfGeometricToleranceModifier>  , StepDimTol_Array1OfGeometricToleranceModifier , Standard_Transient >>(m.attr("StepDimTol_HArray1OfGeometricToleranceModifier"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const StepDimTol_Array1OfGeometricToleranceModifier::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepDimTol_GeometricToleranceModifier> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepDimTol_Array1OfGeometricToleranceModifier & (StepDimTol_HArray1OfGeometricToleranceModifier::*)() const) static_cast<const StepDimTol_Array1OfGeometricToleranceModifier & (StepDimTol_HArray1OfGeometricToleranceModifier::*)() const>(&StepDimTol_HArray1OfGeometricToleranceModifier::Array1),
@@ -818,14 +864,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_HArray1OfToleranceZoneTarget ,opencascade::handle<StepDimTol_HArray1OfToleranceZoneTarget>  , StepDimTol_Array1OfToleranceZoneTarget , Standard_Transient >>(m.attr("StepDimTol_HArray1OfToleranceZoneTarget"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepDimTol_ToleranceZoneTarget & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepDimTol_ToleranceZoneTarget> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepDimTol_Array1OfToleranceZoneTarget & (StepDimTol_HArray1OfToleranceZoneTarget::*)() const) static_cast<const StepDimTol_Array1OfToleranceZoneTarget & (StepDimTol_HArray1OfToleranceZoneTarget::*)() const>(&StepDimTol_HArray1OfToleranceZoneTarget::Array1),
@@ -846,12 +895,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_RunoutZoneOrientation ,opencascade::handle<StepDimTol_RunoutZoneOrientation>  , Standard_Transient >>(m.attr("StepDimTol_RunoutZoneOrientation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_RunoutZoneOrientation::*)( const opencascade::handle<StepBasic_PlaneAngleMeasureWithUnit> &  ) ) static_cast<void (StepDimTol_RunoutZoneOrientation::*)( const opencascade::handle<StepBasic_PlaneAngleMeasureWithUnit> &  ) >(&StepDimTol_RunoutZoneOrientation::Init),
@@ -875,12 +926,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ShapeToleranceSelect , shared_ptr<StepDimTol_ShapeToleranceSelect>  , StepData_SelectType >>(m.attr("StepDimTol_ShapeToleranceSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepDimTol_ShapeToleranceSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepDimTol_ShapeToleranceSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepDimTol_ShapeToleranceSelect::CaseNum),
@@ -895,12 +948,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_SimpleDatumReferenceModifierMember ,opencascade::handle<StepDimTol_SimpleDatumReferenceModifierMember>  , StepData_SelectInt >>(m.attr("StepDimTol_SimpleDatumReferenceModifierMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepDimTol_SimpleDatumReferenceModifierMember::*)() const) static_cast<Standard_Boolean (StepDimTol_SimpleDatumReferenceModifierMember::*)() const>(&StepDimTol_SimpleDatumReferenceModifierMember::HasName),
@@ -939,12 +994,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ToleranceZone ,opencascade::handle<StepDimTol_ToleranceZone>  , StepRepr_ShapeAspect >>(m.attr("StepDimTol_ToleranceZone"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_ToleranceZone::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<StepDimTol_HArray1OfToleranceZoneTarget> & ,  const opencascade::handle<StepDimTol_ToleranceZoneForm> &  ) ) static_cast<void (StepDimTol_ToleranceZone::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> & ,  const StepData_Logical ,  const opencascade::handle<StepDimTol_HArray1OfToleranceZoneTarget> & ,  const opencascade::handle<StepDimTol_ToleranceZoneForm> &  ) >(&StepDimTol_ToleranceZone::Init),
@@ -983,12 +1040,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ToleranceZoneDefinition ,opencascade::handle<StepDimTol_ToleranceZoneDefinition>  , Standard_Transient >>(m.attr("StepDimTol_ToleranceZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_ToleranceZoneDefinition::*)( const opencascade::handle<StepDimTol_ToleranceZone> & ,  const opencascade::handle<StepRepr_HArray1OfShapeAspect> &  ) ) static_cast<void (StepDimTol_ToleranceZoneDefinition::*)( const opencascade::handle<StepDimTol_ToleranceZone> & ,  const opencascade::handle<StepRepr_HArray1OfShapeAspect> &  ) >(&StepDimTol_ToleranceZoneDefinition::Init),
@@ -1027,12 +1086,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ToleranceZoneForm ,opencascade::handle<StepDimTol_ToleranceZoneForm>  , Standard_Transient >>(m.attr("StepDimTol_ToleranceZoneForm"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_ToleranceZoneForm::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepDimTol_ToleranceZoneForm::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepDimTol_ToleranceZoneForm::Init),
@@ -1056,12 +1117,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ToleranceZoneTarget , shared_ptr<StepDimTol_ToleranceZoneTarget>  , StepData_SelectType >>(m.attr("StepDimTol_ToleranceZoneTarget"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepDimTol_ToleranceZoneTarget::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepDimTol_ToleranceZoneTarget::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepDimTol_ToleranceZoneTarget::CaseNum),
@@ -1082,12 +1145,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_CylindricityTolerance ,opencascade::handle<StepDimTol_CylindricityTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_CylindricityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_CylindricityTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_CylindricityTolerance::*)() const>(&StepDimTol_CylindricityTolerance::DynamicType),
@@ -1102,12 +1167,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumReferenceCompartment ,opencascade::handle<StepDimTol_DatumReferenceCompartment>  , StepDimTol_GeneralDatumReference >>(m.attr("StepDimTol_DatumReferenceCompartment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_DatumReferenceCompartment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_DatumReferenceCompartment::*)() const>(&StepDimTol_DatumReferenceCompartment::DynamicType),
@@ -1122,12 +1189,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_DatumReferenceElement ,opencascade::handle<StepDimTol_DatumReferenceElement>  , StepDimTol_GeneralDatumReference >>(m.attr("StepDimTol_DatumReferenceElement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_DatumReferenceElement::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_DatumReferenceElement::*)() const>(&StepDimTol_DatumReferenceElement::DynamicType),
@@ -1142,12 +1211,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_FlatnessTolerance ,opencascade::handle<StepDimTol_FlatnessTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_FlatnessTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_FlatnessTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_FlatnessTolerance::*)() const>(&StepDimTol_FlatnessTolerance::DynamicType),
@@ -1162,12 +1233,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeoTolAndGeoTolWthDatRef ,opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRef>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_GeoTolAndGeoTolWthDatRef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeoTolAndGeoTolWthDatRef::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const StepDimTol_GeometricToleranceType  ) ) static_cast<void (StepDimTol_GeoTolAndGeoTolWthDatRef::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const StepDimTol_GeometricToleranceType  ) >(&StepDimTol_GeoTolAndGeoTolWthDatRef::Init),
@@ -1200,12 +1273,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod ,opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const StepDimTol_GeometricToleranceType  ) ) static_cast<void (StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const StepDimTol_GeometricToleranceType  ) >(&StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod::Init),
@@ -1244,12 +1319,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol ,opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const opencascade::handle<StepDimTol_ModifiedGeometricTolerance> &  ) ) static_cast<void (StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const opencascade::handle<StepDimTol_ModifiedGeometricTolerance> &  ) >(&StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol::Init),
@@ -1288,12 +1365,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeoTolAndGeoTolWthMod ,opencascade::handle<StepDimTol_GeoTolAndGeoTolWthMod>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_GeoTolAndGeoTolWthMod"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeoTolAndGeoTolWthMod::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const StepDimTol_GeometricToleranceType  ) ) static_cast<void (StepDimTol_GeoTolAndGeoTolWthMod::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const StepDimTol_GeometricToleranceType  ) >(&StepDimTol_GeoTolAndGeoTolWthMod::Init),
@@ -1326,12 +1405,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricToleranceWithDatumReference ,opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_GeometricToleranceWithDatumReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeometricToleranceWithDatumReference::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_HArray1OfDatumReference> &  ) ) static_cast<void (StepDimTol_GeometricToleranceWithDatumReference::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_HArray1OfDatumReference> &  ) >(&StepDimTol_GeometricToleranceWithDatumReference::Init),
@@ -1364,12 +1445,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricToleranceWithDefinedUnit ,opencascade::handle<StepDimTol_GeometricToleranceWithDefinedUnit>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_GeometricToleranceWithDefinedUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeometricToleranceWithDefinedUnit::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) ) static_cast<void (StepDimTol_GeometricToleranceWithDefinedUnit::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) >(&StepDimTol_GeometricToleranceWithDefinedUnit::Init),
@@ -1396,12 +1479,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricToleranceWithModifiers ,opencascade::handle<StepDimTol_GeometricToleranceWithModifiers>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_GeometricToleranceWithModifiers"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeometricToleranceWithModifiers::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepDimTol_HArray1OfGeometricToleranceModifier> &  ) ) static_cast<void (StepDimTol_GeometricToleranceWithModifiers::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepDimTol_HArray1OfGeometricToleranceModifier> &  ) >(&StepDimTol_GeometricToleranceWithModifiers::Init),
@@ -1434,12 +1519,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_LineProfileTolerance ,opencascade::handle<StepDimTol_LineProfileTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_LineProfileTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_LineProfileTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_LineProfileTolerance::*)() const>(&StepDimTol_LineProfileTolerance::DynamicType),
@@ -1454,12 +1541,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ModifiedGeometricTolerance ,opencascade::handle<StepDimTol_ModifiedGeometricTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_ModifiedGeometricTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_ModifiedGeometricTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const StepDimTol_LimitCondition  ) ) static_cast<void (StepDimTol_ModifiedGeometricTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const StepDimTol_LimitCondition  ) >(&StepDimTol_ModifiedGeometricTolerance::Init),
@@ -1486,12 +1575,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_NonUniformZoneDefinition ,opencascade::handle<StepDimTol_NonUniformZoneDefinition>  , StepDimTol_ToleranceZoneDefinition >>(m.attr("StepDimTol_NonUniformZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_NonUniformZoneDefinition::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_NonUniformZoneDefinition::*)() const>(&StepDimTol_NonUniformZoneDefinition::DynamicType),
@@ -1506,12 +1597,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_PlacedDatumTargetFeature ,opencascade::handle<StepDimTol_PlacedDatumTargetFeature>  , StepDimTol_DatumTarget >>(m.attr("StepDimTol_PlacedDatumTargetFeature"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_PlacedDatumTargetFeature::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_PlacedDatumTargetFeature::*)() const>(&StepDimTol_PlacedDatumTargetFeature::DynamicType),
@@ -1526,12 +1619,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_PositionTolerance ,opencascade::handle<StepDimTol_PositionTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_PositionTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_PositionTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_PositionTolerance::*)() const>(&StepDimTol_PositionTolerance::DynamicType),
@@ -1546,12 +1641,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ProjectedZoneDefinition ,opencascade::handle<StepDimTol_ProjectedZoneDefinition>  , StepDimTol_ToleranceZoneDefinition >>(m.attr("StepDimTol_ProjectedZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_ProjectedZoneDefinition::*)( const opencascade::handle<StepDimTol_ToleranceZone> & ,  const opencascade::handle<StepRepr_HArray1OfShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) ) static_cast<void (StepDimTol_ProjectedZoneDefinition::*)( const opencascade::handle<StepDimTol_ToleranceZone> & ,  const opencascade::handle<StepRepr_HArray1OfShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) >(&StepDimTol_ProjectedZoneDefinition::Init),
@@ -1581,12 +1678,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_RoundnessTolerance ,opencascade::handle<StepDimTol_RoundnessTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_RoundnessTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_RoundnessTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_RoundnessTolerance::*)() const>(&StepDimTol_RoundnessTolerance::DynamicType),
@@ -1601,12 +1700,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_RunoutZoneDefinition ,opencascade::handle<StepDimTol_RunoutZoneDefinition>  , StepDimTol_ToleranceZoneDefinition >>(m.attr("StepDimTol_RunoutZoneDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_RunoutZoneDefinition::*)( const opencascade::handle<StepDimTol_ToleranceZone> & ,  const opencascade::handle<StepRepr_HArray1OfShapeAspect> & ,  const opencascade::handle<StepDimTol_RunoutZoneOrientation> &  ) ) static_cast<void (StepDimTol_RunoutZoneDefinition::*)( const opencascade::handle<StepDimTol_ToleranceZone> & ,  const opencascade::handle<StepRepr_HArray1OfShapeAspect> & ,  const opencascade::handle<StepDimTol_RunoutZoneOrientation> &  ) >(&StepDimTol_RunoutZoneDefinition::Init),
@@ -1630,12 +1731,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_StraightnessTolerance ,opencascade::handle<StepDimTol_StraightnessTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_StraightnessTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_StraightnessTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_StraightnessTolerance::*)() const>(&StepDimTol_StraightnessTolerance::DynamicType),
@@ -1650,12 +1753,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_SurfaceProfileTolerance ,opencascade::handle<StepDimTol_SurfaceProfileTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_SurfaceProfileTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_SurfaceProfileTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_SurfaceProfileTolerance::*)() const>(&StepDimTol_SurfaceProfileTolerance::DynamicType),
@@ -1670,12 +1775,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_UnequallyDisposedGeometricTolerance ,opencascade::handle<StepDimTol_UnequallyDisposedGeometricTolerance>  , StepDimTol_GeometricTolerance >>(m.attr("StepDimTol_UnequallyDisposedGeometricTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_UnequallyDisposedGeometricTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) ) static_cast<void (StepDimTol_UnequallyDisposedGeometricTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) >(&StepDimTol_UnequallyDisposedGeometricTolerance::Init),
@@ -1699,12 +1806,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_AngularityTolerance ,opencascade::handle<StepDimTol_AngularityTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_AngularityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_AngularityTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_AngularityTolerance::*)() const>(&StepDimTol_AngularityTolerance::DynamicType),
@@ -1719,12 +1828,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_CircularRunoutTolerance ,opencascade::handle<StepDimTol_CircularRunoutTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_CircularRunoutTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_CircularRunoutTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_CircularRunoutTolerance::*)() const>(&StepDimTol_CircularRunoutTolerance::DynamicType),
@@ -1739,12 +1850,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_CoaxialityTolerance ,opencascade::handle<StepDimTol_CoaxialityTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_CoaxialityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_CoaxialityTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_CoaxialityTolerance::*)() const>(&StepDimTol_CoaxialityTolerance::DynamicType),
@@ -1759,12 +1872,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ConcentricityTolerance ,opencascade::handle<StepDimTol_ConcentricityTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_ConcentricityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_ConcentricityTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_ConcentricityTolerance::*)() const>(&StepDimTol_ConcentricityTolerance::DynamicType),
@@ -1779,12 +1894,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol ,opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol>  , StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod >>(m.attr("StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> & ,  const StepDimTol_GeometricToleranceType  ) ) static_cast<void (StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> & ,  const StepDimTol_GeometricToleranceType  ) >(&StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol::Init),
@@ -1811,12 +1928,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol ,opencascade::handle<StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol>  , StepDimTol_GeoTolAndGeoTolWthDatRef >>(m.attr("StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const StepDimTol_GeometricToleranceType ,  const opencascade::handle<StepDimTol_UnequallyDisposedGeometricTolerance> &  ) ) static_cast<void (StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithDatumReference> & ,  const StepDimTol_GeometricToleranceType ,  const opencascade::handle<StepDimTol_UnequallyDisposedGeometricTolerance> &  ) >(&StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol::Init),
@@ -1843,12 +1962,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeoTolAndGeoTolWthMaxTol ,opencascade::handle<StepDimTol_GeoTolAndGeoTolWthMaxTol>  , StepDimTol_GeoTolAndGeoTolWthMod >>(m.attr("StepDimTol_GeoTolAndGeoTolWthMaxTol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeoTolAndGeoTolWthMaxTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> & ,  const StepDimTol_GeometricToleranceType  ) ) static_cast<void (StepDimTol_GeoTolAndGeoTolWthMaxTol::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepDimTol_GeometricToleranceWithModifiers> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> & ,  const StepDimTol_GeometricToleranceType  ) >(&StepDimTol_GeoTolAndGeoTolWthMaxTol::Init),
@@ -1875,12 +1996,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricToleranceWithDefinedAreaUnit ,opencascade::handle<StepDimTol_GeometricToleranceWithDefinedAreaUnit>  , StepDimTol_GeometricToleranceWithDefinedUnit >>(m.attr("StepDimTol_GeometricToleranceWithDefinedAreaUnit"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeometricToleranceWithDefinedAreaUnit::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> & ,  const StepDimTol_AreaUnitType ,  const Standard_Boolean ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) ) static_cast<void (StepDimTol_GeometricToleranceWithDefinedAreaUnit::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> & ,  const StepDimTol_AreaUnitType ,  const Standard_Boolean ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) >(&StepDimTol_GeometricToleranceWithDefinedAreaUnit::Init),
@@ -1913,12 +2036,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_GeometricToleranceWithMaximumTolerance ,opencascade::handle<StepDimTol_GeometricToleranceWithMaximumTolerance>  , StepDimTol_GeometricToleranceWithModifiers >>(m.attr("StepDimTol_GeometricToleranceWithMaximumTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepDimTol_GeometricToleranceWithMaximumTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepDimTol_HArray1OfGeometricToleranceModifier> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) ) static_cast<void (StepDimTol_GeometricToleranceWithMaximumTolerance::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const StepDimTol_GeometricToleranceTarget & ,  const opencascade::handle<StepDimTol_HArray1OfGeometricToleranceModifier> & ,  const opencascade::handle<StepBasic_LengthMeasureWithUnit> &  ) >(&StepDimTol_GeometricToleranceWithMaximumTolerance::Init),
@@ -1942,12 +2067,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_ParallelismTolerance ,opencascade::handle<StepDimTol_ParallelismTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_ParallelismTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_ParallelismTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_ParallelismTolerance::*)() const>(&StepDimTol_ParallelismTolerance::DynamicType),
@@ -1962,12 +2089,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_PerpendicularityTolerance ,opencascade::handle<StepDimTol_PerpendicularityTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_PerpendicularityTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_PerpendicularityTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_PerpendicularityTolerance::*)() const>(&StepDimTol_PerpendicularityTolerance::DynamicType),
@@ -1982,12 +2111,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_SymmetryTolerance ,opencascade::handle<StepDimTol_SymmetryTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_SymmetryTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_SymmetryTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_SymmetryTolerance::*)() const>(&StepDimTol_SymmetryTolerance::DynamicType),
@@ -2002,12 +2133,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepDimTol_TotalRunoutTolerance ,opencascade::handle<StepDimTol_TotalRunoutTolerance>  , StepDimTol_GeometricToleranceWithDatumReference >>(m.attr("StepDimTol_TotalRunoutTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepDimTol_TotalRunoutTolerance::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepDimTol_TotalRunoutTolerance::*)() const>(&StepDimTol_TotalRunoutTolerance::DynamicType),
@@ -2022,97 +2155,97 @@ py::module m = static_cast<py::module>(main_module.attr("StepDimTol"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepDimTol_GeoTolAndGeoTolWthMaxTol.hxx
-// ./opencascade/StepDimTol_SurfaceProfileTolerance.hxx
-// ./opencascade/StepDimTol_AngularityTolerance.hxx
-// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRef.hxx
-// ./opencascade/StepDimTol_SimpleDatumReferenceModifier.hxx
-// ./opencascade/StepDimTol_DatumTarget.hxx
-// ./opencascade/StepDimTol_Array1OfDatumReferenceModifier.hxx
-// ./opencascade/StepDimTol_FlatnessTolerance.hxx
-// ./opencascade/StepDimTol_PlacedDatumTargetFeature.hxx
-// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol.hxx
-// ./opencascade/StepDimTol_HArray1OfToleranceZoneTarget.hxx
-// ./opencascade/StepDimTol_Array1OfDatumReferenceElement.hxx
-// ./opencascade/StepDimTol_PositionTolerance.hxx
-// ./opencascade/StepDimTol_UnequallyDisposedGeometricTolerance.hxx
-// ./opencascade/StepDimTol_GeoTolAndGeoTolWthMod.hxx
-// ./opencascade/StepDimTol_GeometricToleranceWithDefinedAreaUnit.hxx
-// ./opencascade/StepDimTol_Datum.hxx
-// ./opencascade/StepDimTol_Array1OfGeometricToleranceModifier.hxx
-// ./opencascade/StepDimTol_ToleranceZoneDefinition.hxx
-// ./opencascade/StepDimTol_RunoutZoneDefinition.hxx
-// ./opencascade/StepDimTol_DatumReferenceModifier.hxx
-// ./opencascade/StepDimTol_GeometricTolerance.hxx
-// ./opencascade/StepDimTol_GeometricToleranceRelationship.hxx
+// ./opencascade/StepDimTol_GeometricToleranceWithDatumReference.hxx
 // ./opencascade/StepDimTol_GeometricToleranceWithMaximumTolerance.hxx
+// ./opencascade/StepDimTol_ToleranceZoneDefinition.hxx
+// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRef.hxx
+// ./opencascade/StepDimTol_Array1OfToleranceZoneTarget.hxx
 // ./opencascade/StepDimTol_HArray1OfDatumReferenceElement.hxx
-// ./opencascade/StepDimTol_DatumFeature.hxx
-// ./opencascade/StepDimTol_ShapeToleranceSelect.hxx
-// ./opencascade/StepDimTol_HArray1OfDatumSystemOrReference.hxx
-// ./opencascade/StepDimTol_LineProfileTolerance.hxx
-// ./opencascade/StepDimTol_DatumReferenceModifierWithValue.hxx
-// ./opencascade/StepDimTol_RoundnessTolerance.hxx
-// ./opencascade/StepDimTol_DatumOrCommonDatum.hxx
-// ./opencascade/StepDimTol_SimpleDatumReferenceModifierMember.hxx
-// ./opencascade/StepDimTol_GeometricToleranceWithDefinedUnit.hxx
-// ./opencascade/StepDimTol_Array1OfDatumSystemOrReference.hxx
-// ./opencascade/StepDimTol_GeometricToleranceType.hxx
-// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol.hxx
-// ./opencascade/StepDimTol_ProjectedZoneDefinition.hxx
+// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod.hxx
+// ./opencascade/StepDimTol_GeometricToleranceTarget.hxx
+// ./opencascade/StepDimTol_GeometricTolerance.hxx
 // ./opencascade/StepDimTol_GeometricToleranceModifier.hxx
+// ./opencascade/StepDimTol_GeoTolAndGeoTolWthMod.hxx
+// ./opencascade/StepDimTol_UnequallyDisposedGeometricTolerance.hxx
+// ./opencascade/StepDimTol_ToleranceZoneTarget.hxx
+// ./opencascade/StepDimTol_AreaUnitType.hxx
+// ./opencascade/StepDimTol_CircularRunoutTolerance.hxx
+// ./opencascade/StepDimTol_HArray1OfToleranceZoneTarget.hxx
+// ./opencascade/StepDimTol_FlatnessTolerance.hxx
+// ./opencascade/StepDimTol_Array1OfDatumReference.hxx
 // ./opencascade/StepDimTol_DatumReferenceCompartment.hxx
-// ./opencascade/StepDimTol_ParallelismTolerance.hxx
-// ./opencascade/StepDimTol_ConcentricityTolerance.hxx
+// ./opencascade/StepDimTol_NonUniformZoneDefinition.hxx
+// ./opencascade/StepDimTol_SimpleDatumReferenceModifierMember.hxx
 // ./opencascade/StepDimTol_DatumSystem.hxx
 // ./opencascade/StepDimTol_DatumReference.hxx
-// ./opencascade/StepDimTol_HArray1OfDatumReference.hxx
-// ./opencascade/StepDimTol_LimitCondition.hxx
-// ./opencascade/StepDimTol_GeometricToleranceWithModifiers.hxx
-// ./opencascade/StepDimTol_SymmetryTolerance.hxx
-// ./opencascade/StepDimTol_GeometricToleranceTarget.hxx
 // ./opencascade/StepDimTol_Array1OfDatumReferenceCompartment.hxx
-// ./opencascade/StepDimTol_ToleranceZoneTarget.hxx
-// ./opencascade/StepDimTol_ToleranceZoneForm.hxx
-// ./opencascade/StepDimTol_DatumSystemOrReference.hxx
-// ./opencascade/StepDimTol_RunoutZoneOrientation.hxx
-// ./opencascade/StepDimTol_NonUniformZoneDefinition.hxx
-// ./opencascade/StepDimTol_GeometricToleranceWithDatumReference.hxx
-// ./opencascade/StepDimTol_ModifiedGeometricTolerance.hxx
-// ./opencascade/StepDimTol_HArray1OfDatumReferenceCompartment.hxx
-// ./opencascade/StepDimTol_DatumReferenceModifierType.hxx
-// ./opencascade/StepDimTol_HArray1OfDatumReferenceModifier.hxx
-// ./opencascade/StepDimTol_TotalRunoutTolerance.hxx
-// ./opencascade/StepDimTol_HArray1OfGeometricToleranceModifier.hxx
+// ./opencascade/StepDimTol_RoundnessTolerance.hxx
 // ./opencascade/StepDimTol_ToleranceZone.hxx
 // ./opencascade/StepDimTol_CoaxialityTolerance.hxx
-// ./opencascade/StepDimTol_CircularRunoutTolerance.hxx
-// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMod.hxx
-// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol.hxx
+// ./opencascade/StepDimTol_SymmetryTolerance.hxx
+// ./opencascade/StepDimTol_GeometricToleranceWithDefinedAreaUnit.hxx
+// ./opencascade/StepDimTol_ConcentricityTolerance.hxx
+// ./opencascade/StepDimTol_GeometricToleranceWithModifiers.hxx
+// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndUneqDisGeoTol.hxx
+// ./opencascade/StepDimTol_ToleranceZoneForm.hxx
 // ./opencascade/StepDimTol_CylindricityTolerance.hxx
-// ./opencascade/StepDimTol_AreaUnitType.hxx
-// ./opencascade/StepDimTol_GeneralDatumReference.hxx
-// ./opencascade/StepDimTol_Array1OfDatumReference.hxx
-// ./opencascade/StepDimTol_PerpendicularityTolerance.hxx
+// ./opencascade/StepDimTol_SurfaceProfileTolerance.hxx
+// ./opencascade/StepDimTol_Array1OfGeometricToleranceModifier.hxx
+// ./opencascade/StepDimTol_DatumReferenceModifierWithValue.hxx
+// ./opencascade/StepDimTol_GeoTolAndGeoTolWthMaxTol.hxx
+// ./opencascade/StepDimTol_Array1OfDatumReferenceModifier.hxx
 // ./opencascade/StepDimTol_StraightnessTolerance.hxx
-// ./opencascade/StepDimTol_DatumReferenceElement.hxx
+// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndGeoTolWthMaxTol.hxx
+// ./opencascade/StepDimTol_GeometricToleranceType.hxx
+// ./opencascade/StepDimTol_PerpendicularityTolerance.hxx
+// ./opencascade/StepDimTol_GeometricToleranceWithDefinedUnit.hxx
+// ./opencascade/StepDimTol_RunoutZoneDefinition.hxx
+// ./opencascade/StepDimTol_DatumReferenceModifierType.hxx
 // ./opencascade/StepDimTol_CommonDatum.hxx
-// ./opencascade/StepDimTol_Array1OfToleranceZoneTarget.hxx
+// ./opencascade/StepDimTol_HArray1OfDatumSystemOrReference.hxx
+// ./opencascade/StepDimTol_SimpleDatumReferenceModifier.hxx
+// ./opencascade/StepDimTol_DatumTarget.hxx
+// ./opencascade/StepDimTol_PlacedDatumTargetFeature.hxx
+// ./opencascade/StepDimTol_DatumOrCommonDatum.hxx
+// ./opencascade/StepDimTol_RunoutZoneOrientation.hxx
+// ./opencascade/StepDimTol_DatumFeature.hxx
+// ./opencascade/StepDimTol_ModifiedGeometricTolerance.hxx
+// ./opencascade/StepDimTol_HArray1OfDatumReferenceModifier.hxx
+// ./opencascade/StepDimTol_ShapeToleranceSelect.hxx
+// ./opencascade/StepDimTol_DatumReferenceElement.hxx
+// ./opencascade/StepDimTol_GeometricToleranceRelationship.hxx
+// ./opencascade/StepDimTol_HArray1OfDatumReferenceCompartment.hxx
+// ./opencascade/StepDimTol_ProjectedZoneDefinition.hxx
+// ./opencascade/StepDimTol_GeneralDatumReference.hxx
+// ./opencascade/StepDimTol_Array1OfDatumSystemOrReference.hxx
+// ./opencascade/StepDimTol_DatumReferenceModifier.hxx
+// ./opencascade/StepDimTol_Array1OfDatumReferenceElement.hxx
+// ./opencascade/StepDimTol_LineProfileTolerance.hxx
+// ./opencascade/StepDimTol_LimitCondition.hxx
+// ./opencascade/StepDimTol_DatumSystemOrReference.hxx
+// ./opencascade/StepDimTol_HArray1OfDatumReference.hxx
+// ./opencascade/StepDimTol_TotalRunoutTolerance.hxx
+// ./opencascade/StepDimTol_Datum.hxx
+// ./opencascade/StepDimTol_GeoTolAndGeoTolWthDatRefAndModGeoTolAndPosTol.hxx
+// ./opencascade/StepDimTol_HArray1OfGeometricToleranceModifier.hxx
+// ./opencascade/StepDimTol_AngularityTolerance.hxx
+// ./opencascade/StepDimTol_PositionTolerance.hxx
+// ./opencascade/StepDimTol_ParallelismTolerance.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<StepDimTol_DatumReferenceModifier>(m,"StepDimTol_Array1OfDatumReferenceModifier");  
-    register_template_NCollection_Array1<opencascade::handle<StepDimTol_DatumReferenceElement> >(m,"StepDimTol_Array1OfDatumReferenceElement");  
-    register_template_NCollection_Array1<StepDimTol_GeometricToleranceModifier>(m,"StepDimTol_Array1OfGeometricToleranceModifier");  
-    register_template_NCollection_Array1<StepDimTol_DatumSystemOrReference>(m,"StepDimTol_Array1OfDatumSystemOrReference");  
-    register_template_NCollection_Array1<opencascade::handle<StepDimTol_DatumReferenceCompartment> >(m,"StepDimTol_Array1OfDatumReferenceCompartment");  
-    register_template_NCollection_Array1<opencascade::handle<StepDimTol_DatumReference> >(m,"StepDimTol_Array1OfDatumReference");  
     register_template_NCollection_Array1<StepDimTol_ToleranceZoneTarget>(m,"StepDimTol_Array1OfToleranceZoneTarget");  
+    register_template_NCollection_Array1<opencascade::handle<StepDimTol_DatumReference> >(m,"StepDimTol_Array1OfDatumReference");  
+    register_template_NCollection_Array1<opencascade::handle<StepDimTol_DatumReferenceCompartment> >(m,"StepDimTol_Array1OfDatumReferenceCompartment");  
+    register_template_NCollection_Array1<StepDimTol_GeometricToleranceModifier>(m,"StepDimTol_Array1OfGeometricToleranceModifier");  
+    register_template_NCollection_Array1<StepDimTol_DatumReferenceModifier>(m,"StepDimTol_Array1OfDatumReferenceModifier");  
+    register_template_NCollection_Array1<StepDimTol_DatumSystemOrReference>(m,"StepDimTol_Array1OfDatumSystemOrReference");  
+    register_template_NCollection_Array1<opencascade::handle<StepDimTol_DatumReferenceElement> >(m,"StepDimTol_Array1OfDatumReferenceElement");  
 
 
 // exceptions

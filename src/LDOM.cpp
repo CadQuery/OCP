@@ -14,27 +14,27 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <LDOM_BasicNode.hxx>
+#include <LDOM_BasicAttribute.hxx>
+#include <LDOM_Element.hxx>
+#include <LDOM_BasicElement.hxx>
+#include <LDOM_CharacterData.hxx>
+#include <LDOM_BasicElement.hxx>
+#include <LDOM_BasicText.hxx>
 #include <LDOM_OSStream.hxx>
-#include <LDOM_Document.hxx>
-#include <LDOM_BasicElement.hxx>
-#include <LDOM_BasicElement.hxx>
+#include <LDOM_XmlReader.hxx>
+#include <LDOM_Element.hxx>
+#include <LDOM_Attr.hxx>
+#include <LDOM_DocumentType.hxx>
+#include <LDOM_BasicNode.hxx>
 #include <LDOM_XmlReader.hxx>
 #include <LDOM_NodeList.hxx>
 #include <LDOM_Element.hxx>
 #include <LDOM_BasicAttribute.hxx>
-#include <LDOM_DocumentType.hxx>
-#include <LDOM_BasicText.hxx>
-#include <LDOM_XmlReader.hxx>
-#include <LDOM_Element.hxx>
-#include <LDOM_Attr.hxx>
 #include <LDOM_BasicElement.hxx>
-#include <LDOM_CharacterData.hxx>
-#include <LDOM_BasicElement.hxx>
-#include <LDOM_BasicAttribute.hxx>
-#include <LDOM_Element.hxx>
-#include <LDOM_BasicNode.hxx>
 #include <LDOM_Document.hxx>
 #include <LDOM_Node.hxx>
+#include <LDOM_Document.hxx>
+#include <LDOM_BasicElement.hxx>
 
 // module includes
 #include <LDOM_Attr.hxx>
@@ -80,6 +80,8 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
 
 
     static_cast<py::class_<LDOM_BasicNode , shared_ptr<LDOM_BasicNode>  >>(m.attr("LDOM_BasicNode"))
+    // constructors
+    // custom constructors
     // methods
         .def("isNull",
              (Standard_Boolean (LDOM_BasicNode::*)() const) static_cast<Standard_Boolean (LDOM_BasicNode::*)() const>(&LDOM_BasicNode::isNull),
@@ -94,12 +96,15 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<LDOM_CharReference , shared_ptr<LDOM_CharReference>>(m,"LDOM_CharReference");
 
     static_cast<py::class_<LDOM_CharReference , shared_ptr<LDOM_CharReference>  >>(m.attr("LDOM_CharReference"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -111,13 +116,15 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
                     R"#(None)#"  , py::arg("theSrc"),  py::arg("theLen"),  py::arg("isAttribute"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_Document , shared_ptr<LDOM_Document>  >>(m.attr("LDOM_Document"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_MemManager & >()  , py::arg("aMemManager") )
+    // custom constructors
     // methods
         .def("createElement",
              (LDOM_Element (LDOM_Document::*)( const LDOMString &  ) ) static_cast<LDOM_Element (LDOM_Document::*)( const LDOMString &  ) >(&LDOM_Document::createElement),
@@ -147,23 +154,28 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
                     R"#(None)#"  , py::arg("theQualifiedName"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_DocumentType , shared_ptr<LDOM_DocumentType>  >>(m.attr("LDOM_DocumentType"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<LDOM_LDOMImplementation , shared_ptr<LDOM_LDOMImplementation>>(m,"LDOM_LDOMImplementation");
 
     static_cast<py::class_<LDOM_LDOMImplementation , shared_ptr<LDOM_LDOMImplementation>  >>(m.attr("LDOM_LDOMImplementation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -172,12 +184,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
                     R"#(None)#"  , py::arg("aNamespaceURI"),  py::arg("aQualifiedName"),  py::arg("aDocType"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_MemManager ,opencascade::handle<LDOM_MemManager>  , Standard_Transient >>(m.attr("LDOM_MemManager"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("aBlockSize") )
+    // custom constructors
     // methods
         .def("Allocate",
              (void * (LDOM_MemManager::*)( const Standard_Integer  ) ) static_cast<void * (LDOM_MemManager::*)( const Standard_Integer  ) >(&LDOM_MemManager::Allocate),
@@ -213,13 +227,15 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_Node , shared_ptr<LDOM_Node>  >>(m.attr("LDOM_Node"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_Node & >()  , py::arg("anOther") )
+    // custom constructors
     // methods
         .def("getOwnerDocument",
              (const LDOM_MemManager & (LDOM_Node::*)() const) static_cast<const LDOM_MemManager & (LDOM_Node::*)() const>(&LDOM_Node::getOwnerDocument),
@@ -261,13 +277,15 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_NodeList , shared_ptr<LDOM_NodeList>  >>(m.attr("LDOM_NodeList"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_NodeList & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("item",
              (LDOM_Node (LDOM_NodeList::*)( const Standard_Integer  ) const) static_cast<LDOM_Node (LDOM_NodeList::*)( const Standard_Integer  ) const>(&LDOM_NodeList::item),
@@ -279,12 +297,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_OSStream , shared_ptr<LDOM_OSStream>  >>(m.attr("LDOM_OSStream"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("theMaxBuf") )
+    // custom constructors
     // methods
         .def("str",
              (Standard_CString (LDOM_OSStream::*)() const) static_cast<Standard_CString (LDOM_OSStream::*)() const>(&LDOM_OSStream::str),
@@ -299,12 +319,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_SBuffer , shared_ptr<LDOM_SBuffer>  >>(m.attr("LDOM_SBuffer"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("theMaxBuf") )
+    // custom constructors
     // methods
         .def("str",
              (Standard_CString (LDOM_SBuffer::*)() const) static_cast<Standard_CString (LDOM_SBuffer::*)() const>(&LDOM_SBuffer::str),
@@ -328,12 +350,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_XmlReader , shared_ptr<LDOM_XmlReader>  >>(m.attr("LDOM_XmlReader"))
+    // constructors
         .def(py::init< const opencascade::handle<LDOM_MemManager> &,TCollection_AsciiString &,const Standard_Boolean >()  , py::arg("aDocument"),  py::arg("anErrorString"),  py::arg("theTagPerStep")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("ReadRecord",
              (LDOM_XmlReader::RecordType (LDOM_XmlReader::*)( std::istream & ,  LDOM_OSStream &  ) ) static_cast<LDOM_XmlReader::RecordType (LDOM_XmlReader::*)( std::istream & ,  LDOM_OSStream &  ) >(&LDOM_XmlReader::ReadRecord),
@@ -351,12 +375,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
                     R"#(None)#"  , py::arg("theValue"),  py::arg("theStart"),  py::arg("theEnd"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_XmlWriter , shared_ptr<LDOM_XmlWriter>  >>(m.attr("LDOM_XmlWriter"))
+    // constructors
         .def(py::init< const char * >()  , py::arg("theEncoding")=static_cast<const char *>(NULL) )
+    // custom constructors
     // methods
         .def("SetIndentation",
              (void (LDOM_XmlWriter::*)( const Standard_Integer  ) ) static_cast<void (LDOM_XmlWriter::*)( const Standard_Integer  ) >(&LDOM_XmlWriter::SetIndentation),
@@ -371,13 +397,15 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_Attr , shared_ptr<LDOM_Attr>  , LDOM_Node >>(m.attr("LDOM_Attr"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_Attr & >()  , py::arg("anOther") )
+    // custom constructors
     // methods
         .def("getName",
              (LDOMString (LDOM_Attr::*)() const) static_cast<LDOMString (LDOM_Attr::*)() const>(&LDOM_Attr::getName),
@@ -392,12 +420,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_BasicAttribute , shared_ptr<LDOM_BasicAttribute>  , LDOM_BasicNode >>(m.attr("LDOM_BasicAttribute"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GetName",
              (const char * (LDOM_BasicAttribute::*)() const) static_cast<const char * (LDOM_BasicAttribute::*)() const>(&LDOM_BasicAttribute::GetName),
@@ -412,12 +442,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_BasicElement , shared_ptr<LDOM_BasicElement>  , LDOM_BasicNode >>(m.attr("LDOM_BasicElement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GetTagName",
              (const char * (LDOM_BasicElement::*)() const) static_cast<const char * (LDOM_BasicElement::*)() const>(&LDOM_BasicElement::GetTagName),
@@ -438,12 +470,14 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
                     R"#(None)#"  , py::arg("aName"),  py::arg("aLength"),  py::arg("aDoc"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_BasicText , shared_ptr<LDOM_BasicText>  , LDOM_BasicNode >>(m.attr("LDOM_BasicText"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GetData",
              (const LDOMBasicString & (LDOM_BasicText::*)() const) static_cast<const LDOMBasicString & (LDOM_BasicText::*)() const>(&LDOM_BasicText::GetData),
@@ -455,13 +489,15 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_CharacterData , shared_ptr<LDOM_CharacterData>  , LDOM_Node >>(m.attr("LDOM_CharacterData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_CharacterData & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("getData",
              (LDOMString (LDOM_CharacterData::*)() const) static_cast<LDOMString (LDOM_CharacterData::*)() const>(&LDOM_CharacterData::getData),
@@ -476,13 +512,15 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_Element , shared_ptr<LDOM_Element>  , LDOM_Node >>(m.attr("LDOM_Element"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_Element & >()  , py::arg("anOther") )
+    // custom constructors
     // methods
         .def("getTagName",
              (LDOMString (LDOM_Element::*)() const) static_cast<LDOMString (LDOM_Element::*)() const>(&LDOM_Element::getTagName),
@@ -521,67 +559,73 @@ py::module m = static_cast<py::module>(main_module.attr("LDOM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_Comment , shared_ptr<LDOM_Comment>  , LDOM_CharacterData >>(m.attr("LDOM_Comment"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_Comment & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_Text , shared_ptr<LDOM_Text>  , LDOM_CharacterData >>(m.attr("LDOM_Text"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_Text & >()  , py::arg("anOther") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LDOM_CDATASection , shared_ptr<LDOM_CDATASection>  , LDOM_Text >>(m.attr("LDOM_CDATASection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const LDOM_CDATASection & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/LDOM_NodeList.hxx
-// ./opencascade/LDOM_Comment.hxx
-// ./opencascade/LDOM_OSStream.hxx
-// ./opencascade/LDOM_XmlReader.hxx
-// ./opencascade/LDOM_MemManager.hxx
-// ./opencascade/LDOM_DocumentType.hxx
-// ./opencascade/LDOM_Element.hxx
-// ./opencascade/LDOM_BasicElement.hxx
-// ./opencascade/LDOM_LDOMImplementation.hxx
-// ./opencascade/LDOM_DeclareSequence.hxx
-// ./opencascade/LDOM_Document.hxx
-// ./opencascade/LDOM_CharReference.hxx
-// ./opencascade/LDOM_CharacterData.hxx
-// ./opencascade/LDOM_CDATASection.hxx
-// ./opencascade/LDOM_BasicAttribute.hxx
-// ./opencascade/LDOM_BasicNode.hxx
-// ./opencascade/LDOM_BasicText.hxx
-// ./opencascade/LDOM_Attr.hxx
 // ./opencascade/LDOM_Node.hxx
+// ./opencascade/LDOM_CDATASection.hxx
+// ./opencascade/LDOM_DeclareSequence.hxx
+// ./opencascade/LDOM_Attr.hxx
+// ./opencascade/LDOM_BasicNode.hxx
 // ./opencascade/LDOM_Text.hxx
+// ./opencascade/LDOM_BasicText.hxx
+// ./opencascade/LDOM_CharacterData.hxx
+// ./opencascade/LDOM_CharReference.hxx
+// ./opencascade/LDOM_XmlReader.hxx
+// ./opencascade/LDOM_OSStream.hxx
+// ./opencascade/LDOM_Comment.hxx
+// ./opencascade/LDOM_BasicAttribute.hxx
+// ./opencascade/LDOM_LDOMImplementation.hxx
+// ./opencascade/LDOM_DocumentType.hxx
+// ./opencascade/LDOM_NodeList.hxx
+// ./opencascade/LDOM_BasicElement.hxx
+// ./opencascade/LDOM_Element.hxx
+// ./opencascade/LDOM_Document.hxx
 // ./opencascade/LDOM_XmlWriter.hxx
+// ./opencascade/LDOM_MemManager.hxx
 
 // operators
 

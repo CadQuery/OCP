@@ -102,121 +102,121 @@ namespace py = pybind11;
 #include <TColStd_SequenceOfTransient.hxx>
 
 // template related includes
+// ./opencascade/TColStd_DataMapOfIntegerReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfIntegerReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array2OfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapOfReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapOfReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array2OfCharacter.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfBoolean.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_SequenceOfHAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_SequenceOfAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_IndexedDataMapOfStringString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfReal.hxx
+#include "NCollection.hxx"
 // ./opencascade/TColStd_MapOfInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColStd_MapOfInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColStd_Array2OfBoolean.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_SequenceOfBoolean.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfExtendedString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_SequenceOfTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_IndexedDataMapOfStringString.hxx
+// ./opencascade/TColStd_Array2OfTransient.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColStd_SequenceOfAddress.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_IndexedMapOfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfByte.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColStd_Array2OfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array2OfTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_MapOfAsciiString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_MapOfAsciiString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array2OfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_MapTransientHasher.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfIntegerTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfCharacter.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_SequenceOfAsciiString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfIntegerListOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfIntegerListOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfIntegerInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfIntegerInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfBoolean.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_SequenceOfExtendedString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfStringInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfStringInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_Array2OfCharacter.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfAsciiString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_ListOfAsciiString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_SequenceOfHExtendedString.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_IndexedMapOfTransient.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColStd_MapRealHasher.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_SequenceOfHAsciiString.hxx
+// ./opencascade/TColStd_SequenceOfExtendedString.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_MapOfTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_MapOfTransient.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_MapOfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_MapOfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfAsciiStringInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfAsciiStringInteger.hxx
+// ./opencascade/TColStd_IndexedMapOfReal.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColStd_SequenceOfReal.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfAsciiString.hxx
+// ./opencascade/TColStd_DataMapOfIntegerListOfInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_IndexedMapOfInteger.hxx
+// ./opencascade/TColStd_DataMapOfIntegerListOfInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_Array1OfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_MapIntegerHasher.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfIntegerReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfIntegerReal.hxx
+// ./opencascade/TColStd_SequenceOfHExtendedString.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColStd_SequenceOfInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColStd_DataMapOfTransientTransient.hxx
+// ./opencascade/TColStd_DataMapOfIntegerInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfIntegerInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColStd_Array1OfListOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapTransientHasher.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_IndexedMapOfTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_SequenceOfTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_IndexedMapOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfCharacter.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapOfTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapOfTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfExtendedString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfAsciiStringInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfAsciiStringInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapIntegerHasher.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfStringInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfStringInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfIntegerTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfInteger.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapOfAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_MapOfAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_DataMapOfTransientTransient.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_Array1OfByte.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_ListOfAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColStd_SequenceOfBoolean.hxx
 #include "NCollection.hxx"
 
 
@@ -238,9 +238,12 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
 
 
     static_cast<py::class_<TColStd_HArray1OfAsciiString ,opencascade::handle<TColStd_HArray1OfAsciiString>  , TColStd_Array1OfAsciiString , Standard_Transient >>(m.attr("TColStd_HArray1OfAsciiString"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const TCollection_AsciiString & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TCollection_AsciiString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfAsciiString & (TColStd_HArray1OfAsciiString::*)() const) static_cast<const TColStd_Array1OfAsciiString & (TColStd_HArray1OfAsciiString::*)() const>(&TColStd_HArray1OfAsciiString::Array1),
@@ -261,14 +264,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfBoolean ,opencascade::handle<TColStd_HArray1OfBoolean>  , TColStd_Array1OfBoolean , Standard_Transient >>(m.attr("TColStd_HArray1OfBoolean"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const TColStd_Array1OfBoolean::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Standard_Boolean> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfBoolean & (TColStd_HArray1OfBoolean::*)() const) static_cast<const TColStd_Array1OfBoolean & (TColStd_HArray1OfBoolean::*)() const>(&TColStd_HArray1OfBoolean::Array1),
@@ -289,14 +295,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfByte ,opencascade::handle<TColStd_HArray1OfByte>  , TColStd_Array1OfByte , Standard_Transient >>(m.attr("TColStd_HArray1OfByte"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const TColStd_Array1OfByte::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Standard_Byte> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfByte & (TColStd_HArray1OfByte::*)() const) static_cast<const TColStd_Array1OfByte & (TColStd_HArray1OfByte::*)() const>(&TColStd_HArray1OfByte::Array1),
@@ -317,14 +326,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfCharacter ,opencascade::handle<TColStd_HArray1OfCharacter>  , TColStd_Array1OfCharacter , Standard_Transient >>(m.attr("TColStd_HArray1OfCharacter"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const TColStd_Array1OfCharacter::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Standard_Character> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfCharacter & (TColStd_HArray1OfCharacter::*)() const) static_cast<const TColStd_Array1OfCharacter & (TColStd_HArray1OfCharacter::*)() const>(&TColStd_HArray1OfCharacter::Array1),
@@ -345,14 +357,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfExtendedString ,opencascade::handle<TColStd_HArray1OfExtendedString>  , TColStd_Array1OfExtendedString , Standard_Transient >>(m.attr("TColStd_HArray1OfExtendedString"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const TCollection_ExtendedString & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfExtendedString & (TColStd_HArray1OfExtendedString::*)() const) static_cast<const TColStd_Array1OfExtendedString & (TColStd_HArray1OfExtendedString::*)() const>(&TColStd_HArray1OfExtendedString::Array1),
@@ -373,14 +388,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfInteger ,opencascade::handle<TColStd_HArray1OfInteger>  , TColStd_Array1OfInteger , Standard_Transient >>(m.attr("TColStd_HArray1OfInteger"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const TColStd_Array1OfInteger::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Standard_Integer> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfInteger & (TColStd_HArray1OfInteger::*)() const) static_cast<const TColStd_Array1OfInteger & (TColStd_HArray1OfInteger::*)() const>(&TColStd_HArray1OfInteger::Array1),
@@ -401,14 +419,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfListOfInteger ,opencascade::handle<TColStd_HArray1OfListOfInteger>  , TColStd_Array1OfListOfInteger , Standard_Transient >>(m.attr("TColStd_HArray1OfListOfInteger"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const NCollection_List<int> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TColStd_ListOfInteger> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfListOfInteger & (TColStd_HArray1OfListOfInteger::*)() const) static_cast<const TColStd_Array1OfListOfInteger & (TColStd_HArray1OfListOfInteger::*)() const>(&TColStd_HArray1OfListOfInteger::Array1),
@@ -429,14 +450,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfReal ,opencascade::handle<TColStd_HArray1OfReal>  , TColStd_Array1OfReal , Standard_Transient >>(m.attr("TColStd_HArray1OfReal"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const TColStd_Array1OfReal::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Standard_Real> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfReal & (TColStd_HArray1OfReal::*)() const) static_cast<const TColStd_Array1OfReal & (TColStd_HArray1OfReal::*)() const>(&TColStd_HArray1OfReal::Array1),
@@ -457,14 +481,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray1OfTransient ,opencascade::handle<TColStd_HArray1OfTransient>  , TColStd_Array1OfTransient , Standard_Transient >>(m.attr("TColStd_HArray1OfTransient"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Standard_Transient> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Standard_Transient> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColStd_Array1OfTransient & (TColStd_HArray1OfTransient::*)() const) static_cast<const TColStd_Array1OfTransient & (TColStd_HArray1OfTransient::*)() const>(&TColStd_HArray1OfTransient::Array1),
@@ -485,14 +512,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray2OfBoolean ,opencascade::handle<TColStd_HArray2OfBoolean>  , TColStd_Array2OfBoolean , Standard_Transient >>(m.attr("TColStd_HArray2OfBoolean"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const TColStd_Array2OfBoolean::value_type & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Standard_Boolean> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColStd_Array2OfBoolean & (TColStd_HArray2OfBoolean::*)() const) static_cast<const TColStd_Array2OfBoolean & (TColStd_HArray2OfBoolean::*)() const>(&TColStd_HArray2OfBoolean::Array2),
@@ -513,14 +542,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray2OfCharacter ,opencascade::handle<TColStd_HArray2OfCharacter>  , TColStd_Array2OfCharacter , Standard_Transient >>(m.attr("TColStd_HArray2OfCharacter"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const TColStd_Array2OfCharacter::value_type & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Standard_Character> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColStd_Array2OfCharacter & (TColStd_HArray2OfCharacter::*)() const) static_cast<const TColStd_Array2OfCharacter & (TColStd_HArray2OfCharacter::*)() const>(&TColStd_HArray2OfCharacter::Array2),
@@ -541,14 +572,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray2OfInteger ,opencascade::handle<TColStd_HArray2OfInteger>  , TColStd_Array2OfInteger , Standard_Transient >>(m.attr("TColStd_HArray2OfInteger"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const TColStd_Array2OfInteger::value_type & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Standard_Integer> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColStd_Array2OfInteger & (TColStd_HArray2OfInteger::*)() const) static_cast<const TColStd_Array2OfInteger & (TColStd_HArray2OfInteger::*)() const>(&TColStd_HArray2OfInteger::Array2),
@@ -569,14 +602,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray2OfReal ,opencascade::handle<TColStd_HArray2OfReal>  , TColStd_Array2OfReal , Standard_Transient >>(m.attr("TColStd_HArray2OfReal"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const TColStd_Array2OfReal::value_type & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Standard_Real> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColStd_Array2OfReal & (TColStd_HArray2OfReal::*)() const) static_cast<const TColStd_Array2OfReal & (TColStd_HArray2OfReal::*)() const>(&TColStd_HArray2OfReal::Array2),
@@ -597,14 +632,16 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HArray2OfTransient ,opencascade::handle<TColStd_HArray2OfTransient>  , TColStd_Array2OfTransient , Standard_Transient >>(m.attr("TColStd_HArray2OfTransient"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const opencascade::handle<Standard_Transient> & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<opencascade::handle<Standard_Transient> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TColStd_Array2OfTransient & (TColStd_HArray2OfTransient::*)() const) static_cast<const TColStd_Array2OfTransient & (TColStd_HArray2OfTransient::*)() const>(&TColStd_HArray2OfTransient::Array2),
@@ -625,13 +662,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HPackedMapOfInteger ,opencascade::handle<TColStd_HPackedMapOfInteger>  , Standard_Transient >>(m.attr("TColStd_HPackedMapOfInteger"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init< const TColStd_PackedMapOfInteger & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Map",
              (const TColStd_PackedMapOfInteger & (TColStd_HPackedMapOfInteger::*)() const) static_cast<const TColStd_PackedMapOfInteger & (TColStd_HPackedMapOfInteger::*)() const>(&TColStd_HPackedMapOfInteger::Map),
@@ -658,13 +697,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HSequenceOfAsciiString ,opencascade::handle<TColStd_HSequenceOfAsciiString>  , TColStd_SequenceOfAsciiString , Standard_Transient >>(m.attr("TColStd_HSequenceOfAsciiString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<TCollection_AsciiString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColStd_SequenceOfAsciiString & (TColStd_HSequenceOfAsciiString::*)() const) static_cast<const TColStd_SequenceOfAsciiString & (TColStd_HSequenceOfAsciiString::*)() const>(&TColStd_HSequenceOfAsciiString::Sequence),
@@ -691,13 +732,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HSequenceOfExtendedString ,opencascade::handle<TColStd_HSequenceOfExtendedString>  , TColStd_SequenceOfExtendedString , Standard_Transient >>(m.attr("TColStd_HSequenceOfExtendedString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColStd_SequenceOfExtendedString & (TColStd_HSequenceOfExtendedString::*)() const) static_cast<const TColStd_SequenceOfExtendedString & (TColStd_HSequenceOfExtendedString::*)() const>(&TColStd_HSequenceOfExtendedString::Sequence),
@@ -724,13 +767,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HSequenceOfHAsciiString ,opencascade::handle<TColStd_HSequenceOfHAsciiString>  , TColStd_SequenceOfHAsciiString , Standard_Transient >>(m.attr("TColStd_HSequenceOfHAsciiString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColStd_SequenceOfHAsciiString & (TColStd_HSequenceOfHAsciiString::*)() const) static_cast<const TColStd_SequenceOfHAsciiString & (TColStd_HSequenceOfHAsciiString::*)() const>(&TColStd_HSequenceOfHAsciiString::Sequence),
@@ -757,13 +802,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HSequenceOfHExtendedString ,opencascade::handle<TColStd_HSequenceOfHExtendedString>  , TColStd_SequenceOfHExtendedString , Standard_Transient >>(m.attr("TColStd_HSequenceOfHExtendedString"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<TCollection_HExtendedString> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColStd_SequenceOfHExtendedString & (TColStd_HSequenceOfHExtendedString::*)() const) static_cast<const TColStd_SequenceOfHExtendedString & (TColStd_HSequenceOfHExtendedString::*)() const>(&TColStd_HSequenceOfHExtendedString::Sequence),
@@ -790,13 +837,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HSequenceOfInteger ,opencascade::handle<TColStd_HSequenceOfInteger>  , TColStd_SequenceOfInteger , Standard_Transient >>(m.attr("TColStd_HSequenceOfInteger"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<Standard_Integer> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColStd_SequenceOfInteger & (TColStd_HSequenceOfInteger::*)() const) static_cast<const TColStd_SequenceOfInteger & (TColStd_HSequenceOfInteger::*)() const>(&TColStd_HSequenceOfInteger::Sequence),
@@ -823,13 +872,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HSequenceOfReal ,opencascade::handle<TColStd_HSequenceOfReal>  , TColStd_SequenceOfReal , Standard_Transient >>(m.attr("TColStd_HSequenceOfReal"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<Standard_Real> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColStd_SequenceOfReal & (TColStd_HSequenceOfReal::*)() const) static_cast<const TColStd_SequenceOfReal & (TColStd_HSequenceOfReal::*)() const>(&TColStd_HSequenceOfReal::Sequence),
@@ -856,13 +907,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_HSequenceOfTransient ,opencascade::handle<TColStd_HSequenceOfTransient>  , TColStd_SequenceOfTransient , Standard_Transient >>(m.attr("TColStd_HSequenceOfTransient"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Standard_Transient> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColStd_SequenceOfTransient & (TColStd_HSequenceOfTransient::*)() const) static_cast<const TColStd_SequenceOfTransient & (TColStd_HSequenceOfTransient::*)() const>(&TColStd_HSequenceOfTransient::Sequence),
@@ -889,13 +942,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColStd_PackedMapOfInteger , shared_ptr<TColStd_PackedMapOfInteger>  >>(m.attr("TColStd_PackedMapOfInteger"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init< const TColStd_PackedMapOfInteger & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Assign",
              (TColStd_PackedMapOfInteger & (TColStd_PackedMapOfInteger::*)( const TColStd_PackedMapOfInteger &  ) ) static_cast<TColStd_PackedMapOfInteger & (TColStd_PackedMapOfInteger::*)( const TColStd_PackedMapOfInteger &  ) >(&TColStd_PackedMapOfInteger::Assign),
@@ -978,142 +1033,142 @@ py::module m = static_cast<py::module>(main_module.attr("TColStd"));
              (TColStd_PackedMapOfInteger & (TColStd_PackedMapOfInteger::*)( const TColStd_PackedMapOfInteger &  ) ) static_cast<TColStd_PackedMapOfInteger & (TColStd_PackedMapOfInteger::*)( const TColStd_PackedMapOfInteger &  ) >(&TColStd_PackedMapOfInteger::operator^=),
              py::is_operator(),
              R"#(Overloaded operator version of Differ().)#"  , py::arg("MM"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TColStd_MapOfInteger.hxx
+// ./opencascade/TColStd_DataMapOfIntegerReal.hxx
+// ./opencascade/TColStd_HArray1OfByte.hxx
+// ./opencascade/TColStd_Array2OfInteger.hxx
+// ./opencascade/TColStd_HArray2OfCharacter.hxx
+// ./opencascade/TColStd_MapOfReal.hxx
 // ./opencascade/TColStd_HSequenceOfReal.hxx
-// ./opencascade/TColStd_Array2OfBoolean.hxx
-// ./opencascade/TColStd_Array1OfTransient.hxx
+// ./opencascade/TColStd_ListOfTransient.hxx
+// ./opencascade/TColStd_Array2OfCharacter.hxx
+// ./opencascade/TColStd_Array1OfBoolean.hxx
+// ./opencascade/TColStd_Array1OfAsciiString.hxx
+// ./opencascade/TColStd_SequenceOfHAsciiString.hxx
+// ./opencascade/TColStd_ListIteratorOfListOfTransient.hxx
+// ./opencascade/TColStd_Array1OfInteger.hxx
+// ./opencascade/TColStd_SequenceOfAsciiString.hxx
 // ./opencascade/TColStd_DataMapIteratorOfDataMapOfIntegerTransient.hxx
-// ./opencascade/TColStd_SequenceOfBoolean.hxx
-// ./opencascade/TColStd_DataMapIteratorOfDataMapOfStringInteger.hxx
-// ./opencascade/TColStd_Array1OfExtendedString.hxx
-// ./opencascade/TColStd_ListIteratorOfListOfReal.hxx
-// ./opencascade/TColStd_SequenceOfTransient.hxx
 // ./opencascade/TColStd_IndexedDataMapOfStringString.hxx
-// ./opencascade/TColStd_HArray1OfExtendedString.hxx
-// ./opencascade/TColStd_SequenceOfAddress.hxx
-// ./opencascade/TColStd_IndexedMapOfReal.hxx
-// ./opencascade/TColStd_HSequenceOfHExtendedString.hxx
-// ./opencascade/TColStd_Array1OfByte.hxx
-// ./opencascade/TColStd_HSequenceOfHAsciiString.hxx
-// ./opencascade/TColStd_HArray1OfInteger.hxx
-// ./opencascade/TColStd_Array2OfReal.hxx
+// ./opencascade/TColStd_Array1OfReal.hxx
+// ./opencascade/TColStd_MapOfInteger.hxx
+// ./opencascade/TColStd_Array2OfBoolean.hxx
 // ./opencascade/TColStd_Array2OfTransient.hxx
+// ./opencascade/TColStd_HSequenceOfHAsciiString.hxx
+// ./opencascade/TColStd_HArray2OfReal.hxx
+// ./opencascade/TColStd_SequenceOfAddress.hxx
+// ./opencascade/TColStd_HArray1OfTransient.hxx
+// ./opencascade/TColStd_HArray1OfReal.hxx
+// ./opencascade/TColStd_Array2OfReal.hxx
+// ./opencascade/TColStd_MapRealHasher.hxx
+// ./opencascade/TColStd_SequenceOfExtendedString.hxx
+// ./opencascade/TColStd_IndexedMapOfReal.hxx
+// ./opencascade/TColStd_SequenceOfReal.hxx
+// ./opencascade/TColStd_HArray1OfBoolean.hxx
+// ./opencascade/TColStd_DataMapOfIntegerListOfInteger.hxx
+// ./opencascade/TColStd_SequenceOfHExtendedString.hxx
+// ./opencascade/TColStd_HSequenceOfHExtendedString.hxx
+// ./opencascade/TColStd_ListIteratorOfListOfAsciiString.hxx
+// ./opencascade/TColStd_MapIteratorOfPackedMapOfInteger.hxx
+// ./opencascade/TColStd_HSequenceOfInteger.hxx
+// ./opencascade/TColStd_SequenceOfInteger.hxx
+// ./opencascade/TColStd_DataMapOfIntegerInteger.hxx
+// ./opencascade/TColStd_MapIteratorOfMapOfAsciiString.hxx
+// ./opencascade/TColStd_HArray1OfAsciiString.hxx
+// ./opencascade/TColStd_DataMapIteratorOfDataMapOfAsciiStringInteger.hxx
+// ./opencascade/TColStd_Array1OfListOfInteger.hxx
+// ./opencascade/TColStd_MapTransientHasher.hxx
+// ./opencascade/TColStd_ListIteratorOfListOfReal.hxx
+// ./opencascade/TColStd_DataMapIteratorOfDataMapOfIntegerListOfInteger.hxx
+// ./opencascade/TColStd_HArray2OfInteger.hxx
+// ./opencascade/TColStd_IndexedMapOfTransient.hxx
+// ./opencascade/TColStd_ListIteratorOfListOfInteger.hxx
+// ./opencascade/TColStd_SequenceOfTransient.hxx
+// ./opencascade/TColStd_DataMapIteratorOfDataMapOfStringInteger.hxx
+// ./opencascade/TColStd_IndexedMapOfInteger.hxx
+// ./opencascade/TColStd_DataMapIteratorOfDataMapOfIntegerInteger.hxx
+// ./opencascade/TColStd_DataMapIteratorOfDataMapOfTransientTransient.hxx
+// ./opencascade/TColStd_PackedMapOfInteger.hxx
+// ./opencascade/TColStd_HSequenceOfExtendedString.hxx
+// ./opencascade/TColStd_Array1OfCharacter.hxx
+// ./opencascade/TColStd_HSequenceOfTransient.hxx
+// ./opencascade/TColStd_HArray1OfExtendedString.hxx
+// ./opencascade/TColStd_HArray1OfInteger.hxx
+// ./opencascade/TColStd_MapOfTransient.hxx
+// ./opencascade/TColStd_HSequenceOfAsciiString.hxx
+// ./opencascade/TColStd_ListOfReal.hxx
+// ./opencascade/TColStd_IndexedDataMapOfTransientTransient.hxx
+// ./opencascade/TColStd_Array1OfExtendedString.hxx
+// ./opencascade/TColStd_DataMapOfAsciiStringInteger.hxx
+// ./opencascade/TColStd_MapIntegerHasher.hxx
+// ./opencascade/TColStd_HArray1OfListOfInteger.hxx
+// ./opencascade/TColStd_DataMapOfStringInteger.hxx
+// ./opencascade/TColStd_MapIteratorOfMapOfReal.hxx
+// ./opencascade/TColStd_HArray2OfTransient.hxx
+// ./opencascade/TColStd_HArray1OfCharacter.hxx
+// ./opencascade/TColStd_Array1OfTransient.hxx
+// ./opencascade/TColStd_DataMapOfIntegerTransient.hxx
+// ./opencascade/TColStd_DataMapIteratorOfDataMapOfIntegerReal.hxx
 // ./opencascade/TColStd_ListOfInteger.hxx
 // ./opencascade/TColStd_MapOfAsciiString.hxx
-// ./opencascade/TColStd_ListIteratorOfListOfTransient.hxx
-// ./opencascade/TColStd_Array2OfInteger.hxx
-// ./opencascade/TColStd_HArray1OfBoolean.hxx
-// ./opencascade/TColStd_IndexedDataMapOfTransientTransient.hxx
-// ./opencascade/TColStd_MapTransientHasher.hxx
-// ./opencascade/TColStd_DataMapOfIntegerTransient.hxx
-// ./opencascade/TColStd_HArray1OfByte.hxx
-// ./opencascade/TColStd_ListIteratorOfListOfAsciiString.hxx
-// ./opencascade/TColStd_Array1OfCharacter.hxx
-// ./opencascade/TColStd_DataMapIteratorOfDataMapOfAsciiStringInteger.hxx
-// ./opencascade/TColStd_Array1OfInteger.hxx
-// ./opencascade/TColStd_HSequenceOfInteger.hxx
-// ./opencascade/TColStd_HArray1OfAsciiString.hxx
-// ./opencascade/TColStd_SequenceOfAsciiString.hxx
-// ./opencascade/TColStd_HPackedMapOfInteger.hxx
-// ./opencascade/TColStd_DataMapOfIntegerListOfInteger.hxx
-// ./opencascade/TColStd_DataMapIteratorOfDataMapOfTransientTransient.hxx
-// ./opencascade/TColStd_DataMapIteratorOfDataMapOfIntegerReal.hxx
-// ./opencascade/TColStd_DataMapOfIntegerInteger.hxx
-// ./opencascade/TColStd_ListOfTransient.hxx
-// ./opencascade/TColStd_HArray2OfCharacter.hxx
-// ./opencascade/TColStd_Array1OfBoolean.hxx
-// ./opencascade/TColStd_ListOfReal.hxx
-// ./opencascade/TColStd_SequenceOfExtendedString.hxx
-// ./opencascade/TColStd_DataMapOfStringInteger.hxx
-// ./opencascade/TColStd_Array2OfCharacter.hxx
-// ./opencascade/TColStd_HArray2OfReal.hxx
-// ./opencascade/TColStd_DataMapIteratorOfDataMapOfIntegerListOfInteger.hxx
-// ./opencascade/TColStd_ListOfAsciiString.hxx
-// ./opencascade/TColStd_HArray1OfTransient.hxx
-// ./opencascade/TColStd_ListIteratorOfListOfInteger.hxx
-// ./opencascade/TColStd_SequenceOfHExtendedString.hxx
-// ./opencascade/TColStd_MapIteratorOfMapOfReal.hxx
-// ./opencascade/TColStd_HArray1OfListOfInteger.hxx
-// ./opencascade/TColStd_MapIteratorOfMapOfTransient.hxx
-// ./opencascade/TColStd_HArray1OfReal.hxx
-// ./opencascade/TColStd_PackedMapOfInteger.hxx
-// ./opencascade/TColStd_IndexedMapOfTransient.hxx
-// ./opencascade/TColStd_MapRealHasher.hxx
-// ./opencascade/TColStd_HSequenceOfAsciiString.hxx
-// ./opencascade/TColStd_SequenceOfHAsciiString.hxx
-// ./opencascade/TColStd_MapOfTransient.hxx
-// ./opencascade/TColStd_MapOfReal.hxx
-// ./opencascade/TColStd_HArray1OfCharacter.hxx
-// ./opencascade/TColStd_HSequenceOfTransient.hxx
-// ./opencascade/TColStd_DataMapOfAsciiStringInteger.hxx
-// ./opencascade/TColStd_HArray2OfTransient.hxx
-// ./opencascade/TColStd_HArray2OfBoolean.hxx
-// ./opencascade/TColStd_SequenceOfReal.hxx
-// ./opencascade/TColStd_HSequenceOfExtendedString.hxx
-// ./opencascade/TColStd_Array1OfAsciiString.hxx
-// ./opencascade/TColStd_IndexedMapOfInteger.hxx
-// ./opencascade/TColStd_MapIteratorOfPackedMapOfInteger.hxx
-// ./opencascade/TColStd_Array1OfReal.hxx
-// ./opencascade/TColStd_MapIntegerHasher.hxx
-// ./opencascade/TColStd_MapIteratorOfMapOfInteger.hxx
-// ./opencascade/TColStd_MapIteratorOfMapOfAsciiString.hxx
-// ./opencascade/TColStd_DataMapIteratorOfDataMapOfIntegerInteger.hxx
-// ./opencascade/TColStd_DataMapOfIntegerReal.hxx
-// ./opencascade/TColStd_HArray2OfInteger.hxx
-// ./opencascade/TColStd_SequenceOfInteger.hxx
 // ./opencascade/TColStd_DataMapOfTransientTransient.hxx
-// ./opencascade/TColStd_Array1OfListOfInteger.hxx
+// ./opencascade/TColStd_HPackedMapOfInteger.hxx
+// ./opencascade/TColStd_MapIteratorOfMapOfTransient.hxx
+// ./opencascade/TColStd_Array1OfByte.hxx
+// ./opencascade/TColStd_ListOfAsciiString.hxx
+// ./opencascade/TColStd_HArray2OfBoolean.hxx
+// ./opencascade/TColStd_SequenceOfBoolean.hxx
+// ./opencascade/TColStd_MapIteratorOfMapOfInteger.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Map<Standard_Integer, TColStd_MapIntegerHasher>(m,"TColStd_MapOfInteger");  
-    register_template_NCollection_Array2<Standard_Boolean>(m,"TColStd_Array2OfBoolean");  
-    register_template_NCollection_Array1<opencascade::handle<Standard_Transient> >(m,"TColStd_Array1OfTransient");  
-    register_template_NCollection_Sequence<Standard_Boolean>(m,"TColStd_SequenceOfBoolean");  
-    register_template_NCollection_Array1<TCollection_ExtendedString>(m,"TColStd_Array1OfExtendedString");  
-    register_template_NCollection_Sequence<opencascade::handle<Standard_Transient> >(m,"TColStd_SequenceOfTransient");  
-    register_template_NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_IndexedDataMapOfStringString");  
-    register_template_NCollection_Sequence<Standard_Address>(m,"TColStd_SequenceOfAddress");  
-    register_template_NCollection_IndexedMap<Standard_Real, TColStd_MapRealHasher>(m,"TColStd_IndexedMapOfReal");  
-    register_template_NCollection_Array1<Standard_Byte>(m,"TColStd_Array1OfByte");  
-    register_template_NCollection_Array2<Standard_Real>(m,"TColStd_Array2OfReal");  
-    register_template_NCollection_Array2<opencascade::handle<Standard_Transient> >(m,"TColStd_Array2OfTransient");  
-    register_template_NCollection_List<Standard_Integer>(m,"TColStd_ListOfInteger");  
-    register_template_NCollection_Map<TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_MapOfAsciiString");  
+    register_template_NCollection_DataMap<Standard_Integer, Standard_Real, TColStd_MapIntegerHasher>(m,"TColStd_DataMapOfIntegerReal");  
     register_template_NCollection_Array2<Standard_Integer>(m,"TColStd_Array2OfInteger");  
-    register_template_NCollection_DefaultHasher<opencascade::handle<Standard_Transient> >(m,"TColStd_MapTransientHasher");  
-    register_template_NCollection_Array1<Standard_Character>(m,"TColStd_Array1OfCharacter");  
+    register_template_NCollection_Map<Standard_Real, TColStd_MapRealHasher>(m,"TColStd_MapOfReal");  
+    register_template_NCollection_List<opencascade::handle<Standard_Transient> >(m,"TColStd_ListOfTransient");  
+    register_template_NCollection_Array2<Standard_Character>(m,"TColStd_Array2OfCharacter");  
+    register_template_NCollection_Array1<Standard_Boolean>(m,"TColStd_Array1OfBoolean");  
+    register_template_NCollection_Array1<TCollection_AsciiString>(m,"TColStd_Array1OfAsciiString");  
+    register_template_NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> >(m,"TColStd_SequenceOfHAsciiString");  
     register_template_NCollection_Array1<Standard_Integer>(m,"TColStd_Array1OfInteger");  
     register_template_NCollection_Sequence<TCollection_AsciiString>(m,"TColStd_SequenceOfAsciiString");  
-    register_template_NCollection_DataMap<Standard_Integer, TColStd_ListOfInteger, TColStd_MapIntegerHasher>(m,"TColStd_DataMapOfIntegerListOfInteger");  
-    register_template_NCollection_DataMap<Standard_Integer, Standard_Integer, TColStd_MapIntegerHasher>(m,"TColStd_DataMapOfIntegerInteger");  
-    register_template_NCollection_List<opencascade::handle<Standard_Transient> >(m,"TColStd_ListOfTransient");  
-    register_template_NCollection_Array1<Standard_Boolean>(m,"TColStd_Array1OfBoolean");  
-    register_template_NCollection_List<Standard_Real>(m,"TColStd_ListOfReal");  
-    register_template_NCollection_Sequence<TCollection_ExtendedString>(m,"TColStd_SequenceOfExtendedString");  
-    register_template_NCollection_DataMap<TCollection_ExtendedString, Standard_Integer, TCollection_ExtendedString>(m,"TColStd_DataMapOfStringInteger");  
-    register_template_NCollection_Array2<Standard_Character>(m,"TColStd_Array2OfCharacter");  
-    register_template_NCollection_List<TCollection_AsciiString>(m,"TColStd_ListOfAsciiString");  
-    register_template_NCollection_Sequence<opencascade::handle<TCollection_HExtendedString> >(m,"TColStd_SequenceOfHExtendedString");  
-    register_template_NCollection_IndexedMap<opencascade::handle<Standard_Transient>, TColStd_MapTransientHasher>(m,"TColStd_IndexedMapOfTransient");  
-    register_template_NCollection_DefaultHasher<Standard_Real>(m,"TColStd_MapRealHasher");  
-    register_template_NCollection_Sequence<opencascade::handle<TCollection_HAsciiString> >(m,"TColStd_SequenceOfHAsciiString");  
-    register_template_NCollection_Map<opencascade::handle<Standard_Transient>, TColStd_MapTransientHasher>(m,"TColStd_MapOfTransient");  
-    register_template_NCollection_Map<Standard_Real, TColStd_MapRealHasher>(m,"TColStd_MapOfReal");  
-    register_template_NCollection_DataMap<TCollection_AsciiString, Standard_Integer, TCollection_AsciiString>(m,"TColStd_DataMapOfAsciiStringInteger");  
-    register_template_NCollection_Sequence<Standard_Real>(m,"TColStd_SequenceOfReal");  
-    register_template_NCollection_Array1<TCollection_AsciiString>(m,"TColStd_Array1OfAsciiString");  
-    register_template_NCollection_IndexedMap<Standard_Integer, TColStd_MapIntegerHasher>(m,"TColStd_IndexedMapOfInteger");  
+    register_template_NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_IndexedDataMapOfStringString");  
     register_template_NCollection_Array1<Standard_Real>(m,"TColStd_Array1OfReal");  
-    register_template_NCollection_DefaultHasher<Standard_Integer>(m,"TColStd_MapIntegerHasher");  
-    register_template_NCollection_DataMap<Standard_Integer, Standard_Real, TColStd_MapIntegerHasher>(m,"TColStd_DataMapOfIntegerReal");  
+    register_template_NCollection_Map<Standard_Integer, TColStd_MapIntegerHasher>(m,"TColStd_MapOfInteger");  
+    register_template_NCollection_Array2<Standard_Boolean>(m,"TColStd_Array2OfBoolean");  
+    register_template_NCollection_Array2<opencascade::handle<Standard_Transient> >(m,"TColStd_Array2OfTransient");  
+    register_template_NCollection_Sequence<Standard_Address>(m,"TColStd_SequenceOfAddress");  
+    register_template_NCollection_Array2<Standard_Real>(m,"TColStd_Array2OfReal");  
+    register_template_NCollection_DefaultHasher<Standard_Real>(m,"TColStd_MapRealHasher");  
+    register_template_NCollection_Sequence<TCollection_ExtendedString>(m,"TColStd_SequenceOfExtendedString");  
+    register_template_NCollection_IndexedMap<Standard_Real, TColStd_MapRealHasher>(m,"TColStd_IndexedMapOfReal");  
+    register_template_NCollection_Sequence<Standard_Real>(m,"TColStd_SequenceOfReal");  
+    register_template_NCollection_DataMap<Standard_Integer, TColStd_ListOfInteger, TColStd_MapIntegerHasher>(m,"TColStd_DataMapOfIntegerListOfInteger");  
+    register_template_NCollection_Sequence<opencascade::handle<TCollection_HExtendedString> >(m,"TColStd_SequenceOfHExtendedString");  
     register_template_NCollection_Sequence<Standard_Integer>(m,"TColStd_SequenceOfInteger");  
+    register_template_NCollection_DataMap<Standard_Integer, Standard_Integer, TColStd_MapIntegerHasher>(m,"TColStd_DataMapOfIntegerInteger");  
     register_template_NCollection_Array1<TColStd_ListOfInteger>(m,"TColStd_Array1OfListOfInteger");  
+    register_template_NCollection_DefaultHasher<opencascade::handle<Standard_Transient> >(m,"TColStd_MapTransientHasher");  
+    register_template_NCollection_IndexedMap<opencascade::handle<Standard_Transient>, TColStd_MapTransientHasher>(m,"TColStd_IndexedMapOfTransient");  
+    register_template_NCollection_Sequence<opencascade::handle<Standard_Transient> >(m,"TColStd_SequenceOfTransient");  
+    register_template_NCollection_IndexedMap<Standard_Integer, TColStd_MapIntegerHasher>(m,"TColStd_IndexedMapOfInteger");  
+    register_template_NCollection_Array1<Standard_Character>(m,"TColStd_Array1OfCharacter");  
+    register_template_NCollection_Map<opencascade::handle<Standard_Transient>, TColStd_MapTransientHasher>(m,"TColStd_MapOfTransient");  
+    register_template_NCollection_List<Standard_Real>(m,"TColStd_ListOfReal");  
+    register_template_NCollection_Array1<TCollection_ExtendedString>(m,"TColStd_Array1OfExtendedString");  
+    register_template_NCollection_DataMap<TCollection_AsciiString, Standard_Integer, TCollection_AsciiString>(m,"TColStd_DataMapOfAsciiStringInteger");  
+    register_template_NCollection_DefaultHasher<Standard_Integer>(m,"TColStd_MapIntegerHasher");  
+    register_template_NCollection_DataMap<TCollection_ExtendedString, Standard_Integer, TCollection_ExtendedString>(m,"TColStd_DataMapOfStringInteger");  
+    register_template_NCollection_Array1<opencascade::handle<Standard_Transient> >(m,"TColStd_Array1OfTransient");  
+    register_template_NCollection_List<Standard_Integer>(m,"TColStd_ListOfInteger");  
+    register_template_NCollection_Map<TCollection_AsciiString, TCollection_AsciiString>(m,"TColStd_MapOfAsciiString");  
+    register_template_NCollection_Array1<Standard_Byte>(m,"TColStd_Array1OfByte");  
+    register_template_NCollection_List<TCollection_AsciiString>(m,"TColStd_ListOfAsciiString");  
+    register_template_NCollection_Sequence<Standard_Boolean>(m,"TColStd_SequenceOfBoolean");  
 
 
 // exceptions

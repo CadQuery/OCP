@@ -14,9 +14,7 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <StdFail_NotDone.hxx>
-#include <Geom_Curve.hxx>
 #include <Geom_Surface.hxx>
-#include <StdFail_NotDone.hxx>
 #include <gp_Pln.hxx>
 #include <GeomAPI_ProjectPointOnCurve.hxx>
 #include <GeomAPI_ProjectPointOnSurf.hxx>
@@ -28,16 +26,18 @@ namespace py = pybind11;
 #include <GeomAPI_Interpolate.hxx>
 #include <GeomAPI_IntSS.hxx>
 #include <GeomAPI_IntCS.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Geom_BSplineSurface.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StdFail_NotDone.hxx>
+#include <Geom_Curve.hxx>
 #include <Geom_Surface.hxx>
 #include <Geom_Curve.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Geom_Surface.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <StdFail_NotDone.hxx>
 #include <StdFail_NotDone.hxx>
 
 // module includes
@@ -72,9 +72,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomAPI , shared_ptr<GeomAPI>>(m,"GeomAPI");
 
     static_cast<py::class_<GeomAPI , shared_ptr<GeomAPI>  >>(m.attr("GeomAPI"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -86,14 +89,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
                     R"#(Builds a 3D curve equivalent to the 2D curve C described in the parametric space defined by the local coordinate system of plane P. The resulting 3D curve is of the same nature as that of the curve C.)#"  , py::arg("C"),  py::arg("P"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_ExtremaCurveCurve , shared_ptr<GeomAPI_ExtremaCurveCurve>  >>(m.attr("GeomAPI_ExtremaCurveCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U1min"),  py::arg("U1max"),  py::arg("U2min"),  py::arg("U2max") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomAPI_ExtremaCurveCurve::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Curve> &  ) ) static_cast<void (GeomAPI_ExtremaCurveCurve::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Curve> &  ) >(&GeomAPI_ExtremaCurveCurve::Init),
@@ -141,14 +146,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_ExtremaCurveSurface , shared_ptr<GeomAPI_ExtremaCurveSurface>  >>(m.attr("GeomAPI_ExtremaCurveSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Surface> & >()  , py::arg("Curve"),  py::arg("Surface") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Curve"),  py::arg("Surface"),  py::arg("Wmin"),  py::arg("Wmax"),  py::arg("Umin"),  py::arg("Umax"),  py::arg("Vmin"),  py::arg("Vmax") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomAPI_ExtremaCurveSurface::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (GeomAPI_ExtremaCurveSurface::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Surface> &  ) >(&GeomAPI_ExtremaCurveSurface::Init),
@@ -187,14 +194,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_ExtremaSurfaceSurface , shared_ptr<GeomAPI_ExtremaSurfaceSurface>  >>(m.attr("GeomAPI_ExtremaSurfaceSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> & >()  , py::arg("S1"),  py::arg("S2") )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("U1min"),  py::arg("U1max"),  py::arg("V1min"),  py::arg("V1max"),  py::arg("U2min"),  py::arg("U2max"),  py::arg("V2min"),  py::arg("V2max") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomAPI_ExtremaSurfaceSurface::*)( const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (GeomAPI_ExtremaSurfaceSurface::*)( const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<Geom_Surface> &  ) >(&GeomAPI_ExtremaSurfaceSurface::Init),
@@ -233,13 +242,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_IntCS , shared_ptr<GeomAPI_IntCS>  >>(m.attr("GeomAPI_IntCS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Surface> & >()  , py::arg("C"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomAPI_IntCS::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (GeomAPI_IntCS::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Surface> &  ) >(&GeomAPI_IntCS::Perform),
@@ -269,13 +280,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_IntSS , shared_ptr<GeomAPI_IntSS>  >>(m.attr("GeomAPI_IntSS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> &,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomAPI_IntSS::*)( const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) ) static_cast<void (GeomAPI_IntSS::*)( const opencascade::handle<Geom_Surface> & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) >(&GeomAPI_IntSS::Perform),
@@ -305,13 +318,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_Interpolate , shared_ptr<GeomAPI_Interpolate>  >>(m.attr("GeomAPI_Interpolate"))
+    // constructors
         .def(py::init< const opencascade::handle<TColgp_HArray1OfPnt> &,const Standard_Boolean,const Standard_Real >()  , py::arg("Points"),  py::arg("PeriodicFlag"),  py::arg("Tolerance") )
         .def(py::init< const opencascade::handle<TColgp_HArray1OfPnt> &,const opencascade::handle<TColStd_HArray1OfReal> &,const Standard_Boolean,const Standard_Real >()  , py::arg("Points"),  py::arg("Parameters"),  py::arg("PeriodicFlag"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Load",
              (void (GeomAPI_Interpolate::*)( const gp_Vec & ,  const gp_Vec & ,  const Standard_Boolean  ) ) static_cast<void (GeomAPI_Interpolate::*)( const gp_Vec & ,  const gp_Vec & ,  const Standard_Boolean  ) >(&GeomAPI_Interpolate::Load),
@@ -332,16 +347,18 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_PointsToBSpline , shared_ptr<GeomAPI_PointsToBSpline>  >>(m.attr("GeomAPI_PointsToBSpline"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &,const Approx_ParametrizationType,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("ParType"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> &,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("Parameters"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("Weight1"),  py::arg("Weight2"),  py::arg("Weight3"),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomAPI_PointsToBSpline::*)(  const NCollection_Array1<gp_Pnt> & ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) ) static_cast<void (GeomAPI_PointsToBSpline::*)(  const NCollection_Array1<gp_Pnt> & ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) >(&GeomAPI_PointsToBSpline::Init),
@@ -365,26 +382,28 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_PointsToBSplineSurface , shared_ptr<GeomAPI_PointsToBSplineSurface>  >>(m.attr("GeomAPI_PointsToBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Array2<gp_Pnt> &,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array2<gp_Pnt> &,const Approx_ParametrizationType,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("ParType"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array2<gp_Pnt> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("Weight1"),  py::arg("Weight2"),  py::arg("Weight3"),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array2<Standard_Real> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("ZPoints"),  py::arg("X0"),  py::arg("dX"),  py::arg("Y0"),  py::arg("dY"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) >(&GeomAPI_PointsToBSplineSurface::Init),
-             R"#(Approximates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be in the range [Degmin,Degmax] 2- his continuity will be at least <Continuity> 3- the distance from the point <Points> to the BSpline will be lower to Tol3D)#"  , py::arg("Points"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3))
+             R"#(Approximates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be in the range [Degmin,Degmax] 2- his continuity will be at least <Continuity> 3- the distance from the point <Points> to the BSpline will be lower to Tol3D.)#"  , py::arg("Points"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3))
         .def("Interpolate",
-             (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> &  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> &  ) >(&GeomAPI_PointsToBSplineSurface::Interpolate),
-             R"#(Interpolates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be 3. 2- his continuity will be C2.)#"  , py::arg("Points"))
+             (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Standard_Boolean  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Standard_Boolean  ) >(&GeomAPI_PointsToBSplineSurface::Interpolate),
+             R"#(Interpolates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be 3. 2- his continuity will be C2.)#"  , py::arg("Points"),  py::arg("thePeriodic")=static_cast<const Standard_Boolean>(Standard_False))
         .def("Interpolate",
-             (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType  ) >(&GeomAPI_PointsToBSplineSurface::Interpolate),
-             R"#(Interpolates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be 3. 2- his continuity will be C2.)#"  , py::arg("Points"),  py::arg("ParType"))
+             (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) >(&GeomAPI_PointsToBSplineSurface::Interpolate),
+             R"#(Interpolates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be 3. 2- his continuity will be C2.)#"  , py::arg("Points"),  py::arg("ParType"),  py::arg("thePeriodic")=static_cast<const Standard_Boolean>(Standard_False))
         .def("Init",
              (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<Standard_Real> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<Standard_Real> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) >(&GeomAPI_PointsToBSplineSurface::Init),
              R"#(Approximates a BSpline Surface passing through an array of Points.)#"  , py::arg("ZPoints"),  py::arg("X0"),  py::arg("dX"),  py::arg("Y0"),  py::arg("dY"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3))
@@ -392,11 +411,11 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
              (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<Standard_Real> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<Standard_Real> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&GeomAPI_PointsToBSplineSurface::Interpolate),
              R"#(Interpolates a BSpline Surface passing through an array of Points.)#"  , py::arg("ZPoints"),  py::arg("X0"),  py::arg("dX"),  py::arg("Y0"),  py::arg("dY"))
         .def("Init",
-             (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) >(&GeomAPI_PointsToBSplineSurface::Init),
-             R"#(Approximates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be in the range [Degmin,Degmax] 2- his continuity will be at least <Continuity> 3- the distance from the point <Points> to the BSpline will be lower to Tol3D)#"  , py::arg("Points"),  py::arg("ParType"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3))
+             (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Approx_ParametrizationType ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real ,  const Standard_Boolean  ) >(&GeomAPI_PointsToBSplineSurface::Init),
+             R"#(Approximates a BSpline Surface passing through an array of Point. The resulting BSpline will have the following properties: 1- his degree will be in the range [Degmin,Degmax] 2- his continuity will be at least <Continuity> 3- the distance from the point <Points> to the BSpline will be lower to Tol3D.)#"  , py::arg("Points"),  py::arg("ParType"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3),  py::arg("thePeriodic")=static_cast<const Standard_Boolean>(Standard_False))
         .def("Init",
              (void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) ) static_cast<void (GeomAPI_PointsToBSplineSurface::*)(  const NCollection_Array2<gp_Pnt> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) >(&GeomAPI_PointsToBSplineSurface::Init),
-             R"#(Approximates a BSpline Surface passing through an array of point using variational smoothing algorithm, which tries to minimize additional criterium: Weight1*CurveLength + Weight2*Curvature + Weight3*Torsion)#"  , py::arg("Points"),  py::arg("Weight1"),  py::arg("Weight2"),  py::arg("Weight3"),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3))
+             R"#(Approximates a BSpline Surface passing through an array of point using variational smoothing algorithm, which tries to minimize additional criterium: Weight1*CurveLength + Weight2*Curvature + Weight3*Torsion.)#"  , py::arg("Points"),  py::arg("Weight1"),  py::arg("Weight2"),  py::arg("Weight3"),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3))
         .def("Surface",
              (const opencascade::handle<Geom_BSplineSurface> & (GeomAPI_PointsToBSplineSurface::*)() const) static_cast<const opencascade::handle<Geom_BSplineSurface> & (GeomAPI_PointsToBSplineSurface::*)() const>(&GeomAPI_PointsToBSplineSurface::Surface),
              R"#(Returns the approximate BSpline Surface)#" )
@@ -407,14 +426,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_ProjectPointOnCurve , shared_ptr<GeomAPI_ProjectPointOnCurve>  >>(m.attr("GeomAPI_ProjectPointOnCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const opencascade::handle<Geom_Curve> & >()  , py::arg("P"),  py::arg("Curve") )
         .def(py::init< const gp_Pnt &,const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("Curve"),  py::arg("Umin"),  py::arg("Usup") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomAPI_ProjectPointOnCurve::*)( const gp_Pnt & ,  const opencascade::handle<Geom_Curve> &  ) ) static_cast<void (GeomAPI_ProjectPointOnCurve::*)( const gp_Pnt & ,  const opencascade::handle<Geom_Curve> &  ) >(&GeomAPI_ProjectPointOnCurve::Init),
@@ -462,16 +483,18 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAPI_ProjectPointOnSurf , shared_ptr<GeomAPI_ProjectPointOnSurf>  >>(m.attr("GeomAPI_ProjectPointOnSurf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const opencascade::handle<Geom_Surface> &,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("Surface"),  py::arg("Algo")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
         .def(py::init< const gp_Pnt &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("Surface"),  py::arg("Tolerance"),  py::arg("Algo")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
         .def(py::init< const gp_Pnt &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("Surface"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("Vmin"),  py::arg("Vsup"),  py::arg("Tolerance"),  py::arg("Algo")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
         .def(py::init< const gp_Pnt &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("Surface"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("Vmin"),  py::arg("Vsup"),  py::arg("Algo")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomAPI_ProjectPointOnSurf::*)( const gp_Pnt & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Extrema_ExtAlgo  ) ) static_cast<void (GeomAPI_ProjectPointOnSurf::*)( const gp_Pnt & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Extrema_ExtAlgo  ) >(&GeomAPI_ProjectPointOnSurf::Init),
@@ -534,21 +557,21 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomAPI_ExtremaCurveSurface.hxx
-// ./opencascade/GeomAPI_ProjectPointOnSurf.hxx
+// ./opencascade/GeomAPI_IntSS.hxx
+// ./opencascade/GeomAPI_ExtremaSurfaceSurface.hxx
 // ./opencascade/GeomAPI.hxx
-// ./opencascade/GeomAPI_PointsToBSpline.hxx
+// ./opencascade/GeomAPI_Interpolate.hxx
+// ./opencascade/GeomAPI_ProjectPointOnSurf.hxx
+// ./opencascade/GeomAPI_ExtremaCurveSurface.hxx
+// ./opencascade/GeomAPI_IntCS.hxx
 // ./opencascade/GeomAPI_PointsToBSplineSurface.hxx
 // ./opencascade/GeomAPI_ProjectPointOnCurve.hxx
-// ./opencascade/GeomAPI_ExtremaSurfaceSurface.hxx
-// ./opencascade/GeomAPI_IntCS.hxx
-// ./opencascade/GeomAPI_Interpolate.hxx
+// ./opencascade/GeomAPI_PointsToBSpline.hxx
 // ./opencascade/GeomAPI_ExtremaCurveCurve.hxx
-// ./opencascade/GeomAPI_IntSS.hxx
 
 // operators
 

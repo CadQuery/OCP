@@ -24,8 +24,8 @@ namespace py = pybind11;
 #include <Adaptor2d_HCurve2d.hxx>
 
 // module includes
-#include <Geom2dConvert_BSplineCurveToBezierCurve.hxx>
 #include <Geom2dConvert_BSplineCurveKnotSplitting.hxx>
+#include <Geom2dConvert_BSplineCurveToBezierCurve.hxx>
 #include <Geom2dConvert.hxx>
 #include <Geom2dConvert_CompCurveToBSplineCurve.hxx>
 #include <Geom2dConvert_ApproxCurve.hxx>
@@ -34,8 +34,8 @@ namespace py = pybind11;
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/Geom2dConvert_BSplineCurveToBezierCurve.hxx
 // ./opencascade/Geom2dConvert_BSplineCurveKnotSplitting.hxx
+// ./opencascade/Geom2dConvert_BSplineCurveToBezierCurve.hxx
 // ./opencascade/Geom2dConvert.hxx
 // ./opencascade/Geom2dConvert_CompCurveToBSplineCurve.hxx
 // ./opencascade/Geom2dConvert_ApproxCurve.hxx

@@ -46,22 +46,27 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi2d"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ChFi2d , shared_ptr<ChFi2d>>(m,"ChFi2d");
 
     static_cast<py::class_<ChFi2d , shared_ptr<ChFi2d>  >>(m.attr("ChFi2d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi2d_AnaFilletAlgo , shared_ptr<ChFi2d_AnaFilletAlgo>  >>(m.attr("ChFi2d_AnaFilletAlgo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const gp_Pln & >()  , py::arg("theWire"),  py::arg("thePlane") )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge &,const gp_Pln & >()  , py::arg("theEdge1"),  py::arg("theEdge2"),  py::arg("thePlane") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ChFi2d_AnaFilletAlgo::*)( const TopoDS_Wire & ,  const gp_Pln &  ) ) static_cast<void (ChFi2d_AnaFilletAlgo::*)( const TopoDS_Wire & ,  const gp_Pln &  ) >(&ChFi2d_AnaFilletAlgo::Init),
@@ -79,13 +84,15 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi2d_Builder , shared_ptr<ChFi2d_Builder>  >>(m.attr("ChFi2d_Builder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ChFi2d_Builder::*)( const TopoDS_Face &  ) ) static_cast<void (ChFi2d_Builder::*)( const TopoDS_Face &  ) >(&ChFi2d_Builder::Init),
@@ -178,14 +185,16 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi2d_ChamferAPI , shared_ptr<ChFi2d_ChamferAPI>  >>(m.attr("ChFi2d_ChamferAPI"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire & >()  , py::arg("theWire") )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge & >()  , py::arg("theEdge1"),  py::arg("theEdge2") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ChFi2d_ChamferAPI::*)( const TopoDS_Wire &  ) ) static_cast<void (ChFi2d_ChamferAPI::*)( const TopoDS_Wire &  ) >(&ChFi2d_ChamferAPI::Init),
@@ -203,14 +212,16 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi2d_FilletAPI , shared_ptr<ChFi2d_FilletAPI>  >>(m.attr("ChFi2d_FilletAPI"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const gp_Pln & >()  , py::arg("theWire"),  py::arg("thePlane") )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge &,const gp_Pln & >()  , py::arg("theEdge1"),  py::arg("theEdge2"),  py::arg("thePlane") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ChFi2d_FilletAPI::*)( const TopoDS_Wire & ,  const gp_Pln &  ) ) static_cast<void (ChFi2d_FilletAPI::*)( const TopoDS_Wire & ,  const gp_Pln &  ) >(&ChFi2d_FilletAPI::Init),
@@ -231,14 +242,16 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ChFi2d_FilletAlgo , shared_ptr<ChFi2d_FilletAlgo>  >>(m.attr("ChFi2d_FilletAlgo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const gp_Pln & >()  , py::arg("theWire"),  py::arg("thePlane") )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge &,const gp_Pln & >()  , py::arg("theEdge1"),  py::arg("theEdge2"),  py::arg("thePlane") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ChFi2d_FilletAlgo::*)( const TopoDS_Wire & ,  const gp_Pln &  ) ) static_cast<void (ChFi2d_FilletAlgo::*)( const TopoDS_Wire & ,  const gp_Pln &  ) >(&ChFi2d_FilletAlgo::Init),
@@ -259,12 +272,14 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FilletPoint , shared_ptr<FilletPoint>  >>(m.attr("FilletPoint"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("theParam") )
+    // custom constructors
     // methods
         .def("setParam",
              (void (FilletPoint::*)( Standard_Real  ) ) static_cast<void (FilletPoint::*)( Standard_Real  ) >(&FilletPoint::setParam),
@@ -324,17 +339,17 @@ py::module m = static_cast<py::module>(main_module.attr("ChFi2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ChFi2d_Builder.hxx
+// ./opencascade/ChFi2d_ConstructionError.hxx
+// ./opencascade/ChFi2d_FilletAlgo.hxx
 // ./opencascade/ChFi2d_FilletAPI.hxx
 // ./opencascade/ChFi2d.hxx
-// ./opencascade/ChFi2d_ConstructionError.hxx
-// ./opencascade/ChFi2d_AnaFilletAlgo.hxx
-// ./opencascade/ChFi2d_FilletAlgo.hxx
 // ./opencascade/ChFi2d_ChamferAPI.hxx
+// ./opencascade/ChFi2d_Builder.hxx
+// ./opencascade/ChFi2d_AnaFilletAlgo.hxx
 
 // operators
 

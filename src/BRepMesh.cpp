@@ -13,75 +13,94 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Poly_Triangulation.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Bnd_Box.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <BRepAdaptor_HSurface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Poly_Polygon3D.hxx>
 #include <TopoDS_Face.hxx>
-#include <Poly_PolygonOnTriangulation.hxx>
-#include <BRepMesh_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <BRepMesh_FaceAttribute.hxx>
-#include <BRepMesh_VertexInspector.hxx>
-#include <BRepMesh_CircleInspector.hxx>
-#include <BRepMesh_Classifier.hxx>
-#include <Poly_Triangulation.hxx>
-#include <BRepMesh_VertexTool.hxx>
 #include <Bnd_Box.hxx>
-#include <Geom2dAdaptor_HCurve.hxx>
+#include <Bnd_Box.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
 #include <gp_Circ2d.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <BRepAdaptor_Curve.hxx>
-#include <BRepAdaptor_HSurface.hxx>
+#include <BRepMesh_DataStructureOfDelaun.hxx>
+#include <BRepMesh_Delaun.hxx>
 #include <TopoDS_Shape.hxx>
 #include <BRepMesh_DiscretRoot.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Poly_PolygonOnTriangulation.hxx>
+#include <BRepAdaptor_Curve.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <BRepMesh_DefaultRangeSplitter.hxx>
+#include <Adaptor3d_HSurface.hxx>
 #include <TopoDS_Face.hxx>
-#include <Geom2dAdaptor_HCurve.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Wire.hxx>
+#include <BRepMesh_DataStructureOfDelaun.hxx>
+#include <BRepMesh_Delaun.hxx>
+#include <BRepMesh_DataStructureOfDelaun.hxx>
+#include <BRepMesh_Delaun.hxx>
+#include <CSLib_Class2d.hxx>
+#include <BRepMesh_DataStructureOfDelaun.hxx>
+#include <BRepMesh_Delaun.hxx>
 
 // module includes
-#include <BRepMesh.hxx>
+#include <BRepMesh_BaseMeshAlgo.hxx>
+#include <BRepMesh_BoundaryParamsRangeSplitter.hxx>
 #include <BRepMesh_Circle.hxx>
 #include <BRepMesh_CircleInspector.hxx>
 #include <BRepMesh_CircleTool.hxx>
 #include <BRepMesh_Classifier.hxx>
+#include <BRepMesh_ConeRangeSplitter.hxx>
+#include <BRepMesh_ConstrainedBaseMeshAlgo.hxx>
+#include <BRepMesh_Context.hxx>
+#include <BRepMesh_CurveTessellator.hxx>
+#include <BRepMesh_CustomBaseMeshAlgo.hxx>
+#include <BRepMesh_CustomDelaunayBaseMeshAlgo.hxx>
+#include <BRepMesh_CylinderRangeSplitter.hxx>
 #include <BRepMesh_DataStructureOfDelaun.hxx>
+#include <BRepMesh_DefaultRangeSplitter.hxx>
+#include <BRepMesh_Deflection.hxx>
 #include <BRepMesh_DegreeOfFreedom.hxx>
 #include <BRepMesh_Delaun.hxx>
+#include <BRepMesh_DelaunayBaseMeshAlgo.hxx>
+#include <BRepMesh_DelaunayDeflectionControlMeshAlgo.hxx>
+#include <BRepMesh_DelaunayNodeInsertionMeshAlgo.hxx>
 #include <BRepMesh_DiscretFactory.hxx>
 #include <BRepMesh_DiscretRoot.hxx>
 #include <BRepMesh_Edge.hxx>
+#include <BRepMesh_EdgeDiscret.hxx>
 #include <BRepMesh_EdgeParameterProvider.hxx>
 #include <BRepMesh_EdgeTessellationExtractor.hxx>
-#include <BRepMesh_EdgeTessellator.hxx>
-#include <BRepMesh_FaceAttribute.hxx>
+#include <BRepMesh_FaceChecker.hxx>
+#include <BRepMesh_FaceDiscret.hxx>
 #include <BRepMesh_FactoryError.hxx>
 #include <BRepMesh_FastDiscret.hxx>
-#include <BRepMesh_FastDiscretFace.hxx>
 #include <BRepMesh_GeomTool.hxx>
-#include <BRepMesh_IEdgeTool.hxx>
 #include <BRepMesh_IncrementalMesh.hxx>
+#include <BRepMesh_MeshAlgoFactory.hxx>
+#include <BRepMesh_MeshTool.hxx>
+#include <BRepMesh_ModelBuilder.hxx>
+#include <BRepMesh_ModelHealer.hxx>
+#include <BRepMesh_ModelPostProcessor.hxx>
+#include <BRepMesh_ModelPreProcessor.hxx>
+#include <BRepMesh_NodeInsertionMeshAlgo.hxx>
+#include <BRepMesh_NURBSRangeSplitter.hxx>
 #include <BRepMesh_OrientedEdge.hxx>
 #include <BRepMesh_PairOfIndex.hxx>
-#include <BRepMesh_PairOfPolygon.hxx>
 #include <BRepMesh_PluginEntryType.hxx>
 #include <BRepMesh_PluginMacro.hxx>
 #include <BRepMesh_SelectorOfDataStructureOfDelaun.hxx>
 #include <BRepMesh_ShapeTool.hxx>
-#include <BRepMesh_Status.hxx>
+#include <BRepMesh_ShapeVisitor.hxx>
+#include <BRepMesh_SphereRangeSplitter.hxx>
+#include <BRepMesh_TorusRangeSplitter.hxx>
 #include <BRepMesh_Triangle.hxx>
+#include <BRepMesh_UVParamRangeSplitter.hxx>
 #include <BRepMesh_Vertex.hxx>
 #include <BRepMesh_VertexInspector.hxx>
 #include <BRepMesh_VertexTool.hxx>
-#include <BRepMesh_WireChecker.hxx>
-#include <BRepMesh_WireInterferenceChecker.hxx>
 
 // template related includes
 
@@ -99,9 +118,25 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
 
 
 //Python trampoline classes
+    class Py_BRepMesh_BaseMeshAlgo : public BRepMesh_BaseMeshAlgo{
+    public:
+        using BRepMesh_BaseMeshAlgo::BRepMesh_BaseMeshAlgo;
+        
+        
+        // public pure virtual
+        
+        
+        // protected pure virtual
+        void generateMesh() override { PYBIND11_OVERLOAD_PURE(void,BRepMesh_BaseMeshAlgo,generateMesh,) };
+        
+        
+        // private pure virtual
+        
+    };
     class Py_BRepMesh_DiscretRoot : public BRepMesh_DiscretRoot{
     public:
         using BRepMesh_DiscretRoot::BRepMesh_DiscretRoot;
+        
         
         // public pure virtual
         void Perform() override { PYBIND11_OVERLOAD_PURE(void,BRepMesh_DiscretRoot,Perform,) };
@@ -113,17 +148,33 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
         // private pure virtual
         
     };
-    class Py_BRepMesh_IEdgeTool : public BRepMesh_IEdgeTool{
+    class Py_BRepMesh_ConstrainedBaseMeshAlgo : public BRepMesh_ConstrainedBaseMeshAlgo{
     public:
-        using BRepMesh_IEdgeTool::BRepMesh_IEdgeTool;
+        using BRepMesh_ConstrainedBaseMeshAlgo::BRepMesh_ConstrainedBaseMeshAlgo;
+        
         
         // public pure virtual
-        Standard_Integer NbPoints() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,BRepMesh_IEdgeTool,NbPoints,) };
-        Standard_Boolean Value(const Standard_Integer theIndex,Standard_Real & theParameter,gp_Pnt & thePoint,gp_Pnt2d & theUV) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepMesh_IEdgeTool,Value,theIndex,theParameter,thePoint,theUV) };
         
         
         // protected pure virtual
         
+        void generateMesh() override { PYBIND11_OVERLOAD_PURE(void,BRepMesh_BaseMeshAlgo,generateMesh,) };
+        
+        // private pure virtual
+        
+    };
+    class Py_BRepMesh_CustomBaseMeshAlgo : public BRepMesh_CustomBaseMeshAlgo{
+    public:
+        using BRepMesh_CustomBaseMeshAlgo::BRepMesh_CustomBaseMeshAlgo;
+        
+        
+        // public pure virtual
+        
+        
+        // protected pure virtual
+        void buildBaseTriangulation() override { PYBIND11_OVERLOAD_PURE(void,BRepMesh_CustomBaseMeshAlgo,buildBaseTriangulation,) };
+        
+        void generateMesh() override { PYBIND11_OVERLOAD_PURE(void,BRepMesh_BaseMeshAlgo,generateMesh,) };
         
         // private pure virtual
         
@@ -132,9 +183,36 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
 // classes
 
 
+    static_cast<py::class_<BRepMesh_BaseMeshAlgo ,opencascade::handle<BRepMesh_BaseMeshAlgo> ,Py_BRepMesh_BaseMeshAlgo >>(m.attr("BRepMesh_BaseMeshAlgo"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("Perform",
+             (void (BRepMesh_BaseMeshAlgo::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) ) static_cast<void (BRepMesh_BaseMeshAlgo::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_BaseMeshAlgo::Perform),
+             R"#(Performs processing of the given face.)#"  , py::arg("theDFace"),  py::arg("theParameters"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_BaseMeshAlgo::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_BaseMeshAlgo::*)() const>(&BRepMesh_BaseMeshAlgo::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_BaseMeshAlgo::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_BaseMeshAlgo::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
     static_cast<py::class_<BRepMesh_Circle , shared_ptr<BRepMesh_Circle>  >>(m.attr("BRepMesh_Circle"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XY &,const Standard_Real >()  , py::arg("theLocation"),  py::arg("theRadius") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (BRepMesh_Circle::*)( const gp_XY &  ) ) static_cast<void (BRepMesh_Circle::*)( const gp_XY &  ) >(&BRepMesh_Circle::SetLocation),
@@ -152,18 +230,20 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_CircleInspector , shared_ptr<BRepMesh_CircleInspector>  >>(m.attr("BRepMesh_CircleInspector"))
+    static_cast<py::class_<BRepMesh_CircleInspector , shared_ptr<BRepMesh_CircleInspector>  , NCollection_CellFilter_InspectorXY >>(m.attr("BRepMesh_CircleInspector"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Integer,const opencascade::handle<NCollection_IncAllocator> & >()  , py::arg("theTolerance"),  py::arg("theReservedSize"),  py::arg("theAllocator") )
+    // custom constructors
     // methods
         .def("Bind",
              (void (BRepMesh_CircleInspector::*)( const Standard_Integer ,  const BRepMesh_Circle &  ) ) static_cast<void (BRepMesh_CircleInspector::*)( const Standard_Integer ,  const BRepMesh_Circle &  ) >(&BRepMesh_CircleInspector::Bind),
              R"#(Adds the circle to vector of circles at the given position.)#"  , py::arg("theIndex"),  py::arg("theCircle"))
         .def("Circles",
-             (const BRepMesh::VectorOfCircle & (BRepMesh_CircleInspector::*)() const) static_cast<const BRepMesh::VectorOfCircle & (BRepMesh_CircleInspector::*)() const>(&BRepMesh_CircleInspector::Circles),
+             (const IMeshData::VectorOfCircle & (BRepMesh_CircleInspector::*)() const) static_cast<const IMeshData::VectorOfCircle & (BRepMesh_CircleInspector::*)() const>(&BRepMesh_CircleInspector::Circles),
              R"#(Resutns vector of registered circles.)#" )
         .def("Circle",
              (BRepMesh_Circle & (BRepMesh_CircleInspector::*)( const Standard_Integer  ) ) static_cast<BRepMesh_Circle & (BRepMesh_CircleInspector::*)( const Standard_Integer  ) >(&BRepMesh_CircleInspector::Circle),
@@ -172,7 +252,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (void (BRepMesh_CircleInspector::*)( const gp_XY &  ) ) static_cast<void (BRepMesh_CircleInspector::*)( const gp_XY &  ) >(&BRepMesh_CircleInspector::SetPoint),
              R"#(Set reference point to be checked.)#"  , py::arg("thePoint"))
         .def("GetShotCircles",
-             (BRepMesh::ListOfInteger & (BRepMesh_CircleInspector::*)() ) static_cast<BRepMesh::ListOfInteger & (BRepMesh_CircleInspector::*)() >(&BRepMesh_CircleInspector::GetShotCircles),
+             (IMeshData::ListOfInteger & (BRepMesh_CircleInspector::*)() ) static_cast<IMeshData::ListOfInteger & (BRepMesh_CircleInspector::*)() >(&BRepMesh_CircleInspector::GetShotCircles),
              R"#(Returns list of circles shot by the reference point.)#" )
         .def("Inspect",
              (NCollection_CellFilter_Action (BRepMesh_CircleInspector::*)( const Standard_Integer  ) ) static_cast<NCollection_CellFilter_Action (BRepMesh_CircleInspector::*)( const Standard_Integer  ) >(&BRepMesh_CircleInspector::Inspect),
@@ -184,13 +264,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
                     R"#(Checks indices for equlity.)#"  , py::arg("theIndex"),  py::arg("theTargetIndex"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_CircleTool , shared_ptr<BRepMesh_CircleTool>  >>(m.attr("BRepMesh_CircleTool"))
+    // constructors
         .def(py::init< const opencascade::handle<NCollection_IncAllocator> & >()  , py::arg("theAllocator") )
         .def(py::init< const Standard_Integer,const opencascade::handle<NCollection_IncAllocator> & >()  , py::arg("theReservedSize"),  py::arg("theAllocator") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepMesh_CircleTool::*)( const Standard_Integer  ) ) static_cast<void (BRepMesh_CircleTool::*)( const Standard_Integer  ) >(&BRepMesh_CircleTool::Init),
@@ -204,6 +286,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
         .def("SetMinMaxSize",
              (void (BRepMesh_CircleTool::*)( const gp_XY & ,  const gp_XY &  ) ) static_cast<void (BRepMesh_CircleTool::*)( const gp_XY & ,  const gp_XY &  ) >(&BRepMesh_CircleTool::SetMinMaxSize),
              R"#(Sets limits of inspection area.)#"  , py::arg("theMin"),  py::arg("theMax"))
+        .def("IsEmpty",
+             (Standard_Boolean (BRepMesh_CircleTool::*)() const) static_cast<Standard_Boolean (BRepMesh_CircleTool::*)() const>(&BRepMesh_CircleTool::IsEmpty),
+             R"#(Retruns true if cell filter contains no circle.)#" )
         .def("Bind",
              (void (BRepMesh_CircleTool::*)( const Standard_Integer ,  const gp_Circ2d &  ) ) static_cast<void (BRepMesh_CircleTool::*)( const Standard_Integer ,  const gp_Circ2d &  ) >(&BRepMesh_CircleTool::Bind),
              R"#(Binds the circle to the tool.)#"  , py::arg("theIndex"),  py::arg("theCircle"))
@@ -217,7 +302,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (void (BRepMesh_CircleTool::*)( const Standard_Integer  ) ) static_cast<void (BRepMesh_CircleTool::*)( const Standard_Integer  ) >(&BRepMesh_CircleTool::Delete),
              R"#(Deletes a circle from the tool.)#"  , py::arg("theIndex"))
         .def("Select",
-             (BRepMesh::ListOfInteger & (BRepMesh_CircleTool::*)( const gp_XY &  ) ) static_cast<BRepMesh::ListOfInteger & (BRepMesh_CircleTool::*)( const gp_XY &  ) >(&BRepMesh_CircleTool::Select),
+             (IMeshData::ListOfInteger & (BRepMesh_CircleTool::*)( const gp_XY &  ) ) static_cast<IMeshData::ListOfInteger & (BRepMesh_CircleTool::*)( const gp_XY &  ) >(&BRepMesh_CircleTool::Select),
              R"#(Select the circles shot by the given point.)#"  , py::arg("thePoint"))
     // methods using call by reference i.s.o. return
     // static methods
@@ -226,32 +311,93 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
                     R"#(Computes circle on three points.)#"  , py::arg("thePoint1"),  py::arg("thePoint2"),  py::arg("thePoint3"),  py::arg("theLocation"),  py::arg("theRadius"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_Classifier , shared_ptr<BRepMesh_Classifier>  >>(m.attr("BRepMesh_Classifier"))
+    static_cast<py::class_<BRepMesh_Classifier ,opencascade::handle<BRepMesh_Classifier>  , Standard_Transient >>(m.attr("BRepMesh_Classifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
-        .def("Destroy",
-             (void (BRepMesh_Classifier::*)() ) static_cast<void (BRepMesh_Classifier::*)() >(&BRepMesh_Classifier::Destroy),
-             R"#(Method is called on destruction. Clears internal data structures.)#" )
         .def("Perform",
              (TopAbs_State (BRepMesh_Classifier::*)( const gp_Pnt2d &  ) const) static_cast<TopAbs_State (BRepMesh_Classifier::*)( const gp_Pnt2d &  ) const>(&BRepMesh_Classifier::Perform),
              R"#(Performs classification of the given point regarding to face internals.)#"  , py::arg("thePoint"))
         .def("RegisterWire",
-             (void (BRepMesh_Classifier::*)( const NCollection_Sequence<gp_Pnt2d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepMesh_Classifier::*)( const NCollection_Sequence<gp_Pnt2d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&BRepMesh_Classifier::RegisterWire),
-             R"#(Registers wire specified by sequence of points for further classification of points.)#"  , py::arg("theWire"),  py::arg("theTolUV"),  py::arg("theUmin"),  py::arg("theUmax"),  py::arg("theVmin"),  py::arg("theVmax"))
+             (void (BRepMesh_Classifier::*)( const NCollection_Sequence<const gp_Pnt2d *> & ,  const std::pair<Standard_Real, Standard_Real> & ,  const std::pair<Standard_Real, Standard_Real> & ,  const std::pair<Standard_Real, Standard_Real> &  ) ) static_cast<void (BRepMesh_Classifier::*)( const NCollection_Sequence<const gp_Pnt2d *> & ,  const std::pair<Standard_Real, Standard_Real> & ,  const std::pair<Standard_Real, Standard_Real> & ,  const std::pair<Standard_Real, Standard_Real> &  ) >(&BRepMesh_Classifier::RegisterWire),
+             R"#(Registers wire specified by sequence of points for further classification of points.)#"  , py::arg("theWire"),  py::arg("theTolUV"),  py::arg("theRangeU"),  py::arg("theRangeV"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_Classifier::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_Classifier::*)() const>(&BRepMesh_Classifier::DynamicType),
+             R"#(None)#" )
     // methods using call by reference i.s.o. return
     // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_Classifier::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_Classifier::get_type_descriptor),
+                    R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_Context ,opencascade::handle<BRepMesh_Context>  >>(m.attr("BRepMesh_Context"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_Context::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_Context::*)() const>(&BRepMesh_Context::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_Context::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_Context::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_CurveTessellator ,opencascade::handle<BRepMesh_CurveTessellator>  >>(m.attr("BRepMesh_CurveTessellator"))
+    // constructors
+        .def(py::init<  const opencascade::handle<IMeshData_Edge> &,const IMeshTools_Parameters & >()  , py::arg("theEdge"),  py::arg("theParameters") )
+        .def(py::init<  const opencascade::handle<IMeshData_Edge> &,const TopAbs_Orientation, const opencascade::handle<IMeshData_Face> &,const IMeshTools_Parameters & >()  , py::arg("theEdge"),  py::arg("theOrientation"),  py::arg("theFace"),  py::arg("theParameters") )
+    // custom constructors
+    // methods
+        .def("PointsNb",
+             (Standard_Integer (BRepMesh_CurveTessellator::*)() const) static_cast<Standard_Integer (BRepMesh_CurveTessellator::*)() const>(&BRepMesh_CurveTessellator::PointsNb),
+             R"#(Returns number of tessellation points.)#" )
+        .def("Value",
+             (Standard_Boolean (BRepMesh_CurveTessellator::*)( const Standard_Integer ,  gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Boolean (BRepMesh_CurveTessellator::*)( const Standard_Integer ,  gp_Pnt & ,  Standard_Real &  ) const>(&BRepMesh_CurveTessellator::Value),
+             R"#(Returns parameters of solution with the given index.)#"  , py::arg("theIndex"),  py::arg("thePoint"),  py::arg("theParameter"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_CurveTessellator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_CurveTessellator::*)() const>(&BRepMesh_CurveTessellator::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_CurveTessellator::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_CurveTessellator::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_DataStructureOfDelaun ,opencascade::handle<BRepMesh_DataStructureOfDelaun>  , Standard_Transient >>(m.attr("BRepMesh_DataStructureOfDelaun"))
+    // constructors
         .def(py::init< const opencascade::handle<NCollection_IncAllocator> &,const Standard_Integer >()  , py::arg("theAllocator"),  py::arg("theReservedNodeSize")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
         .def("NbNodes",
              (Standard_Integer (BRepMesh_DataStructureOfDelaun::*)() const) static_cast<Standard_Integer (BRepMesh_DataStructureOfDelaun::*)() const>(&BRepMesh_DataStructureOfDelaun::NbNodes),
@@ -272,7 +418,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (void (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&BRepMesh_DataStructureOfDelaun::RemoveNode),
              R"#(Removes node from the mesh in case if it has no connected links and its type is Free.)#"  , py::arg("theIndex"),  py::arg("isForce")=static_cast<const Standard_Boolean>(Standard_False))
         .def("LinksConnectedTo",
-             (const BRepMesh::ListOfInteger & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) const) static_cast<const BRepMesh::ListOfInteger & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) const>(&BRepMesh_DataStructureOfDelaun::LinksConnectedTo),
+             (const IMeshData::ListOfInteger & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) const) static_cast<const IMeshData::ListOfInteger & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) const>(&BRepMesh_DataStructureOfDelaun::LinksConnectedTo),
              R"#(Get list of links attached to the node with the given index.)#"  , py::arg("theIndex"))
         .def("NbLinks",
              (Standard_Integer (BRepMesh_DataStructureOfDelaun::*)() const) static_cast<Standard_Integer (BRepMesh_DataStructureOfDelaun::*)() const>(&BRepMesh_DataStructureOfDelaun::NbLinks),
@@ -287,7 +433,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (const BRepMesh_Edge & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) ) static_cast<const BRepMesh_Edge & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) >(&BRepMesh_DataStructureOfDelaun::GetLink),
              R"#(Get link by the index.)#"  , py::arg("theIndex"))
         .def("LinksOfDomain",
-             (const BRepMesh::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const) static_cast<const BRepMesh::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const>(&BRepMesh_DataStructureOfDelaun::LinksOfDomain),
+             (const IMeshData::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const) static_cast<const IMeshData::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const>(&BRepMesh_DataStructureOfDelaun::LinksOfDomain),
              R"#(Returns map of indices of links registered in mesh.)#" )
         .def("SubstituteLink",
              (Standard_Boolean (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer ,  const BRepMesh_Edge &  ) ) static_cast<Standard_Boolean (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer ,  const BRepMesh_Edge &  ) >(&BRepMesh_DataStructureOfDelaun::SubstituteLink),
@@ -304,14 +450,11 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
         .def("AddElement",
              (Standard_Integer (BRepMesh_DataStructureOfDelaun::*)( const BRepMesh_Triangle &  ) ) static_cast<Standard_Integer (BRepMesh_DataStructureOfDelaun::*)( const BRepMesh_Triangle &  ) >(&BRepMesh_DataStructureOfDelaun::AddElement),
              R"#(Adds element to the mesh if it is not already in the mesh.)#"  , py::arg("theElement"))
-        .def("IndexOf",
-             (Standard_Integer (BRepMesh_DataStructureOfDelaun::*)( const BRepMesh_Triangle &  ) const) static_cast<Standard_Integer (BRepMesh_DataStructureOfDelaun::*)( const BRepMesh_Triangle &  ) const>(&BRepMesh_DataStructureOfDelaun::IndexOf),
-             R"#(Finds the index of the given element.)#"  , py::arg("theElement"))
         .def("GetElement",
              (const BRepMesh_Triangle & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) ) static_cast<const BRepMesh_Triangle & (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) >(&BRepMesh_DataStructureOfDelaun::GetElement),
              R"#(Get element by the index.)#"  , py::arg("theIndex"))
         .def("ElementsOfDomain",
-             (const BRepMesh::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const) static_cast<const BRepMesh::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const>(&BRepMesh_DataStructureOfDelaun::ElementsOfDomain),
+             (const IMeshData::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const) static_cast<const IMeshData::MapOfInteger & (BRepMesh_DataStructureOfDelaun::*)() const>(&BRepMesh_DataStructureOfDelaun::ElementsOfDomain),
              R"#(Returns map of indices of elements registered in mesh.)#" )
         .def("SubstituteElement",
              (Standard_Boolean (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer ,  const BRepMesh_Triangle &  ) ) static_cast<Standard_Boolean (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer ,  const BRepMesh_Triangle &  ) >(&BRepMesh_DataStructureOfDelaun::SubstituteElement),
@@ -319,6 +462,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
         .def("RemoveElement",
              (void (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) ) static_cast<void (BRepMesh_DataStructureOfDelaun::*)( const Standard_Integer  ) >(&BRepMesh_DataStructureOfDelaun::RemoveElement),
              R"#(Removes element from the mesh.)#"  , py::arg("theIndex"))
+        .def("Dump",
+             (void (BRepMesh_DataStructureOfDelaun::*)( Standard_CString  ) ) static_cast<void (BRepMesh_DataStructureOfDelaun::*)( Standard_CString  ) >(&BRepMesh_DataStructureOfDelaun::Dump),
+             R"#(None)#"  , py::arg("theFileNameStr"))
         .def("Statistics",
              (void (BRepMesh_DataStructureOfDelaun::*)( std::ostream &  ) const) static_cast<void (BRepMesh_DataStructureOfDelaun::*)( std::ostream &  ) const>(&BRepMesh_DataStructureOfDelaun::Statistics),
              R"#(Dumps information about this structure.)#"  , py::arg("theStream"))
@@ -326,7 +472,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (const opencascade::handle<NCollection_IncAllocator> & (BRepMesh_DataStructureOfDelaun::*)() const) static_cast<const opencascade::handle<NCollection_IncAllocator> & (BRepMesh_DataStructureOfDelaun::*)() const>(&BRepMesh_DataStructureOfDelaun::Allocator),
              R"#(Returns memory allocator used by the structure.)#" )
         .def("Data",
-             (BRepMesh::HVertexTool & (BRepMesh_DataStructureOfDelaun::*)() ) static_cast<BRepMesh::HVertexTool & (BRepMesh_DataStructureOfDelaun::*)() >(&BRepMesh_DataStructureOfDelaun::Data),
+             (const opencascade::handle<BRepMesh_VertexTool> & (BRepMesh_DataStructureOfDelaun::*)() ) static_cast<const opencascade::handle<BRepMesh_VertexTool> & (BRepMesh_DataStructureOfDelaun::*)() >(&BRepMesh_DataStructureOfDelaun::Data),
              R"#(Gives the data structure for initialization of cell size and tolerance.)#" )
         .def("ClearDomain",
              (void (BRepMesh_DataStructureOfDelaun::*)() ) static_cast<void (BRepMesh_DataStructureOfDelaun::*)() >(&BRepMesh_DataStructureOfDelaun::ClearDomain),
@@ -347,39 +493,135 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_DefaultRangeSplitter , shared_ptr<BRepMesh_DefaultRangeSplitter>  >>(m.attr("BRepMesh_DefaultRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("Reset",
+             (void (BRepMesh_DefaultRangeSplitter::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) ) static_cast<void (BRepMesh_DefaultRangeSplitter::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_DefaultRangeSplitter::Reset),
+             R"#(Resets this splitter. Must be called before first use.)#"  , py::arg("theDFace"),  py::arg("theParameters"))
+        .def("AddPoint",
+             (void (BRepMesh_DefaultRangeSplitter::*)( const gp_Pnt2d &  ) ) static_cast<void (BRepMesh_DefaultRangeSplitter::*)( const gp_Pnt2d &  ) >(&BRepMesh_DefaultRangeSplitter::AddPoint),
+             R"#(Registers border point.)#"  , py::arg("thePoint"))
+        .def("AdjustRange",
+             (void (BRepMesh_DefaultRangeSplitter::*)() ) static_cast<void (BRepMesh_DefaultRangeSplitter::*)() >(&BRepMesh_DefaultRangeSplitter::AdjustRange),
+             R"#(Updates discrete range of surface according to its geometric range.)#" )
+        .def("IsValid",
+             (Standard_Boolean (BRepMesh_DefaultRangeSplitter::*)() ) static_cast<Standard_Boolean (BRepMesh_DefaultRangeSplitter::*)() >(&BRepMesh_DefaultRangeSplitter::IsValid),
+             R"#(Returns True if computed range is valid.)#" )
+        .def("Scale",
+             (gp_Pnt2d (BRepMesh_DefaultRangeSplitter::*)( const gp_Pnt2d & ,  const Standard_Boolean  ) const) static_cast<gp_Pnt2d (BRepMesh_DefaultRangeSplitter::*)( const gp_Pnt2d & ,  const Standard_Boolean  ) const>(&BRepMesh_DefaultRangeSplitter::Scale),
+             R"#(Scales the given point from real parametric space to face basis and otherwise.)#"  , py::arg("thePoint"),  py::arg("isToFaceBasis"))
+        .def("GenerateSurfaceNodes",
+             (opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_DefaultRangeSplitter::*)( const IMeshTools_Parameters &  ) const) static_cast<opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_DefaultRangeSplitter::*)( const IMeshTools_Parameters &  ) const>(&BRepMesh_DefaultRangeSplitter::GenerateSurfaceNodes),
+             R"#(Returns list of nodes generated using surface data and specified parameters. By default returns null ptr.)#"  , py::arg("theParameters"))
+        .def("Point",
+             (gp_Pnt (BRepMesh_DefaultRangeSplitter::*)( const gp_Pnt2d &  ) const) static_cast<gp_Pnt (BRepMesh_DefaultRangeSplitter::*)( const gp_Pnt2d &  ) const>(&BRepMesh_DefaultRangeSplitter::Point),
+             R"#(Returns point in 3d space corresponded to the given point defined in parameteric space of surface.)#"  , py::arg("thePoint2d"))
+        .def("GetDFace",
+             (const IMeshData::IFaceHandle & (BRepMesh_DefaultRangeSplitter::*)() const) static_cast<const IMeshData::IFaceHandle & (BRepMesh_DefaultRangeSplitter::*)() const>(&BRepMesh_DefaultRangeSplitter::GetDFace),
+             R"#(Returns face model.)#" )
+        .def("GetSurface",
+             (const opencascade::handle<BRepAdaptor_HSurface> & (BRepMesh_DefaultRangeSplitter::*)() const) static_cast<const opencascade::handle<BRepAdaptor_HSurface> & (BRepMesh_DefaultRangeSplitter::*)() const>(&BRepMesh_DefaultRangeSplitter::GetSurface),
+             R"#(Returns surface.)#" )
+        .def("GetRangeU",
+             (const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const) static_cast<const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const>(&BRepMesh_DefaultRangeSplitter::GetRangeU),
+             R"#(Returns U range.)#" )
+        .def("GetRangeV",
+             (const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const) static_cast<const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const>(&BRepMesh_DefaultRangeSplitter::GetRangeV),
+             R"#(Returns V range.)#" )
+        .def("GetDelta",
+             (const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const) static_cast<const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const>(&BRepMesh_DefaultRangeSplitter::GetDelta),
+             R"#(Returns delta.)#" )
+        .def("GetToleranceUV",
+             (const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const) static_cast<const std::pair<Standard_Real, Standard_Real> & (BRepMesh_DefaultRangeSplitter::*)() const>(&BRepMesh_DefaultRangeSplitter::GetToleranceUV),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<BRepMesh_Deflection ,opencascade::handle<BRepMesh_Deflection>>(m,"BRepMesh_Deflection");
+
+    static_cast<py::class_<BRepMesh_Deflection ,opencascade::handle<BRepMesh_Deflection>  , Standard_Transient >>(m.attr("BRepMesh_Deflection"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_Deflection::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_Deflection::*)() const>(&BRepMesh_Deflection::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("ComputeAbsoluteDeflection_s",
+                    (Standard_Real (*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Real (*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real  ) >(&BRepMesh_Deflection::ComputeAbsoluteDeflection),
+                    R"#(Returns absolute deflection for theShape with respect to the relative deflection and theMaxShapeSize.)#"  , py::arg("theShape"),  py::arg("theRelativeDeflection"),  py::arg("theMaxShapeSize"))
+        .def_static("ComputeDeflection_s",
+                    (void (*)(  const opencascade::handle<IMeshData_Edge> & ,  const Standard_Real ,  const IMeshTools_Parameters &  ) ) static_cast<void (*)(  const opencascade::handle<IMeshData_Edge> & ,  const Standard_Real ,  const IMeshTools_Parameters &  ) >(&BRepMesh_Deflection::ComputeDeflection),
+                    R"#(Computes and updates deflection of the given discrete edge.)#"  , py::arg("theDEdge"),  py::arg("theMaxShapeSize"),  py::arg("theParameters"))
+        .def_static("ComputeDeflection_s",
+                    (void (*)(  const opencascade::handle<IMeshData_Wire> & ,  const IMeshTools_Parameters &  ) ) static_cast<void (*)(  const opencascade::handle<IMeshData_Wire> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_Deflection::ComputeDeflection),
+                    R"#(Computes and updates deflection of the given discrete wire.)#"  , py::arg("theDWire"),  py::arg("theParameters"))
+        .def_static("ComputeDeflection_s",
+                    (void (*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) ) static_cast<void (*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_Deflection::ComputeDeflection),
+                    R"#(Computes and updates deflection of the given discrete face.)#"  , py::arg("theDFace"),  py::arg("theParameters"))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_Deflection::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_Deflection::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_Delaun , shared_ptr<BRepMesh_Delaun>  >>(m.attr("BRepMesh_Delaun"))
-        .def(py::init< NCollection_Array1<BRepMesh_Vertex> & >()  , py::arg("theVertices") )
-        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,NCollection_Array1<BRepMesh_Vertex> & >()  , py::arg("theOldMesh"),  py::arg("theVertices") )
-        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,NCollection_Array1<Standard_Integer> & >()  , py::arg("theOldMesh"),  py::arg("theVertexIndices") )
-        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer >()  , py::arg("theOldMesh"),  py::arg("theVertexIndices"),  py::arg("theCellsCountU"),  py::arg("theCellsCountV") )
+    // constructors
+        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,const Standard_Integer,const Standard_Integer,const Standard_Boolean >()  , py::arg("theOldMesh"),  py::arg("theCellsCountU"),  py::arg("theCellsCountV"),  py::arg("isFillCircles") )
+        .def(py::init< NCollection_Shared<NCollection_Array1<BRepMesh_Vertex> > & >()  , py::arg("theVertices") )
+        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,NCollection_Shared<NCollection_Array1<BRepMesh_Vertex> > & >()  , py::arg("theOldMesh"),  py::arg("theVertices") )
+        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,NCollection_Shared<NCollection_Vector<Standard_Integer> > & >()  , py::arg("theOldMesh"),  py::arg("theVertexIndices") )
+        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,NCollection_Shared<NCollection_Vector<Standard_Integer> > &,const Standard_Integer,const Standard_Integer >()  , py::arg("theOldMesh"),  py::arg("theVertexIndices"),  py::arg("theCellsCountU"),  py::arg("theCellsCountV") )
+    // custom constructors
     // methods
         .def("Init",
-             (void (BRepMesh_Delaun::*)( NCollection_Array1<BRepMesh_Vertex> &  ) ) static_cast<void (BRepMesh_Delaun::*)( NCollection_Array1<BRepMesh_Vertex> &  ) >(&BRepMesh_Delaun::Init),
+             (void (BRepMesh_Delaun::*)( NCollection_Shared<NCollection_Array1<BRepMesh_Vertex> > &  ) ) static_cast<void (BRepMesh_Delaun::*)( NCollection_Shared<NCollection_Array1<BRepMesh_Vertex> > &  ) >(&BRepMesh_Delaun::Init),
              R"#(Initializes the triangulation with an array of vertices.)#"  , py::arg("theVertices"))
+        .def("InitCirclesTool",
+             (void (BRepMesh_Delaun::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BRepMesh_Delaun::*)( const Standard_Integer ,  const Standard_Integer  ) >(&BRepMesh_Delaun::InitCirclesTool),
+             R"#(Forces initialization of circles cell filter using working structure.)#"  , py::arg("theCellsCountU"),  py::arg("theCellsCountV"))
         .def("RemoveVertex",
              (void (BRepMesh_Delaun::*)( const BRepMesh_Vertex &  ) ) static_cast<void (BRepMesh_Delaun::*)( const BRepMesh_Vertex &  ) >(&BRepMesh_Delaun::RemoveVertex),
              R"#(Removes a vertex from the triangulation.)#"  , py::arg("theVertex"))
         .def("AddVertices",
-             (void (BRepMesh_Delaun::*)( NCollection_Array1<BRepMesh_Vertex> &  ) ) static_cast<void (BRepMesh_Delaun::*)( NCollection_Array1<BRepMesh_Vertex> &  ) >(&BRepMesh_Delaun::AddVertices),
-             R"#(Adds some vertices into the triangulation.)#"  , py::arg("theVertices"))
+             (void (BRepMesh_Delaun::*)( NCollection_Shared<NCollection_Vector<Standard_Integer> > &  ) ) static_cast<void (BRepMesh_Delaun::*)( NCollection_Shared<NCollection_Vector<Standard_Integer> > &  ) >(&BRepMesh_Delaun::AddVertices),
+             R"#(Adds some vertices into the triangulation.)#"  , py::arg("theVerticesIndices"))
         .def("UseEdge",
              (Standard_Boolean (BRepMesh_Delaun::*)( const Standard_Integer  ) ) static_cast<Standard_Boolean (BRepMesh_Delaun::*)( const Standard_Integer  ) >(&BRepMesh_Delaun::UseEdge),
              R"#(Modify mesh to use the edge.)#"  , py::arg("theEdge"))
         .def("Result",
              (const opencascade::handle<BRepMesh_DataStructureOfDelaun> & (BRepMesh_Delaun::*)() const) static_cast<const opencascade::handle<BRepMesh_DataStructureOfDelaun> & (BRepMesh_Delaun::*)() const>(&BRepMesh_Delaun::Result),
              R"#(Gives the Mesh data structure.)#" )
+        .def("ProcessConstraints",
+             (void (BRepMesh_Delaun::*)() ) static_cast<void (BRepMesh_Delaun::*)() >(&BRepMesh_Delaun::ProcessConstraints),
+             R"#(Forces insertion of constraint edges into the base triangulation.)#" )
         .def("Frontier",
-             (BRepMesh::HMapOfInteger (BRepMesh_Delaun::*)() const) static_cast<BRepMesh::HMapOfInteger (BRepMesh_Delaun::*)() const>(&BRepMesh_Delaun::Frontier),
+             (opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_Delaun::*)() const) static_cast<opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_Delaun::*)() const>(&BRepMesh_Delaun::Frontier),
              R"#(Gives the list of frontier edges.)#" )
         .def("InternalEdges",
-             (BRepMesh::HMapOfInteger (BRepMesh_Delaun::*)() const) static_cast<BRepMesh::HMapOfInteger (BRepMesh_Delaun::*)() const>(&BRepMesh_Delaun::InternalEdges),
+             (opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_Delaun::*)() const) static_cast<opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_Delaun::*)() const>(&BRepMesh_Delaun::InternalEdges),
              R"#(Gives the list of internal edges.)#" )
         .def("FreeEdges",
-             (BRepMesh::HMapOfInteger (BRepMesh_Delaun::*)() const) static_cast<BRepMesh::HMapOfInteger (BRepMesh_Delaun::*)() const>(&BRepMesh_Delaun::FreeEdges),
+             (opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_Delaun::*)() const) static_cast<opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_Delaun::*)() const>(&BRepMesh_Delaun::FreeEdges),
              R"#(Gives the list of free edges used only one time)#" )
         .def("GetVertex",
              (const BRepMesh_Vertex & (BRepMesh_Delaun::*)( const Standard_Integer  ) const) static_cast<const BRepMesh_Vertex & (BRepMesh_Delaun::*)( const Standard_Integer  ) const>(&BRepMesh_Delaun::GetVertex),
@@ -400,11 +642,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_DiscretFactory , shared_ptr_nodelete<BRepMesh_DiscretFactory>  >>(m.attr("BRepMesh_DiscretFactory"))
+    // constructors
+    // custom constructors
     // methods
         .def("Names",
              (const TColStd_MapOfAsciiString & (BRepMesh_DiscretFactory::*)() const) static_cast<const TColStd_MapOfAsciiString & (BRepMesh_DiscretFactory::*)() const>(&BRepMesh_DiscretFactory::Names),
@@ -437,11 +681,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
                     R"#(Returns the global factory instance.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_DiscretRoot ,opencascade::handle<BRepMesh_DiscretRoot> ,Py_BRepMesh_DiscretRoot , Standard_Transient >>(m.attr("BRepMesh_DiscretRoot"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetShape",
              (void (BRepMesh_DiscretRoot::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepMesh_DiscretRoot::*)( const TopoDS_Shape &  ) >(&BRepMesh_DiscretRoot::SetShape),
@@ -468,238 +714,144 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_EdgeParameterProvider , shared_ptr<BRepMesh_EdgeParameterProvider>  >>(m.attr("BRepMesh_EdgeParameterProvider"))
-        .def(py::init< const TopoDS_Edge &,const TopoDS_Face &,const opencascade::handle<TColStd_HArray1OfReal> & >()  , py::arg("theEdge"),  py::arg("theFace"),  py::arg("theParameters") )
+    static_cast<py::class_<BRepMesh_EdgeDiscret ,opencascade::handle<BRepMesh_EdgeDiscret>  >>(m.attr("BRepMesh_EdgeDiscret"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
     // methods
-        .def("Parameter",
-             (Standard_Real (BRepMesh_EdgeParameterProvider::*)( const Standard_Integer ,  const gp_Pnt &  ) ) static_cast<Standard_Real (BRepMesh_EdgeParameterProvider::*)( const Standard_Integer ,  const gp_Pnt &  ) >(&BRepMesh_EdgeParameterProvider::Parameter),
-             R"#(Returns parameter according to SameParameter flag of the edge. If SameParameter is TRUE returns value from parameters w/o changes, elsewhere scales initial parameter and tries to determine resulting value using projection of the corresponded 3D point on PCurve.)#"  , py::arg("theIndex"),  py::arg("thePoint3d"))
-    // methods using call by reference i.s.o. return
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepMesh_FaceAttribute ,opencascade::handle<BRepMesh_FaceAttribute>  , Standard_Transient >>(m.attr("BRepMesh_FaceAttribute"))
-        .def(py::init<  const NCollection_Handle<BRepMesh::DMapOfVertexInteger> &, const NCollection_Handle<BRepMesh::DMapOfIntegerPnt> & >()  , py::arg("theBoundaryVertices"),  py::arg("theBoundaryPoints") )
-        .def(py::init< const TopoDS_Face &, const NCollection_Handle<BRepMesh::DMapOfVertexInteger> &, const NCollection_Handle<BRepMesh::DMapOfIntegerPnt> &,const Standard_Boolean >()  , py::arg("theFace"),  py::arg("theBoundaryVertices"),  py::arg("theBoundaryPoints"),  py::arg("theAdaptiveMin") )
-    // methods
-        .def("Surface",
-             (const opencascade::handle<BRepAdaptor_HSurface> & (BRepMesh_FaceAttribute::*)() const) static_cast<const opencascade::handle<BRepAdaptor_HSurface> & (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::Surface),
-             R"#(Returns face's surface.)#" )
-        .def("IsInitialized",
-             (Standard_Boolean (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Boolean (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::IsInitialized),
-             R"#(Returns True in case if this attribute has already been intialized.)#" )
-        .def("SetFace",
-             (void (BRepMesh_FaceAttribute::*)( const TopoDS_Face & ,  const Standard_Boolean  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const TopoDS_Face & ,  const Standard_Boolean  ) >(&BRepMesh_FaceAttribute::SetFace),
-             R"#(Initializes this attribute by the given face.)#"  , py::arg("theFace"),  py::arg("theAdaptiveMin"))
-        .def("Face",
-             (const TopoDS_Face & (BRepMesh_FaceAttribute::*)() const) static_cast<const TopoDS_Face & (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::Face),
-             R"#(Returns forward oriented face to be used for calculations.)#" )
-        .def("SetBoundaryVertices",
-             (void (BRepMesh_FaceAttribute::*)(  const NCollection_Handle<BRepMesh::DMapOfVertexInteger> &  ) ) static_cast<void (BRepMesh_FaceAttribute::*)(  const NCollection_Handle<BRepMesh::DMapOfVertexInteger> &  ) >(&BRepMesh_FaceAttribute::SetBoundaryVertices),
-             R"#(Sets boundary vertices map.)#"  , py::arg("theVertices"))
-        .def("SetBoundaryPoints",
-             (void (BRepMesh_FaceAttribute::*)(  const NCollection_Handle<BRepMesh::DMapOfIntegerPnt> &  ) ) static_cast<void (BRepMesh_FaceAttribute::*)(  const NCollection_Handle<BRepMesh::DMapOfIntegerPnt> &  ) >(&BRepMesh_FaceAttribute::SetBoundaryPoints),
-             R"#(Sets boundary points map.)#"  , py::arg("theBoundaryPoints"))
-        .def("ToleranceU",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::ToleranceU),
-             R"#(Returns U tolerance of face calculated regarding its parameters.)#" )
-        .def("ToleranceV",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::ToleranceV),
-             R"#(Returns V tolerance of face calculated regarding its parameters.)#" )
-        .def("GetDefFace",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetDefFace),
-             R"#(Gives face deflection parameter.)#" )
-        .def("SetDefFace",
-             (void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) >(&BRepMesh_FaceAttribute::SetDefFace),
-             R"#(Sets face deflection.)#"  , py::arg("theDefFace"))
-        .def("GetUMin",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetUMin),
-             R"#(Gives minimal value in U domain.)#" )
-        .def("SetUMin",
-             (void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) >(&BRepMesh_FaceAttribute::SetUMin),
-             R"#(Sets minimal value in U domain.)#"  , py::arg("theUMin"))
-        .def("GetVMin",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetVMin),
-             R"#(Gives minimal value in V domain.)#" )
-        .def("SetVMin",
-             (void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) >(&BRepMesh_FaceAttribute::SetVMin),
-             R"#(Sets minimal value in V domain.)#"  , py::arg("theVMin"))
-        .def("GetUMax",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetUMax),
-             R"#(Gives maximal value in U domain.)#" )
-        .def("SetUMax",
-             (void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) >(&BRepMesh_FaceAttribute::SetUMax),
-             R"#(Sets maximal value in U domain.)#"  , py::arg("theUMax"))
-        .def("GetVMax",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetVMax),
-             R"#(Gives maximal value in V domain.)#" )
-        .def("SetVMax",
-             (void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) >(&BRepMesh_FaceAttribute::SetVMax),
-             R"#(Sets maximal value in V domain.)#"  , py::arg("theVMax"))
-        .def("GetDeltaX",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetDeltaX),
-             R"#(Gives value of step in U domain.)#" )
-        .def("SetDeltaX",
-             (void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) >(&BRepMesh_FaceAttribute::SetDeltaX),
-             R"#(Sets value of step in U domain.)#"  , py::arg("theDeltaX"))
-        .def("GetDeltaY",
-             (Standard_Real (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Real (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetDeltaY),
-             R"#(Gives value of step in V domain.)#" )
-        .def("SetDeltaY",
-             (void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const Standard_Real  ) >(&BRepMesh_FaceAttribute::SetDeltaY),
-             R"#(Sets value of step in V domain.)#"  , py::arg("theDeltaY"))
-        .def("GetStatus",
-             (Standard_Integer (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Integer (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::GetStatus),
-             R"#(Sets set of status flags for this face.)#" )
-        .def("SetStatus",
-             (void (BRepMesh_FaceAttribute::*)( const BRepMesh_Status  ) ) static_cast<void (BRepMesh_FaceAttribute::*)( const BRepMesh_Status  ) >(&BRepMesh_FaceAttribute::SetStatus),
-             R"#(Sets status flag for this face.)#"  , py::arg("theStatus"))
-        .def("IsValid",
-             (Standard_Boolean (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Boolean (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::IsValid),
-             R"#(Returns TRUE in case if computed data is valid.)#" )
-        .def("Clear",
-             (void (BRepMesh_FaceAttribute::*)() ) static_cast<void (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::Clear),
-             R"#(Clear face attribute.)#" )
-        .def("ChangeInternalEdges",
-             (BRepMesh::HDMapOfShapePairOfPolygon & (BRepMesh_FaceAttribute::*)() ) static_cast<BRepMesh::HDMapOfShapePairOfPolygon & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeInternalEdges),
-             R"#(Gives reference to map of internal edges of face.)#" )
-        .def("ChangeLocation2D",
-             (BRepMesh::HDMapOfIntegerListOfXY & (BRepMesh_FaceAttribute::*)() ) static_cast<BRepMesh::HDMapOfIntegerListOfXY & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeLocation2D),
-             R"#(Gives reference to map of 2D points of discretization.)#" )
-        .def("ChangeSurfacePoints",
-             (BRepMesh::HDMapOfIntegerPnt & (BRepMesh_FaceAttribute::*)() ) static_cast<BRepMesh::HDMapOfIntegerPnt & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeSurfacePoints),
-             R"#(Gives reference to map of 3D points of discretization.)#" )
-        .def("ChangeSurfaceVertices",
-             (BRepMesh::HDMapOfVertexInteger & (BRepMesh_FaceAttribute::*)() ) static_cast<BRepMesh::HDMapOfVertexInteger & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeSurfaceVertices),
-             R"#(Gives reference to map of vertices of discretization.)#" )
-        .def("ChangeVertexEdgeMap",
-             (BRepMesh::HIMapOfInteger & (BRepMesh_FaceAttribute::*)() ) static_cast<BRepMesh::HIMapOfInteger & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeVertexEdgeMap),
-             R"#(Gives reference on map of (vertex, edge) pairs of face.)#" )
-        .def("ChangeStructure",
-             (opencascade::handle<BRepMesh_DataStructureOfDelaun> & (BRepMesh_FaceAttribute::*)() ) static_cast<opencascade::handle<BRepMesh_DataStructureOfDelaun> & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeStructure),
-             R"#(Gives Delaunay data structure.)#" )
-        .def("ChangeClassifier",
-             (BRepMesh::HClassifier & (BRepMesh_FaceAttribute::*)() ) static_cast<BRepMesh::HClassifier & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeClassifier),
-             R"#(Returns classifier.)#" )
-        .def("ChangeMeshNodes",
-             (BRepMesh::HVectorOfVertex & (BRepMesh_FaceAttribute::*)() ) static_cast<BRepMesh::HVectorOfVertex & (BRepMesh_FaceAttribute::*)() >(&BRepMesh_FaceAttribute::ChangeMeshNodes),
-             R"#(Returns mesh nodes calculated for boundaries.)#" )
-        .def("LastPointId",
-             (Standard_Integer (BRepMesh_FaceAttribute::*)() const) static_cast<Standard_Integer (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::LastPointId),
-             R"#(Gives the number of different locations in 3D space.)#" )
-        .def("GetPoint",
-             (const gp_Pnt & (BRepMesh_FaceAttribute::*)( const BRepMesh_Vertex &  ) const) static_cast<const gp_Pnt & (BRepMesh_FaceAttribute::*)( const BRepMesh_Vertex &  ) const>(&BRepMesh_FaceAttribute::GetPoint),
-             R"#(Gives the 3D location of the vertex.)#"  , py::arg("theVertex"))
-        .def("GetPoint",
-             (const gp_Pnt & (BRepMesh_FaceAttribute::*)( const Standard_Integer  ) const) static_cast<const gp_Pnt & (BRepMesh_FaceAttribute::*)( const Standard_Integer  ) const>(&BRepMesh_FaceAttribute::GetPoint),
-             R"#(Gives the 3D location of the vertex.)#"  , py::arg("theIndex"))
-        .def("Scale",
-             (gp_XY (BRepMesh_FaceAttribute::*)( const gp_XY & ,  const Standard_Boolean  ) ) static_cast<gp_XY (BRepMesh_FaceAttribute::*)( const gp_XY & ,  const Standard_Boolean  ) >(&BRepMesh_FaceAttribute::Scale),
-             R"#(Scales the given point from real parametric space to face basis and otherwise.)#"  , py::arg("thePoint2d"),  py::arg("isToFaceBasis"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepMesh_FaceAttribute::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_FaceAttribute::*)() const>(&BRepMesh_FaceAttribute::DynamicType),
+             (const opencascade::handle<Standard_Type> & (BRepMesh_EdgeDiscret::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_EdgeDiscret::*)() const>(&BRepMesh_EdgeDiscret::DynamicType),
              R"#(None)#" )
     // methods using call by reference i.s.o. return
-        .def("AddNode",
-             []( BRepMesh_FaceAttribute &self , const Standard_Integer theIndex,const gp_XY & theUV,const BRepMesh_DegreeOfFreedom theMovability ){ Standard_Integer  theNodeIndex; Standard_Integer  theNodeOnEdgeIndex; self.AddNode(theIndex,theUV,theMovability,theNodeIndex,theNodeOnEdgeIndex); return std::make_tuple(theNodeIndex,theNodeOnEdgeIndex); },
-             R"#(Adds node with the given parameters to mesh.)#"  , py::arg("theIndex"),  py::arg("theUV"),  py::arg("theMovability"))
     // static methods
+        .def_static("CreateEdgeTessellator_s",
+                    (opencascade::handle<IMeshTools_CurveTessellator> (*)(  const opencascade::handle<IMeshData_Edge> & ,  const IMeshTools_Parameters &  ) ) static_cast<opencascade::handle<IMeshTools_CurveTessellator> (*)(  const opencascade::handle<IMeshData_Edge> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_EdgeDiscret::CreateEdgeTessellator),
+                    R"#(Creates instance of free edge tessellator.)#"  , py::arg("theDEdge"),  py::arg("theParameters"))
+        .def_static("CreateEdgeTessellator_s",
+                    (opencascade::handle<IMeshTools_CurveTessellator> (*)(  const opencascade::handle<IMeshData_Edge> & ,  const TopAbs_Orientation ,   const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) ) static_cast<opencascade::handle<IMeshTools_CurveTessellator> (*)(  const opencascade::handle<IMeshData_Edge> & ,  const TopAbs_Orientation ,   const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_EdgeDiscret::CreateEdgeTessellator),
+                    R"#(Creates instance of edge tessellator.)#"  , py::arg("theDEdge"),  py::arg("theOrientation"),  py::arg("theDFace"),  py::arg("theParameters"))
+        .def_static("CreateEdgeTessellationExtractor_s",
+                    (opencascade::handle<IMeshTools_CurveTessellator> (*)(  const opencascade::handle<IMeshData_Edge> & ,   const opencascade::handle<IMeshData_Face> &  ) ) static_cast<opencascade::handle<IMeshTools_CurveTessellator> (*)(  const opencascade::handle<IMeshData_Edge> & ,   const opencascade::handle<IMeshData_Face> &  ) >(&BRepMesh_EdgeDiscret::CreateEdgeTessellationExtractor),
+                    R"#(Creates instance of tessellation extractor.)#"  , py::arg("theDEdge"),  py::arg("theDFace"))
+        .def_static("Tessellate3d_s",
+                    (void (*)(  const opencascade::handle<IMeshData_Edge> & ,  const opencascade::handle<IMeshTools_CurveTessellator> & ,  const Standard_Boolean  ) ) static_cast<void (*)(  const opencascade::handle<IMeshData_Edge> & ,  const opencascade::handle<IMeshTools_CurveTessellator> & ,  const Standard_Boolean  ) >(&BRepMesh_EdgeDiscret::Tessellate3d),
+                    R"#(Updates 3d discrete edge model using the given tessellation tool.)#"  , py::arg("theDEdge"),  py::arg("theTessellator"),  py::arg("theUpdateEnds"))
+        .def_static("Tessellate2d_s",
+                    (void (*)(  const opencascade::handle<IMeshData_Edge> & ,  const Standard_Boolean  ) ) static_cast<void (*)(  const opencascade::handle<IMeshData_Edge> & ,  const Standard_Boolean  ) >(&BRepMesh_EdgeDiscret::Tessellate2d),
+                    R"#(Updates 2d discrete edge model using tessellation of 3D curve.)#"  , py::arg("theDEdge"),  py::arg("theUpdateEnds"))
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_FaceAttribute::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_EdgeDiscret::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_FaceAttribute::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_EdgeDiscret::get_type_descriptor),
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_FastDiscret ,opencascade::handle<BRepMesh_FastDiscret>  , Standard_Transient >>(m.attr("BRepMesh_FastDiscret"))
-        .def(py::init< const Bnd_Box &,const BRepMesh_FastDiscret::Parameters & >()  , py::arg("B"),  py::arg("theParams") )
+    static_cast<py::class_<BRepMesh_EdgeTessellationExtractor ,opencascade::handle<BRepMesh_EdgeTessellationExtractor>  >>(m.attr("BRepMesh_EdgeTessellationExtractor"))
+    // constructors
+        .def(py::init<  const opencascade::handle<IMeshData_Edge> &, const opencascade::handle<IMeshData_Face> & >()  , py::arg("theEdge"),  py::arg("theFace") )
+    // custom constructors
+    // methods
+        .def("PointsNb",
+             (Standard_Integer (BRepMesh_EdgeTessellationExtractor::*)() const) static_cast<Standard_Integer (BRepMesh_EdgeTessellationExtractor::*)() const>(&BRepMesh_EdgeTessellationExtractor::PointsNb),
+             R"#(Returns number of tessellation points.)#" )
+        .def("Value",
+             (Standard_Boolean (BRepMesh_EdgeTessellationExtractor::*)( const Standard_Integer ,  gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Boolean (BRepMesh_EdgeTessellationExtractor::*)( const Standard_Integer ,  gp_Pnt & ,  Standard_Real &  ) const>(&BRepMesh_EdgeTessellationExtractor::Value),
+             R"#(Returns parameters of solution with the given index.)#"  , py::arg("theIndex"),  py::arg("thePoint"),  py::arg("theParameter"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_EdgeTessellationExtractor::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_EdgeTessellationExtractor::*)() const>(&BRepMesh_EdgeTessellationExtractor::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_EdgeTessellationExtractor::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_EdgeTessellationExtractor::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_FaceChecker ,opencascade::handle<BRepMesh_FaceChecker>  , Standard_Transient >>(m.attr("BRepMesh_FaceChecker"))
+    // constructors
+        .def(py::init<  const opencascade::handle<IMeshData_Face> &,const IMeshTools_Parameters & >()  , py::arg("theFace"),  py::arg("theParameters") )
+    // custom constructors
     // methods
         .def("Perform",
-             (void (BRepMesh_FastDiscret::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepMesh_FastDiscret::*)( const TopoDS_Shape &  ) >(&BRepMesh_FastDiscret::Perform),
-             R"#(Build triangulation on the whole shape.)#"  , py::arg("shape"))
-        .def("Add",
-             (Standard_Integer (BRepMesh_FastDiscret::*)( const TopoDS_Face &  ) ) static_cast<Standard_Integer (BRepMesh_FastDiscret::*)( const TopoDS_Face &  ) >(&BRepMesh_FastDiscret::Add),
-             R"#(Record a face for further processing.)#"  , py::arg("face"))
-        .def("Process",
-             (void (BRepMesh_FastDiscret::*)( const TopoDS_Face &  ) const) static_cast<void (BRepMesh_FastDiscret::*)( const TopoDS_Face &  ) const>(&BRepMesh_FastDiscret::Process),
-             R"#(Triangulate a face previously recorded for processing by call to Add(). Can be executed in parallel threads.)#"  , py::arg("face"))
-        .def("MeshParameters",
-             (const BRepMesh_FastDiscret::Parameters & (BRepMesh_FastDiscret::*)() const) static_cast<const BRepMesh_FastDiscret::Parameters & (BRepMesh_FastDiscret::*)() const>(&BRepMesh_FastDiscret::MeshParameters),
-             R"#(Returns parameters of meshing)#" )
-        .def("ChangeMeshParameters",
-             (BRepMesh_FastDiscret::Parameters & (BRepMesh_FastDiscret::*)() ) static_cast<BRepMesh_FastDiscret::Parameters & (BRepMesh_FastDiscret::*)() >(&BRepMesh_FastDiscret::ChangeMeshParameters),
-             R"#(Returns modificable mesh parameters)#" )
-        .def("InitSharedFaces",
-             (void (BRepMesh_FastDiscret::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepMesh_FastDiscret::*)( const TopoDS_Shape &  ) >(&BRepMesh_FastDiscret::InitSharedFaces),
-             R"#(None)#"  , py::arg("theShape"))
-        .def("SharedFaces",
-             (const TopTools_IndexedDataMapOfShapeListOfShape & (BRepMesh_FastDiscret::*)() const) static_cast<const TopTools_IndexedDataMapOfShapeListOfShape & (BRepMesh_FastDiscret::*)() const>(&BRepMesh_FastDiscret::SharedFaces),
-             R"#(None)#" )
-        .def("GetFaceAttribute",
-             (Standard_Boolean (BRepMesh_FastDiscret::*)( const TopoDS_Face & ,  opencascade::handle<BRepMesh_FaceAttribute> & ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (BRepMesh_FastDiscret::*)( const TopoDS_Face & ,  opencascade::handle<BRepMesh_FaceAttribute> & ,  const Standard_Boolean  ) const>(&BRepMesh_FastDiscret::GetFaceAttribute),
-             R"#(Returns attribute descriptor for the given face.)#"  , py::arg("theFace"),  py::arg("theAttribute"),  py::arg("isForceCreate")=static_cast<const Standard_Boolean>(Standard_False))
-        .def("RemoveFaceAttribute",
-             (void (BRepMesh_FastDiscret::*)( const TopoDS_Face &  ) ) static_cast<void (BRepMesh_FastDiscret::*)( const TopoDS_Face &  ) >(&BRepMesh_FastDiscret::RemoveFaceAttribute),
-             R"#(Remove face attribute as useless to free locate memory.)#"  , py::arg("theFace"))
-        .def("NbBoundaryPoints",
-             (Standard_Integer (BRepMesh_FastDiscret::*)() const) static_cast<Standard_Integer (BRepMesh_FastDiscret::*)() const>(&BRepMesh_FastDiscret::NbBoundaryPoints),
-             R"#(Returns number of boundary 3d points.)#" )
+             (Standard_Boolean (BRepMesh_FaceChecker::*)() ) static_cast<Standard_Boolean (BRepMesh_FaceChecker::*)() >(&BRepMesh_FaceChecker::Perform),
+             R"#(Performs check wires of the face for intersections.)#" )
+        .def("GetIntersectingEdges",
+             (const opencascade::handle<IMeshData::MapOfIEdgePtr> & (BRepMesh_FaceChecker::*)() const) static_cast<const opencascade::handle<IMeshData::MapOfIEdgePtr> & (BRepMesh_FaceChecker::*)() const>(&BRepMesh_FaceChecker::GetIntersectingEdges),
+             R"#(Returns intersecting edges.)#" )
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepMesh_FastDiscret::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_FastDiscret::*)() const>(&BRepMesh_FastDiscret::DynamicType),
+             (const opencascade::handle<Standard_Type> & (BRepMesh_FaceChecker::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_FaceChecker::*)() const>(&BRepMesh_FaceChecker::DynamicType),
              R"#(None)#" )
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_FastDiscret::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_FaceChecker::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_FastDiscret::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_FaceChecker::get_type_descriptor),
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_FastDiscretFace ,opencascade::handle<BRepMesh_FastDiscretFace>  , Standard_Transient >>(m.attr("BRepMesh_FastDiscretFace"))
-        .def(py::init< const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("theAngle"),  py::arg("theMinSize"),  py::arg("isInternalVerticesMode"),  py::arg("isControlSurfaceDeflection") )
+    static_cast<py::class_<BRepMesh_FaceDiscret ,opencascade::handle<BRepMesh_FaceDiscret>  >>(m.attr("BRepMesh_FaceDiscret"))
+    // constructors
+        .def(py::init< const opencascade::handle<IMeshTools_MeshAlgoFactory> & >()  , py::arg("theAlgoFactory") )
+    // custom constructors
     // methods
-        .def("Perform",
-             (void (BRepMesh_FastDiscretFace::*)( const opencascade::handle<BRepMesh_FaceAttribute> &  ) ) static_cast<void (BRepMesh_FastDiscretFace::*)( const opencascade::handle<BRepMesh_FaceAttribute> &  ) >(&BRepMesh_FastDiscretFace::Perform),
-             R"#(None)#"  , py::arg("theAttribute"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepMesh_FastDiscretFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_FastDiscretFace::*)() const>(&BRepMesh_FastDiscretFace::DynamicType),
+             (const opencascade::handle<Standard_Type> & (BRepMesh_FaceDiscret::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_FaceDiscret::*)() const>(&BRepMesh_FaceDiscret::DynamicType),
              R"#(None)#" )
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_FastDiscretFace::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_FaceDiscret::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_FastDiscretFace::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_FaceDiscret::get_type_descriptor),
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<BRepMesh_FastDiscret , shared_ptr<BRepMesh_FastDiscret>>(m,"BRepMesh_FastDiscret");
+
+    static_cast<py::class_<BRepMesh_FastDiscret , shared_ptr<BRepMesh_FastDiscret>  >>(m.attr("BRepMesh_FastDiscret"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_GeomTool , shared_ptr<BRepMesh_GeomTool>  >>(m.attr("BRepMesh_GeomTool"))
+    // constructors
         .def(py::init< const BRepAdaptor_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("theCurve"),  py::arg("theFirstParam"),  py::arg("theLastParam"),  py::arg("theLinDeflection"),  py::arg("theAngDeflection"),  py::arg("theMinPointsNb")=static_cast<const Standard_Integer>(2),  py::arg("theMinSize")=static_cast<const Standard_Real>(Precision :: Confusion ( )) )
         .def(py::init< const opencascade::handle<BRepAdaptor_HSurface> &,const GeomAbs_IsoType,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("theSurface"),  py::arg("theIsoType"),  py::arg("theParamIso"),  py::arg("theFirstParam"),  py::arg("theLastParam"),  py::arg("theLinDeflection"),  py::arg("theAngDeflection"),  py::arg("theMinPointsNb")=static_cast<const Standard_Integer>(2),  py::arg("theMinSize")=static_cast<const Standard_Real>(Precision :: Confusion ( )) )
+    // custom constructors
     // methods
         .def("AddPoint",
              (Standard_Integer (BRepMesh_GeomTool::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<Standard_Integer (BRepMesh_GeomTool::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Boolean  ) >(&BRepMesh_GeomTool::AddPoint),
@@ -711,8 +863,8 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (Standard_Boolean (BRepMesh_GeomTool::*)( const Standard_Integer ,  const Standard_Real ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) const) static_cast<Standard_Boolean (BRepMesh_GeomTool::*)( const Standard_Integer ,  const Standard_Real ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) const>(&BRepMesh_GeomTool::Value),
              R"#(Gets parameters of discretization point with the given index.)#"  , py::arg("theIndex"),  py::arg("theIsoParam"),  py::arg("theParam"),  py::arg("thePoint"),  py::arg("theUV"))
         .def("Value",
-             (Standard_Boolean (BRepMesh_GeomTool::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt &  ) const) static_cast<Standard_Boolean (BRepMesh_GeomTool::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt &  ) const>(&BRepMesh_GeomTool::Value),
-             R"#(Gets parameters of discretization point with the given index.)#"  , py::arg("theIndex"),  py::arg("theParam"),  py::arg("thePoint"))
+             (Standard_Boolean (BRepMesh_GeomTool::*)( const Standard_Integer ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) const) static_cast<Standard_Boolean (BRepMesh_GeomTool::*)( const Standard_Integer ,  const opencascade::handle<BRepAdaptor_HSurface> & ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) const>(&BRepMesh_GeomTool::Value),
+             R"#(Gets parameters of discretization point with the given index.)#"  , py::arg("theIndex"),  py::arg("theSurface"),  py::arg("theParam"),  py::arg("thePoint"),  py::arg("theUV"))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("Normal_s",
@@ -721,40 +873,194 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
         .def_static("IntSegSeg_s",
                     (BRepMesh_GeomTool::IntFlag (*)( const gp_XY & ,  const gp_XY & ,  const gp_XY & ,  const gp_XY & ,  const Standard_Boolean ,  const Standard_Boolean ,  gp_Pnt2d &  ) ) static_cast<BRepMesh_GeomTool::IntFlag (*)( const gp_XY & ,  const gp_XY & ,  const gp_XY & ,  const gp_XY & ,  const Standard_Boolean ,  const Standard_Boolean ,  gp_Pnt2d &  ) >(&BRepMesh_GeomTool::IntSegSeg),
                     R"#(Checks intersection between the two segments. Checks that intersection point lies within ranges of both segments.)#"  , py::arg("theStartPnt1"),  py::arg("theEndPnt1"),  py::arg("theStartPnt2"),  py::arg("theEndPnt2"),  py::arg("isConsiderEndPointTouch"),  py::arg("isConsiderPointOnSegment"),  py::arg("theIntPnt"))
+        .def_static("SquareDeflectionOfSegment_s",
+                    (Standard_Real (*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt &  ) ) static_cast<Standard_Real (*)( const gp_Pnt & ,  const gp_Pnt & ,  const gp_Pnt &  ) >(&BRepMesh_GeomTool::SquareDeflectionOfSegment),
+                    R"#(Compute deflection of the given segment.)#"  , py::arg("theFirstPoint"),  py::arg("theLastPoint"),  py::arg("theMidPoint"))
+        .def_static("CellsCount_s",
+                    (std::pair<Standard_Integer, Standard_Integer> (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Integer ,  const Standard_Real ,  const BRepMesh_DefaultRangeSplitter *  ) ) static_cast<std::pair<Standard_Integer, Standard_Integer> (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Integer ,  const Standard_Real ,  const BRepMesh_DefaultRangeSplitter *  ) >(&BRepMesh_GeomTool::CellsCount),
+                    R"#(None)#"  , py::arg("theSurface"),  py::arg("theVerticesNb"),  py::arg("theDeflection"),  py::arg("theRangeSplitter"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_IEdgeTool ,opencascade::handle<BRepMesh_IEdgeTool> ,Py_BRepMesh_IEdgeTool , Standard_Transient >>(m.attr("BRepMesh_IEdgeTool"))
+    static_cast<py::class_<BRepMesh_MeshAlgoFactory ,opencascade::handle<BRepMesh_MeshAlgoFactory>  >>(m.attr("BRepMesh_MeshAlgoFactory"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
     // methods
-        .def("NbPoints",
-             (Standard_Integer (BRepMesh_IEdgeTool::*)() const) static_cast<Standard_Integer (BRepMesh_IEdgeTool::*)() const>(&BRepMesh_IEdgeTool::NbPoints),
-             R"#(Returns number of tessellation points.)#" )
-        .def("Value",
-             (Standard_Boolean (BRepMesh_IEdgeTool::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) ) static_cast<Standard_Boolean (BRepMesh_IEdgeTool::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) >(&BRepMesh_IEdgeTool::Value),
-             R"#(Returns parameters of solution with the given index.)#"  , py::arg("theIndex"),  py::arg("theParameter"),  py::arg("thePoint"),  py::arg("theUV"))
+        .def("GetAlgo",
+             (opencascade::handle<IMeshTools_MeshAlgo> (BRepMesh_MeshAlgoFactory::*)( const GeomAbs_SurfaceType ,  const IMeshTools_Parameters &  ) const) static_cast<opencascade::handle<IMeshTools_MeshAlgo> (BRepMesh_MeshAlgoFactory::*)( const GeomAbs_SurfaceType ,  const IMeshTools_Parameters &  ) const>(&BRepMesh_MeshAlgoFactory::GetAlgo),
+             R"#(Creates instance of meshing algorithm for the given type of surface.)#"  , py::arg("theSurfaceType"),  py::arg("theParameters"))
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepMesh_IEdgeTool::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_IEdgeTool::*)() const>(&BRepMesh_IEdgeTool::DynamicType),
+             (const opencascade::handle<Standard_Type> & (BRepMesh_MeshAlgoFactory::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_MeshAlgoFactory::*)() const>(&BRepMesh_MeshAlgoFactory::DynamicType),
              R"#(None)#" )
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_IEdgeTool::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_MeshAlgoFactory::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_IEdgeTool::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_MeshAlgoFactory::get_type_descriptor),
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_MeshTool ,opencascade::handle<BRepMesh_MeshTool>  , Standard_Transient >>(m.attr("BRepMesh_MeshTool"))
+    // constructors
+        .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> & >()  , py::arg("theStructure") )
+    // custom constructors
+    // methods
+        .def("GetStructure",
+             (const opencascade::handle<BRepMesh_DataStructureOfDelaun> & (BRepMesh_MeshTool::*)() const) static_cast<const opencascade::handle<BRepMesh_DataStructureOfDelaun> & (BRepMesh_MeshTool::*)() const>(&BRepMesh_MeshTool::GetStructure),
+             R"#(Returns data structure manipulated by this tool.)#" )
+        .def("DumpTriangles",
+             (void (BRepMesh_MeshTool::*)( const Standard_CString ,  NCollection_Shared<TColStd_PackedMapOfInteger> *  ) ) static_cast<void (BRepMesh_MeshTool::*)( const Standard_CString ,  NCollection_Shared<TColStd_PackedMapOfInteger> *  ) >(&BRepMesh_MeshTool::DumpTriangles),
+             R"#(Dumps triangles to specified file.)#"  , py::arg("theFileName"),  py::arg("theTriangles"))
+        .def("AddAndLegalizeTriangle",
+             (void (BRepMesh_MeshTool::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (BRepMesh_MeshTool::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&BRepMesh_MeshTool::AddAndLegalizeTriangle),
+             R"#(Adds new triangle with specified nodes to mesh. Legalizes triangle in case if it violates circle criteria.)#"  , py::arg("thePoint1"),  py::arg("thePoint2"),  py::arg("thePoint3"))
+        .def("Legalize",
+             (void (BRepMesh_MeshTool::*)( const Standard_Integer  ) ) static_cast<void (BRepMesh_MeshTool::*)( const Standard_Integer  ) >(&BRepMesh_MeshTool::Legalize),
+             R"#(Performs legalization of triangles connected to the specified link.)#"  , py::arg("theLinkIndex"))
+        .def("EraseItemsConnectedTo",
+             (void (BRepMesh_MeshTool::*)( const Standard_Integer  ) ) static_cast<void (BRepMesh_MeshTool::*)( const Standard_Integer  ) >(&BRepMesh_MeshTool::EraseItemsConnectedTo),
+             R"#(Erases all elements connected to the specified artificial node. In addition, erases the artificial node itself.)#"  , py::arg("theNodeIndex"))
+        .def("CleanFrontierLinks",
+             (void (BRepMesh_MeshTool::*)() ) static_cast<void (BRepMesh_MeshTool::*)() >(&BRepMesh_MeshTool::CleanFrontierLinks),
+             R"#(Cleans frontier links from triangles to the right.)#" )
+        .def("EraseTriangles",
+             (void (BRepMesh_MeshTool::*)(  const NCollection_Shared<TColStd_PackedMapOfInteger> & ,  NCollection_Shared<NCollection_DataMap<Standard_Integer, Standard_Integer> > &  ) ) static_cast<void (BRepMesh_MeshTool::*)(  const NCollection_Shared<TColStd_PackedMapOfInteger> & ,  NCollection_Shared<NCollection_DataMap<Standard_Integer, Standard_Integer> > &  ) >(&BRepMesh_MeshTool::EraseTriangles),
+             R"#(Erases the given set of triangles. Fills map of loop edges forming the countour surrounding the erased triangles.)#"  , py::arg("theTriangles"),  py::arg("theLoopEdges"))
+        .def("EraseTriangle",
+             (void (BRepMesh_MeshTool::*)( const Standard_Integer ,  NCollection_Shared<NCollection_DataMap<Standard_Integer, Standard_Integer> > &  ) ) static_cast<void (BRepMesh_MeshTool::*)( const Standard_Integer ,  NCollection_Shared<NCollection_DataMap<Standard_Integer, Standard_Integer> > &  ) >(&BRepMesh_MeshTool::EraseTriangle),
+             R"#(Erases triangle with the given index and adds the free edges into the map. When an edge is suppressed more than one time it is destroyed.)#"  , py::arg("theTriangleIndex"),  py::arg("theLoopEdges"))
+        .def("EraseFreeLinks",
+             (void (BRepMesh_MeshTool::*)() ) static_cast<void (BRepMesh_MeshTool::*)() >(&BRepMesh_MeshTool::EraseFreeLinks),
+             R"#(Erases all links that have no elements connected to them.)#" )
+        .def("EraseFreeLinks",
+             (void (BRepMesh_MeshTool::*)(  const NCollection_Shared<NCollection_DataMap<Standard_Integer, Standard_Integer> > &  ) ) static_cast<void (BRepMesh_MeshTool::*)(  const NCollection_Shared<NCollection_DataMap<Standard_Integer, Standard_Integer> > &  ) >(&BRepMesh_MeshTool::EraseFreeLinks),
+             R"#(Erases links from the specified map that have no elements connected to them.)#"  , py::arg("theLinks"))
+        .def("GetEdgesByType",
+             (opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_MeshTool::*)( const BRepMesh_DegreeOfFreedom  ) const) static_cast<opencascade::handle<IMeshData::MapOfInteger> (BRepMesh_MeshTool::*)( const BRepMesh_DegreeOfFreedom  ) const>(&BRepMesh_MeshTool::GetEdgesByType),
+             R"#(Gives the list of edges with type defined by input parameter.)#"  , py::arg("theEdgeType"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_MeshTool::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_MeshTool::*)() const>(&BRepMesh_MeshTool::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+        .def("AddLink",
+             []( BRepMesh_MeshTool &self , const Standard_Integer theFirstNode,const Standard_Integer theLastNode ){ Standard_Integer  theLinkIndex; Standard_Boolean  theLinkOri; self.AddLink(theFirstNode,theLastNode,theLinkIndex,theLinkOri); return std::make_tuple(theLinkIndex,theLinkOri); },
+             R"#(Adds new link to mesh. Updates link index and link orientaion parameters.)#"  , py::arg("theFirstNode"),  py::arg("theLastNode"))
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_MeshTool::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_MeshTool::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_ModelBuilder ,opencascade::handle<BRepMesh_ModelBuilder>  >>(m.attr("BRepMesh_ModelBuilder"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_ModelBuilder::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_ModelBuilder::*)() const>(&BRepMesh_ModelBuilder::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_ModelBuilder::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_ModelBuilder::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_ModelHealer ,opencascade::handle<BRepMesh_ModelHealer>  >>(m.attr("BRepMesh_ModelHealer"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_ModelHealer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_ModelHealer::*)() const>(&BRepMesh_ModelHealer::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_ModelHealer::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_ModelHealer::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_ModelPostProcessor ,opencascade::handle<BRepMesh_ModelPostProcessor>  >>(m.attr("BRepMesh_ModelPostProcessor"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_ModelPostProcessor::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_ModelPostProcessor::*)() const>(&BRepMesh_ModelPostProcessor::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_ModelPostProcessor::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_ModelPostProcessor::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_ModelPreProcessor ,opencascade::handle<BRepMesh_ModelPreProcessor>  >>(m.attr("BRepMesh_ModelPreProcessor"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_ModelPreProcessor::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_ModelPreProcessor::*)() const>(&BRepMesh_ModelPreProcessor::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_ModelPreProcessor::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_ModelPreProcessor::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_OrientedEdge , shared_ptr<BRepMesh_OrientedEdge>  >>(m.attr("BRepMesh_OrientedEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theFirstNode"),  py::arg("theLastNode") )
+    // custom constructors
     // methods
         .def("FirstNode",
              (Standard_Integer (BRepMesh_OrientedEdge::*)() const) static_cast<Standard_Integer (BRepMesh_OrientedEdge::*)() const>(&BRepMesh_OrientedEdge::FirstNode),
@@ -764,7 +1070,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              R"#(Returns index of last node of the Link.)#" )
         .def("HashCode",
              (Standard_Integer (BRepMesh_OrientedEdge::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepMesh_OrientedEdge::*)( const Standard_Integer  ) const>(&BRepMesh_OrientedEdge::HashCode),
-             R"#(Returns hash code for this edge.)#"  , py::arg("theUpper"))
+             R"#(Computes a hash code for this oriented edge, in the range [1, theUpperBound])#"  , py::arg("theUpperBound"))
         .def("IsEqual",
              (Standard_Boolean (BRepMesh_OrientedEdge::*)( const BRepMesh_OrientedEdge &  ) const) static_cast<Standard_Boolean (BRepMesh_OrientedEdge::*)( const BRepMesh_OrientedEdge &  ) const>(&BRepMesh_OrientedEdge::IsEqual),
              R"#(Checks this and other edge for equality.)#"  , py::arg("theOther"))
@@ -772,12 +1078,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_PairOfIndex , shared_ptr<BRepMesh_PairOfIndex>  >>(m.attr("BRepMesh_PairOfIndex"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepMesh_PairOfIndex::*)() ) static_cast<void (BRepMesh_PairOfIndex::*)() >(&BRepMesh_PairOfIndex::Clear),
@@ -813,39 +1121,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_PairOfPolygon , shared_ptr<BRepMesh_PairOfPolygon>  >>(m.attr("BRepMesh_PairOfPolygon"))
-        .def(py::init<  >()  )
-    // methods
-        .def("Clear",
-             (void (BRepMesh_PairOfPolygon::*)() ) static_cast<void (BRepMesh_PairOfPolygon::*)() >(&BRepMesh_PairOfPolygon::Clear),
-             R"#(Clears pair handles.)#" )
-        .def("Prepend",
-             (void (BRepMesh_PairOfPolygon::*)( const opencascade::handle<Poly_PolygonOnTriangulation> &  ) ) static_cast<void (BRepMesh_PairOfPolygon::*)( const opencascade::handle<Poly_PolygonOnTriangulation> &  ) >(&BRepMesh_PairOfPolygon::Prepend),
-             R"#(Sets the first element of the pair. If last element is empty, also assignes the given polygon to it.)#"  , py::arg("thePolygon"))
-        .def("Append",
-             (void (BRepMesh_PairOfPolygon::*)( const opencascade::handle<Poly_PolygonOnTriangulation> &  ) ) static_cast<void (BRepMesh_PairOfPolygon::*)( const opencascade::handle<Poly_PolygonOnTriangulation> &  ) >(&BRepMesh_PairOfPolygon::Append),
-             R"#(Sets the last element of the pair. If first element is empty, also assignes the given polygon to it.)#"  , py::arg("thePolygon"))
-        .def("First",
-             (const opencascade::handle<Poly_PolygonOnTriangulation> & (BRepMesh_PairOfPolygon::*)() const) static_cast<const opencascade::handle<Poly_PolygonOnTriangulation> & (BRepMesh_PairOfPolygon::*)() const>(&BRepMesh_PairOfPolygon::First),
-             R"#(Returns first polygon on triangulation.)#" )
-        .def("Last",
-             (const opencascade::handle<Poly_PolygonOnTriangulation> & (BRepMesh_PairOfPolygon::*)() const) static_cast<const opencascade::handle<Poly_PolygonOnTriangulation> & (BRepMesh_PairOfPolygon::*)() const>(&BRepMesh_PairOfPolygon::Last),
-             R"#(Returns last polygon on triangulation.)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepMesh_SelectorOfDataStructureOfDelaun , shared_ptr<BRepMesh_SelectorOfDataStructureOfDelaun>  >>(m.attr("BRepMesh_SelectorOfDataStructureOfDelaun"))
+    static_cast<py::class_<BRepMesh_SelectorOfDataStructureOfDelaun ,opencascade::handle<BRepMesh_SelectorOfDataStructureOfDelaun>  , Standard_Transient >>(m.attr("BRepMesh_SelectorOfDataStructureOfDelaun"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<BRepMesh_DataStructureOfDelaun> & >()  , py::arg("theMesh") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepMesh_SelectorOfDataStructureOfDelaun::*)( const opencascade::handle<BRepMesh_DataStructureOfDelaun> &  ) ) static_cast<void (BRepMesh_SelectorOfDataStructureOfDelaun::*)( const opencascade::handle<BRepMesh_DataStructureOfDelaun> &  ) >(&BRepMesh_SelectorOfDataStructureOfDelaun::Initialize),
@@ -878,39 +1162,51 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (void (BRepMesh_SelectorOfDataStructureOfDelaun::*)() ) static_cast<void (BRepMesh_SelectorOfDataStructureOfDelaun::*)() >(&BRepMesh_SelectorOfDataStructureOfDelaun::AddNeighbours),
              R"#(Adds a level of neighbours by edge the selector.)#" )
         .def("Nodes",
-             (const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::Nodes),
+             (const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::Nodes),
              R"#(Returns selected nodes.)#" )
         .def("Links",
-             (const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::Links),
+             (const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::Links),
              R"#(Returns selected links.)#" )
         .def("Elements",
-             (const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::Elements),
+             (const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::Elements),
              R"#(Returns selected elements.)#" )
         .def("FrontierLinks",
-             (const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const BRepMesh::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::FrontierLinks),
+             (const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const IMeshData::MapOfInteger & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::FrontierLinks),
              R"#(Gives the list of incices of frontier links.)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_SelectorOfDataStructureOfDelaun::*)() const>(&BRepMesh_SelectorOfDataStructureOfDelaun::DynamicType),
+             R"#(None)#" )
     // methods using call by reference i.s.o. return
     // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_SelectorOfDataStructureOfDelaun::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_SelectorOfDataStructureOfDelaun::get_type_descriptor),
+                    R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
-    register_default_constructor<BRepMesh_ShapeTool , shared_ptr<BRepMesh_ShapeTool>>(m,"BRepMesh_ShapeTool");
+    // default constructor
+    register_default_constructor<BRepMesh_ShapeTool ,opencascade::handle<BRepMesh_ShapeTool>>(m,"BRepMesh_ShapeTool");
 
-    static_cast<py::class_<BRepMesh_ShapeTool , shared_ptr<BRepMesh_ShapeTool>  >>(m.attr("BRepMesh_ShapeTool"))
+    static_cast<py::class_<BRepMesh_ShapeTool ,opencascade::handle<BRepMesh_ShapeTool>  , Standard_Transient >>(m.attr("BRepMesh_ShapeTool"))
+    // constructors
+    // custom constructors
     // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_ShapeTool::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_ShapeTool::*)() const>(&BRepMesh_ShapeTool::DynamicType),
+             R"#(None)#" )
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("MaxFaceTolerance_s",
                     (Standard_Real (*)( const TopoDS_Face &  ) ) static_cast<Standard_Real (*)( const TopoDS_Face &  ) >(&BRepMesh_ShapeTool::MaxFaceTolerance),
                     R"#(Returns maximum tolerance of the given face. Considers tolerances of edges and vertices contained in the given face.)#"  , py::arg("theFace"))
-        .def_static("RelativeEdgeDeflection_s",
-                    (Standard_Real (*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Real (*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) >(&BRepMesh_ShapeTool::RelativeEdgeDeflection),
-                    R"#(Returns relative deflection for edge with respect to shape size.)#"  , py::arg("theEdge"),  py::arg("theDeflection"),  py::arg("theMaxShapeSize"),  py::arg("theAdjustmentCoefficient"))
-        .def_static("FindUV_s",
-                    (gp_XY (*)( const Standard_Integer ,  const gp_Pnt2d & ,  const Standard_Real ,  const opencascade::handle<BRepMesh_FaceAttribute> &  ) ) static_cast<gp_XY (*)( const Standard_Integer ,  const gp_Pnt2d & ,  const Standard_Real ,  const opencascade::handle<BRepMesh_FaceAttribute> &  ) >(&BRepMesh_ShapeTool::FindUV),
-                    R"#(Checks 2d representations of 3d point with the given index for equality to avoid duplications.)#"  , py::arg("theIndexOfPnt3d"),  py::arg("thePnt2d"),  py::arg("theMinDistance"),  py::arg("theFaceAttribute"))
+        .def_static("CheckAndUpdateFlags_s",
+                    (void (*)(  const opencascade::handle<IMeshData_Edge> & ,   const opencascade::handle<IMeshData_PCurve> &  ) ) static_cast<void (*)(  const opencascade::handle<IMeshData_Edge> & ,   const opencascade::handle<IMeshData_PCurve> &  ) >(&BRepMesh_ShapeTool::CheckAndUpdateFlags),
+                    R"#(Checks same parameter, same range and degenerativity attributes using geometrical data of the given edge and updates edge model by computed parameters in case of worst case - it can drop flags same parameter and same range to False but never to True if it is already set to False. In contrary, it can also drop degenerated flag to True, but never to False if it is already set to True.)#"  , py::arg("theEdge"),  py::arg("thePCurve"))
         .def_static("AddInFace_s",
                     (void (*)( const TopoDS_Face & ,  opencascade::handle<Poly_Triangulation> &  ) ) static_cast<void (*)( const TopoDS_Face & ,  opencascade::handle<Poly_Triangulation> &  ) >(&BRepMesh_ShapeTool::AddInFace),
                     R"#(Stores the given triangulation into the given face.)#"  , py::arg("theFace"),  py::arg("theTriangulation"))
@@ -920,31 +1216,79 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
         .def_static("NullifyEdge_s",
                     (void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_Triangulation> & ,  const TopLoc_Location &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_Triangulation> & ,  const TopLoc_Location &  ) >(&BRepMesh_ShapeTool::NullifyEdge),
                     R"#(Nullifies polygon on triangulation stored in the edge.)#"  , py::arg("theEdge"),  py::arg("theTriangulation"),  py::arg("theLocation"))
+        .def_static("NullifyEdge_s",
+                    (void (*)( const TopoDS_Edge & ,  const TopLoc_Location &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const TopLoc_Location &  ) >(&BRepMesh_ShapeTool::NullifyEdge),
+                    R"#(Nullifies 3d polygon stored in the edge.)#"  , py::arg("theEdge"),  py::arg("theLocation"))
         .def_static("UpdateEdge_s",
                     (void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_PolygonOnTriangulation> & ,  const opencascade::handle<Poly_Triangulation> & ,  const TopLoc_Location &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_PolygonOnTriangulation> & ,  const opencascade::handle<Poly_Triangulation> & ,  const TopLoc_Location &  ) >(&BRepMesh_ShapeTool::UpdateEdge),
                     R"#(Updates the given edge by the given tessellated representation.)#"  , py::arg("theEdge"),  py::arg("thePolygon"),  py::arg("theTriangulation"),  py::arg("theLocation"))
+        .def_static("UpdateEdge_s",
+                    (void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_Polygon3D> &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_Polygon3D> &  ) >(&BRepMesh_ShapeTool::UpdateEdge),
+                    R"#(Updates the given edge by the given tessellated representation.)#"  , py::arg("theEdge"),  py::arg("thePolygon"))
         .def_static("UpdateEdge_s",
                     (void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_PolygonOnTriangulation> & ,  const opencascade::handle<Poly_PolygonOnTriangulation> & ,  const opencascade::handle<Poly_Triangulation> & ,  const TopLoc_Location &  ) ) static_cast<void (*)( const TopoDS_Edge & ,  const opencascade::handle<Poly_PolygonOnTriangulation> & ,  const opencascade::handle<Poly_PolygonOnTriangulation> & ,  const opencascade::handle<Poly_Triangulation> & ,  const TopLoc_Location &  ) >(&BRepMesh_ShapeTool::UpdateEdge),
                     R"#(Updates the given seam edge by the given tessellated representations.)#"  , py::arg("theEdge"),  py::arg("thePolygon1"),  py::arg("thePolygon2"),  py::arg("theTriangulation"),  py::arg("theLocation"))
         .def_static("UseLocation_s",
                     (gp_Pnt (*)( const gp_Pnt & ,  const TopLoc_Location &  ) ) static_cast<gp_Pnt (*)( const gp_Pnt & ,  const TopLoc_Location &  ) >(&BRepMesh_ShapeTool::UseLocation),
                     R"#(Applies location to the given point and return result.)#"  , py::arg("thePnt"),  py::arg("theLoc"))
-        .def_static("IsDegenerated_s",
-                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepMesh_ShapeTool::IsDegenerated),
-                    R"#(Checks is the given edge degenerated. Checks geometrical parameters in case if IsDegenerated flag is not set.)#"  , py::arg("theEdge"),  py::arg("theFace"))
+        .def_static("UVPoints_s",
+                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  gp_Pnt2d & ,  const Standard_Boolean  ) >(&BRepMesh_ShapeTool::UVPoints),
+                    R"#(Gets the strict UV locations of the extremities of the edge using pcurve.)#"  , py::arg("theEdge"),  py::arg("theFace"),  py::arg("theFirstPoint2d"),  py::arg("theLastPoint2d"),  py::arg("isConsiderOrientation")=static_cast<const Standard_Boolean>(Standard_False))
+        .def_static("Range_s",
+                    (Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Boolean  ) >(&BRepMesh_ShapeTool::Range),
+                    R"#(Gets the parametric range of the given edge on the given face.)#"  , py::arg("theEdge"),  py::arg("theFace"),  py::arg("thePCurve"),  py::arg("theFirstParam"),  py::arg("theLastParam"),  py::arg("isConsiderOrientation")=static_cast<const Standard_Boolean>(Standard_False))
+        .def_static("Range_s",
+                    (Standard_Boolean (*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge & ,  opencascade::handle<Geom_Curve> & ,  Standard_Real & ,  Standard_Real & ,  const Standard_Boolean  ) >(&BRepMesh_ShapeTool::Range),
+                    R"#(Gets the 3d range of the given edge.)#"  , py::arg("theEdge"),  py::arg("theCurve"),  py::arg("theFirstParam"),  py::arg("theLastParam"),  py::arg("isConsiderOrientation")=static_cast<const Standard_Boolean>(Standard_False))
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_ShapeTool::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_ShapeTool::get_type_descriptor),
+                    R"#(None)#" )
     // static methods using call by reference i.s.o. return
         .def_static("BoxMaxDimension_s",
                     []( const Bnd_Box & theBox ){ Standard_Real  theMaxDimension; BRepMesh_ShapeTool::BoxMaxDimension(theBox,theMaxDimension); return std::make_tuple(theMaxDimension); },
                     R"#(Gets the maximum dimension of the given bounding box. If the given bounding box is void leaves the resulting value unchanged.)#"  , py::arg("theBox"))
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_ShapeVisitor ,opencascade::handle<BRepMesh_ShapeVisitor>  >>(m.attr("BRepMesh_ShapeVisitor"))
+    // constructors
+        .def(py::init< const opencascade::handle<IMeshData_Model> & >()  , py::arg("theModel") )
+    // custom constructors
+    // methods
+        .def("Visit",
+             (void (BRepMesh_ShapeVisitor::*)( const TopoDS_Face &  ) ) static_cast<void (BRepMesh_ShapeVisitor::*)( const TopoDS_Face &  ) >(&BRepMesh_ShapeVisitor::Visit),
+             R"#(Handles TopoDS_Face object.)#"  , py::arg("theFace"))
+        .def("Visit",
+             (void (BRepMesh_ShapeVisitor::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepMesh_ShapeVisitor::*)( const TopoDS_Edge &  ) >(&BRepMesh_ShapeVisitor::Visit),
+             R"#(Handles TopoDS_Edge object.)#"  , py::arg("theEdge"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_ShapeVisitor::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_ShapeVisitor::*)() const>(&BRepMesh_ShapeVisitor::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_ShapeVisitor::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_ShapeVisitor::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_Vertex , shared_ptr<BRepMesh_Vertex>  >>(m.attr("BRepMesh_Vertex"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XY &,const Standard_Integer,const BRepMesh_DegreeOfFreedom >()  , py::arg("theUV"),  py::arg("theLocation3d"),  py::arg("theMovability") )
         .def(py::init< const Standard_Real,const Standard_Real,const BRepMesh_DegreeOfFreedom >()  , py::arg("theU"),  py::arg("theV"),  py::arg("theMovability") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepMesh_Vertex::*)( const gp_XY & ,  const Standard_Integer ,  const BRepMesh_DegreeOfFreedom  ) ) static_cast<void (BRepMesh_Vertex::*)( const gp_XY & ,  const Standard_Integer ,  const BRepMesh_DegreeOfFreedom  ) >(&BRepMesh_Vertex::Initialize),
@@ -966,7 +1310,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              R"#(Sets movability of the vertex.)#"  , py::arg("theMovability"))
         .def("HashCode",
              (Standard_Integer (BRepMesh_Vertex::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (BRepMesh_Vertex::*)( const Standard_Integer  ) const>(&BRepMesh_Vertex::HashCode),
-             R"#(Returns hash code for this vertex.)#"  , py::arg("Upper"))
+             R"#(Computes a hash code for this vertex, in the range [1, theUpperBound])#"  , py::arg("theUpperBound"))
         .def("IsEqual",
              (Standard_Boolean (BRepMesh_Vertex::*)( const BRepMesh_Vertex &  ) const) static_cast<Standard_Boolean (BRepMesh_Vertex::*)( const BRepMesh_Vertex &  ) const>(&BRepMesh_Vertex::IsEqual),
              R"#(Checks for equality with another vertex.)#"  , py::arg("theOther"))
@@ -974,12 +1318,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_VertexInspector , shared_ptr<BRepMesh_VertexInspector>  >>(m.attr("BRepMesh_VertexInspector"))
+    static_cast<py::class_<BRepMesh_VertexInspector , shared_ptr<BRepMesh_VertexInspector>  , NCollection_CellFilter_InspectorXY >>(m.attr("BRepMesh_VertexInspector"))
+    // constructors
         .def(py::init< const opencascade::handle<NCollection_IncAllocator> & >()  , py::arg("theAllocator") )
+    // custom constructors
     // methods
         .def("Add",
              (Standard_Integer (BRepMesh_VertexInspector::*)( const BRepMesh_Vertex &  ) ) static_cast<Standard_Integer (BRepMesh_VertexInspector::*)( const BRepMesh_Vertex &  ) >(&BRepMesh_VertexInspector::Add),
@@ -1009,13 +1355,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (Standard_Integer (BRepMesh_VertexInspector::*)() const) static_cast<Standard_Integer (BRepMesh_VertexInspector::*)() const>(&BRepMesh_VertexInspector::GetCoincidentPoint),
              R"#(Returns index of point coinciding with regerence one.)#" )
         .def("GetListOfDelPoints",
-             (const BRepMesh::ListOfInteger & (BRepMesh_VertexInspector::*)() const) static_cast<const BRepMesh::ListOfInteger & (BRepMesh_VertexInspector::*)() const>(&BRepMesh_VertexInspector::GetListOfDelPoints),
+             (const IMeshData::ListOfInteger & (BRepMesh_VertexInspector::*)() const) static_cast<const IMeshData::ListOfInteger & (BRepMesh_VertexInspector::*)() const>(&BRepMesh_VertexInspector::GetListOfDelPoints),
              R"#(Returns list with indexes of vertices that have movability attribute equal to BRepMesh_Deleted and can be replaced with another node.)#" )
         .def("Vertices",
-             (const BRepMesh::HVectorOfVertex & (BRepMesh_VertexInspector::*)() const) static_cast<const BRepMesh::HVectorOfVertex & (BRepMesh_VertexInspector::*)() const>(&BRepMesh_VertexInspector::Vertices),
+             (const opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexInspector::*)() const) static_cast<const opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexInspector::*)() const>(&BRepMesh_VertexInspector::Vertices),
              R"#(Returns set of mesh vertices.)#" )
         .def("ChangeVertices",
-             (BRepMesh::HVectorOfVertex & (BRepMesh_VertexInspector::*)() ) static_cast<BRepMesh::HVectorOfVertex & (BRepMesh_VertexInspector::*)() >(&BRepMesh_VertexInspector::ChangeVertices),
+             (opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexInspector::*)() ) static_cast<opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexInspector::*)() >(&BRepMesh_VertexInspector::ChangeVertices),
              R"#(Returns set of mesh vertices for modification.)#" )
         .def("Inspect",
              (NCollection_CellFilter_Action (BRepMesh_VertexInspector::*)( const Standard_Integer  ) ) static_cast<NCollection_CellFilter_Action (BRepMesh_VertexInspector::*)( const Standard_Integer  ) >(&BRepMesh_VertexInspector::Inspect),
@@ -1027,12 +1373,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
                     R"#(Checks indices for equlity.)#"  , py::arg("theIndex"),  py::arg("theTargetIndex"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_VertexTool , shared_ptr<BRepMesh_VertexTool>  >>(m.attr("BRepMesh_VertexTool"))
+    static_cast<py::class_<BRepMesh_VertexTool ,opencascade::handle<BRepMesh_VertexTool>  , Standard_Transient >>(m.attr("BRepMesh_VertexTool"))
+    // constructors
         .def(py::init< const opencascade::handle<NCollection_IncAllocator> & >()  , py::arg("theAllocator") )
+    // custom constructors
     // methods
         .def("SetCellSize",
              (void (BRepMesh_VertexTool::*)( const Standard_Real  ) ) static_cast<void (BRepMesh_VertexTool::*)( const Standard_Real  ) >(&BRepMesh_VertexTool::SetCellSize),
@@ -1049,14 +1397,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
         .def("Add",
              (Standard_Integer (BRepMesh_VertexTool::*)( const BRepMesh_Vertex & ,  const Standard_Boolean  ) ) static_cast<Standard_Integer (BRepMesh_VertexTool::*)( const BRepMesh_Vertex & ,  const Standard_Boolean  ) >(&BRepMesh_VertexTool::Add),
              R"#(Adds vertex with empty data to the tool.)#"  , py::arg("theVertex"),  py::arg("isForceAdd"))
-        .def("Delete",
-             (void (BRepMesh_VertexTool::*)( const Standard_Integer  ) ) static_cast<void (BRepMesh_VertexTool::*)( const Standard_Integer  ) >(&BRepMesh_VertexTool::Delete),
+        .def("DeleteVertex",
+             (void (BRepMesh_VertexTool::*)( const Standard_Integer  ) ) static_cast<void (BRepMesh_VertexTool::*)( const Standard_Integer  ) >(&BRepMesh_VertexTool::DeleteVertex),
              R"#(Deletes vertex with the given index from the tool.)#"  , py::arg("theIndex"))
         .def("Vertices",
-             (const BRepMesh::HVectorOfVertex & (BRepMesh_VertexTool::*)() const) static_cast<const BRepMesh::HVectorOfVertex & (BRepMesh_VertexTool::*)() const>(&BRepMesh_VertexTool::Vertices),
+             (const opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexTool::*)() const) static_cast<const opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexTool::*)() const>(&BRepMesh_VertexTool::Vertices),
              R"#(Returns set of mesh vertices.)#" )
         .def("ChangeVertices",
-             (BRepMesh::HVectorOfVertex & (BRepMesh_VertexTool::*)() ) static_cast<BRepMesh::HVectorOfVertex & (BRepMesh_VertexTool::*)() >(&BRepMesh_VertexTool::ChangeVertices),
+             (opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexTool::*)() ) static_cast<opencascade::handle<IMeshData::VectorOfVertex> & (BRepMesh_VertexTool::*)() >(&BRepMesh_VertexTool::ChangeVertices),
              R"#(Returns set of mesh vertices.)#" )
         .def("FindKey",
              (const BRepMesh_Vertex & (BRepMesh_VertexTool::*)( const Standard_Integer  ) ) static_cast<const BRepMesh_Vertex & (BRepMesh_VertexTool::*)( const Standard_Integer  ) >(&BRepMesh_VertexTool::FindKey),
@@ -1077,53 +1425,93 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
              (void (BRepMesh_VertexTool::*)() ) static_cast<void (BRepMesh_VertexTool::*)() >(&BRepMesh_VertexTool::RemoveLast),
              R"#(Remove last node from the structure.)#" )
         .def("GetListOfDelNodes",
-             (const BRepMesh::ListOfInteger & (BRepMesh_VertexTool::*)() const) static_cast<const BRepMesh::ListOfInteger & (BRepMesh_VertexTool::*)() const>(&BRepMesh_VertexTool::GetListOfDelNodes),
+             (const IMeshData::ListOfInteger & (BRepMesh_VertexTool::*)() const) static_cast<const IMeshData::ListOfInteger & (BRepMesh_VertexTool::*)() const>(&BRepMesh_VertexTool::GetListOfDelNodes),
              R"#(Returns the list with indexes of vertices that have movability attribute equal to BRepMesh_Deleted and can be replaced with another node.)#" )
         .def("Statistics",
              (void (BRepMesh_VertexTool::*)( std::ostream &  ) const) static_cast<void (BRepMesh_VertexTool::*)( std::ostream &  ) const>(&BRepMesh_VertexTool::Statistics),
              R"#(Prints statistics.)#"  , py::arg("theStream"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_VertexTool::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_VertexTool::*)() const>(&BRepMesh_VertexTool::DynamicType),
+             R"#(None)#" )
     // methods using call by reference i.s.o. return
         .def("GetTolerance",
              []( BRepMesh_VertexTool &self   ){ Standard_Real  theToleranceX; Standard_Real  theToleranceY; self.GetTolerance(theToleranceX,theToleranceY); return std::make_tuple(theToleranceX,theToleranceY); },
              R"#(Gets the tolerance to be used for identification of coincident vertices.)#" )
     // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_VertexTool::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_VertexTool::get_type_descriptor),
+                    R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_WireChecker , shared_ptr<BRepMesh_WireChecker>  >>(m.attr("BRepMesh_WireChecker"))
-        .def(py::init< const TopoDS_Face &,const Standard_Real, const NCollection_Handle<BRepMesh::DMapOfShapePairOfPolygon> &, const NCollection_Handle<BRepMesh::IMapOfInteger> &,const opencascade::handle<BRepMesh_DataStructureOfDelaun> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("theFace"),  py::arg("theTolUV"),  py::arg("theEdges"),  py::arg("theVertexMap"),  py::arg("theStructure"),  py::arg("theUmin"),  py::arg("theUmax"),  py::arg("theVmin"),  py::arg("theVmax"),  py::arg("isInParallel") )
+    static_cast<py::class_<BRepMesh_ConeRangeSplitter , shared_ptr<BRepMesh_ConeRangeSplitter>  , BRepMesh_DefaultRangeSplitter >>(m.attr("BRepMesh_ConeRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
     // methods
-        .def("ReCompute",
-             (void (BRepMesh_WireChecker::*)( NCollection_Handle<BRepMesh_Classifier> &  ) ) static_cast<void (BRepMesh_WireChecker::*)( NCollection_Handle<BRepMesh_Classifier> &  ) >(&BRepMesh_WireChecker::ReCompute),
-             R"#(Recompute data using parameters passed in constructor.)#"  , py::arg("theClassifier"))
-        .def("Status",
-             (BRepMesh_Status (BRepMesh_WireChecker::*)() const) static_cast<BRepMesh_Status (BRepMesh_WireChecker::*)() const>(&BRepMesh_WireChecker::Status),
-             R"#(Returns status of the check.)#" )
+        .def("GenerateSurfaceNodes",
+             (opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_ConeRangeSplitter::*)( const IMeshTools_Parameters &  ) const) static_cast<opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_ConeRangeSplitter::*)( const IMeshTools_Parameters &  ) const>(&BRepMesh_ConeRangeSplitter::GenerateSurfaceNodes),
+             R"#(Returns list of nodes generated using surface data and specified parameters.)#"  , py::arg("theParameters"))
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<BRepMesh_WireInterferenceChecker , shared_ptr<BRepMesh_WireInterferenceChecker>  >>(m.attr("BRepMesh_WireInterferenceChecker"))
-        .def(py::init<  const NCollection_Array1<BRepMesh::SegmentsTree> &,BRepMesh_Status *,Standard_Mutex * >()  , py::arg("theWires"),  py::arg("theStatus"),  py::arg("theMutex")=static_cast<Standard_Mutex *>(NULL) )
+    static_cast<py::class_<BRepMesh_ConstrainedBaseMeshAlgo ,opencascade::handle<BRepMesh_ConstrainedBaseMeshAlgo> ,Py_BRepMesh_ConstrainedBaseMeshAlgo , BRepMesh_BaseMeshAlgo >>(m.attr("BRepMesh_ConstrainedBaseMeshAlgo"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
     // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_ConstrainedBaseMeshAlgo::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_ConstrainedBaseMeshAlgo::*)() const>(&BRepMesh_ConstrainedBaseMeshAlgo::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_ConstrainedBaseMeshAlgo::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_ConstrainedBaseMeshAlgo::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_CylinderRangeSplitter , shared_ptr<BRepMesh_CylinderRangeSplitter>  , BRepMesh_DefaultRangeSplitter >>(m.attr("BRepMesh_CylinderRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("Reset",
+             (void (BRepMesh_CylinderRangeSplitter::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) ) static_cast<void (BRepMesh_CylinderRangeSplitter::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_CylinderRangeSplitter::Reset),
+             R"#(Resets this splitter. Must be called before first use.)#"  , py::arg("theDFace"),  py::arg("theParameters"))
+        .def("GenerateSurfaceNodes",
+             (opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_CylinderRangeSplitter::*)( const IMeshTools_Parameters &  ) const) static_cast<opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_CylinderRangeSplitter::*)( const IMeshTools_Parameters &  ) const>(&BRepMesh_CylinderRangeSplitter::GenerateSurfaceNodes),
+             R"#(Returns list of nodes generated using surface data and specified parameters.)#"  , py::arg("theParameters"))
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_Edge , shared_ptr<BRepMesh_Edge>  , BRepMesh_OrientedEdge >>(m.attr("BRepMesh_Edge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const BRepMesh_DegreeOfFreedom >()  , py::arg("theFirstNode"),  py::arg("theLastNode"),  py::arg("theMovability") )
+    // custom constructors
     // methods
         .def("Movability",
              (BRepMesh_DegreeOfFreedom (BRepMesh_Edge::*)() const) static_cast<BRepMesh_DegreeOfFreedom (BRepMesh_Edge::*)() const>(&BRepMesh_Edge::Movability),
@@ -1141,75 +1529,28 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepMesh_EdgeTessellationExtractor ,opencascade::handle<BRepMesh_EdgeTessellationExtractor>  , BRepMesh_IEdgeTool >>(m.attr("BRepMesh_EdgeTessellationExtractor"))
-        .def(py::init< const TopoDS_Edge &,const opencascade::handle<Geom2dAdaptor_HCurve> &,const TopoDS_Face &,const opencascade::handle<Poly_Triangulation> &,const opencascade::handle<Poly_PolygonOnTriangulation> &,const TopLoc_Location & >()  , py::arg("theEdge"),  py::arg("thePCurve"),  py::arg("theFace"),  py::arg("theTriangulation"),  py::arg("thePolygon"),  py::arg("theLocation") )
-    // methods
-        .def("NbPoints",
-             (Standard_Integer (BRepMesh_EdgeTessellationExtractor::*)() const) static_cast<Standard_Integer (BRepMesh_EdgeTessellationExtractor::*)() const>(&BRepMesh_EdgeTessellationExtractor::NbPoints),
-             R"#(Returns number of dicretization points.)#" )
-        .def("Value",
-             (Standard_Boolean (BRepMesh_EdgeTessellationExtractor::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) ) static_cast<Standard_Boolean (BRepMesh_EdgeTessellationExtractor::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) >(&BRepMesh_EdgeTessellationExtractor::Value),
-             R"#(Returns parameters of solution with the given index.)#"  , py::arg("theIndex"),  py::arg("theParameter"),  py::arg("thePoint"),  py::arg("theUV"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepMesh_EdgeTessellationExtractor::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_EdgeTessellationExtractor::*)() const>(&BRepMesh_EdgeTessellationExtractor::DynamicType),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_EdgeTessellationExtractor::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_EdgeTessellationExtractor::get_type_descriptor),
-                    R"#(None)#" )
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepMesh_EdgeTessellator ,opencascade::handle<BRepMesh_EdgeTessellator>  , BRepMesh_IEdgeTool >>(m.attr("BRepMesh_EdgeTessellator"))
-        .def(py::init< const TopoDS_Edge &,const opencascade::handle<BRepMesh_FaceAttribute> &, const NCollection_IndexedDataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theEdge"),  py::arg("theFaceAttribute"),  py::arg("theMapOfSharedFaces"),  py::arg("theLinDeflection"),  py::arg("theAngDeflection"),  py::arg("theMinSize") )
-    // methods
-        .def("NbPoints",
-             (Standard_Integer (BRepMesh_EdgeTessellator::*)() const) static_cast<Standard_Integer (BRepMesh_EdgeTessellator::*)() const>(&BRepMesh_EdgeTessellator::NbPoints),
-             R"#(Returns number of dicretization points.)#" )
-        .def("Value",
-             (Standard_Boolean (BRepMesh_EdgeTessellator::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) ) static_cast<Standard_Boolean (BRepMesh_EdgeTessellator::*)( const Standard_Integer ,  Standard_Real & ,  gp_Pnt & ,  gp_Pnt2d &  ) >(&BRepMesh_EdgeTessellator::Value),
-             R"#(Returns parameters of solution with the given index.)#"  , py::arg("theIndex"),  py::arg("theParameter"),  py::arg("thePoint"),  py::arg("theUV"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepMesh_EdgeTessellator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_EdgeTessellator::*)() const>(&BRepMesh_EdgeTessellator::DynamicType),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_EdgeTessellator::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_EdgeTessellator::get_type_descriptor),
-                    R"#(None)#" )
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepMesh_IncrementalMesh ,opencascade::handle<BRepMesh_IncrementalMesh>  , BRepMesh_DiscretRoot >>(m.attr("BRepMesh_IncrementalMesh"))
+    // constructors
         .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("theShape"),  py::arg("theLinDeflection"),  py::arg("isRelative")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theAngDeflection")=static_cast<const Standard_Real>(0.5),  py::arg("isInParallel")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("adaptiveMin")=static_cast<const Standard_Boolean>(Standard_False) )
-        .def(py::init< const TopoDS_Shape &,const BRepMesh_FastDiscret::Parameters & >()  , py::arg("theShape"),  py::arg("theParameters") )
+        .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Boolean >()  , py::arg("theShape"),  py::arg("theLinDeflection"),  py::arg("isRelative")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theAngDeflection")=static_cast<const Standard_Real>(0.5),  py::arg("isInParallel")=static_cast<const Standard_Boolean>(Standard_False) )
+        .def(py::init< const TopoDS_Shape &,const IMeshTools_Parameters & >()  , py::arg("theShape"),  py::arg("theParameters") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepMesh_IncrementalMesh::*)() ) static_cast<void (BRepMesh_IncrementalMesh::*)() >(&BRepMesh_IncrementalMesh::Perform),
              R"#(Performs meshing ot the shape.)#" )
+        .def("Perform",
+             (void (BRepMesh_IncrementalMesh::*)( const opencascade::handle<IMeshTools_Context> &  ) ) static_cast<void (BRepMesh_IncrementalMesh::*)( const opencascade::handle<IMeshTools_Context> &  ) >(&BRepMesh_IncrementalMesh::Perform),
+             R"#(Performs meshing using custom context;)#"  , py::arg("theContext"))
         .def("Parameters",
-             (const BRepMesh_FastDiscret::Parameters & (BRepMesh_IncrementalMesh::*)() const) static_cast<const BRepMesh_FastDiscret::Parameters & (BRepMesh_IncrementalMesh::*)() const>(&BRepMesh_IncrementalMesh::Parameters),
+             (const IMeshTools_Parameters & (BRepMesh_IncrementalMesh::*)() const) static_cast<const IMeshTools_Parameters & (BRepMesh_IncrementalMesh::*)() const>(&BRepMesh_IncrementalMesh::Parameters),
              R"#(Returns meshing parameters)#" )
         .def("ChangeParameters",
-             (BRepMesh_FastDiscret::Parameters & (BRepMesh_IncrementalMesh::*)() ) static_cast<BRepMesh_FastDiscret::Parameters & (BRepMesh_IncrementalMesh::*)() >(&BRepMesh_IncrementalMesh::ChangeParameters),
+             (IMeshTools_Parameters & (BRepMesh_IncrementalMesh::*)() ) static_cast<IMeshTools_Parameters & (BRepMesh_IncrementalMesh::*)() >(&BRepMesh_IncrementalMesh::ChangeParameters),
              R"#(Returns modifiable meshing parameters)#" )
         .def("IsModified",
              (Standard_Boolean (BRepMesh_IncrementalMesh::*)() const) static_cast<Standard_Boolean (BRepMesh_IncrementalMesh::*)() const>(&BRepMesh_IncrementalMesh::IsModified),
@@ -1236,57 +1577,219 @@ py::module m = static_cast<py::module>(main_module.attr("BRepMesh"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_SphereRangeSplitter , shared_ptr<BRepMesh_SphereRangeSplitter>  , BRepMesh_DefaultRangeSplitter >>(m.attr("BRepMesh_SphereRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("GenerateSurfaceNodes",
+             (opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_SphereRangeSplitter::*)( const IMeshTools_Parameters &  ) const) static_cast<opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_SphereRangeSplitter::*)( const IMeshTools_Parameters &  ) const>(&BRepMesh_SphereRangeSplitter::GenerateSurfaceNodes),
+             R"#(Returns list of nodes generated using surface data and specified parameters.)#"  , py::arg("theParameters"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_UVParamRangeSplitter , shared_ptr<BRepMesh_UVParamRangeSplitter>  , BRepMesh_DefaultRangeSplitter >>(m.attr("BRepMesh_UVParamRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("Reset",
+             (void (BRepMesh_UVParamRangeSplitter::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) ) static_cast<void (BRepMesh_UVParamRangeSplitter::*)(  const opencascade::handle<IMeshData_Face> & ,  const IMeshTools_Parameters &  ) >(&BRepMesh_UVParamRangeSplitter::Reset),
+             R"#(Resets this splitter.)#"  , py::arg("theDFace"),  py::arg("theParameters"))
+        .def("GetParametersU",
+             (const IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() const) static_cast<const IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() const>(&BRepMesh_UVParamRangeSplitter::GetParametersU),
+             R"#(Returns U parameters.)#" )
+        .def("GetParametersU",
+             (IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() ) static_cast<IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() >(&BRepMesh_UVParamRangeSplitter::GetParametersU),
+             R"#(Returns U parameters.)#" )
+        .def("GetParametersV",
+             (const IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() const) static_cast<const IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() const>(&BRepMesh_UVParamRangeSplitter::GetParametersV),
+             R"#(Returns V parameters.)#" )
+        .def("GetParametersV",
+             (IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() ) static_cast<IMeshData::IMapOfReal & (BRepMesh_UVParamRangeSplitter::*)() >(&BRepMesh_UVParamRangeSplitter::GetParametersV),
+             R"#(Returns V parameters.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_CustomBaseMeshAlgo ,opencascade::handle<BRepMesh_CustomBaseMeshAlgo> ,Py_BRepMesh_CustomBaseMeshAlgo , BRepMesh_ConstrainedBaseMeshAlgo >>(m.attr("BRepMesh_CustomBaseMeshAlgo"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_CustomBaseMeshAlgo::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_CustomBaseMeshAlgo::*)() const>(&BRepMesh_CustomBaseMeshAlgo::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_CustomBaseMeshAlgo::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_CustomBaseMeshAlgo::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_DelaunayBaseMeshAlgo ,opencascade::handle<BRepMesh_DelaunayBaseMeshAlgo>  , BRepMesh_ConstrainedBaseMeshAlgo >>(m.attr("BRepMesh_DelaunayBaseMeshAlgo"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (BRepMesh_DelaunayBaseMeshAlgo::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepMesh_DelaunayBaseMeshAlgo::*)() const>(&BRepMesh_DelaunayBaseMeshAlgo::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepMesh_DelaunayBaseMeshAlgo::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepMesh_DelaunayBaseMeshAlgo::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_NURBSRangeSplitter , shared_ptr<BRepMesh_NURBSRangeSplitter>  , BRepMesh_UVParamRangeSplitter >>(m.attr("BRepMesh_NURBSRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("AdjustRange",
+             (void (BRepMesh_NURBSRangeSplitter::*)() ) static_cast<void (BRepMesh_NURBSRangeSplitter::*)() >(&BRepMesh_NURBSRangeSplitter::AdjustRange),
+             R"#(Updates discrete range of surface according to its geometric range.)#" )
+        .def("GenerateSurfaceNodes",
+             (opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_NURBSRangeSplitter::*)( const IMeshTools_Parameters &  ) const) static_cast<opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_NURBSRangeSplitter::*)( const IMeshTools_Parameters &  ) const>(&BRepMesh_NURBSRangeSplitter::GenerateSurfaceNodes),
+             R"#(Returns list of nodes generated using surface data and specified parameters.)#"  , py::arg("theParameters"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_TorusRangeSplitter , shared_ptr<BRepMesh_TorusRangeSplitter>  , BRepMesh_UVParamRangeSplitter >>(m.attr("BRepMesh_TorusRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("GenerateSurfaceNodes",
+             (opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_TorusRangeSplitter::*)( const IMeshTools_Parameters &  ) const) static_cast<opencascade::handle<IMeshData::ListOfPnt2d> (BRepMesh_TorusRangeSplitter::*)( const IMeshTools_Parameters &  ) const>(&BRepMesh_TorusRangeSplitter::GenerateSurfaceNodes),
+             R"#(Returns list of nodes generated using surface data and specified parameters.)#"  , py::arg("theParameters"))
+        .def("AddPoint",
+             (void (BRepMesh_TorusRangeSplitter::*)( const gp_Pnt2d &  ) ) static_cast<void (BRepMesh_TorusRangeSplitter::*)( const gp_Pnt2d &  ) >(&BRepMesh_TorusRangeSplitter::AddPoint),
+             R"#(Registers border point.)#"  , py::arg("thePoint"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BRepMesh_BoundaryParamsRangeSplitter , shared_ptr<BRepMesh_BoundaryParamsRangeSplitter>  , BRepMesh_NURBSRangeSplitter >>(m.attr("BRepMesh_BoundaryParamsRangeSplitter"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+        .def("AddPoint",
+             (void (BRepMesh_BoundaryParamsRangeSplitter::*)( const gp_Pnt2d &  ) ) static_cast<void (BRepMesh_BoundaryParamsRangeSplitter::*)( const gp_Pnt2d &  ) >(&BRepMesh_BoundaryParamsRangeSplitter::AddPoint),
+             R"#(Registers border point.)#"  , py::arg("thePoint"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepMesh_WireInterferenceChecker.hxx
+// ./opencascade/BRepMesh_ConeRangeSplitter.hxx
 // ./opencascade/BRepMesh_ShapeTool.hxx
-// ./opencascade/BRepMesh_FaceAttribute.hxx
-// ./opencascade/BRepMesh_DataStructureOfDelaun.hxx
-// ./opencascade/BRepMesh_Delaun.hxx
-// ./opencascade/BRepMesh_PairOfIndex.hxx
-// ./opencascade/BRepMesh_EdgeParameterProvider.hxx
-// ./opencascade/BRepMesh_DiscretFactory.hxx
 // ./opencascade/BRepMesh_PluginMacro.hxx
-// ./opencascade/BRepMesh_PairOfPolygon.hxx
-// ./opencascade/BRepMesh.hxx
-// ./opencascade/BRepMesh_VertexInspector.hxx
-// ./opencascade/BRepMesh_Vertex.hxx
-    m.def("HashCode", 
-          (Standard_Integer (*)( const BRepMesh_Vertex & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const BRepMesh_Vertex & ,  const Standard_Integer  )>(&HashCode),
-          R"#(None)#"  , py::arg("me"),  py::arg("Upper"));
+// ./opencascade/BRepMesh_Context.hxx
+// ./opencascade/BRepMesh_DefaultRangeSplitter.hxx
 // ./opencascade/BRepMesh_Edge.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const BRepMesh_Edge & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const BRepMesh_Edge & ,  const Standard_Integer  )>(&HashCode),
-          R"#(None)#"  , py::arg("theEdge"),  py::arg("theUpper"));
-// ./opencascade/BRepMesh_IEdgeTool.hxx
-// ./opencascade/BRepMesh_IncrementalMesh.hxx
-// ./opencascade/BRepMesh_DiscretRoot.hxx
-// ./opencascade/BRepMesh_FastDiscret.hxx
-// ./opencascade/BRepMesh_DegreeOfFreedom.hxx
-// ./opencascade/BRepMesh_Status.hxx
-// ./opencascade/BRepMesh_CircleTool.hxx
-// ./opencascade/BRepMesh_FactoryError.hxx
-// ./opencascade/BRepMesh_FastDiscretFace.hxx
-// ./opencascade/BRepMesh_EdgeTessellator.hxx
-// ./opencascade/BRepMesh_Circle.hxx
-// ./opencascade/BRepMesh_GeomTool.hxx
-// ./opencascade/BRepMesh_PluginEntryType.hxx
-// ./opencascade/BRepMesh_WireChecker.hxx
-// ./opencascade/BRepMesh_SelectorOfDataStructureOfDelaun.hxx
+          R"#(Computes a hash code for the given edge, in the range [1, theUpperBound])#"  , py::arg("theEdge"),  py::arg("theUpperBound"));
+// ./opencascade/BRepMesh_UVParamRangeSplitter.hxx
+// ./opencascade/BRepMesh_Deflection.hxx
 // ./opencascade/BRepMesh_VertexTool.hxx
-// ./opencascade/BRepMesh_Classifier.hxx
+// ./opencascade/BRepMesh_IncrementalMesh.hxx
+// ./opencascade/BRepMesh_CustomBaseMeshAlgo.hxx
+// ./opencascade/BRepMesh_ModelPreProcessor.hxx
+// ./opencascade/BRepMesh_DegreeOfFreedom.hxx
+// ./opencascade/BRepMesh_Delaun.hxx
+// ./opencascade/BRepMesh_ModelBuilder.hxx
+// ./opencascade/BRepMesh_CurveTessellator.hxx
+// ./opencascade/BRepMesh_DiscretRoot.hxx
+// ./opencascade/BRepMesh_VertexInspector.hxx
+// ./opencascade/BRepMesh_CylinderRangeSplitter.hxx
+// ./opencascade/BRepMesh_CircleTool.hxx
+// ./opencascade/BRepMesh_FastDiscret.hxx
+// ./opencascade/BRepMesh_DelaunayBaseMeshAlgo.hxx
+// ./opencascade/BRepMesh_PluginEntryType.hxx
+// ./opencascade/BRepMesh_DataStructureOfDelaun.hxx
+// ./opencascade/BRepMesh_GeomTool.hxx
+// ./opencascade/BRepMesh_DiscretFactory.hxx
+// ./opencascade/BRepMesh_ShapeVisitor.hxx
+// ./opencascade/BRepMesh_PairOfIndex.hxx
+// ./opencascade/BRepMesh_EdgeParameterProvider.hxx
+// ./opencascade/BRepMesh_MeshAlgoFactory.hxx
 // ./opencascade/BRepMesh_EdgeTessellationExtractor.hxx
-// ./opencascade/BRepMesh_Triangle.hxx
-    m.def("HashCode", 
-          (Standard_Integer (*)( const BRepMesh_Triangle & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const BRepMesh_Triangle & ,  const Standard_Integer  )>(&HashCode),
-          R"#(None)#"  , py::arg("theTriangle"),  py::arg("theUpper"));
+// ./opencascade/BRepMesh_CustomDelaunayBaseMeshAlgo.hxx
+// ./opencascade/BRepMesh_TorusRangeSplitter.hxx
+// ./opencascade/BRepMesh_DelaunayDeflectionControlMeshAlgo.hxx
+// ./opencascade/BRepMesh_FaceDiscret.hxx
+// ./opencascade/BRepMesh_ModelHealer.hxx
+// ./opencascade/BRepMesh_BoundaryParamsRangeSplitter.hxx
+// ./opencascade/BRepMesh_SphereRangeSplitter.hxx
+// ./opencascade/BRepMesh_NURBSRangeSplitter.hxx
 // ./opencascade/BRepMesh_OrientedEdge.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const BRepMesh_OrientedEdge & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const BRepMesh_OrientedEdge & ,  const Standard_Integer  )>(&HashCode),
-          R"#(None)#"  , py::arg("theEdge"),  py::arg("theUpper"));
+          R"#(Computes a hash code for the given oriented edge, in the range [1, theUpperBound])#"  , py::arg("theOrientedEdge"),  py::arg("theUpperBound"));
+// ./opencascade/BRepMesh_BaseMeshAlgo.hxx
+// ./opencascade/BRepMesh_Classifier.hxx
+// ./opencascade/BRepMesh_ModelPostProcessor.hxx
+// ./opencascade/BRepMesh_SelectorOfDataStructureOfDelaun.hxx
+// ./opencascade/BRepMesh_FaceChecker.hxx
+// ./opencascade/BRepMesh_FactoryError.hxx
+// ./opencascade/BRepMesh_NodeInsertionMeshAlgo.hxx
+// ./opencascade/BRepMesh_Triangle.hxx
+    m.def("HashCode", 
+          (Standard_Integer (*)( const BRepMesh_Triangle & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const BRepMesh_Triangle & ,  const Standard_Integer  )>(&HashCode),
+          R"#(Computes a hash code for the given triangle, in the range [1, theUpperBound])#"  , py::arg("theTriangle"),  py::arg("theUpperBound"));
+// ./opencascade/BRepMesh_EdgeDiscret.hxx
+// ./opencascade/BRepMesh_ConstrainedBaseMeshAlgo.hxx
+// ./opencascade/BRepMesh_Vertex.hxx
+    m.def("HashCode", 
+          (Standard_Integer (*)( const BRepMesh_Vertex & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const BRepMesh_Vertex & ,  const Standard_Integer  )>(&HashCode),
+          R"#(Computes a hash code for the given vertex, in the range [1, theUpperBound])#"  , py::arg("theVertex"),  py::arg("theUpperBound"));
+// ./opencascade/BRepMesh_Circle.hxx
 // ./opencascade/BRepMesh_CircleInspector.hxx
+// ./opencascade/BRepMesh_MeshTool.hxx
+// ./opencascade/BRepMesh_DelaunayNodeInsertionMeshAlgo.hxx
 
 // operators
 

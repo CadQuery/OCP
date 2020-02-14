@@ -13,18 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Aspect_Grid.hxx>
-#include <Standard_MultiplyDefined.hxx>
-#include <V3d_BadValue.hxx>
-#include <V3d_UnMapped.hxx>
+#include <V3d_Viewer.hxx>
+#include <V3d_Viewer.hxx>
+#include <Graphic3d_Group.hxx>
 #include <V3d_View.hxx>
 #include <V3d_Viewer.hxx>
 #include <Graphic3d_Structure.hxx>
 #include <Graphic3d_Group.hxx>
-#include <V3d_Viewer.hxx>
-#include <Graphic3d_Group.hxx>
 #include <V3d_View.hxx>
-#include <V3d_Viewer.hxx>
 #include <Aspect_Grid.hxx>
 #include <Graphic3d_GraphicDriver.hxx>
 #include <V3d_BadValue.hxx>
@@ -32,9 +28,13 @@ namespace py = pybind11;
 #include <V3d_RectangularGrid.hxx>
 #include <V3d_View.hxx>
 #include <V3d_View.hxx>
-#include <V3d_View.hxx>
 #include <Graphic3d_Structure.hxx>
 #include <Graphic3d_Group.hxx>
+#include <Aspect_Grid.hxx>
+#include <Standard_MultiplyDefined.hxx>
+#include <V3d_BadValue.hxx>
+#include <V3d_UnMapped.hxx>
+#include <V3d_View.hxx>
 
 // module includes
 #include <V3d.hxx>
@@ -94,9 +94,12 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
 
 // classes
 
+    // default constructor
     register_default_constructor<V3d , shared_ptr<V3d>>(m,"V3d");
 
     static_cast<py::class_<V3d , shared_ptr<V3d>  >>(m.attr("V3d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -123,13 +126,15 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(Determines the shape type from the given string identifier (using case-insensitive comparison).)#"  , py::arg("theTypeString"),  py::arg("theType"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_AmbientLight ,opencascade::handle<V3d_AmbientLight>  , Graphic3d_CLight >>(m.attr("V3d_AmbientLight"))
+    // constructors
         .def(py::init< const Quantity_Color & >()  , py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE) )
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const Quantity_Color & >()  , py::arg("theViewer"),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_AmbientLight::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_AmbientLight::*)() const>(&V3d_AmbientLight::DynamicType),
@@ -144,11 +149,13 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_CircularGrid ,opencascade::handle<V3d_CircularGrid>  , Aspect_CircularGrid >>(m.attr("V3d_CircularGrid"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_CircularGrid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_CircularGrid::*)() const>(&V3d_CircularGrid::DynamicType),
@@ -181,12 +188,27 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<V3d_ImageDumpOptions , shared_ptr<V3d_ImageDumpOptions>  >>(m.attr("V3d_ImageDumpOptions"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_Plane ,opencascade::handle<V3d_Plane>  , Standard_Transient >>(m.attr("V3d_Plane"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theA")=static_cast<const Standard_Real>(0.0),  py::arg("theB")=static_cast<const Standard_Real>(0.0),  py::arg("theC")=static_cast<const Standard_Real>(1.0),  py::arg("theD")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("SetPlane",
              (void (V3d_Plane::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (V3d_Plane::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&V3d_Plane::SetPlane),
@@ -219,11 +241,13 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_PositionLight ,opencascade::handle<V3d_PositionLight>  , Graphic3d_CLight >>(m.attr("V3d_PositionLight"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_PositionLight::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_PositionLight::*)() const>(&V3d_PositionLight::DynamicType),
@@ -238,11 +262,13 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_RectangularGrid ,opencascade::handle<V3d_RectangularGrid>  , Aspect_RectangularGrid >>(m.attr("V3d_RectangularGrid"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_RectangularGrid::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_RectangularGrid::*)() const>(&V3d_RectangularGrid::DynamicType),
@@ -275,12 +301,14 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_Trihedron ,opencascade::handle<V3d_Trihedron>  , Standard_Transient >>(m.attr("V3d_Trihedron"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_Trihedron::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_Trihedron::*)() const>(&V3d_Trihedron::DynamicType),
@@ -325,13 +353,15 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_View ,opencascade::handle<V3d_View>  , Standard_Transient >>(m.attr("V3d_View"))
+    // constructors
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const V3d_TypeOfView >()  , py::arg("theViewer"),  py::arg("theType")=static_cast<const V3d_TypeOfView>(V3d_ORTHOGRAPHIC) )
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const opencascade::handle<V3d_View> & >()  , py::arg("theViewer"),  py::arg("theView") )
+    // custom constructors
     // methods
         .def("SetWindow",
              (void (V3d_View::*)( const opencascade::handle<Aspect_Window> & ,  const Aspect_RenderingContext  ) ) static_cast<void (V3d_View::*)( const opencascade::handle<Aspect_Window> & ,  const Aspect_RenderingContext  ) >(&V3d_View::SetWindow),
@@ -357,6 +387,12 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
         .def("IsInvalidated",
              (Standard_Boolean (V3d_View::*)() const) static_cast<Standard_Boolean (V3d_View::*)() const>(&V3d_View::IsInvalidated),
              R"#(Returns true if cached view content has been invalidated.)#" )
+        .def("IsInvalidatedImmediate",
+             (Standard_Boolean (V3d_View::*)() const) static_cast<Standard_Boolean (V3d_View::*)() const>(&V3d_View::IsInvalidatedImmediate),
+             R"#(Returns true if immediate layer content has been invalidated.)#" )
+        .def("InvalidateImmediate",
+             (void (V3d_View::*)() ) static_cast<void (V3d_View::*)() >(&V3d_View::InvalidateImmediate),
+             R"#(Invalidates view content within immediate layer but does not redraw it.)#" )
         .def("MustBeResized",
              (void (V3d_View::*)() ) static_cast<void (V3d_View::*)() >(&V3d_View::MustBeResized),
              R"#(Must be called when the window supporting the view changes size. if the view is not mapped on a window. Warning: The view is centered and resized to preserve the height/width ratio of the window.)#" )
@@ -402,6 +438,9 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
         .def("SetBgImageStyle",
              (void (V3d_View::*)( const Aspect_FillMethod ,  const Standard_Boolean  ) ) static_cast<void (V3d_View::*)( const Aspect_FillMethod ,  const Standard_Boolean  ) >(&V3d_View::SetBgImageStyle),
              R"#(Defines the textured background fill method of the view.)#"  , py::arg("theFillStyle"),  py::arg("theToUpdate")=static_cast<const Standard_Boolean>(Standard_False))
+        .def("SetBackgroundCubeMap",
+             (void (V3d_View::*)( const opencascade::handle<Graphic3d_CubeMap> & ,  Standard_Boolean  ) ) static_cast<void (V3d_View::*)( const opencascade::handle<Graphic3d_CubeMap> & ,  Standard_Boolean  ) >(&V3d_View::SetBackgroundCubeMap),
+             R"#(Sets environment cubemap as interactive background.)#"  , py::arg("theCubeMap"),  py::arg("theToUpdate")=static_cast<Standard_Boolean>(Standard_False))
         .def("SetAxis",
              (void (V3d_View::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (V3d_View::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&V3d_View::SetAxis),
              R"#(Definition of an axis from its origin and its orientation . This will be the current axis for rotations and movements. Warning! raises BadValue from V3d if the vector normal is NULL. .)#"  , py::arg("X"),  py::arg("Y"),  py::arg("Z"),  py::arg("Vx"),  py::arg("Vy"),  py::arg("Vz"))
@@ -511,8 +550,8 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
              (void (V3d_View::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (V3d_View::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&V3d_View::SetProj),
              R"#(Defines the orientation of the projection.)#"  , py::arg("Vx"),  py::arg("Vy"),  py::arg("Vz"))
         .def("SetProj",
-             (void (V3d_View::*)( const V3d_TypeOfOrientation  ) ) static_cast<void (V3d_View::*)( const V3d_TypeOfOrientation  ) >(&V3d_View::SetProj),
-             R"#(Defines the orientation of the projection .)#"  , py::arg("Orientation"))
+             (void (V3d_View::*)( const V3d_TypeOfOrientation ,  const Standard_Boolean  ) ) static_cast<void (V3d_View::*)( const V3d_TypeOfOrientation ,  const Standard_Boolean  ) >(&V3d_View::SetProj),
+             R"#(Defines the orientation of the projection .)#"  , py::arg("theOrientation"),  py::arg("theIsYup")=static_cast<const Standard_Boolean>(Standard_False))
         .def("SetAt",
              (void (V3d_View::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (V3d_View::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&V3d_View::SetAt),
              R"#(Defines the position of the view point.)#"  , py::arg("X"),  py::arg("Y"),  py::arg("Z"))
@@ -637,7 +676,7 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
              (Standard_Boolean (V3d_View::*)() const) static_cast<Standard_Boolean (V3d_View::*)() const>(&V3d_View::IfWindow),
              R"#(Returns True if MyView is associated with a window .)#" )
         .def("Window",
-             (opencascade::handle<Aspect_Window> (V3d_View::*)() const) static_cast<opencascade::handle<Aspect_Window> (V3d_View::*)() const>(&V3d_View::Window),
+             (const opencascade::handle<Aspect_Window> & (V3d_View::*)() const) static_cast<const opencascade::handle<Aspect_Window> & (V3d_View::*)() const>(&V3d_View::Window),
              R"#(Returns the Aspect Window associated with the view.)#" )
         .def("Type",
              (V3d_TypeOfView (V3d_View::*)() const) static_cast<V3d_TypeOfView (V3d_View::*)() const>(&V3d_View::Type),
@@ -670,7 +709,7 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
              (Standard_Real (V3d_View::*)() const) static_cast<Standard_Real (V3d_View::*)() const>(&V3d_View::Focale),
              R"#(Returns the View Plane Distance for Perspective Views)#" )
         .def("View",
-             (opencascade::handle<Graphic3d_CView> (V3d_View::*)() const) static_cast<opencascade::handle<Graphic3d_CView> (V3d_View::*)() const>(&V3d_View::View),
+             (const opencascade::handle<Graphic3d_CView> & (V3d_View::*)() const) static_cast<const opencascade::handle<Graphic3d_CView> & (V3d_View::*)() const>(&V3d_View::View),
              R"#(Returns the associated Graphic3d view.)#" )
         .def("SetComputedMode",
              (void (V3d_View::*)( const Standard_Boolean  ) ) static_cast<void (V3d_View::*)( const Standard_Boolean  ) >(&V3d_View::SetComputedMode),
@@ -681,6 +720,9 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
         .def("WindowFitAll",
              (void (V3d_View::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (V3d_View::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&V3d_View::WindowFitAll),
              R"#(idem than WindowFit)#"  , py::arg("Xmin"),  py::arg("Ymin"),  py::arg("Xmax"),  py::arg("Ymax"))
+        .def("FitMinMax",
+             (Standard_Boolean (V3d_View::*)( const opencascade::handle<Graphic3d_Camera> & ,  const Bnd_Box & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (V3d_View::*)( const opencascade::handle<Graphic3d_Camera> & ,  const Bnd_Box & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) const>(&V3d_View::FitMinMax),
+             R"#(Transform camera eye, center and scale to fit in the passed bounding box specified in WCS.)#"  , py::arg("theCamera"),  py::arg("theBox"),  py::arg("theMargin"),  py::arg("theResolution")=static_cast<const Standard_Real>(0.0),  py::arg("theToEnlargeIfLine")=static_cast<const Standard_Boolean>(Standard_True))
         .def("SetGrid",
              (void (V3d_View::*)( const gp_Ax3 & ,  const opencascade::handle<Aspect_Grid> &  ) ) static_cast<void (V3d_View::*)( const gp_Ax3 & ,  const opencascade::handle<Aspect_Grid> &  ) >(&V3d_View::SetGrid),
              R"#(Defines or Updates the definition of the grid in <me>)#"  , py::arg("aPlane"),  py::arg("aGrid"))
@@ -689,16 +731,13 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
              R"#(Defines or Updates the activity of the grid in <me>)#"  , py::arg("aFlag"))
         .def("Dump",
              (Standard_Boolean (V3d_View::*)( const Standard_CString ,  const Graphic3d_BufferType &  ) ) static_cast<Standard_Boolean (V3d_View::*)( const Standard_CString ,  const Graphic3d_BufferType &  ) >(&V3d_View::Dump),
-             R"#(dump the full contents of the view at the same scale in the file <theFile>. The file name extension must be one of ".png",".bmp",".jpg",".gif". Returns FALSE when the dump has failed)#"  , py::arg("theFile"),  py::arg("theBufferType")=static_cast<const Graphic3d_BufferType &>(Graphic3d_BT_RGB))
-        .def("Export",
-             (Standard_Boolean (V3d_View::*)( const Standard_CString ,  const Graphic3d_ExportFormat ,  const Graphic3d_SortType  ) ) static_cast<Standard_Boolean (V3d_View::*)( const Standard_CString ,  const Graphic3d_ExportFormat ,  const Graphic3d_SortType  ) >(&V3d_View::Export),
-             R"#(Export scene into the one of the Vector graphics formats (SVG, PS, PDF...). In contrast to Bitmaps, Vector graphics is scalable (so you may got quality benefits on printing to laser printer). Notice however that results may differ a lot and do not contain some elements.)#"  , py::arg("theFileName"),  py::arg("theFormat"),  py::arg("theSortType")=static_cast<const Graphic3d_SortType>(Graphic3d_ST_BSP_Tree))
+             R"#(Dumps the full contents of the View into the image file. This is an alias for ToPixMap() with Image_AlienPixMap.)#"  , py::arg("theFile"),  py::arg("theBufferType")=static_cast<const Graphic3d_BufferType &>(Graphic3d_BT_RGB))
         .def("ToPixMap",
              (Standard_Boolean (V3d_View::*)( Image_PixMap & ,  const V3d_ImageDumpOptions &  ) ) static_cast<Standard_Boolean (V3d_View::*)( Image_PixMap & ,  const V3d_ImageDumpOptions &  ) >(&V3d_View::ToPixMap),
-             R"#(Dumps the full contents of the view to a pixmap with specified parameters.)#"  , py::arg("theImage"),  py::arg("theParams"))
+             R"#(Dumps the full contents of the view to a pixmap with specified parameters. Internally this method calls Redraw() with an offscreen render buffer of requested target size (theWidth x theHeight), so that there is no need resizing a window control for making a dump of different size.)#"  , py::arg("theImage"),  py::arg("theParams"))
         .def("ToPixMap",
              (Standard_Boolean (V3d_View::*)( Image_PixMap & ,  const Standard_Integer ,  const Standard_Integer ,  const Graphic3d_BufferType & ,  const Standard_Boolean ,  const V3d_StereoDumpOptions  ) ) static_cast<Standard_Boolean (V3d_View::*)( Image_PixMap & ,  const Standard_Integer ,  const Standard_Integer ,  const Graphic3d_BufferType & ,  const Standard_Boolean ,  const V3d_StereoDumpOptions  ) >(&V3d_View::ToPixMap),
-             R"#(Dumps the full contents of the view to a pixmap.)#"  , py::arg("theImage"),  py::arg("theWidth"),  py::arg("theHeight"),  py::arg("theBufferType")=static_cast<const Graphic3d_BufferType &>(Graphic3d_BT_RGB),  py::arg("theToAdjustAspect")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theStereoOptions")=static_cast<const V3d_StereoDumpOptions>(V3d_SDO_MONO))
+             R"#(Dumps the full contents of the view to a pixmap. Internally this method calls Redraw() with an offscreen render buffer of requested target size (theWidth x theHeight), so that there is no need resizing a window control for making a dump of different size.)#"  , py::arg("theImage"),  py::arg("theWidth"),  py::arg("theHeight"),  py::arg("theBufferType")=static_cast<const Graphic3d_BufferType &>(Graphic3d_BT_RGB),  py::arg("theToAdjustAspect")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theStereoOptions")=static_cast<const V3d_StereoDumpOptions>(V3d_SDO_MONO))
         .def("SetBackFacingModel",
              (void (V3d_View::*)( const V3d_TypeOfBackfacingModel  ) ) static_cast<void (V3d_View::*)( const V3d_TypeOfBackfacingModel  ) >(&V3d_View::SetBackFacingModel),
              R"#(Manages display of the back faces When <aModel> is TOBM_AUTOMATIC the object backfaces are displayed only for surface objects and never displayed for solid objects. this was the previous mode. <aModel> is TOBM_ALWAYS_DISPLAYED the object backfaces are always displayed both for surfaces or solids. <aModel> is TOBM_NEVER_DISPLAYED the object backfaces are never displayed.)#"  , py::arg("theModel")=static_cast<const V3d_TypeOfBackfacingModel>(V3d_TOBM_AUTOMATIC))
@@ -742,11 +781,20 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
              (Standard_Boolean (V3d_View::*)() const) static_cast<Standard_Boolean (V3d_View::*)() const>(&V3d_View::IsCullingEnabled),
              R"#(Returns flag value of objects culling mechanism)#" )
         .def("SetFrustumCulling",
-             (void (V3d_View::*)( const Standard_Boolean  ) ) static_cast<void (V3d_View::*)( const Standard_Boolean  ) >(&V3d_View::SetFrustumCulling),
-             R"#(Turn on/off automatic culling of objects outside frustrum (ON by default))#"  , py::arg("theMode"))
+             (void (V3d_View::*)( Standard_Boolean  ) ) static_cast<void (V3d_View::*)( Standard_Boolean  ) >(&V3d_View::SetFrustumCulling),
+             R"#(Turn on/off automatic culling of objects outside frustum (ON by default))#"  , py::arg("theMode"))
         .def("DiagnosticInformation",
              (void (V3d_View::*)( NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString> & ,  Graphic3d_DiagnosticInfo  ) const) static_cast<void (V3d_View::*)( NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString> & ,  Graphic3d_DiagnosticInfo  ) const>(&V3d_View::DiagnosticInformation),
              R"#(Fill in the dictionary with diagnostic info. Should be called within rendering thread.)#"  , py::arg("theDict"),  py::arg("theFlags"))
+        .def("StatisticInformation",
+             (TCollection_AsciiString (V3d_View::*)() const) static_cast<TCollection_AsciiString (V3d_View::*)() const>(&V3d_View::StatisticInformation),
+             R"#(Returns string with statistic performance info.)#" )
+        .def("StatisticInformation",
+             (void (V3d_View::*)( NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString> &  ) const) static_cast<void (V3d_View::*)( NCollection_IndexedDataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString> &  ) const>(&V3d_View::StatisticInformation),
+             R"#(Fills in the dictionary with statistic performance info.)#"  , py::arg("theDict"))
+        .def("GravityPoint",
+             (gp_Pnt (V3d_View::*)() const) static_cast<gp_Pnt (V3d_View::*)() const>(&V3d_View::GravityPoint),
+             R"#(Returns the Objects number and the gravity center of ALL viewable points in the view)#" )
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_View::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_View::*)() const>(&V3d_View::DynamicType),
              R"#(None)#" )
@@ -814,13 +862,15 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_Viewer ,opencascade::handle<V3d_Viewer>  , Standard_Transient >>(m.attr("V3d_Viewer"))
+    // constructors
         .def(py::init< const opencascade::handle<Graphic3d_GraphicDriver> & >()  , py::arg("theDriver") )
         .def(py::init< const opencascade::handle<Graphic3d_GraphicDriver> &,const Standard_ExtString,const Standard_CString,const Standard_Real,const V3d_TypeOfOrientation,const Quantity_Color &,const V3d_TypeOfVisualization,const Graphic3d_TypeOfShadingModel,const Standard_Boolean,const Standard_Boolean >()  , py::arg("theDriver"),  py::arg("theName"),  py::arg("theDomain")=static_cast<const Standard_CString>(""),  py::arg("theViewSize")=static_cast<const Standard_Real>(1000.0),  py::arg("theViewProj")=static_cast<const V3d_TypeOfOrientation>(V3d_XposYnegZpos),  py::arg("theViewBackground")=static_cast<const Quantity_Color &>(Quantity_NOC_GRAY30),  py::arg("theVisualization")=static_cast<const V3d_TypeOfVisualization>(V3d_ZBUFFER),  py::arg("theShadingModel")=static_cast<const Graphic3d_TypeOfShadingModel>(Graphic3d_TOSM_VERTEX),  py::arg("theComputedMode")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theDefaultComputedMode")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_Viewer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_Viewer::*)() const>(&V3d_Viewer::DynamicType),
@@ -919,13 +969,19 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
              (void (V3d_Viewer::*)( NCollection_Sequence<Standard_Integer> &  ) const) static_cast<void (V3d_Viewer::*)( NCollection_Sequence<Standard_Integer> &  ) const>(&V3d_Viewer::GetAllZLayers),
              R"#(Return all Z layer ids in sequence ordered by overlay level from lowest layer to highest ( foreground ). The first layer ID in sequence is the default layer that can't be removed.)#"  , py::arg("theLayerSeq"))
         .def("AddZLayer",
-             (Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId &  ) ) static_cast<Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId &  ) >(&V3d_Viewer::AddZLayer),
-             R"#(Add a new top-level Z layer to all managed views and get its ID as <theLayerId> value. The Z layers are controlled entirely by viewer, it is not possible to add a layer to a particular view. The method returns Standard_False if the layer can not be created. The layer mechanism allows to display structures in higher layers in overlay of structures in lower layers.)#"  , py::arg("theLayerId"))
+             (Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId & ,  const Graphic3d_ZLayerSettings &  ) ) static_cast<Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId & ,  const Graphic3d_ZLayerSettings &  ) >(&V3d_Viewer::AddZLayer),
+             R"#(Add a new top-level Z layer to all managed views and get its ID as <theLayerId> value. The Z layers are controlled entirely by viewer, it is not possible to add a layer to a particular view. Custom layers will be inserted before Graphic3d_ZLayerId_Top (e.g. between Graphic3d_ZLayerId_Default and before Graphic3d_ZLayerId_Top).)#"  , py::arg("theLayerId"),  py::arg("theSettings")=static_cast<const Graphic3d_ZLayerSettings &>(Graphic3d_ZLayerSettings ( )))
+        .def("InsertLayerBefore",
+             (Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId & ,  const Graphic3d_ZLayerSettings & ,  const Graphic3d_ZLayerId  ) ) static_cast<Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId & ,  const Graphic3d_ZLayerSettings & ,  const Graphic3d_ZLayerId  ) >(&V3d_Viewer::InsertLayerBefore),
+             R"#(Add a new top-level Z layer to all managed views and get its ID as <theLayerId> value. The Z layers are controlled entirely by viewer, it is not possible to add a layer to a particular view. Layer rendering order is defined by its position in list (altered by theLayerAfter) and IsImmediate() flag (all layers with IsImmediate() flag are drawn afterwards);)#"  , py::arg("theNewLayerId"),  py::arg("theSettings"),  py::arg("theLayerAfter"))
+        .def("InsertLayerAfter",
+             (Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId & ,  const Graphic3d_ZLayerSettings & ,  const Graphic3d_ZLayerId  ) ) static_cast<Standard_Boolean (V3d_Viewer::*)( Graphic3d_ZLayerId & ,  const Graphic3d_ZLayerSettings & ,  const Graphic3d_ZLayerId  ) >(&V3d_Viewer::InsertLayerAfter),
+             R"#(Add a new top-level Z layer to all managed views and get its ID as <theLayerId> value. The Z layers are controlled entirely by viewer, it is not possible to add a layer to a particular view. Layer rendering order is defined by its position in list (altered by theLayerAfter) and IsImmediate() flag (all layers with IsImmediate() flag are drawn afterwards);)#"  , py::arg("theNewLayerId"),  py::arg("theSettings"),  py::arg("theLayerBefore"))
         .def("RemoveZLayer",
              (Standard_Boolean (V3d_Viewer::*)( const Graphic3d_ZLayerId  ) ) static_cast<Standard_Boolean (V3d_Viewer::*)( const Graphic3d_ZLayerId  ) >(&V3d_Viewer::RemoveZLayer),
              R"#(Remove Z layer with ID <theLayerId>. Method returns Standard_False if the layer can not be removed or doesn't exists. By default, there are always default bottom-level layer that can't be removed.)#"  , py::arg("theLayerId"))
         .def("ZLayerSettings",
-             (Graphic3d_ZLayerSettings (V3d_Viewer::*)( const Graphic3d_ZLayerId  ) ) static_cast<Graphic3d_ZLayerSettings (V3d_Viewer::*)( const Graphic3d_ZLayerId  ) >(&V3d_Viewer::ZLayerSettings),
+             (const Graphic3d_ZLayerSettings & (V3d_Viewer::*)( const Graphic3d_ZLayerId  ) const) static_cast<const Graphic3d_ZLayerSettings & (V3d_Viewer::*)( const Graphic3d_ZLayerId  ) const>(&V3d_Viewer::ZLayerSettings),
              R"#(Returns the settings of a single Z layer.)#"  , py::arg("theLayerId"))
         .def("SetZLayerSettings",
              (void (V3d_Viewer::*)( const Graphic3d_ZLayerId ,  const Graphic3d_ZLayerSettings &  ) ) static_cast<void (V3d_Viewer::*)( const Graphic3d_ZLayerId ,  const Graphic3d_ZLayerSettings &  ) >(&V3d_Viewer::SetZLayerSettings),
@@ -1120,15 +1176,17 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_DirectionalLight ,opencascade::handle<V3d_DirectionalLight>  , V3d_PositionLight >>(m.attr("V3d_DirectionalLight"))
+    // constructors
         .def(py::init< const V3d_TypeOfOrientation,const Quantity_Color &,const Standard_Boolean >()  , py::arg("theDirection")=static_cast<const V3d_TypeOfOrientation>(V3d_XposYposZpos),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE),  py::arg("theIsHeadlight")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const gp_Dir &,const Quantity_Color &,const Standard_Boolean >()  , py::arg("theDirection"),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE),  py::arg("theIsHeadlight")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const V3d_TypeOfOrientation,const Quantity_Color &,const Standard_Boolean >()  , py::arg("theViewer"),  py::arg("theDirection")=static_cast<const V3d_TypeOfOrientation>(V3d_XposYposZpos),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE),  py::arg("theIsHeadlight")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Quantity_Color &,const Standard_Boolean >()  , py::arg("theViewer"),  py::arg("theXt"),  py::arg("theYt"),  py::arg("theZt"),  py::arg("theXp"),  py::arg("theYp"),  py::arg("theZp"),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE),  py::arg("theIsHeadlight")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_DirectionalLight::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_DirectionalLight::*)() const>(&V3d_DirectionalLight::DynamicType),
@@ -1146,13 +1204,15 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_PositionalLight ,opencascade::handle<V3d_PositionalLight>  , V3d_PositionLight >>(m.attr("V3d_PositionalLight"))
+    // constructors
         .def(py::init< const gp_Pnt &,const Quantity_Color & >()  , py::arg("thePos"),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE) )
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const Standard_Real,const Standard_Real,const Standard_Real,const Quantity_Color &,const Standard_Real,const Standard_Real >()  , py::arg("theViewer"),  py::arg("theX"),  py::arg("theY"),  py::arg("theZ"),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE),  py::arg("theConstAttenuation")=static_cast<const Standard_Real>(1.0),  py::arg("theLinearAttenuation")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_PositionalLight::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_PositionalLight::*)() const>(&V3d_PositionalLight::DynamicType),
@@ -1167,15 +1227,17 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<V3d_SpotLight ,opencascade::handle<V3d_SpotLight>  , V3d_PositionLight >>(m.attr("V3d_SpotLight"))
+    // constructors
         .def(py::init< const gp_Pnt &,const V3d_TypeOfOrientation,const Quantity_Color & >()  , py::arg("thePos"),  py::arg("theDirection")=static_cast<const V3d_TypeOfOrientation>(V3d_XnegYnegZpos),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE) )
         .def(py::init< const gp_Pnt &,const gp_Dir &,const Quantity_Color & >()  , py::arg("thePos"),  py::arg("theDirection"),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE) )
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const Standard_Real,const Standard_Real,const Standard_Real,const V3d_TypeOfOrientation,const Quantity_Color &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theViewer"),  py::arg("theX"),  py::arg("theY"),  py::arg("theZ"),  py::arg("theDirection")=static_cast<const V3d_TypeOfOrientation>(V3d_XnegYnegZpos),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE),  py::arg("theConstAttenuation")=static_cast<const Standard_Real>(1.0),  py::arg("theLinearAttenuation")=static_cast<const Standard_Real>(0.0),  py::arg("theConcentration")=static_cast<const Standard_Real>(1.0),  py::arg("theAngle")=static_cast<const Standard_Real>(0.523599) )
         .def(py::init< const opencascade::handle<V3d_Viewer> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Quantity_Color &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theViewer"),  py::arg("theXt"),  py::arg("theYt"),  py::arg("theZt"),  py::arg("theXp"),  py::arg("theYp"),  py::arg("theZp"),  py::arg("theColor")=static_cast<const Quantity_Color &>(Quantity_NOC_WHITE),  py::arg("theConstAttenuation")=static_cast<const Standard_Real>(1.0),  py::arg("theLinearAttenuation")=static_cast<const Standard_Real>(0.0),  py::arg("theConcentration")=static_cast<const Standard_Real>(1.0),  py::arg("theAngle")=static_cast<const Standard_Real>(0.523599) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (V3d_SpotLight::*)() const) static_cast<const opencascade::handle<Standard_Type> & (V3d_SpotLight::*)() const>(&V3d_SpotLight::DynamicType),
@@ -1193,43 +1255,43 @@ py::module m = static_cast<py::module>(main_module.attr("V3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/V3d_TypeOfBackfacingModel.hxx
-// ./opencascade/V3d_TypeOfRepresentation.hxx
-// ./opencascade/V3d_View.hxx
-// ./opencascade/V3d_ListOfView.hxx
-// ./opencascade/V3d_DirectionalLight.hxx
-// ./opencascade/V3d_ViewerPointer.hxx
-// ./opencascade/V3d_CircularGrid.hxx
-// ./opencascade/V3d_TypeOfLight.hxx
+// ./opencascade/V3d_BadValue.hxx
+// ./opencascade/V3d_AmbientLight.hxx
 // ./opencascade/V3d_SpotLight.hxx
-// ./opencascade/V3d_PositionLight.hxx
-// ./opencascade/V3d_Light.hxx
+// ./opencascade/V3d_TypeOfLight.hxx
+// ./opencascade/V3d_ViewerPointer.hxx
+// ./opencascade/V3d_Coordinate.hxx
+// ./opencascade/V3d_TypeOfPickCamera.hxx
+// ./opencascade/V3d_UnMapped.hxx
+// ./opencascade/V3d_TypeOfBackfacingModel.hxx
+// ./opencascade/V3d_ImageDumpOptions.hxx
+// ./opencascade/V3d_TypeOfPickLight.hxx
 // ./opencascade/V3d_TypeOfOrientation.hxx
 // ./opencascade/V3d.hxx
-// ./opencascade/V3d_Coordinate.hxx
-// ./opencascade/V3d_ListOfLight.hxx
-// ./opencascade/V3d_TypeOfPickCamera.hxx
-// ./opencascade/V3d_TypeOfAxe.hxx
-// ./opencascade/V3d_BadValue.hxx
-// ./opencascade/V3d_TypeOfShadingModel.hxx
-// ./opencascade/V3d_TypeOfVisualization.hxx
-// ./opencascade/V3d_AmbientLight.hxx
-// ./opencascade/V3d_ImageDumpOptions.hxx
-// ./opencascade/V3d_UnMapped.hxx
-// ./opencascade/V3d_Parameter.hxx
+// ./opencascade/V3d_PositionLight.hxx
+// ./opencascade/V3d_DirectionalLight.hxx
+// ./opencascade/V3d_PositionalLight.hxx
+// ./opencascade/V3d_RectangularGrid.hxx
+// ./opencascade/V3d_ListOfView.hxx
+// ./opencascade/V3d_Light.hxx
 // ./opencascade/V3d_Viewer.hxx
+// ./opencascade/V3d_TypeOfShadingModel.hxx
 // ./opencascade/V3d_TypeOfView.hxx
 // ./opencascade/V3d_ViewPointer.hxx
-// ./opencascade/V3d_PositionalLight.hxx
-// ./opencascade/V3d_StereoDumpOptions.hxx
-// ./opencascade/V3d_Trihedron.hxx
-// ./opencascade/V3d_TypeOfPickLight.hxx
 // ./opencascade/V3d_Plane.hxx
-// ./opencascade/V3d_RectangularGrid.hxx
+// ./opencascade/V3d_StereoDumpOptions.hxx
+// ./opencascade/V3d_ListOfLight.hxx
+// ./opencascade/V3d_CircularGrid.hxx
+// ./opencascade/V3d_View.hxx
+// ./opencascade/V3d_TypeOfAxe.hxx
+// ./opencascade/V3d_Trihedron.hxx
+// ./opencascade/V3d_TypeOfVisualization.hxx
+// ./opencascade/V3d_TypeOfRepresentation.hxx
+// ./opencascade/V3d_Parameter.hxx
 
 // operators
 

@@ -18,6 +18,7 @@ namespace py = pybind11;
 // module includes
 #include <BSplCLib.hxx>
 #include <BSplCLib_Cache.hxx>
+#include <BSplCLib_CacheParams.hxx>
 #include <BSplCLib_EvaluatorFunction.hxx>
 #include <BSplCLib_KnotDistribution.hxx>
 #include <BSplCLib_MultDistribution.hxx>
@@ -42,6 +43,7 @@ py::module m = static_cast<py::module>(main_module.attr("BSplCLib"));
     public:
         using BSplCLib_EvaluatorFunction::BSplCLib_EvaluatorFunction;
         
+        
         // public pure virtual
         void Evaluate(const Standard_Integer theDerivativeRequest,const Standard_Real * theStartEnd,const Standard_Real theParameter,Standard_Real & theResult,Standard_Integer & theErrorCode) const  override { PYBIND11_OVERLOAD_PURE(void,BSplCLib_EvaluatorFunction,Evaluate,theDerivativeRequest,theStartEnd,theParameter,theResult,theErrorCode) };
         
@@ -55,9 +57,12 @@ py::module m = static_cast<py::module>(main_module.attr("BSplCLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BSplCLib , shared_ptr<BSplCLib>>(m,"BSplCLib");
 
     static_cast<py::class_<BSplCLib , shared_ptr<BSplCLib>  >>(m.attr("BSplCLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -363,8 +368,8 @@ py::module m = static_cast<py::module>(main_module.attr("BSplCLib"));
                     R"#(builds the Schoenberg points from the flat knot used to interpolate a BSpline since the BSpline matrix is invertible.)#"  , py::arg("Degree"),  py::arg("FlatKnots"),  py::arg("Parameters"))
     // static methods using call by reference i.s.o. return
         .def_static("Hunt_s",
-                    [](  const NCollection_Array1<Standard_Real> & XX,const Standard_Real X ){ Standard_Integer  Iloc; BSplCLib::Hunt(XX,X,Iloc); return std::make_tuple(Iloc); },
-                    R"#(This routine searches the position of the real value X in the ordered set of real values XX.)#"  , py::arg("XX"),  py::arg("X"))
+                    [](  const NCollection_Array1<Standard_Real> & theArray,const Standard_Real theX ){ Standard_Integer  theXPos; BSplCLib::Hunt(theArray,theX,theXPos); return std::make_tuple(theXPos); },
+                    R"#(This routine searches the position of the real value theX in the monotonically increasing set of real values theArray using bisection algorithm.)#"  , py::arg("theArray"),  py::arg("theX"))
         .def_static("LocateParameter_s",
                     []( const Standard_Integer Degree, const NCollection_Array1<Standard_Real> & Knots, const NCollection_Array1<Standard_Integer> & Mults,const Standard_Real U,const Standard_Boolean IsPeriodic,const Standard_Integer FromK1,const Standard_Integer ToK2 ){ Standard_Integer  KnotIndex; Standard_Real  NewU; BSplCLib::LocateParameter(Degree,Knots,Mults,U,IsPeriodic,FromK1,ToK2,KnotIndex,NewU); return std::make_tuple(KnotIndex,NewU); },
                     R"#(Locates the parametric value U in the knots sequence between the knot K1 and the knot K2. The value return in Index verifies.)#"  , py::arg("Degree"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("U"),  py::arg("IsPeriodic"),  py::arg("FromK1"),  py::arg("ToK2"))
@@ -486,20 +491,20 @@ py::module m = static_cast<py::module>(main_module.attr("BSplCLib"));
                     []( const Standard_Integer Degree, const NCollection_Array1<Standard_Real> & FlatKnots, const NCollection_Array1<Standard_Real> & Parameters, const NCollection_Array1<Standard_Integer> & ContactOrderArray,const Standard_Integer ArrayDimension ){ Standard_Real  Poles; Standard_Real  Weights; Standard_Integer  InversionProblem; BSplCLib::Interpolate(Degree,FlatKnots,Parameters,ContactOrderArray,ArrayDimension,Poles,Weights,InversionProblem); return std::make_tuple(Poles,Weights,InversionProblem); },
                     R"#(None)#"  , py::arg("Degree"),  py::arg("FlatKnots"),  py::arg("Parameters"),  py::arg("ContactOrderArray"),  py::arg("ArrayDimension"))
         .def_static("MovePoint_s",
-                    []( const Standard_Real U,const gp_Vec2d & Displ,const Standard_Integer Index1,const Standard_Integer Index2,const Standard_Integer Degree,const Standard_Boolean Rational, const NCollection_Array1<gp_Pnt2d> & Poles, const NCollection_Array1<Standard_Real> & Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt2d> & NewPoles ){ Standard_Integer  FirstIndex; Standard_Integer  LastIndex; BSplCLib::MovePoint(U,Displ,Index1,Index2,Degree,Rational,Poles,Weights,FlatKnots,FirstIndex,LastIndex,NewPoles); return std::make_tuple(FirstIndex,LastIndex); },
-                    R"#(Find the new poles which allows an old point (with a given u as parameter) to reach a new position Index1 and Index2 indicate the range of poles we can move (1, NbPoles-1) or (2, NbPoles) -> no constraint for one side don't enter (1,NbPoles) -> error: rigid move (2, NbPoles-1) -> the ends are enforced (3, NbPoles-2) -> the ends and the tangency are enforced if Problem in BSplineBasis calculation, no change for the curve and FirstIndex, LastIndex = 0)#"  , py::arg("U"),  py::arg("Displ"),  py::arg("Index1"),  py::arg("Index2"),  py::arg("Degree"),  py::arg("Rational"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
+                    []( const Standard_Real U,const gp_Vec2d & Displ,const Standard_Integer Index1,const Standard_Integer Index2,const Standard_Integer Degree, const NCollection_Array1<gp_Pnt2d> & Poles, const NCollection_Array1<Standard_Real> * Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt2d> & NewPoles ){ Standard_Integer  FirstIndex; Standard_Integer  LastIndex; BSplCLib::MovePoint(U,Displ,Index1,Index2,Degree,Poles,Weights,FlatKnots,FirstIndex,LastIndex,NewPoles); return std::make_tuple(FirstIndex,LastIndex); },
+                    R"#(Find the new poles which allows an old point (with a given u as parameter) to reach a new position Index1 and Index2 indicate the range of poles we can move (1, NbPoles-1) or (2, NbPoles) -> no constraint for one side don't enter (1,NbPoles) -> error: rigid move (2, NbPoles-1) -> the ends are enforced (3, NbPoles-2) -> the ends and the tangency are enforced if Problem in BSplineBasis calculation, no change for the curve and FirstIndex, LastIndex = 0)#"  , py::arg("U"),  py::arg("Displ"),  py::arg("Index1"),  py::arg("Index2"),  py::arg("Degree"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
         .def_static("MovePoint_s",
-                    []( const Standard_Real U,const gp_Vec & Displ,const Standard_Integer Index1,const Standard_Integer Index2,const Standard_Integer Degree,const Standard_Boolean Rational, const NCollection_Array1<gp_Pnt> & Poles, const NCollection_Array1<Standard_Real> & Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt> & NewPoles ){ Standard_Integer  FirstIndex; Standard_Integer  LastIndex; BSplCLib::MovePoint(U,Displ,Index1,Index2,Degree,Rational,Poles,Weights,FlatKnots,FirstIndex,LastIndex,NewPoles); return std::make_tuple(FirstIndex,LastIndex); },
-                    R"#(Find the new poles which allows an old point (with a given u as parameter) to reach a new position Index1 and Index2 indicate the range of poles we can move (1, NbPoles-1) or (2, NbPoles) -> no constraint for one side don't enter (1,NbPoles) -> error: rigid move (2, NbPoles-1) -> the ends are enforced (3, NbPoles-2) -> the ends and the tangency are enforced if Problem in BSplineBasis calculation, no change for the curve and FirstIndex, LastIndex = 0)#"  , py::arg("U"),  py::arg("Displ"),  py::arg("Index1"),  py::arg("Index2"),  py::arg("Degree"),  py::arg("Rational"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
+                    []( const Standard_Real U,const gp_Vec & Displ,const Standard_Integer Index1,const Standard_Integer Index2,const Standard_Integer Degree, const NCollection_Array1<gp_Pnt> & Poles, const NCollection_Array1<Standard_Real> * Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt> & NewPoles ){ Standard_Integer  FirstIndex; Standard_Integer  LastIndex; BSplCLib::MovePoint(U,Displ,Index1,Index2,Degree,Poles,Weights,FlatKnots,FirstIndex,LastIndex,NewPoles); return std::make_tuple(FirstIndex,LastIndex); },
+                    R"#(Find the new poles which allows an old point (with a given u as parameter) to reach a new position Index1 and Index2 indicate the range of poles we can move (1, NbPoles-1) or (2, NbPoles) -> no constraint for one side don't enter (1,NbPoles) -> error: rigid move (2, NbPoles-1) -> the ends are enforced (3, NbPoles-2) -> the ends and the tangency are enforced if Problem in BSplineBasis calculation, no change for the curve and FirstIndex, LastIndex = 0)#"  , py::arg("U"),  py::arg("Displ"),  py::arg("Index1"),  py::arg("Index2"),  py::arg("Degree"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
         .def_static("MovePointAndTangent_s",
-                    []( const Standard_Real U,const Standard_Integer ArrayDimension,const Standard_Real Tolerance,const Standard_Integer Degree,const Standard_Boolean Rational,const Standard_Integer StartingCondition,const Standard_Integer EndingCondition, const NCollection_Array1<Standard_Real> & Weights, const NCollection_Array1<Standard_Real> & FlatKnots ){ Standard_Real  Delta; Standard_Real  DeltaDerivative; Standard_Real  Poles; Standard_Real  NewPoles; Standard_Integer  ErrorStatus; BSplCLib::MovePointAndTangent(U,ArrayDimension,Delta,DeltaDerivative,Tolerance,Degree,Rational,StartingCondition,EndingCondition,Poles,Weights,FlatKnots,NewPoles,ErrorStatus); return std::make_tuple(Delta,DeltaDerivative,Poles,NewPoles,ErrorStatus); },
-                    R"#(This is the dimension free version of the utility U is the parameter must be within the first FlatKnots and the last FlatKnots Delta is the amount the curve has to be moved DeltaDerivative is the amount the derivative has to be moved. Delta and DeltaDerivative must be array of dimension ArrayDimension Degree is the degree of the BSpline and the FlatKnots are the knots of the BSpline Starting Condition if = -1 means the starting point of the curve can move = 0 means the starting point of the cuve cannot move but tangen starting point of the curve cannot move = 1 means the starting point and tangents cannot move = 2 means the starting point tangent and curvature cannot move = ... Same holds for EndingCondition Poles are the poles of the curve Weights are the weights of the curve if Rational = Standard_True NewPoles are the poles of the deformed curve ErrorStatus will be 0 if no error happened 1 if there are not enough knots/poles the imposed conditions The way to solve this problem is to add knots to the BSpline If StartCondition = 1 and EndCondition = 1 then you need at least 4 + 2 = 6 poles so for example to have a C1 cubic you will need have at least 2 internal knots.)#"  , py::arg("U"),  py::arg("ArrayDimension"),  py::arg("Tolerance"),  py::arg("Degree"),  py::arg("Rational"),  py::arg("StartingCondition"),  py::arg("EndingCondition"),  py::arg("Weights"),  py::arg("FlatKnots"))
+                    []( const Standard_Real U,const Standard_Integer ArrayDimension,const Standard_Real Tolerance,const Standard_Integer Degree,const Standard_Integer StartingCondition,const Standard_Integer EndingCondition, const NCollection_Array1<Standard_Real> * Weights, const NCollection_Array1<Standard_Real> & FlatKnots ){ Standard_Real  Delta; Standard_Real  DeltaDerivative; Standard_Real  Poles; Standard_Real  NewPoles; Standard_Integer  ErrorStatus; BSplCLib::MovePointAndTangent(U,ArrayDimension,Delta,DeltaDerivative,Tolerance,Degree,StartingCondition,EndingCondition,Poles,Weights,FlatKnots,NewPoles,ErrorStatus); return std::make_tuple(Delta,DeltaDerivative,Poles,NewPoles,ErrorStatus); },
+                    R"#(This is the dimension free version of the utility U is the parameter must be within the first FlatKnots and the last FlatKnots Delta is the amount the curve has to be moved DeltaDerivative is the amount the derivative has to be moved. Delta and DeltaDerivative must be array of dimension ArrayDimension Degree is the degree of the BSpline and the FlatKnots are the knots of the BSpline Starting Condition if = -1 means the starting point of the curve can move = 0 means the starting point of the cuve cannot move but tangen starting point of the curve cannot move = 1 means the starting point and tangents cannot move = 2 means the starting point tangent and curvature cannot move = ... Same holds for EndingCondition Poles are the poles of the curve Weights are the weights of the curve if not NULL NewPoles are the poles of the deformed curve ErrorStatus will be 0 if no error happened 1 if there are not enough knots/poles the imposed conditions The way to solve this problem is to add knots to the BSpline If StartCondition = 1 and EndCondition = 1 then you need at least 4 + 2 = 6 poles so for example to have a C1 cubic you will need have at least 2 internal knots.)#"  , py::arg("U"),  py::arg("ArrayDimension"),  py::arg("Tolerance"),  py::arg("Degree"),  py::arg("StartingCondition"),  py::arg("EndingCondition"),  py::arg("Weights"),  py::arg("FlatKnots"))
         .def_static("MovePointAndTangent_s",
-                    []( const Standard_Real U,const gp_Vec & Delta,const gp_Vec & DeltaDerivative,const Standard_Real Tolerance,const Standard_Integer Degree,const Standard_Boolean Rational,const Standard_Integer StartingCondition,const Standard_Integer EndingCondition, const NCollection_Array1<gp_Pnt> & Poles, const NCollection_Array1<Standard_Real> & Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt> & NewPoles ){ Standard_Integer  ErrorStatus; BSplCLib::MovePointAndTangent(U,Delta,DeltaDerivative,Tolerance,Degree,Rational,StartingCondition,EndingCondition,Poles,Weights,FlatKnots,NewPoles,ErrorStatus); return std::make_tuple(ErrorStatus); },
-                    R"#(This is the dimension free version of the utility U is the parameter must be within the first FlatKnots and the last FlatKnots Delta is the amount the curve has to be moved DeltaDerivative is the amount the derivative has to be moved. Delta and DeltaDerivative must be array of dimension ArrayDimension Degree is the degree of the BSpline and the FlatKnots are the knots of the BSpline Starting Condition if = -1 means the starting point of the curve can move = 0 means the starting point of the cuve cannot move but tangen starting point of the curve cannot move = 1 means the starting point and tangents cannot move = 2 means the starting point tangent and curvature cannot move = ... Same holds for EndingCondition Poles are the poles of the curve Weights are the weights of the curve if Rational = Standard_True NewPoles are the poles of the deformed curve ErrorStatus will be 0 if no error happened 1 if there are not enough knots/poles the imposed conditions The way to solve this problem is to add knots to the BSpline If StartCondition = 1 and EndCondition = 1 then you need at least 4 + 2 = 6 poles so for example to have a C1 cubic you will need have at least 2 internal knots.)#"  , py::arg("U"),  py::arg("Delta"),  py::arg("DeltaDerivative"),  py::arg("Tolerance"),  py::arg("Degree"),  py::arg("Rational"),  py::arg("StartingCondition"),  py::arg("EndingCondition"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
+                    []( const Standard_Real U,const gp_Vec & Delta,const gp_Vec & DeltaDerivative,const Standard_Real Tolerance,const Standard_Integer Degree,const Standard_Integer StartingCondition,const Standard_Integer EndingCondition, const NCollection_Array1<gp_Pnt> & Poles, const NCollection_Array1<Standard_Real> * Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt> & NewPoles ){ Standard_Integer  ErrorStatus; BSplCLib::MovePointAndTangent(U,Delta,DeltaDerivative,Tolerance,Degree,StartingCondition,EndingCondition,Poles,Weights,FlatKnots,NewPoles,ErrorStatus); return std::make_tuple(ErrorStatus); },
+                    R"#(This is the dimension free version of the utility U is the parameter must be within the first FlatKnots and the last FlatKnots Delta is the amount the curve has to be moved DeltaDerivative is the amount the derivative has to be moved. Delta and DeltaDerivative must be array of dimension ArrayDimension Degree is the degree of the BSpline and the FlatKnots are the knots of the BSpline Starting Condition if = -1 means the starting point of the curve can move = 0 means the starting point of the cuve cannot move but tangen starting point of the curve cannot move = 1 means the starting point and tangents cannot move = 2 means the starting point tangent and curvature cannot move = ... Same holds for EndingCondition Poles are the poles of the curve Weights are the weights of the curve if not NULL NewPoles are the poles of the deformed curve ErrorStatus will be 0 if no error happened 1 if there are not enough knots/poles the imposed conditions The way to solve this problem is to add knots to the BSpline If StartCondition = 1 and EndCondition = 1 then you need at least 4 + 2 = 6 poles so for example to have a C1 cubic you will need have at least 2 internal knots.)#"  , py::arg("U"),  py::arg("Delta"),  py::arg("DeltaDerivative"),  py::arg("Tolerance"),  py::arg("Degree"),  py::arg("StartingCondition"),  py::arg("EndingCondition"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
         .def_static("MovePointAndTangent_s",
-                    []( const Standard_Real U,const gp_Vec2d & Delta,const gp_Vec2d & DeltaDerivative,const Standard_Real Tolerance,const Standard_Integer Degree,const Standard_Boolean Rational,const Standard_Integer StartingCondition,const Standard_Integer EndingCondition, const NCollection_Array1<gp_Pnt2d> & Poles, const NCollection_Array1<Standard_Real> & Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt2d> & NewPoles ){ Standard_Integer  ErrorStatus; BSplCLib::MovePointAndTangent(U,Delta,DeltaDerivative,Tolerance,Degree,Rational,StartingCondition,EndingCondition,Poles,Weights,FlatKnots,NewPoles,ErrorStatus); return std::make_tuple(ErrorStatus); },
-                    R"#(This is the dimension free version of the utility U is the parameter must be within the first FlatKnots and the last FlatKnots Delta is the amount the curve has to be moved DeltaDerivative is the amount the derivative has to be moved. Delta and DeltaDerivative must be array of dimension ArrayDimension Degree is the degree of the BSpline and the FlatKnots are the knots of the BSpline Starting Condition if = -1 means the starting point of the curve can move = 0 means the starting point of the cuve cannot move but tangen starting point of the curve cannot move = 1 means the starting point and tangents cannot move = 2 means the starting point tangent and curvature cannot move = ... Same holds for EndingCondition Poles are the poles of the curve Weights are the weights of the curve if Rational = Standard_True NewPoles are the poles of the deformed curve ErrorStatus will be 0 if no error happened 1 if there are not enough knots/poles the imposed conditions The way to solve this problem is to add knots to the BSpline If StartCondition = 1 and EndCondition = 1 then you need at least 4 + 2 = 6 poles so for example to have a C1 cubic you will need have at least 2 internal knots.)#"  , py::arg("U"),  py::arg("Delta"),  py::arg("DeltaDerivative"),  py::arg("Tolerance"),  py::arg("Degree"),  py::arg("Rational"),  py::arg("StartingCondition"),  py::arg("EndingCondition"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
+                    []( const Standard_Real U,const gp_Vec2d & Delta,const gp_Vec2d & DeltaDerivative,const Standard_Real Tolerance,const Standard_Integer Degree,const Standard_Integer StartingCondition,const Standard_Integer EndingCondition, const NCollection_Array1<gp_Pnt2d> & Poles, const NCollection_Array1<Standard_Real> * Weights, const NCollection_Array1<Standard_Real> & FlatKnots,NCollection_Array1<gp_Pnt2d> & NewPoles ){ Standard_Integer  ErrorStatus; BSplCLib::MovePointAndTangent(U,Delta,DeltaDerivative,Tolerance,Degree,StartingCondition,EndingCondition,Poles,Weights,FlatKnots,NewPoles,ErrorStatus); return std::make_tuple(ErrorStatus); },
+                    R"#(This is the dimension free version of the utility U is the parameter must be within the first FlatKnots and the last FlatKnots Delta is the amount the curve has to be moved DeltaDerivative is the amount the derivative has to be moved. Delta and DeltaDerivative must be array of dimension ArrayDimension Degree is the degree of the BSpline and the FlatKnots are the knots of the BSpline Starting Condition if = -1 means the starting point of the curve can move = 0 means the starting point of the cuve cannot move but tangen starting point of the curve cannot move = 1 means the starting point and tangents cannot move = 2 means the starting point tangent and curvature cannot move = ... Same holds for EndingCondition Poles are the poles of the curve Weights are the weights of the curve if not NULL NewPoles are the poles of the deformed curve ErrorStatus will be 0 if no error happened 1 if there are not enough knots/poles the imposed conditions The way to solve this problem is to add knots to the BSpline If StartCondition = 1 and EndCondition = 1 then you need at least 4 + 2 = 6 poles so for example to have a C1 cubic you will need have at least 2 internal knots.)#"  , py::arg("U"),  py::arg("Delta"),  py::arg("DeltaDerivative"),  py::arg("Tolerance"),  py::arg("Degree"),  py::arg("StartingCondition"),  py::arg("EndingCondition"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("NewPoles"))
         .def_static("Resolution_s",
                     []( const Standard_Integer ArrayDimension,const Standard_Integer NumPoles, const NCollection_Array1<Standard_Real> * Weights, const NCollection_Array1<Standard_Real> & FlatKnots,const Standard_Integer Degree,const Standard_Real Tolerance3D ){ Standard_Real  PolesArray; Standard_Real  UTolerance; BSplCLib::Resolution(PolesArray,ArrayDimension,NumPoles,Weights,FlatKnots,Degree,Tolerance3D,UTolerance); return std::make_tuple(PolesArray,UTolerance); },
                     R"#(given a tolerance in 3D space returns a tolerance in U parameter space such that all u1 and u0 in the domain of the curve f(u) | u1 - u0 | < UTolerance and we have |f (u1) - f (u0)| < Tolerance3D)#"  , py::arg("ArrayDimension"),  py::arg("NumPoles"),  py::arg("Weights"),  py::arg("FlatKnots"),  py::arg("Degree"),  py::arg("Tolerance3D"))
@@ -510,24 +515,25 @@ py::module m = static_cast<py::module>(main_module.attr("BSplCLib"));
                     [](  const NCollection_Array1<gp_Pnt2d> & Poles, const NCollection_Array1<Standard_Real> * Weights,const Standard_Integer NumPoles, const NCollection_Array1<Standard_Real> & FlatKnots,const Standard_Integer Degree,const Standard_Real Tolerance3D ){ Standard_Real  UTolerance; BSplCLib::Resolution(Poles,Weights,NumPoles,FlatKnots,Degree,Tolerance3D,UTolerance); return std::make_tuple(UTolerance); },
                     R"#(given a tolerance in 3D space returns a tolerance in U parameter space such that all u1 and u0 in the domain of the curve f(u) | u1 - u0 | < UTolerance and we have |f (u1) - f (u0)| < Tolerance3D)#"  , py::arg("Poles"),  py::arg("Weights"),  py::arg("NumPoles"),  py::arg("FlatKnots"),  py::arg("Degree"),  py::arg("Tolerance3D"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BSplCLib_Cache ,opencascade::handle<BSplCLib_Cache>  , Standard_Transient >>(m.attr("BSplCLib_Cache"))
-        .def(py::init<  >()  )
+    // constructors
         .def(py::init< const Standard_Integer &,const Standard_Boolean &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<gp_Pnt2d> &, const NCollection_Array1<Standard_Real> * >()  , py::arg("theDegree"),  py::arg("thePeriodic"),  py::arg("theFlatKnots"),  py::arg("thePoles2d"),  py::arg("theWeights")=static_cast< const NCollection_Array1<Standard_Real> *>(NULL) )
         .def(py::init< const Standard_Integer &,const Standard_Boolean &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> * >()  , py::arg("theDegree"),  py::arg("thePeriodic"),  py::arg("theFlatKnots"),  py::arg("thePoles"),  py::arg("theWeights")=static_cast< const NCollection_Array1<Standard_Real> *>(NULL) )
+    // custom constructors
     // methods
         .def("IsCacheValid",
              (Standard_Boolean (BSplCLib_Cache::*)( Standard_Real  ) const) static_cast<Standard_Boolean (BSplCLib_Cache::*)( Standard_Real  ) const>(&BSplCLib_Cache::IsCacheValid),
              R"#(Verifies validity of the cache using flat parameter of the point)#"  , py::arg("theParameter"))
         .def("BuildCache",
-             (void (BSplCLib_Cache::*)( const Standard_Real & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt2d> & ,   const NCollection_Array1<Standard_Real> *  ) ) static_cast<void (BSplCLib_Cache::*)( const Standard_Real & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt2d> & ,   const NCollection_Array1<Standard_Real> *  ) >(&BSplCLib_Cache::BuildCache),
-             R"#(Recomputes the cache data for 2D curves. Does not verify validity of the cache)#"  , py::arg("theParameter"),  py::arg("theDegree"),  py::arg("thePeriodic"),  py::arg("theFlatKnots"),  py::arg("thePoles2d"),  py::arg("theWeights")=static_cast< const NCollection_Array1<Standard_Real> *>(NULL))
+             (void (BSplCLib_Cache::*)( const Standard_Real & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt2d> & ,   const NCollection_Array1<Standard_Real> *  ) ) static_cast<void (BSplCLib_Cache::*)( const Standard_Real & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt2d> & ,   const NCollection_Array1<Standard_Real> *  ) >(&BSplCLib_Cache::BuildCache),
+             R"#(Recomputes the cache data for 2D curves. Does not verify validity of the cache)#"  , py::arg("theParameter"),  py::arg("theFlatKnots"),  py::arg("thePoles2d"),  py::arg("theWeights"))
         .def("BuildCache",
-             (void (BSplCLib_Cache::*)( const Standard_Real & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> *  ) ) static_cast<void (BSplCLib_Cache::*)( const Standard_Real & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> *  ) >(&BSplCLib_Cache::BuildCache),
-             R"#(Recomputes the cache data for 3D curves. Does not verify validity of the cache)#"  , py::arg("theParameter"),  py::arg("theDegree"),  py::arg("thePeriodic"),  py::arg("theFlatKnots"),  py::arg("thePoles"),  py::arg("theWeights")=static_cast< const NCollection_Array1<Standard_Real> *>(NULL))
+             (void (BSplCLib_Cache::*)( const Standard_Real & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> *  ) ) static_cast<void (BSplCLib_Cache::*)( const Standard_Real & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> *  ) >(&BSplCLib_Cache::BuildCache),
+             R"#(Recomputes the cache data for 3D curves. Does not verify validity of the cache)#"  , py::arg("theParameter"),  py::arg("theFlatKnots"),  py::arg("thePoles"),  py::arg("theWeights")=static_cast< const NCollection_Array1<Standard_Real> *>(NULL))
         .def("D0",
              (void (BSplCLib_Cache::*)( const Standard_Real & ,  gp_Pnt2d &  ) const) static_cast<void (BSplCLib_Cache::*)( const Standard_Real & ,  gp_Pnt2d &  ) const>(&BSplCLib_Cache::D0),
              R"#(Calculates the point on the curve in the specified parameter)#"  , py::arg("theParameter"),  py::arg("thePoint"))
@@ -565,12 +571,36 @@ py::module m = static_cast<py::module>(main_module.attr("BSplCLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<BSplCLib_CacheParams , shared_ptr<BSplCLib_CacheParams>  >>(m.attr("BSplCLib_CacheParams"))
+    // constructors
+        .def(py::init< Standard_Integer,Standard_Boolean, const NCollection_Array1<Standard_Real> & >()  , py::arg("theDegree"),  py::arg("thePeriodic"),  py::arg("theFlatKnots") )
+    // custom constructors
+    // methods
+        .def("PeriodicNormalization",
+             (Standard_Real (BSplCLib_CacheParams::*)( Standard_Real  ) const) static_cast<Standard_Real (BSplCLib_CacheParams::*)( Standard_Real  ) const>(&BSplCLib_CacheParams::PeriodicNormalization),
+             R"#(Normalizes the parameter for periodic B-splines)#"  , py::arg("theParameter"))
+        .def("IsCacheValid",
+             (Standard_Boolean (BSplCLib_CacheParams::*)( Standard_Real  ) const) static_cast<Standard_Boolean (BSplCLib_CacheParams::*)( Standard_Real  ) const>(&BSplCLib_CacheParams::IsCacheValid),
+             R"#(Verifies validity of the cache using flat parameter of the point)#"  , py::arg("theParameter"))
+    // methods using call by reference i.s.o. return
+        .def("LocateParameter",
+             []( BSplCLib_CacheParams &self ,  const NCollection_Array1<Standard_Real> & theFlatKnots ){ Standard_Real  theParameter; self.LocateParameter(theParameter,theFlatKnots); return std::make_tuple(theParameter); },
+             R"#(Computes span for the specified parameter)#"  , py::arg("theFlatKnots"))
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BSplCLib_EvaluatorFunction , shared_ptr<BSplCLib_EvaluatorFunction> ,Py_BSplCLib_EvaluatorFunction >>(m.attr("BSplCLib_EvaluatorFunction"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
         .def("Evaluate",
@@ -579,15 +609,16 @@ py::module m = static_cast<py::module>(main_module.attr("BSplCLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BSplCLib_MultDistribution.hxx
 // ./opencascade/BSplCLib_Cache.hxx
-// ./opencascade/BSplCLib_EvaluatorFunction.hxx
-// ./opencascade/BSplCLib.hxx
+// ./opencascade/BSplCLib_MultDistribution.hxx
 // ./opencascade/BSplCLib_KnotDistribution.hxx
+// ./opencascade/BSplCLib_EvaluatorFunction.hxx
+// ./opencascade/BSplCLib_CacheParams.hxx
+// ./opencascade/BSplCLib.hxx
 
 // operators
 

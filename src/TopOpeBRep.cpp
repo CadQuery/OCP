@@ -14,8 +14,23 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TopOpeBRep_LineInter.hxx>
-#include <TopOpeBRep_WPointInter.hxx>
-#include <BRepAdaptor_Surface.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRepDS_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Curve.hxx>
+#include <TopOpeBRepDS_Point.hxx>
+#include <TopOpeBRep_VPointInter.hxx>
+#include <TopOpeBRep_Point2d.hxx>
+#include <TopOpeBRep_FaceEdgeIntersector.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRep_VPointInter.hxx>
+#include <TopOpeBRep_PointClassifier.hxx>
+#include <TopOpeBRepDS_Transition.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <TopOpeBRep_FacesFiller.hxx>
+#include <TopOpeBRep_Hctxff2d.hxx>
+#include <TopOpeBRep_Hctxee2d.hxx>
+#include <TopOpeBRep_EdgesIntersector.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRep_FFDumper.hxx>
 #include <TopOpeBRep_FacesIntersector.hxx>
@@ -25,16 +40,17 @@ namespace py = pybind11;
 #include <TopOpeBRep_VPointInterIterator.hxx>
 #include <TopOpeBRepDS_Point.hxx>
 #include <TopOpeBRepDS_DataStructure.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <BRepTopAdaptor_TopolTool.hxx>
-#include <Bnd_Box.hxx>
-#include <TopOpeBRep_FacesIntersector.hxx>
-#include <TopOpeBRep_FacesFiller.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <TopOpeBRepDS_Transition.hxx>
-#include <TopOpeBRep_VPointInter.hxx>
-#include <TopOpeBRep_LineInter.hxx>
 #include <TopoDS_Shape.hxx>
+#include <TopOpeBRep_FaceEdgeIntersector.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepDS_Point.hxx>
+#include <TopOpeBRepDS_DataStructure.hxx>
+#include <IntSurf_PntOn2S.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Pnt.hxx>
+#include <TopOpeBRep_LineInter.hxx>
+#include <TopOpeBRep_VPointInter.hxx>
+#include <BRepAdaptor_Surface.hxx>
 #include <IntPatch_ALine.hxx>
 #include <IntPatch_RLine.hxx>
 #include <IntPatch_WLine.hxx>
@@ -43,8 +59,9 @@ namespace py = pybind11;
 #include <Geom_Curve.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TopOpeBRep_Bipoint.hxx>
-#include <IntPatch_Point.hxx>
-#include <TopOpeBRep_EdgesIntersector.hxx>
+#include <IntRes2d_IntersectionPoint.hxx>
+#include <TopOpeBRepTool_ShapeExplorer.hxx>
+#include <TopOpeBRepTool_HBoxTool.hxx>
 #include <TopOpeBRep_VPointInter.hxx>
 #include <TopOpeBRep_VPointInterIterator.hxx>
 #include <TopOpeBRep_WPointInter.hxx>
@@ -70,49 +87,32 @@ namespace py = pybind11;
 #include <TopOpeBRep_EdgesFiller.hxx>
 #include <TopOpeBRep_FaceEdgeFiller.hxx>
 #include <TopOpeBRep_DSFiller.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <IntRes2d_IntersectionPoint.hxx>
-#include <IntSurf_PntOn2S.hxx>
+#include <TopOpeBRep_LineInter.hxx>
+#include <TopOpeBRep_VPointInter.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRep_EdgesIntersector.hxx>
 #include <TopOpeBRep_Point2d.hxx>
+#include <TopOpeBRep_FacesIntersector.hxx>
+#include <TopOpeBRepTool_HBoxTool.hxx>
 #include <TopOpeBRepDS_Transition.hxx>
+#include <TopOpeBRep_VPointInter.hxx>
 #include <TopOpeBRep_LineInter.hxx>
-#include <TopOpeBRep_VPointInter.hxx>
-#include <TopOpeBRep_VPointInter.hxx>
-#include <TopOpeBRep_PointClassifier.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRep_LineInter.hxx>
+#include <TopOpeBRep_WPointInter.hxx>
+#include <TopOpeBRep_LineInter.hxx>
+#include <IntPatch_Point.hxx>
 #include <BRepAdaptor_HSurface.hxx>
 #include <Bnd_Box.hxx>
 #include <BRepAdaptor_Surface.hxx>
-#include <TopOpeBRepTool_ShapeExplorer.hxx>
-#include <TopOpeBRepDS_Point.hxx>
-#include <TopOpeBRep_VPointInter.hxx>
-#include <TopOpeBRep_Point2d.hxx>
-#include <TopOpeBRep_FaceEdgeIntersector.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopOpeBRep_LineInter.hxx>
-#include <TopOpeBRepTool_HBoxTool.hxx>
-#include <TopOpeBRep_LineInter.hxx>
-#include <TopOpeBRep_VPointInter.hxx>
-#include <TopOpeBRepTool_HBoxTool.hxx>
-#include <TopOpeBRep_Hctxff2d.hxx>
-#include <TopOpeBRep_Hctxee2d.hxx>
-#include <TopOpeBRep_EdgesIntersector.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopOpeBRep_FaceEdgeIntersector.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
-#include <TopOpeBRepDS_Point.hxx>
-#include <TopOpeBRepDS_DataStructure.hxx>
-#include <TopOpeBRep_LineInter.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopOpeBRepDS_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Curve.hxx>
 #include <IntSurf_PntOn2S.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Pnt.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <BRepTopAdaptor_TopolTool.hxx>
+#include <Bnd_Box.hxx>
+#include <TopOpeBRep_EdgesIntersector.hxx>
 
 // module includes
 #include <TopOpeBRep.hxx>
@@ -164,15 +164,15 @@ namespace py = pybind11;
 #include <TopOpeBRep_WPointInterIterator.hxx>
 
 // template related includes
+// ./opencascade/TopOpeBRep_Array1OfLineInter.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRep_Array1OfVPointInter.hxx
+#include "NCollection.hxx"
 // ./opencascade/TopOpeBRep_ListOfBipoint.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRep_ListOfBipoint.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRep_DataMapOfTopolTool.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRep_Array1OfVPointInter.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRep_Array1OfLineInter.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRep_SequenceOfPoint2d.hxx
 #include "NCollection.hxx"
@@ -194,9 +194,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TopOpeBRep , shared_ptr<TopOpeBRep>>(m,"TopOpeBRep");
 
     static_cast<py::class_<TopOpeBRep , shared_ptr<TopOpeBRep>  >>(m.attr("TopOpeBRep"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -205,13 +208,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(Prints the name of <TLC> as a String on the Stream <S> and returns <S>.)#"  , py::arg("TLC"),  py::arg("OS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_Bipoint , shared_ptr<TopOpeBRep_Bipoint>  >>(m.attr("TopOpeBRep_Bipoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("I1"),  py::arg("I2") )
+    // custom constructors
     // methods
         .def("I1",
              (Standard_Integer (TopOpeBRep_Bipoint::*)() const) static_cast<Standard_Integer (TopOpeBRep_Bipoint::*)() const>(&TopOpeBRep_Bipoint::I1),
@@ -223,12 +228,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_DSFiller , shared_ptr<TopOpeBRep_DSFiller>  >>(m.attr("TopOpeBRep_DSFiller"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Insert",
              (void (TopOpeBRep_DSFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRep_DSFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> & ,  const Standard_Boolean  ) >(&TopOpeBRep_DSFiller::Insert),
@@ -294,12 +301,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_EdgesFiller , shared_ptr<TopOpeBRep_EdgesFiller>  >>(m.attr("TopOpeBRep_EdgesFiller"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Insert",
              (void (TopOpeBRep_EdgesFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  TopOpeBRep_EdgesIntersector & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) ) static_cast<void (TopOpeBRep_EdgesFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  TopOpeBRep_EdgesIntersector & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) >(&TopOpeBRep_EdgesFiller::Insert),
@@ -314,12 +323,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_EdgesIntersector , shared_ptr<TopOpeBRep_EdgesIntersector>  >>(m.attr("TopOpeBRep_EdgesIntersector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetFaces",
              (void (TopOpeBRep_EdgesIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRep_EdgesIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&TopOpeBRep_EdgesIntersector::SetFaces),
@@ -409,11 +420,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_FFDumper ,opencascade::handle<TopOpeBRep_FFDumper>  , Standard_Transient >>(m.attr("TopOpeBRep_FFDumper"))
+    // constructors
+    // custom constructors
     // methods
         .def("DumpLine",
              (void (TopOpeBRep_FFDumper::*)( const Standard_Integer  ) ) static_cast<void (TopOpeBRep_FFDumper::*)( const Standard_Integer  ) >(&TopOpeBRep_FFDumper::DumpLine),
@@ -449,12 +462,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRep_FFTransitionTool , shared_ptr<TopOpeBRep_FFTransitionTool>>(m,"TopOpeBRep_FFTransitionTool");
 
     static_cast<py::class_<TopOpeBRep_FFTransitionTool , shared_ptr<TopOpeBRep_FFTransitionTool>  >>(m.attr("TopOpeBRep_FFTransitionTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -475,12 +491,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(compute transition on "IntPatch_Restriction line" edge <R> when crossing edge <E> of face <F> at point <VP>. VP is given on edge <E> of face <F> of index <Index> (1 or 2). <VP> has been classified by FacesFiller as TopAbs_ON an edge <R> of the other face than <F> of current (face/face) intersection. Transition depends on the orientation of E in F. This method should be provided by IntPatch_Line (NYI))#"  , py::arg("VP"),  py::arg("Index"),  py::arg("R"),  py::arg("E"),  py::arg("F"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_FaceEdgeFiller , shared_ptr<TopOpeBRep_FaceEdgeFiller>  >>(m.attr("TopOpeBRep_FaceEdgeFiller"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Insert",
              (void (TopOpeBRep_FaceEdgeFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  TopOpeBRep_FaceEdgeIntersector & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) ) static_cast<void (TopOpeBRep_FaceEdgeFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  TopOpeBRep_FaceEdgeIntersector & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) >(&TopOpeBRep_FaceEdgeFiller::Insert),
@@ -489,12 +507,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_FaceEdgeIntersector , shared_ptr<TopOpeBRep_FaceEdgeIntersector>  >>(m.attr("TopOpeBRep_FaceEdgeIntersector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (TopOpeBRep_FaceEdgeIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRep_FaceEdgeIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&TopOpeBRep_FaceEdgeIntersector::Perform),
@@ -551,12 +571,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_FacesFiller , shared_ptr<TopOpeBRep_FacesFiller>  >>(m.attr("TopOpeBRep_FacesFiller"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Insert",
              (void (TopOpeBRep_FacesFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  TopOpeBRep_FacesIntersector & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) ) static_cast<void (TopOpeBRep_FacesFiller::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  TopOpeBRep_FacesIntersector & ,  const opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) >(&TopOpeBRep_FacesFiller::Insert),
@@ -700,12 +722,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     []( const TopOpeBRep_LineInter & L ){ Standard_Real  pmin; Standard_Real  pmax; TopOpeBRep_FacesFiller::Lminmax(L,pmin,pmax); return std::make_tuple(pmin,pmax); },
                     R"#(Computes <pmin> and <pmax> the upper and lower bounds of <L> enclosing all vpoints.)#"  , py::arg("L"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_FacesIntersector , shared_ptr<TopOpeBRep_FacesIntersector>  >>(m.attr("TopOpeBRep_FacesIntersector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (TopOpeBRep_FacesIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRep_FacesIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&TopOpeBRep_FacesIntersector::Perform),
@@ -771,12 +795,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRep_GeomTool , shared_ptr<TopOpeBRep_GeomTool>>(m,"TopOpeBRep_GeomTool");
 
     static_cast<py::class_<TopOpeBRep_GeomTool , shared_ptr<TopOpeBRep_GeomTool>  >>(m.attr("TopOpeBRep_GeomTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -794,14 +821,17 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(None)#"  , py::arg("L"),  py::arg("SI"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_HArray1OfLineInter ,opencascade::handle<TopOpeBRep_HArray1OfLineInter>  , TopOpeBRep_Array1OfLineInter , Standard_Transient >>(m.attr("TopOpeBRep_HArray1OfLineInter"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const TopOpeBRep_LineInter & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TopOpeBRep_LineInter> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TopOpeBRep_Array1OfLineInter & (TopOpeBRep_HArray1OfLineInter::*)() const) static_cast<const TopOpeBRep_Array1OfLineInter & (TopOpeBRep_HArray1OfLineInter::*)() const>(&TopOpeBRep_HArray1OfLineInter::Array1),
@@ -822,14 +852,17 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_HArray1OfVPointInter ,opencascade::handle<TopOpeBRep_HArray1OfVPointInter>  , TopOpeBRep_Array1OfVPointInter , Standard_Transient >>(m.attr("TopOpeBRep_HArray1OfVPointInter"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const TopOpeBRep_VPointInter & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TopOpeBRep_VPointInter> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TopOpeBRep_Array1OfVPointInter & (TopOpeBRep_HArray1OfVPointInter::*)() const) static_cast<const TopOpeBRep_Array1OfVPointInter & (TopOpeBRep_HArray1OfVPointInter::*)() const>(&TopOpeBRep_HArray1OfVPointInter::Array1),
@@ -850,12 +883,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_Hctxee2d ,opencascade::handle<TopOpeBRep_Hctxee2d>  , Standard_Transient >>(m.attr("TopOpeBRep_Hctxee2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetEdges",
              (void (TopOpeBRep_Hctxee2d::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface &  ) ) static_cast<void (TopOpeBRep_Hctxee2d::*)( const TopoDS_Edge & ,  const TopoDS_Edge & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface &  ) >(&TopOpeBRep_Hctxee2d::SetEdges),
@@ -882,12 +917,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_Hctxff2d ,opencascade::handle<TopOpeBRep_Hctxff2d>  , Standard_Transient >>(m.attr("TopOpeBRep_Hctxff2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetFaces",
              (void (TopOpeBRep_Hctxff2d::*)( const TopoDS_Face & ,  const TopoDS_Face &  ) ) static_cast<void (TopOpeBRep_Hctxff2d::*)( const TopoDS_Face & ,  const TopoDS_Face &  ) >(&TopOpeBRep_Hctxff2d::SetFaces),
@@ -932,12 +969,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_LineInter , shared_ptr<TopOpeBRep_LineInter>  >>(m.attr("TopOpeBRep_LineInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetLine",
              (void (TopOpeBRep_LineInter::*)( const opencascade::handle<IntPatch_Line> & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface &  ) ) static_cast<void (TopOpeBRep_LineInter::*)( const opencascade::handle<IntPatch_Line> & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface &  ) >(&TopOpeBRep_LineInter::SetLine),
@@ -1126,12 +1165,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_Point2d , shared_ptr<TopOpeBRep_Point2d>  >>(m.attr("TopOpeBRep_Point2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Dump",
              (void (TopOpeBRep_Point2d::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<void (TopOpeBRep_Point2d::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&TopOpeBRep_Point2d::Dump),
@@ -1335,12 +1376,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_PointClassifier , shared_ptr<TopOpeBRep_PointClassifier>  >>(m.attr("TopOpeBRep_PointClassifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRep_PointClassifier::*)() ) static_cast<void (TopOpeBRep_PointClassifier::*)() >(&TopOpeBRep_PointClassifier::Init),
@@ -1358,12 +1401,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRep_PointGeomTool , shared_ptr<TopOpeBRep_PointGeomTool>>(m,"TopOpeBRep_PointGeomTool");
 
     static_cast<py::class_<TopOpeBRep_PointGeomTool , shared_ptr<TopOpeBRep_PointGeomTool>  >>(m.attr("TopOpeBRep_PointGeomTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1384,12 +1430,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
                     R"#(None)#"  , py::arg("DSP1"),  py::arg("DSP2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_ShapeIntersector , shared_ptr<TopOpeBRep_ShapeIntersector>  >>(m.attr("TopOpeBRep_ShapeIntersector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("InitIntersection",
              (void (TopOpeBRep_ShapeIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRep_ShapeIntersector::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&TopOpeBRep_ShapeIntersector::InitIntersection),
@@ -1434,12 +1482,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_ShapeIntersector2d , shared_ptr<TopOpeBRep_ShapeIntersector2d>  >>(m.attr("TopOpeBRep_ShapeIntersector2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("InitIntersection",
              (void (TopOpeBRep_ShapeIntersector2d::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRep_ShapeIntersector2d::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&TopOpeBRep_ShapeIntersector2d::InitIntersection),
@@ -1469,12 +1519,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_ShapeScanner , shared_ptr<TopOpeBRep_ShapeScanner>  >>(m.attr("TopOpeBRep_ShapeScanner"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TopOpeBRep_ShapeScanner::*)() ) static_cast<void (TopOpeBRep_ShapeScanner::*)() >(&TopOpeBRep_ShapeScanner::Clear),
@@ -1513,12 +1565,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_VPointInter , shared_ptr<TopOpeBRep_VPointInter>  >>(m.attr("TopOpeBRep_VPointInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetPoint",
              (void (TopOpeBRep_VPointInter::*)( const IntPatch_Point &  ) ) static_cast<void (TopOpeBRep_VPointInter::*)( const IntPatch_Point &  ) >(&TopOpeBRep_VPointInter::SetPoint),
@@ -1737,12 +1791,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_VPointInterClassifier , shared_ptr<TopOpeBRep_VPointInterClassifier>  >>(m.attr("TopOpeBRep_VPointInterClassifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("VPointPosition",
              (TopAbs_State (TopOpeBRep_VPointInterClassifier::*)( const TopoDS_Shape & ,  TopOpeBRep_VPointInter & ,  const Standard_Integer ,  TopOpeBRep_PointClassifier & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<TopAbs_State (TopOpeBRep_VPointInterClassifier::*)( const TopoDS_Shape & ,  TopOpeBRep_VPointInter & ,  const Standard_Integer ,  TopOpeBRep_PointClassifier & ,  const Standard_Boolean ,  const Standard_Real  ) >(&TopOpeBRep_VPointInterClassifier::VPointPosition),
@@ -1757,13 +1813,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_VPointInterIterator , shared_ptr<TopOpeBRep_VPointInterIterator>  >>(m.attr("TopOpeBRep_VPointInterIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRep_LineInter & >()  , py::arg("LI") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRep_VPointInterIterator::*)( const TopOpeBRep_LineInter & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRep_VPointInterIterator::*)( const TopOpeBRep_LineInter & ,  const Standard_Boolean  ) >(&TopOpeBRep_VPointInterIterator::Init),
@@ -1793,12 +1851,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_WPointInter , shared_ptr<TopOpeBRep_WPointInter>  >>(m.attr("TopOpeBRep_WPointInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TopOpeBRep_WPointInter::*)( const IntSurf_PntOn2S &  ) ) static_cast<void (TopOpeBRep_WPointInter::*)( const IntSurf_PntOn2S &  ) >(&TopOpeBRep_WPointInter::Set),
@@ -1828,13 +1888,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRep_WPointInterIterator , shared_ptr<TopOpeBRep_WPointInterIterator>  >>(m.attr("TopOpeBRep_WPointInterIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRep_LineInter & >()  , py::arg("LI") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRep_WPointInterIterator::*)( const TopOpeBRep_LineInter &  ) ) static_cast<void (TopOpeBRep_WPointInterIterator::*)( const TopOpeBRep_LineInter &  ) >(&TopOpeBRep_WPointInterIterator::Init),
@@ -1858,64 +1920,64 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TopOpeBRep_ListIteratorOfListOfBipoint.hxx
-// ./opencascade/TopOpeBRep_WPointInterIterator.hxx
-// ./opencascade/TopOpeBRep_DRAW.hxx
-// ./opencascade/TopOpeBRep_Hctxee2d.hxx
-// ./opencascade/TopOpeBRep_ListOfBipoint.hxx
-// ./opencascade/TopOpeBRep_DataMapOfTopolTool.hxx
-// ./opencascade/TopOpeBRep_FacesFiller.hxx
-// ./opencascade/TopOpeBRep_FacesIntersector.hxx
-// ./opencascade/TopOpeBRep_PFacesIntersector.hxx
-// ./opencascade/TopOpeBRep_PFacesFiller.hxx
-// ./opencascade/TopOpeBRep_Hctxff2d.hxx
-// ./opencascade/TopOpeBRep_P2Dstatus.hxx
-// ./opencascade/TopOpeBRep_FFTransitionTool.hxx
-// ./opencascade/TopOpeBRep_LineInter.hxx
-// ./opencascade/TopOpeBRep_PThePointOfIntersection.hxx
-// ./opencascade/TopOpeBRep_Bipoint.hxx
-// ./opencascade/TopOpeBRep_PEdgesIntersector.hxx
-// ./opencascade/TopOpeBRep.hxx
-// ./opencascade/TopOpeBRep_Array1OfVPointInter.hxx
-// ./opencascade/TopOpeBRep_PointClassifier.hxx
-// ./opencascade/TopOpeBRep_define.hxx
-// ./opencascade/TopOpeBRep_PIntRes2d_IntersectionPoint.hxx
-// ./opencascade/TopOpeBRep_Array1OfLineInter.hxx
-// ./opencascade/TopOpeBRep_DataMapIteratorOfDataMapOfTopolTool.hxx
-// ./opencascade/TopOpeBRep_PPntOn2S.hxx
 // ./opencascade/TopOpeBRep_DSFiller.hxx
-// ./opencascade/TopOpeBRep_EdgesFiller.hxx
-// ./opencascade/TopOpeBRep_FaceEdgeIntersector.hxx
-// ./opencascade/TopOpeBRep_TypeLineCurve.hxx
-// ./opencascade/TopOpeBRep_FFDumper.hxx
-// ./opencascade/TopOpeBRep_VPointInterClassifier.hxx
-// ./opencascade/TopOpeBRep_EdgesIntersector.hxx
-// ./opencascade/TopOpeBRep_ShapeScanner.hxx
-// ./opencascade/TopOpeBRep_PointGeomTool.hxx
-// ./opencascade/TopOpeBRep_PLineInter.hxx
-// ./opencascade/TopOpeBRep_ShapeIntersector2d.hxx
-// ./opencascade/TopOpeBRep_SequenceOfPoint2d.hxx
-// ./opencascade/TopOpeBRep_VPointInterIterator.hxx
-// ./opencascade/TopOpeBRep_ShapeIntersector.hxx
-// ./opencascade/TopOpeBRep_traceSIFF.hxx
-// ./opencascade/TopOpeBRep_Point2d.hxx
-// ./opencascade/TopOpeBRep_HArray1OfVPointInter.hxx
-// ./opencascade/TopOpeBRep_VPointInter.hxx
-// ./opencascade/TopOpeBRep_HArray1OfLineInter.hxx
-// ./opencascade/TopOpeBRep_FaceEdgeFiller.hxx
+// ./opencascade/TopOpeBRep_Array1OfLineInter.hxx
 // ./opencascade/TopOpeBRep_GeomTool.hxx
+// ./opencascade/TopOpeBRep_PointGeomTool.hxx
+// ./opencascade/TopOpeBRep_DRAW.hxx
+// ./opencascade/TopOpeBRep_VPointInterClassifier.hxx
+// ./opencascade/TopOpeBRep_FaceEdgeIntersector.hxx
+// ./opencascade/TopOpeBRep_PointClassifier.hxx
+// ./opencascade/TopOpeBRep_PFacesFiller.hxx
+// ./opencascade/TopOpeBRep_Point2d.hxx
+// ./opencascade/TopOpeBRep_FacesFiller.hxx
+// ./opencascade/TopOpeBRep_FaceEdgeFiller.hxx
 // ./opencascade/TopOpeBRep_WPointInter.hxx
+// ./opencascade/TopOpeBRep_Array1OfVPointInter.hxx
+// ./opencascade/TopOpeBRep_FFDumper.hxx
+// ./opencascade/TopOpeBRep_Hctxee2d.hxx
+// ./opencascade/TopOpeBRep_DataMapIteratorOfDataMapOfTopolTool.hxx
+// ./opencascade/TopOpeBRep_LineInter.hxx
+// ./opencascade/TopOpeBRep_Bipoint.hxx
+// ./opencascade/TopOpeBRep_PIntRes2d_IntersectionPoint.hxx
+// ./opencascade/TopOpeBRep_ShapeScanner.hxx
+// ./opencascade/TopOpeBRep_ListOfBipoint.hxx
+// ./opencascade/TopOpeBRep_traceSIFF.hxx
+// ./opencascade/TopOpeBRep_ShapeIntersector.hxx
+// ./opencascade/TopOpeBRep_HArray1OfLineInter.hxx
+// ./opencascade/TopOpeBRep_DataMapOfTopolTool.hxx
+// ./opencascade/TopOpeBRep.hxx
+// ./opencascade/TopOpeBRep_VPointInterIterator.hxx
+// ./opencascade/TopOpeBRep_SequenceOfPoint2d.hxx
+// ./opencascade/TopOpeBRep_TypeLineCurve.hxx
+// ./opencascade/TopOpeBRep_HArray1OfVPointInter.hxx
+// ./opencascade/TopOpeBRep_EdgesFiller.hxx
+// ./opencascade/TopOpeBRep_PFacesIntersector.hxx
+// ./opencascade/TopOpeBRep_ShapeIntersector2d.hxx
+// ./opencascade/TopOpeBRep_FFTransitionTool.hxx
+// ./opencascade/TopOpeBRep_define.hxx
+// ./opencascade/TopOpeBRep_WPointInterIterator.hxx
+// ./opencascade/TopOpeBRep_PLineInter.hxx
+// ./opencascade/TopOpeBRep_PThePointOfIntersection.hxx
+// ./opencascade/TopOpeBRep_EdgesIntersector.hxx
+// ./opencascade/TopOpeBRep_P2Dstatus.hxx
+// ./opencascade/TopOpeBRep_VPointInter.hxx
+// ./opencascade/TopOpeBRep_PPntOn2S.hxx
+// ./opencascade/TopOpeBRep_ListIteratorOfListOfBipoint.hxx
+// ./opencascade/TopOpeBRep_Hctxff2d.hxx
+// ./opencascade/TopOpeBRep_FacesIntersector.hxx
+// ./opencascade/TopOpeBRep_PEdgesIntersector.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_List<TopOpeBRep_Bipoint>(m,"TopOpeBRep_ListOfBipoint");  
-    register_template_NCollection_Array1<TopOpeBRep_VPointInter>(m,"TopOpeBRep_Array1OfVPointInter");  
     register_template_NCollection_Array1<TopOpeBRep_LineInter>(m,"TopOpeBRep_Array1OfLineInter");  
+    register_template_NCollection_Array1<TopOpeBRep_VPointInter>(m,"TopOpeBRep_Array1OfVPointInter");  
+    register_template_NCollection_List<TopOpeBRep_Bipoint>(m,"TopOpeBRep_ListOfBipoint");  
     register_template_NCollection_Sequence<TopOpeBRep_Point2d>(m,"TopOpeBRep_SequenceOfPoint2d");  
 
 

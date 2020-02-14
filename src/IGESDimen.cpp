@@ -13,15 +13,9 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IGESData_IGESEntity.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESDimen_GeneralNote.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDimen_GeneralLabel.hxx>
+#include <IGESDimen_LinearDimension.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -30,150 +24,12 @@ namespace py = pybind11;
 #include <Interface_ShareTool.hxx>
 #include <Interface_Check.hxx>
 #include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_FlagNote.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_LeaderArrow.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_NewGeneralNote.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <IGESDimen_LeaderArrow.hxx>
-#include <IGESDimen_WitnessLine.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_DimensionUnits.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_DimensionedGeometry.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_CenterLine.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_DimensionTolerance.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_DiameterDimension.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <IGESDimen_LeaderArrow.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_SectionedArea.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_AngularDimension.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESData_IGESEntity.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <gp_Pnt.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDimen_Section.hxx>
+#include <IGESDimen_BasicDimension.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -196,13 +52,8 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <gp_Pnt.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <IGESDimen_WitnessLine.hxx>
-#include <IGESDimen_LeaderArrow.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDimen_BasicDimension.hxx>
+#include <IGESDimen_AngularDimension.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -213,123 +64,11 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <IGESDimen_LeaderArrow.hxx>
-#include <IGESDimen_WitnessLine.hxx>
+#include <gp_Pnt2d.hxx>
 #include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_GeneralSymbol.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
 #include <IGESDimen_GeneralNote.hxx>
 #include <IGESDimen_LeaderArrow.hxx>
 #include <gp_Pnt2d.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_DimensionDisplayData.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_WitnessLine.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_CurveDimension.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <IGESDimen_LeaderArrow.hxx>
-#include <IGESGeom_CircularArc.hxx>
-#include <IGESGeom_CompositeCurve.hxx>
-#include <IGESDimen_GeneralNote.hxx>
-#include <IGESDimen_WitnessLine.hxx>
-#include <IGESDimen_LeaderArrow.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_LinearDimension.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_OrdinateDimension.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDimen_RadiusDimension.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
 #include <gp_Pnt.hxx>
 #include <IGESDimen_Protocol.hxx>
 #include <IGESDimen_CenterLine.hxx>
@@ -382,7 +121,45 @@ namespace py = pybind11;
 #include <IGESDimen_ReadWriteModule.hxx>
 #include <IGESDimen_GeneralModule.hxx>
 #include <IGESDimen_SpecificModule.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_Section.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESDimen_LeaderArrow.hxx>
+#include <IGESDimen_WitnessLine.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESDimen_LeaderArrow.hxx>
+#include <IGESDimen_WitnessLine.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESDimen_LeaderArrow.hxx>
 #include <gp_Pnt2d.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_GeneralLabel.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESDimen_NewDimensionedGeometry.hxx>
 #include <IGESData_IGESReaderData.hxx>
@@ -395,6 +172,229 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_DiameterDimension.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESDimen_WitnessLine.hxx>
+#include <IGESDimen_LeaderArrow.hxx>
+#include <gp_Pnt2d.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_OrdinateDimension.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_GeneralSymbol.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_SectionedArea.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_LeaderArrow.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_RadiusDimension.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESDimen_WitnessLine.hxx>
+#include <IGESDimen_LeaderArrow.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_WitnessLine.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESDimen_LeaderArrow.hxx>
+#include <IGESGeom_CircularArc.hxx>
+#include <IGESGeom_CompositeCurve.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <IGESDimen_GeneralNote.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_FlagNote.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_DimensionTolerance.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_DimensionedGeometry.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_CenterLine.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_NewGeneralNote.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_DimensionDisplayData.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_DimensionUnits.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDimen_CurveDimension.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt2d.hxx>
 
 // module includes
 #include <IGESDimen.hxx>
@@ -454,9 +454,9 @@ namespace py = pybind11;
 #include <IGESDimen_WitnessLine.hxx>
 
 // template related includes
-// ./opencascade/IGESDimen_Array1OfGeneralNote.hxx
-#include "NCollection.hxx"
 // ./opencascade/IGESDimen_Array1OfLeaderArrow.hxx
+#include "NCollection.hxx"
+// ./opencascade/IGESDimen_Array1OfGeneralNote.hxx
 #include "NCollection.hxx"
 
 
@@ -476,9 +476,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESDimen , shared_ptr<IGESDimen>>(m,"IGESDimen");
 
     static_cast<py::class_<IGESDimen , shared_ptr<IGESDimen>  >>(m.attr("IGESDimen"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -490,12 +493,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(Returns the Protocol for this Package)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_AngularDimension ,opencascade::handle<IGESDimen_AngularDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_AngularDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_AngularDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const gp_XY & ,  const Standard_Real ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> &  ) ) static_cast<void (IGESDimen_AngularDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const gp_XY & ,  const Standard_Real ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> &  ) >(&IGESDimen_AngularDimension::Init),
@@ -543,12 +548,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_BasicDimension ,opencascade::handle<IGESDimen_BasicDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_BasicDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_BasicDimension::*)( const Standard_Integer ,  const gp_XY & ,  const gp_XY & ,  const gp_XY & ,  const gp_XY &  ) ) static_cast<void (IGESDimen_BasicDimension::*)( const Standard_Integer ,  const gp_XY & ,  const gp_XY & ,  const gp_XY & ,  const gp_XY &  ) >(&IGESDimen_BasicDimension::Init),
@@ -581,12 +588,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_CenterLine ,opencascade::handle<IGESDimen_CenterLine>  , IGESData_IGESEntity >>(m.attr("IGESDimen_CenterLine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_CenterLine::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) ) static_cast<void (IGESDimen_CenterLine::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) >(&IGESDimen_CenterLine::Init),
@@ -625,12 +634,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_CurveDimension ,opencascade::handle<IGESDimen_CurveDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_CurveDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_CurveDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_WitnessLine> &  ) ) static_cast<void (IGESDimen_CurveDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_WitnessLine> &  ) >(&IGESDimen_CurveDimension::Init),
@@ -678,12 +689,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_DiameterDimension ,opencascade::handle<IGESDimen_DiameterDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_DiameterDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_DiameterDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const gp_XY &  ) ) static_cast<void (IGESDimen_DiameterDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const gp_XY &  ) >(&IGESDimen_DiameterDimension::Init),
@@ -719,12 +732,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_DimensionDisplayData ,opencascade::handle<IGESDimen_DimensionDisplayData>  , IGESData_IGESEntity >>(m.attr("IGESDimen_DimensionDisplayData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_DimensionDisplayData::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESDimen_DimensionDisplayData::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESDimen_DimensionDisplayData::Init),
@@ -790,12 +805,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_DimensionTolerance ,opencascade::handle<IGESDimen_DimensionTolerance>  , IGESData_IGESEntity >>(m.attr("IGESDimen_DimensionTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_DimensionTolerance::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IGESDimen_DimensionTolerance::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Integer  ) >(&IGESDimen_DimensionTolerance::Init),
@@ -840,12 +857,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_DimensionUnits ,opencascade::handle<IGESDimen_DimensionUnits>  , IGESData_IGESEntity >>(m.attr("IGESDimen_DimensionUnits"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_DimensionUnits::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IGESDimen_DimensionUnits::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer  ) >(&IGESDimen_DimensionUnits::Init),
@@ -884,12 +903,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_DimensionedGeometry ,opencascade::handle<IGESDimen_DimensionedGeometry>  , IGESData_IGESEntity >>(m.attr("IGESDimen_DimensionedGeometry"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_DimensionedGeometry::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDimen_DimensionedGeometry::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDimen_DimensionedGeometry::Init),
@@ -919,12 +940,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_FlagNote ,opencascade::handle<IGESDimen_FlagNote>  , IGESData_IGESEntity >>(m.attr("IGESDimen_FlagNote"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_FlagNote::*)( const gp_XYZ & ,  const Standard_Real ,  const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> &  ) ) static_cast<void (IGESDimen_FlagNote::*)( const gp_XYZ & ,  const Standard_Real ,  const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> &  ) >(&IGESDimen_FlagNote::Init),
@@ -975,12 +998,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_GeneralLabel ,opencascade::handle<IGESDimen_GeneralLabel>  , IGESData_IGESEntity >>(m.attr("IGESDimen_GeneralLabel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_GeneralLabel::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> &  ) ) static_cast<void (IGESDimen_GeneralLabel::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> &  ) >(&IGESDimen_GeneralLabel::Init),
@@ -1007,12 +1032,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_GeneralModule ,opencascade::handle<IGESDimen_GeneralModule>  , IGESData_GeneralModule >>(m.attr("IGESDimen_GeneralModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnSharedCase",
              (void (IGESDimen_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESDimen_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const>(&IGESDimen_GeneralModule::OwnSharedCase),
@@ -1045,12 +1072,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_GeneralNote ,opencascade::handle<IGESDimen_GeneralNote>  , IGESData_IGESEntity >>(m.attr("IGESDimen_GeneralNote"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_GeneralNote::*)( const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESGraph_HArray1OfTextFontDef> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> &  ) ) static_cast<void (IGESDimen_GeneralNote::*)( const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESGraph_HArray1OfTextFontDef> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> &  ) >(&IGESDimen_GeneralNote::Init),
@@ -1116,12 +1145,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_GeneralSymbol ,opencascade::handle<IGESDimen_GeneralSymbol>  , IGESData_IGESEntity >>(m.attr("IGESDimen_GeneralSymbol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_GeneralSymbol::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> &  ) ) static_cast<void (IGESDimen_GeneralSymbol::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> &  ) >(&IGESDimen_GeneralSymbol::Init),
@@ -1160,14 +1191,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_HArray1OfGeneralNote ,opencascade::handle<IGESDimen_HArray1OfGeneralNote>  , IGESDimen_Array1OfGeneralNote , Standard_Transient >>(m.attr("IGESDimen_HArray1OfGeneralNote"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESDimen_GeneralNote> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESDimen_GeneralNote> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESDimen_Array1OfGeneralNote & (IGESDimen_HArray1OfGeneralNote::*)() const) static_cast<const IGESDimen_Array1OfGeneralNote & (IGESDimen_HArray1OfGeneralNote::*)() const>(&IGESDimen_HArray1OfGeneralNote::Array1),
@@ -1188,14 +1222,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_HArray1OfLeaderArrow ,opencascade::handle<IGESDimen_HArray1OfLeaderArrow>  , IGESDimen_Array1OfLeaderArrow , Standard_Transient >>(m.attr("IGESDimen_HArray1OfLeaderArrow"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESDimen_LeaderArrow> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESDimen_LeaderArrow> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESDimen_Array1OfLeaderArrow & (IGESDimen_HArray1OfLeaderArrow::*)() const) static_cast<const IGESDimen_Array1OfLeaderArrow & (IGESDimen_HArray1OfLeaderArrow::*)() const>(&IGESDimen_HArray1OfLeaderArrow::Array1),
@@ -1216,12 +1253,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_LeaderArrow ,opencascade::handle<IGESDimen_LeaderArrow>  , IGESData_IGESEntity >>(m.attr("IGESDimen_LeaderArrow"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_LeaderArrow::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XY & ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) ) static_cast<void (IGESDimen_LeaderArrow::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_XY & ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) >(&IGESDimen_LeaderArrow::Init),
@@ -1266,12 +1305,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_LinearDimension ,opencascade::handle<IGESDimen_LinearDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_LinearDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_LinearDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_WitnessLine> &  ) ) static_cast<void (IGESDimen_LinearDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_WitnessLine> &  ) >(&IGESDimen_LinearDimension::Init),
@@ -1313,12 +1354,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_NewDimensionedGeometry ,opencascade::handle<IGESDimen_NewDimensionedGeometry>  , IGESData_IGESEntity >>(m.attr("IGESDimen_NewDimensionedGeometry"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_NewDimensionedGeometry::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> &  ) ) static_cast<void (IGESDimen_NewDimensionedGeometry::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> &  ) >(&IGESDimen_NewDimensionedGeometry::Init),
@@ -1363,12 +1406,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_NewGeneralNote ,opencascade::handle<IGESDimen_NewGeneralNote>  , IGESData_IGESEntity >>(m.attr("IGESDimen_NewGeneralNote"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_NewGeneralNote::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const gp_XYZ & ,  const Standard_Real ,  const gp_XYZ & ,  const Standard_Real ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> &  ) ) static_cast<void (IGESDimen_NewGeneralNote::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const gp_XYZ & ,  const Standard_Real ,  const gp_XYZ & ,  const Standard_Real ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> &  ) >(&IGESDimen_NewGeneralNote::Init),
@@ -1494,12 +1539,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_OrdinateDimension ,opencascade::handle<IGESDimen_OrdinateDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_OrdinateDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_OrdinateDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const Standard_Boolean ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_LeaderArrow> &  ) ) static_cast<void (IGESDimen_OrdinateDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const Standard_Boolean ,  const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESDimen_LeaderArrow> &  ) >(&IGESDimen_OrdinateDimension::Init),
@@ -1532,12 +1579,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_PointDimension ,opencascade::handle<IGESDimen_PointDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_PointDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_PointDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<void (IGESDimen_PointDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESDimen_PointDimension::Init),
@@ -1573,12 +1622,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_Protocol ,opencascade::handle<IGESDimen_Protocol>  , IGESData_Protocol >>(m.attr("IGESDimen_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (IGESDimen_Protocol::*)() const) static_cast<Standard_Integer (IGESDimen_Protocol::*)() const>(&IGESDimen_Protocol::NbResources),
@@ -1602,12 +1653,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_RadiusDimension ,opencascade::handle<IGESDimen_RadiusDimension>  , IGESData_IGESEntity >>(m.attr("IGESDimen_RadiusDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_RadiusDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const gp_XY & ,  const opencascade::handle<IGESDimen_LeaderArrow> &  ) ) static_cast<void (IGESDimen_RadiusDimension::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESDimen_LeaderArrow> & ,  const gp_XY & ,  const opencascade::handle<IGESDimen_LeaderArrow> &  ) >(&IGESDimen_RadiusDimension::Init),
@@ -1646,12 +1699,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ReadWriteModule ,opencascade::handle<IGESDimen_ReadWriteModule>  , IGESData_ReadWriteModule >>(m.attr("IGESDimen_ReadWriteModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseIGES",
              (Standard_Integer (IGESDimen_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Integer (IGESDimen_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&IGESDimen_ReadWriteModule::CaseIGES),
@@ -1675,12 +1730,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_Section ,opencascade::handle<IGESDimen_Section>  , IGESData_IGESEntity >>(m.attr("IGESDimen_Section"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_Section::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) ) static_cast<void (IGESDimen_Section::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) >(&IGESDimen_Section::Init),
@@ -1716,12 +1773,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_SectionedArea ,opencascade::handle<IGESDimen_SectionedArea>  , IGESData_IGESEntity >>(m.attr("IGESDimen_SectionedArea"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_SectionedArea::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const gp_XYZ & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDimen_SectionedArea::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const gp_XYZ & ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDimen_SectionedArea::Init),
@@ -1772,12 +1831,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_SpecificModule ,opencascade::handle<IGESDimen_SpecificModule>  , IGESData_SpecificModule >>(m.attr("IGESDimen_SpecificModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESDimen_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESDimen_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESDimen_SpecificModule::OwnDump),
@@ -1798,12 +1859,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolAngularDimension , shared_ptr<IGESDimen_ToolAngularDimension>  >>(m.attr("IGESDimen_ToolAngularDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolAngularDimension::*)( const opencascade::handle<IGESDimen_AngularDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolAngularDimension::*)( const opencascade::handle<IGESDimen_AngularDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolAngularDimension::ReadOwnParams),
@@ -1830,12 +1893,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolBasicDimension , shared_ptr<IGESDimen_ToolBasicDimension>  >>(m.attr("IGESDimen_ToolBasicDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolBasicDimension::*)( const opencascade::handle<IGESDimen_BasicDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolBasicDimension::*)( const opencascade::handle<IGESDimen_BasicDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolBasicDimension::ReadOwnParams),
@@ -1865,12 +1930,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolCenterLine , shared_ptr<IGESDimen_ToolCenterLine>  >>(m.attr("IGESDimen_ToolCenterLine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolCenterLine::*)( const opencascade::handle<IGESDimen_CenterLine> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolCenterLine::*)( const opencascade::handle<IGESDimen_CenterLine> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolCenterLine::ReadOwnParams),
@@ -1900,12 +1967,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolCurveDimension , shared_ptr<IGESDimen_ToolCurveDimension>  >>(m.attr("IGESDimen_ToolCurveDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolCurveDimension::*)( const opencascade::handle<IGESDimen_CurveDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolCurveDimension::*)( const opencascade::handle<IGESDimen_CurveDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolCurveDimension::ReadOwnParams),
@@ -1932,12 +2001,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolDiameterDimension , shared_ptr<IGESDimen_ToolDiameterDimension>  >>(m.attr("IGESDimen_ToolDiameterDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolDiameterDimension::*)( const opencascade::handle<IGESDimen_DiameterDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolDiameterDimension::*)( const opencascade::handle<IGESDimen_DiameterDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolDiameterDimension::ReadOwnParams),
@@ -1964,12 +2035,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolDimensionDisplayData , shared_ptr<IGESDimen_ToolDimensionDisplayData>  >>(m.attr("IGESDimen_ToolDimensionDisplayData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolDimensionDisplayData::*)( const opencascade::handle<IGESDimen_DimensionDisplayData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolDimensionDisplayData::*)( const opencascade::handle<IGESDimen_DimensionDisplayData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolDimensionDisplayData::ReadOwnParams),
@@ -1999,12 +2072,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolDimensionTolerance , shared_ptr<IGESDimen_ToolDimensionTolerance>  >>(m.attr("IGESDimen_ToolDimensionTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolDimensionTolerance::*)( const opencascade::handle<IGESDimen_DimensionTolerance> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolDimensionTolerance::*)( const opencascade::handle<IGESDimen_DimensionTolerance> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolDimensionTolerance::ReadOwnParams),
@@ -2034,12 +2109,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolDimensionUnits , shared_ptr<IGESDimen_ToolDimensionUnits>  >>(m.attr("IGESDimen_ToolDimensionUnits"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolDimensionUnits::*)( const opencascade::handle<IGESDimen_DimensionUnits> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolDimensionUnits::*)( const opencascade::handle<IGESDimen_DimensionUnits> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolDimensionUnits::ReadOwnParams),
@@ -2069,12 +2146,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolDimensionedGeometry , shared_ptr<IGESDimen_ToolDimensionedGeometry>  >>(m.attr("IGESDimen_ToolDimensionedGeometry"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolDimensionedGeometry::*)( const opencascade::handle<IGESDimen_DimensionedGeometry> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolDimensionedGeometry::*)( const opencascade::handle<IGESDimen_DimensionedGeometry> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolDimensionedGeometry::ReadOwnParams),
@@ -2104,12 +2183,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolFlagNote , shared_ptr<IGESDimen_ToolFlagNote>  >>(m.attr("IGESDimen_ToolFlagNote"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolFlagNote::*)( const opencascade::handle<IGESDimen_FlagNote> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolFlagNote::*)( const opencascade::handle<IGESDimen_FlagNote> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolFlagNote::ReadOwnParams),
@@ -2136,12 +2217,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolGeneralLabel , shared_ptr<IGESDimen_ToolGeneralLabel>  >>(m.attr("IGESDimen_ToolGeneralLabel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolGeneralLabel::*)( const opencascade::handle<IGESDimen_GeneralLabel> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolGeneralLabel::*)( const opencascade::handle<IGESDimen_GeneralLabel> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolGeneralLabel::ReadOwnParams),
@@ -2168,12 +2251,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolGeneralNote , shared_ptr<IGESDimen_ToolGeneralNote>  >>(m.attr("IGESDimen_ToolGeneralNote"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolGeneralNote::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolGeneralNote::*)( const opencascade::handle<IGESDimen_GeneralNote> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolGeneralNote::ReadOwnParams),
@@ -2200,12 +2285,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolGeneralSymbol , shared_ptr<IGESDimen_ToolGeneralSymbol>  >>(m.attr("IGESDimen_ToolGeneralSymbol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolGeneralSymbol::*)( const opencascade::handle<IGESDimen_GeneralSymbol> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolGeneralSymbol::*)( const opencascade::handle<IGESDimen_GeneralSymbol> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolGeneralSymbol::ReadOwnParams),
@@ -2232,12 +2319,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolLeaderArrow , shared_ptr<IGESDimen_ToolLeaderArrow>  >>(m.attr("IGESDimen_ToolLeaderArrow"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolLeaderArrow::*)( const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolLeaderArrow::*)( const opencascade::handle<IGESDimen_LeaderArrow> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolLeaderArrow::ReadOwnParams),
@@ -2264,12 +2353,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolLinearDimension , shared_ptr<IGESDimen_ToolLinearDimension>  >>(m.attr("IGESDimen_ToolLinearDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolLinearDimension::*)( const opencascade::handle<IGESDimen_LinearDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolLinearDimension::*)( const opencascade::handle<IGESDimen_LinearDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolLinearDimension::ReadOwnParams),
@@ -2296,12 +2387,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolNewDimensionedGeometry , shared_ptr<IGESDimen_ToolNewDimensionedGeometry>  >>(m.attr("IGESDimen_ToolNewDimensionedGeometry"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolNewDimensionedGeometry::*)( const opencascade::handle<IGESDimen_NewDimensionedGeometry> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolNewDimensionedGeometry::*)( const opencascade::handle<IGESDimen_NewDimensionedGeometry> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolNewDimensionedGeometry::ReadOwnParams),
@@ -2331,12 +2424,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolNewGeneralNote , shared_ptr<IGESDimen_ToolNewGeneralNote>  >>(m.attr("IGESDimen_ToolNewGeneralNote"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolNewGeneralNote::*)( const opencascade::handle<IGESDimen_NewGeneralNote> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolNewGeneralNote::*)( const opencascade::handle<IGESDimen_NewGeneralNote> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolNewGeneralNote::ReadOwnParams),
@@ -2363,12 +2458,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolOrdinateDimension , shared_ptr<IGESDimen_ToolOrdinateDimension>  >>(m.attr("IGESDimen_ToolOrdinateDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolOrdinateDimension::*)( const opencascade::handle<IGESDimen_OrdinateDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolOrdinateDimension::*)( const opencascade::handle<IGESDimen_OrdinateDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolOrdinateDimension::ReadOwnParams),
@@ -2395,12 +2492,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolPointDimension , shared_ptr<IGESDimen_ToolPointDimension>  >>(m.attr("IGESDimen_ToolPointDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolPointDimension::*)( const opencascade::handle<IGESDimen_PointDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolPointDimension::*)( const opencascade::handle<IGESDimen_PointDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolPointDimension::ReadOwnParams),
@@ -2427,12 +2526,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolRadiusDimension , shared_ptr<IGESDimen_ToolRadiusDimension>  >>(m.attr("IGESDimen_ToolRadiusDimension"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolRadiusDimension::*)( const opencascade::handle<IGESDimen_RadiusDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolRadiusDimension::*)( const opencascade::handle<IGESDimen_RadiusDimension> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolRadiusDimension::ReadOwnParams),
@@ -2459,12 +2560,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolSection , shared_ptr<IGESDimen_ToolSection>  >>(m.attr("IGESDimen_ToolSection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolSection::*)( const opencascade::handle<IGESDimen_Section> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolSection::*)( const opencascade::handle<IGESDimen_Section> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolSection::ReadOwnParams),
@@ -2494,12 +2597,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolSectionedArea , shared_ptr<IGESDimen_ToolSectionedArea>  >>(m.attr("IGESDimen_ToolSectionedArea"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolSectionedArea::*)( const opencascade::handle<IGESDimen_SectionedArea> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolSectionedArea::*)( const opencascade::handle<IGESDimen_SectionedArea> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolSectionedArea::ReadOwnParams),
@@ -2526,12 +2631,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_ToolWitnessLine , shared_ptr<IGESDimen_ToolWitnessLine>  >>(m.attr("IGESDimen_ToolWitnessLine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDimen_ToolWitnessLine::*)( const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDimen_ToolWitnessLine::*)( const opencascade::handle<IGESDimen_WitnessLine> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDimen_ToolWitnessLine::ReadOwnParams),
@@ -2561,12 +2668,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDimen_WitnessLine ,opencascade::handle<IGESDimen_WitnessLine>  , IGESData_IGESEntity >>(m.attr("IGESDimen_WitnessLine"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDimen_WitnessLine::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) ) static_cast<void (IGESDimen_WitnessLine::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TColgp_HArray1OfXY> &  ) >(&IGESDimen_WitnessLine::Init),
@@ -2599,71 +2708,71 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDimen"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESDimen_GeneralModule.hxx
-// ./opencascade/IGESDimen_GeneralLabel.hxx
-// ./opencascade/IGESDimen_ToolGeneralLabel.hxx
-// ./opencascade/IGESDimen_ToolFlagNote.hxx
-// ./opencascade/IGESDimen_ToolLeaderArrow.hxx
-// ./opencascade/IGESDimen_ToolNewGeneralNote.hxx
+// ./opencascade/IGESDimen_DimensionUnits.hxx
+// ./opencascade/IGESDimen_ToolLinearDimension.hxx
+// ./opencascade/IGESDimen_WitnessLine.hxx
+// ./opencascade/IGESDimen_DimensionDisplayData.hxx
+// ./opencascade/IGESDimen_ToolBasicDimension.hxx
+// ./opencascade/IGESDimen_ToolPointDimension.hxx
+// ./opencascade/IGESDimen_ToolAngularDimension.hxx
+// ./opencascade/IGESDimen_LeaderArrow.hxx
+// ./opencascade/IGESDimen_RadiusDimension.hxx
+// ./opencascade/IGESDimen.hxx
+// ./opencascade/IGESDimen_ReadWriteModule.hxx
+// ./opencascade/IGESDimen_ToolSection.hxx
+// ./opencascade/IGESDimen_CurveDimension.hxx
 // ./opencascade/IGESDimen_LinearDimension.hxx
-// ./opencascade/IGESDimen_ToolDimensionUnits.hxx
+// ./opencascade/IGESDimen_DiameterDimension.hxx
+// ./opencascade/IGESDimen_ToolGeneralLabel.hxx
+// ./opencascade/IGESDimen_ToolNewDimensionedGeometry.hxx
+// ./opencascade/IGESDimen_Section.hxx
+// ./opencascade/IGESDimen_Protocol.hxx
+// ./opencascade/IGESDimen_ToolDiameterDimension.hxx
+// ./opencascade/IGESDimen_ToolGeneralNote.hxx
+// ./opencascade/IGESDimen_AngularDimension.hxx
+// ./opencascade/IGESDimen_GeneralModule.hxx
+// ./opencascade/IGESDimen_ToolOrdinateDimension.hxx
+// ./opencascade/IGESDimen_GeneralSymbol.hxx
+// ./opencascade/IGESDimen_SpecificModule.hxx
+// ./opencascade/IGESDimen_ToolGeneralSymbol.hxx
+// ./opencascade/IGESDimen_NewDimensionedGeometry.hxx
+// ./opencascade/IGESDimen_ToolSectionedArea.hxx
+// ./opencascade/IGESDimen_ToolLeaderArrow.hxx
+// ./opencascade/IGESDimen_CenterLine.hxx
+// ./opencascade/IGESDimen_Array1OfLeaderArrow.hxx
+// ./opencascade/IGESDimen_ToolRadiusDimension.hxx
+// ./opencascade/IGESDimen_OrdinateDimension.hxx
+// ./opencascade/IGESDimen_ToolWitnessLine.hxx
+// ./opencascade/IGESDimen_PointDimension.hxx
+// ./opencascade/IGESDimen_GeneralLabel.hxx
+// ./opencascade/IGESDimen_FlagNote.hxx
+// ./opencascade/IGESDimen_ToolFlagNote.hxx
+// ./opencascade/IGESDimen_ToolDimensionTolerance.hxx
+// ./opencascade/IGESDimen_Array1OfGeneralNote.hxx
 // ./opencascade/IGESDimen_ToolDimensionedGeometry.hxx
 // ./opencascade/IGESDimen_ToolCenterLine.hxx
-// ./opencascade/IGESDimen_Array1OfGeneralNote.hxx
-// ./opencascade/IGESDimen_ToolDimensionTolerance.hxx
-// ./opencascade/IGESDimen_GeneralSymbol.hxx
-// ./opencascade/IGESDimen_ToolDiameterDimension.hxx
-// ./opencascade/IGESDimen_Array1OfLeaderArrow.hxx
-// ./opencascade/IGESDimen_HArray1OfLeaderArrow.hxx
-// ./opencascade/IGESDimen_RadiusDimension.hxx
-// ./opencascade/IGESDimen_DimensionedGeometry.hxx
-// ./opencascade/IGESDimen_ToolSectionedArea.hxx
-// ./opencascade/IGESDimen_ReadWriteModule.hxx
-// ./opencascade/IGESDimen_Protocol.hxx
+// ./opencascade/IGESDimen_SectionedArea.hxx
 // ./opencascade/IGESDimen_NewGeneralNote.hxx
 // ./opencascade/IGESDimen_HArray1OfGeneralNote.hxx
-// ./opencascade/IGESDimen_ToolAngularDimension.hxx
-// ./opencascade/IGESDimen_SpecificModule.hxx
-// ./opencascade/IGESDimen_CenterLine.hxx
-// ./opencascade/IGESDimen_DimensionDisplayData.hxx
-// ./opencascade/IGESDimen_ToolSection.hxx
-// ./opencascade/IGESDimen_ToolPointDimension.hxx
-// ./opencascade/IGESDimen_FlagNote.hxx
-// ./opencascade/IGESDimen_OrdinateDimension.hxx
-// ./opencascade/IGESDimen_ToolBasicDimension.hxx
-// ./opencascade/IGESDimen_CurveDimension.hxx
-// ./opencascade/IGESDimen_SectionedArea.hxx
-// ./opencascade/IGESDimen_ToolGeneralSymbol.hxx
-// ./opencascade/IGESDimen_DiameterDimension.hxx
-// ./opencascade/IGESDimen_ToolDimensionDisplayData.hxx
-// ./opencascade/IGESDimen_NewDimensionedGeometry.hxx
-// ./opencascade/IGESDimen_ToolGeneralNote.hxx
-// ./opencascade/IGESDimen_ToolWitnessLine.hxx
-// ./opencascade/IGESDimen_DimensionUnits.hxx
-// ./opencascade/IGESDimen_Section.hxx
-// ./opencascade/IGESDimen_ToolCurveDimension.hxx
-// ./opencascade/IGESDimen_PointDimension.hxx
-// ./opencascade/IGESDimen_AngularDimension.hxx
-// ./opencascade/IGESDimen_LeaderArrow.hxx
-// ./opencascade/IGESDimen_ToolLinearDimension.hxx
-// ./opencascade/IGESDimen_ToolOrdinateDimension.hxx
 // ./opencascade/IGESDimen_DimensionTolerance.hxx
-// ./opencascade/IGESDimen_ToolRadiusDimension.hxx
+// ./opencascade/IGESDimen_ToolNewGeneralNote.hxx
+// ./opencascade/IGESDimen_ToolDimensionDisplayData.hxx
+// ./opencascade/IGESDimen_HArray1OfLeaderArrow.hxx
+// ./opencascade/IGESDimen_DimensionedGeometry.hxx
+// ./opencascade/IGESDimen_ToolDimensionUnits.hxx
 // ./opencascade/IGESDimen_GeneralNote.hxx
-// ./opencascade/IGESDimen_WitnessLine.hxx
-// ./opencascade/IGESDimen.hxx
+// ./opencascade/IGESDimen_ToolCurveDimension.hxx
 // ./opencascade/IGESDimen_BasicDimension.hxx
-// ./opencascade/IGESDimen_ToolNewDimensionedGeometry.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<IGESDimen_GeneralNote> >(m,"IGESDimen_Array1OfGeneralNote");  
     register_template_NCollection_Array1<opencascade::handle<IGESDimen_LeaderArrow> >(m,"IGESDimen_Array1OfLeaderArrow");  
+    register_template_NCollection_Array1<opencascade::handle<IGESDimen_GeneralNote> >(m,"IGESDimen_Array1OfGeneralNote");  
 
 
 // exceptions

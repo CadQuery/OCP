@@ -22,16 +22,16 @@ namespace py = pybind11;
 #include <GeomLProp_SurfaceTool.hxx>
 #include <GeomLProp_CLProps.hxx>
 #include <GeomLProp_SLProps.hxx>
+#include <Geom_Surface.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <GeomLProp_SurfaceTool.hxx>
 #include <Geom_Curve.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
 #include <Geom_Surface.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
-#include <Geom_Surface.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <GeomLProp_SurfaceTool.hxx>
 
 // module includes
 #include <GeomLProp.hxx>
@@ -59,9 +59,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLProp"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomLProp , shared_ptr<GeomLProp>>(m,"GeomLProp");
 
     static_cast<py::class_<GeomLProp , shared_ptr<GeomLProp>  >>(m.attr("GeomLProp"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -73,14 +76,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLProp"));
                     R"#(The same as preciding but using the standard tolerances from package Precision.)#"  , py::arg("C1"),  py::arg("C2"),  py::arg("u1"),  py::arg("u2"),  py::arg("r1"),  py::arg("r2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLProp_CLProps , shared_ptr<GeomLProp_CLProps>  >>(m.attr("GeomLProp_CLProps"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("U"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetParameter",
              (void (GeomLProp_CLProps::*)( const Standard_Real  ) ) static_cast<void (GeomLProp_CLProps::*)( const Standard_Real  ) >(&GeomLProp_CLProps::SetParameter),
@@ -119,12 +124,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<GeomLProp_CurveTool , shared_ptr<GeomLProp_CurveTool>>(m,"GeomLProp_CurveTool");
 
     static_cast<py::class_<GeomLProp_CurveTool , shared_ptr<GeomLProp_CurveTool>  >>(m.attr("GeomLProp_CurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -151,14 +159,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLProp"));
                     R"#(returns the last parameter bound of the curve. FirstParameter must be less than LastParamenter.)#"  , py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLProp_SLProps , shared_ptr<GeomLProp_SLProps>  >>(m.attr("GeomLProp_SLProps"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetSurface",
              (void (GeomLProp_SLProps::*)( const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (GeomLProp_SLProps::*)( const opencascade::handle<Geom_Surface> &  ) >(&GeomLProp_SLProps::SetSurface),
@@ -227,12 +237,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<GeomLProp_SurfaceTool , shared_ptr<GeomLProp_SurfaceTool>>(m,"GeomLProp_SurfaceTool");
 
     static_cast<py::class_<GeomLProp_SurfaceTool , shared_ptr<GeomLProp_SurfaceTool>  >>(m.attr("GeomLProp_SurfaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -256,15 +269,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLProp"));
                     []( const opencascade::handle<Geom_Surface> & S ){ Standard_Real  U1; Standard_Real  V1; Standard_Real  U2; Standard_Real  V2; GeomLProp_SurfaceTool::Bounds(S,U1,V1,U2,V2); return std::make_tuple(U1,V1,U2,V2); },
                     R"#(returns the bounds of the Surface.)#"  , py::arg("S"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/GeomLProp_CLProps.hxx
 // ./opencascade/GeomLProp.hxx
+// ./opencascade/GeomLProp_SLProps.hxx
 // ./opencascade/GeomLProp_CurveTool.hxx
 // ./opencascade/GeomLProp_SurfaceTool.hxx
-// ./opencascade/GeomLProp_SLProps.hxx
 
 // operators
 

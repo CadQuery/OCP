@@ -13,14 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StepBasic_ProductDefinition.hxx>
-#include <TopoDS_Shape.hxx>
-#include <StepRepr_RepresentationItem.hxx>
-#include <StepRepr_CharacterizedDefinition.hxx>
-#include <StepRepr_RepresentationContext.hxx>
-#include <gp_Pnt.hxx>
-#include <StepRepr_NextAssemblyUsageOccurrence.hxx>
-#include <StepRepr_PropertyDefinition.hxx>
 #include <StepBasic_ProductRelatedProductCategory.hxx>
 #include <StepBasic_DocumentType.hxx>
 #include <StepBasic_ProductDefinitionContext.hxx>
@@ -29,6 +21,42 @@ namespace py = pybind11;
 #include <StepBasic_ProductDefinition.hxx>
 #include <StepAP214_AppliedDocumentReference.hxx>
 #include <StepBasic_DocumentFile.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepBasic_DateAndTime.hxx>
+#include <StepBasic_PersonAndOrganization.hxx>
+#include <StepBasic_SecurityClassificationLevel.hxx>
+#include <StepBasic_PersonAndOrganizationRole.hxx>
+#include <StepBasic_DateTimeRole.hxx>
+#include <StepBasic_ApprovalRole.hxx>
+#include <StepAP203_CcDesignPersonAndOrganizationAssignment.hxx>
+#include <StepAP203_CcDesignSecurityClassification.hxx>
+#include <StepAP203_CcDesignDateAndTimeAssignment.hxx>
+#include <StepAP203_CcDesignApproval.hxx>
+#include <StepBasic_ApprovalPersonOrganization.hxx>
+#include <StepBasic_ApprovalDateTime.hxx>
+#include <StepBasic_ProductCategoryRelationship.hxx>
+#include <StepShape_ShapeDefinitionRepresentation.hxx>
+#include <STEPConstruct_Part.hxx>
+#include <StepRepr_NextAssemblyUsageOccurrence.hxx>
+#include <gp_Pnt.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <TopoDS_Shape.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <StepRepr_CharacterizedDefinition.hxx>
+#include <StepRepr_RepresentationContext.hxx>
+#include <gp_Pnt.hxx>
+#include <StepRepr_NextAssemblyUsageOccurrence.hxx>
+#include <StepRepr_PropertyDefinition.hxx>
+#include <StepVisual_StyledItem.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <StepVisual_PresentationStyleAssignment.hxx>
+#include <TopoDS_Shape.hxx>
+#include <StepRepr_RepresentationContext.hxx>
+#include <StepVisual_MechanicalDesignGeometricPresentationRepresentation.hxx>
+#include <StepShape_ContextDependentShapeRepresentation.hxx>
+#include <StepRepr_ProductDefinitionShape.hxx>
+#include <StepVisual_Colour.hxx>
+#include <Quantity_Color.hxx>
 #include <StepShape_ShapeDefinitionRepresentation.hxx>
 #include <StepShape_ShapeRepresentation.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
@@ -36,6 +64,17 @@ namespace py = pybind11;
 #include <Interface_InterfaceModel.hxx>
 #include <StepShape_ContextDependentShapeRepresentation.hxx>
 #include <Interface_Graph.hxx>
+#include <StepShape_ShapeDefinitionRepresentation.hxx>
+#include <StepBasic_ProductRelatedProductCategory.hxx>
+#include <StepShape_ShapeRepresentation.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_ApplicationContext.hxx>
+#include <StepBasic_ProductContext.hxx>
+#include <StepBasic_ProductDefinitionContext.hxx>
+#include <StepBasic_Product.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepRepr_ProductDefinitionShape.hxx>
 #include <StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx.hxx>
 #include <StepRepr_GlobalUnitAssignedContext.hxx>
 #include <StepBasic_NamedUnit.hxx>
@@ -59,51 +98,12 @@ namespace py = pybind11;
 #include <STEPConstruct_AP203Context.hxx>
 #include <STEPConstruct_ContextTool.hxx>
 #include <STEPConstruct_PointHasher.hxx>
-#include <gp_Pnt.hxx>
-#include <StepShape_ShapeDefinitionRepresentation.hxx>
-#include <StepBasic_ProductRelatedProductCategory.hxx>
-#include <StepShape_ShapeRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepBasic_ApplicationContext.hxx>
-#include <StepBasic_ProductContext.hxx>
-#include <StepBasic_ProductDefinitionContext.hxx>
-#include <StepBasic_Product.hxx>
-#include <StepBasic_ProductDefinitionFormation.hxx>
-#include <StepBasic_ProductDefinition.hxx>
-#include <StepRepr_ProductDefinitionShape.hxx>
-#include <StepBasic_Approval.hxx>
-#include <StepBasic_DateAndTime.hxx>
-#include <StepBasic_PersonAndOrganization.hxx>
-#include <StepBasic_SecurityClassificationLevel.hxx>
-#include <StepBasic_PersonAndOrganizationRole.hxx>
-#include <StepBasic_DateTimeRole.hxx>
-#include <StepBasic_ApprovalRole.hxx>
-#include <StepAP203_CcDesignPersonAndOrganizationAssignment.hxx>
-#include <StepAP203_CcDesignSecurityClassification.hxx>
-#include <StepAP203_CcDesignDateAndTimeAssignment.hxx>
-#include <StepAP203_CcDesignApproval.hxx>
-#include <StepBasic_ApprovalPersonOrganization.hxx>
-#include <StepBasic_ApprovalDateTime.hxx>
-#include <StepBasic_ProductCategoryRelationship.hxx>
-#include <StepShape_ShapeDefinitionRepresentation.hxx>
-#include <STEPConstruct_Part.hxx>
-#include <StepRepr_NextAssemblyUsageOccurrence.hxx>
 #include <StepBasic_ApplicationProtocolDefinition.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
 #include <StepData_StepModel.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <STEPConstruct_Part.hxx>
 #include <STEPConstruct_Assembly.hxx>
-#include <StepVisual_StyledItem.hxx>
-#include <StepRepr_RepresentationItem.hxx>
-#include <StepVisual_PresentationStyleAssignment.hxx>
-#include <TopoDS_Shape.hxx>
-#include <StepRepr_RepresentationContext.hxx>
-#include <StepVisual_MechanicalDesignGeometricPresentationRepresentation.hxx>
-#include <StepShape_ContextDependentShapeRepresentation.hxx>
-#include <StepRepr_ProductDefinitionShape.hxx>
-#include <StepVisual_Colour.hxx>
-#include <Quantity_Color.hxx>
 
 // module includes
 #include <STEPConstruct.hxx>
@@ -145,9 +145,12 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
 
 // classes
 
+    // default constructor
     register_default_constructor<STEPConstruct , shared_ptr<STEPConstruct>>(m,"STEPConstruct");
 
     static_cast<py::class_<STEPConstruct , shared_ptr<STEPConstruct>  >>(m.attr("STEPConstruct"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -165,12 +168,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
                     R"#(Find CDSR correcponding to the component in the specified assembly)#"  , py::arg("ComponentBinder"),  py::arg("AssemblySDR"),  py::arg("ComponentCDSR"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_AP203Context , shared_ptr<STEPConstruct_AP203Context>  >>(m.attr("STEPConstruct_AP203Context"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DefaultApproval",
              (opencascade::handle<StepBasic_Approval> (STEPConstruct_AP203Context::*)() ) static_cast<opencascade::handle<StepBasic_Approval> (STEPConstruct_AP203Context::*)() >(&STEPConstruct_AP203Context::DefaultApproval),
@@ -278,12 +283,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_Assembly , shared_ptr<STEPConstruct_Assembly>  >>(m.attr("STEPConstruct_Assembly"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (STEPConstruct_Assembly::*)( const opencascade::handle<StepShape_ShapeDefinitionRepresentation> & ,  const opencascade::handle<StepShape_ShapeDefinitionRepresentation> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) ) static_cast<void (STEPConstruct_Assembly::*)( const opencascade::handle<StepShape_ShapeDefinitionRepresentation> & ,  const opencascade::handle<StepShape_ShapeDefinitionRepresentation> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) >(&STEPConstruct_Assembly::Init),
@@ -307,13 +314,15 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
                     R"#(Checks whether SRR's definition of assembly and component contradicts with NAUO definition or not, according to model schema (AP214 or AP203))#"  , py::arg("theGraph"),  py::arg("CDSR"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_ContextTool , shared_ptr<STEPConstruct_ContextTool>  >>(m.attr("STEPConstruct_ContextTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepData_StepModel> & >()  , py::arg("aStepModel") )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (STEPConstruct_ContextTool::*)( const opencascade::handle<StepData_StepModel> &  ) ) static_cast<void (STEPConstruct_ContextTool::*)( const opencascade::handle<StepData_StepModel> &  ) >(&STEPConstruct_ContextTool::SetModel),
@@ -400,12 +409,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_Part , shared_ptr<STEPConstruct_Part>  >>(m.attr("STEPConstruct_Part"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("MakeSDR",
              (void (STEPConstruct_Part::*)( const opencascade::handle<StepShape_ShapeRepresentation> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> &  ) ) static_cast<void (STEPConstruct_Part::*)( const opencascade::handle<StepShape_ShapeRepresentation> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_ApplicationContext> &  ) >(&STEPConstruct_Part::MakeSDR),
@@ -540,30 +551,35 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<STEPConstruct_PointHasher , shared_ptr<STEPConstruct_PointHasher>>(m,"STEPConstruct_PointHasher");
 
     static_cast<py::class_<STEPConstruct_PointHasher , shared_ptr<STEPConstruct_PointHasher>  >>(m.attr("STEPConstruct_PointHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
                     (Standard_Integer (*)( const gp_Pnt & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const gp_Pnt & ,  const Standard_Integer  ) >(&STEPConstruct_PointHasher::HashCode),
-                    R"#(Returns a HasCode value for the Key <K> in the range 0..Upper.)#"  , py::arg("Point"),  py::arg("Upper"))
+                    R"#(Computes a hash code for the point, in the range [1, theUpperBound])#"  , py::arg("thePoint"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const gp_Pnt & ,  const gp_Pnt &  ) ) static_cast<Standard_Boolean (*)( const gp_Pnt & ,  const gp_Pnt &  ) >(&STEPConstruct_PointHasher::IsEqual),
                     R"#(Returns True when the two keys are the same. Two same keys must have the same hashcode, the contrary is not necessary.)#"  , py::arg("Point1"),  py::arg("Point2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_Tool , shared_ptr<STEPConstruct_Tool>  >>(m.attr("STEPConstruct_Tool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> & >()  , py::arg("WS") )
+    // custom constructors
     // methods
         .def("WS",
              (const opencascade::handle<XSControl_WorkSession> & (STEPConstruct_Tool::*)() const) static_cast<const opencascade::handle<XSControl_WorkSession> & (STEPConstruct_Tool::*)() const>(&STEPConstruct_Tool::WS),
@@ -599,12 +615,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_UnitContext , shared_ptr<STEPConstruct_UnitContext>  >>(m.attr("STEPConstruct_UnitContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (STEPConstruct_UnitContext::*)( const Standard_Real  ) ) static_cast<void (STEPConstruct_UnitContext::*)( const Standard_Real  ) >(&STEPConstruct_UnitContext::Init),
@@ -670,13 +688,15 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
                     R"#(Convert SI prefix defined by enumertaion to corresponding real factor (e.g. 1e6 for mega))#"  , py::arg("aPrefix"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_ExternRefs , shared_ptr<STEPConstruct_ExternRefs>  , STEPConstruct_Tool >>(m.attr("STEPConstruct_ExternRefs"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> & >()  , py::arg("WS") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (STEPConstruct_ExternRefs::*)( const opencascade::handle<XSControl_WorkSession> &  ) ) static_cast<Standard_Boolean (STEPConstruct_ExternRefs::*)( const opencascade::handle<XSControl_WorkSession> &  ) >(&STEPConstruct_ExternRefs::Init),
@@ -718,13 +738,15 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_Styles , shared_ptr<STEPConstruct_Styles>  , STEPConstruct_Tool >>(m.attr("STEPConstruct_Styles"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> & >()  , py::arg("WS") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (STEPConstruct_Styles::*)( const opencascade::handle<XSControl_WorkSession> &  ) ) static_cast<Standard_Boolean (STEPConstruct_Styles::*)( const opencascade::handle<XSControl_WorkSession> &  ) >(&STEPConstruct_Styles::Init),
@@ -784,13 +806,15 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
                     R"#(Decodes STEP color and fills the Quantity_Color. Returns True if OK or False if color is not recognized)#"  , py::arg("Colour"),  py::arg("Col"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPConstruct_ValidationProps , shared_ptr<STEPConstruct_ValidationProps>  , STEPConstruct_Tool >>(m.attr("STEPConstruct_ValidationProps"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_WorkSession> & >()  , py::arg("WS") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (STEPConstruct_ValidationProps::*)( const opencascade::handle<XSControl_WorkSession> &  ) ) static_cast<Standard_Boolean (STEPConstruct_ValidationProps::*)( const opencascade::handle<XSControl_WorkSession> &  ) >(&STEPConstruct_ValidationProps::Init),
@@ -841,25 +865,25 @@ py::module m = static_cast<py::module>(main_module.attr("STEPConstruct"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/STEPConstruct_ExternRefs.hxx
+// ./opencascade/STEPConstruct_DataMapOfPointTransient.hxx
+// ./opencascade/STEPConstruct_AP203Context.hxx
+// ./opencascade/STEPConstruct_DataMapOfAsciiStringTransient.hxx
+// ./opencascade/STEPConstruct_Tool.hxx
+// ./opencascade/STEPConstruct_PointHasher.hxx
 // ./opencascade/STEPConstruct_DataMapIteratorOfDataMapOfPointTransient.hxx
 // ./opencascade/STEPConstruct_ValidationProps.hxx
-// ./opencascade/STEPConstruct_ExternRefs.hxx
-// ./opencascade/STEPConstruct_Tool.hxx
-// ./opencascade/STEPConstruct_Assembly.hxx
-// ./opencascade/STEPConstruct_DataMapOfPointTransient.hxx
-// ./opencascade/STEPConstruct_UnitContext.hxx
 // ./opencascade/STEPConstruct_DataMapIteratorOfDataMapOfAsciiStringTransient.hxx
-// ./opencascade/STEPConstruct.hxx
-// ./opencascade/STEPConstruct_PointHasher.hxx
-// ./opencascade/STEPConstruct_Part.hxx
-// ./opencascade/STEPConstruct_AP203Context.hxx
-// ./opencascade/STEPConstruct_ContextTool.hxx
-// ./opencascade/STEPConstruct_DataMapOfAsciiStringTransient.hxx
 // ./opencascade/STEPConstruct_Styles.hxx
+// ./opencascade/STEPConstruct_Assembly.hxx
+// ./opencascade/STEPConstruct_Part.hxx
+// ./opencascade/STEPConstruct_UnitContext.hxx
+// ./opencascade/STEPConstruct.hxx
+// ./opencascade/STEPConstruct_ContextTool.hxx
 
 // operators
 

@@ -14,13 +14,13 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <GeomAdaptor_HSurface.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
 #include <GeomAdaptor_HCurve.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor3d_HCurve.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor3d_HCurve.hxx>
 
 // module includes
 #include <GeomEvaluator_Curve.hxx>
@@ -50,6 +50,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
     public:
         using GeomEvaluator_Curve::GeomEvaluator_Curve;
         
+        
         // public pure virtual
         void D0(const Standard_Real theU,gp_Pnt & theValue) const  override { PYBIND11_OVERLOAD_PURE(void,GeomEvaluator_Curve,D0,theU,theValue) };
         void D1(const Standard_Real theU,gp_Pnt & theValue,gp_Vec & theD1) const  override { PYBIND11_OVERLOAD_PURE(void,GeomEvaluator_Curve,D1,theU,theValue,theD1) };
@@ -67,6 +68,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
     class Py_GeomEvaluator_Surface : public GeomEvaluator_Surface{
     public:
         using GeomEvaluator_Surface::GeomEvaluator_Surface;
+        
         
         // public pure virtual
         void D0(const Standard_Real theU,const Standard_Real theV,gp_Pnt & theValue) const  override { PYBIND11_OVERLOAD_PURE(void,GeomEvaluator_Surface,D0,theU,theV,theValue) };
@@ -87,7 +89,9 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
 
 
     static_cast<py::class_<GeomEvaluator_Curve ,opencascade::handle<GeomEvaluator_Curve> ,Py_GeomEvaluator_Curve , Standard_Transient >>(m.attr("GeomEvaluator_Curve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("D0",
              (void (GeomEvaluator_Curve::*)( const Standard_Real ,  gp_Pnt &  ) const) static_cast<void (GeomEvaluator_Curve::*)( const Standard_Real ,  gp_Pnt &  ) const>(&GeomEvaluator_Curve::D0),
@@ -117,12 +121,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomEvaluator_Surface ,opencascade::handle<GeomEvaluator_Surface> ,Py_GeomEvaluator_Surface , Standard_Transient >>(m.attr("GeomEvaluator_Surface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("D0",
              (void (GeomEvaluator_Surface::*)( const Standard_Real ,  const Standard_Real ,  gp_Pnt &  ) const) static_cast<void (GeomEvaluator_Surface::*)( const Standard_Real ,  const Standard_Real ,  gp_Pnt &  ) const>(&GeomEvaluator_Surface::D0),
@@ -152,13 +158,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomEvaluator_OffsetCurve ,opencascade::handle<GeomEvaluator_OffsetCurve>  , GeomEvaluator_Curve >>(m.attr("GeomEvaluator_OffsetCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const gp_Dir & >()  , py::arg("theBase"),  py::arg("theOffset"),  py::arg("theDirection") )
         .def(py::init< const opencascade::handle<GeomAdaptor_HCurve> &,const Standard_Real,const gp_Dir & >()  , py::arg("theBase"),  py::arg("theOffset"),  py::arg("theDirection") )
+    // custom constructors
     // methods
         .def("SetOffsetValue",
              (void (GeomEvaluator_OffsetCurve::*)( Standard_Real  ) ) static_cast<void (GeomEvaluator_OffsetCurve::*)( Standard_Real  ) >(&GeomEvaluator_OffsetCurve::SetOffsetValue),
@@ -194,13 +202,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomEvaluator_OffsetSurface ,opencascade::handle<GeomEvaluator_OffsetSurface>  , GeomEvaluator_Surface >>(m.attr("GeomEvaluator_OffsetSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const opencascade::handle<Geom_OsculatingSurface> & >()  , py::arg("theBase"),  py::arg("theOffset"),  py::arg("theOscSurf")=static_cast<const opencascade::handle<Geom_OsculatingSurface> &>(Handle ( Geom_OsculatingSurface ) ( )) )
         .def(py::init< const opencascade::handle<GeomAdaptor_HSurface> &,const Standard_Real,const opencascade::handle<Geom_OsculatingSurface> & >()  , py::arg("theBase"),  py::arg("theOffset"),  py::arg("theOscSurf")=static_cast<const opencascade::handle<Geom_OsculatingSurface> &>(Handle ( Geom_OsculatingSurface ) ( )) )
+    // custom constructors
     // methods
         .def("SetOffsetValue",
              (void (GeomEvaluator_OffsetSurface::*)( Standard_Real  ) ) static_cast<void (GeomEvaluator_OffsetSurface::*)( Standard_Real  ) >(&GeomEvaluator_OffsetSurface::SetOffsetValue),
@@ -233,13 +243,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomEvaluator_SurfaceOfExtrusion ,opencascade::handle<GeomEvaluator_SurfaceOfExtrusion>  , GeomEvaluator_Surface >>(m.attr("GeomEvaluator_SurfaceOfExtrusion"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const gp_Dir & >()  , py::arg("theBase"),  py::arg("theExtrusionDir") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const gp_Dir & >()  , py::arg("theBase"),  py::arg("theExtrusionDir") )
+    // custom constructors
     // methods
         .def("SetDirection",
              (void (GeomEvaluator_SurfaceOfExtrusion::*)( const gp_Dir &  ) ) static_cast<void (GeomEvaluator_SurfaceOfExtrusion::*)( const gp_Dir &  ) >(&GeomEvaluator_SurfaceOfExtrusion::SetDirection),
@@ -272,13 +284,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomEvaluator_SurfaceOfRevolution ,opencascade::handle<GeomEvaluator_SurfaceOfRevolution>  , GeomEvaluator_Surface >>(m.attr("GeomEvaluator_SurfaceOfRevolution"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const gp_Dir &,const gp_Pnt & >()  , py::arg("theBase"),  py::arg("theRevolDir"),  py::arg("theRevolLoc") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const gp_Dir &,const gp_Pnt & >()  , py::arg("theBase"),  py::arg("theRevolDir"),  py::arg("theRevolLoc") )
+    // custom constructors
     // methods
         .def("SetDirection",
              (void (GeomEvaluator_SurfaceOfRevolution::*)( const gp_Dir &  ) ) static_cast<void (GeomEvaluator_SurfaceOfRevolution::*)( const gp_Dir &  ) >(&GeomEvaluator_SurfaceOfRevolution::SetDirection),
@@ -317,16 +331,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomEvaluator"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/GeomEvaluator_OffsetSurface.hxx
-// ./opencascade/GeomEvaluator_Curve.hxx
 // ./opencascade/GeomEvaluator_OffsetCurve.hxx
-// ./opencascade/GeomEvaluator_SurfaceOfExtrusion.hxx
-// ./opencascade/GeomEvaluator_SurfaceOfRevolution.hxx
+// ./opencascade/GeomEvaluator_Curve.hxx
 // ./opencascade/GeomEvaluator_Surface.hxx
+// ./opencascade/GeomEvaluator_SurfaceOfRevolution.hxx
+// ./opencascade/GeomEvaluator_SurfaceOfExtrusion.hxx
 
 // operators
 

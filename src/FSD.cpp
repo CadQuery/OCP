@@ -20,6 +20,7 @@ namespace py = pybind11;
 #include <Storage_StreamWriteError.hxx>
 
 // module includes
+#include <FSD_Base64Decoder.hxx>
 #include <FSD_BinaryFile.hxx>
 #include <FSD_BStream.hxx>
 #include <FSD_CmpFile.hxx>
@@ -46,9 +47,28 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
 
 // classes
 
+    // default constructor
+    register_default_constructor<FSD_Base64Decoder , shared_ptr<FSD_Base64Decoder>>(m,"FSD_Base64Decoder");
+
+    static_cast<py::class_<FSD_Base64Decoder , shared_ptr<FSD_Base64Decoder>  >>(m.attr("FSD_Base64Decoder"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Decode_s",
+                    (opencascade::handle<NCollection_Buffer> (*)( const Standard_Byte * ,  const Standard_Size  ) ) static_cast<opencascade::handle<NCollection_Buffer> (*)( const Standard_Byte * ,  const Standard_Size  ) >(&FSD_Base64Decoder::Decode),
+                    R"#(Function decoding base64 stream.)#"  , py::arg("theStr"),  py::arg("theLen"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
 
     static_cast<py::class_<FSD_BinaryFile , shared_ptr<FSD_BinaryFile>  , Storage_BaseDriver >>(m.attr("FSD_BinaryFile"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Open",
              (Storage_Error (FSD_BinaryFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_BinaryFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_BinaryFile::Open),
@@ -351,12 +371,14 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
                     []( std::istream & theIStream ){ Standard_Integer  aValue; FSD_BinaryFile::GetInteger(theIStream,aValue); return std::make_tuple(aValue); },
                     R"#(None)#"  , py::arg("theIStream"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FSD_File , shared_ptr<FSD_File>  , Storage_BaseDriver >>(m.attr("FSD_File"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Open",
              (Storage_Error (FSD_File::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_File::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_File::Open),
@@ -581,12 +603,28 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<FSD_FileHeader , shared_ptr<FSD_FileHeader>>(m,"FSD_FileHeader");
+
+    static_cast<py::class_<FSD_FileHeader , shared_ptr<FSD_FileHeader>  >>(m.attr("FSD_FileHeader"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FSD_CmpFile , shared_ptr<FSD_CmpFile>  , FSD_File >>(m.attr("FSD_CmpFile"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Open",
              (Storage_Error (FSD_CmpFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (FSD_CmpFile::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&FSD_CmpFile::Open),
@@ -640,16 +678,17 @@ py::module m = static_cast<py::module>(main_module.attr("FSD"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/FSD_BStream.hxx
 // ./opencascade/FSD_FStream.hxx
+// ./opencascade/FSD_BStream.hxx
 // ./opencascade/FSD_BinaryFile.hxx
+// ./opencascade/FSD_Base64Decoder.hxx
+// ./opencascade/FSD_File.hxx
 // ./opencascade/FSD_CmpFile.hxx
 // ./opencascade/FSD_FileHeader.hxx
-// ./opencascade/FSD_File.hxx
 
 // operators
 

@@ -13,13 +13,15 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <BRepAlgo_AsDes.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Surface.hxx>
+#include <Standard_NoSuchObject.hxx>
 #include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <BRepOffset_Inter3d.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Hypr.hxx>
+#include <gp_Parab.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
@@ -31,15 +33,13 @@ namespace py = pybind11;
 #include <gp_Parab.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
+#include <BRepAlgo_AsDes.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Surface.hxx>
 #include <Geom_Curve.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Parab.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Standard_NoSuchObject.hxx>
+#include <Geom2d_Curve.hxx>
+#include <BRepOffset_Inter3d.hxx>
 
 // module includes
 #include <BiTgte_Blend.hxx>
@@ -70,8 +70,10 @@ py::module m = static_cast<py::module>(main_module.attr("BiTgte"));
 
 
     static_cast<py::class_<BiTgte_Blend , shared_ptr<BiTgte_Blend>  >>(m.attr("BiTgte_Blend"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("S"),  py::arg("Radius"),  py::arg("Tol"),  py::arg("NUBS") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BiTgte_Blend::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (BiTgte_Blend::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&BiTgte_Blend::Init),
@@ -155,13 +157,15 @@ py::module m = static_cast<py::module>(main_module.attr("BiTgte"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BiTgte_CurveOnEdge , shared_ptr<BiTgte_CurveOnEdge>  , Adaptor3d_Curve >>(m.attr("BiTgte_CurveOnEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge & >()  , py::arg("EonF"),  py::arg("Edge") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BiTgte_CurveOnEdge::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) ) static_cast<void (BiTgte_CurveOnEdge::*)( const TopoDS_Edge & ,  const TopoDS_Edge &  ) >(&BiTgte_CurveOnEdge::Init),
@@ -254,13 +258,15 @@ py::module m = static_cast<py::module>(main_module.attr("BiTgte"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BiTgte_CurveOnVertex , shared_ptr<BiTgte_CurveOnVertex>  , Adaptor3d_Curve >>(m.attr("BiTgte_CurveOnVertex"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Vertex & >()  , py::arg("EonF"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BiTgte_CurveOnVertex::*)( const TopoDS_Edge & ,  const TopoDS_Vertex &  ) ) static_cast<void (BiTgte_CurveOnVertex::*)( const TopoDS_Edge & ,  const TopoDS_Vertex &  ) >(&BiTgte_CurveOnVertex::Init),
@@ -353,13 +359,15 @@ py::module m = static_cast<py::module>(main_module.attr("BiTgte"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BiTgte_HCurveOnEdge ,opencascade::handle<BiTgte_HCurveOnEdge>  , Adaptor3d_HCurve >>(m.attr("BiTgte_HCurveOnEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BiTgte_CurveOnEdge & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BiTgte_HCurveOnEdge::*)( const BiTgte_CurveOnEdge &  ) ) static_cast<void (BiTgte_HCurveOnEdge::*)( const BiTgte_CurveOnEdge &  ) >(&BiTgte_HCurveOnEdge::Set),
@@ -386,13 +394,15 @@ py::module m = static_cast<py::module>(main_module.attr("BiTgte"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BiTgte_HCurveOnVertex ,opencascade::handle<BiTgte_HCurveOnVertex>  , Adaptor3d_HCurve >>(m.attr("BiTgte_HCurveOnVertex"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BiTgte_CurveOnVertex & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BiTgte_HCurveOnVertex::*)( const BiTgte_CurveOnVertex &  ) ) static_cast<void (BiTgte_HCurveOnVertex::*)( const BiTgte_CurveOnVertex &  ) >(&BiTgte_HCurveOnVertex::Set),
@@ -419,16 +429,16 @@ py::module m = static_cast<py::module>(main_module.attr("BiTgte"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BiTgte_Blend.hxx
-// ./opencascade/BiTgte_CurveOnVertex.hxx
-// ./opencascade/BiTgte_HCurveOnEdge.hxx
+// ./opencascade/BiTgte_HCurveOnVertex.hxx
 // ./opencascade/BiTgte_CurveOnEdge.hxx
 // ./opencascade/BiTgte_ContactType.hxx
-// ./opencascade/BiTgte_HCurveOnVertex.hxx
+// ./opencascade/BiTgte_HCurveOnEdge.hxx
+// ./opencascade/BiTgte_CurveOnVertex.hxx
+// ./opencascade/BiTgte_Blend.hxx
 
 // operators
 

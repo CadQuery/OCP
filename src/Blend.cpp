@@ -16,17 +16,17 @@ namespace py = pybind11;
 #include <math_Matrix.hxx>
 #include <Blend_Point.hxx>
 #include <math_Matrix.hxx>
-#include <Blend_Point.hxx>
-#include <math_Matrix.hxx>
-#include <Blend_Point.hxx>
-#include <math_Matrix.hxx>
-#include <Blend_Point.hxx>
+#include <gp_Pnt.hxx>
 #include <math_Matrix.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <math_Matrix.hxx>
 #include <gp_Pnt.hxx>
 #include <math_Matrix.hxx>
-#include <gp_Pnt.hxx>
+#include <Blend_Point.hxx>
+#include <math_Matrix.hxx>
+#include <Blend_Point.hxx>
+#include <math_Matrix.hxx>
+#include <Blend_Point.hxx>
 #include <math_Matrix.hxx>
 #include <Blend_Point.hxx>
 #include <math_Matrix.hxx>
@@ -69,6 +69,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     public:
         using Blend_AppFunction::Blend_AppFunction;
         
+        
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_AppFunction,NbVariables,) };
         Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_AppFunction,NbEquations,) };
@@ -108,6 +109,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     public:
         using Blend_CurvPointFuncInv::Blend_CurvPointFuncInv;
         
+        
         // public pure virtual
         Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_CurvPointFuncInv,NbEquations,) };
         Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_CurvPointFuncInv,Value,X,F) };
@@ -128,6 +130,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     class Py_Blend_FuncInv : public Blend_FuncInv{
     public:
         using Blend_FuncInv::Blend_FuncInv;
+        
         
         // public pure virtual
         Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_FuncInv,NbEquations,) };
@@ -150,6 +153,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     public:
         using Blend_SurfCurvFuncInv::Blend_SurfCurvFuncInv;
         
+        
         // public pure virtual
         Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_SurfCurvFuncInv,NbEquations,) };
         Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_SurfCurvFuncInv,Value,X,F) };
@@ -171,6 +175,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     public:
         using Blend_SurfPointFuncInv::Blend_SurfPointFuncInv;
         
+        
         // public pure virtual
         Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_SurfPointFuncInv,NbEquations,) };
         Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_SurfPointFuncInv,Value,X,F) };
@@ -191,6 +196,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     class Py_Blend_CSFunction : public Blend_CSFunction{
     public:
         using Blend_CSFunction::Blend_CSFunction;
+        
         
         // public pure virtual
         Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_CSFunction,NbEquations,) };
@@ -234,16 +240,8 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     public:
         using Blend_Function::Blend_Function;
         
+        
         // public pure virtual
-        Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_Function,NbEquations,) };
-        Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_Function,Value,X,F) };
-        Standard_Boolean Derivatives(const math_Vector & X,math_Matrix & D) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_Function,Derivatives,X,D) };
-        Standard_Boolean Values(const math_Vector & X,math_Vector & F,math_Matrix & D) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_Function,Values,X,F,D) };
-        void Set(const Standard_Real Param) override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,Set,Param) };
-        void Set(const Standard_Real First,const Standard_Real Last) override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,Set,First,Last) };
-        void GetTolerance(math_Vector & Tolerance,const Standard_Real Tol) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,GetTolerance,Tolerance,Tol) };
-        void GetBounds(math_Vector & InfBound,math_Vector & SupBound) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,GetBounds,InfBound,SupBound) };
-        Standard_Boolean IsSolution(const math_Vector & Sol,const Standard_Real Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_Function,IsSolution,Sol,Tol) };
         const gp_Pnt & PointOnS1() const  override { PYBIND11_OVERLOAD_PURE(const gp_Pnt &,Blend_Function,PointOnS1,) };
         const gp_Pnt & PointOnS2() const  override { PYBIND11_OVERLOAD_PURE(const gp_Pnt &,Blend_Function,PointOnS2,) };
         Standard_Boolean IsTangencyPoint() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_Function,IsTangencyPoint,) };
@@ -252,19 +250,26 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
         const gp_Vec & TangentOnS2() const  override { PYBIND11_OVERLOAD_PURE(const gp_Vec &,Blend_Function,TangentOnS2,) };
         const gp_Vec2d & Tangent2dOnS2() const  override { PYBIND11_OVERLOAD_PURE(const gp_Vec2d &,Blend_Function,Tangent2dOnS2,) };
         void Tangent(const Standard_Real U1,const Standard_Real V1,const Standard_Real U2,const Standard_Real V2,gp_Vec & TgFirst,gp_Vec & TgLast,gp_Vec & NormFirst,gp_Vec & NormLast) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,Tangent,U1,V1,U2,V2,TgFirst,TgLast,NormFirst,NormLast) };
-        void GetTolerance(const Standard_Real BoundTol,const Standard_Real SurfTol,const Standard_Real AngleTol,math_Vector & Tol3d,math_Vector & Tol1D) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,GetTolerance,BoundTol,SurfTol,AngleTol,Tol3d,Tol1D) };
-        void Knots(NCollection_Array1<Standard_Real> & TKnots) override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,Knots,TKnots) };
-        void Mults(NCollection_Array1<Standard_Integer> & TMults) override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,Mults,TMults) };
-        Standard_Boolean Section(const Blend_Point & P,NCollection_Array1<gp_Pnt> & Poles,NCollection_Array1<gp_Vec> & DPoles,NCollection_Array1<gp_Pnt2d> & Poles2d,NCollection_Array1<gp_Vec2d> & DPoles2d,NCollection_Array1<Standard_Real> & Weigths,NCollection_Array1<Standard_Real> & DWeigths) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_Function,Section,P,Poles,DPoles,Poles2d,DPoles2d,Weigths,DWeigths) };
         void Section(const Blend_Point & P,NCollection_Array1<gp_Pnt> & Poles,NCollection_Array1<gp_Pnt2d> & Poles2d,NCollection_Array1<Standard_Real> & Weigths) override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,Section,P,Poles,Poles2d,Weigths) };
-        void GetShape(Standard_Integer & NbPoles,Standard_Integer & NbKnots,Standard_Integer & Degree,Standard_Integer & NbPoles2d) override { PYBIND11_OVERLOAD_PURE(void,Blend_Function,GetShape,NbPoles,NbKnots,Degree,NbPoles2d) };
         
+        Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_AppFunction,NbEquations,) };
+        Standard_Boolean Value(const math_Vector & X,math_Vector & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,Value,X,F) };
+        Standard_Boolean Derivatives(const math_Vector & X,math_Matrix & D) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,Derivatives,X,D) };
+        Standard_Boolean Values(const math_Vector & X,math_Vector & F,math_Matrix & D) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,Values,X,F,D) };
+        void Set(const Standard_Real Param) override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,Set,Param) };
+        void Set(const Standard_Real First,const Standard_Real Last) override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,Set,First,Last) };
+        void GetTolerance(math_Vector & Tolerance,const Standard_Real Tol) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,GetTolerance,Tolerance,Tol) };
+        void GetBounds(math_Vector & InfBound,math_Vector & SupBound) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,GetBounds,InfBound,SupBound) };
+        Standard_Boolean IsSolution(const math_Vector & Sol,const Standard_Real Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,IsSolution,Sol,Tol) };
         Standard_Real GetMinimalDistance() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Blend_AppFunction,GetMinimalDistance,) };
         Standard_Boolean IsRational() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Blend_AppFunction,IsRational,) };
         Standard_Real GetSectionSize() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Blend_AppFunction,GetSectionSize,) };
         void GetMinimalWeight(NCollection_Array1<Standard_Real> & Weigths) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,GetMinimalWeight,Weigths) };
         Standard_Integer NbIntervals(const GeomAbs_Shape S) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_AppFunction,NbIntervals,S) };
         void Intervals(NCollection_Array1<Standard_Real> & T,const GeomAbs_Shape S) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,Intervals,T,S) };
+        void GetTolerance(const Standard_Real BoundTol,const Standard_Real SurfTol,const Standard_Real AngleTol,math_Vector & Tol3d,math_Vector & Tol1D) const  override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,GetTolerance,BoundTol,SurfTol,AngleTol,Tol3d,Tol1D) };
+        void Knots(NCollection_Array1<Standard_Real> & TKnots) override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,Knots,TKnots) };
+        void Mults(NCollection_Array1<Standard_Integer> & TMults) override { PYBIND11_OVERLOAD_PURE(void,Blend_AppFunction,Mults,TMults) };
         
         // protected pure virtual
         
@@ -275,6 +280,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     class Py_Blend_RstRstFunction : public Blend_RstRstFunction{
     public:
         using Blend_RstRstFunction::Blend_RstRstFunction;
+        
         
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_RstRstFunction,NbVariables,) };
@@ -323,6 +329,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     public:
         using Blend_SurfRstFunction::Blend_SurfRstFunction;
         
+        
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_SurfRstFunction,NbVariables,) };
         Standard_Integer NbEquations() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Blend_SurfRstFunction,NbEquations,) };
@@ -370,6 +377,8 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
 
 
     static_cast<py::class_<Blend_AppFunction , shared_ptr<Blend_AppFunction> ,Py_Blend_AppFunction , math_FunctionSetWithDerivatives >>(m.attr("Blend_AppFunction"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_AppFunction::*)() const) static_cast<Standard_Integer (Blend_AppFunction::*)() const>(&Blend_AppFunction::NbVariables),
@@ -456,11 +465,13 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_CurvPointFuncInv , shared_ptr<Blend_CurvPointFuncInv> ,Py_Blend_CurvPointFuncInv , math_FunctionSetWithDerivatives >>(m.attr("Blend_CurvPointFuncInv"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_CurvPointFuncInv::*)() const) static_cast<Standard_Integer (Blend_CurvPointFuncInv::*)() const>(&Blend_CurvPointFuncInv::NbVariables),
@@ -493,11 +504,13 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_FuncInv , shared_ptr<Blend_FuncInv> ,Py_Blend_FuncInv , math_FunctionSetWithDerivatives >>(m.attr("Blend_FuncInv"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_FuncInv::*)() const) static_cast<Standard_Integer (Blend_FuncInv::*)() const>(&Blend_FuncInv::NbVariables),
@@ -530,11 +543,12 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_Point , shared_ptr<Blend_Point>  >>(m.attr("Blend_Point"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Vec &,const gp_Vec &,const gp_Vec2d &,const gp_Vec2d & >()  , py::arg("Pt1"),  py::arg("Pt2"),  py::arg("Param"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("Tg1"),  py::arg("Tg2"),  py::arg("Tg12d"),  py::arg("Tg22d") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Pt1"),  py::arg("Pt2"),  py::arg("Param"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2") )
@@ -544,6 +558,7 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Pt1"),  py::arg("Pt2"),  py::arg("Param"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("PC") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Vec &,const gp_Vec &,const gp_Vec2d &,const gp_Vec2d & >()  , py::arg("Pt1"),  py::arg("Pt2"),  py::arg("Param"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("PC1"),  py::arg("PC2"),  py::arg("Tg1"),  py::arg("Tg2"),  py::arg("Tg12d"),  py::arg("Tg22d") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Pt1"),  py::arg("Pt2"),  py::arg("Param"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("PC1"),  py::arg("PC2") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (Blend_Point::*)( const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_Vec & ,  const gp_Vec & ,  const gp_Vec2d & ,  const gp_Vec2d &  ) ) static_cast<void (Blend_Point::*)( const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_Vec & ,  const gp_Vec & ,  const gp_Vec2d & ,  const gp_Vec2d &  ) >(&Blend_Point::SetValue),
@@ -720,11 +735,13 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_SurfCurvFuncInv , shared_ptr<Blend_SurfCurvFuncInv> ,Py_Blend_SurfCurvFuncInv , math_FunctionSetWithDerivatives >>(m.attr("Blend_SurfCurvFuncInv"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_SurfCurvFuncInv::*)() const) static_cast<Standard_Integer (Blend_SurfCurvFuncInv::*)() const>(&Blend_SurfCurvFuncInv::NbVariables),
@@ -757,11 +774,13 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_SurfPointFuncInv , shared_ptr<Blend_SurfPointFuncInv> ,Py_Blend_SurfPointFuncInv , math_FunctionSetWithDerivatives >>(m.attr("Blend_SurfPointFuncInv"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_SurfPointFuncInv::*)() const) static_cast<Standard_Integer (Blend_SurfPointFuncInv::*)() const>(&Blend_SurfPointFuncInv::NbVariables),
@@ -794,11 +813,13 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_CSFunction , shared_ptr<Blend_CSFunction> ,Py_Blend_CSFunction , Blend_AppFunction >>(m.attr("Blend_CSFunction"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_CSFunction::*)() const) static_cast<Standard_Integer (Blend_CSFunction::*)() const>(&Blend_CSFunction::NbVariables),
@@ -891,42 +912,17 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_Function , shared_ptr<Blend_Function> ,Py_Blend_Function , Blend_AppFunction >>(m.attr("Blend_Function"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_Function::*)() const) static_cast<Standard_Integer (Blend_Function::*)() const>(&Blend_Function::NbVariables),
              R"#(Returns 4.)#" )
-        .def("NbEquations",
-             (Standard_Integer (Blend_Function::*)() const) static_cast<Standard_Integer (Blend_Function::*)() const>(&Blend_Function::NbEquations),
-             R"#(returns the number of equations of the function.)#" )
-        .def("Value",
-             (Standard_Boolean (Blend_Function::*)( const math_Vector & ,  math_Vector &  ) ) static_cast<Standard_Boolean (Blend_Function::*)( const math_Vector & ,  math_Vector &  ) >(&Blend_Function::Value),
-             R"#(computes the values <F> of the Functions for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"))
-        .def("Derivatives",
-             (Standard_Boolean (Blend_Function::*)( const math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (Blend_Function::*)( const math_Vector & ,  math_Matrix &  ) >(&Blend_Function::Derivatives),
-             R"#(returns the values <D> of the derivatives for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("D"))
-        .def("Values",
-             (Standard_Boolean (Blend_Function::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) ) static_cast<Standard_Boolean (Blend_Function::*)( const math_Vector & ,  math_Vector & ,  math_Matrix &  ) >(&Blend_Function::Values),
-             R"#(returns the values <F> of the functions and the derivatives <D> for the variable <X>. Returns True if the computation was done successfully, False otherwise.)#"  , py::arg("X"),  py::arg("F"),  py::arg("D"))
-        .def("Set",
-             (void (Blend_Function::*)( const Standard_Real  ) ) static_cast<void (Blend_Function::*)( const Standard_Real  ) >(&Blend_Function::Set),
-             R"#(Sets the value of the parameter along the guide line. This determines the plane in which the solution has to be found.)#"  , py::arg("Param"))
-        .def("Set",
-             (void (Blend_Function::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Blend_Function::*)( const Standard_Real ,  const Standard_Real  ) >(&Blend_Function::Set),
-             R"#(Sets the bounds of the parametric interval on the guide line. This determines the derivatives in these values if the function is not Cn.)#"  , py::arg("First"),  py::arg("Last"))
-        .def("GetTolerance",
-             (void (Blend_Function::*)( math_Vector & ,  const Standard_Real  ) const) static_cast<void (Blend_Function::*)( math_Vector & ,  const Standard_Real  ) const>(&Blend_Function::GetTolerance),
-             R"#(Returns in the vector Tolerance the parametric tolerance for each of the 4 variables; Tol is the tolerance used in 3d space.)#"  , py::arg("Tolerance"),  py::arg("Tol"))
-        .def("GetBounds",
-             (void (Blend_Function::*)( math_Vector & ,  math_Vector &  ) const) static_cast<void (Blend_Function::*)( math_Vector & ,  math_Vector &  ) const>(&Blend_Function::GetBounds),
-             R"#(Returns in the vector InfBound the lowest values allowed for each of the 4 variables. Returns in the vector SupBound the greatest values allowed for each of the 4 variables.)#"  , py::arg("InfBound"),  py::arg("SupBound"))
-        .def("IsSolution",
-             (Standard_Boolean (Blend_Function::*)( const math_Vector & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (Blend_Function::*)( const math_Vector & ,  const Standard_Real  ) >(&Blend_Function::IsSolution),
-             R"#(Returns Standard_True if Sol is a zero of the function. Tol is the tolerance used in 3d space. The computation is made at the current value of the parameter on the guide line.)#"  , py::arg("Sol"),  py::arg("Tol"))
         .def("Pnt1",
              (const gp_Pnt & (Blend_Function::*)() const) static_cast<const gp_Pnt & (Blend_Function::*)() const>(&Blend_Function::Pnt1),
              R"#(Returns the point on the first support.)#" )
@@ -963,18 +959,6 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
         .def("TwistOnS2",
              (Standard_Boolean (Blend_Function::*)() const) static_cast<Standard_Boolean (Blend_Function::*)() const>(&Blend_Function::TwistOnS2),
              R"#(None)#" )
-        .def("GetTolerance",
-             (void (Blend_Function::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_Vector & ,  math_Vector &  ) const) static_cast<void (Blend_Function::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_Vector & ,  math_Vector &  ) const>(&Blend_Function::GetTolerance),
-             R"#(Returns the tolerance to reach in approximation to respecte BoundTol error at the Boundary AngleTol tangent error at the Boundary SurfTol error inside the surface.)#"  , py::arg("BoundTol"),  py::arg("SurfTol"),  py::arg("AngleTol"),  py::arg("Tol3d"),  py::arg("Tol1D"))
-        .def("Knots",
-             (void (Blend_Function::*)( NCollection_Array1<Standard_Real> &  ) ) static_cast<void (Blend_Function::*)( NCollection_Array1<Standard_Real> &  ) >(&Blend_Function::Knots),
-             R"#(None)#"  , py::arg("TKnots"))
-        .def("Mults",
-             (void (Blend_Function::*)( NCollection_Array1<Standard_Integer> &  ) ) static_cast<void (Blend_Function::*)( NCollection_Array1<Standard_Integer> &  ) >(&Blend_Function::Mults),
-             R"#(None)#"  , py::arg("TMults"))
-        .def("Section",
-             (Standard_Boolean (Blend_Function::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (Blend_Function::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&Blend_Function::Section),
-             R"#(Used for the first and last section The method returns Standard_True if the derivatives are computed, otherwise it returns Standard_False.)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("DPoles"),  py::arg("Poles2d"),  py::arg("DPoles2d"),  py::arg("Weigths"),  py::arg("DWeigths"))
         .def("Section",
              (void (Blend_Function::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<void (Blend_Function::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) >(&Blend_Function::Section),
              R"#(None)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("Poles2d"),  py::arg("Weigths"))
@@ -982,17 +966,16 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
              (Standard_Boolean (Blend_Function::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (Blend_Function::*)( const Blend_Point & ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Vec> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<gp_Vec2d> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) >(&Blend_Function::Section),
              R"#(Used for the first and last section The method returns Standard_True if the derivatives are computed, otherwise it returns Standard_False)#"  , py::arg("P"),  py::arg("Poles"),  py::arg("DPoles"),  py::arg("D2Poles"),  py::arg("Poles2d"),  py::arg("DPoles2d"),  py::arg("D2Poles2d"),  py::arg("Weigths"),  py::arg("DWeigths"),  py::arg("D2Weigths"))
     // methods using call by reference i.s.o. return
-        .def("GetShape",
-             []( Blend_Function &self   ){ Standard_Integer  NbPoles; Standard_Integer  NbKnots; Standard_Integer  Degree; Standard_Integer  NbPoles2d; self.GetShape(NbPoles,NbKnots,Degree,NbPoles2d); return std::make_tuple(NbPoles,NbKnots,Degree,NbPoles2d); },
-             R"#(None)#" )
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_RstRstFunction , shared_ptr<Blend_RstRstFunction> ,Py_Blend_RstRstFunction , Blend_AppFunction >>(m.attr("Blend_RstRstFunction"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_RstRstFunction::*)() const) static_cast<Standard_Integer (Blend_RstRstFunction::*)() const>(&Blend_RstRstFunction::NbVariables),
@@ -1109,11 +1092,13 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Blend_SurfRstFunction , shared_ptr<Blend_SurfRstFunction> ,Py_Blend_SurfRstFunction , Blend_AppFunction >>(m.attr("Blend_SurfRstFunction"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Blend_SurfRstFunction::*)() const) static_cast<Standard_Integer (Blend_SurfRstFunction::*)() const>(&Blend_SurfRstFunction::NbVariables),
@@ -1227,23 +1212,23 @@ py::module m = static_cast<py::module>(main_module.attr("Blend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Blend_CSFunction.hxx
 // ./opencascade/Blend_AppFunction.hxx
-// ./opencascade/Blend_RstRstFunction.hxx
-// ./opencascade/Blend_DecrochStatus.hxx
-// ./opencascade/Blend_SurfRstFunction.hxx
-// ./opencascade/Blend_Status.hxx
-// ./opencascade/Blend_Point.hxx
-// ./opencascade/Blend_FuncInv.hxx
 // ./opencascade/Blend_SurfPointFuncInv.hxx
-// ./opencascade/Blend_CurvPointFuncInv.hxx
-// ./opencascade/Blend_Function.hxx
-// ./opencascade/Blend_SequenceOfPoint.hxx
+// ./opencascade/Blend_Point.hxx
+// ./opencascade/Blend_DecrochStatus.hxx
 // ./opencascade/Blend_SurfCurvFuncInv.hxx
+// ./opencascade/Blend_CurvPointFuncInv.hxx
+// ./opencascade/Blend_SurfRstFunction.hxx
+// ./opencascade/Blend_RstRstFunction.hxx
+// ./opencascade/Blend_SequenceOfPoint.hxx
+// ./opencascade/Blend_Function.hxx
+// ./opencascade/Blend_CSFunction.hxx
+// ./opencascade/Blend_FuncInv.hxx
+// ./opencascade/Blend_Status.hxx
 
 // operators
 

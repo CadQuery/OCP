@@ -51,7 +51,9 @@ py::module m = static_cast<py::module>(main_module.attr("BinObjMgt"));
 
 
     static_cast<py::class_<BinObjMgt_Persistent , shared_ptr<BinObjMgt_Persistent>  >>(m.attr("BinObjMgt_Persistent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("PutCharacter",
              (BinObjMgt_Persistent & (BinObjMgt_Persistent::*)( const Standard_Character  ) ) static_cast<BinObjMgt_Persistent & (BinObjMgt_Persistent::*)( const Standard_Character  ) >(&BinObjMgt_Persistent::PutCharacter),
@@ -240,12 +242,15 @@ py::module m = static_cast<py::module>(main_module.attr("BinObjMgt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BinObjMgt_RRelocationTable , shared_ptr<BinObjMgt_RRelocationTable>>(m,"BinObjMgt_RRelocationTable");
 
     static_cast<py::class_<BinObjMgt_RRelocationTable , shared_ptr<BinObjMgt_RRelocationTable>  >>(m.attr("BinObjMgt_RRelocationTable"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetHeaderData",
              (const opencascade::handle<Storage_HeaderData> & (BinObjMgt_RRelocationTable::*)() const) static_cast<const opencascade::handle<Storage_HeaderData> & (BinObjMgt_RRelocationTable::*)() const>(&BinObjMgt_RRelocationTable::GetHeaderData),
@@ -260,19 +265,19 @@ py::module m = static_cast<py::module>(main_module.attr("BinObjMgt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinObjMgt_Persistent.hxx
+// ./opencascade/BinObjMgt_PByte.hxx
 // ./opencascade/BinObjMgt_PShortReal.hxx
 // ./opencascade/BinObjMgt_PChar.hxx
-// ./opencascade/BinObjMgt_PReal.hxx
-// ./opencascade/BinObjMgt_RRelocationTable.hxx
+// ./opencascade/BinObjMgt_Persistent.hxx
 // ./opencascade/BinObjMgt_PInteger.hxx
-// ./opencascade/BinObjMgt_PByte.hxx
+// ./opencascade/BinObjMgt_PReal.hxx
 // ./opencascade/BinObjMgt_SRelocationTable.hxx
 // ./opencascade/BinObjMgt_PExtChar.hxx
+// ./opencascade/BinObjMgt_RRelocationTable.hxx
 
 // operators
 

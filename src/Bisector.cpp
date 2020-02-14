@@ -13,7 +13,27 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Bisector_Bisec.hxx>
+#include <IntRes2d_Domain.hxx>
 #include <Geom2d_Curve.hxx>
+#include <Bisector_BisecCC.hxx>
+#include <Geom2d_Line.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Bisector_Curve.hxx>
+#include <Geom2d_TrimmedCurve.hxx>
+#include <Standard_DomainError.hxx>
+#include <Standard_RangeError.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+#include <Geom2d_Point.hxx>
+#include <GccInt_Bisec.hxx>
+#include <gp_Trsf2d.hxx>
+#include <Geom2d_TrimmedCurve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+#include <Geom2d_Point.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Bisector_Curve.hxx>
 #include <Bisector_BisecAna.hxx>
@@ -25,27 +45,7 @@ namespace py = pybind11;
 #include <Bisector_PolyBis.hxx>
 #include <Bisector_FunctionH.hxx>
 #include <Bisector_FunctionInter.hxx>
-#include <Geom2d_TrimmedCurve.hxx>
-#include <Standard_DomainError.hxx>
-#include <Standard_RangeError.hxx>
 #include <gp_Pnt2d.hxx>
-#include <gp_Vec2d.hxx>
-#include <Geom2d_Point.hxx>
-#include <GccInt_Bisec.hxx>
-#include <gp_Trsf2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <Geom2d_TrimmedCurve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Vec2d.hxx>
-#include <Geom2d_Point.hxx>
-#include <Bisector_Bisec.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Bisector_BisecCC.hxx>
-#include <Geom2d_Line.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Bisector_Curve.hxx>
 
 // module includes
 #include <Bisector.hxx>
@@ -80,6 +80,7 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
     public:
         using Bisector_Curve::Bisector_Curve;
         
+        
         // public pure virtual
         Standard_Real Parameter(const gp_Pnt2d & P) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Bisector_Curve,Parameter,P) };
         Standard_Boolean IsExtendAtStart() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Bisector_Curve,IsExtendAtStart,) };
@@ -88,6 +89,21 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
         Standard_Real IntervalFirst(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Bisector_Curve,IntervalFirst,Index) };
         Standard_Real IntervalLast(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Bisector_Curve,IntervalLast,Index) };
         
+        void Reverse() override { PYBIND11_OVERLOAD_PURE(void,Geom2d_Curve,Reverse,) };
+        Standard_Real ReversedParameter(const Standard_Real U) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom2d_Curve,ReversedParameter,U) };
+        Standard_Real FirstParameter() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom2d_Curve,FirstParameter,) };
+        Standard_Real LastParameter() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom2d_Curve,LastParameter,) };
+        Standard_Boolean IsClosed() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Geom2d_Curve,IsClosed,) };
+        Standard_Boolean IsPeriodic() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Geom2d_Curve,IsPeriodic,) };
+        GeomAbs_Shape Continuity() const  override { PYBIND11_OVERLOAD_PURE(GeomAbs_Shape,Geom2d_Curve,Continuity,) };
+        Standard_Boolean IsCN(const Standard_Integer N) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Geom2d_Curve,IsCN,N) };
+        void D0(const Standard_Real U,gp_Pnt2d & P) const  override { PYBIND11_OVERLOAD_PURE(void,Geom2d_Curve,D0,U,P) };
+        void D1(const Standard_Real U,gp_Pnt2d & P,gp_Vec2d & V1) const  override { PYBIND11_OVERLOAD_PURE(void,Geom2d_Curve,D1,U,P,V1) };
+        void D2(const Standard_Real U,gp_Pnt2d & P,gp_Vec2d & V1,gp_Vec2d & V2) const  override { PYBIND11_OVERLOAD_PURE(void,Geom2d_Curve,D2,U,P,V1,V2) };
+        void D3(const Standard_Real U,gp_Pnt2d & P,gp_Vec2d & V1,gp_Vec2d & V2,gp_Vec2d & V3) const  override { PYBIND11_OVERLOAD_PURE(void,Geom2d_Curve,D3,U,P,V1,V2,V3) };
+        gp_Vec2d DN(const Standard_Real U,const Standard_Integer N) const  override { PYBIND11_OVERLOAD_PURE(gp_Vec2d,Geom2d_Curve,DN,U,N) };
+        void Transform(const gp_Trsf2d & T) override { PYBIND11_OVERLOAD_PURE(void,Geom2d_Geometry,Transform,T) };
+        opencascade::handle<Geom2d_Geometry> Copy() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Geom2d_Geometry>,Geom2d_Geometry,Copy,) };
         
         // protected pure virtual
         
@@ -98,9 +114,12 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Bisector , shared_ptr<Bisector>>(m,"Bisector");
 
     static_cast<py::class_<Bisector , shared_ptr<Bisector>  >>(m.attr("Bisector"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -109,12 +128,14 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
                     R"#(None)#"  , py::arg("Cu"),  py::arg("Sign"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_Bisec , shared_ptr<Bisector_Bisec>  >>(m.attr("Bisector_Bisec"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Bisector_Bisec::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Vec2d & ,  const gp_Vec2d & ,  const Standard_Real ,  const GeomAbs_JoinType ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (Bisector_Bisec::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Vec2d & ,  const gp_Vec2d & ,  const Standard_Real ,  const GeomAbs_JoinType ,  const Standard_Real ,  const Standard_Boolean  ) >(&Bisector_Bisec::Perform),
@@ -138,11 +159,13 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_Curve ,opencascade::handle<Bisector_Curve> ,Py_Bisector_Curve , Geom2d_Curve >>(m.attr("Bisector_Curve"))
+    // constructors
+    // custom constructors
     // methods
         .def("Parameter",
              (Standard_Real (Bisector_Curve::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Real (Bisector_Curve::*)( const gp_Pnt2d &  ) const>(&Bisector_Curve::Parameter),
@@ -175,12 +198,14 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_FunctionH , shared_ptr<Bisector_FunctionH>  , math_FunctionWithDerivative >>(m.attr("Bisector_FunctionH"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const gp_Pnt2d &,const gp_Vec2d & >()  , py::arg("C2"),  py::arg("P1"),  py::arg("T1") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Bisector_FunctionH::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Bisector_FunctionH::*)( const Standard_Real ,  Standard_Real &  ) >(&Bisector_FunctionH::Value),
@@ -195,13 +220,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_FunctionInter , shared_ptr<Bisector_FunctionInter>  , math_FunctionWithDerivative >>(m.attr("Bisector_FunctionInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Bisector_Curve> &,const opencascade::handle<Bisector_Curve> & >()  , py::arg("C"),  py::arg("Bis1"),  py::arg("Bis2") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Bisector_FunctionInter::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Bisector_Curve> & ,  const opencascade::handle<Bisector_Curve> &  ) ) static_cast<void (Bisector_FunctionInter::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Bisector_Curve> & ,  const opencascade::handle<Bisector_Curve> &  ) >(&Bisector_FunctionInter::Perform),
@@ -219,13 +246,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_Inter , shared_ptr<Bisector_Inter>  , IntRes2d_Intersection >>(m.attr("Bisector_Inter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Bisector_Bisec &,const IntRes2d_Domain &,const Bisector_Bisec &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("C1"),  py::arg("D1"),  py::arg("C2"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol"),  py::arg("ComunElement") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Bisector_Inter::*)( const Bisector_Bisec & ,  const IntRes2d_Domain & ,  const Bisector_Bisec & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (Bisector_Inter::*)( const Bisector_Bisec & ,  const IntRes2d_Domain & ,  const Bisector_Bisec & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&Bisector_Inter::Perform),
@@ -234,13 +263,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_PointOnBis , shared_ptr<Bisector_PointOnBis>  >>(m.attr("Bisector_PointOnBis"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt2d & >()  , py::arg("Param1"),  py::arg("Param2"),  py::arg("ParamBis"),  py::arg("Distance"),  py::arg("Point") )
+    // custom constructors
     // methods
         .def("ParamOnC1",
              (void (Bisector_PointOnBis::*)( const Standard_Real  ) ) static_cast<void (Bisector_PointOnBis::*)( const Standard_Real  ) >(&Bisector_PointOnBis::ParamOnC1),
@@ -285,12 +316,14 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_PolyBis , shared_ptr<Bisector_PolyBis>  >>(m.attr("Bisector_PolyBis"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Append",
              (void (Bisector_PolyBis::*)( const Bisector_PointOnBis &  ) ) static_cast<void (Bisector_PolyBis::*)( const Bisector_PointOnBis &  ) >(&Bisector_PolyBis::Append),
@@ -320,12 +353,14 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_BisecAna ,opencascade::handle<Bisector_BisecAna>  , Bisector_Curve >>(m.attr("Bisector_BisecAna"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Bisector_BisecAna::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Vec2d & ,  const gp_Vec2d & ,  const Standard_Real ,  const GeomAbs_JoinType ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (Bisector_BisecAna::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const gp_Vec2d & ,  const gp_Vec2d & ,  const Standard_Real ,  const GeomAbs_JoinType ,  const Standard_Real ,  const Standard_Boolean  ) >(&Bisector_BisecAna::Perform),
@@ -436,13 +471,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_BisecCC ,opencascade::handle<Bisector_BisecCC>  , Bisector_Curve >>(m.attr("Bisector_BisecCC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Real,const gp_Pnt2d &,const Standard_Real >()  , py::arg("Cu1"),  py::arg("Cu2"),  py::arg("Side1"),  py::arg("Side2"),  py::arg("Origin"),  py::arg("DistMax")=static_cast<const Standard_Real>(500) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Bisector_BisecCC::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<void (Bisector_BisecCC::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt2d & ,  const Standard_Real  ) >(&Bisector_BisecCC::Perform),
@@ -553,14 +590,16 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bisector_BisecPC ,opencascade::handle<Bisector_BisecPC>  , Bisector_Curve >>(m.attr("Bisector_BisecPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Cu"),  py::arg("P"),  py::arg("Side"),  py::arg("DistMax")=static_cast<const Standard_Real>(500) )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const gp_Pnt2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Cu"),  py::arg("P"),  py::arg("Side"),  py::arg("UMin"),  py::arg("UMax") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Bisector_BisecPC::*)( const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Bisector_BisecPC::*)( const opencascade::handle<Geom2d_Curve> & ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real  ) >(&Bisector_BisecPC::Perform),
@@ -659,21 +698,21 @@ py::module m = static_cast<py::module>(main_module.attr("Bisector"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Bisector_BisecCC.hxx
-// ./opencascade/Bisector_FunctionH.hxx
-// ./opencascade/Bisector.hxx
-// ./opencascade/Bisector_BisecAna.hxx
-// ./opencascade/Bisector_PolyBis.hxx
-// ./opencascade/Bisector_Curve.hxx
-// ./opencascade/Bisector_Bisec.hxx
 // ./opencascade/Bisector_Inter.hxx
-// ./opencascade/Bisector_BisecPC.hxx
+// ./opencascade/Bisector_PolyBis.hxx
+// ./opencascade/Bisector_FunctionH.hxx
 // ./opencascade/Bisector_FunctionInter.hxx
+// ./opencascade/Bisector_BisecAna.hxx
+// ./opencascade/Bisector_Bisec.hxx
+// ./opencascade/Bisector_BisecPC.hxx
+// ./opencascade/Bisector.hxx
+// ./opencascade/Bisector_BisecCC.hxx
 // ./opencascade/Bisector_PointOnBis.hxx
+// ./opencascade/Bisector_Curve.hxx
 
 // operators
 

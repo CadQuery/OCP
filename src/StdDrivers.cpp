@@ -40,9 +40,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdDrivers"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdDrivers , shared_ptr<StdDrivers>>(m,"StdDrivers");
 
     static_cast<py::class_<StdDrivers , shared_ptr<StdDrivers>  >>(m.attr("StdDrivers"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -57,12 +60,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdDrivers"));
                     R"#(Register types.)#"  , py::arg("theMap"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdDrivers_DocumentRetrievalDriver ,opencascade::handle<StdDrivers_DocumentRetrievalDriver>>(m,"StdDrivers_DocumentRetrievalDriver");
 
     static_cast<py::class_<StdDrivers_DocumentRetrievalDriver ,opencascade::handle<StdDrivers_DocumentRetrievalDriver>  , StdLDrivers_DocumentRetrievalDriver >>(m.attr("StdDrivers_DocumentRetrievalDriver"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdDrivers_DocumentRetrievalDriver::*)() const>(&StdDrivers_DocumentRetrievalDriver::DynamicType),
@@ -77,12 +83,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdDrivers.hxx
 // ./opencascade/StdDrivers_DocumentRetrievalDriver.hxx
+// ./opencascade/StdDrivers.hxx
 
 // operators
 

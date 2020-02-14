@@ -28,17 +28,17 @@ namespace py = pybind11;
 #include <TColGeom2d_SequenceOfGeometry.hxx>
 
 // template related includes
-// ./opencascade/TColGeom2d_Array1OfCurve.hxx
+// ./opencascade/TColGeom2d_SequenceOfCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColGeom2d_Array1OfBezierCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/TColGeom2d_Array1OfBSplineCurve.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColGeom2d_SequenceOfGeometry.hxx
-#include "NCollection.hxx"
 // ./opencascade/TColGeom2d_SequenceOfBoundedCurve.hxx
 #include "NCollection.hxx"
-// ./opencascade/TColGeom2d_SequenceOfCurve.hxx
+// ./opencascade/TColGeom2d_Array1OfCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/TColGeom2d_SequenceOfGeometry.hxx
 #include "NCollection.hxx"
 
 
@@ -60,9 +60,12 @@ py::module m = static_cast<py::module>(main_module.attr("TColGeom2d"));
 
 
     static_cast<py::class_<TColGeom2d_HArray1OfBSplineCurve ,opencascade::handle<TColGeom2d_HArray1OfBSplineCurve>  , TColGeom2d_Array1OfBSplineCurve , Standard_Transient >>(m.attr("TColGeom2d_HArray1OfBSplineCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Geom2d_BSplineCurve> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColGeom2d_Array1OfBSplineCurve & (TColGeom2d_HArray1OfBSplineCurve::*)() const) static_cast<const TColGeom2d_Array1OfBSplineCurve & (TColGeom2d_HArray1OfBSplineCurve::*)() const>(&TColGeom2d_HArray1OfBSplineCurve::Array1),
@@ -83,14 +86,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColGeom2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColGeom2d_HArray1OfBezierCurve ,opencascade::handle<TColGeom2d_HArray1OfBezierCurve>  , TColGeom2d_Array1OfBezierCurve , Standard_Transient >>(m.attr("TColGeom2d_HArray1OfBezierCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Geom2d_BezierCurve> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Geom2d_BezierCurve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColGeom2d_Array1OfBezierCurve & (TColGeom2d_HArray1OfBezierCurve::*)() const) static_cast<const TColGeom2d_Array1OfBezierCurve & (TColGeom2d_HArray1OfBezierCurve::*)() const>(&TColGeom2d_HArray1OfBezierCurve::Array1),
@@ -111,14 +117,17 @@ py::module m = static_cast<py::module>(main_module.attr("TColGeom2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColGeom2d_HArray1OfCurve ,opencascade::handle<TColGeom2d_HArray1OfCurve>  , TColGeom2d_Array1OfCurve , Standard_Transient >>(m.attr("TColGeom2d_HArray1OfCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Geom2d_Curve> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Geom2d_Curve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TColGeom2d_Array1OfCurve & (TColGeom2d_HArray1OfCurve::*)() const) static_cast<const TColGeom2d_Array1OfCurve & (TColGeom2d_HArray1OfCurve::*)() const>(&TColGeom2d_HArray1OfCurve::Array1),
@@ -139,13 +148,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColGeom2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColGeom2d_HSequenceOfBoundedCurve ,opencascade::handle<TColGeom2d_HSequenceOfBoundedCurve>  , TColGeom2d_SequenceOfBoundedCurve , Standard_Transient >>(m.attr("TColGeom2d_HSequenceOfBoundedCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Geom2d_BoundedCurve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColGeom2d_SequenceOfBoundedCurve & (TColGeom2d_HSequenceOfBoundedCurve::*)() const) static_cast<const TColGeom2d_SequenceOfBoundedCurve & (TColGeom2d_HSequenceOfBoundedCurve::*)() const>(&TColGeom2d_HSequenceOfBoundedCurve::Sequence),
@@ -172,13 +183,15 @@ py::module m = static_cast<py::module>(main_module.attr("TColGeom2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TColGeom2d_HSequenceOfCurve ,opencascade::handle<TColGeom2d_HSequenceOfCurve>  , TColGeom2d_SequenceOfCurve , Standard_Transient >>(m.attr("TColGeom2d_HSequenceOfCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Geom2d_Curve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TColGeom2d_SequenceOfCurve & (TColGeom2d_HSequenceOfCurve::*)() const) static_cast<const TColGeom2d_SequenceOfCurve & (TColGeom2d_HSequenceOfCurve::*)() const>(&TColGeom2d_HSequenceOfCurve::Sequence),
@@ -205,31 +218,31 @@ py::module m = static_cast<py::module>(main_module.attr("TColGeom2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/TColGeom2d_HArray1OfCurve.hxx
+// ./opencascade/TColGeom2d_SequenceOfCurve.hxx
+// ./opencascade/TColGeom2d_Array1OfBezierCurve.hxx
+// ./opencascade/TColGeom2d_Array1OfBSplineCurve.hxx
+// ./opencascade/TColGeom2d_SequenceOfBoundedCurve.hxx
 // ./opencascade/TColGeom2d_Array1OfCurve.hxx
 // ./opencascade/TColGeom2d_HSequenceOfCurve.hxx
-// ./opencascade/TColGeom2d_HArray1OfBezierCurve.hxx
-// ./opencascade/TColGeom2d_HArray1OfCurve.hxx
-// ./opencascade/TColGeom2d_Array1OfBezierCurve.hxx
-// ./opencascade/TColGeom2d_HArray1OfBSplineCurve.hxx
-// ./opencascade/TColGeom2d_Array1OfBSplineCurve.hxx
-// ./opencascade/TColGeom2d_SequenceOfGeometry.hxx
-// ./opencascade/TColGeom2d_SequenceOfBoundedCurve.hxx
-// ./opencascade/TColGeom2d_SequenceOfCurve.hxx
 // ./opencascade/TColGeom2d_HSequenceOfBoundedCurve.hxx
+// ./opencascade/TColGeom2d_HArray1OfBSplineCurve.hxx
+// ./opencascade/TColGeom2d_HArray1OfBezierCurve.hxx
+// ./opencascade/TColGeom2d_SequenceOfGeometry.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<Geom2d_Curve> >(m,"TColGeom2d_Array1OfCurve");  
+    register_template_NCollection_Sequence<opencascade::handle<Geom2d_Curve> >(m,"TColGeom2d_SequenceOfCurve");  
     register_template_NCollection_Array1<opencascade::handle<Geom2d_BezierCurve> >(m,"TColGeom2d_Array1OfBezierCurve");  
     register_template_NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> >(m,"TColGeom2d_Array1OfBSplineCurve");  
-    register_template_NCollection_Sequence<opencascade::handle<Geom2d_Geometry> >(m,"TColGeom2d_SequenceOfGeometry");  
     register_template_NCollection_Sequence<opencascade::handle<Geom2d_BoundedCurve> >(m,"TColGeom2d_SequenceOfBoundedCurve");  
-    register_template_NCollection_Sequence<opencascade::handle<Geom2d_Curve> >(m,"TColGeom2d_SequenceOfCurve");  
+    register_template_NCollection_Array1<opencascade::handle<Geom2d_Curve> >(m,"TColGeom2d_Array1OfCurve");  
+    register_template_NCollection_Sequence<opencascade::handle<Geom2d_Geometry> >(m,"TColGeom2d_SequenceOfGeometry");  
 
 
 // exceptions

@@ -14,23 +14,23 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TObj_Model.hxx>
+#include <Standard_GUID.hxx>
 #include <TObj_Object.hxx>
-#include <TObj_TNameContainer.hxx>
-#include <TDocStd_Document.hxx>
-#include <TObj_CheckModel.hxx>
-#include <TObj_Application.hxx>
 #include <TObj_Model.hxx>
 #include <TObj_Persistence.hxx>
 #include <TObj_ObjectIterator.hxx>
 #include <TObj_TNameContainer.hxx>
 #include <Standard_GUID.hxx>
+#include <TObj_Object.hxx>
+#include <TObj_Model.hxx>
+#include <TObj_Object.hxx>
+#include <Standard_GUID.hxx>
+#include <TObj_TNameContainer.hxx>
+#include <TDocStd_Document.hxx>
+#include <TObj_CheckModel.hxx>
+#include <TObj_Application.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Label.hxx>
-#include <TObj_Model.hxx>
-#include <Standard_GUID.hxx>
-#include <TObj_Object.hxx>
-#include <TObj_Object.hxx>
-#include <Standard_GUID.hxx>
 
 // module includes
 #include <TObj_Application.hxx>
@@ -60,11 +60,11 @@ namespace py = pybind11;
 #include <TObj_TXYZ.hxx>
 
 // template related includes
+// ./opencascade/TObj_TIntSparseArray.hxx
+#include "NCollection.hxx"
 // ./opencascade/TObj_SequenceOfObject.hxx
 #include "NCollection.hxx"
 // ./opencascade/TObj_SequenceOfIterator.hxx
-#include "NCollection.hxx"
-// ./opencascade/TObj_TIntSparseArray.hxx
 #include "NCollection.hxx"
 // ./opencascade/TObj_Container.hxx
 #include "NCollection.hxx"
@@ -91,6 +91,7 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
     public:
         using TObj_Model::TObj_Model;
         
+        
         // public pure virtual
         opencascade::handle<TObj_Model> NewEmpty() override { PYBIND11_OVERLOAD_PURE(opencascade::handle<TObj_Model>,TObj_Model,NewEmpty,) };
         
@@ -105,6 +106,7 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
     public:
         using TObj_Persistence::TObj_Persistence;
         
+        
         // public pure virtual
         
         
@@ -118,6 +120,7 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
     class Py_TObj_LabelIterator : public TObj_LabelIterator{
     public:
         using TObj_LabelIterator::TObj_LabelIterator;
+        
         
         // public pure virtual
         
@@ -134,6 +137,8 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
 
 
     static_cast<py::class_<TObj_Application ,opencascade::handle<TObj_Application>  , TDocStd_Application >>(m.attr("TObj_Application"))
+    // constructors
+    // custom constructors
     // methods
         .def("Messenger",
              (opencascade::handle<Message_Messenger> & (TObj_Application::*)() ) static_cast<opencascade::handle<Message_Messenger> & (TObj_Application::*)() >(&TObj_Application::Messenger),
@@ -178,12 +183,15 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TObj_Assistant , shared_ptr<TObj_Assistant>>(m,"TObj_Assistant");
 
     static_cast<py::class_<TObj_Assistant , shared_ptr<TObj_Assistant>  >>(m.attr("TObj_Assistant"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -222,12 +230,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(Returns the version of application which wrote the currently read document. Returns 0 if it has not been set yet for the current document.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_CheckModel ,opencascade::handle<TObj_CheckModel>  , Message_Algorithm >>(m.attr("TObj_CheckModel"))
+    // constructors
         .def(py::init< const opencascade::handle<TObj_Model> & >()  , py::arg("theModel") )
+    // custom constructors
     // methods
         .def("SetToFix",
              (void (TObj_CheckModel::*)( const Standard_Boolean  ) ) static_cast<void (TObj_CheckModel::*)( const Standard_Boolean  ) >(&TObj_CheckModel::SetToFix),
@@ -254,13 +264,15 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_HSequenceOfObject ,opencascade::handle<TObj_HSequenceOfObject>  , TObj_SequenceOfObject , Standard_Transient >>(m.attr("TObj_HSequenceOfObject"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<TObj_Object> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() const) static_cast<const TObj_SequenceOfObject & (TObj_HSequenceOfObject::*)() const>(&TObj_HSequenceOfObject::Sequence),
@@ -287,11 +299,13 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_Model ,opencascade::handle<TObj_Model> ,Py_TObj_Model , Standard_Transient >>(m.attr("TObj_Model"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetMessenger",
              (void (TObj_Model::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (TObj_Model::*)( const opencascade::handle<Message_Messenger> &  ) >(&TObj_Model::SetMessenger),
@@ -420,11 +434,13 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_Object ,opencascade::handle<TObj_Object>  , Standard_Transient >>(m.attr("TObj_Object"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetModel",
              (opencascade::handle<TObj_Model> (TObj_Object::*)() const) static_cast<opencascade::handle<TObj_Model> (TObj_Object::*)() const>(&TObj_Object::GetModel),
@@ -583,12 +599,15 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TObj_ObjectIterator ,opencascade::handle<TObj_ObjectIterator>>(m,"TObj_ObjectIterator");
 
     static_cast<py::class_<TObj_ObjectIterator ,opencascade::handle<TObj_ObjectIterator>  , Standard_Transient >>(m.attr("TObj_ObjectIterator"))
+    // constructors
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TObj_ObjectIterator::*)() const) static_cast<Standard_Boolean (TObj_ObjectIterator::*)() const>(&TObj_ObjectIterator::More),
@@ -612,11 +631,13 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_Persistence , shared_ptr_nodelete<TObj_Persistence> ,Py_TObj_Persistence >>(m.attr("TObj_Persistence"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -628,12 +649,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(Dumps names of all the types registered for persistence to the specified stream)#"  , py::arg("theOs"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_TIntSparseArray ,opencascade::handle<TObj_TIntSparseArray>  , TDF_Attribute >>(m.attr("TObj_TIntSparseArray"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TObj_TIntSparseArray::*)() const) static_cast<const Standard_GUID & (TObj_TIntSparseArray::*)() const>(&TObj_TIntSparseArray::ID),
@@ -705,12 +728,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_TModel ,opencascade::handle<TObj_TModel>  , TDF_Attribute >>(m.attr("TObj_TModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TObj_TModel::*)() const) static_cast<const Standard_GUID & (TObj_TModel::*)() const>(&TObj_TModel::ID),
@@ -746,12 +771,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_TNameContainer ,opencascade::handle<TObj_TNameContainer>  , TDF_Attribute >>(m.attr("TObj_TNameContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TObj_TNameContainer::*)() const) static_cast<const Standard_GUID & (TObj_TNameContainer::*)() const>(&TObj_TNameContainer::ID),
@@ -802,12 +829,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_TObject ,opencascade::handle<TObj_TObject>  , TDF_Attribute >>(m.attr("TObj_TObject"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TObj_TObject::*)() const) static_cast<const Standard_GUID & (TObj_TObject::*)() const>(&TObj_TObject::ID),
@@ -852,12 +881,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_TReference ,opencascade::handle<TObj_TReference>  , TDF_Attribute >>(m.attr("TObj_TReference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TObj_TReference::*)() const) static_cast<const Standard_GUID & (TObj_TReference::*)() const>(&TObj_TReference::ID),
@@ -920,12 +951,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_TXYZ ,opencascade::handle<TObj_TXYZ>  , TDF_Attribute >>(m.attr("TObj_TXYZ"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TObj_TXYZ::*)() const) static_cast<const Standard_GUID & (TObj_TXYZ::*)() const>(&TObj_TXYZ::ID),
@@ -967,12 +1000,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_LabelIterator ,opencascade::handle<TObj_LabelIterator> ,Py_TObj_LabelIterator , TObj_ObjectIterator >>(m.attr("TObj_LabelIterator"))
+    // constructors
         .def(py::init< const TDF_Label &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("isRecursive")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TObj_LabelIterator::*)() const) static_cast<Standard_Boolean (TObj_LabelIterator::*)() const>(&TObj_LabelIterator::More),
@@ -999,12 +1034,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_ModelIterator ,opencascade::handle<TObj_ModelIterator>  , TObj_ObjectIterator >>(m.attr("TObj_ModelIterator"))
+    // constructors
         .def(py::init< const opencascade::handle<TObj_Model> & >()  , py::arg("theModel") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TObj_ModelIterator::*)() const) static_cast<Standard_Boolean (TObj_ModelIterator::*)() const>(&TObj_ModelIterator::More),
@@ -1028,11 +1065,13 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_Partition ,opencascade::handle<TObj_Partition>  , TObj_Object >>(m.attr("TObj_Partition"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetName",
              (Standard_Boolean (TObj_Partition::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const) static_cast<Standard_Boolean (TObj_Partition::*)( const opencascade::handle<TCollection_HExtendedString> &  ) const>(&TObj_Partition::SetName),
@@ -1080,12 +1119,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_SequenceIterator ,opencascade::handle<TObj_SequenceIterator>  , TObj_ObjectIterator >>(m.attr("TObj_SequenceIterator"))
+    // constructors
         .def(py::init< const opencascade::handle<TObj_HSequenceOfObject> &,const opencascade::handle<Standard_Type> & >()  , py::arg("theObjects"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL) )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (TObj_SequenceIterator::*)() const) static_cast<Standard_Boolean (TObj_SequenceIterator::*)() const>(&TObj_SequenceIterator::More),
@@ -1109,12 +1150,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_HiddenPartition ,opencascade::handle<TObj_HiddenPartition>  , TObj_Partition >>(m.attr("TObj_HiddenPartition"))
+    // constructors
         .def(py::init< const TDF_Label & >()  , py::arg("theLabel") )
+    // custom constructors
     // methods
         .def("GetTypeFlags",
              (Standard_Integer (TObj_HiddenPartition::*)() const) static_cast<Standard_Integer (TObj_HiddenPartition::*)() const>(&TObj_HiddenPartition::GetTypeFlags),
@@ -1132,12 +1175,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_OcafObjectIterator ,opencascade::handle<TObj_OcafObjectIterator>  , TObj_LabelIterator >>(m.attr("TObj_OcafObjectIterator"))
+    // constructors
         .def(py::init< const TDF_Label &,const opencascade::handle<Standard_Type> &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL),  py::arg("theRecursive")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_OcafObjectIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_OcafObjectIterator::*)() const>(&TObj_OcafObjectIterator::DynamicType),
@@ -1152,12 +1197,14 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TObj_ReferenceIterator ,opencascade::handle<TObj_ReferenceIterator>  , TObj_LabelIterator >>(m.attr("TObj_ReferenceIterator"))
+    // constructors
         .def(py::init< const TDF_Label &,const opencascade::handle<Standard_Type> &,const Standard_Boolean >()  , py::arg("theLabel"),  py::arg("theType")=static_cast<const opencascade::handle<Standard_Type> &>(NULL),  py::arg("theRecursive")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TObj_ReferenceIterator::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TObj_ReferenceIterator::*)() const>(&TObj_ReferenceIterator::DynamicType),
@@ -1172,48 +1219,48 @@ py::module m = static_cast<py::module>(main_module.attr("TObj"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TObj_SequenceIterator.hxx
-// ./opencascade/TObj_HiddenPartition.hxx
-// ./opencascade/TObj_Persistence.hxx
+// ./opencascade/TObj_DeletingMode.hxx
+// ./opencascade/TObj_Partition.hxx
 // ./opencascade/TObj_TModel.hxx
+// ./opencascade/TObj_TIntSparseArray.hxx
+// ./opencascade/TObj_OcafObjectIterator.hxx
+// ./opencascade/TObj_ReferenceIterator.hxx
 // ./opencascade/TObj_SequenceOfObject.hxx
-// ./opencascade/TObj_LabelIterator.hxx
-// ./opencascade/TObj_Model.hxx
-// ./opencascade/TObj_Application.hxx
+// ./opencascade/TObj_TNameContainer.hxx
+// ./opencascade/TObj_SequenceOfIterator.hxx
+// ./opencascade/TObj_ModelIterator.hxx
+// ./opencascade/TObj_Persistence.hxx
 // ./opencascade/TObj_Object.hxx
 // ./opencascade/TObj_TObject.hxx
-// ./opencascade/TObj_TXYZ.hxx
-// ./opencascade/TObj_SequenceOfIterator.hxx
+// ./opencascade/TObj_ObjectIterator.hxx
 // ./opencascade/TObj_Assistant.hxx
-// ./opencascade/TObj_ReferenceIterator.hxx
-// ./opencascade/TObj_TIntSparseArray.hxx
-// ./opencascade/TObj_Partition.hxx
+// ./opencascade/TObj_TReference.hxx
+// ./opencascade/TObj_Model.hxx
+// ./opencascade/TObj_Container.hxx
+// ./opencascade/TObj_Application.hxx
+// ./opencascade/TObj_LabelIterator.hxx
+// ./opencascade/TObj_SequenceIterator.hxx
+// ./opencascade/TObj_HiddenPartition.hxx
+// ./opencascade/TObj_TXYZ.hxx
 // ./opencascade/TObj_Common.hxx
     m.def("HashCode", 
           (Standard_Integer (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const Standard_Integer  )>(&HashCode),
-          R"#(Methods inline implimentation for HExtendedString)#"  , py::arg("theStr"),  py::arg("theBnd"));
+          R"#(Computes a hash code for the given handle referred to extended string, in the range [1, theUpperBound])#"  , py::arg("theHExtendedString"),  py::arg("theUpperBound"));
     m.def("IsEqual", 
           (Standard_Boolean (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const opencascade::handle<TCollection_HExtendedString> &  ))  static_cast<Standard_Boolean (*)( const opencascade::handle<TCollection_HExtendedString> & ,  const opencascade::handle<TCollection_HExtendedString> &  )>(&IsEqual),
           R"#(None)#"  , py::arg("theStr1"),  py::arg("theStr2"));
-// ./opencascade/TObj_TNameContainer.hxx
-// ./opencascade/TObj_ObjectIterator.hxx
-// ./opencascade/TObj_Container.hxx
 // ./opencascade/TObj_CheckModel.hxx
-// ./opencascade/TObj_ModelIterator.hxx
-// ./opencascade/TObj_OcafObjectIterator.hxx
-// ./opencascade/TObj_TReference.hxx
-// ./opencascade/TObj_DeletingMode.hxx
 
 // operators
 
 // register typdefs
+    register_template_NCollection_SparseArray<Standard_Integer>(m,"TObj_TIntSparseArray_VecOfData");  
     register_template_NCollection_Sequence<opencascade::handle<TObj_Object> >(m,"TObj_SequenceOfObject");  
     register_template_NCollection_Sequence<opencascade::handle<TObj_ObjectIterator> >(m,"TObj_SequenceOfIterator");  
-    register_template_NCollection_SparseArray<Standard_Integer>(m,"TObj_TIntSparseArray_VecOfData");  
     register_template_NCollection_DataMap<opencascade::handle<TCollection_HExtendedString>, TDF_Label>(m,"TObj_DataMapOfNameLabel");  
     register_template_NCollection_DataMap<TCollection_AsciiString, Standard_Address>(m,"TObj_DataMapOfStringPointer");  
 

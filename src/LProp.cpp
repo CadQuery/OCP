@@ -47,7 +47,9 @@ py::module m = static_cast<py::module>(main_module.attr("LProp"));
 
 
     static_cast<py::class_<LProp_AnalyticCurInf , shared_ptr<LProp_AnalyticCurInf>  >>(m.attr("LProp_AnalyticCurInf"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (LProp_AnalyticCurInf::*)( const GeomAbs_CurveType ,  const Standard_Real ,  const Standard_Real ,  LProp_CurAndInf &  ) ) static_cast<void (LProp_AnalyticCurInf::*)( const GeomAbs_CurveType ,  const Standard_Real ,  const Standard_Real ,  LProp_CurAndInf &  ) >(&LProp_AnalyticCurInf::Perform),
@@ -56,12 +58,14 @@ py::module m = static_cast<py::module>(main_module.attr("LProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LProp_CurAndInf , shared_ptr<LProp_CurAndInf>  >>(m.attr("LProp_CurAndInf"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddInflection",
              (void (LProp_CurAndInf::*)( const Standard_Real  ) ) static_cast<void (LProp_CurAndInf::*)( const Standard_Real  ) >(&LProp_CurAndInf::AddInflection),
@@ -88,17 +92,17 @@ py::module m = static_cast<py::module>(main_module.attr("LProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/LProp_BadContinuity.hxx
+// ./opencascade/LProp_Status.hxx
 // ./opencascade/LProp_SequenceOfCIType.hxx
 // ./opencascade/LProp_CurAndInf.hxx
 // ./opencascade/LProp_AnalyticCurInf.hxx
-// ./opencascade/LProp_CIType.hxx
-// ./opencascade/LProp_Status.hxx
+// ./opencascade/LProp_BadContinuity.hxx
 // ./opencascade/LProp_NotDefined.hxx
+// ./opencascade/LProp_CIType.hxx
 
 // operators
 

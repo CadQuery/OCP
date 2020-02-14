@@ -10,12 +10,6 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
-#include <XmlMDF_ADriverTable.hxx>
-#include <PCDM_Document.hxx>
-#include <CDM_Document.hxx>
-#include <CDM_Application.hxx>
-#include <Message_Messenger.hxx>
-#include <XmlMDF_ADriver.hxx>
 #include <Standard_GUID.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <XmlMDF_ADriverTable.hxx>
@@ -27,22 +21,28 @@ namespace py = pybind11;
 #include <XmlMDF_ADriverTable.hxx>
 #include <CDM_Document.hxx>
 #include <Message_Messenger.hxx>
+#include <XmlMDF_ADriverTable.hxx>
+#include <PCDM_Document.hxx>
+#include <CDM_Document.hxx>
+#include <CDM_Application.hxx>
+#include <Message_Messenger.hxx>
+#include <XmlMDF_ADriver.hxx>
 
 // module includes
+#include <XmlLDrivers.hxx>
+#include <XmlLDrivers_DocumentStorageDriver.hxx>
 #include <XmlLDrivers_DocumentRetrievalDriver.hxx>
 #include <XmlLDrivers_NamespaceDef.hxx>
 #include <XmlLDrivers_SequenceOfNamespaceDef.hxx>
-#include <XmlLDrivers.hxx>
-#include <XmlLDrivers_DocumentStorageDriver.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/XmlLDrivers.hxx
+// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
 // ./opencascade/XmlLDrivers_DocumentRetrievalDriver.hxx
 // ./opencascade/XmlLDrivers_NamespaceDef.hxx
 // ./opencascade/XmlLDrivers_SequenceOfNamespaceDef.hxx
-// ./opencascade/XmlLDrivers.hxx
-// ./opencascade/XmlLDrivers_DocumentStorageDriver.hxx
 
 // user-defined post

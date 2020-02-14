@@ -14,10 +14,6 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Adaptor3d_HCurve.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <LProp3d_CurveTool.hxx>
-#include <Adaptor3d_HCurve.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
 #include <Adaptor3d_HSurface.hxx>
@@ -27,6 +23,10 @@ namespace py = pybind11;
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <LProp3d_SurfaceTool.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <LProp3d_CurveTool.hxx>
 
 // module includes
 #include <LProp3d_CLProps.hxx>
@@ -55,9 +55,11 @@ py::module m = static_cast<py::module>(main_module.attr("LProp3d"));
 
 
     static_cast<py::class_<LProp3d_CLProps , shared_ptr<LProp3d_CLProps>  >>(m.attr("LProp3d_CLProps"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("U"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetParameter",
              (void (LProp3d_CLProps::*)( const Standard_Real  ) ) static_cast<void (LProp3d_CLProps::*)( const Standard_Real  ) >(&LProp3d_CLProps::SetParameter),
@@ -96,12 +98,15 @@ py::module m = static_cast<py::module>(main_module.attr("LProp3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<LProp3d_CurveTool , shared_ptr<LProp3d_CurveTool>>(m,"LProp3d_CurveTool");
 
     static_cast<py::class_<LProp3d_CurveTool , shared_ptr<LProp3d_CurveTool>  >>(m.attr("LProp3d_CurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -128,14 +133,16 @@ py::module m = static_cast<py::module>(main_module.attr("LProp3d"));
                     R"#(returns the last parameter bound of the HCurve. FirstParameter must be less than LastParamenter.)#"  , py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<LProp3d_SLProps , shared_ptr<LProp3d_SLProps>  >>(m.attr("LProp3d_SLProps"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetSurface",
              (void (LProp3d_SLProps::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (LProp3d_SLProps::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&LProp3d_SLProps::SetSurface),
@@ -204,12 +211,15 @@ py::module m = static_cast<py::module>(main_module.attr("LProp3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<LProp3d_SurfaceTool , shared_ptr<LProp3d_SurfaceTool>>(m,"LProp3d_SurfaceTool");
 
     static_cast<py::class_<LProp3d_SurfaceTool , shared_ptr<LProp3d_SurfaceTool>  >>(m.attr("LProp3d_SurfaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -233,14 +243,14 @@ py::module m = static_cast<py::module>(main_module.attr("LProp3d"));
                     []( const opencascade::handle<Adaptor3d_HSurface> & S ){ Standard_Real  U1; Standard_Real  V1; Standard_Real  U2; Standard_Real  V2; LProp3d_SurfaceTool::Bounds(S,U1,V1,U2,V2); return std::make_tuple(U1,V1,U2,V2); },
                     R"#(returns the bounds of the HSurface.)#"  , py::arg("S"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/LProp3d_CLProps.hxx
 // ./opencascade/LProp3d_CurveTool.hxx
 // ./opencascade/LProp3d_SurfaceTool.hxx
 // ./opencascade/LProp3d_SLProps.hxx
+// ./opencascade/LProp3d_CLProps.hxx
 
 // operators
 

@@ -13,86 +13,86 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <StepFEA_FeaModel.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_RepresentationContext.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_RepresentationContext.hxx>
+#include <StepFEA_FeaModel.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepFEA_CurveElementLocation.hxx>
 #include <StepBasic_EulerAngles.hxx>
-#include <StepFEA_FeaAxis2Placement3d.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepData_SelectMember.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepFEA_FeaAxis2Placement3d.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepElement_CurveElementSectionDefinition.hxx>
-#include <StepElement_AnalysisItemWithinRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepGeom_Direction.hxx>
+#include <StepFEA_FeaModel3d.hxx>
+#include <StepElement_Volume3dElementDescriptor.hxx>
+#include <StepElement_ElementMaterial.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepRepr_RepresentationContext.hxx>
-#include <StepFEA_FeaParametricPoint.hxx>
+#include <StepFEA_FeaAxis2Placement3d.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepFEA_ParametricCurve3dElementCoordinateDirection.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <StepFEA_FeaModel3d.hxx>
 #include <StepElement_Surface3dElementDescriptor.hxx>
 #include <StepElement_SurfaceElementProperty.hxx>
 #include <StepElement_ElementMaterial.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepRepr_RepresentationContext.hxx>
-#include <StepFEA_FeaModel.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepRepr_RepresentationContext.hxx>
-#include <StepElement_SurfaceSection.hxx>
-#include <StepElement_AnalysisItemWithinRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepRepr_RepresentationContext.hxx>
-#include <StepData_SelectMember.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepFEA_FeaModel.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepFEA_FeaModel3d.hxx>
 #include <StepElement_Curve3dElementDescriptor.hxx>
 #include <StepFEA_Curve3dElementProperty.hxx>
 #include <StepElement_ElementMaterial.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepRepr_RepresentationContext.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepFEA_FeaModel.hxx>
-#include <StepElement_AnalysisItemWithinRepresentation.hxx>
 #include <StepFEA_FeaAxis2Placement3d.hxx>
-#include <StepFEA_AlignedCurve3dElementCoordinateSystem.hxx>
-#include <StepFEA_ParametricCurve3dElementCoordinateSystem.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepFEA_ElementRepresentation.hxx>
 #include <StepFEA_ElementGroup.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepData_SelectMember.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepFEA_FeaModel3d.hxx>
-#include <StepElement_Volume3dElementDescriptor.hxx>
-#include <StepElement_ElementMaterial.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepRepr_RepresentationContext.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepFEA_FeaModel.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepFEA_FeaModel.hxx>
+#include <StepData_SelectMember.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepFEA_FeaParametricPoint.hxx>
+#include <StepElement_AnalysisItemWithinRepresentation.hxx>
+#include <StepData_SelectMember.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepElement_CurveElementSectionDefinition.hxx>
+#include <StepElement_AnalysisItemWithinRepresentation.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_RepresentationContext.hxx>
 #include <StepFEA_FeaAxis2Placement3d.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepFEA_ParametricCurve3dElementCoordinateDirection.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepFEA_CurveElementLocation.hxx>
-#include <StepBasic_EulerAngles.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepElement_CurveElementSectionDefinition.hxx>
 #include <StepFEA_CurveElementLocation.hxx>
 #include <StepBasic_EulerAngles.hxx>
+#include <StepData_SelectMember.hxx>
+#include <StepFEA_CurveElementLocation.hxx>
+#include <StepBasic_EulerAngles.hxx>
+#include <StepElement_SurfaceSection.hxx>
+#include <StepElement_AnalysisItemWithinRepresentation.hxx>
+#include <StepFEA_FeaAxis2Placement3d.hxx>
+#include <StepFEA_AlignedCurve3dElementCoordinateSystem.hxx>
+#include <StepFEA_ParametricCurve3dElementCoordinateSystem.hxx>
 
 // module includes
 #include <StepFEA_AlignedCurve3dElementCoordinateSystem.hxx>
@@ -186,23 +186,23 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/StepFEA_SequenceOfCurve3dElementProperty.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepFEA_Array1OfCurveElementEndOffset.hxx
+// ./opencascade/StepFEA_Array1OfCurveElementEndRelease.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepFEA_SequenceOfElementGeometricRelationship.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepFEA_Array1OfCurveElementEndOffset.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepFEA_Array1OfNodeRepresentation.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepFEA_SequenceOfNodeRepresentation.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepFEA_SequenceOfElementRepresentation.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepFEA_Array1OfDegreeOfFreedom.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepFEA_Array1OfCurveElementEndRelease.hxx
+// ./opencascade/StepFEA_Array1OfElementRepresentation.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepFEA_SequenceOfElementRepresentation.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepFEA_Array1OfCurveElementInterval.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepFEA_Array1OfElementRepresentation.hxx
 #include "NCollection.hxx"
 
 
@@ -224,7 +224,9 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
 
 
     static_cast<py::class_<StepFEA_Curve3dElementProperty ,opencascade::handle<StepFEA_Curve3dElementProperty>  , Standard_Transient >>(m.attr("StepFEA_Curve3dElementProperty"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_Curve3dElementProperty::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_HArray1OfCurveElementInterval> & ,  const opencascade::handle<StepFEA_HArray1OfCurveElementEndOffset> & ,  const opencascade::handle<StepFEA_HArray1OfCurveElementEndRelease> &  ) ) static_cast<void (StepFEA_Curve3dElementProperty::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_HArray1OfCurveElementInterval> & ,  const opencascade::handle<StepFEA_HArray1OfCurveElementEndOffset> & ,  const opencascade::handle<StepFEA_HArray1OfCurveElementEndRelease> &  ) >(&StepFEA_Curve3dElementProperty::Init),
@@ -272,12 +274,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_CurveElementEndCoordinateSystem , shared_ptr<StepFEA_CurveElementEndCoordinateSystem>  , StepData_SelectType >>(m.attr("StepFEA_CurveElementEndCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepFEA_CurveElementEndCoordinateSystem::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepFEA_CurveElementEndCoordinateSystem::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepFEA_CurveElementEndCoordinateSystem::CaseNum),
@@ -295,12 +299,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_CurveElementEndOffset ,opencascade::handle<StepFEA_CurveElementEndOffset>  , Standard_Transient >>(m.attr("StepFEA_CurveElementEndOffset"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_CurveElementEndOffset::*)( const StepFEA_CurveElementEndCoordinateSystem & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (StepFEA_CurveElementEndOffset::*)( const StepFEA_CurveElementEndCoordinateSystem & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&StepFEA_CurveElementEndOffset::Init),
@@ -330,12 +336,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_CurveElementEndRelease ,opencascade::handle<StepFEA_CurveElementEndRelease>  , Standard_Transient >>(m.attr("StepFEA_CurveElementEndRelease"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_CurveElementEndRelease::*)( const StepFEA_CurveElementEndCoordinateSystem & ,  const opencascade::handle<StepElement_HArray1OfCurveElementEndReleasePacket> &  ) ) static_cast<void (StepFEA_CurveElementEndRelease::*)( const StepFEA_CurveElementEndCoordinateSystem & ,  const opencascade::handle<StepElement_HArray1OfCurveElementEndReleasePacket> &  ) >(&StepFEA_CurveElementEndRelease::Init),
@@ -365,12 +373,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_CurveElementInterval ,opencascade::handle<StepFEA_CurveElementInterval>  , Standard_Transient >>(m.attr("StepFEA_CurveElementInterval"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_CurveElementInterval::*)( const opencascade::handle<StepFEA_CurveElementLocation> & ,  const opencascade::handle<StepBasic_EulerAngles> &  ) ) static_cast<void (StepFEA_CurveElementInterval::*)( const opencascade::handle<StepFEA_CurveElementLocation> & ,  const opencascade::handle<StepBasic_EulerAngles> &  ) >(&StepFEA_CurveElementInterval::Init),
@@ -400,12 +410,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_CurveElementLocation ,opencascade::handle<StepFEA_CurveElementLocation>  , Standard_Transient >>(m.attr("StepFEA_CurveElementLocation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_CurveElementLocation::*)( const opencascade::handle<StepFEA_FeaParametricPoint> &  ) ) static_cast<void (StepFEA_CurveElementLocation::*)( const opencascade::handle<StepFEA_FeaParametricPoint> &  ) >(&StepFEA_CurveElementLocation::Init),
@@ -429,12 +441,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_DegreeOfFreedom , shared_ptr<StepFEA_DegreeOfFreedom>  , StepData_SelectType >>(m.attr("StepFEA_DegreeOfFreedom"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepFEA_DegreeOfFreedom::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepFEA_DegreeOfFreedom::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepFEA_DegreeOfFreedom::CaseNum),
@@ -461,12 +475,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_DegreeOfFreedomMember ,opencascade::handle<StepFEA_DegreeOfFreedomMember>  , StepData_SelectNamed >>(m.attr("StepFEA_DegreeOfFreedomMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepFEA_DegreeOfFreedomMember::*)() const) static_cast<Standard_Boolean (StepFEA_DegreeOfFreedomMember::*)() const>(&StepFEA_DegreeOfFreedomMember::HasName),
@@ -493,12 +509,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ElementGeometricRelationship ,opencascade::handle<StepFEA_ElementGeometricRelationship>  , Standard_Transient >>(m.attr("StepFEA_ElementGeometricRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ElementGeometricRelationship::*)( const StepFEA_ElementOrElementGroup & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> & ,  const StepElement_ElementAspect &  ) ) static_cast<void (StepFEA_ElementGeometricRelationship::*)( const StepFEA_ElementOrElementGroup & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> & ,  const StepElement_ElementAspect &  ) >(&StepFEA_ElementGeometricRelationship::Init),
@@ -534,12 +552,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ElementOrElementGroup , shared_ptr<StepFEA_ElementOrElementGroup>  , StepData_SelectType >>(m.attr("StepFEA_ElementOrElementGroup"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepFEA_ElementOrElementGroup::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepFEA_ElementOrElementGroup::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepFEA_ElementOrElementGroup::CaseNum),
@@ -554,12 +574,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ElementRepresentation ,opencascade::handle<StepFEA_ElementRepresentation>  , StepRepr_Representation >>(m.attr("StepFEA_ElementRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> &  ) ) static_cast<void (StepFEA_ElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> &  ) >(&StepFEA_ElementRepresentation::Init),
@@ -583,12 +605,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaAxis2Placement3d ,opencascade::handle<StepFEA_FeaAxis2Placement3d>  , StepGeom_Axis2Placement3d >>(m.attr("StepFEA_FeaAxis2Placement3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaAxis2Placement3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const StepFEA_CoordinateSystemType ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepFEA_FeaAxis2Placement3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const StepFEA_CoordinateSystemType ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepFEA_FeaAxis2Placement3d::Init),
@@ -618,12 +642,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaCurveSectionGeometricRelationship ,opencascade::handle<StepFEA_FeaCurveSectionGeometricRelationship>  , Standard_Transient >>(m.attr("StepFEA_FeaCurveSectionGeometricRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaCurveSectionGeometricRelationship::*)( const opencascade::handle<StepElement_CurveElementSectionDefinition> & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> &  ) ) static_cast<void (StepFEA_FeaCurveSectionGeometricRelationship::*)( const opencascade::handle<StepElement_CurveElementSectionDefinition> & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> &  ) >(&StepFEA_FeaCurveSectionGeometricRelationship::Init),
@@ -653,12 +679,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaGroup ,opencascade::handle<StepFEA_FeaGroup>  , StepBasic_Group >>(m.attr("StepFEA_FeaGroup"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaGroup::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaModel> &  ) ) static_cast<void (StepFEA_FeaGroup::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaModel> &  ) >(&StepFEA_FeaGroup::Init),
@@ -682,12 +710,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaMaterialPropertyRepresentation ,opencascade::handle<StepFEA_FeaMaterialPropertyRepresentation>  , StepRepr_MaterialPropertyRepresentation >>(m.attr("StepFEA_FeaMaterialPropertyRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_FeaMaterialPropertyRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_FeaMaterialPropertyRepresentation::*)() const>(&StepFEA_FeaMaterialPropertyRepresentation::DynamicType),
@@ -702,12 +732,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaMaterialPropertyRepresentationItem ,opencascade::handle<StepFEA_FeaMaterialPropertyRepresentationItem>  , StepRepr_RepresentationItem >>(m.attr("StepFEA_FeaMaterialPropertyRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_FeaMaterialPropertyRepresentationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_FeaMaterialPropertyRepresentationItem::*)() const>(&StepFEA_FeaMaterialPropertyRepresentationItem::DynamicType),
@@ -722,12 +754,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaModel ,opencascade::handle<StepFEA_FeaModel>  , StepRepr_Representation >>(m.attr("StepFEA_FeaModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepFEA_FeaModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepFEA_FeaModel::Init),
@@ -769,12 +803,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaModelDefinition ,opencascade::handle<StepFEA_FeaModelDefinition>  , StepRepr_ShapeAspect >>(m.attr("StepFEA_FeaModelDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_FeaModelDefinition::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_FeaModelDefinition::*)() const>(&StepFEA_FeaModelDefinition::DynamicType),
@@ -789,12 +825,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaParametricPoint ,opencascade::handle<StepFEA_FeaParametricPoint>  , StepGeom_Point >>(m.attr("StepFEA_FeaParametricPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaParametricPoint::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (StepFEA_FeaParametricPoint::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&StepFEA_FeaParametricPoint::Init),
@@ -818,12 +856,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaRepresentationItem ,opencascade::handle<StepFEA_FeaRepresentationItem>  , StepRepr_RepresentationItem >>(m.attr("StepFEA_FeaRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_FeaRepresentationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_FeaRepresentationItem::*)() const>(&StepFEA_FeaRepresentationItem::DynamicType),
@@ -838,12 +878,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaSurfaceSectionGeometricRelationship ,opencascade::handle<StepFEA_FeaSurfaceSectionGeometricRelationship>  , Standard_Transient >>(m.attr("StepFEA_FeaSurfaceSectionGeometricRelationship"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaSurfaceSectionGeometricRelationship::*)( const opencascade::handle<StepElement_SurfaceSection> & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> &  ) ) static_cast<void (StepFEA_FeaSurfaceSectionGeometricRelationship::*)( const opencascade::handle<StepElement_SurfaceSection> & ,  const opencascade::handle<StepElement_AnalysisItemWithinRepresentation> &  ) >(&StepFEA_FeaSurfaceSectionGeometricRelationship::Init),
@@ -873,12 +915,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FreedomAndCoefficient ,opencascade::handle<StepFEA_FreedomAndCoefficient>  , Standard_Transient >>(m.attr("StepFEA_FreedomAndCoefficient"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FreedomAndCoefficient::*)( const StepFEA_DegreeOfFreedom & ,  const StepElement_MeasureOrUnspecifiedValue &  ) ) static_cast<void (StepFEA_FreedomAndCoefficient::*)( const StepFEA_DegreeOfFreedom & ,  const StepElement_MeasureOrUnspecifiedValue &  ) >(&StepFEA_FreedomAndCoefficient::Init),
@@ -908,12 +952,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FreedomsList ,opencascade::handle<StepFEA_FreedomsList>  , Standard_Transient >>(m.attr("StepFEA_FreedomsList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FreedomsList::*)( const opencascade::handle<StepFEA_HArray1OfDegreeOfFreedom> &  ) ) static_cast<void (StepFEA_FreedomsList::*)( const opencascade::handle<StepFEA_HArray1OfDegreeOfFreedom> &  ) >(&StepFEA_FreedomsList::Init),
@@ -937,14 +983,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HArray1OfCurveElementEndOffset ,opencascade::handle<StepFEA_HArray1OfCurveElementEndOffset>  , StepFEA_Array1OfCurveElementEndOffset , Standard_Transient >>(m.attr("StepFEA_HArray1OfCurveElementEndOffset"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepFEA_CurveElementEndOffset> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepFEA_CurveElementEndOffset> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepFEA_Array1OfCurveElementEndOffset & (StepFEA_HArray1OfCurveElementEndOffset::*)() const) static_cast<const StepFEA_Array1OfCurveElementEndOffset & (StepFEA_HArray1OfCurveElementEndOffset::*)() const>(&StepFEA_HArray1OfCurveElementEndOffset::Array1),
@@ -965,14 +1014,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HArray1OfCurveElementEndRelease ,opencascade::handle<StepFEA_HArray1OfCurveElementEndRelease>  , StepFEA_Array1OfCurveElementEndRelease , Standard_Transient >>(m.attr("StepFEA_HArray1OfCurveElementEndRelease"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepFEA_CurveElementEndRelease> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepFEA_CurveElementEndRelease> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepFEA_Array1OfCurveElementEndRelease & (StepFEA_HArray1OfCurveElementEndRelease::*)() const) static_cast<const StepFEA_Array1OfCurveElementEndRelease & (StepFEA_HArray1OfCurveElementEndRelease::*)() const>(&StepFEA_HArray1OfCurveElementEndRelease::Array1),
@@ -993,14 +1045,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HArray1OfCurveElementInterval ,opencascade::handle<StepFEA_HArray1OfCurveElementInterval>  , StepFEA_Array1OfCurveElementInterval , Standard_Transient >>(m.attr("StepFEA_HArray1OfCurveElementInterval"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepFEA_CurveElementInterval> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepFEA_CurveElementInterval> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepFEA_Array1OfCurveElementInterval & (StepFEA_HArray1OfCurveElementInterval::*)() const) static_cast<const StepFEA_Array1OfCurveElementInterval & (StepFEA_HArray1OfCurveElementInterval::*)() const>(&StepFEA_HArray1OfCurveElementInterval::Array1),
@@ -1021,14 +1076,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HArray1OfDegreeOfFreedom ,opencascade::handle<StepFEA_HArray1OfDegreeOfFreedom>  , StepFEA_Array1OfDegreeOfFreedom , Standard_Transient >>(m.attr("StepFEA_HArray1OfDegreeOfFreedom"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepFEA_DegreeOfFreedom & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepFEA_DegreeOfFreedom> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepFEA_Array1OfDegreeOfFreedom & (StepFEA_HArray1OfDegreeOfFreedom::*)() const) static_cast<const StepFEA_Array1OfDegreeOfFreedom & (StepFEA_HArray1OfDegreeOfFreedom::*)() const>(&StepFEA_HArray1OfDegreeOfFreedom::Array1),
@@ -1049,14 +1107,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HArray1OfElementRepresentation ,opencascade::handle<StepFEA_HArray1OfElementRepresentation>  , StepFEA_Array1OfElementRepresentation , Standard_Transient >>(m.attr("StepFEA_HArray1OfElementRepresentation"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepFEA_ElementRepresentation> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepFEA_ElementRepresentation> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepFEA_Array1OfElementRepresentation & (StepFEA_HArray1OfElementRepresentation::*)() const) static_cast<const StepFEA_Array1OfElementRepresentation & (StepFEA_HArray1OfElementRepresentation::*)() const>(&StepFEA_HArray1OfElementRepresentation::Array1),
@@ -1077,14 +1138,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HArray1OfNodeRepresentation ,opencascade::handle<StepFEA_HArray1OfNodeRepresentation>  , StepFEA_Array1OfNodeRepresentation , Standard_Transient >>(m.attr("StepFEA_HArray1OfNodeRepresentation"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepFEA_NodeRepresentation> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepFEA_NodeRepresentation> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepFEA_Array1OfNodeRepresentation & (StepFEA_HArray1OfNodeRepresentation::*)() const) static_cast<const StepFEA_Array1OfNodeRepresentation & (StepFEA_HArray1OfNodeRepresentation::*)() const>(&StepFEA_HArray1OfNodeRepresentation::Array1),
@@ -1105,13 +1169,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HSequenceOfCurve3dElementProperty ,opencascade::handle<StepFEA_HSequenceOfCurve3dElementProperty>  , StepFEA_SequenceOfCurve3dElementProperty , Standard_Transient >>(m.attr("StepFEA_HSequenceOfCurve3dElementProperty"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepFEA_Curve3dElementProperty> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepFEA_SequenceOfCurve3dElementProperty & (StepFEA_HSequenceOfCurve3dElementProperty::*)() const) static_cast<const StepFEA_SequenceOfCurve3dElementProperty & (StepFEA_HSequenceOfCurve3dElementProperty::*)() const>(&StepFEA_HSequenceOfCurve3dElementProperty::Sequence),
@@ -1138,13 +1204,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HSequenceOfElementGeometricRelationship ,opencascade::handle<StepFEA_HSequenceOfElementGeometricRelationship>  , StepFEA_SequenceOfElementGeometricRelationship , Standard_Transient >>(m.attr("StepFEA_HSequenceOfElementGeometricRelationship"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepFEA_ElementGeometricRelationship> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepFEA_SequenceOfElementGeometricRelationship & (StepFEA_HSequenceOfElementGeometricRelationship::*)() const) static_cast<const StepFEA_SequenceOfElementGeometricRelationship & (StepFEA_HSequenceOfElementGeometricRelationship::*)() const>(&StepFEA_HSequenceOfElementGeometricRelationship::Sequence),
@@ -1171,13 +1239,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HSequenceOfElementRepresentation ,opencascade::handle<StepFEA_HSequenceOfElementRepresentation>  , StepFEA_SequenceOfElementRepresentation , Standard_Transient >>(m.attr("StepFEA_HSequenceOfElementRepresentation"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepFEA_ElementRepresentation> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepFEA_SequenceOfElementRepresentation & (StepFEA_HSequenceOfElementRepresentation::*)() const) static_cast<const StepFEA_SequenceOfElementRepresentation & (StepFEA_HSequenceOfElementRepresentation::*)() const>(&StepFEA_HSequenceOfElementRepresentation::Sequence),
@@ -1204,13 +1274,15 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_HSequenceOfNodeRepresentation ,opencascade::handle<StepFEA_HSequenceOfNodeRepresentation>  , StepFEA_SequenceOfNodeRepresentation , Standard_Transient >>(m.attr("StepFEA_HSequenceOfNodeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StepFEA_NodeRepresentation> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StepFEA_SequenceOfNodeRepresentation & (StepFEA_HSequenceOfNodeRepresentation::*)() const) static_cast<const StepFEA_SequenceOfNodeRepresentation & (StepFEA_HSequenceOfNodeRepresentation::*)() const>(&StepFEA_HSequenceOfNodeRepresentation::Sequence),
@@ -1237,12 +1309,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_NodeDefinition ,opencascade::handle<StepFEA_NodeDefinition>  , StepRepr_ShapeAspect >>(m.attr("StepFEA_NodeDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_NodeDefinition::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_NodeDefinition::*)() const>(&StepFEA_NodeDefinition::DynamicType),
@@ -1257,12 +1331,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_NodeRepresentation ,opencascade::handle<StepFEA_NodeRepresentation>  , StepRepr_Representation >>(m.attr("StepFEA_NodeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_NodeRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_FeaModel> &  ) ) static_cast<void (StepFEA_NodeRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_FeaModel> &  ) >(&StepFEA_NodeRepresentation::Init),
@@ -1286,12 +1362,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_NodeSet ,opencascade::handle<StepFEA_NodeSet>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepFEA_NodeSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_NodeSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> &  ) ) static_cast<void (StepFEA_NodeSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> &  ) >(&StepFEA_NodeSet::Init),
@@ -1315,12 +1393,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_SymmetricTensor22d , shared_ptr<StepFEA_SymmetricTensor22d>  , StepData_SelectType >>(m.attr("StepFEA_SymmetricTensor22d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepFEA_SymmetricTensor22d::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepFEA_SymmetricTensor22d::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepFEA_SymmetricTensor22d::CaseNum),
@@ -1332,12 +1412,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_SymmetricTensor23d , shared_ptr<StepFEA_SymmetricTensor23d>  , StepData_SelectType >>(m.attr("StepFEA_SymmetricTensor23d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepFEA_SymmetricTensor23d::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepFEA_SymmetricTensor23d::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepFEA_SymmetricTensor23d::CaseNum),
@@ -1370,12 +1452,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_SymmetricTensor23dMember ,opencascade::handle<StepFEA_SymmetricTensor23dMember>  , StepData_SelectArrReal >>(m.attr("StepFEA_SymmetricTensor23dMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepFEA_SymmetricTensor23dMember::*)() const) static_cast<Standard_Boolean (StepFEA_SymmetricTensor23dMember::*)() const>(&StepFEA_SymmetricTensor23dMember::HasName),
@@ -1402,12 +1486,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_SymmetricTensor42d , shared_ptr<StepFEA_SymmetricTensor42d>  , StepData_SelectType >>(m.attr("StepFEA_SymmetricTensor42d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepFEA_SymmetricTensor42d::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepFEA_SymmetricTensor42d::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepFEA_SymmetricTensor42d::CaseNum),
@@ -1419,12 +1505,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_SymmetricTensor43d , shared_ptr<StepFEA_SymmetricTensor43d>  , StepData_SelectType >>(m.attr("StepFEA_SymmetricTensor43d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepFEA_SymmetricTensor43d::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepFEA_SymmetricTensor43d::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepFEA_SymmetricTensor43d::CaseNum),
@@ -1457,12 +1545,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_SymmetricTensor43dMember ,opencascade::handle<StepFEA_SymmetricTensor43dMember>  , StepData_SelectArrReal >>(m.attr("StepFEA_SymmetricTensor43dMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepFEA_SymmetricTensor43dMember::*)() const) static_cast<Standard_Boolean (StepFEA_SymmetricTensor43dMember::*)() const>(&StepFEA_SymmetricTensor43dMember::HasName),
@@ -1489,12 +1579,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_AlignedCurve3dElementCoordinateSystem ,opencascade::handle<StepFEA_AlignedCurve3dElementCoordinateSystem>  , StepFEA_FeaRepresentationItem >>(m.attr("StepFEA_AlignedCurve3dElementCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_AlignedCurve3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaAxis2Placement3d> &  ) ) static_cast<void (StepFEA_AlignedCurve3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaAxis2Placement3d> &  ) >(&StepFEA_AlignedCurve3dElementCoordinateSystem::Init),
@@ -1518,12 +1610,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_AlignedSurface3dElementCoordinateSystem ,opencascade::handle<StepFEA_AlignedSurface3dElementCoordinateSystem>  , StepFEA_FeaRepresentationItem >>(m.attr("StepFEA_AlignedSurface3dElementCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_AlignedSurface3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaAxis2Placement3d> &  ) ) static_cast<void (StepFEA_AlignedSurface3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaAxis2Placement3d> &  ) >(&StepFEA_AlignedSurface3dElementCoordinateSystem::Init),
@@ -1547,12 +1641,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ArbitraryVolume3dElementCoordinateSystem ,opencascade::handle<StepFEA_ArbitraryVolume3dElementCoordinateSystem>  , StepFEA_FeaRepresentationItem >>(m.attr("StepFEA_ArbitraryVolume3dElementCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ArbitraryVolume3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaAxis2Placement3d> &  ) ) static_cast<void (StepFEA_ArbitraryVolume3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaAxis2Placement3d> &  ) >(&StepFEA_ArbitraryVolume3dElementCoordinateSystem::Init),
@@ -1576,12 +1672,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ConstantSurface3dElementCoordinateSystem ,opencascade::handle<StepFEA_ConstantSurface3dElementCoordinateSystem>  , StepFEA_FeaRepresentationItem >>(m.attr("StepFEA_ConstantSurface3dElementCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ConstantSurface3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (StepFEA_ConstantSurface3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Real  ) >(&StepFEA_ConstantSurface3dElementCoordinateSystem::Init),
@@ -1611,12 +1709,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_Curve3dElementRepresentation ,opencascade::handle<StepFEA_Curve3dElementRepresentation>  , StepFEA_ElementRepresentation >>(m.attr("StepFEA_Curve3dElementRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_Curve3dElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> & ,  const opencascade::handle<StepFEA_FeaModel3d> & ,  const opencascade::handle<StepElement_Curve3dElementDescriptor> & ,  const opencascade::handle<StepFEA_Curve3dElementProperty> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) ) static_cast<void (StepFEA_Curve3dElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> & ,  const opencascade::handle<StepFEA_FeaModel3d> & ,  const opencascade::handle<StepElement_Curve3dElementDescriptor> & ,  const opencascade::handle<StepFEA_Curve3dElementProperty> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) >(&StepFEA_Curve3dElementRepresentation::Init),
@@ -1658,12 +1758,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_CurveElementIntervalConstant ,opencascade::handle<StepFEA_CurveElementIntervalConstant>  , StepFEA_CurveElementInterval >>(m.attr("StepFEA_CurveElementIntervalConstant"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_CurveElementIntervalConstant::*)( const opencascade::handle<StepFEA_CurveElementLocation> & ,  const opencascade::handle<StepBasic_EulerAngles> & ,  const opencascade::handle<StepElement_CurveElementSectionDefinition> &  ) ) static_cast<void (StepFEA_CurveElementIntervalConstant::*)( const opencascade::handle<StepFEA_CurveElementLocation> & ,  const opencascade::handle<StepBasic_EulerAngles> & ,  const opencascade::handle<StepElement_CurveElementSectionDefinition> &  ) >(&StepFEA_CurveElementIntervalConstant::Init),
@@ -1687,12 +1789,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_CurveElementIntervalLinearlyVarying ,opencascade::handle<StepFEA_CurveElementIntervalLinearlyVarying>  , StepFEA_CurveElementInterval >>(m.attr("StepFEA_CurveElementIntervalLinearlyVarying"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_CurveElementIntervalLinearlyVarying::*)( const opencascade::handle<StepFEA_CurveElementLocation> & ,  const opencascade::handle<StepBasic_EulerAngles> & ,  const opencascade::handle<StepElement_HArray1OfCurveElementSectionDefinition> &  ) ) static_cast<void (StepFEA_CurveElementIntervalLinearlyVarying::*)( const opencascade::handle<StepFEA_CurveElementLocation> & ,  const opencascade::handle<StepBasic_EulerAngles> & ,  const opencascade::handle<StepElement_HArray1OfCurveElementSectionDefinition> &  ) >(&StepFEA_CurveElementIntervalLinearlyVarying::Init),
@@ -1716,12 +1820,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_DummyNode ,opencascade::handle<StepFEA_DummyNode>  , StepFEA_NodeRepresentation >>(m.attr("StepFEA_DummyNode"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_DummyNode::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_DummyNode::*)() const>(&StepFEA_DummyNode::DynamicType),
@@ -1736,12 +1842,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ElementGroup ,opencascade::handle<StepFEA_ElementGroup>  , StepFEA_FeaGroup >>(m.attr("StepFEA_ElementGroup"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ElementGroup::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaModel> & ,  const opencascade::handle<StepFEA_HArray1OfElementRepresentation> &  ) ) static_cast<void (StepFEA_ElementGroup::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaModel> & ,  const opencascade::handle<StepFEA_HArray1OfElementRepresentation> &  ) >(&StepFEA_ElementGroup::Init),
@@ -1765,12 +1873,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaAreaDensity ,opencascade::handle<StepFEA_FeaAreaDensity>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaAreaDensity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaAreaDensity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real  ) ) static_cast<void (StepFEA_FeaAreaDensity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real  ) >(&StepFEA_FeaAreaDensity::Init),
@@ -1794,12 +1904,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaLinearElasticity ,opencascade::handle<StepFEA_FeaLinearElasticity>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaLinearElasticity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaLinearElasticity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor43d &  ) ) static_cast<void (StepFEA_FeaLinearElasticity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor43d &  ) >(&StepFEA_FeaLinearElasticity::Init),
@@ -1823,12 +1935,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaMassDensity ,opencascade::handle<StepFEA_FeaMassDensity>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaMassDensity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaMassDensity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real  ) ) static_cast<void (StepFEA_FeaMassDensity::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real  ) >(&StepFEA_FeaMassDensity::Init),
@@ -1852,12 +1966,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaModel3d ,opencascade::handle<StepFEA_FeaModel3d>  , StepFEA_FeaModel >>(m.attr("StepFEA_FeaModel3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_FeaModel3d::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_FeaModel3d::*)() const>(&StepFEA_FeaModel3d::DynamicType),
@@ -1872,12 +1988,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaMoistureAbsorption ,opencascade::handle<StepFEA_FeaMoistureAbsorption>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaMoistureAbsorption"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaMoistureAbsorption::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor23d &  ) ) static_cast<void (StepFEA_FeaMoistureAbsorption::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor23d &  ) >(&StepFEA_FeaMoistureAbsorption::Init),
@@ -1901,12 +2019,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaSecantCoefficientOfLinearThermalExpansion ,opencascade::handle<StepFEA_FeaSecantCoefficientOfLinearThermalExpansion>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaSecantCoefficientOfLinearThermalExpansion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaSecantCoefficientOfLinearThermalExpansion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor23d & ,  const Standard_Real  ) ) static_cast<void (StepFEA_FeaSecantCoefficientOfLinearThermalExpansion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor23d & ,  const Standard_Real  ) >(&StepFEA_FeaSecantCoefficientOfLinearThermalExpansion::Init),
@@ -1936,12 +2056,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaShellBendingStiffness ,opencascade::handle<StepFEA_FeaShellBendingStiffness>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaShellBendingStiffness"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaShellBendingStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor42d &  ) ) static_cast<void (StepFEA_FeaShellBendingStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor42d &  ) >(&StepFEA_FeaShellBendingStiffness::Init),
@@ -1965,12 +2087,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaShellMembraneBendingCouplingStiffness ,opencascade::handle<StepFEA_FeaShellMembraneBendingCouplingStiffness>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaShellMembraneBendingCouplingStiffness"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaShellMembraneBendingCouplingStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor42d &  ) ) static_cast<void (StepFEA_FeaShellMembraneBendingCouplingStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor42d &  ) >(&StepFEA_FeaShellMembraneBendingCouplingStiffness::Init),
@@ -1994,12 +2118,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaShellMembraneStiffness ,opencascade::handle<StepFEA_FeaShellMembraneStiffness>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaShellMembraneStiffness"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaShellMembraneStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor42d &  ) ) static_cast<void (StepFEA_FeaShellMembraneStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor42d &  ) >(&StepFEA_FeaShellMembraneStiffness::Init),
@@ -2023,12 +2149,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaShellShearStiffness ,opencascade::handle<StepFEA_FeaShellShearStiffness>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaShellShearStiffness"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaShellShearStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor22d &  ) ) static_cast<void (StepFEA_FeaShellShearStiffness::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor22d &  ) >(&StepFEA_FeaShellShearStiffness::Init),
@@ -2052,12 +2180,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion ,opencascade::handle<StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion>  , StepFEA_FeaMaterialPropertyRepresentationItem >>(m.attr("StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor23d &  ) ) static_cast<void (StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepFEA_SymmetricTensor23d &  ) >(&StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion::Init),
@@ -2081,12 +2211,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_GeometricNode ,opencascade::handle<StepFEA_GeometricNode>  , StepFEA_NodeRepresentation >>(m.attr("StepFEA_GeometricNode"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_GeometricNode::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_GeometricNode::*)() const>(&StepFEA_GeometricNode::DynamicType),
@@ -2101,12 +2233,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_Node ,opencascade::handle<StepFEA_Node>  , StepFEA_NodeRepresentation >>(m.attr("StepFEA_Node"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_Node::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_Node::*)() const>(&StepFEA_Node::DynamicType),
@@ -2121,12 +2255,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_NodeGroup ,opencascade::handle<StepFEA_NodeGroup>  , StepFEA_FeaGroup >>(m.attr("StepFEA_NodeGroup"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_NodeGroup::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaModel> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> &  ) ) static_cast<void (StepFEA_NodeGroup::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_FeaModel> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> &  ) >(&StepFEA_NodeGroup::Init),
@@ -2150,12 +2286,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ParametricCurve3dElementCoordinateDirection ,opencascade::handle<StepFEA_ParametricCurve3dElementCoordinateDirection>  , StepFEA_FeaRepresentationItem >>(m.attr("StepFEA_ParametricCurve3dElementCoordinateDirection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ParametricCurve3dElementCoordinateDirection::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Direction> &  ) ) static_cast<void (StepFEA_ParametricCurve3dElementCoordinateDirection::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Direction> &  ) >(&StepFEA_ParametricCurve3dElementCoordinateDirection::Init),
@@ -2179,12 +2317,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ParametricCurve3dElementCoordinateSystem ,opencascade::handle<StepFEA_ParametricCurve3dElementCoordinateSystem>  , StepFEA_FeaRepresentationItem >>(m.attr("StepFEA_ParametricCurve3dElementCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ParametricCurve3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_ParametricCurve3dElementCoordinateDirection> &  ) ) static_cast<void (StepFEA_ParametricCurve3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepFEA_ParametricCurve3dElementCoordinateDirection> &  ) >(&StepFEA_ParametricCurve3dElementCoordinateSystem::Init),
@@ -2208,12 +2348,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_ParametricSurface3dElementCoordinateSystem ,opencascade::handle<StepFEA_ParametricSurface3dElementCoordinateSystem>  , StepFEA_FeaRepresentationItem >>(m.attr("StepFEA_ParametricSurface3dElementCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_ParametricSurface3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (StepFEA_ParametricSurface3dElementCoordinateSystem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Real  ) >(&StepFEA_ParametricSurface3dElementCoordinateSystem::Init),
@@ -2243,12 +2385,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_Surface3dElementRepresentation ,opencascade::handle<StepFEA_Surface3dElementRepresentation>  , StepFEA_ElementRepresentation >>(m.attr("StepFEA_Surface3dElementRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_Surface3dElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> & ,  const opencascade::handle<StepFEA_FeaModel3d> & ,  const opencascade::handle<StepElement_Surface3dElementDescriptor> & ,  const opencascade::handle<StepElement_SurfaceElementProperty> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) ) static_cast<void (StepFEA_Surface3dElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> & ,  const opencascade::handle<StepFEA_FeaModel3d> & ,  const opencascade::handle<StepElement_Surface3dElementDescriptor> & ,  const opencascade::handle<StepElement_SurfaceElementProperty> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) >(&StepFEA_Surface3dElementRepresentation::Init),
@@ -2290,12 +2434,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_Volume3dElementRepresentation ,opencascade::handle<StepFEA_Volume3dElementRepresentation>  , StepFEA_ElementRepresentation >>(m.attr("StepFEA_Volume3dElementRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepFEA_Volume3dElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> & ,  const opencascade::handle<StepFEA_FeaModel3d> & ,  const opencascade::handle<StepElement_Volume3dElementDescriptor> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) ) static_cast<void (StepFEA_Volume3dElementRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> & ,  const opencascade::handle<StepFEA_HArray1OfNodeRepresentation> & ,  const opencascade::handle<StepFEA_FeaModel3d> & ,  const opencascade::handle<StepElement_Volume3dElementDescriptor> & ,  const opencascade::handle<StepElement_ElementMaterial> &  ) >(&StepFEA_Volume3dElementRepresentation::Init),
@@ -2331,12 +2477,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_NodeWithSolutionCoordinateSystem ,opencascade::handle<StepFEA_NodeWithSolutionCoordinateSystem>  , StepFEA_Node >>(m.attr("StepFEA_NodeWithSolutionCoordinateSystem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_NodeWithSolutionCoordinateSystem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_NodeWithSolutionCoordinateSystem::*)() const>(&StepFEA_NodeWithSolutionCoordinateSystem::DynamicType),
@@ -2351,12 +2499,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepFEA_NodeWithVector ,opencascade::handle<StepFEA_NodeWithVector>  , StepFEA_Node >>(m.attr("StepFEA_NodeWithVector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepFEA_NodeWithVector::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepFEA_NodeWithVector::*)() const>(&StepFEA_NodeWithVector::DynamicType),
@@ -2371,111 +2521,111 @@ py::module m = static_cast<py::module>(main_module.attr("StepFEA"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepFEA_DegreeOfFreedomMember.hxx
-// ./opencascade/StepFEA_FeaShellShearStiffness.hxx
-// ./opencascade/StepFEA_FeaLinearElasticity.hxx
-// ./opencascade/StepFEA_HArray1OfElementRepresentation.hxx
+// ./opencascade/StepFEA_NodeRepresentation.hxx
+// ./opencascade/StepFEA_ElementRepresentation.hxx
+// ./opencascade/StepFEA_FeaGroup.hxx
+// ./opencascade/StepFEA_HArray1OfCurveElementEndRelease.hxx
+// ./opencascade/StepFEA_FeaModel3d.hxx
+// ./opencascade/StepFEA_FeaAreaDensity.hxx
+// ./opencascade/StepFEA_FeaShellMembraneStiffness.hxx
+// ./opencascade/StepFEA_HSequenceOfCurve3dElementProperty.hxx
+// ./opencascade/StepFEA_ParametricSurface3dElementCoordinateSystem.hxx
+// ./opencascade/StepFEA_SymmetricTensor43dMember.hxx
 // ./opencascade/StepFEA_FeaRepresentationItem.hxx
 // ./opencascade/StepFEA_SequenceOfCurve3dElementProperty.hxx
-// ./opencascade/StepFEA_CurveElementInterval.hxx
-// ./opencascade/StepFEA_ArbitraryVolume3dElementCoordinateSystem.hxx
-// ./opencascade/StepFEA_FeaMassDensity.hxx
-// ./opencascade/StepFEA_HArray1OfCurveElementEndRelease.hxx
-// ./opencascade/StepFEA_Array1OfCurveElementEndOffset.hxx
-// ./opencascade/StepFEA_FeaParametricPoint.hxx
-// ./opencascade/StepFEA_ParametricSurface3dElementCoordinateSystem.hxx
-// ./opencascade/StepFEA_SymmetricTensor43d.hxx
-// ./opencascade/StepFEA_FeaShellBendingStiffness.hxx
-// ./opencascade/StepFEA_HArray1OfCurveElementInterval.hxx
-// ./opencascade/StepFEA_HSequenceOfElementGeometricRelationship.hxx
-// ./opencascade/StepFEA_SymmetricTensor42d.hxx
-// ./opencascade/StepFEA_SequenceOfElementGeometricRelationship.hxx
-// ./opencascade/StepFEA_SymmetricTensor23dMember.hxx
-// ./opencascade/StepFEA_Array1OfNodeRepresentation.hxx
-// ./opencascade/StepFEA_AlignedSurface3dElementCoordinateSystem.hxx
-// ./opencascade/StepFEA_FeaCurveSectionGeometricRelationship.hxx
-// ./opencascade/StepFEA_FeaMoistureAbsorption.hxx
 // ./opencascade/StepFEA_ParametricCurve3dElementCoordinateDirection.hxx
-// ./opencascade/StepFEA_FeaAxis2Placement3d.hxx
-// ./opencascade/StepFEA_ElementRepresentation.hxx
-// ./opencascade/StepFEA_CoordinateSystemType.hxx
-// ./opencascade/StepFEA_CurveElementLocation.hxx
-// ./opencascade/StepFEA_Surface3dElementRepresentation.hxx
-// ./opencascade/StepFEA_SymmetricTensor43dMember.hxx
-// ./opencascade/StepFEA_FeaModel3d.hxx
-// ./opencascade/StepFEA_HSequenceOfNodeRepresentation.hxx
-// ./opencascade/StepFEA_CurveEdge.hxx
-// ./opencascade/StepFEA_NodeRepresentation.hxx
-// ./opencascade/StepFEA_FeaSurfaceSectionGeometricRelationship.hxx
-// ./opencascade/StepFEA_FeaModel.hxx
-// ./opencascade/StepFEA_DegreeOfFreedom.hxx
-// ./opencascade/StepFEA_FreedomAndCoefficient.hxx
-// ./opencascade/StepFEA_FeaGroup.hxx
-// ./opencascade/StepFEA_SequenceOfNodeRepresentation.hxx
-// ./opencascade/StepFEA_Curve3dElementRepresentation.hxx
-// ./opencascade/StepFEA_FeaMaterialPropertyRepresentationItem.hxx
-// ./opencascade/StepFEA_Node.hxx
-// ./opencascade/StepFEA_ElementGroup.hxx
-// ./opencascade/StepFEA_GeometricNode.hxx
-// ./opencascade/StepFEA_ElementGeometricRelationship.hxx
-// ./opencascade/StepFEA_EnumeratedDegreeOfFreedom.hxx
-// ./opencascade/StepFEA_HArray1OfCurveElementEndOffset.hxx
-// ./opencascade/StepFEA_CurveElementEndCoordinateSystem.hxx
-// ./opencascade/StepFEA_FeaSecantCoefficientOfLinearThermalExpansion.hxx
-// ./opencascade/StepFEA_SequenceOfElementRepresentation.hxx
-// ./opencascade/StepFEA_HSequenceOfCurve3dElementProperty.hxx
-// ./opencascade/StepFEA_FeaModelDefinition.hxx
 // ./opencascade/StepFEA_FeaShellMembraneBendingCouplingStiffness.hxx
-// ./opencascade/StepFEA_DummyNode.hxx
-// ./opencascade/StepFEA_HSequenceOfElementRepresentation.hxx
-// ./opencascade/StepFEA_Curve3dElementProperty.hxx
-// ./opencascade/StepFEA_ElementVolume.hxx
-// ./opencascade/StepFEA_FeaAreaDensity.hxx
-// ./opencascade/StepFEA_FeaMaterialPropertyRepresentation.hxx
-// ./opencascade/StepFEA_ElementOrElementGroup.hxx
-// ./opencascade/StepFEA_FeaShellMembraneStiffness.hxx
-// ./opencascade/StepFEA_UnspecifiedValue.hxx
-// ./opencascade/StepFEA_NodeDefinition.hxx
-// ./opencascade/StepFEA_NodeWithVector.hxx
-// ./opencascade/StepFEA_SymmetricTensor22d.hxx
-// ./opencascade/StepFEA_CurveElementEndRelease.hxx
-// ./opencascade/StepFEA_SymmetricTensor23d.hxx
-// ./opencascade/StepFEA_Array1OfDegreeOfFreedom.hxx
-// ./opencascade/StepFEA_FreedomsList.hxx
-// ./opencascade/StepFEA_HArray1OfNodeRepresentation.hxx
-// ./opencascade/StepFEA_HArray1OfDegreeOfFreedom.hxx
-// ./opencascade/StepFEA_Array1OfCurveElementEndRelease.hxx
-// ./opencascade/StepFEA_NodeSet.hxx
-// ./opencascade/StepFEA_Volume3dElementRepresentation.hxx
-// ./opencascade/StepFEA_NodeGroup.hxx
-// ./opencascade/StepFEA_AlignedCurve3dElementCoordinateSystem.hxx
-// ./opencascade/StepFEA_ParametricCurve3dElementCoordinateSystem.hxx
-// ./opencascade/StepFEA_Array1OfCurveElementInterval.hxx
+// ./opencascade/StepFEA_FeaMoistureAbsorption.hxx
 // ./opencascade/StepFEA_CurveElementIntervalLinearlyVarying.hxx
-// ./opencascade/StepFEA_Array1OfElementRepresentation.hxx
-// ./opencascade/StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion.hxx
-// ./opencascade/StepFEA_ConstantSurface3dElementCoordinateSystem.hxx
-// ./opencascade/StepFEA_CurveElementIntervalConstant.hxx
-// ./opencascade/StepFEA_NodeWithSolutionCoordinateSystem.hxx
+// ./opencascade/StepFEA_Volume3dElementRepresentation.hxx
 // ./opencascade/StepFEA_CurveElementEndOffset.hxx
+// ./opencascade/StepFEA_Array1OfCurveElementEndRelease.hxx
+// ./opencascade/StepFEA_AlignedCurve3dElementCoordinateSystem.hxx
+// ./opencascade/StepFEA_FeaSecantCoefficientOfLinearThermalExpansion.hxx
+// ./opencascade/StepFEA_SequenceOfElementGeometricRelationship.hxx
+// ./opencascade/StepFEA_NodeDefinition.hxx
+// ./opencascade/StepFEA_FreedomAndCoefficient.hxx
+// ./opencascade/StepFEA_NodeWithSolutionCoordinateSystem.hxx
+// ./opencascade/StepFEA_FeaShellShearStiffness.hxx
+// ./opencascade/StepFEA_DegreeOfFreedomMember.hxx
+// ./opencascade/StepFEA_HSequenceOfElementRepresentation.hxx
+// ./opencascade/StepFEA_ParametricCurve3dElementCoordinateSystem.hxx
+// ./opencascade/StepFEA_FeaShellBendingStiffness.hxx
+// ./opencascade/StepFEA_Array1OfCurveElementEndOffset.hxx
+// ./opencascade/StepFEA_Array1OfNodeRepresentation.hxx
+// ./opencascade/StepFEA_SymmetricTensor42d.hxx
+// ./opencascade/StepFEA_Surface3dElementRepresentation.hxx
+// ./opencascade/StepFEA_FeaModelDefinition.hxx
+// ./opencascade/StepFEA_FeaMaterialPropertyRepresentation.hxx
+// ./opencascade/StepFEA_Curve3dElementRepresentation.hxx
+// ./opencascade/StepFEA_HArray1OfNodeRepresentation.hxx
+// ./opencascade/StepFEA_AlignedSurface3dElementCoordinateSystem.hxx
+// ./opencascade/StepFEA_ElementOrElementGroup.hxx
+// ./opencascade/StepFEA_HSequenceOfElementGeometricRelationship.hxx
+// ./opencascade/StepFEA_FeaMassDensity.hxx
+// ./opencascade/StepFEA_FeaParametricPoint.hxx
+// ./opencascade/StepFEA_NodeSet.hxx
+// ./opencascade/StepFEA_SymmetricTensor23dMember.hxx
+// ./opencascade/StepFEA_FeaLinearElasticity.hxx
+// ./opencascade/StepFEA_NodeGroup.hxx
+// ./opencascade/StepFEA_FreedomsList.hxx
+// ./opencascade/StepFEA_FeaTangentialCoefficientOfLinearThermalExpansion.hxx
+// ./opencascade/StepFEA_FeaAxis2Placement3d.hxx
+// ./opencascade/StepFEA_ElementGroup.hxx
+// ./opencascade/StepFEA_HArray1OfCurveElementEndOffset.hxx
+// ./opencascade/StepFEA_UnspecifiedValue.hxx
+// ./opencascade/StepFEA_HArray1OfDegreeOfFreedom.hxx
+// ./opencascade/StepFEA_HArray1OfCurveElementInterval.hxx
+// ./opencascade/StepFEA_DummyNode.hxx
+// ./opencascade/StepFEA_CurveEdge.hxx
+// ./opencascade/StepFEA_EnumeratedDegreeOfFreedom.hxx
+// ./opencascade/StepFEA_ElementVolume.hxx
+// ./opencascade/StepFEA_SequenceOfNodeRepresentation.hxx
+// ./opencascade/StepFEA_Node.hxx
+// ./opencascade/StepFEA_SymmetricTensor23d.hxx
+// ./opencascade/StepFEA_CurveElementEndRelease.hxx
+// ./opencascade/StepFEA_FeaMaterialPropertyRepresentationItem.hxx
+// ./opencascade/StepFEA_ConstantSurface3dElementCoordinateSystem.hxx
+// ./opencascade/StepFEA_CurveElementLocation.hxx
+// ./opencascade/StepFEA_ElementGeometricRelationship.hxx
+// ./opencascade/StepFEA_GeometricNode.hxx
+// ./opencascade/StepFEA_Array1OfDegreeOfFreedom.hxx
+// ./opencascade/StepFEA_DegreeOfFreedom.hxx
+// ./opencascade/StepFEA_HSequenceOfNodeRepresentation.hxx
+// ./opencascade/StepFEA_FeaCurveSectionGeometricRelationship.hxx
+// ./opencascade/StepFEA_HArray1OfElementRepresentation.hxx
+// ./opencascade/StepFEA_FeaModel.hxx
+// ./opencascade/StepFEA_ArbitraryVolume3dElementCoordinateSystem.hxx
+// ./opencascade/StepFEA_Curve3dElementProperty.hxx
+// ./opencascade/StepFEA_CurveElementIntervalConstant.hxx
+// ./opencascade/StepFEA_Array1OfElementRepresentation.hxx
+// ./opencascade/StepFEA_SymmetricTensor43d.hxx
+// ./opencascade/StepFEA_CoordinateSystemType.hxx
+// ./opencascade/StepFEA_SymmetricTensor22d.hxx
+// ./opencascade/StepFEA_CurveElementInterval.hxx
+// ./opencascade/StepFEA_NodeWithVector.hxx
+// ./opencascade/StepFEA_FeaSurfaceSectionGeometricRelationship.hxx
+// ./opencascade/StepFEA_SequenceOfElementRepresentation.hxx
+// ./opencascade/StepFEA_CurveElementEndCoordinateSystem.hxx
+// ./opencascade/StepFEA_Array1OfCurveElementInterval.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_Sequence<opencascade::handle<StepFEA_Curve3dElementProperty> >(m,"StepFEA_SequenceOfCurve3dElementProperty");  
-    register_template_NCollection_Array1<opencascade::handle<StepFEA_CurveElementEndOffset> >(m,"StepFEA_Array1OfCurveElementEndOffset");  
+    register_template_NCollection_Array1<opencascade::handle<StepFEA_CurveElementEndRelease> >(m,"StepFEA_Array1OfCurveElementEndRelease");  
     register_template_NCollection_Sequence<opencascade::handle<StepFEA_ElementGeometricRelationship> >(m,"StepFEA_SequenceOfElementGeometricRelationship");  
+    register_template_NCollection_Array1<opencascade::handle<StepFEA_CurveElementEndOffset> >(m,"StepFEA_Array1OfCurveElementEndOffset");  
     register_template_NCollection_Array1<opencascade::handle<StepFEA_NodeRepresentation> >(m,"StepFEA_Array1OfNodeRepresentation");  
     register_template_NCollection_Sequence<opencascade::handle<StepFEA_NodeRepresentation> >(m,"StepFEA_SequenceOfNodeRepresentation");  
-    register_template_NCollection_Sequence<opencascade::handle<StepFEA_ElementRepresentation> >(m,"StepFEA_SequenceOfElementRepresentation");  
     register_template_NCollection_Array1<StepFEA_DegreeOfFreedom>(m,"StepFEA_Array1OfDegreeOfFreedom");  
-    register_template_NCollection_Array1<opencascade::handle<StepFEA_CurveElementEndRelease> >(m,"StepFEA_Array1OfCurveElementEndRelease");  
-    register_template_NCollection_Array1<opencascade::handle<StepFEA_CurveElementInterval> >(m,"StepFEA_Array1OfCurveElementInterval");  
     register_template_NCollection_Array1<opencascade::handle<StepFEA_ElementRepresentation> >(m,"StepFEA_Array1OfElementRepresentation");  
+    register_template_NCollection_Sequence<opencascade::handle<StepFEA_ElementRepresentation> >(m,"StepFEA_SequenceOfElementRepresentation");  
+    register_template_NCollection_Array1<opencascade::handle<StepFEA_CurveElementInterval> >(m,"StepFEA_Array1OfCurveElementInterval");  
 
 
 // exceptions

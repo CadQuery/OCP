@@ -15,12 +15,10 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <TopOpeBRepBuild_BlockBuilder.hxx>
 #include <TopOpeBRepBuild_Loop.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopOpeBRepTool_ShapeClassifier.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Wire.hxx>
+#include <TopOpeBRepBuild_BlockBuilder.hxx>
+#include <TopOpeBRepBuild_Loop.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopOpeBRepBuild_GTopo.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
 #include <TopOpeBRepTool_ShapeExplorer.hxx>
@@ -35,56 +33,58 @@ namespace py = pybind11;
 #include <TopOpeBRepBuild_ShellFaceSet.hxx>
 #include <TopOpeBRepDS_SurfaceIterator.hxx>
 #include <TopOpeBRepDS_CurveIterator.hxx>
-#include <TopOpeBRepBuild_BlockBuilder.hxx>
-#include <TopOpeBRepBuild_Loop.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopOpeBRepBuild_WireEdgeSet.hxx>
-#include <TopOpeBRepBuild_ShapeSet.hxx>
-#include <TopOpeBRepBuild_GTopo.hxx>
+#include <TopoDS_Edge.hxx>
 #include <TopOpeBRepBuild_PaveSet.hxx>
 #include <TopOpeBRepBuild_PaveClassifier.hxx>
 #include <TopOpeBRepBuild_LoopSet.hxx>
 #include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopOpeBRepBuild_GTopo.hxx>
+#include <TopOpeBRepBuild_Builder.hxx>
+#include <TopOpeBRepBuild_WireEdgeSet.hxx>
+#include <TopOpeBRepBuild_ShapeSet.hxx>
+#include <TopOpeBRepBuild_ShapeSet.hxx>
+#include <TopOpeBRepBuild_BlockIterator.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopOpeBRepBuild_BlockBuilder.hxx>
+#include <Standard_NoMoreObject.hxx>
+#include <TopOpeBRepBuild_Loop.hxx>
+#include <TopOpeBRepBuild_PaveSet.hxx>
+#include <TopOpeBRepBuild_PaveClassifier.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopOpeBRepBuild_WireEdgeSet.hxx>
+#include <TopoDS_Shell.hxx>
+#include <TopoDS_Solid.hxx>
+#include <TopOpeBRepBuild_GTopo.hxx>
+#include <TopOpeBRepDS_HDataStructure.hxx>
+#include <TopOpeBRepBuild_Loop.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Bnd_Box2d.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
 #include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopOpeBRepBuild_GTopo.hxx>
 #include <TopOpeBRepBuild_ShellFaceSet.hxx>
 #include <TopOpeBRepBuild_WireEdgeSet.hxx>
 #include <TopOpeBRepBuild_PaveSet.hxx>
-#include <TopOpeBRepBuild_ShellFaceSet.hxx>
-#include <TopOpeBRepBuild_ShapeSet.hxx>
-#include <TopOpeBRepBuild_Loop.hxx>
-#include <TopOpeBRepBuild_ShapeSet.hxx>
-#include <TopOpeBRepBuild_BlockIterator.hxx>
 #include <TopOpeBRepBuild_LoopSet.hxx>
 #include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Solid.hxx>
 #include <TopOpeBRepBuild_LoopSet.hxx>
 #include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopOpeBRepBuild_Loop.hxx>
-#include <TopOpeBRepBuild_WireEdgeSet.hxx>
-#include <TopOpeBRepBuild_GTopo.hxx>
-#include <TopOpeBRepBuild_Builder.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <TopOpeBRepBuild_PaveSet.hxx>
-#include <TopOpeBRepBuild_PaveClassifier.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TopOpeBRepBuild_GTopo.hxx>
-#include <TopOpeBRepBuild_LoopSet.hxx>
-#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopOpeBRepTool_ShapeClassifier.hxx>
+#include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Bnd_Box2d.hxx>
 #include <TopoDS_Wire.hxx>
-#include <TopOpeBRepDS_HDataStructure.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
-#include <TopOpeBRepBuild_BlockBuilder.hxx>
+#include <TopOpeBRepBuild_LoopSet.hxx>
+#include <TopOpeBRepBuild_LoopClassifier.hxx>
+#include <TopOpeBRepBuild_ShellFaceSet.hxx>
+#include <TopOpeBRepBuild_ShapeSet.hxx>
 
 // module includes
 #include <TopOpeBRepBuild_Area1dBuilder.hxx>
@@ -144,9 +144,17 @@ namespace py = pybind11;
 #include <TopOpeBRepBuild_WireToFace.hxx>
 
 // template related includes
+// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
+#include "NCollection.hxx"
 // ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
 #include "NCollection.hxx"
@@ -157,14 +165,6 @@ namespace py = pybind11;
 // ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
 #include "NCollection.hxx"
 
 
@@ -185,6 +185,7 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     public:
         using TopOpeBRepBuild_LoopClassifier::TopOpeBRepBuild_LoopClassifier;
         
+        
         // public pure virtual
         TopAbs_State Compare(const opencascade::handle<TopOpeBRepBuild_Loop> & L1,const opencascade::handle<TopOpeBRepBuild_Loop> & L2) override { PYBIND11_OVERLOAD_PURE(TopAbs_State,TopOpeBRepBuild_LoopClassifier,Compare,L1,L2) };
         
@@ -198,6 +199,7 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     class Py_TopOpeBRepBuild_CompositeClassifier : public TopOpeBRepBuild_CompositeClassifier{
     public:
         using TopOpeBRepBuild_CompositeClassifier::TopOpeBRepBuild_CompositeClassifier;
+        
         
         // public pure virtual
         TopAbs_State CompareShapes(const TopoDS_Shape & B1,const TopoDS_Shape & B2) override { PYBIND11_OVERLOAD_PURE(TopAbs_State,TopOpeBRepBuild_CompositeClassifier,CompareShapes,B1,B2) };
@@ -219,8 +221,10 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
 
 
     static_cast<py::class_<TopOpeBRepBuild_AreaBuilder , shared_ptr<TopOpeBRepBuild_AreaBuilder>  >>(m.attr("TopOpeBRepBuild_AreaBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_LoopSet &,TopOpeBRepBuild_LoopClassifier &,const Standard_Boolean >()  , py::arg("LS"),  py::arg("LC"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitAreaBuilder",
              (void (TopOpeBRepBuild_AreaBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_AreaBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_AreaBuilder::InitAreaBuilder),
@@ -259,13 +263,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_BlockBuilder , shared_ptr<TopOpeBRepBuild_BlockBuilder>  >>(m.attr("TopOpeBRepBuild_BlockBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_ShapeSet & >()  , py::arg("SS") )
+    // custom constructors
     // methods
         .def("MakeBlock",
              (void (TopOpeBRepBuild_BlockBuilder::*)( TopOpeBRepBuild_ShapeSet &  ) ) static_cast<void (TopOpeBRepBuild_BlockBuilder::*)( TopOpeBRepBuild_ShapeSet &  ) >(&TopOpeBRepBuild_BlockBuilder::MakeBlock),
@@ -313,13 +319,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_BlockIterator , shared_ptr<TopOpeBRepBuild_BlockIterator>  >>(m.attr("TopOpeBRepBuild_BlockIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("Lower"),  py::arg("Upper") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (TopOpeBRepBuild_BlockIterator::*)() ) static_cast<void (TopOpeBRepBuild_BlockIterator::*)() >(&TopOpeBRepBuild_BlockIterator::Initialize),
@@ -355,12 +363,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_Builder , shared_ptr<TopOpeBRepBuild_Builder>  >>(m.attr("TopOpeBRepBuild_Builder"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_BuildTool & >()  , py::arg("BT") )
+    // custom constructors
     // methods
         .def("ChangeBuildTool",
              (TopOpeBRepDS_BuildTool & (TopOpeBRepBuild_Builder::*)() ) static_cast<TopOpeBRepDS_BuildTool & (TopOpeBRepBuild_Builder::*)() >(&TopOpeBRepBuild_Builder::ChangeBuildTool),
@@ -921,12 +931,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("E"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_BuilderON , shared_ptr<TopOpeBRepBuild_BuilderON>  >>(m.attr("TopOpeBRepBuild_BuilderON"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GFillONCheckI",
              (Standard_Boolean (TopOpeBRepBuild_BuilderON::*)( const opencascade::handle<TopOpeBRepDS_Interference> &  ) const) static_cast<Standard_Boolean (TopOpeBRepBuild_BuilderON::*)( const opencascade::handle<TopOpeBRepDS_Interference> &  ) const>(&TopOpeBRepBuild_BuilderON::GFillONCheckI),
@@ -944,13 +956,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_CorrectFace2d , shared_ptr<TopOpeBRepBuild_CorrectFace2d>  >>(m.attr("TopOpeBRepBuild_CorrectFace2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &, const NCollection_IndexedMap<TopoDS_Shape, TopTools_OrientedShapeMapHasher> &,NCollection_IndexedDataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & >()  , py::arg("aFace"),  py::arg("anAvoidMap"),  py::arg("aMap") )
+    // custom constructors
     // methods
         .def("Face",
              (const TopoDS_Face & (TopOpeBRepBuild_CorrectFace2d::*)() const) static_cast<const TopoDS_Face & (TopOpeBRepBuild_CorrectFace2d::*)() const>(&TopOpeBRepBuild_CorrectFace2d::Face),
@@ -983,13 +997,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("aFace"),  py::arg("aHeadList"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_FaceBuilder , shared_ptr<TopOpeBRepBuild_FaceBuilder>  >>(m.attr("TopOpeBRepBuild_FaceBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_WireEdgeSet &,const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("ES"),  py::arg("F"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitFaceBuilder",
              (void (TopOpeBRepBuild_FaceBuilder::*)( TopOpeBRepBuild_WireEdgeSet & ,  const TopoDS_Shape & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_FaceBuilder::*)( TopOpeBRepBuild_WireEdgeSet & ,  const TopoDS_Shape & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_FaceBuilder::InitFaceBuilder),
@@ -1055,13 +1071,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_FuseFace , shared_ptr<TopOpeBRepBuild_FuseFace>  >>(m.attr("TopOpeBRepBuild_FuseFace"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_List<TopoDS_Shape> &, const NCollection_List<TopoDS_Shape> &,const Standard_Integer >()  , py::arg("LIF"),  py::arg("LRF"),  py::arg("CXM") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepBuild_FuseFace::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer  ) ) static_cast<void (TopOpeBRepBuild_FuseFace::*)(  const NCollection_List<TopoDS_Shape> & ,   const NCollection_List<TopoDS_Shape> & ,  const Standard_Integer  ) >(&TopOpeBRepBuild_FuseFace::Init),
@@ -1136,13 +1154,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_GIter , shared_ptr<TopOpeBRepBuild_GIter>  >>(m.attr("TopOpeBRepBuild_GIter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepBuild_GTopo & >()  , py::arg("G") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepBuild_GIter::*)() ) static_cast<void (TopOpeBRepBuild_GIter::*)() >(&TopOpeBRepBuild_GIter::Init),
@@ -1166,12 +1186,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepBuild_GTool , shared_ptr<TopOpeBRepBuild_GTool>>(m,"TopOpeBRepBuild_GTool");
 
     static_cast<py::class_<TopOpeBRepBuild_GTool , shared_ptr<TopOpeBRepBuild_GTool>  >>(m.attr("TopOpeBRepBuild_GTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1207,13 +1230,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("OS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_GTopo , shared_ptr<TopOpeBRepBuild_GTopo>  >>(m.attr("TopOpeBRepBuild_GTopo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const TopAbs_ShapeEnum,const TopAbs_ShapeEnum,const TopOpeBRepDS_Config,const TopOpeBRepDS_Config >()  , py::arg("II"),  py::arg("IN"),  py::arg("IO"),  py::arg("NI"),  py::arg("NN"),  py::arg("NO"),  py::arg("OI"),  py::arg("ON"),  py::arg("OO"),  py::arg("t1"),  py::arg("t2"),  py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("Reset",
              (void (TopOpeBRepBuild_GTopo::*)() ) static_cast<void (TopOpeBRepBuild_GTopo::*)() >(&TopOpeBRepBuild_GTopo::Reset),
@@ -1294,12 +1319,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("OS"),  py::arg("s1"),  py::arg("s2"),  py::arg("b"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_HBuilder ,opencascade::handle<TopOpeBRepBuild_HBuilder>  , Standard_Transient >>(m.attr("TopOpeBRepBuild_HBuilder"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_BuildTool & >()  , py::arg("BT") )
+    // custom constructors
     // methods
         .def("BuildTool",
              (const TopOpeBRepDS_BuildTool & (TopOpeBRepBuild_HBuilder::*)() const) static_cast<const TopOpeBRepDS_BuildTool & (TopOpeBRepBuild_HBuilder::*)() const>(&TopOpeBRepBuild_HBuilder::BuildTool),
@@ -1413,13 +1440,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_Loop ,opencascade::handle<TopOpeBRepBuild_Loop>  , Standard_Transient >>(m.attr("TopOpeBRepBuild_Loop"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
         .def(py::init< const TopOpeBRepBuild_BlockIterator & >()  , py::arg("BI") )
+    // custom constructors
     // methods
         .def("IsShape",
              (Standard_Boolean (TopOpeBRepBuild_Loop::*)() const) static_cast<Standard_Boolean (TopOpeBRepBuild_Loop::*)() const>(&TopOpeBRepBuild_Loop::IsShape),
@@ -1446,11 +1475,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_LoopClassifier , shared_ptr<TopOpeBRepBuild_LoopClassifier> ,Py_TopOpeBRepBuild_LoopClassifier >>(m.attr("TopOpeBRepBuild_LoopClassifier"))
+    // constructors
+    // custom constructors
     // methods
         .def("Compare",
              (TopAbs_State (TopOpeBRepBuild_LoopClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) ) static_cast<TopAbs_State (TopOpeBRepBuild_LoopClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) >(&TopOpeBRepBuild_LoopClassifier::Compare),
@@ -1459,12 +1490,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_LoopSet , shared_ptr<TopOpeBRepBuild_LoopSet>  >>(m.attr("TopOpeBRepBuild_LoopSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ChangeListOfLoop",
              (TopOpeBRepBuild_ListOfLoop & (TopOpeBRepBuild_LoopSet::*)() ) static_cast<TopOpeBRepBuild_ListOfLoop & (TopOpeBRepBuild_LoopSet::*)() >(&TopOpeBRepBuild_LoopSet::ChangeListOfLoop),
@@ -1485,14 +1518,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_ShapeListOfShape , shared_ptr<TopOpeBRepBuild_ShapeListOfShape>  >>(m.attr("TopOpeBRepBuild_ShapeListOfShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
         .def(py::init< const TopoDS_Shape &, const NCollection_List<TopoDS_Shape> & >()  , py::arg("S"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("List",
              (const TopTools_ListOfShape & (TopOpeBRepBuild_ShapeListOfShape::*)() const) static_cast<const TopTools_ListOfShape & (TopOpeBRepBuild_ShapeListOfShape::*)() const>(&TopOpeBRepBuild_ShapeListOfShape::List),
@@ -1510,12 +1545,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_ShapeSet , shared_ptr<TopOpeBRepBuild_ShapeSet>  >>(m.attr("TopOpeBRepBuild_ShapeSet"))
+    // constructors
         .def(py::init< const TopAbs_ShapeEnum,const Standard_Boolean >()  , py::arg("SubShapeType"),  py::arg("checkshape")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("AddShape",
              (void (TopOpeBRepBuild_ShapeSet::*)( const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRepBuild_ShapeSet::*)( const TopoDS_Shape &  ) >(&TopOpeBRepBuild_ShapeSet::AddShape),
@@ -1626,12 +1663,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_ShellToSolid , shared_ptr<TopOpeBRepBuild_ShellToSolid>  >>(m.attr("TopOpeBRepBuild_ShellToSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepBuild_ShellToSolid::*)() ) static_cast<void (TopOpeBRepBuild_ShellToSolid::*)() >(&TopOpeBRepBuild_ShellToSolid::Init),
@@ -1646,13 +1685,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_SolidBuilder , shared_ptr<TopOpeBRepBuild_SolidBuilder>  >>(m.attr("TopOpeBRepBuild_SolidBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_ShellFaceSet &,const Standard_Boolean >()  , py::arg("FS"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitSolidBuilder",
              (void (TopOpeBRepBuild_SolidBuilder::*)( TopOpeBRepBuild_ShellFaceSet & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_SolidBuilder::*)( TopOpeBRepBuild_ShellFaceSet & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_SolidBuilder::InitSolidBuilder),
@@ -1697,12 +1738,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepBuild_Tools , shared_ptr<TopOpeBRepBuild_Tools>>(m,"TopOpeBRepBuild_Tools");
 
     static_cast<py::class_<TopOpeBRepBuild_Tools , shared_ptr<TopOpeBRepBuild_Tools>  >>(m.attr("TopOpeBRepBuild_Tools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1774,12 +1818,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(Checks if <theFace> has the properly closed in 2D boundary(ies))#"  , py::arg("theFace"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepBuild_Tools2d , shared_ptr<TopOpeBRepBuild_Tools2d>>(m,"TopOpeBRepBuild_Tools2d");
 
     static_cast<py::class_<TopOpeBRepBuild_Tools2d , shared_ptr<TopOpeBRepBuild_Tools2d>  >>(m.attr("TopOpeBRepBuild_Tools2d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1794,12 +1841,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("aWire"),  py::arg("aResList"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_VertexInfo , shared_ptr<TopOpeBRepBuild_VertexInfo>  >>(m.attr("TopOpeBRepBuild_VertexInfo"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetVertex",
              (void (TopOpeBRepBuild_VertexInfo::*)( const TopoDS_Vertex &  ) ) static_cast<void (TopOpeBRepBuild_VertexInfo::*)( const TopoDS_Vertex &  ) >(&TopOpeBRepBuild_VertexInfo::SetVertex),
@@ -1859,12 +1908,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_WireToFace , shared_ptr<TopOpeBRepBuild_WireToFace>  >>(m.attr("TopOpeBRepBuild_WireToFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepBuild_WireToFace::*)() ) static_cast<void (TopOpeBRepBuild_WireToFace::*)() >(&TopOpeBRepBuild_WireToFace::Init),
@@ -1879,13 +1930,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_Area1dBuilder , shared_ptr<TopOpeBRepBuild_Area1dBuilder>  , TopOpeBRepBuild_AreaBuilder >>(m.attr("TopOpeBRepBuild_Area1dBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_PaveSet &,TopOpeBRepBuild_PaveClassifier &,const Standard_Boolean >()  , py::arg("LS"),  py::arg("LC"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitAreaBuilder",
              (void (TopOpeBRepBuild_Area1dBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_Area1dBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_Area1dBuilder::InitAreaBuilder),
@@ -1906,13 +1959,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("L"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_Area2dBuilder , shared_ptr<TopOpeBRepBuild_Area2dBuilder>  , TopOpeBRepBuild_AreaBuilder >>(m.attr("TopOpeBRepBuild_Area2dBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_LoopSet &,TopOpeBRepBuild_LoopClassifier &,const Standard_Boolean >()  , py::arg("LS"),  py::arg("LC"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitAreaBuilder",
              (void (TopOpeBRepBuild_Area2dBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_Area2dBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_Area2dBuilder::InitAreaBuilder),
@@ -1921,13 +1976,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_Area3dBuilder , shared_ptr<TopOpeBRepBuild_Area3dBuilder>  , TopOpeBRepBuild_AreaBuilder >>(m.attr("TopOpeBRepBuild_Area3dBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_LoopSet &,TopOpeBRepBuild_LoopClassifier &,const Standard_Boolean >()  , py::arg("LS"),  py::arg("LC"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitAreaBuilder",
              (void (TopOpeBRepBuild_Area3dBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_Area3dBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_Area3dBuilder::InitAreaBuilder),
@@ -1936,12 +1993,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_Builder1 , shared_ptr<TopOpeBRepBuild_Builder1>  , TopOpeBRepBuild_Builder >>(m.attr("TopOpeBRepBuild_Builder1"))
+    // constructors
         .def(py::init< const TopOpeBRepDS_BuildTool & >()  , py::arg("BT") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TopOpeBRepBuild_Builder1::*)() ) static_cast<void (TopOpeBRepBuild_Builder1::*)() >(&TopOpeBRepBuild_Builder1::Clear),
@@ -2010,11 +2069,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_CompositeClassifier , shared_ptr<TopOpeBRepBuild_CompositeClassifier> ,Py_TopOpeBRepBuild_CompositeClassifier , TopOpeBRepBuild_LoopClassifier >>(m.attr("TopOpeBRepBuild_CompositeClassifier"))
+    // constructors
+    // custom constructors
     // methods
         .def("Compare",
              (TopAbs_State (TopOpeBRepBuild_CompositeClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) ) static_cast<TopAbs_State (TopOpeBRepBuild_CompositeClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) >(&TopOpeBRepBuild_CompositeClassifier::Compare),
@@ -2041,12 +2102,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_Pave ,opencascade::handle<TopOpeBRepBuild_Pave>  , TopOpeBRepBuild_Loop >>(m.attr("TopOpeBRepBuild_Pave"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean >()  , py::arg("V"),  py::arg("P"),  py::arg("bound") )
+    // custom constructors
     // methods
         .def("HasSameDomain",
              (void (TopOpeBRepBuild_Pave::*)( const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_Pave::*)( const Standard_Boolean  ) >(&TopOpeBRepBuild_Pave::HasSameDomain),
@@ -2097,12 +2160,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_PaveClassifier , shared_ptr<TopOpeBRepBuild_PaveClassifier>  , TopOpeBRepBuild_LoopClassifier >>(m.attr("TopOpeBRepBuild_PaveClassifier"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("E") )
+    // custom constructors
     // methods
         .def("Compare",
              (TopAbs_State (TopOpeBRepBuild_PaveClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) ) static_cast<TopAbs_State (TopOpeBRepBuild_PaveClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) >(&TopOpeBRepBuild_PaveClassifier::Compare),
@@ -2120,12 +2185,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("p1"),  py::arg("o"),  py::arg("first"),  py::arg("period"),  py::arg("tol"),  py::arg("cas"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_PaveSet , shared_ptr<TopOpeBRepBuild_PaveSet>  , TopOpeBRepBuild_LoopSet >>(m.attr("TopOpeBRepBuild_PaveSet"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("E") )
+    // custom constructors
     // methods
         .def("RemovePV",
              (void (TopOpeBRepBuild_PaveSet::*)( const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_PaveSet::*)( const Standard_Boolean  ) >(&TopOpeBRepBuild_PaveSet::RemovePV),
@@ -2164,13 +2231,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     R"#(None)#"  , py::arg("Lin"),  py::arg("Lout"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_ShellFaceSet , shared_ptr<TopOpeBRepBuild_ShellFaceSet>  , TopOpeBRepBuild_ShapeSet >>(m.attr("TopOpeBRepBuild_ShellFaceSet"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Address >()  , py::arg("S"),  py::arg("Addr")=static_cast<const Standard_Address>(NULL) )
+    // custom constructors
     // methods
         .def("Solid",
              (const TopoDS_Solid & (TopOpeBRepBuild_ShellFaceSet::*)() const) static_cast<const TopoDS_Solid & (TopOpeBRepBuild_ShellFaceSet::*)() const>(&TopOpeBRepBuild_ShellFaceSet::Solid),
@@ -2203,12 +2272,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_WireEdgeSet , shared_ptr<TopOpeBRepBuild_WireEdgeSet>  , TopOpeBRepBuild_ShapeSet >>(m.attr("TopOpeBRepBuild_WireEdgeSet"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Address >()  , py::arg("F"),  py::arg("Addr")=static_cast<const Standard_Address>(NULL) )
+    // custom constructors
     // methods
         .def("Face",
              (const TopoDS_Face & (TopOpeBRepBuild_WireEdgeSet::*)() const) static_cast<const TopoDS_Face & (TopOpeBRepBuild_WireEdgeSet::*)() const>(&TopOpeBRepBuild_WireEdgeSet::Face),
@@ -2253,13 +2324,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
                     []( const TopoDS_Edge & E,const TopoDS_Face & F ){ Standard_Boolean  uiso; Standard_Boolean  viso; TopOpeBRepBuild_WireEdgeSet::IsUVISO(E,F,uiso,viso); return std::make_tuple(uiso,viso); },
                     R"#(None)#"  , py::arg("E"),  py::arg("F"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_EdgeBuilder , shared_ptr<TopOpeBRepBuild_EdgeBuilder>  , TopOpeBRepBuild_Area1dBuilder >>(m.attr("TopOpeBRepBuild_EdgeBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_PaveSet &,TopOpeBRepBuild_PaveClassifier &,const Standard_Boolean >()  , py::arg("LS"),  py::arg("LC"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitEdgeBuilder",
              (void (TopOpeBRepBuild_EdgeBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_EdgeBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_EdgeBuilder::InitEdgeBuilder),
@@ -2292,13 +2365,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_FaceAreaBuilder , shared_ptr<TopOpeBRepBuild_FaceAreaBuilder>  , TopOpeBRepBuild_Area2dBuilder >>(m.attr("TopOpeBRepBuild_FaceAreaBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_LoopSet &,TopOpeBRepBuild_LoopClassifier &,const Standard_Boolean >()  , py::arg("LS"),  py::arg("LC"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitFaceAreaBuilder",
              (void (TopOpeBRepBuild_FaceAreaBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_FaceAreaBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_FaceAreaBuilder::InitFaceAreaBuilder),
@@ -2307,12 +2382,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_ShellFaceClassifier , shared_ptr<TopOpeBRepBuild_ShellFaceClassifier>  , TopOpeBRepBuild_CompositeClassifier >>(m.attr("TopOpeBRepBuild_ShellFaceClassifier"))
+    // constructors
         .def(py::init< const TopOpeBRepBuild_BlockBuilder & >()  , py::arg("BB") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TopOpeBRepBuild_ShellFaceClassifier::*)() ) static_cast<void (TopOpeBRepBuild_ShellFaceClassifier::*)() >(&TopOpeBRepBuild_ShellFaceClassifier::Clear),
@@ -2339,13 +2416,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_SolidAreaBuilder , shared_ptr<TopOpeBRepBuild_SolidAreaBuilder>  , TopOpeBRepBuild_Area3dBuilder >>(m.attr("TopOpeBRepBuild_SolidAreaBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< TopOpeBRepBuild_LoopSet &,TopOpeBRepBuild_LoopClassifier &,const Standard_Boolean >()  , py::arg("LS"),  py::arg("LC"),  py::arg("ForceClass")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitSolidAreaBuilder",
              (void (TopOpeBRepBuild_SolidAreaBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepBuild_SolidAreaBuilder::*)( TopOpeBRepBuild_LoopSet & ,  TopOpeBRepBuild_LoopClassifier & ,  const Standard_Boolean  ) >(&TopOpeBRepBuild_SolidAreaBuilder::InitSolidAreaBuilder),
@@ -2354,12 +2433,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepBuild_WireEdgeClassifier , shared_ptr<TopOpeBRepBuild_WireEdgeClassifier>  , TopOpeBRepBuild_CompositeClassifier >>(m.attr("TopOpeBRepBuild_WireEdgeClassifier"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopOpeBRepBuild_BlockBuilder & >()  , py::arg("F"),  py::arg("BB") )
+    // custom constructors
     // methods
         .def("Compare",
              (TopAbs_State (TopOpeBRepBuild_WireEdgeClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) ) static_cast<TopAbs_State (TopOpeBRepBuild_WireEdgeClassifier::*)( const opencascade::handle<TopOpeBRepBuild_Loop> & ,  const opencascade::handle<TopOpeBRepBuild_Loop> &  ) >(&TopOpeBRepBuild_WireEdgeClassifier::Compare),
@@ -2389,75 +2470,75 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepBuild"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfPave.hxx
+// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfLoop.hxx
 // ./opencascade/TopOpeBRepBuild_WireEdgeClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_GTopo.hxx
-// ./opencascade/TopOpeBRepBuild_ShapeListOfShape.hxx
-// ./opencascade/TopOpeBRepBuild_PaveSet.hxx
-// ./opencascade/TopOpeBRepBuild_Area2dBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_Tools.hxx
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfShapeListOfShape.hxx
-// ./opencascade/TopOpeBRepBuild_Builder.hxx
-// ./opencascade/TopOpeBRepBuild_FuseFace.hxx
-// ./opencascade/TopOpeBRepBuild_Pave.hxx
-// ./opencascade/TopOpeBRepBuild_define.hxx
+// ./opencascade/TopOpeBRepBuild_BuilderON.hxx
 // ./opencascade/TopOpeBRepBuild_CompositeClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
-// ./opencascade/TopOpeBRepBuild_FaceBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_GIter.hxx
+// ./opencascade/TopOpeBRepBuild_GTool.hxx
+// ./opencascade/TopOpeBRepBuild_Builder.hxx
+// ./opencascade/TopOpeBRepBuild_WireEdgeSet.hxx
+// ./opencascade/TopOpeBRepBuild_LoopSet.hxx
 // ./opencascade/TopOpeBRepBuild_Area1dBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_Builder1.hxx
-// ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
-// ./opencascade/TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo.hxx
-// ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
+// ./opencascade/TopOpeBRepBuild_PGTopo.hxx
+// ./opencascade/TopOpeBRepBuild_PBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfListOfLoop.hxx
+// ./opencascade/TopOpeBRepBuild_FaceBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_FuseFace.hxx
+// ./opencascade/TopOpeBRepBuild_BlockBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_FaceAreaBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_Area2dBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_ShapeListOfShape.hxx
+// ./opencascade/TopOpeBRepBuild_ShellFaceClassifier.hxx
+// ./opencascade/TopOpeBRepBuild_Loop.hxx
+// ./opencascade/TopOpeBRepBuild_ShapeSet.hxx
 // ./opencascade/TopOpeBRepBuild_kpresu.hxx
-// ./opencascade/TopOpeBRepBuild_SolidBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_Pave.hxx
+// ./opencascade/TopOpeBRepBuild_PaveSet.hxx
+// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
+// ./opencascade/TopOpeBRepBuild_ListOfListOfLoop.hxx
+// ./opencascade/TopOpeBRepBuild_define.hxx
+// ./opencascade/TopOpeBRepBuild_ShellFaceSet.hxx
+// ./opencascade/TopOpeBRepBuild_BlockIterator.hxx
+// ./opencascade/TopOpeBRepBuild_PaveClassifier.hxx
+// ./opencascade/TopOpeBRepBuild_EdgeBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
+// ./opencascade/TopOpeBRepBuild_GTopo.hxx
+// ./opencascade/TopOpeBRepBuild_PWireEdgeSet.hxx
+// ./opencascade/TopOpeBRepBuild_ShellToSolid.hxx
+// ./opencascade/TopOpeBRepBuild_ListOfPave.hxx
+// ./opencascade/TopOpeBRepBuild_GIter.hxx
+// ./opencascade/TopOpeBRepBuild_DataMapIteratorOfDataMapOfShapeListOfShapeListOfShape.hxx
+// ./opencascade/TopOpeBRepBuild_HBuilder.hxx
 // ./opencascade/TopOpeBRepBuild_LoopEnum.hxx
 // ./opencascade/TopOpeBRepBuild_LoopClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_BlockBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_Area3dBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_ShellToSolid.hxx
-// ./opencascade/TopOpeBRepBuild_SolidAreaBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_LoopSet.hxx
-// ./opencascade/TopOpeBRepBuild_PaveClassifier.hxx
-// ./opencascade/TopOpeBRepBuild_PWireEdgeSet.hxx
-// ./opencascade/TopOpeBRepBuild_ListOfLoop.hxx
-// ./opencascade/TopOpeBRepBuild_DataMapIteratorOfDataMapOfShapeListOfShapeListOfShape.hxx
-// ./opencascade/TopOpeBRepBuild_GTool.hxx
-// ./opencascade/TopOpeBRepBuild_PBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_FaceAreaBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_EdgeBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfPave.hxx
-// ./opencascade/TopOpeBRepBuild_BlockIterator.hxx
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfLoop.hxx
-// ./opencascade/TopOpeBRepBuild_ListOfShapeListOfShape.hxx
-// ./opencascade/TopOpeBRepBuild_PGTopo.hxx
-// ./opencascade/TopOpeBRepBuild_ShellFaceSet.hxx
-// ./opencascade/TopOpeBRepBuild_AreaBuilder.hxx
-// ./opencascade/TopOpeBRepBuild_ShapeSet.hxx
-// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfListOfLoop.hxx
-// ./opencascade/TopOpeBRepBuild_WireEdgeSet.hxx
-// ./opencascade/TopOpeBRepBuild_CorrectFace2d.hxx
 // ./opencascade/TopOpeBRepBuild_Tools2d.hxx
-// ./opencascade/TopOpeBRepBuild_Loop.hxx
+// ./opencascade/TopOpeBRepBuild_CorrectFace2d.hxx
+// ./opencascade/TopOpeBRepBuild_ListIteratorOfListOfShapeListOfShape.hxx
+// ./opencascade/TopOpeBRepBuild_Builder1.hxx
+// ./opencascade/TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo.hxx
 // ./opencascade/TopOpeBRepBuild_VertexInfo.hxx
-// ./opencascade/TopOpeBRepBuild_HBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_AreaBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_SolidAreaBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_Tools.hxx
 // ./opencascade/TopOpeBRepBuild_WireToFace.hxx
-// ./opencascade/TopOpeBRepBuild_BuilderON.hxx
-// ./opencascade/TopOpeBRepBuild_ShellFaceClassifier.hxx
+// ./opencascade/TopOpeBRepBuild_Area3dBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_SolidBuilder.hxx
+// ./opencascade/TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape.hxx
 
 // operators
 
 // register typdefs
+    register_template_NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop> >(m,"TopOpeBRepBuild_ListOfLoop");  
     register_template_NCollection_List<TopOpeBRepBuild_ListOfLoop>(m,"TopOpeBRepBuild_ListOfListOfLoop");  
+    register_template_NCollection_List<TopOpeBRepBuild_ShapeListOfShape>(m,"TopOpeBRepBuild_ListOfShapeListOfShape");  
     register_template_NCollection_List<opencascade::handle<TopOpeBRepBuild_Pave> >(m,"TopOpeBRepBuild_ListOfPave");  
     register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepBuild_VertexInfo, TopTools_ShapeMapHasher>(m,"TopOpeBRepBuild_IndexedDataMapOfShapeVertexInfo");  
     register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepBuild_ListOfShapeListOfShape, TopTools_ShapeMapHasher>(m,"TopOpeBRepBuild_DataMapOfShapeListOfShapeListOfShape");  
-    register_template_NCollection_List<opencascade::handle<TopOpeBRepBuild_Loop> >(m,"TopOpeBRepBuild_ListOfLoop");  
-    register_template_NCollection_List<TopOpeBRepBuild_ShapeListOfShape>(m,"TopOpeBRepBuild_ListOfShapeListOfShape");  
 
 
 // exceptions

@@ -13,21 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Resource_Manager.hxx>
 #include <TDocStd_Document.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TDocStd_Document.hxx>
-#include <TDocStd_XLinkRoot.hxx>
-#include <TDocStd_XLinkIterator.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_Reference.hxx>
 #include <Standard_GUID.hxx>
-#include <TDF_AttributeDelta.hxx>
 #include <TDF_RelocationTable.hxx>
-#include <TDocStd_XLinkIterator.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Data.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDocStd_XLink.hxx>
+#include <TDocStd_CompoundDelta.hxx>
 #include <TDocStd_Application.hxx>
 #include <TDocStd_Document.hxx>
 #include <TDocStd_Context.hxx>
@@ -41,18 +31,28 @@ namespace py = pybind11;
 #include <TDocStd_CompoundDelta.hxx>
 #include <TDocStd_ApplicationDelta.hxx>
 #include <TDocStd_MultiTransactionManager.hxx>
-#include <TDocStd_CompoundDelta.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_RelocationTable.hxx>
+#include <TDocStd_XLink.hxx>
+#include <Standard_NoMoreObject.hxx>
 #include <TDocStd_Document.hxx>
+#include <TDocStd_Document.hxx>
+#include <TDocStd_XLinkRoot.hxx>
+#include <TDocStd_XLinkIterator.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_Reference.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_AttributeDelta.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDocStd_XLinkIterator.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Data.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_Label.hxx>
-#include <Resource_Manager.hxx>
 #include <TDocStd_Document.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Data.hxx>
+#include <TDF_RelocationTable.hxx>
 
 // module includes
 #include <TDocStd.hxx>
@@ -78,11 +78,11 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/TDocStd_SequenceOfApplicationDelta.hxx
 #include "NCollection.hxx"
+// ./opencascade/TDocStd_LabelIDMapDataMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDocStd_LabelIDMapDataMap.hxx
+#include "NCollection.hxx"
 // ./opencascade/TDocStd_SequenceOfDocument.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDocStd_LabelIDMapDataMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDocStd_LabelIDMapDataMap.hxx
 #include "NCollection.hxx"
 
 
@@ -104,9 +104,12 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TDocStd , shared_ptr<TDocStd>>(m,"TDocStd");
 
     static_cast<py::class_<TDocStd , shared_ptr<TDocStd>  >>(m.attr("TDocStd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -115,19 +118,21 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(specific GUID of this package ============================= Appends to <anIDList> the list of the attributes IDs of this package. CAUTION: <anIDList> is NOT cleared before use.)#"  , py::arg("anIDList"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_Application ,opencascade::handle<TDocStd_Application>  , CDF_Application >>(m.attr("TDocStd_Application"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsDriverLoaded",
              (Standard_Boolean (TDocStd_Application::*)() const) static_cast<Standard_Boolean (TDocStd_Application::*)() const>(&TDocStd_Application::IsDriverLoaded),
              R"#(Check if meta data driver was successfully loaded by the application constructor)#" )
         .def("MessageDriver",
              (opencascade::handle<Message_Messenger> (TDocStd_Application::*)() ) static_cast<opencascade::handle<Message_Messenger> (TDocStd_Application::*)() >(&TDocStd_Application::MessageDriver),
-             R"#(Redefines message driver, by default outputs to cout.)#" )
+             R"#(Redefines message driver, by default outputs to std::cout.)#" )
         .def("Resources",
              (opencascade::handle<Resource_Manager> (TDocStd_Application::*)() ) static_cast<opencascade::handle<Resource_Manager> (TDocStd_Application::*)() >(&TDocStd_Application::Resources),
              R"#(Returns resource manager defining supported persistent formats.)#" )
@@ -160,7 +165,7 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
              R"#(Close the given document. the document is not any more handled by the applicative session.)#"  , py::arg("aDoc"))
         .def("IsInSession",
              (Standard_Integer (TDocStd_Application::*)( const TCollection_ExtendedString &  ) const) static_cast<Standard_Integer (TDocStd_Application::*)( const TCollection_ExtendedString &  ) const>(&TDocStd_Application::IsInSession),
-             R"#(Returns an index for the document found in the path path in this applicative session. If the returned value is 0, the document is not present in the applicative session. This method can be used for the interactive part of an application. For instance, on a call to Open, the document to be opened may already be in memory. IsInSession checks to see if this is the case. Open can be made to depend on the value of the index returned: if IsInSession returns 0, the document is opened; if it returns another value, a message is displayed asking the user if he wants to override the version of the document in memory. Example: Standard_Integer insession = A->IsInSession(aDoc); if (insession > 0) { cout << "document " << insession << " is already in session" << endl; return 0; })#"  , py::arg("path"))
+             R"#(Returns an index for the document found in the path path in this applicative session. If the returned value is 0, the document is not present in the applicative session. This method can be used for the interactive part of an application. For instance, on a call to Open, the document to be opened may already be in memory. IsInSession checks to see if this is the case. Open can be made to depend on the value of the index returned: if IsInSession returns 0, the document is opened; if it returns another value, a message is displayed asking the user if he wants to override the version of the document in memory. Example: Standard_Integer insession = A->IsInSession(aDoc); if (insession > 0) { std::cout << "document " << insession << " is already in session" << std::endl; return 0; })#"  , py::arg("path"))
         .def("Open",
              (PCDM_ReaderStatus (TDocStd_Application::*)( const TCollection_ExtendedString & ,  opencascade::handle<TDocStd_Document> &  ) ) static_cast<PCDM_ReaderStatus (TDocStd_Application::*)( const TCollection_ExtendedString & ,  opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_Application::Open),
              R"#(Retrieves the document aDoc stored under the name aName in the directory directory. In order not to override a version of aDoc which is already in memory, this method can be made to depend on the value returned by IsInSession.)#"  , py::arg("path"),  py::arg("aDoc"))
@@ -207,12 +212,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_ApplicationDelta ,opencascade::handle<TDocStd_ApplicationDelta>  , Standard_Transient >>(m.attr("TDocStd_ApplicationDelta"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GetDocuments",
              (TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() ) static_cast<TDocStd_SequenceOfDocument & (TDocStd_ApplicationDelta::*)() >(&TDocStd_ApplicationDelta::GetDocuments),
@@ -248,12 +255,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_CompoundDelta ,opencascade::handle<TDocStd_CompoundDelta>  , TDF_Delta >>(m.attr("TDocStd_CompoundDelta"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDocStd_CompoundDelta::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDocStd_CompoundDelta::*)() const>(&TDocStd_CompoundDelta::DynamicType),
@@ -268,12 +277,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_Context , shared_ptr<TDocStd_Context>  >>(m.attr("TDocStd_Context"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetModifiedReferences",
              (void (TDocStd_Context::*)( const Standard_Boolean  ) ) static_cast<void (TDocStd_Context::*)( const Standard_Boolean  ) >(&TDocStd_Context::SetModifiedReferences),
@@ -285,12 +296,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_Document ,opencascade::handle<TDocStd_Document>  , CDM_Document >>(m.attr("TDocStd_Document"))
+    // constructors
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("astorageformat") )
+    // custom constructors
     // methods
         .def("IsSaved",
              (Standard_Boolean (TDocStd_Document::*)() const) static_cast<Standard_Boolean (TDocStd_Document::*)() const>(&TDocStd_Document::IsSaved),
@@ -473,12 +486,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_Modified ,opencascade::handle<TDocStd_Modified>  , TDF_Attribute >>(m.attr("TDocStd_Modified"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TDocStd_Modified::*)() const) static_cast<Standard_Boolean (TDocStd_Modified::*)() const>(&TDocStd_Modified::IsEmpty),
@@ -544,12 +559,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_MultiTransactionManager ,opencascade::handle<TDocStd_MultiTransactionManager>  , Standard_Transient >>(m.attr("TDocStd_MultiTransactionManager"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetUndoLimit",
              (void (TDocStd_MultiTransactionManager::*)( const Standard_Integer  ) ) static_cast<void (TDocStd_MultiTransactionManager::*)( const Standard_Integer  ) >(&TDocStd_MultiTransactionManager::SetUndoLimit),
@@ -651,12 +668,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_Owner ,opencascade::handle<TDocStd_Owner>  , TDF_Attribute >>(m.attr("TDocStd_Owner"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetDocument",
              (void (TDocStd_Owner::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_Owner::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_Owner::SetDocument),
@@ -701,12 +720,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_PathParser , shared_ptr<TDocStd_PathParser>  >>(m.attr("TDocStd_PathParser"))
+    // constructors
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("path") )
+    // custom constructors
     // methods
         .def("Parse",
              (void (TDocStd_PathParser::*)() ) static_cast<void (TDocStd_PathParser::*)() >(&TDocStd_PathParser::Parse),
@@ -730,12 +751,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_XLink ,opencascade::handle<TDocStd_XLink>  , TDF_Attribute >>(m.attr("TDocStd_XLink"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (opencascade::handle<TDF_Reference> (TDocStd_XLink::*)() ) static_cast<opencascade::handle<TDF_Reference> (TDocStd_XLink::*)() >(&TDocStd_XLink::Update),
@@ -804,13 +827,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_XLinkIterator , shared_ptr<TDocStd_XLinkIterator>  >>(m.attr("TDocStd_XLinkIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TDocStd_Document> & >()  , py::arg("D") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (TDocStd_XLinkIterator::*)( const opencascade::handle<TDocStd_Document> &  ) ) static_cast<void (TDocStd_XLinkIterator::*)( const opencascade::handle<TDocStd_Document> &  ) >(&TDocStd_XLinkIterator::Initialize),
@@ -834,11 +859,13 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_XLinkRoot ,opencascade::handle<TDocStd_XLinkRoot>  , TDF_Attribute >>(m.attr("TDocStd_XLinkRoot"))
+    // constructors
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDocStd_XLinkRoot::*)() const) static_cast<const Standard_GUID & (TDocStd_XLinkRoot::*)() const>(&TDocStd_XLinkRoot::ID),
@@ -877,12 +904,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDocStd_XLinkTool , shared_ptr<TDocStd_XLinkTool>  >>(m.attr("TDocStd_XLinkTool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CopyWithLink",
              (void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TDocStd_XLinkTool::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TDocStd_XLinkTool::CopyWithLink),
@@ -906,36 +935,36 @@ py::module m = static_cast<py::module>(main_module.attr("TDocStd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TDocStd_CompoundDelta.hxx
-// ./opencascade/TDocStd_MultiTransactionManager.hxx
-// ./opencascade/TDocStd_XLinkIterator.hxx
-// ./opencascade/TDocStd_XLink.hxx
-// ./opencascade/TDocStd_PathParser.hxx
-// ./opencascade/TDocStd_XLinkRoot.hxx
-// ./opencascade/TDocStd_XLinkPtr.hxx
-// ./opencascade/TDocStd_SequenceOfApplicationDelta.hxx
-// ./opencascade/TDocStd.hxx
-// ./opencascade/TDocStd_SequenceOfDocument.hxx
-// ./opencascade/TDocStd_Document.hxx
-// ./opencascade/TDocStd_Modified.hxx
-// ./opencascade/TDocStd_ApplicationDelta.hxx
-// ./opencascade/TDocStd_Context.hxx
-// ./opencascade/TDocStd_DataMapIteratorOfLabelIDMapDataMap.hxx
-// ./opencascade/TDocStd_Owner.hxx
-// ./opencascade/TDocStd_XLinkTool.hxx
-// ./opencascade/TDocStd_LabelIDMapDataMap.hxx
 // ./opencascade/TDocStd_Application.hxx
+// ./opencascade/TDocStd_SequenceOfApplicationDelta.hxx
+// ./opencascade/TDocStd_Modified.hxx
+// ./opencascade/TDocStd_Document.hxx
+// ./opencascade/TDocStd_PathParser.hxx
+// ./opencascade/TDocStd.hxx
+// ./opencascade/TDocStd_XLinkPtr.hxx
+// ./opencascade/TDocStd_XLinkIterator.hxx
+// ./opencascade/TDocStd_ApplicationDelta.hxx
+// ./opencascade/TDocStd_DataMapIteratorOfLabelIDMapDataMap.hxx
+// ./opencascade/TDocStd_Context.hxx
+// ./opencascade/TDocStd_LabelIDMapDataMap.hxx
+// ./opencascade/TDocStd_CompoundDelta.hxx
+// ./opencascade/TDocStd_XLink.hxx
+// ./opencascade/TDocStd_XLinkRoot.hxx
+// ./opencascade/TDocStd_XLinkTool.hxx
+// ./opencascade/TDocStd_MultiTransactionManager.hxx
+// ./opencascade/TDocStd_SequenceOfDocument.hxx
+// ./opencascade/TDocStd_Owner.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_Sequence<opencascade::handle<TDocStd_ApplicationDelta> >(m,"TDocStd_SequenceOfApplicationDelta");  
-    register_template_NCollection_Sequence<opencascade::handle<TDocStd_Document> >(m,"TDocStd_SequenceOfDocument");  
     register_template_NCollection_DataMap<TDF_Label, TDF_IDMap, TDF_LabelMapHasher>(m,"TDocStd_LabelIDMapDataMap");  
+    register_template_NCollection_Sequence<opencascade::handle<TDocStd_Document> >(m,"TDocStd_SequenceOfDocument");  
 
 
 // exceptions

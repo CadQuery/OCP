@@ -13,129 +13,27 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pln.hxx>
 #include <Geom_Surface.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Elips.hxx>
-#include <Geom_OffsetCurve.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <Prs3d_DimensionAspect.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pln.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <DsgPrs_EllipseRadiusPresentation.hxx>
-#include <DsgPrs_LengthPresentation.hxx>
-#include <DsgPrs_RadiusPresentation.hxx>
-#include <DsgPrs_DiameterPresentation.hxx>
-#include <DsgPrs_FilletRadiusPresentation.hxx>
-#include <DsgPrs_AnglePresentation.hxx>
-#include <DsgPrs_Chamf2dPresentation.hxx>
-#include <DsgPrs_ParalPresentation.hxx>
-#include <DsgPrs_PerpenPresentation.hxx>
-#include <DsgPrs_SymmetricPresentation.hxx>
-#include <DsgPrs_MidPointPresentation.hxx>
-#include <DsgPrs_TangentPresentation.hxx>
-#include <DsgPrs_ConcentricPresentation.hxx>
-#include <DsgPrs_FixPresentation.hxx>
-#include <DsgPrs_IdenticPresentation.hxx>
-#include <DsgPrs_EqualRadiusPresentation.hxx>
-#include <DsgPrs_EqualDistancePresentation.hxx>
-#include <DsgPrs_SymbPresentation.hxx>
-#include <DsgPrs_ShapeDirPresentation.hxx>
-#include <DsgPrs_OffsetPresentation.hxx>
-#include <DsgPrs_XYZAxisPresentation.hxx>
-#include <DsgPrs_XYZPlanePresentation.hxx>
-#include <DsgPrs_ShadedPlanePresentation.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Circ.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Elips.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
 #include <Geom_TrimmedCurve.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
 #include <gp_Circ.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
+#include <gp_Elips.hxx>
 #include <gp_Circ.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Ax1.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Lin.hxx>
 #include <gp_Circ.hxx>
-#include <Prs3d_Presentation.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Circ.hxx>
 #include <Prs3d_LineAspect.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Pnt.hxx>
 #include <Prs3d_ArrowAspect.hxx>
 #include <Prs3d_TextAspect.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <Geom_Plane.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Circ.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Circ.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <Prs3d_DimensionAspect.hxx>
 #include <gp_Elips.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
+#include <Geom_OffsetCurve.hxx>
+#include <TopoDS_Shape.hxx>
 #include <Geom_Plane.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
+#include <gp_Circ.hxx>
+#include <Geom_Plane.hxx>
 
 // module includes
 #include <DsgPrs.hxx>
@@ -184,9 +82,12 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
 
 // classes
 
+    // default constructor
     register_default_constructor<DsgPrs , shared_ptr<DsgPrs>>(m,"DsgPrs");
 
     static_cast<py::class_<DsgPrs , shared_ptr<DsgPrs>  >>(m.attr("DsgPrs"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -213,12 +114,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     []( const Standard_Real ArrowLength,const Standard_Real Value,const gp_Pnt & Position,const gp_Dir & NormalDir,const gp_Pnt & FirstPoint,const gp_Pnt & SecondPoint,const gp_Pnt & Center,const gp_Pnt & BasePnt,const Standard_Boolean drawRevers,gp_Circ & FilletCirc,gp_Pnt & EndOfArrow,gp_Dir & DirOfArrow,gp_Pnt & DrawPosition ){ Standard_Boolean  SpecCase; Standard_Real  FirstParCirc; Standard_Real  LastParCirc; DsgPrs::ComputeFilletRadiusPresentation(ArrowLength,Value,Position,NormalDir,FirstPoint,SecondPoint,Center,BasePnt,drawRevers,SpecCase,FilletCirc,FirstParCirc,LastParCirc,EndOfArrow,DirOfArrow,DrawPosition); return std::make_tuple(SpecCase,FirstParCirc,LastParCirc); },
                     R"#(computes Geometry for fillet radius presentation; special case flag SpecCase equal Standard_True if radius of fillet circle = 0 or if anngle between Vec1(Center, FirstPoint) and Vec2(Center,SecondPoint) equal 0 or PI)#"  , py::arg("ArrowLength"),  py::arg("Value"),  py::arg("Position"),  py::arg("NormalDir"),  py::arg("FirstPoint"),  py::arg("SecondPoint"),  py::arg("Center"),  py::arg("BasePnt"),  py::arg("drawRevers"),  py::arg("FilletCirc"),  py::arg("EndOfArrow"),  py::arg("DirOfArrow"),  py::arg("DrawPosition"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_AnglePresentation , shared_ptr<DsgPrs_AnglePresentation>>(m,"DsgPrs_AnglePresentation");
 
     static_cast<py::class_<DsgPrs_AnglePresentation , shared_ptr<DsgPrs_AnglePresentation>  >>(m.attr("DsgPrs_AnglePresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -245,12 +149,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(simple representation of a poor lonesome angle dimension Draw a line from <theCenter> to <AttachmentPoint1>, then operates a rotation around the perpmay add one or two Arrows according to <ArrowSide> value. The attributes (color,arrowsize,...) are driven by the Drawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("theval"),  py::arg("theCenter"),  py::arg("AttachmentPoint1"),  py::arg("theAxe"),  py::arg("ArrowSide"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_Chamf2dPresentation , shared_ptr<DsgPrs_Chamf2dPresentation>>(m,"DsgPrs_Chamf2dPresentation");
 
     static_cast<py::class_<DsgPrs_Chamf2dPresentation , shared_ptr<DsgPrs_Chamf2dPresentation>  >>(m.attr("DsgPrs_Chamf2dPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -262,12 +169,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Defines the display of texts, symbols and icons used to present 2D chamfers. These include the text aText, the point of attachment, aPntAttach and the end point aPntEnd. These arguments are added to the presentation object aPresentation. Their display attributes are defined by the attribute manager aDrawer. The arrow at the point of attachment has a display defined by a value of the enumeration DsgPrs_Arrowside.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aPntAttach"),  py::arg("aPntEnd"),  py::arg("aText"),  py::arg("ArrowSide"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_ConcentricPresentation , shared_ptr<DsgPrs_ConcentricPresentation>>(m,"DsgPrs_ConcentricPresentation");
 
     static_cast<py::class_<DsgPrs_ConcentricPresentation , shared_ptr<DsgPrs_ConcentricPresentation>  >>(m.attr("DsgPrs_ConcentricPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -276,12 +186,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Defines the display of elements showing relations of concentricity between shapes. These include the center aCenter, the radius aRadius, the direction aNorm and the point aPoint. These arguments are added to the presentation object aPresentation. Their display attributes are defined by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aCenter"),  py::arg("aRadius"),  py::arg("aNorm"),  py::arg("aPoint"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_DatumPrs , shared_ptr<DsgPrs_DatumPrs>>(m,"DsgPrs_DatumPrs");
 
     static_cast<py::class_<DsgPrs_DatumPrs , shared_ptr<DsgPrs_DatumPrs>  , Prs3d_Root >>(m.attr("DsgPrs_DatumPrs"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -290,12 +203,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Draw XYZ axes at specified location with attributes defined by the attribute manager theDrawer: - Prs3d_DatumAspect defines arrow, line and lenght trihedron axis parameters, - Prs3d_TextAspect defines displayed text. The thihedron origin and axis directions are defined by theDatum coordinate system. DsgPrs_XYZAxisPresentation framework is used to create graphical primitives for each axis. Axes are marked with "X", "Y", "Z" text.)#"  , py::arg("thePresentation"),  py::arg("theDatum"),  py::arg("theDrawer"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_DiameterPresentation , shared_ptr<DsgPrs_DiameterPresentation>>(m,"DsgPrs_DiameterPresentation");
 
     static_cast<py::class_<DsgPrs_DiameterPresentation , shared_ptr<DsgPrs_DiameterPresentation>  >>(m.attr("DsgPrs_DiameterPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -307,12 +223,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Draws the diameter of the arc anArc displayed in the presentation aPresentation and with attributes defined by the attribute manager aDrawer. The point AttachmentPoint defines the point of contact between the arc and the diameter presentation. The value of the enumeration ArrowSide controls whether arrows will be displayed at either or both ends of the length. The parameters uFirst and uLast define the first and last points of the arc. The text aText labels the diameter.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aText"),  py::arg("AttachmentPoint"),  py::arg("aCircle"),  py::arg("uFirst"),  py::arg("uLast"),  py::arg("ArrowSide"),  py::arg("IsDiamSymbol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_EllipseRadiusPresentation , shared_ptr<DsgPrs_EllipseRadiusPresentation>>(m,"DsgPrs_EllipseRadiusPresentation");
 
     static_cast<py::class_<DsgPrs_EllipseRadiusPresentation , shared_ptr<DsgPrs_EllipseRadiusPresentation>  >>(m.attr("DsgPrs_EllipseRadiusPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -327,12 +246,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(draws a Radius (Major or Minor) representation for arc of an offset curve from ellipse)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("theval"),  py::arg("aText"),  py::arg("aCurve"),  py::arg("AttachmentPoint"),  py::arg("anEndOfArrow"),  py::arg("aCenter"),  py::arg("uFirst"),  py::arg("IsInDomain"),  py::arg("IsMaxRadius"),  py::arg("ArrowSide"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_EqualDistancePresentation , shared_ptr<DsgPrs_EqualDistancePresentation>>(m,"DsgPrs_EqualDistancePresentation");
 
     static_cast<py::class_<DsgPrs_EqualDistancePresentation , shared_ptr<DsgPrs_EqualDistancePresentation>  >>(m.attr("DsgPrs_EqualDistancePresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -347,12 +269,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(is used for presentation of interval between two arcs. One of arcs can have a zero radius.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aCircle1"),  py::arg("aCircle2"),  py::arg("aPoint1"),  py::arg("aPoint2"),  py::arg("aPoint3"),  py::arg("aPoint4"),  py::arg("anArrowSide"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_EqualRadiusPresentation , shared_ptr<DsgPrs_EqualRadiusPresentation>>(m,"DsgPrs_EqualRadiusPresentation");
 
     static_cast<py::class_<DsgPrs_EqualRadiusPresentation , shared_ptr<DsgPrs_EqualRadiusPresentation>  >>(m.attr("DsgPrs_EqualRadiusPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -361,12 +286,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Adds the points FirstCenter, SecondCenter, FirstPoint, SecondPoint, and the plane Plane to the presentation object aPresentation. The display attributes of these elements is defined by the attribute manager aDrawer. FirstCenter and SecondCenter are the centers of the first and second shapes respectively, and FirstPoint and SecondPoint are the attachment points of the radii to arcs.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("FirstCenter"),  py::arg("SecondCenter"),  py::arg("FirstPoint"),  py::arg("SecondPoint"),  py::arg("Plane"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_FilletRadiusPresentation , shared_ptr<DsgPrs_FilletRadiusPresentation>>(m,"DsgPrs_FilletRadiusPresentation");
 
     static_cast<py::class_<DsgPrs_FilletRadiusPresentation , shared_ptr<DsgPrs_FilletRadiusPresentation>  >>(m.attr("DsgPrs_FilletRadiusPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -375,12 +303,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     []( const opencascade::handle<Prs3d_Presentation> & aPresentation,const opencascade::handle<Prs3d_Drawer> & aDrawer,const Standard_Real thevalue,const TCollection_ExtendedString & aText,const gp_Pnt & aPosition,const gp_Dir & aNormalDir,const gp_Pnt & aBasePnt,const gp_Pnt & aFirstPoint,const gp_Pnt & aSecondPoint,const gp_Pnt & aCenter,const DsgPrs_ArrowSide ArrowPrs,const Standard_Boolean drawRevers,gp_Pnt & DrawPosition,gp_Pnt & EndOfArrow,opencascade::handle<Geom_TrimmedCurve> & TrimCurve ){ Standard_Boolean  HasCircle; DsgPrs_FilletRadiusPresentation::Add(aPresentation,aDrawer,thevalue,aText,aPosition,aNormalDir,aBasePnt,aFirstPoint,aSecondPoint,aCenter,ArrowPrs,drawRevers,DrawPosition,EndOfArrow,TrimCurve,HasCircle); return std::make_tuple(HasCircle); },
                     R"#(Adds a display of the radius of a fillet to the presentation aPresentation. The display ttributes defined by the attribute manager aDrawer. the value specifies the length of the radius.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("thevalue"),  py::arg("aText"),  py::arg("aPosition"),  py::arg("aNormalDir"),  py::arg("aBasePnt"),  py::arg("aFirstPoint"),  py::arg("aSecondPoint"),  py::arg("aCenter"),  py::arg("ArrowPrs"),  py::arg("drawRevers"),  py::arg("DrawPosition"),  py::arg("EndOfArrow"),  py::arg("TrimCurve"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_FixPresentation , shared_ptr<DsgPrs_FixPresentation>>(m,"DsgPrs_FixPresentation");
 
     static_cast<py::class_<DsgPrs_FixPresentation , shared_ptr<DsgPrs_FixPresentation>  >>(m.attr("DsgPrs_FixPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -389,12 +320,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(draws the presentation of fixed objects by drawing the 'fix' symbol at position <aPntEnd>. A binding segment is drawn between <aPntAttach> ( which belongs the the fix object) and <aPntEnd>. aSymbSize is the size of the 'fix'symbol)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aPntAttach"),  py::arg("aPntEnd"),  py::arg("aNormPln"),  py::arg("aSymbSize"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_IdenticPresentation , shared_ptr<DsgPrs_IdenticPresentation>>(m,"DsgPrs_IdenticPresentation");
 
     static_cast<py::class_<DsgPrs_IdenticPresentation , shared_ptr<DsgPrs_IdenticPresentation>  >>(m.attr("DsgPrs_IdenticPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -415,12 +349,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(draws the 'identic' presentation in the case of ellipses: draws an arc of the anEllipse between <aFAttach> and <aSAttach> and draws a segment between <aPntOffset> and <aPntOnElli>)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aText"),  py::arg("anEllipse"),  py::arg("aFAttach"),  py::arg("aSAttach"),  py::arg("aPntOffset"),  py::arg("aPntOnElli"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_LengthPresentation , shared_ptr<DsgPrs_LengthPresentation>>(m,"DsgPrs_LengthPresentation");
 
     static_cast<py::class_<DsgPrs_LengthPresentation , shared_ptr<DsgPrs_LengthPresentation>  >>(m.attr("DsgPrs_LengthPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -441,12 +378,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Draws a line segment representing a length in the display aPresentation. This segment joins the points AttachmentPoint1 and AttachmentPoint2, along the direction aDirection. The value of the enumeration ArrowSide controls whether arrows will be displayed at either or both ends of the length. The line and arrow attributes are specified by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("Pt1"),  py::arg("Pt2"),  py::arg("ArrowSide"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_MidPointPresentation , shared_ptr<DsgPrs_MidPointPresentation>>(m,"DsgPrs_MidPointPresentation");
 
     static_cast<py::class_<DsgPrs_MidPointPresentation , shared_ptr<DsgPrs_MidPointPresentation>  >>(m.attr("DsgPrs_MidPointPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -464,12 +404,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(draws the representation of a MidPoint between two entire ellipses or two elliptic arcs.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("anElips"),  py::arg("MidPoint"),  py::arg("Position"),  py::arg("AttachPoint"),  py::arg("Point1"),  py::arg("Point2"),  py::arg("first"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_OffsetPresentation , shared_ptr<DsgPrs_OffsetPresentation>>(m,"DsgPrs_OffsetPresentation");
 
     static_cast<py::class_<DsgPrs_OffsetPresentation , shared_ptr<DsgPrs_OffsetPresentation>  >>(m.attr("DsgPrs_OffsetPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -481,12 +424,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(draws the representation of axes alignement Constraint between the point AttachmentPoint1 and the point AttachmentPoint2, along direction aDirection, using the offset point OffsetPoint.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aText"),  py::arg("AttachmentPoint1"),  py::arg("AttachmentPoint2"),  py::arg("aDirection"),  py::arg("aDirection2"),  py::arg("OffsetPoint"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_ParalPresentation , shared_ptr<DsgPrs_ParalPresentation>>(m,"DsgPrs_ParalPresentation");
 
     static_cast<py::class_<DsgPrs_ParalPresentation , shared_ptr<DsgPrs_ParalPresentation>  >>(m.attr("DsgPrs_ParalPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -498,12 +444,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Defines the display of elements showing relations of parallelism between shapes. These include the two points of attachment AttachmentPoint1 and AttachmentPoint1, the direction aDirection, the offset point OffsetPoint and the text aText. These arguments are added to the presentation object aPresentation. Their display attributes are defined by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aText"),  py::arg("AttachmentPoint1"),  py::arg("AttachmentPoint2"),  py::arg("aDirection"),  py::arg("OffsetPoint"),  py::arg("ArrowSide"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_PerpenPresentation , shared_ptr<DsgPrs_PerpenPresentation>>(m,"DsgPrs_PerpenPresentation");
 
     static_cast<py::class_<DsgPrs_PerpenPresentation , shared_ptr<DsgPrs_PerpenPresentation>  >>(m.attr("DsgPrs_PerpenPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -512,12 +461,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Defines the display of elements showing perpendicular constraints between shapes. These include the two axis points pAx1 and pAx2, the two points pnt1 and pnt2, the offset point OffsetPoint and the two Booleans intOut1} and intOut2{. These arguments are added to the presentation object aPresentation. Their display attributes are defined by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("pAx1"),  py::arg("pAx2"),  py::arg("pnt1"),  py::arg("pnt2"),  py::arg("OffsetPoint"),  py::arg("intOut1"),  py::arg("intOut2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_RadiusPresentation , shared_ptr<DsgPrs_RadiusPresentation>>(m,"DsgPrs_RadiusPresentation");
 
     static_cast<py::class_<DsgPrs_RadiusPresentation , shared_ptr<DsgPrs_RadiusPresentation>  >>(m.attr("DsgPrs_RadiusPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -529,12 +481,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Adds the circle aCircle, the text aText, the points AttachmentPoint, Center and EndOfArrow to the presentation object aPresentation. The display attributes of these elements is defined by the attribute manager aDrawer. The value of the enumeration Arrowside determines the type of arrow displayed: whether there will be arrowheads at both ends or only one, for example. If the Boolean drawFromCenter is false, the arrowhead will point towards the center of aCircle. If the Boolean reverseArrow is true, the arrowhead will point away from the attachment point.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aText"),  py::arg("AttachmentPoint"),  py::arg("Center"),  py::arg("EndOfArrow"),  py::arg("ArrowSide"),  py::arg("drawFromCenter")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("reverseArrow")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_ShadedPlanePresentation , shared_ptr<DsgPrs_ShadedPlanePresentation>>(m,"DsgPrs_ShadedPlanePresentation");
 
     static_cast<py::class_<DsgPrs_ShadedPlanePresentation , shared_ptr<DsgPrs_ShadedPlanePresentation>  >>(m.attr("DsgPrs_ShadedPlanePresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -543,12 +498,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Adds the points aPt1, aPt2 and aPt3 to the presentation object, aPresentation. The display attributes of the shaded plane are defined by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aPt1"),  py::arg("aPt2"),  py::arg("aPt3"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_ShapeDirPresentation , shared_ptr<DsgPrs_ShapeDirPresentation>>(m,"DsgPrs_ShapeDirPresentation");
 
     static_cast<py::class_<DsgPrs_ShapeDirPresentation , shared_ptr<DsgPrs_ShapeDirPresentation>  >>(m.attr("DsgPrs_ShapeDirPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -557,12 +515,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Adds the shape shape and the mode mode to the presentation object prs. The display attributes of the normal are defined by the attribute manager aDrawer. mode determines whether the first or the last point of the normal is given to the presentation object. If the first point: 0; if the last point, 1.)#"  , py::arg("prs"),  py::arg("aDrawer"),  py::arg("shape"),  py::arg("mode"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_SymbPresentation , shared_ptr<DsgPrs_SymbPresentation>>(m,"DsgPrs_SymbPresentation");
 
     static_cast<py::class_<DsgPrs_SymbPresentation , shared_ptr<DsgPrs_SymbPresentation>  >>(m.attr("DsgPrs_SymbPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -571,12 +532,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Adds the text aText and the point OffsetPoint to the presentation object aPresentation. The display attributes of the shaded plane are defined by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aText"),  py::arg("OffsetPoint"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_SymmetricPresentation , shared_ptr<DsgPrs_SymmetricPresentation>>(m,"DsgPrs_SymmetricPresentation");
 
     static_cast<py::class_<DsgPrs_SymmetricPresentation , shared_ptr<DsgPrs_SymmetricPresentation>  >>(m.attr("DsgPrs_SymmetricPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -591,12 +555,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Adds the points OffsetPoint, AttachmentPoint1, AttachmentPoint2 and the axis anAxis to the presentation object aPresentation. The display attributes of the symmetry are defined by the attribute manager aDrawer. This syntax is used for display of symmetries between two vertices.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("AttachmentPoint1"),  py::arg("AttachmentPoint2"),  py::arg("aAxis"),  py::arg("OffsetPoint"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_TangentPresentation , shared_ptr<DsgPrs_TangentPresentation>>(m,"DsgPrs_TangentPresentation");
 
     static_cast<py::class_<DsgPrs_TangentPresentation , shared_ptr<DsgPrs_TangentPresentation>  >>(m.attr("DsgPrs_TangentPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -605,12 +572,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Adds the point OffsetPoint, the direction aDirection and the length aLength to the presentation object aPresentation. The display attributes of the tangent are defined by the attribute manager aDrawer.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("OffsetPoint"),  py::arg("aDirection"),  py::arg("aLength"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_XYZAxisPresentation , shared_ptr<DsgPrs_XYZAxisPresentation>>(m,"DsgPrs_XYZAxisPresentation");
 
     static_cast<py::class_<DsgPrs_XYZAxisPresentation , shared_ptr<DsgPrs_XYZAxisPresentation>  >>(m.attr("DsgPrs_XYZAxisPresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -622,12 +592,15 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(draws the presentation X ,Y ,Z axis)#"  , py::arg("aPresentation"),  py::arg("aLineAspect"),  py::arg("anArrowAspect"),  py::arg("aTextAspect"),  py::arg("aDir"),  py::arg("aVal"),  py::arg("aText"),  py::arg("aPfirst"),  py::arg("aPlast"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<DsgPrs_XYZPlanePresentation , shared_ptr<DsgPrs_XYZPlanePresentation>>(m,"DsgPrs_XYZPlanePresentation");
 
     static_cast<py::class_<DsgPrs_XYZPlanePresentation , shared_ptr<DsgPrs_XYZPlanePresentation>  >>(m.attr("DsgPrs_XYZPlanePresentation"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -636,36 +609,36 @@ py::module m = static_cast<py::module>(main_module.attr("DsgPrs"));
                     R"#(Draws each plane of a trihedron displayed in the presentation aPresentation and with attributes defined by the attribute manager aDrawer. Each triangular plane is defined by the points aPt1 aPt2 and aPt3.)#"  , py::arg("aPresentation"),  py::arg("aDrawer"),  py::arg("aPt1"),  py::arg("aPt2"),  py::arg("aPt3"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/DsgPrs_LengthPresentation.hxx
-// ./opencascade/DsgPrs_EllipseRadiusPresentation.hxx
-// ./opencascade/DsgPrs_ArrowSide.hxx
-// ./opencascade/DsgPrs_OffsetPresentation.hxx
-// ./opencascade/DsgPrs.hxx
-// ./opencascade/DsgPrs_DiameterPresentation.hxx
-// ./opencascade/DsgPrs_IdenticPresentation.hxx
 // ./opencascade/DsgPrs_PerpenPresentation.hxx
-// ./opencascade/DsgPrs_FilletRadiusPresentation.hxx
-// ./opencascade/DsgPrs_ShapeDirPresentation.hxx
-// ./opencascade/DsgPrs_RadiusPresentation.hxx
+// ./opencascade/DsgPrs_DatumPrs.hxx
 // ./opencascade/DsgPrs_ShadedPlanePresentation.hxx
-// ./opencascade/DsgPrs_AnglePresentation.hxx
-// ./opencascade/DsgPrs_SymmetricPresentation.hxx
-// ./opencascade/DsgPrs_XYZAxisPresentation.hxx
-// ./opencascade/DsgPrs_EqualDistancePresentation.hxx
-// ./opencascade/DsgPrs_MidPointPresentation.hxx
-// ./opencascade/DsgPrs_SymbPresentation.hxx
-// ./opencascade/DsgPrs_Chamf2dPresentation.hxx
-// ./opencascade/DsgPrs_XYZPlanePresentation.hxx
-// ./opencascade/DsgPrs_EqualRadiusPresentation.hxx
 // ./opencascade/DsgPrs_TangentPresentation.hxx
 // ./opencascade/DsgPrs_ConcentricPresentation.hxx
-// ./opencascade/DsgPrs_ParalPresentation.hxx
-// ./opencascade/DsgPrs_DatumPrs.hxx
+// ./opencascade/DsgPrs_Chamf2dPresentation.hxx
+// ./opencascade/DsgPrs_OffsetPresentation.hxx
+// ./opencascade/DsgPrs_FilletRadiusPresentation.hxx
+// ./opencascade/DsgPrs_ArrowSide.hxx
+// ./opencascade/DsgPrs_AnglePresentation.hxx
+// ./opencascade/DsgPrs_IdenticPresentation.hxx
+// ./opencascade/DsgPrs_RadiusPresentation.hxx
+// ./opencascade/DsgPrs_MidPointPresentation.hxx
+// ./opencascade/DsgPrs_DiameterPresentation.hxx
 // ./opencascade/DsgPrs_FixPresentation.hxx
+// ./opencascade/DsgPrs_SymmetricPresentation.hxx
+// ./opencascade/DsgPrs_XYZAxisPresentation.hxx
+// ./opencascade/DsgPrs_ParalPresentation.hxx
+// ./opencascade/DsgPrs.hxx
+// ./opencascade/DsgPrs_XYZPlanePresentation.hxx
+// ./opencascade/DsgPrs_EllipseRadiusPresentation.hxx
+// ./opencascade/DsgPrs_ShapeDirPresentation.hxx
+// ./opencascade/DsgPrs_SymbPresentation.hxx
+// ./opencascade/DsgPrs_EqualDistancePresentation.hxx
+// ./opencascade/DsgPrs_EqualRadiusPresentation.hxx
 
 // operators
 

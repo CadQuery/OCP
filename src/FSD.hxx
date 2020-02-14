@@ -17,22 +17,24 @@ namespace py = pybind11;
 #include <Storage_StreamWriteError.hxx>
 
 // module includes
-#include <FSD_BStream.hxx>
 #include <FSD_FStream.hxx>
+#include <FSD_BStream.hxx>
 #include <FSD_BinaryFile.hxx>
+#include <FSD_Base64Decoder.hxx>
+#include <FSD_File.hxx>
 #include <FSD_CmpFile.hxx>
 #include <FSD_FileHeader.hxx>
-#include <FSD_File.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/FSD_BStream.hxx
 // ./opencascade/FSD_FStream.hxx
+// ./opencascade/FSD_BStream.hxx
 // ./opencascade/FSD_BinaryFile.hxx
+// ./opencascade/FSD_Base64Decoder.hxx
+// ./opencascade/FSD_File.hxx
 // ./opencascade/FSD_CmpFile.hxx
 // ./opencascade/FSD_FileHeader.hxx
-// ./opencascade/FSD_File.hxx
 
 // user-defined post

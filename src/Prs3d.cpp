@@ -19,9 +19,7 @@ namespace py = pybind11;
 #include <Poly_Triangulation.hxx>
 #include <Poly_PolygonOnTriangulation.hxx>
 #include <Poly_Polygon3D.hxx>
-#include <Prs3d_Root.hxx>
-#include <Graphic3d_StructureManager.hxx>
-#include <Graphic3d_DataStructureManager.hxx>
+#include <TopoDS_Shape.hxx>
 #include <Prs3d_IsoAspect.hxx>
 #include <Prs3d_LineAspect.hxx>
 #include <Prs3d_TextAspect.hxx>
@@ -31,8 +29,6 @@ namespace py = pybind11;
 #include <Prs3d_ArrowAspect.hxx>
 #include <Prs3d_DatumAspect.hxx>
 #include <Prs3d_DimensionAspect.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Prs3d_Presentation.hxx>
 
 // module includes
 #include <Prs3d.hxx>
@@ -69,6 +65,7 @@ namespace py = pybind11;
 #include <Prs3d_ToolCylinder.hxx>
 #include <Prs3d_ToolDisk.hxx>
 #include <Prs3d_ToolQuadric.hxx>
+#include <Prs3d_ToolSector.hxx>
 #include <Prs3d_ToolSphere.hxx>
 #include <Prs3d_TypeOfHighlight.hxx>
 #include <Prs3d_TypeOfHLR.hxx>
@@ -84,6 +81,7 @@ namespace py = pybind11;
 #include "OCP_specific.inc"
 
 // user-defined inclusion per module
+#include <Graphic3d_StructureManager.hxx>
 
 // Module definiiton
 void register_Prs3d(py::module &main_module) {
@@ -93,9 +91,25 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
 
 
 //Python trampoline classes
+    class Py_Prs3d_BasicAspect : public Prs3d_BasicAspect{
+    public:
+        using Prs3d_BasicAspect::Prs3d_BasicAspect;
+        
+        
+        // public pure virtual
+        void DumpJson(std::ostream & theOStream,const Standard_Integer theDepth) const  override { PYBIND11_OVERLOAD_PURE(void,Prs3d_BasicAspect,DumpJson,theOStream,theDepth) };
+        
+        
+        // protected pure virtual
+        
+        
+        // private pure virtual
+        
+    };
     class Py_Prs3d_ToolQuadric : public Prs3d_ToolQuadric{
     public:
         using Prs3d_ToolQuadric::Prs3d_ToolQuadric;
+        
         
         // public pure virtual
         
@@ -111,9 +125,12 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Prs3d , shared_ptr<Prs3d>>(m,"Prs3d");
 
     static_cast<py::class_<Prs3d , shared_ptr<Prs3d>  >>(m.attr("Prs3d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -131,16 +148,20 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Add primitives into new group in presentation and clear the list of polylines.)#"  , py::arg("thePrs"),  py::arg("theAspect"),  py::arg("thePolylines"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
-    register_default_constructor<Prs3d_BasicAspect ,opencascade::handle<Prs3d_BasicAspect>>(m,"Prs3d_BasicAspect");
 
-    static_cast<py::class_<Prs3d_BasicAspect ,opencascade::handle<Prs3d_BasicAspect>  , Standard_Transient >>(m.attr("Prs3d_BasicAspect"))
+    static_cast<py::class_<Prs3d_BasicAspect ,opencascade::handle<Prs3d_BasicAspect> ,Py_Prs3d_BasicAspect , Standard_Transient >>(m.attr("Prs3d_BasicAspect"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_BasicAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_BasicAspect::*)() const>(&Prs3d_BasicAspect::DynamicType),
              R"#(None)#" )
+        .def("DumpJson",
+             (void (Prs3d_BasicAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_BasicAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_BasicAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -151,13 +172,15 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_DimensionUnits , shared_ptr<Prs3d_DimensionUnits>  >>(m.attr("Prs3d_DimensionUnits"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Prs3d_DimensionUnits & >()  , py::arg("theUnits") )
+    // custom constructors
     // methods
         .def("SetAngleUnits",
              (void (Prs3d_DimensionUnits::*)( const TCollection_AsciiString &  ) ) static_cast<void (Prs3d_DimensionUnits::*)( const TCollection_AsciiString &  ) >(&Prs3d_DimensionUnits::SetAngleUnits),
@@ -175,12 +198,14 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_Drawer ,opencascade::handle<Prs3d_Drawer>  , Graphic3d_PresentationAttributes >>(m.attr("Prs3d_Drawer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_Drawer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::DynamicType),
@@ -368,6 +393,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("HasOwnPointAspect",
              (Standard_Boolean (Prs3d_Drawer::*)() const) static_cast<Standard_Boolean (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::HasOwnPointAspect),
              R"#(Returns true if the drawer has its own attribute for point aspect that overrides the one in the link.)#" )
+        .def("SetupOwnPointAspect",
+             (Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) >(&Prs3d_Drawer::SetupOwnPointAspect),
+             R"#(Sets own point aspect. Returns FALSE if the drawer already has its own attribute for point aspect.)#"  , py::arg("theDefaults")=static_cast<const opencascade::handle<Prs3d_Drawer> &>(Handle ( Prs3d_Drawer ) ( )))
         .def("LineAspect",
              (const opencascade::handle<Prs3d_LineAspect> & (Prs3d_Drawer::*)() ) static_cast<const opencascade::handle<Prs3d_LineAspect> & (Prs3d_Drawer::*)() >(&Prs3d_Drawer::LineAspect),
              R"#(Returns settings for line aspects. These settings can be edited. The default values are: Color: Quantity_NOC_YELLOW Type of line: Aspect_TOL_SOLID Width: 1.0 These attributes are used by the following algorithms: Prs3d_Curve Prs3d_Line Prs3d_HLRShape)#" )
@@ -377,6 +405,12 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("HasOwnLineAspect",
              (Standard_Boolean (Prs3d_Drawer::*)() const) static_cast<Standard_Boolean (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::HasOwnLineAspect),
              R"#(Returns true if the drawer has its own attribute for line aspect that overrides the one in the link.)#" )
+        .def("SetOwnLineAspects",
+             (Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) >(&Prs3d_Drawer::SetOwnLineAspects),
+             R"#(Sets own line aspects. Returns FALSE if own line aspect are already set.)#"  , py::arg("theDefaults")=static_cast<const opencascade::handle<Prs3d_Drawer> &>(Handle ( Prs3d_Drawer ) ( )))
+        .def("SetOwnDatumAspects",
+             (Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) >(&Prs3d_Drawer::SetOwnDatumAspects),
+             R"#(Sets own line aspects for datums. Returns FALSE if own line for datums are already set.)#"  , py::arg("theDefaults")=static_cast<const opencascade::handle<Prs3d_Drawer> &>(Handle ( Prs3d_Drawer ) ( )))
         .def("TextAspect",
              (const opencascade::handle<Prs3d_TextAspect> & (Prs3d_Drawer::*)() ) static_cast<const opencascade::handle<Prs3d_TextAspect> & (Prs3d_Drawer::*)() >(&Prs3d_Drawer::TextAspect),
              R"#(Returns settings for text aspect. These settings can be edited. The default value is: - Color: Quantity_NOC_YELLOW)#" )
@@ -395,6 +429,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("HasOwnShadingAspect",
              (Standard_Boolean (Prs3d_Drawer::*)() const) static_cast<Standard_Boolean (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::HasOwnShadingAspect),
              R"#(Returns true if the drawer has its own attribute for shading aspect that overrides the one in the link.)#" )
+        .def("SetupOwnShadingAspect",
+             (Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) >(&Prs3d_Drawer::SetupOwnShadingAspect),
+             R"#(Sets own shading aspect. Returns FALSE if the drawer already has its own attribute for shading aspect.)#"  , py::arg("theDefaults")=static_cast<const opencascade::handle<Prs3d_Drawer> &>(Handle ( Prs3d_Drawer ) ( )))
         .def("SeenLineAspect",
              (const opencascade::handle<Prs3d_LineAspect> & (Prs3d_Drawer::*)() ) static_cast<const opencascade::handle<Prs3d_LineAspect> & (Prs3d_Drawer::*)() >(&Prs3d_Drawer::SeenLineAspect),
              R"#(Returns settings for seen line aspects. These settings can be edited. The default values are: Color: Quantity_NOC_YELLOW Type of line: Aspect_TOL_SOLID Width: 1.0)#" )
@@ -533,6 +570,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("HasOwnFaceBoundaryAspect",
              (Standard_Boolean (Prs3d_Drawer::*)() const) static_cast<Standard_Boolean (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::HasOwnFaceBoundaryAspect),
              R"#(Returns true if the drawer has its own attribute for face boundaries aspect that overrides the one in the link.)#" )
+        .def("SetupOwnFaceBoundaryAspect",
+             (Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) ) static_cast<Standard_Boolean (Prs3d_Drawer::*)( const opencascade::handle<Prs3d_Drawer> &  ) >(&Prs3d_Drawer::SetupOwnFaceBoundaryAspect),
+             R"#(Sets own face boundary aspect. Returns FALSE if the drawer already has its own attribute for face boundary aspect.)#"  , py::arg("theDefaults")=static_cast<const opencascade::handle<Prs3d_Drawer> &>(Handle ( Prs3d_Drawer ) ( )))
         .def("SetFaceBoundaryDraw",
              (void (Prs3d_Drawer::*)( const Standard_Boolean  ) ) static_cast<void (Prs3d_Drawer::*)( const Standard_Boolean  ) >(&Prs3d_Drawer::SetFaceBoundaryDraw),
              R"#(Enables or disables face boundary drawing for shading presentations. The method sets drawing flag owned by the drawer that will be used during visualization instead of the one set in link. theIsEnabled is a boolean flag indicating whether the face boundaries should be drawn or not.)#"  , py::arg("theIsEnabled"))
@@ -542,6 +582,18 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("HasOwnFaceBoundaryDraw",
              (Standard_Boolean (Prs3d_Drawer::*)() const) static_cast<Standard_Boolean (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::HasOwnFaceBoundaryDraw),
              R"#(Returns true if the drawer has its own attribute for "draw face boundaries" flag that overrides the one in the link.)#" )
+        .def("HasOwnFaceBoundaryUpperContinuity",
+             (Standard_Boolean (Prs3d_Drawer::*)() const) static_cast<Standard_Boolean (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::HasOwnFaceBoundaryUpperContinuity),
+             R"#(Returns true if the drawer has its own attribute for face boundaries upper edge continuity class that overrides the one in the link.)#" )
+        .def("FaceBoundaryUpperContinuity",
+             (GeomAbs_Shape (Prs3d_Drawer::*)() const) static_cast<GeomAbs_Shape (Prs3d_Drawer::*)() const>(&Prs3d_Drawer::FaceBoundaryUpperContinuity),
+             R"#(Get the most edge continuity class; GeomAbs_CN by default (all edges).)#" )
+        .def("SetFaceBoundaryUpperContinuity",
+             (void (Prs3d_Drawer::*)( GeomAbs_Shape  ) ) static_cast<void (Prs3d_Drawer::*)( GeomAbs_Shape  ) >(&Prs3d_Drawer::SetFaceBoundaryUpperContinuity),
+             R"#(Set the most edge continuity class for face boundaries.)#"  , py::arg("theMostAllowedEdgeClass"))
+        .def("UnsetFaceBoundaryUpperContinuity",
+             (void (Prs3d_Drawer::*)() ) static_cast<void (Prs3d_Drawer::*)() >(&Prs3d_Drawer::UnsetFaceBoundaryUpperContinuity),
+             R"#(Unset the most edge continuity class for face boundaries.)#" )
         .def("DimensionAspect",
              (const opencascade::handle<Prs3d_DimensionAspect> & (Prs3d_Drawer::*)() ) static_cast<const opencascade::handle<Prs3d_DimensionAspect> & (Prs3d_Drawer::*)() >(&Prs3d_Drawer::DimensionAspect),
              R"#(Returns settings for the appearance of dimensions.)#" )
@@ -608,6 +660,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("SetShadingModel",
              (bool (Prs3d_Drawer::*)( Graphic3d_TypeOfShadingModel ,  bool  ) ) static_cast<bool (Prs3d_Drawer::*)( Graphic3d_TypeOfShadingModel ,  bool  ) >(&Prs3d_Drawer::SetShadingModel),
              R"#(Sets Shading Model type for the shading aspect.)#"  , py::arg("theModel"),  py::arg("theToOverrideDefaults")=static_cast<bool>(false))
+        .def("DumpJson",
+             (void (Prs3d_Drawer::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_Drawer::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_Drawer::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -618,55 +673,46 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
-    static_cast<py::class_<Prs3d_Presentation ,opencascade::handle<Prs3d_Presentation>  , Graphic3d_Structure >>(m.attr("Prs3d_Presentation"))
-        .def(py::init< const opencascade::handle<Graphic3d_StructureManager> &,const Standard_Boolean >()  , py::arg("theStructManager"),  py::arg("theToInit")=static_cast<const Standard_Boolean>(Standard_True) )
-        .def(py::init< const opencascade::handle<Graphic3d_StructureManager> &,const opencascade::handle<Prs3d_Presentation> & >()  , py::arg("theStructManager"),  py::arg("thePrs") )
+    static_cast<py::class_<Prs3d_PresentationShadow ,opencascade::handle<Prs3d_PresentationShadow>  , Graphic3d_Structure >>(m.attr("Prs3d_PresentationShadow"))
+    // constructors
+        .def(py::init< const opencascade::handle<Graphic3d_StructureManager> &,const opencascade::handle<Graphic3d_Structure> & >()  , py::arg("theViewer"),  py::arg("thePrs") )
+    // custom constructors
     // methods
-        .def("Compute",
-             (opencascade::handle<Graphic3d_Structure> (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> &  ) ) static_cast<opencascade::handle<Graphic3d_Structure> (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> &  ) >(&Prs3d_Presentation::Compute),
-             R"#(None)#"  , py::arg("aProjector"))
-        .def("Compute",
-             (opencascade::handle<Graphic3d_Structure> (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> & ,  const opencascade::handle<Geom_Transformation> &  ) ) static_cast<opencascade::handle<Graphic3d_Structure> (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> & ,  const opencascade::handle<Geom_Transformation> &  ) >(&Prs3d_Presentation::Compute),
-             R"#(Returns the new Structure defined for the new visualization)#"  , py::arg("theProjector"),  py::arg("theTrsf"))
-        .def("Compute",
-             (void (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> & ,  opencascade::handle<Graphic3d_Structure> &  ) ) static_cast<void (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> & ,  opencascade::handle<Graphic3d_Structure> &  ) >(&Prs3d_Presentation::Compute),
-             R"#(Returns the new Structure defined for the new visualization)#"  , py::arg("aProjector"),  py::arg("aStructure"))
-        .def("Compute",
-             (void (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> & ,  const opencascade::handle<Geom_Transformation> & ,  opencascade::handle<Graphic3d_Structure> &  ) ) static_cast<void (Prs3d_Presentation::*)( const opencascade::handle<Graphic3d_DataStructureManager> & ,  const opencascade::handle<Geom_Transformation> & ,  opencascade::handle<Graphic3d_Structure> &  ) >(&Prs3d_Presentation::Compute),
-             R"#(Returns the new Structure defined for the new visualization)#"  , py::arg("theProjector"),  py::arg("theTrsf"),  py::arg("theStructure"))
-        .def("Connect",
-             (void (Prs3d_Presentation::*)( const opencascade::handle<Prs3d_Presentation> &  ) ) static_cast<void (Prs3d_Presentation::*)( const opencascade::handle<Prs3d_Presentation> &  ) >(&Prs3d_Presentation::Connect),
-             R"#(None)#"  , py::arg("aPresentation"))
-        .def("Remove",
-             (void (Prs3d_Presentation::*)( const opencascade::handle<Prs3d_Presentation> &  ) ) static_cast<void (Prs3d_Presentation::*)( const opencascade::handle<Prs3d_Presentation> &  ) >(&Prs3d_Presentation::Remove),
-             R"#(None)#"  , py::arg("aPresentation"))
-        .def("RemoveAll",
-             (void (Prs3d_Presentation::*)() ) static_cast<void (Prs3d_Presentation::*)() >(&Prs3d_Presentation::RemoveAll),
-             R"#(None)#" )
         .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Prs3d_Presentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_Presentation::*)() const>(&Prs3d_Presentation::DynamicType),
+             (const opencascade::handle<Standard_Type> & (Prs3d_PresentationShadow::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_PresentationShadow::*)() const>(&Prs3d_PresentationShadow::DynamicType),
              R"#(None)#" )
+        .def("ParentId",
+             (Standard_Integer (Prs3d_PresentationShadow::*)() const) static_cast<Standard_Integer (Prs3d_PresentationShadow::*)() const>(&Prs3d_PresentationShadow::ParentId),
+             R"#(Returns the id of the parent presentation)#" )
+        .def("ParentAffinity",
+             (const opencascade::handle<Graphic3d_ViewAffinity> & (Prs3d_PresentationShadow::*)() const) static_cast<const opencascade::handle<Graphic3d_ViewAffinity> & (Prs3d_PresentationShadow::*)() const>(&Prs3d_PresentationShadow::ParentAffinity),
+             R"#(Returns view affinity of the parent presentation)#" )
+        .def("CalculateBoundBox",
+             (void (Prs3d_PresentationShadow::*)() ) static_cast<void (Prs3d_PresentationShadow::*)() >(&Prs3d_PresentationShadow::CalculateBoundBox),
+             R"#(Do nothing - axis-aligned bounding box should be initialized from parent structure.)#" )
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Prs3d_Presentation::get_type_name),
+                    (const char * (*)() ) static_cast<const char * (*)() >(&Prs3d_PresentationShadow::get_type_name),
                     R"#(None)#" )
         .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Prs3d_Presentation::get_type_descriptor),
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Prs3d_PresentationShadow::get_type_descriptor),
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_Projector ,opencascade::handle<Prs3d_Projector>  , Standard_Transient >>(m.attr("Prs3d_Projector"))
+    // constructors
         .def(py::init< const HLRAlgo_Projector & >()  , py::arg("Pr") )
         .def(py::init< const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Pers"),  py::arg("Focus"),  py::arg("DX"),  py::arg("DY"),  py::arg("DZ"),  py::arg("XAt"),  py::arg("YAt"),  py::arg("ZAt"),  py::arg("XUp"),  py::arg("YUp"),  py::arg("ZUp") )
+    // custom constructors
     // methods
         .def("Projector",
              (HLRAlgo_Projector (Prs3d_Projector::*)() const) static_cast<HLRAlgo_Projector (Prs3d_Projector::*)() const>(&Prs3d_Projector::Projector),
@@ -684,12 +730,15 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Prs3d_Root , shared_ptr<Prs3d_Root>>(m,"Prs3d_Root");
 
     static_cast<py::class_<Prs3d_Root , shared_ptr<Prs3d_Root>  >>(m.attr("Prs3d_Root"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -701,12 +750,14 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Returns the new group of primitives inside graphic objects in the display. A group also contains the attributes whose ranges are limited to the primitives in it.)#"  , py::arg("thePrs3d"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_ShapeTool , shared_ptr<Prs3d_ShapeTool>  >>(m.attr("Prs3d_ShapeTool"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("theShape"),  py::arg("theAllVertices")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("InitFace",
              (void (Prs3d_ShapeTool::*)() ) static_cast<void (Prs3d_ShapeTool::*)() >(&Prs3d_ShapeTool::InitFace),
@@ -781,11 +832,13 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#"  , py::arg("theFace"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_ToolQuadric , shared_ptr<Prs3d_ToolQuadric> ,Py_Prs3d_ToolQuadric >>(m.attr("Prs3d_ToolQuadric"))
+    // constructors
+    // custom constructors
     // methods
         .def("FillArray",
              (void (Prs3d_ToolQuadric::*)( opencascade::handle<Graphic3d_ArrayOfTriangles> & ,  const gp_Trsf &  ) ) static_cast<void (Prs3d_ToolQuadric::*)( opencascade::handle<Graphic3d_ArrayOfTriangles> & ,  const gp_Trsf &  ) >(&Prs3d_ToolQuadric::FillArray),
@@ -800,12 +853,15 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Number of triangles for presentation with the given params.)#"  , py::arg("theSlicesNb"),  py::arg("theStacksNb"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Prs3d_Arrow , shared_ptr<Prs3d_Arrow>>(m,"Prs3d_Arrow");
 
     static_cast<py::class_<Prs3d_Arrow , shared_ptr<Prs3d_Arrow>  , Prs3d_Root >>(m.attr("Prs3d_Arrow"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -823,14 +879,16 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Alias to another method Draw() for backward compatibility.)#"  , py::arg("thePrs"),  py::arg("theLocation"),  py::arg("theDirection"),  py::arg("theAngle"),  py::arg("theLength"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_ArrowAspect ,opencascade::handle<Prs3d_ArrowAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_ArrowAspect"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("anAngle"),  py::arg("aLength") )
         .def(py::init< const opencascade::handle<Graphic3d_AspectLine3d> & >()  , py::arg("theAspect") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_ArrowAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_ArrowAspect::*)() const>(&Prs3d_ArrowAspect::DynamicType),
@@ -856,6 +914,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("SetAspect",
              (void (Prs3d_ArrowAspect::*)( const opencascade::handle<Graphic3d_AspectLine3d> &  ) ) static_cast<void (Prs3d_ArrowAspect::*)( const opencascade::handle<Graphic3d_AspectLine3d> &  ) >(&Prs3d_ArrowAspect::SetAspect),
              R"#(None)#"  , py::arg("theAspect"))
+        .def("DumpJson",
+             (void (Prs3d_ArrowAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_ArrowAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_ArrowAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -866,12 +927,14 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_DatumAspect ,opencascade::handle<Prs3d_DatumAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_DatumAspect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_DatumAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_DatumAspect::*)() const>(&Prs3d_DatumAspect::DynamicType),
@@ -884,13 +947,22 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
              R"#(Returns the right-handed coordinate system set in SetComponent.)#"  , py::arg("thePart"))
         .def("TextAspect",
              (const opencascade::handle<Prs3d_TextAspect> & (Prs3d_DatumAspect::*)() const) static_cast<const opencascade::handle<Prs3d_TextAspect> & (Prs3d_DatumAspect::*)() const>(&Prs3d_DatumAspect::TextAspect),
-             R"#(Returns the right-handed coordinate system set in SetComponent.)#" )
+             R"#(Returns the text attributes for rendering labels.)#" )
+        .def("SetTextAspect",
+             (void (Prs3d_DatumAspect::*)( const opencascade::handle<Prs3d_TextAspect> &  ) ) static_cast<void (Prs3d_DatumAspect::*)( const opencascade::handle<Prs3d_TextAspect> &  ) >(&Prs3d_DatumAspect::SetTextAspect),
+             R"#(Sets text attributes for rendering labels.)#"  , py::arg("theTextAspect"))
         .def("PointAspect",
              (const opencascade::handle<Prs3d_PointAspect> & (Prs3d_DatumAspect::*)() const) static_cast<const opencascade::handle<Prs3d_PointAspect> & (Prs3d_DatumAspect::*)() const>(&Prs3d_DatumAspect::PointAspect),
              R"#(Returns the point aspect of origin wireframe presentation)#" )
+        .def("SetPointAspect",
+             (void (Prs3d_DatumAspect::*)( const opencascade::handle<Prs3d_PointAspect> &  ) ) static_cast<void (Prs3d_DatumAspect::*)( const opencascade::handle<Prs3d_PointAspect> &  ) >(&Prs3d_DatumAspect::SetPointAspect),
+             R"#(Returns the point aspect of origin wireframe presentation)#"  , py::arg("theAspect"))
         .def("ArrowAspect",
              (const opencascade::handle<Prs3d_ArrowAspect> & (Prs3d_DatumAspect::*)() const) static_cast<const opencascade::handle<Prs3d_ArrowAspect> & (Prs3d_DatumAspect::*)() const>(&Prs3d_DatumAspect::ArrowAspect),
              R"#(Returns the arrow aspect of presentation)#" )
+        .def("SetArrowAspect",
+             (void (Prs3d_DatumAspect::*)( const opencascade::handle<Prs3d_ArrowAspect> &  ) ) static_cast<void (Prs3d_DatumAspect::*)( const opencascade::handle<Prs3d_ArrowAspect> &  ) >(&Prs3d_DatumAspect::SetArrowAspect),
+             R"#(Sets the arrow aspect of presentation)#"  , py::arg("theAspect"))
         .def("FirstAxisAspect",
              (const opencascade::handle<Prs3d_LineAspect> & (Prs3d_DatumAspect::*)() const) static_cast<const opencascade::handle<Prs3d_LineAspect> & (Prs3d_DatumAspect::*)() const>(&Prs3d_DatumAspect::FirstAxisAspect),
              R"#(Returns the attributes for display of the first axis.)#" )
@@ -960,6 +1032,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("ArrowPartForAxis",
              (Prs3d_DatumParts (Prs3d_DatumAspect::*)( Prs3d_DatumParts  ) const) static_cast<Prs3d_DatumParts (Prs3d_DatumAspect::*)( Prs3d_DatumParts  ) const>(&Prs3d_DatumAspect::ArrowPartForAxis),
              R"#(Returns type of arrow for a type of axis)#"  , py::arg("thePart"))
+        .def("DumpJson",
+             (void (Prs3d_DatumAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_DatumAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_DatumAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -970,12 +1045,14 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_DimensionAspect ,opencascade::handle<Prs3d_DimensionAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_DimensionAspect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_DimensionAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_DimensionAspect::*)() const>(&Prs3d_DimensionAspect::DynamicType),
@@ -1061,6 +1138,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("ValueStringFormat",
              (const TCollection_AsciiString & (Prs3d_DimensionAspect::*)() const) static_cast<const TCollection_AsciiString & (Prs3d_DimensionAspect::*)() const>(&Prs3d_DimensionAspect::ValueStringFormat),
              R"#(Returns format.)#" )
+        .def("DumpJson",
+             (void (Prs3d_DimensionAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_DimensionAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_DimensionAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -1071,13 +1151,15 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_LineAspect ,opencascade::handle<Prs3d_LineAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_LineAspect"))
+    // constructors
         .def(py::init< const Quantity_Color &,const Aspect_TypeOfLine,const Standard_Real >()  , py::arg("theColor"),  py::arg("theType"),  py::arg("theWidth") )
         .def(py::init< const opencascade::handle<Graphic3d_AspectLine3d> & >()  , py::arg("theAspect") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_LineAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_LineAspect::*)() const>(&Prs3d_LineAspect::DynamicType),
@@ -1097,6 +1179,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("SetAspect",
              (void (Prs3d_LineAspect::*)( const opencascade::handle<Graphic3d_AspectLine3d> &  ) ) static_cast<void (Prs3d_LineAspect::*)( const opencascade::handle<Graphic3d_AspectLine3d> &  ) >(&Prs3d_LineAspect::SetAspect),
              R"#(None)#"  , py::arg("theAspect"))
+        .def("DumpJson",
+             (void (Prs3d_LineAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_LineAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_LineAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -1107,12 +1192,14 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_PlaneAspect ,opencascade::handle<Prs3d_PlaneAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_PlaneAspect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_PlaneAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_PlaneAspect::*)() const>(&Prs3d_PlaneAspect::DynamicType),
@@ -1183,6 +1270,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("IsoDistance",
              (Standard_Real (Prs3d_PlaneAspect::*)() const) static_cast<Standard_Real (Prs3d_PlaneAspect::*)() const>(&Prs3d_PlaneAspect::IsoDistance),
              R"#(Returns the distance between isoparameters used in the display of planes.)#" )
+        .def("DumpJson",
+             (void (Prs3d_PlaneAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_PlaneAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_PlaneAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -1193,14 +1283,16 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_PointAspect ,opencascade::handle<Prs3d_PointAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_PointAspect"))
+    // constructors
         .def(py::init< const Aspect_TypeOfMarker,const Quantity_Color &,const Standard_Real >()  , py::arg("theType"),  py::arg("theColor"),  py::arg("theScale") )
         .def(py::init< const Quantity_Color &,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfByte> & >()  , py::arg("theColor"),  py::arg("theWidth"),  py::arg("theHeight"),  py::arg("theTexture") )
         .def(py::init< const opencascade::handle<Graphic3d_AspectMarker3d> & >()  , py::arg("theAspect") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_PointAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_PointAspect::*)() const>(&Prs3d_PointAspect::DynamicType),
@@ -1223,6 +1315,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("GetTexture",
              (const opencascade::handle<Graphic3d_MarkerImage> & (Prs3d_PointAspect::*)() const) static_cast<const opencascade::handle<Graphic3d_MarkerImage> & (Prs3d_PointAspect::*)() const>(&Prs3d_PointAspect::GetTexture),
              R"#(Returns marker's texture.)#" )
+        .def("DumpJson",
+             (void (Prs3d_PointAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_PointAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_PointAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
         .def("GetTextureSize",
              []( Prs3d_PointAspect &self   ){ Standard_Integer  theWidth; Standard_Integer  theHeight; self.GetTextureSize(theWidth,theHeight); return std::make_tuple(theWidth,theHeight); },
@@ -1236,42 +1331,15 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<Prs3d_PresentationShadow ,opencascade::handle<Prs3d_PresentationShadow>  , Prs3d_Presentation >>(m.attr("Prs3d_PresentationShadow"))
-        .def(py::init< const opencascade::handle<Graphic3d_StructureManager> &,const opencascade::handle<Prs3d_Presentation> & >()  , py::arg("theViewer"),  py::arg("thePrs") )
-    // methods
-        .def("ParentId",
-             (Standard_Integer (Prs3d_PresentationShadow::*)() const) static_cast<Standard_Integer (Prs3d_PresentationShadow::*)() const>(&Prs3d_PresentationShadow::ParentId),
-             R"#(Returns the id of the parent presentation)#" )
-        .def("ParentAffinity",
-             (const opencascade::handle<Graphic3d_ViewAffinity> & (Prs3d_PresentationShadow::*)() const) static_cast<const opencascade::handle<Graphic3d_ViewAffinity> & (Prs3d_PresentationShadow::*)() const>(&Prs3d_PresentationShadow::ParentAffinity),
-             R"#(Returns view affinity of the parent presentation)#" )
-        .def("CalculateBoundBox",
-             (void (Prs3d_PresentationShadow::*)() ) static_cast<void (Prs3d_PresentationShadow::*)() >(&Prs3d_PresentationShadow::CalculateBoundBox),
-             R"#(Do nothing - axis-aligned bounding box should be initialized from parent structure.)#" )
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (Prs3d_PresentationShadow::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_PresentationShadow::*)() const>(&Prs3d_PresentationShadow::DynamicType),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&Prs3d_PresentationShadow::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&Prs3d_PresentationShadow::get_type_descriptor),
-                    R"#(None)#" )
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_ShadingAspect ,opencascade::handle<Prs3d_ShadingAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_ShadingAspect"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Graphic3d_AspectFillArea3d> & >()  , py::arg("theAspect") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_ShadingAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_ShadingAspect::*)() const>(&Prs3d_ShadingAspect::DynamicType),
@@ -1300,6 +1368,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("SetAspect",
              (void (Prs3d_ShadingAspect::*)( const opencascade::handle<Graphic3d_AspectFillArea3d> &  ) ) static_cast<void (Prs3d_ShadingAspect::*)( const opencascade::handle<Graphic3d_AspectFillArea3d> &  ) >(&Prs3d_ShadingAspect::SetAspect),
              R"#(None)#"  , py::arg("theAspect"))
+        .def("DumpJson",
+             (void (Prs3d_ShadingAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_ShadingAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_ShadingAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -1310,12 +1381,15 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Prs3d_Text , shared_ptr<Prs3d_Text>>(m,"Prs3d_Text");
 
     static_cast<py::class_<Prs3d_Text , shared_ptr<Prs3d_Text>  , Prs3d_Root >>(m.attr("Prs3d_Text"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1336,13 +1410,15 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Alias to another method Draw() for backward compatibility.)#"  , py::arg("thePrs"),  py::arg("theAspect"),  py::arg("theText"),  py::arg("theAttachmentPoint"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_TextAspect ,opencascade::handle<Prs3d_TextAspect>  , Prs3d_BasicAspect >>(m.attr("Prs3d_TextAspect"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Graphic3d_AspectText3d> & >()  , py::arg("theAspect") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_TextAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_TextAspect::*)() const>(&Prs3d_TextAspect::DynamicType),
@@ -1353,12 +1429,6 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("SetFont",
              (void (Prs3d_TextAspect::*)( const Standard_CString  ) ) static_cast<void (Prs3d_TextAspect::*)( const Standard_CString  ) >(&Prs3d_TextAspect::SetFont),
              R"#(Sets the font used in text display.)#"  , py::arg("theFont"))
-        .def("SetHeightWidthRatio",
-             (void (Prs3d_TextAspect::*)( const Standard_Real  ) ) static_cast<void (Prs3d_TextAspect::*)( const Standard_Real  ) >(&Prs3d_TextAspect::SetHeightWidthRatio),
-             R"#(Returns the height-width ratio, also known as the expansion factor.)#"  , py::arg("theRatio"))
-        .def("SetSpace",
-             (void (Prs3d_TextAspect::*)( const Standard_Real  ) ) static_cast<void (Prs3d_TextAspect::*)( const Standard_Real  ) >(&Prs3d_TextAspect::SetSpace),
-             R"#(Sets the length of the box which text will occupy.)#"  , py::arg("theSpace"))
         .def("SetHeight",
              (void (Prs3d_TextAspect::*)( const Standard_Real  ) ) static_cast<void (Prs3d_TextAspect::*)( const Standard_Real  ) >(&Prs3d_TextAspect::SetHeight),
              R"#(Sets the height of the text.)#"  , py::arg("theHeight"))
@@ -1395,6 +1465,9 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
         .def("SetAspect",
              (void (Prs3d_TextAspect::*)( const opencascade::handle<Graphic3d_AspectText3d> &  ) ) static_cast<void (Prs3d_TextAspect::*)( const opencascade::handle<Graphic3d_AspectText3d> &  ) >(&Prs3d_TextAspect::SetAspect),
              R"#(None)#"  , py::arg("theAspect"))
+        .def("DumpJson",
+             (void (Prs3d_TextAspect::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Prs3d_TextAspect::*)( std::ostream & ,  const Standard_Integer  ) const>(&Prs3d_TextAspect::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("get_type_name_s",
@@ -1405,12 +1478,14 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_ToolCylinder , shared_ptr<Prs3d_ToolCylinder>  , Prs3d_ToolQuadric >>(m.attr("Prs3d_ToolCylinder"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("theBottomRad"),  py::arg("theTopRad"),  py::arg("theHeight"),  py::arg("theNbSlices"),  py::arg("theNbStacks") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1419,13 +1494,18 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Generate primitives for 3D quadric surface and return a filled array.)#"  , py::arg("theBottomRad"),  py::arg("theTopRad"),  py::arg("theHeight"),  py::arg("theNbSlices"),  py::arg("theNbStacks"),  py::arg("theTrsf"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_ToolDisk , shared_ptr<Prs3d_ToolDisk>  , Prs3d_ToolQuadric >>(m.attr("Prs3d_ToolDisk"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("theInnerRadius"),  py::arg("theOuterRadius"),  py::arg("theNbSlices"),  py::arg("theNbStacks") )
+    // custom constructors
     // methods
+        .def("SetAngleRange",
+             (void (Prs3d_ToolDisk::*)( Standard_Real ,  Standard_Real  ) ) static_cast<void (Prs3d_ToolDisk::*)( Standard_Real ,  Standard_Real  ) >(&Prs3d_ToolDisk::SetAngleRange),
+             R"#(Set angle range in radians [0, 2*PI] by default.)#"  , py::arg("theStartAngle"),  py::arg("theEndAngle"))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("Create_s",
@@ -1433,12 +1513,30 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Generate primitives for 3D quadric surface and return a filled array.)#"  , py::arg("theInnerRadius"),  py::arg("theOuterRadius"),  py::arg("theNbSlices"),  py::arg("theNbStacks"),  py::arg("theTrsf"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<Prs3d_ToolSector , shared_ptr<Prs3d_ToolSector>  , Prs3d_ToolQuadric >>(m.attr("Prs3d_ToolSector"))
+    // constructors
+        .def(py::init< const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("theRadius"),  py::arg("theNbSlices"),  py::arg("theNbStacks") )
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Create_s",
+                    (opencascade::handle<Graphic3d_ArrayOfTriangles> (*)( const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const gp_Trsf &  ) ) static_cast<opencascade::handle<Graphic3d_ArrayOfTriangles> (*)( const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const gp_Trsf &  ) >(&Prs3d_ToolSector::Create),
+                    R"#(Generate primitives for 3D quadric surface and return a filled array.)#"  , py::arg("theRadius"),  py::arg("theNbSlices"),  py::arg("theNbStacks"),  py::arg("theTrsf"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_ToolSphere , shared_ptr<Prs3d_ToolSphere>  , Prs3d_ToolQuadric >>(m.attr("Prs3d_ToolSphere"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("theRadius"),  py::arg("theNbSlices"),  py::arg("theNbStacks") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1447,12 +1545,14 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(Generate primitives for 3D quadric surface and return a filled array.)#"  , py::arg("theRadius"),  py::arg("theNbSlices"),  py::arg("theNbStacks"),  py::arg("theTrsf"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Prs3d_IsoAspect ,opencascade::handle<Prs3d_IsoAspect>  , Prs3d_LineAspect >>(m.attr("Prs3d_IsoAspect"))
+    // constructors
         .def(py::init< const Quantity_Color &,const Aspect_TypeOfLine,const Standard_Real,const Standard_Integer >()  , py::arg("theColor"),  py::arg("theType"),  py::arg("theWidth"),  py::arg("theNumber") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Prs3d_IsoAspect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Prs3d_IsoAspect::*)() const>(&Prs3d_IsoAspect::DynamicType),
@@ -1473,49 +1573,50 @@ py::module m = static_cast<py::module>(main_module.attr("Prs3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Prs3d_Root.hxx
-// ./opencascade/Prs3d_Text.hxx
-// ./opencascade/Prs3d_ShapeTool.hxx
-// ./opencascade/Prs3d_PointAspect.hxx
-// ./opencascade/Prs3d_DimensionTextVerticalPosition.hxx
-// ./opencascade/Prs3d_DatumParts.hxx
-// ./opencascade/Prs3d_ShadingAspect.hxx
-// ./opencascade/Prs3d_Presentation.hxx
-// ./opencascade/Prs3d_BasicAspect.hxx
-// ./opencascade/Prs3d_DimensionUnits.hxx
-// ./opencascade/Prs3d_PlaneAspect.hxx
-// ./opencascade/Prs3d_ArrowAspect.hxx
-// ./opencascade/Prs3d_VertexDrawMode.hxx
-// ./opencascade/Prs3d_DatumAspect.hxx
-// ./opencascade/Prs3d_InvalidAngle.hxx
-// ./opencascade/Prs3d_IsoAspect.hxx
-// ./opencascade/Prs3d_DimensionArrowOrientation.hxx
-// ./opencascade/Prs3d_Drawer.hxx
-// ./opencascade/Prs3d_ToolDisk.hxx
-// ./opencascade/Prs3d_Arrow.hxx
-// ./opencascade/Prs3d_PresentationShadow.hxx
-// ./opencascade/Prs3d_DatumAxes.hxx
-// ./opencascade/Prs3d.hxx
-// ./opencascade/Prs3d_DimensionAspect.hxx
-// ./opencascade/Prs3d_TextAspect.hxx
-// ./opencascade/Prs3d_DimensionTextHorizontalPosition.hxx
+// ./opencascade/Prs3d_DatumMode.hxx
+// ./opencascade/Prs3d_NListOfSequenceOfPnt.hxx
 // ./opencascade/Prs3d_ToolSphere.hxx
+// ./opencascade/Prs3d_DimensionUnits.hxx
 // ./opencascade/Prs3d_TypeOfLinePicking.hxx
-// ./opencascade/Prs3d_Projector.hxx
-// ./opencascade/Prs3d_ToolCylinder.hxx
+// ./opencascade/Prs3d_InvalidAngle.hxx
+// ./opencascade/Prs3d_Arrow.hxx
+// ./opencascade/Prs3d_ShadingAspect.hxx
+// ./opencascade/Prs3d_DatumAspect.hxx
+// ./opencascade/Prs3d_VertexDrawMode.hxx
+// ./opencascade/Prs3d_DatumAxes.hxx
+// ./opencascade/Prs3d_ToolQuadric.hxx
+// ./opencascade/Prs3d_IsoAspect.hxx
+// ./opencascade/Prs3d_DimensionAspect.hxx
+// ./opencascade/Prs3d_DimensionArrowOrientation.hxx
+// ./opencascade/Prs3d_ShapeTool.hxx
+// ./opencascade/Prs3d_TypeOfHighlight.hxx
+// ./opencascade/Prs3d_ToolSector.hxx
 // ./opencascade/Prs3d_TypeOfHLR.hxx
 // ./opencascade/Prs3d_LineAspect.hxx
-// ./opencascade/Prs3d_ToolQuadric.hxx
-// ./opencascade/Prs3d_DatumMode.hxx
-// ./opencascade/Prs3d_TypeOfHighlight.hxx
 // ./opencascade/Prs3d_DatumAttribute.hxx
-// ./opencascade/Prs3d_NListIteratorOfListOfSequenceOfPnt.hxx
+// ./opencascade/Prs3d_Root.hxx
+// ./opencascade/Prs3d_TextAspect.hxx
+// ./opencascade/Prs3d.hxx
 // ./opencascade/Prs3d_Point.hxx
-// ./opencascade/Prs3d_NListOfSequenceOfPnt.hxx
+// ./opencascade/Prs3d_DimensionTextVerticalPosition.hxx
+// ./opencascade/Prs3d_DatumParts.hxx
+// ./opencascade/Prs3d_Text.hxx
+// ./opencascade/Prs3d_Projector.hxx
+// ./opencascade/Prs3d_BasicAspect.hxx
+// ./opencascade/Prs3d_Drawer.hxx
+// ./opencascade/Prs3d_ToolCylinder.hxx
+// ./opencascade/Prs3d_Presentation.hxx
+// ./opencascade/Prs3d_PointAspect.hxx
+// ./opencascade/Prs3d_ArrowAspect.hxx
+// ./opencascade/Prs3d_DimensionTextHorizontalPosition.hxx
+// ./opencascade/Prs3d_NListIteratorOfListOfSequenceOfPnt.hxx
+// ./opencascade/Prs3d_ToolDisk.hxx
+// ./opencascade/Prs3d_PlaneAspect.hxx
+// ./opencascade/Prs3d_PresentationShadow.hxx
 
 // operators
 

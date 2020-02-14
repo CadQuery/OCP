@@ -38,6 +38,7 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
     public:
         using AppBlend_Approx::AppBlend_Approx;
         
+        
         // public pure virtual
         Standard_Boolean IsDone() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,AppBlend_Approx,IsDone,) };
         void Surface(NCollection_Array2<gp_Pnt> & TPoles,NCollection_Array2<Standard_Real> & TWeights,NCollection_Array1<Standard_Real> & TUKnots,NCollection_Array1<Standard_Real> & TVKnots,NCollection_Array1<Standard_Integer> & TUMults,NCollection_Array1<Standard_Integer> & TVMults) const  override { PYBIND11_OVERLOAD_PURE(void,AppBlend_Approx,Surface,TPoles,TWeights,TUKnots,TVKnots,TUMults,TVMults) };
@@ -72,6 +73,8 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
 
 
     static_cast<py::class_<AppBlend_Approx , shared_ptr<AppBlend_Approx> ,Py_AppBlend_Approx >>(m.attr("AppBlend_Approx"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppBlend_Approx::*)() const) static_cast<Standard_Boolean (AppBlend_Approx::*)() const>(&AppBlend_Approx::IsDone),
@@ -137,7 +140,7 @@ py::module m = static_cast<py::module>(main_module.attr("AppBlend"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

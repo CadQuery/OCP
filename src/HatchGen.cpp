@@ -28,11 +28,11 @@ namespace py = pybind11;
 #include <HatchGen_PointsOnHatching.hxx>
 
 // template related includes
-// ./opencascade/HatchGen_PointsOnElement.hxx
+// ./opencascade/HatchGen_Domains.hxx
 #include "NCollection.hxx"
 // ./opencascade/HatchGen_PointsOnHatching.hxx
 #include "NCollection.hxx"
-// ./opencascade/HatchGen_Domains.hxx
+// ./opencascade/HatchGen_PointsOnElement.hxx
 #include "NCollection.hxx"
 
 
@@ -53,6 +53,7 @@ py::module m = static_cast<py::module>(main_module.attr("HatchGen"));
     public:
         using HatchGen_IntersectionPoint::HatchGen_IntersectionPoint;
         
+        
         // public pure virtual
         void Dump(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(void,HatchGen_IntersectionPoint,Dump,Index) };
         
@@ -68,9 +69,11 @@ py::module m = static_cast<py::module>(main_module.attr("HatchGen"));
 
 
     static_cast<py::class_<HatchGen_Domain , shared_ptr<HatchGen_Domain>  >>(m.attr("HatchGen_Domain"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const HatchGen_PointOnHatching &,const HatchGen_PointOnHatching & >()  , py::arg("P1"),  py::arg("P2") )
         .def(py::init< const HatchGen_PointOnHatching &,const Standard_Boolean >()  , py::arg("P"),  py::arg("First") )
+    // custom constructors
     // methods
         .def("SetPoints",
              (void (HatchGen_Domain::*)( const HatchGen_PointOnHatching & ,  const HatchGen_PointOnHatching &  ) ) static_cast<void (HatchGen_Domain::*)( const HatchGen_PointOnHatching & ,  const HatchGen_PointOnHatching &  ) >(&HatchGen_Domain::SetPoints),
@@ -139,11 +142,13 @@ py::module m = static_cast<py::module>(main_module.attr("HatchGen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HatchGen_IntersectionPoint , shared_ptr_nodelete<HatchGen_IntersectionPoint> ,Py_HatchGen_IntersectionPoint >>(m.attr("HatchGen_IntersectionPoint"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetIndex",
              (void (HatchGen_IntersectionPoint::*)( const Standard_Integer  ) ) static_cast<void (HatchGen_IntersectionPoint::*)( const Standard_Integer  ) >(&HatchGen_IntersectionPoint::SetIndex),
@@ -194,14 +199,16 @@ py::module m = static_cast<py::module>(main_module.attr("HatchGen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HatchGen_PointOnElement , shared_ptr<HatchGen_PointOnElement>  , HatchGen_IntersectionPoint >>(m.attr("HatchGen_PointOnElement"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const HatchGen_PointOnElement & >()  , py::arg("Point") )
         .def(py::init< const IntRes2d_IntersectionPoint & >()  , py::arg("Point") )
+    // custom constructors
     // methods
         .def("SetIntersectionType",
              (void (HatchGen_PointOnElement::*)( const HatchGen_IntersectionType  ) ) static_cast<void (HatchGen_PointOnElement::*)( const HatchGen_IntersectionType  ) >(&HatchGen_PointOnElement::SetIntersectionType),
@@ -228,14 +235,16 @@ py::module m = static_cast<py::module>(main_module.attr("HatchGen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HatchGen_PointOnHatching , shared_ptr<HatchGen_PointOnHatching>  , HatchGen_IntersectionPoint >>(m.attr("HatchGen_PointOnHatching"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const HatchGen_PointOnHatching & >()  , py::arg("Point") )
         .def(py::init< const IntRes2d_IntersectionPoint & >()  , py::arg("Point") )
+    // custom constructors
     // methods
         .def("AddPoint",
              (void (HatchGen_PointOnHatching::*)( const HatchGen_PointOnElement & ,  const Standard_Real  ) ) static_cast<void (HatchGen_PointOnHatching::*)( const HatchGen_PointOnElement & ,  const Standard_Real  ) >(&HatchGen_PointOnHatching::AddPoint),
@@ -268,26 +277,26 @@ py::module m = static_cast<py::module>(main_module.attr("HatchGen"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/HatchGen_PointOnHatching.hxx
+// ./opencascade/HatchGen_Domains.hxx
+// ./opencascade/HatchGen_ErrorStatus.hxx
+// ./opencascade/HatchGen_PointsOnHatching.hxx
+// ./opencascade/HatchGen_IntersectionType.hxx
+// ./opencascade/HatchGen_IntersectionPoint.hxx
 // ./opencascade/HatchGen_PointOnElement.hxx
 // ./opencascade/HatchGen_PointsOnElement.hxx
 // ./opencascade/HatchGen_Domain.hxx
-// ./opencascade/HatchGen_IntersectionType.hxx
-// ./opencascade/HatchGen_PointOnHatching.hxx
-// ./opencascade/HatchGen_PointsOnHatching.hxx
-// ./opencascade/HatchGen_IntersectionPoint.hxx
-// ./opencascade/HatchGen_ErrorStatus.hxx
-// ./opencascade/HatchGen_Domains.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<HatchGen_PointOnElement>(m,"HatchGen_PointsOnElement");  
-    register_template_NCollection_Sequence<HatchGen_PointOnHatching>(m,"HatchGen_PointsOnHatching");  
     register_template_NCollection_Sequence<HatchGen_Domain>(m,"HatchGen_Domains");  
+    register_template_NCollection_Sequence<HatchGen_PointOnHatching>(m,"HatchGen_PointsOnHatching");  
+    register_template_NCollection_Sequence<HatchGen_PointOnElement>(m,"HatchGen_PointsOnElement");  
 
 
 // exceptions

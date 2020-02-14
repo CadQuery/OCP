@@ -43,8 +43,10 @@ py::module m = static_cast<py::module>(main_module.attr("Sweep"));
 
 
     static_cast<py::class_<Sweep_NumShape , shared_ptr<Sweep_NumShape>  >>(m.attr("Sweep_NumShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const TopAbs_ShapeEnum,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Index"),  py::arg("Type"),  py::arg("Closed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("BegInf")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("EndInf")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (Sweep_NumShape::*)( const Standard_Integer ,  const TopAbs_ShapeEnum ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (Sweep_NumShape::*)( const Standard_Integer ,  const TopAbs_ShapeEnum ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&Sweep_NumShape::Init),
@@ -86,12 +88,14 @@ py::module m = static_cast<py::module>(main_module.attr("Sweep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Sweep_NumShapeIterator , shared_ptr<Sweep_NumShapeIterator>  >>(m.attr("Sweep_NumShapeIterator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (Sweep_NumShapeIterator::*)( const Sweep_NumShape &  ) ) static_cast<void (Sweep_NumShapeIterator::*)( const Sweep_NumShape &  ) >(&Sweep_NumShapeIterator::Init),
@@ -121,12 +125,14 @@ py::module m = static_cast<py::module>(main_module.attr("Sweep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Sweep_NumShapeTool , shared_ptr<Sweep_NumShapeTool>  >>(m.attr("Sweep_NumShapeTool"))
+    // constructors
         .def(py::init< const Sweep_NumShape & >()  , py::arg("aShape") )
+    // custom constructors
     // methods
         .def("NbShapes",
              (Standard_Integer (Sweep_NumShapeTool::*)() const) static_cast<Standard_Integer (Sweep_NumShapeTool::*)() const>(&Sweep_NumShapeTool::NbShapes),
@@ -159,7 +165,7 @@ py::module m = static_cast<py::module>(main_module.attr("Sweep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

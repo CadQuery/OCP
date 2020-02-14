@@ -13,9 +13,9 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <AdvApprox_Cutting.hxx>
 #include <PLib_JacobiPolynomial.hxx>
 #include <Standard_ConstructionError.hxx>
+#include <AdvApprox_Cutting.hxx>
 
 // module includes
 #include <AdvApprox_ApproxAFunction.hxx>
@@ -46,6 +46,7 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
     public:
         using AdvApprox_Cutting::AdvApprox_Cutting;
         
+        
         // public pure virtual
         Standard_Boolean Value(const Standard_Real a,const Standard_Real b,Standard_Real & cuttingvalue) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,AdvApprox_Cutting,Value,a,b,cuttingvalue) };
         
@@ -61,8 +62,10 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
 
 
     static_cast<py::class_<AdvApprox_ApproxAFunction , shared_ptr<AdvApprox_ApproxAFunction>  >>(m.attr("AdvApprox_ApproxAFunction"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const AdvApprox_EvaluatorFunction & >()  , py::arg("Num1DSS"),  py::arg("Num2DSS"),  py::arg("Num3DSS"),  py::arg("OneDTol"),  py::arg("TwoDTol"),  py::arg("ThreeDTol"),  py::arg("First"),  py::arg("Last"),  py::arg("Continuity"),  py::arg("MaxDeg"),  py::arg("MaxSeg"),  py::arg("Func") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const AdvApprox_EvaluatorFunction &,const AdvApprox_Cutting & >()  , py::arg("Num1DSS"),  py::arg("Num2DSS"),  py::arg("Num3DSS"),  py::arg("OneDTol"),  py::arg("TwoDTol"),  py::arg("ThreeDTol"),  py::arg("First"),  py::arg("Last"),  py::arg("Continuity"),  py::arg("MaxDeg"),  py::arg("MaxSeg"),  py::arg("Func"),  py::arg("CutTool") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AdvApprox_ApproxAFunction::*)() const) static_cast<Standard_Boolean (AdvApprox_ApproxAFunction::*)() const>(&AdvApprox_ApproxAFunction::IsDone),
@@ -158,11 +161,13 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
                     []( const Standard_Integer TotalDimension,const Standard_Integer TotalNumSS, const NCollection_Array1<Standard_Integer> & LocalDimension,const Standard_Real First,const Standard_Real Last,AdvApprox_EvaluatorFunction & Evaluator,const AdvApprox_Cutting & CutTool,const Standard_Integer ContinuityOrder,const Standard_Integer NumMaxCoeffs,const Standard_Integer MaxSegments, const NCollection_Array1<Standard_Real> & TolerancesArray,const Standard_Integer code_precis,NCollection_Array1<Standard_Integer> & NumCoeffPerCurveArray,NCollection_Array1<Standard_Real> & LocalCoefficientArray,NCollection_Array1<Standard_Real> & IntervalsArray,NCollection_Array1<Standard_Real> & ErrorMaxArray,NCollection_Array1<Standard_Real> & AverageErrorArray ){ Standard_Integer  NumCurves; Standard_Integer  ErrorCode; AdvApprox_ApproxAFunction::Approximation(TotalDimension,TotalNumSS,LocalDimension,First,Last,Evaluator,CutTool,ContinuityOrder,NumMaxCoeffs,MaxSegments,TolerancesArray,code_precis,NumCurves,NumCoeffPerCurveArray,LocalCoefficientArray,IntervalsArray,ErrorMaxArray,AverageErrorArray,ErrorCode); return std::make_tuple(NumCurves,ErrorCode); },
                     R"#(None)#"  , py::arg("TotalDimension"),  py::arg("TotalNumSS"),  py::arg("LocalDimension"),  py::arg("First"),  py::arg("Last"),  py::arg("Evaluator"),  py::arg("CutTool"),  py::arg("ContinuityOrder"),  py::arg("NumMaxCoeffs"),  py::arg("MaxSegments"),  py::arg("TolerancesArray"),  py::arg("code_precis"),  py::arg("NumCoeffPerCurveArray"),  py::arg("LocalCoefficientArray"),  py::arg("IntervalsArray"),  py::arg("ErrorMaxArray"),  py::arg("AverageErrorArray"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApprox_Cutting , shared_ptr<AdvApprox_Cutting> ,Py_AdvApprox_Cutting >>(m.attr("AdvApprox_Cutting"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (AdvApprox_Cutting::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const) static_cast<Standard_Boolean (AdvApprox_Cutting::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const>(&AdvApprox_Cutting::Value),
@@ -171,12 +176,14 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApprox_SimpleApprox , shared_ptr<AdvApprox_SimpleApprox>  >>(m.attr("AdvApprox_SimpleApprox"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const opencascade::handle<PLib_JacobiPolynomial> &,const AdvApprox_EvaluatorFunction & >()  , py::arg("TotalDimension"),  py::arg("TotalNumSS"),  py::arg("Continuity"),  py::arg("WorkDegree"),  py::arg("NbGaussPoints"),  py::arg("JacobiBase"),  py::arg("Func") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (AdvApprox_SimpleApprox::*)(  const NCollection_Array1<Standard_Integer> & ,   const NCollection_Array1<Standard_Real> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (AdvApprox_SimpleApprox::*)(  const NCollection_Array1<Standard_Integer> & ,   const NCollection_Array1<Standard_Real> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&AdvApprox_SimpleApprox::Perform),
@@ -215,12 +222,14 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApprox_DichoCutting , shared_ptr<AdvApprox_DichoCutting>  , AdvApprox_Cutting >>(m.attr("AdvApprox_DichoCutting"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (AdvApprox_DichoCutting::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const) static_cast<Standard_Boolean (AdvApprox_DichoCutting::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const>(&AdvApprox_DichoCutting::Value),
@@ -229,12 +238,14 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApprox_PrefAndRec , shared_ptr<AdvApprox_PrefAndRec>  , AdvApprox_Cutting >>(m.attr("AdvApprox_PrefAndRec"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &,const Standard_Real >()  , py::arg("RecomendedCut"),  py::arg("PrefferedCut"),  py::arg("Weight")=static_cast<const Standard_Real>(5) )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (AdvApprox_PrefAndRec::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const) static_cast<Standard_Boolean (AdvApprox_PrefAndRec::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const>(&AdvApprox_PrefAndRec::Value),
@@ -243,12 +254,14 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApprox_PrefCutting , shared_ptr<AdvApprox_PrefCutting>  , AdvApprox_Cutting >>(m.attr("AdvApprox_PrefCutting"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Real> & >()  , py::arg("CutPnts") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (AdvApprox_PrefCutting::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const) static_cast<Standard_Boolean (AdvApprox_PrefCutting::*)( const Standard_Real ,  const Standard_Real ,  Standard_Real &  ) const>(&AdvApprox_PrefCutting::Value),
@@ -257,17 +270,17 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApprox"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/AdvApprox_ApproxAFunction.hxx
 // ./opencascade/AdvApprox_Cutting.hxx
-// ./opencascade/AdvApprox_SimpleApprox.hxx
-// ./opencascade/AdvApprox_DichoCutting.hxx
 // ./opencascade/AdvApprox_EvaluatorFunction.hxx
-// ./opencascade/AdvApprox_PrefCutting.hxx
+// ./opencascade/AdvApprox_SimpleApprox.hxx
 // ./opencascade/AdvApprox_PrefAndRec.hxx
+// ./opencascade/AdvApprox_DichoCutting.hxx
+// ./opencascade/AdvApprox_PrefCutting.hxx
+// ./opencascade/AdvApprox_ApproxAFunction.hxx
 
 // operators
 

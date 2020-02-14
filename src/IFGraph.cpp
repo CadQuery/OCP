@@ -13,10 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <IFGraph_StrongComponants.hxx>
 #include <Interface_InterfaceError.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Interface_GraphContent.hxx>
-#include <IFGraph_StrongComponants.hxx>
 
 // module includes
 #include <IFGraph_AllConnected.hxx>
@@ -52,8 +52,10 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
 
 
     static_cast<py::class_<IFGraph_AllConnected , shared_ptr<IFGraph_AllConnected>  , Interface_GraphContent >>(m.attr("IFGraph_AllConnected"))
+    // constructors
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
         .def(py::init< const Interface_Graph &,const opencascade::handle<Standard_Transient> & >()  , py::arg("agraph"),  py::arg("ent") )
+    // custom constructors
     // methods
         .def("GetFromEntity",
              (void (IFGraph_AllConnected::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_AllConnected::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_AllConnected::GetFromEntity),
@@ -68,13 +70,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_AllShared , shared_ptr<IFGraph_AllShared>  , Interface_GraphContent >>(m.attr("IFGraph_AllShared"))
+    // constructors
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
         .def(py::init< const Interface_Graph &,const opencascade::handle<Standard_Transient> & >()  , py::arg("agraph"),  py::arg("ent") )
+    // custom constructors
     // methods
         .def("GetFromEntity",
              (void (IFGraph_AllShared::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_AllShared::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_AllShared::GetFromEntity),
@@ -92,12 +96,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_Articulations , shared_ptr<IFGraph_Articulations>  , Interface_GraphContent >>(m.attr("IFGraph_Articulations"))
+    // constructors
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+    // custom constructors
     // methods
         .def("GetFromEntity",
              (void (IFGraph_Articulations::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_Articulations::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_Articulations::GetFromEntity),
@@ -115,12 +121,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_Compare , shared_ptr<IFGraph_Compare>  , Interface_GraphContent >>(m.attr("IFGraph_Compare"))
+    // constructors
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+    // custom constructors
     // methods
         .def("GetFromEntity",
              (void (IFGraph_Compare::*)( const opencascade::handle<Standard_Transient> & ,  const Standard_Boolean  ) ) static_cast<void (IFGraph_Compare::*)( const opencascade::handle<Standard_Transient> & ,  const Standard_Boolean  ) >(&IFGraph_Compare::GetFromEntity),
@@ -156,12 +164,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_Cumulate , shared_ptr<IFGraph_Cumulate>  , Interface_GraphContent >>(m.attr("IFGraph_Cumulate"))
+    // constructors
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+    // custom constructors
     // methods
         .def("GetFromEntity",
              (void (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_Cumulate::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_Cumulate::GetFromEntity),
@@ -194,12 +204,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_ExternalSources , shared_ptr<IFGraph_ExternalSources>  , Interface_GraphContent >>(m.attr("IFGraph_ExternalSources"))
+    // constructors
         .def(py::init< const Interface_Graph & >()  , py::arg("agraph") )
+    // custom constructors
     // methods
         .def("GetFromEntity",
              (void (IFGraph_ExternalSources::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IFGraph_ExternalSources::*)( const opencascade::handle<Standard_Transient> &  ) >(&IFGraph_ExternalSources::GetFromEntity),
@@ -220,13 +232,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_SubPartsIterator , shared_ptr<IFGraph_SubPartsIterator>  >>(m.attr("IFGraph_SubPartsIterator"))
+    // constructors
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
         .def(py::init< IFGraph_SubPartsIterator & >()  , py::arg("other") )
+    // custom constructors
     // methods
         .def("GetParts",
              (void (IFGraph_SubPartsIterator::*)( IFGraph_SubPartsIterator &  ) ) static_cast<void (IFGraph_SubPartsIterator::*)( IFGraph_SubPartsIterator &  ) >(&IFGraph_SubPartsIterator::GetParts),
@@ -298,12 +312,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_ConnectedComponants , shared_ptr<IFGraph_ConnectedComponants>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_ConnectedComponants"))
+    // constructors
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+    // custom constructors
     // methods
         .def("Evaluate",
              (void (IFGraph_ConnectedComponants::*)() ) static_cast<void (IFGraph_ConnectedComponants::*)() >(&IFGraph_ConnectedComponants::Evaluate),
@@ -312,13 +328,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_Cycles , shared_ptr<IFGraph_Cycles>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_Cycles"))
+    // constructors
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
         .def(py::init< IFGraph_StrongComponants & >()  , py::arg("subparts") )
+    // custom constructors
     // methods
         .def("Evaluate",
              (void (IFGraph_Cycles::*)() ) static_cast<void (IFGraph_Cycles::*)() >(&IFGraph_Cycles::Evaluate),
@@ -327,12 +345,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_StrongComponants , shared_ptr<IFGraph_StrongComponants>  , IFGraph_SubPartsIterator >>(m.attr("IFGraph_StrongComponants"))
+    // constructors
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
+    // custom constructors
     // methods
         .def("Evaluate",
              (void (IFGraph_StrongComponants::*)() ) static_cast<void (IFGraph_StrongComponants::*)() >(&IFGraph_StrongComponants::Evaluate),
@@ -341,13 +361,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFGraph_SCRoots , shared_ptr<IFGraph_SCRoots>  , IFGraph_StrongComponants >>(m.attr("IFGraph_SCRoots"))
+    // constructors
         .def(py::init< const Interface_Graph &,const Standard_Boolean >()  , py::arg("agraph"),  py::arg("whole") )
         .def(py::init< IFGraph_StrongComponants & >()  , py::arg("subparts") )
+    // custom constructors
     // methods
         .def("Evaluate",
              (void (IFGraph_SCRoots::*)() ) static_cast<void (IFGraph_SCRoots::*)() >(&IFGraph_SCRoots::Evaluate),
@@ -356,21 +378,21 @@ py::module m = static_cast<py::module>(main_module.attr("IFGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IFGraph_AllShared.hxx
-// ./opencascade/IFGraph_SubPartsIterator.hxx
-// ./opencascade/IFGraph_Articulations.hxx
-// ./opencascade/IFGraph_Compare.hxx
-// ./opencascade/IFGraph_ExternalSources.hxx
-// ./opencascade/IFGraph_StrongComponants.hxx
-// ./opencascade/IFGraph_Cycles.hxx
 // ./opencascade/IFGraph_AllConnected.hxx
+// ./opencascade/IFGraph_Articulations.hxx
 // ./opencascade/IFGraph_SCRoots.hxx
 // ./opencascade/IFGraph_ConnectedComponants.hxx
+// ./opencascade/IFGraph_Cycles.hxx
+// ./opencascade/IFGraph_AllShared.hxx
 // ./opencascade/IFGraph_Cumulate.hxx
+// ./opencascade/IFGraph_Compare.hxx
+// ./opencascade/IFGraph_ExternalSources.hxx
+// ./opencascade/IFGraph_SubPartsIterator.hxx
+// ./opencascade/IFGraph_StrongComponants.hxx
 
 // operators
 

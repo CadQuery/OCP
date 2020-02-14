@@ -13,12 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <AdvApp2Var_Patch.hxx>
+#include <AdvApp2Var_Context.hxx>
 #include <AdvApp2Var_Context.hxx>
 #include <AdvApp2Var_Node.hxx>
 #include <AdvApprox_Cutting.hxx>
 #include <AdvApp2Var_Criterion.hxx>
-#include <AdvApp2Var_Patch.hxx>
-#include <AdvApp2Var_Context.hxx>
 #include <AdvApp2Var_Context.hxx>
 #include <AdvApp2Var_Framework.hxx>
 #include <AdvApp2Var_Criterion.hxx>
@@ -46,13 +46,13 @@ namespace py = pybind11;
 #include <AdvApp2Var_SysBase.hxx>
 
 // template related includes
-// ./opencascade/AdvApp2Var_SequenceOfNode.hxx
+// ./opencascade/AdvApp2Var_SequenceOfStrip.hxx
 #include "NCollection.hxx"
 // ./opencascade/AdvApp2Var_Strip.hxx
 #include "NCollection.hxx"
 // ./opencascade/AdvApp2Var_SequenceOfPatch.hxx
 #include "NCollection.hxx"
-// ./opencascade/AdvApp2Var_SequenceOfStrip.hxx
+// ./opencascade/AdvApp2Var_SequenceOfNode.hxx
 #include "NCollection.hxx"
 
 
@@ -73,6 +73,7 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     public:
         using AdvApp2Var_Criterion::AdvApp2Var_Criterion;
         
+        
         // public pure virtual
         void Value(AdvApp2Var_Patch & P,const AdvApp2Var_Context & C) const  override { PYBIND11_OVERLOAD_PURE(void,AdvApp2Var_Criterion,Value,P,C) };
         Standard_Boolean IsSatisfied(const AdvApp2Var_Patch & P) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,AdvApp2Var_Criterion,IsSatisfied,P) };
@@ -87,6 +88,7 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     class Py_AdvApp2Var_EvaluatorFunc2Var : public AdvApp2Var_EvaluatorFunc2Var{
     public:
         using AdvApp2Var_EvaluatorFunc2Var::AdvApp2Var_EvaluatorFunc2Var;
+        
         
         // public pure virtual
         void Evaluate(Standard_Integer * theDimension,Standard_Real * theUStartEnd,Standard_Real * theVStartEnd,Standard_Integer * theFavorIso,Standard_Real * theConstParam,Standard_Integer * theNbParams,Standard_Real * theParameters,Standard_Integer * theUOrder,Standard_Integer * theVOrder,Standard_Real * theResult,Standard_Integer * theErrorCode) const  override { PYBIND11_OVERLOAD_PURE(void,AdvApp2Var_EvaluatorFunc2Var,Evaluate,theDimension,theUStartEnd,theVStartEnd,theFavorIso,theConstParam,theNbParams,theParameters,theUOrder,theVOrder,theResult,theErrorCode) };
@@ -103,8 +105,10 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
 
 
     static_cast<py::class_<AdvApp2Var_ApproxAFunc2Var , shared_ptr<AdvApp2Var_ApproxAFunc2Var>  >>(m.attr("AdvApp2Var_ApproxAFunc2Var"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const GeomAbs_IsoType,const GeomAbs_Shape,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const AdvApp2Var_EvaluatorFunc2Var &,AdvApprox_Cutting &,AdvApprox_Cutting & >()  , py::arg("Num1DSS"),  py::arg("Num2DSS"),  py::arg("Num3DSS"),  py::arg("OneDTol"),  py::arg("TwoDTol"),  py::arg("ThreeDTol"),  py::arg("OneDTolFr"),  py::arg("TwoDTolFr"),  py::arg("ThreeDTolFr"),  py::arg("FirstInU"),  py::arg("LastInU"),  py::arg("FirstInV"),  py::arg("LastInV"),  py::arg("FavorIso"),  py::arg("ContInU"),  py::arg("ContInV"),  py::arg("PrecisCode"),  py::arg("MaxDegInU"),  py::arg("MaxDegInV"),  py::arg("MaxPatch"),  py::arg("Func"),  py::arg("UChoice"),  py::arg("VChoice") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const GeomAbs_IsoType,const GeomAbs_Shape,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const AdvApp2Var_EvaluatorFunc2Var &,const AdvApp2Var_Criterion &,AdvApprox_Cutting &,AdvApprox_Cutting & >()  , py::arg("Num1DSS"),  py::arg("Num2DSS"),  py::arg("Num3DSS"),  py::arg("OneDTol"),  py::arg("TwoDTol"),  py::arg("ThreeDTol"),  py::arg("OneDTolFr"),  py::arg("TwoDTolFr"),  py::arg("ThreeDTolFr"),  py::arg("FirstInU"),  py::arg("LastInU"),  py::arg("FirstInV"),  py::arg("LastInV"),  py::arg("FavorIso"),  py::arg("ContInU"),  py::arg("ContInV"),  py::arg("PrecisCode"),  py::arg("MaxDegInU"),  py::arg("MaxDegInV"),  py::arg("MaxPatch"),  py::arg("Func"),  py::arg("Crit"),  py::arg("UChoice"),  py::arg("VChoice") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AdvApp2Var_ApproxAFunc2Var::*)() const) static_cast<Standard_Boolean (AdvApp2Var_ApproxAFunc2Var::*)() const>(&AdvApp2Var_ApproxAFunc2Var::IsDone),
@@ -176,12 +180,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<AdvApp2Var_ApproxF2var , shared_ptr<AdvApp2Var_ApproxF2var>>(m,"AdvApp2Var_ApproxF2var");
 
     static_cast<py::class_<AdvApp2Var_ApproxF2var , shared_ptr<AdvApp2Var_ApproxF2var>  >>(m.attr("AdvApp2Var_ApproxF2var"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -226,13 +233,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
                     R"#(None)#"  , py::arg("ncfmxu"),  py::arg("ncfmxv"),  py::arg("ndimen"),  py::arg("nbsesp"),  py::arg("ndimse"),  py::arg("nbupat"),  py::arg("nbvpat"),  py::arg("iordru"),  py::arg("iordrv"),  py::arg("epsapr"),  py::arg("epsfro"),  py::arg("patcan"),  py::arg("errmax"),  py::arg("ncoefu"),  py::arg("ncoefv"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_Context , shared_ptr<AdvApp2Var_Context>  >>(m.attr("AdvApp2Var_Context"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> &,const opencascade::handle<TColStd_HArray2OfReal> & >()  , py::arg("ifav"),  py::arg("iu"),  py::arg("iv"),  py::arg("nlimu"),  py::arg("nlimv"),  py::arg("iprecis"),  py::arg("nb1Dss"),  py::arg("nb2Dss"),  py::arg("nb3Dss"),  py::arg("tol1D"),  py::arg("tol2D"),  py::arg("tol3D"),  py::arg("tof1D"),  py::arg("tof2D"),  py::arg("tof3D") )
+    // custom constructors
     // methods
         .def("TotalDimension",
              (Standard_Integer (AdvApp2Var_Context::*)() const) static_cast<Standard_Integer (AdvApp2Var_Context::*)() const>(&AdvApp2Var_Context::TotalDimension),
@@ -292,11 +301,13 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_Criterion , shared_ptr<AdvApp2Var_Criterion> ,Py_AdvApp2Var_Criterion >>(m.attr("AdvApp2Var_Criterion"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (void (AdvApp2Var_Criterion::*)( AdvApp2Var_Patch & ,  const AdvApp2Var_Context &  ) const) static_cast<void (AdvApp2Var_Criterion::*)( AdvApp2Var_Patch & ,  const AdvApp2Var_Context &  ) const>(&AdvApp2Var_Criterion::Value),
@@ -317,12 +328,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<AdvApp2Var_Data , shared_ptr<AdvApp2Var_Data>>(m,"AdvApp2Var_Data");
 
     static_cast<py::class_<AdvApp2Var_Data , shared_ptr<AdvApp2Var_Data>  >>(m.attr("AdvApp2Var_Data"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -361,12 +375,14 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_EvaluatorFunc2Var , shared_ptr<AdvApp2Var_EvaluatorFunc2Var> ,Py_AdvApp2Var_EvaluatorFunc2Var >>(m.attr("AdvApp2Var_EvaluatorFunc2Var"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Evaluate",
              (void (AdvApp2Var_EvaluatorFunc2Var::*)( Standard_Integer * ,  Standard_Real * ,  Standard_Real * ,  Standard_Integer * ,  Standard_Real * ,  Standard_Integer * ,  Standard_Real * ,  Standard_Integer * ,  Standard_Integer * ,  Standard_Real * ,  Standard_Integer *  ) const) static_cast<void (AdvApp2Var_EvaluatorFunc2Var::*)( Standard_Integer * ,  Standard_Real * ,  Standard_Real * ,  Standard_Integer * ,  Standard_Real * ,  Standard_Integer * ,  Standard_Real * ,  Standard_Integer * ,  Standard_Integer * ,  Standard_Real * ,  Standard_Integer *  ) const>(&AdvApp2Var_EvaluatorFunc2Var::Evaluate),
@@ -375,13 +391,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_Framework , shared_ptr<AdvApp2Var_Framework>  >>(m.attr("AdvApp2Var_Framework"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<AdvApp2Var_Node> &, const NCollection_Sequence<AdvApp2Var_Strip> &, const NCollection_Sequence<AdvApp2Var_Strip> & >()  , py::arg("Frame"),  py::arg("UFrontier"),  py::arg("VFrontier") )
+    // custom constructors
     // methods
         .def("FirstNotApprox",
              (Standard_Boolean (AdvApp2Var_Framework::*)( Standard_Integer & ,  Standard_Integer & ,  AdvApp2Var_Iso &  ) const) static_cast<Standard_Boolean (AdvApp2Var_Framework::*)( Standard_Integer & ,  Standard_Integer & ,  AdvApp2Var_Iso &  ) const>(&AdvApp2Var_Framework::FirstNotApprox),
@@ -432,13 +450,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_Iso , shared_ptr<AdvApp2Var_Iso>  >>(m.attr("AdvApp2Var_Iso"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomAbs_IsoType,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("type"),  py::arg("cte"),  py::arg("Ufirst"),  py::arg("Ulast"),  py::arg("Vfirst"),  py::arg("Vlast"),  py::arg("pos"),  py::arg("iu"),  py::arg("iv") )
+    // custom constructors
     // methods
         .def("IsApproximated",
              (Standard_Boolean (AdvApp2Var_Iso::*)() const) static_cast<Standard_Boolean (AdvApp2Var_Iso::*)() const>(&AdvApp2Var_Iso::IsApproximated),
@@ -522,12 +542,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<AdvApp2Var_MathBase , shared_ptr<AdvApp2Var_MathBase>>(m,"AdvApp2Var_MathBase");
 
     static_cast<py::class_<AdvApp2Var_MathBase , shared_ptr<AdvApp2Var_MathBase>  >>(m.attr("AdvApp2Var_MathBase"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -650,13 +673,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
                     R"#(None)#"  , py::arg("ndimen"),  py::arg("vecteu"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_Network , shared_ptr<AdvApp2Var_Network>  >>(m.attr("AdvApp2Var_Network"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<AdvApp2Var_Patch> &, const NCollection_Sequence<Standard_Real> &, const NCollection_Sequence<Standard_Real> & >()  , py::arg("Net"),  py::arg("TheU"),  py::arg("TheV") )
+    // custom constructors
     // methods
         .def("FirstNotApprox",
              (Standard_Boolean (AdvApp2Var_Network::*)( Standard_Integer &  ) const) static_cast<Standard_Boolean (AdvApp2Var_Network::*)( Standard_Integer &  ) const>(&AdvApp2Var_Network::FirstNotApprox),
@@ -701,14 +726,16 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_Node , shared_ptr<AdvApp2Var_Node>  >>(m.attr("AdvApp2Var_Node"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("iu"),  py::arg("iv") )
         .def(py::init< const gp_XY &,const Standard_Integer,const Standard_Integer >()  , py::arg("UV"),  py::arg("iu"),  py::arg("iv") )
+    // custom constructors
     // methods
         .def("Coord",
              (gp_XY (AdvApp2Var_Node::*)() const) static_cast<gp_XY (AdvApp2Var_Node::*)() const>(&AdvApp2Var_Node::Coord),
@@ -738,13 +765,15 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_Patch , shared_ptr<AdvApp2Var_Patch>  >>(m.attr("AdvApp2Var_Patch"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("U0"),  py::arg("U1"),  py::arg("V0"),  py::arg("V1"),  py::arg("iu"),  py::arg("iv") )
+    // custom constructors
     // methods
         .def("IsDiscretised",
              (Standard_Boolean (AdvApp2Var_Patch::*)() const) static_cast<Standard_Boolean (AdvApp2Var_Patch::*)() const>(&AdvApp2Var_Patch::IsDiscretised),
@@ -834,12 +863,14 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AdvApp2Var_SysBase , shared_ptr<AdvApp2Var_SysBase>  >>(m.attr("AdvApp2Var_SysBase"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("mainial_",
              (int (AdvApp2Var_SysBase::*)() ) static_cast<int (AdvApp2Var_SysBase::*)() >(&AdvApp2Var_SysBase::mainial_),
@@ -911,38 +942,234 @@ py::module m = static_cast<py::module>(main_module.attr("AdvApp2Var"));
                     R"#(None)#"  , py::arg("taille"),  py::arg("adt"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<Namelist , shared_ptr<Namelist>>(m,"Namelist");
+
+    static_cast<py::class_<Namelist , shared_ptr<Namelist>  >>(m.attr("Namelist"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<Vardesc , shared_ptr<Vardesc>>(m,"Vardesc");
+
+    static_cast<py::class_<Vardesc , shared_ptr<Vardesc>  >>(m.attr("Vardesc"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<complex , shared_ptr<complex>>(m,"complex");
+
+    static_cast<py::class_<complex , shared_ptr<complex>  >>(m.attr("complex"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<maovpar_1_ , shared_ptr<maovpar_1_>>(m,"maovpar_1_");
+
+    static_cast<py::class_<maovpar_1_ , shared_ptr<maovpar_1_>  >>(m.attr("maovpar_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<maovpch_1_ , shared_ptr<maovpch_1_>>(m,"maovpch_1_");
+
+    static_cast<py::class_<maovpch_1_ , shared_ptr<maovpch_1_>  >>(m.attr("maovpch_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mdnombr_1_ , shared_ptr<mdnombr_1_>>(m,"mdnombr_1_");
+
+    static_cast<py::class_<mdnombr_1_ , shared_ptr<mdnombr_1_>  >>(m.attr("mdnombr_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<minombr_1_ , shared_ptr<minombr_1_>>(m,"minombr_1_");
+
+    static_cast<py::class_<minombr_1_ , shared_ptr<minombr_1_>  >>(m.attr("minombr_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mlgdrtl_1_ , shared_ptr<mlgdrtl_1_>>(m,"mlgdrtl_1_");
+
+    static_cast<py::class_<mlgdrtl_1_ , shared_ptr<mlgdrtl_1_>  >>(m.attr("mlgdrtl_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mmapgs0_1_ , shared_ptr<mmapgs0_1_>>(m,"mmapgs0_1_");
+
+    static_cast<py::class_<mmapgs0_1_ , shared_ptr<mmapgs0_1_>  >>(m.attr("mmapgs0_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mmapgs1_1_ , shared_ptr<mmapgs1_1_>>(m,"mmapgs1_1_");
+
+    static_cast<py::class_<mmapgs1_1_ , shared_ptr<mmapgs1_1_>  >>(m.attr("mmapgs1_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mmapgs2_1_ , shared_ptr<mmapgs2_1_>>(m,"mmapgs2_1_");
+
+    static_cast<py::class_<mmapgs2_1_ , shared_ptr<mmapgs2_1_>  >>(m.attr("mmapgs2_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mmapgss_1_ , shared_ptr<mmapgss_1_>>(m,"mmapgss_1_");
+
+    static_cast<py::class_<mmapgss_1_ , shared_ptr<mmapgss_1_>  >>(m.attr("mmapgss_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mmcmcnp_1_ , shared_ptr<mmcmcnp_1_>>(m,"mmcmcnp_1_");
+
+    static_cast<py::class_<mmcmcnp_1_ , shared_ptr<mmcmcnp_1_>  >>(m.attr("mmcmcnp_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<mmjcobi_1_ , shared_ptr<mmjcobi_1_>>(m,"mmjcobi_1_");
+
+    static_cast<py::class_<mmjcobi_1_ , shared_ptr<mmjcobi_1_>  >>(m.attr("mmjcobi_1_"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/AdvApp2Var_ApproxF2var.hxx
-// ./opencascade/AdvApp2Var_Node.hxx
-// ./opencascade/AdvApp2Var_Iso.hxx
-// ./opencascade/AdvApp2Var_SysBase.hxx
-// ./opencascade/AdvApp2Var_Context.hxx
-// ./opencascade/AdvApp2Var_EvaluatorFunc2Var.hxx
-// ./opencascade/AdvApp2Var_CriterionType.hxx
-// ./opencascade/AdvApp2Var_ApproxAFunc2Var.hxx
-// ./opencascade/AdvApp2Var_Criterion.hxx
 // ./opencascade/AdvApp2Var_MathBase.hxx
-// ./opencascade/AdvApp2Var_Patch.hxx
-// ./opencascade/AdvApp2Var_Framework.hxx
-// ./opencascade/AdvApp2Var_SequenceOfNode.hxx
-// ./opencascade/AdvApp2Var_Strip.hxx
-// ./opencascade/AdvApp2Var_Data.hxx
-// ./opencascade/AdvApp2Var_SequenceOfPatch.hxx
-// ./opencascade/AdvApp2Var_Data_f2c.hxx
-// ./opencascade/AdvApp2Var_Network.hxx
+// ./opencascade/AdvApp2Var_EvaluatorFunc2Var.hxx
 // ./opencascade/AdvApp2Var_SequenceOfStrip.hxx
+// ./opencascade/AdvApp2Var_Strip.hxx
+// ./opencascade/AdvApp2Var_ApproxF2var.hxx
+// ./opencascade/AdvApp2Var_Network.hxx
+// ./opencascade/AdvApp2Var_SequenceOfPatch.hxx
+// ./opencascade/AdvApp2Var_Context.hxx
+// ./opencascade/AdvApp2Var_Node.hxx
+// ./opencascade/AdvApp2Var_SysBase.hxx
+// ./opencascade/AdvApp2Var_Criterion.hxx
 // ./opencascade/AdvApp2Var_CriterionRepartition.hxx
+// ./opencascade/AdvApp2Var_SequenceOfNode.hxx
+// ./opencascade/AdvApp2Var_Data_f2c.hxx
+// ./opencascade/AdvApp2Var_Iso.hxx
+// ./opencascade/AdvApp2Var_ApproxAFunc2Var.hxx
+// ./opencascade/AdvApp2Var_Framework.hxx
+// ./opencascade/AdvApp2Var_Patch.hxx
+// ./opencascade/AdvApp2Var_Data.hxx
+// ./opencascade/AdvApp2Var_CriterionType.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<AdvApp2Var_Node>(m,"AdvApp2Var_SequenceOfNode");  
+    register_template_NCollection_Sequence<AdvApp2Var_Strip>(m,"AdvApp2Var_SequenceOfStrip");  
     register_template_NCollection_Sequence<AdvApp2Var_Iso>(m,"AdvApp2Var_Strip");  
     register_template_NCollection_Sequence<AdvApp2Var_Patch>(m,"AdvApp2Var_SequenceOfPatch");  
-    register_template_NCollection_Sequence<AdvApp2Var_Strip>(m,"AdvApp2Var_SequenceOfStrip");  
+    register_template_NCollection_Sequence<AdvApp2Var_Node>(m,"AdvApp2Var_SequenceOfNode");  
 
 
 // exceptions

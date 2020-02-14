@@ -10,6 +10,10 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <IGESData_IGESModel.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <TopoDS_Shape.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopoDS_Vertex.hxx>
@@ -28,24 +32,20 @@ namespace py = pybind11;
 #include <TopoDS_Shape.hxx>
 #include <TopoDS_Shell.hxx>
 #include <TopoDS_Face.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <TopoDS_Shape.hxx>
 
 // module includes
+#include <BRepToIGES_BREntity.hxx>
 #include <BRepToIGES_BRWire.hxx>
 #include <BRepToIGES_BRSolid.hxx>
 #include <BRepToIGES_BRShell.hxx>
-#include <BRepToIGES_BREntity.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/BRepToIGES_BREntity.hxx
 // ./opencascade/BRepToIGES_BRWire.hxx
 // ./opencascade/BRepToIGES_BRSolid.hxx
 // ./opencascade/BRepToIGES_BRShell.hxx
-// ./opencascade/BRepToIGES_BREntity.hxx
 
 // user-defined post

@@ -79,9 +79,11 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
 
 
     static_cast<py::class_<BRepAdaptor_CompCurve , shared_ptr<BRepAdaptor_CompCurve>  , Adaptor3d_Curve >>(m.attr("BRepAdaptor_CompCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const Standard_Boolean >()  , py::arg("W"),  py::arg("KnotByCurvilinearAbcissa")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Wire &,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("W"),  py::arg("KnotByCurvilinearAbcissa"),  py::arg("First"),  py::arg("Last"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepAdaptor_CompCurve::*)( const TopoDS_Wire & ,  const Standard_Boolean  ) ) static_cast<void (BRepAdaptor_CompCurve::*)( const TopoDS_Wire & ,  const Standard_Boolean  ) >(&BRepAdaptor_CompCurve::Initialize),
@@ -183,15 +185,20 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_Curve , shared_ptr<BRepAdaptor_Curve>  , Adaptor3d_Curve >>(m.attr("BRepAdaptor_Curve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge & >()  , py::arg("E") )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // custom constructors
     // methods
+        .def("Reset",
+             (void (BRepAdaptor_Curve::*)() ) static_cast<void (BRepAdaptor_Curve::*)() >(&BRepAdaptor_Curve::Reset),
+             R"#(Reset currently loaded curve (undone Load()).)#" )
         .def("Initialize",
              (void (BRepAdaptor_Curve::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepAdaptor_Curve::*)( const TopoDS_Edge &  ) >(&BRepAdaptor_Curve::Initialize),
              R"#(Sets the Curve <me> to acces to the geometry of edge <E>.)#"  , py::arg("E"))
@@ -310,13 +317,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_Curve2d , shared_ptr<BRepAdaptor_Curve2d>  , Geom2dAdaptor_Curve >>(m.attr("BRepAdaptor_Curve2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepAdaptor_Curve2d::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepAdaptor_Curve2d::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepAdaptor_Curve2d::Initialize),
@@ -331,14 +340,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_HArray1OfCurve ,opencascade::handle<BRepAdaptor_HArray1OfCurve>  , BRepAdaptor_Array1OfCurve , Standard_Transient >>(m.attr("BRepAdaptor_HArray1OfCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const BRepAdaptor_Curve & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<BRepAdaptor_Curve> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() const) static_cast<const BRepAdaptor_Array1OfCurve & (BRepAdaptor_HArray1OfCurve::*)() const>(&BRepAdaptor_HArray1OfCurve::Array1),
@@ -359,13 +371,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_HCompCurve ,opencascade::handle<BRepAdaptor_HCompCurve>  , Adaptor3d_HCurve >>(m.attr("BRepAdaptor_HCompCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepAdaptor_CompCurve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepAdaptor_HCompCurve::*)( const BRepAdaptor_CompCurve &  ) ) static_cast<void (BRepAdaptor_HCompCurve::*)( const BRepAdaptor_CompCurve &  ) >(&BRepAdaptor_HCompCurve::Set),
@@ -392,13 +406,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_HCurve ,opencascade::handle<BRepAdaptor_HCurve>  , Adaptor3d_HCurve >>(m.attr("BRepAdaptor_HCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepAdaptor_Curve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepAdaptor_HCurve::*)( const BRepAdaptor_Curve &  ) ) static_cast<void (BRepAdaptor_HCurve::*)( const BRepAdaptor_Curve &  ) >(&BRepAdaptor_HCurve::Set),
@@ -425,13 +441,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_HCurve2d ,opencascade::handle<BRepAdaptor_HCurve2d>  , Adaptor2d_HCurve2d >>(m.attr("BRepAdaptor_HCurve2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepAdaptor_Curve2d & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepAdaptor_HCurve2d::*)( const BRepAdaptor_Curve2d &  ) ) static_cast<void (BRepAdaptor_HCurve2d::*)( const BRepAdaptor_Curve2d &  ) >(&BRepAdaptor_HCurve2d::Set),
@@ -455,13 +473,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_HSurface ,opencascade::handle<BRepAdaptor_HSurface>  , Adaptor3d_HSurface >>(m.attr("BRepAdaptor_HSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepAdaptor_Surface & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Set",
              (void (BRepAdaptor_HSurface::*)( const BRepAdaptor_Surface &  ) ) static_cast<void (BRepAdaptor_HSurface::*)( const BRepAdaptor_Surface &  ) >(&BRepAdaptor_HSurface::Set),
@@ -485,13 +505,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAdaptor_Surface , shared_ptr<BRepAdaptor_Surface>  , Adaptor3d_Surface >>(m.attr("BRepAdaptor_Surface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,const Standard_Boolean >()  , py::arg("F"),  py::arg("R")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepAdaptor_Surface::*)( const TopoDS_Face & ,  const Standard_Boolean  ) ) static_cast<void (BRepAdaptor_Surface::*)( const TopoDS_Face & ,  const Standard_Boolean  ) >(&BRepAdaptor_Surface::Initialize),
@@ -731,19 +753,19 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepAdaptor_HSurface.hxx
-// ./opencascade/BRepAdaptor_HArray1OfCurve.hxx
+// ./opencascade/BRepAdaptor_HCurve2d.hxx
+// ./opencascade/BRepAdaptor_HCompCurve.hxx
 // ./opencascade/BRepAdaptor_CompCurve.hxx
 // ./opencascade/BRepAdaptor_Surface.hxx
-// ./opencascade/BRepAdaptor_Array1OfCurve.hxx
-// ./opencascade/BRepAdaptor_HCompCurve.hxx
-// ./opencascade/BRepAdaptor_HCurve2d.hxx
+// ./opencascade/BRepAdaptor_HArray1OfCurve.hxx
 // ./opencascade/BRepAdaptor_Curve2d.hxx
 // ./opencascade/BRepAdaptor_HCurve.hxx
+// ./opencascade/BRepAdaptor_HSurface.hxx
+// ./opencascade/BRepAdaptor_Array1OfCurve.hxx
 // ./opencascade/BRepAdaptor_Curve.hxx
 
 // operators

@@ -14,89 +14,9 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <StdFail_NotDone.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppParCurves_MultiCurve.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_TheResol.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <AppDef_MultiLine.hxx>
 #include <AppDef_MyLineTool.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_MyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_MyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute.hxx>
-#include <AppDef_MyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_MyGradientOfCompute.hxx>
-#include <AppDef_ParLeastSquareOfMyGradientOfCompute.hxx>
-#include <AppDef_ResConstraintOfMyGradientOfCompute.hxx>
-#include <AppDef_ParFunctionOfMyGradientOfCompute.hxx>
-#include <AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <FEmTool_Curve.hxx>
-#include <math_Matrix.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_ResConstraintOfMyGradientOfCompute.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_MyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppParCurves_MultiCurve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_ParLeastSquareOfMyGradientOfCompute.hxx>
-#include <AppDef_ResConstraintOfMyGradientOfCompute.hxx>
-#include <AppDef_ParFunctionOfMyGradientOfCompute.hxx>
-#include <AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppParCurves_MultiCurve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_ResConstraintOfTheGradient.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppDef_TheGradient.hxx>
-#include <AppDef_ParLeastSquareOfTheGradient.hxx>
-#include <AppDef_ResConstraintOfTheGradient.hxx>
-#include <AppDef_ParFunctionOfTheGradient.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
 #include <AppDef_SmoothCriterion.hxx>
 #include <StdFail_NotDone.hxx>
 #include <math_Matrix.hxx>
@@ -108,6 +28,59 @@ namespace py = pybind11;
 #include <AppDef_MultiLine.hxx>
 #include <AppDef_MyLineTool.hxx>
 #include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_MyGradientOfCompute.hxx>
+#include <AppDef_ParLeastSquareOfMyGradientOfCompute.hxx>
+#include <AppDef_ResConstraintOfMyGradientOfCompute.hxx>
+#include <AppDef_ParFunctionOfMyGradientOfCompute.hxx>
+#include <AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <FEmTool_Curve.hxx>
+#include <math_Matrix.hxx>
+#include <FEmTool_ElementaryCriterion.hxx>
+#include <FEmTool_Curve.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <math_Matrix.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_TheGradient.hxx>
+#include <AppDef_ParLeastSquareOfTheGradient.hxx>
+#include <AppDef_ResConstraintOfTheGradient.hxx>
+#include <AppDef_ParFunctionOfTheGradient.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_MyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_MyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_MyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_MyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
 #include <AppDef_MultiLine.hxx>
 #include <AppDef_MyLineTool.hxx>
 #include <AppDef_MyGradientOfCompute.hxx>
@@ -115,10 +88,23 @@ namespace py = pybind11;
 #include <AppDef_ResConstraintOfMyGradientOfCompute.hxx>
 #include <AppDef_ParFunctionOfMyGradientOfCompute.hxx>
 #include <math_MultipleVarFunctionWithGradient.hxx>
-#include <FEmTool_ElementaryCriterion.hxx>
-#include <FEmTool_Curve.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <math_Matrix.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_TheResol.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppParCurves_MultiCurve.hxx>
+#include <AppDef_MyLineTool.hxx>
 #include <StdFail_NotDone.hxx>
 #include <AppDef_MultiLine.hxx>
 #include <AppDef_MyLineTool.hxx>
@@ -126,9 +112,6 @@ namespace py = pybind11;
 #include <AppDef_ResConstraintOfTheGradient.hxx>
 #include <AppDef_ParFunctionOfTheGradient.hxx>
 #include <AppDef_Gradient_BFGSOfTheGradient.hxx>
-#include <AppDef_MultiLine.hxx>
-#include <AppDef_MyLineTool.hxx>
-#include <AppParCurves_MultiCurve.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <AppDef_MultiLine.hxx>
@@ -136,10 +119,27 @@ namespace py = pybind11;
 #include <StdFail_NotDone.hxx>
 #include <AppDef_MultiLine.hxx>
 #include <AppDef_MyLineTool.hxx>
+#include <AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx>
+#include <AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute.hxx>
+#include <StdFail_NotDone.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
 #include <AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute.hxx>
 #include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
 #include <AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx>
 #include <AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute.hxx>
+#include <StdFail_NotDone.hxx>
+#include <AppDef_MultiLine.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_ParLeastSquareOfMyGradientOfCompute.hxx>
+#include <AppDef_ResConstraintOfMyGradientOfCompute.hxx>
+#include <AppDef_ParFunctionOfMyGradientOfCompute.hxx>
+#include <AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_ResConstraintOfMyGradientOfCompute.hxx>
+#include <AppDef_MyLineTool.hxx>
+#include <AppDef_ResConstraintOfTheGradient.hxx>
 
 // module includes
 #include <AppDef_Array1OfMultiPointConstraint.hxx>
@@ -197,6 +197,7 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     public:
         using AppDef_SmoothCriterion::AppDef_SmoothCriterion;
         
+        
         // public pure virtual
         void SetParameters(const opencascade::handle<TColStd_HArray1OfReal> & Parameters) override { PYBIND11_OVERLOAD_PURE(void,AppDef_SmoothCriterion,SetParameters,Parameters) };
         void SetCurve(const opencascade::handle<FEmTool_Curve> & C) override { PYBIND11_OVERLOAD_PURE(void,AppDef_SmoothCriterion,SetCurve,C) };
@@ -227,7 +228,9 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
 
 
     static_cast<py::class_<AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute , shared_ptr<AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute>  , math_BFGS >>(m.attr("AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute::*)( math_MultipleVarFunctionWithGradient &  ) const>(&AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute::IsSolutionReached),
@@ -236,12 +239,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute , shared_ptr<AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute>  , math_MultipleVarFunctionWithGradient >>(m.attr("AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute::*)() const) static_cast<Standard_Integer (AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute::*)() const>(&AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute::NbVariables),
@@ -295,15 +300,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute , shared_ptr<AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute>  >>(m.attr("AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute::*)( const math_Vector &  ) ) static_cast<void (AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute::*)( const math_Vector &  ) >(&AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute::Perform),
@@ -360,15 +367,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_BSplineCompute , shared_ptr<AppDef_BSplineCompute>  >>(m.attr("AppDef_BSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-3),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-6),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const AppDef_MultiLine &,const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Line"),  py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Interpol",
              (void (AppDef_BSplineCompute::*)( const AppDef_MultiLine &  ) ) static_cast<void (AppDef_BSplineCompute::*)( const AppDef_MultiLine &  ) >(&AppDef_BSplineCompute::Interpol),
@@ -400,6 +409,9 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
         .def("SetConstraints",
              (void (AppDef_BSplineCompute::*)( const AppParCurves_Constraint ,  const AppParCurves_Constraint  ) ) static_cast<void (AppDef_BSplineCompute::*)( const AppParCurves_Constraint ,  const AppParCurves_Constraint  ) >(&AppDef_BSplineCompute::SetConstraints),
              R"#(changes the first and the last constraint points.)#"  , py::arg("firstC"),  py::arg("lastC"))
+        .def("SetPeriodic",
+             (void (AppDef_BSplineCompute::*)( const Standard_Boolean  ) ) static_cast<void (AppDef_BSplineCompute::*)( const Standard_Boolean  ) >(&AppDef_BSplineCompute::SetPeriodic),
+             R"#(Sets periodic flag. If thePeriodic = Standard_True, algorith tries to build periodic multicurve using corresponding C1 boundary condition for first and last multipoints. Multiline must be closed.)#"  , py::arg("thePeriodic"))
         .def("IsAllApproximated",
              (Standard_Boolean (AppDef_BSplineCompute::*)() const) static_cast<Standard_Boolean (AppDef_BSplineCompute::*)() const>(&AppDef_BSplineCompute::IsAllApproximated),
              R"#(returns False if at a moment of the approximation, the status NoApproximation has been sent by the user when more points were needed.)#" )
@@ -422,15 +434,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_Compute , shared_ptr<AppDef_Compute>  >>(m.attr("AppDef_Compute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-3),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-6),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const AppDef_MultiLine &,const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Line"),  py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Parameters"),  py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Approx_ParametrizationType,const Standard_Boolean >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(4),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-03),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("parametrization")=static_cast<const Approx_ParametrizationType>(Approx_ChordLength),  py::arg("Squares")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (AppDef_Compute::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) ) static_cast<void (AppDef_Compute::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean ,  const Approx_ParametrizationType ,  const Standard_Boolean  ) >(&AppDef_Compute::Init),
@@ -478,12 +492,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_Gradient_BFGSOfMyGradientOfCompute , shared_ptr<AppDef_Gradient_BFGSOfMyGradientOfCompute>  , math_BFGS >>(m.attr("AppDef_Gradient_BFGSOfMyGradientOfCompute"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (AppDef_Gradient_BFGSOfMyGradientOfCompute::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (AppDef_Gradient_BFGSOfMyGradientOfCompute::*)( math_MultipleVarFunctionWithGradient &  ) const>(&AppDef_Gradient_BFGSOfMyGradientOfCompute::IsSolutionReached),
@@ -492,12 +508,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute , shared_ptr<AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute>  , math_BFGS >>(m.attr("AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute::*)( math_MultipleVarFunctionWithGradient &  ) const>(&AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute::IsSolutionReached),
@@ -506,12 +524,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_Gradient_BFGSOfTheGradient , shared_ptr<AppDef_Gradient_BFGSOfTheGradient>  , math_BFGS >>(m.attr("AppDef_Gradient_BFGSOfTheGradient"))
+    // constructors
         .def(py::init< math_MultipleVarFunctionWithGradient &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("StartingPoint"),  py::arg("Tolerance3d"),  py::arg("Tolerance2d"),  py::arg("Eps"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsSolutionReached",
              (Standard_Boolean (AppDef_Gradient_BFGSOfTheGradient::*)( math_MultipleVarFunctionWithGradient &  ) const) static_cast<Standard_Boolean (AppDef_Gradient_BFGSOfTheGradient::*)( math_MultipleVarFunctionWithGradient &  ) const>(&AppDef_Gradient_BFGSOfTheGradient::IsSolutionReached),
@@ -520,14 +540,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_HArray1OfMultiPointConstraint ,opencascade::handle<AppDef_HArray1OfMultiPointConstraint>  , AppDef_Array1OfMultiPointConstraint , Standard_Transient >>(m.attr("AppDef_HArray1OfMultiPointConstraint"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const AppDef_MultiPointConstraint & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<AppDef_MultiPointConstraint> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const AppDef_Array1OfMultiPointConstraint & (AppDef_HArray1OfMultiPointConstraint::*)() const) static_cast<const AppDef_Array1OfMultiPointConstraint & (AppDef_HArray1OfMultiPointConstraint::*)() const>(&AppDef_HArray1OfMultiPointConstraint::Array1),
@@ -548,16 +571,18 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_MultiLine , shared_ptr<AppDef_MultiLine>  >>(m.attr("AppDef_MultiLine"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("NbMult") )
         .def(py::init<  const NCollection_Array1<AppDef_MultiPointConstraint> & >()  , py::arg("tabMultiP") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> & >()  , py::arg("tabP3d") )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> & >()  , py::arg("tabP2d") )
+    // custom constructors
     // methods
         .def("NbMultiPoints",
              (Standard_Integer (AppDef_MultiLine::*)() const) static_cast<Standard_Integer (AppDef_MultiLine::*)() const>(&AppDef_MultiLine::NbMultiPoints),
@@ -578,11 +603,12 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_MultiPointConstraint , shared_ptr<AppDef_MultiPointConstraint>  , AppParCurves_MultiPoint >>(m.attr("AppDef_MultiPointConstraint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("NbPoints"),  py::arg("NbPoints2d") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> & >()  , py::arg("tabP") )
@@ -594,6 +620,7 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Vec> & >()  , py::arg("tabP"),  py::arg("tabVec") )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> &, const NCollection_Array1<gp_Vec2d> & >()  , py::arg("tabP2d"),  py::arg("tabVec2d") )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> &, const NCollection_Array1<gp_Vec2d> &, const NCollection_Array1<gp_Vec2d> & >()  , py::arg("tabP2d"),  py::arg("tabVec2d"),  py::arg("tabCur2d") )
+    // custom constructors
     // methods
         .def("SetTang",
              (void (AppDef_MultiPointConstraint::*)( const Standard_Integer ,  const gp_Vec &  ) ) static_cast<void (AppDef_MultiPointConstraint::*)( const Standard_Integer ,  const gp_Vec &  ) >(&AppDef_MultiPointConstraint::SetTang),
@@ -632,13 +659,15 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_MyBSplGradientOfBSplineCompute , shared_ptr<AppDef_MyBSplGradientOfBSplineCompute>  >>(m.attr("AppDef_MyBSplGradientOfBSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(1) )
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations"),  py::arg("lambda1"),  py::arg("lambda2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_MyBSplGradientOfBSplineCompute::*)() const) static_cast<Standard_Boolean (AppDef_MyBSplGradientOfBSplineCompute::*)() const>(&AppDef_MyBSplGradientOfBSplineCompute::IsDone),
@@ -662,12 +691,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_MyGradientOfCompute , shared_ptr<AppDef_MyGradientOfCompute>  >>(m.attr("AppDef_MyGradientOfCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_MyGradientOfCompute::*)() const) static_cast<Standard_Boolean (AppDef_MyGradientOfCompute::*)() const>(&AppDef_MyGradientOfCompute::IsDone),
@@ -691,12 +722,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_MyGradientbisOfBSplineCompute , shared_ptr<AppDef_MyGradientbisOfBSplineCompute>  >>(m.attr("AppDef_MyGradientbisOfBSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_MyGradientbisOfBSplineCompute::*)() const) static_cast<Standard_Boolean (AppDef_MyGradientbisOfBSplineCompute::*)() const>(&AppDef_MyGradientbisOfBSplineCompute::IsDone),
@@ -720,12 +753,15 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<AppDef_MyLineTool , shared_ptr<AppDef_MyLineTool>>(m,"AppDef_MyLineTool");
 
     static_cast<py::class_<AppDef_MyLineTool , shared_ptr<AppDef_MyLineTool>  >>(m.attr("AppDef_MyLineTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -779,12 +815,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
                     R"#(Is never called in the algorithms. Nothing is done.)#"  , py::arg("ML"),  py::arg("I1"),  py::arg("I2"),  py::arg("indbad"),  py::arg("OtherLine"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ParFunctionOfMyGradientOfCompute , shared_ptr<AppDef_ParFunctionOfMyGradientOfCompute>  , math_MultipleVarFunctionWithGradient >>(m.attr("AppDef_ParFunctionOfMyGradientOfCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (AppDef_ParFunctionOfMyGradientOfCompute::*)() const) static_cast<Standard_Integer (AppDef_ParFunctionOfMyGradientOfCompute::*)() const>(&AppDef_ParFunctionOfMyGradientOfCompute::NbVariables),
@@ -823,12 +861,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ParFunctionOfMyGradientbisOfBSplineCompute , shared_ptr<AppDef_ParFunctionOfMyGradientbisOfBSplineCompute>  , math_MultipleVarFunctionWithGradient >>(m.attr("AppDef_ParFunctionOfMyGradientbisOfBSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (AppDef_ParFunctionOfMyGradientbisOfBSplineCompute::*)() const) static_cast<Standard_Integer (AppDef_ParFunctionOfMyGradientbisOfBSplineCompute::*)() const>(&AppDef_ParFunctionOfMyGradientbisOfBSplineCompute::NbVariables),
@@ -867,12 +907,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ParFunctionOfTheGradient , shared_ptr<AppDef_ParFunctionOfTheGradient>  , math_MultipleVarFunctionWithGradient >>(m.attr("AppDef_ParFunctionOfTheGradient"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (AppDef_ParFunctionOfTheGradient::*)() const) static_cast<Standard_Integer (AppDef_ParFunctionOfTheGradient::*)() const>(&AppDef_ParFunctionOfTheGradient::NbVariables),
@@ -911,15 +953,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ParLeastSquareOfMyGradientOfCompute , shared_ptr<AppDef_ParLeastSquareOfMyGradientOfCompute>  >>(m.attr("AppDef_ParLeastSquareOfMyGradientOfCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (AppDef_ParLeastSquareOfMyGradientOfCompute::*)( const math_Vector &  ) ) static_cast<void (AppDef_ParLeastSquareOfMyGradientOfCompute::*)( const math_Vector &  ) >(&AppDef_ParLeastSquareOfMyGradientOfCompute::Perform),
@@ -976,15 +1020,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute , shared_ptr<AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute>  >>(m.attr("AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute::*)( const math_Vector &  ) ) static_cast<void (AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute::*)( const math_Vector &  ) >(&AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute::Perform),
@@ -1041,15 +1087,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ParLeastSquareOfTheGradient , shared_ptr<AppDef_ParLeastSquareOfTheGradient>  >>(m.attr("AppDef_ParLeastSquareOfTheGradient"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (AppDef_ParLeastSquareOfTheGradient::*)( const math_Vector &  ) ) static_cast<void (AppDef_ParLeastSquareOfTheGradient::*)( const math_Vector &  ) >(&AppDef_ParLeastSquareOfTheGradient::Perform),
@@ -1106,12 +1154,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ResConstraintOfMyGradientOfCompute , shared_ptr<AppDef_ResConstraintOfMyGradientOfCompute>  >>(m.attr("AppDef_ResConstraintOfMyGradientOfCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_ResConstraintOfMyGradientOfCompute::*)() const) static_cast<Standard_Boolean (AppDef_ResConstraintOfMyGradientOfCompute::*)() const>(&AppDef_ResConstraintOfMyGradientOfCompute::IsDone),
@@ -1132,12 +1182,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ResConstraintOfMyGradientbisOfBSplineCompute , shared_ptr<AppDef_ResConstraintOfMyGradientbisOfBSplineCompute>  >>(m.attr("AppDef_ResConstraintOfMyGradientbisOfBSplineCompute"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_ResConstraintOfMyGradientbisOfBSplineCompute::*)() const) static_cast<Standard_Boolean (AppDef_ResConstraintOfMyGradientbisOfBSplineCompute::*)() const>(&AppDef_ResConstraintOfMyGradientbisOfBSplineCompute::IsDone),
@@ -1158,12 +1210,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_ResConstraintOfTheGradient , shared_ptr<AppDef_ResConstraintOfTheGradient>  >>(m.attr("AppDef_ResConstraintOfTheGradient"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_ResConstraintOfTheGradient::*)() const) static_cast<Standard_Boolean (AppDef_ResConstraintOfTheGradient::*)() const>(&AppDef_ResConstraintOfTheGradient::IsDone),
@@ -1184,11 +1238,13 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_SmoothCriterion ,opencascade::handle<AppDef_SmoothCriterion> ,Py_AppDef_SmoothCriterion , Standard_Transient >>(m.attr("AppDef_SmoothCriterion"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetParameters",
              (void (AppDef_SmoothCriterion::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (AppDef_SmoothCriterion::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&AppDef_SmoothCriterion::SetParameters),
@@ -1251,12 +1307,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_TheFunction , shared_ptr<AppDef_TheFunction>  , math_MultipleVarFunctionWithGradient >>(m.attr("AppDef_TheFunction"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (AppDef_TheFunction::*)() const) static_cast<Standard_Integer (AppDef_TheFunction::*)() const>(&AppDef_TheFunction::NbVariables),
@@ -1295,12 +1353,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_TheGradient , shared_ptr<AppDef_TheGradient>  >>(m.attr("AppDef_TheGradient"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,math_Vector &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("Parameters"),  py::arg("Deg"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_TheGradient::*)() const) static_cast<Standard_Boolean (AppDef_TheGradient::*)() const>(&AppDef_TheGradient::IsDone),
@@ -1324,15 +1384,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_TheLeastSquares , shared_ptr<AppDef_TheLeastSquares>  >>(m.attr("AppDef_TheLeastSquares"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const math_Vector &,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("Parameters"),  py::arg("NbPol") )
         .def(py::init< const AppDef_MultiLine &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const AppParCurves_Constraint,const AppParCurves_Constraint,const Standard_Integer >()  , py::arg("SSP"),  py::arg("Knots"),  py::arg("Mults"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("FirstCons"),  py::arg("LastCons"),  py::arg("NbPol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (AppDef_TheLeastSquares::*)( const math_Vector &  ) ) static_cast<void (AppDef_TheLeastSquares::*)( const math_Vector &  ) >(&AppDef_TheLeastSquares::Perform),
@@ -1389,12 +1451,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_TheResol , shared_ptr<AppDef_TheResol>  >>(m.attr("AppDef_TheResol"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,AppParCurves_MultiCurve &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("SSP"),  py::arg("SCurv"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("Constraints"),  py::arg("Bern"),  py::arg("DerivativeBern"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (AppDef_TheResol::*)() const) static_cast<Standard_Boolean (AppDef_TheResol::*)() const>(&AppDef_TheResol::IsDone),
@@ -1415,12 +1479,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_Variational , shared_ptr<AppDef_Variational>  >>(m.attr("AppDef_Variational"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer,const opencascade::handle<AppParCurves_HArray1OfConstraintCouple> &,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint"),  py::arg("TheConstraints"),  py::arg("MaxDegree")=static_cast<const Standard_Integer>(14),  py::arg("MaxSegment")=static_cast<const Standard_Integer>(100),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("WithMinMax")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("WithCutting")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0),  py::arg("NbIterations")=static_cast<const Standard_Integer>(2) )
+    // custom constructors
     // methods
         .def("Approximate",
              (void (AppDef_Variational::*)() ) static_cast<void (AppDef_Variational::*)() >(&AppDef_Variational::Approximate),
@@ -1528,12 +1594,14 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppDef_LinearCriteria ,opencascade::handle<AppDef_LinearCriteria>  , AppDef_SmoothCriterion >>(m.attr("AppDef_LinearCriteria"))
+    // constructors
         .def(py::init< const AppDef_MultiLine &,const Standard_Integer,const Standard_Integer >()  , py::arg("SSP"),  py::arg("FirstPoint"),  py::arg("LastPoint") )
+    // custom constructors
     // methods
         .def("SetParameters",
              (void (AppDef_LinearCriteria::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (AppDef_LinearCriteria::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&AppDef_LinearCriteria::SetParameters),
@@ -1596,42 +1664,42 @@ py::module m = static_cast<py::module>(main_module.attr("AppDef"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/AppDef_MyBSplGradientOfBSplineCompute.hxx
-// ./opencascade/AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx
-// ./opencascade/AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx
-// ./opencascade/AppDef_HArray1OfMultiPointConstraint.hxx
-// ./opencascade/AppDef_TheFunction.hxx
-// ./opencascade/AppDef_TheLeastSquares.hxx
-// ./opencascade/AppDef_MultiPointConstraint.hxx
-// ./opencascade/AppDef_MultiLine.hxx
-// ./opencascade/AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute.hxx
-// ./opencascade/AppDef_BSplineCompute.hxx
-// ./opencascade/AppDef_Compute.hxx
-// ./opencascade/AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx
-// ./opencascade/AppDef_SmoothCriterion.hxx
-// ./opencascade/AppDef_ParFunctionOfMyGradientOfCompute.hxx
-// ./opencascade/AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute.hxx
-// ./opencascade/AppDef_ResConstraintOfTheGradient.hxx
-// ./opencascade/AppDef_MyGradientOfCompute.hxx
-// ./opencascade/AppDef_ParLeastSquareOfMyGradientOfCompute.hxx
-// ./opencascade/AppDef_Array1OfMultiPointConstraint.hxx
-// ./opencascade/AppDef_TheResol.hxx
-// ./opencascade/AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx
-// ./opencascade/AppDef_ParFunctionOfTheGradient.hxx
-// ./opencascade/AppDef_Gradient_BFGSOfTheGradient.hxx
-// ./opencascade/AppDef_Variational.hxx
-// ./opencascade/AppDef_ParLeastSquareOfTheGradient.hxx
-// ./opencascade/AppDef_MyLineTool.hxx
-// ./opencascade/AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx
-// ./opencascade/AppDef_LinearCriteria.hxx
-// ./opencascade/AppDef_TheGradient.hxx
-// ./opencascade/AppDef_ResConstraintOfMyGradientOfCompute.hxx
 // ./opencascade/AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute.hxx
+// ./opencascade/AppDef_Variational.hxx
+// ./opencascade/AppDef_ParLeastSquareOfMyGradientOfCompute.hxx
+// ./opencascade/AppDef_Compute.hxx
+// ./opencascade/AppDef_HArray1OfMultiPointConstraint.hxx
+// ./opencascade/AppDef_SmoothCriterion.hxx
+// ./opencascade/AppDef_LinearCriteria.hxx
+// ./opencascade/AppDef_TheResol.hxx
+// ./opencascade/AppDef_Gradient_BFGSOfTheGradient.hxx
+// ./opencascade/AppDef_BSplineCompute.hxx
+// ./opencascade/AppDef_ResConstraintOfMyGradientOfCompute.hxx
+// ./opencascade/AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute.hxx
+// ./opencascade/AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx
+// ./opencascade/AppDef_BSpGradient_BFGSOfMyBSplGradientOfBSplineCompute.hxx
+// ./opencascade/AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx
+// ./opencascade/AppDef_TheFunction.hxx
+// ./opencascade/AppDef_ParLeastSquareOfTheGradient.hxx
+// ./opencascade/AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx
+// ./opencascade/AppDef_MultiLine.hxx
+// ./opencascade/AppDef_Array1OfMultiPointConstraint.hxx
+// ./opencascade/AppDef_MultiPointConstraint.hxx
+// ./opencascade/AppDef_MyLineTool.hxx
+// ./opencascade/AppDef_TheLeastSquares.hxx
+// ./opencascade/AppDef_ResConstraintOfTheGradient.hxx
+// ./opencascade/AppDef_BSpParFunctionOfMyBSplGradientOfBSplineCompute.hxx
+// ./opencascade/AppDef_TheGradient.hxx
+// ./opencascade/AppDef_BSpParLeastSquareOfMyBSplGradientOfBSplineCompute.hxx
+// ./opencascade/AppDef_MyBSplGradientOfBSplineCompute.hxx
 // ./opencascade/AppDef_MyGradientbisOfBSplineCompute.hxx
+// ./opencascade/AppDef_MyGradientOfCompute.hxx
+// ./opencascade/AppDef_ParFunctionOfMyGradientOfCompute.hxx
+// ./opencascade/AppDef_ParFunctionOfTheGradient.hxx
 
 // operators
 

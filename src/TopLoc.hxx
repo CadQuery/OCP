@@ -10,38 +10,38 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
-#include <Standard_NoSuchObject.hxx>
-#include <TopLoc_Datum3D.hxx>
-#include <TopLoc_SListNodeOfItemLocation.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TopLoc_ItemLocation.hxx>
 #include <TopLoc_Datum3D.hxx>
 #include <TopLoc_Location.hxx>
 #include <TopLoc_SListOfItemLocation.hxx>
+#include <TopLoc_SListNodeOfItemLocation.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TopLoc_ItemLocation.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TopLoc_Datum3D.hxx>
 
 // module includes
-#include <TopLoc_MapOfLocation.hxx>
-#include <TopLoc_Datum3D.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopLoc_SListNodeOfItemLocation.hxx>
-#include <TopLoc_MapIteratorOfMapOfLocation.hxx>
-#include <TopLoc_SListOfItemLocation.hxx>
 #include <TopLoc_ItemLocation.hxx>
+#include <TopLoc_SListOfItemLocation.hxx>
+#include <TopLoc_Datum3D.hxx>
 #include <TopLoc_IndexedMapOfLocation.hxx>
+#include <TopLoc_MapIteratorOfMapOfLocation.hxx>
+#include <TopLoc_Location.hxx>
 #include <TopLoc_MapLocationHasher.hxx>
+#include <TopLoc_SListNodeOfItemLocation.hxx>
+#include <TopLoc_MapOfLocation.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/TopLoc_MapOfLocation.hxx
-// ./opencascade/TopLoc_Datum3D.hxx
-// ./opencascade/TopLoc_Location.hxx
-// ./opencascade/TopLoc_SListNodeOfItemLocation.hxx
-// ./opencascade/TopLoc_MapIteratorOfMapOfLocation.hxx
-// ./opencascade/TopLoc_SListOfItemLocation.hxx
 // ./opencascade/TopLoc_ItemLocation.hxx
+// ./opencascade/TopLoc_SListOfItemLocation.hxx
+// ./opencascade/TopLoc_Datum3D.hxx
 // ./opencascade/TopLoc_IndexedMapOfLocation.hxx
+// ./opencascade/TopLoc_MapIteratorOfMapOfLocation.hxx
+// ./opencascade/TopLoc_Location.hxx
 // ./opencascade/TopLoc_MapLocationHasher.hxx
+// ./opencascade/TopLoc_SListNodeOfItemLocation.hxx
+// ./opencascade/TopLoc_MapOfLocation.hxx
 
 // user-defined post

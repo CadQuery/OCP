@@ -13,21 +13,21 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Storage_BaseDriver.hxx>
-#include <StdObjMgt_Persistent.hxx>
-#include <StdObjMgt_Persistent.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_Root.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
 #include <StdObjMgt_Persistent.hxx>
 #include <StdStorage_Data.hxx>
 #include <Storage_BaseDriver.hxx>
 #include <TCollection_AsciiString.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_BaseDriver.hxx>
+#include <StdObjMgt_Persistent.hxx>
 #include <StdStorage_HeaderData.hxx>
 #include <StdStorage_TypeData.hxx>
 #include <StdStorage_RootData.hxx>
+#include <StdObjMgt_Persistent.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_Root.hxx>
+#include <Storage_BaseDriver.hxx>
+#include <Storage_BaseDriver.hxx>
 
 // module includes
 #include <StdStorage.hxx>
@@ -43,9 +43,9 @@ namespace py = pybind11;
 #include <StdStorage_TypeData.hxx>
 
 // template related includes
-// ./opencascade/StdStorage_MapOfRoots.hxx
-#include "NCollection.hxx"
 // ./opencascade/StdStorage_SequenceOfRoots.hxx
+#include "NCollection.hxx"
+// ./opencascade/StdStorage_MapOfRoots.hxx
 #include "NCollection.hxx"
 
 
@@ -65,9 +65,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdStorage , shared_ptr<StdStorage>>(m,"StdStorage");
 
     static_cast<py::class_<StdStorage , shared_ptr<StdStorage>  >>(m.attr("StdStorage"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -85,13 +88,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
                     R"#(Writes the data aggregated in theData object into the container defined by theDriver. The storage format is compartible with legacy persistent one. Note: - theData may aggregate several root objects to be stored together. - createion date specified in the srorage header will be overwritten.)#"  , py::arg("theDriver"),  py::arg("theData"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_Bucket , shared_ptr<StdStorage_Bucket>  >>(m.attr("StdStorage_Bucket"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("theSpaceSize") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (StdStorage_Bucket::*)() ) static_cast<void (StdStorage_Bucket::*)() >(&StdStorage_Bucket::Clear),
@@ -100,12 +105,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_BucketIterator , shared_ptr<StdStorage_BucketIterator>  >>(m.attr("StdStorage_BucketIterator"))
+    // constructors
         .def(py::init< StdStorage_BucketOfPersistent * >()  , py::arg("") )
+    // custom constructors
     // methods
         .def("Init",
              (void (StdStorage_BucketIterator::*)( StdStorage_BucketOfPersistent *  ) ) static_cast<void (StdStorage_BucketIterator::*)( StdStorage_BucketOfPersistent *  ) >(&StdStorage_BucketIterator::Init),
@@ -126,12 +133,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_BucketOfPersistent , shared_ptr<StdStorage_BucketOfPersistent>  >>(m.attr("StdStorage_BucketOfPersistent"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theBucketSize")=static_cast<const Standard_Integer>(300000),  py::arg("theBucketNumber")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
         .def("Length",
              (Standard_Integer (StdStorage_BucketOfPersistent::*)() const) static_cast<Standard_Integer (StdStorage_BucketOfPersistent::*)() const>(&StdStorage_BucketOfPersistent::Length),
@@ -149,12 +158,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_Data ,opencascade::handle<StdStorage_Data>  , Standard_Transient >>(m.attr("StdStorage_Data"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (StdStorage_Data::*)() ) static_cast<void (StdStorage_Data::*)() >(&StdStorage_Data::Clear),
@@ -172,13 +183,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_HSequenceOfRoots ,opencascade::handle<StdStorage_HSequenceOfRoots>  , StdStorage_SequenceOfRoots , Standard_Transient >>(m.attr("StdStorage_HSequenceOfRoots"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<StdStorage_Root> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const StdStorage_SequenceOfRoots & (StdStorage_HSequenceOfRoots::*)() const) static_cast<const StdStorage_SequenceOfRoots & (StdStorage_HSequenceOfRoots::*)() const>(&StdStorage_HSequenceOfRoots::Sequence),
@@ -205,11 +218,13 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_HeaderData ,opencascade::handle<StdStorage_HeaderData>  , Standard_Transient >>(m.attr("StdStorage_HeaderData"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdStorage_HeaderData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdStorage_HeaderData::*)() const>(&StdStorage_HeaderData::DynamicType),
@@ -296,13 +311,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_Root ,opencascade::handle<StdStorage_Root>  , Standard_Transient >>(m.attr("StdStorage_Root"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString &,const opencascade::handle<StdObjMgt_Persistent> & >()  , py::arg("theName"),  py::arg("theObject") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdStorage_Root::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdStorage_Root::*)() const>(&StdStorage_Root::DynamicType),
@@ -338,11 +355,13 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_RootData ,opencascade::handle<StdStorage_RootData>  , Standard_Transient >>(m.attr("StdStorage_RootData"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdStorage_RootData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdStorage_RootData::*)() const>(&StdStorage_RootData::DynamicType),
@@ -393,11 +412,13 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdStorage_TypeData ,opencascade::handle<StdStorage_TypeData>  , Standard_Transient >>(m.attr("StdStorage_TypeData"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StdStorage_TypeData::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StdStorage_TypeData::*)() const>(&StdStorage_TypeData::DynamicType),
@@ -454,21 +475,21 @@ py::module m = static_cast<py::module>(main_module.attr("StdStorage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdStorage_HeaderData.hxx
 // ./opencascade/StdStorage_BacketOfPersistent.hxx
-// ./opencascade/StdStorage_MapOfRoots.hxx
-// ./opencascade/StdStorage_Root.hxx
-// ./opencascade/StdStorage_TypeData.hxx
-// ./opencascade/StdStorage_RootData.hxx
 // ./opencascade/StdStorage.hxx
-// ./opencascade/StdStorage_SequenceOfRoots.hxx
+// ./opencascade/StdStorage_RootData.hxx
 // ./opencascade/StdStorage_Data.hxx
+// ./opencascade/StdStorage_SequenceOfRoots.hxx
+// ./opencascade/StdStorage_Root.hxx
 // ./opencascade/StdStorage_HSequenceOfRoots.hxx
+// ./opencascade/StdStorage_HeaderData.hxx
 // ./opencascade/StdStorage_MapOfTypes.hxx
+// ./opencascade/StdStorage_TypeData.hxx
+// ./opencascade/StdStorage_MapOfRoots.hxx
 
 // operators
 

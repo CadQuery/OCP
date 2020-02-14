@@ -13,14 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <MAT2d_MiniPath.hxx>
+#include <MAT2d_Circuit.hxx>
+#include <MAT_Bisector.hxx>
+#include <Geom2d_Geometry.hxx>
 #include <MAT_ListOfEdge.hxx>
 #include <MAT_ListOfBisector.hxx>
 #include <MAT2d_Tool2d.hxx>
 #include <Geom2d_TrimmedCurve.hxx>
-#include <MAT2d_Circuit.hxx>
-#include <MAT_Bisector.hxx>
-#include <Geom2d_Geometry.hxx>
-#include <MAT2d_MiniPath.hxx>
 
 // module includes
 #include <MAT2d_Array2OfConnexion.hxx>
@@ -51,39 +51,39 @@ namespace py = pybind11;
 #include <MAT2d_Tool2d.hxx>
 
 // template related includes
-// ./opencascade/MAT2d_DataMapOfIntegerVec2d.hxx
+// ./opencascade/MAT2d_DataMapOfIntegerPnt2d.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfIntegerVec2d.hxx
-#include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfBiIntSequenceOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfBiIntSequenceOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx
-#include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx
+// ./opencascade/MAT2d_DataMapOfIntegerPnt2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/MAT2d_DataMapOfIntegerConnexion.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfIntegerBisec.hxx
+// ./opencascade/MAT2d_SequenceOfSequenceOfCurve.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfIntegerBisec.hxx
-#include "NCollection.hxx"
-// ./opencascade/MAT2d_SequenceOfConnexion.hxx
+// ./opencascade/MAT2d_SequenceOfSequenceOfGeometry.hxx
 #include "NCollection.hxx"
 // ./opencascade/MAT2d_Array2OfConnexion.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfIntegerPnt2d.hxx
+// ./opencascade/MAT2d_DataMapOfBiIntSequenceOfInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT2d_DataMapOfIntegerPnt2d.hxx
+// ./opencascade/MAT2d_DataMapOfBiIntSequenceOfInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT2d_SequenceOfSequenceOfCurve.hxx
+// ./opencascade/MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT2d_DataMapOfIntegerVec2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT2d_DataMapOfIntegerVec2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT2d_SequenceOfConnexion.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT2d_DataMapOfIntegerBisec.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT2d_DataMapOfIntegerBisec.hxx
 #include "NCollection.hxx"
 // ./opencascade/MAT2d_DataMapOfBiIntInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/MAT2d_DataMapOfBiIntInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/MAT2d_SequenceOfSequenceOfGeometry.hxx
 #include "NCollection.hxx"
 
 
@@ -105,7 +105,9 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
 
 
     static_cast<py::class_<MAT2d_BiInt , shared_ptr<MAT2d_BiInt>  >>(m.attr("MAT2d_BiInt"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("I1"),  py::arg("I2") )
+    // custom constructors
     // methods
         .def("FirstIndex",
              (Standard_Integer (MAT2d_BiInt::*)() const) static_cast<Standard_Integer (MAT2d_BiInt::*)() const>(&MAT2d_BiInt::FirstIndex),
@@ -126,12 +128,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT2d_Circuit ,opencascade::handle<MAT2d_Circuit>  , Standard_Transient >>(m.attr("MAT2d_Circuit"))
+    // constructors
         .def(py::init< const GeomAbs_JoinType,const Standard_Boolean >()  , py::arg("aJoinType")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("IsOpenResult")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (MAT2d_Circuit::*)( NCollection_Sequence<TColGeom2d_SequenceOfGeometry> & ,   const NCollection_Sequence<Standard_Boolean> & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (MAT2d_Circuit::*)( NCollection_Sequence<TColGeom2d_SequenceOfGeometry> & ,   const NCollection_Sequence<Standard_Boolean> & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&MAT2d_Circuit::Perform),
@@ -167,13 +171,15 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT2d_Connexion ,opencascade::handle<MAT2d_Connexion>  , Standard_Transient >>(m.attr("MAT2d_Connexion"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt2d &,const gp_Pnt2d & >()  , py::arg("LineA"),  py::arg("LineB"),  py::arg("ItemA"),  py::arg("ItemB"),  py::arg("Distance"),  py::arg("ParameterOnA"),  py::arg("ParameterOnB"),  py::arg("PointA"),  py::arg("PointB") )
+    // custom constructors
     // methods
         .def("IndexFirstLine",
              (Standard_Integer (MAT2d_Connexion::*)() const) static_cast<Standard_Integer (MAT2d_Connexion::*)() const>(&MAT2d_Connexion::IndexFirstLine),
@@ -251,13 +257,15 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT2d_CutCurve , shared_ptr<MAT2d_CutCurve>  >>(m.attr("MAT2d_CutCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom2d_Curve> & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (MAT2d_CutCurve::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (MAT2d_CutCurve::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&MAT2d_CutCurve::Perform),
@@ -275,29 +283,34 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<MAT2d_MapBiIntHasher , shared_ptr<MAT2d_MapBiIntHasher>>(m,"MAT2d_MapBiIntHasher");
 
     static_cast<py::class_<MAT2d_MapBiIntHasher , shared_ptr<MAT2d_MapBiIntHasher>  >>(m.attr("MAT2d_MapBiIntHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
                     (Standard_Integer (*)( const MAT2d_BiInt & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const MAT2d_BiInt & ,  const Standard_Integer  ) >(&MAT2d_MapBiIntHasher::HashCode),
-                    R"#(None)#"  , py::arg("Key1"),  py::arg("Upper"))
+                    R"#(Computes a hash code for the given key, in the range [1, theUpperBound])#"  , py::arg("theKey"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const MAT2d_BiInt & ,  const MAT2d_BiInt &  ) ) static_cast<Standard_Boolean (*)( const MAT2d_BiInt & ,  const MAT2d_BiInt &  ) >(&MAT2d_MapBiIntHasher::IsEqual),
                     R"#(None)#"  , py::arg("Key1"),  py::arg("Key2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT2d_Mat2d , shared_ptr<MAT2d_Mat2d>  >>(m.attr("MAT2d_Mat2d"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("IsOpenResult")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("CreateMat",
              (void (MAT2d_Mat2d::*)( MAT2d_Tool2d &  ) ) static_cast<void (MAT2d_Mat2d::*)( MAT2d_Tool2d &  ) >(&MAT2d_Mat2d::CreateMat),
@@ -330,12 +343,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT2d_MiniPath , shared_ptr<MAT2d_MiniPath>  >>(m.attr("MAT2d_MiniPath"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (MAT2d_MiniPath::*)(  const NCollection_Sequence<TColGeom2d_SequenceOfGeometry> & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (MAT2d_MiniPath::*)(  const NCollection_Sequence<TColGeom2d_SequenceOfGeometry> & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&MAT2d_MiniPath::Perform),
@@ -362,12 +377,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT2d_Tool2d , shared_ptr<MAT2d_Tool2d>  >>(m.attr("MAT2d_Tool2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Sense",
              (void (MAT2d_Tool2d::*)( const MAT_Side  ) ) static_cast<void (MAT2d_Tool2d::*)( const MAT_Side  ) >(&MAT2d_Tool2d::Sense),
@@ -439,50 +456,50 @@ py::module m = static_cast<py::module>(main_module.attr("MAT2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerVec2d.hxx
-// ./opencascade/MAT2d_DataMapOfIntegerVec2d.hxx
-// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerSequenceOfConnexion.hxx
-// ./opencascade/MAT2d_DataMapOfBiIntSequenceOfInteger.hxx
-// ./opencascade/MAT2d_MiniPath.hxx
-// ./opencascade/MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx
-// ./opencascade/MAT2d_DataMapOfIntegerConnexion.hxx
-// ./opencascade/MAT2d_Mat2d.hxx
-// ./opencascade/MAT2d_CutCurve.hxx
-// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerPnt2d.hxx
-// ./opencascade/MAT2d_DataMapOfIntegerBisec.hxx
-// ./opencascade/MAT2d_SequenceOfConnexion.hxx
-// ./opencascade/MAT2d_Connexion.hxx
-// ./opencascade/MAT2d_Array2OfConnexion.hxx
 // ./opencascade/MAT2d_DataMapOfIntegerPnt2d.hxx
+// ./opencascade/MAT2d_DataMapOfIntegerConnexion.hxx
 // ./opencascade/MAT2d_SequenceOfSequenceOfCurve.hxx
-// ./opencascade/MAT2d_Tool2d.hxx
-// ./opencascade/MAT2d_DataMapOfBiIntInteger.hxx
-// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerConnexion.hxx
-// ./opencascade/MAT2d_SequenceOfSequenceOfGeometry.hxx
-// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfBiIntInteger.hxx
-// ./opencascade/MAT2d_BiInt.hxx
 // ./opencascade/MAT2d_DataMapIteratorOfDataMapOfBiIntSequenceOfInteger.hxx
-// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerBisec.hxx
-// ./opencascade/MAT2d_MapBiIntHasher.hxx
 // ./opencascade/MAT2d_Circuit.hxx
+// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfBiIntInteger.hxx
+// ./opencascade/MAT2d_SequenceOfSequenceOfGeometry.hxx
+// ./opencascade/MAT2d_Tool2d.hxx
+// ./opencascade/MAT2d_Array2OfConnexion.hxx
+// ./opencascade/MAT2d_Connexion.hxx
+// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerBisec.hxx
+// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerPnt2d.hxx
+// ./opencascade/MAT2d_DataMapOfBiIntSequenceOfInteger.hxx
+// ./opencascade/MAT2d_DataMapOfIntegerSequenceOfConnexion.hxx
+// ./opencascade/MAT2d_DataMapOfIntegerVec2d.hxx
+// ./opencascade/MAT2d_MapBiIntHasher.hxx
+// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerSequenceOfConnexion.hxx
+// ./opencascade/MAT2d_Mat2d.hxx
+// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerConnexion.hxx
+// ./opencascade/MAT2d_MiniPath.hxx
+// ./opencascade/MAT2d_SequenceOfConnexion.hxx
+// ./opencascade/MAT2d_DataMapOfIntegerBisec.hxx
+// ./opencascade/MAT2d_CutCurve.hxx
+// ./opencascade/MAT2d_BiInt.hxx
+// ./opencascade/MAT2d_DataMapIteratorOfDataMapOfIntegerVec2d.hxx
+// ./opencascade/MAT2d_DataMapOfBiIntInteger.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<Standard_Integer, gp_Vec2d, TColStd_MapIntegerHasher>(m,"MAT2d_DataMapOfIntegerVec2d");  
-    register_template_NCollection_DataMap<MAT2d_BiInt, TColStd_SequenceOfInteger, MAT2d_MapBiIntHasher>(m,"MAT2d_DataMapOfBiIntSequenceOfInteger");  
-    register_template_NCollection_DataMap<Standard_Integer, MAT2d_SequenceOfConnexion, TColStd_MapIntegerHasher>(m,"MAT2d_DataMapOfIntegerSequenceOfConnexion");  
-    register_template_NCollection_DataMap<Standard_Integer, Bisector_Bisec, TColStd_MapIntegerHasher>(m,"MAT2d_DataMapOfIntegerBisec");  
-    register_template_NCollection_Sequence<opencascade::handle<MAT2d_Connexion> >(m,"MAT2d_SequenceOfConnexion");  
-    register_template_NCollection_Array2<opencascade::handle<MAT2d_Connexion> >(m,"MAT2d_Array2OfConnexion");  
     register_template_NCollection_DataMap<Standard_Integer, gp_Pnt2d, TColStd_MapIntegerHasher>(m,"MAT2d_DataMapOfIntegerPnt2d");  
     register_template_NCollection_Sequence<TColGeom2d_SequenceOfCurve>(m,"MAT2d_SequenceOfSequenceOfCurve");  
-    register_template_NCollection_DataMap<MAT2d_BiInt, Standard_Integer, MAT2d_MapBiIntHasher>(m,"MAT2d_DataMapOfBiIntInteger");  
     register_template_NCollection_Sequence<TColGeom2d_SequenceOfGeometry>(m,"MAT2d_SequenceOfSequenceOfGeometry");  
+    register_template_NCollection_Array2<opencascade::handle<MAT2d_Connexion> >(m,"MAT2d_Array2OfConnexion");  
+    register_template_NCollection_DataMap<MAT2d_BiInt, TColStd_SequenceOfInteger, MAT2d_MapBiIntHasher>(m,"MAT2d_DataMapOfBiIntSequenceOfInteger");  
+    register_template_NCollection_DataMap<Standard_Integer, MAT2d_SequenceOfConnexion, TColStd_MapIntegerHasher>(m,"MAT2d_DataMapOfIntegerSequenceOfConnexion");  
+    register_template_NCollection_DataMap<Standard_Integer, gp_Vec2d, TColStd_MapIntegerHasher>(m,"MAT2d_DataMapOfIntegerVec2d");  
+    register_template_NCollection_Sequence<opencascade::handle<MAT2d_Connexion> >(m,"MAT2d_SequenceOfConnexion");  
+    register_template_NCollection_DataMap<Standard_Integer, Bisector_Bisec, TColStd_MapIntegerHasher>(m,"MAT2d_DataMapOfIntegerBisec");  
+    register_template_NCollection_DataMap<MAT2d_BiInt, Standard_Integer, MAT2d_MapBiIntHasher>(m,"MAT2d_DataMapOfBiIntInteger");  
 
 
 // exceptions

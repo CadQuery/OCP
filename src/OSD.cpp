@@ -14,46 +14,26 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <OSD_OSDError.hxx>
-#include <Standard_ProgramError.hxx>
-#include <OSD_Protection.hxx>
-#include <Quantity_Date.hxx>
-#include <OSD_Error.hxx>
-#include <OSD_Protection.hxx>
-#include <OSD_Path.hxx>
-#include <OSD_FileNode.hxx>
-#include <OSD_Disk.hxx>
-#include <OSD_File.hxx>
-#include <OSD_FileIterator.hxx>
-#include <OSD_Directory.hxx>
-#include <OSD_DirectoryIterator.hxx>
-#include <OSD_Timer.hxx>
-#include <OSD_Host.hxx>
-#include <OSD_Environment.hxx>
-#include <OSD_Process.hxx>
-#include <OSD_SharedLibrary.hxx>
-#include <OSD_Thread.hxx>
-#include <OSD_OSDError.hxx>
 #include <Standard_ConstructionError.hxx>
 #include <Standard_NullObject.hxx>
 #include <OSD_OSDError.hxx>
 #include <OSD_OSDError.hxx>
-#include <Standard_ProgramError.hxx>
-#include <OSD_Protection.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Standard_NullObject.hxx>
+#include <OSD_OSDError.hxx>
 #include <OSD_OSDError.hxx>
 #include <Quantity_Date.hxx>
 #include <OSD_Path.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_NullObject.hxx>
-#include <OSD_OSDError.hxx>
-#include <Standard_NumericError.hxx>
-#include <Standard_ProgramError.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_NullObject.hxx>
-#include <OSD_OSDError.hxx>
 #include <OSD_FileNode.hxx>
 #include <OSD_File.hxx>
 #include <OSD_Directory.hxx>
 #include <OSD_OSDError.hxx>
+#include <OSD_OSDError.hxx>
+#include <Standard_ProgramError.hxx>
+#include <OSD_Protection.hxx>
+#include <Quantity_Date.hxx>
+#include <Standard_ProgramError.hxx>
+#include <OSD_Protection.hxx>
 
 // module includes
 #include <OSD.hxx>
@@ -112,6 +92,7 @@ namespace py = pybind11;
 #include <OSD_SIGINT.hxx>
 #include <OSD_SIGKILL.hxx>
 #include <OSD_Signal.hxx>
+#include <OSD_SignalMode.hxx>
 #include <OSD_SIGQUIT.hxx>
 #include <OSD_SIGSEGV.hxx>
 #include <OSD_SIGSYS.hxx>
@@ -119,6 +100,7 @@ namespace py = pybind11;
 #include <OSD_SysType.hxx>
 #include <OSD_Thread.hxx>
 #include <OSD_ThreadFunction.hxx>
+#include <OSD_ThreadPool.hxx>
 #include <OSD_Timer.hxx>
 #include <OSD_WhoAmI.hxx>
 
@@ -143,7 +125,9 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
 
 
     static_cast<py::class_<OSD_Chronometer , shared_ptr<OSD_Chronometer>  >>(m.attr("OSD_Chronometer"))
+    // constructors
         .def(py::init< Standard_Boolean >()  , py::arg("theThisThreadOnly")=static_cast<Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("IsStarted",
              (Standard_Boolean (OSD_Chronometer::*)() const) static_cast<Standard_Boolean (OSD_Chronometer::*)() const>(&OSD_Chronometer::IsStarted),
@@ -188,13 +172,15 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
                     [](  ){ Standard_Real  UserSeconds; Standard_Real  SystemSeconds; OSD_Chronometer::GetThreadCPU(UserSeconds,SystemSeconds); return std::make_tuple(UserSeconds,SystemSeconds); },
                     R"#(Returns CPU time (user and system) consumed by the current thread since its start. Note that this measurement is platform-specific, as threads are implemented and managed differently on different platforms and CPUs.)#" )
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_DirectoryIterator , shared_ptr<OSD_DirectoryIterator>  >>(m.attr("OSD_DirectoryIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const OSD_Path &,const TCollection_AsciiString & >()  , py::arg("where"),  py::arg("Mask") )
+    // custom constructors
     // methods
         .def("Destroy",
              (void (OSD_DirectoryIterator::*)() ) static_cast<void (OSD_DirectoryIterator::*)() >(&OSD_DirectoryIterator::Destroy),
@@ -227,14 +213,16 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Disk , shared_ptr<OSD_Disk>  >>(m.attr("OSD_Disk"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const OSD_Path & >()  , py::arg("Name") )
         .def(py::init< const Standard_CString >()  , py::arg("PathName") )
+    // custom constructors
     // methods
         .def("Name",
              (OSD_Path (OSD_Disk::*)() const) static_cast<OSD_Path (OSD_Disk::*)() const>(&OSD_Disk::Name),
@@ -264,14 +252,16 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Environment , shared_ptr<OSD_Environment>  >>(m.attr("OSD_Environment"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString & >()  , py::arg("Name") )
         .def(py::init< const TCollection_AsciiString &,const TCollection_AsciiString & >()  , py::arg("Name"),  py::arg("Value") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (OSD_Environment::*)( const TCollection_AsciiString &  ) ) static_cast<void (OSD_Environment::*)( const TCollection_AsciiString &  ) >(&OSD_Environment::SetValue),
@@ -307,12 +297,14 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Error , shared_ptr<OSD_Error>  >>(m.attr("OSD_Error"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perror",
              (void (OSD_Error::*)() ) static_cast<void (OSD_Error::*)() >(&OSD_Error::Perror),
@@ -333,13 +325,15 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_FileIterator , shared_ptr<OSD_FileIterator>  >>(m.attr("OSD_FileIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const OSD_Path &,const TCollection_AsciiString & >()  , py::arg("where"),  py::arg("Mask") )
+    // custom constructors
     // methods
         .def("Destroy",
              (void (OSD_FileIterator::*)() ) static_cast<void (OSD_FileIterator::*)() >(&OSD_FileIterator::Destroy),
@@ -372,11 +366,13 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_FileNode , shared_ptr_nodelete<OSD_FileNode>  >>(m.attr("OSD_FileNode"))
+    // constructors
+    // custom constructors
     // methods
         .def("Path",
              (void (OSD_FileNode::*)( OSD_Path &  ) const) static_cast<void (OSD_FileNode::*)( OSD_Path &  ) const>(&OSD_FileNode::Path),
@@ -424,12 +420,14 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Host , shared_ptr<OSD_Host>  >>(m.attr("OSD_Host"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SystemVersion",
              (TCollection_AsciiString (OSD_Host::*)() ) static_cast<TCollection_AsciiString (OSD_Host::*)() >(&OSD_Host::SystemVersion),
@@ -465,12 +463,15 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<OSD_MAllocHook , shared_ptr<OSD_MAllocHook>>(m,"OSD_MAllocHook");
 
     static_cast<py::class_<OSD_MAllocHook , shared_ptr<OSD_MAllocHook>  >>(m.attr("OSD_MAllocHook"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -488,13 +489,18 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
                     R"#(Get static instance of CollectBySize handler)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_MemInfo , shared_ptr<OSD_MemInfo>  >>(m.attr("OSD_MemInfo"))
-        .def(py::init<  >()  )
+    // constructors
+        .def(py::init< const Standard_Boolean >()  , py::arg("theImmediateUpdate")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
+        .def("Clear",
+             (void (OSD_MemInfo::*)() ) static_cast<void (OSD_MemInfo::*)() >(&OSD_MemInfo::Clear),
+             R"#(Clear counters)#" )
         .def("Update",
              (void (OSD_MemInfo::*)() ) static_cast<void (OSD_MemInfo::*)() >(&OSD_MemInfo::Update),
              R"#(Update counters)#" )
@@ -503,10 +509,13 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
              R"#(Return the string representation for all available counter.)#" )
         .def("Value",
              (Standard_Size (OSD_MemInfo::*)( const OSD_MemInfo::Counter  ) const) static_cast<Standard_Size (OSD_MemInfo::*)( const OSD_MemInfo::Counter  ) const>(&OSD_MemInfo::Value),
-             R"#(Return value or specified counter in bytes. Notice that NOT all counters are available on various systems. Standard_Size(-1) means invalid (unavailable) value.)#"  , py::arg("theCounter"))
+             R"#(Return value of specified counter in bytes. Notice that NOT all counters are available on various systems. Standard_Size(-1) means invalid (unavailable) value.)#"  , py::arg("theCounter"))
         .def("ValueMiB",
              (Standard_Size (OSD_MemInfo::*)( const OSD_MemInfo::Counter  ) const) static_cast<Standard_Size (OSD_MemInfo::*)( const OSD_MemInfo::Counter  ) const>(&OSD_MemInfo::ValueMiB),
-             R"#(Return value or specified counter in MiB. Notice that NOT all counters are available on various systems. Standard_Size(-1) means invalid (unavailable) value.)#"  , py::arg("theCounter"))
+             R"#(Return value of specified counter in MiB. Notice that NOT all counters are available on various systems. Standard_Size(-1) means invalid (unavailable) value.)#"  , py::arg("theCounter"))
+        .def("ValuePreciseMiB",
+             (Standard_Real (OSD_MemInfo::*)( const OSD_MemInfo::Counter  ) const) static_cast<Standard_Real (OSD_MemInfo::*)( const OSD_MemInfo::Counter  ) const>(&OSD_MemInfo::ValuePreciseMiB),
+             R"#(Return floating value of specified counter in MiB. Notice that NOT all counters are available on various systems. Standard_Real(-1) means invalid (unavailable) value.)#"  , py::arg("theCounter"))
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("PrintInfo_s",
@@ -514,28 +523,39 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
                     R"#(Return the string representation for all available counter.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<OSD_Parallel , shared_ptr<OSD_Parallel>>(m,"OSD_Parallel");
 
     static_cast<py::class_<OSD_Parallel , shared_ptr<OSD_Parallel>  >>(m.attr("OSD_Parallel"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
+        .def_static("ToUseOcctThreads_s",
+                    (Standard_Boolean (*)() ) static_cast<Standard_Boolean (*)() >(&OSD_Parallel::ToUseOcctThreads),
+                    R"#(Returns TRUE if OCCT threads should be used instead of auxiliary threads library; default value is FALSE if alternative library has been enabled while OCCT building and TRUE otherwise.)#" )
+        .def_static("SetUseOcctThreads_s",
+                    (void (*)( Standard_Boolean  ) ) static_cast<void (*)( Standard_Boolean  ) >(&OSD_Parallel::SetUseOcctThreads),
+                    R"#(Sets if OCCT threads should be used instead of auxiliary threads library. Has no effect if OCCT has been built with no auxiliary threads library.)#"  , py::arg("theToUseOcct"))
         .def_static("NbLogicalProcessors_s",
                     (Standard_Integer (*)() ) static_cast<Standard_Integer (*)() >(&OSD_Parallel::NbLogicalProcessors),
-                    R"#(Returns number of logical proccesrs.)#" )
+                    R"#(Returns number of logical processors.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Path , shared_ptr<OSD_Path>  >>(m.attr("OSD_Path"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString &,const OSD_SysType >()  , py::arg("aDependentName"),  py::arg("aSysType")=static_cast<const OSD_SysType>(OSD_Default) )
         .def(py::init< const TCollection_AsciiString &,const TCollection_AsciiString &,const TCollection_AsciiString &,const TCollection_AsciiString &,const TCollection_AsciiString &,const TCollection_AsciiString &,const TCollection_AsciiString & >()  , py::arg("aNode"),  py::arg("aUsername"),  py::arg("aPassword"),  py::arg("aDisk"),  py::arg("aTrek"),  py::arg("aName"),  py::arg("anExtension") )
+    // custom constructors
     // methods
         .def("Values",
              (void (OSD_Path::*)( TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString &  ) const) static_cast<void (OSD_Path::*)( TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString &  ) const>(&OSD_Path::Values),
@@ -619,19 +639,51 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
                     R"#(Returns TRUE if <theDependentName> is valid for this SysType.)#"  , py::arg("theDependentName"),  py::arg("theSysType")=static_cast<const OSD_SysType>(OSD_Default))
         .def_static("RelativePath_s",
                     (TCollection_AsciiString (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) ) static_cast<TCollection_AsciiString (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) >(&OSD_Path::RelativePath),
-                    R"#(Returns the relative file path between the absolute directory path <DirPath> and the absolute file path <AbsFilePath>. If <DirPath> starts with "/", pathes are handled as on Unix, if it starts with a letter followed by ":", as on WNT. In particular on WNT directory names are not key sensitive. If handling fails, an empty string is returned.)#"  , py::arg("DirPath"),  py::arg("AbsFilePath"))
+                    R"#(Returns the relative file path between the absolute directory path <DirPath> and the absolute file path <AbsFilePath>. If <DirPath> starts with "/", paths are handled as on Unix, if it starts with a letter followed by ":", as on WNT. In particular on WNT directory names are not key sensitive. If handling fails, an empty string is returned.)#"  , py::arg("DirPath"),  py::arg("AbsFilePath"))
         .def_static("AbsolutePath_s",
                     (TCollection_AsciiString (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) ) static_cast<TCollection_AsciiString (*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) >(&OSD_Path::AbsolutePath),
                     R"#(Returns the absolute file path from the absolute directory path <DirPath> and the relative file path returned by RelativePath(). If the RelFilePath is an absolute path, it is returned and the directory path is ignored. If handling fails, an empty string is returned.)#"  , py::arg("DirPath"),  py::arg("RelFilePath"))
+        .def_static("FolderAndFileFromPath_s",
+                    (void (*)( const TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString &  ) ) static_cast<void (*)( const TCollection_AsciiString & ,  TCollection_AsciiString & ,  TCollection_AsciiString &  ) >(&OSD_Path::FolderAndFileFromPath),
+                    R"#(Split absolute filepath into folder path and file name. Example: IN theFilePath ='/media/cdrom/image.jpg' OUT theFolder ='/media/cdrom/' OUT theFileName ='image.jpg')#"  , py::arg("theFilePath"),  py::arg("theFolder"),  py::arg("theFileName"))
+        .def_static("IsDosPath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsDosPath),
+                    R"#(Detect absolute DOS-path also used in Windows. The total path length is limited to 256 characters. Sample path: C:)#"  , py::arg("thePath"))
+        .def_static("IsNtExtendedPath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsNtExtendedPath),
+                    R"#(Detect extended-length NT path (can be only absolute). Approximate maximum path is 32767 characters. Sample path: \?: long path File I/O functions in the Windows API convert "/" to "" as part of converting the name to an NT-style name, except when using the "\?" prefix.)#"  , py::arg("thePath"))
+        .def_static("IsUncPath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsUncPath),
+                    R"#(UNC is a naming convention used primarily to specify and map network drives in Microsoft Windows. Sample path: \server)#"  , py::arg("thePath"))
+        .def_static("IsUncExtendedPath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsUncExtendedPath),
+                    R"#(Detect extended-length UNC path. Sample path: \?)#"  , py::arg("thePath"))
+        .def_static("IsUnixPath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsUnixPath),
+                    R"#(Detect absolute UNIX-path. Sample path: /media/cdrom/file)#"  , py::arg("thePath"))
+        .def_static("IsContentProtocolPath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsContentProtocolPath),
+                    R"#(Detect special URLs on Android platform. Sample path: content://filename)#"  , py::arg("thePath"))
+        .def_static("IsRemoteProtocolPath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsRemoteProtocolPath),
+                    R"#(Detect remote protocol path (http / ftp / ...). Actually shouldn't be remote... Sample path: http://domain/path/file)#"  , py::arg("thePath"))
+        .def_static("IsRelativePath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsRelativePath),
+                    R"#(Method to recognize path is absolute or not. Detection is based on path syntax - no any filesystem / network access performed.)#"  , py::arg("thePath"))
+        .def_static("IsAbsolutePath_s",
+                    (Standard_Boolean (*)( const char *  ) ) static_cast<Standard_Boolean (*)( const char *  ) >(&OSD_Path::IsAbsolutePath),
+                    R"#(Method to recognize path is absolute or not. Detection is based on path syntax - no any filesystem / network access performed.)#"  , py::arg("thePath"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_PerfMeter , shared_ptr<OSD_PerfMeter>  >>(m.attr("OSD_PerfMeter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const char *,const bool >()  , py::arg("theMeter"),  py::arg("theToAutoStart")=static_cast<const bool>(true) )
+    // custom constructors
     // methods
         .def("Init",
              (void (OSD_PerfMeter::*)( const char *  ) ) static_cast<void (OSD_PerfMeter::*)( const char *  ) >(&OSD_PerfMeter::Init),
@@ -652,12 +704,14 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Process , shared_ptr<OSD_Process>  >>(m.attr("OSD_Process"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("TerminalType",
              (void (OSD_Process::*)( TCollection_AsciiString &  ) ) static_cast<void (OSD_Process::*)( TCollection_AsciiString &  ) >(&OSD_Process::TerminalType),
@@ -694,15 +748,23 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
              R"#(Returns error number if 'Failed' is TRUE.)#" )
     // methods using call by reference i.s.o. return
     // static methods
+        .def_static("ExecutablePath_s",
+                    (TCollection_AsciiString (*)() ) static_cast<TCollection_AsciiString (*)() >(&OSD_Process::ExecutablePath),
+                    R"#(Return full path to the current process executable.)#" )
+        .def_static("ExecutableFolder_s",
+                    (TCollection_AsciiString (*)() ) static_cast<TCollection_AsciiString (*)() >(&OSD_Process::ExecutableFolder),
+                    R"#(Return full path to the folder containing current process executable with trailing separator.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Protection , shared_ptr<OSD_Protection>  >>(m.attr("OSD_Protection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const OSD_SingleProtection,const OSD_SingleProtection,const OSD_SingleProtection,const OSD_SingleProtection >()  , py::arg("System"),  py::arg("User"),  py::arg("Group"),  py::arg("World") )
+    // custom constructors
     // methods
         .def("Values",
              (void (OSD_Protection::*)( OSD_SingleProtection & ,  OSD_SingleProtection & ,  OSD_SingleProtection & ,  OSD_SingleProtection &  ) ) static_cast<void (OSD_Protection::*)( OSD_SingleProtection & ,  OSD_SingleProtection & ,  OSD_SingleProtection & ,  OSD_SingleProtection &  ) >(&OSD_Protection::Values),
@@ -744,13 +806,15 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_SharedLibrary , shared_ptr<OSD_SharedLibrary>  >>(m.attr("OSD_SharedLibrary"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("aFilename") )
+    // custom constructors
     // methods
         .def("SetName",
              (void (OSD_SharedLibrary::*)( const Standard_CString  ) ) static_cast<void (OSD_SharedLibrary::*)( const Standard_CString  ) >(&OSD_SharedLibrary::SetName),
@@ -774,13 +838,15 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Thread , shared_ptr<OSD_Thread>  >>(m.attr("OSD_Thread"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const OSD_Thread & >()  , py::arg("other") )
+    // custom constructors
     // methods
         .def("Assign",
              (void (OSD_Thread::*)( const OSD_Thread &  ) ) static_cast<void (OSD_Thread::*)( const OSD_Thread &  ) >(&OSD_Thread::Assign),
@@ -807,13 +873,64 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
                     R"#(Auxiliary: returns ID of the current thread)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<OSD_ThreadPool ,opencascade::handle<OSD_ThreadPool>  , Standard_Transient >>(m.attr("OSD_ThreadPool"))
+    // constructors
+        .def(py::init< int >()  , py::arg("theNbThreads")=static_cast<int>(- 1) )
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (OSD_ThreadPool::*)() const) static_cast<const opencascade::handle<Standard_Type> & (OSD_ThreadPool::*)() const>(&OSD_ThreadPool::DynamicType),
+             R"#(None)#" )
+        .def("HasThreads",
+             (bool (OSD_ThreadPool::*)() const) static_cast<bool (OSD_ThreadPool::*)() const>(&OSD_ThreadPool::HasThreads),
+             R"#(Return TRUE if at least 2 threads are available (including self-thread).)#" )
+        .def("LowerThreadIndex",
+             (int (OSD_ThreadPool::*)() const) static_cast<int (OSD_ThreadPool::*)() const>(&OSD_ThreadPool::LowerThreadIndex),
+             R"#(Return the lower thread index.)#" )
+        .def("UpperThreadIndex",
+             (int (OSD_ThreadPool::*)() const) static_cast<int (OSD_ThreadPool::*)() const>(&OSD_ThreadPool::UpperThreadIndex),
+             R"#(Return the upper thread index (last index is reserved for self-thread).)#" )
+        .def("NbThreads",
+             (int (OSD_ThreadPool::*)() const) static_cast<int (OSD_ThreadPool::*)() const>(&OSD_ThreadPool::NbThreads),
+             R"#(Return the number of threads; >= 1.)#" )
+        .def("NbDefaultThreadsToLaunch",
+             (int (OSD_ThreadPool::*)() const) static_cast<int (OSD_ThreadPool::*)() const>(&OSD_ThreadPool::NbDefaultThreadsToLaunch),
+             R"#(Return maximum number of threads to be locked by a single Launcher object by default; the entire thread pool size is returned by default.)#" )
+        .def("SetNbDefaultThreadsToLaunch",
+             (void (OSD_ThreadPool::*)( int  ) ) static_cast<void (OSD_ThreadPool::*)( int  ) >(&OSD_ThreadPool::SetNbDefaultThreadsToLaunch),
+             R"#(Set maximum number of threads to be locked by a single Launcher object by default. Should be set BEFORE first usage.)#"  , py::arg("theNbThreads"))
+        .def("IsInUse",
+             (bool (OSD_ThreadPool::*)() ) static_cast<bool (OSD_ThreadPool::*)() >(&OSD_ThreadPool::IsInUse),
+             R"#(Checks if thread pools has active consumers.)#" )
+        .def("Init",
+             (void (OSD_ThreadPool::*)( int  ) ) static_cast<void (OSD_ThreadPool::*)( int  ) >(&OSD_ThreadPool::Init),
+             R"#(Reinitialize the thread pool with a different number of threads. Should be called only with no active jobs, or exception Standard_ProgramError will be thrown!)#"  , py::arg("theNbThreads"))
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&OSD_ThreadPool::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&OSD_ThreadPool::get_type_descriptor),
+                    R"#(None)#" )
+        .def_static("DefaultPool_s",
+                    (const opencascade::handle<OSD_ThreadPool> & (*)( int  ) ) static_cast<const opencascade::handle<OSD_ThreadPool> & (*)( int  ) >(&OSD_ThreadPool::DefaultPool),
+                    R"#(Return (or create) a default thread pool. Number of threads argument will be considered only when called first time.)#"  , py::arg("theNbThreads")=static_cast<int>(- 1))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Directory , shared_ptr<OSD_Directory>  , OSD_FileNode >>(m.attr("OSD_Directory"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const OSD_Path & >()  , py::arg("theName") )
+    // custom constructors
     // methods
         .def("Build",
              (void (OSD_Directory::*)( const OSD_Protection &  ) ) static_cast<void (OSD_Directory::*)( const OSD_Protection &  ) >(&OSD_Directory::Build),
@@ -825,13 +942,15 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
                     R"#(Creates a temporary Directory in current directory. This directory is automatically removed when object dies.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_File , shared_ptr<OSD_File>  , OSD_FileNode >>(m.attr("OSD_File"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const OSD_Path & >()  , py::arg("Name") )
+    // custom constructors
     // methods
         .def("Build",
              (void (OSD_File::*)( const OSD_OpenMode ,  const OSD_Protection &  ) ) static_cast<void (OSD_File::*)( const OSD_OpenMode ,  const OSD_Protection &  ) >(&OSD_File::Build),
@@ -905,9 +1024,6 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
         .def("Rewind",
              (void (OSD_File::*)() ) static_cast<void (OSD_File::*)() >(&OSD_File::Rewind),
              R"#(Set file pointer position to the beginning of the file)#" )
-        .def("Capture",
-             (int (OSD_File::*)( int  ) ) static_cast<int (OSD_File::*)( int  ) >(&OSD_File::Capture),
-             R"#(Redirect a standard handle (fileno(stdout), fileno(stdin) or fileno(stderr) to this OSD_File and return the copy of the original standard handle. Example: OSD_File aTmp; aTmp.BuildTemporary(); int stdfd = _fileno(stdout);)#"  , py::arg("theDescr"))
     // methods using call by reference i.s.o. return
         .def("ReadLine",
              []( OSD_File &self , TCollection_AsciiString & Buffer,const Standard_Integer NByte ){ Standard_Integer  NbyteRead; self.ReadLine(Buffer,NByte,NbyteRead); return std::make_tuple(NbyteRead); },
@@ -918,12 +1034,14 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<OSD_Timer , shared_ptr<OSD_Timer>  , OSD_Chronometer >>(m.attr("OSD_Timer"))
+    // constructors
         .def(py::init< Standard_Boolean >()  , py::arg("theThisThreadOnly")=static_cast<Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Reset",
              (void (OSD_Timer::*)( const Standard_Real  ) ) static_cast<void (OSD_Timer::*)( const Standard_Real  ) >(&OSD_Timer::Reset),
@@ -956,14 +1074,53 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/OSD_FileNode.hxx
-// ./opencascade/OSD_Exception_PRIV_INSTRUCTION.hxx
-// ./opencascade/OSD_SIGINT.hxx
+// ./opencascade/OSD_Chronometer.hxx
+// ./opencascade/OSD_SysType.hxx
+// ./opencascade/OSD.hxx
+// ./opencascade/OSD_Exception_FLT_INEXACT_RESULT.hxx
+// ./opencascade/OSD_KindFile.hxx
+// ./opencascade/OSD_DirectoryIterator.hxx
+// ./opencascade/OSD_Exception_FLT_OVERFLOW.hxx
+// ./opencascade/OSD_SharedLibrary.hxx
+// ./opencascade/OSD_Host.hxx
+// ./opencascade/OSD_Directory.hxx
+// ./opencascade/OSD_FileIterator.hxx
+// ./opencascade/OSD_Exception_INVALID_DISPOSITION.hxx
+// ./opencascade/OSD_PerfMeter.hxx
+// ./opencascade/OSD_Disk.hxx
+// ./opencascade/OSD_Exception_ACCESS_VIOLATION.hxx
+// ./opencascade/OSD_LoadMode.hxx
+// ./opencascade/OSD_Exception_FLT_STACK_CHECK.hxx
+// ./opencascade/OSD_ThreadFunction.hxx
+// ./opencascade/OSD_FromWhere.hxx
+// ./opencascade/OSD_SIGHUP.hxx
+// ./opencascade/OSD_SingleProtection.hxx
+// ./opencascade/OSD_Environment.hxx
+// ./opencascade/OSD_Exception_STATUS_NO_MEMORY.hxx
+// ./opencascade/OSD_Process.hxx
+// ./opencascade/OSD_ErrorList.hxx
+// ./opencascade/OSD_SIGQUIT.hxx
+// ./opencascade/OSD_SIGKILL.hxx
+// ./opencascade/OSD_Exception.hxx
+// ./opencascade/OSD_OSDError.hxx
+// ./opencascade/OSD_Exception_CTRL_BREAK.hxx
+// ./opencascade/OSD_MemInfo.hxx
+// ./opencascade/OSD_Parallel.hxx
 // ./opencascade/OSD_Exception_INT_DIVIDE_BY_ZERO.hxx
+// ./opencascade/OSD_Protection.hxx
+// ./opencascade/OSD_Function.hxx
+// ./opencascade/OSD_SIGSYS.hxx
+// ./opencascade/OSD_Timer.hxx
+// ./opencascade/OSD_LockType.hxx
+// ./opencascade/OSD_WhoAmI.hxx
+// ./opencascade/OSD_Exception_NONCONTINUABLE_EXCEPTION.hxx
+// ./opencascade/OSD_Exception_INT_OVERFLOW.hxx
+// ./opencascade/OSD_ThreadPool.hxx
+// ./opencascade/OSD_Error.hxx
 // ./opencascade/OSD_OpenFile.hxx
     m.def("OSD_OpenFile", 
           (FILE * (*)( const TCollection_ExtendedString & ,  const char *  ))  static_cast<FILE * (*)( const TCollection_ExtendedString & ,  const char *  )>(&OSD_OpenFile),
@@ -974,66 +1131,29 @@ py::module m = static_cast<py::module>(main_module.attr("OSD"));
     m.def("OSD_OpenFileDescriptor", 
           (int (*)( const TCollection_ExtendedString & ,  ::std::ios_base::openmode  ))  static_cast<int (*)( const TCollection_ExtendedString & ,  ::std::ios_base::openmode  )>(&OSD_OpenFileDescriptor),
           R"#(Open file descriptor for specified UTF-16 file path.)#"  , py::arg("theName"),  py::arg("theMode"));
-// ./opencascade/OSD_Exception_FLT_DENORMAL_OPERAND.hxx
-// ./opencascade/OSD_Exception_FLT_INVALID_OPERATION.hxx
-// ./opencascade/OSD_Exception_INT_OVERFLOW.hxx
-// ./opencascade/OSD.hxx
-// ./opencascade/OSD_DirectoryIterator.hxx
-// ./opencascade/OSD_ErrorList.hxx
-// ./opencascade/OSD_OSDError.hxx
-// ./opencascade/OSD_Directory.hxx
-// ./opencascade/OSD_Environment.hxx
-// ./opencascade/OSD_SingleProtection.hxx
-// ./opencascade/OSD_Function.hxx
-// ./opencascade/OSD_Exception_FLT_STACK_CHECK.hxx
-// ./opencascade/OSD_Disk.hxx
-// ./opencascade/OSD_Error.hxx
-// ./opencascade/OSD_ThreadFunction.hxx
-// ./opencascade/OSD_Chronometer.hxx
-// ./opencascade/OSD_File.hxx
-// ./opencascade/OSD_WhoAmI.hxx
-// ./opencascade/OSD_SIGHUP.hxx
-// ./opencascade/OSD_Process.hxx
-// ./opencascade/OSD_Exception_STATUS_NO_MEMORY.hxx
-// ./opencascade/OSD_Exception_NONCONTINUABLE_EXCEPTION.hxx
-// ./opencascade/OSD_PThread.hxx
-// ./opencascade/OSD_MAllocHook.hxx
-// ./opencascade/OSD_SIGQUIT.hxx
 // ./opencascade/OSD_Path.hxx
-// ./opencascade/OSD_Exception_INVALID_DISPOSITION.hxx
-// ./opencascade/OSD_SIGSYS.hxx
-// ./opencascade/OSD_OpenMode.hxx
-// ./opencascade/OSD_Exception_FLT_DIVIDE_BY_ZERO.hxx
-// ./opencascade/OSD_SysType.hxx
-// ./opencascade/OSD_Exception_STACK_OVERFLOW.hxx
-// ./opencascade/OSD_OEMType.hxx
-// ./opencascade/OSD_Exception_ACCESS_VIOLATION.hxx
-// ./opencascade/OSD_Signal.hxx
-// ./opencascade/OSD_Host.hxx
-// ./opencascade/OSD_SIGKILL.hxx
-// ./opencascade/OSD_FromWhere.hxx
-// ./opencascade/OSD_Exception_IN_PAGE_ERROR.hxx
-// ./opencascade/OSD_SIGBUS.hxx
-// ./opencascade/OSD_SharedLibrary.hxx
-// ./opencascade/OSD_Exception_ILLEGAL_INSTRUCTION.hxx
-// ./opencascade/OSD_Exception_FLT_OVERFLOW.hxx
-// ./opencascade/OSD_Protection.hxx
-// ./opencascade/OSD_PerfMeter.hxx
-// ./opencascade/OSD_LockType.hxx
-// ./opencascade/OSD_Timer.hxx
-// ./opencascade/OSD_Exception_CTRL_BREAK.hxx
-// ./opencascade/OSD_Exception_ARRAY_BOUNDS_EXCEEDED.hxx
-// ./opencascade/OSD_SIGSEGV.hxx
-// ./opencascade/OSD_KindFile.hxx
-// ./opencascade/OSD_Exception.hxx
-// ./opencascade/OSD_Exception_FLT_UNDERFLOW.hxx
-// ./opencascade/OSD_Exception_FLT_INEXACT_RESULT.hxx
 // ./opencascade/OSD_Thread.hxx
-// ./opencascade/OSD_Parallel.hxx
-// ./opencascade/OSD_MemInfo.hxx
-// ./opencascade/OSD_FileIterator.hxx
+// ./opencascade/OSD_Exception_ARRAY_BOUNDS_EXCEEDED.hxx
+// ./opencascade/OSD_OpenMode.hxx
+// ./opencascade/OSD_Exception_PRIV_INSTRUCTION.hxx
+// ./opencascade/OSD_Exception_STACK_OVERFLOW.hxx
 // ./opencascade/OSD_SIGILL.hxx
-// ./opencascade/OSD_LoadMode.hxx
+// ./opencascade/OSD_Exception_FLT_DIVIDE_BY_ZERO.hxx
+// ./opencascade/OSD_Exception_IN_PAGE_ERROR.hxx
+// ./opencascade/OSD_SIGSEGV.hxx
+// ./opencascade/OSD_MAllocHook.hxx
+// ./opencascade/OSD_Exception_FLT_DENORMAL_OPERAND.hxx
+// ./opencascade/OSD_SignalMode.hxx
+// ./opencascade/OSD_Exception_FLT_INVALID_OPERATION.hxx
+// ./opencascade/OSD_Exception_ILLEGAL_INSTRUCTION.hxx
+// ./opencascade/OSD_OEMType.hxx
+// ./opencascade/OSD_Exception_FLT_UNDERFLOW.hxx
+// ./opencascade/OSD_FileNode.hxx
+// ./opencascade/OSD_File.hxx
+// ./opencascade/OSD_Signal.hxx
+// ./opencascade/OSD_SIGBUS.hxx
+// ./opencascade/OSD_SIGINT.hxx
+// ./opencascade/OSD_PThread.hxx
 
 // operators
 

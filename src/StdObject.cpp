@@ -42,9 +42,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdObject"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdObject_Location , shared_ptr<StdObject_Location>>(m,"StdObject_Location");
 
     static_cast<py::class_<StdObject_Location , shared_ptr<StdObject_Location>  >>(m.attr("StdObject_Location"))
+    // constructors
+    // custom constructors
     // methods
         .def("PChildren",
              (void (StdObject_Location::*)( NCollection_Sequence<opencascade::handle<StdObjMgt_Persistent> > &  ) const) static_cast<void (StdObject_Location::*)( NCollection_Sequence<opencascade::handle<StdObjMgt_Persistent> > &  ) const>(&StdObject_Location::PChildren),
@@ -59,12 +62,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdObject"));
                     R"#(Creates a persistent wrapper object for a location)#"  , py::arg("theLoc"),  py::arg("theMap"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdObject_Shape , shared_ptr<StdObject_Shape>>(m,"StdObject_Shape");
 
     static_cast<py::class_<StdObject_Shape , shared_ptr<StdObject_Shape>  >>(m.attr("StdObject_Shape"))
+    // constructors
+    // custom constructors
     // methods
         .def("Import",
              (TopoDS_Shape (StdObject_Shape::*)() const) static_cast<TopoDS_Shape (StdObject_Shape::*)() const>(&StdObject_Shape::Import),
@@ -76,11 +82,10 @@ py::module m = static_cast<py::module>(main_module.attr("StdObject"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdObject_Location.hxx
 // ./opencascade/StdObject_gp_Axes.hxx
     m.def("write", 
           (StdObjMgt_WriteData & (*)( StdObjMgt_WriteData & ,  const gp_Ax2d &  ))  static_cast<StdObjMgt_WriteData & (*)( StdObjMgt_WriteData & ,  const gp_Ax2d &  )>(&write),
@@ -88,11 +93,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdObject"));
     m.def("write", 
           (StdObjMgt_WriteData & (*)( StdObjMgt_WriteData & ,  const gp_Ax1 &  ))  static_cast<StdObjMgt_WriteData & (*)( StdObjMgt_WriteData & ,  const gp_Ax1 &  )>(&write),
           R"#(None)#"  , py::arg("theWriteData"),  py::arg("theAx"));
-// ./opencascade/StdObject_gp_Curves.hxx
-// ./opencascade/StdObject_gp_Surfaces.hxx
-// ./opencascade/StdObject_gp_Vectors.hxx
-// ./opencascade/StdObject_Shape.hxx
 // ./opencascade/StdObject_gp_Trsfs.hxx
+// ./opencascade/StdObject_gp_Surfaces.hxx
+// ./opencascade/StdObject_Shape.hxx
+// ./opencascade/StdObject_gp_Curves.hxx
+// ./opencascade/StdObject_Location.hxx
+// ./opencascade/StdObject_gp_Vectors.hxx
 
 // operators
 

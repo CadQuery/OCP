@@ -13,17 +13,17 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_NotImplemented.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <math_Matrix.hxx>
+#include <PLib_Base.hxx>
 #include <FEmTool_ProfileMatrix.hxx>
 #include <StdFail_NotDone.hxx>
 #include <math_Matrix.hxx>
-#include <PLib_Base.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <PLib_Base.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <PLib_Base.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <math_Matrix.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_NotImplemented.hxx>
 
@@ -46,11 +46,11 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/FEmTool_SeqOfLinConstr.hxx
 #include "NCollection.hxx"
+// ./opencascade/FEmTool_ListOfVectors.hxx
+#include "NCollection.hxx"
+// ./opencascade/FEmTool_ListOfVectors.hxx
+#include "NCollection.hxx"
 // ./opencascade/FEmTool_AssemblyTable.hxx
-#include "NCollection.hxx"
-// ./opencascade/FEmTool_ListOfVectors.hxx
-#include "NCollection.hxx"
-// ./opencascade/FEmTool_ListOfVectors.hxx
 #include "NCollection.hxx"
 
 
@@ -71,6 +71,7 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
     public:
         using FEmTool_ElementaryCriterion::FEmTool_ElementaryCriterion;
         
+        
         // public pure virtual
         opencascade::handle<TColStd_HArray2OfInteger> DependenceTable() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<TColStd_HArray2OfInteger>,FEmTool_ElementaryCriterion,DependenceTable,) };
         Standard_Real Value() override { PYBIND11_OVERLOAD_PURE(Standard_Real,FEmTool_ElementaryCriterion,Value,) };
@@ -87,6 +88,7 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
     class Py_FEmTool_SparseMatrix : public FEmTool_SparseMatrix{
     public:
         using FEmTool_SparseMatrix::FEmTool_SparseMatrix;
+        
         
         // public pure virtual
         void Init(const Standard_Real Value) override { PYBIND11_OVERLOAD_PURE(void,FEmTool_SparseMatrix,Init,Value) };
@@ -111,7 +113,9 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
 
 
     static_cast<py::class_<FEmTool_Assembly , shared_ptr<FEmTool_Assembly>  >>(m.attr("FEmTool_Assembly"))
+    // constructors
         .def(py::init<  const NCollection_Array2<Standard_Integer> &,const opencascade::handle<FEmTool_HAssemblyTable> & >()  , py::arg("Dependence"),  py::arg("Table") )
+    // custom constructors
     // methods
         .def("NullifyMatrix",
              (void (FEmTool_Assembly::*)() ) static_cast<void (FEmTool_Assembly::*)() >(&FEmTool_Assembly::NullifyMatrix),
@@ -150,12 +154,14 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_Curve ,opencascade::handle<FEmTool_Curve>  , Standard_Transient >>(m.attr("FEmTool_Curve"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const opencascade::handle<PLib_Base> &,const Standard_Real >()  , py::arg("Dimension"),  py::arg("NbElements"),  py::arg("TheBase"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Knots",
              (TColStd_Array1OfReal & (FEmTool_Curve::*)() const) static_cast<TColStd_Array1OfReal & (FEmTool_Curve::*)() const>(&FEmTool_Curve::Knots),
@@ -212,11 +218,13 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_ElementaryCriterion ,opencascade::handle<FEmTool_ElementaryCriterion> ,Py_FEmTool_ElementaryCriterion , Standard_Transient >>(m.attr("FEmTool_ElementaryCriterion"))
+    // constructors
+    // custom constructors
     // methods
         .def("Set",
              (void (FEmTool_ElementaryCriterion::*)( const opencascade::handle<TColStd_HArray2OfReal> &  ) ) static_cast<void (FEmTool_ElementaryCriterion::*)( const opencascade::handle<TColStd_HArray2OfReal> &  ) >(&FEmTool_ElementaryCriterion::Set),
@@ -249,12 +257,14 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_ElementsOfRefMatrix , shared_ptr<FEmTool_ElementsOfRefMatrix>  , math_FunctionSet >>(m.attr("FEmTool_ElementsOfRefMatrix"))
+    // constructors
         .def(py::init< const opencascade::handle<PLib_Base> &,const Standard_Integer >()  , py::arg("TheBase"),  py::arg("DerOrder") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (FEmTool_ElementsOfRefMatrix::*)() const) static_cast<Standard_Integer (FEmTool_ElementsOfRefMatrix::*)() const>(&FEmTool_ElementsOfRefMatrix::NbVariables),
@@ -269,14 +279,16 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_HAssemblyTable ,opencascade::handle<FEmTool_HAssemblyTable>  , FEmTool_AssemblyTable , Standard_Transient >>(m.attr("FEmTool_HAssemblyTable"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const opencascade::handle<TColStd_HArray1OfInteger> & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<opencascade::handle<TColStd_HArray1OfInteger> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const FEmTool_AssemblyTable & (FEmTool_HAssemblyTable::*)() const) static_cast<const FEmTool_AssemblyTable & (FEmTool_HAssemblyTable::*)() const>(&FEmTool_HAssemblyTable::Array2),
@@ -297,11 +309,13 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_SparseMatrix ,opencascade::handle<FEmTool_SparseMatrix> ,Py_FEmTool_SparseMatrix , Standard_Transient >>(m.attr("FEmTool_SparseMatrix"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (FEmTool_SparseMatrix::*)( const Standard_Real  ) ) static_cast<void (FEmTool_SparseMatrix::*)( const Standard_Real  ) >(&FEmTool_SparseMatrix::Init),
@@ -343,12 +357,14 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_LinearFlexion ,opencascade::handle<FEmTool_LinearFlexion>  , FEmTool_ElementaryCriterion >>(m.attr("FEmTool_LinearFlexion"))
+    // constructors
         .def(py::init< const Standard_Integer,const GeomAbs_Shape >()  , py::arg("WorkDegree"),  py::arg("ConstraintOrder") )
+    // custom constructors
     // methods
         .def("DependenceTable",
              (opencascade::handle<TColStd_HArray2OfInteger> (FEmTool_LinearFlexion::*)() const) static_cast<opencascade::handle<TColStd_HArray2OfInteger> (FEmTool_LinearFlexion::*)() const>(&FEmTool_LinearFlexion::DependenceTable),
@@ -375,12 +391,14 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_LinearJerk ,opencascade::handle<FEmTool_LinearJerk>  , FEmTool_ElementaryCriterion >>(m.attr("FEmTool_LinearJerk"))
+    // constructors
         .def(py::init< const Standard_Integer,const GeomAbs_Shape >()  , py::arg("WorkDegree"),  py::arg("ConstraintOrder") )
+    // custom constructors
     // methods
         .def("DependenceTable",
              (opencascade::handle<TColStd_HArray2OfInteger> (FEmTool_LinearJerk::*)() const) static_cast<opencascade::handle<TColStd_HArray2OfInteger> (FEmTool_LinearJerk::*)() const>(&FEmTool_LinearJerk::DependenceTable),
@@ -407,12 +425,14 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_LinearTension ,opencascade::handle<FEmTool_LinearTension>  , FEmTool_ElementaryCriterion >>(m.attr("FEmTool_LinearTension"))
+    // constructors
         .def(py::init< const Standard_Integer,const GeomAbs_Shape >()  , py::arg("WorkDegree"),  py::arg("ConstraintOrder") )
+    // custom constructors
     // methods
         .def("DependenceTable",
              (opencascade::handle<TColStd_HArray2OfInteger> (FEmTool_LinearTension::*)() const) static_cast<opencascade::handle<TColStd_HArray2OfInteger> (FEmTool_LinearTension::*)() const>(&FEmTool_LinearTension::DependenceTable),
@@ -439,12 +459,14 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FEmTool_ProfileMatrix ,opencascade::handle<FEmTool_ProfileMatrix>  , FEmTool_SparseMatrix >>(m.attr("FEmTool_ProfileMatrix"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Integer> & >()  , py::arg("FirstIndexes") )
+    // custom constructors
     // methods
         .def("Init",
              (void (FEmTool_ProfileMatrix::*)( const Standard_Real  ) ) static_cast<void (FEmTool_ProfileMatrix::*)( const Standard_Real  ) >(&FEmTool_ProfileMatrix::Init),
@@ -495,31 +517,31 @@ py::module m = static_cast<py::module>(main_module.attr("FEmTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/FEmTool_LinearJerk.hxx
-// ./opencascade/FEmTool_SeqOfLinConstr.hxx
-// ./opencascade/FEmTool_ElementaryCriterion.hxx
-// ./opencascade/FEmTool_Assembly.hxx
-// ./opencascade/FEmTool_ListIteratorOfListOfVectors.hxx
 // ./opencascade/FEmTool_ElementsOfRefMatrix.hxx
-// ./opencascade/FEmTool_LinearFlexion.hxx
-// ./opencascade/FEmTool_AssemblyTable.hxx
-// ./opencascade/FEmTool_ListOfVectors.hxx
-// ./opencascade/FEmTool_LinearTension.hxx
-// ./opencascade/FEmTool_Curve.hxx
-// ./opencascade/FEmTool_HAssemblyTable.hxx
-// ./opencascade/FEmTool_SparseMatrix.hxx
+// ./opencascade/FEmTool_Assembly.hxx
+// ./opencascade/FEmTool_SeqOfLinConstr.hxx
 // ./opencascade/FEmTool_ProfileMatrix.hxx
+// ./opencascade/FEmTool_LinearFlexion.hxx
+// ./opencascade/FEmTool_LinearJerk.hxx
+// ./opencascade/FEmTool_ListOfVectors.hxx
+// ./opencascade/FEmTool_HAssemblyTable.hxx
+// ./opencascade/FEmTool_Curve.hxx
+// ./opencascade/FEmTool_AssemblyTable.hxx
+// ./opencascade/FEmTool_ElementaryCriterion.hxx
+// ./opencascade/FEmTool_SparseMatrix.hxx
+// ./opencascade/FEmTool_LinearTension.hxx
+// ./opencascade/FEmTool_ListIteratorOfListOfVectors.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_Sequence<FEmTool_ListOfVectors>(m,"FEmTool_SeqOfLinConstr");  
-    register_template_NCollection_Array2<opencascade::handle<TColStd_HArray1OfInteger> >(m,"FEmTool_AssemblyTable");  
     register_template_NCollection_List<opencascade::handle<TColStd_HArray1OfReal> >(m,"FEmTool_ListOfVectors");  
+    register_template_NCollection_Array2<opencascade::handle<TColStd_HArray1OfInteger> >(m,"FEmTool_AssemblyTable");  
 
 
 // exceptions

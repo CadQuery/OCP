@@ -11,22 +11,22 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TopoDS_Shape.hxx>
+#include <TopoDS_Shape.hxx>
 #include <StlAPI_Writer.hxx>
 #include <StlAPI_Reader.hxx>
 #include <TopoDS_Shape.hxx>
-#include <TopoDS_Shape.hxx>
 
 // module includes
-#include <StlAPI.hxx>
 #include <StlAPI_Writer.hxx>
+#include <StlAPI.hxx>
 #include <StlAPI_Reader.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/StlAPI.hxx
 // ./opencascade/StlAPI_Writer.hxx
+// ./opencascade/StlAPI.hxx
 // ./opencascade/StlAPI_Reader.hxx
 
 // user-defined post

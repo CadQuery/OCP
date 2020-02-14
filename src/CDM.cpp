@@ -13,6 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <CDM_Document.hxx>
+#include <CDM_Application.hxx>
+#include <CDM_MetaData.hxx>
+#include <CDM_Document.hxx>
 #include <CDM_Reference.hxx>
 #include <CDM_MetaData.hxx>
 #include <CDM_Document.hxx>
@@ -23,10 +27,6 @@ namespace py = pybind11;
 #include <CDM_Application.hxx>
 #include <CDM_ReferenceIterator.hxx>
 #include <Resource_Manager.hxx>
-#include <CDM_Document.hxx>
-#include <CDM_Application.hxx>
-#include <CDM_MetaData.hxx>
-#include <CDM_Document.hxx>
 
 // module includes
 #include <CDM_Application.hxx>
@@ -52,17 +52,17 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/CDM_PresentationDirectory.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_MapOfDocument.hxx
+// ./opencascade/CDM_ListOfReferences.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_MapOfDocument.hxx
+// ./opencascade/CDM_ListOfReferences.hxx
 #include "NCollection.hxx"
 // ./opencascade/CDM_ListOfDocument.hxx
 #include "NCollection.hxx"
 // ./opencascade/CDM_ListOfDocument.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_ListOfReferences.hxx
+// ./opencascade/CDM_MapOfDocument.hxx
 #include "NCollection.hxx"
-// ./opencascade/CDM_ListOfReferences.hxx
+// ./opencascade/CDM_MapOfDocument.hxx
 #include "NCollection.hxx"
 // ./opencascade/CDM_DocumentHasher.hxx
 #include "NCollection.hxx"
@@ -85,6 +85,7 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
     public:
         using CDM_Application::CDM_Application;
         
+        
         // public pure virtual
         opencascade::handle<Resource_Manager> Resources() override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Resource_Manager>,CDM_Application,Resources,) };
         
@@ -101,6 +102,7 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
     public:
         using CDM_Document::CDM_Document;
         
+        
         // public pure virtual
         TCollection_ExtendedString StorageFormat() const  override { PYBIND11_OVERLOAD_PURE(TCollection_ExtendedString,CDM_Document,StorageFormat,) };
         
@@ -116,6 +118,8 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
 
 
     static_cast<py::class_<CDM_Application ,opencascade::handle<CDM_Application> ,Py_CDM_Application , Standard_Transient >>(m.attr("CDM_Application"))
+    // constructors
+    // custom constructors
     // methods
         .def("Resources",
              (opencascade::handle<Resource_Manager> (CDM_Application::*)() ) static_cast<opencascade::handle<Resource_Manager> (CDM_Application::*)() >(&CDM_Application::Resources),
@@ -151,11 +155,13 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDM_Document ,opencascade::handle<CDM_Document> ,Py_CDM_Document , Standard_Transient >>(m.attr("CDM_Document"))
+    // constructors
+    // custom constructors
     // methods
         .def("Update",
              (void (CDM_Document::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Integer ,  const Standard_Address  ) ) static_cast<void (CDM_Document::*)( const opencascade::handle<CDM_Document> & ,  const Standard_Integer ,  const Standard_Address  ) >(&CDM_Document::Update),
@@ -373,6 +379,12 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
         .def("SetReferenceCounter",
              (void (CDM_Document::*)( const Standard_Integer  ) ) static_cast<void (CDM_Document::*)( const Standard_Integer  ) >(&CDM_Document::SetReferenceCounter),
              R"#(None)#"  , py::arg("aReferenceCounter"))
+        .def("StorageFormatVersion",
+             (Standard_Integer (CDM_Document::*)() const) static_cast<Standard_Integer (CDM_Document::*)() const>(&CDM_Document::StorageFormatVersion),
+             R"#(Returns version of the format to be used to store the document)#" )
+        .def("ChangeStorageFormatVersion",
+             (void (CDM_Document::*)( const Standard_Integer  ) ) static_cast<void (CDM_Document::*)( const Standard_Integer  ) >(&CDM_Document::ChangeStorageFormatVersion),
+             R"#(Sets <theVersion> of the format to be used to store the document)#"  , py::arg("theVersion"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (CDM_Document::*)() const) static_cast<const opencascade::handle<Standard_Type> & (CDM_Document::*)() const>(&CDM_Document::DynamicType),
              R"#(None)#" )
@@ -392,11 +404,13 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDM_MetaData ,opencascade::handle<CDM_MetaData>  , Standard_Transient >>(m.attr("CDM_MetaData"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsRetrieved",
              (Standard_Boolean (CDM_MetaData::*)() const) static_cast<Standard_Boolean (CDM_MetaData::*)() const>(&CDM_MetaData::IsRetrieved),
@@ -456,11 +470,13 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDM_Reference ,opencascade::handle<CDM_Reference>  , Standard_Transient >>(m.attr("CDM_Reference"))
+    // constructors
+    // custom constructors
     // methods
         .def("FromDocument",
              (opencascade::handle<CDM_Document> (CDM_Reference::*)() ) static_cast<opencascade::handle<CDM_Document> (CDM_Reference::*)() >(&CDM_Reference::FromDocument),
@@ -490,12 +506,14 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDM_ReferenceIterator , shared_ptr<CDM_ReferenceIterator>  >>(m.attr("CDM_ReferenceIterator"))
+    // constructors
         .def(py::init< const opencascade::handle<CDM_Document> & >()  , py::arg("aDocument") )
+    // custom constructors
     // methods
         .def("More",
              (Standard_Boolean (CDM_ReferenceIterator::*)() const) static_cast<Standard_Boolean (CDM_ReferenceIterator::*)() const>(&CDM_ReferenceIterator::More),
@@ -516,36 +534,36 @@ py::module m = static_cast<py::module>(main_module.attr("CDM"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/CDM_CanCloseStatus.hxx
-// ./opencascade/CDM_Application.hxx
-// ./opencascade/CDM_PresentationDirectory.hxx
 // ./opencascade/CDM_MetaData.hxx
-// ./opencascade/CDM_ReferenceIterator.hxx
-// ./opencascade/CDM_MapOfDocument.hxx
-// ./opencascade/CDM_MetaDataLookUpTable.hxx
-// ./opencascade/CDM_ListOfDocument.hxx
-// ./opencascade/CDM_ListOfReferences.hxx
-// ./opencascade/CDM_DocumentHasher.hxx
-// ./opencascade/CDM_DataMapIteratorOfPresentationDirectory.hxx
-// ./opencascade/CDM_Document.hxx
-// ./opencascade/CDM_DataMapIteratorOfMetaDataLookUpTable.hxx
-// ./opencascade/CDM_MapIteratorOfMapOfDocument.hxx
-// ./opencascade/CDM_ListIteratorOfListOfDocument.hxx
+// ./opencascade/CDM_PresentationDirectory.hxx
 // ./opencascade/CDM_NamesDirectory.hxx
 // ./opencascade/CDM_Reference.hxx
+// ./opencascade/CDM_ReferenceIterator.hxx
+// ./opencascade/CDM_MapIteratorOfMapOfDocument.hxx
+// ./opencascade/CDM_MetaDataLookUpTable.hxx
+// ./opencascade/CDM_Application.hxx
+// ./opencascade/CDM_ListIteratorOfListOfDocument.hxx
+// ./opencascade/CDM_CanCloseStatus.hxx
+// ./opencascade/CDM_DataMapIteratorOfPresentationDirectory.hxx
+// ./opencascade/CDM_ListOfReferences.hxx
+// ./opencascade/CDM_ListOfDocument.hxx
 // ./opencascade/CDM_DocumentPointer.hxx
+// ./opencascade/CDM_DataMapIteratorOfMetaDataLookUpTable.hxx
+// ./opencascade/CDM_Document.hxx
+// ./opencascade/CDM_MapOfDocument.hxx
 // ./opencascade/CDM_ListIteratorOfListOfReferences.hxx
+// ./opencascade/CDM_DocumentHasher.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Map<opencascade::handle<CDM_Document>, CDM_DocumentHasher>(m,"CDM_MapOfDocument");  
-    register_template_NCollection_List<opencascade::handle<CDM_Document> >(m,"CDM_ListOfDocument");  
     register_template_NCollection_List<opencascade::handle<CDM_Reference> >(m,"CDM_ListOfReferences");  
+    register_template_NCollection_List<opencascade::handle<CDM_Document> >(m,"CDM_ListOfDocument");  
+    register_template_NCollection_Map<opencascade::handle<CDM_Document>, CDM_DocumentHasher>(m,"CDM_MapOfDocument");  
     register_template_NCollection_DefaultHasher<opencascade::handle<CDM_Document> >(m,"CDM_DocumentHasher");  
 
 

@@ -13,14 +13,47 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TDataStd_ByteArray.hxx>
 #include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDataStd_ChildNodeIterator.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_AttributeDelta.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
+#include <TDataStd_DeltaOnModificationOfIntPackedMap.hxx>
+#include <Standard_GUID.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_RelocationTable.hxx>
+#include <TDF_DeltaOnModification.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDataStd_HDataMapOfStringInteger.hxx>
+#include <TDataStd_HDataMapOfStringReal.hxx>
+#include <TDataStd_HDataMapOfStringString.hxx>
+#include <TDataStd_HDataMapOfStringByte.hxx>
+#include <TDataStd_HDataMapOfStringHArray1OfInteger.hxx>
+#include <TDataStd_HDataMapOfStringHArray1OfReal.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
 #include <TDataStd_TreeNode.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDataStd_IntegerArray.hxx>
+#include <TDataStd_TreeNode.hxx>
 #include <TDataStd_Current.hxx>
 #include <TDataStd_Name.hxx>
 #include <TDataStd_Comment.hxx>
@@ -60,9 +93,41 @@ namespace py = pybind11;
 #include <TDataStd_HDataMapOfStringByte.hxx>
 #include <TDataStd_HDataMapOfStringHArray1OfInteger.hxx>
 #include <TDataStd_HDataMapOfStringHArray1OfReal.hxx>
+#include <TDataStd_ExtStringArray.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
+#include <TDataStd_IntPackedMap.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDataStd_DeltaOnModificationOfIntArray.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DeltaOnModification.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
-#include <TDataStd_ByteArray.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDataStd_RealArray.hxx>
+#include <TDataStd_DeltaOnModificationOfByteArray.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DeltaOnModification.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDataStd_DeltaOnModificationOfRealArray.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DeltaOnModification.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Label.hxx>
 #include <TCollection_ExtendedString.hxx>
@@ -70,43 +135,13 @@ namespace py = pybind11;
 #include <TDataStd_Expression.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDataStd_DeltaOnModificationOfByteArray.hxx>
+#include <TDataStd_DeltaOnModificationOfExtStringArray.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DeltaOnModification.hxx>
-#include <TDataStd_ChildNodeIterator.hxx>
 #include <TDF_Label.hxx>
-#include <TDF_AttributeDelta.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
-#include <TDataStd_DeltaOnModificationOfIntPackedMap.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DeltaOnModification.hxx>
-#include <TDataStd_DeltaOnModificationOfIntArray.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DeltaOnModification.hxx>
-#include <TDataStd_ExtStringArray.hxx>
-#include <TDataStd_DeltaOnModificationOfRealArray.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DeltaOnModification.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
-#include <TDataStd_IntPackedMap.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDataStd_HDataMapOfStringInteger.hxx>
-#include <TDataStd_HDataMapOfStringReal.hxx>
-#include <TDataStd_HDataMapOfStringString.hxx>
-#include <TDataStd_HDataMapOfStringByte.hxx>
-#include <TDataStd_HDataMapOfStringHArray1OfInteger.hxx>
-#include <TDataStd_HDataMapOfStringHArray1OfReal.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_RelocationTable.hxx>
@@ -114,41 +149,6 @@ namespace py = pybind11;
 #include <Standard_GUID.hxx>
 #include <TDataStd_Real.hxx>
 #include <TDataStd_Integer.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_Label.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDataStd_DeltaOnModificationOfExtStringArray.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DeltaOnModification.hxx>
-#include <TDataStd_IntegerArray.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDataStd_RealArray.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDataStd_TreeNode.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <Standard_GUID.hxx>
 #include <TDF_RelocationTable.hxx>
 
 // module includes
@@ -212,31 +212,31 @@ namespace py = pybind11;
 #include <TDataStd_Variable.hxx>
 
 // template related includes
+// ./opencascade/TDataStd_DataMapOfStringReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDataStd_DataMapOfStringReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDataStd_ListOfExtendedString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDataStd_ListOfExtendedString.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDataStd_ListOfByte.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDataStd_ListOfByte.hxx
+#include "NCollection.hxx"
 // ./opencascade/TDataStd_DataMapOfStringHArray1OfInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDataStd_DataMapOfStringString.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDataStd_DataMapOfStringString.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDataStd_ListOfExtendedString.hxx
+// ./opencascade/TDataStd_LabelArray1.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDataStd_ListOfExtendedString.hxx
+// ./opencascade/TDataStd_DataMapOfStringByte.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDataStd_ListOfByte.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDataStd_ListOfByte.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDataStd_DataMapOfStringReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDataStd_DataMapOfStringReal.hxx
+// ./opencascade/TDataStd_DataMapOfStringByte.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDataStd_DataMapOfStringHArray1OfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDataStd_DataMapOfStringByte.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDataStd_DataMapOfStringByte.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDataStd_LabelArray1.hxx
 #include "NCollection.hxx"
 
 
@@ -256,9 +256,12 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TDataStd , shared_ptr<TDataStd>>(m,"TDataStd");
 
     static_cast<py::class_<TDataStd , shared_ptr<TDataStd>  >>(m.attr("TDataStd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -270,12 +273,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(Prints the name of the real dimension <DIM> as a String on the Stream <S> and returns <S>.)#"  , py::arg("DIM"),  py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_AsciiString ,opencascade::handle<TDataStd_AsciiString>  , TDF_Attribute >>(m.attr("TDataStd_AsciiString"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TDataStd_AsciiString::*)( const TCollection_AsciiString &  ) ) static_cast<void (TDataStd_AsciiString::*)( const TCollection_AsciiString &  ) >(&TDataStd_AsciiString::Set),
@@ -329,12 +334,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_BooleanArray ,opencascade::handle<TDataStd_BooleanArray>  , TDF_Attribute >>(m.attr("TDataStd_BooleanArray"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TDataStd_BooleanArray::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (TDataStd_BooleanArray::*)( const Standard_Integer ,  const Standard_Integer  ) >(&TDataStd_BooleanArray::Init),
@@ -403,12 +410,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_BooleanList ,opencascade::handle<TDataStd_BooleanList>  , TDF_Attribute >>(m.attr("TDataStd_BooleanList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TDataStd_BooleanList::*)() const) static_cast<Standard_Boolean (TDataStd_BooleanList::*)() const>(&TDataStd_BooleanList::IsEmpty),
@@ -486,12 +495,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_ByteArray ,opencascade::handle<TDataStd_ByteArray>  , TDF_Attribute >>(m.attr("TDataStd_ByteArray"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_ByteArray::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_ByteArray::*)() const>(&TDataStd_ByteArray::DynamicType),
@@ -569,13 +580,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(Finds or creates an attribute with byte array and explicit user defined <guid> on the specified label.)#"  , py::arg("label"),  py::arg("theGuid"),  py::arg("lower"),  py::arg("upper"),  py::arg("isDelta")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_ChildNodeIterator , shared_ptr<TDataStd_ChildNodeIterator>  >>(m.attr("TDataStd_ChildNodeIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TDataStd_TreeNode> &,const Standard_Boolean >()  , py::arg("aTreeNode"),  py::arg("allLevels")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (TDataStd_ChildNodeIterator::*)( const opencascade::handle<TDataStd_TreeNode> & ,  const Standard_Boolean  ) ) static_cast<void (TDataStd_ChildNodeIterator::*)( const opencascade::handle<TDataStd_TreeNode> & ,  const Standard_Boolean  ) >(&TDataStd_ChildNodeIterator::Initialize),
@@ -596,12 +609,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Comment ,opencascade::handle<TDataStd_Comment>  , TDF_Attribute >>(m.attr("TDataStd_Comment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TDataStd_Comment::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TDataStd_Comment::*)( const TCollection_ExtendedString &  ) >(&TDataStd_Comment::Set),
@@ -649,12 +664,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Current ,opencascade::handle<TDataStd_Current>  , TDF_Attribute >>(m.attr("TDataStd_Current"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetLabel",
              (void (TDataStd_Current::*)( const TDF_Label &  ) ) static_cast<void (TDataStd_Current::*)( const TDF_Label &  ) >(&TDataStd_Current::SetLabel),
@@ -702,12 +719,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_DeltaOnModificationOfByteArray ,opencascade::handle<TDataStd_DeltaOnModificationOfByteArray>  , TDF_DeltaOnModification >>(m.attr("TDataStd_DeltaOnModificationOfByteArray"))
+    // constructors
         .def(py::init< const opencascade::handle<TDataStd_ByteArray> & >()  , py::arg("Arr") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDataStd_DeltaOnModificationOfByteArray::*)() ) static_cast<void (TDataStd_DeltaOnModificationOfByteArray::*)() >(&TDataStd_DeltaOnModificationOfByteArray::Apply),
@@ -725,12 +744,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_DeltaOnModificationOfExtStringArray ,opencascade::handle<TDataStd_DeltaOnModificationOfExtStringArray>  , TDF_DeltaOnModification >>(m.attr("TDataStd_DeltaOnModificationOfExtStringArray"))
+    // constructors
         .def(py::init< const opencascade::handle<TDataStd_ExtStringArray> & >()  , py::arg("Arr") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDataStd_DeltaOnModificationOfExtStringArray::*)() ) static_cast<void (TDataStd_DeltaOnModificationOfExtStringArray::*)() >(&TDataStd_DeltaOnModificationOfExtStringArray::Apply),
@@ -748,12 +769,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_DeltaOnModificationOfIntArray ,opencascade::handle<TDataStd_DeltaOnModificationOfIntArray>  , TDF_DeltaOnModification >>(m.attr("TDataStd_DeltaOnModificationOfIntArray"))
+    // constructors
         .def(py::init< const opencascade::handle<TDataStd_IntegerArray> & >()  , py::arg("Arr") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDataStd_DeltaOnModificationOfIntArray::*)() ) static_cast<void (TDataStd_DeltaOnModificationOfIntArray::*)() >(&TDataStd_DeltaOnModificationOfIntArray::Apply),
@@ -771,12 +794,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_DeltaOnModificationOfIntPackedMap ,opencascade::handle<TDataStd_DeltaOnModificationOfIntPackedMap>  , TDF_DeltaOnModification >>(m.attr("TDataStd_DeltaOnModificationOfIntPackedMap"))
+    // constructors
         .def(py::init< const opencascade::handle<TDataStd_IntPackedMap> & >()  , py::arg("Arr") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDataStd_DeltaOnModificationOfIntPackedMap::*)() ) static_cast<void (TDataStd_DeltaOnModificationOfIntPackedMap::*)() >(&TDataStd_DeltaOnModificationOfIntPackedMap::Apply),
@@ -794,12 +819,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_DeltaOnModificationOfRealArray ,opencascade::handle<TDataStd_DeltaOnModificationOfRealArray>  , TDF_DeltaOnModification >>(m.attr("TDataStd_DeltaOnModificationOfRealArray"))
+    // constructors
         .def(py::init< const opencascade::handle<TDataStd_RealArray> & >()  , py::arg("Arr") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDataStd_DeltaOnModificationOfRealArray::*)() ) static_cast<void (TDataStd_DeltaOnModificationOfRealArray::*)() >(&TDataStd_DeltaOnModificationOfRealArray::Apply),
@@ -817,12 +844,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Directory ,opencascade::handle<TDataStd_Directory>  , TDF_Attribute >>(m.attr("TDataStd_Directory"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataStd_Directory::*)() const) static_cast<const Standard_GUID & (TDataStd_Directory::*)() const>(&TDataStd_Directory::ID),
@@ -870,12 +899,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Expression ,opencascade::handle<TDataStd_Expression>  , TDF_Attribute >>(m.attr("TDataStd_Expression"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Name",
              (TCollection_ExtendedString (TDataStd_Expression::*)() const) static_cast<TCollection_ExtendedString (TDataStd_Expression::*)() const>(&TDataStd_Expression::Name),
@@ -923,12 +954,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_ExtStringArray ,opencascade::handle<TDataStd_ExtStringArray>  , TDF_Attribute >>(m.attr("TDataStd_ExtStringArray"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_ExtStringArray::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_ExtStringArray::*)() const>(&TDataStd_ExtStringArray::DynamicType),
@@ -1006,12 +1039,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(Finds, or creates, an ExtStringArray attribute with explicit user defined <guid>. The ExtStringArray attribute is returned.)#"  , py::arg("label"),  py::arg("theGuid"),  py::arg("lower"),  py::arg("upper"),  py::arg("isDelta")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_ExtStringList ,opencascade::handle<TDataStd_ExtStringList>  , TDF_Attribute >>(m.attr("TDataStd_ExtStringList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TDataStd_ExtStringList::*)() const) static_cast<Standard_Boolean (TDataStd_ExtStringList::*)() const>(&TDataStd_ExtStringList::IsEmpty),
@@ -1098,13 +1133,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_HDataMapOfStringByte ,opencascade::handle<TDataStd_HDataMapOfStringByte>  , Standard_Transient >>(m.attr("TDataStd_HDataMapOfStringByte"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init<  const NCollection_DataMap<TCollection_ExtendedString, Standard_Byte, TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringByte::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringByte::*)() const>(&TDataStd_HDataMapOfStringByte::DynamicType),
@@ -1125,13 +1162,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_HDataMapOfStringHArray1OfInteger ,opencascade::handle<TDataStd_HDataMapOfStringHArray1OfInteger>  , Standard_Transient >>(m.attr("TDataStd_HDataMapOfStringHArray1OfInteger"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init<  const NCollection_DataMap<TCollection_ExtendedString, opencascade::handle<TColStd_HArray1OfInteger>, TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringHArray1OfInteger::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringHArray1OfInteger::*)() const>(&TDataStd_HDataMapOfStringHArray1OfInteger::DynamicType),
@@ -1152,13 +1191,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_HDataMapOfStringHArray1OfReal ,opencascade::handle<TDataStd_HDataMapOfStringHArray1OfReal>  , Standard_Transient >>(m.attr("TDataStd_HDataMapOfStringHArray1OfReal"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init<  const NCollection_DataMap<TCollection_ExtendedString, opencascade::handle<TColStd_HArray1OfReal>, TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringHArray1OfReal::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringHArray1OfReal::*)() const>(&TDataStd_HDataMapOfStringHArray1OfReal::DynamicType),
@@ -1179,13 +1220,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_HDataMapOfStringInteger ,opencascade::handle<TDataStd_HDataMapOfStringInteger>  , Standard_Transient >>(m.attr("TDataStd_HDataMapOfStringInteger"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init<  const NCollection_DataMap<TCollection_ExtendedString, Standard_Integer, TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringInteger::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringInteger::*)() const>(&TDataStd_HDataMapOfStringInteger::DynamicType),
@@ -1206,13 +1249,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_HDataMapOfStringReal ,opencascade::handle<TDataStd_HDataMapOfStringReal>  , Standard_Transient >>(m.attr("TDataStd_HDataMapOfStringReal"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init<  const NCollection_DataMap<TCollection_ExtendedString, Standard_Real, TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringReal::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringReal::*)() const>(&TDataStd_HDataMapOfStringReal::DynamicType),
@@ -1233,13 +1278,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_HDataMapOfStringString ,opencascade::handle<TDataStd_HDataMapOfStringString>  , Standard_Transient >>(m.attr("TDataStd_HDataMapOfStringString"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbBuckets")=static_cast<const Standard_Integer>(1) )
         .def(py::init<  const NCollection_DataMap<TCollection_ExtendedString, TCollection_ExtendedString, TCollection_ExtendedString> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringString::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_HDataMapOfStringString::*)() const>(&TDataStd_HDataMapOfStringString::DynamicType),
@@ -1260,14 +1307,17 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_HLabelArray1 ,opencascade::handle<TDataStd_HLabelArray1>  , TDataStd_LabelArray1 , Standard_Transient >>(m.attr("TDataStd_HLabelArray1"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const TDF_Label & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TDF_Label> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TDataStd_LabelArray1 & (TDataStd_HLabelArray1::*)() const) static_cast<const TDataStd_LabelArray1 & (TDataStd_HLabelArray1::*)() const>(&TDataStd_HLabelArray1::Array1),
@@ -1288,12 +1338,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_IntPackedMap ,opencascade::handle<TDataStd_IntPackedMap>  , TDF_Attribute >>(m.attr("TDataStd_IntPackedMap"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_IntPackedMap::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_IntPackedMap::*)() const>(&TDataStd_IntPackedMap::DynamicType),
@@ -1368,12 +1420,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(Finds or creates an integer map attribute on the given label. If <isDelta> == False, DefaultDeltaOnModification is used. If <isDelta> == True, DeltaOnModification of the current attribute is used. If attribute is already set, input parameter <isDelta> is refused and the found attribute returned. Attribute methods ===================)#"  , py::arg("label"),  py::arg("isDelta")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Integer ,opencascade::handle<TDataStd_Integer>  , TDF_Attribute >>(m.attr("TDataStd_Integer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TDataStd_Integer::*)( const Standard_Integer  ) ) static_cast<void (TDataStd_Integer::*)( const Standard_Integer  ) >(&TDataStd_Integer::Set),
@@ -1427,12 +1481,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_IntegerArray ,opencascade::handle<TDataStd_IntegerArray>  , TDF_Attribute >>(m.attr("TDataStd_IntegerArray"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_IntegerArray::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_IntegerArray::*)() const>(&TDataStd_IntegerArray::DynamicType),
@@ -1510,12 +1566,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(Finds, or creates, an IntegerArray attribute with explicit user defined <guid>. The IntegerArray attribute is returned.)#"  , py::arg("label"),  py::arg("theGuid"),  py::arg("lower"),  py::arg("upper"),  py::arg("isDelta")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_IntegerList ,opencascade::handle<TDataStd_IntegerList>  , TDF_Attribute >>(m.attr("TDataStd_IntegerList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TDataStd_IntegerList::*)() const) static_cast<Standard_Boolean (TDataStd_IntegerList::*)() const>(&TDataStd_IntegerList::IsEmpty),
@@ -1602,12 +1660,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Name ,opencascade::handle<TDataStd_Name>  , TDF_Attribute >>(m.attr("TDataStd_Name"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TDataStd_Name::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TDataStd_Name::*)( const TCollection_ExtendedString &  ) >(&TDataStd_Name::Set),
@@ -1658,12 +1718,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_NamedData ,opencascade::handle<TDataStd_NamedData>  , TDF_Attribute >>(m.attr("TDataStd_NamedData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasIntegers",
              (Standard_Boolean (TDataStd_NamedData::*)() const) static_cast<Standard_Boolean (TDataStd_NamedData::*)() const>(&TDataStd_NamedData::HasIntegers),
@@ -1825,12 +1887,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_NoteBook ,opencascade::handle<TDataStd_NoteBook>  , TDF_Attribute >>(m.attr("TDataStd_NoteBook"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Append",
              (opencascade::handle<TDataStd_Real> (TDataStd_NoteBook::*)( const Standard_Real ,  const Standard_Boolean  ) ) static_cast<opencascade::handle<TDataStd_Real> (TDataStd_NoteBook::*)( const Standard_Real ,  const Standard_Boolean  ) >(&TDataStd_NoteBook::Append),
@@ -1875,12 +1939,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Real ,opencascade::handle<TDataStd_Real>  , TDF_Attribute >>(m.attr("TDataStd_Real"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetDimension",
              (void (TDataStd_Real::*)( const TDataStd_RealEnum  ) ) static_cast<void (TDataStd_Real::*)( const TDataStd_RealEnum  ) >(&TDataStd_Real::SetDimension),
@@ -1940,12 +2006,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_RealArray ,opencascade::handle<TDataStd_RealArray>  , TDF_Attribute >>(m.attr("TDataStd_RealArray"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDataStd_RealArray::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDataStd_RealArray::*)() const>(&TDataStd_RealArray::DynamicType),
@@ -2023,12 +2091,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(Finds, or creates, an RealArray attribute with explicit user defined <guid>. The RealArray attribute is returned.)#"  , py::arg("label"),  py::arg("theGuid"),  py::arg("lower"),  py::arg("upper"),  py::arg("isDelta")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_RealList ,opencascade::handle<TDataStd_RealList>  , TDF_Attribute >>(m.attr("TDataStd_RealList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TDataStd_RealList::*)() const) static_cast<Standard_Boolean (TDataStd_RealList::*)() const>(&TDataStd_RealList::IsEmpty),
@@ -2115,12 +2185,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_ReferenceArray ,opencascade::handle<TDataStd_ReferenceArray>  , TDF_Attribute >>(m.attr("TDataStd_ReferenceArray"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TDataStd_ReferenceArray::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (TDataStd_ReferenceArray::*)( const Standard_Integer ,  const Standard_Integer  ) >(&TDataStd_ReferenceArray::Init),
@@ -2192,12 +2264,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_ReferenceList ,opencascade::handle<TDataStd_ReferenceList>  , TDF_Attribute >>(m.attr("TDataStd_ReferenceList"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TDataStd_ReferenceList::*)() const) static_cast<Standard_Boolean (TDataStd_ReferenceList::*)() const>(&TDataStd_ReferenceList::IsEmpty),
@@ -2287,12 +2361,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Relation ,opencascade::handle<TDataStd_Relation>  , TDF_Attribute >>(m.attr("TDataStd_Relation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Name",
              (TCollection_ExtendedString (TDataStd_Relation::*)() const) static_cast<TCollection_ExtendedString (TDataStd_Relation::*)() const>(&TDataStd_Relation::Name),
@@ -2340,12 +2416,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Tick ,opencascade::handle<TDataStd_Tick>  , TDF_Attribute >>(m.attr("TDataStd_Tick"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataStd_Tick::*)() const) static_cast<const Standard_GUID & (TDataStd_Tick::*)() const>(&TDataStd_Tick::ID),
@@ -2381,12 +2459,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_TreeNode ,opencascade::handle<TDataStd_TreeNode>  , TDF_Attribute >>(m.attr("TDataStd_TreeNode"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Append",
              (Standard_Boolean (TDataStd_TreeNode::*)( const opencascade::handle<TDataStd_TreeNode> &  ) ) static_cast<Standard_Boolean (TDataStd_TreeNode::*)( const opencascade::handle<TDataStd_TreeNode> &  ) >(&TDataStd_TreeNode::Append),
@@ -2551,12 +2631,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_UAttribute ,opencascade::handle<TDataStd_UAttribute>  , TDF_Attribute >>(m.attr("TDataStd_UAttribute"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetID",
              (void (TDataStd_UAttribute::*)( const Standard_GUID &  ) ) static_cast<void (TDataStd_UAttribute::*)( const Standard_GUID &  ) >(&TDataStd_UAttribute::SetID),
@@ -2595,12 +2677,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataStd_Variable ,opencascade::handle<TDataStd_Variable>  , TDF_Attribute >>(m.attr("TDataStd_Variable"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Name",
              (void (TDataStd_Variable::*)( const TCollection_ExtendedString &  ) ) static_cast<void (TDataStd_Variable::*)( const TCollection_ExtendedString &  ) >(&TDataStd_Variable::Name),
@@ -2687,78 +2771,78 @@ py::module m = static_cast<py::module>(main_module.attr("TDataStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TDataStd_UAttribute.hxx
-// ./opencascade/TDataStd_ListIteratorOfListOfExtendedString.hxx
-// ./opencascade/TDataStd_HDataMapOfStringHArray1OfReal.hxx
-// ./opencascade/TDataStd_BooleanList.hxx
-// ./opencascade/TDataStd_ChildNodeIterator.hxx
+// ./opencascade/TDataStd_HDataMapOfStringReal.hxx
+// ./opencascade/TDataStd_DeltaOnModificationOfByteArray.hxx
+// ./opencascade/TDataStd_BooleanArray.hxx
+// ./opencascade/TDataStd_ExtStringList.hxx
+// ./opencascade/TDataStd_TreeNode.hxx
+// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringString.hxx
+// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringReal.hxx
+// ./opencascade/TDataStd_DataMapOfStringReal.hxx
+// ./opencascade/TDataStd_IntPackedMap.hxx
+// ./opencascade/TDataStd_AsciiString.hxx
+// ./opencascade/TDataStd_RealList.hxx
 // ./opencascade/TDataStd_IntegerList.hxx
-// ./opencascade/TDataStd_DataMapOfStringHArray1OfInteger.hxx
+// ./opencascade/TDataStd_NamedData.hxx
+// ./opencascade/TDataStd_Directory.hxx
+// ./opencascade/TDataStd_ChildNodeIterator.hxx
+// ./opencascade/TDataStd_HDataMapOfStringHArray1OfInteger.hxx
+// ./opencascade/TDataStd_Real.hxx
+// ./opencascade/TDataStd_ListIteratorOfListOfExtendedString.hxx
+// ./opencascade/TDataStd_ListOfExtendedString.hxx
+// ./opencascade/TDataStd_Name.hxx
+// ./opencascade/TDataStd_HDataMapOfStringHArray1OfReal.hxx
+// ./opencascade/TDataStd_DeltaOnModificationOfIntArray.hxx
+// ./opencascade/TDataStd_HLabelArray1.hxx
+// ./opencascade/TDataStd_PtrTreeNode.hxx
 // ./opencascade/TDataStd.hxx
+// ./opencascade/TDataStd_DeltaOnModificationOfExtStringArray.hxx
+// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringHArray1OfReal.hxx
+// ./opencascade/TDataStd_DeltaOnModificationOfIntPackedMap.hxx
+// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringHArray1OfInteger.hxx
+// ./opencascade/TDataStd_Expression.hxx
+// ./opencascade/TDataStd_ListOfByte.hxx
+// ./opencascade/TDataStd_IntegerArray.hxx
 // ./opencascade/TDataStd_ReferenceList.hxx
 // ./opencascade/TDataStd_RealEnum.hxx
-// ./opencascade/TDataStd_DeltaOnModificationOfByteArray.hxx
-// ./opencascade/TDataStd_Variable.hxx
-// ./opencascade/TDataStd_Name.hxx
-// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringReal.hxx
-// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringHArray1OfReal.hxx
-// ./opencascade/TDataStd_HLabelArray1.hxx
-// ./opencascade/TDataStd_HDataMapOfStringString.hxx
-// ./opencascade/TDataStd_ByteArray.hxx
-// ./opencascade/TDataStd_TreeNode.hxx
-// ./opencascade/TDataStd_ListIteratorOfListOfByte.hxx
-// ./opencascade/TDataStd_IntPackedMap.hxx
-// ./opencascade/TDataStd_IntegerArray.hxx
-// ./opencascade/TDataStd_DeltaOnModificationOfExtStringArray.hxx
-// ./opencascade/TDataStd_RealArray.hxx
-// ./opencascade/TDataStd_Real.hxx
-// ./opencascade/TDataStd_DataMapOfStringString.hxx
-// ./opencascade/TDataStd_HDataMapOfStringInteger.hxx
-// ./opencascade/TDataStd_DeltaOnModificationOfIntPackedMap.hxx
-// ./opencascade/TDataStd_ListOfExtendedString.hxx
-// ./opencascade/TDataStd_BooleanArray.hxx
-// ./opencascade/TDataStd_ListOfByte.hxx
-// ./opencascade/TDataStd_HDataMapOfStringHArray1OfInteger.hxx
-// ./opencascade/TDataStd_NamedData.hxx
-// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringHArray1OfInteger.hxx
-// ./opencascade/TDataStd_NoteBook.hxx
-// ./opencascade/TDataStd_HDataMapOfStringReal.hxx
-// ./opencascade/TDataStd_Relation.hxx
-// ./opencascade/TDataStd_Directory.hxx
-// ./opencascade/TDataStd_ExtStringList.hxx
-// ./opencascade/TDataStd_DataMapOfStringReal.hxx
-// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringString.hxx
-// ./opencascade/TDataStd_DataMapOfStringHArray1OfReal.hxx
-// ./opencascade/TDataStd_ReferenceArray.hxx
-// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringByte.hxx
-// ./opencascade/TDataStd_Expression.hxx
-// ./opencascade/TDataStd_ExtStringArray.hxx
-// ./opencascade/TDataStd_DeltaOnModificationOfIntArray.hxx
-// ./opencascade/TDataStd_DataMapOfStringByte.hxx
-// ./opencascade/TDataStd_AsciiString.hxx
-// ./opencascade/TDataStd_HDataMapOfStringByte.hxx
-// ./opencascade/TDataStd_RealList.hxx
-// ./opencascade/TDataStd_DeltaOnModificationOfRealArray.hxx
-// ./opencascade/TDataStd_Tick.hxx
-// ./opencascade/TDataStd_LabelArray1.hxx
-// ./opencascade/TDataStd_PtrTreeNode.hxx
-// ./opencascade/TDataStd_Integer.hxx
-// ./opencascade/TDataStd_Comment.hxx
 // ./opencascade/TDataStd_Current.hxx
+// ./opencascade/TDataStd_DataMapOfStringHArray1OfInteger.hxx
+// ./opencascade/TDataStd_DataMapOfStringString.hxx
+// ./opencascade/TDataStd_HDataMapOfStringByte.hxx
+// ./opencascade/TDataStd_LabelArray1.hxx
+// ./opencascade/TDataStd_Integer.hxx
+// ./opencascade/TDataStd_DeltaOnModificationOfRealArray.hxx
+// ./opencascade/TDataStd_ByteArray.hxx
+// ./opencascade/TDataStd_Comment.hxx
+// ./opencascade/TDataStd_ReferenceArray.hxx
+// ./opencascade/TDataStd_Tick.hxx
+// ./opencascade/TDataStd_HDataMapOfStringInteger.hxx
+// ./opencascade/TDataStd_DataMapOfStringByte.hxx
+// ./opencascade/TDataStd_RealArray.hxx
+// ./opencascade/TDataStd_DataMapIteratorOfDataMapOfStringByte.hxx
+// ./opencascade/TDataStd_HDataMapOfStringString.hxx
+// ./opencascade/TDataStd_BooleanList.hxx
+// ./opencascade/TDataStd_DataMapOfStringHArray1OfReal.hxx
+// ./opencascade/TDataStd_Variable.hxx
+// ./opencascade/TDataStd_ExtStringArray.hxx
+// ./opencascade/TDataStd_UAttribute.hxx
+// ./opencascade/TDataStd_Relation.hxx
+// ./opencascade/TDataStd_ListIteratorOfListOfByte.hxx
+// ./opencascade/TDataStd_NoteBook.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<TCollection_ExtendedString, TCollection_ExtendedString, TCollection_ExtendedString>(m,"TDataStd_DataMapOfStringString");  
+    register_template_NCollection_DataMap<TCollection_ExtendedString, Standard_Real, TCollection_ExtendedString>(m,"TDataStd_DataMapOfStringReal");  
     register_template_NCollection_List<TCollection_ExtendedString>(m,"TDataStd_ListOfExtendedString");  
     register_template_NCollection_List<Standard_Byte>(m,"TDataStd_ListOfByte");  
-    register_template_NCollection_DataMap<TCollection_ExtendedString, Standard_Real, TCollection_ExtendedString>(m,"TDataStd_DataMapOfStringReal");  
-    register_template_NCollection_DataMap<TCollection_ExtendedString, Standard_Byte, TCollection_ExtendedString>(m,"TDataStd_DataMapOfStringByte");  
+    register_template_NCollection_DataMap<TCollection_ExtendedString, TCollection_ExtendedString, TCollection_ExtendedString>(m,"TDataStd_DataMapOfStringString");  
     register_template_NCollection_Array1<TDF_Label>(m,"TDataStd_LabelArray1");  
+    register_template_NCollection_DataMap<TCollection_ExtendedString, Standard_Byte, TCollection_ExtendedString>(m,"TDataStd_DataMapOfStringByte");  
 
 
 // exceptions

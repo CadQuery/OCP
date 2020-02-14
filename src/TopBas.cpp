@@ -44,8 +44,10 @@ py::module m = static_cast<py::module>(main_module.attr("TopBas"));
 
 
     static_cast<py::class_<TopBas_TestInterference , shared_ptr<TopBas_TestInterference>  >>(m.attr("TopBas_TestInterference"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real &,const Standard_Integer &,const TopAbs_Orientation,const TopAbs_Orientation,const TopAbs_Orientation >()  , py::arg("Inters"),  py::arg("Bound"),  py::arg("Orient"),  py::arg("Trans"),  py::arg("BTrans") )
+    // custom constructors
     // methods
         .def("Intersection",
              (void (TopBas_TestInterference::*)( const Standard_Real &  ) ) static_cast<void (TopBas_TestInterference::*)( const Standard_Real &  ) >(&TopBas_TestInterference::Intersection),
@@ -87,13 +89,13 @@ py::module m = static_cast<py::module>(main_module.attr("TopBas"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TopBas_ListIteratorOfListOfTestInterference.hxx
-// ./opencascade/TopBas_ListOfTestInterference.hxx
 // ./opencascade/TopBas_TestInterference.hxx
+// ./opencascade/TopBas_ListOfTestInterference.hxx
+// ./opencascade/TopBas_ListIteratorOfListOfTestInterference.hxx
 
 // operators
 

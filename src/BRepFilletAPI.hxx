@@ -13,26 +13,24 @@ namespace py = pybind11;
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <StdFail_NotDone.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopOpeBRepBuild_HBuilder.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Law_Function.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
-#include <Geom_Surface.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopOpeBRepBuild_HBuilder.hxx>
 
 // module includes
-#include <BRepFilletAPI_LocalOperation.hxx>
-#include <BRepFilletAPI_MakeChamfer.hxx>
 #include <BRepFilletAPI_MakeFillet2d.hxx>
+#include <BRepFilletAPI_LocalOperation.hxx>
 #include <BRepFilletAPI_MakeFillet.hxx>
+#include <BRepFilletAPI_MakeChamfer.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BRepFilletAPI_LocalOperation.hxx
-// ./opencascade/BRepFilletAPI_MakeChamfer.hxx
 // ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
+// ./opencascade/BRepFilletAPI_LocalOperation.hxx
 // ./opencascade/BRepFilletAPI_MakeFillet.hxx
+// ./opencascade/BRepFilletAPI_MakeChamfer.hxx
 
 // user-defined post

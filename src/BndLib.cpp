@@ -13,13 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Adaptor3d_Curve.hxx>
-#include <Bnd_Box.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Bnd_Box2d.hxx>
 #include <Geom2d_Curve.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <Bnd_Box.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Sphere.hxx>
 #include <gp_Lin.hxx>
 #include <Bnd_Box.hxx>
 #include <gp_Lin2d.hxx>
@@ -39,11 +40,10 @@ namespace py = pybind11;
 #include <BndLib_Add3dCurve.hxx>
 #include <BndLib_Add2dCurve.hxx>
 #include <BndLib_AddSurface.hxx>
-#include <Adaptor3d_Surface.hxx>
+#include <Adaptor3d_Curve.hxx>
 #include <Bnd_Box.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Sphere.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
 
 // module includes
 #include <BndLib.hxx>
@@ -70,9 +70,12 @@ py::module m = static_cast<py::module>(main_module.attr("BndLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BndLib , shared_ptr<BndLib>>(m,"BndLib");
 
     static_cast<py::class_<BndLib , shared_ptr<BndLib>  >>(m.attr("BndLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -144,12 +147,15 @@ py::module m = static_cast<py::module>(main_module.attr("BndLib"));
                     R"#(Adds to the bounding box B - the torus S, or - the patch of the torus S, limited in the u parametric direction, by the two parameter values UMin and UMax, and in the v parametric direction, by the two parameter values VMin and VMax. B is then enlarged by the tolerance value Tol. UMax-UMin can be in [0,2*pi], VMin,VMax can be [-pi/2,pi/2])#"  , py::arg("P"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("VMin"),  py::arg("VMax"),  py::arg("Tol"),  py::arg("B"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BndLib_Add2dCurve , shared_ptr<BndLib_Add2dCurve>>(m,"BndLib_Add2dCurve");
 
     static_cast<py::class_<BndLib_Add2dCurve , shared_ptr<BndLib_Add2dCurve>  >>(m.attr("BndLib_Add2dCurve"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -170,12 +176,15 @@ py::module m = static_cast<py::module>(main_module.attr("BndLib"));
                     R"#(Adds to the bounding box B the part of curve C B is then enlarged by the tolerance value Tol. U1, U2 - the parametric range to comute the bounding box; Note: depending on the type of curve, one of the following algorithms is used to include it in the bounding box B: - an exact analytical if C is built from a line, a circle or a conic curve, - numerical calculation of bounding box sizes, based on minimization algorithm, for other types of curve If Tol = < Precision::PConfusion(), Precision::PConfusion is used as tolerance for calculation)#"  , py::arg("C"),  py::arg("U1"),  py::arg("U2"),  py::arg("Tol"),  py::arg("B"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BndLib_Add3dCurve , shared_ptr<BndLib_Add3dCurve>>(m,"BndLib_Add3dCurve");
 
     static_cast<py::class_<BndLib_Add3dCurve , shared_ptr<BndLib_Add3dCurve>  >>(m.attr("BndLib_Add3dCurve"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -196,12 +205,15 @@ py::module m = static_cast<py::module>(main_module.attr("BndLib"));
                     R"#(Adds to the bounding box B the curve C using numerical minimization algorithms This method is used in AddOptimal for not analytical curves. if Tol < Precision::Confusion(), Precision:;Confusion is used as computation tolerance)#"  , py::arg("C"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("Tol"),  py::arg("B"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BndLib_AddSurface , shared_ptr<BndLib_AddSurface>>(m,"BndLib_AddSurface");
 
     static_cast<py::class_<BndLib_AddSurface , shared_ptr<BndLib_AddSurface>  >>(m.attr("BndLib_AddSurface"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -222,14 +234,14 @@ py::module m = static_cast<py::module>(main_module.attr("BndLib"));
                     R"#(Adds to the bounding box B the surface S using numerical minimization algorithms This method is used in AddOptimal for not analytical surfaces and torus. if Tol < Precision::Confusion(), Precision::Confusion is used as computation tolerance)#"  , py::arg("S"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("VMin"),  py::arg("VMax"),  py::arg("Tol"),  py::arg("B"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BndLib_Add3dCurve.hxx
 // ./opencascade/BndLib_Add2dCurve.hxx
-// ./opencascade/BndLib.hxx
 // ./opencascade/BndLib_AddSurface.hxx
+// ./opencascade/BndLib.hxx
+// ./opencascade/BndLib_Add3dCurve.hxx
 
 // operators
 

@@ -13,78 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IntPatch_Polyhedron.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <IntSurf_PntOn2S.hxx>
-#include <IntSurf_LineOn2S.hxx>
-#include <IntPatch_Point.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Standard_DomainError.hxx>
-#include <IntPatch_Line.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <IntSurf_Quadric.hxx>
-#include <IntSurf_QuadricTool.hxx>
-#include <math_Matrix.hxx>
-#include <IntPatch_WLine.hxx>
-#include <IntPatch_RLine.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <IntPatch_ALine.hxx>
-#include <IntSurf_PntOn2S.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_XYZ.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <IntPatch_HCurve2dTool.hxx>
-#include <math_FunctionSetRoot.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <IntPatch_Point.hxx>
-#include <IntSurf_PntOn2S.hxx>
-#include <math_Vector.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <gp_Pnt.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <IntPatch_Polyhedron.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <IntPatch_PrmPrmIntersection_T3Bits.hxx>
-#include <IntSurf_LineOn2S.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <IntPatch_HInterTool.hxx>
-#include <IntPatch_TheSurfFunction.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <IntPatch_HCurve2dTool.hxx>
-#include <IntPatch_HInterTool.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <IntPatch_ArcFunction.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <math_Matrix.hxx>
@@ -93,8 +21,83 @@ namespace py = pybind11;
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurfaceTool.hxx>
 #include <IntPatch_TheSurfFunction.hxx>
-#include <IntPatch_Polyhedron.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
 #include <gp_Pnt.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <IntPatch_HCurve2dTool.hxx>
+#include <IntPatch_HInterTool.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <IntPatch_ArcFunction.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <IntPatch_ALine.hxx>
+#include <IntSurf_PntOn2S.hxx>
+#include <IntPatch_Polyhedron.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Vec.hxx>
+#include <gp_XYZ.hxx>
+#include <IntPatch_Point.hxx>
+#include <IntSurf_PntOn2S.hxx>
+#include <math_Vector.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <IntPatch_Polyhedron.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <IntPatch_HCurve2dTool.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <IntPatch_WLine.hxx>
+#include <IntPatch_RLine.hxx>
+#include <Standard_DomainError.hxx>
+#include <IntPatch_Line.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Pnt2d.hxx>
+#include <IntSurf_PntOn2S.hxx>
+#include <IntSurf_LineOn2S.hxx>
+#include <IntPatch_Point.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <IntPatch_Polyhedron.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <IntPatch_PrmPrmIntersection_T3Bits.hxx>
+#include <IntSurf_LineOn2S.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <IntSurf_Quadric.hxx>
+#include <IntSurf_QuadricTool.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <IntPatch_HInterTool.hxx>
+#include <IntPatch_TheSurfFunction.hxx>
 
 // module includes
 #include <IntPatch_ALine.hxx>
@@ -142,15 +145,15 @@ namespace py = pybind11;
 #include <IntPatch_WLineTool.hxx>
 
 // template related includes
-// ./opencascade/IntPatch_SequenceOfPoint.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntPatch_SequenceOfLine.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntPatch_SequenceOfIWLineOfTheIWalking.hxx
+// ./opencascade/IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx
+// ./opencascade/IntPatch_SequenceOfIWLineOfTheIWalking.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntPatch_SequenceOfPoint.hxx
 #include "NCollection.hxx"
 
 
@@ -171,6 +174,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     public:
         using IntPatch_Polygo::IntPatch_Polygo;
         
+        
         // public pure virtual
         Standard_Integer NbPoints() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,IntPatch_Polygo,NbPoints,) };
         gp_Pnt2d Point(const Standard_Integer Index) const  override { PYBIND11_OVERLOAD_PURE(gp_Pnt2d,IntPatch_Polygo,Point,Index) };
@@ -186,6 +190,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     public:
         using IntPatch_PointLine::IntPatch_PointLine;
         
+        
         // public pure virtual
         void AddVertex(const IntPatch_Point & Pnt,const Standard_Boolean theIsPrepend) override { PYBIND11_OVERLOAD_PURE(void,IntPatch_PointLine,AddVertex,Pnt,theIsPrepend) };
         Standard_Integer NbPnts() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,IntPatch_PointLine,NbPnts,) };
@@ -196,6 +201,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
         void ClearVertexes() override { PYBIND11_OVERLOAD_PURE(void,IntPatch_PointLine,ClearVertexes,) };
         void RemoveVertex(const Standard_Integer theIndex) override { PYBIND11_OVERLOAD_PURE(void,IntPatch_PointLine,RemoveVertex,theIndex) };
         opencascade::handle<IntSurf_LineOn2S> Curve() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<IntSurf_LineOn2S>,IntPatch_PointLine,Curve,) };
+        Standard_Boolean IsOutSurf1Box(const gp_Pnt2d & P1) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IntPatch_PointLine,IsOutSurf1Box,P1) };
+        Standard_Boolean IsOutSurf2Box(const gp_Pnt2d & P2) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IntPatch_PointLine,IsOutSurf2Box,P2) };
+        Standard_Boolean IsOutBox(const gp_Pnt & P) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IntPatch_PointLine,IsOutBox,P) };
         
         
         // protected pure virtual
@@ -209,7 +217,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
 
 
     static_cast<py::class_<IntPatch_ALineToWLine , shared_ptr<IntPatch_ALineToWLine>  >>(m.attr("IntPatch_ALineToWLine"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer >()  , py::arg("theS1"),  py::arg("theS2"),  py::arg("theNbPoints")=static_cast<const Standard_Integer>(200) )
+    // custom constructors
     // methods
         .def("SetTolOpenDomain",
              (void (IntPatch_ALineToWLine::*)( const Standard_Real  ) ) static_cast<void (IntPatch_ALineToWLine::*)( const Standard_Real  ) >(&IntPatch_ALineToWLine::SetTolOpenDomain),
@@ -239,12 +249,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_ArcFunction , shared_ptr<IntPatch_ArcFunction>  , math_FunctionWithDerivative >>(m.attr("IntPatch_ArcFunction"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetQuadric",
              (void (IntPatch_ArcFunction::*)( const IntSurf_Quadric &  ) ) static_cast<void (IntPatch_ArcFunction::*)( const IntSurf_Quadric &  ) >(&IntPatch_ArcFunction::SetQuadric),
@@ -313,12 +325,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_CSFunction , shared_ptr<IntPatch_CSFunction>  , math_FunctionSetWithDerivatives >>(m.attr("IntPatch_CSFunction"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("S1"),  py::arg("C"),  py::arg("S2") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (IntPatch_CSFunction::*)() const) static_cast<Standard_Integer (IntPatch_CSFunction::*)() const>(&IntPatch_CSFunction::NbVariables),
@@ -351,13 +365,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_CurvIntSurf , shared_ptr<IntPatch_CurvIntSurf>  >>(m.attr("IntPatch_CurvIntSurf"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const IntPatch_CSFunction &,const Standard_Real,const Standard_Real >()  , py::arg("U"),  py::arg("V"),  py::arg("W"),  py::arg("F"),  py::arg("TolTangency"),  py::arg("MarginCoef")=static_cast<const Standard_Real>(0.0) )
         .def(py::init< const IntPatch_CSFunction &,const Standard_Real >()  , py::arg("F"),  py::arg("TolTangency") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntPatch_CurvIntSurf::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_FunctionSetRoot & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntPatch_CurvIntSurf::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_FunctionSetRoot & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntPatch_CurvIntSurf::Perform),
@@ -384,12 +400,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntPatch_HCurve2dTool , shared_ptr<IntPatch_HCurve2dTool>>(m,"IntPatch_HCurve2dTool");
 
     static_cast<py::class_<IntPatch_HCurve2dTool , shared_ptr<IntPatch_HCurve2dTool>  >>(m.attr("IntPatch_HCurve2dTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -467,12 +486,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U0"),  py::arg("U1"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_HInterTool , shared_ptr<IntPatch_HInterTool>  >>(m.attr("IntPatch_HInterTool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbSamplePoints",
              (Standard_Integer (IntPatch_HInterTool::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<Standard_Integer (IntPatch_HInterTool::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&IntPatch_HInterTool::NbSamplePoints),
@@ -544,13 +565,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     []( const opencascade::handle<Adaptor2d_HCurve2d> & C,const Standard_Integer Index,gp_Pnt & Pt ){ Standard_Real  Tol; Standard_Real  U; IntPatch_HInterTool::Value(C,Index,Pt,Tol,U); return std::make_tuple(Tol,U); },
                     R"#(Returns the value (Pt), the tolerance (Tol), and the parameter (U) on the arc A , of the intersection point of range Index.)#"  , py::arg("C"),  py::arg("Index"),  py::arg("Pt"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_ImpImpIntersection , shared_ptr<IntPatch_ImpImpIntersection>  >>(m.attr("IntPatch_ImpImpIntersection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("S1"),  py::arg("D1"),  py::arg("S2"),  py::arg("D2"),  py::arg("TolArc"),  py::arg("TolTang"),  py::arg("theIsReqToKeepRLine")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntPatch_ImpImpIntersection::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (IntPatch_ImpImpIntersection::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&IntPatch_ImpImpIntersection::Perform),
@@ -613,13 +636,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_ImpPrmIntersection , shared_ptr<IntPatch_ImpPrmIntersection>  >>(m.attr("IntPatch_ImpPrmIntersection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Surf1"),  py::arg("D1"),  py::arg("Surf2"),  py::arg("D2"),  py::arg("TolArc"),  py::arg("TolTang"),  py::arg("Fleche"),  py::arg("Pas") )
+    // custom constructors
     // methods
         .def("SetStartPoint",
              (void (IntPatch_ImpPrmIntersection::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntPatch_ImpPrmIntersection::*)( const Standard_Real ,  const Standard_Real  ) >(&IntPatch_ImpPrmIntersection::SetStartPoint),
@@ -667,14 +692,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_InterferencePolyhedron , shared_ptr<IntPatch_InterferencePolyhedron>  , Intf_Interference >>(m.attr("IntPatch_InterferencePolyhedron"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntPatch_Polyhedron &,const IntPatch_Polyhedron & >()  , py::arg("Obje1"),  py::arg("Obje2") )
         .def(py::init< const IntPatch_Polyhedron & >()  , py::arg("Obje") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntPatch_InterferencePolyhedron::*)( const IntPatch_Polyhedron & ,  const IntPatch_Polyhedron &  ) ) static_cast<void (IntPatch_InterferencePolyhedron::*)( const IntPatch_Polyhedron & ,  const IntPatch_Polyhedron &  ) >(&IntPatch_InterferencePolyhedron::Perform),
@@ -686,14 +713,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_Intersection , shared_ptr<IntPatch_Intersection>  >>(m.attr("IntPatch_Intersection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("D1"),  py::arg("S2"),  py::arg("D2"),  py::arg("TolArc"),  py::arg("TolTang") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("D1"),  py::arg("TolArc"),  py::arg("TolTang") )
+    // custom constructors
     // methods
         .def("SetTolerances",
              (void (IntPatch_Intersection::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntPatch_Intersection::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntPatch_Intersection::SetTolerances),
@@ -768,11 +797,13 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_Line ,opencascade::handle<IntPatch_Line>  , Standard_Transient >>(m.attr("IntPatch_Line"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntPatch_Line::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (IntPatch_Line::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&IntPatch_Line::SetValue),
@@ -853,12 +884,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_LineConstructor , shared_ptr<IntPatch_LineConstructor>  >>(m.attr("IntPatch_LineConstructor"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("mode") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntPatch_LineConstructor::*)(  const NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  const opencascade::handle<IntPatch_Line> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real  ) ) static_cast<void (IntPatch_LineConstructor::*)(  const NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  const opencascade::handle<IntPatch_Line> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real  ) >(&IntPatch_LineConstructor::Perform),
@@ -873,12 +906,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_Point , shared_ptr<IntPatch_Point>  >>(m.attr("IntPatch_Point"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntPatch_Point::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (IntPatch_Point::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Boolean  ) >(&IntPatch_Point::SetValue),
@@ -1073,11 +1108,13 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_Polygo , shared_ptr<IntPatch_Polygo> ,Py_IntPatch_Polygo , Intf_Polygon2d >>(m.attr("IntPatch_Polygo"))
+    // constructors
+    // custom constructors
     // methods
         .def("Error",
              (Standard_Real (IntPatch_Polygo::*)() const) static_cast<Standard_Real (IntPatch_Polygo::*)() const>(&IntPatch_Polygo::Error),
@@ -1116,13 +1153,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_Polyhedron , shared_ptr<IntPatch_Polyhedron>  >>(m.attr("IntPatch_Polyhedron"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer >()  , py::arg("Surface"),  py::arg("nbdU"),  py::arg("nbdV") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("Surface") )
+    // custom constructors
     // methods
         .def("Destroy",
              (void (IntPatch_Polyhedron::*)() ) static_cast<void (IntPatch_Polyhedron::*)() >(&IntPatch_Polyhedron::Destroy),
@@ -1188,12 +1227,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntPatch_PolyhedronTool , shared_ptr<IntPatch_PolyhedronTool>>(m,"IntPatch_PolyhedronTool");
 
     static_cast<py::class_<IntPatch_PolyhedronTool , shared_ptr<IntPatch_PolyhedronTool>  >>(m.attr("IntPatch_PolyhedronTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1220,12 +1262,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     []( const IntPatch_Polyhedron & thePolyh,const Standard_Integer Index ){ Standard_Integer  P1; Standard_Integer  P2; Standard_Integer  P3; IntPatch_PolyhedronTool::Triangle(thePolyh,Index,P1,P2,P3); return std::make_tuple(P1,P2,P3); },
                     R"#(Give the indices of the 3 points of the triangle of address Index in the Polyhedron.)#"  , py::arg("thePolyh"),  py::arg("Index"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_PrmPrmIntersection , shared_ptr<IntPatch_PrmPrmIntersection>  >>(m.attr("IntPatch_PrmPrmIntersection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntPatch_PrmPrmIntersection::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPatch_Polyhedron & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPatch_Polyhedron & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntPatch_PrmPrmIntersection::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPatch_Polyhedron & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntPatch_Polyhedron & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntPatch_PrmPrmIntersection::Perform),
@@ -1324,12 +1368,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_PrmPrmIntersection_T3Bits , shared_ptr<IntPatch_PrmPrmIntersection_T3Bits>  >>(m.attr("IntPatch_PrmPrmIntersection_T3Bits"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("size") )
+    // custom constructors
     // methods
         .def("Destroy",
              (void (IntPatch_PrmPrmIntersection_T3Bits::*)() ) static_cast<void (IntPatch_PrmPrmIntersection_T3Bits::*)() >(&IntPatch_PrmPrmIntersection_T3Bits::Destroy),
@@ -1362,12 +1408,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntPatch_RstInt , shared_ptr<IntPatch_RstInt>>(m,"IntPatch_RstInt");
 
     static_cast<py::class_<IntPatch_RstInt , shared_ptr<IntPatch_RstInt>  >>(m.attr("IntPatch_RstInt"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1376,12 +1425,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#"  , py::arg("L"),  py::arg("Surf"),  py::arg("Domain"),  py::arg("OtherSurf"),  py::arg("OnFirst"),  py::arg("Tol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntPatch_SpecialPoints , shared_ptr<IntPatch_SpecialPoints>>(m,"IntPatch_SpecialPoints");
 
     static_cast<py::class_<IntPatch_SpecialPoints , shared_ptr<IntPatch_SpecialPoints>  >>(m.attr("IntPatch_SpecialPoints"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1389,11 +1441,11 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     (Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Real ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Real ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) >(&IntPatch_SpecialPoints::AddCrossUVIsoPoint),
                     R"#(Adds the point defined as intersection of two isolines (U = 0 and V = 0) on theQSurf in theLine. theRefPt is used to correct adjusting parameters. If theIsReversed is TRUE then theQSurf correspond to the second (otherwise, the first) surface while forming intersection point IntSurf_PntOn2S.)#"  , py::arg("theQSurf"),  py::arg("thePSurf"),  py::arg("theRefPt"),  py::arg("theTol3d"),  py::arg("theAddedPoint"),  py::arg("theIsReversed")=static_cast<const Standard_Boolean>(Standard_False))
         .def_static("AddPointOnUorVIso_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Boolean ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Boolean ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) >(&IntPatch_SpecialPoints::AddPointOnUorVIso),
-                    R"#(Adds the point lain strictly in the isoline U = 0 or V = 0 of theQSurf, in theLine. theRefPt is used to correct adjusting parameters. If theIsReversed is TRUE then theQSurf corresponds to the second (otherwise, the first) surface while forming intersection point IntSurf_PntOn2S.)#"  , py::arg("theQSurf"),  py::arg("thePSurf"),  py::arg("theRefPt"),  py::arg("theIsU"),  py::arg("theToler"),  py::arg("theInitPoint"),  py::arg("theInfBound"),  py::arg("theSupBound"),  py::arg("theAddedPoint"),  py::arg("theIsReversed")=static_cast<const Standard_Boolean>(Standard_False))
+                    (Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Boolean ,  const Standard_Real ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Boolean ,  const Standard_Real ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  const math_Vector & ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) >(&IntPatch_SpecialPoints::AddPointOnUorVIso),
+                    R"#(Adds the point lain strictly in the isoline U = 0 or V = 0 of theQSurf, in theLine. theRefPt is used to correct adjusting parameters. If theIsReversed is TRUE then theQSurf corresponds to the second (otherwise, the first) surface while forming intersection point IntSurf_PntOn2S. All math_Vector-objects must be filled as follows: [1] - U-parameter of thePSurf; [2] - V-parameter of thePSurf; [3] - U- (if V-isoline is considered) or V-parameter (if U-isoline is considered) of theQSurf.)#"  , py::arg("theQSurf"),  py::arg("thePSurf"),  py::arg("theRefPt"),  py::arg("theIsU"),  py::arg("theIsoParameter"),  py::arg("theToler"),  py::arg("theInitPoint"),  py::arg("theInfBound"),  py::arg("theSupBound"),  py::arg("theAddedPoint"),  py::arg("theIsReversed")=static_cast<const Standard_Boolean>(Standard_False))
         .def_static("AddSingularPole_s",
-                    (Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Real ,  IntPatch_Point & ,  IntSurf_PntOn2S & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const Standard_Real ,  IntPatch_Point & ,  IntSurf_PntOn2S & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&IntPatch_SpecialPoints::AddSingularPole),
-                    R"#(Computes the pole of sphere to add it in the intersection line. Stores the result in theAddedPoint variable (does not add in the line). At that, cone and sphere (with singularity) must be set in theQSurf parameter. By default (if theIsReversed == FALSE), theQSurf is the first surface of the Walking line. If it is not, theIsReversed parameter must be set to TRUE. theIsReqRefCheck is TRUE if and only if 3D-point of theRefPt must be pole or apex for check (e.g. if it is vertex). thePtIso is the reference point for obtaining isoline where must be placed the Apex/Pole.)#"  , py::arg("theQSurf"),  py::arg("thePSurf"),  py::arg("thePtIso"),  py::arg("theTol3d"),  py::arg("theVertex"),  py::arg("theAddedPoint"),  py::arg("theIsReversed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theIsReqRefCheck")=static_cast<const Standard_Boolean>(Standard_False))
+                    (Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  IntPatch_Point & ,  IntSurf_PntOn2S & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  IntPatch_Point & ,  IntSurf_PntOn2S & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&IntPatch_SpecialPoints::AddSingularPole),
+                    R"#(Computes the pole of sphere to add it in the intersection line. Stores the result in theAddedPoint variable (does not add in the line). At that, cone and sphere (with singularity) must be set in theQSurf parameter. By default (if theIsReversed == FALSE), theQSurf is the first surface of the Walking line. If it is not, theIsReversed parameter must be set to TRUE. theIsReqRefCheck is TRUE if and only if 3D-point of theRefPt must be pole or apex for check (e.g. if it is vertex). thePtIso is the reference point for obtaining isoline where must be placed the Apex/Pole.)#"  , py::arg("theQSurf"),  py::arg("thePSurf"),  py::arg("thePtIso"),  py::arg("theVertex"),  py::arg("theAddedPoint"),  py::arg("theIsReversed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theIsReqRefCheck")=static_cast<const Standard_Boolean>(Standard_False))
         .def_static("ContinueAfterSpecialPoint_s",
                     (Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const IntPatch_SpecPntType ,  const Standard_Real ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const IntSurf_PntOn2S & ,  const IntPatch_SpecPntType ,  const Standard_Real ,  IntSurf_PntOn2S & ,  const Standard_Boolean  ) >(&IntPatch_SpecialPoints::ContinueAfterSpecialPoint),
                     R"#(Special point has already been added in the line. Now, we need in correct prolongation of the line or in start new line. This function returns new point.)#"  , py::arg("theQSurf"),  py::arg("thePSurf"),  py::arg("theRefPt"),  py::arg("theSPType"),  py::arg("theTol2D"),  py::arg("theNewPoint"),  py::arg("theIsReversed")=static_cast<const Standard_Boolean>(Standard_False))
@@ -1402,12 +1454,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(Sets theNewPoint parameters in 2D-space the closest to theRefPoint with help of adding/subtracting corresponding periods. theArrPeriods must be filled as follows: {<U-period of 1st surface>, <V-period of 1st surface>, <U-period of 2nd surface>, <V-period of 2nd surface>}. If theVertex != 0 then its parameters will be filled as corresponding parameters of theNewPoint.)#"  , py::arg("theRefPoint"),  py::arg("theArrPeriods"),  py::arg("theNewPoint"),  py::arg("theVertex")=static_cast<IntPatch_Point *const>(0))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_TheIWLineOfTheIWalking ,opencascade::handle<IntPatch_TheIWLineOfTheIWalking>  , Standard_Transient >>(m.attr("IntPatch_TheIWLineOfTheIWalking"))
+    // constructors
         .def(py::init<  const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator")=static_cast< const opencascade::handle<NCollection_BaseAllocator> &>(0) )
+    // custom constructors
     // methods
         .def("Reverse",
              (void (IntPatch_TheIWLineOfTheIWalking::*)() ) static_cast<void (IntPatch_TheIWLineOfTheIWalking::*)() >(&IntPatch_TheIWLineOfTheIWalking::Reverse),
@@ -1503,12 +1557,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_TheIWalking , shared_ptr<IntPatch_TheIWalking>  >>(m.attr("IntPatch_TheIWalking"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Epsilon"),  py::arg("Deflection"),  py::arg("Step"),  py::arg("theToFillHoles")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("SetTolerance",
              (void (IntPatch_TheIWalking::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntPatch_TheIWalking::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntPatch_TheIWalking::SetTolerance),
@@ -1538,14 +1594,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_ThePathPointOfTheSOnBounds , shared_ptr<IntPatch_ThePathPointOfTheSOnBounds>  >>(m.attr("IntPatch_ThePathPointOfTheSOnBounds"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real,const opencascade::handle<Adaptor3d_HVertex> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real >()  , py::arg("P"),  py::arg("Tol"),  py::arg("V"),  py::arg("A"),  py::arg("Parameter") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real >()  , py::arg("P"),  py::arg("Tol"),  py::arg("A"),  py::arg("Parameter") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntPatch_ThePathPointOfTheSOnBounds::*)( const gp_Pnt & ,  const Standard_Real ,  const opencascade::handle<Adaptor3d_HVertex> & ,  const opencascade::handle<Adaptor2d_HCurve2d> & ,  const Standard_Real  ) ) static_cast<void (IntPatch_ThePathPointOfTheSOnBounds::*)( const gp_Pnt & ,  const Standard_Real ,  const opencascade::handle<Adaptor3d_HVertex> & ,  const opencascade::handle<Adaptor2d_HCurve2d> & ,  const Standard_Real  ) >(&IntPatch_ThePathPointOfTheSOnBounds::SetValue),
@@ -1575,12 +1633,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_TheSOnBounds , shared_ptr<IntPatch_TheSOnBounds>  >>(m.attr("IntPatch_TheSOnBounds"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntPatch_TheSOnBounds::*)( IntPatch_ArcFunction & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (IntPatch_TheSOnBounds::*)( IntPatch_ArcFunction & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&IntPatch_TheSOnBounds::Perform),
@@ -1607,13 +1667,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_TheSearchInside , shared_ptr<IntPatch_TheSearchInside>  >>(m.attr("IntPatch_TheSearchInside"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< IntPatch_TheSurfFunction &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const Standard_Real >()  , py::arg("F"),  py::arg("Surf"),  py::arg("T"),  py::arg("Epsilon") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntPatch_TheSearchInside::*)( IntPatch_TheSurfFunction & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real  ) ) static_cast<void (IntPatch_TheSearchInside::*)( IntPatch_TheSurfFunction & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real  ) >(&IntPatch_TheSearchInside::Perform),
@@ -1634,12 +1696,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_TheSegmentOfTheSOnBounds , shared_ptr<IntPatch_TheSegmentOfTheSOnBounds>  >>(m.attr("IntPatch_TheSegmentOfTheSOnBounds"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntPatch_TheSegmentOfTheSOnBounds::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (IntPatch_TheSegmentOfTheSOnBounds::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&IntPatch_TheSegmentOfTheSOnBounds::SetValue),
@@ -1666,14 +1730,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_TheSurfFunction , shared_ptr<IntPatch_TheSurfFunction>  , math_FunctionSetWithDerivatives >>(m.attr("IntPatch_TheSurfFunction"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const IntSurf_Quadric & >()  , py::arg("PS"),  py::arg("IS") )
         .def(py::init< const IntSurf_Quadric & >()  , py::arg("IS") )
+    // custom constructors
     // methods
         .def("Set",
              (void (IntPatch_TheSurfFunction::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (IntPatch_TheSurfFunction::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&IntPatch_TheSurfFunction::Set),
@@ -1727,12 +1793,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntPatch_WLineTool , shared_ptr<IntPatch_WLineTool>>(m,"IntPatch_WLineTool");
 
     static_cast<py::class_<IntPatch_WLineTool , shared_ptr<IntPatch_WLineTool>  >>(m.attr("IntPatch_WLineTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1741,20 +1810,22 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(I Removes equal points (leave one of equal points) from theWLine and recompute vertex parameters.)#"  , py::arg("theWLine"),  py::arg("theS1"),  py::arg("theS2"),  py::arg("theDom1"),  py::arg("theDom2"))
         .def_static("JoinWLines_s",
                     (void (*)( NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  NCollection_Sequence<IntPatch_Point> & ,  opencascade::handle<Adaptor3d_HSurface> ,  opencascade::handle<Adaptor3d_HSurface> ,  const Standard_Real  ) ) static_cast<void (*)( NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  NCollection_Sequence<IntPatch_Point> & ,  opencascade::handle<Adaptor3d_HSurface> ,  opencascade::handle<Adaptor3d_HSurface> ,  const Standard_Real  ) >(&IntPatch_WLineTool::JoinWLines),
-                    R"#(Joins all WLines from theSlin to one if it is possible and records the result into theSlin again. Lines will be kept to be splitted if: a) they are separated (has no common points); b) resulted line (after joining) go through seam-edges or surface boundaries.)#"  , py::arg("theSlin"),  py::arg("theSPnt"),  py::arg("theS1"),  py::arg("theS2"),  py::arg("theTol3D"))
+                    R"#(Joins all WLines from theSlin to one if it is possible and records the result into theSlin again. Lines will be kept to be split if: a) they are separated (has no common points); b) resulted line (after joining) go through seam-edges or surface boundaries.)#"  , py::arg("theSlin"),  py::arg("theSPnt"),  py::arg("theS1"),  py::arg("theS2"),  py::arg("theTol3D"))
         .def_static("ExtendTwoWLines_s",
-                    (void (*)( NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Real ,  const Standard_Real *const ,  const Bnd_Box2d & ,  const Bnd_Box2d &  ) ) static_cast<void (*)( NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Real ,  const Standard_Real *const ,  const Bnd_Box2d & ,  const Bnd_Box2d &  ) >(&IntPatch_WLineTool::ExtendTwoWLines),
-                    R"#(Extends every line from theSlin (if it is possible) to be started/finished in strictly determined point (in the place of joint of two lines). As result, some gaps between two lines will vanish. The Walking lines are supposed (algorithm will do nothing for not-Walking line) to be computed as a result of intersection. Both theS1 and theS2 must be quadrics. Other cases are not supported. theArrPeriods must be filled as follows (every value must not be negative; if the surface is not periodic the period must be equal to 0.0 strictly): {<U-period of 1st surface>, <V-period of 1st surface>, <U-period of 2nd surface>, <V-period of 2nd surface>}.)#"  , py::arg("theSlin"),  py::arg("theS1"),  py::arg("theS2"),  py::arg("theToler3D"),  py::arg("theArrPeriods"),  py::arg("theBoxS1"),  py::arg("theBoxS2"))
+                    (void (*)( NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Real ,  const Standard_Real *const ,  const Bnd_Box2d & ,  const Bnd_Box2d & ,  const NCollection_List<gp_Pnt> &  ) ) static_cast<void (*)( NCollection_Sequence<opencascade::handle<IntPatch_Line> > & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const Standard_Real ,  const Standard_Real *const ,  const Bnd_Box2d & ,  const Bnd_Box2d & ,  const NCollection_List<gp_Pnt> &  ) >(&IntPatch_WLineTool::ExtendTwoWLines),
+                    R"#(Extends every line from theSlin (if it is possible) to be started/finished in strictly determined point (in the place of joint of two lines). As result, some gaps between two lines will vanish. The Walking lines are supposed (algorithm will do nothing for not-Walking line) to be computed as a result of intersection. Both theS1 and theS2 must be quadrics. Other cases are not supported. theArrPeriods must be filled as follows (every value must not be negative; if the surface is not periodic the period must be equal to 0.0 strictly): {<U-period of 1st surface>, <V-period of 1st surface>, <U-period of 2nd surface>, <V-period of 2nd surface>}. theListOfCriticalPoints must contain 3D-points where joining is disabled.)#"  , py::arg("theSlin"),  py::arg("theS1"),  py::arg("theS2"),  py::arg("theToler3D"),  py::arg("theArrPeriods"),  py::arg("theBoxS1"),  py::arg("theBoxS2"),  py::arg("theListOfCriticalPoints"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_ALine ,opencascade::handle<IntPatch_ALine>  , IntPatch_Line >>(m.attr("IntPatch_ALine"))
+    // constructors
         .def(py::init< const IntAna_Curve &,const Standard_Boolean,const IntSurf_TypeTrans,const IntSurf_TypeTrans >()  , py::arg("C"),  py::arg("Tang"),  py::arg("Trans1"),  py::arg("Trans2") )
         .def(py::init< const IntAna_Curve &,const Standard_Boolean,const IntSurf_Situation,const IntSurf_Situation >()  , py::arg("C"),  py::arg("Tang"),  py::arg("Situ1"),  py::arg("Situ2") )
         .def(py::init< const IntAna_Curve &,const Standard_Boolean >()  , py::arg("C"),  py::arg("Tang") )
+    // custom constructors
     // methods
         .def("AddVertex",
              (void (IntPatch_ALine::*)( const IntPatch_Point &  ) ) static_cast<void (IntPatch_ALine::*)( const IntPatch_Point &  ) >(&IntPatch_ALine::AddVertex),
@@ -1781,8 +1852,8 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
              (Standard_Boolean (IntPatch_ALine::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) ) static_cast<Standard_Boolean (IntPatch_ALine::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) >(&IntPatch_ALine::D1),
              R"#(Returns Standard_True when the derivative at parameter U is defined on the analytic intersection line. In that case, Du is the derivative. Returns Standard_False when it is not possible to evaluate the derivative. In both cases, P is the point at parameter U on the intersection.)#"  , py::arg("U"),  py::arg("P"),  py::arg("Du"))
         .def("FindParameter",
-             (Standard_Boolean (IntPatch_ALine::*)( const gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Boolean (IntPatch_ALine::*)( const gp_Pnt & ,  Standard_Real &  ) const>(&IntPatch_ALine::FindParameter),
-             R"#(Tries to find the parameter of the point P on the curve. If the method returns False, the "projection" is impossible, and the value of Para is not significant. If the method returns True, Para is the parameter of the nearest intersection between the curve and the iso-theta containing P.)#"  , py::arg("P"),  py::arg("Para"))
+             (void (IntPatch_ALine::*)( const gp_Pnt & ,  NCollection_List<Standard_Real> &  ) const) static_cast<void (IntPatch_ALine::*)( const gp_Pnt & ,  NCollection_List<Standard_Real> &  ) const>(&IntPatch_ALine::FindParameter),
+             R"#(Tries to find the parameters of the point P on the curve. If the method returns False, the "projection" is impossible. If the method returns True at least one parameter has been found. theParams is always sorted in ascending order.)#"  , py::arg("P"),  py::arg("theParams"))
         .def("HasFirstPoint",
              (Standard_Boolean (IntPatch_ALine::*)() const) static_cast<Standard_Boolean (IntPatch_ALine::*)() const>(&IntPatch_ALine::HasFirstPoint),
              R"#(Returns True if the line has a known First point. This point is given by the method FirstPoint().)#" )
@@ -1801,6 +1872,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
         .def("Vertex",
              (const IntPatch_Point & (IntPatch_ALine::*)( const Standard_Integer  ) const) static_cast<const IntPatch_Point & (IntPatch_ALine::*)( const Standard_Integer  ) const>(&IntPatch_ALine::Vertex),
              R"#(Returns the vertex of range Index on the line.)#"  , py::arg("Index"))
+        .def("ChangeVertex",
+             (IntPatch_Point & (IntPatch_ALine::*)( const Standard_Integer  ) ) static_cast<IntPatch_Point & (IntPatch_ALine::*)( const Standard_Integer  ) >(&IntPatch_ALine::ChangeVertex),
+             R"#(Allows modifying the vertex with index theIndex on the line.)#"  , py::arg("theIndex"))
         .def("ComputeVertexParameters",
              (void (IntPatch_ALine::*)( const Standard_Real  ) ) static_cast<void (IntPatch_ALine::*)( const Standard_Real  ) >(&IntPatch_ALine::ComputeVertexParameters),
              R"#(Set the parameters of all the vertex on the line. if a vertex is already in the line, its parameter is modified else a new point in the line is inserted.)#"  , py::arg("Tol"))
@@ -1832,8 +1906,8 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
              (Standard_Boolean (IntPatch_ALine::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) ) static_cast<Standard_Boolean (IntPatch_ALine::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) >(&IntPatch_ALine::D1),
              R"#(Returns Standard_True when the derivative at parameter U is defined on the analytic intersection line. In that case, Du is the derivative. Returns Standard_False when it is not possible to evaluate the derivative. In both cases, P is the point at parameter U on the intersection.)#"  , py::arg("U"),  py::arg("P"),  py::arg("Du"))
         .def("FindParameter",
-             (Standard_Boolean (IntPatch_ALine::*)( const gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Boolean (IntPatch_ALine::*)( const gp_Pnt & ,  Standard_Real &  ) const>(&IntPatch_ALine::FindParameter),
-             R"#(Tries to find the parameter of the point P on the curve. If the method returns False, the "projection" is impossible, and the value of Para is not significant. If the method returns True, Para is the parameter of the nearest intersection between the curve and the iso-theta containing P.)#"  , py::arg("P"),  py::arg("Para"))
+             (void (IntPatch_ALine::*)( const gp_Pnt & ,  NCollection_List<Standard_Real> &  ) const) static_cast<void (IntPatch_ALine::*)( const gp_Pnt & ,  NCollection_List<Standard_Real> &  ) const>(&IntPatch_ALine::FindParameter),
+             R"#(Tries to find the parameters of the point P on the curve. If the method returns False, the "projection" is impossible. If the method returns True at least one parameter has been found. theParams is always sorted in ascending order.)#"  , py::arg("theP"),  py::arg("theParams"))
         .def("HasFirstPoint",
              (Standard_Boolean (IntPatch_ALine::*)() const) static_cast<Standard_Boolean (IntPatch_ALine::*)() const>(&IntPatch_ALine::HasFirstPoint),
              R"#(Returns True if the line has a known First point. This point is given by the method FirstPoint().)#" )
@@ -1862,11 +1936,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_GLine ,opencascade::handle<IntPatch_GLine>  , IntPatch_Line >>(m.attr("IntPatch_GLine"))
+    // constructors
         .def(py::init< const gp_Lin &,const Standard_Boolean,const IntSurf_TypeTrans,const IntSurf_TypeTrans >()  , py::arg("L"),  py::arg("Tang"),  py::arg("Trans1"),  py::arg("Trans2") )
         .def(py::init< const gp_Lin &,const Standard_Boolean,const IntSurf_Situation,const IntSurf_Situation >()  , py::arg("L"),  py::arg("Tang"),  py::arg("Situ1"),  py::arg("Situ2") )
         .def(py::init< const gp_Lin &,const Standard_Boolean >()  , py::arg("L"),  py::arg("Tang") )
@@ -1882,6 +1957,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
         .def(py::init< const gp_Hypr &,const Standard_Boolean,const IntSurf_TypeTrans,const IntSurf_TypeTrans >()  , py::arg("H"),  py::arg("Tang"),  py::arg("Trans1"),  py::arg("Trans2") )
         .def(py::init< const gp_Hypr &,const Standard_Boolean,const IntSurf_Situation,const IntSurf_Situation >()  , py::arg("H"),  py::arg("Tang"),  py::arg("Situ1"),  py::arg("Situ2") )
         .def(py::init< const gp_Hypr &,const Standard_Boolean >()  , py::arg("H"),  py::arg("Tang") )
+    // custom constructors
     // methods
         .def("AddVertex",
              (void (IntPatch_GLine::*)( const IntPatch_Point &  ) ) static_cast<void (IntPatch_GLine::*)( const IntPatch_Point &  ) >(&IntPatch_GLine::AddVertex),
@@ -1983,11 +2059,13 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_PointLine ,opencascade::handle<IntPatch_PointLine> ,Py_IntPatch_PointLine , IntPatch_Line >>(m.attr("IntPatch_PointLine"))
+    // constructors
+    // custom constructors
     // methods
         .def("AddVertex",
              (void (IntPatch_PointLine::*)( const IntPatch_Point & ,  const Standard_Boolean  ) ) static_cast<void (IntPatch_PointLine::*)( const IntPatch_Point & ,  const Standard_Boolean  ) >(&IntPatch_PointLine::AddVertex),
@@ -2016,6 +2094,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
         .def("Curve",
              (opencascade::handle<IntSurf_LineOn2S> (IntPatch_PointLine::*)() const) static_cast<opencascade::handle<IntSurf_LineOn2S> (IntPatch_PointLine::*)() const>(&IntPatch_PointLine::Curve),
              R"#(Returns set of intersection points)#" )
+        .def("IsOutSurf1Box",
+             (Standard_Boolean (IntPatch_PointLine::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (IntPatch_PointLine::*)( const gp_Pnt2d &  ) const>(&IntPatch_PointLine::IsOutSurf1Box),
+             R"#(Returns TRUE if P1 is out of the box built from the points on 1st surface)#"  , py::arg("P1"))
+        .def("IsOutSurf2Box",
+             (Standard_Boolean (IntPatch_PointLine::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (IntPatch_PointLine::*)( const gp_Pnt2d &  ) const>(&IntPatch_PointLine::IsOutSurf2Box),
+             R"#(Returns TRUE if P2 is out of the box built from the points on 2nd surface)#"  , py::arg("P2"))
+        .def("IsOutBox",
+             (Standard_Boolean (IntPatch_PointLine::*)( const gp_Pnt &  ) const) static_cast<Standard_Boolean (IntPatch_PointLine::*)( const gp_Pnt &  ) const>(&IntPatch_PointLine::IsOutBox),
+             R"#(Returns TRUE if P is out of the box built from 3D-points.)#"  , py::arg("P"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IntPatch_PointLine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IntPatch_PointLine::*)() const>(&IntPatch_PointLine::DynamicType),
              R"#(None)#" )
@@ -2032,12 +2119,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_PolyArc , shared_ptr<IntPatch_PolyArc>  , IntPatch_Polygo >>(m.attr("IntPatch_PolyArc"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Integer,const Standard_Real,const Standard_Real,const Bnd_Box2d & >()  , py::arg("A"),  py::arg("NbSample"),  py::arg("Pfirst"),  py::arg("Plast"),  py::arg("BoxOtherPolygon") )
+    // custom constructors
     // methods
         .def("Closed",
              (Standard_Boolean (IntPatch_PolyArc::*)() const) static_cast<Standard_Boolean (IntPatch_PolyArc::*)() const>(&IntPatch_PolyArc::Closed),
@@ -2058,13 +2147,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_PolyLine , shared_ptr<IntPatch_PolyLine>  , IntPatch_Polygo >>(m.attr("IntPatch_PolyLine"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real >()  , py::arg("InitDefle") )
+    // custom constructors
     // methods
         .def("SetWLine",
              (void (IntPatch_PolyLine::*)( const Standard_Boolean ,  const opencascade::handle<IntPatch_WLine> &  ) ) static_cast<void (IntPatch_PolyLine::*)( const Standard_Boolean ,  const opencascade::handle<IntPatch_WLine> &  ) >(&IntPatch_PolyLine::SetWLine),
@@ -2085,14 +2176,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_RLine ,opencascade::handle<IntPatch_RLine>  , IntPatch_PointLine >>(m.attr("IntPatch_RLine"))
+    // constructors
         .def(py::init< const Standard_Boolean,const IntSurf_TypeTrans,const IntSurf_TypeTrans >()  , py::arg("Tang"),  py::arg("Trans1"),  py::arg("Trans2") )
         .def(py::init< const Standard_Boolean,const IntSurf_Situation,const IntSurf_Situation >()  , py::arg("Tang"),  py::arg("Situ1"),  py::arg("Situ2") )
         .def(py::init< const Standard_Boolean >()  , py::arg("Tang") )
+    // custom constructors
     // methods
         .def("AddVertex",
              (void (IntPatch_RLine::*)( const IntPatch_Point & ,  const Standard_Boolean  ) ) static_cast<void (IntPatch_RLine::*)( const IntPatch_Point & ,  const Standard_Boolean  ) >(&IntPatch_RLine::AddVertex),
@@ -2169,6 +2262,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
         .def("Curve",
              (opencascade::handle<IntSurf_LineOn2S> (IntPatch_RLine::*)() const) static_cast<opencascade::handle<IntSurf_LineOn2S> (IntPatch_RLine::*)() const>(&IntPatch_RLine::Curve),
              R"#(Returns set of intersection points)#" )
+        .def("IsOutSurf1Box",
+             (Standard_Boolean (IntPatch_RLine::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (IntPatch_RLine::*)( const gp_Pnt2d &  ) const>(&IntPatch_RLine::IsOutSurf1Box),
+             R"#(Returns TRUE if theP is out of the box built from the points on 1st surface)#"  , py::arg("theP"))
+        .def("IsOutSurf2Box",
+             (Standard_Boolean (IntPatch_RLine::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (IntPatch_RLine::*)( const gp_Pnt2d &  ) const>(&IntPatch_RLine::IsOutSurf2Box),
+             R"#(Returns TRUE if theP is out of the box built from the points on 2nd surface)#"  , py::arg("theP"))
+        .def("IsOutBox",
+             (Standard_Boolean (IntPatch_RLine::*)( const gp_Pnt &  ) const) static_cast<Standard_Boolean (IntPatch_RLine::*)( const gp_Pnt &  ) const>(&IntPatch_RLine::IsOutBox),
+             R"#(Returns TRUE if theP is out of the box built from 3D-points.)#"  , py::arg("theP"))
         .def("ClearVertexes",
              (void (IntPatch_RLine::*)() ) static_cast<void (IntPatch_RLine::*)() >(&IntPatch_RLine::ClearVertexes),
              R"#(Removes vertices from the line (i.e. cleans svtx member))#" )
@@ -2260,14 +2362,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntPatch_WLine ,opencascade::handle<IntPatch_WLine>  , IntPatch_PointLine >>(m.attr("IntPatch_WLine"))
+    // constructors
         .def(py::init< const opencascade::handle<IntSurf_LineOn2S> &,const Standard_Boolean,const IntSurf_TypeTrans,const IntSurf_TypeTrans >()  , py::arg("Line"),  py::arg("Tang"),  py::arg("Trans1"),  py::arg("Trans2") )
         .def(py::init< const opencascade::handle<IntSurf_LineOn2S> &,const Standard_Boolean,const IntSurf_Situation,const IntSurf_Situation >()  , py::arg("Line"),  py::arg("Tang"),  py::arg("Situ1"),  py::arg("Situ2") )
         .def(py::init< const opencascade::handle<IntSurf_LineOn2S> &,const Standard_Boolean >()  , py::arg("Line"),  py::arg("Tang") )
+    // custom constructors
     // methods
         .def("AddVertex",
              (void (IntPatch_WLine::*)( const IntPatch_Point & ,  const Standard_Boolean  ) ) static_cast<void (IntPatch_WLine::*)( const IntPatch_Point & ,  const Standard_Boolean  ) >(&IntPatch_WLine::AddVertex),
@@ -2324,14 +2428,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
              (opencascade::handle<IntSurf_LineOn2S> (IntPatch_WLine::*)() const) static_cast<opencascade::handle<IntSurf_LineOn2S> (IntPatch_WLine::*)() const>(&IntPatch_WLine::Curve),
              R"#(Returns set of intersection points)#" )
         .def("IsOutSurf1Box",
-             (Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) ) static_cast<Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) >(&IntPatch_WLine::IsOutSurf1Box),
-             R"#(None)#"  , py::arg("P1"))
+             (Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) const>(&IntPatch_WLine::IsOutSurf1Box),
+             R"#(Returns TRUE if theP is out of the box built from the points on 1st surface)#"  , py::arg("theP"))
         .def("IsOutSurf2Box",
-             (Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) ) static_cast<Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) >(&IntPatch_WLine::IsOutSurf2Box),
-             R"#(None)#"  , py::arg("P1"))
+             (Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt2d &  ) const>(&IntPatch_WLine::IsOutSurf2Box),
+             R"#(Returns TRUE if theP is out of the box built from the points on 2nd surface)#"  , py::arg("theP"))
         .def("IsOutBox",
-             (Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt &  ) ) static_cast<Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt &  ) >(&IntPatch_WLine::IsOutBox),
-             R"#(None)#"  , py::arg("P"))
+             (Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt &  ) const) static_cast<Standard_Boolean (IntPatch_WLine::*)( const gp_Pnt &  ) const>(&IntPatch_WLine::IsOutBox),
+             R"#(Returns TRUE if theP is out of the box built from 3D-points.)#"  , py::arg("theP"))
         .def("SetPeriod",
              (void (IntPatch_WLine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntPatch_WLine::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntPatch_WLine::SetPeriod),
              R"#(None)#"  , py::arg("pu1"),  py::arg("pv1"),  py::arg("pu2"),  py::arg("pv2"))
@@ -2379,10 +2483,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
              R"#(if (theMode == 0) then prints the information about WLine if (theMode == 1) then prints the list of 3d-points if (theMode == 2) then prints the list of 2d-points on the 1st surface Otherwise, prints list of 2d-points on the 2nd surface)#"  , py::arg("theMode"))
         .def("EnablePurging",
              (void (IntPatch_WLine::*)( const Standard_Boolean  ) ) static_cast<void (IntPatch_WLine::*)( const Standard_Boolean  ) >(&IntPatch_WLine::EnablePurging),
-             R"#(Allows or forbides purging of existing WLine)#"  , py::arg("theIsEnabled"))
+             R"#(Allows or forbids purging of existing WLine)#"  , py::arg("theIsEnabled"))
         .def("IsPurgingAllowed",
              (Standard_Boolean (IntPatch_WLine::*)() ) static_cast<Standard_Boolean (IntPatch_WLine::*)() >(&IntPatch_WLine::IsPurgingAllowed),
-             R"#(Returns TRUE if purging is allowed or forbiden for existing WLine)#" )
+             R"#(Returns TRUE if purging is allowed or forbidden for existing WLine)#" )
+        .def("GetCreatingWay",
+             (IntPatch_WLine::IntPatch_WLType (IntPatch_WLine::*)() const) static_cast<IntPatch_WLine::IntPatch_WLType (IntPatch_WLine::*)() const>(&IntPatch_WLine::GetCreatingWay),
+             R"#(Returns the way of <*this> creation.)#" )
+        .def("SetCreatingWayInfo",
+             (void (IntPatch_WLine::*)( IntPatch_WLine::IntPatch_WLType  ) ) static_cast<void (IntPatch_WLine::*)( IntPatch_WLine::IntPatch_WLType  ) >(&IntPatch_WLine::SetCreatingWayInfo),
+             R"#(Sets the info about the way of <*this> creation.)#"  , py::arg("theAlgo"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IntPatch_WLine::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IntPatch_WLine::*)() const>(&IntPatch_WLine::DynamicType),
              R"#(None)#" )
@@ -2450,62 +2560,62 @@ py::module m = static_cast<py::module>(main_module.attr("IntPatch"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IntPatch_InterferencePolyhedron.hxx
-// ./opencascade/IntPatch_SpecPntType.hxx
-// ./opencascade/IntPatch_TheIWLineOfTheIWalking.hxx
-// ./opencascade/IntPatch_Point.hxx
-// ./opencascade/IntPatch_PointLine.hxx
-// ./opencascade/IntPatch_RstInt.hxx
-// ./opencascade/IntPatch_ThePathPointOfTheSOnBounds.hxx
-// ./opencascade/IntPatch_ALine.hxx
-// ./opencascade/IntPatch_ArcFunction.hxx
-// ./opencascade/IntPatch_SequenceOfPoint.hxx
-// ./opencascade/IntPatch_Polygo.hxx
-// ./opencascade/IntPatch_PolyArc.hxx
-// ./opencascade/IntPatch_TheSurfFunction.hxx
-// ./opencascade/IntPatch_PolyLine.hxx
-// ./opencascade/IntPatch_IType.hxx
-// ./opencascade/IntPatch_LineConstructor.hxx
-// ./opencascade/IntPatch_ALineToWLine.hxx
-// ./opencascade/IntPatch_HCurve2dTool.hxx
-// ./opencascade/IntPatch_WLineTool.hxx
-// ./opencascade/IntPatch_Polyhedron.hxx
-// ./opencascade/IntPatch_SequenceOfLine.hxx
-// ./opencascade/IntPatch_ImpPrmIntersection.hxx
-// ./opencascade/IntPatch_SearchPnt.hxx
-// ./opencascade/IntPatch_Intersection.hxx
-// ./opencascade/IntPatch_SequenceOfIWLineOfTheIWalking.hxx
-// ./opencascade/IntPatch_Line.hxx
-// ./opencascade/IntPatch_ImpImpIntersection.hxx
-// ./opencascade/IntPatch_WLine.hxx
-// ./opencascade/IntPatch_CurvIntSurf.hxx
-// ./opencascade/IntPatch_TheSegmentOfTheSOnBounds.hxx
-// ./opencascade/IntPatch_PrmPrmIntersection_T3Bits.hxx
-// ./opencascade/IntPatch_GLine.hxx
-// ./opencascade/IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx
-// ./opencascade/IntPatch_RLine.hxx
-// ./opencascade/IntPatch_SpecialPoints.hxx
-// ./opencascade/IntPatch_HInterTool.hxx
-// ./opencascade/IntPatch_PrmPrmIntersection.hxx
-// ./opencascade/IntPatch_TheSearchInside.hxx
-// ./opencascade/IntPatch_TheSOnBounds.hxx
 // ./opencascade/IntPatch_CSFunction.hxx
-// ./opencascade/IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx
+// ./opencascade/IntPatch_SequenceOfLine.hxx
 // ./opencascade/IntPatch_TheIWalking.hxx
+// ./opencascade/IntPatch_IType.hxx
+// ./opencascade/IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx
+// ./opencascade/IntPatch_HInterTool.hxx
+// ./opencascade/IntPatch_Line.hxx
+// ./opencascade/IntPatch_TheSOnBounds.hxx
+// ./opencascade/IntPatch_TheSegmentOfTheSOnBounds.hxx
+// ./opencascade/IntPatch_LineConstructor.hxx
+// ./opencascade/IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx
+// ./opencascade/IntPatch_SearchPnt.hxx
+// ./opencascade/IntPatch_ALineToWLine.hxx
 // ./opencascade/IntPatch_PolyhedronTool.hxx
+// ./opencascade/IntPatch_WLine.hxx
+// ./opencascade/IntPatch_Point.hxx
+// ./opencascade/IntPatch_Polyhedron.hxx
+// ./opencascade/IntPatch_GLine.hxx
+// ./opencascade/IntPatch_ArcFunction.hxx
+// ./opencascade/IntPatch_SequenceOfIWLineOfTheIWalking.hxx
+// ./opencascade/IntPatch_SequenceOfPoint.hxx
+// ./opencascade/IntPatch_HCurve2dTool.hxx
+// ./opencascade/IntPatch_SpecialPoints.hxx
+// ./opencascade/IntPatch_PolyArc.hxx
+// ./opencascade/IntPatch_InterferencePolyhedron.hxx
+// ./opencascade/IntPatch_RLine.hxx
+// ./opencascade/IntPatch_SpecPntType.hxx
+// ./opencascade/IntPatch_CurvIntSurf.hxx
+// ./opencascade/IntPatch_PrmPrmIntersection_T3Bits.hxx
+// ./opencascade/IntPatch_ImpPrmIntersection.hxx
+// ./opencascade/IntPatch_ThePathPointOfTheSOnBounds.hxx
+// ./opencascade/IntPatch_Polygo.hxx
+// ./opencascade/IntPatch_Intersection.hxx
+// ./opencascade/IntPatch_TheIWLineOfTheIWalking.hxx
+// ./opencascade/IntPatch_ImpImpIntersection.hxx
+// ./opencascade/IntPatch_PolyLine.hxx
+// ./opencascade/IntPatch_RstInt.hxx
+// ./opencascade/IntPatch_WLineTool.hxx
+// ./opencascade/IntPatch_PointLine.hxx
+// ./opencascade/IntPatch_PrmPrmIntersection.hxx
+// ./opencascade/IntPatch_TheSurfFunction.hxx
+// ./opencascade/IntPatch_TheSearchInside.hxx
+// ./opencascade/IntPatch_ALine.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<IntPatch_Point>(m,"IntPatch_SequenceOfPoint");  
     register_template_NCollection_Sequence<opencascade::handle<IntPatch_Line> >(m,"IntPatch_SequenceOfLine");  
-    register_template_NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking> >(m,"IntPatch_SequenceOfIWLineOfTheIWalking");  
-    register_template_NCollection_Sequence<IntPatch_TheSegmentOfTheSOnBounds>(m,"IntPatch_SequenceOfSegmentOfTheSOnBounds");  
     register_template_NCollection_Sequence<IntPatch_ThePathPointOfTheSOnBounds>(m,"IntPatch_SequenceOfPathPointOfTheSOnBounds");  
+    register_template_NCollection_Sequence<IntPatch_TheSegmentOfTheSOnBounds>(m,"IntPatch_SequenceOfSegmentOfTheSOnBounds");  
+    register_template_NCollection_Sequence<opencascade::handle<IntPatch_TheIWLineOfTheIWalking> >(m,"IntPatch_SequenceOfIWLineOfTheIWalking");  
+    register_template_NCollection_Sequence<IntPatch_Point>(m,"IntPatch_SequenceOfPoint");  
 
 
 // exceptions

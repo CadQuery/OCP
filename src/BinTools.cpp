@@ -13,16 +13,16 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <BinTools_LocationSet.hxx>
 #include <TopoDS_Shape.hxx>
 #include <BinTools_ShapeSet.hxx>
 #include <BinTools_Curve2dSet.hxx>
 #include <BinTools_CurveSet.hxx>
 #include <BinTools_SurfaceSet.hxx>
 #include <BinTools_LocationSet.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
 #include <Geom_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <BinTools_LocationSet.hxx>
+#include <Geom2d_Curve.hxx>
 
 // module includes
 #include <BinTools.hxx>
@@ -52,9 +52,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinTools"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinTools , shared_ptr<BinTools>>(m,"BinTools");
 
     static_cast<py::class_<BinTools , shared_ptr<BinTools>  >>(m.attr("BinTools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -96,12 +99,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinTools"));
                     R"#(Reads a shape from <theFile> and returns it in <theShape>.)#"  , py::arg("theShape"),  py::arg("theFile"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinTools_Curve2dSet , shared_ptr<BinTools_Curve2dSet>  >>(m.attr("BinTools_Curve2dSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BinTools_Curve2dSet::*)() ) static_cast<void (BinTools_Curve2dSet::*)() >(&BinTools_Curve2dSet::Clear),
@@ -131,12 +136,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinTools"));
                     R"#(Reads the curve from the stream. The curve is assumed to have been written with the Write method.)#"  , py::arg("IS"),  py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinTools_CurveSet , shared_ptr<BinTools_CurveSet>  >>(m.attr("BinTools_CurveSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BinTools_CurveSet::*)() ) static_cast<void (BinTools_CurveSet::*)() >(&BinTools_CurveSet::Clear),
@@ -166,12 +173,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinTools"));
                     R"#(Reads the curve from the stream. The curve is assumed to have been written with the Write method)#"  , py::arg("IS"),  py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinTools_LocationSet , shared_ptr<BinTools_LocationSet>  >>(m.attr("BinTools_LocationSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BinTools_LocationSet::*)() ) static_cast<void (BinTools_LocationSet::*)() >(&BinTools_LocationSet::Clear),
@@ -198,12 +207,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinTools_ShapeSet , shared_ptr<BinTools_ShapeSet>  >>(m.attr("BinTools_ShapeSet"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("isWithTriangles")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("IsWithTriangles",
              (Standard_Boolean (BinTools_ShapeSet::*)() const) static_cast<Standard_Boolean (BinTools_ShapeSet::*)() const>(&BinTools_ShapeSet::IsWithTriangles),
@@ -290,12 +301,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinTools_SurfaceSet , shared_ptr<BinTools_SurfaceSet>  >>(m.attr("BinTools_SurfaceSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BinTools_SurfaceSet::*)() ) static_cast<void (BinTools_SurfaceSet::*)() >(&BinTools_SurfaceSet::Clear),
@@ -325,17 +338,17 @@ py::module m = static_cast<py::module>(main_module.attr("BinTools"));
                     R"#(Reads the surface from the stream. The surface is assumed to have been written with the Write method.)#"  , py::arg("IS"),  py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinTools_LocationSetPtr.hxx
-// ./opencascade/BinTools.hxx
-// ./opencascade/BinTools_SurfaceSet.hxx
 // ./opencascade/BinTools_ShapeSet.hxx
-// ./opencascade/BinTools_Curve2dSet.hxx
-// ./opencascade/BinTools_LocationSet.hxx
+// ./opencascade/BinTools.hxx
 // ./opencascade/BinTools_CurveSet.hxx
+// ./opencascade/BinTools_SurfaceSet.hxx
+// ./opencascade/BinTools_LocationSetPtr.hxx
+// ./opencascade/BinTools_LocationSet.hxx
+// ./opencascade/BinTools_Curve2dSet.hxx
 
 // operators
 

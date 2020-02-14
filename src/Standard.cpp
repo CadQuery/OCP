@@ -13,14 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_ErrorHandler.hxx>
 #include <Standard_Persistent.hxx>
-#include <Standard_Failure.hxx>
+#include <Standard_ErrorHandler.hxx>
 #include <Standard_Type.hxx>
-#include <Standard_ErrorHandler.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <Standard_Failure.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_ErrorHandler.hxx>
 #include <Standard_Persistent.hxx>
+#include <Standard_Failure.hxx>
 
 // module includes
 #include <Standard.hxx>
@@ -33,6 +33,7 @@ namespace py = pybind11;
 #include <Standard_Byte.hxx>
 #include <Standard_Character.hxx>
 #include <Standard_CLocaleSentry.hxx>
+#include <Standard_Condition.hxx>
 #include <Standard_ConstructionError.hxx>
 #include <Standard_CString.hxx>
 #include <Standard_DefineAlloc.hxx>
@@ -42,6 +43,7 @@ namespace py = pybind11;
 #include <Standard_DimensionMismatch.hxx>
 #include <Standard_DivideByZero.hxx>
 #include <Standard_DomainError.hxx>
+#include <Standard_Dump.hxx>
 #include <Standard_ErrorHandler.hxx>
 #include <Standard_ExtCharacter.hxx>
 #include <Standard_ExtString.hxx>
@@ -81,10 +83,13 @@ namespace py = pybind11;
 #include <Standard_PrimitiveTypes.hxx>
 #include <Standard_ProgramError.hxx>
 #include <Standard_RangeError.hxx>
+#include <Standard_ReadBuffer.hxx>
+#include <Standard_ReadLineBuffer.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_ShortReal.hxx>
 #include <Standard_Size.hxx>
 #include <Standard_SStream.hxx>
+#include <Standard_Std.hxx>
 #include <Standard_Stream.hxx>
 #include <Standard_ThreadId.hxx>
 #include <Standard_Time.hxx>
@@ -119,6 +124,7 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     public:
         using Standard_MMgrRoot::Standard_MMgrRoot;
         
+        
         // public pure virtual
         Standard_Address Allocate(const Standard_Size theSize) override { PYBIND11_OVERLOAD_PURE(Standard_Address,Standard_MMgrRoot,Allocate,theSize) };
         Standard_Address Reallocate(Standard_Address thePtr,const Standard_Size theSize) override { PYBIND11_OVERLOAD_PURE(Standard_Address,Standard_MMgrRoot,Reallocate,thePtr,theSize) };
@@ -134,9 +140,26 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
 
 // classes
 
+    // default constructor
+    register_default_constructor<GUID , shared_ptr<GUID>>(m,"GUID");
+
+    static_cast<py::class_<GUID , shared_ptr<GUID>  >>(m.attr("GUID"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
     register_default_constructor<Standard , shared_ptr<Standard>>(m,"Standard");
 
     static_cast<py::class_<Standard , shared_ptr<Standard>  >>(m.attr("Standard"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -160,12 +183,14 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     R"#(Deallocates the storage retained on the free list and clears the list. Returns non-zero if some memory has been actually freed.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_ArrayStreamBuffer , shared_ptr<Standard_ArrayStreamBuffer>  >>(m.attr("Standard_ArrayStreamBuffer"))
+    // constructors
         .def(py::init< const char *,const size_t >()  , py::arg("theBegin"),  py::arg("theSize") )
+    // custom constructors
     // methods
         .def("Init",
              (void (Standard_ArrayStreamBuffer::*)( const char * ,  const size_t  ) ) static_cast<void (Standard_ArrayStreamBuffer::*)( const char * ,  const size_t  ) >(&Standard_ArrayStreamBuffer::Init),
@@ -177,12 +202,14 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_CLocaleSentry , shared_ptr<Standard_CLocaleSentry>  >>(m.attr("Standard_CLocaleSentry"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -191,12 +218,96 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     R"#(Returns locale "C" instance (locale_t within xlocale or _locale_t within Windows) to be used for _l functions with locale argument.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<Standard_Condition , shared_ptr<Standard_Condition>  >>(m.attr("Standard_Condition"))
+    // constructors
+        .def(py::init< bool >()  , py::arg("theIsSet") )
+    // custom constructors
+    // methods
+        .def("Set",
+             (void (Standard_Condition::*)() ) static_cast<void (Standard_Condition::*)() >(&Standard_Condition::Set),
+             R"#(Set event into signaling state.)#" )
+        .def("Reset",
+             (void (Standard_Condition::*)() ) static_cast<void (Standard_Condition::*)() >(&Standard_Condition::Reset),
+             R"#(Reset event (unset signaling state))#" )
+        .def("Wait",
+             (void (Standard_Condition::*)() ) static_cast<void (Standard_Condition::*)() >(&Standard_Condition::Wait),
+             R"#(Wait for Event (infinity).)#" )
+        .def("Wait",
+             (bool (Standard_Condition::*)( int  ) ) static_cast<bool (Standard_Condition::*)( int  ) >(&Standard_Condition::Wait),
+             R"#(Wait for signal requested time.)#"  , py::arg("theTimeMilliseconds"))
+        .def("Check",
+             (bool (Standard_Condition::*)() ) static_cast<bool (Standard_Condition::*)() >(&Standard_Condition::Check),
+             R"#(Do not wait for signal - just test it state.)#" )
+        .def("CheckReset",
+             (bool (Standard_Condition::*)() ) static_cast<bool (Standard_Condition::*)() >(&Standard_Condition::CheckReset),
+             R"#(Method perform two steps at-once - reset the event object and returns true if it was in signaling state.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<Standard_Dump , shared_ptr<Standard_Dump>>(m,"Standard_Dump");
+
+    static_cast<py::class_<Standard_Dump , shared_ptr<Standard_Dump>  >>(m.attr("Standard_Dump"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Text_s",
+                    (TCollection_AsciiString (*)(  const std::stringstream &  ) ) static_cast<TCollection_AsciiString (*)(  const std::stringstream &  ) >(&Standard_Dump::Text),
+                    R"#(Converts stream value to string value. The result is original stream value.)#"  , py::arg("theStream"))
+        .def_static("FormatJson_s",
+                    (TCollection_AsciiString (*)(  const std::stringstream & ,  const Standard_Integer  ) ) static_cast<TCollection_AsciiString (*)(  const std::stringstream & ,  const Standard_Integer  ) >(&Standard_Dump::FormatJson),
+                    R"#(Converts stream value to string value. Improves the text presentation with the following cases: - for '{' append after '' and indent to the next value, increment current indent value - for '}' append '' and current indent before it, decrement indent value - for ',' append after '' and indent to the next value. If the current symbol is in massive container [], do nothing)#"  , py::arg("theStream"),  py::arg("theIndent")=static_cast<const Standard_Integer>(3))
+        .def_static("AddValuesSeparator_s",
+                    (void (*)( std::ostream &  ) ) static_cast<void (*)( std::ostream &  ) >(&Standard_Dump::AddValuesSeparator),
+                    R"#(Add Json values separator if the stream last symbol is not an open brace.)#"  , py::arg("theOStream"))
+        .def_static("GetPointerPrefix_s",
+                    (TCollection_AsciiString (*)() ) static_cast<TCollection_AsciiString (*)() >(&Standard_Dump::GetPointerPrefix),
+                    R"#(Returns default prefix added for each pointer info string if short presentation of pointer used)#" )
+        .def_static("GetPointerInfo_s",
+                    (TCollection_AsciiString (*)( const opencascade::handle<Standard_Transient> & ,  const bool  ) ) static_cast<TCollection_AsciiString (*)( const opencascade::handle<Standard_Transient> & ,  const bool  ) >(&Standard_Dump::GetPointerInfo),
+                    R"#(Convert handle pointer to address of the pointer. If the handle is NULL, the result is an empty string.)#"  , py::arg("thePointer"),  py::arg("isShortInfo")=static_cast<const bool>(true))
+        .def_static("GetPointerInfo_s",
+                    (TCollection_AsciiString (*)( const void * ,  const bool  ) ) static_cast<TCollection_AsciiString (*)( const void * ,  const bool  ) >(&Standard_Dump::GetPointerInfo),
+                    R"#(Convert pointer to address of the pointer. If the handle is NULL, the result is an empty string.)#"  , py::arg("thePointer"),  py::arg("isShortInfo")=static_cast<const bool>(true))
+        .def_static("DumpKeyToClass_s",
+                    (void (*)( std::ostream & ,  const char * ,  const TCollection_AsciiString &  ) ) static_cast<void (*)( std::ostream & ,  const char * ,  const TCollection_AsciiString &  ) >(&Standard_Dump::DumpKeyToClass),
+                    R"#(Append into output value: "Name": { Field })#"  , py::arg("theOStream"),  py::arg("theKey"),  py::arg("theField"))
+        .def_static("DumpFieldToName_s",
+                    (const char * (*)( const char *  ) ) static_cast<const char * (*)( const char *  ) >(&Standard_Dump::DumpFieldToName),
+                    R"#(Convert field name into dump text value, removes "&" and "my" prefixes An example, for field myValue, theName is Value, for &myCLass, the name is Class)#"  , py::arg("theField"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<Standard_DumpSentry , shared_ptr<Standard_DumpSentry>  >>(m.attr("Standard_DumpSentry"))
+    // constructors
+        .def(py::init< std::ostream &,const char * >()  , py::arg("theOStream"),  py::arg("theClassName") )
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_ErrorHandler , shared_ptr<Standard_ErrorHandler>  >>(m.attr("Standard_ErrorHandler"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Destroy",
              (void (Standard_ErrorHandler::*)() ) static_cast<void (Standard_ErrorHandler::*)() >(&Standard_ErrorHandler::Destroy),
@@ -223,17 +334,19 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     R"#(Test if the code is currently running in a try block)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_GUID , shared_ptr<Standard_GUID>  >>(m.attr("Standard_GUID"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString >()  , py::arg("aGuid") )
         .def(py::init< const Standard_ExtString >()  , py::arg("aGuid") )
         .def(py::init< const Standard_Integer,const Standard_ExtCharacter,const Standard_ExtCharacter,const Standard_ExtCharacter,const Standard_Byte,const Standard_Byte,const Standard_Byte,const Standard_Byte,const Standard_Byte,const Standard_Byte >()  , py::arg("a32b"),  py::arg("a16b1"),  py::arg("a16b2"),  py::arg("a16b3"),  py::arg("a8b1"),  py::arg("a8b2"),  py::arg("a8b3"),  py::arg("a8b4"),  py::arg("a8b5"),  py::arg("a8b6") )
         .def(py::init< const Standard_UUID & >()  , py::arg("aGuid") )
         .def(py::init< const Standard_GUID & >()  , py::arg("aGuid") )
+    // custom constructors
     // methods
         .def("ToUUID",
              (Standard_UUID (Standard_GUID::*)() const) static_cast<Standard_UUID (Standard_GUID::*)() const>(&Standard_GUID::ToUUID),
@@ -268,18 +381,20 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     (Standard_Boolean (*)( const Standard_CString  ) ) static_cast<Standard_Boolean (*)( const Standard_CString  ) >(&Standard_GUID::CheckGUIDFormat),
                     R"#(Check the format of a GUID string. It checks the size, the position of the '-' and the correct size of fields.)#"  , py::arg("aGuid"))
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const Standard_GUID & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const Standard_GUID & ,  const Standard_Integer  ) >(&Standard_GUID::HashCode),
-                    R"#(H method used by collections.)#"  , py::arg("aguid"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const Standard_GUID & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const Standard_GUID & ,  Standard_Integer  ) >(&Standard_GUID::HashCode),
+                    R"#(Computes a hash code for the given GUID of the Standard_Integer type, in the range [1, theUpperBound])#"  , py::arg("theGUID"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const Standard_GUID & ,  const Standard_GUID &  ) ) static_cast<Standard_Boolean (*)( const Standard_GUID & ,  const Standard_GUID &  ) >(&Standard_GUID::IsEqual),
                     R"#(Returns True when the two GUID are the same.)#"  , py::arg("string1"),  py::arg("string2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_MMgrRoot , shared_ptr<Standard_MMgrRoot> ,Py_Standard_MMgrRoot >>(m.attr("Standard_MMgrRoot"))
+    // constructors
+    // custom constructors
     // methods
         .def("Allocate",
              (Standard_Address (Standard_MMgrRoot::*)( const Standard_Size  ) ) static_cast<Standard_Address (Standard_MMgrRoot::*)( const Standard_Size  ) >(&Standard_MMgrRoot::Allocate),
@@ -297,12 +412,14 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_Mutex , shared_ptr<Standard_Mutex>  >>(m.attr("Standard_Mutex"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Lock",
              (void (Standard_Mutex::*)() ) static_cast<void (Standard_Mutex::*)() >(&Standard_Mutex::Lock),
@@ -320,13 +437,67 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<Standard_ReadBuffer , shared_ptr<Standard_ReadBuffer>  >>(m.attr("Standard_ReadBuffer"))
+    // constructors
+        .def(py::init< int64_t,size_t >()  , py::arg("theDataLen"),  py::arg("theChunkLen") )
+    // custom constructors
+    // methods
+        .def("Init",
+             (void (Standard_ReadBuffer::*)( int64_t ,  size_t  ) ) static_cast<void (Standard_ReadBuffer::*)( int64_t ,  size_t  ) >(&Standard_ReadBuffer::Init),
+             R"#(Initialize the buffer.)#"  , py::arg("theDataLen"),  py::arg("theChunkLen"))
+        .def("IsDone",
+             (bool (Standard_ReadBuffer::*)() const) static_cast<bool (Standard_ReadBuffer::*)() const>(&Standard_ReadBuffer::IsDone),
+             R"#(Return TRUE if amount of read bytes is equal to requested length of entire data.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<Standard_ReadLineBuffer , shared_ptr<Standard_ReadLineBuffer>  >>(m.attr("Standard_ReadLineBuffer"))
+    // constructors
+        .def(py::init< size_t >()  , py::arg("theMaxBufferSizeBytes") )
+    // custom constructors
+    // methods
+        .def("Clear",
+             (void (Standard_ReadLineBuffer::*)() ) static_cast<void (Standard_ReadLineBuffer::*)() >(&Standard_ReadLineBuffer::Clear),
+             R"#(Clear buffer and cached values.)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<Standard_Static_Assert<true> , shared_ptr<Standard_Static_Assert<true>>>(m,"Standard_Static_Assert_true");
+
+    static_cast<py::class_<Standard_Static_Assert<true> , shared_ptr<Standard_Static_Assert<true>>  >>(m.attr("Standard_Static_Assert_true"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("assert_ok_s",
+                    (void (*)() ) static_cast<void (*)() >(&Standard_Static_Assert<true>::assert_ok),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_Transient ,opencascade::handle<Standard_Transient>  >>(m.attr("Standard_Transient"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Transient & >()  , py::arg("") )
+    // custom constructors
     // methods
         .def("Delete",
              (void (Standard_Transient::*)() const) static_cast<void (Standard_Transient::*)() const>(&Standard_Transient::Delete),
@@ -368,12 +539,14 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     R"#(Returns type descriptor of Standard_Transient class)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_MMgrOpt , shared_ptr<Standard_MMgrOpt>  , Standard_MMgrRoot >>(m.attr("Standard_MMgrOpt"))
+    // constructors
         .def(py::init< const Standard_Boolean,const Standard_Boolean,const Standard_Size,const Standard_Integer,const Standard_Size >()  , py::arg("aClear")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("aMMap")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("aCellSize")=static_cast<const Standard_Size>(200),  py::arg("aNbPages")=static_cast<const Standard_Integer>(10000),  py::arg("aThreshold")=static_cast<const Standard_Size>(40000) )
+    // custom constructors
     // methods
         .def("Allocate",
              (Standard_Address (Standard_MMgrOpt::*)( const Standard_Size  ) ) static_cast<Standard_Address (Standard_MMgrOpt::*)( const Standard_Size  ) >(&Standard_MMgrOpt::Allocate),
@@ -394,12 +567,14 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     R"#(Set the callback function. You may pass 0 there to turn off the callback. The callback function, if set, will be automatically called from within Allocate and Free methods.)#"  , py::arg("pFunc"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_MMgrRaw , shared_ptr<Standard_MMgrRaw>  , Standard_MMgrRoot >>(m.attr("Standard_MMgrRaw"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("aClear")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Allocate",
              (Standard_Address (Standard_MMgrRaw::*)( const Standard_Size  ) ) static_cast<Standard_Address (Standard_MMgrRaw::*)( const Standard_Size  ) >(&Standard_MMgrRaw::Allocate),
@@ -414,12 +589,14 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_MMgrTBBalloc , shared_ptr<Standard_MMgrTBBalloc>  , Standard_MMgrRoot >>(m.attr("Standard_MMgrTBBalloc"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("aClear")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Allocate",
              (Standard_Address (Standard_MMgrTBBalloc::*)( const Standard_Size  ) ) static_cast<Standard_Address (Standard_MMgrTBBalloc::*)( const Standard_Size  ) >(&Standard_MMgrTBBalloc::Allocate),
@@ -434,12 +611,14 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_Persistent ,opencascade::handle<Standard_Persistent>  , Standard_Transient >>(m.attr("Standard_Persistent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Standard_Persistent::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Standard_Persistent::*)() const>(&Standard_Persistent::DynamicType),
@@ -457,11 +636,13 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Standard_Type ,opencascade::handle<Standard_Type>  , Standard_Transient >>(m.attr("Standard_Type"))
+    // constructors
+    // custom constructors
     // methods
         .def("SystemName",
              (Standard_CString (Standard_Type::*)() const) static_cast<Standard_CString (Standard_Type::*)() const>(&Standard_Type::SystemName),
@@ -500,17 +681,71 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Standard_NegativeValue.hxx
-// ./opencascade/Standard_WarningsRestore.hxx
+// ./opencascade/Standard_NullObject.hxx
+// ./opencascade/Standard_ProgramError.hxx
+// ./opencascade/Standard_ThreadId.hxx
+// ./opencascade/Standard_MultiplyDefined.hxx
 // ./opencascade/Standard_TypeMismatch.hxx
-// ./opencascade/Standard_Persistent.hxx
-// ./opencascade/Standard.hxx
-// ./opencascade/Standard_CLocaleSentry.hxx
-// ./opencascade/Standard_RangeError.hxx
+// ./opencascade/Standard_DefineException.hxx
+// ./opencascade/Standard_NoMoreObject.hxx
+// ./opencascade/Standard_MMgrRoot.hxx
+// ./opencascade/Standard_MMgrTBBalloc.hxx
+// ./opencascade/Standard_ConstructionError.hxx
+// ./opencascade/Standard_Integer.hxx
+    m.def("Abs", 
+          (Standard_Integer (*)( const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer  )>(&Abs),
+          R"#(None)#"  , py::arg("Value"));
+    m.def("IsEven", 
+          (Standard_Boolean (*)( const Standard_Integer  ))  static_cast<Standard_Boolean (*)( const Standard_Integer  )>(&IsEven),
+          R"#(None)#"  , py::arg("Value"));
+    m.def("IsOdd", 
+          (Standard_Boolean (*)( const Standard_Integer  ))  static_cast<Standard_Boolean (*)( const Standard_Integer  )>(&IsOdd),
+          R"#(None)#"  , py::arg("Value"));
+    m.def("Max", 
+          (Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  )>(&Max),
+          R"#(None)#"  , py::arg("Val1"),  py::arg("Val2"));
+    m.def("Min", 
+          (Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  )>(&Min),
+          R"#(None)#"  , py::arg("Val1"),  py::arg("Val2"));
+    m.def("Modulus", 
+          (Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  )>(&Modulus),
+          R"#(None)#"  , py::arg("Value"),  py::arg("Divisor"));
+    m.def("Square", 
+          (Standard_Integer (*)( const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer  )>(&Square),
+          R"#(None)#"  , py::arg("Value"));
+    m.def("IntegerFirst", 
+          (Standard_Integer (*)())  static_cast<Standard_Integer (*)()>(&IntegerFirst),
+          R"#(None)#" );
+    m.def("IntegerLast", 
+          (Standard_Integer (*)())  static_cast<Standard_Integer (*)()>(&IntegerLast),
+          R"#(None)#" );
+    m.def("IntegerSize", 
+          (Standard_Integer (*)())  static_cast<Standard_Integer (*)()>(&IntegerSize),
+          R"#(None)#" );
+    m.def("IsEqual", 
+          (Standard_Boolean (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Boolean (*)( const Standard_Integer ,  const Standard_Integer  )>(&IsEqual),
+          R"#(None)#"  , py::arg("theOne"),  py::arg("theTwo"));
+    m.def("IsEqual", 
+          (Standard_Boolean (*)( const Standard_Utf32Char ,  const Standard_Utf32Char  ))  static_cast<Standard_Boolean (*)( const Standard_Utf32Char ,  const Standard_Utf32Char  )>(&IsEqual),
+          R"#(None)#"  , py::arg("theOne"),  py::arg("theTwo"));
+// ./opencascade/Standard_DefineAlloc.hxx
+// ./opencascade/Standard_Condition.hxx
+// ./opencascade/Standard_OStream.hxx
+// ./opencascade/Standard_ExtString.hxx
+// ./opencascade/Standard_DimensionError.hxx
+// ./opencascade/Standard_CString.hxx
+    m.def("HashCodes", 
+          (Standard_Integer (*)( Standard_CString ,  Standard_Integer  ))  static_cast<Standard_Integer (*)( Standard_CString ,  Standard_Integer  )>(&HashCodes),
+          R"#(Returns 32-bit hash code for the first theLen characters in the string theStr. The result is unbound (may be not only positive, but also negative))#"  , py::arg("theString"),  py::arg("theLength"));
+    m.def("IsEqual", 
+          (Standard_Boolean (*)( const Standard_CString ,  const Standard_CString  ))  static_cast<Standard_Boolean (*)( const Standard_CString ,  const Standard_CString  )>(&IsEqual),
+          R"#(Returns Standard_True if two strings are equal)#"  , py::arg("theOne"),  py::arg("theTwo"));
+// ./opencascade/Standard_DefineHandle.hxx
+// ./opencascade/Standard_PErrorHandler.hxx
 // ./opencascade/Standard_ExtCharacter.hxx
     m.def("ToExtCharacter", 
           (Standard_ExtCharacter (*)( const Standard_Character  ))  static_cast<Standard_ExtCharacter (*)( const Standard_Character  )>(&ToExtCharacter),
@@ -524,46 +759,19 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     m.def("IsEqual", 
           (Standard_Boolean (*)( const Standard_ExtCharacter ,  const Standard_ExtCharacter  ))  static_cast<Standard_Boolean (*)( const Standard_ExtCharacter ,  const Standard_ExtCharacter  )>(&IsEqual),
           R"#(None)#"  , py::arg("One"),  py::arg("Two"));
-// ./opencascade/Standard_DefineException.hxx
-// ./opencascade/Standard_ExtString.hxx
-// ./opencascade/Standard_NullObject.hxx
-// ./opencascade/Standard_MMgrTBBalloc.hxx
-// ./opencascade/Standard_Transient.hxx
-// ./opencascade/Standard_Mutex.hxx
-// ./opencascade/Standard_ArrayStreamBuffer.hxx
-// ./opencascade/Standard_TooManyUsers.hxx
-// ./opencascade/Standard_Boolean.hxx
-// ./opencascade/Standard_Stream.hxx
-// ./opencascade/Standard_ImmutableObject.hxx
-// ./opencascade/Standard_MultiplyDefined.hxx
-// ./opencascade/Standard_PrimitiveTypes.hxx
-// ./opencascade/Standard_AbortiveTransaction.hxx
-// ./opencascade/Standard_NotImplemented.hxx
+// ./opencascade/Standard_DimensionMismatch.hxx
+// ./opencascade/Standard_Std.hxx
+// ./opencascade/Standard_DomainError.hxx
+// ./opencascade/Standard_Macro.hxx
 // ./opencascade/Standard_SStream.hxx
-// ./opencascade/Standard_ProgramError.hxx
-// ./opencascade/Standard_Version.hxx
-// ./opencascade/Standard_NullValue.hxx
-// ./opencascade/Standard_CString.hxx
-    m.def("HashCodes", 
-          (Standard_Integer (*)( const Standard_CString ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_CString ,  const Standard_Integer  )>(&HashCodes),
-          R"#(Returns 32-bit hash code for the first theLen characters in the string theStr)#"  , py::arg("theStr"),  py::arg("theLen"));
-    m.def("IsEqual", 
-          (Standard_Boolean (*)( const Standard_CString ,  const Standard_CString  ))  static_cast<Standard_Boolean (*)( const Standard_CString ,  const Standard_CString  )>(&IsEqual),
-          R"#(Returns Standard_True if two strings are equal)#"  , py::arg("theOne"),  py::arg("theTwo"));
-// ./opencascade/Standard_ThreadId.hxx
-// ./opencascade/Standard_MMgrOpt.hxx
+// ./opencascade/Standard_Transient.hxx
+// ./opencascade/Standard_PExtCharacter.hxx
+// ./opencascade/Standard_Boolean.hxx
+// ./opencascade/Standard_MMgrRaw.hxx
+// ./opencascade/Standard_WarningsRestore.hxx
+// ./opencascade/Standard_Type.hxx
+// ./opencascade/Standard_ErrorHandler.hxx
 // ./opencascade/Standard_Byte.hxx
-// ./opencascade/Standard_DefineAlloc.hxx
-// ./opencascade/Standard_Address.hxx
-    m.def("IsEqual", 
-          (Standard_Boolean (*)( const Standard_Address ,  const Standard_Address  ))  static_cast<Standard_Boolean (*)( const Standard_Address ,  const Standard_Address  )>(&IsEqual),
-          R"#(None)#"  , py::arg("One"),  py::arg("Two"));
-// ./opencascade/Standard_OutOfRange.hxx
-// ./opencascade/Standard_UUID.hxx
-// ./opencascade/Standard_Time.hxx
-    m.def("IsEqual", 
-          (Standard_Boolean (*)( const Standard_Time ,  const Standard_Time  ))  static_cast<Standard_Boolean (*)( const Standard_Time ,  const Standard_Time  )>(&IsEqual),
-          R"#(None)#"  , py::arg("theOne"),  py::arg("theTwo"));
 // ./opencascade/Standard_ShortReal.hxx
     m.def("ShortRealSmall", 
           (Standard_ShortReal (*)())  static_cast<Standard_ShortReal (*)()>(&ShortRealSmall),
@@ -607,19 +815,23 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     m.def("IsEqual", 
           (Standard_Boolean (*)( const Standard_ShortReal ,  const Standard_ShortReal  ))  static_cast<Standard_Boolean (*)( const Standard_ShortReal ,  const Standard_ShortReal  )>(&IsEqual),
           R"#(None)#"  , py::arg("Value1"),  py::arg("Value2"));
-// ./opencascade/Standard_Type.hxx
-// ./opencascade/Standard_NumericError.hxx
-// ./opencascade/Standard_GUID.hxx
+// ./opencascade/Standard_ArrayStreamBuffer.hxx
 // ./opencascade/Standard_PByte.hxx
-// ./opencascade/Standard_PExtCharacter.hxx
-// ./opencascade/Standard_PErrorHandler.hxx
-// ./opencascade/Standard_PCharacter.hxx
-// ./opencascade/Standard_Assert.hxx
-    m.def("Standard_ASSERT_DO_NOTHING", 
-          (void (*)())  static_cast<void (*)()>(&Standard_ASSERT_DO_NOTHING),
-          R"#(This header file defines a set of ASSERT macros intended for use in algorithms for debugging purposes and as a tool to organise checks for abnormal situations in the uniform way.)#" );
-// ./opencascade/Standard_Failure.hxx
+// ./opencascade/Standard_GUID.hxx
+// ./opencascade/Standard_ReadLineBuffer.hxx
+// ./opencascade/Standard_CLocaleSentry.hxx
+// ./opencascade/Standard_TypeDef.hxx
+// ./opencascade/Standard_PrimitiveTypes.hxx
+// ./opencascade/Standard_UUID.hxx
 // ./opencascade/Standard_IStream.hxx
+// ./opencascade/Standard_Overflow.hxx
+// ./opencascade/Standard_PCharacter.hxx
+// ./opencascade/Standard_WarningsDisable.hxx
+// ./opencascade/Standard_Size.hxx
+    m.def("IsEqual", 
+          (Standard_Boolean (*)( const Standard_Size ,  const Standard_Size  ))  static_cast<Standard_Boolean (*)( const Standard_Size ,  const Standard_Size  )>(&IsEqual),
+          R"#(None)#"  , py::arg("One"),  py::arg("Two"));
+// ./opencascade/Standard_ImmutableObject.hxx
 // ./opencascade/Standard_Character.hxx
     m.def("IsEqual", 
           (Standard_Boolean (*)( const Standard_Character ,  const Standard_Character  ))  static_cast<Standard_Boolean (*)( const Standard_Character ,  const Standard_Character  )>(&IsEqual),
@@ -663,29 +875,16 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     m.def("UpperCase", 
           (Standard_Character (*)( const Standard_Character  ))  static_cast<Standard_Character (*)( const Standard_Character  )>(&UpperCase),
           R"#(None)#"  , py::arg("me"));
-// ./opencascade/Standard_MMgrRoot.hxx
-// ./opencascade/Standard_Size.hxx
-    m.def("IsEqual", 
-          (Standard_Boolean (*)( const Standard_Size ,  const Standard_Size  ))  static_cast<Standard_Boolean (*)( const Standard_Size ,  const Standard_Size  )>(&IsEqual),
-          R"#(None)#"  , py::arg("One"),  py::arg("Two"));
-// ./opencascade/Standard_TypeDef.hxx
-// ./opencascade/Standard_ErrorHandler.hxx
-// ./opencascade/Standard_math.hxx
-// ./opencascade/Standard_OStream.hxx
-// ./opencascade/Standard_Atomic.hxx
-    m.def("Standard_Atomic_Increment", 
-          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Increment),
-          R"#(Increments atomically integer variable pointed by theValue and returns resulting incremented value.)#"  , py::arg("theValue"));
-    m.def("Standard_Atomic_Decrement", 
-          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Decrement),
-          R"#(Decrements atomically integer variable pointed by theValue and returns resulting decremented value.)#"  , py::arg("theValue"));
-    m.def("Standard_Atomic_Increment", 
-          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Increment),
-          R"#(Increments atomically integer variable pointed by theValue and returns resulting incremented value.)#"  , py::arg("theValue"));
-    m.def("Standard_Atomic_Decrement", 
-          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Decrement),
-          R"#(Decrements atomically integer variable pointed by theValue and returns resulting decremented value.)#"  , py::arg("theValue"));
-// ./opencascade/Standard_WarningsDisable.hxx
+// ./opencascade/Standard_OutOfRange.hxx
+// ./opencascade/Standard_TooManyUsers.hxx
+// ./opencascade/Standard_AbortiveTransaction.hxx
+// ./opencascade/Standard_ReadBuffer.hxx
+// ./opencascade/Standard_LicenseError.hxx
+// ./opencascade/Standard_Dump.hxx
+// ./opencascade/Standard_NumericError.hxx
+// ./opencascade/Standard_HandlerStatus.hxx
+// ./opencascade/Standard_NotImplemented.hxx
+// ./opencascade/Standard_NegativeValue.hxx
 // ./opencascade/Standard_Real.hxx
     m.def("ACos", 
           (Standard_Real (*)( const Standard_Real  ))  static_cast<Standard_Real (*)( const Standard_Real  )>(&ACos),
@@ -822,60 +1021,53 @@ py::module m = static_cast<py::module>(main_module.attr("Standard"));
     m.def("Tanh", 
           (Standard_Real (*)( const Standard_Real  ))  static_cast<Standard_Real (*)( const Standard_Real  )>(&Tanh),
           R"#(None)#"  , py::arg("Value"));
-// ./opencascade/Standard_Overflow.hxx
-// ./opencascade/Standard_HandlerStatus.hxx
-// ./opencascade/Standard_Macro.hxx
-// ./opencascade/Standard_DimensionError.hxx
-// ./opencascade/Standard_DivideByZero.hxx
-// ./opencascade/Standard_LicenseError.hxx
-// ./opencascade/Standard_OutOfMemory.hxx
-// ./opencascade/Standard_NoMoreObject.hxx
-// ./opencascade/Standard_LicenseNotFound.hxx
-// ./opencascade/Standard_DimensionMismatch.hxx
-// ./opencascade/Standard_Integer.hxx
-    m.def("Abs", 
-          (Standard_Integer (*)( const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer  )>(&Abs),
-          R"#(None)#"  , py::arg("Value"));
-    m.def("IsEqual", 
-          (Standard_Boolean (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Boolean (*)( const Standard_Integer ,  const Standard_Integer  )>(&IsEqual),
-          R"#(None)#"  , py::arg("theOne"),  py::arg("theTwo"));
-    m.def("IsEqual", 
-          (Standard_Boolean (*)( const Standard_Utf32Char ,  const Standard_Utf32Char  ))  static_cast<Standard_Boolean (*)( const Standard_Utf32Char ,  const Standard_Utf32Char  )>(&IsEqual),
-          R"#(None)#"  , py::arg("theOne"),  py::arg("theTwo"));
-    m.def("IsEven", 
-          (Standard_Boolean (*)( const Standard_Integer  ))  static_cast<Standard_Boolean (*)( const Standard_Integer  )>(&IsEven),
-          R"#(None)#"  , py::arg("Value"));
-    m.def("IsOdd", 
-          (Standard_Boolean (*)( const Standard_Integer  ))  static_cast<Standard_Boolean (*)( const Standard_Integer  )>(&IsOdd),
-          R"#(None)#"  , py::arg("Value"));
-    m.def("Max", 
-          (Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  )>(&Max),
-          R"#(None)#"  , py::arg("Val1"),  py::arg("Val2"));
-    m.def("Min", 
-          (Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  )>(&Min),
-          R"#(None)#"  , py::arg("Val1"),  py::arg("Val2"));
-    m.def("Modulus", 
-          (Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer ,  const Standard_Integer  )>(&Modulus),
-          R"#(None)#"  , py::arg("Value"),  py::arg("Divisor"));
-    m.def("Square", 
-          (Standard_Integer (*)( const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Standard_Integer  )>(&Square),
-          R"#(None)#"  , py::arg("Value"));
-    m.def("IntegerFirst", 
-          (Standard_Integer (*)())  static_cast<Standard_Integer (*)()>(&IntegerFirst),
-          R"#(None)#" );
-    m.def("IntegerLast", 
-          (Standard_Integer (*)())  static_cast<Standard_Integer (*)()>(&IntegerLast),
-          R"#(None)#" );
-    m.def("IntegerSize", 
-          (Standard_Integer (*)())  static_cast<Standard_Integer (*)()>(&IntegerSize),
-          R"#(None)#" );
-// ./opencascade/Standard_DefineHandle.hxx
-// ./opencascade/Standard_JmpBuf.hxx
-// ./opencascade/Standard_ConstructionError.hxx
-// ./opencascade/Standard_DomainError.hxx
-// ./opencascade/Standard_MMgrRaw.hxx
-// ./opencascade/Standard_NoSuchObject.hxx
 // ./opencascade/Standard_Underflow.hxx
+// ./opencascade/Standard_Assert.hxx
+    m.def("Standard_ASSERT_DO_NOTHING", 
+          (void (*)())  static_cast<void (*)()>(&Standard_ASSERT_DO_NOTHING),
+          R"#(This header file defines a set of ASSERT macros intended for use in algorithms for debugging purposes and as a tool to organise checks for abnormal situations in the uniform way.)#" );
+// ./opencascade/Standard_RangeError.hxx
+// ./opencascade/Standard_Mutex.hxx
+// ./opencascade/Standard_JmpBuf.hxx
+// ./opencascade/Standard_MMgrOpt.hxx
+// ./opencascade/Standard_Version.hxx
+// ./opencascade/Standard_DivideByZero.hxx
+// ./opencascade/Standard_math.hxx
+// ./opencascade/Standard_OutOfMemory.hxx
+// ./opencascade/Standard_Address.hxx
+    m.def("IsEqual", 
+          (Standard_Boolean (*)( const Standard_Address ,  const Standard_Address  ))  static_cast<Standard_Boolean (*)( const Standard_Address ,  const Standard_Address  )>(&IsEqual),
+          R"#(None)#"  , py::arg("One"),  py::arg("Two"));
+// ./opencascade/Standard_LicenseNotFound.hxx
+// ./opencascade/Standard_NullValue.hxx
+// ./opencascade/Standard_Time.hxx
+    m.def("IsEqual", 
+          (Standard_Boolean (*)( const Standard_Time ,  const Standard_Time  ))  static_cast<Standard_Boolean (*)( const Standard_Time ,  const Standard_Time  )>(&IsEqual),
+          R"#(None)#"  , py::arg("theOne"),  py::arg("theTwo"));
+// ./opencascade/Standard_Failure.hxx
+// ./opencascade/Standard.hxx
+// ./opencascade/Standard_NoSuchObject.hxx
+// ./opencascade/Standard_Stream.hxx
+// ./opencascade/Standard_Atomic.hxx
+    m.def("Standard_Atomic_Increment", 
+          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Increment),
+          R"#(Increments atomically integer variable pointed by theValue and returns resulting incremented value.)#"  , py::arg("theValue"));
+    m.def("Standard_Atomic_Decrement", 
+          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Decrement),
+          R"#(Decrements atomically integer variable pointed by theValue and returns resulting decremented value.)#"  , py::arg("theValue"));
+    m.def("Standard_Atomic_CompareAndSwap", 
+          (bool (*)( volatile int * ,  int ,  int  ))  static_cast<bool (*)( volatile int * ,  int ,  int  )>(&Standard_Atomic_CompareAndSwap),
+          R"#(Perform an atomic compare and swap. That is, if the current value of *theValue is theOldValue, then write theNewValue into *theValue.)#"  , py::arg("theValue"),  py::arg("theOldValue"),  py::arg("theNewValue"));
+    m.def("Standard_Atomic_Increment", 
+          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Increment),
+          R"#(Increments atomically integer variable pointed by theValue and returns resulting incremented value.)#"  , py::arg("theValue"));
+    m.def("Standard_Atomic_Decrement", 
+          (int (*)( volatile int *  ))  static_cast<int (*)( volatile int *  )>(&Standard_Atomic_Decrement),
+          R"#(Decrements atomically integer variable pointed by theValue and returns resulting decremented value.)#"  , py::arg("theValue"));
+    m.def("Standard_Atomic_CompareAndSwap", 
+          (bool (*)( volatile int * ,  int ,  int  ))  static_cast<bool (*)( volatile int * ,  int ,  int  )>(&Standard_Atomic_CompareAndSwap),
+          R"#(Perform an atomic compare and swap. That is, if the current value of *theValue is theOldValue, then write theNewValue into *theValue.)#"  , py::arg("theValue"),  py::arg("theOldValue"),  py::arg("theNewValue"));
+// ./opencascade/Standard_Persistent.hxx
 
 // operators
 

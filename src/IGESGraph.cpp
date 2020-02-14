@@ -14,42 +14,6 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_DomainError.hxx>
-#include <IGESGraph_Pick.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_LineFontDefPattern.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_HighLight.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
 #include <IGESGraph_DrawingUnits.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
@@ -61,106 +25,7 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_DrawingSize.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_IntercharacterSpacing.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_UniformRectGrid.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_DefinitionLevel.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <IGESBasic_HArray1OfHArray1OfInteger.hxx>
-#include <IGESGraph_TextFontDef.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_LineFontPredefined.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_TextDisplayTemplate.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESGraph_Color.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
 #include <IGESGraph_Protocol.hxx>
 #include <IGESGraph_LineFontDefTemplate.hxx>
 #include <IGESGraph_LineFontDefPattern.hxx>
@@ -194,12 +59,8 @@ namespace py = pybind11;
 #include <IGESGraph_ReadWriteModule.hxx>
 #include <IGESGraph_GeneralModule.hxx>
 #include <IGESGraph_SpecificModule.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESGraph_TextFontDef.hxx>
+#include <IGESGraph_LineFontDefPattern.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -211,6 +72,33 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_IntercharacterSpacing.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_DrawingSize.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESGraph_LineFontDefTemplate.hxx>
 #include <IGESData_IGESReaderData.hxx>
@@ -224,6 +112,71 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <IGESBasic_HArray1OfHArray1OfInteger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_LineFontPredefined.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
+#include <IGESBasic_SubfigureDef.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_HighLight.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_Pick.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_Color.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESGraph_NominalSize.hxx>
 #include <IGESData_IGESReaderData.hxx>
@@ -236,9 +189,56 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <IGESBasic_SubfigureDef.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_Vec2d.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_DefinitionLevel.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESGraph_TextFontDef.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_TextFontDef.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_TextDisplayTemplate.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESGraph_UniformRectGrid.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 
 // module includes
 #include <IGESGraph.hxx>
@@ -282,9 +282,9 @@ namespace py = pybind11;
 #include <IGESGraph_UniformRectGrid.hxx>
 
 // template related includes
-// ./opencascade/IGESGraph_Array1OfTextDisplayTemplate.hxx
-#include "NCollection.hxx"
 // ./opencascade/IGESGraph_Array1OfColor.hxx
+#include "NCollection.hxx"
+// ./opencascade/IGESGraph_Array1OfTextDisplayTemplate.hxx
 #include "NCollection.hxx"
 // ./opencascade/IGESGraph_Array1OfTextFontDef.hxx
 #include "NCollection.hxx"
@@ -306,9 +306,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESGraph , shared_ptr<IGESGraph>>(m,"IGESGraph");
 
     static_cast<py::class_<IGESGraph , shared_ptr<IGESGraph>  >>(m.attr("IGESGraph"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -320,12 +323,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(Returns the Protocol for this Package)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_Color ,opencascade::handle<IGESGraph_Color>  , IGESData_ColorEntity >>(m.attr("IGESGraph_Color"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_Color::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (IGESGraph_Color::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&IGESGraph_Color::Init),
@@ -358,12 +363,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_DefinitionLevel ,opencascade::handle<IGESGraph_DefinitionLevel>  , IGESData_LevelListEntity >>(m.attr("IGESGraph_DefinitionLevel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_DefinitionLevel::*)( const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESGraph_DefinitionLevel::*)( const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESGraph_DefinitionLevel::Init),
@@ -390,12 +397,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_DrawingSize ,opencascade::handle<IGESGraph_DrawingSize>  , IGESData_IGESEntity >>(m.attr("IGESGraph_DrawingSize"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_DrawingSize::*)( const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IGESGraph_DrawingSize::*)( const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&IGESGraph_DrawingSize::Init),
@@ -422,12 +431,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_DrawingUnits ,opencascade::handle<IGESGraph_DrawingUnits>  , IGESData_IGESEntity >>(m.attr("IGESGraph_DrawingUnits"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_DrawingUnits::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (IGESGraph_DrawingUnits::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&IGESGraph_DrawingUnits::Init),
@@ -457,12 +468,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_GeneralModule ,opencascade::handle<IGESGraph_GeneralModule>  , IGESData_GeneralModule >>(m.attr("IGESGraph_GeneralModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnSharedCase",
              (void (IGESGraph_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESGraph_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const>(&IGESGraph_GeneralModule::OwnSharedCase),
@@ -495,14 +508,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_HArray1OfColor ,opencascade::handle<IGESGraph_HArray1OfColor>  , IGESGraph_Array1OfColor , Standard_Transient >>(m.attr("IGESGraph_HArray1OfColor"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESGraph_Color> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESGraph_Color> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESGraph_Array1OfColor & (IGESGraph_HArray1OfColor::*)() const) static_cast<const IGESGraph_Array1OfColor & (IGESGraph_HArray1OfColor::*)() const>(&IGESGraph_HArray1OfColor::Array1),
@@ -523,14 +539,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_HArray1OfTextDisplayTemplate ,opencascade::handle<IGESGraph_HArray1OfTextDisplayTemplate>  , IGESGraph_Array1OfTextDisplayTemplate , Standard_Transient >>(m.attr("IGESGraph_HArray1OfTextDisplayTemplate"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESGraph_TextDisplayTemplate> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESGraph_TextDisplayTemplate> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESGraph_Array1OfTextDisplayTemplate & (IGESGraph_HArray1OfTextDisplayTemplate::*)() const) static_cast<const IGESGraph_Array1OfTextDisplayTemplate & (IGESGraph_HArray1OfTextDisplayTemplate::*)() const>(&IGESGraph_HArray1OfTextDisplayTemplate::Array1),
@@ -551,14 +570,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_HArray1OfTextFontDef ,opencascade::handle<IGESGraph_HArray1OfTextFontDef>  , IGESGraph_Array1OfTextFontDef , Standard_Transient >>(m.attr("IGESGraph_HArray1OfTextFontDef"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESGraph_TextFontDef> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESGraph_TextFontDef> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESGraph_Array1OfTextFontDef & (IGESGraph_HArray1OfTextFontDef::*)() const) static_cast<const IGESGraph_Array1OfTextFontDef & (IGESGraph_HArray1OfTextFontDef::*)() const>(&IGESGraph_HArray1OfTextFontDef::Array1),
@@ -579,12 +601,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_HighLight ,opencascade::handle<IGESGraph_HighLight>  , IGESData_IGESEntity >>(m.attr("IGESGraph_HighLight"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_HighLight::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IGESGraph_HighLight::*)( const Standard_Integer ,  const Standard_Integer  ) >(&IGESGraph_HighLight::Init),
@@ -611,12 +635,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_IntercharacterSpacing ,opencascade::handle<IGESGraph_IntercharacterSpacing>  , IGESData_IGESEntity >>(m.attr("IGESGraph_IntercharacterSpacing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_IntercharacterSpacing::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (IGESGraph_IntercharacterSpacing::*)( const Standard_Integer ,  const Standard_Real  ) >(&IGESGraph_IntercharacterSpacing::Init),
@@ -640,12 +666,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_LineFontDefPattern ,opencascade::handle<IGESGraph_LineFontDefPattern>  , IGESData_LineFontEntity >>(m.attr("IGESGraph_LineFontDefPattern"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_LineFontDefPattern::*)( const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (IGESGraph_LineFontDefPattern::*)( const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&IGESGraph_LineFontDefPattern::Init),
@@ -675,12 +703,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_LineFontDefTemplate ,opencascade::handle<IGESGraph_LineFontDefTemplate>  , IGESData_LineFontEntity >>(m.attr("IGESGraph_LineFontDefTemplate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_LineFontDefTemplate::*)( const Standard_Integer ,  const opencascade::handle<IGESBasic_SubfigureDef> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IGESGraph_LineFontDefTemplate::*)( const Standard_Integer ,  const opencascade::handle<IGESBasic_SubfigureDef> & ,  const Standard_Real ,  const Standard_Real  ) >(&IGESGraph_LineFontDefTemplate::Init),
@@ -710,12 +740,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_LineFontPredefined ,opencascade::handle<IGESGraph_LineFontPredefined>  , IGESData_IGESEntity >>(m.attr("IGESGraph_LineFontPredefined"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_LineFontPredefined::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IGESGraph_LineFontPredefined::*)( const Standard_Integer ,  const Standard_Integer  ) >(&IGESGraph_LineFontPredefined::Init),
@@ -739,12 +771,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_NominalSize ,opencascade::handle<IGESGraph_NominalSize>  , IGESData_IGESEntity >>(m.attr("IGESGraph_NominalSize"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_NominalSize::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (IGESGraph_NominalSize::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&IGESGraph_NominalSize::Init),
@@ -777,12 +811,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_Pick ,opencascade::handle<IGESGraph_Pick>  , IGESData_IGESEntity >>(m.attr("IGESGraph_Pick"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_Pick::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IGESGraph_Pick::*)( const Standard_Integer ,  const Standard_Integer  ) >(&IGESGraph_Pick::Init),
@@ -809,12 +845,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_Protocol ,opencascade::handle<IGESGraph_Protocol>  , IGESData_Protocol >>(m.attr("IGESGraph_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (IGESGraph_Protocol::*)() const) static_cast<Standard_Integer (IGESGraph_Protocol::*)() const>(&IGESGraph_Protocol::NbResources),
@@ -838,12 +876,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ReadWriteModule ,opencascade::handle<IGESGraph_ReadWriteModule>  , IGESData_ReadWriteModule >>(m.attr("IGESGraph_ReadWriteModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseIGES",
              (Standard_Integer (IGESGraph_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Integer (IGESGraph_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&IGESGraph_ReadWriteModule::CaseIGES),
@@ -867,12 +907,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_SpecificModule ,opencascade::handle<IGESGraph_SpecificModule>  , IGESData_SpecificModule >>(m.attr("IGESGraph_SpecificModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESGraph_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESGraph_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESGraph_SpecificModule::OwnDump),
@@ -893,12 +935,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_TextDisplayTemplate ,opencascade::handle<IGESGraph_TextDisplayTemplate>  , IGESData_IGESEntity >>(m.attr("IGESGraph_TextDisplayTemplate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_TextDisplayTemplate::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const opencascade::handle<IGESGraph_TextFontDef> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const gp_XYZ &  ) ) static_cast<void (IGESGraph_TextDisplayTemplate::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const opencascade::handle<IGESGraph_TextFontDef> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Integer ,  const gp_XYZ &  ) >(&IGESGraph_TextDisplayTemplate::Init),
@@ -955,12 +999,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_TextFontDef ,opencascade::handle<IGESGraph_TextFontDef>  , IGESData_IGESEntity >>(m.attr("IGESGraph_TextFontDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_TextFontDef::*)( const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<IGESGraph_TextFontDef> & ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> &  ) ) static_cast<void (IGESGraph_TextFontDef::*)( const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<IGESGraph_TextFontDef> & ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> &  ) >(&IGESGraph_TextFontDef::Init),
@@ -1014,12 +1060,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolColor , shared_ptr<IGESGraph_ToolColor>  >>(m.attr("IGESGraph_ToolColor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolColor::*)( const opencascade::handle<IGESGraph_Color> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolColor::*)( const opencascade::handle<IGESGraph_Color> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolColor::ReadOwnParams),
@@ -1046,12 +1094,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolDefinitionLevel , shared_ptr<IGESGraph_ToolDefinitionLevel>  >>(m.attr("IGESGraph_ToolDefinitionLevel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolDefinitionLevel::*)( const opencascade::handle<IGESGraph_DefinitionLevel> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolDefinitionLevel::*)( const opencascade::handle<IGESGraph_DefinitionLevel> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolDefinitionLevel::ReadOwnParams),
@@ -1078,12 +1128,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolDrawingSize , shared_ptr<IGESGraph_ToolDrawingSize>  >>(m.attr("IGESGraph_ToolDrawingSize"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolDrawingSize::*)( const opencascade::handle<IGESGraph_DrawingSize> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolDrawingSize::*)( const opencascade::handle<IGESGraph_DrawingSize> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolDrawingSize::ReadOwnParams),
@@ -1113,12 +1165,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolDrawingUnits , shared_ptr<IGESGraph_ToolDrawingUnits>  >>(m.attr("IGESGraph_ToolDrawingUnits"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolDrawingUnits::*)( const opencascade::handle<IGESGraph_DrawingUnits> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolDrawingUnits::*)( const opencascade::handle<IGESGraph_DrawingUnits> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolDrawingUnits::ReadOwnParams),
@@ -1148,12 +1202,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolHighLight , shared_ptr<IGESGraph_ToolHighLight>  >>(m.attr("IGESGraph_ToolHighLight"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolHighLight::*)( const opencascade::handle<IGESGraph_HighLight> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolHighLight::*)( const opencascade::handle<IGESGraph_HighLight> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolHighLight::ReadOwnParams),
@@ -1183,12 +1239,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolIntercharacterSpacing , shared_ptr<IGESGraph_ToolIntercharacterSpacing>  >>(m.attr("IGESGraph_ToolIntercharacterSpacing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolIntercharacterSpacing::*)( const opencascade::handle<IGESGraph_IntercharacterSpacing> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolIntercharacterSpacing::*)( const opencascade::handle<IGESGraph_IntercharacterSpacing> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolIntercharacterSpacing::ReadOwnParams),
@@ -1218,12 +1276,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolLineFontDefPattern , shared_ptr<IGESGraph_ToolLineFontDefPattern>  >>(m.attr("IGESGraph_ToolLineFontDefPattern"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolLineFontDefPattern::*)( const opencascade::handle<IGESGraph_LineFontDefPattern> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolLineFontDefPattern::*)( const opencascade::handle<IGESGraph_LineFontDefPattern> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolLineFontDefPattern::ReadOwnParams),
@@ -1250,12 +1310,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolLineFontDefTemplate , shared_ptr<IGESGraph_ToolLineFontDefTemplate>  >>(m.attr("IGESGraph_ToolLineFontDefTemplate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolLineFontDefTemplate::*)( const opencascade::handle<IGESGraph_LineFontDefTemplate> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolLineFontDefTemplate::*)( const opencascade::handle<IGESGraph_LineFontDefTemplate> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolLineFontDefTemplate::ReadOwnParams),
@@ -1282,12 +1344,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolLineFontPredefined , shared_ptr<IGESGraph_ToolLineFontPredefined>  >>(m.attr("IGESGraph_ToolLineFontPredefined"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolLineFontPredefined::*)( const opencascade::handle<IGESGraph_LineFontPredefined> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolLineFontPredefined::*)( const opencascade::handle<IGESGraph_LineFontPredefined> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolLineFontPredefined::ReadOwnParams),
@@ -1317,12 +1381,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolNominalSize , shared_ptr<IGESGraph_ToolNominalSize>  >>(m.attr("IGESGraph_ToolNominalSize"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolNominalSize::*)( const opencascade::handle<IGESGraph_NominalSize> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolNominalSize::*)( const opencascade::handle<IGESGraph_NominalSize> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolNominalSize::ReadOwnParams),
@@ -1352,12 +1418,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolPick , shared_ptr<IGESGraph_ToolPick>  >>(m.attr("IGESGraph_ToolPick"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolPick::*)( const opencascade::handle<IGESGraph_Pick> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolPick::*)( const opencascade::handle<IGESGraph_Pick> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolPick::ReadOwnParams),
@@ -1387,12 +1455,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolTextDisplayTemplate , shared_ptr<IGESGraph_ToolTextDisplayTemplate>  >>(m.attr("IGESGraph_ToolTextDisplayTemplate"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolTextDisplayTemplate::*)( const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolTextDisplayTemplate::*)( const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolTextDisplayTemplate::ReadOwnParams),
@@ -1419,12 +1489,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolTextFontDef , shared_ptr<IGESGraph_ToolTextFontDef>  >>(m.attr("IGESGraph_ToolTextFontDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolTextFontDef::*)( const opencascade::handle<IGESGraph_TextFontDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolTextFontDef::*)( const opencascade::handle<IGESGraph_TextFontDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolTextFontDef::ReadOwnParams),
@@ -1451,12 +1523,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_ToolUniformRectGrid , shared_ptr<IGESGraph_ToolUniformRectGrid>  >>(m.attr("IGESGraph_ToolUniformRectGrid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESGraph_ToolUniformRectGrid::*)( const opencascade::handle<IGESGraph_UniformRectGrid> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESGraph_ToolUniformRectGrid::*)( const opencascade::handle<IGESGraph_UniformRectGrid> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESGraph_ToolUniformRectGrid::ReadOwnParams),
@@ -1486,12 +1560,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESGraph_UniformRectGrid ,opencascade::handle<IGESGraph_UniformRectGrid>  , IGESData_IGESEntity >>(m.attr("IGESGraph_UniformRectGrid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESGraph_UniformRectGrid::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const gp_XY & ,  const gp_XY & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (IGESGraph_UniformRectGrid::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const gp_XY & ,  const gp_XY & ,  const Standard_Integer ,  const Standard_Integer  ) >(&IGESGraph_UniformRectGrid::Init),
@@ -1533,55 +1609,55 @@ py::module m = static_cast<py::module>(main_module.attr("IGESGraph"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESGraph_ToolPick.hxx
-// ./opencascade/IGESGraph_DrawingSize.hxx
-// ./opencascade/IGESGraph_HighLight.hxx
-// ./opencascade/IGESGraph_ToolLineFontDefPattern.hxx
-// ./opencascade/IGESGraph_ToolHighLight.hxx
 // ./opencascade/IGESGraph_ToolDrawingUnits.hxx
-// ./opencascade/IGESGraph_ToolDrawingSize.hxx
-// ./opencascade/IGESGraph_Array1OfTextDisplayTemplate.hxx
-// ./opencascade/IGESGraph_Array1OfColor.hxx
-// ./opencascade/IGESGraph_Protocol.hxx
-// ./opencascade/IGESGraph_ReadWriteModule.hxx
-// ./opencascade/IGESGraph_ToolIntercharacterSpacing.hxx
-// ./opencascade/IGESGraph_ToolUniformRectGrid.hxx
-// ./opencascade/IGESGraph_GeneralModule.hxx
-// ./opencascade/IGESGraph_Array1OfTextFontDef.hxx
-// ./opencascade/IGESGraph_HArray1OfColor.hxx
-// ./opencascade/IGESGraph_ToolDefinitionLevel.hxx
-// ./opencascade/IGESGraph_TextFontDef.hxx
-// ./opencascade/IGESGraph_TextDisplayTemplate.hxx
-// ./opencascade/IGESGraph_ToolLineFontPredefined.hxx
-// ./opencascade/IGESGraph_ToolTextDisplayTemplate.hxx
-// ./opencascade/IGESGraph_Color.hxx
-// ./opencascade/IGESGraph_ToolColor.hxx
-// ./opencascade/IGESGraph.hxx
-// ./opencascade/IGESGraph_SpecificModule.hxx
-// ./opencascade/IGESGraph_NominalSize.hxx
-// ./opencascade/IGESGraph_HArray1OfTextDisplayTemplate.hxx
-// ./opencascade/IGESGraph_ToolTextFontDef.hxx
-// ./opencascade/IGESGraph_DrawingUnits.hxx
-// ./opencascade/IGESGraph_LineFontPredefined.hxx
-// ./opencascade/IGESGraph_IntercharacterSpacing.hxx
-// ./opencascade/IGESGraph_ToolLineFontDefTemplate.hxx
-// ./opencascade/IGESGraph_LineFontDefPattern.hxx
 // ./opencascade/IGESGraph_Pick.hxx
-// ./opencascade/IGESGraph_ToolNominalSize.hxx
-// ./opencascade/IGESGraph_DefinitionLevel.hxx
-// ./opencascade/IGESGraph_LineFontDefTemplate.hxx
-// ./opencascade/IGESGraph_UniformRectGrid.hxx
+// ./opencascade/IGESGraph_Array1OfColor.hxx
+// ./opencascade/IGESGraph_Color.hxx
+// ./opencascade/IGESGraph_DrawingSize.hxx
+// ./opencascade/IGESGraph.hxx
+// ./opencascade/IGESGraph_ToolLineFontDefPattern.hxx
+// ./opencascade/IGESGraph_NominalSize.hxx
+// ./opencascade/IGESGraph_SpecificModule.hxx
+// ./opencascade/IGESGraph_HArray1OfTextDisplayTemplate.hxx
+// ./opencascade/IGESGraph_ToolIntercharacterSpacing.hxx
+// ./opencascade/IGESGraph_HighLight.hxx
+// ./opencascade/IGESGraph_ToolDrawingSize.hxx
+// ./opencascade/IGESGraph_ToolLineFontDefTemplate.hxx
+// ./opencascade/IGESGraph_TextFontDef.hxx
+// ./opencascade/IGESGraph_ToolLineFontPredefined.hxx
+// ./opencascade/IGESGraph_DrawingUnits.hxx
+// ./opencascade/IGESGraph_Protocol.hxx
+// ./opencascade/IGESGraph_Array1OfTextDisplayTemplate.hxx
+// ./opencascade/IGESGraph_GeneralModule.hxx
 // ./opencascade/IGESGraph_HArray1OfTextFontDef.hxx
+// ./opencascade/IGESGraph_LineFontDefPattern.hxx
+// ./opencascade/IGESGraph_UniformRectGrid.hxx
+// ./opencascade/IGESGraph_IntercharacterSpacing.hxx
+// ./opencascade/IGESGraph_LineFontDefTemplate.hxx
+// ./opencascade/IGESGraph_ToolHighLight.hxx
+// ./opencascade/IGESGraph_ToolPick.hxx
+// ./opencascade/IGESGraph_ReadWriteModule.hxx
+// ./opencascade/IGESGraph_ToolColor.hxx
+// ./opencascade/IGESGraph_LineFontPredefined.hxx
+// ./opencascade/IGESGraph_HArray1OfColor.hxx
+// ./opencascade/IGESGraph_Array1OfTextFontDef.hxx
+// ./opencascade/IGESGraph_ToolNominalSize.hxx
+// ./opencascade/IGESGraph_ToolDefinitionLevel.hxx
+// ./opencascade/IGESGraph_TextDisplayTemplate.hxx
+// ./opencascade/IGESGraph_ToolTextFontDef.hxx
+// ./opencascade/IGESGraph_DefinitionLevel.hxx
+// ./opencascade/IGESGraph_ToolTextDisplayTemplate.hxx
+// ./opencascade/IGESGraph_ToolUniformRectGrid.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<IGESGraph_TextDisplayTemplate> >(m,"IGESGraph_Array1OfTextDisplayTemplate");  
     register_template_NCollection_Array1<opencascade::handle<IGESGraph_Color> >(m,"IGESGraph_Array1OfColor");  
+    register_template_NCollection_Array1<opencascade::handle<IGESGraph_TextDisplayTemplate> >(m,"IGESGraph_Array1OfTextDisplayTemplate");  
     register_template_NCollection_Array1<opencascade::handle<IGESGraph_TextFontDef> >(m,"IGESGraph_Array1OfTextFontDef");  
 
 

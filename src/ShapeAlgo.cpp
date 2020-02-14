@@ -13,11 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <ShapeFix_Shape.hxx>
+#include <ShapeFix_EdgeProjAux.hxx>
 #include <ShapeAlgo_AlgoContainer.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAlgo_AlgoContainer.hxx>
-#include <ShapeFix_Shape.hxx>
-#include <ShapeFix_EdgeProjAux.hxx>
 #include <ShapeAlgo_ToolContainer.hxx>
 #include <ShapeAnalysis_Wire.hxx>
 #include <ShapeExtend_WireData.hxx>
@@ -53,9 +53,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeAlgo , shared_ptr<ShapeAlgo>>(m,"ShapeAlgo");
 
     static_cast<py::class_<ShapeAlgo , shared_ptr<ShapeAlgo>  >>(m.attr("ShapeAlgo"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -70,12 +73,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
                     R"#(Returns default AlgoContainer)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAlgo_AlgoContainer ,opencascade::handle<ShapeAlgo_AlgoContainer>  , Standard_Transient >>(m.attr("ShapeAlgo_AlgoContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetToolContainer",
              (void (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<ShapeAlgo_ToolContainer> &  ) ) static_cast<void (ShapeAlgo_AlgoContainer::*)( const opencascade::handle<ShapeAlgo_ToolContainer> &  ) >(&ShapeAlgo_AlgoContainer::SetToolContainer),
@@ -138,12 +143,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAlgo_ToolContainer ,opencascade::handle<ShapeAlgo_ToolContainer>  , Standard_Transient >>(m.attr("ShapeAlgo_ToolContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("FixShape",
              (opencascade::handle<ShapeFix_Shape> (ShapeAlgo_ToolContainer::*)() const) static_cast<opencascade::handle<ShapeFix_Shape> (ShapeAlgo_ToolContainer::*)() const>(&ShapeAlgo_ToolContainer::FixShape),
@@ -164,12 +171,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ShapeAlgo.hxx
 // ./opencascade/ShapeAlgo_ToolContainer.hxx
+// ./opencascade/ShapeAlgo.hxx
 // ./opencascade/ShapeAlgo_AlgoContainer.hxx
 
 // operators

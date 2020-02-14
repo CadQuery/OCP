@@ -15,26 +15,26 @@ namespace py = pybind11;
 #include <TDocStd_Application.hxx>
 
 // module includes
-#include <BinTObjDrivers_IntSparseArrayDriver.hxx>
-#include <BinTObjDrivers_ReferenceDriver.hxx>
-#include <BinTObjDrivers.hxx>
+#include <BinTObjDrivers_ModelDriver.hxx>
+#include <BinTObjDrivers_ObjectDriver.hxx>
 #include <BinTObjDrivers_DocumentStorageDriver.hxx>
 #include <BinTObjDrivers_DocumentRetrievalDriver.hxx>
-#include <BinTObjDrivers_ModelDriver.hxx>
+#include <BinTObjDrivers_ReferenceDriver.hxx>
 #include <BinTObjDrivers_XYZDriver.hxx>
-#include <BinTObjDrivers_ObjectDriver.hxx>
+#include <BinTObjDrivers.hxx>
+#include <BinTObjDrivers_IntSparseArrayDriver.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BinTObjDrivers_IntSparseArrayDriver.hxx
-// ./opencascade/BinTObjDrivers_ReferenceDriver.hxx
-// ./opencascade/BinTObjDrivers.hxx
+// ./opencascade/BinTObjDrivers_ModelDriver.hxx
+// ./opencascade/BinTObjDrivers_ObjectDriver.hxx
 // ./opencascade/BinTObjDrivers_DocumentStorageDriver.hxx
 // ./opencascade/BinTObjDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/BinTObjDrivers_ModelDriver.hxx
+// ./opencascade/BinTObjDrivers_ReferenceDriver.hxx
 // ./opencascade/BinTObjDrivers_XYZDriver.hxx
-// ./opencascade/BinTObjDrivers_ObjectDriver.hxx
+// ./opencascade/BinTObjDrivers.hxx
+// ./opencascade/BinTObjDrivers_IntSparseArrayDriver.hxx
 
 // user-defined post

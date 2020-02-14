@@ -16,14 +16,6 @@ namespace py = pybind11;
 #include <Standard_NoSuchObject.hxx>
 #include <gp_Pln.hxx>
 #include <gp_Lin.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Torus.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Torus.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Mat.hxx>
 #include <GProp_GProps.hxx>
@@ -33,6 +25,14 @@ namespace py = pybind11;
 #include <GProp_VelGProps.hxx>
 #include <GProp_PrincipalProps.hxx>
 #include <GProp_PEquation.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Torus.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Torus.hxx>
 #include <gp_Ax1.hxx>
 #include <GProp_PrincipalProps.hxx>
 #include <gp_Circ.hxx>
@@ -71,9 +71,12 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GProp , shared_ptr<GProp>>(m,"GProp");
 
     static_cast<py::class_<GProp , shared_ptr<GProp>  >>(m.attr("GProp"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -82,13 +85,15 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
                     R"#(methods of package Computes the matrix Operator, referred to as the "Huyghens Operator" of a geometric system at the point Q of the space, using the following data : - Mass, i.e. the mass of the system, - G, the center of mass of the system. The "Huyghens Operator" is used to compute Inertia/Q, the matrix of inertia of the system at the point Q using Huyghens' theorem : Inertia/Q = Inertia/G + HOperator (Q, G, Mass) where Inertia/G is the matrix of inertia of the system relative to its center of mass as returned by the function MatrixOfInertia on any GProp_GProps object.)#"  , py::arg("G"),  py::arg("Q"),  py::arg("Mass"),  py::arg("Operator"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GProp_GProps , shared_ptr<GProp_GProps>  >>(m.attr("GProp_GProps"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt & >()  , py::arg("SystemLocation") )
+    // custom constructors
     // methods
         .def("Add",
              (void (GProp_GProps::*)( const GProp_GProps & ,  const Standard_Real  ) ) static_cast<void (GProp_GProps::*)( const GProp_GProps & ,  const Standard_Real  ) >(&GProp_GProps::Add),
@@ -118,12 +123,14 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GProp_PEquation , shared_ptr<GProp_PEquation>  >>(m.attr("GProp_PEquation"))
+    // constructors
         .def(py::init<  const NCollection_Array1<gp_Pnt> &,const Standard_Real >()  , py::arg("Pnts"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("IsPlanar",
              (Standard_Boolean (GProp_PEquation::*)() const) static_cast<Standard_Boolean (GProp_PEquation::*)() const>(&GProp_PEquation::IsPlanar),
@@ -153,12 +160,14 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GProp_PrincipalProps , shared_ptr<GProp_PrincipalProps>  >>(m.attr("GProp_PrincipalProps"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasSymmetryAxis",
              (Standard_Boolean (GProp_PrincipalProps::*)() const) static_cast<Standard_Boolean (GProp_PrincipalProps::*)() const>(&GProp_PrincipalProps::HasSymmetryAxis),
@@ -191,15 +200,17 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GProp_CelGProps , shared_ptr<GProp_CelGProps>  , GProp_GProps >>(m.attr("GProp_CelGProps"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Circ &,const gp_Pnt & >()  , py::arg("C"),  py::arg("CLocation") )
         .def(py::init< const gp_Circ &,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("C"),  py::arg("U1"),  py::arg("U2"),  py::arg("CLocation") )
         .def(py::init< const gp_Lin &,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("C"),  py::arg("U1"),  py::arg("U2"),  py::arg("CLocation") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (GProp_CelGProps::*)( const gp_Pnt &  ) ) static_cast<void (GProp_CelGProps::*)( const gp_Pnt &  ) >(&GProp_CelGProps::SetLocation),
@@ -214,16 +225,18 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GProp_PGProps , shared_ptr<GProp_PGProps>  , GProp_GProps >>(m.attr("GProp_PGProps"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Array1<gp_Pnt> & >()  , py::arg("Pnts") )
         .def(py::init<  const NCollection_Array2<gp_Pnt> & >()  , py::arg("Pnts") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Pnts"),  py::arg("Density") )
         .def(py::init<  const NCollection_Array2<gp_Pnt> &, const NCollection_Array2<Standard_Real> & >()  , py::arg("Pnts"),  py::arg("Density") )
+    // custom constructors
     // methods
         .def("AddPoint",
              (void (GProp_PGProps::*)( const gp_Pnt &  ) ) static_cast<void (GProp_PGProps::*)( const gp_Pnt &  ) >(&GProp_PGProps::AddPoint),
@@ -247,16 +260,18 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
                     [](  const NCollection_Array2<gp_Pnt> & Pnts, const NCollection_Array2<Standard_Real> & Density,gp_Pnt & G ){ Standard_Real  Mass; GProp_PGProps::Barycentre(Pnts,Density,Mass,G); return std::make_tuple(Mass); },
                     R"#(Computes the barycentre of a set of points. A density is associated with each point.)#"  , py::arg("Pnts"),  py::arg("Density"),  py::arg("G"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GProp_SelGProps , shared_ptr<GProp_SelGProps>  , GProp_GProps >>(m.attr("GProp_SelGProps"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Cylinder &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Z1"),  py::arg("Z2"),  py::arg("SLocation") )
         .def(py::init< const gp_Cone &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Z1"),  py::arg("Z2"),  py::arg("SLocation") )
         .def(py::init< const gp_Sphere &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Teta1"),  py::arg("Teta2"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("SLocation") )
         .def(py::init< const gp_Torus &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Teta1"),  py::arg("Teta2"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("SLocation") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (GProp_SelGProps::*)( const gp_Pnt &  ) ) static_cast<void (GProp_SelGProps::*)( const gp_Pnt &  ) >(&GProp_SelGProps::SetLocation),
@@ -277,16 +292,18 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GProp_VelGProps , shared_ptr<GProp_VelGProps>  , GProp_GProps >>(m.attr("GProp_VelGProps"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Cylinder &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Z1"),  py::arg("Z2"),  py::arg("VLocation") )
         .def(py::init< const gp_Cone &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Z1"),  py::arg("Z2"),  py::arg("VLocation") )
         .def(py::init< const gp_Sphere &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Teta1"),  py::arg("Teta2"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("VLocation") )
         .def(py::init< const gp_Torus &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("S"),  py::arg("Teta1"),  py::arg("Teta2"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("VLocation") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (GProp_VelGProps::*)( const gp_Pnt &  ) ) static_cast<void (GProp_VelGProps::*)( const gp_Pnt &  ) >(&GProp_VelGProps::SetLocation),
@@ -307,21 +324,21 @@ py::module m = static_cast<py::module>(main_module.attr("GProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GProp_PEquation.hxx
-// ./opencascade/GProp_UndefinedAxis.hxx
-// ./opencascade/GProp_ValueType.hxx
-// ./opencascade/GProp_VelGProps.hxx
-// ./opencascade/GProp_PGProps.hxx
-// ./opencascade/GProp_SelGProps.hxx
-// ./opencascade/GProp.hxx
-// ./opencascade/GProp_GProps.hxx
 // ./opencascade/GProp_EquaType.hxx
+// ./opencascade/GProp_ValueType.hxx
+// ./opencascade/GProp_PGProps.hxx
+// ./opencascade/GProp_PEquation.hxx
+// ./opencascade/GProp.hxx
+// ./opencascade/GProp_VelGProps.hxx
+// ./opencascade/GProp_SelGProps.hxx
+// ./opencascade/GProp_GProps.hxx
 // ./opencascade/GProp_CelGProps.hxx
 // ./opencascade/GProp_PrincipalProps.hxx
+// ./opencascade/GProp_UndefinedAxis.hxx
 
 // operators
 

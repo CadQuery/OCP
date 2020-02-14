@@ -10,21 +10,21 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMDocStd_XLinkDriver.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 
 // module includes
-#include <BinMDocStd.hxx>
 #include <BinMDocStd_XLinkDriver.hxx>
+#include <BinMDocStd.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BinMDocStd.hxx
 // ./opencascade/BinMDocStd_XLinkDriver.hxx
+// ./opencascade/BinMDocStd.hxx
 
 // user-defined post

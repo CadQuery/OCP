@@ -39,6 +39,7 @@ py::module m = static_cast<py::module>(main_module.attr("BSplSLib"));
     public:
         using BSplSLib_EvaluatorFunction::BSplSLib_EvaluatorFunction;
         
+        
         // public pure virtual
         void Evaluate(const Standard_Integer theDerivativeRequest,const Standard_Real theUParameter,const Standard_Real theVParameter,Standard_Real & theResult,Standard_Integer & theErrorCode) const  override { PYBIND11_OVERLOAD_PURE(void,BSplSLib_EvaluatorFunction,Evaluate,theDerivativeRequest,theUParameter,theVParameter,theResult,theErrorCode) };
         
@@ -52,9 +53,12 @@ py::module m = static_cast<py::module>(main_module.attr("BSplSLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BSplSLib , shared_ptr<BSplSLib>>(m,"BSplSLib");
 
     static_cast<py::class_<BSplSLib , shared_ptr<BSplSLib>  >>(m.attr("BSplSLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -168,20 +172,21 @@ py::module m = static_cast<py::module>(main_module.attr("BSplSLib"));
                     []( const BSplSLib_EvaluatorFunction & Function,const Standard_Integer UBSplineDegree,const Standard_Integer VBSplineDegree, const NCollection_Array1<Standard_Real> & UBSplineKnots, const NCollection_Array1<Standard_Real> & VBSplineKnots, const NCollection_Array1<Standard_Integer> * UMults, const NCollection_Array1<Standard_Integer> * VMults, const NCollection_Array2<gp_Pnt> & Poles, const NCollection_Array2<Standard_Real> * Weights, const NCollection_Array1<Standard_Real> & UFlatKnots, const NCollection_Array1<Standard_Real> & VFlatKnots,const Standard_Integer UNewDegree,const Standard_Integer VNewDegree,NCollection_Array2<gp_Pnt> & NewNumerator,NCollection_Array2<Standard_Real> & NewDenominator ){ Standard_Integer  theStatus; BSplSLib::FunctionMultiply(Function,UBSplineDegree,VBSplineDegree,UBSplineKnots,VBSplineKnots,UMults,VMults,Poles,Weights,UFlatKnots,VFlatKnots,UNewDegree,VNewDegree,NewNumerator,NewDenominator,theStatus); return std::make_tuple(theStatus); },
                     R"#(this will multiply a given BSpline numerator N(u,v) and denominator D(u,v) defined by its U/VBSplineDegree and U/VBSplineKnots, and U/VMults. Its Poles and Weights are arrays which are coded as array2 of the form [1..UNumPoles][1..VNumPoles] by a function a(u,v) which is assumed to satisfy the following : 1. a(u,v) * N(u,v) and a(u,v) * D(u,v) is a polynomial BSpline that can be expressed exactly as a BSpline of degree U/VNewDegree on the knots U/VFlatKnots 2. the range of a(u,v) is the same as the range of N(u,v) or D(u,v) ---Warning: it is the caller's responsability to insure that conditions 1. and 2. above are satisfied : no check whatsoever is made in this method -- theStatus will return 0 if OK else it will return the pivot index -- of the matrix that was inverted to compute the multiplied -- BSpline : the method used is interpolation at Schoenenberg -- points of a(u,v)* N(u,v) and a(u,v) * D(u,v) theStatus will return 0 if OK else it will return the pivot index of the matrix that was inverted to compute the multiplied BSpline : the method used is interpolation at Schoenenberg points of a(u,v)*F(u,v) --)#"  , py::arg("Function"),  py::arg("UBSplineDegree"),  py::arg("VBSplineDegree"),  py::arg("UBSplineKnots"),  py::arg("VBSplineKnots"),  py::arg("UMults"),  py::arg("VMults"),  py::arg("Poles"),  py::arg("Weights"),  py::arg("UFlatKnots"),  py::arg("VFlatKnots"),  py::arg("UNewDegree"),  py::arg("VNewDegree"),  py::arg("NewNumerator"),  py::arg("NewDenominator"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BSplSLib_Cache ,opencascade::handle<BSplSLib_Cache>  , Standard_Transient >>(m.attr("BSplSLib_Cache"))
-        .def(py::init<  >()  )
-        .def(py::init< const Standard_Integer &,const Standard_Boolean &, const NCollection_Array1<Standard_Real> &,const Standard_Integer &,const Standard_Boolean &, const NCollection_Array1<Standard_Real> &, const NCollection_Array2<gp_Pnt> &, const NCollection_Array2<Standard_Real> * >()  , py::arg("theDegreeU"),  py::arg("thePeriodicU"),  py::arg("theFlatKnotsU"),  py::arg("theDegreeV"),  py::arg("thePeriodicV"),  py::arg("theFlatKnotsV"),  py::arg("thePoles"),  py::arg("theWeights")=static_cast< const NCollection_Array2<Standard_Real> *>(NULL) )
+    // constructors
+        .def(py::init< const Standard_Integer &,const Standard_Boolean &, const NCollection_Array1<Standard_Real> &,const Standard_Integer &,const Standard_Boolean &, const NCollection_Array1<Standard_Real> &, const NCollection_Array2<Standard_Real> * >()  , py::arg("theDegreeU"),  py::arg("thePeriodicU"),  py::arg("theFlatKnotsU"),  py::arg("theDegreeV"),  py::arg("thePeriodicV"),  py::arg("theFlatKnotsV"),  py::arg("theWeights")=static_cast< const NCollection_Array2<Standard_Real> *>(NULL) )
+    // custom constructors
     // methods
         .def("IsCacheValid",
              (Standard_Boolean (BSplSLib_Cache::*)( Standard_Real ,  Standard_Real  ) const) static_cast<Standard_Boolean (BSplSLib_Cache::*)( Standard_Real ,  Standard_Real  ) const>(&BSplSLib_Cache::IsCacheValid),
              R"#(Verifies validity of the cache using parameters of the point)#"  , py::arg("theParameterU"),  py::arg("theParameterV"))
         .def("BuildCache",
-             (void (BSplSLib_Cache::*)( const Standard_Real & ,  const Standard_Real & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array2<gp_Pnt> & ,   const NCollection_Array2<Standard_Real> *  ) ) static_cast<void (BSplSLib_Cache::*)( const Standard_Real & ,  const Standard_Real & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,  const Standard_Integer & ,  const Standard_Boolean & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array2<gp_Pnt> & ,   const NCollection_Array2<Standard_Real> *  ) >(&BSplSLib_Cache::BuildCache),
-             R"#(Recomputes the cache data. Does not verify validity of the cache)#"  , py::arg("theParameterU"),  py::arg("theParameterV"),  py::arg("theDegreeU"),  py::arg("thePeriodicU"),  py::arg("theFlatKnotsU"),  py::arg("theDegreeV"),  py::arg("thePeriodicV"),  py::arg("theFlatKnotsV"),  py::arg("thePoles"),  py::arg("theWeights")=static_cast< const NCollection_Array2<Standard_Real> *>(NULL))
+             (void (BSplSLib_Cache::*)( const Standard_Real & ,  const Standard_Real & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array2<gp_Pnt> & ,   const NCollection_Array2<Standard_Real> *  ) ) static_cast<void (BSplSLib_Cache::*)( const Standard_Real & ,  const Standard_Real & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array1<Standard_Real> & ,   const NCollection_Array2<gp_Pnt> & ,   const NCollection_Array2<Standard_Real> *  ) >(&BSplSLib_Cache::BuildCache),
+             R"#(Recomputes the cache data. Does not verify validity of the cache)#"  , py::arg("theParameterU"),  py::arg("theParameterV"),  py::arg("theFlatKnotsU"),  py::arg("theFlatKnotsV"),  py::arg("thePoles"),  py::arg("theWeights")=static_cast< const NCollection_Array2<Standard_Real> *>(NULL))
         .def("D0",
              (void (BSplSLib_Cache::*)( const Standard_Real & ,  const Standard_Real & ,  gp_Pnt &  ) const) static_cast<void (BSplSLib_Cache::*)( const Standard_Real & ,  const Standard_Real & ,  gp_Pnt &  ) const>(&BSplSLib_Cache::D0),
              R"#(Calculates the point on the surface for specified parameters)#"  , py::arg("theU"),  py::arg("theV"),  py::arg("thePoint"))
@@ -204,12 +209,14 @@ py::module m = static_cast<py::module>(main_module.attr("BSplSLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BSplSLib_EvaluatorFunction , shared_ptr<BSplSLib_EvaluatorFunction> ,Py_BSplSLib_EvaluatorFunction >>(m.attr("BSplSLib_EvaluatorFunction"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
         .def("Evaluate",
@@ -218,12 +225,12 @@ py::module m = static_cast<py::module>(main_module.attr("BSplSLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BSplSLib.hxx
 // ./opencascade/BSplSLib_Cache.hxx
+// ./opencascade/BSplSLib.hxx
 // ./opencascade/BSplSLib_EvaluatorFunction.hxx
 
 // operators

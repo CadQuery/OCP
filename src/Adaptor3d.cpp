@@ -13,25 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Adaptor2d_HCurve2d.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Geom_BezierSurface.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Parab.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
+#include <Adaptor3d_Curve.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <gp_Pnt.hxx>
@@ -46,7 +29,28 @@ namespace py = pybind11;
 #include <gp_Ax1.hxx>
 #include <gp_Dir.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <Adaptor3d_Surface.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Geom_BezierSurface.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_OffsetCurve.hxx>
+#include <Adaptor3d_CurveOnSurface.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Hypr.hxx>
+#include <gp_Parab.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor3d_HCurve.hxx>
@@ -55,18 +59,10 @@ namespace py = pybind11;
 #include <gp_Parab.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_OffsetCurve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Adaptor3d_Curve.hxx>
 #include <Adaptor2d_HLine2d.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_CurveOnSurface.hxx>
+#include <Adaptor3d_Surface.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <gp_Pnt.hxx>
@@ -79,6 +75,10 @@ namespace py = pybind11;
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom_OffsetCurve.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
 
 // module includes
 #include <Adaptor3d_Curve.hxx>
@@ -117,6 +117,7 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
     public:
         using Adaptor3d_HCurve::Adaptor3d_HCurve;
         
+        
         // public pure virtual
         const Adaptor3d_Curve & Curve() const  override { PYBIND11_OVERLOAD_PURE(const Adaptor3d_Curve &,Adaptor3d_HCurve,Curve,) };
         Adaptor3d_Curve & GetCurve() override { PYBIND11_OVERLOAD_PURE(Adaptor3d_Curve &,Adaptor3d_HCurve,GetCurve,) };
@@ -132,6 +133,7 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
     public:
         using Adaptor3d_HSurface::Adaptor3d_HSurface;
         
+        
         // public pure virtual
         const Adaptor3d_Surface & Surface() const  override { PYBIND11_OVERLOAD_PURE(const Adaptor3d_Surface &,Adaptor3d_HSurface,Surface,) };
         
@@ -145,9 +147,12 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Adaptor3d_Curve , shared_ptr<Adaptor3d_Curve>>(m,"Adaptor3d_Curve");
 
     static_cast<py::class_<Adaptor3d_Curve , shared_ptr<Adaptor3d_Curve>  >>(m.attr("Adaptor3d_Curve"))
+    // constructors
+    // custom constructors
     // methods
         .def("FirstParameter",
              (Standard_Real (Adaptor3d_Curve::*)() const) static_cast<Standard_Real (Adaptor3d_Curve::*)() const>(&Adaptor3d_Curve::FirstParameter),
@@ -240,11 +245,13 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_HCurve ,opencascade::handle<Adaptor3d_HCurve> ,Py_Adaptor3d_HCurve , Standard_Transient >>(m.attr("Adaptor3d_HCurve"))
+    // constructors
+    // custom constructors
     // methods
         .def("Curve",
              (const Adaptor3d_Curve & (Adaptor3d_HCurve::*)() const) static_cast<const Adaptor3d_Curve & (Adaptor3d_HCurve::*)() const>(&Adaptor3d_HCurve::Curve),
@@ -439,11 +446,13 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_HSurface ,opencascade::handle<Adaptor3d_HSurface> ,Py_Adaptor3d_HSurface , Standard_Transient >>(m.attr("Adaptor3d_HSurface"))
+    // constructors
+    // custom constructors
     // methods
         .def("Surface",
              (const Adaptor3d_Surface & (Adaptor3d_HSurface::*)() const) static_cast<const Adaptor3d_Surface & (Adaptor3d_HSurface::*)() const>(&Adaptor3d_HSurface::Surface),
@@ -743,12 +752,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Adaptor3d_HSurfaceTool , shared_ptr<Adaptor3d_HSurfaceTool>>(m,"Adaptor3d_HSurfaceTool");
 
     static_cast<py::class_<Adaptor3d_HSurfaceTool , shared_ptr<Adaptor3d_HSurfaceTool>  >>(m.attr("Adaptor3d_HSurfaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -877,13 +889,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
                     R"#(None)#"  , py::arg("S"),  py::arg("v1"),  py::arg("v2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_HVertex ,opencascade::handle<Adaptor3d_HVertex>  , Standard_Transient >>(m.attr("Adaptor3d_HVertex"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const TopAbs_Orientation,const Standard_Real >()  , py::arg("P"),  py::arg("Ori"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("Value",
              (gp_Pnt2d (Adaptor3d_HVertex::*)() ) static_cast<gp_Pnt2d (Adaptor3d_HVertex::*)() >(&Adaptor3d_HVertex::Value),
@@ -913,12 +927,14 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_InterFunc , shared_ptr<Adaptor3d_InterFunc>  , math_FunctionWithDerivative >>(m.attr("Adaptor3d_InterFunc"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real,const Standard_Integer >()  , py::arg("C"),  py::arg("FixVal"),  py::arg("Fix") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Adaptor3d_InterFunc::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Adaptor3d_InterFunc::*)( const Standard_Real ,  Standard_Real &  ) >(&Adaptor3d_InterFunc::Value),
@@ -933,12 +949,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Adaptor3d_Surface , shared_ptr<Adaptor3d_Surface>>(m,"Adaptor3d_Surface");
 
     static_cast<py::class_<Adaptor3d_Surface , shared_ptr<Adaptor3d_Surface>  >>(m.attr("Adaptor3d_Surface"))
+    // constructors
+    // custom constructors
     // methods
         .def("FirstUParameter",
              (Standard_Real (Adaptor3d_Surface::*)() const) static_cast<Standard_Real (Adaptor3d_Surface::*)() const>(&Adaptor3d_Surface::FirstUParameter),
@@ -1085,13 +1104,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_TopolTool ,opencascade::handle<Adaptor3d_TopolTool>  , Standard_Transient >>(m.attr("Adaptor3d_TopolTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("Surface") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Adaptor3d_TopolTool::*)() ) static_cast<void (Adaptor3d_TopolTool::*)() >(&Adaptor3d_TopolTool::Initialize),
@@ -1202,14 +1223,16 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_CurveOnSurface , shared_ptr<Adaptor3d_CurveOnSurface>  , Adaptor3d_Curve >>(m.attr("Adaptor3d_CurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("S") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("C"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Load",
              (void (Adaptor3d_CurveOnSurface::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (Adaptor3d_CurveOnSurface::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&Adaptor3d_CurveOnSurface::Load),
@@ -1320,13 +1343,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_HCurveOnSurface ,opencascade::handle<Adaptor3d_HCurveOnSurface>  , Adaptor3d_HCurve >>(m.attr("Adaptor3d_HCurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_CurveOnSurface & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Adaptor3d_HCurveOnSurface::*)( const Adaptor3d_CurveOnSurface &  ) ) static_cast<void (Adaptor3d_HCurveOnSurface::*)( const Adaptor3d_CurveOnSurface &  ) >(&Adaptor3d_HCurveOnSurface::Set),
@@ -1353,13 +1378,15 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_HIsoCurve ,opencascade::handle<Adaptor3d_HIsoCurve>  , Adaptor3d_HCurve >>(m.attr("Adaptor3d_HIsoCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_IsoCurve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Adaptor3d_HIsoCurve::*)( const Adaptor3d_IsoCurve &  ) ) static_cast<void (Adaptor3d_HIsoCurve::*)( const Adaptor3d_IsoCurve &  ) >(&Adaptor3d_HIsoCurve::Set),
@@ -1386,15 +1413,17 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Adaptor3d_IsoCurve , shared_ptr<Adaptor3d_IsoCurve>  , Adaptor3d_Curve >>(m.attr("Adaptor3d_IsoCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("S") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const GeomAbs_IsoType,const Standard_Real >()  , py::arg("S"),  py::arg("Iso"),  py::arg("Param") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const GeomAbs_IsoType,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("Iso"),  py::arg("Param"),  py::arg("WFirst"),  py::arg("WLast") )
+    // custom constructors
     // methods
         .def("Load",
              (void (Adaptor3d_IsoCurve::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (Adaptor3d_IsoCurve::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&Adaptor3d_IsoCurve::Load),
@@ -1517,25 +1546,25 @@ py::module m = static_cast<py::module>(main_module.attr("Adaptor3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Adaptor3d_HCurveOnSurface.hxx
-// ./opencascade/Adaptor3d_HVertex.hxx
 // ./opencascade/Adaptor3d_HSurfaceTool.hxx
-// ./opencascade/Adaptor3d_HSurface.hxx
-// ./opencascade/Adaptor3d_IsoCurve.hxx
-// ./opencascade/Adaptor3d_Surface.hxx
-// ./opencascade/Adaptor3d_SurfacePtr.hxx
-// ./opencascade/Adaptor3d_CurveOnSurface.hxx
-// ./opencascade/Adaptor3d_HIsoCurve.hxx
-// ./opencascade/Adaptor3d_HCurve.hxx
-// ./opencascade/Adaptor3d_InterFunc.hxx
 // ./opencascade/Adaptor3d_CurvePtr.hxx
-// ./opencascade/Adaptor3d_TopolTool.hxx
+// ./opencascade/Adaptor3d_Surface.hxx
+// ./opencascade/Adaptor3d_HSurface.hxx
+// ./opencascade/Adaptor3d_HCurve.hxx
 // ./opencascade/Adaptor3d_CurveOnSurfacePtr.hxx
+// ./opencascade/Adaptor3d_IsoCurve.hxx
+// ./opencascade/Adaptor3d_CurveOnSurface.hxx
+// ./opencascade/Adaptor3d_TopolTool.hxx
+// ./opencascade/Adaptor3d_HCurveOnSurface.hxx
+// ./opencascade/Adaptor3d_SurfacePtr.hxx
 // ./opencascade/Adaptor3d_Curve.hxx
+// ./opencascade/Adaptor3d_HIsoCurve.hxx
+// ./opencascade/Adaptor3d_InterFunc.hxx
+// ./opencascade/Adaptor3d_HVertex.hxx
 
 // operators
 

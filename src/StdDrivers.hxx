@@ -15,14 +15,14 @@ namespace py = pybind11;
 #include <TDocStd_Application.hxx>
 
 // module includes
-#include <StdDrivers.hxx>
 #include <StdDrivers_DocumentRetrievalDriver.hxx>
+#include <StdDrivers.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/StdDrivers.hxx
 // ./opencascade/StdDrivers_DocumentRetrievalDriver.hxx
+// ./opencascade/StdDrivers.hxx
 
 // user-defined post

@@ -19,6 +19,9 @@ namespace py = pybind11;
 #include <CDM_Document.hxx>
 #include <CDM_Application.hxx>
 #include <TDF_Label.hxx>
+#include <BinMDF_ADriverTable.hxx>
+#include <Message_Messenger.hxx>
+#include <CDM_Document.hxx>
 #include <Standard_GUID.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
@@ -27,9 +30,6 @@ namespace py = pybind11;
 #include <BinLDrivers_DocumentRetrievalDriver.hxx>
 #include <BinLDrivers_DocumentSection.hxx>
 #include <TDocStd_Application.hxx>
-#include <BinMDF_ADriverTable.hxx>
-#include <Message_Messenger.hxx>
-#include <CDM_Document.hxx>
 
 // module includes
 #include <BinLDrivers.hxx>
@@ -60,9 +60,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinLDrivers"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinLDrivers , shared_ptr<BinLDrivers>>(m,"BinLDrivers");
 
     static_cast<py::class_<BinLDrivers , shared_ptr<BinLDrivers>  >>(m.attr("BinLDrivers"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -80,12 +83,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinLDrivers"));
                     R"#(returns last storage version)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinLDrivers_DocumentRetrievalDriver ,opencascade::handle<BinLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >>(m.attr("BinLDrivers_DocumentRetrievalDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CreateDocument",
              (opencascade::handle<CDM_Document> (BinLDrivers_DocumentRetrievalDriver::*)() ) static_cast<opencascade::handle<CDM_Document> (BinLDrivers_DocumentRetrievalDriver::*)() >(&BinLDrivers_DocumentRetrievalDriver::CreateDocument),
@@ -112,13 +117,15 @@ py::module m = static_cast<py::module>(main_module.attr("BinLDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinLDrivers_DocumentSection , shared_ptr<BinLDrivers_DocumentSection>  >>(m.attr("BinLDrivers_DocumentSection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString &,const Standard_Boolean >()  , py::arg("theName"),  py::arg("isPostRead") )
+    // custom constructors
     // methods
         .def("Name",
              (const TCollection_AsciiString & (BinLDrivers_DocumentSection::*)() const) static_cast<const TCollection_AsciiString & (BinLDrivers_DocumentSection::*)() const>(&BinLDrivers_DocumentSection::Name),
@@ -147,16 +154,18 @@ py::module m = static_cast<py::module>(main_module.attr("BinLDrivers"));
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("ReadTOC_s",
-                    (void (*)( BinLDrivers_DocumentSection & ,  std::istream &  ) ) static_cast<void (*)( BinLDrivers_DocumentSection & ,  std::istream &  ) >(&BinLDrivers_DocumentSection::ReadTOC),
-                    R"#(Fill a DocumentSection instance from the data that are read from TOC.)#"  , py::arg("theSection"),  py::arg("theIS"))
+                    (void (*)( BinLDrivers_DocumentSection & ,  std::istream & ,  const Standard_Integer  ) ) static_cast<void (*)( BinLDrivers_DocumentSection & ,  std::istream & ,  const Standard_Integer  ) >(&BinLDrivers_DocumentSection::ReadTOC),
+                    R"#(Fill a DocumentSection instance from the data that are read from TOC.)#"  , py::arg("theSection"),  py::arg("theIS"),  py::arg("theDocFormatVersion"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinLDrivers_DocumentStorageDriver ,opencascade::handle<BinLDrivers_DocumentStorageDriver>  , PCDM_StorageDriver >>(m.attr("BinLDrivers_DocumentStorageDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Write",
              (void (BinLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) ) static_cast<void (BinLDrivers_DocumentStorageDriver::*)( const opencascade::handle<CDM_Document> & ,  const TCollection_ExtendedString &  ) >(&BinLDrivers_DocumentStorageDriver::Write),
@@ -183,16 +192,16 @@ py::module m = static_cast<py::module>(main_module.attr("BinLDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/BinLDrivers_DocumentSection.hxx
-// ./opencascade/BinLDrivers_DocumentRetrievalDriver.hxx
-// ./opencascade/BinLDrivers.hxx
-// ./opencascade/BinLDrivers_Marker.hxx
-// ./opencascade/BinLDrivers_DocumentStorageDriver.hxx
 // ./opencascade/BinLDrivers_VectorOfDocumentSection.hxx
+// ./opencascade/BinLDrivers_Marker.hxx
+// ./opencascade/BinLDrivers_DocumentRetrievalDriver.hxx
+// ./opencascade/BinLDrivers_DocumentStorageDriver.hxx
+// ./opencascade/BinLDrivers.hxx
 
 // operators
 

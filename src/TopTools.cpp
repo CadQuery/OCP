@@ -13,11 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TopTools_LocationSet.hxx>
-#include <Message_ProgressIndicator.hxx>
 #include <Message_ProgressIndicator.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Standard_Mutex.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopTools_LocationSet.hxx>
+#include <Message_ProgressIndicator.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <TopTools_OrientedShapeMapHasher.hxx>
@@ -80,11 +81,9 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfShapeSequenceOfShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_DataMapOfShapeReal.hxx
+// ./opencascade/TopTools_DataMapOfOrientedShapeShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_DataMapOfShapeReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopTools_IndexedDataMapOfShapeAddress.hxx
+// ./opencascade/TopTools_DataMapOfOrientedShapeShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfShapeListOfShape.hxx
 #include "NCollection.hxx"
@@ -92,38 +91,36 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/TopTools_ListOfShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_MapOfShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeReal.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_MapOfShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeReal.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_MapOfOrientedShape.hxx
+// ./opencascade/TopTools_IndexedDataMapOfShapeShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_MapOfOrientedShape.hxx
+// ./opencascade/TopTools_IndexedDataMapOfShapeAddress.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_Array1OfListOfShape.hxx
+// ./opencascade/TopTools_IndexedDataMapOfShapeListOfShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopTools_DataMapOfShapeBox.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_SequenceOfShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_ListOfListOfShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_DataMapOfOrientedShapeShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeInteger.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_DataMapOfOrientedShapeShape.hxx
+// ./opencascade/TopTools_Array1OfListOfShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopTools_Array1OfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_IndexedDataMapOfShapeReal.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_IndexedDataMapOfShapeListOfShape.hxx
+// ./opencascade/TopTools_IndexedMapOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_IndexedMapOfOrientedShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_Array2OfShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_DataMapOfShapeBox.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopTools_IndexedDataMapOfShapeShape.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopTools_Array1OfShape.hxx
-#include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfOrientedShapeInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfOrientedShapeInteger.hxx
@@ -132,19 +129,23 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfShapeShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_IndexedMapOfShape.hxx
+// ./opencascade/TopTools_MapOfShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopTools_DataMapOfShapeInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopTools_DataMapOfShapeInteger.hxx
+// ./opencascade/TopTools_MapOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfShapeListOfInteger.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfShapeListOfInteger.hxx
 #include "NCollection.hxx"
+// ./opencascade/TopTools_MapOfOrientedShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopTools_MapOfOrientedShape.hxx
+#include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfIntegerShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfIntegerShape.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopTools_ListOfListOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopTools_DataMapOfIntegerListOfShape.hxx
 #include "NCollection.hxx"
@@ -168,9 +169,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TopTools , shared_ptr<TopTools>>(m,"TopTools");
 
     static_cast<py::class_<TopTools , shared_ptr<TopTools>  >>(m.attr("TopTools"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -182,14 +186,17 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
                     R"#(This is to bypass an extraction bug. It will force the inclusion of Standard_Integer.hxx itself including Standard_OStream.hxx at the correct position.)#"  , py::arg("I"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTools_HArray1OfListOfShape ,opencascade::handle<TopTools_HArray1OfListOfShape>  , TopTools_Array1OfListOfShape , Standard_Transient >>(m.attr("TopTools_HArray1OfListOfShape"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const NCollection_List<TopoDS_Shape> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TopTools_ListOfShape> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TopTools_Array1OfListOfShape & (TopTools_HArray1OfListOfShape::*)() const) static_cast<const TopTools_Array1OfListOfShape & (TopTools_HArray1OfListOfShape::*)() const>(&TopTools_HArray1OfListOfShape::Array1),
@@ -210,14 +217,17 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTools_HArray1OfShape ,opencascade::handle<TopTools_HArray1OfShape>  , TopTools_Array1OfShape , Standard_Transient >>(m.attr("TopTools_HArray1OfShape"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const TopoDS_Shape & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TopoDS_Shape> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TopTools_Array1OfShape & (TopTools_HArray1OfShape::*)() const) static_cast<const TopTools_Array1OfShape & (TopTools_HArray1OfShape::*)() const>(&TopTools_HArray1OfShape::Array1),
@@ -238,14 +248,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTools_HArray2OfShape ,opencascade::handle<TopTools_HArray2OfShape>  , TopTools_Array2OfShape , Standard_Transient >>(m.attr("TopTools_HArray2OfShape"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const TopoDS_Shape & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<TopoDS_Shape> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TopTools_Array2OfShape & (TopTools_HArray2OfShape::*)() const) static_cast<const TopTools_Array2OfShape & (TopTools_HArray2OfShape::*)() const>(&TopTools_HArray2OfShape::Array2),
@@ -266,13 +278,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTools_HSequenceOfShape ,opencascade::handle<TopTools_HSequenceOfShape>  , TopTools_SequenceOfShape , Standard_Transient >>(m.attr("TopTools_HSequenceOfShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<TopoDS_Shape> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TopTools_SequenceOfShape & (TopTools_HSequenceOfShape::*)() const) static_cast<const TopTools_SequenceOfShape & (TopTools_HSequenceOfShape::*)() const>(&TopTools_HSequenceOfShape::Sequence),
@@ -299,12 +313,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTools_LocationSet , shared_ptr<TopTools_LocationSet>  >>(m.attr("TopTools_LocationSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TopTools_LocationSet::*)() ) static_cast<void (TopTools_LocationSet::*)() >(&TopTools_LocationSet::Clear),
@@ -337,12 +353,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTools_MutexForShapeProvider , shared_ptr<TopTools_MutexForShapeProvider>  >>(m.attr("TopTools_MutexForShapeProvider"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CreateMutexesForSubShapes",
              (void (TopTools_MutexForShapeProvider::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) ) static_cast<void (TopTools_MutexForShapeProvider::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum  ) >(&TopTools_MutexForShapeProvider::CreateMutexesForSubShapes),
@@ -360,46 +378,54 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopTools_OrientedShapeMapHasher , shared_ptr<TopTools_OrientedShapeMapHasher>>(m,"TopTools_OrientedShapeMapHasher");
 
     static_cast<py::class_<TopTools_OrientedShapeMapHasher , shared_ptr<TopTools_OrientedShapeMapHasher>  >>(m.attr("TopTools_OrientedShapeMapHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
                     (Standard_Integer (*)( const TopoDS_Shape & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TopoDS_Shape & ,  const Standard_Integer  ) >(&TopTools_OrientedShapeMapHasher::HashCode),
-                    R"#(Returns a HasCode value for the Key <K> in the range 0..Upper.)#"  , py::arg("S"),  py::arg("Upper"))
+                    R"#(Computes a hash code for the given shape, in the range [1, theUpperBound])#"  , py::arg("theShape"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&TopTools_OrientedShapeMapHasher::IsEqual),
                     R"#(Returns True when the two keys are equal. Two same keys must have the same hashcode, the contrary is not necessary.)#"  , py::arg("S1"),  py::arg("S2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopTools_ShapeMapHasher , shared_ptr<TopTools_ShapeMapHasher>>(m,"TopTools_ShapeMapHasher");
 
     static_cast<py::class_<TopTools_ShapeMapHasher , shared_ptr<TopTools_ShapeMapHasher>  >>(m.attr("TopTools_ShapeMapHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const TopoDS_Shape & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TopoDS_Shape & ,  const Standard_Integer  ) >(&TopTools_ShapeMapHasher::HashCode),
-                    R"#(Returns a HasCode value for the Key <K> in the range 0..Upper.)#"  , py::arg("S"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const TopoDS_Shape & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TopoDS_Shape & ,  Standard_Integer  ) >(&TopTools_ShapeMapHasher::HashCode),
+                    R"#(Computes a hash code for the given shape, in the range [1, theUpperBound])#"  , py::arg("theShape"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&TopTools_ShapeMapHasher::IsEqual),
                     R"#(Returns True when the two keys are the same. Two same keys must have the same hashcode, the contrary is not necessary.)#"  , py::arg("S1"),  py::arg("S2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopTools_ShapeSet , shared_ptr<TopTools_ShapeSet>  >>(m.attr("TopTools_ShapeSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetFormatNb",
              (void (TopTools_ShapeSet::*)( const Standard_Integer  ) ) static_cast<void (TopTools_ShapeSet::*)( const Standard_Integer  ) >(&TopTools_ShapeSet::SetFormatNb),
@@ -489,87 +515,87 @@ py::module m = static_cast<py::module>(main_module.attr("TopTools"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeSequenceOfShape.hxx
 // ./opencascade/TopTools_DataMapOfShapeSequenceOfShape.hxx
-// ./opencascade/TopTools_LocationSetPtr.hxx
-// ./opencascade/TopTools_DataMapOfShapeReal.hxx
-// ./opencascade/TopTools_IndexedDataMapOfShapeAddress.hxx
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeListOfShape.hxx
-// ./opencascade/TopTools_DataMapOfShapeListOfShape.hxx
-// ./opencascade/TopTools_ListOfShape.hxx
-// ./opencascade/TopTools_ListIteratorOfListOfShape.hxx
-// ./opencascade/TopTools_MapOfShape.hxx
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeShape.hxx
-// ./opencascade/TopTools_HSequenceOfShape.hxx
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfIntegerShape.hxx
-// ./opencascade/TopTools_MapOfOrientedShape.hxx
-// ./opencascade/TopTools_Array1OfListOfShape.hxx
-// ./opencascade/TopTools_SequenceOfShape.hxx
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeInteger.hxx
-// ./opencascade/TopTools_ListOfListOfShape.hxx
-// ./opencascade/TopTools_HArray1OfListOfShape.hxx
-// ./opencascade/TopTools_LocationSet.hxx
 // ./opencascade/TopTools_DataMapOfOrientedShapeShape.hxx
-// ./opencascade/TopTools_IndexedDataMapOfShapeReal.hxx
-// ./opencascade/TopTools_IndexedDataMapOfShapeListOfShape.hxx
-// ./opencascade/TopTools_IndexedMapOfOrientedShape.hxx
-// ./opencascade/TopTools_Array2OfShape.hxx
-// ./opencascade/TopTools_MapIteratorOfMapOfOrientedShape.hxx
-// ./opencascade/TopTools_HArray2OfShape.hxx
-// ./opencascade/TopTools_MapIteratorOfMapOfShape.hxx
-// ./opencascade/TopTools_OrientedShapeMapHasher.hxx
-// ./opencascade/TopTools_DataMapOfShapeBox.hxx
-// ./opencascade/TopTools_ShapeSet.hxx
-// ./opencascade/TopTools_MutexForShapeProvider.hxx
-// ./opencascade/TopTools_IndexedDataMapOfShapeShape.hxx
-// ./opencascade/TopTools_Array1OfShape.hxx
-// ./opencascade/TopTools_DataMapOfOrientedShapeInteger.hxx
-// ./opencascade/TopTools_DataMapOfShapeShape.hxx
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfOrientedShapeShape.hxx
-// ./opencascade/TopTools_IndexedMapOfShape.hxx
-// ./opencascade/TopTools_DataMapOfShapeInteger.hxx
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfIntegerListOfShape.hxx
-// ./opencascade/TopTools_DataMapOfShapeListOfInteger.hxx
-// ./opencascade/TopTools_HArray1OfShape.hxx
 // ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeListOfInteger.hxx
-// ./opencascade/TopTools_DataMapIteratorOfDataMapOfOrientedShapeInteger.hxx
-// ./opencascade/TopTools.hxx
-// ./opencascade/TopTools_DataMapOfIntegerShape.hxx
-// ./opencascade/TopTools_DataMapOfIntegerListOfShape.hxx
-// ./opencascade/TopTools_ShapeMapHasher.hxx
+// ./opencascade/TopTools_DataMapOfShapeListOfShape.hxx
+// ./opencascade/TopTools_HArray2OfShape.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfOrientedShapeShape.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfIntegerShape.hxx
+// ./opencascade/TopTools_HArray1OfListOfShape.hxx
+// ./opencascade/TopTools_ListOfShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeReal.hxx
+// ./opencascade/TopTools_IndexedDataMapOfShapeShape.hxx
+// ./opencascade/TopTools_IndexedDataMapOfShapeAddress.hxx
+// ./opencascade/TopTools_IndexedDataMapOfShapeListOfShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeBox.hxx
+// ./opencascade/TopTools_SequenceOfShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeInteger.hxx
+// ./opencascade/TopTools_Array1OfListOfShape.hxx
+// ./opencascade/TopTools_Array1OfShape.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeInteger.hxx
+// ./opencascade/TopTools_ShapeSet.hxx
+// ./opencascade/TopTools_HArray1OfShape.hxx
+// ./opencascade/TopTools_IndexedDataMapOfShapeReal.hxx
+// ./opencascade/TopTools_IndexedMapOfShape.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeListOfShape.hxx
+// ./opencascade/TopTools_MapIteratorOfMapOfOrientedShape.hxx
+// ./opencascade/TopTools_MutexForShapeProvider.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfIntegerListOfShape.hxx
+// ./opencascade/TopTools_HSequenceOfShape.hxx
+// ./opencascade/TopTools_IndexedMapOfOrientedShape.hxx
 // ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeReal.hxx
+// ./opencascade/TopTools_LocationSetPtr.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeShape.hxx
+// ./opencascade/TopTools_Array2OfShape.hxx
+// ./opencascade/TopTools_MapIteratorOfMapOfShape.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfShapeSequenceOfShape.hxx
+// ./opencascade/TopTools_DataMapOfOrientedShapeInteger.hxx
+// ./opencascade/TopTools_ShapeMapHasher.hxx
+// ./opencascade/TopTools_DataMapOfShapeShape.hxx
+// ./opencascade/TopTools_LocationSet.hxx
+// ./opencascade/TopTools_MapOfShape.hxx
+// ./opencascade/TopTools_DataMapOfShapeListOfInteger.hxx
+// ./opencascade/TopTools.hxx
+// ./opencascade/TopTools_MapOfOrientedShape.hxx
+// ./opencascade/TopTools_DataMapOfIntegerShape.hxx
+// ./opencascade/TopTools_OrientedShapeMapHasher.hxx
+// ./opencascade/TopTools_ListIteratorOfListOfShape.hxx
+// ./opencascade/TopTools_ListOfListOfShape.hxx
+// ./opencascade/TopTools_DataMapIteratorOfDataMapOfOrientedShapeInteger.hxx
+// ./opencascade/TopTools_DataMapOfIntegerListOfShape.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_DataMap<TopoDS_Shape, TopTools_SequenceOfShape, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeSequenceOfShape");  
-    register_template_NCollection_DataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeReal");  
-    register_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Address, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeAddress");  
+    register_template_NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_OrientedShapeMapHasher>(m,"TopTools_DataMapOfOrientedShapeShape");  
     register_template_NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeListOfShape");  
     register_template_NCollection_List<TopoDS_Shape>(m,"TopTools_ListOfShape");  
-    register_template_NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_MapOfShape");  
-    register_template_NCollection_Map<TopoDS_Shape, TopTools_OrientedShapeMapHasher>(m,"TopTools_MapOfOrientedShape");  
-    register_template_NCollection_Array1<TopTools_ListOfShape>(m,"TopTools_Array1OfListOfShape");  
-    register_template_NCollection_Sequence<TopoDS_Shape>(m,"TopTools_SequenceOfShape");  
-    register_template_NCollection_List<TopTools_ListOfShape>(m,"TopTools_ListOfListOfShape");  
-    register_template_NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_OrientedShapeMapHasher>(m,"TopTools_DataMapOfOrientedShapeShape");  
-    register_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeReal");  
+    register_template_NCollection_DataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeReal");  
+    register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeShape");  
+    register_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Address, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeAddress");  
     register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeListOfShape");  
+    register_template_NCollection_DataMap<TopoDS_Shape, Bnd_Box, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeBox");  
+    register_template_NCollection_Sequence<TopoDS_Shape>(m,"TopTools_SequenceOfShape");  
+    register_template_NCollection_DataMap<TopoDS_Shape, Standard_Integer, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeInteger");  
+    register_template_NCollection_Array1<TopTools_ListOfShape>(m,"TopTools_Array1OfListOfShape");  
+    register_template_NCollection_Array1<TopoDS_Shape>(m,"TopTools_Array1OfShape");  
+    register_template_NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeReal");  
+    register_template_NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedMapOfShape");  
     register_template_NCollection_IndexedMap<TopoDS_Shape, TopTools_OrientedShapeMapHasher>(m,"TopTools_IndexedMapOfOrientedShape");  
     register_template_NCollection_Array2<TopoDS_Shape>(m,"TopTools_Array2OfShape");  
-    register_template_NCollection_DataMap<TopoDS_Shape, Bnd_Box, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeBox");  
-    register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedDataMapOfShapeShape");  
-    register_template_NCollection_Array1<TopoDS_Shape>(m,"TopTools_Array1OfShape");  
     register_template_NCollection_DataMap<TopoDS_Shape, Standard_Integer, TopTools_OrientedShapeMapHasher>(m,"TopTools_DataMapOfOrientedShapeInteger");  
     register_template_NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeShape");  
-    register_template_NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_IndexedMapOfShape");  
-    register_template_NCollection_DataMap<TopoDS_Shape, Standard_Integer, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeInteger");  
+    register_template_NCollection_Map<TopoDS_Shape, TopTools_ShapeMapHasher>(m,"TopTools_MapOfShape");  
     register_template_NCollection_DataMap<TopoDS_Shape, TColStd_ListOfInteger, TopTools_ShapeMapHasher>(m,"TopTools_DataMapOfShapeListOfInteger");  
+    register_template_NCollection_Map<TopoDS_Shape, TopTools_OrientedShapeMapHasher>(m,"TopTools_MapOfOrientedShape");  
     register_template_NCollection_DataMap<Standard_Integer, TopoDS_Shape, TColStd_MapIntegerHasher>(m,"TopTools_DataMapOfIntegerShape");  
+    register_template_NCollection_List<TopTools_ListOfShape>(m,"TopTools_ListOfListOfShape");  
     register_template_NCollection_DataMap<Standard_Integer, TopTools_ListOfShape, TColStd_MapIntegerHasher>(m,"TopTools_DataMapOfIntegerListOfShape");  
 
 

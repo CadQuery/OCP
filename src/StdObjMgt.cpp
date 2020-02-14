@@ -13,13 +13,13 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <StdObjMgt_Persistent.hxx>
+#include <Standard_GUID.hxx>
 #include <StdObjMgt_ReadData.hxx>
 #include <StdObjMgt_WriteData.hxx>
 #include <TDocStd_Document.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HExtendedString.hxx>
-#include <StdObjMgt_Persistent.hxx>
-#include <Standard_GUID.hxx>
 #include <StdObjMgt_Persistent.hxx>
 #include <Standard_GUID.hxx>
 #include <StdObjMgt_Persistent.hxx>
@@ -53,6 +53,7 @@ py::module m = static_cast<py::module>(main_module.attr("StdObjMgt"));
     public:
         using StdObjMgt_Persistent::StdObjMgt_Persistent;
         
+        
         // public pure virtual
         void Read(StdObjMgt_ReadData & theReadData) override { PYBIND11_OVERLOAD_PURE(void,StdObjMgt_Persistent,Read,theReadData) };
         void Write(StdObjMgt_WriteData & theWriteData) const  override { PYBIND11_OVERLOAD_PURE(void,StdObjMgt_Persistent,Write,theWriteData) };
@@ -69,20 +70,25 @@ py::module m = static_cast<py::module>(main_module.attr("StdObjMgt"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdObjMgt_MapOfInstantiators , shared_ptr<StdObjMgt_MapOfInstantiators>>(m,"StdObjMgt_MapOfInstantiators");
 
     static_cast<py::class_<StdObjMgt_MapOfInstantiators , shared_ptr<StdObjMgt_MapOfInstantiators>  >>(m.attr("StdObjMgt_MapOfInstantiators"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdObjMgt_Persistent ,opencascade::handle<StdObjMgt_Persistent> ,Py_StdObjMgt_Persistent , Standard_Transient >>(m.attr("StdObjMgt_Persistent"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Read",
              (void (StdObjMgt_Persistent::*)( StdObjMgt_ReadData &  ) ) static_cast<void (StdObjMgt_Persistent::*)( StdObjMgt_ReadData &  ) >(&StdObjMgt_Persistent::Read),
@@ -133,12 +139,14 @@ py::module m = static_cast<py::module>(main_module.attr("StdObjMgt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdObjMgt_ReadData , shared_ptr<StdObjMgt_ReadData>  >>(m.attr("StdObjMgt_ReadData"))
+    // constructors
         .def(py::init< Storage_BaseDriver &,const Standard_Integer >()  , py::arg("theDriver"),  py::arg("theNumberOfObjects") )
+    // custom constructors
     // methods
         .def("ReadPersistentObject",
              (void (StdObjMgt_ReadData::*)( const Standard_Integer  ) ) static_cast<void (StdObjMgt_ReadData::*)( const Standard_Integer  ) >(&StdObjMgt_ReadData::ReadPersistentObject),
@@ -153,23 +161,28 @@ py::module m = static_cast<py::module>(main_module.attr("StdObjMgt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdObjMgt_SharedObject , shared_ptr<StdObjMgt_SharedObject>>(m,"StdObjMgt_SharedObject");
 
     static_cast<py::class_<StdObjMgt_SharedObject , shared_ptr<StdObjMgt_SharedObject>  >>(m.attr("StdObjMgt_SharedObject"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StdObjMgt_WriteData , shared_ptr<StdObjMgt_WriteData>  >>(m.attr("StdObjMgt_WriteData"))
+    // constructors
         .def(py::init< Storage_BaseDriver & >()  , py::arg("theDriver") )
+    // custom constructors
     // methods
         .def("WritePersistentObject",
              (void (StdObjMgt_WriteData::*)( const opencascade::handle<StdObjMgt_Persistent> &  ) ) static_cast<void (StdObjMgt_WriteData::*)( const opencascade::handle<StdObjMgt_Persistent> &  ) >(&StdObjMgt_WriteData::WritePersistentObject),
@@ -178,16 +191,16 @@ py::module m = static_cast<py::module>(main_module.attr("StdObjMgt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdObjMgt_Persistent.hxx
 // ./opencascade/StdObjMgt_MapOfInstantiators.hxx
-// ./opencascade/StdObjMgt_ReadData.hxx
-// ./opencascade/StdObjMgt_WriteData.hxx
-// ./opencascade/StdObjMgt_Attribute.hxx
 // ./opencascade/StdObjMgt_SharedObject.hxx
+// ./opencascade/StdObjMgt_ReadData.hxx
+// ./opencascade/StdObjMgt_Persistent.hxx
+// ./opencascade/StdObjMgt_Attribute.hxx
+// ./opencascade/StdObjMgt_WriteData.hxx
 // ./opencascade/StdObjMgt_TransientPersistentMap.hxx
 
 // operators

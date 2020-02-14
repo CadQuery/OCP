@@ -38,7 +38,9 @@ py::module m = static_cast<py::module>(main_module.attr("TopCnx"));
 
 
     static_cast<py::class_<TopCnx_EdgeFaceTransition , shared_ptr<TopCnx_EdgeFaceTransition>  >>(m.attr("TopCnx_EdgeFaceTransition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (TopCnx_EdgeFaceTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const Standard_Real  ) ) static_cast<void (TopCnx_EdgeFaceTransition::*)( const gp_Dir & ,  const gp_Dir & ,  const Standard_Real  ) >(&TopCnx_EdgeFaceTransition::Reset),
@@ -59,7 +61,7 @@ py::module m = static_cast<py::module>(main_module.attr("TopCnx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

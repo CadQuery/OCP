@@ -13,47 +13,48 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <Adaptor3d_TopolTool.hxx>
-#include <Contap_HContTool.hxx>
-#include <Contap_SurfFunction.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor3d_HVertex.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_TopolTool.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <gp_Pnt.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <math_Matrix.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
 #include <IntSurf_PathPointTool.hxx>
 #include <IntSurf_InteriorPointTool.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HSurfaceTool.hxx>
 #include <Contap_SurfFunction.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
+#include <gp_Pnt.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <Adaptor3d_TopolTool.hxx>
+#include <Contap_HContTool.hxx>
+#include <Contap_SurfFunction.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HVertex.hxx>
 #include <Adaptor3d_HVertex.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Contap_HCurve2dTool.hxx>
 #include <Contap_HContTool.hxx>
 #include <Adaptor3d_TopolTool.hxx>
 #include <Contap_ArcFunction.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor3d_HVertex.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
 
 // module includes
 #include <Contap_ArcFunction.hxx>
@@ -81,13 +82,13 @@ namespace py = pybind11;
 #include <Contap_TheSequenceOfPoint.hxx>
 
 // template related includes
-// ./opencascade/Contap_SequenceOfSegmentOfTheSearch.hxx
-#include "NCollection.hxx"
 // ./opencascade/Contap_TheSequenceOfPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/Contap_TheSequenceOfLine.hxx
 #include "NCollection.hxx"
 // ./opencascade/Contap_SequenceOfIWLineOfTheIWalking.hxx
 #include "NCollection.hxx"
-// ./opencascade/Contap_TheSequenceOfLine.hxx
+// ./opencascade/Contap_SequenceOfSegmentOfTheSearch.hxx
 #include "NCollection.hxx"
 // ./opencascade/Contap_SequenceOfPathPointOfTheSearch.hxx
 #include "NCollection.hxx"
@@ -111,7 +112,9 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
 
 
     static_cast<py::class_<Contap_ArcFunction , shared_ptr<Contap_ArcFunction>  , math_FunctionWithDerivative >>(m.attr("Contap_ArcFunction"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (Contap_ArcFunction::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (Contap_ArcFunction::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&Contap_ArcFunction::Set),
@@ -186,12 +189,14 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_ContAna , shared_ptr<Contap_ContAna>  >>(m.attr("Contap_ContAna"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Contap_ContAna::*)( const gp_Sphere & ,  const gp_Dir &  ) ) static_cast<void (Contap_ContAna::*)( const gp_Sphere & ,  const gp_Dir &  ) >(&Contap_ContAna::Perform),
@@ -251,11 +256,12 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_Contour , shared_ptr<Contap_Contour>  >>(m.attr("Contap_Contour"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Vec & >()  , py::arg("Direction") )
         .def(py::init< const gp_Vec &,const Standard_Real >()  , py::arg("Direction"),  py::arg("Angle") )
@@ -263,6 +269,7 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const gp_Vec & >()  , py::arg("Surf"),  py::arg("Domain"),  py::arg("Direction") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const gp_Vec &,const Standard_Real >()  , py::arg("Surf"),  py::arg("Domain"),  py::arg("Direction"),  py::arg("Angle") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const gp_Pnt & >()  , py::arg("Surf"),  py::arg("Domain"),  py::arg("Eye") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Contap_Contour::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> &  ) ) static_cast<void (Contap_Contour::*)( const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> &  ) >(&Contap_Contour::Perform),
@@ -319,12 +326,15 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Contap_HContTool , shared_ptr<Contap_HContTool>>(m,"Contap_HContTool");
 
     static_cast<py::class_<Contap_HContTool , shared_ptr<Contap_HContTool>  >>(m.attr("Contap_HContTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -384,12 +394,15 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
                     []( const opencascade::handle<Adaptor2d_HCurve2d> & C,const Standard_Integer Index,gp_Pnt & Pt ){ Standard_Real  Tol; Standard_Real  U; Contap_HContTool::Value(C,Index,Pt,Tol,U); return std::make_tuple(Tol,U); },
                     R"#(Returns the value (Pt), the tolerance (Tol), and the parameter (U) on the arc A , of the intersection point of range Index.)#"  , py::arg("C"),  py::arg("Index"),  py::arg("Pt"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Contap_HCurve2dTool , shared_ptr<Contap_HCurve2dTool>>(m,"Contap_HCurve2dTool");
 
     static_cast<py::class_<Contap_HCurve2dTool , shared_ptr<Contap_HCurve2dTool>  >>(m.attr("Contap_HCurve2dTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -467,12 +480,14 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U0"),  py::arg("U1"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_Line , shared_ptr<Contap_Line>  >>(m.attr("Contap_Line"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetLineOn2S",
              (void (Contap_Line::*)( const opencascade::handle<IntSurf_LineOn2S> &  ) ) static_cast<void (Contap_Line::*)( const opencascade::handle<IntSurf_LineOn2S> &  ) >(&Contap_Line::SetLineOn2S),
@@ -562,13 +577,15 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_Point , shared_ptr<Contap_Point>  >>(m.attr("Contap_Point"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real >()  , py::arg("Pt"),  py::arg("U"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (Contap_Point::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Contap_Point::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) >(&Contap_Point::SetValue),
@@ -682,12 +699,14 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_SurfFunction , shared_ptr<Contap_SurfFunction>  , math_FunctionSetWithDerivatives >>(m.attr("Contap_SurfFunction"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (Contap_SurfFunction::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (Contap_SurfFunction::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&Contap_SurfFunction::Set),
@@ -755,6 +774,9 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
         .def("Surface",
              (const opencascade::handle<Adaptor3d_HSurface> & (Contap_SurfFunction::*)() const) static_cast<const opencascade::handle<Adaptor3d_HSurface> & (Contap_SurfFunction::*)() const>(&Contap_SurfFunction::Surface),
              R"#(None)#" )
+        .def("PSurface",
+             (const opencascade::handle<Adaptor3d_HSurface> & (Contap_SurfFunction::*)() const) static_cast<const opencascade::handle<Adaptor3d_HSurface> & (Contap_SurfFunction::*)() const>(&Contap_SurfFunction::PSurface),
+             R"#(Method is entered for compatibility with IntPatch_TheSurfFunction.)#" )
         .def("Set",
              (void (Contap_SurfFunction::*)( const gp_Pnt &  ) ) static_cast<void (Contap_SurfFunction::*)( const gp_Pnt &  ) >(&Contap_SurfFunction::Set),
              R"#(None)#"  , py::arg("Eye"))
@@ -804,12 +826,15 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Contap_SurfProps , shared_ptr<Contap_SurfProps>>(m,"Contap_SurfProps");
 
     static_cast<py::class_<Contap_SurfProps , shared_ptr<Contap_SurfProps>  >>(m.attr("Contap_SurfProps"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -824,13 +849,15 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
                     R"#(Computes the point <P>, normal vector <N>, and its derivatives <Dnu> and <Dnv> on <S> at parameters U,V.)#"  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("P"),  py::arg("N"),  py::arg("Dnu"),  py::arg("Dnv"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_TheHSequenceOfPoint ,opencascade::handle<Contap_TheHSequenceOfPoint>  , Contap_TheSequenceOfPoint , Standard_Transient >>(m.attr("Contap_TheHSequenceOfPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<Contap_Point> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const Contap_TheSequenceOfPoint & (Contap_TheHSequenceOfPoint::*)() const) static_cast<const Contap_TheSequenceOfPoint & (Contap_TheHSequenceOfPoint::*)() const>(&Contap_TheHSequenceOfPoint::Sequence),
@@ -857,12 +884,14 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_TheIWLineOfTheIWalking ,opencascade::handle<Contap_TheIWLineOfTheIWalking>  , Standard_Transient >>(m.attr("Contap_TheIWLineOfTheIWalking"))
+    // constructors
         .def(py::init<  const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator")=static_cast< const opencascade::handle<NCollection_BaseAllocator> &>(0) )
+    // custom constructors
     // methods
         .def("Reverse",
              (void (Contap_TheIWLineOfTheIWalking::*)() ) static_cast<void (Contap_TheIWLineOfTheIWalking::*)() >(&Contap_TheIWLineOfTheIWalking::Reverse),
@@ -958,12 +987,14 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_TheIWalking , shared_ptr<Contap_TheIWalking>  >>(m.attr("Contap_TheIWalking"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Epsilon"),  py::arg("Deflection"),  py::arg("Step"),  py::arg("theToFillHoles")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("SetTolerance",
              (void (Contap_TheIWalking::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Contap_TheIWalking::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Contap_TheIWalking::SetTolerance),
@@ -993,14 +1024,16 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_ThePathPointOfTheSearch , shared_ptr<Contap_ThePathPointOfTheSearch>  >>(m.attr("Contap_ThePathPointOfTheSearch"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real,const opencascade::handle<Adaptor3d_HVertex> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real >()  , py::arg("P"),  py::arg("Tol"),  py::arg("V"),  py::arg("A"),  py::arg("Parameter") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real >()  , py::arg("P"),  py::arg("Tol"),  py::arg("A"),  py::arg("Parameter") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (Contap_ThePathPointOfTheSearch::*)( const gp_Pnt & ,  const Standard_Real ,  const opencascade::handle<Adaptor3d_HVertex> & ,  const opencascade::handle<Adaptor2d_HCurve2d> & ,  const Standard_Real  ) ) static_cast<void (Contap_ThePathPointOfTheSearch::*)( const gp_Pnt & ,  const Standard_Real ,  const opencascade::handle<Adaptor3d_HVertex> & ,  const opencascade::handle<Adaptor2d_HCurve2d> & ,  const Standard_Real  ) >(&Contap_ThePathPointOfTheSearch::SetValue),
@@ -1030,12 +1063,14 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_TheSearch , shared_ptr<Contap_TheSearch>  >>(m.attr("Contap_TheSearch"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Contap_TheSearch::*)( Contap_ArcFunction & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (Contap_TheSearch::*)( Contap_ArcFunction & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&Contap_TheSearch::Perform),
@@ -1062,13 +1097,15 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_TheSearchInside , shared_ptr<Contap_TheSearchInside>  >>(m.attr("Contap_TheSearchInside"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< Contap_SurfFunction &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_TopolTool> &,const Standard_Real >()  , py::arg("F"),  py::arg("Surf"),  py::arg("T"),  py::arg("Epsilon") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Contap_TheSearchInside::*)( Contap_SurfFunction & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real  ) ) static_cast<void (Contap_TheSearchInside::*)( Contap_SurfFunction & ,  const opencascade::handle<Adaptor3d_HSurface> & ,  const opencascade::handle<Adaptor3d_TopolTool> & ,  const Standard_Real  ) >(&Contap_TheSearchInside::Perform),
@@ -1089,12 +1126,14 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Contap_TheSegmentOfTheSearch , shared_ptr<Contap_TheSegmentOfTheSearch>  >>(m.attr("Contap_TheSegmentOfTheSearch"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (Contap_TheSegmentOfTheSearch::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) ) static_cast<void (Contap_TheSegmentOfTheSearch::*)( const opencascade::handle<Adaptor2d_HCurve2d> &  ) >(&Contap_TheSegmentOfTheSearch::SetValue),
@@ -1121,41 +1160,41 @@ py::module m = static_cast<py::module>(main_module.attr("Contap"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Contap_TheSearchInside.hxx
-// ./opencascade/Contap_SurfProps.hxx
-// ./opencascade/Contap_TheHSequenceOfPoint.hxx
-// ./opencascade/Contap_Point.hxx
-// ./opencascade/Contap_Contour.hxx
-// ./opencascade/Contap_ArcFunction.hxx
-// ./opencascade/Contap_Line.hxx
-// ./opencascade/Contap_HCurve2dTool.hxx
-// ./opencascade/Contap_HContTool.hxx
-// ./opencascade/Contap_SequenceOfSegmentOfTheSearch.hxx
-// ./opencascade/Contap_SurfFunction.hxx
-// ./opencascade/Contap_TheSequenceOfPoint.hxx
-// ./opencascade/Contap_ContAna.hxx
-// ./opencascade/Contap_TheIWalking.hxx
-// ./opencascade/Contap_SequenceOfIWLineOfTheIWalking.hxx
-// ./opencascade/Contap_TheSequenceOfLine.hxx
-// ./opencascade/Contap_TheSearch.hxx
-// ./opencascade/Contap_TheSegmentOfTheSearch.hxx
-// ./opencascade/Contap_TFunction.hxx
-// ./opencascade/Contap_IType.hxx
-// ./opencascade/Contap_SequenceOfPathPointOfTheSearch.hxx
 // ./opencascade/Contap_ThePathPointOfTheSearch.hxx
+// ./opencascade/Contap_TheIWalking.hxx
 // ./opencascade/Contap_TheIWLineOfTheIWalking.hxx
+// ./opencascade/Contap_TheSegmentOfTheSearch.hxx
+// ./opencascade/Contap_HContTool.hxx
+// ./opencascade/Contap_TFunction.hxx
+// ./opencascade/Contap_ArcFunction.hxx
+// ./opencascade/Contap_SurfFunction.hxx
+// ./opencascade/Contap_Contour.hxx
+// ./opencascade/Contap_TheSequenceOfPoint.hxx
+// ./opencascade/Contap_IType.hxx
+// ./opencascade/Contap_HCurve2dTool.hxx
+// ./opencascade/Contap_Line.hxx
+// ./opencascade/Contap_ContAna.hxx
+// ./opencascade/Contap_TheHSequenceOfPoint.hxx
+// ./opencascade/Contap_TheSequenceOfLine.hxx
+// ./opencascade/Contap_TheSearchInside.hxx
+// ./opencascade/Contap_SequenceOfIWLineOfTheIWalking.hxx
+// ./opencascade/Contap_Point.hxx
+// ./opencascade/Contap_TheSearch.hxx
+// ./opencascade/Contap_SurfProps.hxx
+// ./opencascade/Contap_SequenceOfSegmentOfTheSearch.hxx
+// ./opencascade/Contap_SequenceOfPathPointOfTheSearch.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<Contap_TheSegmentOfTheSearch>(m,"Contap_SequenceOfSegmentOfTheSearch");  
     register_template_NCollection_Sequence<Contap_Point>(m,"Contap_TheSequenceOfPoint");  
-    register_template_NCollection_Sequence<opencascade::handle<Contap_TheIWLineOfTheIWalking> >(m,"Contap_SequenceOfIWLineOfTheIWalking");  
     register_template_NCollection_Sequence<Contap_Line>(m,"Contap_TheSequenceOfLine");  
+    register_template_NCollection_Sequence<opencascade::handle<Contap_TheIWLineOfTheIWalking> >(m,"Contap_SequenceOfIWLineOfTheIWalking");  
+    register_template_NCollection_Sequence<Contap_TheSegmentOfTheSearch>(m,"Contap_SequenceOfSegmentOfTheSearch");  
     register_template_NCollection_Sequence<Contap_ThePathPointOfTheSearch>(m,"Contap_SequenceOfPathPointOfTheSearch");  
 
 

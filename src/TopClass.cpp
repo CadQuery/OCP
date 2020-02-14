@@ -40,6 +40,7 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
     public:
         using TopClass_SolidExplorer::TopClass_SolidExplorer;
         
+        
         // public pure virtual
         Standard_Boolean Reject(const gp_Pnt & P) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,TopClass_SolidExplorer,Reject,P) };
         void InitShell() override { PYBIND11_OVERLOAD_PURE(void,TopClass_SolidExplorer,InitShell,) };
@@ -66,6 +67,8 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
 
 
     static_cast<py::class_<TopClass_SolidExplorer , shared_ptr<TopClass_SolidExplorer> ,Py_TopClass_SolidExplorer >>(m.attr("TopClass_SolidExplorer"))
+    // constructors
+    // custom constructors
     // methods
         .def("Reject",
              (Standard_Boolean (TopClass_SolidExplorer::*)( const gp_Pnt &  ) const) static_cast<Standard_Boolean (TopClass_SolidExplorer::*)( const gp_Pnt &  ) const>(&TopClass_SolidExplorer::Reject),
@@ -107,7 +110,7 @@ py::module m = static_cast<py::module>(main_module.attr("TopClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

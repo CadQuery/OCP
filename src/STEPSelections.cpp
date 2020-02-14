@@ -13,31 +13,31 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StepShape_ShapeDefinitionRepresentation.hxx>
-#include <StepRepr_NextAssemblyUsageOccurrence.hxx>
-#include <STEPSelections_AssemblyComponent.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <XSControl_TransferReader.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Interface_Graph.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <StepShape_ConnectedFaceSet.hxx>
-#include <StepGeom_CompositeCurve.hxx>
 #include <StepShape_ShapeDefinitionRepresentation.hxx>
 #include <StepBasic_ProductDefinition.hxx>
 #include <StepRepr_NextAssemblyUsageOccurrence.hxx>
 #include <Interface_Graph.hxx>
+#include <StepShape_ConnectedFaceSet.hxx>
+#include <StepGeom_CompositeCurve.hxx>
+#include <Interface_Graph.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Interface_Graph.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <TCollection_AsciiString.hxx>
+#include <StepShape_ShapeDefinitionRepresentation.hxx>
+#include <StepRepr_NextAssemblyUsageOccurrence.hxx>
+#include <STEPSelections_AssemblyComponent.hxx>
+#include <Interface_InterfaceModel.hxx>
 
 // module includes
 #include <STEPSelections_AssemblyComponent.hxx>
@@ -55,9 +55,9 @@ namespace py = pybind11;
 #include <STEPSelections_SequenceOfAssemblyLink.hxx>
 
 // template related includes
-// ./opencascade/STEPSelections_SequenceOfAssemblyComponent.hxx
-#include "NCollection.hxx"
 // ./opencascade/STEPSelections_SequenceOfAssemblyLink.hxx
+#include "NCollection.hxx"
+// ./opencascade/STEPSelections_SequenceOfAssemblyComponent.hxx
 #include "NCollection.hxx"
 
 
@@ -79,8 +79,10 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
 
 
     static_cast<py::class_<STEPSelections_AssemblyComponent ,opencascade::handle<STEPSelections_AssemblyComponent>  , Standard_Transient >>(m.attr("STEPSelections_AssemblyComponent"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepShape_ShapeDefinitionRepresentation> &,const opencascade::handle<STEPSelections_HSequenceOfAssemblyLink> & >()  , py::arg("sdr"),  py::arg("list") )
+    // custom constructors
     // methods
         .def("GetSDR",
              (opencascade::handle<StepShape_ShapeDefinitionRepresentation> (STEPSelections_AssemblyComponent::*)() const) static_cast<opencascade::handle<StepShape_ShapeDefinitionRepresentation> (STEPSelections_AssemblyComponent::*)() const>(&STEPSelections_AssemblyComponent::GetSDR),
@@ -119,12 +121,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_AssemblyExplorer , shared_ptr<STEPSelections_AssemblyExplorer>  >>(m.attr("STEPSelections_AssemblyExplorer"))
+    // constructors
         .def(py::init< const Interface_Graph & >()  , py::arg("G") )
+    // custom constructors
     // methods
         .def("Init",
              (void (STEPSelections_AssemblyExplorer::*)( const Interface_Graph &  ) ) static_cast<void (STEPSelections_AssemblyExplorer::*)( const Interface_Graph &  ) >(&STEPSelections_AssemblyExplorer::Init),
@@ -157,13 +161,15 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_AssemblyLink ,opencascade::handle<STEPSelections_AssemblyLink>  , Standard_Transient >>(m.attr("STEPSelections_AssemblyLink"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<StepRepr_NextAssemblyUsageOccurrence> &,const opencascade::handle<Standard_Transient> &,const opencascade::handle<STEPSelections_AssemblyComponent> & >()  , py::arg("nauo"),  py::arg("item"),  py::arg("part") )
+    // custom constructors
     // methods
         .def("GetNAUO",
              (opencascade::handle<StepRepr_NextAssemblyUsageOccurrence> (STEPSelections_AssemblyLink::*)() const) static_cast<opencascade::handle<StepRepr_NextAssemblyUsageOccurrence> (STEPSelections_AssemblyLink::*)() const>(&STEPSelections_AssemblyLink::GetNAUO),
@@ -214,12 +220,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_Counter , shared_ptr<STEPSelections_Counter>  >>(m.attr("STEPSelections_Counter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Count",
              (void (STEPSelections_Counter::*)( const Interface_Graph & ,  const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (STEPSelections_Counter::*)( const Interface_Graph & ,  const opencascade::handle<Standard_Transient> &  ) >(&STEPSelections_Counter::Count),
@@ -291,13 +299,15 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_HSequenceOfAssemblyLink ,opencascade::handle<STEPSelections_HSequenceOfAssemblyLink>  , STEPSelections_SequenceOfAssemblyLink , Standard_Transient >>(m.attr("STEPSelections_HSequenceOfAssemblyLink"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyLink> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const STEPSelections_SequenceOfAssemblyLink & (STEPSelections_HSequenceOfAssemblyLink::*)() const) static_cast<const STEPSelections_SequenceOfAssemblyLink & (STEPSelections_HSequenceOfAssemblyLink::*)() const>(&STEPSelections_HSequenceOfAssemblyLink::Sequence),
@@ -324,12 +334,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_SelectAssembly ,opencascade::handle<STEPSelections_SelectAssembly>  , IFSelect_SelectExplore >>(m.attr("STEPSelections_SelectAssembly"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (STEPSelections_SelectAssembly::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (STEPSelections_SelectAssembly::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&STEPSelections_SelectAssembly::Explore),
@@ -350,12 +362,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_SelectDerived ,opencascade::handle<STEPSelections_SelectDerived>  >>(m.attr("STEPSelections_SelectDerived"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Matches",
              (Standard_Boolean (STEPSelections_SelectDerived::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (STEPSelections_SelectDerived::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) const>(&STEPSelections_SelectDerived::Matches),
@@ -373,12 +387,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_SelectFaces ,opencascade::handle<STEPSelections_SelectFaces>  , IFSelect_SelectExplore >>(m.attr("STEPSelections_SelectFaces"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (STEPSelections_SelectFaces::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (STEPSelections_SelectFaces::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&STEPSelections_SelectFaces::Explore),
@@ -399,13 +415,15 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_SelectForTransfer ,opencascade::handle<STEPSelections_SelectForTransfer>  , XSControl_SelectForTransfer >>(m.attr("STEPSelections_SelectForTransfer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<XSControl_TransferReader> & >()  , py::arg("TR") )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (STEPSelections_SelectForTransfer::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (STEPSelections_SelectForTransfer::*)( const Interface_Graph &  ) const>(&STEPSelections_SelectForTransfer::RootResult),
@@ -423,12 +441,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_SelectGSCurves ,opencascade::handle<STEPSelections_SelectGSCurves>  , IFSelect_SelectExplore >>(m.attr("STEPSelections_SelectGSCurves"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Explore",
              (Standard_Boolean (STEPSelections_SelectGSCurves::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const) static_cast<Standard_Boolean (STEPSelections_SelectGSCurves::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const Interface_Graph & ,  Interface_EntityIterator &  ) const>(&STEPSelections_SelectGSCurves::Explore),
@@ -449,12 +469,14 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<STEPSelections_SelectInstances ,opencascade::handle<STEPSelections_SelectInstances>  , IFSelect_SelectExplore >>(m.attr("STEPSelections_SelectInstances"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (STEPSelections_SelectInstances::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (STEPSelections_SelectInstances::*)( const Interface_Graph &  ) const>(&STEPSelections_SelectInstances::RootResult),
@@ -478,29 +500,29 @@ py::module m = static_cast<py::module>(main_module.attr("STEPSelections"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/STEPSelections_AssemblyComponent.hxx
-// ./opencascade/STEPSelections_SequenceOfAssemblyComponent.hxx
-// ./opencascade/STEPSelections_AssemblyLink.hxx
-// ./opencascade/STEPSelections_SequenceOfAssemblyLink.hxx
-// ./opencascade/STEPSelections_SelectForTransfer.hxx
-// ./opencascade/STEPSelections_SelectDerived.hxx
-// ./opencascade/STEPSelections_SelectGSCurves.hxx
-// ./opencascade/STEPSelections_HSequenceOfAssemblyLink.hxx
 // ./opencascade/STEPSelections_SelectInstances.hxx
-// ./opencascade/STEPSelections_Counter.hxx
-// ./opencascade/STEPSelections_AssemblyExplorer.hxx
+// ./opencascade/STEPSelections_SequenceOfAssemblyLink.hxx
 // ./opencascade/STEPSelections_SelectAssembly.hxx
+// ./opencascade/STEPSelections_SelectForTransfer.hxx
+// ./opencascade/STEPSelections_AssemblyExplorer.hxx
+// ./opencascade/STEPSelections_Counter.hxx
+// ./opencascade/STEPSelections_SelectGSCurves.hxx
 // ./opencascade/STEPSelections_SelectFaces.hxx
+// ./opencascade/STEPSelections_AssemblyComponent.hxx
+// ./opencascade/STEPSelections_AssemblyLink.hxx
+// ./opencascade/STEPSelections_HSequenceOfAssemblyLink.hxx
+// ./opencascade/STEPSelections_SelectDerived.hxx
+// ./opencascade/STEPSelections_SequenceOfAssemblyComponent.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyComponent> >(m,"STEPSelections_SequenceOfAssemblyComponent");  
     register_template_NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyLink> >(m,"STEPSelections_SequenceOfAssemblyLink");  
+    register_template_NCollection_Sequence<opencascade::handle<STEPSelections_AssemblyComponent> >(m,"STEPSelections_SequenceOfAssemblyComponent");  
 
 
 // exceptions

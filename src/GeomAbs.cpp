@@ -46,14 +46,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAbs"));
 
 // functions
 // ./opencascade/GeomAbs_JoinType.hxx
-// ./opencascade/GeomAbs_SurfaceForm.hxx
-// ./opencascade/GeomAbs_SurfaceType.hxx
-// ./opencascade/GeomAbs_Shape.hxx
-// ./opencascade/GeomAbs_CurveForm.hxx
 // ./opencascade/GeomAbs_UVSense.hxx
-// ./opencascade/GeomAbs_BSplKnotDistribution.hxx
-// ./opencascade/GeomAbs_IsoType.hxx
 // ./opencascade/GeomAbs_CurveType.hxx
+// ./opencascade/GeomAbs_CurveForm.hxx
+// ./opencascade/GeomAbs_Shape.hxx
+// ./opencascade/GeomAbs_IsoType.hxx
+// ./opencascade/GeomAbs_SurfaceForm.hxx
+// ./opencascade/GeomAbs_BSplKnotDistribution.hxx
+// ./opencascade/GeomAbs_SurfaceType.hxx
 
 // operators
 

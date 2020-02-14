@@ -13,28 +13,7 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_DomainError.hxx>
-#include <IGESDefs_GenericData.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDefs_TabularData.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESEntity.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <IGESData_IGESEntity.hxx>
@@ -43,14 +22,10 @@ namespace py = pybind11;
 #include <Interface_ShareTool.hxx>
 #include <Interface_Check.hxx>
 #include <Interface_CopyTool.hxx>
-#include <Standard_NullObject.hxx>
-#include <IGESDefs_AttributeDef.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
+#include <IGESDefs_HArray1OfHArray1OfTextDisplayTemplate.hxx>
+#include <Standard_NullObject.hxx>
+#include <IGESGraph_TextDisplayTemplate.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESDefs_AttributeTable.hxx>
 #include <IGESData_IGESReaderData.hxx>
@@ -63,52 +38,14 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <IGESDefs_HArray1OfHArray1OfTextDisplayTemplate.hxx>
 #include <Standard_NullObject.hxx>
-#include <IGESGraph_TextDisplayTemplate.hxx>
-#include <IGESBasic_HArray1OfHArray1OfReal.hxx>
-#include <Standard_DomainError.hxx>
 #include <IGESDefs_AttributeDef.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDefs_AssociativityDef.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <Standard_NullObject.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDefs_MacroDef.hxx>
+#include <IGESData_IGESEntity.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
 #include <IGESDefs_Protocol.hxx>
 #include <IGESDefs_AssociativityDef.hxx>
 #include <IGESDefs_MacroDef.hxx>
@@ -130,6 +67,43 @@ namespace py = pybind11;
 #include <IGESDefs_SpecificModule.hxx>
 #include <IGESDefs_HArray1OfHArray1OfTextDisplayTemplate.hxx>
 #include <Standard_DomainError.hxx>
+#include <IGESDefs_AttributeDef.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESBasic_HArray1OfHArray1OfReal.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDefs_AssociativityDef.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDefs_GenericData.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
 #include <IGESDefs_UnitsData.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
@@ -142,6 +116,32 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <IGESBasic_HArray1OfHArray1OfInteger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDefs_MacroDef.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDefs_TabularData.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <Standard_NullObject.hxx>
 
 // module includes
 #include <IGESDefs.hxx>
@@ -188,9 +188,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESDefs , shared_ptr<IGESDefs>>(m,"IGESDefs");
 
     static_cast<py::class_<IGESDefs , shared_ptr<IGESDefs>  >>(m.attr("IGESDefs"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -202,12 +205,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(Returns the Protocol for this Package)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_AssociativityDef ,opencascade::handle<IGESDefs_AssociativityDef>  , IGESData_IGESEntity >>(m.attr("IGESDefs_AssociativityDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDefs_AssociativityDef::*)( const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> &  ) ) static_cast<void (IGESDefs_AssociativityDef::*)( const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfInteger> &  ) >(&IGESDefs_AssociativityDef::Init),
@@ -249,12 +254,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_AttributeDef ,opencascade::handle<IGESDefs_AttributeDef>  , IGESData_IGESEntity >>(m.attr("IGESDefs_AttributeDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDefs_AttributeDef::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfTransient> & ,  const opencascade::handle<IGESDefs_HArray1OfHArray1OfTextDisplayTemplate> &  ) ) static_cast<void (IGESDefs_AttributeDef::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfTransient> & ,  const opencascade::handle<IGESDefs_HArray1OfHArray1OfTextDisplayTemplate> &  ) >(&IGESDefs_AttributeDef::Init),
@@ -320,12 +327,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_AttributeTable ,opencascade::handle<IGESDefs_AttributeTable>  , IGESData_IGESEntity >>(m.attr("IGESDefs_AttributeTable"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDefs_AttributeTable::*)( const opencascade::handle<TColStd_HArray2OfTransient> &  ) ) static_cast<void (IGESDefs_AttributeTable::*)( const opencascade::handle<TColStd_HArray2OfTransient> &  ) >(&IGESDefs_AttributeTable::Init),
@@ -379,12 +388,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_GeneralModule ,opencascade::handle<IGESDefs_GeneralModule>  , IGESData_GeneralModule >>(m.attr("IGESDefs_GeneralModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnSharedCase",
              (void (IGESDefs_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESDefs_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const>(&IGESDefs_GeneralModule::OwnSharedCase),
@@ -417,12 +428,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_GenericData ,opencascade::handle<IGESDefs_GenericData>  , IGESData_IGESEntity >>(m.attr("IGESDefs_GenericData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDefs_GenericData::*)( const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfTransient> &  ) ) static_cast<void (IGESDefs_GenericData::*)( const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfTransient> &  ) >(&IGESDefs_GenericData::Init),
@@ -470,12 +483,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_HArray1OfHArray1OfTextDisplayTemplate ,opencascade::handle<IGESDefs_HArray1OfHArray1OfTextDisplayTemplate>  , Standard_Transient >>(m.attr("IGESDefs_HArray1OfHArray1OfTextDisplayTemplate"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("low"),  py::arg("up") )
+    // custom constructors
     // methods
         .def("Lower",
              (Standard_Integer (IGESDefs_HArray1OfHArray1OfTextDisplayTemplate::*)() const) static_cast<Standard_Integer (IGESDefs_HArray1OfHArray1OfTextDisplayTemplate::*)() const>(&IGESDefs_HArray1OfHArray1OfTextDisplayTemplate::Lower),
@@ -505,14 +520,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_HArray1OfTabularData ,opencascade::handle<IGESDefs_HArray1OfTabularData>  , IGESDefs_Array1OfTabularData , Standard_Transient >>(m.attr("IGESDefs_HArray1OfTabularData"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESDefs_TabularData> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESDefs_TabularData> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESDefs_Array1OfTabularData & (IGESDefs_HArray1OfTabularData::*)() const) static_cast<const IGESDefs_Array1OfTabularData & (IGESDefs_HArray1OfTabularData::*)() const>(&IGESDefs_HArray1OfTabularData::Array1),
@@ -533,12 +551,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_MacroDef ,opencascade::handle<IGESDefs_MacroDef>  , IGESData_IGESEntity >>(m.attr("IGESDefs_MacroDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDefs_MacroDef::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (IGESDefs_MacroDef::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&IGESDefs_MacroDef::Init),
@@ -571,12 +591,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_Protocol ,opencascade::handle<IGESDefs_Protocol>  , IGESData_Protocol >>(m.attr("IGESDefs_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (IGESDefs_Protocol::*)() const) static_cast<Standard_Integer (IGESDefs_Protocol::*)() const>(&IGESDefs_Protocol::NbResources),
@@ -600,12 +622,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ReadWriteModule ,opencascade::handle<IGESDefs_ReadWriteModule>  , IGESData_ReadWriteModule >>(m.attr("IGESDefs_ReadWriteModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseIGES",
              (Standard_Integer (IGESDefs_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Integer (IGESDefs_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&IGESDefs_ReadWriteModule::CaseIGES),
@@ -629,12 +653,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_SpecificModule ,opencascade::handle<IGESDefs_SpecificModule>  , IGESData_SpecificModule >>(m.attr("IGESDefs_SpecificModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESDefs_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESDefs_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESDefs_SpecificModule::OwnDump),
@@ -652,12 +678,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_TabularData ,opencascade::handle<IGESDefs_TabularData>  , IGESData_IGESEntity >>(m.attr("IGESDefs_TabularData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDefs_TabularData::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfReal> &  ) ) static_cast<void (IGESDefs_TabularData::*)( const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfReal> & ,  const opencascade::handle<IGESBasic_HArray1OfHArray1OfReal> &  ) >(&IGESDefs_TabularData::Init),
@@ -708,12 +736,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ToolAssociativityDef , shared_ptr<IGESDefs_ToolAssociativityDef>  >>(m.attr("IGESDefs_ToolAssociativityDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDefs_ToolAssociativityDef::*)( const opencascade::handle<IGESDefs_AssociativityDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDefs_ToolAssociativityDef::*)( const opencascade::handle<IGESDefs_AssociativityDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDefs_ToolAssociativityDef::ReadOwnParams),
@@ -740,12 +770,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ToolAttributeDef , shared_ptr<IGESDefs_ToolAttributeDef>  >>(m.attr("IGESDefs_ToolAttributeDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDefs_ToolAttributeDef::*)( const opencascade::handle<IGESDefs_AttributeDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDefs_ToolAttributeDef::*)( const opencascade::handle<IGESDefs_AttributeDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDefs_ToolAttributeDef::ReadOwnParams),
@@ -772,12 +804,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ToolAttributeTable , shared_ptr<IGESDefs_ToolAttributeTable>  >>(m.attr("IGESDefs_ToolAttributeTable"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDefs_ToolAttributeTable::*)( const opencascade::handle<IGESDefs_AttributeTable> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDefs_ToolAttributeTable::*)( const opencascade::handle<IGESDefs_AttributeTable> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDefs_ToolAttributeTable::ReadOwnParams),
@@ -804,12 +838,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ToolGenericData , shared_ptr<IGESDefs_ToolGenericData>  >>(m.attr("IGESDefs_ToolGenericData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDefs_ToolGenericData::*)( const opencascade::handle<IGESDefs_GenericData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDefs_ToolGenericData::*)( const opencascade::handle<IGESDefs_GenericData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDefs_ToolGenericData::ReadOwnParams),
@@ -836,12 +872,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ToolMacroDef , shared_ptr<IGESDefs_ToolMacroDef>  >>(m.attr("IGESDefs_ToolMacroDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDefs_ToolMacroDef::*)( const opencascade::handle<IGESDefs_MacroDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDefs_ToolMacroDef::*)( const opencascade::handle<IGESDefs_MacroDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDefs_ToolMacroDef::ReadOwnParams),
@@ -868,12 +906,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ToolTabularData , shared_ptr<IGESDefs_ToolTabularData>  >>(m.attr("IGESDefs_ToolTabularData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDefs_ToolTabularData::*)( const opencascade::handle<IGESDefs_TabularData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDefs_ToolTabularData::*)( const opencascade::handle<IGESDefs_TabularData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDefs_ToolTabularData::ReadOwnParams),
@@ -900,12 +940,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_ToolUnitsData , shared_ptr<IGESDefs_ToolUnitsData>  >>(m.attr("IGESDefs_ToolUnitsData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDefs_ToolUnitsData::*)( const opencascade::handle<IGESDefs_UnitsData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDefs_ToolUnitsData::*)( const opencascade::handle<IGESDefs_UnitsData> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDefs_ToolUnitsData::ReadOwnParams),
@@ -932,12 +974,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDefs_UnitsData ,opencascade::handle<IGESDefs_UnitsData>  , IGESData_IGESEntity >>(m.attr("IGESDefs_UnitsData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDefs_UnitsData::*)( const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (IGESDefs_UnitsData::*)( const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<Interface_HArray1OfHAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&IGESDefs_UnitsData::Init),
@@ -967,32 +1011,32 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDefs"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESDefs_ToolGenericData.hxx
-// ./opencascade/IGESDefs_ToolTabularData.hxx
+// ./opencascade/IGESDefs_SpecificModule.hxx
+// ./opencascade/IGESDefs_HArray1OfHArray1OfTextDisplayTemplate.hxx
 // ./opencascade/IGESDefs_GeneralModule.hxx
+// ./opencascade/IGESDefs_AttributeDef.hxx
+// ./opencascade/IGESDefs_ToolAttributeTable.hxx
 // ./opencascade/IGESDefs_AttributeTable.hxx
 // ./opencascade/IGESDefs_ReadWriteModule.hxx
-// ./opencascade/IGESDefs_ToolAttributeTable.hxx
 // ./opencascade/IGESDefs_HArray1OfTabularData.hxx
-// ./opencascade/IGESDefs_SpecificModule.hxx
-// ./opencascade/IGESDefs_AttributeDef.hxx
-// ./opencascade/IGESDefs_UnitsData.hxx
-// ./opencascade/IGESDefs_TabularData.hxx
-// ./opencascade/IGESDefs_ToolAttributeDef.hxx
-// ./opencascade/IGESDefs_HArray1OfHArray1OfTextDisplayTemplate.hxx
-// ./opencascade/IGESDefs_ToolAssociativityDef.hxx
-// ./opencascade/IGESDefs_GenericData.hxx
-// ./opencascade/IGESDefs_ToolMacroDef.hxx
 // ./opencascade/IGESDefs.hxx
-// ./opencascade/IGESDefs_Protocol.hxx
+// ./opencascade/IGESDefs_ToolAttributeDef.hxx
+// ./opencascade/IGESDefs_TabularData.hxx
+// ./opencascade/IGESDefs_ToolAssociativityDef.hxx
 // ./opencascade/IGESDefs_MacroDef.hxx
+// ./opencascade/IGESDefs_ToolGenericData.hxx
+// ./opencascade/IGESDefs_Protocol.hxx
 // ./opencascade/IGESDefs_ToolUnitsData.hxx
-// ./opencascade/IGESDefs_Array1OfTabularData.hxx
 // ./opencascade/IGESDefs_AssociativityDef.hxx
+// ./opencascade/IGESDefs_Array1OfTabularData.hxx
+// ./opencascade/IGESDefs_ToolMacroDef.hxx
+// ./opencascade/IGESDefs_ToolTabularData.hxx
+// ./opencascade/IGESDefs_UnitsData.hxx
+// ./opencascade/IGESDefs_GenericData.hxx
 
 // operators
 

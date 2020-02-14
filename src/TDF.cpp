@@ -13,21 +13,40 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TDF_Data.hxx>
+#include <Standard_NullObject.hxx>
+#include <TDF_Delta.hxx>
 #include <TDF_DataSet.hxx>
 #include <TDF_IDFilter.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_Label.hxx>
-#include <TDF_Attribute.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Data.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_AttributeIterator.hxx>
+#include <TDF_DeltaOnForget.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_AttributeDelta.hxx>
+#include <TDF_DeltaOnAddition.hxx>
+#include <TDF_DeltaOnResume.hxx>
+#include <TDF_DeltaOnModification.hxx>
+#include <TDF_DeltaOnRemoval.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
+#include <TDF_IDFilter.hxx>
+#include <Standard_NullObject.hxx>
+#include <TDF_ChildIterator.hxx>
+#include <TDF_AttributeIterator.hxx>
+#include <TDF_LabelMapHasher.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_IDFilter.hxx>
 #include <TDF_AttributeIterator.hxx>
 #include <TDF_ChildIterator.hxx>
 #include <TDF_Data.hxx>
 #include <TDF_Label.hxx>
-#include <Standard_GUID.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
+#include <TDF_IDFilter.hxx>
 #include <Standard_GUID.hxx>
 #include <TCollection_ExtendedString.hxx>
 #include <TDF_Data.hxx>
@@ -57,41 +76,22 @@ namespace py = pybind11;
 #include <TDF_Tool.hxx>
 #include <TDF_LabelMapHasher.hxx>
 #include <TDF_IDFilter.hxx>
-#include <Standard_NullObject.hxx>
-#include <TDF_ChildIterator.hxx>
-#include <TDF_AttributeIterator.hxx>
-#include <TDF_LabelMapHasher.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_IDFilter.hxx>
+#include <TDF_Attribute.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
 #include <TDF_DataSet.hxx>
 #include <TDF_IDFilter.hxx>
 #include <TDF_ClosureMode.hxx>
+#include <Standard_GUID.hxx>
 #include <TDF_DataSet.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_IDFilter.hxx>
-#include <TDF_Data.hxx>
-#include <Standard_NullObject.hxx>
-#include <TDF_Delta.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <TDF_Transaction.hxx>
 #include <TDF_Delta.hxx>
-#include <TDF_Data.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_AttributeIterator.hxx>
-#include <TDF_DeltaOnForget.hxx>
 #include <Standard_GUID.hxx>
-#include <TDF_AttributeDelta.hxx>
-#include <TDF_DeltaOnAddition.hxx>
-#include <TDF_DeltaOnResume.hxx>
-#include <TDF_DeltaOnModification.hxx>
-#include <TDF_DeltaOnRemoval.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
-#include <TDF_IDFilter.hxx>
-#include <TDF_IDFilter.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
 
 // module includes
 #include <TDF.hxx>
@@ -162,21 +162,33 @@ namespace py = pybind11;
 #include <TDF_Transaction.hxx>
 
 // template related includes
-// ./opencascade/TDF_DeltaList.hxx
+// ./opencascade/TDF_IDMap.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_DeltaList.hxx
+// ./opencascade/TDF_IDMap.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_AttributeList.hxx
+// ./opencascade/TDF_AttributeMap.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_AttributeList.hxx
+// ./opencascade/TDF_AttributeMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_AttributeArray1.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_LabelDoubleMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_LabelDoubleMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_GUIDProgIDMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_GUIDProgIDMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_AttributeDoubleMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_LabelMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_LabelMap.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDF_LabelList.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDF_LabelList.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_IDList.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_IDList.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDF_AttributeIndexedMap.hxx
 #include "NCollection.hxx"
@@ -184,47 +196,33 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/TDF_AttributeDeltaList.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_GUIDProgIDMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_GUIDProgIDMap.hxx
+// ./opencascade/TDF_LabelIndexedMap.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDF_LabelSequence.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_LabelDoubleMap.hxx
+// ./opencascade/TDF_AttributeDataMap.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_LabelDoubleMap.hxx
+// ./opencascade/TDF_AttributeList.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_AttributeDoubleMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_AttributeDoubleMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_LabelDataMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_LabelDataMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_LabelIndexedMap.hxx
+// ./opencascade/TDF_AttributeList.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDF_LabelIntegerMap.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDF_LabelIntegerMap.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_LabelMap.hxx
+// ./opencascade/TDF_DeltaList.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_LabelMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_IDMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_IDMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_AttributeMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/TDF_AttributeMap.hxx
+// ./opencascade/TDF_DeltaList.hxx
 #include "NCollection.hxx"
 // ./opencascade/TDF_AttributeSequence.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_AttributeDataMap.hxx
+// ./opencascade/TDF_LabelDataMap.hxx
 #include "NCollection.hxx"
-// ./opencascade/TDF_AttributeArray1.hxx
+// ./opencascade/TDF_LabelDataMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_IDList.hxx
+#include "NCollection.hxx"
+// ./opencascade/TDF_IDList.hxx
 #include "NCollection.hxx"
 
 
@@ -245,6 +243,7 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     public:
         using TDF_Attribute::TDF_Attribute;
         
+        
         // public pure virtual
         const Standard_GUID & ID() const  override { PYBIND11_OVERLOAD_PURE(const Standard_GUID &,TDF_Attribute,ID,) };
         void Restore(const opencascade::handle<TDF_Attribute> & anAttribute) override { PYBIND11_OVERLOAD_PURE(void,TDF_Attribute,Restore,anAttribute) };
@@ -262,6 +261,7 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     public:
         using TDF_AttributeDelta::TDF_AttributeDelta;
         
+        
         // public pure virtual
         void Apply() override { PYBIND11_OVERLOAD_PURE(void,TDF_AttributeDelta,Apply,) };
         
@@ -276,6 +276,7 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     public:
         using TDF_DeltaOnRemoval::TDF_DeltaOnRemoval;
         
+        
         // public pure virtual
         
         void Apply() override { PYBIND11_OVERLOAD_PURE(void,TDF_AttributeDelta,Apply,) };
@@ -289,9 +290,12 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TDF , shared_ptr<TDF>>(m,"TDF");
 
     static_cast<py::class_<TDF , shared_ptr<TDF>  >>(m.attr("TDF"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -312,11 +316,13 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(Returns True if there is ProgID for given <ID> then ProgID is returned in <ProgID>)#"  , py::arg("ID"),  py::arg("ProgID"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_Attribute ,opencascade::handle<TDF_Attribute> ,Py_TDF_Attribute , Standard_Transient >>(m.attr("TDF_Attribute"))
+    // constructors
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDF_Attribute::*)() const) static_cast<const Standard_GUID & (TDF_Attribute::*)() const>(&TDF_Attribute::ID),
@@ -460,11 +466,13 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_AttributeDelta ,opencascade::handle<TDF_AttributeDelta> ,Py_TDF_AttributeDelta , Standard_Transient >>(m.attr("TDF_AttributeDelta"))
+    // constructors
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDF_AttributeDelta::*)() ) static_cast<void (TDF_AttributeDelta::*)() >(&TDF_AttributeDelta::Apply),
@@ -494,14 +502,16 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_AttributeIterator , shared_ptr<TDF_AttributeIterator>  >>(m.attr("TDF_AttributeIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TDF_Label &,const Standard_Boolean >()  , py::arg("aLabel"),  py::arg("withoutForgotten")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const TDF_LabelNodePtr,const Standard_Boolean >()  , py::arg("aLabelNode"),  py::arg("withoutForgotten")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (TDF_AttributeIterator::*)( const TDF_Label & ,  const Standard_Boolean  ) ) static_cast<void (TDF_AttributeIterator::*)( const TDF_Label & ,  const Standard_Boolean  ) >(&TDF_AttributeIterator::Initialize),
@@ -515,6 +525,9 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
         .def("Value",
              (opencascade::handle<TDF_Attribute> (TDF_AttributeIterator::*)() const) static_cast<opencascade::handle<TDF_Attribute> (TDF_AttributeIterator::*)() const>(&TDF_AttributeIterator::Value),
              R"#(None)#" )
+        .def("PtrValue",
+             (const TDF_Attribute * (TDF_AttributeIterator::*)() const) static_cast<const TDF_Attribute * (TDF_AttributeIterator::*)() const>(&TDF_AttributeIterator::PtrValue),
+             R"#(Provides an access to the internal pointer of the current attribute. The method has better performance as not-creating handle.)#" )
         .def("More",
              (Standard_Boolean (TDF_AttributeIterator::*)() const) static_cast<Standard_Boolean (TDF_AttributeIterator::*)() const>(&TDF_AttributeIterator::More),
              R"#(None)#" )
@@ -525,13 +538,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_ChildIDIterator , shared_ptr<TDF_ChildIDIterator>  >>(m.attr("TDF_ChildIDIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TDF_Label &,const Standard_GUID &,const Standard_Boolean >()  , py::arg("aLabel"),  py::arg("anID"),  py::arg("allLevels")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (TDF_ChildIDIterator::*)( const TDF_Label & ,  const Standard_GUID & ,  const Standard_Boolean  ) ) static_cast<void (TDF_ChildIDIterator::*)( const TDF_Label & ,  const Standard_GUID & ,  const Standard_Boolean  ) >(&TDF_ChildIDIterator::Initialize),
@@ -558,17 +573,19 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_ChildIterator , shared_ptr<TDF_ChildIterator>  >>(m.attr("TDF_ChildIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TDF_Label &,const Standard_Boolean >()  , py::arg("aLabel"),  py::arg("allLevels")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (TDF_ChildIterator::*)( const TDF_Label & ,  const Standard_Boolean  ) ) static_cast<void (TDF_ChildIterator::*)( const TDF_Label & ,  const Standard_Boolean  ) >(&TDF_ChildIterator::Initialize),
-             R"#(Initializes the iteration on the children of the given label. If <allLevels> option is set to true, it explores not only the first, but all the sub label levels. If allLevels is false, only the first level of child labels is explored. In the example below, the label is iterated using Initialize, More and Next and its child labels dumped using TDF_Tool::Entry. Example void DumpChildren(const TDF_Label& aLabel) { TDF_ChildIterator it; TCollection_AsciiString es; for (it.Initialize(aLabel,Standard_True); it.More(); it.Next()){ TDF_Tool::Entry(it.Value(),es); cout << as.ToCString() << endl; } })#"  , py::arg("aLabel"),  py::arg("allLevels")=static_cast<const Standard_Boolean>(Standard_False))
+             R"#(Initializes the iteration on the children of the given label. If <allLevels> option is set to true, it explores not only the first, but all the sub label levels. If allLevels is false, only the first level of child labels is explored. In the example below, the label is iterated using Initialize, More and Next and its child labels dumped using TDF_Tool::Entry. Example void DumpChildren(const TDF_Label& aLabel) { TDF_ChildIterator it; TCollection_AsciiString es; for (it.Initialize(aLabel,Standard_True); it.More(); it.Next()){ TDF_Tool::Entry(it.Value(),es); std::cout << as.ToCString() << std::endl; } })#"  , py::arg("aLabel"),  py::arg("allLevels")=static_cast<const Standard_Boolean>(Standard_False))
         .def("More",
              (Standard_Boolean (TDF_ChildIterator::*)() const) static_cast<Standard_Boolean (TDF_ChildIterator::*)() const>(&TDF_ChildIterator::More),
              R"#(Returns true if a current label is found in the iteration process.)#" )
@@ -591,12 +608,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_ClosureMode , shared_ptr<TDF_ClosureMode>  >>(m.attr("TDF_ClosureMode"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("aMode")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Descendants",
              (void (TDF_ClosureMode::*)( const Standard_Boolean  ) ) static_cast<void (TDF_ClosureMode::*)( const Standard_Boolean  ) >(&TDF_ClosureMode::Descendants),
@@ -626,12 +645,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TDF_ClosureTool , shared_ptr<TDF_ClosureTool>>(m,"TDF_ClosureTool");
 
     static_cast<py::class_<TDF_ClosureTool , shared_ptr<TDF_ClosureTool>  >>(m.attr("TDF_ClosureTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -646,12 +668,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(Builds the transitive closure of <aLabel>.)#"  , py::arg("aLabel"),  py::arg("aLabMap"),  py::arg("anAttMap"),  py::arg("aFilter"),  py::arg("aMode"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TDF_ComparisonTool , shared_ptr<TDF_ComparisonTool>>(m,"TDF_ComparisonTool");
 
     static_cast<py::class_<TDF_ComparisonTool , shared_ptr<TDF_ComparisonTool>  >>(m.attr("TDF_ComparisonTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -672,13 +697,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(Returns true if all the labels of <aDataSet> are descendant of <aLabel>.)#"  , py::arg("aLabel"),  py::arg("aDataSet"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_CopyLabel , shared_ptr<TDF_CopyLabel>  >>(m.attr("TDF_CopyLabel"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TDF_Label &,const TDF_Label & >()  , py::arg("aSource"),  py::arg("aTarget") )
+    // custom constructors
     // methods
         .def("Load",
              (void (TDF_CopyLabel::*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<void (TDF_CopyLabel::*)( const TDF_Label & ,  const TDF_Label &  ) >(&TDF_CopyLabel::Load),
@@ -708,12 +735,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(Check external references and if exist fills the aExternals Map)#"  , py::arg("aRefLab"),  py::arg("Lab"),  py::arg("aExternals"),  py::arg("aFilter"),  py::arg("aDataSet"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TDF_CopyTool , shared_ptr<TDF_CopyTool>>(m,"TDF_CopyTool");
 
     static_cast<py::class_<TDF_CopyTool , shared_ptr<TDF_CopyTool>  >>(m.attr("TDF_CopyTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -728,12 +758,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(Copy <aSourceDataSet> using and updating <aRelocationTable>. Use <aPrivilegeFilter> to give a list of IDs for which the target attribute prevails over the source one. If <setSelfContained> is set to true, every TDF_Reference will be replaced by the referenced structure according to <aRefFilter>.)#"  , py::arg("aSourceDataSet"),  py::arg("aRelocationTable"),  py::arg("aPrivilegeFilter"),  py::arg("aRefFilter"),  py::arg("setSelfContained"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_Data ,opencascade::handle<TDF_Data>  , Standard_Transient >>(m.attr("TDF_Data"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Root",
              (const TDF_Label (TDF_Data::*)() const) static_cast<const TDF_Label (TDF_Data::*)() const>(&TDF_Data::Root),
@@ -802,12 +834,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DataSet ,opencascade::handle<TDF_DataSet>  , Standard_Transient >>(m.attr("TDF_DataSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TDF_DataSet::*)() ) static_cast<void (TDF_DataSet::*)() >(&TDF_DataSet::Clear),
@@ -882,12 +916,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_Delta ,opencascade::handle<TDF_Delta>  , Standard_Transient >>(m.attr("TDF_Delta"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsEmpty",
              (Standard_Boolean (TDF_Delta::*)() const) static_cast<Standard_Boolean (TDF_Delta::*)() const>(&TDF_Delta::IsEmpty),
@@ -950,14 +986,17 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_HAttributeArray1 ,opencascade::handle<TDF_HAttributeArray1>  , TDF_AttributeArray1 , Standard_Transient >>(m.attr("TDF_HAttributeArray1"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<TDF_Attribute> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<TDF_Attribute> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TDF_AttributeArray1 & (TDF_HAttributeArray1::*)() const) static_cast<const TDF_AttributeArray1 & (TDF_HAttributeArray1::*)() const>(&TDF_HAttributeArray1::Array1),
@@ -978,12 +1017,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_IDFilter , shared_ptr<TDF_IDFilter>  >>(m.attr("TDF_IDFilter"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("ignoreMode")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("IgnoreAll",
              (void (TDF_IDFilter::*)( const Standard_Boolean  ) ) static_cast<void (TDF_IDFilter::*)( const Standard_Boolean  ) >(&TDF_IDFilter::IgnoreAll),
@@ -1043,12 +1084,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_Label , shared_ptr<TDF_Label>  >>(m.attr("TDF_Label"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Nullify",
              (void (TDF_Label::*)() ) static_cast<void (TDF_Label::*)() >(&TDF_Label::Nullify),
@@ -1085,7 +1128,7 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
              R"#(Returns true if <me> owns an attribute with <anID> as ID.)#"  , py::arg("anID"))
         .def("AddAttribute",
              (void (TDF_Label::*)( const opencascade::handle<TDF_Attribute> & ,  const Standard_Boolean  ) const) static_cast<void (TDF_Label::*)( const opencascade::handle<TDF_Attribute> & ,  const Standard_Boolean  ) const>(&TDF_Label::AddAttribute),
-             R"#(Adds an Attribute to the current label. Raises if there is already one.)#"  , py::arg("anAttribute"),  py::arg("append")=static_cast<const Standard_Boolean>(Standard_False))
+             R"#(Adds an Attribute to the current label. Raises if there is already one.)#"  , py::arg("anAttribute"),  py::arg("append")=static_cast<const Standard_Boolean>(Standard_True))
         .def("ForgetAttribute",
              (void (TDF_Label::*)( const opencascade::handle<TDF_Attribute> &  ) const) static_cast<void (TDF_Label::*)( const opencascade::handle<TDF_Attribute> &  ) const>(&TDF_Label::ForgetAttribute),
              R"#(Forgets an Attribute from the current label, setting its forgotten status true and its valid status false. Raises if the attribute is not in the structure.)#"  , py::arg("anAttribute"))
@@ -1198,29 +1241,34 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TDF_LabelMapHasher , shared_ptr<TDF_LabelMapHasher>>(m,"TDF_LabelMapHasher");
 
     static_cast<py::class_<TDF_LabelMapHasher , shared_ptr<TDF_LabelMapHasher>  >>(m.attr("TDF_LabelMapHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
                     (Standard_Integer (*)( const TDF_Label & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const TDF_Label & ,  const Standard_Integer  ) >(&TDF_LabelMapHasher::HashCode),
-                    R"#(Returns a HasCode value for the Key <K> in the range 0..Upper.)#"  , py::arg("aLab"),  py::arg("Upper"))
+                    R"#(Computes a hash code for the given label, in the range [1, theUpperBound])#"  , py::arg("theLabel"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const TDF_Label & ,  const TDF_Label &  ) ) static_cast<Standard_Boolean (*)( const TDF_Label & ,  const TDF_Label &  ) >(&TDF_LabelMapHasher::IsEqual),
                     R"#(Returns True when the two keys are the same. Two same keys must have the same hashcode, the contrary is not necessary.)#"  , py::arg("aLab1"),  py::arg("aLab2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_RelocationTable ,opencascade::handle<TDF_RelocationTable>  , Standard_Transient >>(m.attr("TDF_RelocationTable"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("selfRelocate")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("SelfRelocate",
              (void (TDF_RelocationTable::*)( const Standard_Boolean  ) ) static_cast<void (TDF_RelocationTable::*)( const Standard_Boolean  ) >(&TDF_RelocationTable::SelfRelocate),
@@ -1286,12 +1334,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TDF_Tool , shared_ptr<TDF_Tool>>(m,"TDF_Tool");
 
     static_cast<py::class_<TDF_Tool , shared_ptr<TDF_Tool>  >>(m.attr("TDF_Tool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1363,13 +1414,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(Dumps <aLabel>, its chilren and their attributes, if their IDs are kept by <aFilter>. Dumps also the attributes content.)#"  , py::arg("anOS"),  py::arg("aLabel"),  py::arg("aFilter"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_Transaction , shared_ptr<TDF_Transaction>  >>(m.attr("TDF_Transaction"))
+    // constructors
         .def(py::init< const TCollection_AsciiString & >()  , py::arg("aName")=static_cast<const TCollection_AsciiString &>("") )
         .def(py::init< const opencascade::handle<TDF_Data> &,const TCollection_AsciiString & >()  , py::arg("aDF"),  py::arg("aName")=static_cast<const TCollection_AsciiString &>("") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (TDF_Transaction::*)( const opencascade::handle<TDF_Data> &  ) ) static_cast<void (TDF_Transaction::*)( const opencascade::handle<TDF_Data> &  ) >(&TDF_Transaction::Initialize),
@@ -1411,12 +1464,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DeltaOnAddition ,opencascade::handle<TDF_DeltaOnAddition>  , TDF_AttributeDelta >>(m.attr("TDF_DeltaOnAddition"))
+    // constructors
         .def(py::init< const opencascade::handle<TDF_Attribute> & >()  , py::arg("anAtt") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDF_DeltaOnAddition::*)() ) static_cast<void (TDF_DeltaOnAddition::*)() >(&TDF_DeltaOnAddition::Apply),
@@ -1434,12 +1489,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DeltaOnForget ,opencascade::handle<TDF_DeltaOnForget>  , TDF_AttributeDelta >>(m.attr("TDF_DeltaOnForget"))
+    // constructors
         .def(py::init< const opencascade::handle<TDF_Attribute> & >()  , py::arg("anAtt") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDF_DeltaOnForget::*)() ) static_cast<void (TDF_DeltaOnForget::*)() >(&TDF_DeltaOnForget::Apply),
@@ -1457,11 +1514,13 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DeltaOnModification ,opencascade::handle<TDF_DeltaOnModification>  , TDF_AttributeDelta >>(m.attr("TDF_DeltaOnModification"))
+    // constructors
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDF_DeltaOnModification::*)() ) static_cast<void (TDF_DeltaOnModification::*)() >(&TDF_DeltaOnModification::Apply),
@@ -1479,11 +1538,13 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DeltaOnRemoval ,opencascade::handle<TDF_DeltaOnRemoval> ,Py_TDF_DeltaOnRemoval , TDF_AttributeDelta >>(m.attr("TDF_DeltaOnRemoval"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (TDF_DeltaOnRemoval::*)() const) static_cast<const opencascade::handle<Standard_Type> & (TDF_DeltaOnRemoval::*)() const>(&TDF_DeltaOnRemoval::DynamicType),
@@ -1498,12 +1559,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DeltaOnResume ,opencascade::handle<TDF_DeltaOnResume>  , TDF_AttributeDelta >>(m.attr("TDF_DeltaOnResume"))
+    // constructors
         .def(py::init< const opencascade::handle<TDF_Attribute> & >()  , py::arg("anAtt") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDF_DeltaOnResume::*)() ) static_cast<void (TDF_DeltaOnResume::*)() >(&TDF_DeltaOnResume::Apply),
@@ -1521,12 +1584,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_Reference ,opencascade::handle<TDF_Reference>  , TDF_Attribute >>(m.attr("TDF_Reference"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TDF_Reference::*)( const TDF_Label &  ) ) static_cast<void (TDF_Reference::*)( const TDF_Label &  ) >(&TDF_Reference::Set),
@@ -1571,12 +1636,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_TagSource ,opencascade::handle<TDF_TagSource>  , TDF_Attribute >>(m.attr("TDF_TagSource"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NewTag",
              (Standard_Integer (TDF_TagSource::*)() ) static_cast<Standard_Integer (TDF_TagSource::*)() >(&TDF_TagSource::NewTag),
@@ -1624,12 +1691,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DefaultDeltaOnModification ,opencascade::handle<TDF_DefaultDeltaOnModification>  , TDF_DeltaOnModification >>(m.attr("TDF_DefaultDeltaOnModification"))
+    // constructors
         .def(py::init< const opencascade::handle<TDF_Attribute> & >()  , py::arg("anAttribute") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDF_DefaultDeltaOnModification::*)() ) static_cast<void (TDF_DefaultDeltaOnModification::*)() >(&TDF_DefaultDeltaOnModification::Apply),
@@ -1647,12 +1716,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDF_DefaultDeltaOnRemoval ,opencascade::handle<TDF_DefaultDeltaOnRemoval>  , TDF_DeltaOnRemoval >>(m.attr("TDF_DefaultDeltaOnRemoval"))
+    // constructors
         .def(py::init< const opencascade::handle<TDF_Attribute> & >()  , py::arg("anAttribute") )
+    // custom constructors
     // methods
         .def("Apply",
              (void (TDF_DefaultDeltaOnRemoval::*)() ) static_cast<void (TDF_DefaultDeltaOnRemoval::*)() >(&TDF_DefaultDeltaOnRemoval::Apply),
@@ -1670,98 +1741,97 @@ py::module m = static_cast<py::module>(main_module.attr("TDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TDF_DeltaList.hxx
-// ./opencascade/TDF_DataMapIteratorOfAttributeDataMap.hxx
-// ./opencascade/TDF_AttributeList.hxx
-// ./opencascade/TDF_HAllocator.hxx
-// ./opencascade/TDF_LabelList.hxx
-// ./opencascade/TDF_IDList.hxx
-// ./opencascade/TDF_HAttributeArray1.hxx
-// ./opencascade/TDF_DeltaOnRemoval.hxx
-// ./opencascade/TDF_ComparisonTool.hxx
-// ./opencascade/TDF_AttributeIndexedMap.hxx
-// ./opencascade/TDF_AttributeDeltaList.hxx
-// ./opencascade/TDF_IDFilter.hxx
-// ./opencascade/TDF_CopyLabel.hxx
-// ./opencascade/TDF_DeltaOnResume.hxx
-// ./opencascade/TDF_LabelNodePtr.hxx
-// ./opencascade/TDF_GUIDProgIDMap.hxx
-// ./opencascade/TDF_DefaultDeltaOnModification.hxx
-// ./opencascade/TDF_LabelNode.hxx
-// ./opencascade/TDF_LabelSequence.hxx
-// ./opencascade/TDF_ListIteratorOfAttributeList.hxx
-// ./opencascade/TDF_DeltaOnAddition.hxx
-// ./opencascade/TDF_LabelDoubleMap.hxx
-// ./opencascade/TDF_DeltaOnModification.hxx
-// ./opencascade/TDF_ListIteratorOfLabelList.hxx
-// ./opencascade/TDF_ListIteratorOfIDList.hxx
-// ./opencascade/TDF_AttributeDoubleMap.hxx
-// ./opencascade/TDF_LabelDataMap.hxx
-// ./opencascade/TDF_ListIteratorOfDeltaList.hxx
-// ./opencascade/TDF_MapIteratorOfIDMap.hxx
-// ./opencascade/TDF_AttributeDelta.hxx
-// ./opencascade/TDF_DataMapIteratorOfLabelDataMap.hxx
-// ./opencascade/TDF_ListIteratorOfAttributeDeltaList.hxx
-// ./opencascade/TDF_LabelIndexedMap.hxx
-// ./opencascade/TDF_Reference.hxx
-// ./opencascade/TDF_LabelIntegerMap.hxx
-// ./opencascade/TDF_DoubleMapIteratorOfGUIDProgIDMap.hxx
-// ./opencascade/TDF.hxx
-// ./opencascade/TDF_Label.hxx
-// ./opencascade/TDF_RelocationTable.hxx
-// ./opencascade/TDF_AttributeIterator.hxx
-// ./opencascade/TDF_ClosureTool.hxx
-// ./opencascade/TDF_DeltaOnForget.hxx
-// ./opencascade/TDF_MapIteratorOfLabelMap.hxx
-// ./opencascade/TDF_CopyTool.hxx
-// ./opencascade/TDF_LabelMap.hxx
-// ./opencascade/TDF_DataMapIteratorOfLabelIntegerMap.hxx
-// ./opencascade/TDF_Transaction.hxx
-// ./opencascade/TDF_DoubleMapIteratorOfLabelDoubleMap.hxx
-// ./opencascade/TDF_DefaultDeltaOnRemoval.hxx
 // ./opencascade/TDF_IDMap.hxx
-// ./opencascade/TDF_DataSet.hxx
 // ./opencascade/TDF_AttributeMap.hxx
+// ./opencascade/TDF_AttributeArray1.hxx
+// ./opencascade/TDF_ChildIDIterator.hxx
+// ./opencascade/TDF_DefaultDeltaOnRemoval.hxx
+// ./opencascade/TDF_DeltaOnAddition.hxx
+// ./opencascade/TDF_DataMapIteratorOfLabelIntegerMap.hxx
+// ./opencascade/TDF_MapIteratorOfLabelMap.hxx
+// ./opencascade/TDF_DeltaOnRemoval.hxx
+// ./opencascade/TDF_Transaction.hxx
+// ./opencascade/TDF_ListIteratorOfIDList.hxx
+// ./opencascade/TDF_LabelDoubleMap.hxx
+// ./opencascade/TDF_AttributeIterator.hxx
+// ./opencascade/TDF_GUIDProgIDMap.hxx
+// ./opencascade/TDF_ComparisonTool.hxx
+// ./opencascade/TDF_DeltaOnForget.hxx
+// ./opencascade/TDF_DoubleMapIteratorOfGUIDProgIDMap.hxx
+// ./opencascade/TDF_AttributeDoubleMap.hxx
+// ./opencascade/TDF_DoubleMapIteratorOfLabelDoubleMap.hxx
+// ./opencascade/TDF_TagSource.hxx
+// ./opencascade/TDF_DeltaOnResume.hxx
+// ./opencascade/TDF_ClosureMode.hxx
+// ./opencascade/TDF_Attribute.hxx
+// ./opencascade/TDF_Label.hxx
+// ./opencascade/TDF_LabelNode.hxx
+// ./opencascade/TDF_ChildIterator.hxx
+// ./opencascade/TDF_LabelMap.hxx
+// ./opencascade/TDF_MapIteratorOfIDMap.hxx
+// ./opencascade/TDF_Tool.hxx
+// ./opencascade/TDF_LabelList.hxx
+// ./opencascade/TDF_ListIteratorOfAttributeList.hxx
+// ./opencascade/TDF_DoubleMapIteratorOfAttributeDoubleMap.hxx
+// ./opencascade/TDF.hxx
+// ./opencascade/TDF_AttributeIndexedMap.hxx
+// ./opencascade/TDF_Delta.hxx
+// ./opencascade/TDF_AttributeDeltaList.hxx
+// ./opencascade/TDF_DataMapIteratorOfAttributeDataMap.hxx
+// ./opencascade/TDF_LabelNodePtr.hxx
+// ./opencascade/TDF_MapIteratorOfAttributeMap.hxx
+// ./opencascade/TDF_LabelIndexedMap.hxx
+// ./opencascade/TDF_LabelMapHasher.hxx
+// ./opencascade/TDF_IDFilter.hxx
+// ./opencascade/TDF_HAttributeArray1.hxx
+// ./opencascade/TDF_LabelSequence.hxx
+// ./opencascade/TDF_CopyLabel.hxx
+// ./opencascade/TDF_DataMapIteratorOfLabelDataMap.hxx
+// ./opencascade/TDF_DeltaOnModification.hxx
+// ./opencascade/TDF_ClosureTool.hxx
+// ./opencascade/TDF_ListIteratorOfDeltaList.hxx
+// ./opencascade/TDF_DefaultDeltaOnModification.hxx
+// ./opencascade/TDF_AttributeDataMap.hxx
+// ./opencascade/TDF_AttributeList.hxx
+// ./opencascade/TDF_LabelIntegerMap.hxx
+// ./opencascade/TDF_DeltaList.hxx
+// ./opencascade/TDF_AttributeDelta.hxx
+// ./opencascade/TDF_CopyTool.hxx
+// ./opencascade/TDF_HAllocator.hxx
+// ./opencascade/TDF_ListIteratorOfLabelList.hxx
 // ./opencascade/TDF_Data.hxx
 // ./opencascade/TDF_AttributeSequence.hxx
-// ./opencascade/TDF_Attribute.hxx
-// ./opencascade/TDF_ChildIterator.hxx
-// ./opencascade/TDF_AttributeDataMap.hxx
-// ./opencascade/TDF_LabelMapHasher.hxx
-// ./opencascade/TDF_Tool.hxx
-// ./opencascade/TDF_DoubleMapIteratorOfAttributeDoubleMap.hxx
-// ./opencascade/TDF_ChildIDIterator.hxx
-// ./opencascade/TDF_AttributeArray1.hxx
-// ./opencascade/TDF_TagSource.hxx
-// ./opencascade/TDF_MapIteratorOfAttributeMap.hxx
-// ./opencascade/TDF_ClosureMode.hxx
-// ./opencascade/TDF_Delta.hxx
+// ./opencascade/TDF_LabelDataMap.hxx
+// ./opencascade/TDF_ListIteratorOfAttributeDeltaList.hxx
+// ./opencascade/TDF_DataSet.hxx
+// ./opencascade/TDF_RelocationTable.hxx
+// ./opencascade/TDF_Reference.hxx
+// ./opencascade/TDF_IDList.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_List<opencascade::handle<TDF_Delta> >(m,"TDF_DeltaList");  
-    register_template_NCollection_List<opencascade::handle<TDF_Attribute> >(m,"TDF_AttributeList");  
-    register_template_NCollection_List<TDF_Label>(m,"TDF_LabelList");  
-    register_template_NCollection_List<Standard_GUID>(m,"TDF_IDList");  
-    register_template_NCollection_IndexedMap<opencascade::handle<TDF_Attribute>, TColStd_MapTransientHasher>(m,"TDF_AttributeIndexedMap");  
-    register_template_NCollection_List<opencascade::handle<TDF_AttributeDelta> >(m,"TDF_AttributeDeltaList");  
-    register_template_NCollection_DoubleMap<Standard_GUID, TCollection_ExtendedString, Standard_GUID, TCollection_ExtendedString>(m,"TDF_GUIDProgIDMap");  
-    register_template_NCollection_Sequence<TDF_Label>(m,"TDF_LabelSequence");  
-    register_template_NCollection_DoubleMap<TDF_Label, TDF_Label, TDF_LabelMapHasher, TDF_LabelMapHasher>(m,"TDF_LabelDoubleMap");  
-    register_template_NCollection_DoubleMap<opencascade::handle<TDF_Attribute>, opencascade::handle<TDF_Attribute>, TColStd_MapTransientHasher, TColStd_MapTransientHasher>(m,"TDF_AttributeDoubleMap");  
-    register_template_NCollection_DataMap<TDF_Label, TDF_Label, TDF_LabelMapHasher>(m,"TDF_LabelDataMap");  
-    register_template_NCollection_IndexedMap<TDF_Label, TDF_LabelMapHasher>(m,"TDF_LabelIndexedMap");  
-    register_template_NCollection_DataMap<TDF_Label, Standard_Integer, TDF_LabelMapHasher>(m,"TDF_LabelIntegerMap");  
-    register_template_NCollection_Map<TDF_Label, TDF_LabelMapHasher>(m,"TDF_LabelMap");  
     register_template_NCollection_Map<Standard_GUID, Standard_GUID>(m,"TDF_IDMap");  
     register_template_NCollection_Map<opencascade::handle<TDF_Attribute>, TColStd_MapTransientHasher>(m,"TDF_AttributeMap");  
-    register_template_NCollection_Sequence<opencascade::handle<TDF_Attribute> >(m,"TDF_AttributeSequence");  
     register_template_NCollection_Array1<opencascade::handle<TDF_Attribute> >(m,"TDF_AttributeArray1");  
+    register_template_NCollection_DoubleMap<TDF_Label, TDF_Label, TDF_LabelMapHasher, TDF_LabelMapHasher>(m,"TDF_LabelDoubleMap");  
+    register_template_NCollection_DoubleMap<Standard_GUID, TCollection_ExtendedString, Standard_GUID, TCollection_ExtendedString>(m,"TDF_GUIDProgIDMap");  
+    register_template_NCollection_Map<TDF_Label, TDF_LabelMapHasher>(m,"TDF_LabelMap");  
+    register_template_NCollection_List<TDF_Label>(m,"TDF_LabelList");  
+    register_template_NCollection_IndexedMap<opencascade::handle<TDF_Attribute>, TColStd_MapTransientHasher>(m,"TDF_AttributeIndexedMap");  
+    register_template_NCollection_List<opencascade::handle<TDF_AttributeDelta> >(m,"TDF_AttributeDeltaList");  
+    register_template_NCollection_IndexedMap<TDF_Label, TDF_LabelMapHasher>(m,"TDF_LabelIndexedMap");  
+    register_template_NCollection_Sequence<TDF_Label>(m,"TDF_LabelSequence");  
+    register_template_NCollection_List<opencascade::handle<TDF_Attribute> >(m,"TDF_AttributeList");  
+    register_template_NCollection_DataMap<TDF_Label, Standard_Integer, TDF_LabelMapHasher>(m,"TDF_LabelIntegerMap");  
+    register_template_NCollection_List<opencascade::handle<TDF_Delta> >(m,"TDF_DeltaList");  
+    register_template_NCollection_Sequence<opencascade::handle<TDF_Attribute> >(m,"TDF_AttributeSequence");  
+    register_template_NCollection_DataMap<TDF_Label, TDF_Label, TDF_LabelMapHasher>(m,"TDF_LabelDataMap");  
+    register_template_NCollection_List<Standard_GUID>(m,"TDF_IDList");  
 
 
 // exceptions

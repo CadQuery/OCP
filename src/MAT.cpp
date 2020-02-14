@@ -13,24 +13,24 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <MAT_BasicElt.hxx>
-#include <MAT_Node.hxx>
-#include <Standard_DomainError.hxx>
-#include <MAT_Bisector.hxx>
-#include <MAT_Arc.hxx>
-#include <MAT_TListNodeOfListOfBisector.hxx>
-#include <MAT_Bisector.hxx>
-#include <MAT_Bisector.hxx>
 #include <MAT_ListOfBisector.hxx>
 #include <MAT_TListNodeOfListOfEdge.hxx>
 #include <MAT_Edge.hxx>
 #include <MAT_BasicElt.hxx>
 #include <MAT_Node.hxx>
-#include <MAT_ListOfBisector.hxx>
-#include <MAT_Edge.hxx>
-#include <MAT_ListOfBisector.hxx>
+#include <MAT_BasicElt.hxx>
+#include <MAT_Node.hxx>
+#include <Standard_DomainError.hxx>
+#include <MAT_TListNodeOfListOfBisector.hxx>
+#include <MAT_Bisector.hxx>
 #include <MAT_Edge.hxx>
 #include <MAT_ListOfEdge.hxx>
+#include <MAT_Bisector.hxx>
+#include <MAT_ListOfBisector.hxx>
+#include <MAT_Bisector.hxx>
+#include <MAT_Edge.hxx>
+#include <MAT_ListOfBisector.hxx>
+#include <MAT_Arc.hxx>
 
 // module includes
 #include <MAT_Arc.hxx>
@@ -57,17 +57,17 @@ namespace py = pybind11;
 #include <MAT_Zone.hxx>
 
 // template related includes
-// ./opencascade/MAT_DataMapOfIntegerBasicElt.hxx
-#include "NCollection.hxx"
-// ./opencascade/MAT_SequenceOfBasicElt.hxx
+// ./opencascade/MAT_SequenceOfArc.hxx
 #include "NCollection.hxx"
 // ./opencascade/MAT_DataMapOfIntegerBisector.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT_DataMapOfIntegerArc.hxx
-#include "NCollection.hxx"
 // ./opencascade/MAT_DataMapOfIntegerNode.hxx
 #include "NCollection.hxx"
-// ./opencascade/MAT_SequenceOfArc.hxx
+// ./opencascade/MAT_DataMapOfIntegerArc.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT_SequenceOfBasicElt.hxx
+#include "NCollection.hxx"
+// ./opencascade/MAT_DataMapOfIntegerBasicElt.hxx
 #include "NCollection.hxx"
 
 
@@ -89,7 +89,9 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
 
 
     static_cast<py::class_<MAT_Arc ,opencascade::handle<MAT_Arc>  , Standard_Transient >>(m.attr("MAT_Arc"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const opencascade::handle<MAT_BasicElt> &,const opencascade::handle<MAT_BasicElt> & >()  , py::arg("ArcIndex"),  py::arg("GeomIndex"),  py::arg("FirstElement"),  py::arg("SecondElement") )
+    // custom constructors
     // methods
         .def("Index",
              (Standard_Integer (MAT_Arc::*)() const) static_cast<Standard_Integer (MAT_Arc::*)() const>(&MAT_Arc::Index),
@@ -158,12 +160,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_BasicElt ,opencascade::handle<MAT_BasicElt>  , Standard_Transient >>(m.attr("MAT_BasicElt"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("anInteger") )
+    // custom constructors
     // methods
         .def("StartArc",
              (opencascade::handle<MAT_Arc> (MAT_BasicElt::*)() const) static_cast<opencascade::handle<MAT_Arc> (MAT_BasicElt::*)() const>(&MAT_BasicElt::StartArc),
@@ -202,12 +206,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_Bisector ,opencascade::handle<MAT_Bisector>  , Standard_Transient >>(m.attr("MAT_Bisector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddBisector",
              (void (MAT_Bisector::*)( const opencascade::handle<MAT_Bisector> &  ) const) static_cast<void (MAT_Bisector::*)( const opencascade::handle<MAT_Bisector> &  ) const>(&MAT_Bisector::AddBisector),
@@ -309,12 +315,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_Edge ,opencascade::handle<MAT_Edge>  , Standard_Transient >>(m.attr("MAT_Edge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("EdgeNumber",
              (void (MAT_Edge::*)( const Standard_Integer  ) ) static_cast<void (MAT_Edge::*)( const Standard_Integer  ) >(&MAT_Edge::EdgeNumber),
@@ -362,12 +370,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_Graph ,opencascade::handle<MAT_Graph>  , Standard_Transient >>(m.attr("MAT_Graph"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (MAT_Graph::*)( const Standard_Boolean ,  const opencascade::handle<MAT_ListOfBisector> & ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (MAT_Graph::*)( const Standard_Boolean ,  const opencascade::handle<MAT_ListOfBisector> & ,  const Standard_Integer ,  const Standard_Integer  ) >(&MAT_Graph::Perform),
@@ -421,12 +431,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_ListOfBisector ,opencascade::handle<MAT_ListOfBisector>  , Standard_Transient >>(m.attr("MAT_ListOfBisector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("First",
              (void (MAT_ListOfBisector::*)() ) static_cast<void (MAT_ListOfBisector::*)() >(&MAT_ListOfBisector::First),
@@ -513,12 +525,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_ListOfEdge ,opencascade::handle<MAT_ListOfEdge>  , Standard_Transient >>(m.attr("MAT_ListOfEdge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("First",
              (void (MAT_ListOfEdge::*)() ) static_cast<void (MAT_ListOfEdge::*)() >(&MAT_ListOfEdge::First),
@@ -605,12 +619,14 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_Node ,opencascade::handle<MAT_Node>  , Standard_Transient >>(m.attr("MAT_Node"))
+    // constructors
         .def(py::init< const Standard_Integer,const opencascade::handle<MAT_Arc> &,const Standard_Real >()  , py::arg("GeomIndex"),  py::arg("LinkedArc"),  py::arg("Distance") )
+    // custom constructors
     // methods
         .def("GeomIndex",
              (Standard_Integer (MAT_Node::*)() const) static_cast<Standard_Integer (MAT_Node::*)() const>(&MAT_Node::GeomIndex),
@@ -655,13 +671,15 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_TListNodeOfListOfBisector ,opencascade::handle<MAT_TListNodeOfListOfBisector>  , Standard_Transient >>(m.attr("MAT_TListNodeOfListOfBisector"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<MAT_Bisector> & >()  , py::arg("anitem") )
+    // custom constructors
     // methods
         .def("GetItem",
              (opencascade::handle<MAT_Bisector> (MAT_TListNodeOfListOfBisector::*)() const) static_cast<opencascade::handle<MAT_Bisector> (MAT_TListNodeOfListOfBisector::*)() const>(&MAT_TListNodeOfListOfBisector::GetItem),
@@ -697,13 +715,15 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_TListNodeOfListOfEdge ,opencascade::handle<MAT_TListNodeOfListOfEdge>  , Standard_Transient >>(m.attr("MAT_TListNodeOfListOfEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<MAT_Edge> & >()  , py::arg("anitem") )
+    // custom constructors
     // methods
         .def("GetItem",
              (opencascade::handle<MAT_Edge> (MAT_TListNodeOfListOfEdge::*)() const) static_cast<opencascade::handle<MAT_Edge> (MAT_TListNodeOfListOfEdge::*)() const>(&MAT_TListNodeOfListOfEdge::GetItem),
@@ -739,13 +759,15 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<MAT_Zone ,opencascade::handle<MAT_Zone>  , Standard_Transient >>(m.attr("MAT_Zone"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<MAT_BasicElt> & >()  , py::arg("aBasicElt") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (MAT_Zone::*)( const opencascade::handle<MAT_BasicElt> &  ) ) static_cast<void (MAT_Zone::*)( const opencascade::handle<MAT_BasicElt> &  ) >(&MAT_Zone::Perform),
@@ -775,38 +797,38 @@ py::module m = static_cast<py::module>(main_module.attr("MAT"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/MAT_Arc.hxx
-// ./opencascade/MAT_Edge.hxx
-// ./opencascade/MAT_BasicElt.hxx
-// ./opencascade/MAT_ListOfBisector.hxx
-// ./opencascade/MAT_TListNodeOfListOfBisector.hxx
-// ./opencascade/MAT_ListOfEdge.hxx
-// ./opencascade/MAT_DataMapOfIntegerBasicElt.hxx
-// ./opencascade/MAT_SequenceOfBasicElt.hxx
-// ./opencascade/MAT_Zone.hxx
-// ./opencascade/MAT_DataMapOfIntegerBisector.hxx
 // ./opencascade/MAT_Graph.hxx
-// ./opencascade/MAT_DataMapIteratorOfDataMapOfIntegerArc.hxx
-// ./opencascade/MAT_Bisector.hxx
-// ./opencascade/MAT_DataMapOfIntegerArc.hxx
+// ./opencascade/MAT_ListOfEdge.hxx
+// ./opencascade/MAT_Zone.hxx
 // ./opencascade/MAT_Side.hxx
-// ./opencascade/MAT_Node.hxx
-// ./opencascade/MAT_DataMapOfIntegerNode.hxx
-// ./opencascade/MAT_DataMapIteratorOfDataMapOfIntegerBisector.hxx
-// ./opencascade/MAT_DataMapIteratorOfDataMapOfIntegerNode.hxx
-// ./opencascade/MAT_TListNodeOfListOfEdge.hxx
 // ./opencascade/MAT_SequenceOfArc.hxx
+// ./opencascade/MAT_DataMapOfIntegerBisector.hxx
+// ./opencascade/MAT_DataMapOfIntegerNode.hxx
+// ./opencascade/MAT_Arc.hxx
+// ./opencascade/MAT_DataMapOfIntegerArc.hxx
+// ./opencascade/MAT_ListOfBisector.hxx
+// ./opencascade/MAT_TListNodeOfListOfEdge.hxx
 // ./opencascade/MAT_DataMapIteratorOfDataMapOfIntegerBasicElt.hxx
+// ./opencascade/MAT_TListNodeOfListOfBisector.hxx
+// ./opencascade/MAT_SequenceOfBasicElt.hxx
+// ./opencascade/MAT_Node.hxx
+// ./opencascade/MAT_DataMapIteratorOfDataMapOfIntegerArc.hxx
+// ./opencascade/MAT_DataMapIteratorOfDataMapOfIntegerBisector.hxx
+// ./opencascade/MAT_Edge.hxx
+// ./opencascade/MAT_Bisector.hxx
+// ./opencascade/MAT_BasicElt.hxx
+// ./opencascade/MAT_DataMapIteratorOfDataMapOfIntegerNode.hxx
+// ./opencascade/MAT_DataMapOfIntegerBasicElt.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<opencascade::handle<MAT_BasicElt> >(m,"MAT_SequenceOfBasicElt");  
     register_template_NCollection_Sequence<opencascade::handle<MAT_Arc> >(m,"MAT_SequenceOfArc");  
+    register_template_NCollection_Sequence<opencascade::handle<MAT_BasicElt> >(m,"MAT_SequenceOfBasicElt");  
 
 
 // exceptions

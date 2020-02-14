@@ -17,20 +17,6 @@ namespace py = pybind11;
 #include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMDataXtd_PointDriver.hxx>
@@ -42,6 +28,20 @@ namespace py = pybind11;
 #include <BinMDataXtd_PatternStdDriver.hxx>
 #include <BinMDataXtd_ShapeDriver.hxx>
 #include <BinMDataXtd_TriangulationDriver.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
@@ -80,9 +80,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinMDataXtd , shared_ptr<BinMDataXtd>>(m,"BinMDataXtd");
 
     static_cast<py::class_<BinMDataXtd , shared_ptr<BinMDataXtd>  >>(m.attr("BinMDataXtd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -97,12 +100,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_AxisDriver ,opencascade::handle<BinMDataXtd_AxisDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_AxisDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_AxisDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_AxisDriver::*)() const>(&BinMDataXtd_AxisDriver::NewEmpty),
@@ -126,12 +131,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_ConstraintDriver ,opencascade::handle<BinMDataXtd_ConstraintDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_ConstraintDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_ConstraintDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_ConstraintDriver::*)() const>(&BinMDataXtd_ConstraintDriver::NewEmpty),
@@ -155,12 +162,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_GeometryDriver ,opencascade::handle<BinMDataXtd_GeometryDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_GeometryDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_GeometryDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_GeometryDriver::*)() const>(&BinMDataXtd_GeometryDriver::NewEmpty),
@@ -184,12 +193,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_PatternStdDriver ,opencascade::handle<BinMDataXtd_PatternStdDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_PatternStdDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_PatternStdDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_PatternStdDriver::*)() const>(&BinMDataXtd_PatternStdDriver::NewEmpty),
@@ -213,12 +224,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_PlacementDriver ,opencascade::handle<BinMDataXtd_PlacementDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_PlacementDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_PlacementDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_PlacementDriver::*)() const>(&BinMDataXtd_PlacementDriver::NewEmpty),
@@ -242,12 +255,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_PlaneDriver ,opencascade::handle<BinMDataXtd_PlaneDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_PlaneDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_PlaneDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_PlaneDriver::*)() const>(&BinMDataXtd_PlaneDriver::NewEmpty),
@@ -271,12 +286,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_PointDriver ,opencascade::handle<BinMDataXtd_PointDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_PointDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_PointDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_PointDriver::*)() const>(&BinMDataXtd_PointDriver::NewEmpty),
@@ -300,12 +317,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_PositionDriver ,opencascade::handle<BinMDataXtd_PositionDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_PositionDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_PositionDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_PositionDriver::*)() const>(&BinMDataXtd_PositionDriver::NewEmpty),
@@ -329,12 +348,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_PresentationDriver ,opencascade::handle<BinMDataXtd_PresentationDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_PresentationDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_PresentationDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_PresentationDriver::*)() const>(&BinMDataXtd_PresentationDriver::NewEmpty),
@@ -358,12 +379,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_ShapeDriver ,opencascade::handle<BinMDataXtd_ShapeDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_ShapeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_ShapeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_ShapeDriver::*)() const>(&BinMDataXtd_ShapeDriver::NewEmpty),
@@ -387,12 +410,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDataXtd_TriangulationDriver ,opencascade::handle<BinMDataXtd_TriangulationDriver>  , BinMDF_ADriver >>(m.attr("BinMDataXtd_TriangulationDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDataXtd_TriangulationDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDataXtd_TriangulationDriver::*)() const>(&BinMDataXtd_TriangulationDriver::NewEmpty),
@@ -416,22 +441,22 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinMDataXtd_ConstraintDriver.hxx
-// ./opencascade/BinMDataXtd_TriangulationDriver.hxx
-// ./opencascade/BinMDataXtd_PresentationDriver.hxx
-// ./opencascade/BinMDataXtd_PlaneDriver.hxx
-// ./opencascade/BinMDataXtd_GeometryDriver.hxx
 // ./opencascade/BinMDataXtd_PositionDriver.hxx
-// ./opencascade/BinMDataXtd_ShapeDriver.hxx
-// ./opencascade/BinMDataXtd_PatternStdDriver.hxx
-// ./opencascade/BinMDataXtd_PlacementDriver.hxx
+// ./opencascade/BinMDataXtd_ConstraintDriver.hxx
 // ./opencascade/BinMDataXtd.hxx
-// ./opencascade/BinMDataXtd_PointDriver.hxx
+// ./opencascade/BinMDataXtd_GeometryDriver.hxx
+// ./opencascade/BinMDataXtd_TriangulationDriver.hxx
+// ./opencascade/BinMDataXtd_ShapeDriver.hxx
+// ./opencascade/BinMDataXtd_PlaneDriver.hxx
 // ./opencascade/BinMDataXtd_AxisDriver.hxx
+// ./opencascade/BinMDataXtd_PatternStdDriver.hxx
+// ./opencascade/BinMDataXtd_PresentationDriver.hxx
+// ./opencascade/BinMDataXtd_PlacementDriver.hxx
+// ./opencascade/BinMDataXtd_PointDriver.hxx
 
 // operators
 

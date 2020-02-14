@@ -38,17 +38,17 @@ namespace py = pybind11;
 #include <AppParCurves_SequenceOfMultiCurve.hxx>
 
 // template related includes
-// ./opencascade/AppParCurves_SequenceOfMultiCurve.hxx
-#include "NCollection.hxx"
 // ./opencascade/AppParCurves_SequenceOfMultiBSpCurve.hxx
 #include "NCollection.hxx"
-// ./opencascade/AppParCurves_Array1OfMultiCurve.hxx
+// ./opencascade/AppParCurves_SequenceOfMultiCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/AppParCurves_Array1OfMultiBSpCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/AppParCurves_Array1OfConstraintCouple.hxx
 #include "NCollection.hxx"
 // ./opencascade/AppParCurves_Array1OfMultiPoint.hxx
 #include "NCollection.hxx"
-// ./opencascade/AppParCurves_Array1OfMultiBSpCurve.hxx
+// ./opencascade/AppParCurves_Array1OfMultiCurve.hxx
 #include "NCollection.hxx"
 
 
@@ -68,9 +68,12 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
 
 // classes
 
+    // default constructor
     register_default_constructor<AppParCurves , shared_ptr<AppParCurves>>(m,"AppParCurves");
 
     static_cast<py::class_<AppParCurves , shared_ptr<AppParCurves>  >>(m.attr("AppParCurves"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -88,13 +91,15 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
                     R"#(None)#"  , py::arg("NbPoles"),  py::arg("Degree"),  py::arg("Parameters"),  py::arg("FlatKnots"),  py::arg("A"),  py::arg("DA"),  py::arg("Index"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_ConstraintCouple , shared_ptr<AppParCurves_ConstraintCouple>  >>(m.attr("AppParCurves_ConstraintCouple"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const AppParCurves_Constraint >()  , py::arg("TheIndex"),  py::arg("Cons") )
+    // custom constructors
     // methods
         .def("Index",
              (Standard_Integer (AppParCurves_ConstraintCouple::*)() const) static_cast<Standard_Integer (AppParCurves_ConstraintCouple::*)() const>(&AppParCurves_ConstraintCouple::Index),
@@ -112,14 +117,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_HArray1OfConstraintCouple ,opencascade::handle<AppParCurves_HArray1OfConstraintCouple>  , AppParCurves_Array1OfConstraintCouple , Standard_Transient >>(m.attr("AppParCurves_HArray1OfConstraintCouple"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const AppParCurves_ConstraintCouple & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<AppParCurves_ConstraintCouple> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const AppParCurves_Array1OfConstraintCouple & (AppParCurves_HArray1OfConstraintCouple::*)() const) static_cast<const AppParCurves_Array1OfConstraintCouple & (AppParCurves_HArray1OfConstraintCouple::*)() const>(&AppParCurves_HArray1OfConstraintCouple::Array1),
@@ -140,14 +148,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_HArray1OfMultiBSpCurve ,opencascade::handle<AppParCurves_HArray1OfMultiBSpCurve>  , AppParCurves_Array1OfMultiBSpCurve , Standard_Transient >>(m.attr("AppParCurves_HArray1OfMultiBSpCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const AppParCurves_MultiBSpCurve & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<AppParCurves_MultiBSpCurve> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const AppParCurves_Array1OfMultiBSpCurve & (AppParCurves_HArray1OfMultiBSpCurve::*)() const) static_cast<const AppParCurves_Array1OfMultiBSpCurve & (AppParCurves_HArray1OfMultiBSpCurve::*)() const>(&AppParCurves_HArray1OfMultiBSpCurve::Array1),
@@ -168,14 +179,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_HArray1OfMultiCurve ,opencascade::handle<AppParCurves_HArray1OfMultiCurve>  , AppParCurves_Array1OfMultiCurve , Standard_Transient >>(m.attr("AppParCurves_HArray1OfMultiCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const AppParCurves_MultiCurve & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<AppParCurves_MultiCurve> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const AppParCurves_Array1OfMultiCurve & (AppParCurves_HArray1OfMultiCurve::*)() const) static_cast<const AppParCurves_Array1OfMultiCurve & (AppParCurves_HArray1OfMultiCurve::*)() const>(&AppParCurves_HArray1OfMultiCurve::Array1),
@@ -196,14 +210,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_HArray1OfMultiPoint ,opencascade::handle<AppParCurves_HArray1OfMultiPoint>  , AppParCurves_Array1OfMultiPoint , Standard_Transient >>(m.attr("AppParCurves_HArray1OfMultiPoint"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const AppParCurves_MultiPoint & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<AppParCurves_MultiPoint> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const AppParCurves_Array1OfMultiPoint & (AppParCurves_HArray1OfMultiPoint::*)() const) static_cast<const AppParCurves_Array1OfMultiPoint & (AppParCurves_HArray1OfMultiPoint::*)() const>(&AppParCurves_HArray1OfMultiPoint::Array1),
@@ -224,14 +241,16 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_MultiCurve , shared_ptr<AppParCurves_MultiCurve>  >>(m.attr("AppParCurves_MultiCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("NbPol") )
         .def(py::init<  const NCollection_Array1<AppParCurves_MultiPoint> & >()  , py::arg("tabMU") )
+    // custom constructors
     // methods
         .def("SetNbPoles",
              (void (AppParCurves_MultiCurve::*)( const Standard_Integer  ) ) static_cast<void (AppParCurves_MultiCurve::*)( const Standard_Integer  ) >(&AppParCurves_MultiCurve::SetNbPoles),
@@ -297,16 +316,18 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_MultiPoint , shared_ptr<AppParCurves_MultiPoint>  >>(m.attr("AppParCurves_MultiPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("NbPoints"),  py::arg("NbPoints2d") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> & >()  , py::arg("tabP") )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> & >()  , py::arg("tabP2d") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt2d> & >()  , py::arg("tabP"),  py::arg("tabP2d") )
+    // custom constructors
     // methods
         .def("SetPoint",
              (void (AppParCurves_MultiPoint::*)( const Standard_Integer ,  const gp_Pnt &  ) ) static_cast<void (AppParCurves_MultiPoint::*)( const Standard_Integer ,  const gp_Pnt &  ) >(&AppParCurves_MultiPoint::SetPoint),
@@ -351,15 +372,17 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<AppParCurves_MultiBSpCurve , shared_ptr<AppParCurves_MultiBSpCurve>  , AppParCurves_MultiCurve >>(m.attr("AppParCurves_MultiBSpCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("NbPol") )
         .def(py::init<  const NCollection_Array1<AppParCurves_MultiPoint> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> & >()  , py::arg("tabMU"),  py::arg("Knots"),  py::arg("Mults") )
         .def(py::init< const AppParCurves_MultiCurve &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> & >()  , py::arg("SC"),  py::arg("Knots"),  py::arg("Mults") )
+    // custom constructors
     // methods
         .def("SetKnots",
              (void (AppParCurves_MultiBSpCurve::*)(  const NCollection_Array1<Standard_Real> &  ) ) static_cast<void (AppParCurves_MultiBSpCurve::*)(  const NCollection_Array1<Standard_Real> &  ) >(&AppParCurves_MultiBSpCurve::SetKnots),
@@ -401,36 +424,36 @@ py::module m = static_cast<py::module>(main_module.attr("AppParCurves"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/AppParCurves_SequenceOfMultiCurve.hxx
-// ./opencascade/AppParCurves_SequenceOfMultiBSpCurve.hxx
-// ./opencascade/AppParCurves_MultiBSpCurve.hxx
-// ./opencascade/AppParCurves_Array1OfMultiCurve.hxx
-// ./opencascade/AppParCurves_MultiPoint.hxx
-// ./opencascade/AppParCurves_HArray1OfMultiCurve.hxx
-// ./opencascade/AppParCurves_Array1OfConstraintCouple.hxx
-// ./opencascade/AppParCurves_Constraint.hxx
-// ./opencascade/AppParCurves_ConstraintCouple.hxx
-// ./opencascade/AppParCurves_HArray1OfConstraintCouple.hxx
 // ./opencascade/AppParCurves_MultiCurve.hxx
-// ./opencascade/AppParCurves.hxx
-// ./opencascade/AppParCurves_HArray1OfMultiBSpCurve.hxx
-// ./opencascade/AppParCurves_Array1OfMultiPoint.hxx
+// ./opencascade/AppParCurves_SequenceOfMultiBSpCurve.hxx
+// ./opencascade/AppParCurves_SequenceOfMultiCurve.hxx
+// ./opencascade/AppParCurves_ConstraintCouple.hxx
+// ./opencascade/AppParCurves_HArray1OfMultiCurve.hxx
 // ./opencascade/AppParCurves_Array1OfMultiBSpCurve.hxx
+// ./opencascade/AppParCurves_MultiBSpCurve.hxx
+// ./opencascade/AppParCurves_Constraint.hxx
+// ./opencascade/AppParCurves_HArray1OfMultiBSpCurve.hxx
+// ./opencascade/AppParCurves.hxx
+// ./opencascade/AppParCurves_Array1OfConstraintCouple.hxx
+// ./opencascade/AppParCurves_Array1OfMultiPoint.hxx
 // ./opencascade/AppParCurves_HArray1OfMultiPoint.hxx
+// ./opencascade/AppParCurves_MultiPoint.hxx
+// ./opencascade/AppParCurves_Array1OfMultiCurve.hxx
+// ./opencascade/AppParCurves_HArray1OfConstraintCouple.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<AppParCurves_MultiCurve>(m,"AppParCurves_SequenceOfMultiCurve");  
     register_template_NCollection_Sequence<AppParCurves_MultiBSpCurve>(m,"AppParCurves_SequenceOfMultiBSpCurve");  
-    register_template_NCollection_Array1<AppParCurves_MultiCurve>(m,"AppParCurves_Array1OfMultiCurve");  
+    register_template_NCollection_Sequence<AppParCurves_MultiCurve>(m,"AppParCurves_SequenceOfMultiCurve");  
+    register_template_NCollection_Array1<AppParCurves_MultiBSpCurve>(m,"AppParCurves_Array1OfMultiBSpCurve");  
     register_template_NCollection_Array1<AppParCurves_ConstraintCouple>(m,"AppParCurves_Array1OfConstraintCouple");  
     register_template_NCollection_Array1<AppParCurves_MultiPoint>(m,"AppParCurves_Array1OfMultiPoint");  
-    register_template_NCollection_Array1<AppParCurves_MultiBSpCurve>(m,"AppParCurves_Array1OfMultiBSpCurve");  
+    register_template_NCollection_Array1<AppParCurves_MultiCurve>(m,"AppParCurves_Array1OfMultiCurve");  
 
 
 // exceptions

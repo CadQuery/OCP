@@ -13,6 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <IGESData_IGESModel.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <TopoDS_Shape.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopoDS_Vertex.hxx>
@@ -31,10 +35,6 @@ namespace py = pybind11;
 #include <TopoDS_Shape.hxx>
 #include <TopoDS_Shell.hxx>
 #include <TopoDS_Face.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <TopoDS_Shape.hxx>
 
 // module includes
 #include <BRepToIGES_BREntity.hxx>
@@ -63,7 +63,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
 
 
     static_cast<py::class_<BRepToIGES_BREntity , shared_ptr<BRepToIGES_BREntity>  >>(m.attr("BRepToIGES_BREntity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepToIGES_BREntity::*)() ) static_cast<void (BRepToIGES_BREntity::*)() >(&BRepToIGES_BREntity::Init),
@@ -126,13 +128,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepToIGES_BRShell , shared_ptr<BRepToIGES_BRShell>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRShell"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepToIGES_BREntity & >()  , py::arg("BR") )
+    // custom constructors
     // methods
         .def("TransferShell",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRShell::*)( const TopoDS_Shape &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRShell::*)( const TopoDS_Shape &  ) >(&BRepToIGES_BRShell::TransferShell),
@@ -147,13 +151,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepToIGES_BRSolid , shared_ptr<BRepToIGES_BRSolid>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRSolid"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepToIGES_BREntity & >()  , py::arg("BR") )
+    // custom constructors
     // methods
         .def("TransferSolid",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRSolid::*)( const TopoDS_Shape &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRSolid::*)( const TopoDS_Shape &  ) >(&BRepToIGES_BRSolid::TransferSolid),
@@ -171,13 +177,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepToIGES_BRWire , shared_ptr<BRepToIGES_BRWire>  , BRepToIGES_BREntity >>(m.attr("BRepToIGES_BRWire"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRepToIGES_BREntity & >()  , py::arg("BR") )
+    // custom constructors
     // methods
         .def("TransferWire",
              (opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRWire::*)( const TopoDS_Shape &  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (BRepToIGES_BRWire::*)( const TopoDS_Shape &  ) >(&BRepToIGES_BRWire::TransferWire),
@@ -213,14 +221,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/BRepToIGES_BREntity.hxx
 // ./opencascade/BRepToIGES_BRWire.hxx
 // ./opencascade/BRepToIGES_BRSolid.hxx
 // ./opencascade/BRepToIGES_BRShell.hxx
-// ./opencascade/BRepToIGES_BREntity.hxx
 
 // operators
 

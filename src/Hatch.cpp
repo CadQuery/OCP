@@ -13,8 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Hatch_Line.hxx>
 #include <Hatch_Hatcher.hxx>
+#include <Hatch_Line.hxx>
 #include <Hatch_Hatcher.hxx>
 
 // module includes
@@ -50,7 +50,9 @@ py::module m = static_cast<py::module>(main_module.attr("Hatch"));
 
 
     static_cast<py::class_<Hatch_Hatcher , shared_ptr<Hatch_Hatcher>  >>(m.attr("Hatch_Hatcher"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Boolean >()  , py::arg("Tol"),  py::arg("Oriented")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Tolerance",
              (void (Hatch_Hatcher::*)( const Standard_Real  ) ) static_cast<void (Hatch_Hatcher::*)( const Standard_Real  ) >(&Hatch_Hatcher::Tolerance),
@@ -131,13 +133,15 @@ py::module m = static_cast<py::module>(main_module.attr("Hatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Hatch_Line , shared_ptr<Hatch_Line>  >>(m.attr("Hatch_Line"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin2d &,const Hatch_LineForm >()  , py::arg("L"),  py::arg("T") )
+    // custom constructors
     // methods
         .def("AddIntersection",
              (void (Hatch_Line::*)( const Standard_Real ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Hatch_Line::*)( const Standard_Real ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&Hatch_Line::AddIntersection),
@@ -146,28 +150,30 @@ py::module m = static_cast<py::module>(main_module.attr("Hatch"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Hatch_Parameter , shared_ptr<Hatch_Parameter>  >>(m.attr("Hatch_Parameter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Boolean,const Standard_Integer,const Standard_Real >()  , py::arg("Par1"),  py::arg("Start"),  py::arg("Index")=static_cast<const Standard_Integer>(0),  py::arg("Par2")=static_cast<const Standard_Real>(0) )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Hatch_SequenceOfParameter.hxx
-// ./opencascade/Hatch_Hatcher.hxx
+// ./opencascade/Hatch_Line.hxx
 // ./opencascade/Hatch_Parameter.hxx
 // ./opencascade/Hatch_LineForm.hxx
+// ./opencascade/Hatch_SequenceOfParameter.hxx
 // ./opencascade/Hatch_SequenceOfLine.hxx
-// ./opencascade/Hatch_Line.hxx
+// ./opencascade/Hatch_Hatcher.hxx
 
 // operators
 

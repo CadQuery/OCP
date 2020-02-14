@@ -19,26 +19,8 @@ namespace py = pybind11;
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <StdFail_NotDone.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Edge.hxx>
-#include <StdFail_NotDone.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Face.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Torus.hxx>
-#include <Geom_Surface.hxx>
-#include <TopoDS_Wire.hxx>
-#include <Geom_Curve.hxx>
 #include <StdFail_NotDone.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Circ.hxx>
@@ -49,18 +31,19 @@ namespace py = pybind11;
 #include <Geom2d_Curve.hxx>
 #include <Geom_Surface.hxx>
 #include <TopoDS_Edge.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Geom_Surface.hxx>
-#include <TopoDS_Shell.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <TopoDS_Shape.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_CompSolid.hxx>
-#include <TopoDS_Shell.hxx>
-#include <TopoDS_Solid.hxx>
 #include <TopoDS_Face.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <StdFail_NotDone.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Torus.hxx>
+#include <Geom_Surface.hxx>
 #include <TopoDS_Wire.hxx>
+#include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Geom_Plane.hxx>
@@ -79,9 +62,26 @@ namespace py = pybind11;
 #include <BRepLib_FindSurface.hxx>
 #include <BRepLib_FuseEdges.hxx>
 #include <BRepTools_ReShape.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_CompSolid.hxx>
+#include <TopoDS_Shell.hxx>
+#include <TopoDS_Solid.hxx>
+#include <TopoDS_Face.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Wire.hxx>
+#include <StdFail_NotDone.hxx>
 #include <Geom_Surface.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <TopoDS_Shape.hxx>
+#include <TopoDS_Shell.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Lin2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
 
 // module includes
 #include <BRepLib.hxx>
@@ -122,9 +122,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepLib , shared_ptr<BRepLib>>(m,"BRepLib");
 
     static_cast<py::class_<BRepLib , shared_ptr<BRepLib>  >>(m.attr("BRepLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -223,11 +226,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
                     []( const NCollection_List<TopoDS_Shape> & theLV,gp_Pnt & theNewCenter ){ Standard_Real  theNewTol; BRepLib::BoundingVertex(theLV,theNewCenter,theNewTol); return std::make_tuple(theNewTol); },
                     R"#(Calculates the bounding sphere around the set of vertexes from the theLV list. Returns the center (theNewCenter) and the radius (theNewTol) of this sphere. This can be used to construct the new vertex which covers the given set of other vertices.)#"  , py::arg("theLV"),  py::arg("theNewCenter"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_Command , shared_ptr<BRepLib_Command>  >>(m.attr("BRepLib_Command"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (BRepLib_Command::*)() const) static_cast<Standard_Boolean (BRepLib_Command::*)() const>(&BRepLib_Command::IsDone),
@@ -239,13 +244,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_FindSurface , shared_ptr<BRepLib_FindSurface>  >>(m.attr("BRepLib_FindSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("Tol")=static_cast<const Standard_Real>(- 1),  py::arg("OnlyPlane")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("OnlyClosed")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepLib_FindSurface::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (BRepLib_FindSurface::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&BRepLib_FindSurface::Init),
@@ -272,12 +279,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_FuseEdges , shared_ptr<BRepLib_FuseEdges>  >>(m.attr("BRepLib_FuseEdges"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("theShape"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("AvoidEdges",
              (void (BRepLib_FuseEdges::*)(  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> &  ) ) static_cast<void (BRepLib_FuseEdges::*)(  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> &  ) >(&BRepLib_FuseEdges::AvoidEdges),
@@ -307,11 +316,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeShape , shared_ptr<BRepLib_MakeShape>  , BRepLib_Command >>(m.attr("BRepLib_MakeShape"))
+    // constructors
+    // custom constructors
     // methods
         .def("Build",
              (void (BRepLib_MakeShape::*)() ) static_cast<void (BRepLib_MakeShape::*)() >(&BRepLib_MakeShape::Build),
@@ -341,11 +352,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeEdge , shared_ptr<BRepLib_MakeEdge>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakeEdge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Vertex &,const TopoDS_Vertex & >()  , py::arg("V1"),  py::arg("V2") )
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2") )
@@ -381,6 +393,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom_Surface> &,const TopoDS_Vertex &,const TopoDS_Vertex & >()  , py::arg("L"),  py::arg("S"),  py::arg("V1"),  py::arg("V2") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom_Surface> &,const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("S"),  py::arg("P1"),  py::arg("P2"),  py::arg("p1"),  py::arg("p2") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom_Surface> &,const TopoDS_Vertex &,const TopoDS_Vertex &,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("S"),  py::arg("V1"),  py::arg("V2"),  py::arg("p1"),  py::arg("p2") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepLib_MakeEdge::*)( const opencascade::handle<Geom_Curve> &  ) ) static_cast<void (BRepLib_MakeEdge::*)( const opencascade::handle<Geom_Curve> &  ) >(&BRepLib_MakeEdge::Init),
@@ -434,11 +447,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeEdge2d , shared_ptr<BRepLib_MakeEdge2d>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakeEdge2d"))
+    // constructors
         .def(py::init< const TopoDS_Vertex &,const TopoDS_Vertex & >()  , py::arg("V1"),  py::arg("V2") )
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d & >()  , py::arg("P1"),  py::arg("P2") )
         .def(py::init< const gp_Lin2d & >()  , py::arg("L") )
@@ -467,6 +481,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const TopoDS_Vertex &,const TopoDS_Vertex & >()  , py::arg("L"),  py::arg("V1"),  py::arg("V2") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const gp_Pnt2d &,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("P1"),  py::arg("P2"),  py::arg("p1"),  py::arg("p2") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const TopoDS_Vertex &,const TopoDS_Vertex &,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("V1"),  py::arg("V2"),  py::arg("p1"),  py::arg("p2") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepLib_MakeEdge2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (BRepLib_MakeEdge2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&BRepLib_MakeEdge2d::Init),
@@ -502,11 +517,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeFace , shared_ptr<BRepLib_MakeFace>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakeFace"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
         .def(py::init< const gp_Pln & >()  , py::arg("P") )
@@ -529,6 +545,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
         .def(py::init< const gp_Torus &,const TopoDS_Wire &,const Standard_Boolean >()  , py::arg("C"),  py::arg("W"),  py::arg("Inside")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const TopoDS_Wire &,const Standard_Boolean >()  , py::arg("S"),  py::arg("W"),  py::arg("Inside")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const TopoDS_Face &,const TopoDS_Wire & >()  , py::arg("F"),  py::arg("W") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepLib_MakeFace::*)( const TopoDS_Face &  ) ) static_cast<void (BRepLib_MakeFace::*)( const TopoDS_Face &  ) >(&BRepLib_MakeFace::Init),
@@ -555,11 +572,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
                     R"#(Checks the specified curve is degenerated according to specified tolerance. Returns <theActTol> less than <theMaxTol>, which shows actual tolerance to decide the curve is degenerated. Warning: For internal use of BRepLib_MakeFace and BRepLib_MakeShell.)#"  , py::arg("theCurve"),  py::arg("theMaxTol"),  py::arg("theActTol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakePolygon , shared_ptr<BRepLib_MakePolygon>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakePolygon"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt &,const Standard_Boolean >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("Close")=static_cast<const Standard_Boolean>(Standard_False) )
@@ -567,6 +585,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
         .def(py::init< const TopoDS_Vertex &,const TopoDS_Vertex & >()  , py::arg("V1"),  py::arg("V2") )
         .def(py::init< const TopoDS_Vertex &,const TopoDS_Vertex &,const TopoDS_Vertex &,const Standard_Boolean >()  , py::arg("V1"),  py::arg("V2"),  py::arg("V3"),  py::arg("Close")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Vertex &,const TopoDS_Vertex &,const TopoDS_Vertex &,const TopoDS_Vertex &,const Standard_Boolean >()  , py::arg("V1"),  py::arg("V2"),  py::arg("V3"),  py::arg("V4"),  py::arg("Close")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Add",
              (void (BRepLib_MakePolygon::*)( const gp_Pnt &  ) ) static_cast<void (BRepLib_MakePolygon::*)( const gp_Pnt &  ) >(&BRepLib_MakePolygon::Add),
@@ -596,14 +615,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeShell , shared_ptr<BRepLib_MakeShell>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakeShell"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Boolean >()  , py::arg("S"),  py::arg("Segment")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("S"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("VMin"),  py::arg("VMax"),  py::arg("Segment")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepLib_MakeShell::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (BRepLib_MakeShell::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&BRepLib_MakeShell::Init),
@@ -618,11 +639,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeSolid , shared_ptr<BRepLib_MakeSolid>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakeSolid"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_CompSolid & >()  , py::arg("S") )
         .def(py::init< const TopoDS_Shell & >()  , py::arg("S") )
@@ -630,6 +652,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
         .def(py::init< const TopoDS_Shell &,const TopoDS_Shell &,const TopoDS_Shell & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("S3") )
         .def(py::init< const TopoDS_Solid & >()  , py::arg("So") )
         .def(py::init< const TopoDS_Solid &,const TopoDS_Shell & >()  , py::arg("So"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Add",
              (void (BRepLib_MakeSolid::*)( const TopoDS_Shell &  ) ) static_cast<void (BRepLib_MakeSolid::*)( const TopoDS_Shell &  ) >(&BRepLib_MakeSolid::Add),
@@ -644,12 +667,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeVertex , shared_ptr<BRepLib_MakeVertex>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakeVertex"))
+    // constructors
         .def(py::init< const gp_Pnt & >()  , py::arg("P") )
+    // custom constructors
     // methods
         .def("Vertex",
              (const TopoDS_Vertex & (BRepLib_MakeVertex::*)() ) static_cast<const TopoDS_Vertex & (BRepLib_MakeVertex::*)() >(&BRepLib_MakeVertex::Vertex),
@@ -658,11 +683,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLib_MakeWire , shared_ptr<BRepLib_MakeWire>  , BRepLib_MakeShape >>(m.attr("BRepLib_MakeWire"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge & >()  , py::arg("E") )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge & >()  , py::arg("E1"),  py::arg("E2") )
@@ -670,6 +696,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge &,const TopoDS_Edge &,const TopoDS_Edge & >()  , py::arg("E1"),  py::arg("E2"),  py::arg("E3"),  py::arg("E4") )
         .def(py::init< const TopoDS_Wire & >()  , py::arg("W") )
         .def(py::init< const TopoDS_Wire &,const TopoDS_Edge & >()  , py::arg("W"),  py::arg("E") )
+    // custom constructors
     // methods
         .def("Add",
              (void (BRepLib_MakeWire::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepLib_MakeWire::*)( const TopoDS_Edge &  ) >(&BRepLib_MakeWire::Add),
@@ -696,28 +723,28 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/BRepLib_MakeWire.hxx
-// ./opencascade/BRepLib_FuseEdges.hxx
-// ./opencascade/BRepLib_MakeEdge2d.hxx
-// ./opencascade/BRepLib_MakeShape.hxx
-// ./opencascade/BRepLib_MakeFace.hxx
-// ./opencascade/BRepLib_MakeEdge.hxx
-// ./opencascade/BRepLib_WireError.hxx
 // ./opencascade/BRepLib_ShellError.hxx
-// ./opencascade/BRepLib_MakeShell.hxx
-// ./opencascade/BRepLib_Command.hxx
-// ./opencascade/BRepLib_EdgeError.hxx
-// ./opencascade/BRepLib_MakeSolid.hxx
-// ./opencascade/BRepLib_MakeVertex.hxx
-// ./opencascade/BRepLib_MakePolygon.hxx
-// ./opencascade/BRepLib_ShapeModification.hxx
-// ./opencascade/BRepLib.hxx
-// ./opencascade/BRepLib_FindSurface.hxx
+// ./opencascade/BRepLib_FuseEdges.hxx
+// ./opencascade/BRepLib_MakeShape.hxx
+// ./opencascade/BRepLib_MakeEdge.hxx
 // ./opencascade/BRepLib_FaceError.hxx
+// ./opencascade/BRepLib_FindSurface.hxx
+// ./opencascade/BRepLib_MakeFace.hxx
+// ./opencascade/BRepLib_WireError.hxx
+// ./opencascade/BRepLib_EdgeError.hxx
+// ./opencascade/BRepLib.hxx
+// ./opencascade/BRepLib_MakeSolid.hxx
+// ./opencascade/BRepLib_Command.hxx
+// ./opencascade/BRepLib_MakePolygon.hxx
+// ./opencascade/BRepLib_MakeShell.hxx
+// ./opencascade/BRepLib_ShapeModification.hxx
+// ./opencascade/BRepLib_MakeEdge2d.hxx
+// ./opencascade/BRepLib_MakeVertex.hxx
 
 // operators
 

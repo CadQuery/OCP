@@ -41,8 +41,10 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
 
 
     static_cast<py::class_<Xw_Window ,opencascade::handle<Xw_Window>  , Aspect_Window >>(m.attr("Xw_Window"))
+    // constructors
         .def(py::init< const opencascade::handle<Aspect_DisplayConnection> &,const Standard_CString,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Aspect_FBConfig >()  , py::arg("theXDisplay"),  py::arg("theTitle"),  py::arg("thePxLeft"),  py::arg("thePxTop"),  py::arg("thePxWidth"),  py::arg("thePxHeight"),  py::arg("theFBConfig")=static_cast<const Aspect_FBConfig>(NULL) )
         .def(py::init< const opencascade::handle<Aspect_DisplayConnection> &,const Window,const Aspect_FBConfig >()  , py::arg("theXDisplay"),  py::arg("theXWin"),  py::arg("theFBConfig")=static_cast<const Aspect_FBConfig>(NULL) )
+    // custom constructors
     // methods
         .def("Map",
              (void (Xw_Window::*)() const) static_cast<void (Xw_Window::*)() const>(&Xw_Window::Map),
@@ -74,6 +76,12 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
         .def("NativeFBConfig",
              (Aspect_FBConfig (Xw_Window::*)() const) static_cast<Aspect_FBConfig (Xw_Window::*)() const>(&Xw_Window::NativeFBConfig),
              R"#(Returns native Window FB config (GLXFBConfig on Xlib))#" )
+        .def("SetTitle",
+             (void (Xw_Window::*)( const TCollection_AsciiString &  ) ) static_cast<void (Xw_Window::*)( const TCollection_AsciiString &  ) >(&Xw_Window::SetTitle),
+             R"#(Sets window title.)#"  , py::arg("theTitle"))
+        .def("InvalidateContent",
+             (void (Xw_Window::*)( const opencascade::handle<Aspect_DisplayConnection> &  ) ) static_cast<void (Xw_Window::*)( const opencascade::handle<Aspect_DisplayConnection> &  ) >(&Xw_Window::InvalidateContent),
+             R"#(Invalidate entire window content through generation of Expose event. This method does not aggregate multiple calls into single event - dedicated event will be sent on each call. When NULL display connection is specified, the connection specified on window creation will be used. Sending exposure messages from non-window thread would require dedicated display connection opened specifically for this working thread to avoid race conditions, since Xlib display connection is not thread-safe by default.)#"  , py::arg("theDisp"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Xw_Window::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Xw_Window::*)() const>(&Xw_Window::DynamicType),
              R"#(None)#" )
@@ -85,6 +93,9 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
              []( Xw_Window &self   ){ Standard_Integer  theWidth; Standard_Integer  theHeight; self.Size(theWidth,theHeight); return std::make_tuple(theWidth,theHeight); },
              R"#(Returns The Window SIZE in PIXEL)#" )
     // static methods
+        .def_static("VirtualKeyFromNative_s",
+                    (Aspect_VKey (*)( unsigned long  ) ) static_cast<Aspect_VKey (*)( unsigned long  ) >(&Xw_Window::VirtualKeyFromNative),
+                    R"#(Convert X11 virtual key (KeySym) into Aspect_VKey.)#"  , py::arg("theKey"))
         .def_static("get_type_name_s",
                     (const char * (*)() ) static_cast<const char * (*)() >(&Xw_Window::get_type_name),
                     R"#(None)#" )
@@ -93,7 +104,7 @@ py::module m = static_cast<py::module>(main_module.attr("Xw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

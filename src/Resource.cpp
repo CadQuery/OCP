@@ -13,8 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TCollection_AsciiString.hxx>
 #include <TCollection_ExtendedString.hxx>
+#include <TCollection_AsciiString.hxx>
 
 // module includes
 #include <Resource_ConvertUnicode.hxx>
@@ -29,13 +29,13 @@ namespace py = pybind11;
 #include <Resource_Unicode.hxx>
 
 // template related includes
-// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
-#include "NCollection.hxx"
-// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
-#include "NCollection.hxx"
 // ./opencascade/Resource_DataMapOfAsciiStringAsciiString.hxx
 #include "NCollection.hxx"
 // ./opencascade/Resource_DataMapOfAsciiStringAsciiString.hxx
+#include "NCollection.hxx"
+// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
+#include "NCollection.hxx"
+// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
 #include "NCollection.hxx"
 
 
@@ -57,7 +57,9 @@ py::module m = static_cast<py::module>(main_module.attr("Resource"));
 
 
     static_cast<py::class_<Resource_LexicalCompare , shared_ptr<Resource_LexicalCompare>  >>(m.attr("Resource_LexicalCompare"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsLower",
              (Standard_Boolean (Resource_LexicalCompare::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) const) static_cast<Standard_Boolean (Resource_LexicalCompare::*)( const TCollection_AsciiString & ,  const TCollection_AsciiString &  ) const>(&Resource_LexicalCompare::IsLower),
@@ -66,13 +68,15 @@ py::module m = static_cast<py::module>(main_module.attr("Resource"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Resource_Manager ,opencascade::handle<Resource_Manager>  , Standard_Transient >>(m.attr("Resource_Manager"))
+    // constructors
         .def(py::init< const Standard_CString,const Standard_Boolean >()  , py::arg("aName"),  py::arg("Verbose")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const Standard_CString,TCollection_AsciiString &,TCollection_AsciiString &,const Standard_Boolean >()  , py::arg("aName"),  py::arg("aDefaultsDirectory"),  py::arg("anUserDefaultsDirectory"),  py::arg("Verbose")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Save",
              (Standard_Boolean (Resource_Manager::*)() const) static_cast<Standard_Boolean (Resource_Manager::*)() const>(&Resource_Manager::Save),
@@ -120,12 +124,15 @@ py::module m = static_cast<py::module>(main_module.attr("Resource"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Resource_Unicode , shared_ptr<Resource_Unicode>>(m,"Resource_Unicode");
 
     static_cast<py::class_<Resource_Unicode , shared_ptr<Resource_Unicode>  >>(m.attr("Resource_Unicode"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -158,29 +165,32 @@ py::module m = static_cast<py::module>(main_module.attr("Resource"));
                     R"#(Reads converting format from resource "FormatType" in Resource Manager "CharSet")#" )
         .def_static("ConvertFormatToUnicode_s",
                     (void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertFormatToUnicode),
-                    R"#(Converts the non-ASCII C string fromstr to the Unicode string of extended characters tostr. fromstr is translated according to the format (either ANSI, EUC, GB or SJIS) returned by the function GetFormat.)#"  , py::arg("fromstr"),  py::arg("tostr"))
+                    R"#(Converts the non-ASCII C string (as specified by GetFormat()) to the Unicode string of extended characters.)#"  , py::arg("theFromStr"),  py::arg("theToStr"))
+        .def_static("ConvertFormatToUnicode_s",
+                    (void (*)( const Resource_FormatType ,  const Standard_CString ,  TCollection_ExtendedString &  ) ) static_cast<void (*)( const Resource_FormatType ,  const Standard_CString ,  TCollection_ExtendedString &  ) >(&Resource_Unicode::ConvertFormatToUnicode),
+                    R"#(Converts the non-ASCII C string in specified format to the Unicode string of extended characters.)#"  , py::arg("theFormat"),  py::arg("theFromStr"),  py::arg("theToStr"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringExtendedString.hxx
-// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
-// ./opencascade/Resource_LexicalCompare.hxx
+// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString.hxx
 // ./opencascade/Resource_ConvertUnicode.hxx
-// ./opencascade/Resource_NoSuchResource.hxx
 // ./opencascade/Resource_DataMapOfAsciiStringAsciiString.hxx
 // ./opencascade/Resource_FormatType.hxx
-// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringAsciiString.hxx
+// ./opencascade/Resource_DataMapOfAsciiStringExtendedString.hxx
 // ./opencascade/Resource_Manager.hxx
 // ./opencascade/Resource_Unicode.hxx
+// ./opencascade/Resource_NoSuchResource.hxx
+// ./opencascade/Resource_LexicalCompare.hxx
+// ./opencascade/Resource_DataMapIteratorOfDataMapOfAsciiStringExtendedString.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<TCollection_AsciiString, TCollection_ExtendedString, TCollection_AsciiString>(m,"Resource_DataMapOfAsciiStringExtendedString");  
     register_template_NCollection_DataMap<TCollection_AsciiString, TCollection_AsciiString, TCollection_AsciiString>(m,"Resource_DataMapOfAsciiStringAsciiString");  
+    register_template_NCollection_DataMap<TCollection_AsciiString, TCollection_ExtendedString, TCollection_AsciiString>(m,"Resource_DataMapOfAsciiStringExtendedString");  
 
 
 // exceptions

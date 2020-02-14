@@ -13,10 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <gp_Pln.hxx>
-#include <gp_Lin.hxx>
 #include <BRep_Builder.hxx>
 #include <Geom_Surface.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Lin.hxx>
 #include <gp_Pln.hxx>
 #include <TopoDS_Edge.hxx>
 #include <gp_Lin.hxx>
@@ -57,6 +57,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     public:
         using BRepPrim_OneAxis::BRepPrim_OneAxis;
         
+        
         // public pure virtual
         TopoDS_Face MakeEmptyLateralFace() const  override { PYBIND11_OVERLOAD_PURE(TopoDS_Face,BRepPrim_OneAxis,MakeEmptyLateralFace,) };
         TopoDS_Edge MakeEmptyMeridianEdge(const Standard_Real Ang) const  override { PYBIND11_OVERLOAD_PURE(TopoDS_Edge,BRepPrim_OneAxis,MakeEmptyMeridianEdge,Ang) };
@@ -75,8 +76,10 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
 
 
     static_cast<py::class_<BRepPrim_Builder , shared_ptr<BRepPrim_Builder>  >>(m.attr("BRepPrim_Builder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRep_Builder & >()  , py::arg("B") )
+    // custom constructors
     // methods
         .def("Builder",
              (const BRep_Builder & (BRepPrim_Builder::*)() const) static_cast<const BRep_Builder & (BRepPrim_Builder::*)() const>(&BRepPrim_Builder::Builder),
@@ -151,14 +154,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_FaceBuilder , shared_ptr<BRepPrim_FaceBuilder>  >>(m.attr("BRepPrim_FaceBuilder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const BRep_Builder &,const opencascade::handle<Geom_Surface> & >()  , py::arg("B"),  py::arg("S") )
         .def(py::init< const BRep_Builder &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("B"),  py::arg("S"),  py::arg("UMin"),  py::arg("UMax"),  py::arg("VMin"),  py::arg("VMax") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepPrim_FaceBuilder::*)( const BRep_Builder & ,  const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (BRepPrim_FaceBuilder::*)( const BRep_Builder & ,  const opencascade::handle<Geom_Surface> &  ) >(&BRepPrim_FaceBuilder::Init),
@@ -179,14 +184,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_GWedge , shared_ptr<BRepPrim_GWedge>  >>(m.attr("BRepPrim_GWedge"))
+    // constructors
         .def(py::init< const BRepPrim_Builder &,const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("B"),  py::arg("Axes"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz") )
         .def(py::init< const BRepPrim_Builder &,const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("B"),  py::arg("Axes"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz"),  py::arg("ltx") )
         .def(py::init< const BRepPrim_Builder &,const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("B"),  py::arg("Axes"),  py::arg("xmin"),  py::arg("ymin"),  py::arg("zmin"),  py::arg("z2min"),  py::arg("x2min"),  py::arg("xmax"),  py::arg("ymax"),  py::arg("zmax"),  py::arg("z2max"),  py::arg("x2max") )
+    // custom constructors
     // methods
         .def("Axes",
              (gp_Ax2 (BRepPrim_GWedge::*)() const) static_cast<gp_Ax2 (BRepPrim_GWedge::*)() const>(&BRepPrim_GWedge::Axes),
@@ -270,11 +277,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_OneAxis , shared_ptr<BRepPrim_OneAxis> ,Py_BRepPrim_OneAxis >>(m.attr("BRepPrim_OneAxis"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetMeridianOffset",
              (void (BRepPrim_OneAxis::*)( const Standard_Real  ) ) static_cast<void (BRepPrim_OneAxis::*)( const Standard_Real  ) >(&BRepPrim_OneAxis::SetMeridianOffset),
@@ -430,12 +439,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_Revolution , shared_ptr<BRepPrim_Revolution>  , BRepPrim_OneAxis >>(m.attr("BRepPrim_Revolution"))
+    // constructors
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom2d_Curve> & >()  , py::arg("A"),  py::arg("VMin"),  py::arg("VMax"),  py::arg("M"),  py::arg("PM") )
+    // custom constructors
     // methods
         .def("MakeEmptyLateralFace",
              (TopoDS_Face (BRepPrim_Revolution::*)() const) static_cast<TopoDS_Face (BRepPrim_Revolution::*)() const>(&BRepPrim_Revolution::MakeEmptyLateralFace),
@@ -453,24 +464,27 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_Wedge , shared_ptr<BRepPrim_Wedge>  , BRepPrim_GWedge >>(m.attr("BRepPrim_Wedge"))
+    // constructors
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("dx"),  py::arg("dy"),  py::arg("dz"),  py::arg("ltx") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("xmin"),  py::arg("ymin"),  py::arg("zmin"),  py::arg("z2min"),  py::arg("x2min"),  py::arg("xmax"),  py::arg("ymax"),  py::arg("zmax"),  py::arg("z2max"),  py::arg("x2max") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_Cone , shared_ptr<BRepPrim_Cone>  , BRepPrim_Revolution >>(m.attr("BRepPrim_Cone"))
+    // constructors
         .def(py::init< const Standard_Real,const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("Angle"),  py::arg("Position"),  py::arg("Height"),  py::arg("Radius")=static_cast<const Standard_Real>(0) )
         .def(py::init< const Standard_Real >()  , py::arg("Angle") )
         .def(py::init< const Standard_Real,const gp_Pnt & >()  , py::arg("Angle"),  py::arg("Apex") )
@@ -478,6 +492,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("R1"),  py::arg("R2"),  py::arg("H") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Center"),  py::arg("R1"),  py::arg("R2"),  py::arg("H") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Axes"),  py::arg("R1"),  py::arg("R2"),  py::arg("H") )
+    // custom constructors
     // methods
         .def("MakeEmptyLateralFace",
              (TopoDS_Face (BRepPrim_Cone::*)() const) static_cast<TopoDS_Face (BRepPrim_Cone::*)() const>(&BRepPrim_Cone::MakeEmptyLateralFace),
@@ -486,17 +501,19 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_Cylinder , shared_ptr<BRepPrim_Cylinder>  , BRepPrim_Revolution >>(m.attr("BRepPrim_Cylinder"))
+    // constructors
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("Position"),  py::arg("Radius"),  py::arg("Height") )
         .def(py::init< const Standard_Real >()  , py::arg("Radius") )
         .def(py::init< const gp_Pnt &,const Standard_Real >()  , py::arg("Center"),  py::arg("Radius") )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("Axes"),  py::arg("Radius") )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("R"),  py::arg("H") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real >()  , py::arg("Center"),  py::arg("R"),  py::arg("H") )
+    // custom constructors
     // methods
         .def("MakeEmptyLateralFace",
              (TopoDS_Face (BRepPrim_Cylinder::*)() const) static_cast<TopoDS_Face (BRepPrim_Cylinder::*)() const>(&BRepPrim_Cylinder::MakeEmptyLateralFace),
@@ -505,14 +522,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_Sphere , shared_ptr<BRepPrim_Sphere>  , BRepPrim_Revolution >>(m.attr("BRepPrim_Sphere"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("Radius") )
         .def(py::init< const gp_Pnt &,const Standard_Real >()  , py::arg("Center"),  py::arg("Radius") )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("Axes"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("MakeEmptyLateralFace",
              (TopoDS_Face (BRepPrim_Sphere::*)() const) static_cast<TopoDS_Face (BRepPrim_Sphere::*)() const>(&BRepPrim_Sphere::MakeEmptyLateralFace),
@@ -521,14 +540,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepPrim_Torus , shared_ptr<BRepPrim_Torus>  , BRepPrim_Revolution >>(m.attr("BRepPrim_Torus"))
+    // constructors
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("Position"),  py::arg("Major"),  py::arg("Minor") )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Major"),  py::arg("Minor") )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real >()  , py::arg("Center"),  py::arg("Major"),  py::arg("Minor") )
+    // custom constructors
     // methods
         .def("MakeEmptyLateralFace",
              (TopoDS_Face (BRepPrim_Torus::*)() const) static_cast<TopoDS_Face (BRepPrim_Torus::*)() const>(&BRepPrim_Torus::MakeEmptyLateralFace),
@@ -537,21 +558,21 @@ py::module m = static_cast<py::module>(main_module.attr("BRepPrim"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepPrim_OneAxis.hxx
-// ./opencascade/BRepPrim_GWedge.hxx
-// ./opencascade/BRepPrim_Cone.hxx
 // ./opencascade/BRepPrim_FaceBuilder.hxx
-// ./opencascade/BRepPrim_Torus.hxx
-// ./opencascade/BRepPrim_Builder.hxx
-// ./opencascade/BRepPrim_Sphere.hxx
+// ./opencascade/BRepPrim_GWedge.hxx
 // ./opencascade/BRepPrim_Cylinder.hxx
-// ./opencascade/BRepPrim_Wedge.hxx
+// ./opencascade/BRepPrim_OneAxis.hxx
+// ./opencascade/BRepPrim_Builder.hxx
 // ./opencascade/BRepPrim_Revolution.hxx
+// ./opencascade/BRepPrim_Sphere.hxx
 // ./opencascade/BRepPrim_Direction.hxx
+// ./opencascade/BRepPrim_Wedge.hxx
+// ./opencascade/BRepPrim_Cone.hxx
+// ./opencascade/BRepPrim_Torus.hxx
 
 // operators
 

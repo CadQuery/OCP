@@ -13,23 +13,23 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Poly_Triangulation.hxx>
+#include <Standard_NullObject.hxx>
+#include <Standard_NullObject.hxx>
 #include <Standard_NullObject.hxx>
 #include <Standard_NullObject.hxx>
 #include <gp_Dir.hxx>
 #include <gp_Dir2d.hxx>
+#include <Poly_Triangulation.hxx>
+#include <Poly_CoherentLink.hxx>
+#include <Poly_CoherentTriangle.hxx>
 #include <Poly_CoherentTriangle.hxx>
 #include <Poly_CoherentTriangulation.hxx>
-#include <Poly_CoherentLink.hxx>
-#include <Standard_NullObject.hxx>
 #include <Poly_Polygon3D.hxx>
 #include <Poly_Polygon2D.hxx>
 #include <Poly_Polygon3D.hxx>
 #include <Poly_Polygon2D.hxx>
 #include <Poly_PolygonOnTriangulation.hxx>
 #include <Poly_Connect.hxx>
-#include <Poly_CoherentTriangle.hxx>
-#include <Standard_NullObject.hxx>
 
 // module includes
 #include <Poly.hxx>
@@ -50,6 +50,8 @@ namespace py = pybind11;
 #include <Poly_Triangulation.hxx>
 
 // template related includes
+// ./opencascade/Poly_ListOfTriangulation.hxx
+#include "NCollection.hxx"
 // ./opencascade/Poly_Array1OfTriangle.hxx
 #include "NCollection.hxx"
 // ./opencascade/Poly_CoherentTriangulation.hxx
@@ -57,8 +59,6 @@ namespace py = pybind11;
 // ./opencascade/Poly_CoherentTriangulation.hxx
 #include "NCollection.hxx"
 // ./opencascade/Poly_CoherentTriangulation.hxx
-#include "NCollection.hxx"
-// ./opencascade/Poly_ListOfTriangulation.hxx
 #include "NCollection.hxx"
 
 
@@ -80,9 +80,11 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
 
 
     static_cast<py::class_<Poly_CoherentLink , shared_ptr<Poly_CoherentLink>  >>(m.attr("Poly_CoherentLink"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("iNode0"),  py::arg("iNode1") )
         .def(py::init< const Poly_CoherentTriangle &,Standard_Integer >()  , py::arg("theTri"),  py::arg("iSide") )
+    // custom constructors
     // methods
         .def("Node",
              (Standard_Integer (Poly_CoherentLink::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (Poly_CoherentLink::*)( const Standard_Integer  ) const>(&Poly_CoherentLink::Node),
@@ -106,13 +108,15 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_CoherentNode , shared_ptr<Poly_CoherentNode>  , gp_XYZ >>(m.attr("Poly_CoherentNode"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XYZ & >()  , py::arg("thePnt") )
+    // custom constructors
     // methods
         .def("SetUV",
              (void (Poly_CoherentNode::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Poly_CoherentNode::*)( const Standard_Real ,  const Standard_Real  ) >(&Poly_CoherentNode::SetUV),
@@ -160,13 +164,15 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_CoherentTriangle , shared_ptr<Poly_CoherentTriangle>  >>(m.attr("Poly_CoherentTriangle"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("iNode0"),  py::arg("iNode1"),  py::arg("iNode2") )
+    // custom constructors
     // methods
         .def("Node",
              (Standard_Integer (Poly_CoherentTriangle::*)( const Standard_Integer  ) const) static_cast<Standard_Integer (Poly_CoherentTriangle::*)( const Standard_Integer  ) const>(&Poly_CoherentTriangle::Node),
@@ -205,13 +211,15 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_CoherentTriangulation ,opencascade::handle<Poly_CoherentTriangulation>  , Standard_Transient >>(m.attr("Poly_CoherentTriangulation"))
+    // constructors
         .def(py::init< const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAlloc")=static_cast<const opencascade::handle<NCollection_BaseAllocator> &>(0L) )
         .def(py::init< const opencascade::handle<Poly_Triangulation> &,const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theTriangulation"),  py::arg("theAlloc")=static_cast<const opencascade::handle<NCollection_BaseAllocator> &>(0L) )
+    // custom constructors
     // methods
         .def("GetTriangulation",
              (opencascade::handle<Poly_Triangulation> (Poly_CoherentTriangulation::*)() const) static_cast<opencascade::handle<Poly_Triangulation> (Poly_CoherentTriangulation::*)() const>(&Poly_CoherentTriangulation::GetTriangulation),
@@ -295,13 +303,15 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_Connect , shared_ptr<Poly_Connect>  >>(m.attr("Poly_Connect"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Poly_Triangulation> & >()  , py::arg("theTriangulation") )
+    // custom constructors
     // methods
         .def("Load",
              (void (Poly_Connect::*)( const opencascade::handle<Poly_Triangulation> &  ) ) static_cast<void (Poly_Connect::*)( const opencascade::handle<Poly_Triangulation> &  ) >(&Poly_Connect::Load),
@@ -334,14 +344,17 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_HArray1OfTriangle ,opencascade::handle<Poly_HArray1OfTriangle>  , Poly_Array1OfTriangle , Standard_Transient >>(m.attr("Poly_HArray1OfTriangle"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const Poly_Triangle & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Poly_Triangle> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Poly_Array1OfTriangle & (Poly_HArray1OfTriangle::*)() const) static_cast<const Poly_Array1OfTriangle & (Poly_HArray1OfTriangle::*)() const>(&Poly_HArray1OfTriangle::Array1),
@@ -362,12 +375,14 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_Polygon2D ,opencascade::handle<Poly_Polygon2D>  , Standard_Transient >>(m.attr("Poly_Polygon2D"))
+    // constructors
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> & >()  , py::arg("Nodes") )
+    // custom constructors
     // methods
         .def("Deflection",
              (Standard_Real (Poly_Polygon2D::*)() const) static_cast<Standard_Real (Poly_Polygon2D::*)() const>(&Poly_Polygon2D::Deflection),
@@ -397,13 +412,15 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_Polygon3D ,opencascade::handle<Poly_Polygon3D>  , Standard_Transient >>(m.attr("Poly_Polygon3D"))
+    // constructors
         .def(py::init<  const NCollection_Array1<gp_Pnt> & >()  , py::arg("Nodes") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Nodes"),  py::arg("Parameters") )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<Poly_Polygon3D> (Poly_Polygon3D::*)() const) static_cast<opencascade::handle<Poly_Polygon3D> (Poly_Polygon3D::*)() const>(&Poly_Polygon3D::Copy),
@@ -445,13 +462,15 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_PolygonOnTriangulation ,opencascade::handle<Poly_PolygonOnTriangulation>  , Standard_Transient >>(m.attr("Poly_PolygonOnTriangulation"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Integer> & >()  , py::arg("Nodes") )
         .def(py::init<  const NCollection_Array1<Standard_Integer> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Nodes"),  py::arg("Parameters") )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<Poly_PolygonOnTriangulation> (Poly_PolygonOnTriangulation::*)() const) static_cast<opencascade::handle<Poly_PolygonOnTriangulation> (Poly_PolygonOnTriangulation::*)() const>(&Poly_PolygonOnTriangulation::Copy),
@@ -490,13 +509,15 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_Triangle , shared_ptr<Poly_Triangle>  >>(m.attr("Poly_Triangle"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("N1"),  py::arg("N2"),  py::arg("N3") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Poly_Triangle::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Poly_Triangle::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&Poly_Triangle::Set),
@@ -526,15 +547,17 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_Triangulation ,opencascade::handle<Poly_Triangulation>  , Standard_Transient >>(m.attr("Poly_Triangulation"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Boolean >()  , py::arg("nbNodes"),  py::arg("nbTriangles"),  py::arg("UVNodes") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Poly_Triangle> & >()  , py::arg("Nodes"),  py::arg("Triangles") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt2d> &, const NCollection_Array1<Poly_Triangle> & >()  , py::arg("Nodes"),  py::arg("UVNodes"),  py::arg("Triangles") )
         .def(py::init< const opencascade::handle<Poly_Triangulation> & >()  , py::arg("theTriangulation") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Poly_Triangulation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Poly_Triangulation::*)() const>(&Poly_Triangulation::DynamicType),
@@ -624,60 +647,64 @@ py::module m = static_cast<py::module>(main_module.attr("Poly"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_MakeLoops2D , shared_ptr<Poly_MakeLoops2D>  >>(m.attr("Poly_MakeLoops2D"))
+    // constructors
         .def(py::init< const Standard_Boolean,const Poly_MakeLoops2D::Helper *,const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theLeftWay"),  py::arg("theHelper"),  py::arg("theAlloc") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Poly_MakeLoops3D , shared_ptr<Poly_MakeLoops3D>  >>(m.attr("Poly_MakeLoops3D"))
+    // constructors
         .def(py::init< const Poly_MakeLoops3D::Helper *,const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theHelper"),  py::arg("theAlloc") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Poly_Connect.hxx
-// ./opencascade/Poly_Polygon2D.hxx
-// ./opencascade/Poly_CoherentNode.hxx
+// ./opencascade/Poly_Triangulation.hxx
 // ./opencascade/Poly_Polygon3D.hxx
+// ./opencascade/Poly_CoherentNode.hxx
+// ./opencascade/Poly_PolygonOnTriangulation.hxx
+// ./opencascade/Poly_ListOfTriangulation.hxx
+// ./opencascade/Poly_Polygon2D.hxx
+// ./opencascade/Poly_Triangle.hxx
+// ./opencascade/Poly_Array1OfTriangle.hxx
 // ./opencascade/Poly_MakeLoops.hxx
     m.def("HashCode", 
-          (Standard_Integer (*)( const Poly_MakeLoops::Link & ,  int  ))  static_cast<Standard_Integer (*)( const Poly_MakeLoops::Link & ,  int  )>(&HashCode),
-          R"#(HashCode method is needed for maps)#"  , py::arg("theKey"),  py::arg("theLimit"));
+          (Standard_Integer (*)( const Poly_MakeLoops::Link & ,  const Standard_Integer  ))  static_cast<Standard_Integer (*)( const Poly_MakeLoops::Link & ,  const Standard_Integer  )>(&HashCode),
+          R"#(Computes a hash code for the given link, in the range [1, theUpperBound])#"  , py::arg("theLink"),  py::arg("theUpperBound"));
     m.def("IsEqual", 
           (Standard_Boolean (*)( const Poly_MakeLoops::Link & ,  const Poly_MakeLoops::Link &  ))  static_cast<Standard_Boolean (*)( const Poly_MakeLoops::Link & ,  const Poly_MakeLoops::Link &  )>(&IsEqual),
           R"#(IsEqual method is needed for maps)#"  , py::arg("theKey1"),  py::arg("theKey2"));
-// ./opencascade/Poly_HArray1OfTriangle.hxx
-// ./opencascade/Poly_CoherentLink.hxx
+// ./opencascade/Poly_Connect.hxx
 // ./opencascade/Poly_CoherentTriangle.hxx
-// ./opencascade/Poly_PolygonOnTriangulation.hxx
-// ./opencascade/Poly.hxx
-// ./opencascade/Poly_Array1OfTriangle.hxx
 // ./opencascade/Poly_CoherentTriPtr.hxx
-// ./opencascade/Poly_Triangle.hxx
-// ./opencascade/Poly_Triangulation.hxx
+// ./opencascade/Poly_CoherentLink.hxx
+// ./opencascade/Poly_HArray1OfTriangle.hxx
 // ./opencascade/Poly_CoherentTriangulation.hxx
-// ./opencascade/Poly_ListOfTriangulation.hxx
+// ./opencascade/Poly.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<Poly_Triangle>(m,"Poly_Array1OfTriangle");  
     register_template_NCollection_List<opencascade::handle<Poly_Triangulation> >(m,"Poly_ListOfTriangulation");  
+    register_template_NCollection_Array1<Poly_Triangle>(m,"Poly_Array1OfTriangle");  
 
 
 // exceptions

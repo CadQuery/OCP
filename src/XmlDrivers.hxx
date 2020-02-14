@@ -18,21 +18,21 @@ namespace py = pybind11;
 #include <TDocStd_Application.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
-#include <XmlMDF_ADriver.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
+#include <XmlMDF_ADriver.hxx>
 
 // module includes
 #include <XmlDrivers.hxx>
-#include <XmlDrivers_DocumentRetrievalDriver.hxx>
 #include <XmlDrivers_DocumentStorageDriver.hxx>
+#include <XmlDrivers_DocumentRetrievalDriver.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
 // ./opencascade/XmlDrivers.hxx
-// ./opencascade/XmlDrivers_DocumentRetrievalDriver.hxx
 // ./opencascade/XmlDrivers_DocumentStorageDriver.hxx
+// ./opencascade/XmlDrivers_DocumentRetrievalDriver.hxx
 
 // user-defined post

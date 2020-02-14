@@ -13,12 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <gp_Lin.hxx>
-#include <TopoDS_Face.hxx>
-#include <BRepAdaptor_HSurface.hxx>
-#include <TopoDS_Shell.hxx>
-#include <IntCurvesFace_Intersector.hxx>
-#include <BRepClass3d_SolidExplorer.hxx>
 #include <TopoDS_Shell.hxx>
 #include <TopoDS_Solid.hxx>
 #include <BRepClass3d_Intersector3d.hxx>
@@ -26,6 +20,12 @@ namespace py = pybind11;
 #include <BRepClass3d_SolidPassiveClassifier.hxx>
 #include <BRepClass3d_SClassifier.hxx>
 #include <BRepClass3d_SolidClassifier.hxx>
+#include <BRepClass3d_SolidExplorer.hxx>
+#include <TopoDS_Face.hxx>
+#include <BRepAdaptor_HSurface.hxx>
+#include <TopoDS_Shell.hxx>
+#include <IntCurvesFace_Intersector.hxx>
+#include <gp_Lin.hxx>
 
 // module includes
 #include <BRepClass3d.hxx>
@@ -61,9 +61,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepClass3d , shared_ptr<BRepClass3d>>(m,"BRepClass3d");
 
     static_cast<py::class_<BRepClass3d , shared_ptr<BRepClass3d>  >>(m.attr("BRepClass3d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -72,12 +75,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
                     R"#(Returns the outer most shell of <S>. Returns a Null shell if <S> has no outer shell. If <S> has only one shell, then it will return, without checking orientation.)#"  , py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass3d_BndBoxTreeSelectorLine , shared_ptr<BRepClass3d_BndBoxTreeSelectorLine>  >>(m.attr("BRepClass3d_BndBoxTreeSelectorLine"))
+    // constructors
         .def(py::init<  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> & >()  , py::arg("theMapOfShape") )
+    // custom constructors
     // methods
         .def("Reject",
              (Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)( const Bnd_Box &  ) const) static_cast<Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)( const Bnd_Box &  ) const>(&BRepClass3d_BndBoxTreeSelectorLine::Reject),
@@ -97,6 +102,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
         .def("ClearResults",
              (void (BRepClass3d_BndBoxTreeSelectorLine::*)() ) static_cast<void (BRepClass3d_BndBoxTreeSelectorLine::*)() >(&BRepClass3d_BndBoxTreeSelectorLine::ClearResults),
              R"#(None)#" )
+        .def("IsCorrect",
+             (Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)() const) static_cast<Standard_Boolean (BRepClass3d_BndBoxTreeSelectorLine::*)() const>(&BRepClass3d_BndBoxTreeSelectorLine::IsCorrect),
+             R"#(Returns TRUE if correct classification is possible)#" )
     // methods using call by reference i.s.o. return
         .def("GetEdgeParam",
              []( BRepClass3d_BndBoxTreeSelectorLine &self , const Standard_Integer i,TopoDS_Edge & theOutE ){ Standard_Real  theOutParam; Standard_Real  outLParam; self.GetEdgeParam(i,theOutE,theOutParam,outLParam); return std::make_tuple(theOutParam,outLParam); },
@@ -107,12 +115,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass3d_BndBoxTreeSelectorPoint , shared_ptr<BRepClass3d_BndBoxTreeSelectorPoint>  >>(m.attr("BRepClass3d_BndBoxTreeSelectorPoint"))
+    // constructors
         .def(py::init<  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> & >()  , py::arg("theMapOfShape") )
+    // custom constructors
     // methods
         .def("Reject",
              (Standard_Boolean (BRepClass3d_BndBoxTreeSelectorPoint::*)( const Bnd_Box &  ) const) static_cast<Standard_Boolean (BRepClass3d_BndBoxTreeSelectorPoint::*)( const Bnd_Box &  ) const>(&BRepClass3d_BndBoxTreeSelectorPoint::Reject),
@@ -127,12 +137,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass3d_Intersector3d , shared_ptr<BRepClass3d_Intersector3d>  >>(m.attr("BRepClass3d_Intersector3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepClass3d_Intersector3d::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face &  ) ) static_cast<void (BRepClass3d_Intersector3d::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face &  ) >(&BRepClass3d_Intersector3d::Perform),
@@ -195,13 +207,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass3d_SClassifier , shared_ptr<BRepClass3d_SClassifier>  >>(m.attr("BRepClass3d_SClassifier"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< BRepClass3d_SolidExplorer &,const gp_Pnt &,const Standard_Real >()  , py::arg("S"),  py::arg("P"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepClass3d_SClassifier::*)( BRepClass3d_SolidExplorer & ,  const gp_Pnt & ,  const Standard_Real  ) ) static_cast<void (BRepClass3d_SClassifier::*)( BRepClass3d_SolidExplorer & ,  const gp_Pnt & ,  const Standard_Real  ) >(&BRepClass3d_SClassifier::Perform),
@@ -225,13 +239,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass3d_SolidExplorer , shared_ptr<BRepClass3d_SolidExplorer>  >>(m.attr("BRepClass3d_SolidExplorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("InitShape",
              (void (BRepClass3d_SolidExplorer::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepClass3d_SolidExplorer::*)( const TopoDS_Shape &  ) >(&BRepClass3d_SolidExplorer::InitShape),
@@ -330,12 +346,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
                     R"#(None)#"  , py::arg("F"),  py::arg("u"),  py::arg("v"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass3d_SolidPassiveClassifier , shared_ptr<BRepClass3d_SolidPassiveClassifier>  >>(m.attr("BRepClass3d_SolidPassiveClassifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (BRepClass3d_SolidPassiveClassifier::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepClass3d_SolidPassiveClassifier::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) >(&BRepClass3d_SolidPassiveClassifier::Reset),
@@ -359,14 +377,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass3d_SolidClassifier , shared_ptr<BRepClass3d_SolidClassifier>  , BRepClass3d_SClassifier >>(m.attr("BRepClass3d_SolidClassifier"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
         .def(py::init< const TopoDS_Shape &,const gp_Pnt &,const Standard_Real >()  , py::arg("S"),  py::arg("P"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Load",
              (void (BRepClass3d_SolidClassifier::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepClass3d_SolidClassifier::*)( const TopoDS_Shape &  ) >(&BRepClass3d_SolidClassifier::Load),
@@ -384,19 +404,19 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass3d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/BRepClass3d_MapOfInter.hxx
-// ./opencascade/BRepClass3d_Intersector3d.hxx
-// ./opencascade/BRepClass3d_SolidExplorer.hxx
-// ./opencascade/BRepClass3d_SolidPassiveClassifier.hxx
-// ./opencascade/BRepClass3d_BndBoxTree.hxx
-// ./opencascade/BRepClass3d_SClassifier.hxx
-// ./opencascade/BRepClass3d.hxx
-// ./opencascade/BRepClass3d_DataMapIteratorOfMapOfInter.hxx
 // ./opencascade/BRepClass3d_SolidClassifier.hxx
+// ./opencascade/BRepClass3d_BndBoxTree.hxx
+// ./opencascade/BRepClass3d.hxx
+// ./opencascade/BRepClass3d_SClassifier.hxx
+// ./opencascade/BRepClass3d_SolidExplorer.hxx
+// ./opencascade/BRepClass3d_Intersector3d.hxx
+// ./opencascade/BRepClass3d_DataMapIteratorOfMapOfInter.hxx
+// ./opencascade/BRepClass3d_SolidPassiveClassifier.hxx
 
 // operators
 

@@ -15,101 +15,35 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <StepGeom_Axis1Placement.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepShape_BooleanResult.hxx>
-#include <StepRepr_ShapeRepresentationRelationship.hxx>
-#include <StepRepr_ProductDefinitionShape.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_Loop.hxx>
-#include <StepShape_Path.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Axis1Placement.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CurveBoundedSurface.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepBasic_MeasureWithUnit.hxx>
 #include <StepShape_DimensionalLocation.hxx>
 #include <StepShape_DimensionalSize.hxx>
-#include <StepShape_FaceSurface.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_SolidModel.hxx>
-#include <StepShape_HalfSpaceSolid.hxx>
-#include <StepShape_BooleanResult.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_CurveBoundedSurface.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Point.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_FaceSurface.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Axis1Placement.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepShape_FacetedBrep.hxx>
-#include <StepShape_BrepWithVoids.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepRepr_ShapeAspect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_OpenShell.hxx>
-#include <StepShape_ClosedShell.hxx>
-#include <StepRepr_ShapeAspect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_Vertex.hxx>
-#include <TCollection_HAsciiString.hxx>
+#include <StepShape_FaceSurface.hxx>
 #include <StepShape_PrecisionQualifier.hxx>
 #include <StepShape_TypeQualifier.hxx>
 #include <StepShape_ValueFormatTypeQualifier.hxx>
-#include <StepGeom_Axis1Placement.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_FaceSurface.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CurveBoundedSurface.hxx>
-#include <StepRepr_ShapeAspect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Surface.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Curve.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_FaceSurface.hxx>
-#include <StepShape_Edge.hxx>
-#include <StepShape_Path.hxx>
-#include <StepShape_Face.hxx>
-#include <StepShape_FaceBound.hxx>
-#include <StepShape_ClosedShell.hxx>
-#include <StepShape_OpenShell.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Pcurve.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_EdgeLoop.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_ShellBasedSurfaceModel.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Axis1Placement.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Point.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepRepr_ShapeAspect.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_ShapeDimensionRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianTransformationOperator3d.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureValueMember.hxx>
+#include <StepBasic_Unit.hxx>
 #include <StepShape_Sphere.hxx>
 #include <StepShape_Block.hxx>
 #include <StepShape_RightAngularWedge.hxx>
@@ -117,38 +51,104 @@ namespace py = pybind11;
 #include <StepShape_RightCircularCone.hxx>
 #include <StepShape_RightCircularCylinder.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Point.hxx>
-#include <StepGeom_Curve.hxx>
 #include <StepGeom_Surface.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureWithUnit.hxx>
+#include <StepShape_Loop.hxx>
+#include <StepShape_Path.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepBasic_MeasureValueMember.hxx>
-#include <StepBasic_Unit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_ShellBasedSurfaceModel.hxx>
+#include <StepShape_Vertex.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Point.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepShape_ToleranceValue.hxx>
 #include <StepShape_LimitsAndFits.hxx>
+#include <StepShape_ConnectedFaceSet.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_ClosedShell.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_BooleanResult.hxx>
+#include <StepShape_Edge.hxx>
+#include <StepShape_Path.hxx>
+#include <StepShape_Face.hxx>
+#include <StepShape_FaceBound.hxx>
+#include <StepShape_ClosedShell.hxx>
+#include <StepShape_OpenShell.hxx>
+#include <StepShape_OpenShell.hxx>
+#include <StepShape_ClosedShell.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Curve.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_MeasureWithUnit.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_FaceSurface.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_SolidModel.hxx>
+#include <StepShape_HalfSpaceSolid.hxx>
+#include <StepShape_BooleanResult.hxx>
 #include <StepShape_BoxDomain.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Surface.hxx>
-#include <StepGeom_Axis1Placement.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepRepr_CompoundRepresentationItem.hxx>
 #include <StepRepr_DescriptiveRepresentationItem.hxx>
 #include <StepRepr_MeasureRepresentationItem.hxx>
 #include <StepGeom_Placement.hxx>
-#include <StepShape_ConnectedFaceSet.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepShape_ClosedShell.hxx>
-#include <StepShape_Loop.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Surface.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepRepr_ShapeAspect.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_ShapeDimensionRepresentation.hxx>
+#include <StepGeom_Axis1Placement.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Axis1Placement.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Pcurve.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_Loop.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_EdgeLoop.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepGeom_Point.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CurveBoundedSurface.hxx>
+#include <StepGeom_Point.hxx>
+#include <StepGeom_Curve.hxx>
+#include <StepGeom_Surface.hxx>
+#include <StepGeom_Axis1Placement.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CurveBoundedSurface.hxx>
+#include <StepGeom_Surface.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianTransformationOperator3d.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepShape_FacetedBrep.hxx>
+#include <StepShape_BrepWithVoids.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepRepr_ShapeRepresentationRelationship.hxx>
+#include <StepRepr_ProductDefinitionShape.hxx>
 
 // module includes
 #include <StepShape_AdvancedBrepShapeRepresentation.hxx>
@@ -280,27 +280,27 @@ namespace py = pybind11;
 #include <StepShape_VertexPoint.hxx>
 
 // template related includes
-// ./opencascade/StepShape_Array1OfConnectedEdgeSet.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepShape_Array1OfFace.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepShape_Array1OfFaceBound.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepShape_Array1OfShell.hxx
+// ./opencascade/StepShape_Array1OfGeometricSetSelect.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepShape_Array1OfOrientedClosedShell.hxx
+// ./opencascade/StepShape_Array1OfConnectedEdgeSet.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepShape_Array1OfOrientedEdge.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepShape_Array1OfConnectedFaceSet.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepShape_Array1OfGeometricSetSelect.hxx
+// ./opencascade/StepShape_Array1OfOrientedClosedShell.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepShape_Array1OfShapeDimensionRepresentationItem.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepShape_Array1OfEdge.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepShape_Array1OfOrientedEdge.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepShape_Array1OfValueQualifier.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepShape_Array1OfFace.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepShape_Array1OfShell.hxx
 #include "NCollection.hxx"
 
 
@@ -323,7 +323,9 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
 
 
     static_cast<py::class_<StepShape_Block ,opencascade::handle<StepShape_Block>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_Block"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Block::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepShape_Block::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&StepShape_Block::Init),
@@ -365,12 +367,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_BooleanOperand , shared_ptr<StepShape_BooleanOperand>  >>(m.attr("StepShape_BooleanOperand"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetTypeOfContent",
              (void (StepShape_BooleanOperand::*)( const Standard_Integer  ) ) static_cast<void (StepShape_BooleanOperand::*)( const Standard_Integer  ) >(&StepShape_BooleanOperand::SetTypeOfContent),
@@ -406,12 +410,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_BooleanResult ,opencascade::handle<StepShape_BooleanResult>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_BooleanResult"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_BooleanResult::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepShape_BooleanOperator ,  const StepShape_BooleanOperand & ,  const StepShape_BooleanOperand &  ) ) static_cast<void (StepShape_BooleanResult::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepShape_BooleanOperator ,  const StepShape_BooleanOperand & ,  const StepShape_BooleanOperand &  ) >(&StepShape_BooleanResult::Init),
@@ -447,12 +453,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_BoxDomain ,opencascade::handle<StepShape_BoxDomain>  , Standard_Transient >>(m.attr("StepShape_BoxDomain"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_BoxDomain::*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepShape_BoxDomain::*)( const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&StepShape_BoxDomain::Init),
@@ -494,12 +502,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ConnectedFaceShapeRepresentation ,opencascade::handle<StepShape_ConnectedFaceShapeRepresentation>  , StepRepr_Representation >>(m.attr("StepShape_ConnectedFaceShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_ConnectedFaceShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_ConnectedFaceShapeRepresentation::*)() const>(&StepShape_ConnectedFaceShapeRepresentation::DynamicType),
@@ -514,12 +524,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ContextDependentShapeRepresentation ,opencascade::handle<StepShape_ContextDependentShapeRepresentation>  , Standard_Transient >>(m.attr("StepShape_ContextDependentShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ContextDependentShapeRepresentation::*)( const opencascade::handle<StepRepr_ShapeRepresentationRelationship> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> &  ) ) static_cast<void (StepShape_ContextDependentShapeRepresentation::*)( const opencascade::handle<StepRepr_ShapeRepresentationRelationship> & ,  const opencascade::handle<StepRepr_ProductDefinitionShape> &  ) >(&StepShape_ContextDependentShapeRepresentation::Init),
@@ -549,12 +561,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_CsgPrimitive , shared_ptr<StepShape_CsgPrimitive>  , StepData_SelectType >>(m.attr("StepShape_CsgPrimitive"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_CsgPrimitive::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_CsgPrimitive::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_CsgPrimitive::CaseNum),
@@ -581,12 +595,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_CsgSelect , shared_ptr<StepShape_CsgSelect>  >>(m.attr("StepShape_CsgSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetTypeOfContent",
              (void (StepShape_CsgSelect::*)( const Standard_Integer  ) ) static_cast<void (StepShape_CsgSelect::*)( const Standard_Integer  ) >(&StepShape_CsgSelect::SetTypeOfContent),
@@ -610,12 +626,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DefinitionalRepresentationAndShapeRepresentation ,opencascade::handle<StepShape_DefinitionalRepresentationAndShapeRepresentation>  , StepRepr_DefinitionalRepresentation >>(m.attr("StepShape_DefinitionalRepresentationAndShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_DefinitionalRepresentationAndShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_DefinitionalRepresentationAndShapeRepresentation::*)() const>(&StepShape_DefinitionalRepresentationAndShapeRepresentation::DynamicType),
@@ -630,12 +648,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DimensionalCharacteristic , shared_ptr<StepShape_DimensionalCharacteristic>  , StepData_SelectType >>(m.attr("StepShape_DimensionalCharacteristic"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_DimensionalCharacteristic::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_DimensionalCharacteristic::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_DimensionalCharacteristic::CaseNum),
@@ -650,12 +670,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DimensionalCharacteristicRepresentation ,opencascade::handle<StepShape_DimensionalCharacteristicRepresentation>  , Standard_Transient >>(m.attr("StepShape_DimensionalCharacteristicRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_DimensionalCharacteristicRepresentation::*)( const StepShape_DimensionalCharacteristic & ,  const opencascade::handle<StepShape_ShapeDimensionRepresentation> &  ) ) static_cast<void (StepShape_DimensionalCharacteristicRepresentation::*)( const StepShape_DimensionalCharacteristic & ,  const opencascade::handle<StepShape_ShapeDimensionRepresentation> &  ) >(&StepShape_DimensionalCharacteristicRepresentation::Init),
@@ -685,12 +707,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DimensionalLocation ,opencascade::handle<StepShape_DimensionalLocation>  , StepRepr_ShapeAspectRelationship >>(m.attr("StepShape_DimensionalLocation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_DimensionalLocation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_DimensionalLocation::*)() const>(&StepShape_DimensionalLocation::DynamicType),
@@ -705,12 +729,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DimensionalSize ,opencascade::handle<StepShape_DimensionalSize>  , Standard_Transient >>(m.attr("StepShape_DimensionalSize"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_DimensionalSize::*)( const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepShape_DimensionalSize::*)( const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepShape_DimensionalSize::Init),
@@ -740,12 +766,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_EdgeBasedWireframeModel ,opencascade::handle<StepShape_EdgeBasedWireframeModel>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_EdgeBasedWireframeModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_EdgeBasedWireframeModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfConnectedEdgeSet> &  ) ) static_cast<void (StepShape_EdgeBasedWireframeModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfConnectedEdgeSet> &  ) >(&StepShape_EdgeBasedWireframeModel::Init),
@@ -769,12 +797,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_FaceBasedSurfaceModel ,opencascade::handle<StepShape_FaceBasedSurfaceModel>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_FaceBasedSurfaceModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_FaceBasedSurfaceModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfConnectedFaceSet> &  ) ) static_cast<void (StepShape_FaceBasedSurfaceModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfConnectedFaceSet> &  ) >(&StepShape_FaceBasedSurfaceModel::Init),
@@ -798,12 +828,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_GeometricSet ,opencascade::handle<StepShape_GeometricSet>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_GeometricSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_GeometricSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfGeometricSetSelect> &  ) ) static_cast<void (StepShape_GeometricSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfGeometricSetSelect> &  ) >(&StepShape_GeometricSet::Init),
@@ -833,12 +865,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_GeometricSetSelect , shared_ptr<StepShape_GeometricSetSelect>  , StepData_SelectType >>(m.attr("StepShape_GeometricSetSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_GeometricSetSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_GeometricSetSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_GeometricSetSelect::CaseNum),
@@ -856,14 +890,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfConnectedEdgeSet ,opencascade::handle<StepShape_HArray1OfConnectedEdgeSet>  , StepShape_Array1OfConnectedEdgeSet , Standard_Transient >>(m.attr("StepShape_HArray1OfConnectedEdgeSet"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepShape_ConnectedEdgeSet> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepShape_ConnectedEdgeSet> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfConnectedEdgeSet & (StepShape_HArray1OfConnectedEdgeSet::*)() const) static_cast<const StepShape_Array1OfConnectedEdgeSet & (StepShape_HArray1OfConnectedEdgeSet::*)() const>(&StepShape_HArray1OfConnectedEdgeSet::Array1),
@@ -884,14 +921,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfConnectedFaceSet ,opencascade::handle<StepShape_HArray1OfConnectedFaceSet>  , StepShape_Array1OfConnectedFaceSet , Standard_Transient >>(m.attr("StepShape_HArray1OfConnectedFaceSet"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepShape_ConnectedFaceSet> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepShape_ConnectedFaceSet> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfConnectedFaceSet & (StepShape_HArray1OfConnectedFaceSet::*)() const) static_cast<const StepShape_Array1OfConnectedFaceSet & (StepShape_HArray1OfConnectedFaceSet::*)() const>(&StepShape_HArray1OfConnectedFaceSet::Array1),
@@ -912,14 +952,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfEdge ,opencascade::handle<StepShape_HArray1OfEdge>  , StepShape_Array1OfEdge , Standard_Transient >>(m.attr("StepShape_HArray1OfEdge"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepShape_Edge> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepShape_Edge> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfEdge & (StepShape_HArray1OfEdge::*)() const) static_cast<const StepShape_Array1OfEdge & (StepShape_HArray1OfEdge::*)() const>(&StepShape_HArray1OfEdge::Array1),
@@ -940,14 +983,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfFace ,opencascade::handle<StepShape_HArray1OfFace>  , StepShape_Array1OfFace , Standard_Transient >>(m.attr("StepShape_HArray1OfFace"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepShape_Face> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepShape_Face> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfFace & (StepShape_HArray1OfFace::*)() const) static_cast<const StepShape_Array1OfFace & (StepShape_HArray1OfFace::*)() const>(&StepShape_HArray1OfFace::Array1),
@@ -968,14 +1014,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfFaceBound ,opencascade::handle<StepShape_HArray1OfFaceBound>  , StepShape_Array1OfFaceBound , Standard_Transient >>(m.attr("StepShape_HArray1OfFaceBound"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepShape_FaceBound> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepShape_FaceBound> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfFaceBound & (StepShape_HArray1OfFaceBound::*)() const) static_cast<const StepShape_Array1OfFaceBound & (StepShape_HArray1OfFaceBound::*)() const>(&StepShape_HArray1OfFaceBound::Array1),
@@ -996,14 +1045,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfGeometricSetSelect ,opencascade::handle<StepShape_HArray1OfGeometricSetSelect>  , StepShape_Array1OfGeometricSetSelect , Standard_Transient >>(m.attr("StepShape_HArray1OfGeometricSetSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepShape_GeometricSetSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepShape_GeometricSetSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfGeometricSetSelect & (StepShape_HArray1OfGeometricSetSelect::*)() const) static_cast<const StepShape_Array1OfGeometricSetSelect & (StepShape_HArray1OfGeometricSetSelect::*)() const>(&StepShape_HArray1OfGeometricSetSelect::Array1),
@@ -1024,14 +1076,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfOrientedClosedShell ,opencascade::handle<StepShape_HArray1OfOrientedClosedShell>  , StepShape_Array1OfOrientedClosedShell , Standard_Transient >>(m.attr("StepShape_HArray1OfOrientedClosedShell"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepShape_OrientedClosedShell> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepShape_OrientedClosedShell> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfOrientedClosedShell & (StepShape_HArray1OfOrientedClosedShell::*)() const) static_cast<const StepShape_Array1OfOrientedClosedShell & (StepShape_HArray1OfOrientedClosedShell::*)() const>(&StepShape_HArray1OfOrientedClosedShell::Array1),
@@ -1052,14 +1107,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfOrientedEdge ,opencascade::handle<StepShape_HArray1OfOrientedEdge>  , StepShape_Array1OfOrientedEdge , Standard_Transient >>(m.attr("StepShape_HArray1OfOrientedEdge"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepShape_OrientedEdge> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepShape_OrientedEdge> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfOrientedEdge & (StepShape_HArray1OfOrientedEdge::*)() const) static_cast<const StepShape_Array1OfOrientedEdge & (StepShape_HArray1OfOrientedEdge::*)() const>(&StepShape_HArray1OfOrientedEdge::Array1),
@@ -1080,14 +1138,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfShapeDimensionRepresentationItem ,opencascade::handle<StepShape_HArray1OfShapeDimensionRepresentationItem>  , StepShape_Array1OfShapeDimensionRepresentationItem , Standard_Transient >>(m.attr("StepShape_HArray1OfShapeDimensionRepresentationItem"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepShape_ShapeDimensionRepresentationItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepShape_ShapeDimensionRepresentationItem> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfShapeDimensionRepresentationItem & (StepShape_HArray1OfShapeDimensionRepresentationItem::*)() const) static_cast<const StepShape_Array1OfShapeDimensionRepresentationItem & (StepShape_HArray1OfShapeDimensionRepresentationItem::*)() const>(&StepShape_HArray1OfShapeDimensionRepresentationItem::Array1),
@@ -1108,14 +1169,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfShell ,opencascade::handle<StepShape_HArray1OfShell>  , StepShape_Array1OfShell , Standard_Transient >>(m.attr("StepShape_HArray1OfShell"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepShape_Shell & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepShape_Shell> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfShell & (StepShape_HArray1OfShell::*)() const) static_cast<const StepShape_Array1OfShell & (StepShape_HArray1OfShell::*)() const>(&StepShape_HArray1OfShell::Array1),
@@ -1136,14 +1200,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HArray1OfValueQualifier ,opencascade::handle<StepShape_HArray1OfValueQualifier>  , StepShape_Array1OfValueQualifier , Standard_Transient >>(m.attr("StepShape_HArray1OfValueQualifier"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepShape_ValueQualifier & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepShape_ValueQualifier> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepShape_Array1OfValueQualifier & (StepShape_HArray1OfValueQualifier::*)() const) static_cast<const StepShape_Array1OfValueQualifier & (StepShape_HArray1OfValueQualifier::*)() const>(&StepShape_HArray1OfValueQualifier::Array1),
@@ -1164,12 +1231,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_HalfSpaceSolid ,opencascade::handle<StepShape_HalfSpaceSolid>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_HalfSpaceSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_HalfSpaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_HalfSpaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean  ) >(&StepShape_HalfSpaceSolid::Init),
@@ -1199,12 +1268,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_LimitsAndFits ,opencascade::handle<StepShape_LimitsAndFits>  , Standard_Transient >>(m.attr("StepShape_LimitsAndFits"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_LimitsAndFits::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepShape_LimitsAndFits::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepShape_LimitsAndFits::Init),
@@ -1246,12 +1317,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_MeasureQualification ,opencascade::handle<StepShape_MeasureQualification>  , Standard_Transient >>(m.attr("StepShape_MeasureQualification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_MeasureQualification::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepShape_HArray1OfValueQualifier> &  ) ) static_cast<void (StepShape_MeasureQualification::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepShape_HArray1OfValueQualifier> &  ) >(&StepShape_MeasureQualification::Init),
@@ -1302,12 +1375,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem ,opencascade::handle<StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem>  , StepRepr_RepresentationItem >>(m.attr("StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureValueMember> & ,  const StepBasic_Unit & ,  const opencascade::handle<StepShape_HArray1OfValueQualifier> &  ) ) static_cast<void (StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepBasic_MeasureValueMember> & ,  const StepBasic_Unit & ,  const opencascade::handle<StepShape_HArray1OfValueQualifier> &  ) >(&StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem::Init),
@@ -1346,12 +1421,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_PlusMinusTolerance ,opencascade::handle<StepShape_PlusMinusTolerance>  , Standard_Transient >>(m.attr("StepShape_PlusMinusTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_PlusMinusTolerance::*)( const StepShape_ToleranceMethodDefinition & ,  const StepShape_DimensionalCharacteristic &  ) ) static_cast<void (StepShape_PlusMinusTolerance::*)( const StepShape_ToleranceMethodDefinition & ,  const StepShape_DimensionalCharacteristic &  ) >(&StepShape_PlusMinusTolerance::Init),
@@ -1381,12 +1458,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_PrecisionQualifier ,opencascade::handle<StepShape_PrecisionQualifier>  , Standard_Transient >>(m.attr("StepShape_PrecisionQualifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_PrecisionQualifier::*)( const Standard_Integer  ) ) static_cast<void (StepShape_PrecisionQualifier::*)( const Standard_Integer  ) >(&StepShape_PrecisionQualifier::Init),
@@ -1410,12 +1489,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_QualifiedRepresentationItem ,opencascade::handle<StepShape_QualifiedRepresentationItem>  , StepRepr_RepresentationItem >>(m.attr("StepShape_QualifiedRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_QualifiedRepresentationItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfValueQualifier> &  ) ) static_cast<void (StepShape_QualifiedRepresentationItem::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfValueQualifier> &  ) >(&StepShape_QualifiedRepresentationItem::Init),
@@ -1448,12 +1529,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ReversibleTopologyItem , shared_ptr<StepShape_ReversibleTopologyItem>  , StepData_SelectType >>(m.attr("StepShape_ReversibleTopologyItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_ReversibleTopologyItem::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_ReversibleTopologyItem::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_ReversibleTopologyItem::CaseNum),
@@ -1480,12 +1563,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_RightAngularWedge ,opencascade::handle<StepShape_RightAngularWedge>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_RightAngularWedge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_RightAngularWedge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepShape_RightAngularWedge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&StepShape_RightAngularWedge::Init),
@@ -1533,12 +1618,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_RightCircularCone ,opencascade::handle<StepShape_RightCircularCone>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_RightCircularCone"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_RightCircularCone::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepShape_RightCircularCone::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&StepShape_RightCircularCone::Init),
@@ -1580,12 +1667,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_RightCircularCylinder ,opencascade::handle<StepShape_RightCircularCylinder>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_RightCircularCylinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_RightCircularCylinder::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepShape_RightCircularCylinder::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real ,  const Standard_Real  ) >(&StepShape_RightCircularCylinder::Init),
@@ -1621,12 +1710,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ShapeDefinitionRepresentation ,opencascade::handle<StepShape_ShapeDefinitionRepresentation>  , StepRepr_PropertyDefinitionRepresentation >>(m.attr("StepShape_ShapeDefinitionRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_ShapeDefinitionRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_ShapeDefinitionRepresentation::*)() const>(&StepShape_ShapeDefinitionRepresentation::DynamicType),
@@ -1641,12 +1732,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ShapeDimensionRepresentationItem , shared_ptr<StepShape_ShapeDimensionRepresentationItem>  , StepData_SelectType >>(m.attr("StepShape_ShapeDimensionRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_ShapeDimensionRepresentationItem::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_ShapeDimensionRepresentationItem::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_ShapeDimensionRepresentationItem::CaseNum),
@@ -1667,12 +1760,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ShapeRepresentation ,opencascade::handle<StepShape_ShapeRepresentation>  , StepRepr_Representation >>(m.attr("StepShape_ShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_ShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_ShapeRepresentation::*)() const>(&StepShape_ShapeRepresentation::DynamicType),
@@ -1687,12 +1782,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Shell , shared_ptr<StepShape_Shell>  , StepData_SelectType >>(m.attr("StepShape_Shell"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_Shell::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_Shell::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_Shell::CaseNum),
@@ -1707,12 +1804,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ShellBasedSurfaceModel ,opencascade::handle<StepShape_ShellBasedSurfaceModel>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_ShellBasedSurfaceModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ShellBasedSurfaceModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfShell> &  ) ) static_cast<void (StepShape_ShellBasedSurfaceModel::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfShell> &  ) >(&StepShape_ShellBasedSurfaceModel::Init),
@@ -1742,12 +1841,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_SolidModel ,opencascade::handle<StepShape_SolidModel>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_SolidModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_SolidModel::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_SolidModel::*)() const>(&StepShape_SolidModel::DynamicType),
@@ -1762,12 +1863,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Sphere ,opencascade::handle<StepShape_Sphere>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_Sphere"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Sphere::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const opencascade::handle<StepGeom_Point> &  ) ) static_cast<void (StepShape_Sphere::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Real ,  const opencascade::handle<StepGeom_Point> &  ) >(&StepShape_Sphere::Init),
@@ -1797,12 +1900,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_SurfaceModel , shared_ptr<StepShape_SurfaceModel>  , StepData_SelectType >>(m.attr("StepShape_SurfaceModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_SurfaceModel::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_SurfaceModel::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_SurfaceModel::CaseNum),
@@ -1814,12 +1919,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ToleranceMethodDefinition , shared_ptr<StepShape_ToleranceMethodDefinition>  , StepData_SelectType >>(m.attr("StepShape_ToleranceMethodDefinition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_ToleranceMethodDefinition::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_ToleranceMethodDefinition::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_ToleranceMethodDefinition::CaseNum),
@@ -1834,27 +1941,29 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ToleranceValue ,opencascade::handle<StepShape_ToleranceValue>  , Standard_Transient >>(m.attr("StepShape_ToleranceValue"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
-             (void (StepShape_ToleranceValue::*)( const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepShape_ToleranceValue::*)( const opencascade::handle<StepBasic_MeasureWithUnit> & ,  const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepShape_ToleranceValue::Init),
+             (void (StepShape_ToleranceValue::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (StepShape_ToleranceValue::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Standard_Transient> &  ) >(&StepShape_ToleranceValue::Init),
              R"#(None)#"  , py::arg("lower_bound"),  py::arg("upper_bound"))
         .def("LowerBound",
-             (opencascade::handle<StepBasic_MeasureWithUnit> (StepShape_ToleranceValue::*)() const) static_cast<opencascade::handle<StepBasic_MeasureWithUnit> (StepShape_ToleranceValue::*)() const>(&StepShape_ToleranceValue::LowerBound),
+             (opencascade::handle<Standard_Transient> (StepShape_ToleranceValue::*)() const) static_cast<opencascade::handle<Standard_Transient> (StepShape_ToleranceValue::*)() const>(&StepShape_ToleranceValue::LowerBound),
              R"#(None)#" )
         .def("SetLowerBound",
-             (void (StepShape_ToleranceValue::*)( const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepShape_ToleranceValue::*)( const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepShape_ToleranceValue::SetLowerBound),
+             (void (StepShape_ToleranceValue::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (StepShape_ToleranceValue::*)( const opencascade::handle<Standard_Transient> &  ) >(&StepShape_ToleranceValue::SetLowerBound),
              R"#(None)#"  , py::arg("lower_bound"))
         .def("UpperBound",
-             (opencascade::handle<StepBasic_MeasureWithUnit> (StepShape_ToleranceValue::*)() const) static_cast<opencascade::handle<StepBasic_MeasureWithUnit> (StepShape_ToleranceValue::*)() const>(&StepShape_ToleranceValue::UpperBound),
+             (opencascade::handle<Standard_Transient> (StepShape_ToleranceValue::*)() const) static_cast<opencascade::handle<Standard_Transient> (StepShape_ToleranceValue::*)() const>(&StepShape_ToleranceValue::UpperBound),
              R"#(None)#" )
         .def("SetUpperBound",
-             (void (StepShape_ToleranceValue::*)( const opencascade::handle<StepBasic_MeasureWithUnit> &  ) ) static_cast<void (StepShape_ToleranceValue::*)( const opencascade::handle<StepBasic_MeasureWithUnit> &  ) >(&StepShape_ToleranceValue::SetUpperBound),
+             (void (StepShape_ToleranceValue::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (StepShape_ToleranceValue::*)( const opencascade::handle<Standard_Transient> &  ) >(&StepShape_ToleranceValue::SetUpperBound),
              R"#(None)#"  , py::arg("upper_bound"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_ToleranceValue::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_ToleranceValue::*)() const>(&StepShape_ToleranceValue::DynamicType),
@@ -1869,12 +1978,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_TopologicalRepresentationItem ,opencascade::handle<StepShape_TopologicalRepresentationItem>  , StepRepr_RepresentationItem >>(m.attr("StepShape_TopologicalRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_TopologicalRepresentationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_TopologicalRepresentationItem::*)() const>(&StepShape_TopologicalRepresentationItem::DynamicType),
@@ -1889,12 +2000,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Torus ,opencascade::handle<StepShape_Torus>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepShape_Torus"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Torus::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepShape_Torus::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real ,  const Standard_Real  ) >(&StepShape_Torus::Init),
@@ -1930,12 +2043,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_TypeQualifier ,opencascade::handle<StepShape_TypeQualifier>  , Standard_Transient >>(m.attr("StepShape_TypeQualifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_TypeQualifier::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepShape_TypeQualifier::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepShape_TypeQualifier::Init),
@@ -1959,12 +2074,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ValueFormatTypeQualifier ,opencascade::handle<StepShape_ValueFormatTypeQualifier>  , Standard_Transient >>(m.attr("StepShape_ValueFormatTypeQualifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ValueFormatTypeQualifier::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (StepShape_ValueFormatTypeQualifier::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&StepShape_ValueFormatTypeQualifier::Init),
@@ -1988,12 +2105,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ValueQualifier , shared_ptr<StepShape_ValueQualifier>  , StepData_SelectType >>(m.attr("StepShape_ValueQualifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepShape_ValueQualifier::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepShape_ValueQualifier::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepShape_ValueQualifier::CaseNum),
@@ -2011,12 +2130,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_AdvancedBrepShapeRepresentation ,opencascade::handle<StepShape_AdvancedBrepShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_AdvancedBrepShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_AdvancedBrepShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_AdvancedBrepShapeRepresentation::*)() const>(&StepShape_AdvancedBrepShapeRepresentation::DynamicType),
@@ -2031,12 +2152,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_AngularLocation ,opencascade::handle<StepShape_AngularLocation>  , StepShape_DimensionalLocation >>(m.attr("StepShape_AngularLocation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_AngularLocation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const StepShape_AngleRelator  ) ) static_cast<void (StepShape_AngularLocation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const StepShape_AngleRelator  ) >(&StepShape_AngularLocation::Init),
@@ -2060,12 +2183,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_AngularSize ,opencascade::handle<StepShape_AngularSize>  , StepShape_DimensionalSize >>(m.attr("StepShape_AngularSize"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_AngularSize::*)( const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepShape_AngleRelator  ) ) static_cast<void (StepShape_AngularSize::*)( const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const StepShape_AngleRelator  ) >(&StepShape_AngularSize::Init),
@@ -2089,12 +2214,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_BoxedHalfSpace ,opencascade::handle<StepShape_BoxedHalfSpace>  , StepShape_HalfSpaceSolid >>(m.attr("StepShape_BoxedHalfSpace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_BoxedHalfSpace::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean ,  const opencascade::handle<StepShape_BoxDomain> &  ) ) static_cast<void (StepShape_BoxedHalfSpace::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean ,  const opencascade::handle<StepShape_BoxDomain> &  ) >(&StepShape_BoxedHalfSpace::Init),
@@ -2118,12 +2245,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_CompoundShapeRepresentation ,opencascade::handle<StepShape_CompoundShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_CompoundShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_CompoundShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_CompoundShapeRepresentation::*)() const>(&StepShape_CompoundShapeRepresentation::DynamicType),
@@ -2138,12 +2267,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ConnectedEdgeSet ,opencascade::handle<StepShape_ConnectedEdgeSet>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_ConnectedEdgeSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ConnectedEdgeSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfEdge> &  ) ) static_cast<void (StepShape_ConnectedEdgeSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfEdge> &  ) >(&StepShape_ConnectedEdgeSet::Init),
@@ -2167,12 +2298,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ConnectedFaceSet ,opencascade::handle<StepShape_ConnectedFaceSet>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_ConnectedFaceSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ConnectedFaceSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFace> &  ) ) static_cast<void (StepShape_ConnectedFaceSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFace> &  ) >(&StepShape_ConnectedFaceSet::Init),
@@ -2202,12 +2335,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_CsgShapeRepresentation ,opencascade::handle<StepShape_CsgShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_CsgShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_CsgShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_CsgShapeRepresentation::*)() const>(&StepShape_CsgShapeRepresentation::DynamicType),
@@ -2222,12 +2357,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_CsgSolid ,opencascade::handle<StepShape_CsgSolid>  , StepShape_SolidModel >>(m.attr("StepShape_CsgSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_CsgSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepShape_CsgSelect &  ) ) static_cast<void (StepShape_CsgSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepShape_CsgSelect &  ) >(&StepShape_CsgSolid::Init),
@@ -2251,12 +2388,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DimensionalLocationWithPath ,opencascade::handle<StepShape_DimensionalLocationWithPath>  , StepShape_DimensionalLocation >>(m.attr("StepShape_DimensionalLocationWithPath"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_DimensionalLocationWithPath::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> &  ) ) static_cast<void (StepShape_DimensionalLocationWithPath::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<StepRepr_ShapeAspect> &  ) >(&StepShape_DimensionalLocationWithPath::Init),
@@ -2280,12 +2419,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DimensionalSizeWithPath ,opencascade::handle<StepShape_DimensionalSizeWithPath>  , StepShape_DimensionalSize >>(m.attr("StepShape_DimensionalSizeWithPath"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_DimensionalSizeWithPath::*)( const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ShapeAspect> &  ) ) static_cast<void (StepShape_DimensionalSizeWithPath::*)( const opencascade::handle<StepRepr_ShapeAspect> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_ShapeAspect> &  ) >(&StepShape_DimensionalSizeWithPath::Init),
@@ -2309,12 +2450,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_DirectedDimensionalLocation ,opencascade::handle<StepShape_DirectedDimensionalLocation>  , StepShape_DimensionalLocation >>(m.attr("StepShape_DirectedDimensionalLocation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_DirectedDimensionalLocation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_DirectedDimensionalLocation::*)() const>(&StepShape_DirectedDimensionalLocation::DynamicType),
@@ -2329,12 +2472,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Edge ,opencascade::handle<StepShape_Edge>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_Edge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Edge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Vertex> &  ) ) static_cast<void (StepShape_Edge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Vertex> &  ) >(&StepShape_Edge::Init),
@@ -2364,12 +2509,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_EdgeBasedWireframeShapeRepresentation ,opencascade::handle<StepShape_EdgeBasedWireframeShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_EdgeBasedWireframeShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_EdgeBasedWireframeShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_EdgeBasedWireframeShapeRepresentation::*)() const>(&StepShape_EdgeBasedWireframeShapeRepresentation::DynamicType),
@@ -2384,12 +2531,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Face ,opencascade::handle<StepShape_Face>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_Face"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Face::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFaceBound> &  ) ) static_cast<void (StepShape_Face::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFaceBound> &  ) >(&StepShape_Face::Init),
@@ -2419,12 +2568,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_FaceBound ,opencascade::handle<StepShape_FaceBound>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_FaceBound"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_FaceBound::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Loop> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_FaceBound::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Loop> & ,  const Standard_Boolean  ) >(&StepShape_FaceBound::Init),
@@ -2454,12 +2605,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_FacetedBrepShapeRepresentation ,opencascade::handle<StepShape_FacetedBrepShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_FacetedBrepShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_FacetedBrepShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_FacetedBrepShapeRepresentation::*)() const>(&StepShape_FacetedBrepShapeRepresentation::DynamicType),
@@ -2474,12 +2627,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_GeometricCurveSet ,opencascade::handle<StepShape_GeometricCurveSet>  , StepShape_GeometricSet >>(m.attr("StepShape_GeometricCurveSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_GeometricCurveSet::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_GeometricCurveSet::*)() const>(&StepShape_GeometricCurveSet::DynamicType),
@@ -2494,12 +2649,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_GeometricallyBoundedSurfaceShapeRepresentation ,opencascade::handle<StepShape_GeometricallyBoundedSurfaceShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_GeometricallyBoundedSurfaceShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_GeometricallyBoundedSurfaceShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_GeometricallyBoundedSurfaceShapeRepresentation::*)() const>(&StepShape_GeometricallyBoundedSurfaceShapeRepresentation::DynamicType),
@@ -2514,12 +2671,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_GeometricallyBoundedWireframeShapeRepresentation ,opencascade::handle<StepShape_GeometricallyBoundedWireframeShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_GeometricallyBoundedWireframeShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_GeometricallyBoundedWireframeShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_GeometricallyBoundedWireframeShapeRepresentation::*)() const>(&StepShape_GeometricallyBoundedWireframeShapeRepresentation::DynamicType),
@@ -2534,12 +2693,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Loop ,opencascade::handle<StepShape_Loop>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_Loop"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_Loop::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_Loop::*)() const>(&StepShape_Loop::DynamicType),
@@ -2554,12 +2715,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_LoopAndPath ,opencascade::handle<StepShape_LoopAndPath>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_LoopAndPath"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_LoopAndPath::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Loop> & ,  const opencascade::handle<StepShape_Path> &  ) ) static_cast<void (StepShape_LoopAndPath::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Loop> & ,  const opencascade::handle<StepShape_Path> &  ) >(&StepShape_LoopAndPath::Init),
@@ -2604,12 +2767,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ManifoldSolidBrep ,opencascade::handle<StepShape_ManifoldSolidBrep>  , StepShape_SolidModel >>(m.attr("StepShape_ManifoldSolidBrep"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ManifoldSolidBrep::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> &  ) ) static_cast<void (StepShape_ManifoldSolidBrep::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> &  ) >(&StepShape_ManifoldSolidBrep::Init),
@@ -2636,12 +2801,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ManifoldSurfaceShapeRepresentation ,opencascade::handle<StepShape_ManifoldSurfaceShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_ManifoldSurfaceShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_ManifoldSurfaceShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_ManifoldSurfaceShapeRepresentation::*)() const>(&StepShape_ManifoldSurfaceShapeRepresentation::DynamicType),
@@ -2656,12 +2823,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_NonManifoldSurfaceShapeRepresentation ,opencascade::handle<StepShape_NonManifoldSurfaceShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_NonManifoldSurfaceShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_NonManifoldSurfaceShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_NonManifoldSurfaceShapeRepresentation::*)() const>(&StepShape_NonManifoldSurfaceShapeRepresentation::DynamicType),
@@ -2676,12 +2845,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Path ,opencascade::handle<StepShape_Path>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_Path"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Path::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfOrientedEdge> &  ) ) static_cast<void (StepShape_Path::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfOrientedEdge> &  ) >(&StepShape_Path::Init),
@@ -2711,12 +2882,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_PointRepresentation ,opencascade::handle<StepShape_PointRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_PointRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_PointRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_PointRepresentation::*)() const>(&StepShape_PointRepresentation::DynamicType),
@@ -2731,12 +2904,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ShapeDimensionRepresentation ,opencascade::handle<StepShape_ShapeDimensionRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_ShapeDimensionRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ShapeDimensionRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> &  ) ) static_cast<void (StepShape_ShapeDimensionRepresentation::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepRepr_HArray1OfRepresentationItem> & ,  const opencascade::handle<StepRepr_RepresentationContext> &  ) >(&StepShape_ShapeDimensionRepresentation::Init),
@@ -2763,12 +2938,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ShapeRepresentationWithParameters ,opencascade::handle<StepShape_ShapeRepresentationWithParameters>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_ShapeRepresentationWithParameters"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_ShapeRepresentationWithParameters::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_ShapeRepresentationWithParameters::*)() const>(&StepShape_ShapeRepresentationWithParameters::DynamicType),
@@ -2783,12 +2960,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_SolidReplica ,opencascade::handle<StepShape_SolidReplica>  , StepShape_SolidModel >>(m.attr("StepShape_SolidReplica"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_SolidReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_SolidModel> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator3d> &  ) ) static_cast<void (StepShape_SolidReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_SolidModel> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator3d> &  ) >(&StepShape_SolidReplica::Init),
@@ -2818,12 +2997,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_SweptAreaSolid ,opencascade::handle<StepShape_SweptAreaSolid>  , StepShape_SolidModel >>(m.attr("StepShape_SweptAreaSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_SweptAreaSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> &  ) ) static_cast<void (StepShape_SweptAreaSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> &  ) >(&StepShape_SweptAreaSolid::Init),
@@ -2847,12 +3028,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_SweptFaceSolid ,opencascade::handle<StepShape_SweptFaceSolid>  , StepShape_SolidModel >>(m.attr("StepShape_SweptFaceSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_SweptFaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_FaceSurface> &  ) ) static_cast<void (StepShape_SweptFaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_FaceSurface> &  ) >(&StepShape_SweptFaceSolid::Init),
@@ -2876,12 +3059,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_TransitionalShapeRepresentation ,opencascade::handle<StepShape_TransitionalShapeRepresentation>  , StepShape_ShapeRepresentation >>(m.attr("StepShape_TransitionalShapeRepresentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_TransitionalShapeRepresentation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_TransitionalShapeRepresentation::*)() const>(&StepShape_TransitionalShapeRepresentation::DynamicType),
@@ -2896,12 +3081,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Vertex ,opencascade::handle<StepShape_Vertex>  , StepShape_TopologicalRepresentationItem >>(m.attr("StepShape_Vertex"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_Vertex::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_Vertex::*)() const>(&StepShape_Vertex::DynamicType),
@@ -2916,12 +3103,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_BrepWithVoids ,opencascade::handle<StepShape_BrepWithVoids>  , StepShape_ManifoldSolidBrep >>(m.attr("StepShape_BrepWithVoids"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_BrepWithVoids::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> & ,  const opencascade::handle<StepShape_HArray1OfOrientedClosedShell> &  ) ) static_cast<void (StepShape_BrepWithVoids::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> & ,  const opencascade::handle<StepShape_HArray1OfOrientedClosedShell> &  ) >(&StepShape_BrepWithVoids::Init),
@@ -2951,12 +3140,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ClosedShell ,opencascade::handle<StepShape_ClosedShell>  , StepShape_ConnectedFaceSet >>(m.attr("StepShape_ClosedShell"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_ClosedShell::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_ClosedShell::*)() const>(&StepShape_ClosedShell::DynamicType),
@@ -2971,12 +3162,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ConnectedFaceSubSet ,opencascade::handle<StepShape_ConnectedFaceSubSet>  , StepShape_ConnectedFaceSet >>(m.attr("StepShape_ConnectedFaceSubSet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ConnectedFaceSubSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFace> & ,  const opencascade::handle<StepShape_ConnectedFaceSet> &  ) ) static_cast<void (StepShape_ConnectedFaceSubSet::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFace> & ,  const opencascade::handle<StepShape_ConnectedFaceSet> &  ) >(&StepShape_ConnectedFaceSubSet::Init),
@@ -3000,12 +3193,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_EdgeCurve ,opencascade::handle<StepShape_EdgeCurve>  , StepShape_Edge >>(m.attr("StepShape_EdgeCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_EdgeCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_EdgeCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Boolean  ) >(&StepShape_EdgeCurve::Init),
@@ -3035,12 +3230,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_EdgeLoop ,opencascade::handle<StepShape_EdgeLoop>  , StepShape_Loop >>(m.attr("StepShape_EdgeLoop"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_EdgeLoop::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfOrientedEdge> &  ) ) static_cast<void (StepShape_EdgeLoop::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfOrientedEdge> &  ) >(&StepShape_EdgeLoop::Init),
@@ -3070,12 +3267,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ExtrudedAreaSolid ,opencascade::handle<StepShape_ExtrudedAreaSolid>  , StepShape_SweptAreaSolid >>(m.attr("StepShape_ExtrudedAreaSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ExtrudedAreaSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> & ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Real  ) ) static_cast<void (StepShape_ExtrudedAreaSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> & ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Real  ) >(&StepShape_ExtrudedAreaSolid::Init),
@@ -3105,12 +3304,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_ExtrudedFaceSolid ,opencascade::handle<StepShape_ExtrudedFaceSolid>  , StepShape_SweptFaceSolid >>(m.attr("StepShape_ExtrudedFaceSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_ExtrudedFaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_FaceSurface> & ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Real  ) ) static_cast<void (StepShape_ExtrudedFaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_FaceSurface> & ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Real  ) >(&StepShape_ExtrudedFaceSolid::Init),
@@ -3140,12 +3341,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_FaceOuterBound ,opencascade::handle<StepShape_FaceOuterBound>  , StepShape_FaceBound >>(m.attr("StepShape_FaceOuterBound"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_FaceOuterBound::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_FaceOuterBound::*)() const>(&StepShape_FaceOuterBound::DynamicType),
@@ -3160,12 +3363,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_FaceSurface ,opencascade::handle<StepShape_FaceSurface>  , StepShape_Face >>(m.attr("StepShape_FaceSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_FaceSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFaceBound> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_FaceSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFaceBound> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Boolean  ) >(&StepShape_FaceSurface::Init),
@@ -3195,12 +3400,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_FacetedBrep ,opencascade::handle<StepShape_FacetedBrep>  , StepShape_ManifoldSolidBrep >>(m.attr("StepShape_FacetedBrep"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_FacetedBrep::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_FacetedBrep::*)() const>(&StepShape_FacetedBrep::DynamicType),
@@ -3215,12 +3422,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_FacetedBrepAndBrepWithVoids ,opencascade::handle<StepShape_FacetedBrepAndBrepWithVoids>  , StepShape_ManifoldSolidBrep >>(m.attr("StepShape_FacetedBrepAndBrepWithVoids"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_FacetedBrepAndBrepWithVoids::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> & ,  const opencascade::handle<StepShape_FacetedBrep> & ,  const opencascade::handle<StepShape_BrepWithVoids> &  ) ) static_cast<void (StepShape_FacetedBrepAndBrepWithVoids::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> & ,  const opencascade::handle<StepShape_FacetedBrep> & ,  const opencascade::handle<StepShape_BrepWithVoids> &  ) >(&StepShape_FacetedBrepAndBrepWithVoids::Init),
@@ -3265,12 +3474,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_OpenShell ,opencascade::handle<StepShape_OpenShell>  , StepShape_ConnectedFaceSet >>(m.attr("StepShape_OpenShell"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_OpenShell::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_OpenShell::*)() const>(&StepShape_OpenShell::DynamicType),
@@ -3285,12 +3496,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_OrientedEdge ,opencascade::handle<StepShape_OrientedEdge>  , StepShape_Edge >>(m.attr("StepShape_OrientedEdge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_OrientedEdge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Edge> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_OrientedEdge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Edge> & ,  const Standard_Boolean  ) >(&StepShape_OrientedEdge::Init),
@@ -3332,12 +3545,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_OrientedFace ,opencascade::handle<StepShape_OrientedFace>  , StepShape_Face >>(m.attr("StepShape_OrientedFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_OrientedFace::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Face> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_OrientedFace::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Face> & ,  const Standard_Boolean  ) >(&StepShape_OrientedFace::Init),
@@ -3379,12 +3594,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_OrientedPath ,opencascade::handle<StepShape_OrientedPath>  , StepShape_Path >>(m.attr("StepShape_OrientedPath"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_OrientedPath::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_EdgeLoop> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_OrientedPath::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_EdgeLoop> & ,  const Standard_Boolean  ) >(&StepShape_OrientedPath::Init),
@@ -3426,12 +3643,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_PolyLoop ,opencascade::handle<StepShape_PolyLoop>  , StepShape_Loop >>(m.attr("StepShape_PolyLoop"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_PolyLoop::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> &  ) ) static_cast<void (StepShape_PolyLoop::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> &  ) >(&StepShape_PolyLoop::Init),
@@ -3461,12 +3680,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_RevolvedAreaSolid ,opencascade::handle<StepShape_RevolvedAreaSolid>  , StepShape_SweptAreaSolid >>(m.attr("StepShape_RevolvedAreaSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_RevolvedAreaSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real  ) ) static_cast<void (StepShape_RevolvedAreaSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CurveBoundedSurface> & ,  const opencascade::handle<StepGeom_Axis1Placement> & ,  const Standard_Real  ) >(&StepShape_RevolvedAreaSolid::Init),
@@ -3496,12 +3717,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_RevolvedFaceSolid ,opencascade::handle<StepShape_RevolvedFaceSolid>  , StepShape_SweptFaceSolid >>(m.attr("StepShape_RevolvedFaceSolid"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_RevolvedFaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_FaceSurface> &  ) ) static_cast<void (StepShape_RevolvedFaceSolid::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_FaceSurface> &  ) >(&StepShape_RevolvedFaceSolid::Init),
@@ -3534,12 +3757,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Subedge ,opencascade::handle<StepShape_Subedge>  , StepShape_Edge >>(m.attr("StepShape_Subedge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Subedge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Edge> &  ) ) static_cast<void (StepShape_Subedge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Vertex> & ,  const opencascade::handle<StepShape_Edge> &  ) >(&StepShape_Subedge::Init),
@@ -3563,12 +3788,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_Subface ,opencascade::handle<StepShape_Subface>  , StepShape_Face >>(m.attr("StepShape_Subface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_Subface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFaceBound> & ,  const opencascade::handle<StepShape_Face> &  ) ) static_cast<void (StepShape_Subface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_HArray1OfFaceBound> & ,  const opencascade::handle<StepShape_Face> &  ) >(&StepShape_Subface::Init),
@@ -3592,12 +3819,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_VertexLoop ,opencascade::handle<StepShape_VertexLoop>  , StepShape_Loop >>(m.attr("StepShape_VertexLoop"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_VertexLoop::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> &  ) ) static_cast<void (StepShape_VertexLoop::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Vertex> &  ) >(&StepShape_VertexLoop::Init),
@@ -3621,12 +3850,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_VertexPoint ,opencascade::handle<StepShape_VertexPoint>  , StepShape_Vertex >>(m.attr("StepShape_VertexPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_VertexPoint::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Point> &  ) ) static_cast<void (StepShape_VertexPoint::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Point> &  ) >(&StepShape_VertexPoint::Init),
@@ -3650,12 +3881,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_AdvancedFace ,opencascade::handle<StepShape_AdvancedFace>  , StepShape_FaceSurface >>(m.attr("StepShape_AdvancedFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepShape_AdvancedFace::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepShape_AdvancedFace::*)() const>(&StepShape_AdvancedFace::DynamicType),
@@ -3670,12 +3903,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_OrientedClosedShell ,opencascade::handle<StepShape_OrientedClosedShell>  , StepShape_ClosedShell >>(m.attr("StepShape_OrientedClosedShell"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_OrientedClosedShell::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_OrientedClosedShell::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_ClosedShell> & ,  const Standard_Boolean  ) >(&StepShape_OrientedClosedShell::Init),
@@ -3717,12 +3952,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_OrientedOpenShell ,opencascade::handle<StepShape_OrientedOpenShell>  , StepShape_OpenShell >>(m.attr("StepShape_OrientedOpenShell"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_OrientedOpenShell::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_OpenShell> & ,  const Standard_Boolean  ) ) static_cast<void (StepShape_OrientedOpenShell::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_OpenShell> & ,  const Standard_Boolean  ) >(&StepShape_OrientedOpenShell::Init),
@@ -3764,12 +4001,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepShape_SeamEdge ,opencascade::handle<StepShape_SeamEdge>  , StepShape_OrientedEdge >>(m.attr("StepShape_SeamEdge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepShape_SeamEdge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Edge> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Pcurve> &  ) ) static_cast<void (StepShape_SeamEdge::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepShape_Edge> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Pcurve> &  ) >(&StepShape_SeamEdge::Init),
@@ -3793,152 +4032,152 @@ py::module m = static_cast<py::module>(main_module.attr("StepShape"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepShape_Torus.hxx
-// ./opencascade/StepShape_CsgSelect.hxx
-// ./opencascade/StepShape_HArray1OfFaceBound.hxx
-// ./opencascade/StepShape_ContextDependentShapeRepresentation.hxx
-// ./opencascade/StepShape_EdgeLoop.hxx
-// ./opencascade/StepShape_LoopAndPath.hxx
-// ./opencascade/StepShape_Array1OfConnectedEdgeSet.hxx
-// ./opencascade/StepShape_RevolvedAreaSolid.hxx
-// ./opencascade/StepShape_PointRepresentation.hxx
-// ./opencascade/StepShape_PolyLoop.hxx
+// ./opencascade/StepShape_HArray1OfFace.hxx
+// ./opencascade/StepShape_RightCircularCylinder.hxx
+// ./opencascade/StepShape_NonManifoldSurfaceShapeRepresentation.hxx
+// ./opencascade/StepShape_Array1OfFaceBound.hxx
+// ./opencascade/StepShape_CsgShapeRepresentation.hxx
+// ./opencascade/StepShape_ClosedShell.hxx
 // ./opencascade/StepShape_MeasureQualification.hxx
 // ./opencascade/StepShape_DimensionalCharacteristic.hxx
-// ./opencascade/StepShape_CsgShapeRepresentation.hxx
-// ./opencascade/StepShape_AdvancedFace.hxx
-// ./opencascade/StepShape_CompoundShapeRepresentation.hxx
-// ./opencascade/StepShape_SweptFaceSolid.hxx
-// ./opencascade/StepShape_BooleanOperand.hxx
-// ./opencascade/StepShape_DefinitionalRepresentationAndShapeRepresentation.hxx
-// ./opencascade/StepShape_EdgeBasedWireframeModel.hxx
-// ./opencascade/StepShape_SweptAreaSolid.hxx
-// ./opencascade/StepShape_Sphere.hxx
-// ./opencascade/StepShape_PrecisionQualifier.hxx
-// ./opencascade/StepShape_HArray1OfShapeDimensionRepresentationItem.hxx
-// ./opencascade/StepShape_FaceBasedSurfaceModel.hxx
-// ./opencascade/StepShape_PlusMinusTolerance.hxx
-// ./opencascade/StepShape_AdvancedBrepShapeRepresentation.hxx
-// ./opencascade/StepShape_ManifoldSurfaceShapeRepresentation.hxx
-// ./opencascade/StepShape_RightAngularWedge.hxx
-// ./opencascade/StepShape_BooleanResult.hxx
-// ./opencascade/StepShape_Vertex.hxx
-// ./opencascade/StepShape_Array1OfFace.hxx
-// ./opencascade/StepShape_FacetedBrepAndBrepWithVoids.hxx
-// ./opencascade/StepShape_GeometricallyBoundedSurfaceShapeRepresentation.hxx
-// ./opencascade/StepShape_OrientedClosedShell.hxx
-// ./opencascade/StepShape_DimensionalSize.hxx
-// ./opencascade/StepShape_Shell.hxx
-// ./opencascade/StepShape_DimensionalSizeWithPath.hxx
-// ./opencascade/StepShape_HArray1OfValueQualifier.hxx
-// ./opencascade/StepShape_VertexLoop.hxx
-// ./opencascade/StepShape_HArray1OfFace.hxx
-// ./opencascade/StepShape_ValueQualifier.hxx
-// ./opencascade/StepShape_GeometricCurveSet.hxx
-// ./opencascade/StepShape_RevolvedFaceSolid.hxx
-// ./opencascade/StepShape_BooleanOperator.hxx
-// ./opencascade/StepShape_OpenShell.hxx
-// ./opencascade/StepShape_SolidModel.hxx
-// ./opencascade/StepShape_Array1OfFaceBound.hxx
-// ./opencascade/StepShape_BrepWithVoids.hxx
-// ./opencascade/StepShape_HArray1OfOrientedClosedShell.hxx
-// ./opencascade/StepShape_ExtrudedAreaSolid.hxx
-// ./opencascade/StepShape_DimensionalLocationWithPath.hxx
-// ./opencascade/StepShape_HalfSpaceSolid.hxx
-// ./opencascade/StepShape_EdgeCurve.hxx
-// ./opencascade/StepShape_ExtrudedFaceSolid.hxx
-// ./opencascade/StepShape_ReversibleTopologyItem.hxx
-// ./opencascade/StepShape_LimitsAndFits.hxx
-// ./opencascade/StepShape_ShapeDimensionRepresentation.hxx
-// ./opencascade/StepShape_GeometricSet.hxx
-// ./opencascade/StepShape_TopologicalRepresentationItem.hxx
-// ./opencascade/StepShape_CsgSolid.hxx
-// ./opencascade/StepShape_SeamEdge.hxx
-// ./opencascade/StepShape_Array1OfShell.hxx
-// ./opencascade/StepShape_OrientedFace.hxx
-// ./opencascade/StepShape_OrientedPath.hxx
-// ./opencascade/StepShape_TransitionalShapeRepresentation.hxx
-// ./opencascade/StepShape_GeometricallyBoundedWireframeShapeRepresentation.hxx
-// ./opencascade/StepShape_Array1OfOrientedClosedShell.hxx
-// ./opencascade/StepShape_Array1OfConnectedFaceSet.hxx
-// ./opencascade/StepShape_Subface.hxx
-// ./opencascade/StepShape_FacetedBrepShapeRepresentation.hxx
-// ./opencascade/StepShape_Array1OfGeometricSetSelect.hxx
-// ./opencascade/StepShape_Array1OfShapeDimensionRepresentationItem.hxx
-// ./opencascade/StepShape_QualifiedRepresentationItem.hxx
-// ./opencascade/StepShape_SurfaceModel.hxx
-// ./opencascade/StepShape_Subedge.hxx
-// ./opencascade/StepShape_HArray1OfGeometricSetSelect.hxx
-// ./opencascade/StepShape_HArray1OfShell.hxx
-// ./opencascade/StepShape_HArray1OfEdge.hxx
-// ./opencascade/StepShape_HArray1OfConnectedFaceSet.hxx
-// ./opencascade/StepShape_RightCircularCylinder.hxx
-// ./opencascade/StepShape_HArray1OfOrientedEdge.hxx
-// ./opencascade/StepShape_VertexPoint.hxx
-// ./opencascade/StepShape_ShapeRepresentation.hxx
-// ./opencascade/StepShape_BoxDomain.hxx
-// ./opencascade/StepShape_Array1OfEdge.hxx
-// ./opencascade/StepShape_AngularLocation.hxx
-// ./opencascade/StepShape_ConnectedFaceShapeRepresentation.hxx
-// ./opencascade/StepShape_NonManifoldSurfaceShapeRepresentation.hxx
-// ./opencascade/StepShape_OrientedOpenShell.hxx
-// ./opencascade/StepShape_DimensionalCharacteristicRepresentation.hxx
-// ./opencascade/StepShape_Path.hxx
-// ./opencascade/StepShape_OrientedEdge.hxx
-// ./opencascade/StepShape_Loop.hxx
-// ./opencascade/StepShape_ConnectedFaceSet.hxx
-// ./opencascade/StepShape_SolidReplica.hxx
-// ./opencascade/StepShape_AngleRelator.hxx
-// ./opencascade/StepShape_ClosedShell.hxx
 // ./opencascade/StepShape_FaceOuterBound.hxx
-// ./opencascade/StepShape_Block.hxx
-// ./opencascade/StepShape_TypeQualifier.hxx
-// ./opencascade/StepShape_CsgPrimitive.hxx
-// ./opencascade/StepShape_Array1OfOrientedEdge.hxx
-// ./opencascade/StepShape_ConnectedFaceSubSet.hxx
-// ./opencascade/StepShape_Array1OfValueQualifier.hxx
-// ./opencascade/StepShape_GeometricSetSelect.hxx
-// ./opencascade/StepShape_ToleranceValue.hxx
-// ./opencascade/StepShape_Face.hxx
-// ./opencascade/StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem.hxx
-// ./opencascade/StepShape_ConnectedEdgeSet.hxx
-// ./opencascade/StepShape_FacetedBrep.hxx
-// ./opencascade/StepShape_ToleranceMethodDefinition.hxx
-// ./opencascade/StepShape_HArray1OfConnectedEdgeSet.hxx
-// ./opencascade/StepShape_ShellBasedSurfaceModel.hxx
-// ./opencascade/StepShape_ShapeRepresentationWithParameters.hxx
-// ./opencascade/StepShape_Edge.hxx
-// ./opencascade/StepShape_BoxedHalfSpace.hxx
-// ./opencascade/StepShape_RightCircularCone.hxx
-// ./opencascade/StepShape_ValueFormatTypeQualifier.hxx
-// ./opencascade/StepShape_ShapeDimensionRepresentationItem.hxx
-// ./opencascade/StepShape_ManifoldSolidBrep.hxx
-// ./opencascade/StepShape_FaceBound.hxx
+// ./opencascade/StepShape_HArray1OfShapeDimensionRepresentationItem.hxx
+// ./opencascade/StepShape_HArray1OfShell.hxx
+// ./opencascade/StepShape_FaceBasedSurfaceModel.hxx
+// ./opencascade/StepShape_SweptAreaSolid.hxx
+// ./opencascade/StepShape_OrientedEdge.hxx
+// ./opencascade/StepShape_ConnectedFaceSet.hxx
+// ./opencascade/StepShape_SweptFaceSolid.hxx
+// ./opencascade/StepShape_GeometricSet.hxx
+// ./opencascade/StepShape_OrientedOpenShell.hxx
+// ./opencascade/StepShape_HArray1OfOrientedEdge.hxx
+// ./opencascade/StepShape_HArray1OfValueQualifier.hxx
+// ./opencascade/StepShape_Array1OfGeometricSetSelect.hxx
+// ./opencascade/StepShape_EdgeLoop.hxx
 // ./opencascade/StepShape_DimensionalLocation.hxx
+// ./opencascade/StepShape_Block.hxx
 // ./opencascade/StepShape_ShapeDefinitionRepresentation.hxx
-// ./opencascade/StepShape_DirectedDimensionalLocation.hxx
+// ./opencascade/StepShape_ShapeRepresentation.hxx
+// ./opencascade/StepShape_RevolvedFaceSolid.hxx
+// ./opencascade/StepShape_ValueQualifier.hxx
+// ./opencascade/StepShape_GeometricallyBoundedWireframeShapeRepresentation.hxx
+// ./opencascade/StepShape_RightAngularWedge.hxx
+// ./opencascade/StepShape_EdgeBasedWireframeModel.hxx
+// ./opencascade/StepShape_BooleanOperator.hxx
+// ./opencascade/StepShape_MeasureRepresentationItemAndQualifiedRepresentationItem.hxx
+// ./opencascade/StepShape_Vertex.hxx
 // ./opencascade/StepShape_EdgeBasedWireframeShapeRepresentation.hxx
+// ./opencascade/StepShape_AngleRelator.hxx
+// ./opencascade/StepShape_CompoundShapeRepresentation.hxx
+// ./opencascade/StepShape_DefinitionalRepresentationAndShapeRepresentation.hxx
+// ./opencascade/StepShape_Array1OfConnectedEdgeSet.hxx
+// ./opencascade/StepShape_ShapeDimensionRepresentation.hxx
+// ./opencascade/StepShape_AdvancedBrepShapeRepresentation.hxx
+// ./opencascade/StepShape_CsgPrimitive.hxx
+// ./opencascade/StepShape_OrientedClosedShell.hxx
+// ./opencascade/StepShape_PlusMinusTolerance.hxx
 // ./opencascade/StepShape_FaceSurface.hxx
+// ./opencascade/StepShape_LoopAndPath.hxx
+// ./opencascade/StepShape_HArray1OfOrientedClosedShell.hxx
+// ./opencascade/StepShape_ConnectedEdgeSet.hxx
+// ./opencascade/StepShape_TransitionalShapeRepresentation.hxx
+// ./opencascade/StepShape_ManifoldSurfaceShapeRepresentation.hxx
+// ./opencascade/StepShape_SurfaceModel.hxx
+// ./opencascade/StepShape_VertexLoop.hxx
+// ./opencascade/StepShape_VertexPoint.hxx
+// ./opencascade/StepShape_BooleanResult.hxx
+// ./opencascade/StepShape_ToleranceMethodDefinition.hxx
+// ./opencascade/StepShape_ManifoldSolidBrep.hxx
+// ./opencascade/StepShape_HArray1OfConnectedEdgeSet.hxx
+// ./opencascade/StepShape_BrepWithVoids.hxx
+// ./opencascade/StepShape_AngularLocation.hxx
+// ./opencascade/StepShape_SolidModel.hxx
+// ./opencascade/StepShape_DimensionalSize.hxx
+// ./opencascade/StepShape_OrientedFace.hxx
+// ./opencascade/StepShape_HArray1OfFaceBound.hxx
+// ./opencascade/StepShape_Array1OfOrientedEdge.hxx
+// ./opencascade/StepShape_HArray1OfConnectedFaceSet.hxx
+// ./opencascade/StepShape_DimensionalLocationWithPath.hxx
+// ./opencascade/StepShape_ShapeRepresentationWithParameters.hxx
+// ./opencascade/StepShape_CsgSelect.hxx
+// ./opencascade/StepShape_HArray1OfGeometricSetSelect.hxx
+// ./opencascade/StepShape_Loop.hxx
+// ./opencascade/StepShape_ReversibleTopologyItem.hxx
+// ./opencascade/StepShape_ConnectedFaceShapeRepresentation.hxx
+// ./opencascade/StepShape_HArray1OfEdge.hxx
+// ./opencascade/StepShape_PointRepresentation.hxx
+// ./opencascade/StepShape_Shell.hxx
+// ./opencascade/StepShape_TypeQualifier.hxx
+// ./opencascade/StepShape_Face.hxx
+// ./opencascade/StepShape_EdgeCurve.hxx
+// ./opencascade/StepShape_ToleranceValue.hxx
+// ./opencascade/StepShape_Edge.hxx
+// ./opencascade/StepShape_CsgSolid.hxx
+// ./opencascade/StepShape_ExtrudedFaceSolid.hxx
+// ./opencascade/StepShape_AdvancedFace.hxx
+// ./opencascade/StepShape_DimensionalSizeWithPath.hxx
+// ./opencascade/StepShape_BooleanOperand.hxx
+// ./opencascade/StepShape_BoxedHalfSpace.hxx
+// ./opencascade/StepShape_Array1OfConnectedFaceSet.hxx
+// ./opencascade/StepShape_GeometricallyBoundedSurfaceShapeRepresentation.hxx
+// ./opencascade/StepShape_ShapeDimensionRepresentationItem.hxx
 // ./opencascade/StepShape_AngularSize.hxx
+// ./opencascade/StepShape_Array1OfOrientedClosedShell.hxx
+// ./opencascade/StepShape_Array1OfShapeDimensionRepresentationItem.hxx
+// ./opencascade/StepShape_ConnectedFaceSubSet.hxx
+// ./opencascade/StepShape_DimensionalCharacteristicRepresentation.hxx
+// ./opencascade/StepShape_FacetedBrep.hxx
+// ./opencascade/StepShape_GeometricCurveSet.hxx
+// ./opencascade/StepShape_RightCircularCone.hxx
+// ./opencascade/StepShape_Torus.hxx
+// ./opencascade/StepShape_Path.hxx
+// ./opencascade/StepShape_SeamEdge.hxx
+// ./opencascade/StepShape_Subface.hxx
+// ./opencascade/StepShape_OpenShell.hxx
+// ./opencascade/StepShape_FaceBound.hxx
+// ./opencascade/StepShape_OrientedPath.hxx
+// ./opencascade/StepShape_Array1OfEdge.hxx
+// ./opencascade/StepShape_BoxDomain.hxx
+// ./opencascade/StepShape_ValueFormatTypeQualifier.hxx
+// ./opencascade/StepShape_Sphere.hxx
+// ./opencascade/StepShape_ExtrudedAreaSolid.hxx
+// ./opencascade/StepShape_GeometricSetSelect.hxx
+// ./opencascade/StepShape_RevolvedAreaSolid.hxx
+// ./opencascade/StepShape_FacetedBrepShapeRepresentation.hxx
+// ./opencascade/StepShape_DirectedDimensionalLocation.hxx
+// ./opencascade/StepShape_HalfSpaceSolid.hxx
+// ./opencascade/StepShape_Subedge.hxx
+// ./opencascade/StepShape_Array1OfValueQualifier.hxx
+// ./opencascade/StepShape_TopologicalRepresentationItem.hxx
+// ./opencascade/StepShape_QualifiedRepresentationItem.hxx
+// ./opencascade/StepShape_Array1OfFace.hxx
+// ./opencascade/StepShape_PolyLoop.hxx
+// ./opencascade/StepShape_ShellBasedSurfaceModel.hxx
+// ./opencascade/StepShape_Array1OfShell.hxx
+// ./opencascade/StepShape_SolidReplica.hxx
+// ./opencascade/StepShape_FacetedBrepAndBrepWithVoids.hxx
+// ./opencascade/StepShape_PrecisionQualifier.hxx
+// ./opencascade/StepShape_LimitsAndFits.hxx
+// ./opencascade/StepShape_ContextDependentShapeRepresentation.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<StepShape_ConnectedEdgeSet> >(m,"StepShape_Array1OfConnectedEdgeSet");  
-    register_template_NCollection_Array1<opencascade::handle<StepShape_Face> >(m,"StepShape_Array1OfFace");  
     register_template_NCollection_Array1<opencascade::handle<StepShape_FaceBound> >(m,"StepShape_Array1OfFaceBound");  
-    register_template_NCollection_Array1<StepShape_Shell>(m,"StepShape_Array1OfShell");  
-    register_template_NCollection_Array1<opencascade::handle<StepShape_OrientedClosedShell> >(m,"StepShape_Array1OfOrientedClosedShell");  
-    register_template_NCollection_Array1<opencascade::handle<StepShape_ConnectedFaceSet> >(m,"StepShape_Array1OfConnectedFaceSet");  
     register_template_NCollection_Array1<StepShape_GeometricSetSelect>(m,"StepShape_Array1OfGeometricSetSelect");  
+    register_template_NCollection_Array1<opencascade::handle<StepShape_ConnectedEdgeSet> >(m,"StepShape_Array1OfConnectedEdgeSet");  
+    register_template_NCollection_Array1<opencascade::handle<StepShape_OrientedEdge> >(m,"StepShape_Array1OfOrientedEdge");  
+    register_template_NCollection_Array1<opencascade::handle<StepShape_ConnectedFaceSet> >(m,"StepShape_Array1OfConnectedFaceSet");  
+    register_template_NCollection_Array1<opencascade::handle<StepShape_OrientedClosedShell> >(m,"StepShape_Array1OfOrientedClosedShell");  
     register_template_NCollection_Array1<StepShape_ShapeDimensionRepresentationItem>(m,"StepShape_Array1OfShapeDimensionRepresentationItem");  
     register_template_NCollection_Array1<opencascade::handle<StepShape_Edge> >(m,"StepShape_Array1OfEdge");  
-    register_template_NCollection_Array1<opencascade::handle<StepShape_OrientedEdge> >(m,"StepShape_Array1OfOrientedEdge");  
     register_template_NCollection_Array1<StepShape_ValueQualifier>(m,"StepShape_Array1OfValueQualifier");  
+    register_template_NCollection_Array1<opencascade::handle<StepShape_Face> >(m,"StepShape_Array1OfFace");  
+    register_template_NCollection_Array1<StepShape_Shell>(m,"StepShape_Array1OfShell");  
 
 
 // exceptions

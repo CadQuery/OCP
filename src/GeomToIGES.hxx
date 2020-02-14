@@ -10,6 +10,24 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <IGESData_IGESEntity.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_BoundedCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_TrimmedCurve.hxx>
+#include <Geom_Conic.hxx>
+#include <Geom_Circle.hxx>
+#include <Geom_Ellipse.hxx>
+#include <Geom_Hyperbola.hxx>
+#include <Geom_Line.hxx>
+#include <Geom_Parabola.hxx>
+#include <Geom_OffsetCurve.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <IGESGeom_Direction.hxx>
+#include <Geom_Vector.hxx>
+#include <Geom_VectorWithMagnitude.hxx>
+#include <Geom_Direction.hxx>
 #include <IGESGeom_Point.hxx>
 #include <Geom_Point.hxx>
 #include <Geom_CartesianPoint.hxx>
@@ -29,40 +47,22 @@ namespace py = pybind11;
 #include <Geom_SurfaceOfLinearExtrusion.hxx>
 #include <Geom_SurfaceOfRevolution.hxx>
 #include <Geom_OffsetSurface.hxx>
-#include <IGESGeom_Direction.hxx>
-#include <Geom_Vector.hxx>
-#include <Geom_VectorWithMagnitude.hxx>
-#include <Geom_Direction.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_BoundedCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_TrimmedCurve.hxx>
-#include <Geom_Conic.hxx>
-#include <Geom_Circle.hxx>
-#include <Geom_Ellipse.hxx>
-#include <Geom_Hyperbola.hxx>
-#include <Geom_Line.hxx>
-#include <Geom_Parabola.hxx>
-#include <Geom_OffsetCurve.hxx>
-#include <IGESData_IGESModel.hxx>
 
 // module includes
-#include <GeomToIGES_GeomPoint.hxx>
-#include <GeomToIGES_GeomSurface.hxx>
-#include <GeomToIGES_GeomVector.hxx>
 #include <GeomToIGES_GeomCurve.hxx>
 #include <GeomToIGES_GeomEntity.hxx>
+#include <GeomToIGES_GeomVector.hxx>
+#include <GeomToIGES_GeomPoint.hxx>
+#include <GeomToIGES_GeomSurface.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/GeomToIGES_GeomPoint.hxx
-// ./opencascade/GeomToIGES_GeomSurface.hxx
-// ./opencascade/GeomToIGES_GeomVector.hxx
 // ./opencascade/GeomToIGES_GeomCurve.hxx
 // ./opencascade/GeomToIGES_GeomEntity.hxx
+// ./opencascade/GeomToIGES_GeomVector.hxx
+// ./opencascade/GeomToIGES_GeomPoint.hxx
+// ./opencascade/GeomToIGES_GeomSurface.hxx
 
 // user-defined post

@@ -16,12 +16,12 @@ namespace py = pybind11;
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
-#include <TopoDS_Shape.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMNaming_NamedShapeDriver.hxx>
 #include <XmlMNaming_NamingDriver.hxx>
 #include <XmlMNaming_Shape1.hxx>
+#include <TopoDS_Shape.hxx>
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
@@ -51,38 +51,37 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMNaming"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XmlMNaming , shared_ptr<XmlMNaming>>(m,"XmlMNaming");
 
     static_cast<py::class_<XmlMNaming , shared_ptr<XmlMNaming>  >>(m.attr("XmlMNaming"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("AddDrivers_s",
                     (void (*)( const opencascade::handle<XmlMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) ) static_cast<void (*)( const opencascade::handle<XmlMDF_ADriverTable> & ,  const opencascade::handle<Message_Messenger> &  ) >(&XmlMNaming::AddDrivers),
                     R"#(Adds the attribute drivers to <aDriverTable>.)#"  , py::arg("aDriverTable"),  py::arg("aMessageDriver"))
-        .def_static("SetDocumentVersion_s",
-                    (void (*)( const Standard_Integer  ) ) static_cast<void (*)( const Standard_Integer  ) >(&XmlMNaming::SetDocumentVersion),
-                    R"#(None)#"  , py::arg("DocVersion"))
-        .def_static("DocumentVersion_s",
-                    (Standard_Integer (*)() ) static_cast<Standard_Integer (*)() >(&XmlMNaming::DocumentVersion),
-                    R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMNaming_NamedShapeDriver ,opencascade::handle<XmlMNaming_NamedShapeDriver>  , XmlMDF_ADriver >>(m.attr("XmlMNaming_NamedShapeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("aMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMNaming_NamedShapeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMNaming_NamedShapeDriver::*)() const>(&XmlMNaming_NamedShapeDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMNaming_NamedShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMNaming_NamedShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMNaming_NamedShapeDriver::Paste),
+             (Standard_Boolean (XmlMNaming_NamedShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMNaming_NamedShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMNaming_NamedShapeDriver::Paste),
              R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
         .def("Paste",
-             (void (XmlMNaming_NamedShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMNaming_NamedShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMNaming_NamedShapeDriver::Paste),
+             (void (XmlMNaming_NamedShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMNaming_NamedShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMNaming_NamedShapeDriver::Paste),
              R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
         .def("ReadShapeSection",
              (void (XmlMNaming_NamedShapeDriver::*)(  const LDOM_Element &  ) ) static_cast<void (XmlMNaming_NamedShapeDriver::*)(  const LDOM_Element &  ) >(&XmlMNaming_NamedShapeDriver::ReadShapeSection),
@@ -112,21 +111,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMNaming_NamingDriver ,opencascade::handle<XmlMNaming_NamingDriver>  , XmlMDF_ADriver >>(m.attr("XmlMNaming_NamingDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("aMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMNaming_NamingDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMNaming_NamingDriver::*)() const>(&XmlMNaming_NamingDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMNaming_NamingDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMNaming_NamingDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMNaming_NamingDriver::Paste),
+             (Standard_Boolean (XmlMNaming_NamingDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMNaming_NamingDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMNaming_NamingDriver::Paste),
              R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
         .def("Paste",
-             (void (XmlMNaming_NamingDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMNaming_NamingDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMNaming_NamingDriver::Paste),
+             (void (XmlMNaming_NamingDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMNaming_NamingDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMNaming_NamingDriver::Paste),
              R"#(None)#"  , py::arg("theSource"),  py::arg("theTarget"),  py::arg("theRelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMNaming_NamingDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMNaming_NamingDriver::*)() const>(&XmlMNaming_NamingDriver::DynamicType),
@@ -141,13 +142,15 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMNaming"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMNaming_Shape1 , shared_ptr<XmlMNaming_Shape1>  >>(m.attr("XmlMNaming_Shape1"))
+    // constructors
         .def(py::init< LDOM_Document & >()  , py::arg("Doc") )
         .def(py::init<  const LDOM_Element & >()  , py::arg("E") )
+    // custom constructors
     // methods
         .def("Element",
              (const XmlObjMgt_Element & (XmlMNaming_Shape1::*)() const) static_cast<const XmlObjMgt_Element & (XmlMNaming_Shape1::*)() const>(&XmlMNaming_Shape1::Element),
@@ -174,13 +177,13 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMNaming"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/XmlMNaming_NamedShapeDriver.hxx
-// ./opencascade/XmlMNaming_Shape1.hxx
 // ./opencascade/XmlMNaming.hxx
+// ./opencascade/XmlMNaming_Shape1.hxx
 // ./opencascade/XmlMNaming_NamingDriver.hxx
 
 // operators

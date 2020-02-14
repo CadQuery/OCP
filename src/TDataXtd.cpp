@@ -14,35 +14,23 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <TDF_Label.hxx>
-#include <TNaming_NamedShape.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <Standard_GUID.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDF_Label.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
 #include <gp_Pnt.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Cylinder.hxx>
-#include <Standard_GUID.hxx>
 #include <TDF_RelocationTable.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <TDataStd_Real.hxx>
-#include <TDataStd_Integer.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <gp_Pln.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_Label.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDataStd_Real.hxx>
-#include <Standard_GUID.hxx>
-#include <TNaming_NamedShape.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
 #include <TDataXtd_Position.hxx>
 #include <TDataXtd_Constraint.hxx>
 #include <TDataXtd_Placement.hxx>
@@ -54,28 +42,40 @@ namespace py = pybind11;
 #include <TDataXtd_PatternStd.hxx>
 #include <TDataXtd_Shape.hxx>
 #include <TDataXtd_Triangulation.hxx>
-#include <TDF_Label.hxx>
-#include <TopoDS_Shape.hxx>
 #include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <gp_Pln.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <Standard_GUID.hxx>
+#include <TDF_Label.hxx>
+#include <TDF_RelocationTable.hxx>
+#include <TDataStd_Real.hxx>
+#include <Standard_GUID.hxx>
+#include <TNaming_NamedShape.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
+#include <TDF_Label.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Ax1.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Cylinder.hxx>
 #include <Standard_GUID.hxx>
+#include <TDF_RelocationTable.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Label.hxx>
 #include <gp_Lin.hxx>
 #include <TDF_RelocationTable.hxx>
+#include <TNaming_NamedShape.hxx>
+#include <TDataStd_Real.hxx>
+#include <TDataStd_Integer.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_RelocationTable.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <gp_Pnt.hxx>
-#include <TDF_RelocationTable.hxx>
-#include <Standard_GUID.hxx>
-#include <TDF_Label.hxx>
-#include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
 
 // module includes
 #include <TDataXtd.hxx>
@@ -118,11 +118,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
     public:
         using TDataXtd_Pattern::TDataXtd_Pattern;
         
+        
         // public pure virtual
         const Standard_GUID & PatternID() const  override { PYBIND11_OVERLOAD_PURE(const Standard_GUID &,TDataXtd_Pattern,PatternID,) };
         Standard_Integer NbTrsfs() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,TDataXtd_Pattern,NbTrsfs,) };
         void ComputeTrsfs(NCollection_Array1<gp_Trsf> & Trsfs) const  override { PYBIND11_OVERLOAD_PURE(void,TDataXtd_Pattern,ComputeTrsfs,Trsfs) };
         
+        void Restore(const opencascade::handle<TDF_Attribute> & anAttribute) override { PYBIND11_OVERLOAD_PURE(void,TDF_Attribute,Restore,anAttribute) };
+        opencascade::handle<TDF_Attribute> NewEmpty() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<TDF_Attribute>,TDF_Attribute,NewEmpty,) };
+        void Paste(const opencascade::handle<TDF_Attribute> & intoAttribute,const opencascade::handle<TDF_RelocationTable> & aRelocationTable) const  override { PYBIND11_OVERLOAD_PURE(void,TDF_Attribute,Paste,intoAttribute,aRelocationTable) };
         
         // protected pure virtual
         
@@ -133,9 +137,12 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TDataXtd , shared_ptr<TDataXtd>>(m,"TDataXtd");
 
     static_cast<py::class_<TDataXtd , shared_ptr<TDataXtd>  >>(m.attr("TDataXtd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -150,12 +157,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(Prints the name of the constraint <CTR> as a String on the Stream <S> and returns <S>.)#"  , py::arg("CTR"),  py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Axis ,opencascade::handle<TDataXtd_Axis>  , TDF_Attribute >>(m.attr("TDataXtd_Axis"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Axis::*)() const) static_cast<const Standard_GUID & (TDataXtd_Axis::*)() const>(&TDataXtd_Axis::ID),
@@ -194,12 +203,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Constraint ,opencascade::handle<TDataXtd_Constraint>  , TDF_Attribute >>(m.attr("TDataXtd_Constraint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TDataXtd_Constraint::*)( const TDataXtd_ConstraintEnum ,  const opencascade::handle<TNaming_NamedShape> &  ) ) static_cast<void (TDataXtd_Constraint::*)( const TDataXtd_ConstraintEnum ,  const opencascade::handle<TNaming_NamedShape> &  ) >(&TDataXtd_Constraint::Set),
@@ -307,12 +318,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Geometry ,opencascade::handle<TDataXtd_Geometry>  , TDF_Attribute >>(m.attr("TDataXtd_Geometry"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetType",
              (void (TDataXtd_Geometry::*)( const TDataXtd_GeometryEnum  ) ) static_cast<void (TDataXtd_Geometry::*)( const TDataXtd_GeometryEnum  ) >(&TDataXtd_Geometry::SetType),
@@ -402,14 +415,17 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_HArray1OfTrsf ,opencascade::handle<TDataXtd_HArray1OfTrsf>  , TDataXtd_Array1OfTrsf , Standard_Transient >>(m.attr("TDataXtd_HArray1OfTrsf"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_Trsf & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_Trsf> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TDataXtd_Array1OfTrsf & (TDataXtd_HArray1OfTrsf::*)() const) static_cast<const TDataXtd_Array1OfTrsf & (TDataXtd_HArray1OfTrsf::*)() const>(&TDataXtd_HArray1OfTrsf::Array1),
@@ -430,11 +446,13 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Pattern ,opencascade::handle<TDataXtd_Pattern> ,Py_TDataXtd_Pattern , TDF_Attribute >>(m.attr("TDataXtd_Pattern"))
+    // constructors
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Pattern::*)() const) static_cast<const Standard_GUID & (TDataXtd_Pattern::*)() const>(&TDataXtd_Pattern::ID),
@@ -464,12 +482,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Placement ,opencascade::handle<TDataXtd_Placement>  , TDF_Attribute >>(m.attr("TDataXtd_Placement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Placement::*)() const) static_cast<const Standard_GUID & (TDataXtd_Placement::*)() const>(&TDataXtd_Placement::ID),
@@ -505,12 +525,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Plane ,opencascade::handle<TDataXtd_Plane>  , TDF_Attribute >>(m.attr("TDataXtd_Plane"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Plane::*)() const) static_cast<const Standard_GUID & (TDataXtd_Plane::*)() const>(&TDataXtd_Plane::ID),
@@ -549,12 +571,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Point ,opencascade::handle<TDataXtd_Point>  , TDF_Attribute >>(m.attr("TDataXtd_Point"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Point::*)() const) static_cast<const Standard_GUID & (TDataXtd_Point::*)() const>(&TDataXtd_Point::ID),
@@ -593,12 +617,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Position ,opencascade::handle<TDataXtd_Position>  , TDF_Attribute >>(m.attr("TDataXtd_Position"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Position::*)() const) static_cast<const Standard_GUID & (TDataXtd_Position::*)() const>(&TDataXtd_Position::ID),
@@ -643,12 +669,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Presentation ,opencascade::handle<TDataXtd_Presentation>  , TDF_Attribute >>(m.attr("TDataXtd_Presentation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Presentation::*)() const) static_cast<const Standard_GUID & (TDataXtd_Presentation::*)() const>(&TDataXtd_Presentation::ID),
@@ -713,9 +741,15 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
         .def("SetMode",
              (void (TDataXtd_Presentation::*)( const Standard_Integer  ) ) static_cast<void (TDataXtd_Presentation::*)( const Standard_Integer  ) >(&TDataXtd_Presentation::SetMode),
              R"#(None)#"  , py::arg("theMode"))
+        .def("GetNbSelectionModes",
+             (Standard_Integer (TDataXtd_Presentation::*)() const) static_cast<Standard_Integer (TDataXtd_Presentation::*)() const>(&TDataXtd_Presentation::GetNbSelectionModes),
+             R"#(Returns the number of selection modes of the attribute. It starts with 1 .. GetNbSelectionModes().)#" )
         .def("SetSelectionMode",
-             (void (TDataXtd_Presentation::*)( const Standard_Integer  ) ) static_cast<void (TDataXtd_Presentation::*)( const Standard_Integer  ) >(&TDataXtd_Presentation::SetSelectionMode),
-             R"#(None)#"  , py::arg("theSelectionMode"))
+             (void (TDataXtd_Presentation::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (TDataXtd_Presentation::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&TDataXtd_Presentation::SetSelectionMode),
+             R"#(Sets selection mode. If "theTransaction" flag is OFF, modification of the attribute doesn't influence the transaction mechanism (the attribute doesn't participate in undo/redo because of this modification). Certainly, if any other data of the attribute is modified (display mode, color, ...), the attribute will be included into undo/redo.)#"  , py::arg("theSelectionMode"),  py::arg("theTransaction")=static_cast<const Standard_Boolean>(Standard_True))
+        .def("AddSelectionMode",
+             (void (TDataXtd_Presentation::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (TDataXtd_Presentation::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&TDataXtd_Presentation::AddSelectionMode),
+             R"#(None)#"  , py::arg("theSelectionMode"),  py::arg("theTransaction")=static_cast<const Standard_Boolean>(Standard_True))
         .def("MaterialIndex",
              (Standard_Integer (TDataXtd_Presentation::*)() const) static_cast<Standard_Integer (TDataXtd_Presentation::*)() const>(&TDataXtd_Presentation::MaterialIndex),
              R"#(None)#" )
@@ -732,8 +766,8 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
              (Standard_Integer (TDataXtd_Presentation::*)() const) static_cast<Standard_Integer (TDataXtd_Presentation::*)() const>(&TDataXtd_Presentation::Mode),
              R"#(None)#" )
         .def("SelectionMode",
-             (Standard_Integer (TDataXtd_Presentation::*)() const) static_cast<Standard_Integer (TDataXtd_Presentation::*)() const>(&TDataXtd_Presentation::SelectionMode),
-             R"#(None)#" )
+             (Standard_Integer (TDataXtd_Presentation::*)( const int  ) const) static_cast<Standard_Integer (TDataXtd_Presentation::*)( const int  ) const>(&TDataXtd_Presentation::SelectionMode),
+             R"#(None)#"  , py::arg("index")=static_cast<const int>(1))
         .def("UnsetMaterial",
              (void (TDataXtd_Presentation::*)() ) static_cast<void (TDataXtd_Presentation::*)() >(&TDataXtd_Presentation::UnsetMaterial),
              R"#(None)#" )
@@ -771,12 +805,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Shape ,opencascade::handle<TDataXtd_Shape>  , TDF_Attribute >>(m.attr("TDataXtd_Shape"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ID",
              (const Standard_GUID & (TDataXtd_Shape::*)() const) static_cast<const Standard_GUID & (TDataXtd_Shape::*)() const>(&TDataXtd_Shape::ID),
@@ -824,12 +860,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_Triangulation ,opencascade::handle<TDataXtd_Triangulation>  , TDF_Attribute >>(m.attr("TDataXtd_Triangulation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (TDataXtd_Triangulation::*)( const opencascade::handle<Poly_Triangulation> &  ) ) static_cast<void (TDataXtd_Triangulation::*)( const opencascade::handle<Poly_Triangulation> &  ) >(&TDataXtd_Triangulation::Set),
@@ -922,12 +960,14 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TDataXtd_PatternStd ,opencascade::handle<TDataXtd_PatternStd>  , TDataXtd_Pattern >>(m.attr("TDataXtd_PatternStd"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Signature",
              (void (TDataXtd_PatternStd::*)( const Standard_Integer  ) ) static_cast<void (TDataXtd_PatternStd::*)( const Standard_Integer  ) >(&TDataXtd_PatternStd::Signature),
@@ -1062,27 +1102,27 @@ py::module m = static_cast<py::module>(main_module.attr("TDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TDataXtd_Geometry.hxx
-// ./opencascade/TDataXtd_PatternStd.hxx
-// ./opencascade/TDataXtd_Plane.hxx
-// ./opencascade/TDataXtd_Position.hxx
 // ./opencascade/TDataXtd_Array1OfTrsf.hxx
+// ./opencascade/TDataXtd_Shape.hxx
+// ./opencascade/TDataXtd_Presentation.hxx
+// ./opencascade/TDataXtd_ConstraintEnum.hxx
+// ./opencascade/TDataXtd_Pattern.hxx
+// ./opencascade/TDataXtd_Placement.hxx
+// ./opencascade/TDataXtd_Position.hxx
+// ./opencascade/TDataXtd_Point.hxx
+// ./opencascade/TDataXtd.hxx
+// ./opencascade/TDataXtd_Plane.hxx
+// ./opencascade/TDataXtd_HArray1OfTrsf.hxx
+// ./opencascade/TDataXtd_Triangulation.hxx
 // ./opencascade/TDataXtd_Constraint.hxx
 // ./opencascade/TDataXtd_GeometryEnum.hxx
-// ./opencascade/TDataXtd.hxx
-// ./opencascade/TDataXtd_ConstraintEnum.hxx
-// ./opencascade/TDataXtd_Shape.hxx
-// ./opencascade/TDataXtd_Pattern.hxx
+// ./opencascade/TDataXtd_Geometry.hxx
 // ./opencascade/TDataXtd_Axis.hxx
-// ./opencascade/TDataXtd_Triangulation.hxx
-// ./opencascade/TDataXtd_Presentation.hxx
-// ./opencascade/TDataXtd_Point.hxx
-// ./opencascade/TDataXtd_HArray1OfTrsf.hxx
-// ./opencascade/TDataXtd_Placement.hxx
+// ./opencascade/TDataXtd_PatternStd.hxx
 
 // operators
 

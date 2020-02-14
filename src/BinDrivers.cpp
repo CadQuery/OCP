@@ -13,6 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <BinMDF_ADriverTable.hxx>
+#include <Message_Messenger.hxx>
 #include <Standard_GUID.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
@@ -20,8 +22,6 @@ namespace py = pybind11;
 #include <BinDrivers_DocumentStorageDriver.hxx>
 #include <BinDrivers_DocumentRetrievalDriver.hxx>
 #include <TDocStd_Application.hxx>
-#include <BinMDF_ADriverTable.hxx>
-#include <Message_Messenger.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 
@@ -50,9 +50,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinDrivers , shared_ptr<BinDrivers>>(m,"BinDrivers");
 
     static_cast<py::class_<BinDrivers , shared_ptr<BinDrivers>  >>(m.attr("BinDrivers"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -70,12 +73,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
                     R"#(returns "1")#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinDrivers_DocumentRetrievalDriver ,opencascade::handle<BinDrivers_DocumentRetrievalDriver>  , BinLDrivers_DocumentRetrievalDriver >>(m.attr("BinDrivers_DocumentRetrievalDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AttributeDrivers",
              (opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentRetrievalDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinDrivers_DocumentRetrievalDriver::AttributeDrivers),
@@ -89,9 +94,6 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
         .def("Clear",
              (void (BinDrivers_DocumentRetrievalDriver::*)() ) static_cast<void (BinDrivers_DocumentRetrievalDriver::*)() >(&BinDrivers_DocumentRetrievalDriver::Clear),
              R"#(Clears the NamedShape driver)#" )
-        .def("PropagateDocumentVersion",
-             (void (BinDrivers_DocumentRetrievalDriver::*)( const Standard_Integer  ) ) static_cast<void (BinDrivers_DocumentRetrievalDriver::*)( const Standard_Integer  ) >(&BinDrivers_DocumentRetrievalDriver::PropagateDocumentVersion),
-             R"#(None)#"  , py::arg("theVersion"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BinDrivers_DocumentRetrievalDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BinDrivers_DocumentRetrievalDriver::*)() const>(&BinDrivers_DocumentRetrievalDriver::DynamicType),
              R"#(None)#" )
@@ -105,12 +107,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinDrivers_DocumentStorageDriver ,opencascade::handle<BinDrivers_DocumentStorageDriver>  , BinLDrivers_DocumentStorageDriver >>(m.attr("BinDrivers_DocumentStorageDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AttributeDrivers",
              (opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) ) static_cast<opencascade::handle<BinMDF_ADriverTable> (BinDrivers_DocumentStorageDriver::*)( const opencascade::handle<Message_Messenger> &  ) >(&BinDrivers_DocumentStorageDriver::AttributeDrivers),
@@ -137,13 +141,13 @@ py::module m = static_cast<py::module>(main_module.attr("BinDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/BinDrivers_DocumentStorageDriver.hxx
 // ./opencascade/BinDrivers.hxx
 // ./opencascade/BinDrivers_Marker.hxx
-// ./opencascade/BinDrivers_DocumentStorageDriver.hxx
 // ./opencascade/BinDrivers_DocumentRetrievalDriver.hxx
 
 // operators

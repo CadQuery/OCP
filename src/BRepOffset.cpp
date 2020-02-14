@@ -13,13 +13,17 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <BRepAlgo_AsDes.hxx>
-#include <TopoDS_Face.hxx>
-#include <BRepOffset_Offset.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Compound.hxx>
+#include <Geom_Surface.hxx>
+#include <TopoDS_Face.hxx>
+#include <BRepAlgo_AsDes.hxx>
+#include <BRepOffset_Inter3d.hxx>
+#include <BRepAlgo_AsDes.hxx>
+#include <BRepAlgo_Image.hxx>
+#include <BRepOffset_Analyse.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Face.hxx>
@@ -28,18 +32,14 @@ namespace py = pybind11;
 #include <BRepAlgo_AsDes.hxx>
 #include <BRepAlgo_Image.hxx>
 #include <Geom_Curve.hxx>
-#include <BRepAlgo_AsDes.hxx>
-#include <BRepOffset_Inter3d.hxx>
-#include <Geom_Surface.hxx>
-#include <TopoDS_Face.hxx>
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <BRepAlgo_AsDes.hxx>
 #include <BRepAlgo_Image.hxx>
 #include <BRepOffset_Analyse.hxx>
 #include <BRepAlgo_AsDes.hxx>
-#include <BRepAlgo_Image.hxx>
-#include <BRepOffset_Analyse.hxx>
+#include <TopoDS_Face.hxx>
+#include <BRepOffset_Offset.hxx>
 
 // module includes
 #include <BRepOffset.hxx>
@@ -67,17 +67,17 @@ namespace py = pybind11;
 #include <BRepOffset_Type.hxx>
 
 // template related includes
-// ./opencascade/BRepOffset_DataMapOfShapeMapOfShape.hxx
+// ./opencascade/BRepOffset_DataMapOfShapeListOfInterval.hxx
 #include "NCollection.hxx"
-// ./opencascade/BRepOffset_DataMapOfShapeMapOfShape.hxx
+// ./opencascade/BRepOffset_DataMapOfShapeListOfInterval.hxx
 #include "NCollection.hxx"
 // ./opencascade/BRepOffset_DataMapOfShapeOffset.hxx
 #include "NCollection.hxx"
 // ./opencascade/BRepOffset_DataMapOfShapeOffset.hxx
 #include "NCollection.hxx"
-// ./opencascade/BRepOffset_DataMapOfShapeListOfInterval.hxx
+// ./opencascade/BRepOffset_DataMapOfShapeMapOfShape.hxx
 #include "NCollection.hxx"
-// ./opencascade/BRepOffset_DataMapOfShapeListOfInterval.hxx
+// ./opencascade/BRepOffset_DataMapOfShapeMapOfShape.hxx
 #include "NCollection.hxx"
 // ./opencascade/BRepOffset_ListOfInterval.hxx
 #include "NCollection.hxx"
@@ -101,9 +101,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepOffset , shared_ptr<BRepOffset>>(m,"BRepOffset");
 
     static_cast<py::class_<BRepOffset , shared_ptr<BRepOffset>  >>(m.attr("BRepOffset"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -115,13 +118,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
                     R"#(Preprocess surface to be offset (bspline, bezier, or revolution based on bspline or bezier curve), by collapsing each singular side to single point.)#"  , py::arg("theSurface"),  py::arg("theFace"),  py::arg("thePrecision"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_Analyse , shared_ptr<BRepOffset_Analyse>  >>(m.attr("BRepOffset_Analyse"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real >()  , py::arg("S"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepOffset_Analyse::*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (BRepOffset_Analyse::*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&BRepOffset_Analyse::Perform),
@@ -166,12 +171,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepOffset_Inter2d , shared_ptr<BRepOffset_Inter2d>>(m,"BRepOffset_Inter2d");
 
     static_cast<py::class_<BRepOffset_Inter2d , shared_ptr<BRepOffset_Inter2d>  >>(m.attr("BRepOffset_Inter2d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -189,12 +197,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
                     R"#(Fuses the chains of vertices in the theDMVV and updates AsDes by replacing the old vertices with the new ones.)#"  , py::arg("theDMVV"),  py::arg("theAsDes"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_Inter3d , shared_ptr<BRepOffset_Inter3d>  >>(m.attr("BRepOffset_Inter3d"))
+    // constructors
         .def(py::init< const opencascade::handle<BRepAlgo_AsDes> &,const TopAbs_State,const Standard_Real >()  , py::arg("AsDes"),  py::arg("Side"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("CompletInt",
              (void (BRepOffset_Inter3d::*)(  const NCollection_List<TopoDS_Shape> & ,  const BRepAlgo_Image &  ) ) static_cast<void (BRepOffset_Inter3d::*)(  const NCollection_List<TopoDS_Shape> & ,  const BRepAlgo_Image &  ) >(&BRepOffset_Inter3d::CompletInt),
@@ -236,13 +246,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_Interval , shared_ptr<BRepOffset_Interval>  >>(m.attr("BRepOffset_Interval"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const BRepOffset_Type >()  , py::arg("U1"),  py::arg("U2"),  py::arg("Type") )
+    // custom constructors
     // methods
         .def("First",
              (void (BRepOffset_Interval::*)( const Standard_Real  ) ) static_cast<void (BRepOffset_Interval::*)( const Standard_Real  ) >(&BRepOffset_Interval::First),
@@ -284,12 +296,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_MakeLoops , shared_ptr<BRepOffset_MakeLoops>  >>(m.attr("BRepOffset_MakeLoops"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Build",
              (void (BRepOffset_MakeLoops::*)(  const NCollection_List<TopoDS_Shape> & ,  const opencascade::handle<BRepAlgo_AsDes> & ,  BRepAlgo_Image &  ) ) static_cast<void (BRepOffset_MakeLoops::*)(  const NCollection_List<TopoDS_Shape> & ,  const opencascade::handle<BRepAlgo_AsDes> & ,  BRepAlgo_Image &  ) >(&BRepOffset_MakeLoops::Build),
@@ -304,13 +318,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_MakeOffset , shared_ptr<BRepOffset_MakeOffset>  >>(m.attr("BRepOffset_MakeOffset"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Real,const BRepOffset_Mode,const Standard_Boolean,const Standard_Boolean,const GeomAbs_JoinType,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("Offset"),  py::arg("Tol"),  py::arg("Mode")=static_cast<const BRepOffset_Mode>(BRepOffset_Skin),  py::arg("Intersection")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("SelfInter")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Join")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("Thickening")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("RemoveIntEdges")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepOffset_MakeOffset::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const BRepOffset_Mode ,  const Standard_Boolean ,  const Standard_Boolean ,  const GeomAbs_JoinType ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (BRepOffset_MakeOffset::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Real ,  const BRepOffset_Mode ,  const Standard_Boolean ,  const Standard_Boolean ,  const GeomAbs_JoinType ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&BRepOffset_MakeOffset::Initialize),
@@ -361,13 +377,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_MakeSimpleOffset , shared_ptr<BRepOffset_MakeSimpleOffset>  >>(m.attr("BRepOffset_MakeSimpleOffset"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real >()  , py::arg("theInputShape"),  py::arg("theOffsetValue") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (BRepOffset_MakeSimpleOffset::*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (BRepOffset_MakeSimpleOffset::*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&BRepOffset_MakeSimpleOffset::Initialize),
@@ -418,17 +436,19 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_Offset , shared_ptr<BRepOffset_Offset>  >>(m.attr("BRepOffset_Offset"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,const Standard_Real,const Standard_Boolean,const GeomAbs_JoinType >()  , py::arg("Face"),  py::arg("Offset"),  py::arg("OffsetOutside")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("JoinType")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc) )
         .def(py::init< const TopoDS_Face &,const Standard_Real, const NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> &,const Standard_Boolean,const GeomAbs_JoinType >()  , py::arg("Face"),  py::arg("Offset"),  py::arg("Created"),  py::arg("OffsetOutside")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("JoinType")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc) )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge &,const TopoDS_Edge &,const Standard_Real,const Standard_Boolean,const Standard_Real,const GeomAbs_Shape >()  , py::arg("Path"),  py::arg("Edge1"),  py::arg("Edge2"),  py::arg("Offset"),  py::arg("Polynomial")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Tol")=static_cast<const Standard_Real>(1.0e-4),  py::arg("Conti")=static_cast<const GeomAbs_Shape>(GeomAbs_C1) )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Edge &,const TopoDS_Edge &,const Standard_Real,const TopoDS_Edge &,const TopoDS_Edge &,const Standard_Boolean,const Standard_Real,const GeomAbs_Shape >()  , py::arg("Path"),  py::arg("Edge1"),  py::arg("Edge2"),  py::arg("Offset"),  py::arg("FirstEdge"),  py::arg("LastEdge"),  py::arg("Polynomial")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Tol")=static_cast<const Standard_Real>(1.0e-4),  py::arg("Conti")=static_cast<const GeomAbs_Shape>(GeomAbs_C1) )
         .def(py::init< const TopoDS_Vertex &, const NCollection_List<TopoDS_Shape> &,const Standard_Real,const Standard_Boolean,const Standard_Real,const GeomAbs_Shape >()  , py::arg("Vertex"),  py::arg("LEdge"),  py::arg("Offset"),  py::arg("Polynomial")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Tol")=static_cast<const Standard_Real>(1.0e-4),  py::arg("Conti")=static_cast<const GeomAbs_Shape>(GeomAbs_C1) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepOffset_Offset::*)( const TopoDS_Face & ,  const Standard_Real ,  const Standard_Boolean ,  const GeomAbs_JoinType  ) ) static_cast<void (BRepOffset_Offset::*)( const TopoDS_Face & ,  const Standard_Real ,  const Standard_Boolean ,  const GeomAbs_JoinType  ) >(&BRepOffset_Offset::Init),
@@ -467,12 +487,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffset_SimpleOffset ,opencascade::handle<BRepOffset_SimpleOffset>  , BRepTools_Modification >>(m.attr("BRepOffset_SimpleOffset"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Real >()  , py::arg("theInputShape"),  py::arg("theOffsetValue"),  py::arg("theTolerance") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (BRepOffset_SimpleOffset::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepOffset_SimpleOffset::*)() const>(&BRepOffset_SimpleOffset::DynamicType),
@@ -505,12 +527,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepOffset_Tool , shared_ptr<BRepOffset_Tool>>(m,"BRepOffset_Tool");
 
     static_cast<py::class_<BRepOffset_Tool , shared_ptr<BRepOffset_Tool>  >>(m.attr("BRepOffset_Tool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -545,8 +570,8 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
                     (void (*)( const TopoDS_Face & ,  const TopoDS_Face & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> & ,  const TopAbs_State  ) ) static_cast<void (*)( const TopoDS_Face & ,  const TopoDS_Face & ,  NCollection_List<TopoDS_Shape> & ,  NCollection_List<TopoDS_Shape> & ,  const TopAbs_State  ) >(&BRepOffset_Tool::InterOrExtent),
                     R"#(None)#"  , py::arg("F1"),  py::arg("F2"),  py::arg("LInt1"),  py::arg("LInt2"),  py::arg("Side"))
         .def_static("EnLargeFace_s",
-                    (Standard_Boolean (*)( const TopoDS_Face & ,  TopoDS_Face & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Face & ,  TopoDS_Face & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer  ) >(&BRepOffset_Tool::EnLargeFace),
-                    R"#(if <ChangeGeom> is TRUE , the surface can be changed . if <UpdatePCurve> is TRUE, update the pcurves of the edges of <F> on the new surface.if the surface has been changed, Returns True if The Surface of <NF> has changed. <ExtensionMode> is a mode of extension of the surface of the face: if <ExtensionMode> equals 1, potentially infinite surfaces are extended by maximum value, and limited surfaces are extended by 25%. if <ExtensionMode> equals 2, potentially infinite surfaces are extended by 10*(correspondent size of face), and limited surfaces are extended by 100%.)#"  , py::arg("F"),  py::arg("NF"),  py::arg("ChangeGeom"),  py::arg("UpDatePCurve")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("enlargeU")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("enlargeVfirst")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("enlargeVlast")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("ExtensionMode")=static_cast<const Standard_Integer>(1))
+                    (Standard_Boolean (*)( const TopoDS_Face & ,  TopoDS_Face & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Face & ,  TopoDS_Face & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&BRepOffset_Tool::EnLargeFace),
+                    R"#(Returns True if The Surface of <NF> has changed. if <ChangeGeom> is TRUE , the surface can be changed . if <UpdatePCurve> is TRUE, update the pcurves of the edges of <F> on the new surface if the surface has been changed. <enlargeU>, <enlargeVfirst>, <enlargeVlast> allow or forbid enlargement in U and V directions correspondingly. <theExtensionMode> is a mode of extension of the surface of the face: if <theExtensionMode> equals 1, potentially infinite surfaces are extended by maximum value, and limited surfaces are extended by 25%. if <theExtensionMode> equals 2, potentially infinite surfaces are extended by 10*(correspondent size of face), and limited surfaces are extended by 100%. <theLenBeforeUfirst>, <theLenAfterUlast>, <theLenBeforeVfirst>, <theLenAfterVlast> set the values of enlargement on correspondent directions. If some of them equals -1, the default value of enlargement is used.)#"  , py::arg("F"),  py::arg("NF"),  py::arg("ChangeGeom"),  py::arg("UpDatePCurve")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("enlargeU")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("enlargeVfirst")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("enlargeVlast")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theExtensionMode")=static_cast<const Standard_Integer>(1),  py::arg("theLenBeforeUfirst")=static_cast<const Standard_Real>(- 1.),  py::arg("theLenAfterUlast")=static_cast<const Standard_Real>(- 1.),  py::arg("theLenBeforeVfirst")=static_cast<const Standard_Real>(- 1.),  py::arg("theLenAfterVlast")=static_cast<const Standard_Real>(- 1.))
         .def_static("ExtentFace_s",
                     (void (*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const TopAbs_State ,  const Standard_Real ,  TopoDS_Face &  ) ) static_cast<void (*)( const TopoDS_Face & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  NCollection_DataMap<TopoDS_Shape, TopoDS_Shape, TopTools_ShapeMapHasher> & ,  const TopAbs_State ,  const Standard_Real ,  TopoDS_Face &  ) >(&BRepOffset_Tool::ExtentFace),
                     R"#(None)#"  , py::arg("F"),  py::arg("ConstShapes"),  py::arg("ToBuild"),  py::arg("Side"),  py::arg("TolConf"),  py::arg("NF"))
@@ -573,40 +598,40 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffset"));
                     []( const TopoDS_Face & F,const BRepOffset_Analyse & Analyse ){ Standard_Boolean  enlargeU; Standard_Boolean  enlargeVfirst; Standard_Boolean  enlargeVlast; BRepOffset_Tool::CheckBounds(F,Analyse,enlargeU,enlargeVfirst,enlargeVlast); return std::make_tuple(enlargeU,enlargeVfirst,enlargeVlast); },
                     R"#(None)#"  , py::arg("F"),  py::arg("Analyse"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepOffset_Inter2d.hxx
-// ./opencascade/BRepOffset_Interval.hxx
 // ./opencascade/BRepOffset_Analyse.hxx
-// ./opencascade/BRepOffset_Tool.hxx
-// ./opencascade/BRepOffset_MakeSimpleOffset.hxx
-// ./opencascade/BRepOffset_ListIteratorOfListOfInterval.hxx
-// ./opencascade/BRepOffset_MakeOffset.hxx
-// ./opencascade/BRepOffset_Mode.hxx
-// ./opencascade/BRepOffset_DataMapIteratorOfDataMapOfShapeOffset.hxx
-// ./opencascade/BRepOffset.hxx
-// ./opencascade/BRepOffset_DataMapOfShapeMapOfShape.hxx
-// ./opencascade/BRepOffset_DataMapIteratorOfDataMapOfShapeMapOfShape.hxx
-// ./opencascade/BRepOffset_DataMapOfShapeOffset.hxx
-// ./opencascade/BRepOffset_Type.hxx
-// ./opencascade/BRepOffset_Offset.hxx
-// ./opencascade/BRepOffset_Inter3d.hxx
-// ./opencascade/BRepOffset_Status.hxx
-// ./opencascade/BRepOffset_SimpleOffset.hxx
 // ./opencascade/BRepOffset_DataMapOfShapeListOfInterval.hxx
-// ./opencascade/BRepOffset_ListOfInterval.hxx
-// ./opencascade/BRepOffset_MakeLoops.hxx
-// ./opencascade/BRepOffset_Error.hxx
+// ./opencascade/BRepOffset_MakeSimpleOffset.hxx
+// ./opencascade/BRepOffset_Status.hxx
+// ./opencascade/BRepOffset_ListIteratorOfListOfInterval.hxx
+// ./opencascade/BRepOffset_Mode.hxx
+// ./opencascade/BRepOffset.hxx
+// ./opencascade/BRepOffset_MakeOffset.hxx
+// ./opencascade/BRepOffset_DataMapOfShapeOffset.hxx
+// ./opencascade/BRepOffset_DataMapOfShapeMapOfShape.hxx
+// ./opencascade/BRepOffset_Type.hxx
+// ./opencascade/BRepOffset_Inter3d.hxx
+// ./opencascade/BRepOffset_DataMapIteratorOfDataMapOfShapeMapOfShape.hxx
+// ./opencascade/BRepOffset_DataMapIteratorOfDataMapOfShapeOffset.hxx
+// ./opencascade/BRepOffset_Tool.hxx
+// ./opencascade/BRepOffset_Offset.hxx
 // ./opencascade/BRepOffset_DataMapIteratorOfDataMapOfShapeListOfInterval.hxx
+// ./opencascade/BRepOffset_MakeLoops.hxx
+// ./opencascade/BRepOffset_Interval.hxx
+// ./opencascade/BRepOffset_SimpleOffset.hxx
+// ./opencascade/BRepOffset_Error.hxx
+// ./opencascade/BRepOffset_ListOfInterval.hxx
+// ./opencascade/BRepOffset_Inter2d.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<TopoDS_Shape, TopTools_MapOfShape, TopTools_ShapeMapHasher>(m,"BRepOffset_DataMapOfShapeMapOfShape");  
-    register_template_NCollection_DataMap<TopoDS_Shape, BRepOffset_Offset, TopTools_ShapeMapHasher>(m,"BRepOffset_DataMapOfShapeOffset");  
     register_template_NCollection_DataMap<TopoDS_Shape, BRepOffset_ListOfInterval, TopTools_ShapeMapHasher>(m,"BRepOffset_DataMapOfShapeListOfInterval");  
+    register_template_NCollection_DataMap<TopoDS_Shape, BRepOffset_Offset, TopTools_ShapeMapHasher>(m,"BRepOffset_DataMapOfShapeOffset");  
+    register_template_NCollection_DataMap<TopoDS_Shape, TopTools_MapOfShape, TopTools_ShapeMapHasher>(m,"BRepOffset_DataMapOfShapeMapOfShape");  
     register_template_NCollection_List<BRepOffset_Interval>(m,"BRepOffset_ListOfInterval");  
 
 

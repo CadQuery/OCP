@@ -13,9 +13,30 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_NullObject.hxx>
-#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Surface.hxx>
 #include <Poly_Polygon2D.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Surface.hxx>
+#include <Standard_NullObject.hxx>
+#include <Poly_Polygon3D.hxx>
+#include <Poly_Polygon2D.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <Poly_PolygonOnTriangulation.hxx>
+#include <Poly_Triangulation.hxx>
+#include <Geom_Curve.hxx>
+#include <Poly_PolygonOnTriangulation.hxx>
+#include <Poly_Triangulation.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Surface.hxx>
+#include <Poly_Triangulation.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
 #include <Geom_Surface.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopoDS_Face.hxx>
@@ -29,29 +50,8 @@ namespace py = pybind11;
 #include <Poly_Polygon3D.hxx>
 #include <Poly_Polygon2D.hxx>
 #include <Poly_PolygonOnTriangulation.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_Curve.hxx>
-#include <Poly_Polygon3D.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Surface.hxx>
-#include <Poly_PolygonOnTriangulation.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Geom_Surface.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Poly_Polygon2D.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Surface.hxx>
 #include <Standard_NullObject.hxx>
-#include <Poly_PolygonOnTriangulation.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Geom2d_Curve.hxx>
+#include <TopoDS_Edge.hxx>
 #include <Geom_Surface.hxx>
 
 // module includes
@@ -82,13 +82,13 @@ namespace py = pybind11;
 #include <BRep_TVertex.hxx>
 
 // template related includes
-// ./opencascade/BRep_ListOfCurveRepresentation.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRep_ListOfCurveRepresentation.hxx
-#include "NCollection.hxx"
 // ./opencascade/BRep_ListOfPointRepresentation.hxx
 #include "NCollection.hxx"
 // ./opencascade/BRep_ListOfPointRepresentation.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRep_ListOfCurveRepresentation.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRep_ListOfCurveRepresentation.hxx
 #include "NCollection.hxx"
 
 
@@ -109,6 +109,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
     public:
         using BRep_CurveRepresentation::BRep_CurveRepresentation;
         
+        
         // public pure virtual
         opencascade::handle<BRep_CurveRepresentation> Copy() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<BRep_CurveRepresentation>,BRep_CurveRepresentation,Copy,) };
         
@@ -122,6 +123,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
     class Py_BRep_GCurve : public BRep_GCurve{
     public:
         using BRep_GCurve::BRep_GCurve;
+        
         
         // public pure virtual
         void D0(const Standard_Real U,gp_Pnt & P) const  override { PYBIND11_OVERLOAD_PURE(void,BRep_GCurve,D0,U,P) };
@@ -137,9 +139,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRep_Builder , shared_ptr<BRep_Builder>>(m,"BRep_Builder");
 
     static_cast<py::class_<BRep_Builder , shared_ptr<BRep_Builder>  , TopoDS_Builder >>(m.attr("BRep_Builder"))
+    // constructors
+    // custom constructors
     // methods
         .def("MakeFace",
              (void (BRep_Builder::*)( TopoDS_Face &  ) const) static_cast<void (BRep_Builder::*)( TopoDS_Face &  ) const>(&BRep_Builder::MakeFace),
@@ -346,11 +351,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_CurveRepresentation ,opencascade::handle<BRep_CurveRepresentation> ,Py_BRep_CurveRepresentation , Standard_Transient >>(m.attr("BRep_CurveRepresentation"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsCurve3D",
              (Standard_Boolean (BRep_CurveRepresentation::*)() const) static_cast<Standard_Boolean (BRep_CurveRepresentation::*)() const>(&BRep_CurveRepresentation::IsCurve3D),
@@ -485,11 +492,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PointRepresentation ,opencascade::handle<BRep_PointRepresentation>  , Standard_Transient >>(m.attr("BRep_PointRepresentation"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsPointOnCurve",
              (Standard_Boolean (BRep_PointRepresentation::*)() const) static_cast<Standard_Boolean (BRep_PointRepresentation::*)() const>(&BRep_PointRepresentation::IsPointOnCurve),
@@ -570,12 +579,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_TEdge ,opencascade::handle<BRep_TEdge>  , TopoDS_TEdge >>(m.attr("BRep_TEdge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Tolerance",
              (Standard_Real (BRep_TEdge::*)() const) static_cast<Standard_Real (BRep_TEdge::*)() const>(&BRep_TEdge::Tolerance),
@@ -641,12 +652,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_TFace ,opencascade::handle<BRep_TFace>  , TopoDS_TFace >>(m.attr("BRep_TFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Surface",
              (const opencascade::handle<Geom_Surface> & (BRep_TFace::*)() const) static_cast<const opencascade::handle<Geom_Surface> & (BRep_TFace::*)() const>(&BRep_TFace::Surface),
@@ -724,12 +737,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_TVertex ,opencascade::handle<BRep_TVertex>  , TopoDS_TVertex >>(m.attr("BRep_TVertex"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Tolerance",
              (Standard_Real (BRep_TVertex::*)() const) static_cast<Standard_Real (BRep_TVertex::*)() const>(&BRep_TVertex::Tolerance),
@@ -789,12 +804,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRep_Tool , shared_ptr<BRep_Tool>>(m,"BRep_Tool");
 
     static_cast<py::class_<BRep_Tool , shared_ptr<BRep_Tool>  >>(m.attr("BRep_Tool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -906,6 +924,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
         .def_static("HasContinuity_s",
                     (Standard_Boolean (*)( const TopoDS_Edge &  ) ) static_cast<Standard_Boolean (*)( const TopoDS_Edge &  ) >(&BRep_Tool::HasContinuity),
                     R"#(Returns True if the edge has regularity on some two surfaces)#"  , py::arg("E"))
+        .def_static("MaxContinuity_s",
+                    (GeomAbs_Shape (*)( const TopoDS_Edge &  ) ) static_cast<GeomAbs_Shape (*)( const TopoDS_Edge &  ) >(&BRep_Tool::MaxContinuity),
+                    R"#(Returns the max continuity of edge between some surfaces or GeomAbs_C0 if there no such surfaces.)#"  , py::arg("theEdge"))
         .def_static("Pnt_s",
                     (gp_Pnt (*)( const TopoDS_Vertex &  ) ) static_cast<gp_Pnt (*)( const TopoDS_Vertex &  ) >(&BRep_Tool::Pnt),
                     R"#(Returns the 3d point.)#"  , py::arg("V"))
@@ -944,12 +965,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     []( const TopoDS_Edge & E,const TopoDS_Face & F ){ Standard_Real  First; Standard_Real  Last; BRep_Tool::Range(E,F,First,Last); return std::make_tuple(First,Last); },
                     R"#(Gets the range of the edge on the pcurve on the face.)#"  , py::arg("E"),  py::arg("F"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_CurveOn2Surfaces ,opencascade::handle<BRep_CurveOn2Surfaces>  , BRep_CurveRepresentation >>(m.attr("BRep_CurveOn2Surfaces"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> &,const TopLoc_Location &,const TopLoc_Location &,const GeomAbs_Shape >()  , py::arg("S1"),  py::arg("S2"),  py::arg("L1"),  py::arg("L2"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("IsRegularity",
              (Standard_Boolean (BRep_CurveOn2Surfaces::*)() const) static_cast<Standard_Boolean (BRep_CurveOn2Surfaces::*)() const>(&BRep_CurveOn2Surfaces::IsRegularity),
@@ -991,11 +1014,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_GCurve ,opencascade::handle<BRep_GCurve> ,Py_BRep_GCurve , BRep_CurveRepresentation >>(m.attr("BRep_GCurve"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetRange",
              (void (BRep_GCurve::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRep_GCurve::*)( const Standard_Real ,  const Standard_Real  ) >(&BRep_GCurve::SetRange),
@@ -1052,12 +1077,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PointOnCurve ,opencascade::handle<BRep_PointOnCurve>  , BRep_PointRepresentation >>(m.attr("BRep_PointOnCurve"))
+    // constructors
         .def(py::init< const Standard_Real,const opencascade::handle<Geom_Curve> &,const TopLoc_Location & >()  , py::arg("P"),  py::arg("C"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPointOnCurve",
              (Standard_Boolean (BRep_PointOnCurve::*)() const) static_cast<Standard_Boolean (BRep_PointOnCurve::*)() const>(&BRep_PointOnCurve::IsPointOnCurve),
@@ -1084,11 +1111,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PointsOnSurface ,opencascade::handle<BRep_PointsOnSurface>  , BRep_PointRepresentation >>(m.attr("BRep_PointsOnSurface"))
+    // constructors
+    // custom constructors
     // methods
         .def("Surface",
              (const opencascade::handle<Geom_Surface> & (BRep_PointsOnSurface::*)() const) static_cast<const opencascade::handle<Geom_Surface> & (BRep_PointsOnSurface::*)() const>(&BRep_PointsOnSurface::Surface),
@@ -1109,12 +1138,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_Polygon3D ,opencascade::handle<BRep_Polygon3D>  , BRep_CurveRepresentation >>(m.attr("BRep_Polygon3D"))
+    // constructors
         .def(py::init< const opencascade::handle<Poly_Polygon3D> &,const TopLoc_Location & >()  , py::arg("P"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPolygon3D",
              (Standard_Boolean (BRep_Polygon3D::*)() const) static_cast<Standard_Boolean (BRep_Polygon3D::*)() const>(&BRep_Polygon3D::IsPolygon3D),
@@ -1141,12 +1172,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PolygonOnSurface ,opencascade::handle<BRep_PolygonOnSurface>  , BRep_CurveRepresentation >>(m.attr("BRep_PolygonOnSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Poly_Polygon2D> &,const opencascade::handle<Geom_Surface> &,const TopLoc_Location & >()  , py::arg("P"),  py::arg("S"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPolygonOnSurface",
              (Standard_Boolean (BRep_PolygonOnSurface::*)() const) static_cast<Standard_Boolean (BRep_PolygonOnSurface::*)() const>(&BRep_PolygonOnSurface::IsPolygonOnSurface),
@@ -1179,12 +1212,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PolygonOnTriangulation ,opencascade::handle<BRep_PolygonOnTriangulation>  , BRep_CurveRepresentation >>(m.attr("BRep_PolygonOnTriangulation"))
+    // constructors
         .def(py::init< const opencascade::handle<Poly_PolygonOnTriangulation> &,const opencascade::handle<Poly_Triangulation> &,const TopLoc_Location & >()  , py::arg("P"),  py::arg("T"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPolygonOnTriangulation",
              (Standard_Boolean (BRep_PolygonOnTriangulation::*)() const) static_cast<Standard_Boolean (BRep_PolygonOnTriangulation::*)() const>(&BRep_PolygonOnTriangulation::IsPolygonOnTriangulation),
@@ -1217,12 +1252,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_Curve3D ,opencascade::handle<BRep_Curve3D>  , BRep_GCurve >>(m.attr("BRep_Curve3D"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const TopLoc_Location & >()  , py::arg("C"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("D0",
              (void (BRep_Curve3D::*)( const Standard_Real ,  gp_Pnt &  ) const) static_cast<void (BRep_Curve3D::*)( const Standard_Real ,  gp_Pnt &  ) const>(&BRep_Curve3D::D0),
@@ -1252,12 +1289,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_CurveOnSurface ,opencascade::handle<BRep_CurveOnSurface>  , BRep_GCurve >>(m.attr("BRep_CurveOnSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom_Surface> &,const TopLoc_Location & >()  , py::arg("PC"),  py::arg("S"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("SetUVPoints",
              (void (BRep_CurveOnSurface::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (BRep_CurveOnSurface::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&BRep_CurveOnSurface::SetUVPoints),
@@ -1308,12 +1347,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PointOnCurveOnSurface ,opencascade::handle<BRep_PointOnCurveOnSurface>  , BRep_PointsOnSurface >>(m.attr("BRep_PointOnCurveOnSurface"))
+    // constructors
         .def(py::init< const Standard_Real,const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom_Surface> &,const TopLoc_Location & >()  , py::arg("P"),  py::arg("C"),  py::arg("S"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPointOnCurveOnSurface",
              (Standard_Boolean (BRep_PointOnCurveOnSurface::*)() const) static_cast<Standard_Boolean (BRep_PointOnCurveOnSurface::*)() const>(&BRep_PointOnCurveOnSurface::IsPointOnCurveOnSurface),
@@ -1340,12 +1381,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PointOnSurface ,opencascade::handle<BRep_PointOnSurface>  , BRep_PointsOnSurface >>(m.attr("BRep_PointOnSurface"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const opencascade::handle<Geom_Surface> &,const TopLoc_Location & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("S"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPointOnSurface",
              (Standard_Boolean (BRep_PointOnSurface::*)() const) static_cast<Standard_Boolean (BRep_PointOnSurface::*)() const>(&BRep_PointOnSurface::IsPointOnSurface),
@@ -1372,12 +1415,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PolygonOnClosedSurface ,opencascade::handle<BRep_PolygonOnClosedSurface>  , BRep_PolygonOnSurface >>(m.attr("BRep_PolygonOnClosedSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Poly_Polygon2D> &,const opencascade::handle<Poly_Polygon2D> &,const opencascade::handle<Geom_Surface> &,const TopLoc_Location & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("S"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPolygonOnClosedSurface",
              (Standard_Boolean (BRep_PolygonOnClosedSurface::*)() const) static_cast<Standard_Boolean (BRep_PolygonOnClosedSurface::*)() const>(&BRep_PolygonOnClosedSurface::IsPolygonOnClosedSurface),
@@ -1404,12 +1449,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_PolygonOnClosedTriangulation ,opencascade::handle<BRep_PolygonOnClosedTriangulation>  , BRep_PolygonOnTriangulation >>(m.attr("BRep_PolygonOnClosedTriangulation"))
+    // constructors
         .def(py::init< const opencascade::handle<Poly_PolygonOnTriangulation> &,const opencascade::handle<Poly_PolygonOnTriangulation> &,const opencascade::handle<Poly_Triangulation> &,const TopLoc_Location & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("Tr"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("IsPolygonOnClosedTriangulation",
              (Standard_Boolean (BRep_PolygonOnClosedTriangulation::*)() const) static_cast<Standard_Boolean (BRep_PolygonOnClosedTriangulation::*)() const>(&BRep_PolygonOnClosedTriangulation::IsPolygonOnClosedTriangulation),
@@ -1436,12 +1483,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRep_CurveOnClosedSurface ,opencascade::handle<BRep_CurveOnClosedSurface>  , BRep_CurveOnSurface >>(m.attr("BRep_CurveOnClosedSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom_Surface> &,const TopLoc_Location &,const GeomAbs_Shape >()  , py::arg("PC1"),  py::arg("PC2"),  py::arg("S"),  py::arg("L"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("SetUVPoints2",
              (void (BRep_CurveOnClosedSurface::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) ) static_cast<void (BRep_CurveOnClosedSurface::*)( const gp_Pnt2d & ,  const gp_Pnt2d &  ) >(&BRep_CurveOnClosedSurface::SetUVPoints2),
@@ -1501,41 +1550,41 @@ py::module m = static_cast<py::module>(main_module.attr("BRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRep_Builder.hxx
-// ./opencascade/BRep_PolygonOnClosedSurface.hxx
-// ./opencascade/BRep_ListIteratorOfListOfCurveRepresentation.hxx
-// ./opencascade/BRep_Tool.hxx
-// ./opencascade/BRep_TEdge.hxx
-// ./opencascade/BRep_CurveRepresentation.hxx
-// ./opencascade/BRep_PointOnSurface.hxx
-// ./opencascade/BRep_TVertex.hxx
 // ./opencascade/BRep_PointOnCurve.hxx
-// ./opencascade/BRep_Curve3D.hxx
-// ./opencascade/BRep_ListIteratorOfListOfPointRepresentation.hxx
-// ./opencascade/BRep_Polygon3D.hxx
-// ./opencascade/BRep_ListOfCurveRepresentation.hxx
-// ./opencascade/BRep_CurveOnSurface.hxx
-// ./opencascade/BRep_CurveOnClosedSurface.hxx
-// ./opencascade/BRep_PointRepresentation.hxx
-// ./opencascade/BRep_GCurve.hxx
-// ./opencascade/BRep_PointsOnSurface.hxx
-// ./opencascade/BRep_PolygonOnTriangulation.hxx
-// ./opencascade/BRep_TFace.hxx
-// ./opencascade/BRep_PolygonOnSurface.hxx
-// ./opencascade/BRep_CurveOn2Surfaces.hxx
-// ./opencascade/BRep_PolygonOnClosedTriangulation.hxx
-// ./opencascade/BRep_ListOfPointRepresentation.hxx
 // ./opencascade/BRep_PointOnCurveOnSurface.hxx
+// ./opencascade/BRep_PolygonOnClosedSurface.hxx
+// ./opencascade/BRep_CurveOn2Surfaces.hxx
+// ./opencascade/BRep_Polygon3D.hxx
+// ./opencascade/BRep_TEdge.hxx
+// ./opencascade/BRep_PolygonOnSurface.hxx
+// ./opencascade/BRep_PointRepresentation.hxx
+// ./opencascade/BRep_PolygonOnTriangulation.hxx
+// ./opencascade/BRep_Curve3D.hxx
+// ./opencascade/BRep_PolygonOnClosedTriangulation.hxx
+// ./opencascade/BRep_CurveOnSurface.hxx
+// ./opencascade/BRep_TFace.hxx
+// ./opencascade/BRep_PointOnSurface.hxx
+// ./opencascade/BRep_ListOfPointRepresentation.hxx
+// ./opencascade/BRep_CurveOnClosedSurface.hxx
+// ./opencascade/BRep_Tool.hxx
+// ./opencascade/BRep_GCurve.hxx
+// ./opencascade/BRep_CurveRepresentation.hxx
+// ./opencascade/BRep_TVertex.hxx
+// ./opencascade/BRep_ListIteratorOfListOfPointRepresentation.hxx
+// ./opencascade/BRep_Builder.hxx
+// ./opencascade/BRep_PointsOnSurface.hxx
+// ./opencascade/BRep_ListOfCurveRepresentation.hxx
+// ./opencascade/BRep_ListIteratorOfListOfCurveRepresentation.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_List<opencascade::handle<BRep_CurveRepresentation> >(m,"BRep_ListOfCurveRepresentation");  
     register_template_NCollection_List<opencascade::handle<BRep_PointRepresentation> >(m,"BRep_ListOfPointRepresentation");  
+    register_template_NCollection_List<opencascade::handle<BRep_CurveRepresentation> >(m,"BRep_ListOfCurveRepresentation");  
 
 
 // exceptions

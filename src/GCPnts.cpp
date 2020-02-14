@@ -13,7 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_ConstructionError.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Adaptor3d_Curve.hxx>
@@ -24,6 +23,7 @@ namespace py = pybind11;
 #include <Standard_ConstructionError.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Adaptor2d_Curve2d.hxx>
+#include <Standard_ConstructionError.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 
@@ -60,6 +60,7 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
 
 
     static_cast<py::class_<GCPnts_AbscissaPoint , shared_ptr<GCPnts_AbscissaPoint>  >>(m.attr("GCPnts_AbscissaPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Abscissa"),  py::arg("U0") )
         .def(py::init< const Standard_Real,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("Tol"),  py::arg("C"),  py::arg("Abscissa"),  py::arg("U0") )
@@ -69,6 +70,7 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Abscissa"),  py::arg("U0"),  py::arg("Ui") )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Abscissa"),  py::arg("U0"),  py::arg("Ui"),  py::arg("Tol") )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Abscissa"),  py::arg("U0"),  py::arg("Ui"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GCPnts_AbscissaPoint::*)() const) static_cast<Standard_Boolean (GCPnts_AbscissaPoint::*)() const>(&GCPnts_AbscissaPoint::IsDone),
@@ -104,12 +106,14 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
                     R"#(Computes the length of the Curve <C> with the given tolerance. Constructs an empty algorithm. This function is used only for initializing a framework to compute the length of a curve (or a series of curves). Warning The function IsDone will return the value false after the use of this function.)#"  , py::arg("C"),  py::arg("U1"),  py::arg("U2"),  py::arg("Tol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_DistFunction , shared_ptr<GCPnts_DistFunction>  , math_Function >>(m.attr("GCPnts_DistFunction"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("theCurve"),  py::arg("U1"),  py::arg("U2") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (GCPnts_DistFunction::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (GCPnts_DistFunction::*)( const Standard_Real ,  Standard_Real &  ) >(&GCPnts_DistFunction::Value),
@@ -118,12 +122,14 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_DistFunction2d , shared_ptr<GCPnts_DistFunction2d>  , math_Function >>(m.attr("GCPnts_DistFunction2d"))
+    // constructors
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("theCurve"),  py::arg("U1"),  py::arg("U2") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (GCPnts_DistFunction2d::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (GCPnts_DistFunction2d::*)( const Standard_Real ,  Standard_Real &  ) >(&GCPnts_DistFunction2d::Value),
@@ -132,12 +138,14 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_DistFunction2dMV , shared_ptr<GCPnts_DistFunction2dMV>  , math_MultipleVarFunction >>(m.attr("GCPnts_DistFunction2dMV"))
+    // constructors
         .def(py::init< GCPnts_DistFunction2d & >()  , py::arg("theCurvLinDist") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (GCPnts_DistFunction2dMV::*)( const math_Vector & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (GCPnts_DistFunction2dMV::*)( const math_Vector & ,  Standard_Real &  ) >(&GCPnts_DistFunction2dMV::Value),
@@ -149,12 +157,14 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_DistFunctionMV , shared_ptr<GCPnts_DistFunctionMV>  , math_MultipleVarFunction >>(m.attr("GCPnts_DistFunctionMV"))
+    // constructors
         .def(py::init< GCPnts_DistFunction & >()  , py::arg("theCurvLinDist") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (GCPnts_DistFunctionMV::*)( const math_Vector & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (GCPnts_DistFunctionMV::*)( const math_Vector & ,  Standard_Real &  ) >(&GCPnts_DistFunctionMV::Value),
@@ -166,16 +176,18 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_QuasiUniformAbscissa , shared_ptr<GCPnts_QuasiUniformAbscissa>  >>(m.attr("GCPnts_QuasiUniformAbscissa"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Integer >()  , py::arg("C"),  py::arg("NbPoints") )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("NbPoints"),  py::arg("U1"),  py::arg("U2") )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Integer >()  , py::arg("C"),  py::arg("NbPoints") )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("NbPoints"),  py::arg("U1"),  py::arg("U2") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (GCPnts_QuasiUniformAbscissa::*)( const Adaptor3d_Curve & ,  const Standard_Integer  ) ) static_cast<void (GCPnts_QuasiUniformAbscissa::*)( const Adaptor3d_Curve & ,  const Standard_Integer  ) >(&GCPnts_QuasiUniformAbscissa::Initialize),
@@ -202,16 +214,18 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_QuasiUniformDeflection , shared_ptr<GCPnts_QuasiUniformDeflection>  >>(m.attr("GCPnts_QuasiUniformDeflection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const GeomAbs_Shape >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C1) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const GeomAbs_Shape >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C1) )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const GeomAbs_Shape >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("U1"),  py::arg("U2"),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C1) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const GeomAbs_Shape >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("U1"),  py::arg("U2"),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C1) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (GCPnts_QuasiUniformDeflection::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const GeomAbs_Shape  ) ) static_cast<void (GCPnts_QuasiUniformDeflection::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const GeomAbs_Shape  ) >(&GCPnts_QuasiUniformDeflection::Initialize),
@@ -244,16 +258,18 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_TangentialDeflection , shared_ptr<GCPnts_TangentialDeflection>  >>(m.attr("GCPnts_TangentialDeflection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("AngularDeflection"),  py::arg("CurvatureDeflection"),  py::arg("MinimumOfPoints")=static_cast<const Standard_Integer>(2),  py::arg("UTol")=static_cast<const Standard_Real>(1.0e-9),  py::arg("theMinLen")=static_cast<const Standard_Real>(1.0e-7) )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("FirstParameter"),  py::arg("LastParameter"),  py::arg("AngularDeflection"),  py::arg("CurvatureDeflection"),  py::arg("MinimumOfPoints")=static_cast<const Standard_Integer>(2),  py::arg("UTol")=static_cast<const Standard_Real>(1.0e-9),  py::arg("theMinLen")=static_cast<const Standard_Real>(1.0e-7) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("AngularDeflection"),  py::arg("CurvatureDeflection"),  py::arg("MinimumOfPoints")=static_cast<const Standard_Integer>(2),  py::arg("UTol")=static_cast<const Standard_Real>(1.0e-9),  py::arg("theMinLen")=static_cast<const Standard_Real>(1.0e-7) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("FirstParameter"),  py::arg("LastParameter"),  py::arg("AngularDeflection"),  py::arg("CurvatureDeflection"),  py::arg("MinimumOfPoints")=static_cast<const Standard_Integer>(2),  py::arg("UTol")=static_cast<const Standard_Real>(1.0e-9),  py::arg("theMinLen")=static_cast<const Standard_Real>(1.0e-7) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (GCPnts_TangentialDeflection::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (GCPnts_TangentialDeflection::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&GCPnts_TangentialDeflection::Initialize),
@@ -286,11 +302,12 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
                     R"#(Computes angular step for the arc using the given parameters.)#"  , py::arg("theRadius"),  py::arg("theLinearDeflection"),  py::arg("theAngularDeflection"),  py::arg("theMinLength"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_UniformAbscissa , shared_ptr<GCPnts_UniformAbscissa>  >>(m.attr("GCPnts_UniformAbscissa"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Abscissa"),  py::arg("Toler")=static_cast<const Standard_Real>(- 1) )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Abscissa"),  py::arg("U1"),  py::arg("U2"),  py::arg("Toler")=static_cast<const Standard_Real>(- 1) )
@@ -300,6 +317,7 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("Abscissa"),  py::arg("U1"),  py::arg("U2"),  py::arg("Toler")=static_cast<const Standard_Real>(- 1) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("NbPoints"),  py::arg("Toler")=static_cast<const Standard_Real>(- 1) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("NbPoints"),  py::arg("U1"),  py::arg("U2"),  py::arg("Toler")=static_cast<const Standard_Real>(- 1) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (GCPnts_UniformAbscissa::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (GCPnts_UniformAbscissa::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real  ) >(&GCPnts_UniformAbscissa::Initialize),
@@ -341,16 +359,18 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GCPnts_UniformDeflection , shared_ptr<GCPnts_UniformDeflection>  >>(m.attr("GCPnts_UniformDeflection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Boolean >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("WithControl")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Boolean >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("WithControl")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("U1"),  py::arg("U2"),  py::arg("WithControl")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("C"),  py::arg("Deflection"),  py::arg("U1"),  py::arg("U2"),  py::arg("WithControl")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (GCPnts_UniformDeflection::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (GCPnts_UniformDeflection::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Boolean  ) >(&GCPnts_UniformDeflection::Initialize),
@@ -383,20 +403,20 @@ py::module m = static_cast<py::module>(main_module.attr("GCPnts"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GCPnts_QuasiUniformAbscissa.hxx
-// ./opencascade/GCPnts_TangentialDeflection.hxx
 // ./opencascade/GCPnts_AbscissaType.hxx
-// ./opencascade/GCPnts_UniformDeflection.hxx
-// ./opencascade/GCPnts_DeflectionType.hxx
-// ./opencascade/GCPnts_DistFunction2d.hxx
-// ./opencascade/GCPnts_AbscissaPoint.hxx
-// ./opencascade/GCPnts_UniformAbscissa.hxx
 // ./opencascade/GCPnts_QuasiUniformDeflection.hxx
+// ./opencascade/GCPnts_DeflectionType.hxx
 // ./opencascade/GCPnts_DistFunction.hxx
+// ./opencascade/GCPnts_TangentialDeflection.hxx
+// ./opencascade/GCPnts_DistFunction2d.hxx
+// ./opencascade/GCPnts_UniformDeflection.hxx
+// ./opencascade/GCPnts_UniformAbscissa.hxx
+// ./opencascade/GCPnts_QuasiUniformAbscissa.hxx
+// ./opencascade/GCPnts_AbscissaPoint.hxx
 
 // operators
 

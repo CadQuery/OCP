@@ -13,16 +13,13 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <gp_Ax2.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Ax1.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_Ax2.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <gp_Trsf2d.hxx>
 #include <gp_GTrsf2d.hxx>
-#include <gp_XY.hxx>
+#include <gp_Ax1.hxx>
+#include <gp_Ax2.hxx>
+#include <gp_Ax1.hxx>
+#include <gp_Ax2.hxx>
+#include <gp_Quaternion.hxx>
+#include <gp_Ax3.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Dir.hxx>
 #include <gp_Ax1.hxx>
@@ -65,6 +62,10 @@ namespace py = pybind11;
 #include <gp_Elips2d.hxx>
 #include <gp_Hypr2d.hxx>
 #include <gp_Parab2d.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <gp_Trsf2d.hxx>
+#include <gp_GTrsf2d.hxx>
+#include <gp_XY.hxx>
 #include <gp_XYZ.hxx>
 #include <gp_Trsf.hxx>
 #include <gp_GTrsf.hxx>
@@ -72,9 +73,8 @@ namespace py = pybind11;
 #include <gp_Ax2.hxx>
 #include <gp_Ax1.hxx>
 #include <gp_Ax2.hxx>
-#include <gp_Quaternion.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_GTrsf2d.hxx>
+#include <gp_Ax2.hxx>
+#include <gp_Ax2.hxx>
 
 // module includes
 #include <gp.hxx>
@@ -141,8 +141,10 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
 
 
     static_cast<py::class_<NCollection_Lerp<gp_Trsf> , shared_ptr<NCollection_Lerp<gp_Trsf>>  >>(m.attr("NCollection_Lerp_gp_Trsf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Trsf &,const gp_Trsf & >()  , py::arg("theStart"),  py::arg("theEnd") )
+    // custom constructors
     // methods
         .def("Init",
              (void (NCollection_Lerp<gp_Trsf>::*)( const gp_Trsf & ,  const gp_Trsf &  ) ) static_cast<void (NCollection_Lerp<gp_Trsf>::*)( const gp_Trsf & ,  const gp_Trsf &  ) >(&NCollection_Lerp<gp_Trsf>::Init),
@@ -154,12 +156,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<gp , shared_ptr<gp>>(m,"gp");
 
     static_cast<py::class_<gp , shared_ptr<gp>  >>(m.attr("gp"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -213,13 +218,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
                     R"#(Identifies an axis where its origin is Origin2d and its unit vector coordinates are Y = 1.0, X = 0.0)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Ax1 , shared_ptr<gp_Ax1>  >>(m.attr("gp_Ax1"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetDirection",
              (void (gp_Ax1::*)( const gp_Dir &  ) ) static_cast<void (gp_Ax1::*)( const gp_Dir &  ) >(&gp_Ax1::SetDirection),
@@ -366,14 +373,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Ax2 , shared_ptr<gp_Ax2>  >>(m.attr("gp_Ax2"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const gp_Dir &,const gp_Dir & >()  , py::arg("P"),  py::arg("N"),  py::arg("Vx") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Ax2::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Ax2::*)( const gp_Ax1 &  ) >(&gp_Ax2::SetAxis),
@@ -535,15 +544,17 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Ax22d , shared_ptr<gp_Ax22d>  >>(m.attr("gp_Ax22d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const gp_Dir2d &,const gp_Dir2d & >()  , py::arg("P"),  py::arg("Vx"),  py::arg("Vy") )
         .def(py::init< const gp_Pnt2d &,const gp_Dir2d &,const Standard_Boolean >()  , py::arg("P"),  py::arg("V"),  py::arg("Sense")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const gp_Ax2d &,const Standard_Boolean >()  , py::arg("A"),  py::arg("Sense")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Ax22d::*)( const gp_Ax22d &  ) ) static_cast<void (gp_Ax22d::*)( const gp_Ax22d &  ) >(&gp_Ax22d::SetAxis),
@@ -687,13 +698,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Ax2d , shared_ptr<gp_Ax2d>  >>(m.attr("gp_Ax2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const gp_Dir2d & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (gp_Ax2d::*)( const gp_Pnt2d &  ) ) static_cast<void (gp_Ax2d::*)( const gp_Pnt2d &  ) >(&gp_Ax2d::SetLocation),
@@ -831,15 +844,17 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Ax3 , shared_ptr<gp_Ax3>  >>(m.attr("gp_Ax3"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2 & >()  , py::arg("A") )
         .def(py::init< const gp_Pnt &,const gp_Dir &,const gp_Dir & >()  , py::arg("P"),  py::arg("N"),  py::arg("Vx") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("XReverse",
              (void (gp_Ax3::*)() ) static_cast<void (gp_Ax3::*)() >(&gp_Ax3::XReverse),
@@ -1031,13 +1046,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Circ , shared_ptr<gp_Circ>  >>(m.attr("gp_Circ"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("A2"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Circ::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Circ::*)( const gp_Ax1 &  ) >(&gp_Circ::SetAxis),
@@ -1211,14 +1228,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Circ2d , shared_ptr<gp_Circ2d>  >>(m.attr("gp_Circ2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2d &,const Standard_Real,const Standard_Boolean >()  , py::arg("XAxis"),  py::arg("Radius"),  py::arg("Sense")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const gp_Ax22d &,const Standard_Real >()  , py::arg("Axis"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (gp_Circ2d::*)( const gp_Pnt2d &  ) ) static_cast<void (gp_Circ2d::*)( const gp_Pnt2d &  ) >(&gp_Circ2d::SetLocation),
@@ -1416,13 +1435,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Cone , shared_ptr<gp_Cone>  >>(m.attr("gp_Cone"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax3 &,const Standard_Real,const Standard_Real >()  , py::arg("A3"),  py::arg("Ang"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Cone::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Cone::*)( const gp_Ax1 &  ) >(&gp_Cone::SetAxis),
@@ -1438,7 +1459,7 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              R"#(Changes the radius of the cone in the reference plane of the cone. Raised if R < 0.0)#"  , py::arg("R"))
         .def("SetSemiAngle",
              (void (gp_Cone::*)( const Standard_Real  ) ) static_cast<void (gp_Cone::*)( const Standard_Real  ) >(&gp_Cone::SetSemiAngle),
-             R"#(Changes the semi-angle of the cone. Ang is the conical surface semi-angle ]0,PI/2[. Raises ConstructionError if Ang < Resolution from gp or Ang >= PI/2 - Resolution)#"  , py::arg("Ang"))
+             R"#(Changes the semi-angle of the cone. Semi-angle can be negative. Its absolute value Abs(Ang) is in range ]0,PI/2[. Raises ConstructionError if Abs(Ang) < Resolution from gp or Abs(Ang) >= PI/2 - Resolution)#"  , py::arg("Ang"))
         .def("Apex",
              (gp_Pnt (gp_Cone::*)() const) static_cast<gp_Pnt (gp_Cone::*)() const>(&gp_Cone::Apex),
              R"#(Computes the cone's top. The Apex of the cone is on the negative side of the symmetry axis of the cone.)#" )
@@ -1465,7 +1486,7 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              R"#(Returns the radius of the cone in the reference plane.)#" )
         .def("SemiAngle",
              (Standard_Real (gp_Cone::*)() const) static_cast<Standard_Real (gp_Cone::*)() const>(&gp_Cone::SemiAngle),
-             R"#(Returns the half-angle at the apex of this cone.)#" )
+             R"#(Returns the half-angle at the apex of this cone. Attention! Semi-angle can be negative.)#" )
         .def("XAxis",
              (gp_Ax1 (gp_Cone::*)() const) static_cast<gp_Ax1 (gp_Cone::*)() const>(&gp_Cone::XAxis),
              R"#(Returns the XAxis of the reference plane.)#" )
@@ -1534,7 +1555,7 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              R"#(Changes the radius of the cone in the reference plane of the cone. Raised if R < 0.0)#"  , py::arg("R"))
         .def("SetSemiAngle",
              (void (gp_Cone::*)( const Standard_Real  ) ) static_cast<void (gp_Cone::*)( const Standard_Real  ) >(&gp_Cone::SetSemiAngle),
-             R"#(Changes the semi-angle of the cone. Ang is the conical surface semi-angle ]0,PI/2[. Raises ConstructionError if Ang < Resolution from gp or Ang >= PI/2 - Resolution)#"  , py::arg("Ang"))
+             R"#(Changes the semi-angle of the cone. Semi-angle can be negative. Its absolute value Abs(Ang) is in range ]0,PI/2[. Raises ConstructionError if Abs(Ang) < Resolution from gp or Abs(Ang) >= PI/2 - Resolution)#"  , py::arg("Ang"))
         .def("Apex",
              (gp_Pnt (gp_Cone::*)() const) static_cast<gp_Pnt (gp_Cone::*)() const>(&gp_Cone::Apex),
              R"#(Computes the cone's top. The Apex of the cone is on the negative side of the symmetry axis of the cone.)#" )
@@ -1561,7 +1582,7 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              R"#(Returns the radius of the cone in the reference plane.)#" )
         .def("SemiAngle",
              (Standard_Real (gp_Cone::*)() const) static_cast<Standard_Real (gp_Cone::*)() const>(&gp_Cone::SemiAngle),
-             R"#(Returns the half-angle at the apex of this cone.)#" )
+             R"#(Returns the half-angle at the apex of this cone. Attention! Semi-angle can be negative.)#" )
         .def("XAxis",
              (gp_Ax1 (gp_Cone::*)() const) static_cast<gp_Ax1 (gp_Cone::*)() const>(&gp_Cone::XAxis),
              R"#(Returns the XAxis of the reference plane.)#" )
@@ -1605,13 +1626,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Cylinder , shared_ptr<gp_Cylinder>  >>(m.attr("gp_Cylinder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax3 &,const Standard_Real >()  , py::arg("A3"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Cylinder::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Cylinder::*)( const gp_Ax1 &  ) >(&gp_Cylinder::SetAxis),
@@ -1776,15 +1799,17 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Dir , shared_ptr<gp_Dir>  >>(m.attr("gp_Dir"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Vec & >()  , py::arg("V") )
         .def(py::init< const gp_XYZ & >()  , py::arg("Coord") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Xv"),  py::arg("Yv"),  py::arg("Zv") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_Dir::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (gp_Dir::*)( const Standard_Integer ,  const Standard_Real  ) >(&gp_Dir::SetCoord),
@@ -1999,15 +2024,17 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_Dir (gp_Dir::*)() const) static_cast<gp_Dir (gp_Dir::*)() const>(&gp_Dir::operator-),
              py::is_operator(),
              R"#(None)#" )
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Dir2d , shared_ptr<gp_Dir2d>  >>(m.attr("gp_Dir2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Vec2d & >()  , py::arg("V") )
         .def(py::init< const gp_XY & >()  , py::arg("Coord") )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Xv"),  py::arg("Yv") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_Dir2d::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (gp_Dir2d::*)( const Standard_Integer ,  const Standard_Real  ) >(&gp_Dir2d::SetCoord),
@@ -2173,13 +2200,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_Dir2d (gp_Dir2d::*)() const) static_cast<gp_Dir2d (gp_Dir2d::*)() const>(&gp_Dir2d::operator-),
              py::is_operator(),
              R"#(None)#" )
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Elips , shared_ptr<gp_Elips>  >>(m.attr("gp_Elips"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Elips::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Elips::*)( const gp_Ax1 &  ) >(&gp_Elips::SetAxis),
@@ -2383,14 +2412,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Elips2d , shared_ptr<gp_Elips2d>  >>(m.attr("gp_Elips2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2d &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("MajorAxis"),  py::arg("MajorRadius"),  py::arg("MinorRadius"),  py::arg("Sense")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const gp_Ax22d &,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (gp_Elips2d::*)( const gp_Pnt2d &  ) ) static_cast<void (gp_Elips2d::*)( const gp_Pnt2d &  ) >(&gp_Elips2d::SetLocation),
@@ -2609,14 +2640,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_GTrsf , shared_ptr<gp_GTrsf>  >>(m.attr("gp_GTrsf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Trsf & >()  , py::arg("T") )
         .def(py::init< const gp_Mat &,const gp_XYZ & >()  , py::arg("M"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetAffinity",
              (void (gp_GTrsf::*)( const gp_Ax1 & ,  const Standard_Real  ) ) static_cast<void (gp_GTrsf::*)( const gp_Ax1 & ,  const Standard_Real  ) >(&gp_GTrsf::SetAffinity),
@@ -2754,14 +2787,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (void (gp_GTrsf::*)( const gp_GTrsf &  ) ) static_cast<void (gp_GTrsf::*)( const gp_GTrsf &  ) >(&gp_GTrsf::operator*=),
              py::is_operator(),
              R"#(None)#"  , py::arg("T"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_GTrsf2d , shared_ptr<gp_GTrsf2d>  >>(m.attr("gp_GTrsf2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Trsf2d & >()  , py::arg("T") )
         .def(py::init< const gp_Mat2d &,const gp_XY & >()  , py::arg("M"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetAffinity",
              (void (gp_GTrsf2d::*)( const gp_Ax2d & ,  const Standard_Real  ) ) static_cast<void (gp_GTrsf2d::*)( const gp_Ax2d & ,  const Standard_Real  ) >(&gp_GTrsf2d::SetAffinity),
@@ -2890,13 +2925,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (void (gp_GTrsf2d::*)( const gp_GTrsf2d &  ) ) static_cast<void (gp_GTrsf2d::*)( const gp_GTrsf2d &  ) >(&gp_GTrsf2d::operator*=),
              py::is_operator(),
              R"#(None)#"  , py::arg("T"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Hypr , shared_ptr<gp_Hypr>  >>(m.attr("gp_Hypr"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Hypr::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Hypr::*)( const gp_Ax1 &  ) >(&gp_Hypr::SetAxis),
@@ -3124,14 +3161,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Hypr2d , shared_ptr<gp_Hypr2d>  >>(m.attr("gp_Hypr2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2d &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("MajorAxis"),  py::arg("MajorRadius"),  py::arg("MinorRadius"),  py::arg("Sense")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const gp_Ax22d &,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (gp_Hypr2d::*)( const gp_Pnt2d &  ) ) static_cast<void (gp_Hypr2d::*)( const gp_Pnt2d &  ) >(&gp_Hypr2d::SetLocation),
@@ -3374,14 +3413,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Lin , shared_ptr<gp_Lin>  >>(m.attr("gp_Lin"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax1 & >()  , py::arg("A1") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("Reverse",
              (void (gp_Lin::*)() ) static_cast<void (gp_Lin::*)() >(&gp_Lin::Reverse),
@@ -3552,15 +3593,17 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Lin2d , shared_ptr<gp_Lin2d>  >>(m.attr("gp_Lin2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2d & >()  , py::arg("A") )
         .def(py::init< const gp_Pnt2d &,const gp_Dir2d & >()  , py::arg("P"),  py::arg("V") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Reverse",
              (void (gp_Lin2d::*)() ) static_cast<void (gp_Lin2d::*)() >(&gp_Lin2d::Reverse),
@@ -3734,14 +3777,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Mat , shared_ptr<gp_Mat>  >>(m.attr("gp_Mat"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("a11"),  py::arg("a12"),  py::arg("a13"),  py::arg("a21"),  py::arg("a22"),  py::arg("a23"),  py::arg("a31"),  py::arg("a32"),  py::arg("a33") )
         .def(py::init< const gp_XYZ &,const gp_XYZ &,const gp_XYZ & >()  , py::arg("Col1"),  py::arg("Col2"),  py::arg("Col3") )
+    // custom constructors
     // methods
         .def("SetCol",
              (void (gp_Mat::*)( const Standard_Integer ,  const gp_XYZ &  ) ) static_cast<void (gp_Mat::*)( const Standard_Integer ,  const gp_XYZ &  ) >(&gp_Mat::SetCol),
@@ -3848,6 +3893,9 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
         .def("Transposed",
              (gp_Mat (gp_Mat::*)() const) static_cast<gp_Mat (gp_Mat::*)() const>(&gp_Mat::Transposed),
              R"#(Transposes the matrix. A(j, i) -> A (i, j))#" )
+        .def("DumpJson",
+             (void (gp_Mat::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (gp_Mat::*)( std::ostream & ,  const Standard_Integer  ) const>(&gp_Mat::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
         .def("SetDiagonal",
              (void (gp_Mat::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (gp_Mat::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&gp_Mat::SetDiagonal),
              R"#(Modifies the main diagonal of the matrix. <me>.Value (1, 1) = X1 <me>.Value (2, 2) = X2 <me>.Value (3, 3) = X3 The other coefficients of the matrix are not modified.)#"  , py::arg("X1"),  py::arg("X2"),  py::arg("X3"))
@@ -3966,13 +4014,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_Mat (gp_Mat::*)( const gp_Mat &  ) const) static_cast<gp_Mat (gp_Mat::*)( const gp_Mat &  ) const>(&gp_Mat::operator-),
              py::is_operator(),
              R"#(None)#"  , py::arg("Other"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Mat2d , shared_ptr<gp_Mat2d>  >>(m.attr("gp_Mat2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XY &,const gp_XY & >()  , py::arg("Col1"),  py::arg("Col2") )
+    // custom constructors
     // methods
         .def("SetCol",
              (void (gp_Mat2d::*)( const Standard_Integer ,  const gp_XY &  ) ) static_cast<void (gp_Mat2d::*)( const Standard_Integer ,  const gp_XY &  ) >(&gp_Mat2d::SetCol),
@@ -4193,14 +4243,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_Mat2d (gp_Mat2d::*)( const gp_Mat2d &  ) const) static_cast<gp_Mat2d (gp_Mat2d::*)( const gp_Mat2d &  ) const>(&gp_Mat2d::operator-),
              py::is_operator(),
              R"#(None)#"  , py::arg("Other"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Parab , shared_ptr<gp_Parab>  >>(m.attr("gp_Parab"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("A2"),  py::arg("Focal") )
         .def(py::init< const gp_Ax1 &,const gp_Pnt & >()  , py::arg("D"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Parab::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Parab::*)( const gp_Ax1 &  ) >(&gp_Parab::SetAxis),
@@ -4362,15 +4414,17 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Parab2d , shared_ptr<gp_Parab2d>  >>(m.attr("gp_Parab2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2d &,const Standard_Real,const Standard_Boolean >()  , py::arg("theMirrorAxis"),  py::arg("theFocalLength"),  py::arg("theSense")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const gp_Ax22d &,const Standard_Real >()  , py::arg("theAxes"),  py::arg("theFocalLength") )
         .def(py::init< const gp_Ax2d &,const gp_Pnt2d &,const Standard_Boolean >()  , py::arg("theDirectrix"),  py::arg("theFocus"),  py::arg("theSense")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetFocal",
              (void (gp_Parab2d::*)( const Standard_Real  ) ) static_cast<void (gp_Parab2d::*)( const Standard_Real  ) >(&gp_Parab2d::SetFocal),
@@ -4535,15 +4589,17 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Pln , shared_ptr<gp_Pln>  >>(m.attr("gp_Pln"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax3 & >()  , py::arg("A3") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("D") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Pln::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Pln::*)( const gp_Ax1 &  ) >(&gp_Pln::SetAxis),
@@ -4747,14 +4803,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Pnt , shared_ptr<gp_Pnt>  >>(m.attr("gp_Pnt"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XYZ & >()  , py::arg("Coord") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Xp"),  py::arg("Yp"),  py::arg("Zp") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_Pnt::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (gp_Pnt::*)( const Standard_Integer ,  const Standard_Real  ) >(&gp_Pnt::SetCoord),
@@ -4943,14 +5001,16 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Pnt2d , shared_ptr<gp_Pnt2d>  >>(m.attr("gp_Pnt2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XY & >()  , py::arg("Coord") )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Xp"),  py::arg("Yp") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_Pnt2d::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (gp_Pnt2d::*)( const Standard_Integer ,  const Standard_Real  ) >(&gp_Pnt2d::SetCoord),
@@ -5115,11 +5175,12 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Quaternion , shared_ptr<gp_Quaternion>  >>(m.attr("gp_Quaternion"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("x"),  py::arg("y"),  py::arg("z"),  py::arg("w") )
         .def(py::init< const gp_Quaternion & >()  , py::arg("theToCopy") )
@@ -5127,6 +5188,7 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
         .def(py::init< const gp_Vec &,const gp_Vec &,const gp_Vec & >()  , py::arg("theVecFrom"),  py::arg("theVecTo"),  py::arg("theHelpCrossVec") )
         .def(py::init< const gp_Vec &,const Standard_Real >()  , py::arg("theAxis"),  py::arg("theAngle") )
         .def(py::init< const gp_Mat & >()  , py::arg("theMat") )
+    // custom constructors
     // methods
         .def("IsEqual",
              (Standard_Boolean (gp_Quaternion::*)( const gp_Quaternion &  ) const) static_cast<Standard_Boolean (gp_Quaternion::*)( const gp_Quaternion &  ) const>(&gp_Quaternion::IsEqual),
@@ -5367,13 +5429,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_Vec (gp_Quaternion::*)( const gp_Vec &  ) const) static_cast<gp_Vec (gp_Quaternion::*)( const gp_Vec &  ) const>(&gp_Quaternion::operator*),
              py::is_operator(),
              R"#(None)#"  , py::arg("theVec"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_QuaternionNLerp , shared_ptr<gp_QuaternionNLerp>  >>(m.attr("gp_QuaternionNLerp"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Quaternion &,const gp_Quaternion & >()  , py::arg("theQStart"),  py::arg("theQEnd") )
+    // custom constructors
     // methods
         .def("Init",
              (void (gp_QuaternionNLerp::*)( const gp_Quaternion & ,  const gp_Quaternion &  ) ) static_cast<void (gp_QuaternionNLerp::*)( const gp_Quaternion & ,  const gp_Quaternion &  ) >(&gp_QuaternionNLerp::Init),
@@ -5391,13 +5455,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
                     R"#(Compute interpolated quaternion between two quaternions.)#"  , py::arg("theQStart"),  py::arg("theQEnd"),  py::arg("theT"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_QuaternionSLerp , shared_ptr<gp_QuaternionSLerp>  >>(m.attr("gp_QuaternionSLerp"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Quaternion &,const gp_Quaternion & >()  , py::arg("theQStart"),  py::arg("theQEnd") )
+    // custom constructors
     // methods
         .def("Init",
              (void (gp_QuaternionSLerp::*)( const gp_Quaternion & ,  const gp_Quaternion &  ) ) static_cast<void (gp_QuaternionSLerp::*)( const gp_Quaternion & ,  const gp_Quaternion &  ) >(&gp_QuaternionSLerp::Init),
@@ -5415,13 +5481,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
                     R"#(Compute interpolated quaternion between two quaternions.)#"  , py::arg("theQStart"),  py::arg("theQEnd"),  py::arg("theT"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Sphere , shared_ptr<gp_Sphere>  >>(m.attr("gp_Sphere"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax3 &,const Standard_Real >()  , py::arg("A3"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (gp_Sphere::*)( const gp_Pnt &  ) ) static_cast<void (gp_Sphere::*)( const gp_Pnt &  ) >(&gp_Sphere::SetLocation),
@@ -5586,13 +5654,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Torus , shared_ptr<gp_Torus>  >>(m.attr("gp_Torus"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax3 &,const Standard_Real,const Standard_Real >()  , py::arg("A3"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (gp_Torus::*)( const gp_Ax1 &  ) ) static_cast<void (gp_Torus::*)( const gp_Ax1 &  ) >(&gp_Torus::SetAxis),
@@ -5781,13 +5851,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Trsf , shared_ptr<gp_Trsf>  >>(m.attr("gp_Trsf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Trsf2d & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("SetMirror",
              (void (gp_Trsf::*)( const gp_Pnt &  ) ) static_cast<void (gp_Trsf::*)( const gp_Pnt &  ) >(&gp_Trsf::SetMirror),
@@ -5888,6 +5960,9 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
         .def("Transforms",
              (void (gp_Trsf::*)( gp_XYZ &  ) const) static_cast<void (gp_Trsf::*)( gp_XYZ &  ) const>(&gp_Trsf::Transforms),
              R"#(Transformation of a triplet XYZ with a Trsf)#"  , py::arg("Coord"))
+        .def("DumpJson",
+             (void (gp_Trsf::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (gp_Trsf::*)( std::ostream & ,  const Standard_Integer  ) const>(&gp_Trsf::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
         .def("SetMirror",
              (void (gp_Trsf::*)( const gp_Pnt &  ) ) static_cast<void (gp_Trsf::*)( const gp_Pnt &  ) >(&gp_Trsf::SetMirror),
              R"#(Makes the transformation into a symmetrical transformation. P is the center of the symmetry.)#"  , py::arg("P"))
@@ -5952,13 +6027,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (void (gp_Trsf::*)( const gp_Trsf &  ) ) static_cast<void (gp_Trsf::*)( const gp_Trsf &  ) >(&gp_Trsf::operator*=),
              py::is_operator(),
              R"#(None)#"  , py::arg("T"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Trsf2d , shared_ptr<gp_Trsf2d>  >>(m.attr("gp_Trsf2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Trsf & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("SetMirror",
              (void (gp_Trsf2d::*)( const gp_Pnt2d &  ) ) static_cast<void (gp_Trsf2d::*)( const gp_Pnt2d &  ) >(&gp_Trsf2d::SetMirror),
@@ -6108,16 +6185,18 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (void (gp_Trsf2d::*)( const gp_Trsf2d &  ) ) static_cast<void (gp_Trsf2d::*)( const gp_Trsf2d &  ) >(&gp_Trsf2d::operator*=),
              py::is_operator(),
              R"#(None)#"  , py::arg("T"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Vec , shared_ptr<gp_Vec>  >>(m.attr("gp_Vec"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Dir & >()  , py::arg("V") )
         .def(py::init< const gp_XYZ & >()  , py::arg("Coord") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Xv"),  py::arg("Yv"),  py::arg("Zv") )
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_Vec::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (gp_Vec::*)( const Standard_Integer ,  const Standard_Real  ) >(&gp_Vec::SetCoord),
@@ -6503,16 +6582,18 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_Vec (gp_Vec::*)() const) static_cast<gp_Vec (gp_Vec::*)() const>(&gp_Vec::operator-),
              py::is_operator(),
              R"#(None)#" )
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_Vec2d , shared_ptr<gp_Vec2d>  >>(m.attr("gp_Vec2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Dir2d & >()  , py::arg("V") )
         .def(py::init< const gp_XY & >()  , py::arg("Coord") )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("Xv"),  py::arg("Yv") )
         .def(py::init< const gp_Pnt2d &,const gp_Pnt2d & >()  , py::arg("P1"),  py::arg("P2") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_Vec2d::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (gp_Vec2d::*)( const Standard_Integer ,  const Standard_Real  ) >(&gp_Vec2d::SetCoord),
@@ -6837,13 +6918,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_Vec2d (gp_Vec2d::*)( const gp_Vec2d &  ) const) static_cast<gp_Vec2d (gp_Vec2d::*)( const gp_Vec2d &  ) const>(&gp_Vec2d::operator-),
              py::is_operator(),
              R"#(None)#"  , py::arg("Right"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_XY , shared_ptr<gp_XY>  >>(m.attr("gp_XY"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("X"),  py::arg("Y") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_XY::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (gp_XY::*)( const Standard_Integer ,  const Standard_Real  ) >(&gp_XY::SetCoord),
@@ -7130,13 +7213,15 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_XY (gp_XY::*)( const gp_XY &  ) const) static_cast<gp_XY (gp_XY::*)( const gp_XY &  ) const>(&gp_XY::operator-),
              py::is_operator(),
              R"#(None)#"  , py::arg("Right"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<gp_XYZ , shared_ptr<gp_XYZ>  >>(m.attr("gp_XYZ"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("X"),  py::arg("Y"),  py::arg("Z") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (gp_XYZ::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (gp_XYZ::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&gp_XYZ::SetCoord),
@@ -7273,6 +7358,9 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
         .def("SetLinearForm",
              (void (gp_XYZ::*)( const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (gp_XYZ::*)( const gp_XYZ & ,  const gp_XYZ &  ) >(&gp_XYZ::SetLinearForm),
              R"#(<me> is set to the following linear form : XYZ1 + XYZ2)#"  , py::arg("XYZ1"),  py::arg("XYZ2"))
+        .def("DumpJson",
+             (void (gp_XYZ::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (gp_XYZ::*)( std::ostream & ,  const Standard_Integer  ) const>(&gp_XYZ::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
         .def("SetCoord",
              (void (gp_XYZ::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (gp_XYZ::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&gp_XYZ::SetCoord),
              R"#(For this XYZ object, assigns the values X, Y and Z to its three coordinates)#"  , py::arg("X"),  py::arg("Y"),  py::arg("Z"))
@@ -7477,60 +7565,84 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
              (gp_XYZ (gp_XYZ::*)( const gp_XYZ &  ) const) static_cast<gp_XYZ (gp_XYZ::*)( const gp_XYZ &  ) const>(&gp_XYZ::operator-),
              py::is_operator(),
              R"#(None)#"  , py::arg("Right"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/gp_Torus.hxx
-// ./opencascade/gp_GTrsf2d.hxx
-// ./opencascade/gp_Ax2.hxx
-// ./opencascade/gp_Lin.hxx
-// ./opencascade/gp_Vec.hxx
-// ./opencascade/gp_Pnt.hxx
-// ./opencascade/gp_Quaternion.hxx
-// ./opencascade/gp_Ax1.hxx
-// ./opencascade/gp_Elips.hxx
-// ./opencascade/gp_Pnt2d.hxx
 // ./opencascade/gp_Cone.hxx
-// ./opencascade/gp_Cylinder.hxx
-// ./opencascade/gp_TrsfNLerp.hxx
-// ./opencascade/gp_Parab.hxx
-// ./opencascade/gp_QuaternionNLerp.hxx
-// ./opencascade/gp_Ax22d.hxx
-// ./opencascade/gp_XYZ.hxx
-// ./opencascade/gp_Mat2d.hxx
-// ./opencascade/gp_Circ.hxx
-// ./opencascade/gp.hxx
-// ./opencascade/gp_Elips2d.hxx
-// ./opencascade/gp_Hypr2d.hxx
-// ./opencascade/gp_Mat.hxx
-// ./opencascade/gp_Circ2d.hxx
-// ./opencascade/gp_Vec2d.hxx
-// ./opencascade/gp_Hypr.hxx
-// ./opencascade/gp_Lin2d.hxx
-// ./opencascade/gp_Ax3.hxx
 // ./opencascade/gp_TrsfForm.hxx
+// ./opencascade/gp_QuaternionSLerp.hxx
+// ./opencascade/gp_Trsf2d.hxx
+// ./opencascade/gp_GTrsf.hxx
+// ./opencascade/gp_Ax22d.hxx
 // ./opencascade/gp_Dir.hxx
-// ./opencascade/gp_XY.hxx
+// ./opencascade/gp_Parab.hxx
 // ./opencascade/gp_Ax2d.hxx
 // ./opencascade/gp_Trsf.hxx
-// ./opencascade/gp_EulerSequence.hxx
-// ./opencascade/gp_Parab2d.hxx
-// ./opencascade/gp_GTrsf.hxx
+// ./opencascade/gp_Circ2d.hxx
+// ./opencascade/gp_Elips2d.hxx
+// ./opencascade/gp_Hypr2d.hxx
+// ./opencascade/gp.hxx
+// ./opencascade/gp_Mat2d.hxx
+// ./opencascade/gp_Mat.hxx
 // ./opencascade/gp_Sphere.hxx
-// ./opencascade/gp_Trsf2d.hxx
-// ./opencascade/gp_Pln.hxx
+// ./opencascade/gp_Vec.hxx
+// ./opencascade/gp_Vec2d.hxx
+// ./opencascade/gp_EulerSequence.hxx
+// ./opencascade/gp_Pnt.hxx
+// ./opencascade/gp_Cylinder.hxx
+// ./opencascade/gp_Circ.hxx
+// ./opencascade/gp_GTrsf2d.hxx
+// ./opencascade/gp_Ax2.hxx
 // ./opencascade/gp_VectorWithNullMagnitude.hxx
-// ./opencascade/gp_QuaternionSLerp.hxx
+// ./opencascade/gp_Pnt2d.hxx
+// ./opencascade/gp_Quaternion.hxx
+// ./opencascade/gp_QuaternionNLerp.hxx
+// ./opencascade/gp_XYZ.hxx
+// ./opencascade/gp_Ax1.hxx
+// ./opencascade/gp_Elips.hxx
+// ./opencascade/gp_Hypr.hxx
+// ./opencascade/gp_Torus.hxx
+// ./opencascade/gp_TrsfNLerp.hxx
+// ./opencascade/gp_Ax3.hxx
+// ./opencascade/gp_Lin2d.hxx
+// ./opencascade/gp_XY.hxx
+// ./opencascade/gp_Parab2d.hxx
 // ./opencascade/gp_Dir2d.hxx
+// ./opencascade/gp_Pln.hxx
+// ./opencascade/gp_Lin.hxx
 
 // operators
     m.def("__mul__", 
+          (gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  ))  static_cast<gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  )>(&operator*),
+          py::is_operator(),
+          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat2D"));
+    m.def("__rmul__", 
+          (gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  ))  static_cast<gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  )>(&operator*),
+          py::is_operator(),
+          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat2D"));
+    m.def("__mul__", 
+          (gp_Mat (*)( const Standard_Real ,  const gp_Mat &  ))  static_cast<gp_Mat (*)( const Standard_Real ,  const gp_Mat &  )>(&operator*),
+          py::is_operator(),
+          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat3D"));
+    m.def("__rmul__", 
+          (gp_Mat (*)( const Standard_Real ,  const gp_Mat &  ))  static_cast<gp_Mat (*)( const Standard_Real ,  const gp_Mat &  )>(&operator*),
+          py::is_operator(),
+          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat3D"));
+    m.def("__mul__", 
           (gp_Vec (*)( const Standard_Real ,  const gp_Vec &  ))  static_cast<gp_Vec (*)( const Standard_Real ,  const gp_Vec &  )>(&operator*),
           py::is_operator(),
           R"#(None)#"  , py::arg("Scalar"),  py::arg("V"));
     m.def("__rmul__", 
           (gp_Vec (*)( const Standard_Real ,  const gp_Vec &  ))  static_cast<gp_Vec (*)( const Standard_Real ,  const gp_Vec &  )>(&operator*),
+          py::is_operator(),
+          R"#(None)#"  , py::arg("Scalar"),  py::arg("V"));
+    m.def("__mul__", 
+          (gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  ))  static_cast<gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  )>(&operator*),
+          py::is_operator(),
+          R"#(None)#"  , py::arg("Scalar"),  py::arg("V"));
+    m.def("__rmul__", 
+          (gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  ))  static_cast<gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  )>(&operator*),
           py::is_operator(),
           R"#(None)#"  , py::arg("Scalar"),  py::arg("V"));
     m.def("__mul__", 
@@ -7549,30 +7661,6 @@ py::module m = static_cast<py::module>(main_module.attr("gp"));
           (gp_XYZ (*)( const Standard_Real ,  const gp_XYZ &  ))  static_cast<gp_XYZ (*)( const Standard_Real ,  const gp_XYZ &  )>(&operator*),
           py::is_operator(),
           R"#(None)#"  , py::arg("Scalar"),  py::arg("Coord1"));
-    m.def("__mul__", 
-          (gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  ))  static_cast<gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  )>(&operator*),
-          py::is_operator(),
-          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat2D"));
-    m.def("__rmul__", 
-          (gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  ))  static_cast<gp_Mat2d (*)( const Standard_Real ,  const gp_Mat2d &  )>(&operator*),
-          py::is_operator(),
-          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat2D"));
-    m.def("__mul__", 
-          (gp_Mat (*)( const Standard_Real ,  const gp_Mat &  ))  static_cast<gp_Mat (*)( const Standard_Real ,  const gp_Mat &  )>(&operator*),
-          py::is_operator(),
-          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat3D"));
-    m.def("__rmul__", 
-          (gp_Mat (*)( const Standard_Real ,  const gp_Mat &  ))  static_cast<gp_Mat (*)( const Standard_Real ,  const gp_Mat &  )>(&operator*),
-          py::is_operator(),
-          R"#(None)#"  , py::arg("Scalar"),  py::arg("Mat3D"));
-    m.def("__mul__", 
-          (gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  ))  static_cast<gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  )>(&operator*),
-          py::is_operator(),
-          R"#(None)#"  , py::arg("Scalar"),  py::arg("V"));
-    m.def("__rmul__", 
-          (gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  ))  static_cast<gp_Vec2d (*)( const Standard_Real ,  const gp_Vec2d &  )>(&operator*),
-          py::is_operator(),
-          R"#(None)#"  , py::arg("Scalar"),  py::arg("V"));
     m.def("__mul__", 
           (gp_XY (*)( const gp_Mat2d & ,  const gp_XY &  ))  static_cast<gp_XY (*)( const gp_Mat2d & ,  const gp_XY &  )>(&operator*),
           py::is_operator(),

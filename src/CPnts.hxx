@@ -17,20 +17,20 @@ namespace py = pybind11;
 #include <Adaptor2d_Curve2d.hxx>
 
 // module includes
+#include <CPnts_UniformDeflection.hxx>
+#include <CPnts_RealFunction.hxx>
+#include <CPnts_AbscissaPoint.hxx>
 #include <CPnts_MyGaussFunction.hxx>
 #include <CPnts_MyRootFunction.hxx>
-#include <CPnts_UniformDeflection.hxx>
-#include <CPnts_AbscissaPoint.hxx>
-#include <CPnts_RealFunction.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/CPnts_UniformDeflection.hxx
+// ./opencascade/CPnts_RealFunction.hxx
+// ./opencascade/CPnts_AbscissaPoint.hxx
 // ./opencascade/CPnts_MyGaussFunction.hxx
 // ./opencascade/CPnts_MyRootFunction.hxx
-// ./opencascade/CPnts_UniformDeflection.hxx
-// ./opencascade/CPnts_AbscissaPoint.hxx
-// ./opencascade/CPnts_RealFunction.hxx
 
 // user-defined post

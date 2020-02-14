@@ -13,6 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <ShapeAnalysis_Surface.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
@@ -30,10 +34,6 @@ namespace py = pybind11;
 #include <gp_Pnt2d.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
-#include <ShapeAnalysis_Surface.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
 
 // module includes
 #include <ShapeConstruct.hxx>
@@ -60,9 +60,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeConstruct , shared_ptr<ShapeConstruct>>(m,"ShapeConstruct");
 
     static_cast<py::class_<ShapeConstruct , shared_ptr<ShapeConstruct>  >>(m.attr("ShapeConstruct"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -86,12 +89,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
                     R"#(Method for joininig curves 3D. Parameters : c3d1,ac3d2 - initial curves Orient1, Orient2 - initial edges orientations. first1,last1,first2,last2 - parameters for trimming curves (re-calculate with account of orientation edges) c3dOut - result curve isRev1,isRev2 - out parameters indicative on possible errors. isError - input parameter indicative possible errors due to that one from edges have one vertex Return value : True - if curves were joined successfully, else - False.)#"  , py::arg("c2d1"),  py::arg("ac2d2"),  py::arg("Orient1"),  py::arg("Orient2"),  py::arg("first1"),  py::arg("last1"),  py::arg("first2"),  py::arg("last2"),  py::arg("c2dOut"),  py::arg("isRev1"),  py::arg("isRev2"),  py::arg("isError")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeConstruct_Curve , shared_ptr<ShapeConstruct_Curve>>(m,"ShapeConstruct_Curve");
 
     static_cast<py::class_<ShapeConstruct_Curve , shared_ptr<ShapeConstruct_Curve>  >>(m.attr("ShapeConstruct_Curve"))
+    // constructors
+    // custom constructors
     // methods
         .def("AdjustCurve",
              (Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Boolean ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (ShapeConstruct_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const gp_Pnt & ,  const Standard_Boolean ,  const Standard_Boolean  ) const>(&ShapeConstruct_Curve::AdjustCurve),
@@ -118,13 +124,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
                     R"#(Fix bspline knots to ensure that there is enough gap between neighbouring values Returns True if something fixed (by shifting knot))#"  , py::arg("knots"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeConstruct_MakeTriangulation , shared_ptr<ShapeConstruct_MakeTriangulation>  , BRepBuilderAPI_MakeShape >>(m.attr("ShapeConstruct_MakeTriangulation"))
+    // constructors
         .def(py::init<  const NCollection_Array1<gp_Pnt> &,const Standard_Real >()  , py::arg("pnts"),  py::arg("prec")=static_cast<const Standard_Real>(0.0) )
         .def(py::init< const TopoDS_Wire &,const Standard_Real >()  , py::arg("wire"),  py::arg("prec")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("Build",
              (void (ShapeConstruct_MakeTriangulation::*)() ) static_cast<void (ShapeConstruct_MakeTriangulation::*)() >(&ShapeConstruct_MakeTriangulation::Build),
@@ -136,12 +144,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeConstruct_ProjectCurveOnSurface ,opencascade::handle<ShapeConstruct_ProjectCurveOnSurface>  , Standard_Transient >>(m.attr("ShapeConstruct_ProjectCurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeConstruct_ProjectCurveOnSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) ) static_cast<void (ShapeConstruct_ProjectCurveOnSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) >(&ShapeConstruct_ProjectCurveOnSurface::Init),
@@ -186,14 +196,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeConstruct"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/ShapeConstruct_ProjectCurveOnSurface.hxx
 // ./opencascade/ShapeConstruct_MakeTriangulation.hxx
 // ./opencascade/ShapeConstruct.hxx
 // ./opencascade/ShapeConstruct_Curve.hxx
-// ./opencascade/ShapeConstruct_ProjectCurveOnSurface.hxx
 
 // operators
 

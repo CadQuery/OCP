@@ -13,18 +13,18 @@ namespace py = pybind11;
 #include <Geom2d_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Standard_NullObject.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Standard_NullObject.hxx>
 
 // module includes
 #include <Geom2dAPI_Interpolate.hxx>
 #include <Geom2dAPI_ExtremaCurveCurve.hxx>
-#include <Geom2dAPI_InterCurveCurve.hxx>
 #include <Geom2dAPI_ProjectPointOnCurve.hxx>
 #include <Geom2dAPI_PointsToBSpline.hxx>
+#include <Geom2dAPI_InterCurveCurve.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
@@ -32,8 +32,8 @@ namespace py = pybind11;
 // Class template handling functions
 // ./opencascade/Geom2dAPI_Interpolate.hxx
 // ./opencascade/Geom2dAPI_ExtremaCurveCurve.hxx
-// ./opencascade/Geom2dAPI_InterCurveCurve.hxx
 // ./opencascade/Geom2dAPI_ProjectPointOnCurve.hxx
 // ./opencascade/Geom2dAPI_PointsToBSpline.hxx
+// ./opencascade/Geom2dAPI_InterCurveCurve.hxx
 
 // user-defined post

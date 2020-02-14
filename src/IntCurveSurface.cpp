@@ -13,21 +13,35 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Adaptor3d_HCurve.hxx>
-#include <IntCurveSurface_TheHCurveTool.hxx>
-#include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
 #include <StdFail_NotDone.hxx>
-#include <IntCurveSurface_ThePolygonOfHInter.hxx>
-#include <IntCurveSurface_ThePolygonToolOfHInter.hxx>
-#include <IntCurveSurface_ThePolyhedronOfHInter.hxx>
-#include <IntCurveSurface_ThePolyhedronToolOfHInter.hxx>
-#include <Bnd_BoundSortBox.hxx>
+#include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Adaptor3d_HSurfaceTool.hxx>
 #include <IntCurveSurface_TheHCurveTool.hxx>
 #include <math_Matrix.hxx>
-#include <gp_Pnt.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <IntCurveSurface_TheHCurveTool.hxx>
+#include <IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <IntCurveSurface_TheHCurveTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HSurfaceTool.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <IntCurveSurface_TheHCurveTool.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <IntCurveSurface_TheHCurveTool.hxx>
+#include <IntCurveSurface_ThePolygonOfHInter.hxx>
+#include <IntCurveSurface_ThePolygonToolOfHInter.hxx>
+#include <IntCurveSurface_ThePolyhedronOfHInter.hxx>
+#include <IntCurveSurface_ThePolyhedronToolOfHInter.hxx>
+#include <Bnd_BoundSortBox.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <IntCurveSurface_TheHCurveTool.hxx>
 #include <Adaptor3d_HSurface.hxx>
@@ -49,23 +63,6 @@ namespace py = pybind11;
 #include <gp_Hypr.hxx>
 #include <IntAna_IntConicQuad.hxx>
 #include <Bnd_Box.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <IntCurveSurface_TheHCurveTool.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <IntCurveSurface_TheHCurveTool.hxx>
-#include <IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <IntCurveSurface_TheHCurveTool.hxx>
-#include <math_FunctionSetRoot.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurfaceTool.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_XYZ.hxx>
 
 // module includes
 #include <IntCurveSurface_HInter.hxx>
@@ -87,9 +84,9 @@ namespace py = pybind11;
 #include <IntCurveSurface_TransitionOnCurve.hxx>
 
 // template related includes
-// ./opencascade/IntCurveSurface_SequenceOfPnt.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntCurveSurface_SequenceOfSeg.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntCurveSurface_SequenceOfPnt.hxx
 #include "NCollection.hxx"
 
 
@@ -111,6 +108,8 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
 
 
     static_cast<py::class_<IntCurveSurface_Intersection , shared_ptr_nodelete<IntCurveSurface_Intersection>  >>(m.attr("IntCurveSurface_Intersection"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (IntCurveSurface_Intersection::*)() const) static_cast<Standard_Boolean (IntCurveSurface_Intersection::*)() const>(&IntCurveSurface_Intersection::IsDone),
@@ -137,13 +136,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_IntersectionPoint , shared_ptr<IntCurveSurface_IntersectionPoint>  >>(m.attr("IntCurveSurface_IntersectionPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const IntCurveSurface_TransitionOnCurve >()  , py::arg("P"),  py::arg("USurf"),  py::arg("VSurf"),  py::arg("UCurv"),  py::arg("TrCurv") )
+    // custom constructors
     // methods
         .def("SetValues",
              (void (IntCurveSurface_IntersectionPoint::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const IntCurveSurface_TransitionOnCurve  ) ) static_cast<void (IntCurveSurface_IntersectionPoint::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const IntCurveSurface_TransitionOnCurve  ) >(&IntCurveSurface_IntersectionPoint::SetValues),
@@ -188,13 +189,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_IntersectionSegment , shared_ptr<IntCurveSurface_IntersectionSegment>  >>(m.attr("IntCurveSurface_IntersectionSegment"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntCurveSurface_IntersectionPoint &,const IntCurveSurface_IntersectionPoint & >()  , py::arg("P1"),  py::arg("P2") )
+    // custom constructors
     // methods
         .def("SetValues",
              (void (IntCurveSurface_IntersectionSegment::*)( const IntCurveSurface_IntersectionPoint & ,  const IntCurveSurface_IntersectionPoint &  ) ) static_cast<void (IntCurveSurface_IntersectionSegment::*)( const IntCurveSurface_IntersectionPoint & ,  const IntCurveSurface_IntersectionPoint &  ) >(&IntCurveSurface_IntersectionSegment::SetValues),
@@ -221,12 +224,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_TheCSFunctionOfHInter , shared_ptr<IntCurveSurface_TheCSFunctionOfHInter>  , math_FunctionSetWithDerivatives >>(m.attr("IntCurveSurface_TheCSFunctionOfHInter"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (IntCurveSurface_TheCSFunctionOfHInter::*)() const) static_cast<Standard_Integer (IntCurveSurface_TheCSFunctionOfHInter::*)() const>(&IntCurveSurface_TheCSFunctionOfHInter::NbVariables),
@@ -259,13 +264,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_TheExactHInter , shared_ptr<IntCurveSurface_TheExactHInter>  >>(m.attr("IntCurveSurface_TheExactHInter"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const IntCurveSurface_TheCSFunctionOfHInter &,const Standard_Real,const Standard_Real >()  , py::arg("U"),  py::arg("V"),  py::arg("W"),  py::arg("F"),  py::arg("TolTangency"),  py::arg("MarginCoef")=static_cast<const Standard_Real>(0.0) )
         .def(py::init< const IntCurveSurface_TheCSFunctionOfHInter &,const Standard_Real >()  , py::arg("F"),  py::arg("TolTangency") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntCurveSurface_TheExactHInter::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_FunctionSetRoot & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntCurveSurface_TheExactHInter::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_FunctionSetRoot & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&IntCurveSurface_TheExactHInter::Perform),
@@ -292,12 +299,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntCurveSurface_TheHCurveTool , shared_ptr<IntCurveSurface_TheHCurveTool>>(m,"IntCurveSurface_TheHCurveTool");
 
     static_cast<py::class_<IntCurveSurface_TheHCurveTool , shared_ptr<IntCurveSurface_TheHCurveTool>  >>(m.attr("IntCurveSurface_TheHCurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -378,11 +388,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U0"),  py::arg("U1"),  py::arg("Defl"),  py::arg("NbMin"),  py::arg("Pars"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_TheInterferenceOfHInter , shared_ptr<IntCurveSurface_TheInterferenceOfHInter>  , Intf_Interference >>(m.attr("IntCurveSurface_TheInterferenceOfHInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntCurveSurface_ThePolygonOfHInter &,const IntCurveSurface_ThePolyhedronOfHInter & >()  , py::arg("thePolyg"),  py::arg("thePolyh") )
         .def(py::init< const gp_Lin &,const IntCurveSurface_ThePolyhedronOfHInter & >()  , py::arg("theLin"),  py::arg("thePolyh") )
@@ -390,6 +401,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
         .def(py::init< const IntCurveSurface_ThePolygonOfHInter &,const IntCurveSurface_ThePolyhedronOfHInter &,Bnd_BoundSortBox & >()  , py::arg("thePolyg"),  py::arg("thePolyh"),  py::arg("theBoundSB") )
         .def(py::init< const gp_Lin &,const IntCurveSurface_ThePolyhedronOfHInter &,Bnd_BoundSortBox & >()  , py::arg("theLin"),  py::arg("thePolyh"),  py::arg("theBoundSB") )
         .def(py::init<  const NCollection_Array1<gp_Lin> &,const IntCurveSurface_ThePolyhedronOfHInter &,Bnd_BoundSortBox & >()  , py::arg("theLins"),  py::arg("thePolyh"),  py::arg("theBoundSB") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntCurveSurface_TheInterferenceOfHInter::*)( const IntCurveSurface_ThePolygonOfHInter & ,  const IntCurveSurface_ThePolyhedronOfHInter &  ) ) static_cast<void (IntCurveSurface_TheInterferenceOfHInter::*)( const IntCurveSurface_ThePolygonOfHInter & ,  const IntCurveSurface_ThePolyhedronOfHInter &  ) >(&IntCurveSurface_TheInterferenceOfHInter::Perform),
@@ -419,14 +431,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_ThePolygonOfHInter , shared_ptr<IntCurveSurface_ThePolygonOfHInter>  >>(m.attr("IntCurveSurface_ThePolygonOfHInter"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Integer >()  , py::arg("Curve"),  py::arg("NbPnt") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("Curve"),  py::arg("U1"),  py::arg("U2"),  py::arg("NbPnt") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Curve"),  py::arg("Upars") )
+    // custom constructors
     // methods
         .def("Bounding",
              (const Bnd_Box & (IntCurveSurface_ThePolygonOfHInter::*)() const) static_cast<const Bnd_Box & (IntCurveSurface_ThePolygonOfHInter::*)() const>(&IntCurveSurface_ThePolygonOfHInter::Bounding),
@@ -468,12 +482,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntCurveSurface_ThePolygonToolOfHInter , shared_ptr<IntCurveSurface_ThePolygonToolOfHInter>>(m,"IntCurveSurface_ThePolygonToolOfHInter");
 
     static_cast<py::class_<IntCurveSurface_ThePolygonToolOfHInter , shared_ptr<IntCurveSurface_ThePolygonToolOfHInter>  >>(m.attr("IntCurveSurface_ThePolygonToolOfHInter"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -500,13 +517,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
                     R"#(None)#"  , py::arg("thePolygon"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_ThePolyhedronOfHInter , shared_ptr<IntCurveSurface_ThePolyhedronOfHInter>  >>(m.attr("IntCurveSurface_ThePolyhedronOfHInter"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Surface"),  py::arg("nbdU"),  py::arg("nbdV"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Surface"),  py::arg("Upars"),  py::arg("Vpars") )
+    // custom constructors
     // methods
         .def("Destroy",
              (void (IntCurveSurface_ThePolyhedronOfHInter::*)() ) static_cast<void (IntCurveSurface_ThePolyhedronOfHInter::*)() >(&IntCurveSurface_ThePolyhedronOfHInter::Destroy),
@@ -578,12 +597,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntCurveSurface_ThePolyhedronToolOfHInter , shared_ptr<IntCurveSurface_ThePolyhedronToolOfHInter>>(m,"IntCurveSurface_ThePolyhedronToolOfHInter");
 
     static_cast<py::class_<IntCurveSurface_ThePolyhedronToolOfHInter , shared_ptr<IntCurveSurface_ThePolyhedronToolOfHInter>  >>(m.attr("IntCurveSurface_ThePolyhedronToolOfHInter"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -619,12 +641,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
                     []( const IntCurveSurface_ThePolyhedronOfHInter & thePolyh,const Standard_Integer Index ){ Standard_Integer  P1; Standard_Integer  P2; Standard_Integer  P3; IntCurveSurface_ThePolyhedronToolOfHInter::Triangle(thePolyh,Index,P1,P2,P3); return std::make_tuple(P1,P2,P3); },
                     R"#(Give the indices of the 3 points of the triangle of address Index in the PolyhedronTool.)#"  , py::arg("thePolyh"),  py::arg("Index"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_TheQuadCurvExactHInter , shared_ptr<IntCurveSurface_TheQuadCurvExactHInter>  >>(m.attr("IntCurveSurface_TheQuadCurvExactHInter"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (IntCurveSurface_TheQuadCurvExactHInter::*)() const) static_cast<Standard_Boolean (IntCurveSurface_TheQuadCurvExactHInter::*)() const>(&IntCurveSurface_TheQuadCurvExactHInter::IsDone),
@@ -645,12 +669,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter , shared_ptr<IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter>  , math_FunctionWithDerivative >>(m.attr("IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter"))
+    // constructors
         .def(py::init< const IntSurf_Quadric &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("Q"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter::*)( const Standard_Real ,  Standard_Real &  ) >(&IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter::Value),
@@ -665,12 +691,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurveSurface_HInter , shared_ptr<IntCurveSurface_HInter>  , IntCurveSurface_Intersection >>(m.attr("IntCurveSurface_HInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntCurveSurface_HInter::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (IntCurveSurface_HInter::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const opencascade::handle<Adaptor3d_HSurface> &  ) >(&IntCurveSurface_HInter::Perform),
@@ -691,33 +719,33 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IntCurveSurface_ThePolygonOfHInter.hxx
-// ./opencascade/IntCurveSurface_TheHCurveTool.hxx
+// ./opencascade/IntCurveSurface_IntersectionPoint.hxx
+// ./opencascade/IntCurveSurface_SequenceOfSeg.hxx
+// ./opencascade/IntCurveSurface_ThePolyhedronOfHInter.hxx
 // ./opencascade/IntCurveSurface_Intersection.hxx
-// ./opencascade/IntCurveSurface_TheInterferenceOfHInter.hxx
-// ./opencascade/IntCurveSurface_TheCSFunctionOfHInter.hxx
-// ./opencascade/IntCurveSurface_ThePolyhedronToolOfHInter.hxx
+// ./opencascade/IntCurveSurface_TheHCurveTool.hxx
 // ./opencascade/IntCurveSurface_SequenceOfPnt.hxx
-// ./opencascade/IntCurveSurface_ThePolygonToolOfHInter.hxx
-// ./opencascade/IntCurveSurface_HInter.hxx
-// ./opencascade/IntCurveSurface_TransitionOnCurve.hxx
-// ./opencascade/IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter.hxx
+// ./opencascade/IntCurveSurface_TheCSFunctionOfHInter.hxx
 // ./opencascade/IntCurveSurface_IntersectionSegment.hxx
 // ./opencascade/IntCurveSurface_TheQuadCurvExactHInter.hxx
-// ./opencascade/IntCurveSurface_IntersectionPoint.hxx
+// ./opencascade/IntCurveSurface_ThePolygonOfHInter.hxx
+// ./opencascade/IntCurveSurface_TransitionOnCurve.hxx
+// ./opencascade/IntCurveSurface_ThePolyhedronToolOfHInter.hxx
 // ./opencascade/IntCurveSurface_TheExactHInter.hxx
-// ./opencascade/IntCurveSurface_ThePolyhedronOfHInter.hxx
-// ./opencascade/IntCurveSurface_SequenceOfSeg.hxx
+// ./opencascade/IntCurveSurface_TheQuadCurvFuncOfTheQuadCurvExactHInter.hxx
+// ./opencascade/IntCurveSurface_TheInterferenceOfHInter.hxx
+// ./opencascade/IntCurveSurface_ThePolygonToolOfHInter.hxx
+// ./opencascade/IntCurveSurface_HInter.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<IntCurveSurface_IntersectionPoint>(m,"IntCurveSurface_SequenceOfPnt");  
     register_template_NCollection_Sequence<IntCurveSurface_IntersectionSegment>(m,"IntCurveSurface_SequenceOfSeg");  
+    register_template_NCollection_Sequence<IntCurveSurface_IntersectionPoint>(m,"IntCurveSurface_SequenceOfPnt");  
 
 
 // exceptions

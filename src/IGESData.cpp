@@ -13,15 +13,45 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TCollection_HAsciiString.hxx>
+#include <Interface_ParamSet.hxx>
+#include <Interface_Check.hxx>
+#include <gp_XYZ.hxx>
+#include <IGESData_NodeOfSpecificLib.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_SpecificModule.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IGESData_GlobalNodeOfSpecificLib.hxx>
 #include <IGESData_GlobalNodeOfWriterLib.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <IGESData_ReadWriteModule.hxx>
 #include <IGESData_Protocol.hxx>
 #include <IGESData_WriterLib.hxx>
-#include <Interface_InterfaceModel.hxx>
+#include <Interface_ParamSet.hxx>
+#include <Interface_Check.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <IGESData_Protocol.hxx>
 #include <IGESData_IGESEntity.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <IGESData_IGESType.hxx>
+#include <gp_GTrsf.hxx>
+#include <gp_Trsf.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Interface_Check.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <Interface_InterfaceError.hxx>
 #include <IGESData_ReadWriteModule.hxx>
@@ -37,113 +67,6 @@ namespace py = pybind11;
 #include <IGESData_ColorEntity.hxx>
 #include <gp_GTrsf.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Interface_ParamSet.hxx>
-#include <Interface_Check.hxx>
-#include <gp_XYZ.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_ParamList.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamCursor.hxx>
-#include <Message_Msg.hxx>
-#include <gp_XY.hxx>
-#include <gp_XYZ.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_ReadWriteModule.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_WriterLib.hxx>
-#include <IGESData_NodeOfWriterLib.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_InterfaceMismatch.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IGESData_GlobalSection.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <gp_XY.hxx>
-#include <gp_XYZ.hxx>
-#include <Interface_Check.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_NodeOfSpecificLib.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_SpecificModule.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IGESData_GlobalNodeOfSpecificLib.hxx>
-#include <IGESData_NodeOfWriterLib.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_ReadWriteModule.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IGESData_GlobalNodeOfWriterLib.hxx>
-#include <Interface_ParamSet.hxx>
-#include <Interface_Check.hxx>
-#include <Standard_DomainError.hxx>
-#include <Interface_FileReaderData.hxx>
-#include <Interface_Check.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <gp_GTrsf.hxx>
-#include <IGESData_IGESType.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Interface_Check.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <gp_GTrsf.hxx>
-#include <gp_Trsf.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Interface_UndefinedContent.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_DirPart.hxx>
-#include <Interface_Check.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <IGESData_Protocol.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Message_Messenger.hxx>
-#include <Interface_ParamList.hxx>
-#include <IGESData_FileRecognizer.hxx>
-#include <Interface_Check.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_Protocol.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <IGESData_DirPart.hxx>
-#include <IGESData_ParamReader.hxx>
 #include <IGESData_Protocol.hxx>
 #include <IGESData_Protocol.hxx>
 #include <IGESData_IGESModel.hxx>
@@ -184,17 +107,94 @@ namespace py = pybind11;
 #include <IGESData_NodeOfWriterLib.hxx>
 #include <IGESData_GlobalNodeOfSpecificLib.hxx>
 #include <IGESData_NodeOfSpecificLib.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <IGESData_SpecificModule.hxx>
+#include <IGESData_ReadWriteModule.hxx>
 #include <IGESData_Protocol.hxx>
 #include <IGESData_IGESEntity.hxx>
-#include <IGESData_SpecificLib.hxx>
-#include <IGESData_NodeOfSpecificLib.hxx>
+#include <IGESData_WriterLib.hxx>
+#include <IGESData_NodeOfWriterLib.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Interface_ParamList.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamCursor.hxx>
+#include <Message_Msg.hxx>
+#include <gp_XY.hxx>
+#include <gp_XYZ.hxx>
+#include <Standard_DomainError.hxx>
+#include <Interface_FileReaderData.hxx>
+#include <Interface_Check.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Interface_ParamList.hxx>
+#include <IGESData_FileRecognizer.hxx>
+#include <Interface_Check.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_Protocol.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_DirPart.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESType.hxx>
+#include <IGESData_NodeOfWriterLib.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_ReadWriteModule.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IGESData_GlobalNodeOfWriterLib.hxx>
 #include <IGESData_GlobalNodeOfSpecificLib.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <IGESData_SpecificModule.hxx>
 #include <IGESData_Protocol.hxx>
 #include <IGESData_SpecificLib.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_UndefinedContent.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_DirPart.hxx>
+#include <Interface_Check.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <IGESData_IGESType.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_SpecificModule.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_SpecificLib.hxx>
+#include <IGESData_NodeOfSpecificLib.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_CopyTool.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <gp_GTrsf.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <Interface_InterfaceMismatch.hxx>
+#include <IGESData_Protocol.hxx>
+#include <IGESData_GlobalSection.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <gp_XY.hxx>
+#include <gp_XYZ.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_Check.hxx>
 
 // module includes
 #include <IGESData.hxx>
@@ -270,6 +270,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     public:
         using IGESData_FileRecognizer::IGESData_FileRecognizer;
         
+        
         // public pure virtual
         
         
@@ -283,6 +284,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     class Py_IGESData_GeneralModule : public IGESData_GeneralModule{
     public:
         using IGESData_GeneralModule::IGESData_GeneralModule;
+        
         
         // public pure virtual
         void OwnSharedCase(const Standard_Integer CN,const opencascade::handle<IGESData_IGESEntity> & ent,Interface_EntityIterator & iter) const  override { PYBIND11_OVERLOAD_PURE(void,IGESData_GeneralModule,OwnSharedCase,CN,ent,iter) };
@@ -302,6 +304,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     public:
         using IGESData_ReadWriteModule::IGESData_ReadWriteModule;
         
+        
         // public pure virtual
         Standard_Integer CaseIGES(const Standard_Integer typenum,const Standard_Integer formnum) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,IGESData_ReadWriteModule,CaseIGES,typenum,formnum) };
         void ReadOwnParams(const Standard_Integer CN,const opencascade::handle<IGESData_IGESEntity> & ent,const opencascade::handle<IGESData_IGESReaderData> & IR,IGESData_ParamReader & PR) const  override { PYBIND11_OVERLOAD_PURE(void,IGESData_ReadWriteModule,ReadOwnParams,CN,ent,IR,PR) };
@@ -318,6 +321,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     public:
         using IGESData_SpecificModule::IGESData_SpecificModule;
         
+        
         // public pure virtual
         void OwnDump(const Standard_Integer CN,const opencascade::handle<IGESData_IGESEntity> & ent,const IGESData_IGESDumper & dumper,const opencascade::handle<Message_Messenger> & S,const Standard_Integer own) const  override { PYBIND11_OVERLOAD_PURE(void,IGESData_SpecificModule,OwnDump,CN,ent,dumper,S,own) };
         
@@ -331,6 +335,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     class Py_IGESData_LevelListEntity : public IGESData_LevelListEntity{
     public:
         using IGESData_LevelListEntity::IGESData_LevelListEntity;
+        
         
         // public pure virtual
         Standard_Integer NbLevelNumbers() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,IGESData_LevelListEntity,NbLevelNumbers,) };
@@ -347,6 +352,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     public:
         using IGESData_NameEntity::IGESData_NameEntity;
         
+        
         // public pure virtual
         opencascade::handle<TCollection_HAsciiString> Value() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<TCollection_HAsciiString>,IGESData_NameEntity,Value,) };
         
@@ -360,6 +366,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     class Py_IGESData_SingleParentEntity : public IGESData_SingleParentEntity{
     public:
         using IGESData_SingleParentEntity::IGESData_SingleParentEntity;
+        
         
         // public pure virtual
         opencascade::handle<IGESData_IGESEntity> SingleParent() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<IGESData_IGESEntity>,IGESData_SingleParentEntity,SingleParent,) };
@@ -377,6 +384,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     public:
         using IGESData_TransfEntity::IGESData_TransfEntity;
         
+        
         // public pure virtual
         gp_GTrsf Value() const  override { PYBIND11_OVERLOAD_PURE(gp_GTrsf,IGESData_TransfEntity,Value,) };
         
@@ -390,6 +398,7 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     class Py_IGESData_ViewKindEntity : public IGESData_ViewKindEntity{
     public:
         using IGESData_ViewKindEntity::IGESData_ViewKindEntity;
+        
         
         // public pure virtual
         Standard_Boolean IsSingle() const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IGESData_ViewKindEntity,IsSingle,) };
@@ -406,9 +415,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESData , shared_ptr<IGESData>>(m,"IGESData");
 
     static_cast<py::class_<IGESData , shared_ptr<IGESData>  >>(m.attr("IGESData"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -420,14 +432,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(Returns a Protocol from IGESData (avoids to create it))#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_BasicEditor , shared_ptr<IGESData_BasicEditor>  >>(m.attr("IGESData_BasicEditor"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<IGESData_Protocol> & >()  , py::arg("protocol") )
         .def(py::init< const opencascade::handle<IGESData_IGESModel> &,const opencascade::handle<IGESData_Protocol> & >()  , py::arg("model"),  py::arg("protocol") )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESData_BasicEditor::*)( const opencascade::handle<IGESData_Protocol> &  ) ) static_cast<void (IGESData_BasicEditor::*)( const opencascade::handle<IGESData_Protocol> &  ) >(&IGESData_BasicEditor::Init),
@@ -484,12 +498,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(Returns the maximum allowed value for Drafting Flag)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_DefSwitch , shared_ptr<IGESData_DefSwitch>  >>(m.attr("IGESData_DefSwitch"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetVoid",
              (void (IGESData_DefSwitch::*)() ) static_cast<void (IGESData_DefSwitch::*)() >(&IGESData_DefSwitch::SetVoid),
@@ -510,15 +526,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_DirChecker , shared_ptr<IGESData_DirChecker>  >>(m.attr("IGESData_DirChecker"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("atype") )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("atype"),  py::arg("aform") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("atype"),  py::arg("aform1"),  py::arg("aform2") )
+    // custom constructors
     // methods
         .def("IsSet",
              (Standard_Boolean (IGESData_DirChecker::*)() const) static_cast<Standard_Boolean (IGESData_DirChecker::*)() const>(&IGESData_DirChecker::IsSet),
@@ -578,12 +596,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_DirPart , shared_ptr<IGESData_DirPart>  >>(m.attr("IGESData_DirPart"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESData_DirPart::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_CString ,  const Standard_CString ,  const Standard_CString ,  const Standard_CString  ) ) static_cast<void (IGESData_DirPart::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_CString ,  const Standard_CString ,  const Standard_CString ,  const Standard_CString  ) >(&IGESData_DirPart::Init),
@@ -598,11 +618,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_FileRecognizer ,opencascade::handle<IGESData_FileRecognizer> ,Py_IGESData_FileRecognizer , Standard_Transient >>(m.attr("IGESData_FileRecognizer"))
+    // constructors
+    // custom constructors
     // methods
         .def("Evaluate",
              (Standard_Boolean (IGESData_FileRecognizer::*)( const IGESData_IGESType & ,  opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<Standard_Boolean (IGESData_FileRecognizer::*)( const IGESData_IGESType & ,  opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESData_FileRecognizer::Evaluate),
@@ -626,11 +648,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_GeneralModule ,opencascade::handle<IGESData_GeneralModule> ,Py_IGESData_GeneralModule , Interface_GeneralModule >>(m.attr("IGESData_GeneralModule"))
+    // constructors
+    // custom constructors
     // methods
         .def("FillSharedCase",
              (void (IGESData_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESData_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  Interface_EntityIterator &  ) const>(&IGESData_GeneralModule::FillSharedCase),
@@ -693,12 +717,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_GlobalNodeOfSpecificLib ,opencascade::handle<IGESData_GlobalNodeOfSpecificLib>  , Standard_Transient >>(m.attr("IGESData_GlobalNodeOfSpecificLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (IGESData_GlobalNodeOfSpecificLib::*)( const opencascade::handle<IGESData_SpecificModule> & ,  const opencascade::handle<IGESData_Protocol> &  ) ) static_cast<void (IGESData_GlobalNodeOfSpecificLib::*)( const opencascade::handle<IGESData_SpecificModule> & ,  const opencascade::handle<IGESData_Protocol> &  ) >(&IGESData_GlobalNodeOfSpecificLib::Add),
@@ -725,12 +751,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_GlobalNodeOfWriterLib ,opencascade::handle<IGESData_GlobalNodeOfWriterLib>  , Standard_Transient >>(m.attr("IGESData_GlobalNodeOfWriterLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (IGESData_GlobalNodeOfWriterLib::*)( const opencascade::handle<IGESData_ReadWriteModule> & ,  const opencascade::handle<IGESData_Protocol> &  ) ) static_cast<void (IGESData_GlobalNodeOfWriterLib::*)( const opencascade::handle<IGESData_ReadWriteModule> & ,  const opencascade::handle<IGESData_Protocol> &  ) >(&IGESData_GlobalNodeOfWriterLib::Add),
@@ -757,12 +785,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_GlobalSection , shared_ptr<IGESData_GlobalSection>  >>(m.attr("IGESData_GlobalSection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESData_GlobalSection::*)( const opencascade::handle<Interface_ParamSet> & ,  opencascade::handle<Interface_Check> &  ) ) static_cast<void (IGESData_GlobalSection::*)( const opencascade::handle<Interface_ParamSet> & ,  opencascade::handle<Interface_Check> &  ) >(&IGESData_GlobalSection::Init),
@@ -963,14 +993,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(Converts the string given in the form YYMMDD.HHNNSS or YYYYMMDD.HHNNSS to either YYMMDD.HHNNSS, YYYYMMDD.HHNNSS or YYYY-MM-DD:HH-NN-SS.)#"  , py::arg("date"),  py::arg("mode")=static_cast<const Standard_Integer>(1))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_HArray1OfIGESEntity ,opencascade::handle<IGESData_HArray1OfIGESEntity>  , IGESData_Array1OfIGESEntity , Standard_Transient >>(m.attr("IGESData_HArray1OfIGESEntity"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESData_IGESEntity> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESData_IGESEntity> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESData_Array1OfIGESEntity & (IGESData_HArray1OfIGESEntity::*)() const) static_cast<const IGESData_Array1OfIGESEntity & (IGESData_HArray1OfIGESEntity::*)() const>(&IGESData_HArray1OfIGESEntity::Array1),
@@ -991,12 +1024,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_IGESDumper , shared_ptr<IGESData_IGESDumper>  >>(m.attr("IGESData_IGESDumper"))
+    // constructors
         .def(py::init< const opencascade::handle<IGESData_IGESModel> &,const opencascade::handle<IGESData_Protocol> & >()  , py::arg("model"),  py::arg("protocol") )
+    // custom constructors
     // methods
         .def("PrintDNum",
              (void (IGESData_IGESDumper::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<Message_Messenger> &  ) const) static_cast<void (IGESData_IGESDumper::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const opencascade::handle<Message_Messenger> &  ) const>(&IGESData_IGESDumper::PrintDNum),
@@ -1014,11 +1049,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_IGESEntity ,opencascade::handle<IGESData_IGESEntity>  , Standard_Transient >>(m.attr("IGESData_IGESEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("IGESType",
              (IGESData_IGESType (IGESData_IGESEntity::*)() const) static_cast<IGESData_IGESType (IGESData_IGESEntity::*)() const>(&IGESData_IGESEntity::IGESType),
@@ -1228,12 +1265,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_IGESModel ,opencascade::handle<IGESData_IGESModel>  , Interface_InterfaceModel >>(m.attr("IGESData_IGESModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ClearHeader",
              (void (IGESData_IGESModel::*)() ) static_cast<void (IGESData_IGESModel::*)() >(&IGESData_IGESModel::ClearHeader),
@@ -1314,12 +1353,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_IGESReaderData ,opencascade::handle<IGESData_IGESReaderData>  , Interface_FileReaderData >>(m.attr("IGESData_IGESReaderData"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("nbe"),  py::arg("nbp") )
+    // custom constructors
     // methods
         .def("AddStartLine",
              (void (IGESData_IGESReaderData::*)( const Standard_CString  ) ) static_cast<void (IGESData_IGESReaderData::*)( const Standard_CString  ) >(&IGESData_IGESReaderData::AddStartLine),
@@ -1376,12 +1417,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_IGESReaderTool , shared_ptr<IGESData_IGESReaderTool>  , Interface_FileReaderTool >>(m.attr("IGESData_IGESReaderTool"))
+    // constructors
         .def(py::init< const opencascade::handle<IGESData_IGESReaderData> &,const opencascade::handle<IGESData_Protocol> & >()  , py::arg("reader"),  py::arg("protocol") )
+    // custom constructors
     // methods
         .def("Prepare",
              (void (IGESData_IGESReaderTool::*)( const opencascade::handle<IGESData_FileRecognizer> &  ) ) static_cast<void (IGESData_IGESReaderTool::*)( const opencascade::handle<IGESData_FileRecognizer> &  ) >(&IGESData_IGESReaderTool::Prepare),
@@ -1414,13 +1457,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_IGESType , shared_ptr<IGESData_IGESType>  >>(m.attr("IGESData_IGESType"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("atype"),  py::arg("aform") )
+    // custom constructors
     // methods
         .def("Type",
              (Standard_Integer (IGESData_IGESType::*)() const) static_cast<Standard_Integer (IGESData_IGESType::*)() const>(&IGESData_IGESType::Type),
@@ -1438,14 +1483,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_IGESWriter , shared_ptr<IGESData_IGESWriter>  >>(m.attr("IGESData_IGESWriter"))
+    // constructors
         .def(py::init< const opencascade::handle<IGESData_IGESModel> & >()  , py::arg("amodel") )
         .def(py::init<  >()  )
         .def(py::init< const IGESData_IGESWriter & >()  , py::arg("other") )
+    // custom constructors
     // methods
         .def("FloatWriter",
              (Interface_FloatWriter & (IGESData_IGESWriter::*)() ) static_cast<Interface_FloatWriter & (IGESData_IGESWriter::*)() >(&IGESData_IGESWriter::FloatWriter),
@@ -1523,12 +1570,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_NodeOfSpecificLib ,opencascade::handle<IGESData_NodeOfSpecificLib>  , Standard_Transient >>(m.attr("IGESData_NodeOfSpecificLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddNode",
              (void (IGESData_NodeOfSpecificLib::*)( const opencascade::handle<IGESData_GlobalNodeOfSpecificLib> &  ) ) static_cast<void (IGESData_NodeOfSpecificLib::*)( const opencascade::handle<IGESData_GlobalNodeOfSpecificLib> &  ) >(&IGESData_NodeOfSpecificLib::AddNode),
@@ -1555,12 +1604,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_NodeOfWriterLib ,opencascade::handle<IGESData_NodeOfWriterLib>  , Standard_Transient >>(m.attr("IGESData_NodeOfWriterLib"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddNode",
              (void (IGESData_NodeOfWriterLib::*)( const opencascade::handle<IGESData_GlobalNodeOfWriterLib> &  ) ) static_cast<void (IGESData_NodeOfWriterLib::*)( const opencascade::handle<IGESData_GlobalNodeOfWriterLib> &  ) >(&IGESData_NodeOfWriterLib::AddNode),
@@ -1587,13 +1638,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_ParamCursor , shared_ptr<IGESData_ParamCursor>  >>(m.attr("IGESData_ParamCursor"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("num") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("num"),  py::arg("nb"),  py::arg("size")=static_cast<const Standard_Integer>(1) )
+    // custom constructors
     // methods
         .def("SetTerm",
              (void (IGESData_ParamCursor::*)( const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (IGESData_ParamCursor::*)( const Standard_Integer ,  const Standard_Boolean  ) >(&IGESData_ParamCursor::SetTerm),
@@ -1656,12 +1709,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_ParamReader , shared_ptr<IGESData_ParamReader>  >>(m.attr("IGESData_ParamReader"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_ParamList> &,const opencascade::handle<Interface_Check> &,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("list"),  py::arg("ach"),  py::arg("base")=static_cast<const Standard_Integer>(1),  py::arg("nbpar")=static_cast<const Standard_Integer>(0),  py::arg("num")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("EntityNumber",
              (Standard_Integer (IGESData_ParamReader::*)() const) static_cast<Standard_Integer (IGESData_ParamReader::*)() const>(&IGESData_ParamReader::EntityNumber),
@@ -1841,12 +1896,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_Protocol ,opencascade::handle<IGESData_Protocol>  , Interface_Protocol >>(m.attr("IGESData_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (IGESData_Protocol::*)() const) static_cast<Standard_Integer (IGESData_Protocol::*)() const>(&IGESData_Protocol::NbResources),
@@ -1882,11 +1939,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_ReadWriteModule ,opencascade::handle<IGESData_ReadWriteModule> ,Py_IGESData_ReadWriteModule , Interface_ReaderModule >>(m.attr("IGESData_ReadWriteModule"))
+    // constructors
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (IGESData_ReadWriteModule::*)( const opencascade::handle<Interface_FileReaderData> & ,  const Standard_Integer  ) const) static_cast<Standard_Integer (IGESData_ReadWriteModule::*)( const opencascade::handle<Interface_FileReaderData> & ,  const Standard_Integer  ) const>(&IGESData_ReadWriteModule::CaseNum),
@@ -1916,13 +1975,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_SpecificLib , shared_ptr<IGESData_SpecificLib>  >>(m.attr("IGESData_SpecificLib"))
+    // constructors
         .def(py::init< const opencascade::handle<IGESData_Protocol> & >()  , py::arg("aprotocol") )
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddProtocol",
              (void (IGESData_SpecificLib::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IGESData_SpecificLib::*)( const opencascade::handle<Standard_Transient> &  ) >(&IGESData_SpecificLib::AddProtocol),
@@ -1958,11 +2019,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(Adds a couple (Module-Protocol) into the global definition set for this class of Library.)#"  , py::arg("amodule"),  py::arg("aprotocol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_SpecificModule ,opencascade::handle<IGESData_SpecificModule> ,Py_IGESData_SpecificModule , Standard_Transient >>(m.attr("IGESData_SpecificModule"))
+    // constructors
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESData_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESData_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESData_SpecificModule::OwnDump),
@@ -1983,12 +2046,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_ToolLocation ,opencascade::handle<IGESData_ToolLocation>  , Standard_Transient >>(m.attr("IGESData_ToolLocation"))
+    // constructors
         .def(py::init< const opencascade::handle<IGESData_IGESModel> &,const opencascade::handle<IGESData_Protocol> & >()  , py::arg("amodel"),  py::arg("protocol") )
+    // custom constructors
     // methods
         .def("Load",
              (void (IGESData_ToolLocation::*)() ) static_cast<void (IGESData_ToolLocation::*)() >(&IGESData_ToolLocation::Load),
@@ -2057,13 +2122,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_WriterLib , shared_ptr<IGESData_WriterLib>  >>(m.attr("IGESData_WriterLib"))
+    // constructors
         .def(py::init< const opencascade::handle<IGESData_Protocol> & >()  , py::arg("aprotocol") )
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddProtocol",
              (void (IGESData_WriterLib::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (IGESData_WriterLib::*)( const opencascade::handle<Standard_Transient> &  ) >(&IGESData_WriterLib::AddProtocol),
@@ -2099,12 +2166,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(Adds a couple (Module-Protocol) into the global definition set for this class of Library.)#"  , py::arg("amodule"),  py::arg("aprotocol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IGESData_ColorEntity ,opencascade::handle<IGESData_ColorEntity>>(m,"IGESData_ColorEntity");
 
     static_cast<py::class_<IGESData_ColorEntity ,opencascade::handle<IGESData_ColorEntity>  , IGESData_IGESEntity >>(m.attr("IGESData_ColorEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IGESData_ColorEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IGESData_ColorEntity::*)() const>(&IGESData_ColorEntity::DynamicType),
@@ -2119,12 +2189,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_DefaultGeneral ,opencascade::handle<IGESData_DefaultGeneral>  , IGESData_GeneralModule >>(m.attr("IGESData_DefaultGeneral"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnSharedCase",
              (void (IGESData_DefaultGeneral::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESData_DefaultGeneral::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const>(&IGESData_DefaultGeneral::OwnSharedCase),
@@ -2154,12 +2226,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_DefaultSpecific ,opencascade::handle<IGESData_DefaultSpecific>  , IGESData_SpecificModule >>(m.attr("IGESData_DefaultSpecific"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESData_DefaultSpecific::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESData_DefaultSpecific::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESData_DefaultSpecific::OwnDump),
@@ -2177,12 +2251,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_FileProtocol ,opencascade::handle<IGESData_FileProtocol>  , IGESData_Protocol >>(m.attr("IGESData_FileProtocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (IGESData_FileProtocol::*)( const opencascade::handle<IGESData_Protocol> &  ) ) static_cast<void (IGESData_FileProtocol::*)( const opencascade::handle<IGESData_Protocol> &  ) >(&IGESData_FileProtocol::Add),
@@ -2206,12 +2282,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IGESData_LabelDisplayEntity ,opencascade::handle<IGESData_LabelDisplayEntity>>(m,"IGESData_LabelDisplayEntity");
 
     static_cast<py::class_<IGESData_LabelDisplayEntity ,opencascade::handle<IGESData_LabelDisplayEntity>  , IGESData_IGESEntity >>(m.attr("IGESData_LabelDisplayEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IGESData_LabelDisplayEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IGESData_LabelDisplayEntity::*)() const>(&IGESData_LabelDisplayEntity::DynamicType),
@@ -2226,11 +2305,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_LevelListEntity ,opencascade::handle<IGESData_LevelListEntity> ,Py_IGESData_LevelListEntity , IGESData_IGESEntity >>(m.attr("IGESData_LevelListEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbLevelNumbers",
              (Standard_Integer (IGESData_LevelListEntity::*)() const) static_cast<Standard_Integer (IGESData_LevelListEntity::*)() const>(&IGESData_LevelListEntity::NbLevelNumbers),
@@ -2254,12 +2335,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IGESData_LineFontEntity ,opencascade::handle<IGESData_LineFontEntity>>(m,"IGESData_LineFontEntity");
 
     static_cast<py::class_<IGESData_LineFontEntity ,opencascade::handle<IGESData_LineFontEntity>  , IGESData_IGESEntity >>(m.attr("IGESData_LineFontEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IGESData_LineFontEntity::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IGESData_LineFontEntity::*)() const>(&IGESData_LineFontEntity::DynamicType),
@@ -2274,11 +2358,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_NameEntity ,opencascade::handle<IGESData_NameEntity> ,Py_IGESData_NameEntity , IGESData_IGESEntity >>(m.attr("IGESData_NameEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (opencascade::handle<TCollection_HAsciiString> (IGESData_NameEntity::*)() const) static_cast<opencascade::handle<TCollection_HAsciiString> (IGESData_NameEntity::*)() const>(&IGESData_NameEntity::Value),
@@ -2296,11 +2382,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_SingleParentEntity ,opencascade::handle<IGESData_SingleParentEntity> ,Py_IGESData_SingleParentEntity , IGESData_IGESEntity >>(m.attr("IGESData_SingleParentEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("SingleParent",
              (opencascade::handle<IGESData_IGESEntity> (IGESData_SingleParentEntity::*)() const) static_cast<opencascade::handle<IGESData_IGESEntity> (IGESData_SingleParentEntity::*)() const>(&IGESData_SingleParentEntity::SingleParent),
@@ -2324,11 +2412,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_TransfEntity ,opencascade::handle<IGESData_TransfEntity> ,Py_IGESData_TransfEntity , IGESData_IGESEntity >>(m.attr("IGESData_TransfEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (gp_GTrsf (IGESData_TransfEntity::*)() const) static_cast<gp_GTrsf (IGESData_TransfEntity::*)() const>(&IGESData_TransfEntity::Value),
@@ -2346,12 +2436,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_UndefinedEntity ,opencascade::handle<IGESData_UndefinedEntity>  , IGESData_IGESEntity >>(m.attr("IGESData_UndefinedEntity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("UndefinedContent",
              (opencascade::handle<Interface_UndefinedContent> (IGESData_UndefinedEntity::*)() const) static_cast<opencascade::handle<Interface_UndefinedContent> (IGESData_UndefinedEntity::*)() const>(&IGESData_UndefinedEntity::UndefinedContent),
@@ -2408,11 +2500,13 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_ViewKindEntity ,opencascade::handle<IGESData_ViewKindEntity> ,Py_IGESData_ViewKindEntity , IGESData_IGESEntity >>(m.attr("IGESData_ViewKindEntity"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsSingle",
              (Standard_Boolean (IGESData_ViewKindEntity::*)() const) static_cast<Standard_Boolean (IGESData_ViewKindEntity::*)() const>(&IGESData_ViewKindEntity::IsSingle),
@@ -2436,12 +2530,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESData_FreeFormatEntity ,opencascade::handle<IGESData_FreeFormatEntity>  , IGESData_UndefinedEntity >>(m.attr("IGESData_FreeFormatEntity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetTypeNumber",
              (void (IGESData_FreeFormatEntity::*)( const Standard_Integer  ) ) static_cast<void (IGESData_FreeFormatEntity::*)( const Standard_Integer  ) >(&IGESData_FreeFormatEntity::SetTypeNumber),
@@ -2507,58 +2603,58 @@ py::module m = static_cast<py::module>(main_module.attr("IGESData"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESData_NodeOfWriterLib.hxx
-// ./opencascade/IGESData_Protocol.hxx
-// ./opencascade/IGESData_DefSwitch.hxx
-// ./opencascade/IGESData_FileRecognizer.hxx
-// ./opencascade/IGESData_IGESEntity.hxx
-// ./opencascade/IGESData_FreeFormatEntity.hxx
-// ./opencascade/IGESData_LevelListEntity.hxx
-// ./opencascade/IGESData_DefList.hxx
 // ./opencascade/IGESData_GlobalSection.hxx
-// ./opencascade/IGESData_ParamCursor.hxx
-// ./opencascade/IGESData_ParamReader.hxx
-// ./opencascade/IGESData_Array1OfDirPart.hxx
-// ./opencascade/IGESData_Status.hxx
-// ./opencascade/IGESData_Array1OfIGESEntity.hxx
-// ./opencascade/IGESData_SingleParentEntity.hxx
-// ./opencascade/IGESData_DefaultGeneral.hxx
-// ./opencascade/IGESData_BasicEditor.hxx
-// ./opencascade/IGESData_GlobalNodeOfWriterLib.hxx
-// ./opencascade/IGESData_IGESWriter.hxx
-// ./opencascade/IGESData_DirChecker.hxx
 // ./opencascade/IGESData_SpecificLib.hxx
-// ./opencascade/IGESData_WriterLib.hxx
-// ./opencascade/IGESData_IGESType.hxx
+// ./opencascade/IGESData_NodeOfWriterLib.hxx
 // ./opencascade/IGESData_IGESReaderData.hxx
-// ./opencascade/IGESData_ReadWriteModule.hxx
-// ./opencascade/IGESData_ViewKindEntity.hxx
-// ./opencascade/IGESData_TransfEntity.hxx
-// ./opencascade/IGESData_ColorEntity.hxx
-// ./opencascade/IGESData_DirPart.hxx
-// ./opencascade/IGESData_GeneralModule.hxx
-// ./opencascade/IGESData_FileProtocol.hxx
-// ./opencascade/IGESData_IGESModel.hxx
-// ./opencascade/IGESData_HArray1OfIGESEntity.hxx
 // ./opencascade/IGESData_ToolLocation.hxx
-// ./opencascade/IGESData_SpecificModule.hxx
-// ./opencascade/IGESData_UndefinedEntity.hxx
-// ./opencascade/IGESData_ReadStage.hxx
-// ./opencascade/IGESData_DefaultSpecific.hxx
-// ./opencascade/IGESData_LabelDisplayEntity.hxx
+// ./opencascade/IGESData_LevelListEntity.hxx
+// ./opencascade/IGESData_DirChecker.hxx
+// ./opencascade/IGESData_FreeFormatEntity.hxx
 // ./opencascade/IGESData_IGESDumper.hxx
-// ./opencascade/IGESData_IGESReaderTool.hxx
+// ./opencascade/IGESData_DefaultGeneral.hxx
+// ./opencascade/IGESData_IGESEntity.hxx
+// ./opencascade/IGESData_LabelDisplayEntity.hxx
 // ./opencascade/IGESData.hxx
-// ./opencascade/IGESData_NameEntity.hxx
-// ./opencascade/IGESData_DefType.hxx
-// ./opencascade/IGESData_LineFontEntity.hxx
-// ./opencascade/IGESData_GlobalNodeOfSpecificLib.hxx
+// ./opencascade/IGESData_GlobalNodeOfWriterLib.hxx
+// ./opencascade/IGESData_Array1OfDirPart.hxx
+// ./opencascade/IGESData_FileProtocol.hxx
+// ./opencascade/IGESData_ViewKindEntity.hxx
+// ./opencascade/IGESData_DefList.hxx
+// ./opencascade/IGESData_DefSwitch.hxx
+// ./opencascade/IGESData_ParamReader.hxx
+// ./opencascade/IGESData_ReadWriteModule.hxx
+// ./opencascade/IGESData_SingleParentEntity.hxx
+// ./opencascade/IGESData_IGESReaderTool.hxx
 // ./opencascade/IGESData_Dump.hxx
+// ./opencascade/IGESData_DirPart.hxx
+// ./opencascade/IGESData_WriterLib.hxx
 // ./opencascade/IGESData_NodeOfSpecificLib.hxx
+// ./opencascade/IGESData_Protocol.hxx
+// ./opencascade/IGESData_ReadStage.hxx
+// ./opencascade/IGESData_UndefinedEntity.hxx
+// ./opencascade/IGESData_IGESType.hxx
+// ./opencascade/IGESData_ParamCursor.hxx
+// ./opencascade/IGESData_SpecificModule.hxx
+// ./opencascade/IGESData_LineFontEntity.hxx
+// ./opencascade/IGESData_FileRecognizer.hxx
+// ./opencascade/IGESData_BasicEditor.hxx
+// ./opencascade/IGESData_GlobalNodeOfSpecificLib.hxx
+// ./opencascade/IGESData_Status.hxx
+// ./opencascade/IGESData_DefaultSpecific.hxx
+// ./opencascade/IGESData_ColorEntity.hxx
+// ./opencascade/IGESData_HArray1OfIGESEntity.hxx
+// ./opencascade/IGESData_Array1OfIGESEntity.hxx
+// ./opencascade/IGESData_GeneralModule.hxx
+// ./opencascade/IGESData_TransfEntity.hxx
+// ./opencascade/IGESData_DefType.hxx
+// ./opencascade/IGESData_NameEntity.hxx
+// ./opencascade/IGESData_IGESWriter.hxx
+// ./opencascade/IGESData_IGESModel.hxx
 
 // operators
 

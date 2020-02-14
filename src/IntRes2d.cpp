@@ -27,9 +27,9 @@ namespace py = pybind11;
 #include <IntRes2d_TypeTrans.hxx>
 
 // template related includes
-// ./opencascade/IntRes2d_SequenceOfIntersectionSegment.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntRes2d_SequenceOfIntersectionPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntRes2d_SequenceOfIntersectionSegment.hxx
 #include "NCollection.hxx"
 
 
@@ -51,9 +51,11 @@ py::module m = static_cast<py::module>(main_module.attr("IntRes2d"));
 
 
     static_cast<py::class_<IntRes2d_Domain , shared_ptr<IntRes2d_Domain>  >>(m.attr("IntRes2d_Domain"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Standard_Real,const Standard_Real,const gp_Pnt2d &,const Standard_Real,const Standard_Real >()  , py::arg("Pnt1"),  py::arg("Par1"),  py::arg("Tol1"),  py::arg("Pnt2"),  py::arg("Par2"),  py::arg("Tol2") )
         .def(py::init< const gp_Pnt2d &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Pnt"),  py::arg("Par"),  py::arg("Tol"),  py::arg("First") )
+    // custom constructors
     // methods
         .def("SetValues",
              (void (IntRes2d_Domain::*)( const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntRes2d_Domain::*)( const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real  ) >(&IntRes2d_Domain::SetValues),
@@ -134,11 +136,13 @@ py::module m = static_cast<py::module>(main_module.attr("IntRes2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntRes2d_Intersection , shared_ptr_nodelete<IntRes2d_Intersection>  >>(m.attr("IntRes2d_Intersection"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (IntRes2d_Intersection::*)() const) static_cast<Standard_Boolean (IntRes2d_Intersection::*)() const>(&IntRes2d_Intersection::IsDone),
@@ -186,13 +190,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntRes2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntRes2d_IntersectionPoint , shared_ptr<IntRes2d_IntersectionPoint>  >>(m.attr("IntRes2d_IntersectionPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Standard_Real,const Standard_Real,const IntRes2d_Transition &,const IntRes2d_Transition &,const Standard_Boolean >()  , py::arg("P"),  py::arg("Uc1"),  py::arg("Uc2"),  py::arg("Trans1"),  py::arg("Trans2"),  py::arg("ReversedFlag") )
+    // custom constructors
     // methods
         .def("SetValues",
              (void (IntRes2d_IntersectionPoint::*)( const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real ,  const IntRes2d_Transition & ,  const IntRes2d_Transition & ,  const Standard_Boolean  ) ) static_cast<void (IntRes2d_IntersectionPoint::*)( const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Real ,  const IntRes2d_Transition & ,  const IntRes2d_Transition & ,  const Standard_Boolean  ) >(&IntRes2d_IntersectionPoint::SetValues),
@@ -234,15 +240,17 @@ py::module m = static_cast<py::module>(main_module.attr("IntRes2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntRes2d_IntersectionSegment , shared_ptr<IntRes2d_IntersectionSegment>  >>(m.attr("IntRes2d_IntersectionSegment"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntRes2d_IntersectionPoint &,const IntRes2d_IntersectionPoint &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("P1"),  py::arg("P2"),  py::arg("Oppos"),  py::arg("ReverseFlag") )
         .def(py::init< const IntRes2d_IntersectionPoint &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("P"),  py::arg("First"),  py::arg("Oppos"),  py::arg("ReverseFlag") )
         .def(py::init< const Standard_Boolean >()  , py::arg("Oppos") )
+    // custom constructors
     // methods
         .def("IsOpposite",
              (Standard_Boolean (IntRes2d_IntersectionSegment::*)() const) static_cast<Standard_Boolean (IntRes2d_IntersectionSegment::*)() const>(&IntRes2d_IntersectionSegment::IsOpposite),
@@ -278,15 +286,17 @@ py::module m = static_cast<py::module>(main_module.attr("IntRes2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntRes2d_Transition , shared_ptr<IntRes2d_Transition>  >>(m.attr("IntRes2d_Transition"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean,const IntRes2d_Position,const IntRes2d_TypeTrans >()  , py::arg("Tangent"),  py::arg("Pos"),  py::arg("Type") )
         .def(py::init< const Standard_Boolean,const IntRes2d_Position,const IntRes2d_Situation,const Standard_Boolean >()  , py::arg("Tangent"),  py::arg("Pos"),  py::arg("Situ"),  py::arg("Oppos") )
         .def(py::init< const IntRes2d_Position >()  , py::arg("Pos") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntRes2d_Transition::*)( const Standard_Boolean ,  const IntRes2d_Position ,  const IntRes2d_TypeTrans  ) ) static_cast<void (IntRes2d_Transition::*)( const Standard_Boolean ,  const IntRes2d_Position ,  const IntRes2d_TypeTrans  ) >(&IntRes2d_Transition::SetValue),
@@ -346,26 +356,26 @@ py::module m = static_cast<py::module>(main_module.attr("IntRes2d"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IntRes2d_IntersectionPoint.hxx
-// ./opencascade/IntRes2d_Intersection.hxx
-// ./opencascade/IntRes2d_TypeTrans.hxx
-// ./opencascade/IntRes2d_SequenceOfIntersectionSegment.hxx
-// ./opencascade/IntRes2d_Domain.hxx
-// ./opencascade/IntRes2d_Transition.hxx
-// ./opencascade/IntRes2d_SequenceOfIntersectionPoint.hxx
 // ./opencascade/IntRes2d_IntersectionSegment.hxx
-// ./opencascade/IntRes2d_Position.hxx
+// ./opencascade/IntRes2d_Intersection.hxx
+// ./opencascade/IntRes2d_Domain.hxx
+// ./opencascade/IntRes2d_SequenceOfIntersectionPoint.hxx
 // ./opencascade/IntRes2d_Situation.hxx
+// ./opencascade/IntRes2d_TypeTrans.hxx
+// ./opencascade/IntRes2d_Position.hxx
+// ./opencascade/IntRes2d_IntersectionPoint.hxx
+// ./opencascade/IntRes2d_SequenceOfIntersectionSegment.hxx
+// ./opencascade/IntRes2d_Transition.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<IntRes2d_IntersectionSegment>(m,"IntRes2d_SequenceOfIntersectionSegment");  
     register_template_NCollection_Sequence<IntRes2d_IntersectionPoint>(m,"IntRes2d_SequenceOfIntersectionPoint");  
+    register_template_NCollection_Sequence<IntRes2d_IntersectionSegment>(m,"IntRes2d_SequenceOfIntersectionSegment");  
 
 
 // exceptions

@@ -10,96 +10,94 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <gp_Ax1.hxx>
+#include <Graphic3d_SequenceOfHClipPlane.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <SelectMgr_SelectionManager.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <SelectMgr_SelectableObject.hxx>
+#include <SelectMgr_SelectionManager.hxx>
+#include <SelectMgr_SensitiveEntitySet.hxx>
 #include <V3d_Viewer.hxx>
 #include <SelectMgr_EntityOwner.hxx>
 #include <SelectMgr_EntityOwner.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <SelectMgr_SelectionManager.hxx>
-#include <SelectMgr_SelectionManager.hxx>
-#include <SelectMgr_SensitiveEntitySet.hxx>
 #include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_SelectableObject.hxx>
 
 // module includes
-#include <SelectMgr_SequenceOfFilter.hxx>
-#include <SelectMgr_IndexedDataMapOfOwnerCriterion.hxx>
-#include <SelectMgr_SensitiveEntity.hxx>
-#include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_DataMapOfObjectSelectors.hxx>
-#include <SelectMgr_DataMapIteratorOfDataMapOfObjectSelectors.hxx>
-#include <SelectMgr_Filter.hxx>
-#include <SelectMgr_SequenceOfSelector.hxx>
-#include <SelectMgr_TypeOfUpdate.hxx>
-#include <SelectMgr_Selection.hxx>
-#include <SelectMgr_SelectingVolumeManager.hxx>
-#include <SelectMgr_ListIteratorOfListOfFilter.hxx>
-#include <SelectMgr_SelectionManager.hxx>
-#include <SelectMgr_StateOfSelection.hxx>
-#include <SelectMgr_CompositionFilter.hxx>
-#include <SelectMgr_SelectableObjectSet.hxx>
-#include <SelectMgr_ViewClipRange.hxx>
-#include <SelectMgr_SelectableObject.hxx>
-#include <SelectMgr_FrustumBuilder.hxx>
-#include <SelectMgr_ViewerSelector.hxx>
-#include <SelectMgr_TriangularFrustumSet.hxx>
-#include <SelectMgr_IndexedMapOfOwner.hxx>
-#include <SelectMgr_RectangularFrustum.hxx>
-#include <SelectMgr_TypeOfBVHUpdate.hxx>
-#include <SelectMgr_ToleranceMap.hxx>
-#include <SelectMgr_SortCriterion.hxx>
-#include <SelectMgr_SequenceOfOwner.hxx>
 #include <SelectMgr_BaseFrustum.hxx>
-#include <SelectMgr_SensitiveEntitySet.hxx>
-#include <SelectMgr_TriangularFrustum.hxx>
+#include <SelectMgr_TypeOfUpdate.hxx>
+#include <SelectMgr_StateOfSelection.hxx>
+#include <SelectMgr_SensitiveEntity.hxx>
+#include <SelectMgr_TriangularFrustumSet.hxx>
+#include <SelectMgr_ViewClipRange.hxx>
 #include <SelectMgr_AndFilter.hxx>
+#include <SelectMgr_SelectingVolumeManager.hxx>
+#include <SelectMgr_SortCriterion.hxx>
+#include <SelectMgr_SequenceOfSelection.hxx>
+#include <SelectMgr_SelectableObject.hxx>
+#include <SelectMgr_CompositionFilter.hxx>
+#include <SelectMgr_TriangularFrustum.hxx>
+#include <SelectMgr_Filter.hxx>
+#include <SelectMgr_SOPtr.hxx>
+#include <SelectMgr_SelectableObjectSet.hxx>
+#include <SelectMgr_SequenceOfFilter.hxx>
+#include <SelectMgr_Selection.hxx>
+#include <SelectMgr_ViewerSelector.hxx>
+#include <SelectMgr_IndexedDataMapOfOwnerCriterion.hxx>
+#include <SelectMgr_ListIteratorOfListOfFilter.hxx>
+#include <SelectMgr_ToleranceMap.hxx>
+#include <SelectMgr_EntityOwner.hxx>
+#include <SelectMgr_TypeOfBVHUpdate.hxx>
 #include <SelectMgr_ListOfFilter.hxx>
-#include <SelectMgr_Frustum.hxx>
+#include <SelectMgr_VectorTypes.hxx>
+#include <SelectMgr_SelectionManager.hxx>
+#include <SelectMgr_FrustumBuilder.hxx>
 #include <SelectMgr_PickingStrategy.hxx>
 #include <SelectMgr_OrFilter.hxx>
-#include <SelectMgr_VectorTypes.hxx>
-#include <SelectMgr_SequenceOfSelection.hxx>
-#include <SelectMgr_SOPtr.hxx>
+#include <SelectMgr_SequenceOfOwner.hxx>
+#include <SelectMgr_RectangularFrustum.hxx>
+#include <SelectMgr_SensitiveEntitySet.hxx>
+#include <SelectMgr_Frustum.hxx>
+#include <SelectMgr_IndexedMapOfOwner.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/SelectMgr_SequenceOfFilter.hxx
-// ./opencascade/SelectMgr_IndexedDataMapOfOwnerCriterion.hxx
-// ./opencascade/SelectMgr_SensitiveEntity.hxx
-// ./opencascade/SelectMgr_EntityOwner.hxx
-// ./opencascade/SelectMgr_DataMapOfObjectSelectors.hxx
-// ./opencascade/SelectMgr_DataMapIteratorOfDataMapOfObjectSelectors.hxx
-// ./opencascade/SelectMgr_Filter.hxx
-// ./opencascade/SelectMgr_SequenceOfSelector.hxx
-// ./opencascade/SelectMgr_TypeOfUpdate.hxx
-// ./opencascade/SelectMgr_Selection.hxx
-// ./opencascade/SelectMgr_SelectingVolumeManager.hxx
-// ./opencascade/SelectMgr_ListIteratorOfListOfFilter.hxx
-// ./opencascade/SelectMgr_SelectionManager.hxx
-// ./opencascade/SelectMgr_StateOfSelection.hxx
-// ./opencascade/SelectMgr_CompositionFilter.hxx
-// ./opencascade/SelectMgr_SelectableObjectSet.hxx
-// ./opencascade/SelectMgr_ViewClipRange.hxx
-// ./opencascade/SelectMgr_SelectableObject.hxx
-// ./opencascade/SelectMgr_FrustumBuilder.hxx
-// ./opencascade/SelectMgr_ViewerSelector.hxx
-// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
-// ./opencascade/SelectMgr_IndexedMapOfOwner.hxx
-// ./opencascade/SelectMgr_RectangularFrustum.hxx
-// ./opencascade/SelectMgr_TypeOfBVHUpdate.hxx
-// ./opencascade/SelectMgr_ToleranceMap.hxx
-// ./opencascade/SelectMgr_SortCriterion.hxx
-// ./opencascade/SelectMgr_SequenceOfOwner.hxx
 // ./opencascade/SelectMgr_BaseFrustum.hxx
-// ./opencascade/SelectMgr_SensitiveEntitySet.hxx
-// ./opencascade/SelectMgr_TriangularFrustum.hxx
+// ./opencascade/SelectMgr_TypeOfUpdate.hxx
+// ./opencascade/SelectMgr_StateOfSelection.hxx
+// ./opencascade/SelectMgr_SensitiveEntity.hxx
+// ./opencascade/SelectMgr_TriangularFrustumSet.hxx
+// ./opencascade/SelectMgr_ViewClipRange.hxx
 // ./opencascade/SelectMgr_AndFilter.hxx
+// ./opencascade/SelectMgr_SelectingVolumeManager.hxx
+// ./opencascade/SelectMgr_SortCriterion.hxx
+// ./opencascade/SelectMgr_SequenceOfSelection.hxx
+// ./opencascade/SelectMgr_SelectableObject.hxx
+// ./opencascade/SelectMgr_CompositionFilter.hxx
+// ./opencascade/SelectMgr_TriangularFrustum.hxx
+// ./opencascade/SelectMgr_Filter.hxx
+// ./opencascade/SelectMgr_SOPtr.hxx
+// ./opencascade/SelectMgr_SelectableObjectSet.hxx
+// ./opencascade/SelectMgr_SequenceOfFilter.hxx
+// ./opencascade/SelectMgr_Selection.hxx
+// ./opencascade/SelectMgr_ViewerSelector.hxx
+// ./opencascade/SelectMgr_IndexedDataMapOfOwnerCriterion.hxx
+// ./opencascade/SelectMgr_ListIteratorOfListOfFilter.hxx
+// ./opencascade/SelectMgr_ToleranceMap.hxx
+// ./opencascade/SelectMgr_EntityOwner.hxx
+// ./opencascade/SelectMgr_TypeOfBVHUpdate.hxx
 // ./opencascade/SelectMgr_ListOfFilter.hxx
+// ./opencascade/SelectMgr_VectorTypes.hxx
+// ./opencascade/SelectMgr_SelectionManager.hxx
+// ./opencascade/SelectMgr_FrustumBuilder.hxx
+// ./opencascade/SelectMgr_PickingStrategy.hxx
+// ./opencascade/SelectMgr_OrFilter.hxx
+// ./opencascade/SelectMgr_SequenceOfOwner.hxx
+// ./opencascade/SelectMgr_RectangularFrustum.hxx
+// ./opencascade/SelectMgr_SensitiveEntitySet.hxx
 // ./opencascade/SelectMgr_Frustum.hxx
 
 template <int N>
@@ -113,10 +111,6 @@ void register_template_SelectMgr_Frustum(py::object &m, const char *name){
         .def(py::init<  >()  )
     ;
 };
-// ./opencascade/SelectMgr_PickingStrategy.hxx
-// ./opencascade/SelectMgr_OrFilter.hxx
-// ./opencascade/SelectMgr_VectorTypes.hxx
-// ./opencascade/SelectMgr_SequenceOfSelection.hxx
-// ./opencascade/SelectMgr_SOPtr.hxx
+// ./opencascade/SelectMgr_IndexedMapOfOwner.hxx
 
 // user-defined post

@@ -14,11 +14,29 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Hypr.hxx>
+#include <Standard_NoSuchObject.hxx>
 #include <gp_Circ.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Elips.hxx>
 #include <gp_Parab.hxx>
 #include <gp_Hypr.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Geom2d_BezierCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Pln.hxx>
 #include <gp_Pnt.hxx>
@@ -55,15 +73,9 @@ namespace py = pybind11;
 #include <Adaptor3d_HSurface.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <gp_Circ.hxx>
-#include <gp_Lin.hxx>
 #include <gp_Elips.hxx>
 #include <gp_Parab.hxx>
 #include <gp_Hypr.hxx>
-#include <math_Matrix.hxx>
-#include <gp_Pnt2d.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Geom_BSplineCurve.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <GeomAdaptor_HCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
@@ -75,30 +87,9 @@ namespace py = pybind11;
 #include <gp_Parab.hxx>
 #include <Geom_BezierCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Geom2d_BezierCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <Standard_NotImplemented.hxx>
+#include <gp_Circ.hxx>
 #include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Parab.hxx>
-#include <gp_Hypr.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Parab.hxx>
-#include <gp_Hypr.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
 #include <gp_Elips.hxx>
 #include <gp_Parab.hxx>
 #include <gp_Hypr.hxx>
@@ -108,7 +99,6 @@ namespace py = pybind11;
 #include <Adaptor3d_HSurface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Circ.hxx>
 #include <gp_Elips.hxx>
@@ -118,13 +108,23 @@ namespace py = pybind11;
 #include <Geom2d_BezierCurve.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HSurface.hxx>
 #include <Adaptor3d_HCurve.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <math_Matrix.hxx>
+#include <gp_Pnt2d.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Geom2d_BezierCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Standard_NotImplemented.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Geom2d_BezierCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Hypr.hxx>
 
 // module includes
 #include <ProjLib.hxx>
@@ -168,9 +168,12 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ProjLib , shared_ptr<ProjLib>>(m,"ProjLib");
 
     static_cast<py::class_<ProjLib , shared_ptr<ProjLib>  >>(m.attr("ProjLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -230,14 +233,16 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
                     R"#(Returns "true" if surface is analytical, that is it can be Plane, Cylinder, Cone, Sphere, Torus. For all other types of surface method returns "false".)#"  , py::arg("theAS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_CompProjectedCurve , shared_ptr<ProjLib_CompProjectedCurve>  , Adaptor2d_Curve2d >>(m.attr("ProjLib_CompProjectedCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("C"),  py::arg("TolU"),  py::arg("TolV") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("C"),  py::arg("TolU"),  py::arg("TolV"),  py::arg("MaxDist") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ProjLib_CompProjectedCurve::*)() ) static_cast<void (ProjLib_CompProjectedCurve::*)() >(&ProjLib_CompProjectedCurve::Init),
@@ -315,13 +320,15 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_ComputeApprox , shared_ptr<ProjLib_ComputeApprox>  >>(m.attr("ProjLib_ComputeApprox"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("C"),  py::arg("S"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (ProjLib_ComputeApprox::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (ProjLib_ComputeApprox::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const opencascade::handle<Adaptor3d_HSurface> &  ) >(&ProjLib_ComputeApprox::Perform),
@@ -351,15 +358,17 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_ComputeApproxOnPolarSurface , shared_ptr<ProjLib_ComputeApproxOnPolarSurface>  >>(m.attr("ProjLib_ComputeApproxOnPolarSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("C"),  py::arg("S"),  py::arg("Tol")=static_cast<const Standard_Real>(1.0e-4) )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("InitCurve2d"),  py::arg("C"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("InitCurve2d"),  py::arg("InitCurve2dBis"),  py::arg("C"),  py::arg("S"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("SetDegree",
              (void (ProjLib_ComputeApproxOnPolarSurface::*)( const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (ProjLib_ComputeApproxOnPolarSurface::*)( const Standard_Integer ,  const Standard_Integer  ) >(&ProjLib_ComputeApproxOnPolarSurface::SetDegree),
@@ -404,13 +413,15 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_HCompProjectedCurve ,opencascade::handle<ProjLib_HCompProjectedCurve>  , Adaptor2d_HCurve2d >>(m.attr("ProjLib_HCompProjectedCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const ProjLib_CompProjectedCurve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (ProjLib_HCompProjectedCurve::*)( const ProjLib_CompProjectedCurve &  ) ) static_cast<void (ProjLib_HCompProjectedCurve::*)( const ProjLib_CompProjectedCurve &  ) >(&ProjLib_HCompProjectedCurve::Set),
@@ -434,13 +445,15 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_HProjectedCurve ,opencascade::handle<ProjLib_HProjectedCurve>  , Adaptor2d_HCurve2d >>(m.attr("ProjLib_HProjectedCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const ProjLib_ProjectedCurve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (ProjLib_HProjectedCurve::*)( const ProjLib_ProjectedCurve &  ) ) static_cast<void (ProjLib_HProjectedCurve::*)( const ProjLib_ProjectedCurve &  ) >(&ProjLib_HProjectedCurve::Set),
@@ -464,13 +477,15 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_HSequenceOfHSequenceOfPnt ,opencascade::handle<ProjLib_HSequenceOfHSequenceOfPnt>  , ProjLib_SequenceOfHSequenceOfPnt , Standard_Transient >>(m.attr("ProjLib_HSequenceOfHSequenceOfPnt"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<TColgp_HSequenceOfPnt> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const ProjLib_SequenceOfHSequenceOfPnt & (ProjLib_HSequenceOfHSequenceOfPnt::*)() const) static_cast<const ProjLib_SequenceOfHSequenceOfPnt & (ProjLib_HSequenceOfHSequenceOfPnt::*)() const>(&ProjLib_HSequenceOfHSequenceOfPnt::Sequence),
@@ -497,11 +512,13 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_PrjFunc , shared_ptr<ProjLib_PrjFunc>  , math_FunctionSetWithDerivatives >>(m.attr("ProjLib_PrjFunc"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (ProjLib_PrjFunc::*)() const) static_cast<Standard_Integer (ProjLib_PrjFunc::*)() const>(&ProjLib_PrjFunc::NbVariables),
@@ -525,12 +542,14 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_PrjResolve , shared_ptr<ProjLib_PrjResolve>  >>(m.attr("ProjLib_PrjResolve"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Surface &,const Standard_Integer >()  , py::arg("C"),  py::arg("S"),  py::arg("Fix") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (ProjLib_PrjResolve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ProjLib_PrjResolve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const gp_Pnt2d & ,  const Standard_Real ,  const Standard_Boolean  ) >(&ProjLib_PrjResolve::Perform),
@@ -545,14 +564,16 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_ProjectOnPlane , shared_ptr<ProjLib_ProjectOnPlane>  , Adaptor3d_Curve >>(m.attr("ProjLib_ProjectOnPlane"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax3 & >()  , py::arg("Pl") )
         .def(py::init< const gp_Ax3 &,const gp_Dir & >()  , py::arg("Pl"),  py::arg("D") )
+    // custom constructors
     // methods
         .def("Load",
              (void (ProjLib_ProjectOnPlane::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (ProjLib_ProjectOnPlane::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const Standard_Real ,  const Standard_Boolean  ) >(&ProjLib_ProjectOnPlane::Load),
@@ -657,13 +678,15 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_ProjectOnSurface , shared_ptr<ProjLib_ProjectOnSurface>  >>(m.attr("ProjLib_ProjectOnSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Load",
              (void (ProjLib_ProjectOnSurface::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const Standard_Real  ) ) static_cast<void (ProjLib_ProjectOnSurface::*)( const opencascade::handle<Adaptor3d_HCurve> & ,  const Standard_Real  ) >(&ProjLib_ProjectOnSurface::Load),
@@ -678,15 +701,17 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_ProjectedCurve , shared_ptr<ProjLib_ProjectedCurve>  , Adaptor2d_Curve2d >>(m.attr("ProjLib_ProjectedCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("S") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("C") )
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real >()  , py::arg("S"),  py::arg("C"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Load",
              (void (ProjLib_ProjectedCurve::*)( const Standard_Real  ) ) static_cast<void (ProjLib_ProjectedCurve::*)( const Standard_Real  ) >(&ProjLib_ProjectedCurve::Load),
@@ -806,12 +831,14 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_Projector , shared_ptr<ProjLib_Projector>  >>(m.attr("ProjLib_Projector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (ProjLib_Projector::*)() const) static_cast<Standard_Boolean (ProjLib_Projector::*)() const>(&ProjLib_Projector::IsDone),
@@ -883,15 +910,17 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_Cone , shared_ptr<ProjLib_Cone>  , ProjLib_Projector >>(m.attr("ProjLib_Cone"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Cone & >()  , py::arg("Co") )
         .def(py::init< const gp_Cone &,const gp_Lin & >()  , py::arg("Co"),  py::arg("L") )
         .def(py::init< const gp_Cone &,const gp_Circ & >()  , py::arg("Co"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ProjLib_Cone::*)( const gp_Cone &  ) ) static_cast<void (ProjLib_Cone::*)( const gp_Cone &  ) >(&ProjLib_Cone::Init),
@@ -915,16 +944,18 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_Cylinder , shared_ptr<ProjLib_Cylinder>  , ProjLib_Projector >>(m.attr("ProjLib_Cylinder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Cylinder & >()  , py::arg("Cyl") )
         .def(py::init< const gp_Cylinder &,const gp_Lin & >()  , py::arg("Cyl"),  py::arg("L") )
         .def(py::init< const gp_Cylinder &,const gp_Circ & >()  , py::arg("Cyl"),  py::arg("C") )
         .def(py::init< const gp_Cylinder &,const gp_Elips & >()  , py::arg("Cyl"),  py::arg("E") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ProjLib_Cylinder::*)( const gp_Cylinder &  ) ) static_cast<void (ProjLib_Cylinder::*)( const gp_Cylinder &  ) >(&ProjLib_Cylinder::Init),
@@ -948,11 +979,12 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_Plane , shared_ptr<ProjLib_Plane>  , ProjLib_Projector >>(m.attr("ProjLib_Plane"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pln & >()  , py::arg("Pl") )
         .def(py::init< const gp_Pln &,const gp_Lin & >()  , py::arg("Pl"),  py::arg("L") )
@@ -960,6 +992,7 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
         .def(py::init< const gp_Pln &,const gp_Elips & >()  , py::arg("Pl"),  py::arg("E") )
         .def(py::init< const gp_Pln &,const gp_Parab & >()  , py::arg("Pl"),  py::arg("P") )
         .def(py::init< const gp_Pln &,const gp_Hypr & >()  , py::arg("Pl"),  py::arg("H") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ProjLib_Plane::*)( const gp_Pln &  ) ) static_cast<void (ProjLib_Plane::*)( const gp_Pln &  ) >(&ProjLib_Plane::Init),
@@ -983,14 +1016,16 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_Sphere , shared_ptr<ProjLib_Sphere>  , ProjLib_Projector >>(m.attr("ProjLib_Sphere"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Sphere & >()  , py::arg("Sp") )
         .def(py::init< const gp_Sphere &,const gp_Circ & >()  , py::arg("Sp"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ProjLib_Sphere::*)( const gp_Sphere &  ) ) static_cast<void (ProjLib_Sphere::*)( const gp_Sphere &  ) >(&ProjLib_Sphere::Init),
@@ -1017,14 +1052,16 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ProjLib_Torus , shared_ptr<ProjLib_Torus>  , ProjLib_Projector >>(m.attr("ProjLib_Torus"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Torus & >()  , py::arg("To") )
         .def(py::init< const gp_Torus &,const gp_Circ & >()  , py::arg("To"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ProjLib_Torus::*)( const gp_Torus &  ) ) static_cast<void (ProjLib_Torus::*)( const gp_Torus &  ) >(&ProjLib_Torus::Init),
@@ -1048,29 +1085,29 @@ py::module m = static_cast<py::module>(main_module.attr("ProjLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ProjLib_Sphere.hxx
-// ./opencascade/ProjLib_HCompProjectedCurve.hxx
-// ./opencascade/ProjLib_SequenceOfHSequenceOfPnt.hxx
-// ./opencascade/ProjLib.hxx
-// ./opencascade/ProjLib_Torus.hxx
-// ./opencascade/ProjLib_PrjFunc.hxx
-// ./opencascade/ProjLib_ProjectOnSurface.hxx
-// ./opencascade/ProjLib_ProjectOnPlane.hxx
-// ./opencascade/ProjLib_HSequenceOfHSequenceOfPnt.hxx
-// ./opencascade/ProjLib_Projector.hxx
-// ./opencascade/ProjLib_CompProjectedCurve.hxx
-// ./opencascade/ProjLib_Plane.hxx
-// ./opencascade/ProjLib_PrjResolve.hxx
-// ./opencascade/ProjLib_Cylinder.hxx
-// ./opencascade/ProjLib_ComputeApproxOnPolarSurface.hxx
 // ./opencascade/ProjLib_HProjectedCurve.hxx
+// ./opencascade/ProjLib_CompProjectedCurve.hxx
+// ./opencascade/ProjLib_Cylinder.hxx
+// ./opencascade/ProjLib_Torus.hxx
+// ./opencascade/ProjLib_ProjectedCurve.hxx
+// ./opencascade/ProjLib_HSequenceOfHSequenceOfPnt.hxx
+// ./opencascade/ProjLib.hxx
+// ./opencascade/ProjLib_Plane.hxx
+// ./opencascade/ProjLib_ProjectOnPlane.hxx
+// ./opencascade/ProjLib_HCompProjectedCurve.hxx
+// ./opencascade/ProjLib_Sphere.hxx
+// ./opencascade/ProjLib_ComputeApproxOnPolarSurface.hxx
+// ./opencascade/ProjLib_SequenceOfHSequenceOfPnt.hxx
 // ./opencascade/ProjLib_Cone.hxx
 // ./opencascade/ProjLib_ComputeApprox.hxx
-// ./opencascade/ProjLib_ProjectedCurve.hxx
+// ./opencascade/ProjLib_ProjectOnSurface.hxx
+// ./opencascade/ProjLib_PrjFunc.hxx
+// ./opencascade/ProjLib_PrjResolve.hxx
+// ./opencascade/ProjLib_Projector.hxx
 
 // operators
 

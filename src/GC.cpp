@@ -19,22 +19,27 @@ namespace py = pybind11;
 #include <gp_Ax1.hxx>
 #include <gp_Cylinder.hxx>
 #include <StdFail_NotDone.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Lin.hxx>
+#include <StdFail_NotDone.hxx>
 #include <gp_Elips.hxx>
 #include <StdFail_NotDone.hxx>
 #include <gp_Hypr.hxx>
 #include <StdFail_NotDone.hxx>
-#include <gp_Pnt.hxx>
-#include <Geom_Transformation.hxx>
+#include <gp_Pln.hxx>
+#include <StdFail_NotDone.hxx>
 #include <gp_Pnt.hxx>
 #include <StdFail_NotDone.hxx>
-#include <gp_Parab.hxx>
+#include <gp_Elips.hxx>
 #include <gp_Pnt.hxx>
 #include <StdFail_NotDone.hxx>
-#include <gp_Cylinder.hxx>
 #include <gp_Circ.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Lin.hxx>
 #include <Geom_Transformation.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Ax1.hxx>
@@ -43,31 +48,26 @@ namespace py = pybind11;
 #include <gp_Pln.hxx>
 #include <gp_Ax2.hxx>
 #include <StdFail_NotDone.hxx>
-#include <gp_Pln.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Circ.hxx>
 #include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Pnt.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Cone.hxx>
 #include <gp_Lin.hxx>
 #include <Geom_Transformation.hxx>
 #include <gp_Vec.hxx>
 #include <gp_Pnt.hxx>
 #include <StdFail_NotDone.hxx>
-#include <gp_Lin.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Elips.hxx>
+#include <gp_Hypr.hxx>
 #include <gp_Pnt.hxx>
 #include <Geom_Transformation.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Ax1.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Dir.hxx>
+#include <Geom_Transformation.hxx>
+#include <gp_Pnt.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Pnt.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Lin.hxx>
 
 // module includes
 #include <GC_MakeArcOfCircle.hxx>
@@ -111,12 +111,14 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
 
 
     static_cast<py::class_<GC_MakeMirror , shared_ptr<GC_MakeMirror>  >>(m.attr("GC_MakeMirror"))
+    // constructors
         .def(py::init< const gp_Pnt & >()  , py::arg("Point") )
         .def(py::init< const gp_Ax1 & >()  , py::arg("Axis") )
         .def(py::init< const gp_Lin & >()  , py::arg("Line") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("Point"),  py::arg("Direc") )
         .def(py::init< const gp_Pln & >()  , py::arg("Plane") )
         .def(py::init< const gp_Ax2 & >()  , py::arg("Plane") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Transformation> & (GC_MakeMirror::*)() const) static_cast<const opencascade::handle<Geom_Transformation> & (GC_MakeMirror::*)() const>(&GC_MakeMirror::Value),
@@ -125,14 +127,16 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeRotation , shared_ptr<GC_MakeRotation>  >>(m.attr("GC_MakeRotation"))
+    // constructors
         .def(py::init< const gp_Lin &,const Standard_Real >()  , py::arg("Line"),  py::arg("Angle") )
         .def(py::init< const gp_Ax1 &,const Standard_Real >()  , py::arg("Axis"),  py::arg("Angle") )
         .def(py::init< const gp_Pnt &,const gp_Dir &,const Standard_Real >()  , py::arg("Point"),  py::arg("Direc"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Transformation> & (GC_MakeRotation::*)() const) static_cast<const opencascade::handle<Geom_Transformation> & (GC_MakeRotation::*)() const>(&GC_MakeRotation::Value),
@@ -141,12 +145,14 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeScale , shared_ptr<GC_MakeScale>  >>(m.attr("GC_MakeScale"))
+    // constructors
         .def(py::init< const gp_Pnt &,const Standard_Real >()  , py::arg("Point"),  py::arg("Scale") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Transformation> & (GC_MakeScale::*)() const) static_cast<const opencascade::handle<Geom_Transformation> & (GC_MakeScale::*)() const>(&GC_MakeScale::Value),
@@ -155,13 +161,15 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeTranslation , shared_ptr<GC_MakeTranslation>  >>(m.attr("GC_MakeTranslation"))
+    // constructors
         .def(py::init< const gp_Vec & >()  , py::arg("Vect") )
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("Point1"),  py::arg("Point2") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Transformation> & (GC_MakeTranslation::*)() const) static_cast<const opencascade::handle<Geom_Transformation> & (GC_MakeTranslation::*)() const>(&GC_MakeTranslation::Value),
@@ -170,12 +178,15 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<GC_Root , shared_ptr<GC_Root>>(m,"GC_Root");
 
     static_cast<py::class_<GC_Root , shared_ptr<GC_Root>  >>(m.attr("GC_Root"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GC_Root::*)() const) static_cast<Standard_Boolean (GC_Root::*)() const>(&GC_Root::IsDone),
@@ -193,16 +204,18 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeArcOfCircle , shared_ptr<GC_MakeArcOfCircle>  , GC_Root >>(m.attr("GC_MakeArcOfCircle"))
+    // constructors
         .def(py::init< const gp_Circ &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Circ"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Sense") )
         .def(py::init< const gp_Circ &,const gp_Pnt &,const Standard_Real,const Standard_Boolean >()  , py::arg("Circ"),  py::arg("P"),  py::arg("Alpha"),  py::arg("Sense") )
         .def(py::init< const gp_Circ &,const gp_Pnt &,const gp_Pnt &,const Standard_Boolean >()  , py::arg("Circ"),  py::arg("P1"),  py::arg("P2"),  py::arg("Sense") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3") )
         .def(py::init< const gp_Pnt &,const gp_Vec &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("V"),  py::arg("P2") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfCircle::*)() const) static_cast<const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfCircle::*)() const>(&GC_MakeArcOfCircle::Value),
@@ -211,14 +224,16 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeArcOfEllipse , shared_ptr<GC_MakeArcOfEllipse>  , GC_Root >>(m.attr("GC_MakeArcOfEllipse"))
+    // constructors
         .def(py::init< const gp_Elips &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Elips"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Sense") )
         .def(py::init< const gp_Elips &,const gp_Pnt &,const Standard_Real,const Standard_Boolean >()  , py::arg("Elips"),  py::arg("P"),  py::arg("Alpha"),  py::arg("Sense") )
         .def(py::init< const gp_Elips &,const gp_Pnt &,const gp_Pnt &,const Standard_Boolean >()  , py::arg("Elips"),  py::arg("P1"),  py::arg("P2"),  py::arg("Sense") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfEllipse::*)() const) static_cast<const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfEllipse::*)() const>(&GC_MakeArcOfEllipse::Value),
@@ -227,14 +242,16 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeArcOfHyperbola , shared_ptr<GC_MakeArcOfHyperbola>  , GC_Root >>(m.attr("GC_MakeArcOfHyperbola"))
+    // constructors
         .def(py::init< const gp_Hypr &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Hypr"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Sense") )
         .def(py::init< const gp_Hypr &,const gp_Pnt &,const Standard_Real,const Standard_Boolean >()  , py::arg("Hypr"),  py::arg("P"),  py::arg("Alpha"),  py::arg("Sense") )
         .def(py::init< const gp_Hypr &,const gp_Pnt &,const gp_Pnt &,const Standard_Boolean >()  , py::arg("Hypr"),  py::arg("P1"),  py::arg("P2"),  py::arg("Sense") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfHyperbola::*)() const) static_cast<const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfHyperbola::*)() const>(&GC_MakeArcOfHyperbola::Value),
@@ -243,14 +260,16 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeArcOfParabola , shared_ptr<GC_MakeArcOfParabola>  , GC_Root >>(m.attr("GC_MakeArcOfParabola"))
+    // constructors
         .def(py::init< const gp_Parab &,const Standard_Real,const Standard_Real,const Standard_Boolean >()  , py::arg("Parab"),  py::arg("Alpha1"),  py::arg("Alpha2"),  py::arg("Sense") )
         .def(py::init< const gp_Parab &,const gp_Pnt &,const Standard_Real,const Standard_Boolean >()  , py::arg("Parab"),  py::arg("P"),  py::arg("Alpha"),  py::arg("Sense") )
         .def(py::init< const gp_Parab &,const gp_Pnt &,const gp_Pnt &,const Standard_Boolean >()  , py::arg("Parab"),  py::arg("P1"),  py::arg("P2"),  py::arg("Sense") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfParabola::*)() const) static_cast<const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeArcOfParabola::*)() const>(&GC_MakeArcOfParabola::Value),
@@ -259,11 +278,12 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeCircle , shared_ptr<GC_MakeCircle>  , GC_Root >>(m.attr("GC_MakeCircle"))
+    // constructors
         .def(py::init< const gp_Circ & >()  , py::arg("C") )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("A2"),  py::arg("Radius") )
         .def(py::init< const gp_Circ &,const Standard_Real >()  , py::arg("Circ"),  py::arg("Dist") )
@@ -272,6 +292,7 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
         .def(py::init< const gp_Pnt &,const gp_Dir &,const Standard_Real >()  , py::arg("Center"),  py::arg("Norm"),  py::arg("Radius") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real >()  , py::arg("Center"),  py::arg("PtAxis"),  py::arg("Radius") )
         .def(py::init< const gp_Ax1 &,const Standard_Real >()  , py::arg("Axis"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Circle> & (GC_MakeCircle::*)() const) static_cast<const opencascade::handle<Geom_Circle> & (GC_MakeCircle::*)() const>(&GC_MakeCircle::Value),
@@ -280,15 +301,17 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeConicalSurface , shared_ptr<GC_MakeConicalSurface>  , GC_Root >>(m.attr("GC_MakeConicalSurface"))
+    // constructors
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("Ang"),  py::arg("Radius") )
         .def(py::init< const gp_Cone & >()  , py::arg("C") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("R1"),  py::arg("R2") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_ConicalSurface> & (GC_MakeConicalSurface::*)() const) static_cast<const opencascade::handle<Geom_ConicalSurface> & (GC_MakeConicalSurface::*)() const>(&GC_MakeConicalSurface::Value),
@@ -297,11 +320,12 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeCylindricalSurface , shared_ptr<GC_MakeCylindricalSurface>  , GC_Root >>(m.attr("GC_MakeCylindricalSurface"))
+    // constructors
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("A2"),  py::arg("Radius") )
         .def(py::init< const gp_Cylinder & >()  , py::arg("C") )
         .def(py::init< const gp_Cylinder &,const gp_Pnt & >()  , py::arg("Cyl"),  py::arg("Point") )
@@ -309,6 +333,7 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3") )
         .def(py::init< const gp_Ax1 &,const Standard_Real >()  , py::arg("Axis"),  py::arg("Radius") )
         .def(py::init< const gp_Circ & >()  , py::arg("Circ") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_CylindricalSurface> & (GC_MakeCylindricalSurface::*)() const) static_cast<const opencascade::handle<Geom_CylindricalSurface> & (GC_MakeCylindricalSurface::*)() const>(&GC_MakeCylindricalSurface::Value),
@@ -317,14 +342,16 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeEllipse , shared_ptr<GC_MakeEllipse>  , GC_Root >>(m.attr("GC_MakeEllipse"))
+    // constructors
         .def(py::init< const gp_Elips & >()  , py::arg("E") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("Center") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Ellipse> & (GC_MakeEllipse::*)() const) static_cast<const opencascade::handle<Geom_Ellipse> & (GC_MakeEllipse::*)() const>(&GC_MakeEllipse::Value),
@@ -333,14 +360,16 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeHyperbola , shared_ptr<GC_MakeHyperbola>  , GC_Root >>(m.attr("GC_MakeHyperbola"))
+    // constructors
         .def(py::init< const gp_Hypr & >()  , py::arg("H") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("S1"),  py::arg("S2"),  py::arg("Center") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Hyperbola> & (GC_MakeHyperbola::*)() const) static_cast<const opencascade::handle<Geom_Hyperbola> & (GC_MakeHyperbola::*)() const>(&GC_MakeHyperbola::Value),
@@ -349,16 +378,18 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeLine , shared_ptr<GC_MakeLine>  , GC_Root >>(m.attr("GC_MakeLine"))
+    // constructors
         .def(py::init< const gp_Ax1 & >()  , py::arg("A1") )
         .def(py::init< const gp_Lin & >()  , py::arg("L") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
         .def(py::init< const gp_Lin &,const gp_Pnt & >()  , py::arg("Lin"),  py::arg("Point") )
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Line> & (GC_MakeLine::*)() const) static_cast<const opencascade::handle<Geom_Line> & (GC_MakeLine::*)() const>(&GC_MakeLine::Value),
@@ -367,11 +398,12 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakePlane , shared_ptr<GC_MakePlane>  , GC_Root >>(m.attr("GC_MakePlane"))
+    // constructors
         .def(py::init< const gp_Pln & >()  , py::arg("Pl") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("D") )
@@ -379,6 +411,7 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
         .def(py::init< const gp_Pln &,const Standard_Real >()  , py::arg("Pln"),  py::arg("Dist") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3") )
         .def(py::init< const gp_Ax1 & >()  , py::arg("Axis") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_Plane> & (GC_MakePlane::*)() const) static_cast<const opencascade::handle<Geom_Plane> & (GC_MakePlane::*)() const>(&GC_MakePlane::Value),
@@ -387,15 +420,17 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeSegment , shared_ptr<GC_MakeSegment>  , GC_Root >>(m.attr("GC_MakeSegment"))
+    // constructors
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2") )
         .def(py::init< const gp_Lin &,const Standard_Real,const Standard_Real >()  , py::arg("Line"),  py::arg("U1"),  py::arg("U2") )
         .def(py::init< const gp_Lin &,const gp_Pnt &,const Standard_Real >()  , py::arg("Line"),  py::arg("Point"),  py::arg("Ulast") )
         .def(py::init< const gp_Lin &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("Line"),  py::arg("P1"),  py::arg("P2") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeSegment::*)() const) static_cast<const opencascade::handle<Geom_TrimmedCurve> & (GC_MakeSegment::*)() const>(&GC_MakeSegment::Value),
@@ -404,13 +439,15 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeTrimmedCone , shared_ptr<GC_MakeTrimmedCone>  , GC_Root >>(m.attr("GC_MakeTrimmedCone"))
+    // constructors
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4") )
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("R1"),  py::arg("R2") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_RectangularTrimmedSurface> & (GC_MakeTrimmedCone::*)() const) static_cast<const opencascade::handle<Geom_RectangularTrimmedSurface> & (GC_MakeTrimmedCone::*)() const>(&GC_MakeTrimmedCone::Value),
@@ -419,14 +456,16 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GC_MakeTrimmedCylinder , shared_ptr<GC_MakeTrimmedCylinder>  , GC_Root >>(m.attr("GC_MakeTrimmedCylinder"))
+    // constructors
         .def(py::init< const gp_Pnt &,const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3") )
         .def(py::init< const gp_Circ &,const Standard_Real >()  , py::arg("Circ"),  py::arg("Height") )
         .def(py::init< const gp_Ax1 &,const Standard_Real,const Standard_Real >()  , py::arg("A1"),  py::arg("Radius"),  py::arg("Height") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Geom_RectangularTrimmedSurface> & (GC_MakeTrimmedCylinder::*)() const) static_cast<const opencascade::handle<Geom_RectangularTrimmedSurface> & (GC_MakeTrimmedCylinder::*)() const>(&GC_MakeTrimmedCylinder::Value),
@@ -435,29 +474,29 @@ py::module m = static_cast<py::module>(main_module.attr("GC"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/GC_MakeTrimmedCylinder.hxx
+// ./opencascade/GC_MakeCylindricalSurface.hxx
+// ./opencascade/GC_MakeArcOfCircle.hxx
+// ./opencascade/GC_MakeConicalSurface.hxx
 // ./opencascade/GC_MakeEllipse.hxx
+// ./opencascade/GC_Root.hxx
 // ./opencascade/GC_MakeHyperbola.hxx
+// ./opencascade/GC_MakePlane.hxx
 // ./opencascade/GC_MakeTrimmedCone.hxx
+// ./opencascade/GC_MakeArcOfEllipse.hxx
+// ./opencascade/GC_MakeCircle.hxx
+// ./opencascade/GC_MakeMirror.hxx
+// ./opencascade/GC_MakeSegment.hxx
+// ./opencascade/GC_MakeTranslation.hxx
+// ./opencascade/GC_MakeArcOfHyperbola.hxx
+// ./opencascade/GC_MakeRotation.hxx
 // ./opencascade/GC_MakeScale.hxx
 // ./opencascade/GC_MakeArcOfParabola.hxx
-// ./opencascade/GC_MakeCylindricalSurface.hxx
-// ./opencascade/GC_MakeSegment.hxx
-// ./opencascade/GC_MakeMirror.hxx
-// ./opencascade/GC_MakePlane.hxx
-// ./opencascade/GC_MakeCircle.hxx
-// ./opencascade/GC_MakeArcOfCircle.hxx
-// ./opencascade/GC_Root.hxx
-// ./opencascade/GC_MakeArcOfHyperbola.hxx
-// ./opencascade/GC_MakeConicalSurface.hxx
-// ./opencascade/GC_MakeTranslation.hxx
 // ./opencascade/GC_MakeLine.hxx
-// ./opencascade/GC_MakeArcOfEllipse.hxx
-// ./opencascade/GC_MakeRotation.hxx
 
 // operators
 

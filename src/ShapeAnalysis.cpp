@@ -13,33 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Compound.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <gp_XY.hxx>
 #include <gp_Pln.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Pnt2d.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Vec2d.hxx>
-#include <gp_Pnt.hxx>
-#include <Adaptor3d_Curve.hxx>
 #include <Geom_Curve.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Bnd_Box2d.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <gp_XY.hxx>
-#include <ShapeAnalysis_Surface.hxx>
-#include <TopoDS_Wire.hxx>
-#include <Geom_Surface.hxx>
-#include <ShapeAnalysis_WireOrder.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Edge.hxx>
+#include <TopoDS_Compound.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Face.hxx>
 #include <ShapeExtend_WireData.hxx>
@@ -61,12 +42,31 @@ namespace py = pybind11;
 #include <ShapeAnalysis_FreeBoundsProperties.hxx>
 #include <ShapeAnalysis_TransferParameters.hxx>
 #include <ShapeAnalysis_TransferParametersProj.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
 #include <TopoDS_Compound.hxx>
+#include <ShapeAnalysis_Surface.hxx>
+#include <TopoDS_Wire.hxx>
+#include <Geom_Surface.hxx>
+#include <ShapeAnalysis_WireOrder.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Edge.hxx>
+#include <ShapeExtend_WireData.hxx>
+#include <TopoDS_Wire.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <Geom2d_Curve.hxx>
+#include <gp_Pnt2d.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <gp_Vec2d.hxx>
+#include <gp_Pnt.hxx>
+#include <Adaptor3d_Curve.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <TopoDS_Vertex.hxx>
-#include <ShapeExtend_WireData.hxx>
-#include <TopoDS_Wire.hxx>
 
 // module includes
 #include <ShapeAnalysis.hxx>
@@ -93,13 +93,13 @@ namespace py = pybind11;
 #include <ShapeAnalysis_WireVertex.hxx>
 
 // template related includes
-// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
-#include "NCollection.hxx"
-// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
+// ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
 #include "NCollection.hxx"
 // ./opencascade/ShapeAnalysis_BoxBndTree.hxx
 #include "NCollection.hxx"
-// ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
+// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
 #include "NCollection.hxx"
 
 
@@ -119,9 +119,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeAnalysis , shared_ptr<ShapeAnalysis>>(m,"ShapeAnalysis");
 
     static_cast<py::class_<ShapeAnalysis , shared_ptr<ShapeAnalysis>  >>(m.attr("ShapeAnalysis"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -151,12 +154,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     []( const TopoDS_Face & F ){ Standard_Real  Umin; Standard_Real  Umax; Standard_Real  Vmin; Standard_Real  Vmax; ShapeAnalysis::GetFaceUVBounds(F,Umin,Umax,Vmin,Vmax); return std::make_tuple(Umin,Umax,Vmin,Vmax); },
                     R"#(Computes exact UV bounds of all wires on the face)#"  , py::arg("F"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_BoxBndTreeSelector , shared_ptr<ShapeAnalysis_BoxBndTreeSelector>  >>(m.attr("ShapeAnalysis_BoxBndTreeSelector"))
+    // constructors
         .def(py::init< opencascade::handle<TopTools_HArray1OfShape>,Standard_Boolean >()  , py::arg("theSeq"),  py::arg("theShared") )
+    // custom constructors
     // methods
         .def("DefineBoxes",
              (void (ShapeAnalysis_BoxBndTreeSelector::*)( const Bnd_Box & ,  const Bnd_Box &  ) ) static_cast<void (ShapeAnalysis_BoxBndTreeSelector::*)( const Bnd_Box & ,  const Bnd_Box &  ) >(&ShapeAnalysis_BoxBndTreeSelector::DefineBoxes),
@@ -198,12 +203,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_CheckSmallFace , shared_ptr<ShapeAnalysis_CheckSmallFace>  >>(m.attr("ShapeAnalysis_CheckSmallFace"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsSpotFace",
              (Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real  ) const) static_cast<Standard_Integer (ShapeAnalysis_CheckSmallFace::*)( const TopoDS_Face & ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Real  ) const>(&ShapeAnalysis_CheckSmallFace::IsSpotFace),
@@ -305,12 +312,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeAnalysis_Curve , shared_ptr<ShapeAnalysis_Curve>>(m,"ShapeAnalysis_Curve");
 
     static_cast<py::class_<ShapeAnalysis_Curve , shared_ptr<ShapeAnalysis_Curve>  >>(m.attr("ShapeAnalysis_Curve"))
+    // constructors
+    // custom constructors
     // methods
         .def("Project",
              (Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const) static_cast<Standard_Real (ShapeAnalysis_Curve::*)( const opencascade::handle<Geom_Curve> & ,  const gp_Pnt & ,  const Standard_Real ,  gp_Pnt & ,  Standard_Real & ,  const Standard_Boolean  ) const>(&ShapeAnalysis_Curve::Project),
@@ -364,12 +374,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(The same as for Curve3d.)#"  , py::arg("curve"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_Edge , shared_ptr<ShapeAnalysis_Edge>  >>(m.attr("ShapeAnalysis_Edge"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasCurve3d",
              (Standard_Boolean (ShapeAnalysis_Edge::*)( const TopoDS_Edge &  ) const) static_cast<Standard_Boolean (ShapeAnalysis_Edge::*)( const TopoDS_Edge &  ) const>(&ShapeAnalysis_Edge::HasCurve3d),
@@ -459,13 +471,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(Computes the maximal deviation between the two curve representations. dev is an input/output parameter and contains the computed deviation (should be initialized with 0. for the first call). Used by CheckSameParameter().)#"  , py::arg("CRef"),  py::arg("Other"),  py::arg("SameParameter"),  py::arg("dev"),  py::arg("NCONTROL"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_FreeBoundData ,opencascade::handle<ShapeAnalysis_FreeBoundData>  , Standard_Transient >>(m.attr("ShapeAnalysis_FreeBoundData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire & >()  , py::arg("freebound") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (ShapeAnalysis_FreeBoundData::*)() ) static_cast<void (ShapeAnalysis_FreeBoundData::*)() >(&ShapeAnalysis_FreeBoundData::Clear),
@@ -570,14 +584,16 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_FreeBounds , shared_ptr<ShapeAnalysis_FreeBounds>  >>(m.attr("ShapeAnalysis_FreeBounds"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("toler"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("checkinternaledges")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("GetClosedWires",
              (const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const) static_cast<const TopoDS_Compound & (ShapeAnalysis_FreeBounds::*)() const>(&ShapeAnalysis_FreeBounds::GetClosedWires),
@@ -610,14 +626,16 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(Dispatches sequence of <wires> into two compounds <closed> for closed wires and <open> for open wires. If a compound is not empty wires are added into it.)#"  , py::arg("wires"),  py::arg("closed"),  py::arg("open"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_FreeBoundsProperties , shared_ptr<ShapeAnalysis_FreeBoundsProperties>  >>(m.attr("ShapeAnalysis_FreeBoundsProperties"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("tolerance"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("shape"),  py::arg("splitclosed")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("splitopen")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (ShapeAnalysis_FreeBoundsProperties::*)( const TopoDS_Shape & ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeAnalysis_FreeBoundsProperties::Init),
@@ -710,12 +728,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeAnalysis_Geom , shared_ptr<ShapeAnalysis_Geom>>(m,"ShapeAnalysis_Geom");
 
     static_cast<py::class_<ShapeAnalysis_Geom , shared_ptr<ShapeAnalysis_Geom>  >>(m.attr("ShapeAnalysis_Geom"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -727,13 +748,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(Builds transfromation object out of matrix. Matrix must be 3 x 4. Unit is used as multiplier.)#"  , py::arg("coefs"),  py::arg("trsf"),  py::arg("unit"),  py::arg("prec"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_HSequenceOfFreeBounds ,opencascade::handle<ShapeAnalysis_HSequenceOfFreeBounds>  , ShapeAnalysis_SequenceOfFreeBounds , Standard_Transient >>(m.attr("ShapeAnalysis_HSequenceOfFreeBounds"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const) static_cast<const ShapeAnalysis_SequenceOfFreeBounds & (ShapeAnalysis_HSequenceOfFreeBounds::*)() const>(&ShapeAnalysis_HSequenceOfFreeBounds::Sequence),
@@ -760,12 +783,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_ShapeContents , shared_ptr<ShapeAnalysis_ShapeContents>  >>(m.attr("ShapeAnalysis_ShapeContents"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (ShapeAnalysis_ShapeContents::*)() ) static_cast<void (ShapeAnalysis_ShapeContents::*)() >(&ShapeAnalysis_ShapeContents::Clear),
@@ -1050,12 +1075,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_ShapeTolerance , shared_ptr<ShapeAnalysis_ShapeTolerance>  >>(m.attr("ShapeAnalysis_ShapeTolerance"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Tolerance",
              (Standard_Real (ShapeAnalysis_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Integer ,  const TopAbs_ShapeEnum  ) ) static_cast<Standard_Real (ShapeAnalysis_ShapeTolerance::*)( const TopoDS_Shape & ,  const Standard_Integer ,  const TopAbs_ShapeEnum  ) >(&ShapeAnalysis_ShapeTolerance::Tolerance),
@@ -1079,12 +1106,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeAnalysis_Shell , shared_ptr<ShapeAnalysis_Shell>>(m,"ShapeAnalysis_Shell");
 
     static_cast<py::class_<ShapeAnalysis_Shell , shared_ptr<ShapeAnalysis_Shell>  >>(m.attr("ShapeAnalysis_Shell"))
+    // constructors
+    // custom constructors
     // methods
         .def("Clear",
              (void (ShapeAnalysis_Shell::*)() ) static_cast<void (ShapeAnalysis_Shell::*)() >(&ShapeAnalysis_Shell::Clear),
@@ -1123,12 +1153,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_Surface ,opencascade::handle<ShapeAnalysis_Surface>  , Standard_Transient >>(m.attr("ShapeAnalysis_Surface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeAnalysis_Surface::*)( const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (ShapeAnalysis_Surface::*)( const opencascade::handle<Geom_Surface> &  ) >(&ShapeAnalysis_Surface::Init),
@@ -1263,13 +1295,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_TransferParameters ,opencascade::handle<ShapeAnalysis_TransferParameters>  , Standard_Transient >>(m.attr("ShapeAnalysis_TransferParameters"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeAnalysis_TransferParameters::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (ShapeAnalysis_TransferParameters::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&ShapeAnalysis_TransferParameters::Init),
@@ -1302,14 +1336,16 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_Wire ,opencascade::handle<ShapeAnalysis_Wire>  , Standard_Transient >>(m.attr("ShapeAnalysis_Wire"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Wire &,const TopoDS_Face &,const Standard_Real >()  , py::arg("wire"),  py::arg("face"),  py::arg("precision") )
         .def(py::init< const opencascade::handle<ShapeExtend_WireData> &,const TopoDS_Face &,const Standard_Real >()  , py::arg("sbwd"),  py::arg("face"),  py::arg("precision") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeAnalysis_Wire::*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_Wire::*)( const TopoDS_Wire & ,  const TopoDS_Face & ,  const Standard_Real  ) >(&ShapeAnalysis_Wire::Init),
@@ -1606,13 +1642,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_WireOrder , shared_ptr<ShapeAnalysis_WireOrder>  >>(m.attr("ShapeAnalysis_WireOrder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean,const Standard_Real >()  , py::arg("mode3d"),  py::arg("tol") )
+    // custom constructors
     // methods
         .def("SetMode",
              (void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireOrder::*)( const Standard_Boolean ,  const Standard_Real  ) >(&ShapeAnalysis_WireOrder::SetMode),
@@ -1678,12 +1716,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_WireVertex , shared_ptr<ShapeAnalysis_WireVertex>  >>(m.attr("ShapeAnalysis_WireVertex"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeAnalysis_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) ) static_cast<void (ShapeAnalysis_WireVertex::*)( const TopoDS_Wire & ,  const Standard_Real  ) >(&ShapeAnalysis_WireVertex::Init),
@@ -1761,13 +1801,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeAnalysis_TransferParametersProj ,opencascade::handle<ShapeAnalysis_TransferParametersProj>  , ShapeAnalysis_TransferParameters >>(m.attr("ShapeAnalysis_TransferParametersProj"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeAnalysis_TransferParametersProj::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (ShapeAnalysis_TransferParametersProj::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&ShapeAnalysis_TransferParametersProj::Init),
@@ -1806,39 +1848,39 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeAnalysis"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ShapeAnalysis_Surface.hxx
-// ./opencascade/ShapeAnalysis_CheckSmallFace.hxx
+// ./opencascade/ShapeAnalysis_WireOrder.hxx
 // ./opencascade/ShapeAnalysis_Geom.hxx
-// ./opencascade/ShapeAnalysis_Edge.hxx
 // ./opencascade/ShapeAnalysis_ShapeContents.hxx
-// ./opencascade/ShapeAnalysis_FreeBoundsProperties.hxx
+// ./opencascade/ShapeAnalysis_Surface.hxx
 // ./opencascade/ShapeAnalysis_DataMapIteratorOfDataMapOfShapeListOfReal.hxx
 // ./opencascade/ShapeAnalysis_Curve.hxx
-// ./opencascade/ShapeAnalysis_TransferParameters.hxx
-// ./opencascade/ShapeAnalysis_FreeBoundData.hxx
-// ./opencascade/ShapeAnalysis_FreeBounds.hxx
-// ./opencascade/ShapeAnalysis_WireOrder.hxx
-// ./opencascade/ShapeAnalysis_Wire.hxx
-// ./opencascade/ShapeAnalysis.hxx
 // ./opencascade/ShapeAnalysis_Shell.hxx
-// ./opencascade/ShapeAnalysis_TransferParametersProj.hxx
-// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
-// ./opencascade/ShapeAnalysis_BoxBndTree.hxx
-// ./opencascade/ShapeAnalysis_HSequenceOfFreeBounds.hxx
+// ./opencascade/ShapeAnalysis.hxx
 // ./opencascade/ShapeAnalysis_SequenceOfFreeBounds.hxx
+// ./opencascade/ShapeAnalysis_BoxBndTree.hxx
+// ./opencascade/ShapeAnalysis_FreeBoundData.hxx
+// ./opencascade/ShapeAnalysis_CheckSmallFace.hxx
+// ./opencascade/ShapeAnalysis_HSequenceOfFreeBounds.hxx
+// ./opencascade/ShapeAnalysis_TransferParameters.hxx
+// ./opencascade/ShapeAnalysis_DataMapOfShapeListOfReal.hxx
+// ./opencascade/ShapeAnalysis_Wire.hxx
 // ./opencascade/ShapeAnalysis_WireVertex.hxx
+// ./opencascade/ShapeAnalysis_FreeBoundsProperties.hxx
+// ./opencascade/ShapeAnalysis_Edge.hxx
+// ./opencascade/ShapeAnalysis_FreeBounds.hxx
+// ./opencascade/ShapeAnalysis_TransferParametersProj.hxx
 // ./opencascade/ShapeAnalysis_ShapeTolerance.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<TopoDS_Shape, TColStd_ListOfReal, TopTools_ShapeMapHasher>(m,"ShapeAnalysis_DataMapOfShapeListOfReal");  
-    register_template_NCollection_UBTree<Standard_Integer, Bnd_Box>(m,"ShapeAnalysis_BoxBndTree");  
     register_template_NCollection_Sequence<opencascade::handle<ShapeAnalysis_FreeBoundData> >(m,"ShapeAnalysis_SequenceOfFreeBounds");  
+    register_template_NCollection_UBTree<Standard_Integer, Bnd_Box>(m,"ShapeAnalysis_BoxBndTree");  
+    register_template_NCollection_DataMap<TopoDS_Shape, TColStd_ListOfReal, TopTools_ShapeMapHasher>(m,"ShapeAnalysis_DataMapOfShapeListOfReal");  
 
 
 // exceptions

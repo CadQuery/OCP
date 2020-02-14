@@ -39,11 +39,9 @@ namespace py = pybind11;
 #include <BinMDF_TypeIdMap.hxx>
 
 // template related includes
-// ./opencascade/BinMDF_TypeIdMap.hxx
-#include "NCollection.hxx"
-// ./opencascade/BinMDF_TypeIdMap.hxx
-#include "NCollection.hxx"
 // ./opencascade/BinMDF_TypeADriverMap.hxx
+#include "NCollection.hxx"
+// ./opencascade/BinMDF_TypeIdMap.hxx
 #include "NCollection.hxx"
 
 
@@ -64,6 +62,7 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDF"));
     public:
         using BinMDF_ADriver::BinMDF_ADriver;
         
+        
         // public pure virtual
         opencascade::handle<TDF_Attribute> NewEmpty() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<TDF_Attribute>,BinMDF_ADriver,NewEmpty,) };
         Standard_Boolean Paste(const BinObjMgt_Persistent & aSource,const opencascade::handle<TDF_Attribute> & aTarget,BinObjMgt_RRelocationTable & aRelocTable) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BinMDF_ADriver,Paste,aSource,aTarget,aRelocTable) };
@@ -79,9 +78,12 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDF"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BinMDF , shared_ptr<BinMDF>>(m,"BinMDF");
 
     static_cast<py::class_<BinMDF , shared_ptr<BinMDF>  >>(m.attr("BinMDF"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -90,11 +92,13 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDF"));
                     R"#(Adds the attribute storage drivers to <aDriverTable>.)#"  , py::arg("aDriverTable"),  py::arg("aMsgDrv"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDF_ADriver ,opencascade::handle<BinMDF_ADriver> ,Py_BinMDF_ADriver , Standard_Transient >>(m.attr("BinMDF_ADriver"))
+    // constructors
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDF_ADriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDF_ADriver::*)() const>(&BinMDF_ADriver::NewEmpty),
@@ -130,12 +134,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDF_ADriverTable ,opencascade::handle<BinMDF_ADriverTable>  , Standard_Transient >>(m.attr("BinMDF_ADriverTable"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddDriver",
              (void (BinMDF_ADriverTable::*)( const opencascade::handle<BinMDF_ADriver> &  ) ) static_cast<void (BinMDF_ADriverTable::*)( const opencascade::handle<BinMDF_ADriver> &  ) >(&BinMDF_ADriverTable::AddDriver),
@@ -171,12 +177,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDF_ReferenceDriver ,opencascade::handle<BinMDF_ReferenceDriver>  , BinMDF_ADriver >>(m.attr("BinMDF_ReferenceDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDF_ReferenceDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDF_ReferenceDriver::*)() const>(&BinMDF_ReferenceDriver::NewEmpty),
@@ -200,12 +208,14 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BinMDF_TagSourceDriver ,opencascade::handle<BinMDF_TagSourceDriver>  , BinMDF_ADriver >>(m.attr("BinMDF_TagSourceDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (BinMDF_TagSourceDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (BinMDF_TagSourceDriver::*)() const>(&BinMDF_TagSourceDriver::NewEmpty),
@@ -229,25 +239,24 @@ py::module m = static_cast<py::module>(main_module.attr("BinMDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BinMDF_DataMapIteratorOfTypeADriverMap.hxx
 // ./opencascade/BinMDF_TagSourceDriver.hxx
-// ./opencascade/BinMDF_ADriver.hxx
+// ./opencascade/BinMDF_DataMapIteratorOfTypeADriverMap.hxx
 // ./opencascade/BinMDF_ADriverTable.hxx
+// ./opencascade/BinMDF_TypeADriverMap.hxx
+// ./opencascade/BinMDF_DoubleMapIteratorOfTypeIdMap.hxx
+// ./opencascade/BinMDF_StringIdMap.hxx
+// ./opencascade/BinMDF_ADriver.hxx
 // ./opencascade/BinMDF_ReferenceDriver.hxx
 // ./opencascade/BinMDF_TypeIdMap.hxx
-// ./opencascade/BinMDF_DoubleMapIteratorOfTypeIdMap.hxx
-// ./opencascade/BinMDF_TypeADriverMap.hxx
 // ./opencascade/BinMDF.hxx
-// ./opencascade/BinMDF_StringIdMap.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DoubleMap<opencascade::handle<Standard_Type>, Standard_Integer, TColStd_MapTransientHasher, TColStd_MapIntegerHasher>(m,"BinMDF_TypeIdMap");  
 
 
 // exceptions

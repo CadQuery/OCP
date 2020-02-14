@@ -13,11 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <StdObjMgt_MapOfInstantiators.hxx>
+#include <StdObjMgt_Persistent.hxx>
 #include <Standard_GUID.hxx>
 #include <StdObjMgt_MapOfInstantiators.hxx>
 #include <TDocStd_Application.hxx>
-#include <StdObjMgt_MapOfInstantiators.hxx>
-#include <StdObjMgt_Persistent.hxx>
 
 // module includes
 #include <StdLDrivers.hxx>
@@ -43,9 +43,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdLDrivers"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StdLDrivers , shared_ptr<StdLDrivers>>(m,"StdLDrivers");
 
     static_cast<py::class_<StdLDrivers , shared_ptr<StdLDrivers>  >>(m.attr("StdLDrivers"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -60,12 +63,15 @@ py::module m = static_cast<py::module>(main_module.attr("StdLDrivers"));
                     R"#(Register types.)#"  , py::arg("theMap"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<StdLDrivers_DocumentRetrievalDriver ,opencascade::handle<StdLDrivers_DocumentRetrievalDriver>>(m,"StdLDrivers_DocumentRetrievalDriver");
 
     static_cast<py::class_<StdLDrivers_DocumentRetrievalDriver ,opencascade::handle<StdLDrivers_DocumentRetrievalDriver>  , PCDM_RetrievalDriver >>(m.attr("StdLDrivers_DocumentRetrievalDriver"))
+    // constructors
+    // custom constructors
     // methods
         .def("CreateDocument",
              (opencascade::handle<CDM_Document> (StdLDrivers_DocumentRetrievalDriver::*)() ) static_cast<opencascade::handle<CDM_Document> (StdLDrivers_DocumentRetrievalDriver::*)() >(&StdLDrivers_DocumentRetrievalDriver::CreateDocument),
@@ -89,12 +95,12 @@ py::module m = static_cast<py::module>(main_module.attr("StdLDrivers"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StdLDrivers.hxx
 // ./opencascade/StdLDrivers_DocumentRetrievalDriver.hxx
+// ./opencascade/StdLDrivers.hxx
 
 // operators
 

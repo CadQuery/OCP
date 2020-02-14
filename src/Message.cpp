@@ -13,8 +13,10 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Message_Messenger.hxx>
-#include <TColStd_HPackedMapOfInteger.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TCollection_ExtendedString.hxx>
 #include <Message_Messenger.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Message_Msg.hxx>
@@ -27,10 +29,8 @@ namespace py = pybind11;
 #include <Message_ProgressScale.hxx>
 #include <Message_ProgressSentry.hxx>
 #include <Message_Messenger.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TCollection_ExtendedString.hxx>
+#include <Message_Messenger.hxx>
+#include <TColStd_HPackedMapOfInteger.hxx>
 
 // module includes
 #include <Message.hxx>
@@ -61,13 +61,13 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/Message_SequenceOfPrinters.hxx
 #include "NCollection.hxx"
+// ./opencascade/Message_HArrayOfMsg.hxx
+#include "NCollection.hxx"
 // ./opencascade/Message_SequenceOfProgressScale.hxx
 #include "NCollection.hxx"
 // ./opencascade/Message_ListOfMsg.hxx
 #include "NCollection.hxx"
 // ./opencascade/Message_ListOfMsg.hxx
-#include "NCollection.hxx"
-// ./opencascade/Message_HArrayOfMsg.hxx
 #include "NCollection.hxx"
 
 
@@ -88,6 +88,7 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
     public:
         using Message_Printer::Message_Printer;
         
+        
         // public pure virtual
         void Send(const TCollection_ExtendedString & theString,const Message_Gravity theGravity,const Standard_Boolean theToPutEol) const  override { PYBIND11_OVERLOAD_PURE(void,Message_Printer,Send,theString,theGravity,theToPutEol) };
         
@@ -102,6 +103,7 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
     public:
         using Message_ProgressIndicator::Message_ProgressIndicator;
         
+        
         // public pure virtual
         Standard_Boolean Show(const Standard_Boolean force) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Message_ProgressIndicator,Show,force) };
         
@@ -115,26 +117,32 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Message , shared_ptr<Message>>(m,"Message");
 
     static_cast<py::class_<Message , shared_ptr<Message>  >>(m.attr("Message"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("DefaultMessenger_s",
                     (const opencascade::handle<Message_Messenger> & (*)() ) static_cast<const opencascade::handle<Message_Messenger> & (*)() >(&Message::DefaultMessenger),
-                    R"#(Defines default messenger for OCCT applications. This is global static instance of the messenger. By default, it contains single printer directed to cout. It can be customized according to the application needs.)#" )
+                    R"#(Defines default messenger for OCCT applications. This is global static instance of the messenger. By default, it contains single printer directed to std::cout. It can be customized according to the application needs.)#" )
         .def_static("FillTime_s",
                     (TCollection_AsciiString (*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real  ) ) static_cast<TCollection_AsciiString (*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real  ) >(&Message::FillTime),
                     R"#(Returns the string filled with values of hours, minutes and seconds. Example: 1. (5, 12, 26.3345) returns "05h:12m:26.33s", 2. (0, 6, 34.496 ) returns "06m:34.50s", 3. (0, 0, 4.5 ) returns "4.50s")#"  , py::arg("Hour"),  py::arg("Minute"),  py::arg("Second"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Message_Alert ,opencascade::handle<Message_Alert>>(m,"Message_Alert");
 
     static_cast<py::class_<Message_Alert ,opencascade::handle<Message_Alert>  , Standard_Transient >>(m.attr("Message_Alert"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetMessageKey",
              (Standard_CString (Message_Alert::*)() const) static_cast<Standard_CString (Message_Alert::*)() const>(&Message_Alert::GetMessageKey),
@@ -158,12 +166,14 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_Algorithm ,opencascade::handle<Message_Algorithm>  , Standard_Transient >>(m.attr("Message_Algorithm"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetStatus",
              (void (Message_Algorithm::*)( const Message_Status &  ) ) static_cast<void (Message_Algorithm::*)( const Message_Status &  ) >(&Message_Algorithm::SetStatus),
@@ -262,13 +272,15 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_ExecStatus , shared_ptr<Message_ExecStatus>  >>(m.attr("Message_ExecStatus"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< Message_Status >()  , py::arg("status") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Message_ExecStatus::*)( Message_Status  ) ) static_cast<void (Message_ExecStatus::*)( Message_Status  ) >(&Message_ExecStatus::Set),
@@ -340,13 +352,15 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(Returns status with index theIndex in whole range [FirstStatus, LastStatus])#"  , py::arg("theIndex"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_Messenger ,opencascade::handle<Message_Messenger>  , Standard_Transient >>(m.attr("Message_Messenger"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Message_Printer> & >()  , py::arg("thePrinter") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Message_Messenger::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Message_Messenger::*)() const>(&Message_Messenger::DynamicType),
@@ -385,15 +399,17 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_Msg , shared_ptr<Message_Msg>  >>(m.attr("Message_Msg"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Message_Msg & >()  , py::arg("theMsg") )
         .def(py::init< const Standard_CString >()  , py::arg("theKey") )
         .def(py::init< const TCollection_ExtendedString & >()  , py::arg("theKey") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Message_Msg::*)( const Standard_CString  ) ) static_cast<void (Message_Msg::*)( const Standard_CString  ) >(&Message_Msg::Set),
@@ -456,12 +472,15 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Message_MsgFile , shared_ptr<Message_MsgFile>>(m,"Message_MsgFile");
 
     static_cast<py::class_<Message_MsgFile , shared_ptr<Message_MsgFile>  >>(m.attr("Message_MsgFile"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -491,11 +510,13 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(Gives the text for the message identified by the keyword <key> If there are no messages with such keyword defined, the error message is returned. In that case reference to static string is returned, it can be chenged with next call(s) to Msg(). Note: The error message is constructed like 'Unknown message: <key>', and can itself be customized by defining message with key Message_Msg_BadKeyword.)#"  , py::arg("key"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_Printer ,opencascade::handle<Message_Printer> ,Py_Message_Printer , Standard_Transient >>(m.attr("Message_Printer"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Message_Printer::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Message_Printer::*)() const>(&Message_Printer::DynamicType),
@@ -525,11 +546,13 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_ProgressIndicator ,opencascade::handle<Message_ProgressIndicator> ,Py_Message_ProgressIndicator , Standard_Transient >>(m.attr("Message_ProgressIndicator"))
+    // constructors
+    // custom constructors
     // methods
         .def("Reset",
              (void (Message_ProgressIndicator::*)() ) static_cast<void (Message_ProgressIndicator::*)() >(&Message_ProgressIndicator::Reset),
@@ -664,12 +687,14 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_ProgressScale , shared_ptr<Message_ProgressScale>  >>(m.attr("Message_ProgressScale"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetName",
              (void (Message_ProgressScale::*)( const Standard_CString  ) ) static_cast<void (Message_ProgressScale::*)( const Standard_CString  ) >(&Message_ProgressScale::SetName),
@@ -777,13 +802,15 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_ProgressSentry , shared_ptr<Message_ProgressSentry>  >>(m.attr("Message_ProgressSentry"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_ProgressIndicator> &,const Standard_CString,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Real >()  , py::arg("PI"),  py::arg("name"),  py::arg("min"),  py::arg("max"),  py::arg("step"),  py::arg("isInf")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("newScopeSpan")=static_cast<const Standard_Real>(0.0) )
         .def(py::init< const opencascade::handle<Message_ProgressIndicator> &,const opencascade::handle<TCollection_HAsciiString> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Real >()  , py::arg("PI"),  py::arg("name"),  py::arg("min"),  py::arg("max"),  py::arg("step"),  py::arg("isInf")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("newScopeSpan")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("Relieve",
              (void (Message_ProgressSentry::*)() ) static_cast<void (Message_ProgressSentry::*)() >(&Message_ProgressSentry::Relieve),
@@ -825,12 +852,14 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_Report ,opencascade::handle<Message_Report>  , Standard_Transient >>(m.attr("Message_Report"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddAlert",
              (void (Message_Report::*)( Message_Gravity ,  const opencascade::handle<Message_Alert> &  ) ) static_cast<void (Message_Report::*)( Message_Gravity ,  const opencascade::handle<Message_Alert> &  ) >(&Message_Report::AddAlert),
@@ -884,13 +913,15 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Message_PrinterOStream ,opencascade::handle<Message_PrinterOStream>  , Message_Printer >>(m.attr("Message_PrinterOStream"))
+    // constructors
         .def(py::init< const Message_Gravity >()  , py::arg("theTraceLevel")=static_cast<const Message_Gravity>(Message_Info) )
         .def(py::init< const Standard_CString,const Standard_Boolean,const Message_Gravity >()  , py::arg("theFileName"),  py::arg("theDoAppend"),  py::arg("theTraceLevel")=static_cast<const Message_Gravity>(Message_Info) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Message_PrinterOStream::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Message_PrinterOStream::*)() const>(&Message_PrinterOStream::DynamicType),
@@ -926,44 +957,44 @@ py::module m = static_cast<py::module>(main_module.attr("Message"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Message_Status.hxx
-// ./opencascade/Message_ExecStatus.hxx
-// ./opencascade/Message_Msg.hxx
-// ./opencascade/Message_ListIteratorOfListOfMsg.hxx
-// ./opencascade/Message_ListOfAlert.hxx
-// ./opencascade/Message_ProgressIndicator.hxx
-// ./opencascade/Message_SequenceOfPrinters.hxx
-// ./opencascade/Message_Alert.hxx
-// ./opencascade/Message_Algorithm.hxx
-// ./opencascade/Message.hxx
-// ./opencascade/Message_SequenceOfProgressScale.hxx
-// ./opencascade/Message_Messenger.hxx
-    m.def("endl", 
-          (const opencascade::handle<Message_Messenger> & (*)( const opencascade::handle<Message_Messenger> &  ))  static_cast<const opencascade::handle<Message_Messenger> & (*)( const opencascade::handle<Message_Messenger> &  )>(&endl),
-          R"#(None)#"  , py::arg("theMessenger"));
-// ./opencascade/Message_Gravity.hxx
-// ./opencascade/Message_Report.hxx
-// ./opencascade/Message_ProgressSentry.hxx
-// ./opencascade/Message_ListOfMsg.hxx
 // ./opencascade/Message_Printer.hxx
+// ./opencascade/Message_Msg.hxx
+// ./opencascade/Message_ProgressSentry.hxx
+// ./opencascade/Message_ExecStatus.hxx
+// ./opencascade/Message_Alert.hxx
+// ./opencascade/Message_ListIteratorOfListOfMsg.hxx
+// ./opencascade/Message_PrinterOStream.hxx
+// ./opencascade/Message_ListOfAlert.hxx
+// ./opencascade/Message_MsgFile.hxx
+// ./opencascade/Message_Gravity.hxx
+// ./opencascade/Message_ProgressIndicator.hxx
+// ./opencascade/Message_Status.hxx
+// ./opencascade/Message_Messenger.hxx
+    m.def("Message_EndLine", 
+          (const opencascade::handle<Message_Messenger> & (*)( const opencascade::handle<Message_Messenger> &  ))  static_cast<const opencascade::handle<Message_Messenger> & (*)( const opencascade::handle<Message_Messenger> &  )>(&Message_EndLine),
+          R"#(None)#"  , py::arg("theMessenger"));
+// ./opencascade/Message.hxx
+// ./opencascade/Message_SequenceOfPrinters.hxx
 // ./opencascade/Message_HArrayOfMsg.hxx
 // ./opencascade/Message_ProgressScale.hxx
-// ./opencascade/Message_MsgFile.hxx
 // ./opencascade/Message_StatusType.hxx
-// ./opencascade/Message_PrinterOStream.hxx
+// ./opencascade/Message_SequenceOfProgressScale.hxx
+// ./opencascade/Message_Report.hxx
+// ./opencascade/Message_Algorithm.hxx
+// ./opencascade/Message_ListOfMsg.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_List<opencascade::handle<Message_Alert> >(m,"Message_ListOfAlert");  
     register_template_NCollection_Sequence<opencascade::handle<Message_Printer> >(m,"Message_SequenceOfPrinters");  
+    register_template_NCollection_Array1<NCollection_Handle<Message_Msg> >(m,"Message_ArrayOfMsg");  
     register_template_NCollection_Sequence<Message_ProgressScale>(m,"Message_SequenceOfProgressScale");  
     register_template_NCollection_List<Message_Msg>(m,"Message_ListOfMsg");  
-    register_template_NCollection_Array1<NCollection_Handle<Message_Msg> >(m,"Message_ArrayOfMsg");  
 
 
 // exceptions

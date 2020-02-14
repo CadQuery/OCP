@@ -111,9 +111,12 @@ py::module m = static_cast<py::module>(main_module.attr("StepToGeom"));
 
 // classes
 
+    // default constructor
     register_default_constructor<StepToGeom , shared_ptr<StepToGeom>>(m,"StepToGeom");
 
     static_cast<py::class_<StepToGeom , shared_ptr<StepToGeom>  >>(m.attr("StepToGeom"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -257,7 +260,7 @@ py::module m = static_cast<py::module>(main_module.attr("StepToGeom"));
                     R"#(None)#"  , py::arg("SV"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

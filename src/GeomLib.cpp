@@ -13,19 +13,11 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_OutOfRange.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Curve.hxx>
-#include <gp_Pnt.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom2d_Curve.hxx>
-#include <gp_Pnt2d.hxx>
-#include <GeomLib_DenominatorMultiplier.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <Standard_ConstructionError.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Geom_Curve.hxx>
 #include <gp_Ax2.hxx>
 #include <Geom2d_Curve.hxx>
@@ -46,13 +38,21 @@ namespace py = pybind11;
 #include <GeomLib_Tool.hxx>
 #include <GeomLib_PolyFunc.hxx>
 #include <GeomLib_LogSample.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Geom_Surface.hxx>
+#include <GeomLib_DenominatorMultiplier.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Geom_Curve.hxx>
+#include <gp_Pnt.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom2d_Curve.hxx>
+#include <gp_Pnt2d.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
 
@@ -93,9 +93,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomLib , shared_ptr<GeomLib>>(m,"GeomLib");
 
     static_cast<py::class_<GeomLib , shared_ptr<GeomLib>  >>(m.attr("GeomLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -164,12 +167,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
                     []( const opencascade::handle<Geom_Surface> & S,const Standard_Real Tol ){ Standard_Boolean  isUClosed; Standard_Boolean  isVClosed; GeomLib::IsClosed(S,Tol,isUClosed,isVClosed); return std::make_tuple(isUClosed,isVClosed); },
                     R"#(This method defines if opposite boundaries of surface coincide with given tolerance)#"  , py::arg("S"),  py::arg("Tol"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_Check2dBSplineCurve , shared_ptr<GeomLib_Check2dBSplineCurve>  >>(m.attr("GeomLib_Check2dBSplineCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_BSplineCurve> &,const Standard_Real,const Standard_Real >()  , py::arg("Curve"),  py::arg("Tolerance"),  py::arg("AngularTolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomLib_Check2dBSplineCurve::*)() const) static_cast<Standard_Boolean (GeomLib_Check2dBSplineCurve::*)() const>(&GeomLib_Check2dBSplineCurve::IsDone),
@@ -190,12 +195,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_CheckBSplineCurve , shared_ptr<GeomLib_CheckBSplineCurve>  >>(m.attr("GeomLib_CheckBSplineCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_BSplineCurve> &,const Standard_Real,const Standard_Real >()  , py::arg("Curve"),  py::arg("Tolerance"),  py::arg("AngularTolerance") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomLib_CheckBSplineCurve::*)() const) static_cast<Standard_Boolean (GeomLib_CheckBSplineCurve::*)() const>(&GeomLib_CheckBSplineCurve::IsDone),
@@ -216,13 +223,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_CheckCurveOnSurface , shared_ptr<GeomLib_CheckCurveOnSurface>  >>(m.attr("GeomLib_CheckCurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theCurve"),  py::arg("theSurface"),  py::arg("theFirst"),  py::arg("theLast"),  py::arg("theTolRange")=static_cast<const Standard_Real>(Precision :: PConfusion ( )) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomLib_CheckCurveOnSurface::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (GeomLib_CheckCurveOnSurface::*)( const opencascade::handle<Geom_Curve> & ,  const opencascade::handle<Geom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&GeomLib_CheckCurveOnSurface::Init),
@@ -258,12 +267,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_DenominatorMultiplier , shared_ptr<GeomLib_DenominatorMultiplier>  >>(m.attr("GeomLib_DenominatorMultiplier"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_BSplineSurface> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Surface"),  py::arg("KnotVector") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Real (GeomLib_DenominatorMultiplier::*)( const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Real (GeomLib_DenominatorMultiplier::*)( const Standard_Real ,  const Standard_Real  ) const>(&GeomLib_DenominatorMultiplier::Value),
@@ -272,12 +283,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_Interpolate , shared_ptr<GeomLib_Interpolate>  >>(m.attr("GeomLib_Interpolate"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Degree"),  py::arg("NumPoints"),  py::arg("Points"),  py::arg("Parameters") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomLib_Interpolate::*)() const) static_cast<Standard_Boolean (GeomLib_Interpolate::*)() const>(&GeomLib_Interpolate::IsDone),
@@ -298,12 +311,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_IsPlanarSurface , shared_ptr<GeomLib_IsPlanarSurface>  >>(m.attr("GeomLib_IsPlanarSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real >()  , py::arg("S"),  py::arg("Tol")=static_cast<const Standard_Real>(1.0e-7) )
+    // custom constructors
     // methods
         .def("IsPlanar",
              (Standard_Boolean (GeomLib_IsPlanarSurface::*)() const) static_cast<Standard_Boolean (GeomLib_IsPlanarSurface::*)() const>(&GeomLib_IsPlanarSurface::IsPlanar),
@@ -315,12 +330,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_LogSample , shared_ptr<GeomLib_LogSample>  , math_FunctionSample >>(m.attr("GeomLib_LogSample"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("A"),  py::arg("B"),  py::arg("N") )
+    // custom constructors
     // methods
         .def("GetParameter",
              (Standard_Real (GeomLib_LogSample::*)( const Standard_Integer  ) const) static_cast<Standard_Real (GeomLib_LogSample::*)( const Standard_Integer  ) const>(&GeomLib_LogSample::GetParameter),
@@ -329,12 +346,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_MakeCurvefromApprox , shared_ptr<GeomLib_MakeCurvefromApprox>  >>(m.attr("GeomLib_MakeCurvefromApprox"))
+    // constructors
         .def(py::init< const AdvApprox_ApproxAFunction & >()  , py::arg("Approx") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (GeomLib_MakeCurvefromApprox::*)() const) static_cast<Standard_Boolean (GeomLib_MakeCurvefromApprox::*)() const>(&GeomLib_MakeCurvefromApprox::IsDone),
@@ -370,12 +389,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomLib_PolyFunc , shared_ptr<GeomLib_PolyFunc>  , math_FunctionWithDerivative >>(m.attr("GeomLib_PolyFunc"))
+    // constructors
         .def(py::init< const math_Vector & >()  , py::arg("Coeffs") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (GeomLib_PolyFunc::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (GeomLib_PolyFunc::*)( const Standard_Real ,  Standard_Real &  ) >(&GeomLib_PolyFunc::Value),
@@ -390,12 +411,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<GeomLib_Tool , shared_ptr<GeomLib_Tool>>(m,"GeomLib_Tool");
 
     static_cast<py::class_<GeomLib_Tool , shared_ptr<GeomLib_Tool>  >>(m.attr("GeomLib_Tool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -410,24 +434,24 @@ py::module m = static_cast<py::module>(main_module.attr("GeomLib"));
                     R"#(Extracts the parameter of a 2D point lying on a 2D curve or at a distance less than the MaxDist value.)#"  , py::arg("Curve"),  py::arg("Point"),  py::arg("MaxDist"),  py::arg("U"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomLib_LogSample.hxx
-// ./opencascade/GeomLib_InterpolationErrors.hxx
-// ./opencascade/GeomLib_CheckCurveOnSurface.hxx
-// ./opencascade/GeomLib_Tool.hxx
-// ./opencascade/GeomLib_DenominatorMultiplierPtr.hxx
-// ./opencascade/GeomLib_Array1OfMat.hxx
-// ./opencascade/GeomLib_DenominatorMultiplier.hxx
-// ./opencascade/GeomLib_CheckBSplineCurve.hxx
-// ./opencascade/GeomLib_PolyFunc.hxx
-// ./opencascade/GeomLib.hxx
-// ./opencascade/GeomLib_Check2dBSplineCurve.hxx
 // ./opencascade/GeomLib_MakeCurvefromApprox.hxx
+// ./opencascade/GeomLib_PolyFunc.hxx
+// ./opencascade/GeomLib_DenominatorMultiplier.hxx
+// ./opencascade/GeomLib.hxx
 // ./opencascade/GeomLib_IsPlanarSurface.hxx
+// ./opencascade/GeomLib_DenominatorMultiplierPtr.hxx
+// ./opencascade/GeomLib_CheckCurveOnSurface.hxx
+// ./opencascade/GeomLib_Check2dBSplineCurve.hxx
+// ./opencascade/GeomLib_InterpolationErrors.hxx
+// ./opencascade/GeomLib_CheckBSplineCurve.hxx
+// ./opencascade/GeomLib_LogSample.hxx
+// ./opencascade/GeomLib_Tool.hxx
 // ./opencascade/GeomLib_Interpolate.hxx
+// ./opencascade/GeomLib_Array1OfMat.hxx
 
 // operators
 

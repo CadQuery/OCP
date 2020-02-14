@@ -14,22 +14,18 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <gp_Lin.hxx>
-#include <gp_Torus.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Ax3.hxx>
-#include <gp_Lin.hxx>
 #include <IntAna_Quadric.hxx>
 #include <gp_Circ.hxx>
 #include <gp_Elips.hxx>
 #include <gp_Parab.hxx>
 #include <gp_Hypr.hxx>
 #include <gp_Pln.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
 #include <gp_Pln.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Torus.hxx>
+#include <gp_Cylinder.hxx>
+#include <IntAna_Quadric.hxx>
+#include <gp_Cone.hxx>
 #include <gp_Pln.hxx>
 #include <gp_Cylinder.hxx>
 #include <gp_Sphere.hxx>
@@ -40,9 +36,6 @@ namespace py = pybind11;
 #include <gp_Elips.hxx>
 #include <gp_Parab.hxx>
 #include <gp_Hypr.hxx>
-#include <gp_Cylinder.hxx>
-#include <IntAna_Quadric.hxx>
-#include <gp_Cone.hxx>
 
 // module includes
 #include <IntAna_Curve.hxx>
@@ -81,7 +74,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
 
 
     static_cast<py::class_<IntAna_Curve , shared_ptr<IntAna_Curve>  >>(m.attr("IntAna_Curve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetCylinderQuadValues",
              (void (IntAna_Curve::*)( const gp_Cylinder & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (IntAna_Curve::*)( const gp_Cylinder & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&IntAna_Curve::SetCylinderQuadValues),
@@ -108,8 +103,8 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
              (Standard_Boolean (IntAna_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) ) static_cast<Standard_Boolean (IntAna_Curve::*)( const Standard_Real ,  gp_Pnt & ,  gp_Vec &  ) >(&IntAna_Curve::D1u),
              R"#(Returns the point and the first derivative at parameter Theta on the curve.)#"  , py::arg("Theta"),  py::arg("P"),  py::arg("V"))
         .def("FindParameter",
-             (Standard_Boolean (IntAna_Curve::*)( const gp_Pnt & ,  Standard_Real &  ) const) static_cast<Standard_Boolean (IntAna_Curve::*)( const gp_Pnt & ,  Standard_Real &  ) const>(&IntAna_Curve::FindParameter),
-             R"#(Tries to find the parameter of the point P on the curve. If the method returns False, the "projection" is impossible, and the value of Para is not significant. If the method returns True, Para is the parameter of the nearest intersection between the curve and the iso-theta containing P.)#"  , py::arg("P"),  py::arg("Para"))
+             (void (IntAna_Curve::*)( const gp_Pnt & ,  NCollection_List<Standard_Real> &  ) const) static_cast<void (IntAna_Curve::*)( const gp_Pnt & ,  NCollection_List<Standard_Real> &  ) const>(&IntAna_Curve::FindParameter),
+             R"#(Tries to find the parameter of the point P on the curve. If the method returns False, the "projection" is impossible. If the method returns True at least one parameter has been found. theParams is always sorted in ascending order.)#"  , py::arg("P"),  py::arg("theParams"))
         .def("SetIsFirstOpen",
              (void (IntAna_Curve::*)( const Standard_Boolean  ) ) static_cast<void (IntAna_Curve::*)( const Standard_Boolean  ) >(&IntAna_Curve::SetIsFirstOpen),
              R"#(If flag is True, the Curve is not defined at the first parameter of its domain.)#"  , py::arg("Flag"))
@@ -118,24 +113,23 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
              R"#(If flag is True, the Curve is not defined at the first parameter of its domain.)#"  , py::arg("Flag"))
         .def("SetDomain",
              (void (IntAna_Curve::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_Curve::*)( const Standard_Real ,  const Standard_Real  ) >(&IntAna_Curve::SetDomain),
-             R"#(None)#"  , py::arg("Theta1"),  py::arg("Theta2"))
+             R"#(Trims this curve)#"  , py::arg("theFirst"),  py::arg("theLast"))
     // methods using call by reference i.s.o. return
         .def("Domain",
-             []( IntAna_Curve &self   ){ Standard_Real  Theta1; Standard_Real  Theta2; self.Domain(Theta1,Theta2); return std::make_tuple(Theta1,Theta2); },
+             []( IntAna_Curve &self   ){ Standard_Real  theFirst; Standard_Real  theLast; self.Domain(theFirst,theLast); return std::make_tuple(theFirst,theLast); },
              R"#(Returns the paramatric domain of the curve.)#" )
-        .def("InternalUVValue",
-             []( IntAna_Curve &self , const Standard_Real Param ){ Standard_Real  U; Standard_Real  V; Standard_Real  A; Standard_Real  B; Standard_Real  C; Standard_Real  Co; Standard_Real  Si; Standard_Real  Di; self.InternalUVValue(Param,U,V,A,B,C,Co,Si,Di); return std::make_tuple(U,V,A,B,C,Co,Si,Di); },
-             R"#(Protected function.)#"  , py::arg("Param"))
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna_Int3Pln , shared_ptr<IntAna_Int3Pln>  >>(m.attr("IntAna_Int3Pln"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pln &,const gp_Pln &,const gp_Pln & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntAna_Int3Pln::*)( const gp_Pln & ,  const gp_Pln & ,  const gp_Pln &  ) ) static_cast<void (IntAna_Int3Pln::*)( const gp_Pln & ,  const gp_Pln & ,  const gp_Pln &  ) >(&IntAna_Int3Pln::Perform),
@@ -162,11 +156,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna_IntConicQuad , shared_ptr<IntAna_IntConicQuad>  >>(m.attr("IntAna_IntConicQuad"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin &,const IntAna_Quadric & >()  , py::arg("L"),  py::arg("Q") )
         .def(py::init< const gp_Circ &,const IntAna_Quadric & >()  , py::arg("C"),  py::arg("Q") )
@@ -178,6 +173,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
         .def(py::init< const gp_Elips &,const gp_Pln &,const Standard_Real,const Standard_Real >()  , py::arg("E"),  py::arg("P"),  py::arg("Tolang"),  py::arg("Tol") )
         .def(py::init< const gp_Parab &,const gp_Pln &,const Standard_Real >()  , py::arg("Pb"),  py::arg("P"),  py::arg("Tolang") )
         .def(py::init< const gp_Hypr &,const gp_Pln &,const Standard_Real >()  , py::arg("H"),  py::arg("P"),  py::arg("Tolang") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const IntAna_Quadric &  ) ) static_cast<void (IntAna_IntConicQuad::*)( const gp_Lin & ,  const IntAna_Quadric &  ) >(&IntAna_IntConicQuad::Perform),
@@ -249,13 +245,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna_IntLinTorus , shared_ptr<IntAna_IntLinTorus>  >>(m.attr("IntAna_IntLinTorus"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin &,const gp_Torus & >()  , py::arg("L"),  py::arg("T") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntAna_IntLinTorus::*)( const gp_Lin & ,  const gp_Torus &  ) ) static_cast<void (IntAna_IntLinTorus::*)( const gp_Lin & ,  const gp_Torus &  ) >(&IntAna_IntLinTorus::Perform),
@@ -294,14 +292,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna_IntQuadQuad , shared_ptr<IntAna_IntQuadQuad>  >>(m.attr("IntAna_IntQuadQuad"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Cylinder &,const IntAna_Quadric &,const Standard_Real >()  , py::arg("C"),  py::arg("Q"),  py::arg("Tol") )
         .def(py::init< const gp_Cone &,const IntAna_Quadric &,const Standard_Real >()  , py::arg("C"),  py::arg("Q"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntAna_IntQuadQuad::*)( const gp_Cylinder & ,  const IntAna_Quadric & ,  const Standard_Real  ) ) static_cast<void (IntAna_IntQuadQuad::*)( const gp_Cylinder & ,  const IntAna_Quadric & ,  const Standard_Real  ) >(&IntAna_IntQuadQuad::Perform),
@@ -358,11 +358,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna_QuadQuadGeo , shared_ptr<IntAna_QuadQuadGeo>  >>(m.attr("IntAna_QuadQuadGeo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pln &,const gp_Pln &,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("P2"),  py::arg("TolAng"),  py::arg("Tol") )
         .def(py::init< const gp_Pln &,const gp_Cylinder &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tolang"),  py::arg("Tol"),  py::arg("H")=static_cast<const Standard_Real>(0) )
@@ -379,6 +380,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
         .def(py::init< const gp_Cone &,const gp_Torus &,const Standard_Real >()  , py::arg("Con"),  py::arg("Tor"),  py::arg("Tol") )
         .def(py::init< const gp_Sphere &,const gp_Torus &,const Standard_Real >()  , py::arg("Sph"),  py::arg("Tor"),  py::arg("Tol") )
         .def(py::init< const gp_Torus &,const gp_Torus &,const Standard_Real >()  , py::arg("Tor1"),  py::arg("Tor2"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntAna_QuadQuadGeo::*)( const gp_Pln & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntAna_QuadQuadGeo::*)( const gp_Pln & ,  const gp_Pln & ,  const Standard_Real ,  const Standard_Real  ) >(&IntAna_QuadQuadGeo::Perform),
@@ -471,53 +473,36 @@ py::module m = static_cast<py::module>(main_module.attr("IntAna"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntAna_Quadric , shared_ptr<IntAna_Quadric>  >>(m.attr("IntAna_Quadric"))
+    // constructors
         .def(py::init<  >()  )
-        .def(py::init< const gp_Pln & >()  , py::arg("P") )
-        .def(py::init< const gp_Sphere & >()  , py::arg("Sph") )
-        .def(py::init< const gp_Cylinder & >()  , py::arg("Cyl") )
-        .def(py::init< const gp_Cone & >()  , py::arg("Cone") )
+    // custom constructors
     // methods
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Pln &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Pln &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initializes the quadric with a Pln)#"  , py::arg("P"))
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Sphere &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Sphere &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initialize the quadric with a Sphere)#"  , py::arg("Sph"))
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Cone &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Cone &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initializes the quadric with a Cone)#"  , py::arg("Con"))
-        .def("SetQuadric",
-             (void (IntAna_Quadric::*)( const gp_Cylinder &  ) ) static_cast<void (IntAna_Quadric::*)( const gp_Cylinder &  ) >(&IntAna_Quadric::SetQuadric),
-             R"#(Initializes the quadric with a Cylinder)#"  , py::arg("Cyl"))
     // methods using call by reference i.s.o. return
         .def("Coefficients",
              []( IntAna_Quadric &self   ){ Standard_Real  xCXX; Standard_Real  xCYY; Standard_Real  xCZZ; Standard_Real  xCXY; Standard_Real  xCXZ; Standard_Real  xCYZ; Standard_Real  xCX; Standard_Real  xCY; Standard_Real  xCZ; Standard_Real  xCCte; self.Coefficients(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte); return std::make_tuple(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte); },
              R"#(Returns the coefficients of the polynomial equation which define the quadric: xCXX x**2 + xCYY y**2 + xCZZ z**2 + 2 ( xCXY x y + xCXZ x z + xCYZ y z ) + 2 ( xCX x + xCY y + xCZ z ) + xCCte)#" )
-        .def("NewCoefficients",
-             []( IntAna_Quadric &self , const gp_Ax3 & Axis ){ Standard_Real  xCXX; Standard_Real  xCYY; Standard_Real  xCZZ; Standard_Real  xCXY; Standard_Real  xCXZ; Standard_Real  xCYZ; Standard_Real  xCX; Standard_Real  xCY; Standard_Real  xCZ; Standard_Real  xCCte; self.NewCoefficients(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte,Axis); return std::make_tuple(xCXX,xCYY,xCZZ,xCXY,xCXZ,xCYZ,xCX,xCY,xCZ,xCCte); },
-             R"#(Returns the coefficients of the polynomial equation ( written in the natural coordinates system ) in the local coordinates system defined by Axis)#"  , py::arg("Axis"))
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/IntAna_IntConicQuad.hxx
+// ./opencascade/IntAna_Curve.hxx
+// ./opencascade/IntAna_Quadric.hxx
+// ./opencascade/IntAna_Int3Pln.hxx
 // ./opencascade/IntAna_ListOfCurve.hxx
 // ./opencascade/IntAna_IntLinTorus.hxx
-// ./opencascade/IntAna_Quadric.hxx
 // ./opencascade/IntAna_ResultType.hxx
-// ./opencascade/IntAna_IntConicQuad.hxx
-// ./opencascade/IntAna_ListIteratorOfListOfCurve.hxx
-// ./opencascade/IntAna_Curve.hxx
-// ./opencascade/IntAna_Int3Pln.hxx
-// ./opencascade/IntAna_QuadQuadGeo.hxx
 // ./opencascade/IntAna_IntQuadQuad.hxx
+// ./opencascade/IntAna_ListIteratorOfListOfCurve.hxx
+// ./opencascade/IntAna_QuadQuadGeo.hxx
 
 // operators
 

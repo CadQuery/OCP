@@ -38,7 +38,9 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAppli"));
 
 
     static_cast<py::class_<HLRAppli_ReflectLines , shared_ptr<HLRAppli_ReflectLines>  >>(m.attr("HLRAppli_ReflectLines"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("aShape") )
+    // custom constructors
     // methods
         .def("SetAxes",
              (void (HLRAppli_ReflectLines::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (HLRAppli_ReflectLines::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&HLRAppli_ReflectLines::SetAxes),
@@ -56,7 +58,7 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAppli"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

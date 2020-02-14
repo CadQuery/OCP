@@ -13,9 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Resource_Manager.hxx>
-#include <Message_Messenger.hxx>
-#include <Message_ProgressIndicator.hxx>
 #include <ShapeProcess_Operator.hxx>
 #include <ShapeProcess_Context.hxx>
 #include <ShapeProcess_Context.hxx>
@@ -24,6 +21,9 @@ namespace py = pybind11;
 #include <ShapeProcess_UOperator.hxx>
 #include <ShapeProcess_OperLibrary.hxx>
 #include <ShapeProcess_Context.hxx>
+#include <Resource_Manager.hxx>
+#include <Message_Messenger.hxx>
+#include <Message_ProgressIndicator.hxx>
 #include <ShapeProcess_ShapeContext.hxx>
 #include <BRepTools_Modification.hxx>
 #include <ShapeExtend_MsgRegistrator.hxx>
@@ -61,6 +61,7 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
     public:
         using ShapeProcess_Operator::ShapeProcess_Operator;
         
+        
         // public pure virtual
         Standard_Boolean Perform(const opencascade::handle<ShapeProcess_Context> & context) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,ShapeProcess_Operator,Perform,context) };
         
@@ -74,9 +75,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeProcess , shared_ptr<ShapeProcess>>(m,"ShapeProcess");
 
     static_cast<py::class_<ShapeProcess , shared_ptr<ShapeProcess>  >>(m.attr("ShapeProcess"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -91,13 +95,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
                     R"#(Performs a specified sequence of operators on Context Resource file and other data should be already loaded to Context (including description of sequence seq))#"  , py::arg("context"),  py::arg("seq"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeProcess_Context ,opencascade::handle<ShapeProcess_Context>  , Standard_Transient >>(m.attr("ShapeProcess_Context"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("file"),  py::arg("scope")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (ShapeProcess_Context::*)( const Standard_CString ,  const Standard_CString  ) ) static_cast<Standard_Boolean (ShapeProcess_Context::*)( const Standard_CString ,  const Standard_CString  ) >(&ShapeProcess_Context::Init),
@@ -172,12 +178,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeProcess_OperLibrary , shared_ptr<ShapeProcess_OperLibrary>>(m,"ShapeProcess_OperLibrary");
 
     static_cast<py::class_<ShapeProcess_OperLibrary , shared_ptr<ShapeProcess_OperLibrary>  >>(m.attr("ShapeProcess_OperLibrary"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -189,11 +198,13 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
                     R"#(Applies BRepTools_Modification to a shape, taking into account sharing of components of compounds. if theMutableInput vat is set to true then imput shape S can be modified during the modification process.)#"  , py::arg("S"),  py::arg("context"),  py::arg("M"),  py::arg("map"),  py::arg("msg")=static_cast<const opencascade::handle<ShapeExtend_MsgRegistrator> &>(0),  py::arg("theMutableInput")=static_cast<Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeProcess_Operator ,opencascade::handle<ShapeProcess_Operator> ,Py_ShapeProcess_Operator , Standard_Transient >>(m.attr("ShapeProcess_Operator"))
+    // constructors
+    // custom constructors
     // methods
         .def("Perform",
              (Standard_Boolean (ShapeProcess_Operator::*)( const opencascade::handle<ShapeProcess_Context> &  ) ) static_cast<Standard_Boolean (ShapeProcess_Operator::*)( const opencascade::handle<ShapeProcess_Context> &  ) >(&ShapeProcess_Operator::Perform),
@@ -211,13 +222,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeProcess_ShapeContext ,opencascade::handle<ShapeProcess_ShapeContext>  , ShapeProcess_Context >>(m.attr("ShapeProcess_ShapeContext"))
+    // constructors
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("file"),  py::arg("seq")=static_cast<const Standard_CString>("") )
         .def(py::init< const TopoDS_Shape &,const Standard_CString,const Standard_CString >()  , py::arg("S"),  py::arg("file"),  py::arg("seq")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeProcess_ShapeContext::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeProcess_ShapeContext::*)( const TopoDS_Shape &  ) >(&ShapeProcess_ShapeContext::Init),
@@ -289,12 +302,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeProcess_UOperator ,opencascade::handle<ShapeProcess_UOperator>  , ShapeProcess_Operator >>(m.attr("ShapeProcess_UOperator"))
+    // constructors
         .def(py::init< const ShapeProcess_OperFunc >()  , py::arg("func") )
+    // custom constructors
     // methods
         .def("Perform",
              (Standard_Boolean (ShapeProcess_UOperator::*)( const opencascade::handle<ShapeProcess_Context> &  ) ) static_cast<Standard_Boolean (ShapeProcess_UOperator::*)( const opencascade::handle<ShapeProcess_Context> &  ) >(&ShapeProcess_UOperator::Perform),
@@ -312,17 +327,17 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcess"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ShapeProcess_UOperator.hxx
-// ./opencascade/ShapeProcess_Context.hxx
 // ./opencascade/ShapeProcess.hxx
 // ./opencascade/ShapeProcess_Operator.hxx
+// ./opencascade/ShapeProcess_Context.hxx
 // ./opencascade/ShapeProcess_OperLibrary.hxx
-// ./opencascade/ShapeProcess_OperFunc.hxx
 // ./opencascade/ShapeProcess_ShapeContext.hxx
+// ./opencascade/ShapeProcess_UOperator.hxx
+// ./opencascade/ShapeProcess_OperFunc.hxx
 
 // operators
 

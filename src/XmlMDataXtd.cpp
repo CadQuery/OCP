@@ -40,12 +40,6 @@ namespace py = pybind11;
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
 #include <XmlMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <XmlMDataXtd_AxisDriver.hxx>
@@ -57,6 +51,12 @@ namespace py = pybind11;
 #include <XmlMDataXtd_PlacementDriver.hxx>
 #include <XmlMDataXtd_PatternStdDriver.hxx>
 #include <XmlMDataXtd_TriangulationDriver.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
 
 // module includes
 #include <XmlMDataXtd.hxx>
@@ -91,9 +91,12 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XmlMDataXtd , shared_ptr<XmlMDataXtd>>(m,"XmlMDataXtd");
 
     static_cast<py::class_<XmlMDataXtd , shared_ptr<XmlMDataXtd>  >>(m.attr("XmlMDataXtd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -108,21 +111,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_AxisDriver ,opencascade::handle<XmlMDataXtd_AxisDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_AxisDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_AxisDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_AxisDriver::*)() const>(&XmlMDataXtd_AxisDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_AxisDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_AxisDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_AxisDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_AxisDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_AxisDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_AxisDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_AxisDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_AxisDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_AxisDriver::Paste),
+             (void (XmlMDataXtd_AxisDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_AxisDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_AxisDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_AxisDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_AxisDriver::*)() const>(&XmlMDataXtd_AxisDriver::DynamicType),
@@ -137,21 +142,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_ConstraintDriver ,opencascade::handle<XmlMDataXtd_ConstraintDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_ConstraintDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_ConstraintDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_ConstraintDriver::*)() const>(&XmlMDataXtd_ConstraintDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_ConstraintDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_ConstraintDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_ConstraintDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_ConstraintDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_ConstraintDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_ConstraintDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_ConstraintDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_ConstraintDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_ConstraintDriver::Paste),
+             (void (XmlMDataXtd_ConstraintDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_ConstraintDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_ConstraintDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_ConstraintDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_ConstraintDriver::*)() const>(&XmlMDataXtd_ConstraintDriver::DynamicType),
@@ -166,21 +173,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_GeometryDriver ,opencascade::handle<XmlMDataXtd_GeometryDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_GeometryDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_GeometryDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_GeometryDriver::*)() const>(&XmlMDataXtd_GeometryDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_GeometryDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_GeometryDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_GeometryDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_GeometryDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_GeometryDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_GeometryDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_GeometryDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_GeometryDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_GeometryDriver::Paste),
+             (void (XmlMDataXtd_GeometryDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_GeometryDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_GeometryDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_GeometryDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_GeometryDriver::*)() const>(&XmlMDataXtd_GeometryDriver::DynamicType),
@@ -195,21 +204,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_PatternStdDriver ,opencascade::handle<XmlMDataXtd_PatternStdDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_PatternStdDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_PatternStdDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_PatternStdDriver::*)() const>(&XmlMDataXtd_PatternStdDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_PatternStdDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PatternStdDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_PatternStdDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_PatternStdDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PatternStdDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_PatternStdDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_PatternStdDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_PatternStdDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_PatternStdDriver::Paste),
+             (void (XmlMDataXtd_PatternStdDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_PatternStdDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_PatternStdDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_PatternStdDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_PatternStdDriver::*)() const>(&XmlMDataXtd_PatternStdDriver::DynamicType),
@@ -224,21 +235,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_PlacementDriver ,opencascade::handle<XmlMDataXtd_PlacementDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_PlacementDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_PlacementDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_PlacementDriver::*)() const>(&XmlMDataXtd_PlacementDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_PlacementDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PlacementDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_PlacementDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_PlacementDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PlacementDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_PlacementDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_PlacementDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_PlacementDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_PlacementDriver::Paste),
+             (void (XmlMDataXtd_PlacementDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_PlacementDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_PlacementDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_PlacementDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_PlacementDriver::*)() const>(&XmlMDataXtd_PlacementDriver::DynamicType),
@@ -253,21 +266,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_PlaneDriver ,opencascade::handle<XmlMDataXtd_PlaneDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_PlaneDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_PlaneDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_PlaneDriver::*)() const>(&XmlMDataXtd_PlaneDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_PlaneDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PlaneDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_PlaneDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_PlaneDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PlaneDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_PlaneDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_PlaneDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_PlaneDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_PlaneDriver::Paste),
+             (void (XmlMDataXtd_PlaneDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_PlaneDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_PlaneDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_PlaneDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_PlaneDriver::*)() const>(&XmlMDataXtd_PlaneDriver::DynamicType),
@@ -282,21 +297,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_PointDriver ,opencascade::handle<XmlMDataXtd_PointDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_PointDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_PointDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_PointDriver::*)() const>(&XmlMDataXtd_PointDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_PointDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PointDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_PointDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_PointDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PointDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_PointDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_PointDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_PointDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_PointDriver::Paste),
+             (void (XmlMDataXtd_PointDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_PointDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_PointDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_PointDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_PointDriver::*)() const>(&XmlMDataXtd_PointDriver::DynamicType),
@@ -311,21 +328,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_PositionDriver ,opencascade::handle<XmlMDataXtd_PositionDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_PositionDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_PositionDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_PositionDriver::*)() const>(&XmlMDataXtd_PositionDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_PositionDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PositionDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_PositionDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_PositionDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PositionDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_PositionDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_PositionDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_PositionDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_PositionDriver::Paste),
+             (void (XmlMDataXtd_PositionDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_PositionDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_PositionDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_PositionDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_PositionDriver::*)() const>(&XmlMDataXtd_PositionDriver::DynamicType),
@@ -340,21 +359,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_PresentationDriver ,opencascade::handle<XmlMDataXtd_PresentationDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_PresentationDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_PresentationDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_PresentationDriver::*)() const>(&XmlMDataXtd_PresentationDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_PresentationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PresentationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_PresentationDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_PresentationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_PresentationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_PresentationDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_PresentationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_PresentationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_PresentationDriver::Paste),
+             (void (XmlMDataXtd_PresentationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_PresentationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_PresentationDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_PresentationDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_PresentationDriver::*)() const>(&XmlMDataXtd_PresentationDriver::DynamicType),
@@ -369,21 +390,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_ShapeDriver ,opencascade::handle<XmlMDataXtd_ShapeDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_ShapeDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_ShapeDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_ShapeDriver::*)() const>(&XmlMDataXtd_ShapeDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_ShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_ShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_ShapeDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_ShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_ShapeDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_ShapeDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_ShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_ShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_ShapeDriver::Paste),
+             (void (XmlMDataXtd_ShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_ShapeDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_ShapeDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_ShapeDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_ShapeDriver::*)() const>(&XmlMDataXtd_ShapeDriver::DynamicType),
@@ -398,21 +421,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDataXtd_TriangulationDriver ,opencascade::handle<XmlMDataXtd_TriangulationDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDataXtd_TriangulationDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDataXtd_TriangulationDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDataXtd_TriangulationDriver::*)() const>(&XmlMDataXtd_TriangulationDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDataXtd_TriangulationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_TriangulationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDataXtd_TriangulationDriver::Paste),
+             (Standard_Boolean (XmlMDataXtd_TriangulationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDataXtd_TriangulationDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDataXtd_TriangulationDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDataXtd_TriangulationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDataXtd_TriangulationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDataXtd_TriangulationDriver::Paste),
+             (void (XmlMDataXtd_TriangulationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDataXtd_TriangulationDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDataXtd_TriangulationDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDataXtd_TriangulationDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDataXtd_TriangulationDriver::*)() const>(&XmlMDataXtd_TriangulationDriver::DynamicType),
@@ -427,22 +452,22 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDataXtd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/XmlMDataXtd_PresentationDriver.hxx
 // ./opencascade/XmlMDataXtd_PointDriver.hxx
-// ./opencascade/XmlMDataXtd_AxisDriver.hxx
-// ./opencascade/XmlMDataXtd_ShapeDriver.hxx
-// ./opencascade/XmlMDataXtd_PlaneDriver.hxx
-// ./opencascade/XmlMDataXtd_GeometryDriver.hxx
-// ./opencascade/XmlMDataXtd_PatternStdDriver.hxx
 // ./opencascade/XmlMDataXtd_PositionDriver.hxx
-// ./opencascade/XmlMDataXtd_PlacementDriver.hxx
-// ./opencascade/XmlMDataXtd_ConstraintDriver.hxx
+// ./opencascade/XmlMDataXtd_GeometryDriver.hxx
+// ./opencascade/XmlMDataXtd_PresentationDriver.hxx
 // ./opencascade/XmlMDataXtd_TriangulationDriver.hxx
+// ./opencascade/XmlMDataXtd_PlacementDriver.hxx
+// ./opencascade/XmlMDataXtd_PlaneDriver.hxx
+// ./opencascade/XmlMDataXtd_PatternStdDriver.hxx
+// ./opencascade/XmlMDataXtd_ShapeDriver.hxx
 // ./opencascade/XmlMDataXtd.hxx
+// ./opencascade/XmlMDataXtd_ConstraintDriver.hxx
+// ./opencascade/XmlMDataXtd_AxisDriver.hxx
 
 // operators
 

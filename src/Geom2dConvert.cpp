@@ -52,9 +52,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dConvert"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Geom2dConvert , shared_ptr<Geom2dConvert>>(m,"Geom2dConvert");
 
     static_cast<py::class_<Geom2dConvert , shared_ptr<Geom2dConvert>  >>(m.attr("Geom2dConvert"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -67,15 +70,6 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dConvert"));
         .def_static("CurveToBSplineCurve_s",
                     (opencascade::handle<Geom2d_BSplineCurve> (*)( const opencascade::handle<Geom2d_Curve> & ,  const Convert_ParameterisationType  ) ) static_cast<opencascade::handle<Geom2d_BSplineCurve> (*)( const opencascade::handle<Geom2d_Curve> & ,  const Convert_ParameterisationType  ) >(&Geom2dConvert::CurveToBSplineCurve),
                     R"#(This function converts a non infinite curve from Geom into a B-spline curve. C must be an ellipse or a circle or a trimmed conic or a trimmed line or a Bezier curve or a trimmed Bezier curve or a BSpline curve or a trimmed BSpline curve or an Offset curve or a trimmed Offset curve. The returned B-spline is not periodic except if C is a Circle or an Ellipse. ParameterisationType applies only if the curve is a Circle or an ellipse : TgtThetaOver2, TgtThetaOver2_1, TgtThetaOver2_2, TgtThetaOver2_3, TgtThetaOver2_4, Purpose: this is the classical rational parameterisation 2 1 - t cos(theta) = ------ 2 1 + t)#"  , py::arg("C"),  py::arg("Parameterisation")=static_cast<const Convert_ParameterisationType>(Convert_TgtThetaOver2))
-        .def_static("ConcatG1_s",
-                    (void (*)( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ,   const NCollection_Array1<Standard_Real> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (*)( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ,   const NCollection_Array1<Standard_Real> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Boolean ,  const Standard_Real  ) >(&Geom2dConvert::ConcatG1),
-                    R"#(This Method concatenates G1 the ArrayOfCurves as far as it is possible. ArrayOfCurves[0..N-1] ArrayOfToler contains the biggest tolerance of the two points shared by two consecutives curves. Its dimension: [0..N-2] ClosedTolerance indicates if the ArrayOfCurves is closed. In this case ClosedTolerance contains the biggest tolerance of the two points which are at the closure. Otherwise its value is 0.0)#"  , py::arg("ArrayOfCurves"),  py::arg("ArrayOfToler"),  py::arg("ArrayOfConcatenated"),  py::arg("ClosedFlag"),  py::arg("ClosedTolerance"))
-        .def_static("ConcatC1_s",
-                    (void (*)( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ,   const NCollection_Array1<Standard_Real> & ,  opencascade::handle<TColStd_HArray1OfInteger> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (*)( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ,   const NCollection_Array1<Standard_Real> & ,  opencascade::handle<TColStd_HArray1OfInteger> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Boolean ,  const Standard_Real  ) >(&Geom2dConvert::ConcatC1),
-                    R"#(This Method concatenates C1 the ArrayOfCurves as far as it is possible. ArrayOfCurves[0..N-1] ArrayOfToler contains the biggest tolerance of the two points shared by two consecutives curves. Its dimension: [0..N-2] ClosedTolerance indicates if the ArrayOfCurves is closed. In this case ClosedTolerance contains the biggest tolerance of the two points which are at the closure. Otherwise its value is 0.0)#"  , py::arg("ArrayOfCurves"),  py::arg("ArrayOfToler"),  py::arg("ArrayOfIndices"),  py::arg("ArrayOfConcatenated"),  py::arg("ClosedFlag"),  py::arg("ClosedTolerance"))
-        .def_static("ConcatC1_s",
-                    (void (*)( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ,   const NCollection_Array1<Standard_Real> & ,  opencascade::handle<TColStd_HArray1OfInteger> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (*)( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ,   const NCollection_Array1<Standard_Real> & ,  opencascade::handle<TColStd_HArray1OfInteger> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dConvert::ConcatC1),
-                    R"#(This Method concatenates C1 the ArrayOfCurves as far as it is possible. ArrayOfCurves[0..N-1] ArrayOfToler contains the biggest tolerance of the two points shared by two consecutives curves. Its dimension: [0..N-2] ClosedTolerance indicates if the ArrayOfCurves is closed. In this case ClosedTolerance contains the biggest tolerance of the two points which are at the closure. Otherwise its value is 0.0)#"  , py::arg("ArrayOfCurves"),  py::arg("ArrayOfToler"),  py::arg("ArrayOfIndices"),  py::arg("ArrayOfConcatenated"),  py::arg("ClosedFlag"),  py::arg("ClosedTolerance"),  py::arg("AngularTolerance"))
         .def_static("C0BSplineToC1BSplineCurve_s",
                     (void (*)( opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real  ) ) static_cast<void (*)( opencascade::handle<Geom2d_BSplineCurve> & ,  const Standard_Real  ) >(&Geom2dConvert::C0BSplineToC1BSplineCurve),
                     R"#(This Method reduces as far as it is possible the multiplicities of the knots of the BSpline BS.(keeping the geometry). It returns a new BSpline which could still be C0. tolerance is a geometrical tolerance)#"  , py::arg("BS"),  py::arg("Tolerance"))
@@ -86,14 +80,25 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dConvert"));
                     (void (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (*)( const opencascade::handle<Geom2d_BSplineCurve> & ,  opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dConvert::C0BSplineToArrayOfC1BSplineCurve),
                     R"#(This Method reduces as far as it is possible the multiplicities of the knots of the BSpline BS.(keeping the geometry). It returns an array of BSpline C1. tolerance is a geometrical tolerance)#"  , py::arg("BS"),  py::arg("tabBS"),  py::arg("AngularTolerance"),  py::arg("Tolerance"))
     // static methods using call by reference i.s.o. return
+        .def_static("ConcatG1_s",
+                    []( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ArrayOfCurves, const NCollection_Array1<Standard_Real> & ArrayOfToler,opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ArrayOfConcatenated,const Standard_Real ClosedTolerance ){ Standard_Boolean  ClosedFlag; Geom2dConvert::ConcatG1(ArrayOfCurves,ArrayOfToler,ArrayOfConcatenated,ClosedFlag,ClosedTolerance); return std::make_tuple(ClosedFlag); },
+                    R"#(This Method concatenates G1 the ArrayOfCurves as far as it is possible. ArrayOfCurves[0..N-1] ArrayOfToler contains the biggest tolerance of the two points shared by two consecutives curves. Its dimension: [0..N-2] ClosedFlag indicates if the ArrayOfCurves is closed. In this case ClosedTolerance contains the biggest tolerance of the two points which are at the closure. Otherwise its value is 0.0 ClosedFlag becomes False on the output if it is impossible to build closed curve.)#"  , py::arg("ArrayOfCurves"),  py::arg("ArrayOfToler"),  py::arg("ArrayOfConcatenated"),  py::arg("ClosedTolerance"))
+        .def_static("ConcatC1_s",
+                    []( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ArrayOfCurves, const NCollection_Array1<Standard_Real> & ArrayOfToler,opencascade::handle<TColStd_HArray1OfInteger> & ArrayOfIndices,opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ArrayOfConcatenated,const Standard_Real ClosedTolerance ){ Standard_Boolean  ClosedFlag; Geom2dConvert::ConcatC1(ArrayOfCurves,ArrayOfToler,ArrayOfIndices,ArrayOfConcatenated,ClosedFlag,ClosedTolerance); return std::make_tuple(ClosedFlag); },
+                    R"#(This Method concatenates C1 the ArrayOfCurves as far as it is possible. ArrayOfCurves[0..N-1] ArrayOfToler contains the biggest tolerance of the two points shared by two consecutives curves. Its dimension: [0..N-2] ClosedFlag indicates if the ArrayOfCurves is closed. In this case ClosedTolerance contains the biggest tolerance of the two points which are at the closure. Otherwise its value is 0.0 ClosedFlag becomes False on the output if it is impossible to build closed curve.)#"  , py::arg("ArrayOfCurves"),  py::arg("ArrayOfToler"),  py::arg("ArrayOfIndices"),  py::arg("ArrayOfConcatenated"),  py::arg("ClosedTolerance"))
+        .def_static("ConcatC1_s",
+                    []( NCollection_Array1<opencascade::handle<Geom2d_BSplineCurve> > & ArrayOfCurves, const NCollection_Array1<Standard_Real> & ArrayOfToler,opencascade::handle<TColStd_HArray1OfInteger> & ArrayOfIndices,opencascade::handle<TColGeom2d_HArray1OfBSplineCurve> & ArrayOfConcatenated,const Standard_Real ClosedTolerance,const Standard_Real AngularTolerance ){ Standard_Boolean  ClosedFlag; Geom2dConvert::ConcatC1(ArrayOfCurves,ArrayOfToler,ArrayOfIndices,ArrayOfConcatenated,ClosedFlag,ClosedTolerance,AngularTolerance); return std::make_tuple(ClosedFlag); },
+                    R"#(This Method concatenates C1 the ArrayOfCurves as far as it is possible. ArrayOfCurves[0..N-1] ArrayOfToler contains the biggest tolerance of the two points shared by two consecutives curves. Its dimension: [0..N-2] ClosedFlag indicates if the ArrayOfCurves is closed. In this case ClosedTolerance contains the biggest tolerance of the two points which are at the closure. Otherwise its value is 0.0 ClosedFlag becomes False on the output if it is impossible to build closed curve.)#"  , py::arg("ArrayOfCurves"),  py::arg("ArrayOfToler"),  py::arg("ArrayOfIndices"),  py::arg("ArrayOfConcatenated"),  py::arg("ClosedTolerance"),  py::arg("AngularTolerance"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dConvert_ApproxCurve , shared_ptr<Geom2dConvert_ApproxCurve>  >>(m.attr("Geom2dConvert_ApproxCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("Curve"),  py::arg("Tol2d"),  py::arg("Order"),  py::arg("MaxSegments"),  py::arg("MaxDegree") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("Curve"),  py::arg("Tol2d"),  py::arg("Order"),  py::arg("MaxSegments"),  py::arg("MaxDegree") )
+    // custom constructors
     // methods
         .def("Curve",
              (opencascade::handle<Geom2d_BSplineCurve> (Geom2dConvert_ApproxCurve::*)() const) static_cast<opencascade::handle<Geom2d_BSplineCurve> (Geom2dConvert_ApproxCurve::*)() const>(&Geom2dConvert_ApproxCurve::Curve),
@@ -114,12 +119,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dConvert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dConvert_BSplineCurveKnotSplitting , shared_ptr<Geom2dConvert_BSplineCurveKnotSplitting>  >>(m.attr("Geom2dConvert_BSplineCurveKnotSplitting"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_BSplineCurve> &,const Standard_Integer >()  , py::arg("BasisCurve"),  py::arg("ContinuityRange") )
+    // custom constructors
     // methods
         .def("NbSplits",
              (Standard_Integer (Geom2dConvert_BSplineCurveKnotSplitting::*)() const) static_cast<Standard_Integer (Geom2dConvert_BSplineCurveKnotSplitting::*)() const>(&Geom2dConvert_BSplineCurveKnotSplitting::NbSplits),
@@ -134,13 +141,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dConvert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dConvert_BSplineCurveToBezierCurve , shared_ptr<Geom2dConvert_BSplineCurveToBezierCurve>  >>(m.attr("Geom2dConvert_BSplineCurveToBezierCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_BSplineCurve> & >()  , py::arg("BasisCurve") )
         .def(py::init< const opencascade::handle<Geom2d_BSplineCurve> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("BasisCurve"),  py::arg("U1"),  py::arg("U2"),  py::arg("ParametricTolerance") )
+    // custom constructors
     // methods
         .def("Arc",
              (opencascade::handle<Geom2d_BezierCurve> (Geom2dConvert_BSplineCurveToBezierCurve::*)( const Standard_Integer  ) ) static_cast<opencascade::handle<Geom2d_BezierCurve> (Geom2dConvert_BSplineCurveToBezierCurve::*)( const Standard_Integer  ) >(&Geom2dConvert_BSplineCurveToBezierCurve::Arc),
@@ -158,13 +167,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dConvert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dConvert_CompCurveToBSplineCurve , shared_ptr<Geom2dConvert_CompCurveToBSplineCurve>  >>(m.attr("Geom2dConvert_CompCurveToBSplineCurve"))
+    // constructors
         .def(py::init< const Convert_ParameterisationType >()  , py::arg("Parameterisation")=static_cast<const Convert_ParameterisationType>(Convert_TgtThetaOver2) )
         .def(py::init< const opencascade::handle<Geom2d_BoundedCurve> &,const Convert_ParameterisationType >()  , py::arg("BasisCurve"),  py::arg("Parameterisation")=static_cast<const Convert_ParameterisationType>(Convert_TgtThetaOver2) )
+    // custom constructors
     // methods
         .def("Add",
              (Standard_Boolean (Geom2dConvert_CompCurveToBSplineCurve::*)( const opencascade::handle<Geom2d_BoundedCurve> & ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<Standard_Boolean (Geom2dConvert_CompCurveToBSplineCurve::*)( const opencascade::handle<Geom2d_BoundedCurve> & ,  const Standard_Real ,  const Standard_Boolean  ) >(&Geom2dConvert_CompCurveToBSplineCurve::Add),
@@ -179,12 +190,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dConvert"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Geom2dConvert_BSplineCurveToBezierCurve.hxx
 // ./opencascade/Geom2dConvert_BSplineCurveKnotSplitting.hxx
+// ./opencascade/Geom2dConvert_BSplineCurveToBezierCurve.hxx
 // ./opencascade/Geom2dConvert.hxx
 // ./opencascade/Geom2dConvert_CompCurveToBSplineCurve.hxx
 // ./opencascade/Geom2dConvert_ApproxCurve.hxx

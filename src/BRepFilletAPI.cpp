@@ -16,12 +16,10 @@ namespace py = pybind11;
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <StdFail_NotDone.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopOpeBRepBuild_HBuilder.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Law_Function.hxx>
 #include <TopOpeBRepBuild_HBuilder.hxx>
-#include <Geom_Surface.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopOpeBRepBuild_HBuilder.hxx>
 
 // module includes
 #include <BRepFilletAPI_LocalOperation.hxx>
@@ -48,6 +46,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
     class Py_BRepFilletAPI_LocalOperation : public BRepFilletAPI_LocalOperation{
     public:
         using BRepFilletAPI_LocalOperation::BRepFilletAPI_LocalOperation;
+        
         
         // public pure virtual
         void Add(const TopoDS_Edge & E) override { PYBIND11_OVERLOAD_PURE(void,BRepFilletAPI_LocalOperation,Add,E) };
@@ -81,6 +80,8 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
 
 
     static_cast<py::class_<BRepFilletAPI_LocalOperation , shared_ptr<BRepFilletAPI_LocalOperation> ,Py_BRepFilletAPI_LocalOperation , BRepBuilderAPI_MakeShape >>(m.attr("BRepFilletAPI_LocalOperation"))
+    // constructors
+    // custom constructors
     // methods
         .def("Add",
              (void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_LocalOperation::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_LocalOperation::Add),
@@ -140,13 +141,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepFilletAPI_MakeFillet2d , shared_ptr<BRepFilletAPI_MakeFillet2d>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepFilletAPI_MakeFillet2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepFilletAPI_MakeFillet2d::*)( const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeFillet2d::*)( const TopoDS_Face &  ) >(&BRepFilletAPI_MakeFillet2d::Init),
@@ -245,25 +248,27 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepFilletAPI_MakeChamfer , shared_ptr<BRepFilletAPI_MakeChamfer>  , BRepFilletAPI_LocalOperation >>(m.attr("BRepFilletAPI_MakeChamfer"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Add",
              (void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const TopoDS_Edge &  ) >(&BRepFilletAPI_MakeChamfer::Add),
              R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer must be set after the)#"  , py::arg("E"))
         .def("Add",
-             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::Add),
-             R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer are given by the two distances Dis1 and Dis2; the face F identifies the side where Dis1 is measured. The Add function results in a contour being built by propagation from the edge E (i.e. the contour contains at least this edge). This contour is composed of edges of the shape which are tangential to one another and which delimit two series of tangential faces, with one series of faces being located on either side of the contour. Warning Nothing is done if edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis"),  py::arg("E"),  py::arg("F"))
+             (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const TopoDS_Edge &  ) >(&BRepFilletAPI_MakeChamfer::Add),
+             R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer are given by the distance Dis (symmetric chamfer). The Add function results in a contour being built by propagation from the edge E (i.e. the contour contains at least this edge). This contour is composed of edges of the shape which are tangential to one another and which delimit two series of tangential faces, with one series of faces being located on either side of the contour. Warning Nothing is done if edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis"),  py::arg("E"))
         .def("SetDist",
              (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDist),
              R"#(Sets the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC generated using the Add function in the internal data structure of this algorithm. The face F identifies the side where Dis1 is measured. Warning Nothing is done if either the edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis"),  py::arg("IC"),  py::arg("F"))
         .def("Add",
              (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::Add),
-             R"#(Adds a fillet contour in the builder (builds a contour of tangent edges to <E> and sets the two distances <Dis1> and <Dis2> ( parameters of the chamfer ) ).)#"  , py::arg("Dis1"),  py::arg("Dis2"),  py::arg("E"),  py::arg("F"))
+             R"#(Adds edge E to the table of edges used by this algorithm to build chamfers, where the parameters of the chamfer are given by the two distances Dis1 and Dis2; the face F identifies the side where Dis1 is measured. The Add function results in a contour being built by propagation from the edge E (i.e. the contour contains at least this edge). This contour is composed of edges of the shape which are tangential to one another and which delimit two series of tangential faces, with one series of faces being located on either side of the contour. Warning Nothing is done if edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis1"),  py::arg("Dis2"),  py::arg("E"),  py::arg("F"))
         .def("SetDists",
              (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDists),
              R"#(Sets the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC generated using the Add function in the internal data structure of this algorithm. The face F identifies the side where Dis1 is measured. Warning Nothing is done if either the edge E or the face F does not belong to the initial shape.)#"  , py::arg("Dis1"),  py::arg("Dis2"),  py::arg("IC"),  py::arg("F"))
@@ -273,6 +278,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
         .def("SetDistAngle",
              (void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const TopoDS_Face &  ) >(&BRepFilletAPI_MakeChamfer::SetDistAngle),
              R"#(set the distance <Dis> and <Angle> of the fillet contour of index <IC> in the DS with <Dis> on <F>. if the face <F> is not one of common faces of an edge of the contour <IC>)#"  , py::arg("Dis"),  py::arg("Angle"),  py::arg("IC"),  py::arg("F"))
+        .def("SetMode",
+             (void (BRepFilletAPI_MakeChamfer::*)( const ChFiDS_ChamfMode  ) ) static_cast<void (BRepFilletAPI_MakeChamfer::*)( const ChFiDS_ChamfMode  ) >(&BRepFilletAPI_MakeChamfer::SetMode),
+             R"#(Sets the mode of chamfer)#"  , py::arg("theMode"))
         .def("IsSymetric",
              (Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const) static_cast<Standard_Boolean (BRepFilletAPI_MakeChamfer::*)( const Standard_Integer  ) const>(&BRepFilletAPI_MakeChamfer::IsSymetric),
              R"#(return True if chamfer symetric false else.)#"  , py::arg("IC"))
@@ -356,17 +364,19 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
              []( BRepFilletAPI_MakeChamfer &self , const Standard_Integer IC ){ Standard_Real  Dis1; Standard_Real  Dis2; self.Dists(IC,Dis1,Dis2); return std::make_tuple(Dis1,Dis2); },
              R"#(Returns the distances Dis1 and Dis2 which give the parameters of the chamfer along the contour of index IC in the internal data structure of this algorithm. Warning -1. is returned if IC is outside the bounds of the table of contours.)#"  , py::arg("IC"))
         .def("GetDistAngle",
-             []( BRepFilletAPI_MakeChamfer &self , const Standard_Integer IC ){ Standard_Real  Dis; Standard_Real  Angle; Standard_Boolean  DisOnFace1; self.GetDistAngle(IC,Dis,Angle,DisOnFace1); return std::make_tuple(Dis,Angle,DisOnFace1); },
+             []( BRepFilletAPI_MakeChamfer &self , const Standard_Integer IC ){ Standard_Real  Dis; Standard_Real  Angle; self.GetDistAngle(IC,Dis,Angle); return std::make_tuple(Dis,Angle); },
              R"#(gives the distances <Dis> and <Angle> of the fillet contour of index <IC> in the DS)#"  , py::arg("IC"))
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepFilletAPI_MakeFillet , shared_ptr<BRepFilletAPI_MakeFillet>  , BRepFilletAPI_LocalOperation >>(m.attr("BRepFilletAPI_MakeFillet"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const ChFi3d_FilletShape >()  , py::arg("S"),  py::arg("FShape")=static_cast<const ChFi3d_FilletShape>(ChFi3d_Rational) )
+    // custom constructors
     // methods
         .def("SetParams",
              (void (BRepFilletAPI_MakeFillet::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepFilletAPI_MakeFillet::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&BRepFilletAPI_MakeFillet::SetParams),
@@ -537,14 +547,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepFilletAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepFilletAPI_LocalOperation.hxx
-// ./opencascade/BRepFilletAPI_MakeChamfer.hxx
 // ./opencascade/BRepFilletAPI_MakeFillet2d.hxx
+// ./opencascade/BRepFilletAPI_LocalOperation.hxx
 // ./opencascade/BRepFilletAPI_MakeFillet.hxx
+// ./opencascade/BRepFilletAPI_MakeChamfer.hxx
 
 // operators
 

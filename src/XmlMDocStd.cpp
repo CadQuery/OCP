@@ -13,12 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <XmlMDF_ADriverTable.hxx>
-#include <Message_Messenger.hxx>
-#include <XmlMDocStd_XLinkDriver.hxx>
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
+#include <XmlMDF_ADriverTable.hxx>
+#include <Message_Messenger.hxx>
+#include <XmlMDocStd_XLinkDriver.hxx>
 
 // module includes
 #include <XmlMDocStd.hxx>
@@ -43,9 +43,12 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDocStd"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XmlMDocStd , shared_ptr<XmlMDocStd>>(m,"XmlMDocStd");
 
     static_cast<py::class_<XmlMDocStd , shared_ptr<XmlMDocStd>  >>(m.attr("XmlMDocStd"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -54,21 +57,23 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDocStd"));
                     R"#(Adds the attribute drivers to <aDriverTable>.)#"  , py::arg("aDriverTable"),  py::arg("theMessageDriver"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlMDocStd_XLinkDriver ,opencascade::handle<XmlMDocStd_XLinkDriver>  , XmlMDF_ADriver >>(m.attr("XmlMDocStd_XLinkDriver"))
+    // constructors
         .def(py::init< const opencascade::handle<Message_Messenger> & >()  , py::arg("theMessageDriver") )
+    // custom constructors
     // methods
         .def("NewEmpty",
              (opencascade::handle<TDF_Attribute> (XmlMDocStd_XLinkDriver::*)() const) static_cast<opencascade::handle<TDF_Attribute> (XmlMDocStd_XLinkDriver::*)() const>(&XmlMDocStd_XLinkDriver::NewEmpty),
              R"#(None)#" )
         .def("Paste",
-             (Standard_Boolean (XmlMDocStd_XLinkDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const) static_cast<Standard_Boolean (XmlMDocStd_XLinkDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  TColStd_DataMapOfIntegerTransient &  ) const>(&XmlMDocStd_XLinkDriver::Paste),
+             (Standard_Boolean (XmlMDocStd_XLinkDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const) static_cast<Standard_Boolean (XmlMDocStd_XLinkDriver::*)( const XmlObjMgt_Persistent & ,  const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_RRelocationTable &  ) const>(&XmlMDocStd_XLinkDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("Paste",
-             (void (XmlMDocStd_XLinkDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const) static_cast<void (XmlMDocStd_XLinkDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  TColStd_IndexedMapOfTransient &  ) const>(&XmlMDocStd_XLinkDriver::Paste),
+             (void (XmlMDocStd_XLinkDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const) static_cast<void (XmlMDocStd_XLinkDriver::*)( const opencascade::handle<TDF_Attribute> & ,  XmlObjMgt_Persistent & ,  XmlObjMgt_SRelocationTable &  ) const>(&XmlMDocStd_XLinkDriver::Paste),
              R"#(None)#"  , py::arg("Source"),  py::arg("Target"),  py::arg("RelocTable"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (XmlMDocStd_XLinkDriver::*)() const) static_cast<const opencascade::handle<Standard_Type> & (XmlMDocStd_XLinkDriver::*)() const>(&XmlMDocStd_XLinkDriver::DynamicType),
@@ -83,12 +88,12 @@ py::module m = static_cast<py::module>(main_module.attr("XmlMDocStd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/XmlMDocStd.hxx
 // ./opencascade/XmlMDocStd_XLinkDriver.hxx
+// ./opencascade/XmlMDocStd.hxx
 
 // operators
 

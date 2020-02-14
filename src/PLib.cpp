@@ -14,12 +14,12 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Standard_ConstructionError.hxx>
+#include <PLib_JacobiPolynomial.hxx>
 #include <math_Matrix.hxx>
 #include <PLib_Base.hxx>
 #include <PLib_JacobiPolynomial.hxx>
 #include <PLib_HermitJacobi.hxx>
 #include <PLib_DoubleJacobiPolynomial.hxx>
-#include <PLib_JacobiPolynomial.hxx>
 
 // module includes
 #include <PLib.hxx>
@@ -48,6 +48,7 @@ py::module m = static_cast<py::module>(main_module.attr("PLib"));
     public:
         using PLib_Base::PLib_Base;
         
+        
         // public pure virtual
         void ToCoefficients(const Standard_Integer Dimension,const Standard_Integer Degree, const NCollection_Array1<Standard_Real> & CoeffinBase,NCollection_Array1<Standard_Real> & Coefficients) const  override { PYBIND11_OVERLOAD_PURE(void,PLib_Base,ToCoefficients,Dimension,Degree,CoeffinBase,Coefficients) };
         void D0(const Standard_Real U,NCollection_Array1<Standard_Real> & BasisValue) override { PYBIND11_OVERLOAD_PURE(void,PLib_Base,D0,U,BasisValue) };
@@ -67,9 +68,12 @@ py::module m = static_cast<py::module>(main_module.attr("PLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<PLib , shared_ptr<PLib>>(m,"PLib");
 
     static_cast<py::class_<PLib , shared_ptr<PLib>  >>(m.attr("PLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -183,11 +187,13 @@ py::module m = static_cast<py::module>(main_module.attr("PLib"));
                     []( const Standard_Integer Degree,const Standard_Integer Dimension,const Standard_Real U1,const Standard_Real U2,const Standard_Real Tol ){ Standard_Real  PolynomialCoeff; Standard_Real  Length; Standard_Real  Error; PLib::EvalLength(Degree,Dimension,PolynomialCoeff,U1,U2,Tol,Length,Error); return std::make_tuple(PolynomialCoeff,Length,Error); },
                     R"#(None)#"  , py::arg("Degree"),  py::arg("Dimension"),  py::arg("U1"),  py::arg("U2"),  py::arg("Tol"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<PLib_Base ,opencascade::handle<PLib_Base> ,Py_PLib_Base , Standard_Transient >>(m.attr("PLib_Base"))
+    // constructors
+    // custom constructors
     // methods
         .def("ToCoefficients",
              (void (PLib_Base::*)( const Standard_Integer ,  const Standard_Integer ,   const NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) const) static_cast<void (PLib_Base::*)( const Standard_Integer ,  const Standard_Integer ,   const NCollection_Array1<Standard_Real> & ,  NCollection_Array1<Standard_Real> &  ) const>(&PLib_Base::ToCoefficients),
@@ -223,13 +229,15 @@ py::module m = static_cast<py::module>(main_module.attr("PLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<PLib_DoubleJacobiPolynomial , shared_ptr<PLib_DoubleJacobiPolynomial>  >>(m.attr("PLib_DoubleJacobiPolynomial"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<PLib_JacobiPolynomial> &,const opencascade::handle<PLib_JacobiPolynomial> & >()  , py::arg("JacPolU"),  py::arg("JacPolV") )
+    // custom constructors
     // methods
         .def("MaxErrorU",
              (Standard_Real (PLib_DoubleJacobiPolynomial::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,   const NCollection_Array1<Standard_Real> &  ) const) static_cast<Standard_Real (PLib_DoubleJacobiPolynomial::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,   const NCollection_Array1<Standard_Real> &  ) const>(&PLib_DoubleJacobiPolynomial::MaxErrorU),
@@ -277,12 +285,14 @@ py::module m = static_cast<py::module>(main_module.attr("PLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<PLib_HermitJacobi ,opencascade::handle<PLib_HermitJacobi>  , PLib_Base >>(m.attr("PLib_HermitJacobi"))
+    // constructors
         .def(py::init< const Standard_Integer,const GeomAbs_Shape >()  , py::arg("WorkDegree"),  py::arg("ConstraintOrder") )
+    // custom constructors
     // methods
         .def("MaxError",
              (Standard_Real (PLib_HermitJacobi::*)( const Standard_Integer ,  Standard_Real & ,  const Standard_Integer  ) const) static_cast<Standard_Real (PLib_HermitJacobi::*)( const Standard_Integer ,  Standard_Real & ,  const Standard_Integer  ) const>(&PLib_HermitJacobi::MaxError),
@@ -333,12 +343,14 @@ py::module m = static_cast<py::module>(main_module.attr("PLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<PLib_JacobiPolynomial ,opencascade::handle<PLib_JacobiPolynomial>  , PLib_Base >>(m.attr("PLib_JacobiPolynomial"))
+    // constructors
         .def(py::init< const Standard_Integer,const GeomAbs_Shape >()  , py::arg("WorkDegree"),  py::arg("ConstraintOrder") )
+    // custom constructors
     // methods
         .def("Points",
              (void (PLib_JacobiPolynomial::*)( const Standard_Integer ,  NCollection_Array1<Standard_Real> &  ) const) static_cast<void (PLib_JacobiPolynomial::*)( const Standard_Integer ,  NCollection_Array1<Standard_Real> &  ) const>(&PLib_JacobiPolynomial::Points),
@@ -398,15 +410,15 @@ py::module m = static_cast<py::module>(main_module.attr("PLib"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/PLib_JacobiPolynomial.hxx
-// ./opencascade/PLib_HermitJacobi.hxx
-// ./opencascade/PLib.hxx
 // ./opencascade/PLib_DoubleJacobiPolynomial.hxx
+// ./opencascade/PLib.hxx
 // ./opencascade/PLib_Base.hxx
+// ./opencascade/PLib_HermitJacobi.hxx
 
 // operators
 

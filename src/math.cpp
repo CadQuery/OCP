@@ -13,25 +13,21 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <math_NotSquare.hxx>
-#include <StdFail_NotDone.hxx>
-#include <math_NotSquare.hxx>
 #include <math_FunctionWithDerivative.hxx>
 #include <math_FunctionWithDerivative.hxx>
-#include <StdFail_NotDone.hxx>
 #include <math_Function.hxx>
-#include <math_MultipleVarFunction.hxx>
-#include <StdFail_NotDone.hxx>
 #include <math_FunctionWithDerivative.hxx>
-#include <math_Matrix.hxx>
-#include <Standard_DimensionError.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
+#include <math_Function.hxx>
 #include <Standard_NumericError.hxx>
 #include <math_FunctionWithDerivative.hxx>
 #include <math_FunctionSample.hxx>
-#include <math_FunctionSetWithDerivatives.hxx>
-#include <Standard_OutOfRange.hxx>
+#include <math_FunctionWithDerivative.hxx>
+#include <math_NotSquare.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Message_ProgressIndicator.hxx>
 #include <math_Function.hxx>
+#include <math_NotSquare.hxx>
+#include <math_FunctionSetWithDerivatives.hxx>
 #include <math_Matrix.hxx>
 #include <math_Function.hxx>
 #include <math_FunctionWithDerivative.hxx>
@@ -72,25 +68,29 @@ namespace py = pybind11;
 #include <math_ComputeGaussPointsAndWeights.hxx>
 #include <math_ComputeKronrodPointsAndWeights.hxx>
 #include <math_DoubleTab.hxx>
+#include <math_Matrix.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <math_FunctionSet.hxx>
+#include <math_MultipleVarFunctionWithHessian.hxx>
+#include <math_MultipleVarFunction.hxx>
+#include <StdFail_NotDone.hxx>
+#include <math_MultipleVarFunction.hxx>
+#include <StdFail_NotDone.hxx>
+#include <StdFail_NotDone.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
+#include <math_Matrix.hxx>
+#include <math_Function.hxx>
+#include <StdFail_NotDone.hxx>
+#include <math_Function.hxx>
+#include <math_FunctionSetWithDerivatives.hxx>
+#include <math_Matrix.hxx>
+#include <math_MultipleVarFunctionWithGradient.hxx>
 #include <math_IntegerVector.hxx>
 #include <math_Vector.hxx>
 #include <math_Matrix.hxx>
-#include <math_Function.hxx>
-#include <math_MultipleVarFunction.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <math_FunctionSet.hxx>
-#include <math_Function.hxx>
-#include <math_MultipleVarFunctionWithHessian.hxx>
-#include <math_FunctionWithDerivative.hxx>
-#include <math_Matrix.hxx>
+#include <Message_ProgressIndicator.hxx>
+#include <Standard_OutOfRange.hxx>
 #include <math_PSOParticlesPool.hxx>
-#include <math_Matrix.hxx>
-#include <math_FunctionSetWithDerivatives.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_DimensionError.hxx>
-#include <math_MultipleVarFunctionWithGradient.hxx>
-#include <math_Function.hxx>
 
 // module includes
 #include <math.hxx>
@@ -139,7 +139,6 @@ namespace py = pybind11;
 #include <math_PSO.hxx>
 #include <math_PSOParticlesPool.hxx>
 #include <math_Recipes.hxx>
-#include <math_SingleTab.hxx>
 #include <math_SingularMatrix.hxx>
 #include <math_Status.hxx>
 #include <math_SVD.hxx>
@@ -171,6 +170,7 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     public:
         using math_Function::math_Function;
         
+        
         // public pure virtual
         Standard_Boolean Value(const Standard_Real X,Standard_Real & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,math_Function,Value,X,F) };
         
@@ -184,6 +184,7 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     class Py_math_FunctionSet : public math_FunctionSet{
     public:
         using math_FunctionSet::math_FunctionSet;
+        
         
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,math_FunctionSet,NbVariables,) };
@@ -201,6 +202,7 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     public:
         using math_MultipleVarFunction::math_MultipleVarFunction;
         
+        
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,math_MultipleVarFunction,NbVariables,) };
         Standard_Boolean Value(const math_Vector & X,Standard_Real & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,math_MultipleVarFunction,Value,X,F) };
@@ -215,6 +217,7 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     class Py_math_FunctionSetWithDerivatives : public math_FunctionSetWithDerivatives{
     public:
         using math_FunctionSetWithDerivatives::math_FunctionSetWithDerivatives;
+        
         
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,math_FunctionSetWithDerivatives,NbVariables,) };
@@ -234,6 +237,7 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     public:
         using math_FunctionWithDerivative::math_FunctionWithDerivative;
         
+        
         // public pure virtual
         Standard_Boolean Value(const Standard_Real X,Standard_Real & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,math_FunctionWithDerivative,Value,X,F) };
         Standard_Boolean Derivative(const Standard_Real X,Standard_Real & D) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,math_FunctionWithDerivative,Derivative,X,D) };
@@ -249,6 +253,7 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     class Py_math_MultipleVarFunctionWithGradient : public math_MultipleVarFunctionWithGradient{
     public:
         using math_MultipleVarFunctionWithGradient::math_MultipleVarFunctionWithGradient;
+        
         
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,math_MultipleVarFunctionWithGradient,NbVariables,) };
@@ -267,6 +272,7 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     public:
         using math_MultipleVarFunctionWithHessian::math_MultipleVarFunctionWithHessian;
         
+        
         // public pure virtual
         Standard_Integer NbVariables() const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,math_MultipleVarFunctionWithHessian,NbVariables,) };
         Standard_Boolean Value(const math_Vector & X,Standard_Real & F) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,math_MultipleVarFunctionWithHessian,Value,X,F) };
@@ -284,9 +290,25 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
 
 // classes
 
+
+    static_cast<py::class_<PSO_Particle , shared_ptr<PSO_Particle>  >>(m.attr("PSO_Particle"))
+    // constructors
+        .def(py::init<  >()  )
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
     register_default_constructor<math , shared_ptr<math>>(m,"math");
 
     static_cast<py::class_<math , shared_ptr<math>  >>(m.attr("math"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -310,12 +332,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
                     R"#(Returns a vector of Kronrod points and a vector of their weights for Gauss-Kronrod computation method. Index should be odd and greater then or equal to 3, as the number of Kronrod points is equal to 2*N + 1, where N is a number of Gauss points. Points and Weights should have the size equal to Index. Each even element of Points represents a Gauss point value of N-th Gauss quadrature. The values from Index equal to 3 to 123 are stored in a table (see the file math_Kronrod.cxx). If Index is greater, then points and weights will be computed. Returns Standard_True if Index is odd, it is equal to the size of Points and Weights and the computation of Points and Weights is performed successfully. Otherwise this method returns Standard_False.)#"  , py::arg("Index"),  py::arg("Points"),  py::arg("Weights"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_BFGS , shared_ptr<math_BFGS>  >>(m.attr("math_BFGS"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("NbVariables"),  py::arg("Tolerance")=static_cast<const Standard_Real>(1.0e-8),  py::arg("NbIterations")=static_cast<const Standard_Integer>(200),  py::arg("ZEPS")=static_cast<const Standard_Real>(1.0e-12) )
+    // custom constructors
     // methods
         .def("SetBoundary",
              (void (math_BFGS::*)( const math_Vector & ,  const math_Vector &  ) ) static_cast<void (math_BFGS::*)( const math_Vector & ,  const math_Vector &  ) >(&math_BFGS::SetBoundary),
@@ -375,12 +399,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_BissecNewton , shared_ptr<math_BissecNewton>  >>(m.attr("math_BissecNewton"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("theXTolerance") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (math_BissecNewton::*)( math_FunctionWithDerivative & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (math_BissecNewton::*)( math_FunctionWithDerivative & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&math_BissecNewton::Perform),
@@ -422,15 +448,17 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_BracketMinimum , shared_ptr<math_BracketMinimum>  >>(m.attr("math_BracketMinimum"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B") )
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real >()  , py::arg("F"),  py::arg("A"),  py::arg("B") )
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("F"),  py::arg("A"),  py::arg("B"),  py::arg("FA") )
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("F"),  py::arg("A"),  py::arg("B"),  py::arg("FA"),  py::arg("FB") )
+    // custom constructors
     // methods
         .def("SetLimits",
              (void (math_BracketMinimum::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (math_BracketMinimum::*)( const Standard_Real ,  const Standard_Real  ) >(&math_BracketMinimum::SetLimits),
@@ -472,12 +500,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_BracketedRoot , shared_ptr<math_BracketedRoot>  >>(m.attr("math_BracketedRoot"))
+    // constructors
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("F"),  py::arg("Bound1"),  py::arg("Bound2"),  py::arg("Tolerance"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100),  py::arg("ZEPS")=static_cast<const Standard_Real>(1.0e-12) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_BracketedRoot::*)() const) static_cast<Standard_Boolean (math_BracketedRoot::*)() const>(&math_BracketedRoot::IsDone),
@@ -510,13 +540,15 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_BrentMinimum , shared_ptr<math_BrentMinimum>  >>(m.attr("math_BrentMinimum"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("TolX"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100),  py::arg("ZEPS")=static_cast<const Standard_Real>(1.0e-12) )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("TolX"),  py::arg("Fbx"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100),  py::arg("ZEPS")=static_cast<const Standard_Real>(1.0e-12) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (math_BrentMinimum::*)( math_Function & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (math_BrentMinimum::*)( math_Function & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&math_BrentMinimum::Perform),
@@ -558,12 +590,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_BullardGenerator , shared_ptr<math_BullardGenerator>  >>(m.attr("math_BullardGenerator"))
+    // constructors
         .def(py::init< unsigned int >()  , py::arg("theSeed")=static_cast<unsigned int>(1) )
+    // custom constructors
     // methods
         .def("SetSeed",
              (void (math_BullardGenerator::*)( unsigned int  ) ) static_cast<void (math_BullardGenerator::*)( unsigned int  ) >(&math_BullardGenerator::SetSeed),
@@ -578,12 +612,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_ComputeGaussPointsAndWeights , shared_ptr<math_ComputeGaussPointsAndWeights>  >>(m.attr("math_ComputeGaussPointsAndWeights"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("Number") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_ComputeGaussPointsAndWeights::*)() const) static_cast<Standard_Boolean (math_ComputeGaussPointsAndWeights::*)() const>(&math_ComputeGaussPointsAndWeights::IsDone),
@@ -598,12 +634,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_ComputeKronrodPointsAndWeights , shared_ptr<math_ComputeKronrodPointsAndWeights>  >>(m.attr("math_ComputeKronrodPointsAndWeights"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("Number") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_ComputeKronrodPointsAndWeights::*)() const) static_cast<Standard_Boolean (math_ComputeKronrodPointsAndWeights::*)() const>(&math_ComputeKronrodPointsAndWeights::IsDone),
@@ -618,12 +656,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Crout , shared_ptr<math_Crout>  >>(m.attr("math_Crout"))
+    // constructors
         .def(py::init< const math_Matrix &,const Standard_Real >()  , py::arg("A"),  py::arg("MinPivot")=static_cast<const Standard_Real>(1.0e-20) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_Crout::*)() const) static_cast<Standard_Boolean (math_Crout::*)() const>(&math_Crout::IsDone),
@@ -659,15 +699,17 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_DirectPolynomialRoots , shared_ptr<math_DirectPolynomialRoots>  >>(m.attr("math_DirectPolynomialRoots"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("D"),  py::arg("E") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("D") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C") )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_DirectPolynomialRoots::*)() const) static_cast<Standard_Boolean (math_DirectPolynomialRoots::*)() const>(&math_DirectPolynomialRoots::IsDone),
@@ -700,14 +742,16 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_DoubleTab , shared_ptr<math_DoubleTab>  >>(m.attr("math_DoubleTab"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("LowerRow"),  py::arg("UpperRow"),  py::arg("LowerCol"),  py::arg("UpperCol") )
         .def(py::init< const Standard_Address,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("Tab"),  py::arg("LowerRow"),  py::arg("UpperRow"),  py::arg("LowerCol"),  py::arg("UpperCol") )
         .def(py::init< const math_DoubleTab & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("Init",
              (void (math_DoubleTab::*)( const Standard_Real  ) ) static_cast<void (math_DoubleTab::*)( const Standard_Real  ) >(&math_DoubleTab::Init),
@@ -737,12 +781,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_EigenValuesSearcher , shared_ptr<math_EigenValuesSearcher>  >>(m.attr("math_EigenValuesSearcher"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Diagonal"),  py::arg("Subdiagonal") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_EigenValuesSearcher::*)() const) static_cast<Standard_Boolean (math_EigenValuesSearcher::*)() const>(&math_EigenValuesSearcher::IsDone),
@@ -760,12 +806,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FRPR , shared_ptr<math_FRPR>  >>(m.attr("math_FRPR"))
+    // constructors
         .def(py::init< const math_MultipleVarFunctionWithGradient &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("theFunction"),  py::arg("theTolerance"),  py::arg("theNbIterations")=static_cast<const Standard_Integer>(200),  py::arg("theZEPS")=static_cast<const Standard_Real>(1.0e-12) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (math_FRPR::*)( math_MultipleVarFunctionWithGradient & ,  const math_Vector &  ) ) static_cast<void (math_FRPR::*)( math_MultipleVarFunctionWithGradient & ,  const math_Vector &  ) >(&math_FRPR::Perform),
@@ -825,11 +873,13 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Function , shared_ptr<math_Function> ,Py_math_Function >>(m.attr("math_Function"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (math_Function::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (math_Function::*)( const Standard_Real ,  Standard_Real &  ) >(&math_Function::Value),
@@ -841,12 +891,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionAllRoots , shared_ptr<math_FunctionAllRoots>  >>(m.attr("math_FunctionAllRoots"))
+    // constructors
         .def(py::init< math_FunctionWithDerivative &,const math_FunctionSample &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("F"),  py::arg("S"),  py::arg("EpsX"),  py::arg("EpsF"),  py::arg("EpsNul") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_FunctionAllRoots::*)() const) static_cast<Standard_Boolean (math_FunctionAllRoots::*)() const>(&math_FunctionAllRoots::IsDone),
@@ -897,13 +949,15 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionRoot , shared_ptr<math_FunctionRoot>  >>(m.attr("math_FunctionRoot"))
+    // constructors
         .def(py::init< math_FunctionWithDerivative &,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("Guess"),  py::arg("Tolerance"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100) )
         .def(py::init< math_FunctionWithDerivative &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("Guess"),  py::arg("Tolerance"),  py::arg("A"),  py::arg("B"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_FunctionRoot::*)() const) static_cast<Standard_Boolean (math_FunctionRoot::*)() const>(&math_FunctionRoot::IsDone),
@@ -942,12 +996,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionRoots , shared_ptr<math_FunctionRoots>  >>(m.attr("math_FunctionRoots"))
+    // constructors
         .def(py::init< math_FunctionWithDerivative &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("F"),  py::arg("A"),  py::arg("B"),  py::arg("NbSample"),  py::arg("EpsX")=static_cast<const Standard_Real>(0.0),  py::arg("EpsF")=static_cast<const Standard_Real>(0.0),  py::arg("EpsNull")=static_cast<const Standard_Real>(0.0),  py::arg("K")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_FunctionRoots::*)() const) static_cast<Standard_Boolean (math_FunctionRoots::*)() const>(&math_FunctionRoots::IsDone),
@@ -986,12 +1042,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionSample , shared_ptr<math_FunctionSample>  >>(m.attr("math_FunctionSample"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("A"),  py::arg("B"),  py::arg("N") )
+    // custom constructors
     // methods
         .def("NbPoints",
              (Standard_Integer (math_FunctionSample::*)() const) static_cast<Standard_Integer (math_FunctionSample::*)() const>(&math_FunctionSample::NbPoints),
@@ -1006,11 +1064,13 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionSet , shared_ptr<math_FunctionSet> ,Py_math_FunctionSet >>(m.attr("math_FunctionSet"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (math_FunctionSet::*)() const) static_cast<Standard_Integer (math_FunctionSet::*)() const>(&math_FunctionSet::NbVariables),
@@ -1028,13 +1088,15 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionSetRoot , shared_ptr<math_FunctionSetRoot>  >>(m.attr("math_FunctionSetRoot"))
+    // constructors
         .def(py::init< math_FunctionSetWithDerivatives &,const math_Vector &,const Standard_Integer >()  , py::arg("F"),  py::arg("Tolerance"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100) )
         .def(py::init< math_FunctionSetWithDerivatives &,const Standard_Integer >()  , py::arg("F"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
         .def("SetTolerance",
              (void (math_FunctionSetRoot::*)( const math_Vector &  ) ) static_cast<void (math_FunctionSetRoot::*)( const math_Vector &  ) >(&math_FunctionSetRoot::SetTolerance),
@@ -1112,12 +1174,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Gauss , shared_ptr<math_Gauss>  >>(m.attr("math_Gauss"))
-        .def(py::init< const math_Matrix &,const Standard_Real >()  , py::arg("A"),  py::arg("MinPivot")=static_cast<const Standard_Real>(1.0e-20) )
+    // constructors
+        .def(py::init< const math_Matrix &,const Standard_Real,const opencascade::handle<Message_ProgressIndicator> & >()  , py::arg("A"),  py::arg("MinPivot")=static_cast<const Standard_Real>(1.0e-20),  py::arg("aProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_Gauss::*)() const) static_cast<Standard_Boolean (math_Gauss::*)() const>(&math_Gauss::IsDone),
@@ -1137,19 +1201,18 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
         .def("Dump",
              (void (math_Gauss::*)( std::ostream &  ) const) static_cast<void (math_Gauss::*)( std::ostream &  ) const>(&math_Gauss::Dump),
              R"#(Prints on the stream o information on the current state of the object. Is used to redefine the operator <<.)#"  , py::arg("o"))
-        .def("IsDone",
-             (Standard_Boolean (math_Gauss::*)() const) static_cast<Standard_Boolean (math_Gauss::*)() const>(&math_Gauss::IsDone),
-             R"#(Returns true if the computations are successful, otherwise returns false)#" )
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_GaussLeastSquare , shared_ptr<math_GaussLeastSquare>  >>(m.attr("math_GaussLeastSquare"))
+    // constructors
         .def(py::init< const math_Matrix &,const Standard_Real >()  , py::arg("A"),  py::arg("MinPivot")=static_cast<const Standard_Real>(1.0e-20) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_GaussLeastSquare::*)() const) static_cast<Standard_Boolean (math_GaussLeastSquare::*)() const>(&math_GaussLeastSquare::IsDone),
@@ -1167,12 +1230,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_GaussMultipleIntegration , shared_ptr<math_GaussMultipleIntegration>  >>(m.attr("math_GaussMultipleIntegration"))
+    // constructors
         .def(py::init< math_MultipleVarFunction &,const math_Vector &,const math_Vector &,const math_IntegerVector & >()  , py::arg("F"),  py::arg("Lower"),  py::arg("Upper"),  py::arg("Order") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_GaussMultipleIntegration::*)() const) static_cast<Standard_Boolean (math_GaussMultipleIntegration::*)() const>(&math_GaussMultipleIntegration::IsDone),
@@ -1193,12 +1258,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_GaussSetIntegration , shared_ptr<math_GaussSetIntegration>  >>(m.attr("math_GaussSetIntegration"))
+    // constructors
         .def(py::init< math_FunctionSet &,const math_Vector &,const math_Vector &,const math_IntegerVector & >()  , py::arg("F"),  py::arg("Lower"),  py::arg("Upper"),  py::arg("Order") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_GaussSetIntegration::*)() const) static_cast<Standard_Boolean (math_GaussSetIntegration::*)() const>(&math_GaussSetIntegration::IsDone),
@@ -1219,14 +1286,16 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_GaussSingleIntegration , shared_ptr<math_GaussSingleIntegration>  >>(m.attr("math_GaussSingleIntegration"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("Lower"),  py::arg("Upper"),  py::arg("Order") )
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("F"),  py::arg("Lower"),  py::arg("Upper"),  py::arg("Order"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_GaussSingleIntegration::*)() const) static_cast<Standard_Boolean (math_GaussSingleIntegration::*)() const>(&math_GaussSingleIntegration::IsDone),
@@ -1247,12 +1316,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_GlobOptMin , shared_ptr<math_GlobOptMin>  >>(m.attr("math_GlobOptMin"))
+    // constructors
         .def(py::init< math_MultipleVarFunction *,const math_Vector &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theFunc"),  py::arg("theLowerBorder"),  py::arg("theUpperBorder"),  py::arg("theC")=static_cast<const Standard_Real>(9),  py::arg("theDiscretizationTol")=static_cast<const Standard_Real>(1.0e-2),  py::arg("theSameTol")=static_cast<const Standard_Real>(1.0e-7) )
+    // custom constructors
     // methods
         .def("SetGlobalParams",
              (void (math_GlobOptMin::*)( math_MultipleVarFunction * ,  const math_Vector & ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (math_GlobOptMin::*)( math_MultipleVarFunction * ,  const math_Vector & ,  const math_Vector & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&math_GlobOptMin::SetGlobalParams),
@@ -1303,14 +1374,16 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Householder , shared_ptr<math_Householder>  >>(m.attr("math_Householder"))
+    // constructors
         .def(py::init< const math_Matrix &,const math_Matrix &,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("EPS")=static_cast<const Standard_Real>(1.0e-20) )
         .def(py::init< const math_Matrix &,const math_Matrix &,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("lowerArow"),  py::arg("upperArow"),  py::arg("lowerAcol"),  py::arg("upperAcol"),  py::arg("EPS")=static_cast<const Standard_Real>(1.0e-20) )
         .def(py::init< const math_Matrix &,const math_Vector &,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("EPS")=static_cast<const Standard_Real>(1.0e-20) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_Householder::*)() const) static_cast<Standard_Boolean (math_Householder::*)() const>(&math_Householder::IsDone),
@@ -1337,15 +1410,17 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_IntegerVector , shared_ptr<math_IntegerVector>  >>(m.attr("math_IntegerVector"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theFirst"),  py::arg("theLast") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theFirst"),  py::arg("theLast"),  py::arg("theInitialValue") )
-        .def(py::init< const Standard_Address,const Standard_Integer,const Standard_Integer >()  , py::arg("theTab"),  py::arg("theFirst"),  py::arg("theLast") )
+        .def(py::init< const Standard_Integer *,const Standard_Integer,const Standard_Integer >()  , py::arg("theTab"),  py::arg("theFirst"),  py::arg("theLast") )
         .def(py::init< const math_IntegerVector & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Init",
              (void (math_IntegerVector::*)( const Standard_Integer  ) ) static_cast<void (math_IntegerVector::*)( const Standard_Integer  ) >(&math_IntegerVector::Init),
@@ -1405,7 +1480,10 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
              (void (math_IntegerVector::*)( const math_IntegerVector & ,  const math_IntegerVector &  ) ) static_cast<void (math_IntegerVector::*)( const math_IntegerVector & ,  const math_IntegerVector &  ) >(&math_IntegerVector::Subtract),
              R"#(sets an IntegerVector to the substraction of "theRight" from "theLeft". An exception is raised if the IntegerVectors have not the same length.)#"  , py::arg("theLeft"),  py::arg("theRight"))
         .def("Value",
-             (Standard_Integer & (math_IntegerVector::*)( const Standard_Integer  ) const) static_cast<Standard_Integer & (math_IntegerVector::*)( const Standard_Integer  ) const>(&math_IntegerVector::Value),
+             (const Standard_Integer & (math_IntegerVector::*)( const Standard_Integer  ) const) static_cast<const Standard_Integer & (math_IntegerVector::*)( const Standard_Integer  ) const>(&math_IntegerVector::Value),
+             R"#(accesses the value of index theNum of an IntegerVector.)#"  , py::arg("theNum"))
+        .def("Value",
+             (Standard_Integer & (math_IntegerVector::*)( const Standard_Integer  ) ) static_cast<Standard_Integer & (math_IntegerVector::*)( const Standard_Integer  ) >(&math_IntegerVector::Value),
              R"#(accesses (in read or write mode) the value of index theNum of an IntegerVector.)#"  , py::arg("theNum"))
         .def("Initialized",
              (math_IntegerVector & (math_IntegerVector::*)( const math_IntegerVector &  ) ) static_cast<math_IntegerVector & (math_IntegerVector::*)( const math_IntegerVector &  ) >(&math_IntegerVector::Initialized),
@@ -1472,12 +1550,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
              (math_IntegerVector (math_IntegerVector::*)( const math_IntegerVector &  ) const) static_cast<math_IntegerVector (math_IntegerVector::*)( const math_IntegerVector &  ) const>(&math_IntegerVector::operator-),
              py::is_operator(),
              R"#(None)#"  , py::arg("theRight"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Jacobi , shared_ptr<math_Jacobi>  >>(m.attr("math_Jacobi"))
+    // constructors
         .def(py::init< const math_Matrix & >()  , py::arg("A") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_Jacobi::*)() const) static_cast<Standard_Boolean (math_Jacobi::*)() const>(&math_Jacobi::IsDone),
@@ -1516,14 +1596,16 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_KronrodSingleIntegration , shared_ptr<math_KronrodSingleIntegration>  >>(m.attr("math_KronrodSingleIntegration"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("theFunction"),  py::arg("theLower"),  py::arg("theUpper"),  py::arg("theNbPnts") )
         .def(py::init< math_Function &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Integer >()  , py::arg("theFunction"),  py::arg("theLower"),  py::arg("theUpper"),  py::arg("theNbPnts"),  py::arg("theTolerance"),  py::arg("theMaxNbIter") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (math_KronrodSingleIntegration::*)( math_Function & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (math_KronrodSingleIntegration::*)( math_Function & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer  ) >(&math_KronrodSingleIntegration::Perform),
@@ -1574,15 +1656,17 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
                     R"#(None)#"  , py::arg("theFunction"),  py::arg("theLower"),  py::arg("theUpper"),  py::arg("theGaussP"),  py::arg("theGaussW"),  py::arg("theKronrodP"),  py::arg("theKronrodW"),  py::arg("theValue"),  py::arg("theError"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Matrix , shared_ptr<math_Matrix>  >>(m.attr("math_Matrix"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("LowerRow"),  py::arg("UpperRow"),  py::arg("LowerCol"),  py::arg("UpperCol") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real >()  , py::arg("LowerRow"),  py::arg("UpperRow"),  py::arg("LowerCol"),  py::arg("UpperCol"),  py::arg("InitialValue") )
         .def(py::init< const Standard_Address,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("Tab"),  py::arg("LowerRow"),  py::arg("UpperRow"),  py::arg("LowerCol"),  py::arg("UpperCol") )
         .def(py::init< const math_Matrix & >()  , py::arg("Other") )
+    // custom constructors
     // methods
         .def("Init",
              (void (math_Matrix::*)( const Standard_Real  ) ) static_cast<void (math_Matrix::*)( const Standard_Real  ) >(&math_Matrix::Init),
@@ -1795,11 +1879,13 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
              (math_Matrix (math_Matrix::*)() ) static_cast<math_Matrix (math_Matrix::*)() >(&math_Matrix::operator-),
              py::is_operator(),
              R"#(None)#" )
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_MultipleVarFunction , shared_ptr<math_MultipleVarFunction> ,Py_math_MultipleVarFunction >>(m.attr("math_MultipleVarFunction"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (math_MultipleVarFunction::*)() const) static_cast<Standard_Integer (math_MultipleVarFunction::*)() const>(&math_MultipleVarFunction::NbVariables),
@@ -1814,14 +1900,16 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_NewtonFunctionRoot , shared_ptr<math_NewtonFunctionRoot>  >>(m.attr("math_NewtonFunctionRoot"))
+    // constructors
         .def(py::init< math_FunctionWithDerivative &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("Guess"),  py::arg("EpsX"),  py::arg("EpsF"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100) )
         .def(py::init< math_FunctionWithDerivative &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("F"),  py::arg("Guess"),  py::arg("EpsX"),  py::arg("EpsF"),  py::arg("A"),  py::arg("B"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100) )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("A"),  py::arg("B"),  py::arg("EpsX"),  py::arg("EpsF"),  py::arg("NbIterations")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (math_NewtonFunctionRoot::*)( math_FunctionWithDerivative & ,  const Standard_Real  ) ) static_cast<void (math_NewtonFunctionRoot::*)( math_FunctionWithDerivative & ,  const Standard_Real  ) >(&math_NewtonFunctionRoot::Perform),
@@ -1863,13 +1951,15 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_NewtonFunctionSetRoot , shared_ptr<math_NewtonFunctionSetRoot>  >>(m.attr("math_NewtonFunctionSetRoot"))
+    // constructors
         .def(py::init< math_FunctionSetWithDerivatives &,const math_Vector &,const Standard_Real,const Standard_Integer >()  , py::arg("theFunction"),  py::arg("theXTolerance"),  py::arg("theFTolerance"),  py::arg("tehNbIterations")=static_cast<const Standard_Integer>(100) )
         .def(py::init< math_FunctionSetWithDerivatives &,const Standard_Real,const Standard_Integer >()  , py::arg("theFunction"),  py::arg("theFTolerance"),  py::arg("theNbIterations")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
         .def("SetTolerance",
              (void (math_NewtonFunctionSetRoot::*)( const math_Vector &  ) ) static_cast<void (math_NewtonFunctionSetRoot::*)( const math_Vector &  ) >(&math_NewtonFunctionSetRoot::SetTolerance),
@@ -1941,12 +2031,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_NewtonMinimum , shared_ptr<math_NewtonMinimum>  >>(m.attr("math_NewtonMinimum"))
+    // constructors
         .def(py::init< const math_MultipleVarFunctionWithHessian &,const Standard_Real,const Standard_Integer,const Standard_Real,const Standard_Boolean >()  , py::arg("theFunction"),  py::arg("theTolerance")=static_cast<const Standard_Real>(Precision :: Confusion ( )),  py::arg("theNbIterations")=static_cast<const Standard_Integer>(40),  py::arg("theConvexity")=static_cast<const Standard_Real>(1.0e-6),  py::arg("theWithSingularity")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (math_NewtonMinimum::*)( math_MultipleVarFunctionWithHessian & ,  const math_Vector &  ) ) static_cast<void (math_NewtonMinimum::*)( math_MultipleVarFunctionWithHessian & ,  const math_Vector &  ) >(&math_NewtonMinimum::Perform),
@@ -2015,12 +2107,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_PSO , shared_ptr<math_PSO>  >>(m.attr("math_PSO"))
+    // constructors
         .def(py::init< math_MultipleVarFunction *,const math_Vector &,const math_Vector &,const math_Vector &,const Standard_Integer,const Standard_Integer >()  , py::arg("theFunc"),  py::arg("theLowBorder"),  py::arg("theUppBorder"),  py::arg("theSteps"),  py::arg("theNbParticles")=static_cast<const Standard_Integer>(32),  py::arg("theNbIter")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
         .def("Perform",
@@ -2032,12 +2126,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_PSOParticlesPool , shared_ptr<math_PSOParticlesPool>  >>(m.attr("math_PSOParticlesPool"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theParticlesCount"),  py::arg("theDimensionCount") )
+    // custom constructors
     // methods
         .def("GetParticle",
              (PSO_Particle * (math_PSOParticlesPool::*)( const Standard_Integer  ) ) static_cast<PSO_Particle * (math_PSOParticlesPool::*)( const Standard_Integer  ) >(&math_PSOParticlesPool::GetParticle),
@@ -2052,12 +2148,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Powell , shared_ptr<math_Powell>  >>(m.attr("math_Powell"))
+    // constructors
         .def(py::init< const math_MultipleVarFunction &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("theFunction"),  py::arg("theTolerance"),  py::arg("theNbIterations")=static_cast<const Standard_Integer>(200),  py::arg("theZEPS")=static_cast<const Standard_Real>(1.0e-12) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (math_Powell::*)( math_MultipleVarFunction & ,  const math_Vector & ,  const math_Matrix &  ) ) static_cast<void (math_Powell::*)( math_MultipleVarFunction & ,  const math_Vector & ,  const math_Matrix &  ) >(&math_Powell::Perform),
@@ -2105,21 +2203,23 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_SVD , shared_ptr<math_SVD>  >>(m.attr("math_SVD"))
+    // constructors
         .def(py::init< const math_Matrix & >()  , py::arg("A") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_SVD::*)() const) static_cast<Standard_Boolean (math_SVD::*)() const>(&math_SVD::IsDone),
              R"#(Returns true if the computations are successful, otherwise returns false.)#" )
         .def("Solve",
-             (void (math_SVD::*)( const math_Vector & ,  math_Vector & ,  const Standard_Real  ) const) static_cast<void (math_SVD::*)( const math_Vector & ,  math_Vector & ,  const Standard_Real  ) const>(&math_SVD::Solve),
+             (void (math_SVD::*)( const math_Vector & ,  math_Vector & ,  const Standard_Real  ) ) static_cast<void (math_SVD::*)( const math_Vector & ,  math_Vector & ,  const Standard_Real  ) >(&math_SVD::Solve),
              R"#(Given the input Vector B this routine solves the set of linear equations A . X = B. Exception NotDone is raised if the decomposition of A was not done successfully. Exception DimensionError is raised if the range of B is not equal to the rowrange of A. Exception DimensionError is raised if the range of X is not equal to the colrange of A.)#"  , py::arg("B"),  py::arg("X"),  py::arg("Eps")=static_cast<const Standard_Real>(1.0e-6))
         .def("PseudoInverse",
-             (void (math_SVD::*)( math_Matrix & ,  const Standard_Real  ) const) static_cast<void (math_SVD::*)( math_Matrix & ,  const Standard_Real  ) const>(&math_SVD::PseudoInverse),
+             (void (math_SVD::*)( math_Matrix & ,  const Standard_Real  ) ) static_cast<void (math_SVD::*)( math_Matrix & ,  const Standard_Real  ) >(&math_SVD::PseudoInverse),
              R"#(Computes the inverse Inv of matrix A such as A * Inverse = Identity. Exceptions StdFail_NotDone if the algorithm fails (and IsDone returns false). Standard_DimensionError if the ranges of Inv are compatible with the ranges of A.)#"  , py::arg("Inv"),  py::arg("Eps")=static_cast<const Standard_Real>(1.0e-6))
         .def("Dump",
              (void (math_SVD::*)( std::ostream &  ) const) static_cast<void (math_SVD::*)( std::ostream &  ) const>(&math_SVD::Dump),
@@ -2131,14 +2231,16 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_TrigonometricFunctionRoots , shared_ptr<math_TrigonometricFunctionRoots>  >>(m.attr("math_TrigonometricFunctionRoots"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("D"),  py::arg("E"),  py::arg("InfBound"),  py::arg("SupBound") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("D"),  py::arg("E"),  py::arg("InfBound"),  py::arg("SupBound") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("D"),  py::arg("E"),  py::arg("InfBound"),  py::arg("SupBound") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_TrigonometricFunctionRoots::*)() const) static_cast<Standard_Boolean (math_TrigonometricFunctionRoots::*)() const>(&math_TrigonometricFunctionRoots::IsDone),
@@ -2171,13 +2273,15 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Uzawa , shared_ptr<math_Uzawa>  >>(m.attr("math_Uzawa"))
+    // constructors
         .def(py::init< const math_Matrix &,const math_Vector &,const math_Vector &,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("Cont"),  py::arg("Secont"),  py::arg("StartingPoint"),  py::arg("EpsLix")=static_cast<const Standard_Real>(1.0e-06),  py::arg("EpsLic")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(500) )
         .def(py::init< const math_Matrix &,const math_Vector &,const math_Vector &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("Cont"),  py::arg("Secont"),  py::arg("StartingPoint"),  py::arg("Nci"),  py::arg("Nce"),  py::arg("EpsLix")=static_cast<const Standard_Real>(1.0e-06),  py::arg("EpsLic")=static_cast<const Standard_Real>(1.0e-06),  py::arg("NbIterations")=static_cast<const Standard_Integer>(500) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (math_Uzawa::*)() const) static_cast<Standard_Boolean (math_Uzawa::*)() const>(&math_Uzawa::IsDone),
@@ -2225,13 +2329,15 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_ValueAndWeight , shared_ptr<math_ValueAndWeight>  >>(m.attr("math_ValueAndWeight"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< Standard_Real,Standard_Real >()  , py::arg("theValue"),  py::arg("theWeight") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Real (math_ValueAndWeight::*)() const) static_cast<Standard_Real (math_ValueAndWeight::*)() const>(&math_ValueAndWeight::Value),
@@ -2243,17 +2349,19 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_Vector , shared_ptr<math_Vector>  >>(m.attr("math_Vector"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theInitialValue") )
-        .def(py::init< const Standard_Address,const Standard_Integer,const Standard_Integer >()  , py::arg("theTab"),  py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Real *,const Standard_Integer,const Standard_Integer >()  , py::arg("theTab"),  py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const gp_XY & >()  , py::arg("Other") )
         .def(py::init< const gp_XYZ & >()  , py::arg("Other") )
         .def(py::init< const math_Vector & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Init",
              (void (math_Vector::*)( const Standard_Real  ) ) static_cast<void (math_Vector::*)( const Standard_Real  ) >(&math_Vector::Init),
@@ -2337,7 +2445,10 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
              (void (math_Vector::*)( const math_Vector & ,  const math_Vector &  ) ) static_cast<void (math_Vector::*)( const math_Vector & ,  const math_Vector &  ) >(&math_Vector::Subtract),
              R"#(sets a vector to the Subtraction of the vector theRight from the vector theLeft. An exception is raised if the vectors have not the same length. Warning In order to avoid time-consuming copying of vectors, it is preferable to use operator -= or the function Subtract whenever possible.)#"  , py::arg("theLeft"),  py::arg("theRight"))
         .def("Value",
-             (Standard_Real & (math_Vector::*)( const Standard_Integer  ) const) static_cast<Standard_Real & (math_Vector::*)( const Standard_Integer  ) const>(&math_Vector::Value),
+             (const Standard_Real & (math_Vector::*)( const Standard_Integer  ) const) static_cast<const Standard_Real & (math_Vector::*)( const Standard_Integer  ) const>(&math_Vector::Value),
+             R"#(accesses the value of index "theNum" of a vector.)#"  , py::arg("theNum"))
+        .def("Value",
+             (Standard_Real & (math_Vector::*)( const Standard_Integer  ) ) static_cast<Standard_Real & (math_Vector::*)( const Standard_Integer  ) >(&math_Vector::Value),
              R"#(accesses (in read or write mode) the value of index "theNum" of a vector.)#"  , py::arg("theNum"))
         .def("Initialized",
              (math_Vector & (math_Vector::*)( const math_Vector &  ) ) static_cast<math_Vector & (math_Vector::*)( const math_Vector &  ) >(&math_Vector::Initialized),
@@ -2423,11 +2534,13 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
              (math_Vector (math_Vector::*)( const math_Vector &  ) const) static_cast<math_Vector (math_Vector::*)( const math_Vector &  ) const>(&math_Vector::operator-),
              py::is_operator(),
              R"#(None)#"  , py::arg("theRight"))
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionSetWithDerivatives , shared_ptr<math_FunctionSetWithDerivatives> ,Py_math_FunctionSetWithDerivatives , math_FunctionSet >>(m.attr("math_FunctionSetWithDerivatives"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (math_FunctionSetWithDerivatives::*)() const) static_cast<Standard_Integer (math_FunctionSetWithDerivatives::*)() const>(&math_FunctionSetWithDerivatives::NbVariables),
@@ -2448,11 +2561,13 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_FunctionWithDerivative , shared_ptr<math_FunctionWithDerivative> ,Py_math_FunctionWithDerivative , math_Function >>(m.attr("math_FunctionWithDerivative"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (math_FunctionWithDerivative::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (math_FunctionWithDerivative::*)( const Standard_Real ,  Standard_Real &  ) >(&math_FunctionWithDerivative::Value),
@@ -2467,11 +2582,13 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_MultipleVarFunctionWithGradient , shared_ptr<math_MultipleVarFunctionWithGradient> ,Py_math_MultipleVarFunctionWithGradient , math_MultipleVarFunction >>(m.attr("math_MultipleVarFunctionWithGradient"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (math_MultipleVarFunctionWithGradient::*)() const) static_cast<Standard_Integer (math_MultipleVarFunctionWithGradient::*)() const>(&math_MultipleVarFunctionWithGradient::NbVariables),
@@ -2489,11 +2606,13 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_MultipleVarFunctionWithHessian , shared_ptr<math_MultipleVarFunctionWithHessian> ,Py_math_MultipleVarFunctionWithHessian , math_MultipleVarFunctionWithGradient >>(m.attr("math_MultipleVarFunctionWithHessian"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (math_MultipleVarFunctionWithHessian::*)() const) static_cast<Standard_Integer (math_MultipleVarFunctionWithHessian::*)() const>(&math_MultipleVarFunctionWithHessian::NbVariables),
@@ -2514,12 +2633,14 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<math_TrigonometricEquationFunction , shared_ptr<math_TrigonometricEquationFunction>  , math_FunctionWithDerivative >>(m.attr("math_TrigonometricEquationFunction"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("D"),  py::arg("E") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (math_TrigonometricEquationFunction::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (math_TrigonometricEquationFunction::*)( const Standard_Real ,  Standard_Real &  ) >(&math_TrigonometricEquationFunction::Value),
@@ -2534,41 +2655,67 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/math_ComputeGaussPointsAndWeights.hxx
-// ./opencascade/math_Gauss.hxx
-// ./opencascade/math_Crout.hxx
-// ./opencascade/math_Matrix.hxx
-// ./opencascade/math_IntegerVector.hxx
-// ./opencascade/math_FunctionRoots.hxx
 // ./opencascade/math_NewtonFunctionRoot.hxx
-// ./opencascade/math_BracketMinimum.hxx
-// ./opencascade/math_Powell.hxx
-// ./opencascade/math_ValueAndWeight.hxx
-// ./opencascade/math_SingleTab.hxx
-// ./opencascade/math_FunctionSet.hxx
-// ./opencascade/math_EigenValuesSearcher.hxx
-// ./opencascade/math_FunctionRoot.hxx
 // ./opencascade/math_Function.hxx
-// ./opencascade/math_MultipleVarFunctionWithHessian.hxx
-// ./opencascade/math_FRPR.hxx
+// ./opencascade/math_BissecNewton.hxx
+// ./opencascade/math_BracketedRoot.hxx
+// ./opencascade/math_FunctionRoot.hxx
+// ./opencascade/math_MultipleVarFunctionWithGradient.hxx
+// ./opencascade/math_KronrodSingleIntegration.hxx
+// ./opencascade/math_ComputeGaussPointsAndWeights.hxx
+// ./opencascade/math_DirectPolynomialRoots.hxx
+// ./opencascade/math_PSOParticlesPool.hxx
 // ./opencascade/math_FunctionAllRoots.hxx
-// ./opencascade/math_NewtonFunctionSetRoot.hxx
-// ./opencascade/math_FunctionSample.hxx
-// ./opencascade/math_BrentMinimum.hxx
-// ./opencascade/math_FunctionWithDerivative.hxx
+// ./opencascade/math_FunctionRoots.hxx
 // ./opencascade/math_NotSquare.hxx
+// ./opencascade/math_ValueAndWeight.hxx
+// ./opencascade/math_Gauss.hxx
+// ./opencascade/math_GaussSingleIntegration.hxx
+// ./opencascade/math_Crout.hxx
+// ./opencascade/math_FunctionSet.hxx
+// ./opencascade/math_FunctionSetRoot.hxx
 // ./opencascade/math.hxx
+// ./opencascade/math_BullardGenerator.hxx
+// ./opencascade/math_MultipleVarFunction.hxx
+// ./opencascade/math_TrigonometricFunctionRoots.hxx
+// ./opencascade/math_FunctionSetWithDerivatives.hxx
+// ./opencascade/math_IntegerVector.hxx
+// ./opencascade/math_Status.hxx
+// ./opencascade/math_GaussSetIntegration.hxx
+// ./opencascade/math_NewtonMinimum.hxx
+// ./opencascade/math_Powell.hxx
+// ./opencascade/math_EigenValuesSearcher.hxx
+// ./opencascade/math_GlobOptMin.hxx
+// ./opencascade/math_GaussMultipleIntegration.hxx
+// ./opencascade/math_GaussLeastSquare.hxx
+// ./opencascade/math_SingularMatrix.hxx
+// ./opencascade/math_SVD.hxx
+// ./opencascade/math_DoubleTab.hxx
+// ./opencascade/math_BFGS.hxx
+// ./opencascade/math_MultipleVarFunctionWithHessian.hxx
+// ./opencascade/math_BrentMinimum.hxx
+// ./opencascade/math_ComputeKronrodPointsAndWeights.hxx
+// ./opencascade/math_BracketMinimum.hxx
+// ./opencascade/math_Uzawa.hxx
+// ./opencascade/math_NewtonFunctionSetRoot.hxx
+// ./opencascade/math_Array1OfValueAndWeight.hxx
+// ./opencascade/math_Jacobi.hxx
+// ./opencascade/math_Vector.hxx
+// ./opencascade/math_Matrix.hxx
+// ./opencascade/math_FRPR.hxx
+// ./opencascade/math_Householder.hxx
+// ./opencascade/math_TrigonometricEquationFunction.hxx
 // ./opencascade/math_Recipes.hxx
     m.def("LU_Decompose", 
-          (Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  Standard_Real  ))  static_cast<Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  Standard_Real  )>(&LU_Decompose),
-          R"#(None)#"  , py::arg("a"),  py::arg("indx"),  py::arg("d"),  py::arg("TINY")=static_cast<Standard_Real>(1.0e-20));
+          (Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> &  ))  static_cast<Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> &  )>(&LU_Decompose),
+          R"#(None)#"  , py::arg("a"),  py::arg("indx"),  py::arg("d"),  py::arg("TINY")=static_cast<Standard_Real>(1.0e-20),  py::arg("aProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )));
     m.def("LU_Decompose", 
-          (Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  math_Vector & ,  Standard_Real  ))  static_cast<Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  math_Vector & ,  Standard_Real  )>(&LU_Decompose),
-          R"#(None)#"  , py::arg("a"),  py::arg("indx"),  py::arg("d"),  py::arg("vv"),  py::arg("TINY")=static_cast<Standard_Real>(1.0e-30));
+          (Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  math_Vector & ,  Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> &  ))  static_cast<Standard_Integer (*)( math_Matrix & ,  math_IntegerVector & ,  Standard_Real & ,  math_Vector & ,  Standard_Real ,  const opencascade::handle<Message_ProgressIndicator> &  )>(&LU_Decompose),
+          R"#(None)#"  , py::arg("a"),  py::arg("indx"),  py::arg("d"),  py::arg("vv"),  py::arg("TINY")=static_cast<Standard_Real>(1.0e-30),  py::arg("aProgress")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )));
     m.def("LU_Solve", 
           (void (*)( const math_Matrix & ,  const math_IntegerVector & ,  math_Vector &  ))  static_cast<void (*)( const math_Matrix & ,  const math_IntegerVector & ,  math_Vector &  )>(&LU_Solve),
           R"#(None)#"  , py::arg("a"),  py::arg("indx"),  py::arg("b"));
@@ -2593,36 +2740,9 @@ py::module m = static_cast<py::module>(main_module.attr("math"));
     m.def("Jacobi", 
           (Standard_Integer (*)( math_Matrix & ,  math_Vector & ,  math_Matrix & ,  Standard_Integer &  ))  static_cast<Standard_Integer (*)( math_Matrix & ,  math_Vector & ,  math_Matrix & ,  Standard_Integer &  )>(&Jacobi),
           R"#(None)#"  , py::arg("a"),  py::arg("d"),  py::arg("v"),  py::arg("nrot"));
-// ./opencascade/math_Jacobi.hxx
-// ./opencascade/math_BullardGenerator.hxx
-// ./opencascade/math_BracketedRoot.hxx
-// ./opencascade/math_ComputeKronrodPointsAndWeights.hxx
-// ./opencascade/math_Householder.hxx
-// ./opencascade/math_TrigonometricEquationFunction.hxx
-// ./opencascade/math_GaussMultipleIntegration.hxx
-// ./opencascade/math_GaussLeastSquare.hxx
-// ./opencascade/math_GaussSetIntegration.hxx
-// ./opencascade/math_GaussSingleIntegration.hxx
-// ./opencascade/math_PSOParticlesPool.hxx
-// ./opencascade/math_Status.hxx
-// ./opencascade/math_SingularMatrix.hxx
-// ./opencascade/math_NewtonMinimum.hxx
-// ./opencascade/math_MultipleVarFunctionWithGradient.hxx
-// ./opencascade/math_Uzawa.hxx
-// ./opencascade/math_BissecNewton.hxx
-// ./opencascade/math_Vector.hxx
+// ./opencascade/math_FunctionSample.hxx
 // ./opencascade/math_PSO.hxx
-// ./opencascade/math_TrigonometricFunctionRoots.hxx
-// ./opencascade/math_FunctionSetWithDerivatives.hxx
-// ./opencascade/math_FunctionSetRoot.hxx
-// ./opencascade/math_DirectPolynomialRoots.hxx
-// ./opencascade/math_SVD.hxx
-// ./opencascade/math_MultipleVarFunction.hxx
-// ./opencascade/math_Array1OfValueAndWeight.hxx
-// ./opencascade/math_BFGS.hxx
-// ./opencascade/math_KronrodSingleIntegration.hxx
-// ./opencascade/math_GlobOptMin.hxx
-// ./opencascade/math_DoubleTab.hxx
+// ./opencascade/math_FunctionWithDerivative.hxx
 
 // operators
     m.def("__mul__", 

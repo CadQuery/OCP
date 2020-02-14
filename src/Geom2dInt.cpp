@@ -15,50 +15,6 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <Adaptor2d_Curve2d.hxx>
 #include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Geom2dInt_TheProjPCurOfGInter.hxx>
-#include <Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Geom2dInt_TheProjPCurOfGInter.hxx>
-#include <Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx>
-#include <Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter.hxx>
-#include <Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter.hxx>
-#include <Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter.hxx>
-#include <Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter.hxx>
-#include <gp_Pnt2d.hxx>
-#include <IntCurve_IConicTool.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Geom2dInt_TheProjPCurOfGInter.hxx>
-#include <Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <math_Matrix.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Extrema_POnCurv2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Geom2dInt_Geom2dCurveTool.hxx>
-#include <Geom2dInt_TheProjPCurOfGInter.hxx>
-#include <Geom2dInt_TheIntPCurvePCurveOfGInter.hxx>
-#include <Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Geom2dInt_Geom2dCurveTool.hxx>
 #include <Adaptor2d_Curve2d.hxx>
@@ -70,6 +26,50 @@ namespace py = pybind11;
 #include <Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx>
 #include <Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter.hxx>
 #include <Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <Geom2dInt_TheProjPCurOfGInter.hxx>
+#include <Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx>
+#include <Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter.hxx>
+#include <Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <math_Matrix.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter.hxx>
+#include <Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter.hxx>
+#include <Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter.hxx>
+#include <gp_Pnt2d.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <IntRes2d_Domain.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <Geom2dInt_TheProjPCurOfGInter.hxx>
+#include <Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <Geom2dInt_TheProjPCurOfGInter.hxx>
+#include <Geom2dInt_TheIntPCurvePCurveOfGInter.hxx>
+#include <Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx>
+#include <IntCurve_IConicTool.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
+#include <Geom2dInt_TheProjPCurOfGInter.hxx>
+#include <Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter.hxx>
+#include <IntRes2d_Domain.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Geom2dInt_Geom2dCurveTool.hxx>
 
 // module includes
 #include <Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter.hxx>
@@ -108,7 +108,9 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
 
 
     static_cast<py::class_<Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter , shared_ptr<Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter>  >>(m.attr("Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter"))
+    // constructors
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter::Perform),
@@ -129,11 +131,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_GInter , shared_ptr<Geom2dInt_GInter>  , IntRes2d_Intersection >>(m.attr("Geom2dInt_GInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("D"),  py::arg("TolConf"),  py::arg("Tol") )
@@ -141,6 +144,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
         .def(py::init< const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("D1"),  py::arg("C2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("D1"),  py::arg("C2"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dInt_GInter::*)( const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dInt_GInter::*)( const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dInt_GInter::Perform),
@@ -173,12 +177,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Geom2dInt_Geom2dCurveTool , shared_ptr<Geom2dInt_Geom2dCurveTool>>(m,"Geom2dInt_Geom2dCurveTool");
 
     static_cast<py::class_<Geom2dInt_Geom2dCurveTool , shared_ptr<Geom2dInt_Geom2dCurveTool>  >>(m.attr("Geom2dInt_Geom2dCurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -250,17 +257,19 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
                     []( const Adaptor2d_Curve2d & C,const Standard_Integer Index, const NCollection_Array1<Standard_Real> & Tab ){ Standard_Real  U1; Standard_Real  U2; Geom2dInt_Geom2dCurveTool::GetInterval(C,Index,Tab,U1,U2); return std::make_tuple(U1,U2); },
                     R"#(output the bounds of interval of index <Index> used if Type == Composite.)#"  , py::arg("C"),  py::arg("Index"),  py::arg("Tab"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_IntConicCurveOfGInter , shared_ptr<Geom2dInt_IntConicCurveOfGInter>  , IntRes2d_Intersection >>(m.attr("Geom2dInt_IntConicCurveOfGInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Circ2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Elips2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("E"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Parab2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("Prb"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Hypr2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("H"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dInt_IntConicCurveOfGInter::*)( const gp_Lin2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dInt_IntConicCurveOfGInter::*)( const gp_Lin2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dInt_IntConicCurveOfGInter::Perform),
@@ -281,12 +290,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter , shared_ptr<Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter>  , math_FunctionWithDerivative >>(m.attr("Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter"))
+    // constructors
         .def(py::init< const IntCurve_IConicTool &,const Adaptor2d_Curve2d & >()  , py::arg("IT"),  py::arg("PC") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter::*)( const Standard_Real ,  Standard_Real &  ) >(&Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter::Value),
@@ -301,13 +312,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter , shared_ptr<Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter>  , math_FunctionWithDerivative >>(m.attr("Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d & >()  , py::arg("P"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter::*)( const Adaptor2d_Curve2d &  ) ) static_cast<void (Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter::*)( const Adaptor2d_Curve2d &  ) >(&Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter::Initialize),
@@ -349,12 +362,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter , shared_ptr<Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter>>(m,"Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter");
 
     static_cast<py::class_<Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter , shared_ptr<Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter>  >>(m.attr("Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -366,12 +382,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
                     R"#(Among a set of points {C(ui),i=1,NbU}, locate the point P=C(uj) such that: distance(P,C) = Min{distance(P,C(ui))} The research is done between umin and usup.)#"  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("Papp"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter , shared_ptr<Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter>  , math_FunctionSetWithDerivatives >>(m.attr("Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter"))
+    // constructors
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d & >()  , py::arg("curve1"),  py::arg("curve2") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter::*)() const) static_cast<Standard_Integer (Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter::*)() const>(&Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter::NbVariables),
@@ -392,17 +410,19 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_TheIntConicCurveOfGInter , shared_ptr<Geom2dInt_TheIntConicCurveOfGInter>  , IntRes2d_Intersection >>(m.attr("Geom2dInt_TheIntConicCurveOfGInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Circ2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Elips2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("E"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Parab2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("Prb"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Hypr2d &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("H"),  py::arg("D1"),  py::arg("PCurve"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dInt_TheIntConicCurveOfGInter::*)( const gp_Lin2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dInt_TheIntConicCurveOfGInter::*)( const gp_Lin2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dInt_TheIntConicCurveOfGInter::Perform),
@@ -423,12 +443,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_TheIntPCurvePCurveOfGInter , shared_ptr<Geom2dInt_TheIntPCurvePCurveOfGInter>  , IntRes2d_Intersection >>(m.attr("Geom2dInt_TheIntPCurvePCurveOfGInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dInt_TheIntPCurvePCurveOfGInter::*)( const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dInt_TheIntPCurvePCurveOfGInter::*)( const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dInt_TheIntPCurvePCurveOfGInter::Perform),
@@ -446,13 +468,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter , shared_ptr<Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter>  , IntRes2d_Intersection >>(m.attr("Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntCurve_IConicTool &,const IntRes2d_Domain &,const Adaptor2d_Curve2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("ITool"),  py::arg("Dom1"),  py::arg("PCurve"),  py::arg("Dom2"),  py::arg("TolConf"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter::*)( const IntCurve_IConicTool & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter::*)( const IntCurve_IConicTool & ,  const IntRes2d_Domain & ,  const Adaptor2d_Curve2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter::Perform),
@@ -470,14 +494,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter , shared_ptr<Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter>  >>(m.attr("Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("TolU") )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolU") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter::Initialize),
@@ -501,12 +527,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter , shared_ptr<Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter>  , Intf_Polygon2d >>(m.attr("Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter"))
+    // constructors
         .def(py::init< const Adaptor2d_Curve2d &,const Standard_Integer,const IntRes2d_Domain &,const Standard_Real >()  , py::arg("Curve"),  py::arg("NbPnt"),  py::arg("Domain"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("ComputeWithBox",
              (void (Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter::*)( const Adaptor2d_Curve2d & ,  const Bnd_Box2d &  ) ) static_cast<void (Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter::*)( const Adaptor2d_Curve2d & ,  const Bnd_Box2d &  ) >(&Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter::ComputeWithBox),
@@ -551,12 +579,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Geom2dInt_TheProjPCurOfGInter , shared_ptr<Geom2dInt_TheProjPCurOfGInter>>(m,"Geom2dInt_TheProjPCurOfGInter");
 
     static_cast<py::class_<Geom2dInt_TheProjPCurOfGInter , shared_ptr<Geom2dInt_TheProjPCurOfGInter>  >>(m.attr("Geom2dInt_TheProjPCurOfGInter"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -568,24 +599,24 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dInt"));
                     R"#(Returns the parameter V of the point on the parametric curve corresponding to the Point Pnt. The Correspondance between Pnt and the point P(V) on the parametric curve must be coherent with the way of determination of the signed distance between a point and the implicit curve. Tol is the tolerance on the distance between a point and the parametrised curve. LowParameter and HighParameter give the boundaries of the interval in wich the parameter certainly lies. These parameters are given to implement a more efficient algoritm. So, it is not necessary to check that the returned value verifies LowParameter <= Value <= HighParameter.)#"  , py::arg("C"),  py::arg("Pnt"),  py::arg("LowParameter"),  py::arg("HighParameter"),  py::arg("Tol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Geom2dInt_TheIntConicCurveOfGInter.hxx
-// ./opencascade/Geom2dInt_TheIntPCurvePCurveOfGInter.hxx
-// ./opencascade/Geom2dInt_TheProjPCurOfGInter.hxx
-// ./opencascade/Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter.hxx
-// ./opencascade/Geom2dInt_IntConicCurveOfGInter.hxx
-// ./opencascade/Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx
-// ./opencascade/Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter.hxx
 // ./opencascade/Geom2dInt_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfGInter.hxx
-// ./opencascade/Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter.hxx
-// ./opencascade/Geom2dInt_Geom2dCurveTool.hxx
-// ./opencascade/Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter.hxx
-// ./opencascade/Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter.hxx
-// ./opencascade/Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter.hxx
+// ./opencascade/Geom2dInt_IntConicCurveOfGInter.hxx
 // ./opencascade/Geom2dInt_GInter.hxx
+// ./opencascade/Geom2dInt_TheIntPCurvePCurveOfGInter.hxx
+// ./opencascade/Geom2dInt_Geom2dCurveTool.hxx
+// ./opencascade/Geom2dInt_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfGInter.hxx
+// ./opencascade/Geom2dInt_TheProjPCurOfGInter.hxx
+// ./opencascade/Geom2dInt_PCLocFOfTheLocateExtPCOfTheProjPCurOfGInter.hxx
+// ./opencascade/Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx
+// ./opencascade/Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter.hxx
+// ./opencascade/Geom2dInt_TheIntConicCurveOfGInter.hxx
+// ./opencascade/Geom2dInt_ExactIntersectionPointOfTheIntPCurvePCurveOfGInter.hxx
+// ./opencascade/Geom2dInt_TheIntersectorOfTheIntConicCurveOfGInter.hxx
+// ./opencascade/Geom2dInt_TheLocateExtPCOfTheProjPCurOfGInter.hxx
 
 // operators
 

@@ -13,8 +13,8 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <BRepClass_Edge.hxx>
 #include <gp_Lin2d.hxx>
+#include <BRepClass_Edge.hxx>
 #include <BRepClass_Edge.hxx>
 #include <BRepClass_Edge.hxx>
 #include <BRepClass_Edge.hxx>
@@ -49,8 +49,10 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
 
 
     static_cast<py::class_<BRepClass_Edge , shared_ptr<BRepClass_Edge>  >>(m.attr("BRepClass_Edge"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Edge &,const TopoDS_Face & >()  , py::arg("E"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("Edge",
              (TopoDS_Edge & (BRepClass_Edge::*)() ) static_cast<TopoDS_Edge & (BRepClass_Edge::*)() >(&BRepClass_Edge::Edge),
@@ -80,12 +82,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass_FClass2dOfFClassifier , shared_ptr<BRepClass_FClass2dOfFClassifier>  >>(m.attr("BRepClass_FClass2dOfFClassifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (BRepClass_FClass2dOfFClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepClass_FClass2dOfFClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) >(&BRepClass_FClass2dOfFClassifier::Reset),
@@ -112,13 +116,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass_FClassifier , shared_ptr<BRepClass_FClassifier>  >>(m.attr("BRepClass_FClassifier"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< BRepClass_FaceExplorer &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("F"),  py::arg("P"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepClass_FClassifier::*)( BRepClass_FaceExplorer & ,  const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<void (BRepClass_FClassifier::*)( BRepClass_FaceExplorer & ,  const gp_Pnt2d & ,  const Standard_Real  ) >(&BRepClass_FClassifier::Perform),
@@ -145,12 +151,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass_FaceExplorer , shared_ptr<BRepClass_FaceExplorer>  >>(m.attr("BRepClass_FaceExplorer"))
+    // constructors
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // custom constructors
     // methods
         .def("CheckPoint",
              (Standard_Boolean (BRepClass_FaceExplorer::*)( gp_Pnt2d &  ) ) static_cast<Standard_Boolean (BRepClass_FaceExplorer::*)( gp_Pnt2d &  ) >(&BRepClass_FaceExplorer::CheckPoint),
@@ -207,12 +215,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass_FacePassiveClassifier , shared_ptr<BRepClass_FacePassiveClassifier>  >>(m.attr("BRepClass_FacePassiveClassifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (BRepClass_FacePassiveClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepClass_FacePassiveClassifier::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real  ) >(&BRepClass_FacePassiveClassifier::Reset),
@@ -239,12 +249,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass_Intersector , shared_ptr<BRepClass_Intersector>  , Geom2dInt_IntConicCurveOfGInter >>(m.attr("BRepClass_Intersector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepClass_Intersector::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real ,  const BRepClass_Edge &  ) ) static_cast<void (BRepClass_Intersector::*)( const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real ,  const BRepClass_Edge &  ) >(&BRepClass_Intersector::Perform),
@@ -256,15 +268,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepClass_FaceClassifier , shared_ptr<BRepClass_FaceClassifier>  , BRepClass_FClassifier >>(m.attr("BRepClass_FaceClassifier"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< BRepClass_FaceExplorer &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("F"),  py::arg("P"),  py::arg("Tol") )
         .def(py::init< const TopoDS_Face &,const gp_Pnt2d &,const Standard_Real >()  , py::arg("F"),  py::arg("P"),  py::arg("Tol") )
         .def(py::init< const TopoDS_Face &,const gp_Pnt &,const Standard_Real >()  , py::arg("F"),  py::arg("P"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (BRepClass_FaceClassifier::*)( const TopoDS_Face & ,  const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<void (BRepClass_FaceClassifier::*)( const TopoDS_Face & ,  const gp_Pnt2d & ,  const Standard_Real  ) >(&BRepClass_FaceClassifier::Perform),
@@ -276,17 +290,17 @@ py::module m = static_cast<py::module>(main_module.attr("BRepClass"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepClass_FClass2dOfFClassifier.hxx
-// ./opencascade/BRepClass_FaceExplorer.hxx
-// ./opencascade/BRepClass_FaceClassifier.hxx
-// ./opencascade/BRepClass_FacePassiveClassifier.hxx
-// ./opencascade/BRepClass_Intersector.hxx
-// ./opencascade/BRepClass_Edge.hxx
 // ./opencascade/BRepClass_FClassifier.hxx
+// ./opencascade/BRepClass_FaceExplorer.hxx
+// ./opencascade/BRepClass_Edge.hxx
+// ./opencascade/BRepClass_FacePassiveClassifier.hxx
+// ./opencascade/BRepClass_FClass2dOfFClassifier.hxx
+// ./opencascade/BRepClass_FaceClassifier.hxx
+// ./opencascade/BRepClass_Intersector.hxx
 
 // operators
 

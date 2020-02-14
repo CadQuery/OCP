@@ -10,8 +10,6 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
-#include <Message_Messenger.hxx>
-#include <BinObjMgt_Persistent.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
 #include <BinMFunction_FunctionDriver.hxx>
@@ -21,20 +19,22 @@ namespace py = pybind11;
 #include <BinObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <BinObjMgt_Persistent.hxx>
+#include <Message_Messenger.hxx>
+#include <BinObjMgt_Persistent.hxx>
 
 // module includes
-#include <BinMFunction_GraphNodeDriver.hxx>
 #include <BinMFunction.hxx>
 #include <BinMFunction_ScopeDriver.hxx>
+#include <BinMFunction_GraphNodeDriver.hxx>
 #include <BinMFunction_FunctionDriver.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BinMFunction_GraphNodeDriver.hxx
 // ./opencascade/BinMFunction.hxx
 // ./opencascade/BinMFunction_ScopeDriver.hxx
+// ./opencascade/BinMFunction_GraphNodeDriver.hxx
 // ./opencascade/BinMFunction_FunctionDriver.hxx
 
 // user-defined post

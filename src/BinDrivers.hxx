@@ -10,6 +10,8 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
+#include <BinMDF_ADriverTable.hxx>
+#include <Message_Messenger.hxx>
 #include <Standard_GUID.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
@@ -19,22 +21,20 @@ namespace py = pybind11;
 #include <TDocStd_Application.hxx>
 #include <BinMDF_ADriverTable.hxx>
 #include <Message_Messenger.hxx>
-#include <BinMDF_ADriverTable.hxx>
-#include <Message_Messenger.hxx>
 
 // module includes
+#include <BinDrivers_DocumentStorageDriver.hxx>
 #include <BinDrivers.hxx>
 #include <BinDrivers_Marker.hxx>
-#include <BinDrivers_DocumentStorageDriver.hxx>
 #include <BinDrivers_DocumentRetrievalDriver.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
+// ./opencascade/BinDrivers_DocumentStorageDriver.hxx
 // ./opencascade/BinDrivers.hxx
 // ./opencascade/BinDrivers_Marker.hxx
-// ./opencascade/BinDrivers_DocumentStorageDriver.hxx
 // ./opencascade/BinDrivers_DocumentRetrievalDriver.hxx
 
 // user-defined post

@@ -13,14 +13,6 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopOpeBRepTool_ShapeClassifier.hxx>
-#include <BRepClass3d_SolidClassifier.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Standard_NullObject.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Edge.hxx>
 #include <TopoDS_Shape.hxx>
 #include <gp_Pnt.hxx>
 #include <Geom_Curve.hxx>
@@ -30,6 +22,24 @@ namespace py = pybind11;
 #include <BRepAdaptor_Surface.hxx>
 #include <BRepAdaptor_Curve.hxx>
 #include <gp_Dir.hxx>
+#include <Standard_NullObject.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopOpeBRepTool_HBoxTool.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Shape.hxx>
+#include <BRepClass3d_SolidClassifier.hxx>
+#include <TopoDS_Edge.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopOpeBRepTool_C2DF.hxx>
+#include <BRepAdaptor_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopOpeBRepTool_ShapeClassifier.hxx>
 #include <TopoDS_Face.hxx>
 #include <TopoDS_Solid.hxx>
 #include <TopOpeBRepTool_GeomTool.hxx>
@@ -53,19 +63,9 @@ namespace py = pybind11;
 #include <TopOpeBRepTool_mkTondgE.hxx>
 #include <TopOpeBRepTool_PurgeInternalEdges.hxx>
 #include <TopOpeBRepTool_FuseEdges.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopOpeBRepTool_C2DF.hxx>
-#include <BRepAdaptor_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <TopOpeBRepTool_HBoxTool.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Shape.hxx>
 #include <Standard_NullObject.hxx>
+#include <TopoDS_Face.hxx>
+#include <TopoDS_Edge.hxx>
 
 // module includes
 #include <TopOpeBRepTool.hxx>
@@ -126,23 +126,23 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepTool_DataMapOfShapeListOfC2DF.hxx
 #include "NCollection.hxx"
-// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeconnexity.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepTool_DataMapOfShapeface.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepTool_DataMapOfShapeface.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepTool_DataMapOfOrientedShapeC2DF.hxx
-#include "NCollection.hxx"
-// ./opencascade/TopOpeBRepTool_DataMapOfOrientedShapeC2DF.hxx
-#include "NCollection.hxx"
 // ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeBox.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepTool_ListOfC2DF.hxx
 #include "NCollection.hxx"
 // ./opencascade/TopOpeBRepTool_ListOfC2DF.hxx
 #include "NCollection.hxx"
+// ./opencascade/TopOpeBRepTool_DataMapOfShapeface.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepTool_DataMapOfShapeface.hxx
+#include "NCollection.hxx"
 // ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeBox2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepTool_DataMapOfOrientedShapeC2DF.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepTool_DataMapOfOrientedShapeC2DF.hxx
+#include "NCollection.hxx"
+// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeconnexity.hxx
 #include "NCollection.hxx"
 
 
@@ -162,9 +162,12 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
 
 // classes
 
+    // default constructor
     register_default_constructor<TopOpeBRepTool , shared_ptr<TopOpeBRepTool>>(m,"TopOpeBRepTool");
 
     static_cast<py::class_<TopOpeBRepTool , shared_ptr<TopOpeBRepTool>  >>(m.attr("TopOpeBRepTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -197,12 +200,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     R"#(Prints <OCT> as string on stream <S>; returns <S>.)#"  , py::arg("OCT"),  py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepTool_AncestorsTool , shared_ptr<TopOpeBRepTool_AncestorsTool>>(m,"TopOpeBRepTool_AncestorsTool");
 
     static_cast<py::class_<TopOpeBRepTool_AncestorsTool , shared_ptr<TopOpeBRepTool_AncestorsTool>  >>(m.attr("TopOpeBRepTool_AncestorsTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -211,13 +217,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     R"#(same as package method TopExp::MapShapeListOfShapes())#"  , py::arg("S"),  py::arg("TS"),  py::arg("TA"),  py::arg("M"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_BoxSort , shared_ptr<TopOpeBRepTool_BoxSort>  >>(m.attr("TopOpeBRepTool_BoxSort"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TopOpeBRepTool_HBoxTool> & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("SetHBoxTool",
              (void (TopOpeBRepTool_BoxSort::*)( const opencascade::handle<TopOpeBRepTool_HBoxTool> &  ) ) static_cast<void (TopOpeBRepTool_BoxSort::*)( const opencascade::handle<TopOpeBRepTool_HBoxTool> &  ) >(&TopOpeBRepTool_BoxSort::SetHBoxTool),
@@ -262,13 +270,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     R"#(None)#"  , py::arg("HAB"),  py::arg("COB"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_C2DF , shared_ptr<TopOpeBRepTool_C2DF>  >>(m.attr("TopOpeBRepTool_C2DF"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Real,const Standard_Real,const TopoDS_Face & >()  , py::arg("PC"),  py::arg("f2d"),  py::arg("l2d"),  py::arg("tol"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("SetPC",
              (void (TopOpeBRepTool_C2DF::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (TopOpeBRepTool_C2DF::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&TopOpeBRepTool_C2DF::SetPC),
@@ -292,12 +302,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_CLASSI , shared_ptr<TopOpeBRepTool_CLASSI>  >>(m.attr("TopOpeBRepTool_CLASSI"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init2d",
              (void (TopOpeBRepTool_CLASSI::*)( const TopoDS_Face &  ) ) static_cast<void (TopOpeBRepTool_CLASSI::*)( const TopoDS_Face &  ) >(&TopOpeBRepTool_CLASSI::Init2d),
@@ -327,13 +339,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_CORRISO , shared_ptr<TopOpeBRepTool_CORRISO>  >>(m.attr("TopOpeBRepTool_CORRISO"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("FRef") )
+    // custom constructors
     // methods
         .def("Fref",
              (const TopoDS_Face & (TopOpeBRepTool_CORRISO::*)() const) static_cast<const TopoDS_Face & (TopOpeBRepTool_CORRISO::*)() const>(&TopOpeBRepTool_CORRISO::Fref),
@@ -405,14 +419,16 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_CurveTool , shared_ptr<TopOpeBRepTool_CurveTool>  >>(m.attr("TopOpeBRepTool_CurveTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopOpeBRepTool_OutCurveType >()  , py::arg("OCT") )
         .def(py::init< const TopOpeBRepTool_GeomTool & >()  , py::arg("GT") )
+    // custom constructors
     // methods
         .def("ChangeGeomTool",
              (TopOpeBRepTool_GeomTool & (TopOpeBRepTool_CurveTool::*)() ) static_cast<TopOpeBRepTool_GeomTool & (TopOpeBRepTool_CurveTool::*)() >(&TopOpeBRepTool_CurveTool::ChangeGeomTool),
@@ -442,12 +458,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     R"#(None)#"  , py::arg("S"),  py::arg("C"),  py::arg("TolReached2d"),  py::arg("first")=static_cast<const Standard_Real>(0.0),  py::arg("last")=static_cast<const Standard_Real>(0.0))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_FuseEdges , shared_ptr<TopOpeBRepTool_FuseEdges>  >>(m.attr("TopOpeBRepTool_FuseEdges"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("theShape"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("AvoidEdges",
              (void (TopOpeBRepTool_FuseEdges::*)(  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> &  ) ) static_cast<void (TopOpeBRepTool_FuseEdges::*)(  const NCollection_IndexedMap<TopoDS_Shape, TopTools_ShapeMapHasher> &  ) >(&TopOpeBRepTool_FuseEdges::AvoidEdges),
@@ -474,12 +492,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_GeomTool , shared_ptr<TopOpeBRepTool_GeomTool>  >>(m.attr("TopOpeBRepTool_GeomTool"))
+    // constructors
         .def(py::init< const TopOpeBRepTool_OutCurveType,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("TypeC3D")=static_cast<const TopOpeBRepTool_OutCurveType>(TopOpeBRepTool_BSPLINE1),  py::arg("CompC3D")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("CompPC1")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("CompPC2")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Define",
              (void (TopOpeBRepTool_GeomTool::*)( const TopOpeBRepTool_OutCurveType ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (TopOpeBRepTool_GeomTool::*)( const TopOpeBRepTool_OutCurveType ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&TopOpeBRepTool_GeomTool::Define),
@@ -527,12 +547,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_HBoxTool ,opencascade::handle<TopOpeBRepTool_HBoxTool>  , Standard_Transient >>(m.attr("TopOpeBRepTool_HBoxTool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TopOpeBRepTool_HBoxTool::*)() ) static_cast<void (TopOpeBRepTool_HBoxTool::*)() >(&TopOpeBRepTool_HBoxTool::Clear),
@@ -589,12 +611,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_PurgeInternalEdges , shared_ptr<TopOpeBRepTool_PurgeInternalEdges>  >>(m.attr("TopOpeBRepTool_PurgeInternalEdges"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("theShape"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Faces",
              (void (TopOpeBRepTool_PurgeInternalEdges::*)( NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> &  ) ) static_cast<void (TopOpeBRepTool_PurgeInternalEdges::*)( NCollection_DataMap<TopoDS_Shape, TopTools_ListOfShape, TopTools_ShapeMapHasher> &  ) >(&TopOpeBRepTool_PurgeInternalEdges::Faces),
@@ -615,12 +639,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_REGUS , shared_ptr<TopOpeBRepTool_REGUS>  >>(m.attr("TopOpeBRepTool_REGUS"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepTool_REGUS::*)( const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRepTool_REGUS::*)( const TopoDS_Shape &  ) >(&TopOpeBRepTool_REGUS::Init),
@@ -668,12 +694,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     R"#(None)#"  , py::arg("Fanc"),  py::arg("FSplits"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_REGUW , shared_ptr<TopOpeBRepTool_REGUW>  >>(m.attr("TopOpeBRepTool_REGUW"))
+    // constructors
         .def(py::init< const TopoDS_Face & >()  , py::arg("FRef") )
+    // custom constructors
     // methods
         .def("Fref",
              (const TopoDS_Face & (TopOpeBRepTool_REGUW::*)() const) static_cast<const TopoDS_Face & (TopOpeBRepTool_REGUW::*)() const>(&TopOpeBRepTool_REGUW::Fref),
@@ -739,13 +767,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_ShapeClassifier , shared_ptr<TopOpeBRepTool_ShapeClassifier>  >>(m.attr("TopOpeBRepTool_ShapeClassifier"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("SRef") )
+    // custom constructors
     // methods
         .def("ClearAll",
              (void (TopOpeBRepTool_ShapeClassifier::*)() ) static_cast<void (TopOpeBRepTool_ShapeClassifier::*)() >(&TopOpeBRepTool_ShapeClassifier::ClearAll),
@@ -799,13 +829,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_ShapeExplorer , shared_ptr<TopOpeBRepTool_ShapeExplorer>  , TopExp_Explorer >>(m.attr("TopOpeBRepTool_ShapeExplorer"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const TopAbs_ShapeEnum,const TopAbs_ShapeEnum >()  , py::arg("S"),  py::arg("ToFind"),  py::arg("ToAvoid")=static_cast<const TopAbs_ShapeEnum>(TopAbs_SHAPE) )
+    // custom constructors
     // methods
         .def("Init",
              (void (TopOpeBRepTool_ShapeExplorer::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) ) static_cast<void (TopOpeBRepTool_ShapeExplorer::*)( const TopoDS_Shape & ,  const TopAbs_ShapeEnum ,  const TopAbs_ShapeEnum  ) >(&TopOpeBRepTool_ShapeExplorer::Init),
@@ -823,12 +855,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepTool_ShapeTool , shared_ptr<TopOpeBRepTool_ShapeTool>>(m,"TopOpeBRepTool_ShapeTool");
 
     static_cast<py::class_<TopOpeBRepTool_ShapeTool , shared_ptr<TopOpeBRepTool_ShapeTool>  >>(m.attr("TopOpeBRepTool_ShapeTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -900,12 +935,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     []( const TopoDS_Shape & S ){ Standard_Real  u; Standard_Real  v; TopOpeBRepTool_ShapeTool::AdjustOnPeriodic(S,u,v); return std::make_tuple(u,v); },
                     R"#(ajust u,v values in UVBounds of the domain of the geometric shape <S>, according to Uperiodicity and VPeriodicity of the domain. <S> is assumed to be a face. u and/or v is/are not modified when the domain is not periodic in U and/or V .)#"  , py::arg("S"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_SolidClassifier , shared_ptr<TopOpeBRepTool_SolidClassifier>  >>(m.attr("TopOpeBRepTool_SolidClassifier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TopOpeBRepTool_SolidClassifier::*)() ) static_cast<void (TopOpeBRepTool_SolidClassifier::*)() >(&TopOpeBRepTool_SolidClassifier::Clear),
@@ -929,12 +966,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<TopOpeBRepTool_TOOL , shared_ptr<TopOpeBRepTool_TOOL>>(m,"TopOpeBRepTool_TOOL");
 
     static_cast<py::class_<TopOpeBRepTool_TOOL , shared_ptr<TopOpeBRepTool_TOOL>  >>(m.attr("TopOpeBRepTool_TOOL"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1102,13 +1142,15 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
                     []( const gp_Pnt2d & uv,const TopoDS_Face & F ){ Standard_Integer  onU; Standard_Integer  onV; TopOpeBRepTool_TOOL::stuvF(uv,F,onU,onV); return std::make_tuple(onU,onV); },
                     R"#(None)#"  , py::arg("uv"),  py::arg("F"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_connexity , shared_ptr<TopOpeBRepTool_connexity>  >>(m.attr("TopOpeBRepTool_connexity"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("Key") )
+    // custom constructors
     // methods
         .def("SetKey",
              (void (TopOpeBRepTool_connexity::*)( const TopoDS_Shape &  ) ) static_cast<void (TopOpeBRepTool_connexity::*)( const TopoDS_Shape &  ) >(&TopOpeBRepTool_connexity::SetKey),
@@ -1150,12 +1192,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_face , shared_ptr<TopOpeBRepTool_face>  >>(m.attr("TopOpeBRepTool_face"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (Standard_Boolean (TopOpeBRepTool_face::*)( const TopoDS_Wire & ,  const TopoDS_Face &  ) ) static_cast<Standard_Boolean (TopOpeBRepTool_face::*)( const TopoDS_Wire & ,  const TopoDS_Face &  ) >(&TopOpeBRepTool_face::Init),
@@ -1179,12 +1223,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_makeTransition , shared_ptr<TopOpeBRepTool_makeTransition>  >>(m.attr("TopOpeBRepTool_makeTransition"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Initialize",
              (Standard_Boolean (TopOpeBRepTool_makeTransition::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face & ,  const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<Standard_Boolean (TopOpeBRepTool_makeTransition::*)( const TopoDS_Edge & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const TopoDS_Face & ,  const gp_Pnt2d & ,  const Standard_Real  ) >(&TopOpeBRepTool_makeTransition::Initialize),
@@ -1220,12 +1266,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TopOpeBRepTool_mkTondgE , shared_ptr<TopOpeBRepTool_mkTondgE>  >>(m.attr("TopOpeBRepTool_mkTondgE"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Initialize",
              (Standard_Boolean (TopOpeBRepTool_mkTondgE::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const gp_Pnt2d & ,  const TopoDS_Face &  ) ) static_cast<Standard_Boolean (TopOpeBRepTool_mkTondgE::*)( const TopoDS_Edge & ,  const TopoDS_Face & ,  const gp_Pnt2d & ,  const TopoDS_Face &  ) >(&TopOpeBRepTool_mkTondgE::Initialize),
@@ -1252,10 +1300,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/TopOpeBRepTool_ShapeTool.hxx
+// ./opencascade/TopOpeBRepTool_ShapeClassifier.hxx
+// ./opencascade/TopOpeBRepTool_makeTransition.hxx
+// ./opencascade/TopOpeBRepTool_DataMapIteratorOfDataMapOfShapeListOfC2DF.hxx
 // ./opencascade/TopOpeBRepTool_2d.hxx
     m.def("FC2D_Prepare", 
           (Standard_Integer (*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ))  static_cast<Standard_Integer (*)( const TopoDS_Shape & ,  const TopoDS_Shape &  )>(&FC2D_Prepare),
@@ -1293,26 +1345,6 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     m.def("FC2D_AddNewCurveOnSurface", 
           (Standard_Integer (*)( opencascade::handle<Geom2d_Curve> ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real & ,  const Standard_Real & ,  const Standard_Real &  ))  static_cast<Standard_Integer (*)( opencascade::handle<Geom2d_Curve> ,  const TopoDS_Edge & ,  const TopoDS_Face & ,  const Standard_Real & ,  const Standard_Real & ,  const Standard_Real &  )>(&FC2D_AddNewCurveOnSurface),
           R"#(None)#"  , py::arg("PC"),  py::arg("E"),  py::arg("F"),  py::arg("f"),  py::arg("l"),  py::arg("tol"));
-// ./opencascade/TopOpeBRepTool_REGUS.hxx
-// ./opencascade/TopOpeBRepTool_Plos.hxx
-// ./opencascade/TopOpeBRepTool_tol.hxx
-    m.def("FTOL_FaceTolerances", 
-          (void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  )>(&FTOL_FaceTolerances),
-          R"#(None)#"  , py::arg("B1"),  py::arg("B2"),  py::arg("myFace1"),  py::arg("myFace2"),  py::arg("mySurface1"),  py::arg("mySurface2"),  py::arg("myTol1"),  py::arg("myTol2"),  py::arg("Deflection"),  py::arg("MaxUV"));
-    m.def("FTOL_FaceTolerances3d", 
-          (void (*)( const TopoDS_Face & ,  const TopoDS_Face & ,  Standard_Real &  ))  static_cast<void (*)( const TopoDS_Face & ,  const TopoDS_Face & ,  Standard_Real &  )>(&FTOL_FaceTolerances3d),
-          R"#(None)#"  , py::arg("myFace1"),  py::arg("myFace2"),  py::arg("Tol"));
-    m.def("FTOL_FaceTolerances3d", 
-          (void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  )>(&FTOL_FaceTolerances3d),
-          R"#(None)#"  , py::arg("B1"),  py::arg("B2"),  py::arg("myFace1"),  py::arg("myFace2"),  py::arg("mySurface1"),  py::arg("mySurface2"),  py::arg("myTol1"),  py::arg("myTol2"),  py::arg("Deflection"),  py::arg("MaxUV"));
-    m.def("FTOL_FaceTolerances2d", 
-          (void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real &  )>(&FTOL_FaceTolerances2d),
-          R"#(None)#"  , py::arg("B1"),  py::arg("B2"),  py::arg("myFace1"),  py::arg("myFace2"),  py::arg("mySurface1"),  py::arg("mySurface2"),  py::arg("myTol1"),  py::arg("myTol2"));
-// ./opencascade/TopOpeBRepTool_PURGE.hxx
-// ./opencascade/TopOpeBRepTool_ShapeClassifier.hxx
-// ./opencascade/TopOpeBRepTool_PShapeClassifier.hxx
-// ./opencascade/TopOpeBRepTool_define.hxx
-// ./opencascade/TopOpeBRepTool_STATE.hxx
 // ./opencascade/TopOpeBRepTool_GEOMETRY.hxx
     m.def("BASISCURVE2D", 
           (opencascade::handle<Geom2d_Curve> (*)( const opencascade::handle<Geom2d_Curve> &  ))  static_cast<opencascade::handle<Geom2d_Curve> (*)( const opencascade::handle<Geom2d_Curve> &  )>(&BASISCURVE2D),
@@ -1356,19 +1388,6 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     m.def("FUN_tool_nC2dINSIDES", 
           (gp_Dir2d (*)( const gp_Dir2d &  ))  static_cast<gp_Dir2d (*)( const gp_Dir2d &  )>(&FUN_tool_nC2dINSIDES),
           R"#(None)#"  , py::arg("tgC2d"));
-// ./opencascade/TopOpeBRepTool_PSoClassif.hxx
-// ./opencascade/TopOpeBRepTool_DataMapIteratorOfDataMapOfShapeListOfC2DF.hxx
-// ./opencascade/TopOpeBRepTool_defineG.hxx
-// ./opencascade/TopOpeBRepTool_DataMapIteratorOfDataMapOfShapeface.hxx
-// ./opencascade/TopOpeBRepTool_GeomTool.hxx
-// ./opencascade/TopOpeBRepTool_makeTransition.hxx
-// ./opencascade/TopOpeBRepTool_C2DF.hxx
-// ./opencascade/TopOpeBRepTool_KRO.hxx
-// ./opencascade/TopOpeBRepTool_DataMapOfShapeListOfC2DF.hxx
-// ./opencascade/TopOpeBRepTool_FuseEdges.hxx
-// ./opencascade/TopOpeBRepTool_DataMapIteratorOfDataMapOfOrientedShapeC2DF.hxx
-// ./opencascade/TopOpeBRepTool_ShapeTool.hxx
-// ./opencascade/TopOpeBRepTool_IndexedDataMapOfSolidClassifier.hxx
 // ./opencascade/TopOpeBRepTool_box.hxx
     m.def("FBOX_Prepare", 
           (void (*)())  static_cast<void (*)()>(&FBOX_Prepare),
@@ -1380,26 +1399,6 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
           (const Bnd_Box & (*)( const TopoDS_Shape &  ))  static_cast<const Bnd_Box & (*)( const TopoDS_Shape &  )>(&FBOX_Box),
           R"#(None)#"  , py::arg("S"));
 // ./opencascade/TopOpeBRepTool_REGUW.hxx
-// ./opencascade/TopOpeBRepTool_EXPORT.hxx
-// ./opencascade/TopOpeBRepTool.hxx
-// ./opencascade/TopOpeBRepTool_TOOL.hxx
-// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeconnexity.hxx
-// ./opencascade/TopOpeBRepTool_DataMapOfShapeface.hxx
-// ./opencascade/TopOpeBRepTool_CORRISO.hxx
-// ./opencascade/TopOpeBRepTool_face.hxx
-// ./opencascade/TopOpeBRepTool_BoxSort.hxx
-// ./opencascade/TopOpeBRepTool_DataMapOfOrientedShapeC2DF.hxx
-// ./opencascade/TopOpeBRepTool_connexity.hxx
-// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeBox.hxx
-// ./opencascade/TopOpeBRepTool_CurveTool.hxx
-// ./opencascade/TopOpeBRepTool_AncestorsTool.hxx
-// ./opencascade/TopOpeBRepTool_CLASSI.hxx
-// ./opencascade/TopOpeBRepTool_DRAW.hxx
-// ./opencascade/TopOpeBRepTool_OutCurveType.hxx
-// ./opencascade/TopOpeBRepTool_mkTondgE.hxx
-// ./opencascade/TopOpeBRepTool_ListOfC2DF.hxx
-// ./opencascade/TopOpeBRepTool_SolidClassifier.hxx
-// ./opencascade/TopOpeBRepTool_ShapeExplorer.hxx
 // ./opencascade/TopOpeBRepTool_SC.hxx
     m.def("FSC_GetPSC", 
           (TopOpeBRepTool_ShapeClassifier & (*)())  static_cast<TopOpeBRepTool_ShapeClassifier & (*)()>(&FSC_GetPSC),
@@ -1413,6 +1412,14 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     m.def("FSC_StateEonFace", 
           (TopAbs_State (*)( const TopoDS_Shape & ,  const Standard_Real ,  const TopoDS_Shape & ,  TopOpeBRepTool_ShapeClassifier &  ))  static_cast<TopAbs_State (*)( const TopoDS_Shape & ,  const Standard_Real ,  const TopoDS_Shape & ,  TopOpeBRepTool_ShapeClassifier &  )>(&FSC_StateEonFace),
           R"#(None)#"  , py::arg("E"),  py::arg("t"),  py::arg("F"),  py::arg("PSC"));
+// ./opencascade/TopOpeBRepTool_HBoxTool.hxx
+// ./opencascade/TopOpeBRepTool_DataMapIteratorOfDataMapOfOrientedShapeC2DF.hxx
+// ./opencascade/TopOpeBRepTool_define.hxx
+// ./opencascade/TopOpeBRepTool_DataMapOfShapeListOfC2DF.hxx
+// ./opencascade/TopOpeBRepTool_ListIteratorOfListOfC2DF.hxx
+// ./opencascade/TopOpeBRepTool_defineG.hxx
+// ./opencascade/TopOpeBRepTool_face.hxx
+// ./opencascade/TopOpeBRepTool_FuseEdges.hxx
 // ./opencascade/TopOpeBRepTool_TOPOLOGY.hxx
     m.def("FUN_tool_tolUV", 
           (void (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const TopoDS_Face & ,  Standard_Real & ,  Standard_Real &  )>(&FUN_tool_tolUV),
@@ -1633,9 +1640,6 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     m.def("FUN_tool_MakeWire", 
           (Standard_Boolean (*)(  const NCollection_List<TopoDS_Shape> & ,  TopoDS_Wire &  ))  static_cast<Standard_Boolean (*)(  const NCollection_List<TopoDS_Shape> & ,  TopoDS_Wire &  )>(&FUN_tool_MakeWire),
           R"#(None)#"  , py::arg("loE"),  py::arg("newW"));
-// ./opencascade/TopOpeBRepTool_ListIteratorOfListOfC2DF.hxx
-// ./opencascade/TopOpeBRepTool_PurgeInternalEdges.hxx
-// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeBox2d.hxx
 // ./opencascade/TopOpeBRepTool_PROJECT.hxx
     m.def("FUN_tool_bounds", 
           (void (*)( const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const TopoDS_Edge & ,  Standard_Real & ,  Standard_Real &  )>(&FUN_tool_bounds),
@@ -1679,18 +1683,62 @@ py::module m = static_cast<py::module>(main_module.attr("TopOpeBRepTool"));
     m.def("FUN_tool_projPonF", 
           (Standard_Boolean (*)( const gp_Pnt & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  Standard_Real & ,  const Extrema_ExtFlag ,  const Extrema_ExtAlgo  ))  static_cast<Standard_Boolean (*)( const gp_Pnt & ,  const TopoDS_Face & ,  gp_Pnt2d & ,  Standard_Real & ,  const Extrema_ExtFlag ,  const Extrema_ExtAlgo  )>(&FUN_tool_projPonF),
           R"#(None)#"  , py::arg("P"),  py::arg("F"),  py::arg("UV"),  py::arg("dist"),  py::arg("anExtFlag")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("anExtAlgo")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad));
-// ./opencascade/TopOpeBRepTool_HBoxTool.hxx
+// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeBox.hxx
+// ./opencascade/TopOpeBRepTool_ShapeExplorer.hxx
+// ./opencascade/TopOpeBRepTool_EXPORT.hxx
+// ./opencascade/TopOpeBRepTool_Plos.hxx
+// ./opencascade/TopOpeBRepTool_IndexedDataMapOfSolidClassifier.hxx
+// ./opencascade/TopOpeBRepTool_STATE.hxx
+// ./opencascade/TopOpeBRepTool_ListOfC2DF.hxx
+// ./opencascade/TopOpeBRepTool_CORRISO.hxx
+// ./opencascade/TopOpeBRepTool_connexity.hxx
+// ./opencascade/TopOpeBRepTool_C2DF.hxx
+// ./opencascade/TopOpeBRepTool_BoxSort.hxx
+// ./opencascade/TopOpeBRepTool_CurveTool.hxx
+// ./opencascade/TopOpeBRepTool_PSoClassif.hxx
+// ./opencascade/TopOpeBRepTool_TOOL.hxx
+// ./opencascade/TopOpeBRepTool_tol.hxx
+    m.def("FTOL_FaceTolerances", 
+          (void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  )>(&FTOL_FaceTolerances),
+          R"#(None)#"  , py::arg("B1"),  py::arg("B2"),  py::arg("myFace1"),  py::arg("myFace2"),  py::arg("mySurface1"),  py::arg("mySurface2"),  py::arg("myTol1"),  py::arg("myTol2"),  py::arg("Deflection"),  py::arg("MaxUV"));
+    m.def("FTOL_FaceTolerances3d", 
+          (void (*)( const TopoDS_Face & ,  const TopoDS_Face & ,  Standard_Real &  ))  static_cast<void (*)( const TopoDS_Face & ,  const TopoDS_Face & ,  Standard_Real &  )>(&FTOL_FaceTolerances3d),
+          R"#(None)#"  , py::arg("myFace1"),  py::arg("myFace2"),  py::arg("Tol"));
+    m.def("FTOL_FaceTolerances3d", 
+          (void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real & ,  Standard_Real &  )>(&FTOL_FaceTolerances3d),
+          R"#(None)#"  , py::arg("B1"),  py::arg("B2"),  py::arg("myFace1"),  py::arg("myFace2"),  py::arg("mySurface1"),  py::arg("mySurface2"),  py::arg("myTol1"),  py::arg("myTol2"),  py::arg("Deflection"),  py::arg("MaxUV"));
+    m.def("FTOL_FaceTolerances2d", 
+          (void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real &  ))  static_cast<void (*)( const Bnd_Box & ,  const Bnd_Box & ,  const TopoDS_Face & ,  const TopoDS_Face & ,  const BRepAdaptor_Surface & ,  const BRepAdaptor_Surface & ,  Standard_Real & ,  Standard_Real &  )>(&FTOL_FaceTolerances2d),
+          R"#(None)#"  , py::arg("B1"),  py::arg("B2"),  py::arg("myFace1"),  py::arg("myFace2"),  py::arg("mySurface1"),  py::arg("mySurface2"),  py::arg("myTol1"),  py::arg("myTol2"));
+// ./opencascade/TopOpeBRepTool_DataMapOfShapeface.hxx
+// ./opencascade/TopOpeBRepTool_DataMapIteratorOfDataMapOfShapeface.hxx
+// ./opencascade/TopOpeBRepTool_PShapeClassifier.hxx
+// ./opencascade/TopOpeBRepTool.hxx
+// ./opencascade/TopOpeBRepTool_AncestorsTool.hxx
+// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeBox2d.hxx
+// ./opencascade/TopOpeBRepTool_OutCurveType.hxx
+// ./opencascade/TopOpeBRepTool_PurgeInternalEdges.hxx
+// ./opencascade/TopOpeBRepTool_DataMapOfOrientedShapeC2DF.hxx
+// ./opencascade/TopOpeBRepTool_KRO.hxx
+// ./opencascade/TopOpeBRepTool_REGUS.hxx
+// ./opencascade/TopOpeBRepTool_GeomTool.hxx
+// ./opencascade/TopOpeBRepTool_mkTondgE.hxx
+// ./opencascade/TopOpeBRepTool_CLASSI.hxx
+// ./opencascade/TopOpeBRepTool_SolidClassifier.hxx
+// ./opencascade/TopOpeBRepTool_PURGE.hxx
+// ./opencascade/TopOpeBRepTool_IndexedDataMapOfShapeconnexity.hxx
+// ./opencascade/TopOpeBRepTool_DRAW.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepTool_ListOfC2DF, TopTools_ShapeMapHasher>(m,"TopOpeBRepTool_DataMapOfShapeListOfC2DF");  
-    register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepTool_connexity, TopTools_ShapeMapHasher>(m,"TopOpeBRepTool_IndexedDataMapOfShapeconnexity");  
-    register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepTool_face, TopTools_ShapeMapHasher>(m,"TopOpeBRepTool_DataMapOfShapeface");  
-    register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepTool_C2DF, TopTools_OrientedShapeMapHasher>(m,"TopOpeBRepTool_DataMapOfOrientedShapeC2DF");  
     register_template_NCollection_IndexedDataMap<TopoDS_Shape, Bnd_Box, TopTools_OrientedShapeMapHasher>(m,"TopOpeBRepTool_IndexedDataMapOfShapeBox");  
     register_template_NCollection_List<TopOpeBRepTool_C2DF>(m,"TopOpeBRepTool_ListOfC2DF");  
+    register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepTool_face, TopTools_ShapeMapHasher>(m,"TopOpeBRepTool_DataMapOfShapeface");  
     register_template_NCollection_IndexedDataMap<TopoDS_Shape, Bnd_Box2d, TopTools_OrientedShapeMapHasher>(m,"TopOpeBRepTool_IndexedDataMapOfShapeBox2d");  
+    register_template_NCollection_DataMap<TopoDS_Shape, TopOpeBRepTool_C2DF, TopTools_OrientedShapeMapHasher>(m,"TopOpeBRepTool_DataMapOfOrientedShapeC2DF");  
+    register_template_NCollection_IndexedDataMap<TopoDS_Shape, TopOpeBRepTool_connexity, TopTools_ShapeMapHasher>(m,"TopOpeBRepTool_IndexedDataMapOfShapeconnexity");  
 
 
 // exceptions

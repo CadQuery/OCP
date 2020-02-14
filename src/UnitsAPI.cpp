@@ -38,9 +38,12 @@ py::module m = static_cast<py::module>(main_module.attr("UnitsAPI"));
 
 // classes
 
+    // default constructor
     register_default_constructor<UnitsAPI , shared_ptr<UnitsAPI>>(m,"UnitsAPI");
 
     static_cast<py::class_<UnitsAPI , shared_ptr<UnitsAPI>  >>(m.attr("UnitsAPI"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -145,7 +148,7 @@ py::module m = static_cast<py::module>(main_module.attr("UnitsAPI"));
                     R"#(Checks the coherence between the quantity <aQuantity> and the unit <aUnits> in the current system and returns FALSE when it's WRONG.)#"  , py::arg("aQuantity"),  py::arg("aUnit"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

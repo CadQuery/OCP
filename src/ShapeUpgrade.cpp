@@ -13,6 +13,20 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <ShapeUpgrade_FaceDivide.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <ShapeUpgrade_FaceDivide.hxx>
+#include <ShapeUpgrade_SplitCurve3d.hxx>
+#include <ShapeUpgrade_SplitCurve2d.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <ShapeExtend_CompositeSurface.hxx>
+#include <TopoDS_Edge.hxx>
+#include <ShapeUpgrade_FaceDivide.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <ShapeExtend_BasicMsgRegistrator.hxx>
+#include <Message_Msg.hxx>
 #include <ShapeUpgrade_SplitCurve3d.hxx>
 #include <ShapeUpgrade_SplitCurve2d.hxx>
 #include <ShapeUpgrade_EdgeDivide.hxx>
@@ -20,23 +34,9 @@ namespace py = pybind11;
 #include <ShapeUpgrade_FixSmallCurves.hxx>
 #include <Geom_Surface.hxx>
 #include <TopoDS_Edge.hxx>
-#include <ShapeExtend_CompositeSurface.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <ShapeUpgrade_FaceDivide.hxx>
-#include <Message_Msg.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <ShapeUpgrade_SplitSurface.hxx>
-#include <ShapeUpgrade_WireDivide.hxx>
-#include <ShapeUpgrade_FaceDivide.hxx>
-#include <Geom_Surface.hxx>
-#include <ShapeExtend_CompositeSurface.hxx>
 #include <ShapeUpgrade_SplitCurve3d.hxx>
 #include <ShapeUpgrade_SplitCurve2d.hxx>
 #include <TopoDS_Edge.hxx>
-#include <ShapeUpgrade_FaceDivide.hxx>
-#include <ShapeBuild_ReShape.hxx>
-#include <ShapeExtend_BasicMsgRegistrator.hxx>
-#include <Message_Msg.hxx>
 #include <Geom_BSplineCurve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <ShapeUpgrade_Tool.hxx>
@@ -72,14 +72,14 @@ namespace py = pybind11;
 #include <ShapeUpgrade_RemoveInternalWires.hxx>
 #include <ShapeUpgrade_UnifySameDomain.hxx>
 #include <ShapeBuild_ReShape.hxx>
-#include <TopoDS_Edge.hxx>
-#include <ShapeUpgrade_SplitCurve3d.hxx>
-#include <ShapeUpgrade_SplitCurve2d.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
+#include <ShapeBuild_ReShape.hxx>
 #include <ShapeUpgrade_FaceDivide.hxx>
+#include <Message_Msg.hxx>
+#include <ShapeBuild_ReShape.hxx>
+#include <Geom_Surface.hxx>
+#include <ShapeExtend_CompositeSurface.hxx>
+#include <ShapeUpgrade_SplitSurface.hxx>
+#include <ShapeUpgrade_WireDivide.hxx>
 
 // module includes
 #include <ShapeUpgrade.hxx>
@@ -135,9 +135,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeUpgrade , shared_ptr<ShapeUpgrade>>(m,"ShapeUpgrade");
 
     static_cast<py::class_<ShapeUpgrade , shared_ptr<ShapeUpgrade>  >>(m.attr("ShapeUpgrade"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -149,12 +152,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(Converts C0 B-Spline curve into sequence of C1 B-Spline curves. This method splits B-Spline at the knots with multiplicities equal to degree, i.e. unlike method GeomConvert::C0BSplineToArrayOfC1BSplineCurve this one does not use any tolerance and therefore does not change the geometry of B-Spline. Returns True if C0 B-Spline was successfully splitted, else returns False (if BS is C1 B-Spline).)#"  , py::arg("BS"),  py::arg("seqBS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_RemoveLocations ,opencascade::handle<ShapeUpgrade_RemoveLocations>  , Standard_Transient >>(m.attr("ShapeUpgrade_RemoveLocations"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Remove",
              (Standard_Boolean (ShapeUpgrade_RemoveLocations::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (ShapeUpgrade_RemoveLocations::*)( const TopoDS_Shape &  ) >(&ShapeUpgrade_RemoveLocations::Remove),
@@ -196,13 +201,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShapeDivide , shared_ptr<ShapeUpgrade_ShapeDivide>  >>(m.attr("ShapeUpgrade_ShapeDivide"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_ShapeDivide::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeUpgrade_ShapeDivide::*)( const TopoDS_Shape &  ) >(&ShapeUpgrade_ShapeDivide::Init),
@@ -253,12 +260,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShellSewing , shared_ptr<ShapeUpgrade_ShellSewing>  >>(m.attr("ShapeUpgrade_ShellSewing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ApplySewing",
              (TopoDS_Shape (ShapeUpgrade_ShellSewing::*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<TopoDS_Shape (ShapeUpgrade_ShellSewing::*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&ShapeUpgrade_ShellSewing::ApplySewing),
@@ -267,12 +276,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitCurve ,opencascade::handle<ShapeUpgrade_SplitCurve>  , Standard_Transient >>(m.attr("ShapeUpgrade_SplitCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_SplitCurve::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (ShapeUpgrade_SplitCurve::*)( const Standard_Real ,  const Standard_Real  ) >(&ShapeUpgrade_SplitCurve::Init),
@@ -308,12 +319,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitSurface ,opencascade::handle<ShapeUpgrade_SplitSurface>  , Standard_Transient >>(m.attr("ShapeUpgrade_SplitSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_SplitSurface::*)( const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (ShapeUpgrade_SplitSurface::*)( const opencascade::handle<Geom_Surface> &  ) >(&ShapeUpgrade_SplitSurface::Init),
@@ -361,12 +374,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_Tool ,opencascade::handle<ShapeUpgrade_Tool>  , Standard_Transient >>(m.attr("ShapeUpgrade_Tool"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (ShapeUpgrade_Tool::*)( const opencascade::handle<ShapeUpgrade_Tool> &  ) ) static_cast<void (ShapeUpgrade_Tool::*)( const opencascade::handle<ShapeUpgrade_Tool> &  ) >(&ShapeUpgrade_Tool::Set),
@@ -438,13 +453,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_UnifySameDomain ,opencascade::handle<ShapeUpgrade_UnifySameDomain>  , Standard_Transient >>(m.attr("ShapeUpgrade_UnifySameDomain"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("aShape"),  py::arg("UnifyEdges")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("UnifyFaces")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("ConcatBSplines")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (ShapeUpgrade_UnifySameDomain::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (ShapeUpgrade_UnifySameDomain::*)( const TopoDS_Shape & ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&ShapeUpgrade_UnifySameDomain::Initialize),
@@ -492,12 +509,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ConvertSurfaceToBezierBasis ,opencascade::handle<ShapeUpgrade_ConvertSurfaceToBezierBasis>  , ShapeUpgrade_SplitSurface >>(m.attr("ShapeUpgrade_ConvertSurfaceToBezierBasis"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Build",
              (void (ShapeUpgrade_ConvertSurfaceToBezierBasis::*)( const Standard_Boolean  ) ) static_cast<void (ShapeUpgrade_ConvertSurfaceToBezierBasis::*)( const Standard_Boolean  ) >(&ShapeUpgrade_ConvertSurfaceToBezierBasis::Build),
@@ -569,12 +588,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_EdgeDivide ,opencascade::handle<ShapeUpgrade_EdgeDivide>  , ShapeUpgrade_Tool >>(m.attr("ShapeUpgrade_EdgeDivide"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (ShapeUpgrade_EdgeDivide::*)() ) static_cast<void (ShapeUpgrade_EdgeDivide::*)() >(&ShapeUpgrade_EdgeDivide::Clear),
@@ -637,13 +658,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_FaceDivide ,opencascade::handle<ShapeUpgrade_FaceDivide>  , ShapeUpgrade_Tool >>(m.attr("ShapeUpgrade_FaceDivide"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_FaceDivide::*)( const TopoDS_Face &  ) ) static_cast<void (ShapeUpgrade_FaceDivide::*)( const TopoDS_Face &  ) >(&ShapeUpgrade_FaceDivide::Init),
@@ -691,12 +714,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_FixSmallCurves ,opencascade::handle<ShapeUpgrade_FixSmallCurves>  , ShapeUpgrade_Tool >>(m.attr("ShapeUpgrade_FixSmallCurves"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_FixSmallCurves::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) ) static_cast<void (ShapeUpgrade_FixSmallCurves::*)( const TopoDS_Edge & ,  const TopoDS_Face &  ) >(&ShapeUpgrade_FixSmallCurves::Init),
@@ -726,13 +751,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_RemoveInternalWires ,opencascade::handle<ShapeUpgrade_RemoveInternalWires>  , ShapeUpgrade_Tool >>(m.attr("ShapeUpgrade_RemoveInternalWires"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("theShape") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_RemoveInternalWires::*)( const TopoDS_Shape &  ) ) static_cast<void (ShapeUpgrade_RemoveInternalWires::*)( const TopoDS_Shape &  ) >(&ShapeUpgrade_RemoveInternalWires::Init),
@@ -792,13 +819,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShapeConvertToBezier , shared_ptr<ShapeUpgrade_ShapeConvertToBezier>  , ShapeUpgrade_ShapeDivide >>(m.attr("ShapeUpgrade_ShapeConvertToBezier"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Set2dConversion",
              (void (ShapeUpgrade_ShapeConvertToBezier::*)( const Standard_Boolean  ) ) static_cast<void (ShapeUpgrade_ShapeConvertToBezier::*)( const Standard_Boolean  ) >(&ShapeUpgrade_ShapeConvertToBezier::Set2dConversion),
@@ -927,13 +956,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShapeDivideAngle , shared_ptr<ShapeUpgrade_ShapeDivideAngle>  , ShapeUpgrade_ShapeDivide >>(m.attr("ShapeUpgrade_ShapeDivideAngle"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("MaxAngle") )
         .def(py::init< const Standard_Real,const TopoDS_Shape & >()  , py::arg("MaxAngle"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("InitTool",
              (void (ShapeUpgrade_ShapeDivideAngle::*)( const Standard_Real  ) ) static_cast<void (ShapeUpgrade_ShapeDivideAngle::*)( const Standard_Real  ) >(&ShapeUpgrade_ShapeDivideAngle::InitTool),
@@ -948,13 +979,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShapeDivideArea , shared_ptr<ShapeUpgrade_ShapeDivideArea>  , ShapeUpgrade_ShapeDivide >>(m.attr("ShapeUpgrade_ShapeDivideArea"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("MaxArea",
              (Standard_Real & (ShapeUpgrade_ShapeDivideArea::*)() ) static_cast<Standard_Real & (ShapeUpgrade_ShapeDivideArea::*)() >(&ShapeUpgrade_ShapeDivideArea::MaxArea),
@@ -966,12 +999,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShapeDivideClosed , shared_ptr<ShapeUpgrade_ShapeDivideClosed>  , ShapeUpgrade_ShapeDivide >>(m.attr("ShapeUpgrade_ShapeDivideClosed"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("SetNbSplitPoints",
              (void (ShapeUpgrade_ShapeDivideClosed::*)( const Standard_Integer  ) ) static_cast<void (ShapeUpgrade_ShapeDivideClosed::*)( const Standard_Integer  ) >(&ShapeUpgrade_ShapeDivideClosed::SetNbSplitPoints),
@@ -980,12 +1015,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShapeDivideClosedEdges , shared_ptr<ShapeUpgrade_ShapeDivideClosedEdges>  , ShapeUpgrade_ShapeDivide >>(m.attr("ShapeUpgrade_ShapeDivideClosedEdges"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("SetNbSplitPoints",
              (void (ShapeUpgrade_ShapeDivideClosedEdges::*)( const Standard_Integer  ) ) static_cast<void (ShapeUpgrade_ShapeDivideClosedEdges::*)( const Standard_Integer  ) >(&ShapeUpgrade_ShapeDivideClosedEdges::SetNbSplitPoints),
@@ -994,13 +1031,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ShapeDivideContinuity , shared_ptr<ShapeUpgrade_ShapeDivideContinuity>  , ShapeUpgrade_ShapeDivide >>(m.attr("ShapeUpgrade_ShapeDivideContinuity"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("SetTolerance",
              (void (ShapeUpgrade_ShapeDivideContinuity::*)( const Standard_Real  ) ) static_cast<void (ShapeUpgrade_ShapeDivideContinuity::*)( const Standard_Real  ) >(&ShapeUpgrade_ShapeDivideContinuity::SetTolerance),
@@ -1021,12 +1060,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitCurve2d ,opencascade::handle<ShapeUpgrade_SplitCurve2d>  , ShapeUpgrade_SplitCurve >>(m.attr("ShapeUpgrade_SplitCurve2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_SplitCurve2d::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (ShapeUpgrade_SplitCurve2d::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&ShapeUpgrade_SplitCurve2d::Init),
@@ -1053,12 +1094,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitCurve3d ,opencascade::handle<ShapeUpgrade_SplitCurve3d>  , ShapeUpgrade_SplitCurve >>(m.attr("ShapeUpgrade_SplitCurve3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_SplitCurve3d::*)( const opencascade::handle<Geom_Curve> &  ) ) static_cast<void (ShapeUpgrade_SplitCurve3d::*)( const opencascade::handle<Geom_Curve> &  ) >(&ShapeUpgrade_SplitCurve3d::Init),
@@ -1085,12 +1128,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitSurfaceAngle ,opencascade::handle<ShapeUpgrade_SplitSurfaceAngle>  , ShapeUpgrade_SplitSurface >>(m.attr("ShapeUpgrade_SplitSurfaceAngle"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("MaxAngle") )
+    // custom constructors
     // methods
         .def("SetMaxAngle",
              (void (ShapeUpgrade_SplitSurfaceAngle::*)( const Standard_Real  ) ) static_cast<void (ShapeUpgrade_SplitSurfaceAngle::*)( const Standard_Real  ) >(&ShapeUpgrade_SplitSurfaceAngle::SetMaxAngle),
@@ -1114,12 +1159,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitSurfaceArea ,opencascade::handle<ShapeUpgrade_SplitSurfaceArea>  , ShapeUpgrade_SplitSurface >>(m.attr("ShapeUpgrade_SplitSurfaceArea"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbParts",
              (Standard_Integer & (ShapeUpgrade_SplitSurfaceArea::*)() ) static_cast<Standard_Integer & (ShapeUpgrade_SplitSurfaceArea::*)() >(&ShapeUpgrade_SplitSurfaceArea::NbParts),
@@ -1143,12 +1190,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitSurfaceContinuity ,opencascade::handle<ShapeUpgrade_SplitSurfaceContinuity>  , ShapeUpgrade_SplitSurface >>(m.attr("ShapeUpgrade_SplitSurfaceContinuity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetCriterion",
              (void (ShapeUpgrade_SplitSurfaceContinuity::*)( const GeomAbs_Shape  ) ) static_cast<void (ShapeUpgrade_SplitSurfaceContinuity::*)( const GeomAbs_Shape  ) >(&ShapeUpgrade_SplitSurfaceContinuity::SetCriterion),
@@ -1172,12 +1221,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_WireDivide ,opencascade::handle<ShapeUpgrade_WireDivide>  , ShapeUpgrade_Tool >>(m.attr("ShapeUpgrade_WireDivide"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeUpgrade_WireDivide::*)( const TopoDS_Wire & ,  const TopoDS_Face &  ) ) static_cast<void (ShapeUpgrade_WireDivide::*)( const TopoDS_Wire & ,  const TopoDS_Face &  ) >(&ShapeUpgrade_WireDivide::Init),
@@ -1249,12 +1300,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ClosedEdgeDivide ,opencascade::handle<ShapeUpgrade_ClosedEdgeDivide>  , ShapeUpgrade_EdgeDivide >>(m.attr("ShapeUpgrade_ClosedEdgeDivide"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Compute",
              (Standard_Boolean (ShapeUpgrade_ClosedEdgeDivide::*)( const TopoDS_Edge &  ) ) static_cast<Standard_Boolean (ShapeUpgrade_ClosedEdgeDivide::*)( const TopoDS_Edge &  ) >(&ShapeUpgrade_ClosedEdgeDivide::Compute),
@@ -1272,13 +1325,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ClosedFaceDivide ,opencascade::handle<ShapeUpgrade_ClosedFaceDivide>  , ShapeUpgrade_FaceDivide >>(m.attr("ShapeUpgrade_ClosedFaceDivide"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // custom constructors
     // methods
         .def("SplitSurface",
              (Standard_Boolean (ShapeUpgrade_ClosedFaceDivide::*)() ) static_cast<Standard_Boolean (ShapeUpgrade_ClosedFaceDivide::*)() >(&ShapeUpgrade_ClosedFaceDivide::SplitSurface),
@@ -1302,12 +1357,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ConvertCurve2dToBezier ,opencascade::handle<ShapeUpgrade_ConvertCurve2dToBezier>  , ShapeUpgrade_SplitCurve2d >>(m.attr("ShapeUpgrade_ConvertCurve2dToBezier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Compute",
              (void (ShapeUpgrade_ConvertCurve2dToBezier::*)() ) static_cast<void (ShapeUpgrade_ConvertCurve2dToBezier::*)() >(&ShapeUpgrade_ConvertCurve2dToBezier::Compute),
@@ -1331,12 +1388,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_ConvertCurve3dToBezier ,opencascade::handle<ShapeUpgrade_ConvertCurve3dToBezier>  , ShapeUpgrade_SplitCurve3d >>(m.attr("ShapeUpgrade_ConvertCurve3dToBezier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetLineMode",
              (void (ShapeUpgrade_ConvertCurve3dToBezier::*)( const Standard_Boolean  ) ) static_cast<void (ShapeUpgrade_ConvertCurve3dToBezier::*)( const Standard_Boolean  ) >(&ShapeUpgrade_ConvertCurve3dToBezier::SetLineMode),
@@ -1396,13 +1455,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_FaceDivideArea ,opencascade::handle<ShapeUpgrade_FaceDivideArea>  , ShapeUpgrade_FaceDivide >>(m.attr("ShapeUpgrade_FaceDivideArea"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face & >()  , py::arg("F") )
+    // custom constructors
     // methods
         .def("Perform",
              (Standard_Boolean (ShapeUpgrade_FaceDivideArea::*)() ) static_cast<Standard_Boolean (ShapeUpgrade_FaceDivideArea::*)() >(&ShapeUpgrade_FaceDivideArea::Perform),
@@ -1426,12 +1487,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_FixSmallBezierCurves ,opencascade::handle<ShapeUpgrade_FixSmallBezierCurves>  , ShapeUpgrade_FixSmallCurves >>(m.attr("ShapeUpgrade_FixSmallBezierCurves"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Approx",
              (Standard_Boolean (ShapeUpgrade_FixSmallBezierCurves::*)( opencascade::handle<Geom_Curve> & ,  opencascade::handle<Geom2d_Curve> & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real &  ) ) static_cast<Standard_Boolean (ShapeUpgrade_FixSmallBezierCurves::*)( opencascade::handle<Geom_Curve> & ,  opencascade::handle<Geom2d_Curve> & ,  opencascade::handle<Geom2d_Curve> & ,  Standard_Real & ,  Standard_Real &  ) >(&ShapeUpgrade_FixSmallBezierCurves::Approx),
@@ -1449,12 +1512,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitCurve2dContinuity ,opencascade::handle<ShapeUpgrade_SplitCurve2dContinuity>  , ShapeUpgrade_SplitCurve2d >>(m.attr("ShapeUpgrade_SplitCurve2dContinuity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetCriterion",
              (void (ShapeUpgrade_SplitCurve2dContinuity::*)( const GeomAbs_Shape  ) ) static_cast<void (ShapeUpgrade_SplitCurve2dContinuity::*)( const GeomAbs_Shape  ) >(&ShapeUpgrade_SplitCurve2dContinuity::SetCriterion),
@@ -1478,12 +1543,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeUpgrade_SplitCurve3dContinuity ,opencascade::handle<ShapeUpgrade_SplitCurve3dContinuity>  , ShapeUpgrade_SplitCurve3d >>(m.attr("ShapeUpgrade_SplitCurve3dContinuity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetCriterion",
              (void (ShapeUpgrade_SplitCurve3dContinuity::*)( const GeomAbs_Shape  ) ) static_cast<void (ShapeUpgrade_SplitCurve3dContinuity::*)( const GeomAbs_Shape  ) >(&ShapeUpgrade_SplitCurve3dContinuity::SetCriterion),
@@ -1510,43 +1577,43 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeUpgrade"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/ShapeUpgrade_WireDivide.hxx
-// ./opencascade/ShapeUpgrade_SplitCurve.hxx
-// ./opencascade/ShapeUpgrade_ConvertSurfaceToBezierBasis.hxx
-// ./opencascade/ShapeUpgrade_UnifySameDomain.hxx
-// ./opencascade/ShapeUpgrade_SplitSurfaceAngle.hxx
-// ./opencascade/ShapeUpgrade_SplitCurve3dContinuity.hxx
-// ./opencascade/ShapeUpgrade_RemoveLocations.hxx
-// ./opencascade/ShapeUpgrade_ShapeConvertToBezier.hxx
-// ./opencascade/ShapeUpgrade_FaceDivideArea.hxx
-// ./opencascade/ShapeUpgrade_ConvertCurve2dToBezier.hxx
-// ./opencascade/ShapeUpgrade_ClosedFaceDivide.hxx
-// ./opencascade/ShapeUpgrade_ShapeDivideClosed.hxx
-// ./opencascade/ShapeUpgrade_SplitSurfaceArea.hxx
-// ./opencascade/ShapeUpgrade_Tool.hxx
-// ./opencascade/ShapeUpgrade_FaceDivide.hxx
-// ./opencascade/ShapeUpgrade_ShapeDivideArea.hxx
-// ./opencascade/ShapeUpgrade_SplitSurface.hxx
-// ./opencascade/ShapeUpgrade_SplitCurve2d.hxx
 // ./opencascade/ShapeUpgrade_RemoveInternalWires.hxx
-// ./opencascade/ShapeUpgrade_SplitCurve3d.hxx
-// ./opencascade/ShapeUpgrade_EdgeDivide.hxx
-// ./opencascade/ShapeUpgrade_ShapeDivide.hxx
-// ./opencascade/ShapeUpgrade.hxx
-// ./opencascade/ShapeUpgrade_ShellSewing.hxx
-// ./opencascade/ShapeUpgrade_ClosedEdgeDivide.hxx
-// ./opencascade/ShapeUpgrade_FixSmallCurves.hxx
-// ./opencascade/ShapeUpgrade_ShapeDivideClosedEdges.hxx
-// ./opencascade/ShapeUpgrade_SplitSurfaceContinuity.hxx
-// ./opencascade/ShapeUpgrade_FixSmallBezierCurves.hxx
-// ./opencascade/ShapeUpgrade_ConvertCurve3dToBezier.hxx
-// ./opencascade/ShapeUpgrade_ShapeDivideAngle.hxx
-// ./opencascade/ShapeUpgrade_SplitCurve2dContinuity.hxx
 // ./opencascade/ShapeUpgrade_ShapeDivideContinuity.hxx
+// ./opencascade/ShapeUpgrade_ConvertCurve3dToBezier.hxx
+// ./opencascade/ShapeUpgrade_FixSmallBezierCurves.hxx
+// ./opencascade/ShapeUpgrade_ShapeDivideArea.hxx
+// ./opencascade/ShapeUpgrade_ClosedFaceDivide.hxx
+// ./opencascade/ShapeUpgrade_RemoveLocations.hxx
+// ./opencascade/ShapeUpgrade_FixSmallCurves.hxx
+// ./opencascade/ShapeUpgrade_ConvertSurfaceToBezierBasis.hxx
+// ./opencascade/ShapeUpgrade_ClosedEdgeDivide.hxx
+// ./opencascade/ShapeUpgrade_ShapeDivide.hxx
+// ./opencascade/ShapeUpgrade_WireDivide.hxx
+// ./opencascade/ShapeUpgrade_ShapeDivideClosed.hxx
+// ./opencascade/ShapeUpgrade_EdgeDivide.hxx
+// ./opencascade/ShapeUpgrade.hxx
+// ./opencascade/ShapeUpgrade_SplitSurfaceContinuity.hxx
+// ./opencascade/ShapeUpgrade_Tool.hxx
+// ./opencascade/ShapeUpgrade_ShellSewing.hxx
+// ./opencascade/ShapeUpgrade_ShapeDivideAngle.hxx
+// ./opencascade/ShapeUpgrade_SplitSurfaceArea.hxx
+// ./opencascade/ShapeUpgrade_ShapeConvertToBezier.hxx
+// ./opencascade/ShapeUpgrade_UnifySameDomain.hxx
+// ./opencascade/ShapeUpgrade_SplitCurve2dContinuity.hxx
+// ./opencascade/ShapeUpgrade_SplitCurve2d.hxx
+// ./opencascade/ShapeUpgrade_SplitCurve.hxx
+// ./opencascade/ShapeUpgrade_ConvertCurve2dToBezier.hxx
+// ./opencascade/ShapeUpgrade_ShapeDivideClosedEdges.hxx
+// ./opencascade/ShapeUpgrade_SplitSurface.hxx
+// ./opencascade/ShapeUpgrade_FaceDivideArea.hxx
+// ./opencascade/ShapeUpgrade_SplitCurve3d.hxx
+// ./opencascade/ShapeUpgrade_SplitCurve3dContinuity.hxx
+// ./opencascade/ShapeUpgrade_FaceDivide.hxx
+// ./opencascade/ShapeUpgrade_SplitSurfaceAngle.hxx
 
 // operators
 

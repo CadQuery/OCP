@@ -13,58 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <GeomFill_TrihedronLaw.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <GeomFill_LocationLaw.hxx>
-#include <GeomFill_SectionLaw.hxx>
-#include <Geom_Surface.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Approx_CurvlinFunc.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <GeomFill_CoonsAlgPatch.hxx>
-#include <gp_Vec.hxx>
-#include <GeomFill_DraftTrihedron.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Standard_NotImplemented.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <Standard_ConstructionError.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Geom_BSplineSurface.hxx>
 #include <GeomFill_Frenet.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <GeomFill_Boundary.hxx>
-#include <Law_Function.hxx>
-#include <GeomFill_SweepSectionGenerator.hxx>
-#include <GeomFill_Line.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <gp_Vec.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <GeomFill_CoonsAlgPatch.hxx>
-#include <GeomFill_TgtField.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <GeomFill_Boundary.hxx>
-#include <GeomFill_BoundWithSurf.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
-#include <Geom_Curve.hxx>
-#include <Law_Function.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <GeomFill_Frenet.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <gp_Vec.hxx>
-#include <StdFail_NotDone.hxx>
+#include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Geom_Surface.hxx>
 #include <GeomFill_LocationLaw.hxx>
@@ -72,18 +28,11 @@ namespace py = pybind11;
 #include <Standard_ConstructionError.hxx>
 #include <Geom2d_Curve.hxx>
 #include <gp_Dir.hxx>
-#include <math_Matrix.hxx>
-#include <Geom_BSplineCurve.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <GeomFill_TrihedronLaw.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <Geom_Curve.hxx>
-#include <GeomFill_SectionGenerator.hxx>
-#include <GeomFill_Line.hxx>
-#include <GeomFill_LocationLaw.hxx>
 #include <Standard_NotImplemented.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <Law_BSpline.hxx>
-#include <gp_Vec.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <GeomFill_SectionLaw.hxx>
 #include <Geom_Curve.hxx>
@@ -91,31 +40,87 @@ namespace py = pybind11;
 #include <gp_Pnt.hxx>
 #include <math_Matrix.hxx>
 #include <gp_Vec.hxx>
-#include <Geom_Surface.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <Geom_Curve.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <gp_Pnt.hxx>
+#include <Law_BSpline.hxx>
 #include <gp_Vec.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Standard_NotImplemented.hxx>
 #include <GeomFill_Frenet.hxx>
 #include <Law_Function.hxx>
 #include <Adaptor3d_HCurve.hxx>
+#include <Approx_CurvlinFunc.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <math_Matrix.hxx>
-#include <gp_Vec.hxx>
-#include <GeomFill_Tensor.hxx>
-#include <Law_Function.hxx>
 #include <GeomFill_LocationLaw.hxx>
+#include <GeomFill_SectionLaw.hxx>
+#include <Geom_Surface.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Adaptor3d_HCurve.hxx>
 #include <GeomFill_TrihedronWithGuide.hxx>
 #include <GeomFill_SectionLaw.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Standard_NotImplemented.hxx>
 #include <Geom_Curve.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <Law_Function.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <math_Matrix.hxx>
+#include <gp_Vec.hxx>
+#include <GeomFill_Tensor.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <gp_Vec.hxx>
+#include <GeomFill_LocationLaw.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <Geom_Curve.hxx>
+#include <GeomFill_CoonsAlgPatch.hxx>
+#include <gp_Vec.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <GeomFill_LocationLaw.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <GeomFill_LocationLaw.hxx>
+#include <GeomFill_SectionLaw.hxx>
+#include <Geom_Surface.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Law_Function.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <GeomFill_DraftTrihedron.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <GeomFill_Frenet.hxx>
+#include <StdFail_NotDone.hxx>
+#include <math_Matrix.hxx>
+#include <GeomFill_CoonsAlgPatch.hxx>
+#include <GeomFill_TgtField.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <GeomFill_Boundary.hxx>
+#include <GeomFill_BoundWithSurf.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Geom_Curve.hxx>
+#include <GeomFill_SectionGenerator.hxx>
+#include <GeomFill_Line.hxx>
+#include <Geom_BezierSurface.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <GeomFill_SweepSectionGenerator.hxx>
+#include <GeomFill_Line.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <gp_Vec.hxx>
+#include <GeomFill_Boundary.hxx>
+#include <Law_Function.hxx>
+#include <GeomFill_Frenet.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <StdFail_NotDone.hxx>
 #include <Geom_Surface.hxx>
 #include <Geom_Curve.hxx>
 #include <GeomFill_Filling.hxx>
@@ -172,19 +177,14 @@ namespace py = pybind11;
 #include <GeomFill_GuideTrihedronPlan.hxx>
 #include <GeomFill_Sweep.hxx>
 #include <GeomFill_SectionPlacement.hxx>
-#include <Geom_BezierSurface.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Adaptor3d_HCurve.hxx>
+#include <Geom_Curve.hxx>
 #include <Law_Function.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor3d_HCurve.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <GeomFill_Frenet.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <GeomFill_LocationLaw.hxx>
-#include <GeomFill_SectionLaw.hxx>
-#include <StdFail_NotDone.hxx>
 
 // module includes
 #include <GeomFill.hxx>
@@ -255,13 +255,13 @@ namespace py = pybind11;
 #include <GeomFill_UniformSection.hxx>
 
 // template related includes
-// ./opencascade/GeomFill_SequenceOfAx2.hxx
-#include "NCollection.hxx"
 // ./opencascade/GeomFill_Array1OfLocationLaw.hxx
 #include "NCollection.hxx"
-// ./opencascade/GeomFill_SequenceOfTrsf.hxx
-#include "NCollection.hxx"
 // ./opencascade/GeomFill_Array1OfSectionLaw.hxx
+#include "NCollection.hxx"
+// ./opencascade/GeomFill_SequenceOfAx2.hxx
+#include "NCollection.hxx"
+// ./opencascade/GeomFill_SequenceOfTrsf.hxx
 #include "NCollection.hxx"
 
 
@@ -282,6 +282,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     public:
         using GeomFill_Boundary::GeomFill_Boundary;
         
+        
         // public pure virtual
         gp_Pnt Value(const Standard_Real U) const  override { PYBIND11_OVERLOAD_PURE(gp_Pnt,GeomFill_Boundary,Value,U) };
         void D1(const Standard_Real U,gp_Pnt & P,gp_Vec & V) const  override { PYBIND11_OVERLOAD_PURE(void,GeomFill_Boundary,D1,U,P,V) };
@@ -299,6 +300,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     class Py_GeomFill_LocationLaw : public GeomFill_LocationLaw{
     public:
         using GeomFill_LocationLaw::GeomFill_LocationLaw;
+        
         
         // public pure virtual
         void SetCurve(const opencascade::handle<Adaptor3d_HCurve> & C) override { PYBIND11_OVERLOAD_PURE(void,GeomFill_LocationLaw,SetCurve,C) };
@@ -325,6 +327,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     class Py_GeomFill_SectionLaw : public GeomFill_SectionLaw{
     public:
         using GeomFill_SectionLaw::GeomFill_SectionLaw;
+        
         
         // public pure virtual
         Standard_Boolean D0(const Standard_Real Param,NCollection_Array1<gp_Pnt> & Poles,NCollection_Array1<Standard_Real> & Weigths) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,GeomFill_SectionLaw,D0,Param,Poles,Weigths) };
@@ -353,6 +356,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     public:
         using GeomFill_TgtField::GeomFill_TgtField;
         
+        
         // public pure virtual
         gp_Vec Value(const Standard_Real W) const  override { PYBIND11_OVERLOAD_PURE(gp_Vec,GeomFill_TgtField,Value,W) };
         gp_Vec D1(const Standard_Real W) const  override { PYBIND11_OVERLOAD_PURE(gp_Vec,GeomFill_TgtField,D1,W) };
@@ -368,6 +372,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     class Py_GeomFill_TrihedronLaw : public GeomFill_TrihedronLaw{
     public:
         using GeomFill_TrihedronLaw::GeomFill_TrihedronLaw;
+        
         
         // public pure virtual
         opencascade::handle<GeomFill_TrihedronLaw> Copy() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<GeomFill_TrihedronLaw>,GeomFill_TrihedronLaw,Copy,) };
@@ -386,6 +391,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     class Py_GeomFill_TrihedronWithGuide : public GeomFill_TrihedronWithGuide{
     public:
         using GeomFill_TrihedronWithGuide::GeomFill_TrihedronWithGuide;
+        
         
         // public pure virtual
         opencascade::handle<Adaptor3d_HCurve> Guide() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Adaptor3d_HCurve>,GeomFill_TrihedronWithGuide,Guide,) };
@@ -406,9 +412,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomFill , shared_ptr<GeomFill>>(m,"GeomFill");
 
     static_cast<py::class_<GeomFill , shared_ptr<GeomFill>  >>(m.attr("GeomFill"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -441,13 +450,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     []( const Standard_Real MaxAng,Convert_ParameterisationType & TypeConv ){ Standard_Integer  NbPoles; Standard_Integer  NbKnots; Standard_Integer  Degree; GeomFill::GetShape(MaxAng,NbPoles,NbKnots,Degree,TypeConv); return std::make_tuple(NbPoles,NbKnots,Degree); },
                     R"#(None)#"  , py::arg("MaxAng"),  py::arg("TypeConv"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_AppSurf , shared_ptr<GeomFill_AppSurf>  , AppBlend_Approx >>(m.attr("GeomFill_AppSurf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean >()  , py::arg("Degmin"),  py::arg("Degmax"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIt"),  py::arg("KnownParameters")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_AppSurf::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (GeomFill_AppSurf::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean  ) >(&GeomFill_AppSurf::Init),
@@ -543,13 +554,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_AppSweep , shared_ptr<GeomFill_AppSweep>  , AppBlend_Approx >>(m.attr("GeomFill_AppSweep"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean >()  , py::arg("Degmin"),  py::arg("Degmax"),  py::arg("Tol3d"),  py::arg("Tol2d"),  py::arg("NbIt"),  py::arg("KnownParameters")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_AppSweep::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (GeomFill_AppSweep::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const Standard_Boolean  ) >(&GeomFill_AppSweep::Init),
@@ -645,15 +658,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_BSplineCurves , shared_ptr<GeomFill_BSplineCurves>  >>(m.attr("GeomFill_BSplineCurves"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_BSplineCurve> &,const opencascade::handle<Geom_BSplineCurve> &,const opencascade::handle<Geom_BSplineCurve> &,const opencascade::handle<Geom_BSplineCurve> &,const GeomFill_FillingStyle >()  , py::arg("C1"),  py::arg("C2"),  py::arg("C3"),  py::arg("C4"),  py::arg("Type") )
         .def(py::init< const opencascade::handle<Geom_BSplineCurve> &,const opencascade::handle<Geom_BSplineCurve> &,const opencascade::handle<Geom_BSplineCurve> &,const GeomFill_FillingStyle >()  , py::arg("C1"),  py::arg("C2"),  py::arg("C3"),  py::arg("Type") )
         .def(py::init< const opencascade::handle<Geom_BSplineCurve> &,const opencascade::handle<Geom_BSplineCurve> &,const GeomFill_FillingStyle >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Type") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_BSplineCurves::*)( const opencascade::handle<Geom_BSplineCurve> & ,  const opencascade::handle<Geom_BSplineCurve> & ,  const opencascade::handle<Geom_BSplineCurve> & ,  const opencascade::handle<Geom_BSplineCurve> & ,  const GeomFill_FillingStyle  ) ) static_cast<void (GeomFill_BSplineCurves::*)( const opencascade::handle<Geom_BSplineCurve> & ,  const opencascade::handle<Geom_BSplineCurve> & ,  const opencascade::handle<Geom_BSplineCurve> & ,  const opencascade::handle<Geom_BSplineCurve> & ,  const GeomFill_FillingStyle  ) >(&GeomFill_BSplineCurves::Init),
@@ -674,15 +689,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_BezierCurves , shared_ptr<GeomFill_BezierCurves>  >>(m.attr("GeomFill_BezierCurves"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_BezierCurve> &,const opencascade::handle<Geom_BezierCurve> &,const opencascade::handle<Geom_BezierCurve> &,const opencascade::handle<Geom_BezierCurve> &,const GeomFill_FillingStyle >()  , py::arg("C1"),  py::arg("C2"),  py::arg("C3"),  py::arg("C4"),  py::arg("Type") )
         .def(py::init< const opencascade::handle<Geom_BezierCurve> &,const opencascade::handle<Geom_BezierCurve> &,const opencascade::handle<Geom_BezierCurve> &,const GeomFill_FillingStyle >()  , py::arg("C1"),  py::arg("C2"),  py::arg("C3"),  py::arg("Type") )
         .def(py::init< const opencascade::handle<Geom_BezierCurve> &,const opencascade::handle<Geom_BezierCurve> &,const GeomFill_FillingStyle >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Type") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_BezierCurves::*)( const opencascade::handle<Geom_BezierCurve> & ,  const opencascade::handle<Geom_BezierCurve> & ,  const opencascade::handle<Geom_BezierCurve> & ,  const opencascade::handle<Geom_BezierCurve> & ,  const GeomFill_FillingStyle  ) ) static_cast<void (GeomFill_BezierCurves::*)( const opencascade::handle<Geom_BezierCurve> & ,  const opencascade::handle<Geom_BezierCurve> & ,  const opencascade::handle<Geom_BezierCurve> & ,  const opencascade::handle<Geom_BezierCurve> & ,  const GeomFill_FillingStyle  ) >(&GeomFill_BezierCurves::Init),
@@ -703,11 +720,13 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Boundary ,opencascade::handle<GeomFill_Boundary> ,Py_GeomFill_Boundary , Standard_Transient >>(m.attr("GeomFill_Boundary"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (gp_Pnt (GeomFill_Boundary::*)( const Standard_Real  ) const) static_cast<gp_Pnt (GeomFill_Boundary::*)( const Standard_Real  ) const>(&GeomFill_Boundary::Value),
@@ -761,12 +780,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_CircularBlendFunc ,opencascade::handle<GeomFill_CircularBlendFunc>  , Approx_SweepFunction >>(m.attr("GeomFill_CircularBlendFunc"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const Standard_Boolean >()  , py::arg("Path"),  py::arg("Curve1"),  py::arg("Curve2"),  py::arg("Radius"),  py::arg("Polynomial")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (GeomFill_CircularBlendFunc::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (GeomFill_CircularBlendFunc::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) >(&GeomFill_CircularBlendFunc::D0),
@@ -829,12 +850,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_ConstrainedFilling , shared_ptr<GeomFill_ConstrainedFilling>  >>(m.attr("GeomFill_ConstrainedFilling"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("MaxDeg"),  py::arg("MaxSeg") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_ConstrainedFilling::*)( const opencascade::handle<GeomFill_Boundary> & ,  const opencascade::handle<GeomFill_Boundary> & ,  const opencascade::handle<GeomFill_Boundary> & ,  const Standard_Boolean  ) ) static_cast<void (GeomFill_ConstrainedFilling::*)( const opencascade::handle<GeomFill_Boundary> & ,  const opencascade::handle<GeomFill_Boundary> & ,  const opencascade::handle<GeomFill_Boundary> & ,  const Standard_Boolean  ) >(&GeomFill_ConstrainedFilling::Init),
@@ -873,12 +896,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_CoonsAlgPatch ,opencascade::handle<GeomFill_CoonsAlgPatch>  , Standard_Transient >>(m.attr("GeomFill_CoonsAlgPatch"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_Boundary> &,const opencascade::handle<GeomFill_Boundary> &,const opencascade::handle<GeomFill_Boundary> &,const opencascade::handle<GeomFill_Boundary> & >()  , py::arg("B1"),  py::arg("B2"),  py::arg("B3"),  py::arg("B4") )
+    // custom constructors
     // methods
         .def("Func",
              (void (GeomFill_CoonsAlgPatch::*)( opencascade::handle<Law_Function> & ,  opencascade::handle<Law_Function> &  ) const) static_cast<void (GeomFill_CoonsAlgPatch::*)( opencascade::handle<Law_Function> & ,  opencascade::handle<Law_Function> &  ) const>(&GeomFill_CoonsAlgPatch::Func),
@@ -920,12 +945,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_CornerState , shared_ptr<GeomFill_CornerState>  >>(m.attr("GeomFill_CornerState"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Gap",
              (Standard_Real (GeomFill_CornerState::*)() const) static_cast<Standard_Real (GeomFill_CornerState::*)() const>(&GeomFill_CornerState::Gap),
@@ -961,12 +988,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Filling , shared_ptr<GeomFill_Filling>  >>(m.attr("GeomFill_Filling"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbUPoles",
              (Standard_Integer (GeomFill_Filling::*)() const) static_cast<Standard_Integer (GeomFill_Filling::*)() const>(&GeomFill_Filling::NbUPoles),
@@ -987,12 +1016,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_FunctionDraft , shared_ptr<GeomFill_FunctionDraft>  , math_FunctionSetWithDerivatives >>(m.attr("GeomFill_FunctionDraft"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("S"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (GeomFill_FunctionDraft::*)() const) static_cast<Standard_Integer (GeomFill_FunctionDraft::*)() const>(&GeomFill_FunctionDraft::NbVariables),
@@ -1025,12 +1056,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_FunctionGuide , shared_ptr<GeomFill_FunctionGuide>  , math_FunctionSetWithDerivatives >>(m.attr("GeomFill_FunctionGuide"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_SectionLaw> &,const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real >()  , py::arg("S"),  py::arg("Guide"),  py::arg("ParamOnLaw")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("SetParam",
              (void (GeomFill_FunctionGuide::*)( const Standard_Real ,  const gp_Pnt & ,  const gp_XYZ & ,  const gp_XYZ &  ) ) static_cast<void (GeomFill_FunctionGuide::*)( const Standard_Real ,  const gp_Pnt & ,  const gp_XYZ & ,  const gp_XYZ &  ) >(&GeomFill_FunctionGuide::SetParam),
@@ -1057,14 +1090,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_HArray1OfLocationLaw ,opencascade::handle<GeomFill_HArray1OfLocationLaw>  , GeomFill_Array1OfLocationLaw , Standard_Transient >>(m.attr("GeomFill_HArray1OfLocationLaw"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<GeomFill_LocationLaw> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<GeomFill_LocationLaw> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const GeomFill_Array1OfLocationLaw & (GeomFill_HArray1OfLocationLaw::*)() const) static_cast<const GeomFill_Array1OfLocationLaw & (GeomFill_HArray1OfLocationLaw::*)() const>(&GeomFill_HArray1OfLocationLaw::Array1),
@@ -1085,14 +1121,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_HArray1OfSectionLaw ,opencascade::handle<GeomFill_HArray1OfSectionLaw>  , GeomFill_Array1OfSectionLaw , Standard_Transient >>(m.attr("GeomFill_HArray1OfSectionLaw"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<GeomFill_SectionLaw> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<GeomFill_SectionLaw> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const GeomFill_Array1OfSectionLaw & (GeomFill_HArray1OfSectionLaw::*)() const) static_cast<const GeomFill_Array1OfSectionLaw & (GeomFill_HArray1OfSectionLaw::*)() const>(&GeomFill_HArray1OfSectionLaw::Array1),
@@ -1113,13 +1152,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_HSequenceOfAx2 ,opencascade::handle<GeomFill_HSequenceOfAx2>  , GeomFill_SequenceOfAx2 , Standard_Transient >>(m.attr("GeomFill_HSequenceOfAx2"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<gp_Ax2> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const GeomFill_SequenceOfAx2 & (GeomFill_HSequenceOfAx2::*)() const) static_cast<const GeomFill_SequenceOfAx2 & (GeomFill_HSequenceOfAx2::*)() const>(&GeomFill_HSequenceOfAx2::Sequence),
@@ -1146,13 +1187,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Line ,opencascade::handle<GeomFill_Line>  , Standard_Transient >>(m.attr("GeomFill_Line"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("NbPoints") )
+    // custom constructors
     // methods
         .def("NbPoints",
              (Standard_Integer (GeomFill_Line::*)() const) static_cast<Standard_Integer (GeomFill_Line::*)() const>(&GeomFill_Line::NbPoints),
@@ -1179,12 +1222,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_LocFunction , shared_ptr<GeomFill_LocFunction>  >>(m.attr("GeomFill_LocFunction"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_LocationLaw> & >()  , py::arg("Law") )
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (GeomFill_LocFunction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<Standard_Boolean (GeomFill_LocFunction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&GeomFill_LocFunction::D0),
@@ -1202,11 +1247,13 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_LocationLaw ,opencascade::handle<GeomFill_LocationLaw> ,Py_GeomFill_LocationLaw , Standard_Transient >>(m.attr("GeomFill_LocationLaw"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (GeomFill_LocationLaw::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) ) static_cast<void (GeomFill_LocationLaw::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) >(&GeomFill_LocationLaw::SetCurve),
@@ -1296,11 +1343,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Pipe , shared_ptr<GeomFill_Pipe>  >>(m.attr("GeomFill_Pipe"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real >()  , py::arg("Path"),  py::arg("Radius") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> &,const GeomFill_Trihedron >()  , py::arg("Path"),  py::arg("FirstSect"),  py::arg("Option")=static_cast<const GeomFill_Trihedron>(GeomFill_IsCorrectedFrenet) )
@@ -1311,6 +1359,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> &,const Standard_Real >()  , py::arg("Path"),  py::arg("Curve1"),  py::arg("Curve2"),  py::arg("Radius") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real >()  , py::arg("Path"),  py::arg("Curve1"),  py::arg("Curve2"),  py::arg("Radius") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Geom_Curve> &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Path"),  py::arg("Guide"),  py::arg("FirstSect"),  py::arg("ByACR"),  py::arg("rotat") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_Pipe::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) ) static_cast<void (GeomFill_Pipe::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) >(&GeomFill_Pipe::Init),
@@ -1382,12 +1431,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_PlanFunc , shared_ptr<GeomFill_PlanFunc>  , math_FunctionWithDerivative >>(m.attr("GeomFill_PlanFunc"))
+    // constructors
         .def(py::init< const gp_Pnt &,const gp_Vec &,const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("P"),  py::arg("V"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (GeomFill_PlanFunc::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (GeomFill_PlanFunc::*)( const Standard_Real ,  Standard_Real &  ) >(&GeomFill_PlanFunc::Value),
@@ -1411,12 +1462,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_PolynomialConvertor , shared_ptr<GeomFill_PolynomialConvertor>  >>(m.attr("GeomFill_PolynomialConvertor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Initialized",
              (Standard_Boolean (GeomFill_PolynomialConvertor::*)() const) static_cast<Standard_Boolean (GeomFill_PolynomialConvertor::*)() const>(&GeomFill_PolynomialConvertor::Initialized),
@@ -1437,12 +1490,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Profiler , shared_ptr<GeomFill_Profiler>  >>(m.attr("GeomFill_Profiler"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddCurve",
              (void (GeomFill_Profiler::*)( const opencascade::handle<Geom_Curve> &  ) ) static_cast<void (GeomFill_Profiler::*)( const opencascade::handle<Geom_Curve> &  ) >(&GeomFill_Profiler::AddCurve),
@@ -1484,12 +1539,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_QuasiAngularConvertor , shared_ptr<GeomFill_QuasiAngularConvertor>  >>(m.attr("GeomFill_QuasiAngularConvertor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Initialized",
              (Standard_Boolean (GeomFill_QuasiAngularConvertor::*)() const) static_cast<Standard_Boolean (GeomFill_QuasiAngularConvertor::*)() const>(&GeomFill_QuasiAngularConvertor::Initialized),
@@ -1510,11 +1567,13 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_SectionLaw ,opencascade::handle<GeomFill_SectionLaw> ,Py_GeomFill_SectionLaw , Standard_Transient >>(m.attr("GeomFill_SectionLaw"))
+    // constructors
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (GeomFill_SectionLaw::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (GeomFill_SectionLaw::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) >(&GeomFill_SectionLaw::D0),
@@ -1601,12 +1660,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_SectionPlacement , shared_ptr<GeomFill_SectionPlacement>  >>(m.attr("GeomFill_SectionPlacement"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_LocationLaw> &,const opencascade::handle<Geom_Geometry> & >()  , py::arg("L"),  py::arg("Section") )
+    // custom constructors
     // methods
         .def("SetLocation",
              (void (GeomFill_SectionPlacement::*)( const opencascade::handle<GeomFill_LocationLaw> &  ) ) static_cast<void (GeomFill_SectionPlacement::*)( const opencascade::handle<GeomFill_LocationLaw> &  ) >(&GeomFill_SectionPlacement::SetLocation),
@@ -1648,12 +1709,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_SnglrFunc , shared_ptr<GeomFill_SnglrFunc>  , Adaptor3d_Curve >>(m.attr("GeomFill_SnglrFunc"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("HC") )
+    // custom constructors
     // methods
         .def("SetRatio",
              (void (GeomFill_SnglrFunc::*)( const Standard_Real  ) ) static_cast<void (GeomFill_SnglrFunc::*)( const Standard_Real  ) >(&GeomFill_SnglrFunc::SetRatio),
@@ -1704,12 +1767,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Sweep , shared_ptr<GeomFill_Sweep>  >>(m.attr("GeomFill_Sweep"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_LocationLaw> &,const Standard_Boolean >()  , py::arg("Location"),  py::arg("WithKpart")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetDomain",
              (void (GeomFill_Sweep::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (GeomFill_Sweep::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&GeomFill_Sweep::SetDomain),
@@ -1760,12 +1825,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_SweepFunction ,opencascade::handle<GeomFill_SweepFunction>  , Approx_SweepFunction >>(m.attr("GeomFill_SweepFunction"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_SectionLaw> &,const opencascade::handle<GeomFill_LocationLaw> &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Section"),  py::arg("Location"),  py::arg("FirstParameter"),  py::arg("FirstParameterOnS"),  py::arg("RatioParameterOnS") )
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (GeomFill_SweepFunction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (GeomFill_SweepFunction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) >(&GeomFill_SweepFunction::D0),
@@ -1831,16 +1898,18 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_SweepSectionGenerator , shared_ptr<GeomFill_SweepSectionGenerator>  >>(m.attr("GeomFill_SweepSectionGenerator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real >()  , py::arg("Path"),  py::arg("Radius") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> & >()  , py::arg("Path"),  py::arg("FirstSect") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom_Curve> & >()  , py::arg("Path"),  py::arg("FirstSect"),  py::arg("LastSect") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real >()  , py::arg("Path"),  py::arg("Curve1"),  py::arg("Curve2"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_SweepSectionGenerator::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) ) static_cast<void (GeomFill_SweepSectionGenerator::*)( const opencascade::handle<Geom_Curve> & ,  const Standard_Real  ) >(&GeomFill_SweepSectionGenerator::Init),
@@ -1888,12 +1957,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Tensor , shared_ptr<GeomFill_Tensor>  >>(m.attr("GeomFill_Tensor"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("NbRow"),  py::arg("NbCol"),  py::arg("NbMat") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_Tensor::*)( const Standard_Real  ) ) static_cast<void (GeomFill_Tensor::*)( const Standard_Real  ) >(&GeomFill_Tensor::Init),
@@ -1917,11 +1988,13 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_TgtField ,opencascade::handle<GeomFill_TgtField> ,Py_GeomFill_TgtField , Standard_Transient >>(m.attr("GeomFill_TgtField"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsScalable",
              (Standard_Boolean (GeomFill_TgtField::*)() const) static_cast<Standard_Boolean (GeomFill_TgtField::*)() const>(&GeomFill_TgtField::IsScalable),
@@ -1951,11 +2024,13 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_TrihedronLaw ,opencascade::handle<GeomFill_TrihedronLaw> ,Py_GeomFill_TrihedronLaw , Standard_Transient >>(m.attr("GeomFill_TrihedronLaw"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (GeomFill_TrihedronLaw::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) ) static_cast<void (GeomFill_TrihedronLaw::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) >(&GeomFill_TrihedronLaw::SetCurve),
@@ -2009,12 +2084,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_BoundWithSurf ,opencascade::handle<GeomFill_BoundWithSurf>  , GeomFill_Boundary >>(m.attr("GeomFill_BoundWithSurf"))
+    // constructors
         .def(py::init< const Adaptor3d_CurveOnSurface &,const Standard_Real,const Standard_Real >()  , py::arg("CurveOnSurf"),  py::arg("Tol3d"),  py::arg("Tolang") )
+    // custom constructors
     // methods
         .def("Value",
              (gp_Pnt (GeomFill_BoundWithSurf::*)( const Standard_Real  ) const) static_cast<gp_Pnt (GeomFill_BoundWithSurf::*)( const Standard_Real  ) const>(&GeomFill_BoundWithSurf::Value),
@@ -2053,12 +2130,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_ConstantBiNormal ,opencascade::handle<GeomFill_ConstantBiNormal>  , GeomFill_TrihedronLaw >>(m.attr("GeomFill_ConstantBiNormal"))
+    // constructors
         .def(py::init< const gp_Dir & >()  , py::arg("BiNormal") )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_ConstantBiNormal::*)() const) static_cast<opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_ConstantBiNormal::*)() const>(&GeomFill_ConstantBiNormal::Copy),
@@ -2103,14 +2182,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Coons , shared_ptr<GeomFill_Coons>  , GeomFill_Filling >>(m.attr("GeomFill_Coons"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4"),  py::arg("W1"),  py::arg("W2"),  py::arg("W3"),  py::arg("W4") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_Coons::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> &  ) ) static_cast<void (GeomFill_Coons::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> &  ) >(&GeomFill_Coons::Init),
@@ -2122,13 +2203,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_CorrectedFrenet ,opencascade::handle<GeomFill_CorrectedFrenet>  , GeomFill_TrihedronLaw >>(m.attr("GeomFill_CorrectedFrenet"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean >()  , py::arg("ForEvaluation") )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_CorrectedFrenet::*)() const) static_cast<opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_CorrectedFrenet::*)() const>(&GeomFill_CorrectedFrenet::Copy),
@@ -2179,12 +2262,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_CurveAndTrihedron ,opencascade::handle<GeomFill_CurveAndTrihedron>  , GeomFill_LocationLaw >>(m.attr("GeomFill_CurveAndTrihedron"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_TrihedronLaw> & >()  , py::arg("Trihedron") )
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (GeomFill_CurveAndTrihedron::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) ) static_cast<void (GeomFill_CurveAndTrihedron::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) >(&GeomFill_CurveAndTrihedron::SetCurve),
@@ -2253,16 +2338,18 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Curved , shared_ptr<GeomFill_Curved>  , GeomFill_Filling >>(m.attr("GeomFill_Curved"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4"),  py::arg("W1"),  py::arg("W2"),  py::arg("W3"),  py::arg("W4") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("P1"),  py::arg("P2") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("W1"),  py::arg("W2") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_Curved::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> &  ) ) static_cast<void (GeomFill_Curved::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> &  ) >(&GeomFill_Curved::Init),
@@ -2280,12 +2367,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Darboux ,opencascade::handle<GeomFill_Darboux>  , GeomFill_TrihedronLaw >>(m.attr("GeomFill_Darboux"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_Darboux::*)() const) static_cast<opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_Darboux::*)() const>(&GeomFill_Darboux::Copy),
@@ -2327,12 +2416,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_DegeneratedBound ,opencascade::handle<GeomFill_DegeneratedBound>  , GeomFill_Boundary >>(m.attr("GeomFill_DegeneratedBound"))
+    // constructors
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("Point"),  py::arg("First"),  py::arg("Last"),  py::arg("Tol3d"),  py::arg("Tolang") )
+    // custom constructors
     // methods
         .def("Value",
              (gp_Pnt (GeomFill_DegeneratedBound::*)( const Standard_Real  ) const) static_cast<gp_Pnt (GeomFill_DegeneratedBound::*)( const Standard_Real  ) const>(&GeomFill_DegeneratedBound::Value),
@@ -2362,12 +2453,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_DiscreteTrihedron ,opencascade::handle<GeomFill_DiscreteTrihedron>  , GeomFill_TrihedronLaw >>(m.attr("GeomFill_DiscreteTrihedron"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_DiscreteTrihedron::*)() const) static_cast<opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_DiscreteTrihedron::*)() const>(&GeomFill_DiscreteTrihedron::Copy),
@@ -2415,12 +2508,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_DraftTrihedron ,opencascade::handle<GeomFill_DraftTrihedron>  , GeomFill_TrihedronLaw >>(m.attr("GeomFill_DraftTrihedron"))
+    // constructors
         .def(py::init< const gp_Vec &,const Standard_Real >()  , py::arg("BiNormal"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("SetAngle",
              (void (GeomFill_DraftTrihedron::*)( const Standard_Real  ) ) static_cast<void (GeomFill_DraftTrihedron::*)( const Standard_Real  ) >(&GeomFill_DraftTrihedron::SetAngle),
@@ -2465,12 +2560,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_EvolvedSection ,opencascade::handle<GeomFill_EvolvedSection>  , GeomFill_SectionLaw >>(m.attr("GeomFill_EvolvedSection"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Law_Function> & >()  , py::arg("C"),  py::arg("L") )
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (GeomFill_EvolvedSection::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (GeomFill_EvolvedSection::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) >(&GeomFill_EvolvedSection::D0),
@@ -2548,12 +2645,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Fixed ,opencascade::handle<GeomFill_Fixed>  , GeomFill_TrihedronLaw >>(m.attr("GeomFill_Fixed"))
+    // constructors
         .def(py::init< const gp_Vec &,const gp_Vec & >()  , py::arg("Tangent"),  py::arg("Normal") )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_Fixed::*)() const) static_cast<opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_Fixed::*)() const>(&GeomFill_Fixed::Copy),
@@ -2592,12 +2691,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Frenet ,opencascade::handle<GeomFill_Frenet>  , GeomFill_TrihedronLaw >>(m.attr("GeomFill_Frenet"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Copy",
              (opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_Frenet::*)() const) static_cast<opencascade::handle<GeomFill_TrihedronLaw> (GeomFill_Frenet::*)() const>(&GeomFill_Frenet::Copy),
@@ -2645,12 +2746,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Generator , shared_ptr<GeomFill_Generator>  , GeomFill_Profiler >>(m.attr("GeomFill_Generator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (GeomFill_Generator::*)( const Standard_Real  ) ) static_cast<void (GeomFill_Generator::*)( const Standard_Real  ) >(&GeomFill_Generator::Perform),
@@ -2665,12 +2768,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_LocationDraft ,opencascade::handle<GeomFill_LocationDraft>  , GeomFill_LocationLaw >>(m.attr("GeomFill_LocationDraft"))
+    // constructors
         .def(py::init< const gp_Dir &,const Standard_Real >()  , py::arg("Direction"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("SetStopSurf",
              (void (GeomFill_LocationDraft::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) ) static_cast<void (GeomFill_LocationDraft::*)( const opencascade::handle<Adaptor3d_HSurface> &  ) >(&GeomFill_LocationDraft::SetStopSurf),
@@ -2763,12 +2868,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_LocationGuide ,opencascade::handle<GeomFill_LocationGuide>  , GeomFill_LocationLaw >>(m.attr("GeomFill_LocationGuide"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_TrihedronWithGuide> & >()  , py::arg("Triedre") )
+    // custom constructors
     // methods
         .def("EraseRotation",
              (void (GeomFill_LocationGuide::*)() ) static_cast<void (GeomFill_LocationGuide::*)() >(&GeomFill_LocationGuide::EraseRotation),
@@ -2873,15 +2980,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_NSections ,opencascade::handle<GeomFill_NSections>  , GeomFill_SectionLaw >>(m.attr("GeomFill_NSections"))
+    // constructors
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Geom_Curve> > & >()  , py::arg("NC") )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Geom_Curve> > &, const NCollection_Sequence<Standard_Real> & >()  , py::arg("NC"),  py::arg("NP") )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Geom_Curve> > &, const NCollection_Sequence<Standard_Real> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("NC"),  py::arg("NP"),  py::arg("UF"),  py::arg("UL"),  py::arg("VF"),  py::arg("VL") )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Geom_Curve> > &, const NCollection_Sequence<gp_Trsf> &, const NCollection_Sequence<Standard_Real> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const opencascade::handle<Geom_BSplineSurface> & >()  , py::arg("NC"),  py::arg("Trsfs"),  py::arg("NP"),  py::arg("UF"),  py::arg("UL"),  py::arg("VF"),  py::arg("VL"),  py::arg("Surf") )
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (GeomFill_NSections::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (GeomFill_NSections::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) >(&GeomFill_NSections::D0),
@@ -2971,12 +3080,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_SectionGenerator , shared_ptr<GeomFill_SectionGenerator>  , GeomFill_Profiler >>(m.attr("GeomFill_SectionGenerator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetParam",
              (void (GeomFill_SectionGenerator::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (GeomFill_SectionGenerator::*)( const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&GeomFill_SectionGenerator::SetParam),
@@ -3003,12 +3114,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_SimpleBound ,opencascade::handle<GeomFill_SimpleBound>  , GeomFill_Boundary >>(m.attr("GeomFill_SimpleBound"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const Standard_Real >()  , py::arg("Curve"),  py::arg("Tol3d"),  py::arg("Tolang") )
+    // custom constructors
     // methods
         .def("Value",
              (gp_Pnt (GeomFill_SimpleBound::*)( const Standard_Real  ) const) static_cast<gp_Pnt (GeomFill_SimpleBound::*)( const Standard_Real  ) const>(&GeomFill_SimpleBound::Value),
@@ -3038,14 +3151,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_Stretch , shared_ptr<GeomFill_Stretch>  , GeomFill_Filling >>(m.attr("GeomFill_Stretch"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("P1"),  py::arg("P2"),  py::arg("P3"),  py::arg("P4"),  py::arg("W1"),  py::arg("W2"),  py::arg("W3"),  py::arg("W4") )
+    // custom constructors
     // methods
         .def("Init",
              (void (GeomFill_Stretch::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> &  ) ) static_cast<void (GeomFill_Stretch::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<gp_Pnt> &  ) >(&GeomFill_Stretch::Init),
@@ -3057,12 +3172,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_TgtOnCoons ,opencascade::handle<GeomFill_TgtOnCoons>  , GeomFill_TgtField >>(m.attr("GeomFill_TgtOnCoons"))
+    // constructors
         .def(py::init< const opencascade::handle<GeomFill_CoonsAlgPatch> &,const Standard_Integer >()  , py::arg("K"),  py::arg("I") )
+    // custom constructors
     // methods
         .def("Value",
              (gp_Vec (GeomFill_TgtOnCoons::*)( const Standard_Real  ) const) static_cast<gp_Vec (GeomFill_TgtOnCoons::*)( const Standard_Real  ) const>(&GeomFill_TgtOnCoons::Value),
@@ -3086,11 +3203,13 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_TrihedronWithGuide ,opencascade::handle<GeomFill_TrihedronWithGuide> ,Py_GeomFill_TrihedronWithGuide , GeomFill_TrihedronLaw >>(m.attr("GeomFill_TrihedronWithGuide"))
+    // constructors
+    // custom constructors
     // methods
         .def("Guide",
              (opencascade::handle<Adaptor3d_HCurve> (GeomFill_TrihedronWithGuide::*)() const) static_cast<opencascade::handle<Adaptor3d_HCurve> (GeomFill_TrihedronWithGuide::*)() const>(&GeomFill_TrihedronWithGuide::Guide),
@@ -3114,12 +3233,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_UniformSection ,opencascade::handle<GeomFill_UniformSection>  , GeomFill_SectionLaw >>(m.attr("GeomFill_UniformSection"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("FirstParameter")=static_cast<const Standard_Real>(0.0),  py::arg("LastParameter")=static_cast<const Standard_Real>(1.0) )
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (GeomFill_UniformSection::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (GeomFill_UniformSection::*)( const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<Standard_Real> &  ) >(&GeomFill_UniformSection::D0),
@@ -3197,12 +3318,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_GuideTrihedronAC ,opencascade::handle<GeomFill_GuideTrihedronAC>  , GeomFill_TrihedronWithGuide >>(m.attr("GeomFill_GuideTrihedronAC"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("guide") )
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (GeomFill_GuideTrihedronAC::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) ) static_cast<void (GeomFill_GuideTrihedronAC::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) >(&GeomFill_GuideTrihedronAC::SetCurve),
@@ -3256,12 +3379,14 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomFill_GuideTrihedronPlan ,opencascade::handle<GeomFill_GuideTrihedronPlan>  , GeomFill_TrihedronWithGuide >>(m.attr("GeomFill_GuideTrihedronPlan"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("theGuide") )
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (GeomFill_GuideTrihedronPlan::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) ) static_cast<void (GeomFill_GuideTrihedronPlan::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) >(&GeomFill_GuideTrihedronPlan::SetCurve),
@@ -3318,84 +3443,84 @@ py::module m = static_cast<py::module>(main_module.attr("GeomFill"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomFill_CurveAndTrihedron.hxx
-// ./opencascade/GeomFill_SequenceOfAx2.hxx
-// ./opencascade/GeomFill_Sweep.hxx
-// ./opencascade/GeomFill_Stretch.hxx
-// ./opencascade/GeomFill_GuideTrihedronAC.hxx
-// ./opencascade/GeomFill_Line.hxx
-// ./opencascade/GeomFill_CircularBlendFunc.hxx
-// ./opencascade/GeomFill_TgtOnCoons.hxx
-// ./opencascade/GeomFill_LocationDraft.hxx
 // ./opencascade/GeomFill_BSplineCurves.hxx
-// ./opencascade/GeomFill_Profiler.hxx
-// ./opencascade/GeomFill_Fixed.hxx
-// ./opencascade/GeomFill_Curved.hxx
-// ./opencascade/GeomFill_Array1OfLocationLaw.hxx
-// ./opencascade/GeomFill_NSections.hxx
-// ./opencascade/GeomFill_PipeError.hxx
-// ./opencascade/GeomFill_DiscreteTrihedron.hxx
-// ./opencascade/GeomFill_CoonsAlgPatch.hxx
-// ./opencascade/GeomFill_AppSweep.hxx
-// ./opencascade/GeomFill_DraftTrihedron.hxx
-// ./opencascade/GeomFill_DegeneratedBound.hxx
-// ./opencascade/GeomFill_UniformSection.hxx
+// ./opencascade/GeomFill_ConstantBiNormal.hxx
 // ./opencascade/GeomFill_Coons.hxx
-// ./opencascade/GeomFill_Darboux.hxx
-// ./opencascade/GeomFill_FillingStyle.hxx
-// ./opencascade/GeomFill_Frenet.hxx
-// ./opencascade/GeomFill_HArray1OfLocationLaw.hxx
-// ./opencascade/GeomFill_ConstrainedFilling.hxx
-// ./opencascade/GeomFill_SequenceOfTrsf.hxx
+// ./opencascade/GeomFill_ApproxStyle.hxx
 // ./opencascade/GeomFill_Boundary.hxx
-// ./opencascade/GeomFill_EvolvedSection.hxx
-// ./opencascade/GeomFill_SectionGenerator.hxx
-// ./opencascade/GeomFill_GuideTrihedronPlan.hxx
-// ./opencascade/GeomFill_TrihedronWithGuide.hxx
-// ./opencascade/GeomFill_TrihedronLaw.hxx
-// ./opencascade/GeomFill_PolynomialConvertor.hxx
-// ./opencascade/GeomFill_Array1OfSectionLaw.hxx
+// ./opencascade/GeomFill_Filling.hxx
 // ./opencascade/GeomFill_Pipe.hxx
+// ./opencascade/GeomFill_NSections.hxx
+// ./opencascade/GeomFill_CurveAndTrihedron.hxx
+// ./opencascade/GeomFill_DegeneratedBound.hxx
+// ./opencascade/GeomFill_LocationLaw.hxx
+// ./opencascade/GeomFill_Line.hxx
+// ./opencascade/GeomFill_FunctionGuide.hxx
+// ./opencascade/GeomFill_DraftTrihedron.hxx
+// ./opencascade/GeomFill_HArray1OfSectionLaw.hxx
+// ./opencascade/GeomFill_Trihedron.hxx
+// ./opencascade/GeomFill_TgtField.hxx
+// ./opencascade/GeomFill_Fixed.hxx
+// ./opencascade/GeomFill_QuasiAngularConvertor.hxx
+// ./opencascade/GeomFill_TrihedronWithGuide.hxx
+// ./opencascade/GeomFill_CorrectedFrenet.hxx
+// ./opencascade/GeomFill_GuideTrihedronAC.hxx
+// ./opencascade/GeomFill_HArray1OfLocationLaw.hxx
+// ./opencascade/GeomFill_SweepFunction.hxx
+// ./opencascade/GeomFill_Generator.hxx
+// ./opencascade/GeomFill_FillingStyle.hxx
+// ./opencascade/GeomFill_LocationGuide.hxx
+// ./opencascade/GeomFill_UniformSection.hxx
+// ./opencascade/GeomFill_BoundWithSurf.hxx
+// ./opencascade/GeomFill_FunctionDraft.hxx
+// ./opencascade/GeomFill_Darboux.hxx
+// ./opencascade/GeomFill_LocFunction.hxx
+// ./opencascade/GeomFill_Curved.hxx
+// ./opencascade/GeomFill_SectionLaw.hxx
+// ./opencascade/GeomFill_TgtOnCoons.hxx
+// ./opencascade/GeomFill_PlanFunc.hxx
+// ./opencascade/GeomFill_SectionPlacement.hxx
+// ./opencascade/GeomFill_Array1OfLocationLaw.hxx
+// ./opencascade/GeomFill_Sweep.hxx
+// ./opencascade/GeomFill_PipeError.hxx
+// ./opencascade/GeomFill_SimpleBound.hxx
+// ./opencascade/GeomFill_LocationDraft.hxx
+// ./opencascade/GeomFill_GuideTrihedronPlan.hxx
+// ./opencascade/GeomFill_Profiler.hxx
 // ./opencascade/GeomFill_Tensor.hxx
+// ./opencascade/GeomFill_ConstrainedFilling.hxx
 // ./opencascade/GeomFill_SweepSectionGenerator.hxx
 // ./opencascade/GeomFill_AppSurf.hxx
-// ./opencascade/GeomFill_LocFunction.hxx
-// ./opencascade/GeomFill_LocationLaw.hxx
-// ./opencascade/GeomFill_HSequenceOfAx2.hxx
-// ./opencascade/GeomFill_TgtField.hxx
-// ./opencascade/GeomFill_Filling.hxx
-// ./opencascade/GeomFill_FunctionGuide.hxx
-// ./opencascade/GeomFill_Generator.hxx
-// ./opencascade/GeomFill_SectionLaw.hxx
-// ./opencascade/GeomFill_SnglrFunc.hxx
-// ./opencascade/GeomFill_CorrectedFrenet.hxx
-// ./opencascade/GeomFill_HArray1OfSectionLaw.hxx
-// ./opencascade/GeomFill_FunctionDraft.hxx
-// ./opencascade/GeomFill_CornerState.hxx
-// ./opencascade/GeomFill_ApproxStyle.hxx
-// ./opencascade/GeomFill_BoundWithSurf.hxx
-// ./opencascade/GeomFill_SectionPlacement.hxx
-// ./opencascade/GeomFill_Trihedron.hxx
-// ./opencascade/GeomFill_LocationGuide.hxx
-// ./opencascade/GeomFill.hxx
 // ./opencascade/GeomFill_BezierCurves.hxx
-// ./opencascade/GeomFill_SimpleBound.hxx
-// ./opencascade/GeomFill_PlanFunc.hxx
-// ./opencascade/GeomFill_ConstantBiNormal.hxx
-// ./opencascade/GeomFill_SweepFunction.hxx
-// ./opencascade/GeomFill_QuasiAngularConvertor.hxx
+// ./opencascade/GeomFill_Frenet.hxx
+// ./opencascade/GeomFill_HSequenceOfAx2.hxx
+// ./opencascade/GeomFill_CornerState.hxx
+// ./opencascade/GeomFill_AppSweep.hxx
+// ./opencascade/GeomFill_Array1OfSectionLaw.hxx
+// ./opencascade/GeomFill_SectionGenerator.hxx
+// ./opencascade/GeomFill_Stretch.hxx
+// ./opencascade/GeomFill_TrihedronLaw.hxx
+// ./opencascade/GeomFill_CoonsAlgPatch.hxx
+// ./opencascade/GeomFill_DiscreteTrihedron.hxx
+// ./opencascade/GeomFill_PolynomialConvertor.hxx
+// ./opencascade/GeomFill.hxx
+// ./opencascade/GeomFill_EvolvedSection.hxx
+// ./opencascade/GeomFill_SequenceOfAx2.hxx
+// ./opencascade/GeomFill_CircularBlendFunc.hxx
+// ./opencascade/GeomFill_SnglrFunc.hxx
+// ./opencascade/GeomFill_SequenceOfTrsf.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<gp_Ax2>(m,"GeomFill_SequenceOfAx2");  
     register_template_NCollection_Array1<opencascade::handle<GeomFill_LocationLaw> >(m,"GeomFill_Array1OfLocationLaw");  
-    register_template_NCollection_Sequence<gp_Trsf>(m,"GeomFill_SequenceOfTrsf");  
     register_template_NCollection_Array1<opencascade::handle<GeomFill_SectionLaw> >(m,"GeomFill_Array1OfSectionLaw");  
+    register_template_NCollection_Sequence<gp_Ax2>(m,"GeomFill_SequenceOfAx2");  
+    register_template_NCollection_Sequence<gp_Trsf>(m,"GeomFill_SequenceOfTrsf");  
 
 
 // exceptions

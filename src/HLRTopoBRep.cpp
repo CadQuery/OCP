@@ -19,13 +19,13 @@ namespace py = pybind11;
 #include <TopoDS_Vertex.hxx>
 #include <Contap_Point.hxx>
 #include <TopoDS_Edge.hxx>
-#include <HLRAlgo_Projector.hxx>
 #include <TopoDS_Face.hxx>
 #include <HLRTopoBRep_Data.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <TopoDS_Edge.hxx>
 #include <gp_Pnt.hxx>
 #include <Geom2d_Line.hxx>
+#include <HLRAlgo_Projector.hxx>
 
 // module includes
 #include <HLRTopoBRep_Data.hxx>
@@ -42,6 +42,10 @@ namespace py = pybind11;
 #include <HLRTopoBRep_VData.hxx>
 
 // template related includes
+// ./opencascade/HLRTopoBRep_ListOfVData.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRTopoBRep_ListOfVData.hxx
+#include "NCollection.hxx"
 // ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
@@ -49,10 +53,6 @@ namespace py = pybind11;
 // ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRTopoBRep_ListOfVData.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRTopoBRep_ListOfVData.hxx
 #include "NCollection.hxx"
 
 
@@ -72,9 +72,12 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
 
 // classes
 
+    // default constructor
     register_default_constructor<HLRTopoBRep_DSFiller , shared_ptr<HLRTopoBRep_DSFiller>>(m,"HLRTopoBRep_DSFiller");
 
     static_cast<py::class_<HLRTopoBRep_DSFiller , shared_ptr<HLRTopoBRep_DSFiller>  >>(m.attr("HLRTopoBRep_DSFiller"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -83,12 +86,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
                     R"#(Stores in <DS> the outlines of <S> using the current outliner and stores the isolines in <DS> using a Hatcher.)#"  , py::arg("S"),  py::arg("FO"),  py::arg("DS"),  py::arg("MST"),  py::arg("nbIso"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRTopoBRep_Data , shared_ptr<HLRTopoBRep_Data>  >>(m.attr("HLRTopoBRep_Data"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (HLRTopoBRep_Data::*)() ) static_cast<void (HLRTopoBRep_Data::*)() >(&HLRTopoBRep_Data::Clear),
@@ -235,12 +240,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRTopoBRep_FaceData , shared_ptr<HLRTopoBRep_FaceData>  >>(m.attr("HLRTopoBRep_FaceData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("FaceIntL",
              (const TopTools_ListOfShape & (HLRTopoBRep_FaceData::*)() const) static_cast<const TopTools_ListOfShape & (HLRTopoBRep_FaceData::*)() const>(&HLRTopoBRep_FaceData::FaceIntL),
@@ -282,12 +289,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRTopoBRep_FaceIsoLiner , shared_ptr<HLRTopoBRep_FaceIsoLiner>>(m,"HLRTopoBRep_FaceIsoLiner");
 
     static_cast<py::class_<HLRTopoBRep_FaceIsoLiner , shared_ptr<HLRTopoBRep_FaceIsoLiner>  >>(m.attr("HLRTopoBRep_FaceIsoLiner"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -302,14 +312,16 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
                     R"#(None)#"  , py::arg("F"),  py::arg("Iso"),  py::arg("V1"),  py::arg("V2"),  py::arg("U1"),  py::arg("U2"),  py::arg("Tol"),  py::arg("DS"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRTopoBRep_OutLiner ,opencascade::handle<HLRTopoBRep_OutLiner>  , Standard_Transient >>(m.attr("HLRTopoBRep_OutLiner"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("OriSh") )
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("OriS"),  py::arg("OutS") )
+    // custom constructors
     // methods
         .def("OriginalShape",
              (void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) ) static_cast<void (HLRTopoBRep_OutLiner::*)( const TopoDS_Shape &  ) >(&HLRTopoBRep_OutLiner::OriginalShape),
@@ -357,13 +369,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRTopoBRep_VData , shared_ptr<HLRTopoBRep_VData>  >>(m.attr("HLRTopoBRep_VData"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const TopoDS_Shape & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("Parameter",
              (Standard_Real (HLRTopoBRep_VData::*)() const) static_cast<Standard_Real (HLRTopoBRep_VData::*)() const>(&HLRTopoBRep_VData::Parameter),
@@ -381,29 +395,29 @@ py::module m = static_cast<py::module>(main_module.attr("HLRTopoBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/HLRTopoBRep_DataMapIteratorOfMapOfShapeListOfVData.hxx
-// ./opencascade/HLRTopoBRep_DSFiller.hxx
-// ./opencascade/HLRTopoBRep_DataMapIteratorOfDataMapOfShapeFaceData.hxx
-// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
-// ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
-// ./opencascade/HLRTopoBRep_OutLiner.hxx
-// ./opencascade/HLRTopoBRep_FaceIsoLiner.hxx
-// ./opencascade/HLRTopoBRep_FaceData.hxx
 // ./opencascade/HLRTopoBRep_ListOfVData.hxx
+// ./opencascade/HLRTopoBRep_DataMapIteratorOfMapOfShapeListOfVData.hxx
+// ./opencascade/HLRTopoBRep_MapOfShapeListOfVData.hxx
+// ./opencascade/HLRTopoBRep_ListIteratorOfListOfVData.hxx
+// ./opencascade/HLRTopoBRep_FaceData.hxx
+// ./opencascade/HLRTopoBRep_DataMapIteratorOfDataMapOfShapeFaceData.hxx
+// ./opencascade/HLRTopoBRep_DSFiller.hxx
+// ./opencascade/HLRTopoBRep_DataMapOfShapeFaceData.hxx
 // ./opencascade/HLRTopoBRep_Data.hxx
 // ./opencascade/HLRTopoBRep_VData.hxx
-// ./opencascade/HLRTopoBRep_ListIteratorOfListOfVData.hxx
+// ./opencascade/HLRTopoBRep_FaceIsoLiner.hxx
+// ./opencascade/HLRTopoBRep_OutLiner.hxx
 
 // operators
 
 // register typdefs
+    register_template_NCollection_List<HLRTopoBRep_VData>(m,"HLRTopoBRep_ListOfVData");  
     register_template_NCollection_DataMap<TopoDS_Shape, HLRTopoBRep_ListOfVData, TopTools_ShapeMapHasher>(m,"HLRTopoBRep_MapOfShapeListOfVData");  
     register_template_NCollection_DataMap<TopoDS_Shape, HLRTopoBRep_FaceData, TopTools_ShapeMapHasher>(m,"HLRTopoBRep_DataMapOfShapeFaceData");  
-    register_template_NCollection_List<HLRTopoBRep_VData>(m,"HLRTopoBRep_ListOfVData");  
 
 
 // exceptions

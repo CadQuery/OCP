@@ -14,8 +14,6 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Law_BSpline.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <Law_BSpFunc.hxx>
 #include <Law_Linear.hxx>
 #include <Law_BSpline.hxx>
@@ -31,9 +29,11 @@ namespace py = pybind11;
 #include <Law_Composite.hxx>
 #include <Law_BSplineKnotSplitting.hxx>
 #include <Law_BSpline.hxx>
-#include <Law_BSpline.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_ConstructionError.hxx>
+#include <Law_BSpline.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Standard_NoSuchObject.hxx>
 
 // module includes
 #include <Law.hxx>
@@ -74,6 +74,7 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
     public:
         using Law_Function::Law_Function;
         
+        
         // public pure virtual
         GeomAbs_Shape Continuity() const  override { PYBIND11_OVERLOAD_PURE(GeomAbs_Shape,Law_Function,Continuity,) };
         Standard_Integer NbIntervals(const GeomAbs_Shape S) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,Law_Function,NbIntervals,S) };
@@ -94,9 +95,12 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Law , shared_ptr<Law>>(m,"Law");
 
     static_cast<py::class_<Law , shared_ptr<Law>  >>(m.attr("Law"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -120,13 +124,15 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#"  , py::arg("First"),  py::arg("Last"),  py::arg("HasF"),  py::arg("HasL"),  py::arg("VFirst"),  py::arg("VLast"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_BSpline ,opencascade::handle<Law_BSpline>  , Standard_Transient >>(m.attr("Law_BSpline"))
+    // constructors
         .def(py::init<  const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Boolean >()  , py::arg("Poles"),  py::arg("Knots"),  py::arg("Multiplicities"),  py::arg("Degree"),  py::arg("Periodic")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init<  const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Boolean >()  , py::arg("Poles"),  py::arg("Weights"),  py::arg("Knots"),  py::arg("Multiplicities"),  py::arg("Degree"),  py::arg("Periodic")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("IncreaseDegree",
              (void (Law_BSpline::*)( const Standard_Integer  ) ) static_cast<void (Law_BSpline::*)( const Standard_Integer  ) >(&Law_BSpline::IncreaseDegree),
@@ -324,12 +330,14 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_BSplineKnotSplitting , shared_ptr<Law_BSplineKnotSplitting>  >>(m.attr("Law_BSplineKnotSplitting"))
+    // constructors
         .def(py::init< const opencascade::handle<Law_BSpline> &,const Standard_Integer >()  , py::arg("BasisLaw"),  py::arg("ContinuityRange") )
+    // custom constructors
     // methods
         .def("NbSplits",
              (Standard_Integer (Law_BSplineKnotSplitting::*)() const) static_cast<Standard_Integer (Law_BSplineKnotSplitting::*)() const>(&Law_BSplineKnotSplitting::NbSplits),
@@ -344,11 +352,13 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_Function ,opencascade::handle<Law_Function> ,Py_Law_Function , Standard_Transient >>(m.attr("Law_Function"))
+    // constructors
+    // custom constructors
     // methods
         .def("Continuity",
              (GeomAbs_Shape (Law_Function::*)() const) static_cast<GeomAbs_Shape (Law_Function::*)() const>(&Law_Function::Continuity),
@@ -387,13 +397,15 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_Interpolate , shared_ptr<Law_Interpolate>  >>(m.attr("Law_Interpolate"))
+    // constructors
         .def(py::init< const opencascade::handle<TColStd_HArray1OfReal> &,const Standard_Boolean,const Standard_Real >()  , py::arg("Points"),  py::arg("PeriodicFlag"),  py::arg("Tolerance") )
         .def(py::init< const opencascade::handle<TColStd_HArray1OfReal> &,const opencascade::handle<TColStd_HArray1OfReal> &,const Standard_Boolean,const Standard_Real >()  , py::arg("Points"),  py::arg("Parameters"),  py::arg("PeriodicFlag"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Load",
              (void (Law_Interpolate::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Law_Interpolate::*)( const Standard_Real ,  const Standard_Real  ) >(&Law_Interpolate::Load),
@@ -414,13 +426,15 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_BSpFunc ,opencascade::handle<Law_BSpFunc>  , Law_Function >>(m.attr("Law_BSpFunc"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Law_BSpline> &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("First"),  py::arg("Last") )
+    // custom constructors
     // methods
         .def("Continuity",
              (GeomAbs_Shape (Law_BSpFunc::*)() const) static_cast<GeomAbs_Shape (Law_BSpFunc::*)() const>(&Law_BSpFunc::Continuity),
@@ -465,13 +479,15 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_Composite ,opencascade::handle<Law_Composite>  , Law_Function >>(m.attr("Law_Composite"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("First"),  py::arg("Last"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Continuity",
              (GeomAbs_Shape (Law_Composite::*)() const) static_cast<GeomAbs_Shape (Law_Composite::*)() const>(&Law_Composite::Continuity),
@@ -522,12 +538,14 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_Constant ,opencascade::handle<Law_Constant>  , Law_Function >>(m.attr("Law_Constant"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (Law_Constant::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Law_Constant::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Law_Constant::Set),
@@ -569,12 +587,14 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_Linear ,opencascade::handle<Law_Linear>  , Law_Function >>(m.attr("Law_Linear"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (Law_Linear::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Law_Linear::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Law_Linear::Set),
@@ -616,12 +636,14 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_Interpol ,opencascade::handle<Law_Interpol>  , Law_BSpFunc >>(m.attr("Law_Interpol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (Law_Interpol::*)(  const NCollection_Array1<gp_Pnt2d> & ,  const Standard_Boolean  ) ) static_cast<void (Law_Interpol::*)(  const NCollection_Array1<gp_Pnt2d> & ,  const Standard_Boolean  ) >(&Law_Interpol::Set),
@@ -648,12 +670,14 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Law_S ,opencascade::handle<Law_S>  , Law_BSpFunc >>(m.attr("Law_S"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (Law_S::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Law_S::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Law_S::Set),
@@ -674,23 +698,23 @@ py::module m = static_cast<py::module>(main_module.attr("Law"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Law_BSplineKnotSplitting.hxx
-// ./opencascade/Law_Function.hxx
+// ./opencascade/Law_Linear.hxx
 // ./opencascade/Law_Interpol.hxx
-// ./opencascade/Law_BSpline.hxx
+// ./opencascade/Law_BSplineKnotSplitting.hxx
+// ./opencascade/Law_ListIteratorOfLaws.hxx
+// ./opencascade/Law_Constant.hxx
 // ./opencascade/Law.hxx
-// ./opencascade/Law_BSpFunc.hxx
-// ./opencascade/Law_Laws.hxx
 // ./opencascade/Law_S.hxx
 // ./opencascade/Law_Interpolate.hxx
+// ./opencascade/Law_BSpFunc.hxx
 // ./opencascade/Law_Composite.hxx
-// ./opencascade/Law_Linear.hxx
-// ./opencascade/Law_Constant.hxx
-// ./opencascade/Law_ListIteratorOfLaws.hxx
+// ./opencascade/Law_BSpline.hxx
+// ./opencascade/Law_Function.hxx
+// ./opencascade/Law_Laws.hxx
 
 // operators
 

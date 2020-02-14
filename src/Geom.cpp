@@ -13,37 +13,13 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <gp_Hypr.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <Geom_UndefinedValue.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Ax2.hxx>
+#include <gp_Circ.hxx>
 #include <gp_Cylinder.hxx>
 #include <gp_GTrsf2d.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <gp_Ax2.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Sphere.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <Geom_UndefinedValue.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_Trsf.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <Geom_UndefinedValue.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Torus.hxx>
 #include <Standard_ConstructionError.hxx>
 #include <Standard_RangeError.hxx>
 #include <Standard_NoSuchObject.hxx>
@@ -53,35 +29,59 @@ namespace py = pybind11;
 #include <gp_Vec.hxx>
 #include <gp_Trsf.hxx>
 #include <gp_GTrsf2d.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Parab.hxx>
-#include <Standard_RangeError.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <Geom_UndefinedValue.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_Cone.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Ax2.hxx>
-#include <Geom_UndefinedDerivative.hxx>
-#include <gp_GTrsf2d.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Lin.hxx>
+#include <gp_Hypr.hxx>
 #include <Standard_ConstructionError.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Ax1.hxx>
 #include <gp_Ax2.hxx>
 #include <gp_Vec.hxx>
 #include <gp_Trsf.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Lin.hxx>
+#include <Standard_RangeError.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <Geom_UndefinedValue.hxx>
+#include <gp_Trsf.hxx>
+#include <gp_GTrsf2d.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <Standard_RangeError.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <Geom_UndefinedValue.hxx>
+#include <gp_Trsf.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <gp_Ax2.hxx>
+#include <gp_GTrsf2d.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <gp_GTrsf2d.hxx>
+#include <gp_Elips.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <Geom_UndefinedValue.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_UndefinedDerivative.hxx>
 #include <gp_Pln.hxx>
 #include <gp_GTrsf2d.hxx>
+#include <gp_Cone.hxx>
+#include <gp_GTrsf2d.hxx>
+#include <gp_Torus.hxx>
 #include <Geom_UndefinedDerivative.hxx>
 #include <Geom_UndefinedValue.hxx>
 #include <gp_GTrsf2d.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Standard_RangeError.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_UndefinedDerivative.hxx>
+#include <Geom_UndefinedValue.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
+#include <gp_Trsf.hxx>
 
 // module includes
 #include <Geom_Axis1Placement.hxx>
@@ -149,6 +149,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     public:
         using Geom_Geometry::Geom_Geometry;
         
+        
         // public pure virtual
         void Transform(const gp_Trsf & T) override { PYBIND11_OVERLOAD_PURE(void,Geom_Geometry,Transform,T) };
         opencascade::handle<Geom_Geometry> Copy() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Geom_Geometry>,Geom_Geometry,Copy,) };
@@ -163,6 +164,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     class Py_Geom_AxisPlacement : public Geom_AxisPlacement{
     public:
         using Geom_AxisPlacement::Geom_AxisPlacement;
+        
         
         // public pure virtual
         void SetDirection(const gp_Dir & V) override { PYBIND11_OVERLOAD_PURE(void,Geom_AxisPlacement,SetDirection,V) };
@@ -179,6 +181,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     class Py_Geom_Curve : public Geom_Curve{
     public:
         using Geom_Curve::Geom_Curve;
+        
         
         // public pure virtual
         void Reverse() override { PYBIND11_OVERLOAD_PURE(void,Geom_Curve,Reverse,) };
@@ -208,6 +211,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     public:
         using Geom_Point::Geom_Point;
         
+        
         // public pure virtual
         gp_Pnt Pnt() const  override { PYBIND11_OVERLOAD_PURE(gp_Pnt,Geom_Point,Pnt,) };
         Standard_Real X() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom_Point,X,) };
@@ -227,6 +231,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     class Py_Geom_Surface : public Geom_Surface{
     public:
         using Geom_Surface::Geom_Surface;
+        
         
         // public pure virtual
         void UReverse() override { PYBIND11_OVERLOAD_PURE(void,Geom_Surface,UReverse,) };
@@ -262,6 +267,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     public:
         using Geom_Vector::Geom_Vector;
         
+        
         // public pure virtual
         Standard_Real Magnitude() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom_Vector,Magnitude,) };
         Standard_Real SquareMagnitude() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom_Vector,SquareMagnitude,) };
@@ -282,6 +288,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     class Py_Geom_BoundedCurve : public Geom_BoundedCurve{
     public:
         using Geom_BoundedCurve::Geom_BoundedCurve;
+        
         
         // public pure virtual
         gp_Pnt EndPoint() const  override { PYBIND11_OVERLOAD_PURE(gp_Pnt,Geom_BoundedCurve,EndPoint,) };
@@ -312,6 +319,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     class Py_Geom_BoundedSurface : public Geom_BoundedSurface{
     public:
         using Geom_BoundedSurface::Geom_BoundedSurface;
+        
         
         // public pure virtual
         
@@ -346,6 +354,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     public:
         using Geom_Conic::Geom_Conic;
         
+        
         // public pure virtual
         Standard_Real Eccentricity() const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom_Conic,Eccentricity,) };
         Standard_Real ReversedParameter(const Standard_Real U) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom_Conic,ReversedParameter,U) };
@@ -371,6 +380,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     class Py_Geom_ElementarySurface : public Geom_ElementarySurface{
     public:
         using Geom_ElementarySurface::Geom_ElementarySurface;
+        
         
         // public pure virtual
         Standard_Real UReversedParameter(const Standard_Real U) const  override { PYBIND11_OVERLOAD_PURE(Standard_Real,Geom_ElementarySurface,UReversedParameter,U) };
@@ -399,6 +409,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
     class Py_Geom_SweptSurface : public Geom_SweptSurface{
     public:
         using Geom_SweptSurface::Geom_SweptSurface;
+        
         
         // public pure virtual
         
@@ -433,6 +444,8 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
 
 
     static_cast<py::class_<Geom_Geometry ,opencascade::handle<Geom_Geometry> ,Py_Geom_Geometry , Standard_Transient >>(m.attr("Geom_Geometry"))
+    // constructors
+    // custom constructors
     // methods
         .def("Mirror",
              (void (Geom_Geometry::*)( const gp_Pnt &  ) ) static_cast<void (Geom_Geometry::*)( const gp_Pnt &  ) >(&Geom_Geometry::Mirror),
@@ -498,13 +511,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_HSequenceOfBSplineSurface ,opencascade::handle<Geom_HSequenceOfBSplineSurface>  , Geom_SequenceOfBSplineSurface , Standard_Transient >>(m.attr("Geom_HSequenceOfBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Geom_BSplineSurface> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const Geom_SequenceOfBSplineSurface & (Geom_HSequenceOfBSplineSurface::*)() const) static_cast<const Geom_SequenceOfBSplineSurface & (Geom_HSequenceOfBSplineSurface::*)() const>(&Geom_HSequenceOfBSplineSurface::Sequence),
@@ -531,13 +546,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_OsculatingSurface ,opencascade::handle<Geom_OsculatingSurface>  , Standard_Transient >>(m.attr("Geom_OsculatingSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real >()  , py::arg("BS"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Init",
              (void (Geom_OsculatingSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) ) static_cast<void (Geom_OsculatingSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Real  ) >(&Geom_OsculatingSurface::Init),
@@ -567,13 +584,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Transformation ,opencascade::handle<Geom_Transformation>  , Standard_Transient >>(m.attr("Geom_Transformation"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Trsf & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Geom_Transformation::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Geom_Transformation::*)() const>(&Geom_Transformation::DynamicType),
@@ -660,11 +679,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_AxisPlacement ,opencascade::handle<Geom_AxisPlacement> ,Py_Geom_AxisPlacement , Geom_Geometry >>(m.attr("Geom_AxisPlacement"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (Geom_AxisPlacement::*)( const gp_Ax1 &  ) ) static_cast<void (Geom_AxisPlacement::*)( const gp_Ax1 &  ) >(&Geom_AxisPlacement::SetAxis),
@@ -700,11 +721,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Curve ,opencascade::handle<Geom_Curve> ,Py_Geom_Curve , Geom_Geometry >>(m.attr("Geom_Curve"))
+    // constructors
+    // custom constructors
     // methods
         .def("Reverse",
              (void (Geom_Curve::*)() ) static_cast<void (Geom_Curve::*)() >(&Geom_Curve::Reverse),
@@ -773,11 +796,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Point ,opencascade::handle<Geom_Point> ,Py_Geom_Point , Geom_Geometry >>(m.attr("Geom_Point"))
+    // constructors
+    // custom constructors
     // methods
         .def("Pnt",
              (gp_Pnt (Geom_Point::*)() const) static_cast<gp_Pnt (Geom_Point::*)() const>(&Geom_Point::Pnt),
@@ -813,11 +838,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Surface ,opencascade::handle<Geom_Surface> ,Py_Geom_Surface , Geom_Geometry >>(m.attr("Geom_Surface"))
+    // constructors
+    // custom constructors
     // methods
         .def("UReverse",
              (void (Geom_Surface::*)() ) static_cast<void (Geom_Surface::*)() >(&Geom_Surface::UReverse),
@@ -910,11 +937,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Vector ,opencascade::handle<Geom_Vector> ,Py_Geom_Vector , Geom_Geometry >>(m.attr("Geom_Vector"))
+    // constructors
+    // custom constructors
     // methods
         .def("Reverse",
              (void (Geom_Vector::*)() ) static_cast<void (Geom_Vector::*)() >(&Geom_Vector::Reverse),
@@ -980,13 +1009,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Axis1Placement ,opencascade::handle<Geom_Axis1Placement>  , Geom_AxisPlacement >>(m.attr("Geom_Axis1Placement"))
+    // constructors
         .def(py::init< const gp_Ax1 & >()  , py::arg("A1") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("Ax1",
              (const gp_Ax1 & (Geom_Axis1Placement::*)() const) static_cast<const gp_Ax1 & (Geom_Axis1Placement::*)() const>(&Geom_Axis1Placement::Ax1),
@@ -1019,13 +1050,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Axis2Placement ,opencascade::handle<Geom_Axis2Placement>  , Geom_AxisPlacement >>(m.attr("Geom_Axis2Placement"))
+    // constructors
         .def(py::init< const gp_Ax2 & >()  , py::arg("A2") )
         .def(py::init< const gp_Pnt &,const gp_Dir &,const gp_Dir & >()  , py::arg("P"),  py::arg("N"),  py::arg("Vx") )
+    // custom constructors
     // methods
         .def("SetAx2",
              (void (Geom_Axis2Placement::*)( const gp_Ax2 &  ) ) static_cast<void (Geom_Axis2Placement::*)( const gp_Ax2 &  ) >(&Geom_Axis2Placement::SetAx2),
@@ -1067,11 +1100,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_BoundedCurve ,opencascade::handle<Geom_BoundedCurve> ,Py_Geom_BoundedCurve , Geom_Curve >>(m.attr("Geom_BoundedCurve"))
+    // constructors
+    // custom constructors
     // methods
         .def("EndPoint",
              (gp_Pnt (Geom_BoundedCurve::*)() const) static_cast<gp_Pnt (Geom_BoundedCurve::*)() const>(&Geom_BoundedCurve::EndPoint),
@@ -1092,11 +1127,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_BoundedSurface ,opencascade::handle<Geom_BoundedSurface> ,Py_Geom_BoundedSurface , Geom_Surface >>(m.attr("Geom_BoundedSurface"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Geom_BoundedSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Geom_BoundedSurface::*)() const>(&Geom_BoundedSurface::DynamicType),
@@ -1111,13 +1148,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_CartesianPoint ,opencascade::handle<Geom_CartesianPoint>  , Geom_Point >>(m.attr("Geom_CartesianPoint"))
+    // constructors
         .def(py::init< const gp_Pnt & >()  , py::arg("P") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("X"),  py::arg("Y"),  py::arg("Z") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (Geom_CartesianPoint::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_CartesianPoint::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_CartesianPoint::SetCoord),
@@ -1168,11 +1207,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Conic ,opencascade::handle<Geom_Conic> ,Py_Geom_Conic , Geom_Curve >>(m.attr("Geom_Conic"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (Geom_Conic::*)( const gp_Ax1 &  ) ) static_cast<void (Geom_Conic::*)( const gp_Ax1 &  ) >(&Geom_Conic::SetAxis),
@@ -1226,13 +1267,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Direction ,opencascade::handle<Geom_Direction>  , Geom_Vector >>(m.attr("Geom_Direction"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("X"),  py::arg("Y"),  py::arg("Z") )
         .def(py::init< const gp_Dir & >()  , py::arg("V") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (Geom_Direction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_Direction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_Direction::SetCoord),
@@ -1289,11 +1332,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_ElementarySurface ,opencascade::handle<Geom_ElementarySurface> ,Py_Geom_ElementarySurface , Geom_Surface >>(m.attr("Geom_ElementarySurface"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (Geom_ElementarySurface::*)( const gp_Ax1 &  ) ) static_cast<void (Geom_ElementarySurface::*)( const gp_Ax1 &  ) >(&Geom_ElementarySurface::SetAxis),
@@ -1347,14 +1392,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Line ,opencascade::handle<Geom_Line>  , Geom_Curve >>(m.attr("Geom_Line"))
+    // constructors
         .def(py::init< const gp_Ax1 & >()  , py::arg("A1") )
         .def(py::init< const gp_Lin & >()  , py::arg("L") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetLin",
              (void (Geom_Line::*)( const gp_Lin &  ) ) static_cast<void (Geom_Line::*)( const gp_Lin &  ) >(&Geom_Line::SetLin),
@@ -1438,12 +1485,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_OffsetCurve ,opencascade::handle<Geom_OffsetCurve>  , Geom_Curve >>(m.attr("Geom_OffsetCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const gp_Dir &,const Standard_Boolean >()  , py::arg("C"),  py::arg("Offset"),  py::arg("V"),  py::arg("isNotCheckC0")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Reverse",
              (void (Geom_OffsetCurve::*)() ) static_cast<void (Geom_OffsetCurve::*)() >(&Geom_OffsetCurve::Reverse),
@@ -1533,12 +1582,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_OffsetSurface ,opencascade::handle<Geom_OffsetSurface>  , Geom_Surface >>(m.attr("Geom_OffsetSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Boolean >()  , py::arg("S"),  py::arg("Offset"),  py::arg("isNotCheckC0")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("SetBasisSurface",
              (void (Geom_OffsetSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Boolean  ) ) static_cast<void (Geom_OffsetSurface::*)( const opencascade::handle<Geom_Surface> & ,  const Standard_Boolean  ) >(&Geom_OffsetSurface::SetBasisSurface),
@@ -1655,11 +1706,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_SweptSurface ,opencascade::handle<Geom_SweptSurface> ,Py_Geom_SweptSurface , Geom_Surface >>(m.attr("Geom_SweptSurface"))
+    // constructors
+    // custom constructors
     // methods
         .def("Continuity",
              (GeomAbs_Shape (Geom_SweptSurface::*)() const) static_cast<GeomAbs_Shape (Geom_SweptSurface::*)() const>(&Geom_SweptSurface::Continuity),
@@ -1683,14 +1736,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_VectorWithMagnitude ,opencascade::handle<Geom_VectorWithMagnitude>  , Geom_Vector >>(m.attr("Geom_VectorWithMagnitude"))
+    // constructors
         .def(py::init< const gp_Vec & >()  , py::arg("V") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("X"),  py::arg("Y"),  py::arg("Z") )
         .def(py::init< const gp_Pnt &,const gp_Pnt & >()  , py::arg("P1"),  py::arg("P2") )
+    // custom constructors
     // methods
         .def("SetCoord",
              (void (Geom_VectorWithMagnitude::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_VectorWithMagnitude::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_VectorWithMagnitude::SetCoord),
@@ -1774,13 +1829,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_BSplineCurve ,opencascade::handle<Geom_BSplineCurve>  , Geom_BoundedCurve >>(m.attr("Geom_BSplineCurve"))
+    // constructors
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Boolean >()  , py::arg("Poles"),  py::arg("Knots"),  py::arg("Multiplicities"),  py::arg("Degree"),  py::arg("Periodic")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Poles"),  py::arg("Weights"),  py::arg("Knots"),  py::arg("Multiplicities"),  py::arg("Degree"),  py::arg("Periodic")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("CheckRational")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("IncreaseDegree",
              (void (Geom_BSplineCurve::*)( const Standard_Integer  ) ) static_cast<void (Geom_BSplineCurve::*)( const Standard_Integer  ) >(&Geom_BSplineCurve::IncreaseDegree),
@@ -1810,8 +1867,8 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
              (Standard_Real (Geom_BSplineCurve::*)( const Standard_Real  ) const) static_cast<Standard_Real (Geom_BSplineCurve::*)( const Standard_Real  ) const>(&Geom_BSplineCurve::ReversedParameter),
              R"#(Returns the parameter on the reversed curve for the point of parameter U on <me>.)#"  , py::arg("U"))
         .def("Segment",
-             (void (Geom_BSplineCurve::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineCurve::*)( const Standard_Real ,  const Standard_Real  ) >(&Geom_BSplineCurve::Segment),
-             R"#(Modifies this BSpline curve by segmenting it between U1 and U2. Either of these values can be outside the bounds of the curve, but U2 must be greater than U1. All data structure tables of this BSpline curve are modified, but the knots located between U1 and U2 are retained. The degree of the curve is not modified. Warnings : Even if <me> is not closed it can become closed after the segmentation for example if U1 or U2 are out of the bounds of the curve <me> or if the curve makes loop. After the segmentation the length of a curve can be null. raises if U2 < U1. Standard_DomainError if U2 - U1 exceeds the period for periodic curves. i.e. ((U2 - U1) - Period) > Precision::PConfusion().)#"  , py::arg("U1"),  py::arg("U2"))
+             (void (Geom_BSplineCurve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineCurve::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_BSplineCurve::Segment),
+             R"#(Modifies this BSpline curve by segmenting it between U1 and U2. Either of these values can be outside the bounds of the curve, but U2 must be greater than U1. All data structure tables of this BSpline curve are modified, but the knots located between U1 and U2 are retained. The degree of the curve is not modified.)#"  , py::arg("U1"),  py::arg("U2"),  py::arg("theTolerance")=static_cast<const Standard_Real>(Precision :: PConfusion ( )))
         .def("SetKnot",
              (void (Geom_BSplineCurve::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineCurve::*)( const Standard_Integer ,  const Standard_Real  ) >(&Geom_BSplineCurve::SetKnot),
              R"#(Modifies this BSpline curve by assigning the value K to the knot of index Index in the knots table. This is a relatively local modification because K must be such that: Knots(Index - 1) < K < Knots(Index + 1) The second syntax allows you also to increase the multiplicity of the knot to M (but it is not possible to decrease the multiplicity of the knot with this function). Standard_ConstructionError if: - K is not such that: Knots(Index - 1) < K < Knots(Index + 1) - M is greater than the degree of this BSpline curve or lower than the previous multiplicity of knot of index Index in the knots table. Standard_OutOfRange if Index is outside the bounds of the knots table.)#"  , py::arg("Index"),  py::arg("K"))
@@ -2005,13 +2062,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_BSplineSurface ,opencascade::handle<Geom_BSplineSurface>  , Geom_BoundedSurface >>(m.attr("Geom_BSplineSurface"))
+    // constructors
         .def(py::init<  const NCollection_Array2<gp_Pnt> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Poles"),  py::arg("UKnots"),  py::arg("VKnots"),  py::arg("UMults"),  py::arg("VMults"),  py::arg("UDegree"),  py::arg("VDegree"),  py::arg("UPeriodic")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("VPeriodic")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init<  const NCollection_Array2<gp_Pnt> &, const NCollection_Array2<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Real> &, const NCollection_Array1<Standard_Integer> &, const NCollection_Array1<Standard_Integer> &,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("Poles"),  py::arg("Weights"),  py::arg("UKnots"),  py::arg("VKnots"),  py::arg("UMults"),  py::arg("VMults"),  py::arg("UDegree"),  py::arg("VDegree"),  py::arg("UPeriodic")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("VPeriodic")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("ExchangeUV",
              (void (Geom_BSplineSurface::*)() ) static_cast<void (Geom_BSplineSurface::*)() >(&Geom_BSplineSurface::ExchangeUV),
@@ -2086,11 +2145,11 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
              (void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Boolean  ) >(&Geom_BSplineSurface::InsertVKnot),
              R"#(Inserts a knot value in the sequence of VKnots. If V is a knot value this method increases the multiplicity of the knot if the previous multiplicity was lower than M otherwise it does nothing. The tolerance criterion is ParametricTolerance. ParametricTolerance should be greater or equal than Resolution from package gp.)#"  , py::arg("V"),  py::arg("M"),  py::arg("ParametricTolerance"),  py::arg("Add")=static_cast<const Standard_Boolean>(Standard_True))
         .def("Segment",
-             (void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_BSplineSurface::Segment),
-             R"#(Segments the surface between U1 and U2 in the U-Direction. between V1 and V2 in the V-Direction. The control points are modified, the first and the last point are not the same. Warnings : Even if <me> is not closed it can become closed after the segmentation for example if U1 or U2 are out of the bounds of the surface <me> or if the surface makes loop. raises if U2 < U1 or V2 < V1. Standard_DomainError if U2 - U1 exceeds the uperiod for uperiodic surfaces. i.e. ((U2 - U1) - UPeriod) > Precision::PConfusion(). Standard_DomainError if V2 - V1 exceeds the vperiod for vperiodic surfaces. i.e. ((V2 - V1) - VPeriod) > Precision::PConfusion()).)#"  , py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2"))
+             (void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_BSplineSurface::Segment),
+             R"#(Segments the surface between U1 and U2 in the U-Direction. between V1 and V2 in the V-Direction. The control points are modified, the first and the last point are not the same.)#"  , py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2"),  py::arg("theUTolerance")=static_cast<const Standard_Real>(Precision :: PConfusion ( )),  py::arg("theVTolerance")=static_cast<const Standard_Real>(Precision :: PConfusion ( )))
         .def("CheckAndSegment",
-             (void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_BSplineSurface::CheckAndSegment),
-             R"#(Segments the surface between U1 and U2 in the U-Direction. between V1 and V2 in the V-Direction.)#"  , py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2"))
+             (void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Geom_BSplineSurface::CheckAndSegment),
+             R"#(Segments the surface between U1 and U2 in the U-Direction. between V1 and V2 in the V-Direction.)#"  , py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2"),  py::arg("theUTolerance")=static_cast<const Standard_Real>(Precision :: PConfusion ( )),  py::arg("theVTolerance")=static_cast<const Standard_Real>(Precision :: PConfusion ( )))
         .def("SetUKnot",
              (void (Geom_BSplineSurface::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (Geom_BSplineSurface::*)( const Standard_Integer ,  const Standard_Real  ) >(&Geom_BSplineSurface::SetUKnot),
              R"#(Substitutes the UKnots of range UIndex with K.)#"  , py::arg("UIndex"),  py::arg("K"))
@@ -2350,13 +2409,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_BezierCurve ,opencascade::handle<Geom_BezierCurve>  , Geom_BoundedCurve >>(m.attr("Geom_BezierCurve"))
+    // constructors
         .def(py::init<  const NCollection_Array1<gp_Pnt> & >()  , py::arg("CurvePoles") )
         .def(py::init<  const NCollection_Array1<gp_Pnt> &, const NCollection_Array1<Standard_Real> & >()  , py::arg("CurvePoles"),  py::arg("PoleWeights") )
+    // custom constructors
     // methods
         .def("Increase",
              (void (Geom_BezierCurve::*)( const Standard_Integer  ) ) static_cast<void (Geom_BezierCurve::*)( const Standard_Integer  ) >(&Geom_BezierCurve::Increase),
@@ -2485,13 +2546,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_BezierSurface ,opencascade::handle<Geom_BezierSurface>  , Geom_BoundedSurface >>(m.attr("Geom_BezierSurface"))
+    // constructors
         .def(py::init<  const NCollection_Array2<gp_Pnt> & >()  , py::arg("SurfacePoles") )
         .def(py::init<  const NCollection_Array2<gp_Pnt> &, const NCollection_Array2<Standard_Real> & >()  , py::arg("SurfacePoles"),  py::arg("PoleWeights") )
+    // custom constructors
     // methods
         .def("ExchangeUV",
              (void (Geom_BezierSurface::*)() ) static_cast<void (Geom_BezierSurface::*)() >(&Geom_BezierSurface::ExchangeUV),
@@ -2677,13 +2740,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Circle ,opencascade::handle<Geom_Circle>  , Geom_Conic >>(m.attr("Geom_Circle"))
+    // constructors
         .def(py::init< const gp_Circ & >()  , py::arg("C") )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("A2"),  py::arg("Radius") )
+    // custom constructors
     // methods
         .def("SetCirc",
              (void (Geom_Circle::*)( const gp_Circ &  ) ) static_cast<void (Geom_Circle::*)( const gp_Circ &  ) >(&Geom_Circle::SetCirc),
@@ -2749,13 +2814,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_ConicalSurface ,opencascade::handle<Geom_ConicalSurface>  , Geom_ElementarySurface >>(m.attr("Geom_ConicalSurface"))
+    // constructors
         .def(py::init< const gp_Ax3 &,const Standard_Real,const Standard_Real >()  , py::arg("A3"),  py::arg("Ang"),  py::arg("Radius") )
         .def(py::init< const gp_Cone & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("SetCone",
              (void (Geom_ConicalSurface::*)( const gp_Cone &  ) ) static_cast<void (Geom_ConicalSurface::*)( const gp_Cone &  ) >(&Geom_ConicalSurface::SetCone),
@@ -2765,7 +2832,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
              R"#(Changes the radius of the conical surface in the placement plane (Z = 0, V = 0). The local coordinate system is not modified. Raised if R < 0.0)#"  , py::arg("R"))
         .def("SetSemiAngle",
              (void (Geom_ConicalSurface::*)( const Standard_Real  ) ) static_cast<void (Geom_ConicalSurface::*)( const Standard_Real  ) >(&Geom_ConicalSurface::SetSemiAngle),
-             R"#(Changes the semi angle of the conical surface.)#"  , py::arg("Ang"))
+             R"#(Changes the semi angle of the conical surface. Semi-angle can be negative. Its absolute value Abs(Ang) is in range ]0,PI/2[. Raises ConstructionError if Abs(Ang) < Resolution from gp or Abs(Ang) >= PI/2 - Resolution)#"  , py::arg("Ang"))
         .def("Cone",
              (gp_Cone (Geom_ConicalSurface::*)() const) static_cast<gp_Cone (Geom_ConicalSurface::*)() const>(&Geom_ConicalSurface::Cone),
              R"#(returns a non transient cone with the same geometric properties as <me>.)#" )
@@ -2789,7 +2856,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
              R"#(Returns the reference radius of this cone. The reference radius is the radius of the circle formed by the intersection of this cone and its reference plane (i.e. the plane defined by the origin, "X Direction" and "Y Direction" of the local coordinate system of this cone). If the apex of this cone is on the origin of the local coordinate system of this cone, the returned value is 0.)#" )
         .def("SemiAngle",
              (Standard_Real (Geom_ConicalSurface::*)() const) static_cast<Standard_Real (Geom_ConicalSurface::*)() const>(&Geom_ConicalSurface::SemiAngle),
-             R"#(returns the semi-angle of the conical surface ]0.0, PI/2[.)#" )
+             R"#(Returns the semi-angle at the apex of this cone. Attention! Semi-angle can be negative.)#" )
         .def("IsUClosed",
              (Standard_Boolean (Geom_ConicalSurface::*)() const) static_cast<Standard_Boolean (Geom_ConicalSurface::*)() const>(&Geom_ConicalSurface::IsUClosed),
              R"#(returns True.)#" )
@@ -2851,13 +2918,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_CylindricalSurface ,opencascade::handle<Geom_CylindricalSurface>  , Geom_ElementarySurface >>(m.attr("Geom_CylindricalSurface"))
+    // constructors
         .def(py::init< const gp_Ax3 &,const Standard_Real >()  , py::arg("A3"),  py::arg("Radius") )
         .def(py::init< const gp_Cylinder & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("SetCylinder",
              (void (Geom_CylindricalSurface::*)( const gp_Cylinder &  ) ) static_cast<void (Geom_CylindricalSurface::*)( const gp_Cylinder &  ) >(&Geom_CylindricalSurface::SetCylinder),
@@ -2941,13 +3010,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Ellipse ,opencascade::handle<Geom_Ellipse>  , Geom_Conic >>(m.attr("Geom_Ellipse"))
+    // constructors
         .def(py::init< const gp_Elips & >()  , py::arg("E") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
+    // custom constructors
     // methods
         .def("SetElips",
              (void (Geom_Ellipse::*)( const gp_Elips &  ) ) static_cast<void (Geom_Ellipse::*)( const gp_Elips &  ) >(&Geom_Ellipse::SetElips),
@@ -3037,13 +3108,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Hyperbola ,opencascade::handle<Geom_Hyperbola>  , Geom_Conic >>(m.attr("Geom_Hyperbola"))
+    // constructors
         .def(py::init< const gp_Hypr & >()  , py::arg("H") )
         .def(py::init< const gp_Ax2 &,const Standard_Real,const Standard_Real >()  , py::arg("A2"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
+    // custom constructors
     // methods
         .def("SetHypr",
              (void (Geom_Hyperbola::*)( const gp_Hypr &  ) ) static_cast<void (Geom_Hyperbola::*)( const gp_Hypr &  ) >(&Geom_Hyperbola::SetHypr),
@@ -3148,14 +3221,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Parabola ,opencascade::handle<Geom_Parabola>  , Geom_Conic >>(m.attr("Geom_Parabola"))
+    // constructors
         .def(py::init< const gp_Parab & >()  , py::arg("Prb") )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("A2"),  py::arg("Focal") )
         .def(py::init< const gp_Ax1 &,const gp_Pnt & >()  , py::arg("D"),  py::arg("F") )
+    // custom constructors
     // methods
         .def("SetFocal",
              (void (Geom_Parabola::*)( const Standard_Real  ) ) static_cast<void (Geom_Parabola::*)( const Standard_Real  ) >(&Geom_Parabola::SetFocal),
@@ -3236,15 +3311,17 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_Plane ,opencascade::handle<Geom_Plane>  , Geom_ElementarySurface >>(m.attr("Geom_Plane"))
+    // constructors
         .def(py::init< const gp_Ax3 & >()  , py::arg("A3") )
         .def(py::init< const gp_Pln & >()  , py::arg("Pl") )
         .def(py::init< const gp_Pnt &,const gp_Dir & >()  , py::arg("P"),  py::arg("V") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("A"),  py::arg("B"),  py::arg("C"),  py::arg("D") )
+    // custom constructors
     // methods
         .def("SetPln",
              (void (Geom_Plane::*)( const gp_Pln &  ) ) static_cast<void (Geom_Plane::*)( const gp_Pln &  ) >(&Geom_Plane::SetPln),
@@ -3328,13 +3405,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_RectangularTrimmedSurface ,opencascade::handle<Geom_RectangularTrimmedSurface>  , Geom_BoundedSurface >>(m.attr("Geom_RectangularTrimmedSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2"),  py::arg("USense")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("VSense")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("S"),  py::arg("Param1"),  py::arg("Param2"),  py::arg("UTrim"),  py::arg("Sense")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SetTrim",
              (void (Geom_RectangularTrimmedSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (Geom_RectangularTrimmedSurface::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&Geom_RectangularTrimmedSurface::SetTrim),
@@ -3433,13 +3512,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_SphericalSurface ,opencascade::handle<Geom_SphericalSurface>  , Geom_ElementarySurface >>(m.attr("Geom_SphericalSurface"))
+    // constructors
         .def(py::init< const gp_Ax3 &,const Standard_Real >()  , py::arg("A3"),  py::arg("Radius") )
         .def(py::init< const gp_Sphere & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("SetRadius",
              (void (Geom_SphericalSurface::*)( const Standard_Real  ) ) static_cast<void (Geom_SphericalSurface::*)( const Standard_Real  ) >(&Geom_SphericalSurface::SetRadius),
@@ -3523,12 +3604,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_SurfaceOfLinearExtrusion ,opencascade::handle<Geom_SurfaceOfLinearExtrusion>  , Geom_SweptSurface >>(m.attr("Geom_SurfaceOfLinearExtrusion"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const gp_Dir & >()  , py::arg("C"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetDirection",
              (void (Geom_SurfaceOfLinearExtrusion::*)( const gp_Dir &  ) ) static_cast<void (Geom_SurfaceOfLinearExtrusion::*)( const gp_Dir &  ) >(&Geom_SurfaceOfLinearExtrusion::SetDirection),
@@ -3615,12 +3698,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_SurfaceOfRevolution ,opencascade::handle<Geom_SurfaceOfRevolution>  , Geom_SweptSurface >>(m.attr("Geom_SurfaceOfRevolution"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const gp_Ax1 & >()  , py::arg("C"),  py::arg("A1") )
+    // custom constructors
     // methods
         .def("SetAxis",
              (void (Geom_SurfaceOfRevolution::*)( const gp_Ax1 &  ) ) static_cast<void (Geom_SurfaceOfRevolution::*)( const gp_Ax1 &  ) >(&Geom_SurfaceOfRevolution::SetAxis),
@@ -3722,13 +3807,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_ToroidalSurface ,opencascade::handle<Geom_ToroidalSurface>  , Geom_ElementarySurface >>(m.attr("Geom_ToroidalSurface"))
+    // constructors
         .def(py::init< const gp_Ax3 &,const Standard_Real,const Standard_Real >()  , py::arg("A3"),  py::arg("MajorRadius"),  py::arg("MinorRadius") )
         .def(py::init< const gp_Torus & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("SetMajorRadius",
              (void (Geom_ToroidalSurface::*)( const Standard_Real  ) ) static_cast<void (Geom_ToroidalSurface::*)( const Standard_Real  ) >(&Geom_ToroidalSurface::SetMajorRadius),
@@ -3818,12 +3905,14 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom_TrimmedCurve ,opencascade::handle<Geom_TrimmedCurve>  , Geom_BoundedCurve >>(m.attr("Geom_TrimmedCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("C"),  py::arg("U1"),  py::arg("U2"),  py::arg("Sense")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theAdjustPeriodic")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Reverse",
              (void (Geom_TrimmedCurve::*)() ) static_cast<void (Geom_TrimmedCurve::*)() >(&Geom_TrimmedCurve::Reverse),
@@ -3904,52 +3993,52 @@ py::module m = static_cast<py::module>(main_module.attr("Geom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Geom_CartesianPoint.hxx
-// ./opencascade/Geom_Hyperbola.hxx
-// ./opencascade/Geom_OffsetCurve.hxx
-// ./opencascade/Geom_CylindricalSurface.hxx
 // ./opencascade/Geom_BoundedCurve.hxx
-// ./opencascade/Geom_SequenceOfBSplineSurface.hxx
-// ./opencascade/Geom_BSplineCurve.hxx
-// ./opencascade/Geom_Conic.hxx
-// ./opencascade/Geom_Vector.hxx
-// ./opencascade/Geom_SurfaceOfRevolution.hxx
-// ./opencascade/Geom_HSequenceOfBSplineSurface.hxx
-// ./opencascade/Geom_SphericalSurface.hxx
-// ./opencascade/Geom_Transformation.hxx
-// ./opencascade/Geom_OsculatingSurface.hxx
-// ./opencascade/Geom_TrimmedCurve.hxx
-// ./opencascade/Geom_UndefinedValue.hxx
-// ./opencascade/Geom_Axis1Placement.hxx
-// ./opencascade/Geom_Surface.hxx
 // ./opencascade/Geom_BoundedSurface.hxx
 // ./opencascade/Geom_ElementarySurface.hxx
-// ./opencascade/Geom_Point.hxx
-// ./opencascade/Geom_BezierSurface.hxx
-// ./opencascade/Geom_AxisPlacement.hxx
-// ./opencascade/Geom_SweptSurface.hxx
-// ./opencascade/Geom_UndefinedDerivative.hxx
-// ./opencascade/Geom_ToroidalSurface.hxx
-// ./opencascade/Geom_RectangularTrimmedSurface.hxx
-// ./opencascade/Geom_BSplineSurface.hxx
-// ./opencascade/Geom_Ellipse.hxx
-// ./opencascade/Geom_VectorWithMagnitude.hxx
 // ./opencascade/Geom_Parabola.hxx
-// ./opencascade/Geom_Curve.hxx
-// ./opencascade/Geom_ConicalSurface.hxx
+// ./opencascade/Geom_SphericalSurface.hxx
+// ./opencascade/Geom_Conic.hxx
+// ./opencascade/Geom_UndefinedDerivative.hxx
 // ./opencascade/Geom_Axis2Placement.hxx
-// ./opencascade/Geom_SurfaceOfLinearExtrusion.hxx
+// ./opencascade/Geom_HSequenceOfBSplineSurface.hxx
 // ./opencascade/Geom_Circle.hxx
-// ./opencascade/Geom_Direction.hxx
-// ./opencascade/Geom_Line.hxx
-// ./opencascade/Geom_Geometry.hxx
-// ./opencascade/Geom_Plane.hxx
-// ./opencascade/Geom_OffsetSurface.hxx
 // ./opencascade/Geom_BezierCurve.hxx
+// ./opencascade/Geom_Transformation.hxx
+// ./opencascade/Geom_CylindricalSurface.hxx
+// ./opencascade/Geom_RectangularTrimmedSurface.hxx
+// ./opencascade/Geom_CartesianPoint.hxx
+// ./opencascade/Geom_Hyperbola.hxx
+// ./opencascade/Geom_Geometry.hxx
+// ./opencascade/Geom_Vector.hxx
+// ./opencascade/Geom_Point.hxx
+// ./opencascade/Geom_Line.hxx
+// ./opencascade/Geom_Surface.hxx
+// ./opencascade/Geom_OsculatingSurface.hxx
+// ./opencascade/Geom_Curve.hxx
+// ./opencascade/Geom_SurfaceOfRevolution.hxx
+// ./opencascade/Geom_Direction.hxx
+// ./opencascade/Geom_SurfaceOfLinearExtrusion.hxx
+// ./opencascade/Geom_Axis1Placement.hxx
+// ./opencascade/Geom_AxisPlacement.hxx
+// ./opencascade/Geom_Ellipse.hxx
+// ./opencascade/Geom_OffsetCurve.hxx
+// ./opencascade/Geom_SequenceOfBSplineSurface.hxx
+// ./opencascade/Geom_BezierSurface.hxx
+// ./opencascade/Geom_UndefinedValue.hxx
+// ./opencascade/Geom_SweptSurface.hxx
+// ./opencascade/Geom_BSplineSurface.hxx
+// ./opencascade/Geom_Plane.hxx
+// ./opencascade/Geom_ConicalSurface.hxx
+// ./opencascade/Geom_ToroidalSurface.hxx
+// ./opencascade/Geom_OffsetSurface.hxx
+// ./opencascade/Geom_BSplineCurve.hxx
+// ./opencascade/Geom_TrimmedCurve.hxx
+// ./opencascade/Geom_VectorWithMagnitude.hxx
 
 // operators
 

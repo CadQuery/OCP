@@ -14,6 +14,10 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <CDF_Directory.hxx>
+#include <CDF_StoreList.hxx>
+#include <CDM_Document.hxx>
+#include <CDF_MetaDataDriver.hxx>
+#include <CDF_Directory.hxx>
 #include <CDF_DirectoryIterator.hxx>
 #include <CDF_Session.hxx>
 #include <CDF_Application.hxx>
@@ -22,13 +26,21 @@ namespace py = pybind11;
 #include <CDF_MetaDataDriver.hxx>
 #include <CDF_FWOSDriver.hxx>
 #include <CDF_MetaDataDriverFactory.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <CDM_MetaData.hxx>
+#include <CDM_Document.hxx>
+#include <CDF_DirectoryIterator.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <CDM_MetaData.hxx>
+#include <TCollection_ExtendedString.hxx>
+#include <CDM_Document.hxx>
+#include <PCDM_ReferenceIterator.hxx>
+#include <CDM_MetaData.hxx>
 #include <CDF_Directory.hxx>
 #include <CDF_Application.hxx>
 #include <CDF_MetaDataDriver.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Standard_MultiplyDefined.hxx>
-#include <CDF_MetaDataDriver.hxx>
-#include <CDM_MetaData.hxx>
 #include <CDF_Session.hxx>
 #include <Standard_GUID.hxx>
 #include <CDM_Document.hxx>
@@ -36,18 +48,6 @@ namespace py = pybind11;
 #include <CDM_MetaData.hxx>
 #include <PCDM_RetrievalDriver.hxx>
 #include <PCDM_StorageDriver.hxx>
-#include <CDF_Directory.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <CDM_MetaData.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <CDM_Document.hxx>
-#include <PCDM_ReferenceIterator.hxx>
-#include <CDF_DirectoryIterator.hxx>
-#include <CDF_StoreList.hxx>
-#include <CDM_Document.hxx>
-#include <TCollection_ExtendedString.hxx>
-#include <CDM_MetaData.hxx>
-#include <CDM_Document.hxx>
 
 // module includes
 #include <CDF.hxx>
@@ -73,6 +73,7 @@ namespace py = pybind11;
 #include "OCP_specific.inc"
 
 // user-defined inclusion per module
+#include <Resource_Manager.hxx>
 
 // Module definiiton
 void register_CDF(py::module &main_module) {
@@ -86,18 +87,23 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
     public:
         using CDF_Application::CDF_Application;
         
+        
         // public pure virtual
         
+        opencascade::handle<Resource_Manager> Resources() override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Resource_Manager>,CDM_Application,Resources,) };
         
         // protected pure virtual
         
         
         // private pure virtual
         
+        opencascade::handle<CDM_Document> Retrieve(const opencascade::handle<CDM_MetaData> & aMetaData,const Standard_Boolean UseStorageConfiguration) override { PYBIND11_OVERLOAD_PURE(opencascade::handle<CDM_Document>,CDM_Application,Retrieve,aMetaData,UseStorageConfiguration) };
+        Standard_Integer DocumentVersion(const opencascade::handle<CDM_MetaData> & aMetaData) override { PYBIND11_OVERLOAD_PURE(Standard_Integer,CDM_Application,DocumentVersion,aMetaData) };
     };
     class Py_CDF_MetaDataDriver : public CDF_MetaDataDriver{
     public:
         using CDF_MetaDataDriver::CDF_MetaDataDriver;
+        
         
         // public pure virtual
         TCollection_ExtendedString BuildFileName(const opencascade::handle<CDM_Document> & aDocument) override { PYBIND11_OVERLOAD_PURE(TCollection_ExtendedString,CDF_MetaDataDriver,BuildFileName,aDocument) };
@@ -119,6 +125,7 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
     public:
         using CDF_MetaDataDriverFactory::CDF_MetaDataDriverFactory;
         
+        
         // public pure virtual
         opencascade::handle<CDF_MetaDataDriver> Build() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<CDF_MetaDataDriver>,CDF_MetaDataDriverFactory,Build,) };
         
@@ -132,9 +139,12 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
 
 // classes
 
+    // default constructor
     register_default_constructor<CDF , shared_ptr<CDF>>(m,"CDF");
 
     static_cast<py::class_<CDF , shared_ptr<CDF>  >>(m.attr("CDF"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -146,11 +156,13 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#"  , py::arg("anApplicationIdentifier"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_Application ,opencascade::handle<CDF_Application> ,Py_CDF_Application , CDM_Application >>(m.attr("CDF_Application"))
+    // constructors
+    // custom constructors
     // methods
         .def("Open",
              (void (CDF_Application::*)( const opencascade::handle<CDM_Document> &  ) ) static_cast<void (CDF_Application::*)( const opencascade::handle<CDM_Document> &  ) >(&CDF_Application::Open),
@@ -210,12 +222,14 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_Directory ,opencascade::handle<CDF_Directory>  , Standard_Transient >>(m.attr("CDF_Directory"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (CDF_Directory::*)( const opencascade::handle<CDM_Document> &  ) ) static_cast<void (CDF_Directory::*)( const opencascade::handle<CDM_Document> &  ) >(&CDF_Directory::Add),
@@ -248,13 +262,15 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_DirectoryIterator , shared_ptr<CDF_DirectoryIterator>  >>(m.attr("CDF_DirectoryIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<CDF_Directory> & >()  , py::arg("aDirectory") )
+    // custom constructors
     // methods
         .def("MoreDocument",
              (Standard_Boolean (CDF_DirectoryIterator::*)() ) static_cast<Standard_Boolean (CDF_DirectoryIterator::*)() >(&CDF_DirectoryIterator::MoreDocument),
@@ -269,11 +285,13 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_MetaDataDriver ,opencascade::handle<CDF_MetaDataDriver> ,Py_CDF_MetaDataDriver , Standard_Transient >>(m.attr("CDF_MetaDataDriver"))
+    // constructors
+    // custom constructors
     // methods
         .def("HasVersionCapability",
              (Standard_Boolean (CDF_MetaDataDriver::*)() ) static_cast<Standard_Boolean (CDF_MetaDataDriver::*)() >(&CDF_MetaDataDriver::HasVersionCapability),
@@ -336,11 +354,13 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_MetaDataDriverFactory ,opencascade::handle<CDF_MetaDataDriverFactory> ,Py_CDF_MetaDataDriverFactory , Standard_Transient >>(m.attr("CDF_MetaDataDriverFactory"))
+    // constructors
+    // custom constructors
     // methods
         .def("Build",
              (opencascade::handle<CDF_MetaDataDriver> (CDF_MetaDataDriverFactory::*)() const) static_cast<opencascade::handle<CDF_MetaDataDriver> (CDF_MetaDataDriverFactory::*)() const>(&CDF_MetaDataDriverFactory::Build),
@@ -358,12 +378,14 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_Session ,opencascade::handle<CDF_Session>  , Standard_Transient >>(m.attr("CDF_Session"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Directory",
              (opencascade::handle<CDF_Directory> (CDF_Session::*)() const) static_cast<opencascade::handle<CDF_Directory> (CDF_Session::*)() const>(&CDF_Session::Directory),
@@ -405,12 +427,14 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_Store , shared_ptr<CDF_Store>  >>(m.attr("CDF_Store"))
+    // constructors
         .def(py::init< const opencascade::handle<CDM_Document> & >()  , py::arg("aDocument") )
+    // custom constructors
     // methods
         .def("Folder",
              (Standard_ExtString (CDF_Store::*)() const) static_cast<Standard_ExtString (CDF_Store::*)() const>(&CDF_Store::Folder),
@@ -512,12 +536,14 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_StoreList ,opencascade::handle<CDF_StoreList>  , Standard_Transient >>(m.attr("CDF_StoreList"))
+    // constructors
         .def(py::init< const opencascade::handle<CDM_Document> & >()  , py::arg("aDocument") )
+    // custom constructors
     // methods
         .def("IsConsistent",
              (Standard_Boolean (CDF_StoreList::*)() const) static_cast<Standard_Boolean (CDF_StoreList::*)() const>(&CDF_StoreList::IsConsistent),
@@ -550,12 +576,14 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CDF_FWOSDriver ,opencascade::handle<CDF_FWOSDriver>  , CDF_MetaDataDriver >>(m.attr("CDF_FWOSDriver"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Find",
              (Standard_Boolean (CDF_FWOSDriver::*)( const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const TCollection_ExtendedString &  ) ) static_cast<Standard_Boolean (CDF_FWOSDriver::*)( const TCollection_ExtendedString & ,  const TCollection_ExtendedString & ,  const TCollection_ExtendedString &  ) >(&CDF_FWOSDriver::Find),
@@ -588,25 +616,25 @@ py::module m = static_cast<py::module>(main_module.attr("CDF"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/CDF.hxx
-// ./opencascade/CDF_Session.hxx
-// ./opencascade/CDF_TryStoreStatus.hxx
-// ./opencascade/CDF_TypeOfActivation.hxx
-// ./opencascade/CDF_MetaDataDriverFactory.hxx
-// ./opencascade/CDF_SubComponentStatus.hxx
-// ./opencascade/CDF_StoreList.hxx
-// ./opencascade/CDF_Application.hxx
 // ./opencascade/CDF_MetaDataDriverError.hxx
+// ./opencascade/CDF_TypeOfActivation.hxx
 // ./opencascade/CDF_StoreSetNameStatus.hxx
 // ./opencascade/CDF_DirectoryIterator.hxx
-// ./opencascade/CDF_MetaDataDriver.hxx
-// ./opencascade/CDF_Directory.hxx
 // ./opencascade/CDF_Store.hxx
+// ./opencascade/CDF_MetaDataDriverFactory.hxx
+// ./opencascade/CDF.hxx
 // ./opencascade/CDF_FWOSDriver.hxx
+// ./opencascade/CDF_Directory.hxx
+// ./opencascade/CDF_SubComponentStatus.hxx
+// ./opencascade/CDF_MetaDataDriver.hxx
+// ./opencascade/CDF_TryStoreStatus.hxx
+// ./opencascade/CDF_StoreList.hxx
+// ./opencascade/CDF_Session.hxx
+// ./opencascade/CDF_Application.hxx
 
 // operators
 

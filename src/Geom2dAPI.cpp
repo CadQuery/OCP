@@ -16,11 +16,11 @@ namespace py = pybind11;
 #include <Geom2d_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Standard_NullObject.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Geom2d_BSplineCurve.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Standard_NullObject.hxx>
 
 // module includes
 #include <Geom2dAPI_ExtremaCurveCurve.hxx>
@@ -50,7 +50,9 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAPI"));
 
 
     static_cast<py::class_<Geom2dAPI_ExtremaCurveCurve , shared_ptr<Geom2dAPI_ExtremaCurveCurve>  >>(m.attr("Geom2dAPI_ExtremaCurveCurve"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U1min"),  py::arg("U1max"),  py::arg("U2min"),  py::arg("U2max") )
+    // custom constructors
     // methods
         .def("NbExtrema",
              (Standard_Integer (Geom2dAPI_ExtremaCurveCurve::*)() const) static_cast<Standard_Integer (Geom2dAPI_ExtremaCurveCurve::*)() const>(&Geom2dAPI_ExtremaCurveCurve::NbExtrema),
@@ -83,14 +85,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dAPI_InterCurveCurve , shared_ptr<Geom2dAPI_InterCurveCurve>  >>(m.attr("Geom2dAPI_InterCurveCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom2d_Curve> &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Tol")=static_cast<const Standard_Real>(1.0e-6) )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real >()  , py::arg("C1"),  py::arg("Tol")=static_cast<const Standard_Real>(1.0e-6) )
+    // custom constructors
     // methods
         .def("Init",
              (void (Geom2dAPI_InterCurveCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real  ) ) static_cast<void (Geom2dAPI_InterCurveCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real  ) >(&Geom2dAPI_InterCurveCurve::Init),
@@ -120,13 +124,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dAPI_Interpolate , shared_ptr<Geom2dAPI_Interpolate>  >>(m.attr("Geom2dAPI_Interpolate"))
+    // constructors
         .def(py::init< const opencascade::handle<TColgp_HArray1OfPnt2d> &,const Standard_Boolean,const Standard_Real >()  , py::arg("Points"),  py::arg("PeriodicFlag"),  py::arg("Tolerance") )
         .def(py::init< const opencascade::handle<TColgp_HArray1OfPnt2d> &,const opencascade::handle<TColStd_HArray1OfReal> &,const Standard_Boolean,const Standard_Real >()  , py::arg("Points"),  py::arg("Parameters"),  py::arg("PeriodicFlag"),  py::arg("Tolerance") )
+    // custom constructors
     // methods
         .def("Load",
              (void (Geom2dAPI_Interpolate::*)( const gp_Vec2d & ,  const gp_Vec2d & ,  const Standard_Boolean  ) ) static_cast<void (Geom2dAPI_Interpolate::*)( const gp_Vec2d & ,  const gp_Vec2d & ,  const Standard_Boolean  ) >(&Geom2dAPI_Interpolate::Load),
@@ -147,17 +153,19 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dAPI_PointsToBSpline , shared_ptr<Geom2dAPI_PointsToBSpline>  >>(m.attr("Geom2dAPI_PointsToBSpline"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> &,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol2D")=static_cast<const Standard_Real>(1.0e-6) )
         .def(py::init<  const NCollection_Array1<Standard_Real> &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("YValues"),  py::arg("X0"),  py::arg("DX"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol2D")=static_cast<const Standard_Real>(1.0e-6) )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> &,const Approx_ParametrizationType,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("ParType"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol2D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> &, const NCollection_Array1<Standard_Real> &,const Standard_Integer,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("Parameters"),  py::arg("DegMin")=static_cast<const Standard_Integer>(3),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol2D")=static_cast<const Standard_Real>(1.0e-3) )
         .def(py::init<  const NCollection_Array1<gp_Pnt2d> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const GeomAbs_Shape,const Standard_Real >()  , py::arg("Points"),  py::arg("Weight1"),  py::arg("Weight2"),  py::arg("Weight3"),  py::arg("DegMax")=static_cast<const Standard_Integer>(8),  py::arg("Continuity")=static_cast<const GeomAbs_Shape>(GeomAbs_C2),  py::arg("Tol3D")=static_cast<const Standard_Real>(1.0e-3) )
+    // custom constructors
     // methods
         .def("Init",
              (void (Geom2dAPI_PointsToBSpline::*)(  const NCollection_Array1<gp_Pnt2d> & ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) ) static_cast<void (Geom2dAPI_PointsToBSpline::*)(  const NCollection_Array1<gp_Pnt2d> & ,  const Standard_Integer ,  const Standard_Integer ,  const GeomAbs_Shape ,  const Standard_Real  ) >(&Geom2dAPI_PointsToBSpline::Init),
@@ -184,14 +192,16 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dAPI_ProjectPointOnCurve , shared_ptr<Geom2dAPI_ProjectPointOnCurve>  >>(m.attr("Geom2dAPI_ProjectPointOnCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const opencascade::handle<Geom2d_Curve> & >()  , py::arg("P"),  py::arg("Curve") )
         .def(py::init< const gp_Pnt2d &,const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("Curve"),  py::arg("Umin"),  py::arg("Usup") )
+    // custom constructors
     // methods
         .def("Init",
              (void (Geom2dAPI_ProjectPointOnCurve::*)( const gp_Pnt2d & ,  const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dAPI_ProjectPointOnCurve::*)( const gp_Pnt2d & ,  const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dAPI_ProjectPointOnCurve::Init),
@@ -233,15 +243,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/Geom2dAPI_Interpolate.hxx
 // ./opencascade/Geom2dAPI_ExtremaCurveCurve.hxx
-// ./opencascade/Geom2dAPI_InterCurveCurve.hxx
 // ./opencascade/Geom2dAPI_ProjectPointOnCurve.hxx
 // ./opencascade/Geom2dAPI_PointsToBSpline.hxx
+// ./opencascade/Geom2dAPI_InterCurveCurve.hxx
 
 // operators
 

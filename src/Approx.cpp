@@ -14,28 +14,6 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <Geom2d_BSplineCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Approx_SweepFunction.hxx>
-#include <AdvApprox_Cutting.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Adaptor2d_HCurve2d.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <Standard_NotImplemented.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Adaptor3d_HSurface.hxx>
@@ -45,6 +23,28 @@ namespace py = pybind11;
 #include <Geom2d_Curve.hxx>
 #include <Geom_Surface.hxx>
 #include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Standard_NotImplemented.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <Approx_SweepFunction.hxx>
+#include <AdvApprox_Cutting.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Standard_ConstructionError.hxx>
+#include <Adaptor2d_HCurve2d.hxx>
+#include <Adaptor3d_HSurface.hxx>
 
 // module includes
 #include <Approx_Array1OfAdHSurface.hxx>
@@ -69,9 +69,9 @@ namespace py = pybind11;
 // template related includes
 // ./opencascade/Approx_Array1OfAdHSurface.hxx
 #include "NCollection.hxx"
-// ./opencascade/Approx_Array1OfGTrsf2d.hxx
-#include "NCollection.hxx"
 // ./opencascade/Approx_SequenceOfHArray1OfReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/Approx_Array1OfGTrsf2d.hxx
 #include "NCollection.hxx"
 
 
@@ -91,6 +91,7 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     class Py_Approx_SweepFunction : public Approx_SweepFunction{
     public:
         using Approx_SweepFunction::Approx_SweepFunction;
+        
         
         // public pure virtual
         Standard_Boolean D0(const Standard_Real Param,const Standard_Real First,const Standard_Real Last,NCollection_Array1<gp_Pnt> & Poles,NCollection_Array1<gp_Pnt2d> & Poles2d,NCollection_Array1<Standard_Real> & Weigths) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Approx_SweepFunction,D0,Param,First,Last,Poles,Poles2d,Weigths) };
@@ -117,7 +118,9 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
 
 
     static_cast<py::class_<Approx_Curve2d , shared_ptr<Approx_Curve2d>  >>(m.attr("Approx_Curve2d"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("C2D"),  py::arg("First"),  py::arg("Last"),  py::arg("TolU"),  py::arg("TolV"),  py::arg("Continuity"),  py::arg("MaxDegree"),  py::arg("MaxSegments") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Approx_Curve2d::*)() const) static_cast<Standard_Boolean (Approx_Curve2d::*)() const>(&Approx_Curve2d::IsDone),
@@ -138,12 +141,14 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_Curve3d , shared_ptr<Approx_Curve3d>  >>(m.attr("Approx_Curve3d"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("Curve"),  py::arg("Tol3d"),  py::arg("Order"),  py::arg("MaxSegments"),  py::arg("MaxDegree") )
+    // custom constructors
     // methods
         .def("Curve",
              (opencascade::handle<Geom_BSplineCurve> (Approx_Curve3d::*)() const) static_cast<opencascade::handle<Geom_BSplineCurve> (Approx_Curve3d::*)() const>(&Approx_Curve3d::Curve),
@@ -164,12 +169,14 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_CurveOnSurface , shared_ptr<Approx_CurveOnSurface>  >>(m.attr("Approx_CurveOnSurface"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("C2D"),  py::arg("Surf"),  py::arg("First"),  py::arg("Last"),  py::arg("Tol"),  py::arg("Continuity"),  py::arg("MaxDegree"),  py::arg("MaxSegments"),  py::arg("Only3d")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Only2d")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Approx_CurveOnSurface::*)() const) static_cast<Standard_Boolean (Approx_CurveOnSurface::*)() const>(&Approx_CurveOnSurface::IsDone),
@@ -196,14 +203,16 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_CurvilinearParameter , shared_ptr<Approx_CurvilinearParameter>  >>(m.attr("Approx_CurvilinearParameter"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("C3D"),  py::arg("Tol"),  py::arg("Order"),  py::arg("MaxDegree"),  py::arg("MaxSegments") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("C2D"),  py::arg("Surf"),  py::arg("Tol"),  py::arg("Order"),  py::arg("MaxDegree"),  py::arg("MaxSegments") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer >()  , py::arg("C2D1"),  py::arg("Surf1"),  py::arg("C2D2"),  py::arg("Surf2"),  py::arg("Tol"),  py::arg("Order"),  py::arg("MaxDegree"),  py::arg("MaxSegments") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Approx_CurvilinearParameter::*)() const) static_cast<Standard_Boolean (Approx_CurvilinearParameter::*)() const>(&Approx_CurvilinearParameter::IsDone),
@@ -236,14 +245,16 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_CurvlinFunc ,opencascade::handle<Approx_CurvlinFunc>  , Standard_Transient >>(m.attr("Approx_CurvlinFunc"))
+    // constructors
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const Standard_Real >()  , py::arg("C"),  py::arg("Tol") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("C2D"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("C2D1"),  py::arg("C2D2"),  py::arg("S1"),  py::arg("S2"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("SetTol",
              (void (Approx_CurvlinFunc::*)( const Standard_Real  ) ) static_cast<void (Approx_CurvlinFunc::*)( const Standard_Real  ) >(&Approx_CurvlinFunc::SetTol),
@@ -300,13 +311,15 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_FitAndDivide , shared_ptr<Approx_FitAndDivide>  >>(m.attr("Approx_FitAndDivide"))
+    // constructors
         .def(py::init< const AppCont_Function &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Boolean,const AppParCurves_Constraint,const AppParCurves_Constraint >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(3),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-5),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("FirstC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint),  py::arg("LastC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Boolean,const AppParCurves_Constraint,const AppParCurves_Constraint >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(3),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-05),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-05),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("FirstC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint),  py::arg("LastC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Approx_FitAndDivide::*)( const AppCont_Function &  ) ) static_cast<void (Approx_FitAndDivide::*)( const AppCont_Function &  ) >(&Approx_FitAndDivide::Perform),
@@ -323,6 +336,9 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
         .def("SetMaxSegments",
              (void (Approx_FitAndDivide::*)( const Standard_Integer  ) ) static_cast<void (Approx_FitAndDivide::*)( const Standard_Integer  ) >(&Approx_FitAndDivide::SetMaxSegments),
              R"#(Changes the max number of segments, which is allowed for cutting.)#"  , py::arg("theMaxSegments"))
+        .def("SetInvOrder",
+             (void (Approx_FitAndDivide::*)( const Standard_Boolean  ) ) static_cast<void (Approx_FitAndDivide::*)( const Standard_Boolean  ) >(&Approx_FitAndDivide::SetInvOrder),
+             R"#(Set inverse order of degree selection: if theInvOrdr = true, current degree is chosen by inverse order - from maxdegree to mindegree. By default inverse order is used.)#"  , py::arg("theInvOrder"))
         .def("IsAllApproximated",
              (Standard_Boolean (Approx_FitAndDivide::*)() const) static_cast<Standard_Boolean (Approx_FitAndDivide::*)() const>(&Approx_FitAndDivide::IsAllApproximated),
              R"#(returns False if at a moment of the approximation, the status NoApproximation has been sent by the user when more points were needed.)#" )
@@ -345,13 +361,15 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_FitAndDivide2d , shared_ptr<Approx_FitAndDivide2d>  >>(m.attr("Approx_FitAndDivide2d"))
+    // constructors
         .def(py::init< const AppCont_Function &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Boolean,const AppParCurves_Constraint,const AppParCurves_Constraint >()  , py::arg("Line"),  py::arg("degreemin")=static_cast<const Standard_Integer>(3),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-5),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-5),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("FirstC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint),  py::arg("LastC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint) )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Boolean,const AppParCurves_Constraint,const AppParCurves_Constraint >()  , py::arg("degreemin")=static_cast<const Standard_Integer>(3),  py::arg("degreemax")=static_cast<const Standard_Integer>(8),  py::arg("Tolerance3d")=static_cast<const Standard_Real>(1.0e-05),  py::arg("Tolerance2d")=static_cast<const Standard_Real>(1.0e-05),  py::arg("cutting")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("FirstC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint),  py::arg("LastC")=static_cast<const AppParCurves_Constraint>(AppParCurves_TangencyPoint) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Approx_FitAndDivide2d::*)( const AppCont_Function &  ) ) static_cast<void (Approx_FitAndDivide2d::*)( const AppCont_Function &  ) >(&Approx_FitAndDivide2d::Perform),
@@ -368,6 +386,9 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
         .def("SetMaxSegments",
              (void (Approx_FitAndDivide2d::*)( const Standard_Integer  ) ) static_cast<void (Approx_FitAndDivide2d::*)( const Standard_Integer  ) >(&Approx_FitAndDivide2d::SetMaxSegments),
              R"#(Changes the max number of segments, which is allowed for cutting.)#"  , py::arg("theMaxSegments"))
+        .def("SetInvOrder",
+             (void (Approx_FitAndDivide2d::*)( const Standard_Boolean  ) ) static_cast<void (Approx_FitAndDivide2d::*)( const Standard_Boolean  ) >(&Approx_FitAndDivide2d::SetInvOrder),
+             R"#(Set inverse order of degree selection: if theInvOrdr = true, current degree is chosen by inverse order - from maxdegree to mindegree. By default inverse order is used.)#"  , py::arg("theInvOrder"))
         .def("IsAllApproximated",
              (Standard_Boolean (Approx_FitAndDivide2d::*)() const) static_cast<Standard_Boolean (Approx_FitAndDivide2d::*)() const>(&Approx_FitAndDivide2d::IsAllApproximated),
              R"#(returns False if at a moment of the approximation, the status NoApproximation has been sent by the user when more points were needed.)#" )
@@ -390,14 +411,17 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_HArray1OfAdHSurface ,opencascade::handle<Approx_HArray1OfAdHSurface>  , Approx_Array1OfAdHSurface , Standard_Transient >>(m.attr("Approx_HArray1OfAdHSurface"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Adaptor3d_HSurface> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Adaptor3d_HSurface> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Approx_Array1OfAdHSurface & (Approx_HArray1OfAdHSurface::*)() const) static_cast<const Approx_Array1OfAdHSurface & (Approx_HArray1OfAdHSurface::*)() const>(&Approx_HArray1OfAdHSurface::Array1),
@@ -418,14 +442,17 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_HArray1OfGTrsf2d ,opencascade::handle<Approx_HArray1OfGTrsf2d>  , Approx_Array1OfGTrsf2d , Standard_Transient >>(m.attr("Approx_HArray1OfGTrsf2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const gp_GTrsf2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<gp_GTrsf2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Approx_Array1OfGTrsf2d & (Approx_HArray1OfGTrsf2d::*)() const) static_cast<const Approx_Array1OfGTrsf2d & (Approx_HArray1OfGTrsf2d::*)() const>(&Approx_HArray1OfGTrsf2d::Array1),
@@ -446,12 +473,14 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_MCurvesToBSpCurve , shared_ptr<Approx_MCurvesToBSpCurve>  >>(m.attr("Approx_MCurvesToBSpCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Reset",
              (void (Approx_MCurvesToBSpCurve::*)() ) static_cast<void (Approx_MCurvesToBSpCurve::*)() >(&Approx_MCurvesToBSpCurve::Reset),
@@ -475,14 +504,16 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_SameParameter , shared_ptr<Approx_SameParameter>  >>(m.attr("Approx_SameParameter"))
+    // constructors
         .def(py::init< const opencascade::handle<Geom_Curve> &,const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Geom_Surface> &,const Standard_Real >()  , py::arg("C3D"),  py::arg("C2D"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Geom2d_Curve> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("C3D"),  py::arg("C2D"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const opencascade::handle<Adaptor2d_HCurve2d> &,const opencascade::handle<Adaptor3d_HSurface> &,const Standard_Real >()  , py::arg("C3D"),  py::arg("C2D"),  py::arg("S"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Approx_SameParameter::*)() const) static_cast<Standard_Boolean (Approx_SameParameter::*)() const>(&Approx_SameParameter::IsDone),
@@ -512,12 +543,14 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_SweepApproximation , shared_ptr<Approx_SweepApproximation>  >>(m.attr("Approx_SweepApproximation"))
+    // constructors
         .def(py::init< const opencascade::handle<Approx_SweepFunction> & >()  , py::arg("Func") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Approx_SweepApproximation::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const GeomAbs_Shape ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (Approx_SweepApproximation::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const GeomAbs_Shape ,  const Standard_Integer ,  const Standard_Integer  ) >(&Approx_SweepApproximation::Perform),
@@ -643,11 +676,13 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Approx_SweepFunction ,opencascade::handle<Approx_SweepFunction> ,Py_Approx_SweepFunction , Standard_Transient >>(m.attr("Approx_SweepFunction"))
+    // constructors
+    // custom constructors
     // methods
         .def("D0",
              (Standard_Boolean (Approx_SweepFunction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) ) static_cast<Standard_Boolean (Approx_SweepFunction::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  NCollection_Array1<gp_Pnt> & ,  NCollection_Array1<gp_Pnt2d> & ,  NCollection_Array1<Standard_Real> &  ) >(&Approx_SweepFunction::D0),
@@ -713,35 +748,35 @@ py::module m = static_cast<py::module>(main_module.attr("Approx"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Approx_CurveOnSurface.hxx
-// ./opencascade/Approx_Status.hxx
+// ./opencascade/Approx_SameParameter.hxx
+// ./opencascade/Approx_Curve2d.hxx
+// ./opencascade/Approx_CurvlinFunc.hxx
 // ./opencascade/Approx_HArray1OfGTrsf2d.hxx
+// ./opencascade/Approx_Status.hxx
 // ./opencascade/Approx_ParametrizationType.hxx
 // ./opencascade/Approx_Array1OfAdHSurface.hxx
-// ./opencascade/Approx_CurvlinFunc.hxx
-// ./opencascade/Approx_SweepApproximation.hxx
-// ./opencascade/Approx_CurvilinearParameter.hxx
 // ./opencascade/Approx_HArray1OfAdHSurface.hxx
-// ./opencascade/Approx_MCurvesToBSpCurve.hxx
 // ./opencascade/Approx_SweepFunction.hxx
-// ./opencascade/Approx_Array1OfGTrsf2d.hxx
-// ./opencascade/Approx_Curve3d.hxx
 // ./opencascade/Approx_FitAndDivide2d.hxx
-// ./opencascade/Approx_FitAndDivide.hxx
-// ./opencascade/Approx_SameParameter.hxx
+// ./opencascade/Approx_MCurvesToBSpCurve.hxx
+// ./opencascade/Approx_CurvilinearParameter.hxx
 // ./opencascade/Approx_SequenceOfHArray1OfReal.hxx
-// ./opencascade/Approx_Curve2d.hxx
+// ./opencascade/Approx_SweepApproximation.hxx
+// ./opencascade/Approx_Array1OfGTrsf2d.hxx
+// ./opencascade/Approx_FitAndDivide.hxx
+// ./opencascade/Approx_Curve3d.hxx
+// ./opencascade/Approx_CurveOnSurface.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_Array1<opencascade::handle<Adaptor3d_HSurface> >(m,"Approx_Array1OfAdHSurface");  
-    register_template_NCollection_Array1<gp_GTrsf2d>(m,"Approx_Array1OfGTrsf2d");  
     register_template_NCollection_Sequence<opencascade::handle<TColStd_HArray1OfReal> >(m,"Approx_SequenceOfHArray1OfReal");  
+    register_template_NCollection_Array1<gp_GTrsf2d>(m,"Approx_Array1OfGTrsf2d");  
 
 
 // exceptions

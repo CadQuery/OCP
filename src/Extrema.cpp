@@ -15,129 +15,67 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <StdFail_NotDone.hxx>
 #include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <GeomAdaptor_HSurfaceOfRevolution.hxx>
 #include <StdFail_NotDone.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Torus.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <Extrema_POnCurv.hxx>
+#include <Standard_TypeMismatch.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Extrema_Curve2dTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Hypr.hxx>
+#include <gp_Parab.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
 #include <StdFail_NotDone.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Circ.hxx>
 #include <gp_Elips.hxx>
 #include <gp_Hypr.hxx>
 #include <gp_Parab.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <math_Matrix.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor2d_Curve2d.hxx>
 #include <Standard_TypeMismatch.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Extrema_Curve2dTool.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Standard_TypeMismatch.hxx>
 #include <Adaptor3d_Surface.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <math_Matrix.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <GeomAdaptor_HSurfaceOfLinearExtrusion.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Extrema_Curve2dTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <math_Matrix.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Torus.hxx>
-#include <gp_Sphere.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_Curve2dTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_Curve2dTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_Curve2dTool.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_Curve2dTool.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_Curve2dTool.hxx>
-#include <math_Matrix.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_Curve2dTool.hxx>
-#include <Extrema_CCLocFOfLocECC2d.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <GeomAdaptor_HSurfaceOfRevolution.hxx>
-#include <StdFail_NotDone.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
-#include <StdFail_NotDone.hxx>
 #include <gp_Lin.hxx>
 #include <gp_Pln.hxx>
 #include <gp_Cylinder.hxx>
@@ -147,33 +85,71 @@ namespace py = pybind11;
 #include <gp_Circ.hxx>
 #include <gp_Hypr.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_ExtPExtS.hxx>
+#include <Extrema_ExtPRevS.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Torus.hxx>
+#include <StdFail_NotDone.hxx>
 #include <Standard_TypeMismatch.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Extrema_CurveTool.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <math_Matrix.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Adaptor3d_Curve.hxx>
 #include <Adaptor3d_Surface.hxx>
 #include <Standard_TypeMismatch.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <Extrema_CurveTool.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <Adaptor3d_Curve.hxx>
 #include <Extrema_ExtElC.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <math_Matrix.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_TypeMismatch.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Extrema_Curve2dTool.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Extrema_CurveTool.hxx>
-#include <Extrema_POnCurv.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
-#include <StdFail_NotDone.hxx>
+#include <gp_Lin2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Parab2d.hxx>
 #include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_ExtElC2d.hxx>
-#include <Extrema_ECC2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <math_Matrix.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor3d_Surface.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <Extrema_CurveTool.hxx>
+#include <math_Matrix.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Extrema_CurveTool.hxx>
@@ -182,28 +158,36 @@ namespace py = pybind11;
 #include <Standard_TypeMismatch.hxx>
 #include <Adaptor2d_Curve2d.hxx>
 #include <Extrema_Curve2dTool.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Parab.hxx>
-#include <Adaptor3d_Curve.hxx>
 #include <Adaptor3d_Surface.hxx>
 #include <math_Matrix.hxx>
-#include <Extrema_ExtPExtS.hxx>
-#include <Extrema_ExtPRevS.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Torus.hxx>
+#include <gp_Sphere.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <Extrema_CCLocFOfLocECC2d.hxx>
+#include <StdFail_NotDone.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_Curve2dTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Lin2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <Adaptor2d_Curve2d.hxx>
+#include <Extrema_ExtElC2d.hxx>
+#include <Extrema_ECC2d.hxx>
 #include <StdFail_NotDone.hxx>
 #include <Standard_TypeMismatch.hxx>
 #include <Adaptor3d_Surface.hxx>
 #include <StdFail_NotDone.hxx>
+#include <Adaptor3d_Curve.hxx>
 #include <Adaptor3d_Surface.hxx>
-#include <StdFail_InfiniteSolutions.hxx>
-#include <StdFail_NotDone.hxx>
-#include <Adaptor2d_Curve2d.hxx>
-#include <Extrema_Curve2dTool.hxx>
-#include <Extrema_POnCurv2d.hxx>
 
 // module includes
 #include <Extrema_Array1OfPOnCurv.hxx>
@@ -287,29 +271,29 @@ namespace py = pybind11;
 #include <Extrema_SequenceOfPOnSurf.hxx>
 
 // template related includes
-// ./opencascade/Extrema_Array2OfPOnSurf.hxx
-#include "NCollection.hxx"
-// ./opencascade/Extrema_Array2OfPOnSurfParams.hxx
-#include "NCollection.hxx"
-// ./opencascade/Extrema_Array1OfPOnSurf.hxx
+// ./opencascade/Extrema_SequenceOfPOnCurv2d.hxx
 #include "NCollection.hxx"
 // ./opencascade/Extrema_HUBTreeOfSphere.hxx
 #include "NCollection.hxx"
 // ./opencascade/Extrema_HUBTreeOfSphere.hxx
-#include "NCollection.hxx"
-// ./opencascade/Extrema_Array1OfPOnCurv.hxx
 #include "NCollection.hxx"
 // ./opencascade/Extrema_SequenceOfPOnCurv.hxx
 #include "NCollection.hxx"
-// ./opencascade/Extrema_SequenceOfPOnCurv2d.hxx
+// ./opencascade/Extrema_Array1OfPOnCurv2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/Extrema_Array1OfPOnCurv.hxx
 #include "NCollection.hxx"
 // ./opencascade/Extrema_Array2OfPOnCurv2d.hxx
 #include "NCollection.hxx"
+// ./opencascade/Extrema_Array1OfPOnSurf.hxx
+#include "NCollection.hxx"
+// ./opencascade/Extrema_Array2OfPOnSurfParams.hxx
+#include "NCollection.hxx"
 // ./opencascade/Extrema_SequenceOfPOnSurf.hxx
 #include "NCollection.hxx"
-// ./opencascade/Extrema_Array2OfPOnCurv.hxx
+// ./opencascade/Extrema_Array2OfPOnSurf.hxx
 #include "NCollection.hxx"
-// ./opencascade/Extrema_Array1OfPOnCurv2d.hxx
+// ./opencascade/Extrema_Array2OfPOnCurv.hxx
 #include "NCollection.hxx"
 
 
@@ -331,8 +315,10 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
 
 
     static_cast<py::class_<Extrema_CCLocFOfLocECC , shared_ptr<Extrema_CCLocFOfLocECC>  , math_FunctionSetWithDerivatives >>(m.attr("Extrema_CCLocFOfLocECC"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("thetol")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("thetol")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (Extrema_CCLocFOfLocECC::*)( const Standard_Integer ,  const Adaptor3d_Curve &  ) ) static_cast<void (Extrema_CCLocFOfLocECC::*)( const Standard_Integer ,  const Adaptor3d_Curve &  ) >(&Extrema_CCLocFOfLocECC::SetCurve),
@@ -383,13 +369,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_CCLocFOfLocECC2d , shared_ptr<Extrema_CCLocFOfLocECC2d>  , math_FunctionSetWithDerivatives >>(m.attr("Extrema_CCLocFOfLocECC2d"))
+    // constructors
         .def(py::init< const Standard_Real >()  , py::arg("thetol")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("thetol")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (Extrema_CCLocFOfLocECC2d::*)( const Standard_Integer ,  const Adaptor2d_Curve2d &  ) ) static_cast<void (Extrema_CCLocFOfLocECC2d::*)( const Standard_Integer ,  const Adaptor2d_Curve2d &  ) >(&Extrema_CCLocFOfLocECC2d::SetCurve),
@@ -440,12 +428,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Extrema_Curve2dTool , shared_ptr<Extrema_Curve2dTool>>(m,"Extrema_Curve2dTool");
 
     static_cast<py::class_<Extrema_Curve2dTool , shared_ptr<Extrema_Curve2dTool>  >>(m.attr("Extrema_Curve2dTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -535,12 +526,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#"  , py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Extrema_CurveTool , shared_ptr<Extrema_CurveTool>>(m,"Extrema_CurveTool");
 
     static_cast<py::class_<Extrema_CurveTool , shared_ptr<Extrema_CurveTool>  >>(m.attr("Extrema_CurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -627,14 +621,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#"  , py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ECC , shared_ptr<Extrema_ECC>  >>(m.attr("Extrema_ECC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("Vinf"),  py::arg("Vsup") )
+    // custom constructors
     // methods
         .def("SetParams",
              (void (Extrema_ECC::*)( const Adaptor3d_Curve & ,  const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ECC::*)( const Adaptor3d_Curve & ,  const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ECC::SetParams),
@@ -670,14 +666,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ECC2d , shared_ptr<Extrema_ECC2d>  >>(m.attr("Extrema_ECC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("Vinf"),  py::arg("Vsup") )
+    // custom constructors
     // methods
         .def("SetParams",
              (void (Extrema_ECC2d::*)( const Adaptor2d_Curve2d & ,  const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ECC2d::*)( const Adaptor2d_Curve2d & ,  const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ECC2d::SetParams),
@@ -713,14 +711,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ELPCOfLocateExtPC , shared_ptr<Extrema_ELPCOfLocateExtPC>  >>(m.attr("Extrema_ELPCOfLocateExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ELPCOfLocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ELPCOfLocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ELPCOfLocateExtPC::Initialize),
@@ -750,14 +750,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ELPCOfLocateExtPC2d , shared_ptr<Extrema_ELPCOfLocateExtPC2d>  >>(m.attr("Extrema_ELPCOfLocateExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ELPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ELPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ELPCOfLocateExtPC2d::Initialize),
@@ -787,14 +789,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_EPCOfELPCOfLocateExtPC , shared_ptr<Extrema_EPCOfELPCOfLocateExtPC>  >>(m.attr("Extrema_EPCOfELPCOfLocateExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("TolU"),  py::arg("TolF") )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolU"),  py::arg("TolF") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_EPCOfELPCOfLocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_EPCOfELPCOfLocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_EPCOfELPCOfLocateExtPC::Initialize),
@@ -830,14 +834,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_EPCOfELPCOfLocateExtPC2d , shared_ptr<Extrema_EPCOfELPCOfLocateExtPC2d>  >>(m.attr("Extrema_EPCOfELPCOfLocateExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("TolU"),  py::arg("TolF") )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolU"),  py::arg("TolF") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_EPCOfELPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_EPCOfELPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_EPCOfELPCOfLocateExtPC2d::Initialize),
@@ -873,14 +879,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_EPCOfExtPC , shared_ptr<Extrema_EPCOfExtPC>  >>(m.attr("Extrema_EPCOfExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("TolU"),  py::arg("TolF") )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolU"),  py::arg("TolF") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_EPCOfExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_EPCOfExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_EPCOfExtPC::Initialize),
@@ -916,14 +924,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_EPCOfExtPC2d , shared_ptr<Extrema_EPCOfExtPC2d>  >>(m.attr("Extrema_EPCOfExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("TolU"),  py::arg("TolF") )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("NbU"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolU"),  py::arg("TolF") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_EPCOfExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_EPCOfExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_EPCOfExtPC2d::Initialize),
@@ -959,14 +969,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtCC , shared_ptr<Extrema_ExtCC>  >>(m.attr("Extrema_ExtCC"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("TolC1")=static_cast<const Standard_Real>(1.0e-10),  py::arg("TolC2")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("TolC1")=static_cast<const Standard_Real>(1.0e-10),  py::arg("TolC2")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2"),  py::arg("TolC1")=static_cast<const Standard_Real>(1.0e-10),  py::arg("TolC2")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("SetCurve",
              (void (Extrema_ExtCC::*)( const Standard_Integer ,  const Adaptor3d_Curve &  ) ) static_cast<void (Extrema_ExtCC::*)( const Standard_Integer ,  const Adaptor3d_Curve &  ) >(&Extrema_ExtCC::SetCurve),
@@ -1011,14 +1023,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtCC2d , shared_ptr<Extrema_ExtCC2d>  >>(m.attr("Extrema_ExtCC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("TolC1")=static_cast<const Standard_Real>(1.0e-10),  py::arg("TolC2")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U1"),  py::arg("U2"),  py::arg("V1"),  py::arg("V2"),  py::arg("TolC1")=static_cast<const Standard_Real>(1.0e-10),  py::arg("TolC2")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtCC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtCC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtCC2d::Initialize),
@@ -1054,14 +1068,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtCS , shared_ptr<Extrema_ExtCS>  >>(m.attr("Extrema_ExtCS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("S"),  py::arg("TolC"),  py::arg("TolS") )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("S"),  py::arg("UCinf"),  py::arg("UCsup"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("Vinf"),  py::arg("Vsup"),  py::arg("TolC"),  py::arg("TolS") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtCS::*)( const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtCS::*)( const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtCS::Initialize),
@@ -1088,11 +1104,12 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtElC , shared_ptr<Extrema_ExtElC>  >>(m.attr("Extrema_ExtElC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin &,const gp_Lin &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("AngTol") )
         .def(py::init< const gp_Lin &,const gp_Circ &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Tol") )
@@ -1100,6 +1117,7 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
         .def(py::init< const gp_Lin &,const gp_Hypr & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const gp_Lin &,const gp_Parab & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const gp_Circ &,const gp_Circ & >()  , py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Extrema_ExtElC::*)() const) static_cast<Standard_Boolean (Extrema_ExtElC::*)() const>(&Extrema_ExtElC::IsDone),
@@ -1120,11 +1138,12 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtElC2d , shared_ptr<Extrema_ExtElC2d>  >>(m.attr("Extrema_ExtElC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin2d &,const gp_Lin2d &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("AngTol") )
         .def(py::init< const gp_Lin2d &,const gp_Circ2d &,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("Tol") )
@@ -1135,6 +1154,7 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
         .def(py::init< const gp_Circ2d &,const gp_Elips2d & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const gp_Circ2d &,const gp_Hypr2d & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const gp_Circ2d &,const gp_Parab2d & >()  , py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Extrema_ExtElC2d::*)() const) static_cast<Standard_Boolean (Extrema_ExtElC2d::*)() const>(&Extrema_ExtElC2d::IsDone),
@@ -1155,11 +1175,12 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtElCS , shared_ptr<Extrema_ExtElCS>  >>(m.attr("Extrema_ExtElCS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin &,const gp_Pln & >()  , py::arg("C"),  py::arg("S") )
         .def(py::init< const gp_Lin &,const gp_Cylinder & >()  , py::arg("C"),  py::arg("S") )
@@ -1172,6 +1193,7 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
         .def(py::init< const gp_Circ &,const gp_Sphere & >()  , py::arg("C"),  py::arg("S") )
         .def(py::init< const gp_Circ &,const gp_Torus & >()  , py::arg("C"),  py::arg("S") )
         .def(py::init< const gp_Hypr &,const gp_Pln & >()  , py::arg("C"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_ExtElCS::*)( const gp_Lin & ,  const gp_Pln &  ) ) static_cast<void (Extrema_ExtElCS::*)( const gp_Lin & ,  const gp_Pln &  ) >(&Extrema_ExtElCS::Perform),
@@ -1225,11 +1247,12 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtElSS , shared_ptr<Extrema_ExtElSS>  >>(m.attr("Extrema_ExtElSS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pln &,const gp_Pln & >()  , py::arg("S1"),  py::arg("S2") )
         .def(py::init< const gp_Pln &,const gp_Sphere & >()  , py::arg("S1"),  py::arg("S2") )
@@ -1237,6 +1260,7 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
         .def(py::init< const gp_Sphere &,const gp_Cylinder & >()  , py::arg("S1"),  py::arg("S2") )
         .def(py::init< const gp_Sphere &,const gp_Cone & >()  , py::arg("S1"),  py::arg("S2") )
         .def(py::init< const gp_Sphere &,const gp_Torus & >()  , py::arg("S1"),  py::arg("S2") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_ExtElSS::*)( const gp_Pln & ,  const gp_Pln &  ) ) static_cast<void (Extrema_ExtElSS::*)( const gp_Pln & ,  const gp_Pln &  ) >(&Extrema_ExtElSS::Perform),
@@ -1275,14 +1299,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPC , shared_ptr<Extrema_ExtPC>  >>(m.attr("Extrema_ExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtPC::Initialize),
@@ -1312,14 +1338,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPC2d , shared_ptr<Extrema_ExtPC2d>  >>(m.attr("Extrema_ExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("TolF")=static_cast<const Standard_Real>(1.0e-10) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtPC2d::Initialize),
@@ -1349,17 +1377,19 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPElC , shared_ptr<Extrema_ExtPElC>  >>(m.attr("Extrema_ExtPElC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const gp_Lin &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt &,const gp_Circ &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt &,const gp_Elips &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt &,const gp_Hypr &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt &,const gp_Parab &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_ExtPElC::*)( const gp_Pnt & ,  const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPElC::*)( const gp_Pnt & ,  const gp_Lin & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtPElC::Perform),
@@ -1395,17 +1425,19 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPElC2d , shared_ptr<Extrema_ExtPElC2d>  >>(m.attr("Extrema_ExtPElC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const gp_Lin2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt2d &,const gp_Circ2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt2d &,const gp_Elips2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt2d &,const gp_Hypr2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
         .def(py::init< const gp_Pnt2d &,const gp_Parab2d &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("Tol"),  py::arg("Uinf"),  py::arg("Usup") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_ExtPElC2d::*)( const gp_Pnt2d & ,  const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPElC2d::*)( const gp_Pnt2d & ,  const gp_Lin2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtPElC2d::Perform),
@@ -1441,17 +1473,19 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPElS , shared_ptr<Extrema_ExtPElS>  >>(m.attr("Extrema_ExtPElS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const gp_Cylinder &,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const gp_Pnt &,const gp_Pln &,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const gp_Pnt &,const gp_Cone &,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const gp_Pnt &,const gp_Torus &,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("Tol") )
         .def(py::init< const gp_Pnt &,const gp_Sphere &,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_ExtPElS::*)( const gp_Pnt & ,  const gp_Cylinder & ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPElS::*)( const gp_Pnt & ,  const gp_Cylinder & ,  const Standard_Real  ) >(&Extrema_ExtPElS::Perform),
@@ -1484,14 +1518,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPExtS ,opencascade::handle<Extrema_ExtPExtS>  , Standard_Transient >>(m.attr("Extrema_ExtPExtS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const opencascade::handle<GeomAdaptor_HSurfaceOfLinearExtrusion> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("Vmin"),  py::arg("Vsup"),  py::arg("TolU"),  py::arg("TolV") )
         .def(py::init< const gp_Pnt &,const opencascade::handle<GeomAdaptor_HSurfaceOfLinearExtrusion> &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("TolU"),  py::arg("TolV") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtPExtS::*)( const opencascade::handle<GeomAdaptor_HSurfaceOfLinearExtrusion> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPExtS::*)( const opencascade::handle<GeomAdaptor_HSurfaceOfLinearExtrusion> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtPExtS::Initialize),
@@ -1524,14 +1560,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPRevS ,opencascade::handle<Extrema_ExtPRevS>  , Standard_Transient >>(m.attr("Extrema_ExtPRevS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const opencascade::handle<GeomAdaptor_HSurfaceOfRevolution> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("Vmin"),  py::arg("Vsup"),  py::arg("TolU"),  py::arg("TolV") )
         .def(py::init< const gp_Pnt &,const opencascade::handle<GeomAdaptor_HSurfaceOfRevolution> &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("S"),  py::arg("TolU"),  py::arg("TolV") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtPRevS::*)( const opencascade::handle<GeomAdaptor_HSurfaceOfRevolution> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPRevS::*)( const opencascade::handle<GeomAdaptor_HSurfaceOfRevolution> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtPRevS::Initialize),
@@ -1564,14 +1602,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtPS , shared_ptr<Extrema_ExtPS>  >>(m.attr("Extrema_ExtPS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("S"),  py::arg("TolU"),  py::arg("TolV"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("S"),  py::arg("Uinf"),  py::arg("Usup"),  py::arg("Vinf"),  py::arg("Vsup"),  py::arg("TolU"),  py::arg("TolV"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtPS::*)( const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtPS::*)( const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtPS::Initialize),
@@ -1604,14 +1644,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_ExtSS , shared_ptr<Extrema_ExtSS>  >>(m.attr("Extrema_ExtSS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Surface &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("TolS1"),  py::arg("TolS2") )
         .def(py::init< const Adaptor3d_Surface &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("Uinf1"),  py::arg("Usup1"),  py::arg("Vinf1"),  py::arg("Vsup1"),  py::arg("Uinf2"),  py::arg("Usup2"),  py::arg("Vinf2"),  py::arg("Vsup2"),  py::arg("TolS1"),  py::arg("TolS2") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_ExtSS::*)( const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_ExtSS::*)( const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_ExtSS::Initialize),
@@ -1638,13 +1680,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_FuncExtCS , shared_ptr<Extrema_FuncExtCS>  , math_FunctionSetWithDerivatives >>(m.attr("Extrema_FuncExtCS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Surface & >()  , py::arg("C"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_FuncExtCS::*)( const Adaptor3d_Curve & ,  const Adaptor3d_Surface &  ) ) static_cast<void (Extrema_FuncExtCS::*)( const Adaptor3d_Curve & ,  const Adaptor3d_Surface &  ) >(&Extrema_FuncExtCS::Initialize),
@@ -1683,13 +1727,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_FuncExtSS , shared_ptr<Extrema_FuncExtSS>  , math_FunctionSetWithDerivatives >>(m.attr("Extrema_FuncExtSS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Surface &,const Adaptor3d_Surface & >()  , py::arg("S1"),  py::arg("S2") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_FuncExtSS::*)( const Adaptor3d_Surface & ,  const Adaptor3d_Surface &  ) ) static_cast<void (Extrema_FuncExtSS::*)( const Adaptor3d_Surface & ,  const Adaptor3d_Surface &  ) >(&Extrema_FuncExtSS::Initialize),
@@ -1728,12 +1774,14 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_FuncPSDist , shared_ptr<Extrema_FuncPSDist>  , math_MultipleVarFunctionWithGradient >>(m.attr("Extrema_FuncPSDist"))
+    // constructors
         .def(py::init< const Adaptor3d_Surface &,const gp_Pnt & >()  , py::arg("theS"),  py::arg("theP") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Extrema_FuncPSDist::*)() const) static_cast<Standard_Integer (Extrema_FuncPSDist::*)() const>(&Extrema_FuncPSDist::NbVariables),
@@ -1751,13 +1799,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_FuncPSNorm , shared_ptr<Extrema_FuncPSNorm>  , math_FunctionSetWithDerivatives >>(m.attr("Extrema_FuncPSNorm"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Surface & >()  , py::arg("P"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_FuncPSNorm::*)( const Adaptor3d_Surface &  ) ) static_cast<void (Extrema_FuncPSNorm::*)( const Adaptor3d_Surface &  ) >(&Extrema_FuncPSNorm::Initialize),
@@ -1796,14 +1846,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GenExtCS , shared_ptr<Extrema_GenExtCS>  >>(m.attr("Extrema_GenExtCS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Surface &,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("S"),  py::arg("NbT"),  py::arg("NbU"),  py::arg("NbV"),  py::arg("Tol1"),  py::arg("Tol2") )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Surface &,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("S"),  py::arg("NbT"),  py::arg("NbU"),  py::arg("NbV"),  py::arg("tmin"),  py::arg("tsup"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("Vmin"),  py::arg("Vsup"),  py::arg("Tol1"),  py::arg("Tol2") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_GenExtCS::*)( const Adaptor3d_Surface & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (Extrema_GenExtCS::*)( const Adaptor3d_Surface & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real  ) >(&Extrema_GenExtCS::Initialize),
@@ -1836,14 +1888,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GenExtPS , shared_ptr<Extrema_GenExtPS>  >>(m.attr("Extrema_GenExtPS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Surface &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("S"),  py::arg("NbU"),  py::arg("NbV"),  py::arg("TolU"),  py::arg("TolV"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Surface &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Extrema_ExtFlag,const Extrema_ExtAlgo >()  , py::arg("P"),  py::arg("S"),  py::arg("NbU"),  py::arg("NbV"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("Vmin"),  py::arg("Vsup"),  py::arg("TolU"),  py::arg("TolV"),  py::arg("F")=static_cast<const Extrema_ExtFlag>(Extrema_ExtFlag_MINMAX),  py::arg("A")=static_cast<const Extrema_ExtAlgo>(Extrema_ExtAlgo_Grad) )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_GenExtPS::*)( const Adaptor3d_Surface & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_GenExtPS::*)( const Adaptor3d_Surface & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_GenExtPS::Initialize),
@@ -1876,14 +1930,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GenExtSS , shared_ptr<Extrema_GenExtSS>  >>(m.attr("Extrema_GenExtSS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Surface &,const Adaptor3d_Surface &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("NbU"),  py::arg("NbV"),  py::arg("Tol1"),  py::arg("Tol2") )
         .def(py::init< const Adaptor3d_Surface &,const Adaptor3d_Surface &,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("NbU"),  py::arg("NbV"),  py::arg("U1min"),  py::arg("U1sup"),  py::arg("V1min"),  py::arg("V1sup"),  py::arg("U2min"),  py::arg("U2sup"),  py::arg("V2min"),  py::arg("V2sup"),  py::arg("Tol1"),  py::arg("Tol2") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_GenExtSS::*)( const Adaptor3d_Surface & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (Extrema_GenExtSS::*)( const Adaptor3d_Surface & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real  ) >(&Extrema_GenExtSS::Initialize),
@@ -1916,13 +1972,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GenLocateExtCS , shared_ptr<Extrema_GenLocateExtCS>  >>(m.attr("Extrema_GenLocateExtCS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("S"),  py::arg("T"),  py::arg("U"),  py::arg("V"),  py::arg("Tol1"),  py::arg("Tol2") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_GenLocateExtCS::*)( const Adaptor3d_Curve & ,  const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_GenLocateExtCS::*)( const Adaptor3d_Curve & ,  const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_GenLocateExtCS::Perform),
@@ -1943,12 +2001,14 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GenLocateExtPS , shared_ptr<Extrema_GenLocateExtPS>  >>(m.attr("Extrema_GenLocateExtPS"))
+    // constructors
         .def(py::init< const Adaptor3d_Surface &,const Standard_Real,const Standard_Real >()  , py::arg("theS"),  py::arg("theTolU")=static_cast<const Standard_Real>(Precision :: PConfusion ( )),  py::arg("theTolV")=static_cast<const Standard_Real>(Precision :: PConfusion ( )) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_GenLocateExtPS::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (Extrema_GenLocateExtPS::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&Extrema_GenLocateExtPS::Perform),
@@ -1966,13 +2026,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GenLocateExtSS , shared_ptr<Extrema_GenLocateExtSS>  >>(m.attr("Extrema_GenLocateExtSS"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Adaptor3d_Surface &,const Adaptor3d_Surface &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S1"),  py::arg("S2"),  py::arg("U1"),  py::arg("V1"),  py::arg("U2"),  py::arg("V2"),  py::arg("Tol1"),  py::arg("Tol2") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (Extrema_GenLocateExtSS::*)( const Adaptor3d_Surface & ,  const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_GenLocateExtSS::*)( const Adaptor3d_Surface & ,  const Adaptor3d_Surface & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_GenLocateExtSS::Perform),
@@ -1993,13 +2055,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GlobOptFuncCCC0 , shared_ptr<Extrema_GlobOptFuncCCC0>  , math_MultipleVarFunction >>(m.attr("Extrema_GlobOptFuncCCC0"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d & >()  , py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Extrema_GlobOptFuncCCC0::*)() const) static_cast<Standard_Integer (Extrema_GlobOptFuncCCC0::*)() const>(&Extrema_GlobOptFuncCCC0::NbVariables),
@@ -2011,13 +2075,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GlobOptFuncCCC1 , shared_ptr<Extrema_GlobOptFuncCCC1>  , math_MultipleVarFunctionWithGradient >>(m.attr("Extrema_GlobOptFuncCCC1"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d & >()  , py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Extrema_GlobOptFuncCCC1::*)() const) static_cast<Standard_Integer (Extrema_GlobOptFuncCCC1::*)() const>(&Extrema_GlobOptFuncCCC1::NbVariables),
@@ -2035,13 +2101,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GlobOptFuncCCC2 , shared_ptr<Extrema_GlobOptFuncCCC2>  , math_MultipleVarFunctionWithHessian >>(m.attr("Extrema_GlobOptFuncCCC2"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve & >()  , py::arg("C1"),  py::arg("C2") )
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d & >()  , py::arg("C1"),  py::arg("C2") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Extrema_GlobOptFuncCCC2::*)() const) static_cast<Standard_Integer (Extrema_GlobOptFuncCCC2::*)() const>(&Extrema_GlobOptFuncCCC2::NbVariables),
@@ -2062,12 +2130,14 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_GlobOptFuncCS , shared_ptr<Extrema_GlobOptFuncCS>  , math_MultipleVarFunctionWithHessian >>(m.attr("Extrema_GlobOptFuncCS"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve *,const Adaptor3d_Surface * >()  , py::arg("C"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (Extrema_GlobOptFuncCS::*)() const) static_cast<Standard_Integer (Extrema_GlobOptFuncCS::*)() const>(&Extrema_GlobOptFuncCS::NbVariables),
@@ -2088,14 +2158,17 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_HArray1OfPOnCurv ,opencascade::handle<Extrema_HArray1OfPOnCurv>  , Extrema_Array1OfPOnCurv , Standard_Transient >>(m.attr("Extrema_HArray1OfPOnCurv"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const Extrema_POnCurv & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Extrema_POnCurv> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Extrema_Array1OfPOnCurv & (Extrema_HArray1OfPOnCurv::*)() const) static_cast<const Extrema_Array1OfPOnCurv & (Extrema_HArray1OfPOnCurv::*)() const>(&Extrema_HArray1OfPOnCurv::Array1),
@@ -2116,14 +2189,17 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_HArray1OfPOnCurv2d ,opencascade::handle<Extrema_HArray1OfPOnCurv2d>  , Extrema_Array1OfPOnCurv2d , Standard_Transient >>(m.attr("Extrema_HArray1OfPOnCurv2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const Extrema_POnCurv2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Extrema_POnCurv2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Extrema_Array1OfPOnCurv2d & (Extrema_HArray1OfPOnCurv2d::*)() const) static_cast<const Extrema_Array1OfPOnCurv2d & (Extrema_HArray1OfPOnCurv2d::*)() const>(&Extrema_HArray1OfPOnCurv2d::Array1),
@@ -2144,14 +2220,17 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_HArray1OfPOnSurf ,opencascade::handle<Extrema_HArray1OfPOnSurf>  , Extrema_Array1OfPOnSurf , Standard_Transient >>(m.attr("Extrema_HArray1OfPOnSurf"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const Extrema_POnSurf & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Extrema_POnSurf> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Extrema_Array1OfPOnSurf & (Extrema_HArray1OfPOnSurf::*)() const) static_cast<const Extrema_Array1OfPOnSurf & (Extrema_HArray1OfPOnSurf::*)() const>(&Extrema_HArray1OfPOnSurf::Array1),
@@ -2172,14 +2251,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_HArray2OfPOnCurv ,opencascade::handle<Extrema_HArray2OfPOnCurv>  , Extrema_Array2OfPOnCurv , Standard_Transient >>(m.attr("Extrema_HArray2OfPOnCurv"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const Extrema_POnCurv & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Extrema_POnCurv> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const Extrema_Array2OfPOnCurv & (Extrema_HArray2OfPOnCurv::*)() const) static_cast<const Extrema_Array2OfPOnCurv & (Extrema_HArray2OfPOnCurv::*)() const>(&Extrema_HArray2OfPOnCurv::Array2),
@@ -2200,14 +2281,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_HArray2OfPOnCurv2d ,opencascade::handle<Extrema_HArray2OfPOnCurv2d>  , Extrema_Array2OfPOnCurv2d , Standard_Transient >>(m.attr("Extrema_HArray2OfPOnCurv2d"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const Extrema_POnCurv2d & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Extrema_POnCurv2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const Extrema_Array2OfPOnCurv2d & (Extrema_HArray2OfPOnCurv2d::*)() const) static_cast<const Extrema_Array2OfPOnCurv2d & (Extrema_HArray2OfPOnCurv2d::*)() const>(&Extrema_HArray2OfPOnCurv2d::Array2),
@@ -2228,14 +2311,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_HArray2OfPOnSurf ,opencascade::handle<Extrema_HArray2OfPOnSurf>  , Extrema_Array2OfPOnSurf , Standard_Transient >>(m.attr("Extrema_HArray2OfPOnSurf"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const Extrema_POnSurf & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Extrema_POnSurf> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const Extrema_Array2OfPOnSurf & (Extrema_HArray2OfPOnSurf::*)() const) static_cast<const Extrema_Array2OfPOnSurf & (Extrema_HArray2OfPOnSurf::*)() const>(&Extrema_HArray2OfPOnSurf::Array2),
@@ -2256,14 +2341,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_HArray2OfPOnSurfParams ,opencascade::handle<Extrema_HArray2OfPOnSurfParams>  , Extrema_Array2OfPOnSurfParams , Standard_Transient >>(m.attr("Extrema_HArray2OfPOnSurfParams"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const Extrema_POnSurfParams & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Extrema_POnSurfParams> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const Extrema_Array2OfPOnSurfParams & (Extrema_HArray2OfPOnSurfParams::*)() const) static_cast<const Extrema_Array2OfPOnSurfParams & (Extrema_HArray2OfPOnSurfParams::*)() const>(&Extrema_HArray2OfPOnSurfParams::Array2),
@@ -2284,12 +2371,14 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocECC , shared_ptr<Extrema_LocECC>  >>(m.attr("Extrema_LocECC"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U0"),  py::arg("V0"),  py::arg("TolU"),  py::arg("TolV") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Extrema_LocECC::*)() const) static_cast<Standard_Boolean (Extrema_LocECC::*)() const>(&Extrema_LocECC::IsDone),
@@ -2304,12 +2393,14 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocECC2d , shared_ptr<Extrema_LocECC2d>  >>(m.attr("Extrema_LocECC2d"))
+    // constructors
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U0"),  py::arg("V0"),  py::arg("TolU"),  py::arg("TolV") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Extrema_LocECC2d::*)() const) static_cast<Standard_Boolean (Extrema_LocECC2d::*)() const>(&Extrema_LocECC2d::IsDone),
@@ -2324,14 +2415,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocEPCOfLocateExtPC , shared_ptr<Extrema_LocEPCOfLocateExtPC>  >>(m.attr("Extrema_LocEPCOfLocateExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("TolU") )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolU") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_LocEPCOfLocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_LocEPCOfLocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_LocEPCOfLocateExtPC::Initialize),
@@ -2355,14 +2448,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocEPCOfLocateExtPC2d , shared_ptr<Extrema_LocEPCOfLocateExtPC2d>  >>(m.attr("Extrema_LocEPCOfLocateExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("TolU") )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolU") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_LocEPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_LocEPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_LocEPCOfLocateExtPC2d::Initialize),
@@ -2386,12 +2481,14 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocateExtCC , shared_ptr<Extrema_LocateExtCC>  >>(m.attr("Extrema_LocateExtCC"))
+    // constructors
         .def(py::init< const Adaptor3d_Curve &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U0"),  py::arg("V0") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Extrema_LocateExtCC::*)() const) static_cast<Standard_Boolean (Extrema_LocateExtCC::*)() const>(&Extrema_LocateExtCC::IsDone),
@@ -2406,12 +2503,14 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocateExtCC2d , shared_ptr<Extrema_LocateExtCC2d>  >>(m.attr("Extrema_LocateExtCC2d"))
+    // constructors
         .def(py::init< const Adaptor2d_Curve2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("C1"),  py::arg("C2"),  py::arg("U0"),  py::arg("V0") )
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (Extrema_LocateExtCC2d::*)() const) static_cast<Standard_Boolean (Extrema_LocateExtCC2d::*)() const>(&Extrema_LocateExtCC2d::IsDone),
@@ -2426,14 +2525,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocateExtPC , shared_ptr<Extrema_LocateExtPC>  >>(m.attr("Extrema_LocateExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("TolF") )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolF") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_LocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_LocateExtPC::*)( const Adaptor3d_Curve & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_LocateExtPC::Initialize),
@@ -2457,14 +2558,16 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_LocateExtPC2d , shared_ptr<Extrema_LocateExtPC2d>  >>(m.attr("Extrema_LocateExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("TolF") )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("C"),  py::arg("U0"),  py::arg("Umin"),  py::arg("Usup"),  py::arg("TolF") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_LocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (Extrema_LocateExtPC2d::*)( const Adaptor2d_Curve2d & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&Extrema_LocateExtPC2d::Initialize),
@@ -2488,13 +2591,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_PCFOfEPCOfELPCOfLocateExtPC , shared_ptr<Extrema_PCFOfEPCOfELPCOfLocateExtPC>  , math_FunctionWithDerivative >>(m.attr("Extrema_PCFOfEPCOfELPCOfLocateExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve & >()  , py::arg("P"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_PCFOfEPCOfELPCOfLocateExtPC::*)( const Adaptor3d_Curve &  ) ) static_cast<void (Extrema_PCFOfEPCOfELPCOfLocateExtPC::*)( const Adaptor3d_Curve &  ) >(&Extrema_PCFOfEPCOfELPCOfLocateExtPC::Initialize),
@@ -2536,13 +2641,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_PCFOfEPCOfELPCOfLocateExtPC2d , shared_ptr<Extrema_PCFOfEPCOfELPCOfLocateExtPC2d>  , math_FunctionWithDerivative >>(m.attr("Extrema_PCFOfEPCOfELPCOfLocateExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d & >()  , py::arg("P"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_PCFOfEPCOfELPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d &  ) ) static_cast<void (Extrema_PCFOfEPCOfELPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d &  ) >(&Extrema_PCFOfEPCOfELPCOfLocateExtPC2d::Initialize),
@@ -2584,13 +2691,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_PCFOfEPCOfExtPC , shared_ptr<Extrema_PCFOfEPCOfExtPC>  , math_FunctionWithDerivative >>(m.attr("Extrema_PCFOfEPCOfExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve & >()  , py::arg("P"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_PCFOfEPCOfExtPC::*)( const Adaptor3d_Curve &  ) ) static_cast<void (Extrema_PCFOfEPCOfExtPC::*)( const Adaptor3d_Curve &  ) >(&Extrema_PCFOfEPCOfExtPC::Initialize),
@@ -2632,13 +2741,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_PCFOfEPCOfExtPC2d , shared_ptr<Extrema_PCFOfEPCOfExtPC2d>  , math_FunctionWithDerivative >>(m.attr("Extrema_PCFOfEPCOfExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d & >()  , py::arg("P"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_PCFOfEPCOfExtPC2d::*)( const Adaptor2d_Curve2d &  ) ) static_cast<void (Extrema_PCFOfEPCOfExtPC2d::*)( const Adaptor2d_Curve2d &  ) >(&Extrema_PCFOfEPCOfExtPC2d::Initialize),
@@ -2680,13 +2791,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_PCLocFOfLocEPCOfLocateExtPC , shared_ptr<Extrema_PCLocFOfLocEPCOfLocateExtPC>  , math_FunctionWithDerivative >>(m.attr("Extrema_PCLocFOfLocEPCOfLocateExtPC"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Adaptor3d_Curve & >()  , py::arg("P"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_PCLocFOfLocEPCOfLocateExtPC::*)( const Adaptor3d_Curve &  ) ) static_cast<void (Extrema_PCLocFOfLocEPCOfLocateExtPC::*)( const Adaptor3d_Curve &  ) >(&Extrema_PCLocFOfLocEPCOfLocateExtPC::Initialize),
@@ -2728,13 +2841,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_PCLocFOfLocEPCOfLocateExtPC2d , shared_ptr<Extrema_PCLocFOfLocEPCOfLocateExtPC2d>  , math_FunctionWithDerivative >>(m.attr("Extrema_PCLocFOfLocEPCOfLocateExtPC2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt2d &,const Adaptor2d_Curve2d & >()  , py::arg("P"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Extrema_PCLocFOfLocEPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d &  ) ) static_cast<void (Extrema_PCLocFOfLocEPCOfLocateExtPC2d::*)( const Adaptor2d_Curve2d &  ) >(&Extrema_PCLocFOfLocEPCOfLocateExtPC2d::Initialize),
@@ -2776,13 +2891,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_POnCurv , shared_ptr<Extrema_POnCurv>  >>(m.attr("Extrema_POnCurv"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const gp_Pnt & >()  , py::arg("U"),  py::arg("P") )
+    // custom constructors
     // methods
         .def("SetValues",
              (void (Extrema_POnCurv::*)( const Standard_Real ,  const gp_Pnt &  ) ) static_cast<void (Extrema_POnCurv::*)( const Standard_Real ,  const gp_Pnt &  ) >(&Extrema_POnCurv::SetValues),
@@ -2797,13 +2914,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_POnCurv2d , shared_ptr<Extrema_POnCurv2d>  >>(m.attr("Extrema_POnCurv2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const gp_Pnt2d & >()  , py::arg("U"),  py::arg("P") )
+    // custom constructors
     // methods
         .def("SetValues",
              (void (Extrema_POnCurv2d::*)( const Standard_Real ,  const gp_Pnt2d &  ) ) static_cast<void (Extrema_POnCurv2d::*)( const Standard_Real ,  const gp_Pnt2d &  ) >(&Extrema_POnCurv2d::SetValues),
@@ -2818,13 +2937,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_POnSurf , shared_ptr<Extrema_POnSurf>  >>(m.attr("Extrema_POnSurf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("U"),  py::arg("V"),  py::arg("P") )
+    // custom constructors
     // methods
         .def("Value",
              (const gp_Pnt & (Extrema_POnSurf::*)() const) static_cast<const gp_Pnt & (Extrema_POnSurf::*)() const>(&Extrema_POnSurf::Value),
@@ -2848,13 +2969,15 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Extrema_POnSurfParams , shared_ptr<Extrema_POnSurfParams>  , Extrema_POnSurf >>(m.attr("Extrema_POnSurfParams"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const gp_Pnt & >()  , py::arg("theU"),  py::arg("theV"),  py::arg("thePnt") )
+    // custom constructors
     // methods
         .def("SetSqrDistance",
              (void (Extrema_POnSurfParams::*)( const Standard_Real  ) ) static_cast<void (Extrema_POnSurfParams::*)( const Standard_Real  ) >(&Extrema_POnSurfParams::SetSqrDistance),
@@ -2896,105 +3019,105 @@ py::module m = static_cast<py::module>(main_module.attr("Extrema"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Extrema_GenExtSS.hxx
-// ./opencascade/Extrema_ExtElSS.hxx
-// ./opencascade/Extrema_POnSurfParams.hxx
-// ./opencascade/Extrema_Array2OfPOnSurf.hxx
-// ./opencascade/Extrema_Array2OfPOnSurfParams.hxx
-// ./opencascade/Extrema_LocateExtPC2d.hxx
-// ./opencascade/Extrema_ExtPElC.hxx
-// ./opencascade/Extrema_Curve2dTool.hxx
-// ./opencascade/Extrema_PCLocFOfLocEPCOfLocateExtPC.hxx
-// ./opencascade/Extrema_Array1OfPOnSurf.hxx
-// ./opencascade/Extrema_CCLocFOfLocECC.hxx
-// ./opencascade/Extrema_GenLocateExtSS.hxx
-// ./opencascade/Extrema_ExtPElC2d.hxx
-// ./opencascade/Extrema_CurveTool.hxx
-// ./opencascade/Extrema_PCFOfEPCOfExtPC.hxx
-// ./opencascade/Extrema_HUBTreeOfSphere.hxx
-// ./opencascade/Extrema_LocateExtCC2d.hxx
-// ./opencascade/Extrema_PCLocFOfLocEPCOfLocateExtPC2d.hxx
-// ./opencascade/Extrema_LocateExtCC.hxx
-// ./opencascade/Extrema_Array1OfPOnCurv.hxx
-// ./opencascade/Extrema_POnSurf.hxx
-// ./opencascade/Extrema_GenExtPS.hxx
-// ./opencascade/Extrema_FuncPSNorm.hxx
-// ./opencascade/Extrema_EPCOfExtPC.hxx
-// ./opencascade/Extrema_SequenceOfPOnCurv.hxx
-// ./opencascade/Extrema_LocateExtPC.hxx
-// ./opencascade/Extrema_ExtPExtS.hxx
-// ./opencascade/Extrema_ExtSS.hxx
-// ./opencascade/Extrema_ExtFlag.hxx
-// ./opencascade/Extrema_ElementType.hxx
-// ./opencascade/Extrema_LocEPCOfLocateExtPC2d.hxx
-// ./opencascade/Extrema_POnCurv.hxx
-// ./opencascade/Extrema_ExtAlgo.hxx
-// ./opencascade/Extrema_ELPCOfLocateExtPC.hxx
-// ./opencascade/Extrema_GlobOptFuncCS.hxx
-// ./opencascade/Extrema_FuncPSDist.hxx
-// ./opencascade/Extrema_FuncExtSS.hxx
-// ./opencascade/Extrema_ExtPElS.hxx
-// ./opencascade/Extrema_HArray2OfPOnSurfParams.hxx
-// ./opencascade/Extrema_PCFOfEPCOfExtPC2d.hxx
 // ./opencascade/Extrema_ExtPC.hxx
-// ./opencascade/Extrema_SequenceOfPOnCurv2d.hxx
-// ./opencascade/Extrema_HArray2OfPOnCurv.hxx
-// ./opencascade/Extrema_GenExtCS.hxx
-// ./opencascade/Extrema_ExtCS.hxx
-// ./opencascade/Extrema_PCFOfEPCOfELPCOfLocateExtPC2d.hxx
-// ./opencascade/Extrema_EPCOfExtPC2d.hxx
-// ./opencascade/Extrema_LocEPCOfLocateExtPC.hxx
-// ./opencascade/Extrema_EPCOfELPCOfLocateExtPC2d.hxx
-// ./opencascade/Extrema_CCLocFOfLocECC2d.hxx
-// ./opencascade/Extrema_LocECC2d.hxx
-// ./opencascade/Extrema_HArray1OfPOnCurv2d.hxx
-// ./opencascade/Extrema_ExtElC2d.hxx
-// ./opencascade/Extrema_POnCurv2d.hxx
-// ./opencascade/Extrema_HArray1OfPOnCurv.hxx
 // ./opencascade/Extrema_ExtPRevS.hxx
-// ./opencascade/Extrema_Array2OfPOnCurv2d.hxx
-// ./opencascade/Extrema_ExtElCS.hxx
-// ./opencascade/Extrema_EPCOfELPCOfLocateExtPC.hxx
-// ./opencascade/Extrema_GenLocateExtCS.hxx
-// ./opencascade/Extrema_PCFOfEPCOfELPCOfLocateExtPC.hxx
-// ./opencascade/Extrema_ExtCC.hxx
-// ./opencascade/Extrema_ELPCOfLocateExtPC2d.hxx
+// ./opencascade/Extrema_PCFOfEPCOfExtPC2d.hxx
+// ./opencascade/Extrema_PCLocFOfLocEPCOfLocateExtPC2d.hxx
+// ./opencascade/Extrema_POnCurv.hxx
+// ./opencascade/Extrema_HArray1OfPOnCurv2d.hxx
+// ./opencascade/Extrema_ExtFlag.hxx
+// ./opencascade/Extrema_ExtSS.hxx
+// ./opencascade/Extrema_SequenceOfPOnCurv2d.hxx
+// ./opencascade/Extrema_LocateExtCC2d.hxx
 // ./opencascade/Extrema_ECC.hxx
-// ./opencascade/Extrema_HArray2OfPOnSurf.hxx
-// ./opencascade/Extrema_ExtCC2d.hxx
-// ./opencascade/Extrema_GlobOptFuncCC.hxx
-// ./opencascade/Extrema_LocECC.hxx
-// ./opencascade/Extrema_ExtPC2d.hxx
+// ./opencascade/Extrema_ExtAlgo.hxx
 // ./opencascade/Extrema_HArray2OfPOnCurv2d.hxx
-// ./opencascade/Extrema_ExtElC.hxx
-// ./opencascade/Extrema_FuncExtCS.hxx
+// ./opencascade/Extrema_HUBTreeOfSphere.hxx
 // ./opencascade/Extrema_HArray1OfPOnSurf.hxx
-// ./opencascade/Extrema_SequenceOfPOnSurf.hxx
-// ./opencascade/Extrema_Array2OfPOnCurv.hxx
-// ./opencascade/Extrema_ExtPS.hxx
-// ./opencascade/Extrema_GenLocateExtPS.hxx
-// ./opencascade/Extrema_ECC2d.hxx
+// ./opencascade/Extrema_LocEPCOfLocateExtPC2d.hxx
+// ./opencascade/Extrema_SequenceOfPOnCurv.hxx
+// ./opencascade/Extrema_EPCOfELPCOfLocateExtPC.hxx
+// ./opencascade/Extrema_ExtElC.hxx
 // ./opencascade/Extrema_Array1OfPOnCurv2d.hxx
+// ./opencascade/Extrema_GenExtCS.hxx
+// ./opencascade/Extrema_ECC2d.hxx
+// ./opencascade/Extrema_PCFOfEPCOfELPCOfLocateExtPC.hxx
+// ./opencascade/Extrema_ExtPElC.hxx
+// ./opencascade/Extrema_ELPCOfLocateExtPC2d.hxx
+// ./opencascade/Extrema_GenExtSS.hxx
+// ./opencascade/Extrema_CurveTool.hxx
+// ./opencascade/Extrema_ExtPExtS.hxx
+// ./opencascade/Extrema_EPCOfExtPC2d.hxx
+// ./opencascade/Extrema_Curve2dTool.hxx
+// ./opencascade/Extrema_POnSurfParams.hxx
+// ./opencascade/Extrema_ExtElCS.hxx
+// ./opencascade/Extrema_LocateExtCC.hxx
+// ./opencascade/Extrema_HArray1OfPOnCurv.hxx
+// ./opencascade/Extrema_ExtPS.hxx
+// ./opencascade/Extrema_Array1OfPOnCurv.hxx
+// ./opencascade/Extrema_ExtElSS.hxx
+// ./opencascade/Extrema_ELPCOfLocateExtPC.hxx
+// ./opencascade/Extrema_FuncExtSS.hxx
+// ./opencascade/Extrema_ElementType.hxx
+// ./opencascade/Extrema_GenLocateExtSS.hxx
+// ./opencascade/Extrema_HArray2OfPOnSurf.hxx
+// ./opencascade/Extrema_LocEPCOfLocateExtPC.hxx
+// ./opencascade/Extrema_ExtCC.hxx
+// ./opencascade/Extrema_FuncExtCS.hxx
+// ./opencascade/Extrema_Array2OfPOnCurv2d.hxx
+// ./opencascade/Extrema_PCFOfEPCOfELPCOfLocateExtPC2d.hxx
+// ./opencascade/Extrema_PCFOfEPCOfExtPC.hxx
+// ./opencascade/Extrema_GlobOptFuncCC.hxx
+// ./opencascade/Extrema_PCLocFOfLocEPCOfLocateExtPC.hxx
+// ./opencascade/Extrema_ExtPC2d.hxx
+// ./opencascade/Extrema_HArray2OfPOnCurv.hxx
+// ./opencascade/Extrema_Array1OfPOnSurf.hxx
+// ./opencascade/Extrema_ExtCS.hxx
+// ./opencascade/Extrema_EPCOfExtPC.hxx
+// ./opencascade/Extrema_LocateExtPC.hxx
+// ./opencascade/Extrema_Array2OfPOnSurfParams.hxx
+// ./opencascade/Extrema_ExtElC2d.hxx
+// ./opencascade/Extrema_CCLocFOfLocECC2d.hxx
+// ./opencascade/Extrema_HArray2OfPOnSurfParams.hxx
+// ./opencascade/Extrema_SequenceOfPOnSurf.hxx
+// ./opencascade/Extrema_POnCurv2d.hxx
+// ./opencascade/Extrema_GenLocateExtPS.hxx
+// ./opencascade/Extrema_Array2OfPOnSurf.hxx
+// ./opencascade/Extrema_CCLocFOfLocECC.hxx
+// ./opencascade/Extrema_Array2OfPOnCurv.hxx
+// ./opencascade/Extrema_LocECC.hxx
+// ./opencascade/Extrema_GlobOptFuncCS.hxx
+// ./opencascade/Extrema_EPCOfELPCOfLocateExtPC2d.hxx
+// ./opencascade/Extrema_FuncPSNorm.hxx
+// ./opencascade/Extrema_ExtPElS.hxx
+// ./opencascade/Extrema_LocECC2d.hxx
+// ./opencascade/Extrema_POnSurf.hxx
+// ./opencascade/Extrema_LocateExtPC2d.hxx
+// ./opencascade/Extrema_FuncPSDist.hxx
+// ./opencascade/Extrema_ExtPElC2d.hxx
+// ./opencascade/Extrema_ExtCC2d.hxx
+// ./opencascade/Extrema_GenExtPS.hxx
+// ./opencascade/Extrema_GenLocateExtCS.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array2<Extrema_POnSurf>(m,"Extrema_Array2OfPOnSurf");  
-    register_template_NCollection_Array2<Extrema_POnSurfParams>(m,"Extrema_Array2OfPOnSurfParams");  
-    register_template_NCollection_Array1<Extrema_POnSurf>(m,"Extrema_Array1OfPOnSurf");  
+    register_template_NCollection_Sequence<Extrema_POnCurv2d>(m,"Extrema_SequenceOfPOnCurv2d");  
     register_template_NCollection_UBTree<Standard_Integer, Bnd_Sphere>(m,"Extrema_UBTreeOfSphere");  
     register_template_NCollection_UBTreeFiller<Standard_Integer, Bnd_Sphere>(m,"Extrema_UBTreeFillerOfSphere");  
-    register_template_NCollection_Array1<Extrema_POnCurv>(m,"Extrema_Array1OfPOnCurv");  
     register_template_NCollection_Sequence<Extrema_POnCurv>(m,"Extrema_SequenceOfPOnCurv");  
-    register_template_NCollection_Sequence<Extrema_POnCurv2d>(m,"Extrema_SequenceOfPOnCurv2d");  
-    register_template_NCollection_Array2<Extrema_POnCurv2d>(m,"Extrema_Array2OfPOnCurv2d");  
-    register_template_NCollection_Sequence<Extrema_POnSurf>(m,"Extrema_SequenceOfPOnSurf");  
-    register_template_NCollection_Array2<Extrema_POnCurv>(m,"Extrema_Array2OfPOnCurv");  
     register_template_NCollection_Array1<Extrema_POnCurv2d>(m,"Extrema_Array1OfPOnCurv2d");  
+    register_template_NCollection_Array1<Extrema_POnCurv>(m,"Extrema_Array1OfPOnCurv");  
+    register_template_NCollection_Array2<Extrema_POnCurv2d>(m,"Extrema_Array2OfPOnCurv2d");  
+    register_template_NCollection_Array1<Extrema_POnSurf>(m,"Extrema_Array1OfPOnSurf");  
+    register_template_NCollection_Array2<Extrema_POnSurfParams>(m,"Extrema_Array2OfPOnSurfParams");  
+    register_template_NCollection_Sequence<Extrema_POnSurf>(m,"Extrema_SequenceOfPOnSurf");  
+    register_template_NCollection_Array2<Extrema_POnSurf>(m,"Extrema_Array2OfPOnSurf");  
+    register_template_NCollection_Array2<Extrema_POnCurv>(m,"Extrema_Array2OfPOnCurv");  
 
 
 // exceptions

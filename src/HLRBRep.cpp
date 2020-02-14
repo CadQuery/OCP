@@ -13,26 +13,113 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <HLRBRep_Data.hxx>
-#include <gp_Dir.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <HLRBRep_SLPropsATool.hxx>
 #include <HLRBRep_SurfaceTool.hxx>
 #include <gp_Lin.hxx>
 #include <HLRBRep_LineTool.hxx>
 #include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
+#include <IntCurve_IConicTool.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
+#include <IntRes2d_Domain.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <Extrema_POnCurv2d.hxx>
+#include <gp_Pnt2d.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <gp_Lin.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <HLRBRep_EdgeInterferenceTool.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <math_Matrix.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <HLRBRep_Curve.hxx>
+#include <gp_Dir.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <IntRes2d_Domain.hxx>
+#include <HLRBRep_PolyAlgo.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx>
 #include <HLRBRep_Data.hxx>
 #include <HLRTopoBRep_OutLiner.hxx>
 #include <HLRAlgo_Projector.hxx>
 #include <TopoDS_Face.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <HLRBRep_Curve.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_TheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <StdFail_NotDone.hxx>
+#include <HLRBRep_CurveTool.hxx>
 #include <HLRBRep_AreaLimit.hxx>
 #include <Standard_NoMoreObject.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Standard_DomainError.hxx>
 #include <HLRBRep_VertexList.hxx>
 #include <HLRAlgo_Intersection.hxx>
+#include <HLRBRep_FaceData.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
+#include <HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx>
+#include <HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx>
+#include <gp_Pnt2d.hxx>
+#include <HLRBRep_Data.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <StdFail_NotDone.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <math_FunctionSetRoot.hxx>
+#include <HLRTopoBRep_OutLiner.hxx>
+#include <StdFail_UndefinedDerivative.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <HLRAlgo_Projector.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_TheProjPCurOfCInter.hxx>
+#include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
+#include <HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx>
+#include <HLRBRep_IntConicCurveOfCInter.hxx>
+#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx>
+#include <HLRBRep_CurveTool.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <gp_Lin.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <HLRBRep_ThePolygonOfInterCSurf.hxx>
+#include <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
+#include <HLRBRep_ThePolyhedronOfInterCSurf.hxx>
+#include <HLRBRep_ThePolyhedronToolOfInterCSurf.hxx>
+#include <HLRBRep_TheInterferenceOfInterCSurf.hxx>
+#include <HLRBRep_TheCSFunctionOfInterCSurf.hxx>
+#include <HLRBRep_TheExactInterCSurf.hxx>
+#include <HLRBRep_TheQuadCurvExactInterCSurf.hxx>
+#include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
+#include <Bnd_BoundSortBox.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Parab.hxx>
+#include <gp_Hypr.hxx>
+#include <IntAna_IntConicQuad.hxx>
+#include <Bnd_Box.hxx>
+#include <HLRBRep_SurfaceTool.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <math_Matrix.hxx>
 #include <TopoDS_Edge.hxx>
 #include <HLRBRep_Curve.hxx>
 #include <HLRBRep_CurveTool.hxx>
@@ -89,116 +176,26 @@ namespace py = pybind11;
 #include <HLRBRep_TheExactInterCSurf.hxx>
 #include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
 #include <HLRBRep_TheQuadCurvExactInterCSurf.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <BRepTopAdaptor_TopolTool.hxx>
-#include <StdFail_UndefinedDerivative.hxx>
-#include <StdFail_UndefinedDerivative.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <HLRAlgo_Projector.hxx>
+#include <HLRBRep_Data.hxx>
+#include <HLRTopoBRep_OutLiner.hxx>
+#include <HLRBRep_LineTool.hxx>
+#include <HLRBRep_Data.hxx>
+#include <gp_Dir.hxx>
 #include <HLRAlgo_PolyInternalData.hxx>
 #include <HLRAlgo_EdgeStatus.hxx>
-#include <IntCurve_IConicTool.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <gp_Pnt.hxx>
-#include <HLRAlgo_WiresBlock.hxx>
-#include <HLRBRep_Data.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_TheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <math_Matrix.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <gp_Lin.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <HLRBRep_ThePolygonOfInterCSurf.hxx>
-#include <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
-#include <HLRBRep_ThePolyhedronOfInterCSurf.hxx>
-#include <HLRBRep_ThePolyhedronToolOfInterCSurf.hxx>
-#include <HLRBRep_TheInterferenceOfInterCSurf.hxx>
-#include <HLRBRep_TheCSFunctionOfInterCSurf.hxx>
-#include <HLRBRep_TheExactInterCSurf.hxx>
-#include <HLRBRep_TheQuadCurvExactInterCSurf.hxx>
-#include <HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx>
-#include <Bnd_BoundSortBox.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Parab.hxx>
-#include <gp_Hypr.hxx>
-#include <IntAna_IntConicQuad.hxx>
-#include <Bnd_Box.hxx>
-#include <HLRBRep_PolyAlgo.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <StdFail_NotDone.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <math_FunctionSetRoot.hxx>
-#include <gp_Lin.hxx>
-#include <HLRBRep_LineTool.hxx>
-#include <HLRBRep_EdgeInterferenceTool.hxx>
-#include <HLRBRep_FaceData.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <StdFail_NotDone.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRTopoBRep_OutLiner.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
-#include <HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx>
-#include <HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx>
-#include <gp_Pnt2d.hxx>
+#include <BRepTopAdaptor_TopolTool.hxx>
+#include <StdFail_UndefinedDerivative.hxx>
 #include <HLRBRep_Algo.hxx>
 #include <HLRBRep_Data.hxx>
 #include <HLRBRep_EdgeData.hxx>
+#include <StdFail_UndefinedDerivative.hxx>
+#include <gp_Lin.hxx>
+#include <HLRAlgo_WiresBlock.hxx>
 #include <HLRBRep_ThePolygonOfInterCSurf.hxx>
 #include <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
 #include <HLRBRep_ThePolyhedronOfInterCSurf.hxx>
 #include <HLRBRep_ThePolyhedronToolOfInterCSurf.hxx>
 #include <Bnd_BoundSortBox.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <Extrema_POnCurv2d.hxx>
-#include <gp_Pnt2d.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <HLRBRep_SLPropsATool.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <HLRBRep_TheProjPCurOfCInter.hxx>
-#include <HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx>
-#include <HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx>
-#include <HLRBRep_IntConicCurveOfCInter.hxx>
-#include <HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx>
-#include <HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <HLRBRep_SurfaceTool.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_XYZ.hxx>
-#include <gp_Dir.hxx>
-#include <HLRBRep_CurveTool.hxx>
-#include <math_Matrix.hxx>
-#include <HLRBRep_Data.hxx>
-#include <HLRTopoBRep_OutLiner.hxx>
-#include <StdFail_UndefinedDerivative.hxx>
-#include <gp_Lin.hxx>
-#include <HLRBRep_CurveTool.hxx>
 
 // module includes
 #include <HLRBRep.hxx>
@@ -267,17 +264,17 @@ namespace py = pybind11;
 #include <HLRBRep_VertexList.hxx>
 
 // template related includes
+// ./opencascade/HLRBRep_SeqOfShapeBounds.hxx
+#include "NCollection.hxx"
 // ./opencascade/HLRBRep_Array1OfEData.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
-#include "NCollection.hxx"
 // ./opencascade/HLRBRep_ListOfBPoint.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRBRep_ListOfBPoint.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRBRep_SeqOfShapeBounds.hxx
+// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRBRep_Array1OfFData.hxx
 #include "NCollection.hxx"
@@ -299,9 +296,12 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
 
 // classes
 
+    // default constructor
     register_default_constructor<HLRBRep , shared_ptr<HLRBRep>>(m,"HLRBRep");
 
     static_cast<py::class_<HLRBRep , shared_ptr<HLRBRep>  >>(m.attr("HLRBRep"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -316,12 +316,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     []( const Standard_Real InAngl ){ Standard_Real  OutAngl; Standard_Real  OutDefl; HLRBRep::PolyHLRAngleAndDeflection(InAngl,OutAngl,OutDefl); return std::make_tuple(OutAngl,OutDefl); },
                     R"#(None)#"  , py::arg("InAngl"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_AreaLimit ,opencascade::handle<HLRBRep_AreaLimit>  , Standard_Transient >>(m.attr("HLRBRep_AreaLimit"))
+    // constructors
         .def(py::init< const HLRAlgo_Intersection &,const Standard_Boolean,const Standard_Boolean,const TopAbs_State,const TopAbs_State,const TopAbs_State,const TopAbs_State >()  , py::arg("V"),  py::arg("Boundary"),  py::arg("Interference"),  py::arg("StateBefore"),  py::arg("StateAfter"),  py::arg("EdgeBefore"),  py::arg("EdgeAfter") )
+    // custom constructors
     // methods
         .def("StateBefore",
              (void (HLRBRep_AreaLimit::*)( const TopAbs_State  ) ) static_cast<void (HLRBRep_AreaLimit::*)( const TopAbs_State  ) >(&HLRBRep_AreaLimit::StateBefore),
@@ -384,12 +386,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_BCurveTool , shared_ptr<HLRBRep_BCurveTool>>(m,"HLRBRep_BCurveTool");
 
     static_cast<py::class_<HLRBRep_BCurveTool , shared_ptr<HLRBRep_BCurveTool>  >>(m.attr("HLRBRep_BCurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -485,12 +490,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U0"),  py::arg("U1"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_BSurfaceTool , shared_ptr<HLRBRep_BSurfaceTool>>(m,"HLRBRep_BSurfaceTool");
 
     static_cast<py::class_<HLRBRep_BSurfaceTool , shared_ptr<HLRBRep_BSurfaceTool>  >>(m.attr("HLRBRep_BSurfaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -643,14 +651,16 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#"  , py::arg("S"),  py::arg("v1"),  py::arg("v2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_BiPnt2D , shared_ptr<HLRBRep_BiPnt2D>  >>(m.attr("HLRBRep_BiPnt2D"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("x1"),  py::arg("y1"),  py::arg("x2"),  py::arg("y2"),  py::arg("S"),  py::arg("reg1"),  py::arg("regn"),  py::arg("outl"),  py::arg("intl") )
         .def(py::init< const gp_XY &,const gp_XY &,const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("thePoint1"),  py::arg("thePoint2"),  py::arg("S"),  py::arg("reg1"),  py::arg("regn"),  py::arg("outl"),  py::arg("intl") )
+    // custom constructors
     // methods
         .def("P1",
              (const gp_Pnt2d & (HLRBRep_BiPnt2D::*)() const) static_cast<const gp_Pnt2d & (HLRBRep_BiPnt2D::*)() const>(&HLRBRep_BiPnt2D::P1),
@@ -692,13 +702,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_BiPoint , shared_ptr<HLRBRep_BiPoint>  >>(m.attr("HLRBRep_BiPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const TopoDS_Shape &,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("x1"),  py::arg("y1"),  py::arg("z1"),  py::arg("x2"),  py::arg("y2"),  py::arg("z2"),  py::arg("S"),  py::arg("reg1"),  py::arg("regn"),  py::arg("outl"),  py::arg("intl") )
+    // custom constructors
     // methods
         .def("P1",
              (const gp_Pnt & (HLRBRep_BiPoint::*)() const) static_cast<const gp_Pnt & (HLRBRep_BiPoint::*)() const>(&HLRBRep_BiPoint::P1),
@@ -740,12 +752,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_CInter , shared_ptr<HLRBRep_CInter>  , IntRes2d_Intersection >>(m.attr("HLRBRep_CInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetMinNbSamples",
              (void (HLRBRep_CInter::*)( const Standard_Integer  ) ) static_cast<void (HLRBRep_CInter::*)( const Standard_Integer  ) >(&HLRBRep_CInter::SetMinNbSamples),
@@ -757,12 +771,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_CLProps , shared_ptr<HLRBRep_CLProps>  >>(m.attr("HLRBRep_CLProps"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetParameter",
              (void (HLRBRep_CLProps::*)( const Standard_Real  ) ) static_cast<void (HLRBRep_CLProps::*)( const Standard_Real  ) >(&HLRBRep_CLProps::SetParameter),
@@ -798,12 +814,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_Curve , shared_ptr<HLRBRep_Curve>  >>(m.attr("HLRBRep_Curve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Projector",
              (void (HLRBRep_Curve::*)( const HLRAlgo_Projector *  ) ) static_cast<void (HLRBRep_Curve::*)( const HLRAlgo_Projector *  ) >(&HLRBRep_Curve::Projector),
@@ -1001,12 +1019,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_CurveTool , shared_ptr<HLRBRep_CurveTool>>(m,"HLRBRep_CurveTool");
 
     static_cast<py::class_<HLRBRep_CurveTool , shared_ptr<HLRBRep_CurveTool>  >>(m.attr("HLRBRep_CurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1099,12 +1120,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     []( const Standard_Address C,const Standard_Integer Index, const NCollection_Array1<Standard_Real> & Tab ){ Standard_Real  U1; Standard_Real  U2; HLRBRep_CurveTool::GetInterval(C,Index,Tab,U1,U2); return std::make_tuple(U1,U2); },
                     R"#(output the bounds of interval of index <Index> used if Type == Composite.)#"  , py::arg("C"),  py::arg("Index"),  py::arg("Tab"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_Data ,opencascade::handle<HLRBRep_Data>  , Standard_Transient >>(m.attr("HLRBRep_Data"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("NV"),  py::arg("NE"),  py::arg("NF") )
+    // custom constructors
     // methods
         .def("Write",
              (void (HLRBRep_Data::*)( const opencascade::handle<HLRBRep_Data> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (HLRBRep_Data::*)( const opencascade::handle<HLRBRep_Data> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&HLRBRep_Data::Write),
@@ -1269,12 +1292,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_EdgeBuilder , shared_ptr<HLRBRep_EdgeBuilder>  >>(m.attr("HLRBRep_EdgeBuilder"))
+    // constructors
         .def(py::init< HLRBRep_VertexList & >()  , py::arg("VList") )
+    // custom constructors
     // methods
         .def("InitAreas",
              (void (HLRBRep_EdgeBuilder::*)() ) static_cast<void (HLRBRep_EdgeBuilder::*)() >(&HLRBRep_EdgeBuilder::InitAreas),
@@ -1334,12 +1359,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_EdgeData , shared_ptr<HLRBRep_EdgeData>  >>(m.attr("HLRBRep_EdgeData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (HLRBRep_EdgeData::*)( const Standard_Boolean ,  const Standard_Boolean ,  const TopoDS_Edge & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  ) ) static_cast<void (HLRBRep_EdgeData::*)( const Standard_Boolean ,  const Standard_Boolean ,  const TopoDS_Edge & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  ) >(&HLRBRep_EdgeData::Set),
@@ -1573,12 +1600,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_EdgeFaceTool , shared_ptr<HLRBRep_EdgeFaceTool>>(m,"HLRBRep_EdgeFaceTool");
 
     static_cast<py::class_<HLRBRep_EdgeFaceTool , shared_ptr<HLRBRep_EdgeFaceTool>  >>(m.attr("HLRBRep_EdgeFaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1590,12 +1620,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(return True if U and V are found.)#"  , py::arg("Par"),  py::arg("E"),  py::arg("F"),  py::arg("U"),  py::arg("V"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_EdgeIList , shared_ptr<HLRBRep_EdgeIList>>(m,"HLRBRep_EdgeIList");
 
     static_cast<py::class_<HLRBRep_EdgeIList , shared_ptr<HLRBRep_EdgeIList>  >>(m.attr("HLRBRep_EdgeIList"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1607,12 +1640,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(Process complex transitions on the list IL.)#"  , py::arg("IL"),  py::arg("T"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_EdgeInterferenceTool , shared_ptr<HLRBRep_EdgeInterferenceTool>  >>(m.attr("HLRBRep_EdgeInterferenceTool"))
+    // constructors
         .def(py::init< const opencascade::handle<HLRBRep_Data> & >()  , py::arg("DS") )
+    // custom constructors
     // methods
         .def("LoadEdge",
              (void (HLRBRep_EdgeInterferenceTool::*)() ) static_cast<void (HLRBRep_EdgeInterferenceTool::*)() >(&HLRBRep_EdgeInterferenceTool::LoadEdge),
@@ -1681,11 +1716,13 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter>  >>(m.attr("HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter"))
+    // constructors
+    // custom constructors
     // methods
         .def("Perform",
              (void (HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter::Perform),
@@ -1706,12 +1743,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_FaceData , shared_ptr<HLRBRep_FaceData>  >>(m.attr("HLRBRep_FaceData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (HLRBRep_FaceData::*)( const TopoDS_Face & ,  const TopAbs_Orientation ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (HLRBRep_FaceData::*)( const TopoDS_Face & ,  const TopAbs_Orientation ,  const Standard_Boolean ,  const Standard_Integer  ) >(&HLRBRep_FaceData::Set),
@@ -1924,12 +1963,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_FaceIterator , shared_ptr<HLRBRep_FaceIterator>  >>(m.attr("HLRBRep_FaceIterator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("InitEdge",
              (void (HLRBRep_FaceIterator::*)( HLRBRep_FaceData &  ) ) static_cast<void (HLRBRep_FaceIterator::*)( HLRBRep_FaceData &  ) >(&HLRBRep_FaceIterator::InitEdge),
@@ -2007,12 +2048,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_HLRToShape , shared_ptr<HLRBRep_HLRToShape>  >>(m.attr("HLRBRep_HLRToShape"))
+    // constructors
         .def(py::init< const opencascade::handle<HLRBRep_Algo> & >()  , py::arg("A") )
+    // custom constructors
     // methods
         .def("VCompound",
              (TopoDS_Shape (HLRBRep_HLRToShape::*)() ) static_cast<TopoDS_Shape (HLRBRep_HLRToShape::*)() >(&HLRBRep_HLRToShape::VCompound),
@@ -2156,12 +2199,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_Hider , shared_ptr<HLRBRep_Hider>  >>(m.attr("HLRBRep_Hider"))
+    // constructors
         .def(py::init< const opencascade::handle<HLRBRep_Data> & >()  , py::arg("DS") )
+    // custom constructors
     // methods
         .def("OwnHiding",
              (void (HLRBRep_Hider::*)( const Standard_Integer  ) ) static_cast<void (HLRBRep_Hider::*)( const Standard_Integer  ) >(&HLRBRep_Hider::OwnHiding),
@@ -2173,35 +2218,41 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_IntConicCurveOfCInter , shared_ptr<HLRBRep_IntConicCurveOfCInter>  , IntRes2d_Intersection >>(m.attr("HLRBRep_IntConicCurveOfCInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_InterCSurf , shared_ptr<HLRBRep_InterCSurf>  , IntCurveSurface_Intersection >>(m.attr("HLRBRep_InterCSurf"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_InternalAlgo ,opencascade::handle<HLRBRep_InternalAlgo>  , Standard_Transient >>(m.attr("HLRBRep_InternalAlgo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<HLRBRep_InternalAlgo> & >()  , py::arg("A") )
+    // custom constructors
     // methods
         .def("Projector",
              (void (HLRBRep_InternalAlgo::*)( const HLRAlgo_Projector &  ) ) static_cast<void (HLRBRep_InternalAlgo::*)( const HLRAlgo_Projector &  ) >(&HLRBRep_InternalAlgo::Projector),
@@ -2297,12 +2348,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_Intersector , shared_ptr<HLRBRep_Intersector>  >>(m.attr("HLRBRep_Intersector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (HLRBRep_Intersector::*)( const Standard_Address ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (HLRBRep_Intersector::*)( const Standard_Address ,  const Standard_Real ,  const Standard_Real  ) >(&HLRBRep_Intersector::Perform),
@@ -2344,12 +2397,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_LineTool , shared_ptr<HLRBRep_LineTool>>(m,"HLRBRep_LineTool");
 
     static_cast<py::class_<HLRBRep_LineTool , shared_ptr<HLRBRep_LineTool>  >>(m.attr("HLRBRep_LineTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -2460,11 +2516,13 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U0"),  py::arg("U1"),  py::arg("Defl"),  py::arg("NbMin"),  py::arg("Pars"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter , shared_ptr<HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter>  , math_FunctionWithDerivative >>(m.attr("HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter"))
+    // constructors
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter::*)( const Standard_Real ,  Standard_Real &  ) >(&HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter::Value),
@@ -2479,12 +2537,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter , shared_ptr<HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter>  , math_FunctionWithDerivative >>(m.attr("HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetPoint",
              (void (HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter::*)( const gp_Pnt2d &  ) ) static_cast<void (HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter::*)( const gp_Pnt2d &  ) >(&HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter::SetPoint),
@@ -2523,14 +2583,16 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_PolyAlgo ,opencascade::handle<HLRBRep_PolyAlgo>  , Standard_Transient >>(m.attr("HLRBRep_PolyAlgo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<HLRBRep_PolyAlgo> & >()  , py::arg("A") )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("NbShapes",
              (Standard_Integer (HLRBRep_PolyAlgo::*)() const) static_cast<Standard_Integer (HLRBRep_PolyAlgo::*)() const>(&HLRBRep_PolyAlgo::NbShapes),
@@ -2677,12 +2739,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_PolyHLRToShape , shared_ptr<HLRBRep_PolyHLRToShape>  >>(m.attr("HLRBRep_PolyHLRToShape"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Update",
              (void (HLRBRep_PolyHLRToShape::*)( const opencascade::handle<HLRBRep_PolyAlgo> &  ) ) static_cast<void (HLRBRep_PolyHLRToShape::*)( const opencascade::handle<HLRBRep_PolyAlgo> &  ) >(&HLRBRep_PolyHLRToShape::Update),
@@ -2799,12 +2863,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_SLProps , shared_ptr<HLRBRep_SLProps>  >>(m.attr("HLRBRep_SLProps"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetParameters",
              (void (HLRBRep_SLProps::*)( const Standard_Real ,  const Standard_Real  ) ) static_cast<void (HLRBRep_SLProps::*)( const Standard_Real ,  const Standard_Real  ) >(&HLRBRep_SLProps::SetParameters),
@@ -2870,12 +2936,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_SLPropsATool , shared_ptr<HLRBRep_SLPropsATool>>(m,"HLRBRep_SLPropsATool");
 
     static_cast<py::class_<HLRBRep_SLPropsATool , shared_ptr<HLRBRep_SLPropsATool>  >>(m.attr("HLRBRep_SLPropsATool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -2899,14 +2968,16 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     []( const Standard_Address A ){ Standard_Real  U1; Standard_Real  V1; Standard_Real  U2; Standard_Real  V2; HLRBRep_SLPropsATool::Bounds(A,U1,V1,U2,V2); return std::make_tuple(U1,V1,U2,V2); },
                     R"#(returns the bounds of the Surface.)#"  , py::arg("A"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_ShapeBounds , shared_ptr<HLRBRep_ShapeBounds>  >>(m.attr("HLRBRep_ShapeBounds"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<HLRTopoBRep_OutLiner> &,const opencascade::handle<Standard_Transient> &,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("S"),  py::arg("SData"),  py::arg("nbIso"),  py::arg("V1"),  py::arg("V2"),  py::arg("E1"),  py::arg("E2"),  py::arg("F1"),  py::arg("F2") )
         .def(py::init< const opencascade::handle<HLRTopoBRep_OutLiner> &,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("S"),  py::arg("nbIso"),  py::arg("V1"),  py::arg("V2"),  py::arg("E1"),  py::arg("E2"),  py::arg("F1"),  py::arg("F2") )
+    // custom constructors
     // methods
         .def("Translate",
              (void (HLRBRep_ShapeBounds::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) ) static_cast<void (HLRBRep_ShapeBounds::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer  ) >(&HLRBRep_ShapeBounds::Translate),
@@ -2963,12 +3034,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_ShapeToHLR , shared_ptr<HLRBRep_ShapeToHLR>>(m,"HLRBRep_ShapeToHLR");
 
     static_cast<py::class_<HLRBRep_ShapeToHLR , shared_ptr<HLRBRep_ShapeToHLR>  >>(m.attr("HLRBRep_ShapeToHLR"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -2977,12 +3051,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(Creates a DataStructure containing the OutLiner <S> depending on the projector <P> and nbIso.)#"  , py::arg("S"),  py::arg("P"),  py::arg("MST"),  py::arg("nbIso")=static_cast<const Standard_Integer>(0))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_Surface , shared_ptr<HLRBRep_Surface>  >>(m.attr("HLRBRep_Surface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Projector",
              (void (HLRBRep_Surface::*)( const HLRAlgo_Projector *  ) ) static_cast<void (HLRBRep_Surface::*)( const HLRAlgo_Projector *  ) >(&HLRBRep_Surface::Projector),
@@ -3198,12 +3274,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_SurfaceTool , shared_ptr<HLRBRep_SurfaceTool>>(m,"HLRBRep_SurfaceTool");
 
     static_cast<py::class_<HLRBRep_SurfaceTool , shared_ptr<HLRBRep_SurfaceTool>  >>(m.attr("HLRBRep_SurfaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -3332,11 +3411,13 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#"  , py::arg("S"),  py::arg("v1"),  py::arg("v2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheCSFunctionOfInterCSurf , shared_ptr<HLRBRep_TheCSFunctionOfInterCSurf>  , math_FunctionSetWithDerivatives >>(m.attr("HLRBRep_TheCSFunctionOfInterCSurf"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (HLRBRep_TheCSFunctionOfInterCSurf::*)() const) static_cast<Standard_Integer (HLRBRep_TheCSFunctionOfInterCSurf::*)() const>(&HLRBRep_TheCSFunctionOfInterCSurf::NbVariables),
@@ -3369,22 +3450,27 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter , shared_ptr<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter>>(m,"HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter");
 
     static_cast<py::class_<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter , shared_ptr<HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter>  >>(m.attr("HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter>  , math_FunctionSetWithDerivatives >>(m.attr("HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbVariables",
              (Standard_Integer (HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter::*)() const) static_cast<Standard_Integer (HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter::*)() const>(&HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter::NbVariables),
@@ -3405,13 +3491,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheExactInterCSurf , shared_ptr<HLRBRep_TheExactInterCSurf>  >>(m.attr("HLRBRep_TheExactInterCSurf"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const HLRBRep_TheCSFunctionOfInterCSurf &,const Standard_Real,const Standard_Real >()  , py::arg("U"),  py::arg("V"),  py::arg("W"),  py::arg("F"),  py::arg("TolTangency"),  py::arg("MarginCoef")=static_cast<const Standard_Real>(0.0) )
         .def(py::init< const HLRBRep_TheCSFunctionOfInterCSurf &,const Standard_Real >()  , py::arg("F"),  py::arg("TolTangency") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (HLRBRep_TheExactInterCSurf::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_FunctionSetRoot & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (HLRBRep_TheExactInterCSurf::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  math_FunctionSetRoot & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&HLRBRep_TheExactInterCSurf::Perform),
@@ -3438,23 +3526,27 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheIntConicCurveOfCInter , shared_ptr<HLRBRep_TheIntConicCurveOfCInter>  , IntRes2d_Intersection >>(m.attr("HLRBRep_TheIntConicCurveOfCInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_TheIntPCurvePCurveOfCInter>  , IntRes2d_Intersection >>(m.attr("HLRBRep_TheIntPCurvePCurveOfCInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetMinNbSamples",
              (void (HLRBRep_TheIntPCurvePCurveOfCInter::*)( const Standard_Integer  ) ) static_cast<void (HLRBRep_TheIntPCurvePCurveOfCInter::*)( const Standard_Integer  ) >(&HLRBRep_TheIntPCurvePCurveOfCInter::SetMinNbSamples),
@@ -3466,11 +3558,12 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheInterferenceOfInterCSurf , shared_ptr<HLRBRep_TheInterferenceOfInterCSurf>  , Intf_Interference >>(m.attr("HLRBRep_TheInterferenceOfInterCSurf"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const HLRBRep_ThePolygonOfInterCSurf &,const HLRBRep_ThePolyhedronOfInterCSurf & >()  , py::arg("thePolyg"),  py::arg("thePolyh") )
         .def(py::init< const gp_Lin &,const HLRBRep_ThePolyhedronOfInterCSurf & >()  , py::arg("theLin"),  py::arg("thePolyh") )
@@ -3478,6 +3571,7 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
         .def(py::init< const HLRBRep_ThePolygonOfInterCSurf &,const HLRBRep_ThePolyhedronOfInterCSurf &,Bnd_BoundSortBox & >()  , py::arg("thePolyg"),  py::arg("thePolyh"),  py::arg("theBoundSB") )
         .def(py::init< const gp_Lin &,const HLRBRep_ThePolyhedronOfInterCSurf &,Bnd_BoundSortBox & >()  , py::arg("theLin"),  py::arg("thePolyh"),  py::arg("theBoundSB") )
         .def(py::init<  const NCollection_Array1<gp_Lin> &,const HLRBRep_ThePolyhedronOfInterCSurf &,Bnd_BoundSortBox & >()  , py::arg("theLins"),  py::arg("thePolyh"),  py::arg("theBoundSB") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (HLRBRep_TheInterferenceOfInterCSurf::*)( const HLRBRep_ThePolygonOfInterCSurf & ,  const HLRBRep_ThePolyhedronOfInterCSurf &  ) ) static_cast<void (HLRBRep_TheInterferenceOfInterCSurf::*)( const HLRBRep_ThePolygonOfInterCSurf & ,  const HLRBRep_ThePolyhedronOfInterCSurf &  ) >(&HLRBRep_TheInterferenceOfInterCSurf::Perform),
@@ -3507,23 +3601,27 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter , shared_ptr<HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter>  , IntRes2d_Intersection >>(m.attr("HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter , shared_ptr<HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter>  >>(m.attr("HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Perform",
              (void (HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter::*)( const gp_Pnt2d & ,  const Standard_Real  ) ) static_cast<void (HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter::*)( const gp_Pnt2d & ,  const Standard_Real  ) >(&HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter::Perform),
@@ -3544,11 +3642,13 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter , shared_ptr<HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter>  , Intf_Polygon2d >>(m.attr("HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter"))
+    // constructors
+    // custom constructors
     // methods
         .def("DeflectionOverEstimation",
              (Standard_Real (HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter::*)() const) static_cast<Standard_Real (HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter::*)() const>(&HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter::DeflectionOverEstimation),
@@ -3590,14 +3690,16 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_ThePolygonOfInterCSurf , shared_ptr<HLRBRep_ThePolygonOfInterCSurf>  >>(m.attr("HLRBRep_ThePolygonOfInterCSurf"))
+    // constructors
         .def(py::init< const gp_Lin &,const Standard_Integer >()  , py::arg("Curve"),  py::arg("NbPnt") )
         .def(py::init< const gp_Lin &,const Standard_Real,const Standard_Real,const Standard_Integer >()  , py::arg("Curve"),  py::arg("U1"),  py::arg("U2"),  py::arg("NbPnt") )
         .def(py::init< const gp_Lin &, const NCollection_Array1<Standard_Real> & >()  , py::arg("Curve"),  py::arg("Upars") )
+    // custom constructors
     // methods
         .def("Bounding",
              (const Bnd_Box & (HLRBRep_ThePolygonOfInterCSurf::*)() const) static_cast<const Bnd_Box & (HLRBRep_ThePolygonOfInterCSurf::*)() const>(&HLRBRep_ThePolygonOfInterCSurf::Bounding),
@@ -3639,12 +3741,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_ThePolygonToolOfInterCSurf , shared_ptr<HLRBRep_ThePolygonToolOfInterCSurf>>(m,"HLRBRep_ThePolygonToolOfInterCSurf");
 
     static_cast<py::class_<HLRBRep_ThePolygonToolOfInterCSurf , shared_ptr<HLRBRep_ThePolygonToolOfInterCSurf>  >>(m.attr("HLRBRep_ThePolygonToolOfInterCSurf"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -3671,11 +3776,13 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#"  , py::arg("thePolygon"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_ThePolyhedronOfInterCSurf , shared_ptr<HLRBRep_ThePolyhedronOfInterCSurf>  >>(m.attr("HLRBRep_ThePolyhedronOfInterCSurf"))
+    // constructors
+    // custom constructors
     // methods
         .def("Destroy",
              (void (HLRBRep_ThePolyhedronOfInterCSurf::*)() ) static_cast<void (HLRBRep_ThePolyhedronOfInterCSurf::*)() >(&HLRBRep_ThePolyhedronOfInterCSurf::Destroy),
@@ -3744,12 +3851,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_ThePolyhedronToolOfInterCSurf , shared_ptr<HLRBRep_ThePolyhedronToolOfInterCSurf>>(m,"HLRBRep_ThePolyhedronToolOfInterCSurf");
 
     static_cast<py::class_<HLRBRep_ThePolyhedronToolOfInterCSurf , shared_ptr<HLRBRep_ThePolyhedronToolOfInterCSurf>  >>(m.attr("HLRBRep_ThePolyhedronToolOfInterCSurf"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -3785,22 +3895,27 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     []( const HLRBRep_ThePolyhedronOfInterCSurf & thePolyh,const Standard_Integer Index ){ Standard_Integer  P1; Standard_Integer  P2; Standard_Integer  P3; HLRBRep_ThePolyhedronToolOfInterCSurf::Triangle(thePolyh,Index,P1,P2,P3); return std::make_tuple(P1,P2,P3); },
                     R"#(Give the indices of the 3 points of the triangle of address Index in the PolyhedronTool.)#"  , py::arg("thePolyh"),  py::arg("Index"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<HLRBRep_TheProjPCurOfCInter , shared_ptr<HLRBRep_TheProjPCurOfCInter>>(m,"HLRBRep_TheProjPCurOfCInter");
 
     static_cast<py::class_<HLRBRep_TheProjPCurOfCInter , shared_ptr<HLRBRep_TheProjPCurOfCInter>  >>(m.attr("HLRBRep_TheProjPCurOfCInter"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheQuadCurvExactInterCSurf , shared_ptr<HLRBRep_TheQuadCurvExactInterCSurf>  >>(m.attr("HLRBRep_TheQuadCurvExactInterCSurf"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDone",
              (Standard_Boolean (HLRBRep_TheQuadCurvExactInterCSurf::*)() const) static_cast<Standard_Boolean (HLRBRep_TheQuadCurvExactInterCSurf::*)() const>(&HLRBRep_TheQuadCurvExactInterCSurf::IsDone),
@@ -3821,12 +3936,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf , shared_ptr<HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf>  , math_FunctionWithDerivative >>(m.attr("HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf"))
+    // constructors
         .def(py::init< const IntSurf_Quadric &,const gp_Lin & >()  , py::arg("Q"),  py::arg("C") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf::*)( const Standard_Real ,  Standard_Real &  ) >(&HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf::Value),
@@ -3841,12 +3958,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_VertexList , shared_ptr<HLRBRep_VertexList>  >>(m.attr("HLRBRep_VertexList"))
+    // constructors
         .def(py::init< const HLRBRep_EdgeInterferenceTool &, const NCollection_List<HLRAlgo_Interference>::Iterator & >()  , py::arg("T"),  py::arg("I") )
+    // custom constructors
     // methods
         .def("IsPeriodic",
              (Standard_Boolean (HLRBRep_VertexList::*)() const) static_cast<Standard_Boolean (HLRBRep_VertexList::*)() const>(&HLRBRep_VertexList::IsPeriodic),
@@ -3879,13 +3998,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRBRep_Algo ,opencascade::handle<HLRBRep_Algo>  , HLRBRep_InternalAlgo >>(m.attr("HLRBRep_Algo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<HLRBRep_Algo> & >()  , py::arg("A") )
+    // custom constructors
     // methods
         .def("Add",
              (void (HLRBRep_Algo::*)( const TopoDS_Shape & ,  const opencascade::handle<Standard_Transient> & ,  const Standard_Integer  ) ) static_cast<void (HLRBRep_Algo::*)( const TopoDS_Shape & ,  const opencascade::handle<Standard_Transient> & ,  const Standard_Integer  ) >(&HLRBRep_Algo::Add),
@@ -3912,82 +4033,82 @@ py::module m = static_cast<py::module>(main_module.attr("HLRBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/HLRBRep_Array1OfEData.hxx
-// ./opencascade/HLRBRep_VertexList.hxx
-// ./opencascade/HLRBRep_EdgeInterferenceTool.hxx
-// ./opencascade/HLRBRep_Algo.hxx
-// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
-// ./opencascade/HLRBRep_Surface.hxx
-// ./opencascade/HLRBRep_TypeOfResultingEdge.hxx
-// ./opencascade/HLRBRep_SLPropsATool.hxx
-// ./opencascade/HLRBRep_ListIteratorOfListOfBPnt2D.hxx
-// ./opencascade/HLRBRep_TheQuadCurvExactInterCSurf.hxx
-// ./opencascade/HLRBRep_CLPropsATool.hxx
-// ./opencascade/HLRBRep_ListOfBPoint.hxx
-// ./opencascade/HLRBRep_ShapeToHLR.hxx
-// ./opencascade/HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx
-// ./opencascade/HLRBRep_CLProps.hxx
 // ./opencascade/HLRBRep_AreaLimit.hxx
-// ./opencascade/HLRBRep_EdgeBuilder.hxx
-// ./opencascade/HLRBRep.hxx
-// ./opencascade/HLRBRep_BCurveTool.hxx
-// ./opencascade/HLRBRep_Data.hxx
-// ./opencascade/HLRBRep_BiPoint.hxx
-// ./opencascade/HLRBRep_Curve.hxx
-// ./opencascade/HLRBRep_PolyAlgo.hxx
-// ./opencascade/HLRBRep_ThePolygonToolOfInterCSurf.hxx
-// ./opencascade/HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter.hxx
-// ./opencascade/HLRBRep_ThePolyhedronToolOfInterCSurf.hxx
-// ./opencascade/HLRBRep_FaceData.hxx
-// ./opencascade/HLRBRep_Hider.hxx
-// ./opencascade/HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx
-// ./opencascade/HLRBRep_TheCSFunctionOfInterCSurf.hxx
-// ./opencascade/HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx
-// ./opencascade/HLRBRep_InterCSurf.hxx
-// ./opencascade/HLRBRep_PolyHLRToShape.hxx
-// ./opencascade/HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx
-// ./opencascade/HLRBRep_TheExactInterCSurf.hxx
-// ./opencascade/HLRBRep_SurfaceTool.hxx
-// ./opencascade/HLRBRep_ThePolygonOfInterCSurf.hxx
-// ./opencascade/HLRBRep_EdgeIList.hxx
-// ./opencascade/HLRBRep_FaceIterator.hxx
-// ./opencascade/HLRBRep_ListIteratorOfListOfBPoint.hxx
-// ./opencascade/HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx
-// ./opencascade/HLRBRep_ShapeBounds.hxx
-// ./opencascade/HLRBRep_TheProjPCurOfCInter.hxx
-// ./opencascade/HLRBRep_SeqOfShapeBounds.hxx
-// ./opencascade/HLRBRep_CurveTool.hxx
-// ./opencascade/HLRBRep_HLRToShape.hxx
-// ./opencascade/HLRBRep_TheInterferenceOfInterCSurf.hxx
-// ./opencascade/HLRBRep_BiPnt2D.hxx
-// ./opencascade/HLRBRep_TheIntPCurvePCurveOfCInter.hxx
-// ./opencascade/HLRBRep_TheIntConicCurveOfCInter.hxx
-// ./opencascade/HLRBRep_Array1OfFData.hxx
-// ./opencascade/HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx
+// ./opencascade/HLRBRep_VertexList.hxx
 // ./opencascade/HLRBRep_SLProps.hxx
-// ./opencascade/HLRBRep_CInter.hxx
-// ./opencascade/HLRBRep_EdgeData.hxx
+// ./opencascade/HLRBRep_TheQuadCurvExactInterCSurf.hxx
+// ./opencascade/HLRBRep_TheIntersectorOfTheIntConicCurveOfCInter.hxx
+// ./opencascade/HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter.hxx
 // ./opencascade/HLRBRep_LineTool.hxx
-// ./opencascade/HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx
-// ./opencascade/HLRBRep_ThePolyhedronOfInterCSurf.hxx
-// ./opencascade/HLRBRep_EdgeFaceTool.hxx
+// ./opencascade/HLRBRep_ThePolygonOfInterCSurf.hxx
+// ./opencascade/HLRBRep_BiPoint.hxx
+// ./opencascade/HLRBRep_EdgeIList.hxx
+// ./opencascade/HLRBRep_ThePolyhedronToolOfInterCSurf.hxx
 // ./opencascade/HLRBRep_TheDistBetweenPCurvesOfTheIntPCurvePCurveOfCInter.hxx
-// ./opencascade/HLRBRep_InternalAlgo.hxx
-// ./opencascade/HLRBRep_BSurfaceTool.hxx
-// ./opencascade/HLRBRep_Intersector.hxx
+// ./opencascade/HLRBRep_CLProps.hxx
+// ./opencascade/HLRBRep_Surface.hxx
+// ./opencascade/HLRBRep_BiPnt2D.hxx
+// ./opencascade/HLRBRep_EdgeFaceTool.hxx
+// ./opencascade/HLRBRep_ThePolygon2dOfTheIntPCurvePCurveOfCInter.hxx
+// ./opencascade/HLRBRep_CurveTool.hxx
+// ./opencascade/HLRBRep_PolyHLRToShape.hxx
+// ./opencascade/HLRBRep_TheIntPCurvePCurveOfCInter.hxx
+// ./opencascade/HLRBRep_ShapeToHLR.hxx
+// ./opencascade/HLRBRep_BCurveTool.hxx
+// ./opencascade/HLRBRep_MyImpParToolOfTheIntersectorOfTheIntConicCurveOfCInter.hxx
+// ./opencascade/HLRBRep_ExactIntersectionPointOfTheIntPCurvePCurveOfCInter.hxx
+// ./opencascade/HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter.hxx
+// ./opencascade/HLRBRep_EdgeBuilder.hxx
+// ./opencascade/HLRBRep_ThePolygonToolOfInterCSurf.hxx
+// ./opencascade/HLRBRep_FaceIterator.hxx
+// ./opencascade/HLRBRep_TheIntConicCurveOfCInter.hxx
+// ./opencascade/HLRBRep_CLPropsATool.hxx
+// ./opencascade/HLRBRep_TheProjPCurOfCInter.hxx
+// ./opencascade/HLRBRep_Hider.hxx
+// ./opencascade/HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter.hxx
+// ./opencascade/HLRBRep_TheExactInterCSurf.hxx
+// ./opencascade/HLRBRep_ShapeBounds.hxx
+// ./opencascade/HLRBRep_Curve.hxx
+// ./opencascade/HLRBRep_CInter.hxx
+// ./opencascade/HLRBRep_SeqOfShapeBounds.hxx
 // ./opencascade/HLRBRep_IntConicCurveOfCInter.hxx
+// ./opencascade/HLRBRep_ThePolyhedronOfInterCSurf.hxx
+// ./opencascade/HLRBRep_InterCSurf.hxx
+// ./opencascade/HLRBRep_BSurfaceTool.hxx
+// ./opencascade/HLRBRep_ListIteratorOfListOfBPnt2D.hxx
+// ./opencascade/HLRBRep_TheCSFunctionOfInterCSurf.hxx
+// ./opencascade/HLRBRep_ListIteratorOfListOfBPoint.hxx
+// ./opencascade/HLRBRep_Array1OfEData.hxx
+// ./opencascade/HLRBRep.hxx
+// ./opencascade/HLRBRep_InternalAlgo.hxx
+// ./opencascade/HLRBRep_TheQuadCurvFuncOfTheQuadCurvExactInterCSurf.hxx
+// ./opencascade/HLRBRep_EdgeInterferenceTool.hxx
+// ./opencascade/HLRBRep_PolyAlgo.hxx
+// ./opencascade/HLRBRep_ListOfBPoint.hxx
+// ./opencascade/HLRBRep_ListOfBPnt2D.hxx
+// ./opencascade/HLRBRep_Data.hxx
+// ./opencascade/HLRBRep_HLRToShape.hxx
+// ./opencascade/HLRBRep_SurfaceTool.hxx
+// ./opencascade/HLRBRep_Algo.hxx
+// ./opencascade/HLRBRep_SLPropsATool.hxx
+// ./opencascade/HLRBRep_Intersector.hxx
+// ./opencascade/HLRBRep_EdgeData.hxx
+// ./opencascade/HLRBRep_FaceData.hxx
+// ./opencascade/HLRBRep_TypeOfResultingEdge.hxx
+// ./opencascade/HLRBRep_TheInterferenceOfInterCSurf.hxx
+// ./opencascade/HLRBRep_Array1OfFData.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<HLRBRep_EdgeData>(m,"HLRBRep_Array1OfEData");  
-    register_template_NCollection_List<HLRBRep_BiPnt2D>(m,"HLRBRep_ListOfBPnt2D");  
-    register_template_NCollection_List<HLRBRep_BiPoint>(m,"HLRBRep_ListOfBPoint");  
     register_template_NCollection_Sequence<HLRBRep_ShapeBounds>(m,"HLRBRep_SeqOfShapeBounds");  
+    register_template_NCollection_Array1<HLRBRep_EdgeData>(m,"HLRBRep_Array1OfEData");  
+    register_template_NCollection_List<HLRBRep_BiPoint>(m,"HLRBRep_ListOfBPoint");  
+    register_template_NCollection_List<HLRBRep_BiPnt2D>(m,"HLRBRep_ListOfBPnt2D");  
     register_template_NCollection_Array1<HLRBRep_FaceData>(m,"HLRBRep_Array1OfFData");  
 
 

@@ -39,7 +39,9 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcessAPI"));
 
 
     static_cast<py::class_<ShapeProcessAPI_ApplySequence , shared_ptr<ShapeProcessAPI_ApplySequence>  >>(m.attr("ShapeProcessAPI_ApplySequence"))
+    // constructors
         .def(py::init< const Standard_CString,const Standard_CString >()  , py::arg("rscName"),  py::arg("seqName")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("Context",
              (opencascade::handle<ShapeProcess_ShapeContext> & (ShapeProcessAPI_ApplySequence::*)() ) static_cast<opencascade::handle<ShapeProcess_ShapeContext> & (ShapeProcessAPI_ApplySequence::*)() >(&ShapeProcessAPI_ApplySequence::Context),
@@ -60,7 +62,7 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeProcessAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

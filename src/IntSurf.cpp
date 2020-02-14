@@ -41,17 +41,17 @@ namespace py = pybind11;
 #include <IntSurf_TypeTrans.hxx>
 
 // template related includes
-// ./opencascade/IntSurf_SequenceOfCouple.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntSurf_SequenceOfPntOn2S.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntSurf_ListOfPntOn2S.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntSurf_ListOfPntOn2S.hxx
 #include "NCollection.hxx"
 // ./opencascade/IntSurf_SequenceOfPathPoint.hxx
 #include "NCollection.hxx"
-// ./opencascade/IntSurf_ListOfPntOn2S.hxx
-#include "NCollection.hxx"
-// ./opencascade/IntSurf_ListOfPntOn2S.hxx
-#include "NCollection.hxx"
 // ./opencascade/IntSurf_SequenceOfInteriorPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/IntSurf_SequenceOfCouple.hxx
 #include "NCollection.hxx"
 
 
@@ -71,9 +71,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IntSurf , shared_ptr<IntSurf>>(m,"IntSurf");
 
     static_cast<py::class_<IntSurf , shared_ptr<IntSurf>  >>(m.attr("IntSurf"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -85,13 +88,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
                     R"#(Fills theArrOfPeriod array by the period values of theFirstSurf and theSecondSurf. [0] = U-period of theFirstSurf, [1] = V-period of theFirstSurf, [2] = U-period of theSecondSurf, [3] = V-period of theSecondSurf.)#"  , py::arg("theFirstSurf"),  py::arg("theSecondSurf"),  py::arg("theArrOfPeriod"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntSurf_Couple , shared_ptr<IntSurf_Couple>  >>(m.attr("IntSurf_Couple"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("Index1"),  py::arg("Index2") )
+    // custom constructors
     // methods
         .def("First",
              (Standard_Integer (IntSurf_Couple::*)() const) static_cast<Standard_Integer (IntSurf_Couple::*)() const>(&IntSurf_Couple::First),
@@ -109,13 +114,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntSurf_InteriorPoint , shared_ptr<IntSurf_InteriorPoint>  >>(m.attr("IntSurf_InteriorPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real,const gp_Vec &,const gp_Vec2d & >()  , py::arg("P"),  py::arg("U"),  py::arg("V"),  py::arg("Direc"),  py::arg("Direc2d") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntSurf_InteriorPoint::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const gp_Vec & ,  const gp_Vec2d &  ) ) static_cast<void (IntSurf_InteriorPoint::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real ,  const gp_Vec & ,  const gp_Vec2d &  ) >(&IntSurf_InteriorPoint::SetValue),
@@ -160,12 +167,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntSurf_InteriorPointTool , shared_ptr<IntSurf_InteriorPointTool>>(m,"IntSurf_InteriorPointTool");
 
     static_cast<py::class_<IntSurf_InteriorPointTool , shared_ptr<IntSurf_InteriorPointTool>  >>(m.attr("IntSurf_InteriorPointTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -183,12 +193,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
                     []( const IntSurf_InteriorPoint & PStart ){ Standard_Real  U; Standard_Real  V; IntSurf_InteriorPointTool::Value2d(PStart,U,V); return std::make_tuple(U,V); },
                     R"#(Returns the <U,V> parameters which are associated with <P> it's the parameters which start the marching algorithm)#"  , py::arg("PStart"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntSurf_LineOn2S ,opencascade::handle<IntSurf_LineOn2S>  , Standard_Transient >>(m.attr("IntSurf_LineOn2S"))
+    // constructors
         .def(py::init<  const opencascade::handle<NCollection_BaseAllocator> & >()  , py::arg("theAllocator")=static_cast< const opencascade::handle<NCollection_BaseAllocator> &>(0) )
+    // custom constructors
     // methods
         .def("Add",
              (void (IntSurf_LineOn2S::*)( const IntSurf_PntOn2S &  ) ) static_cast<void (IntSurf_LineOn2S::*)( const IntSurf_PntOn2S &  ) >(&IntSurf_LineOn2S::Add),
@@ -220,12 +232,18 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
         .def("RemovePoint",
              (void (IntSurf_LineOn2S::*)( const Standard_Integer  ) ) static_cast<void (IntSurf_LineOn2S::*)( const Standard_Integer  ) >(&IntSurf_LineOn2S::RemovePoint),
              R"#(None)#"  , py::arg("I"))
+        .def("IsOutSurf1Box",
+             (Standard_Boolean (IntSurf_LineOn2S::*)( const gp_Pnt2d &  ) ) static_cast<Standard_Boolean (IntSurf_LineOn2S::*)( const gp_Pnt2d &  ) >(&IntSurf_LineOn2S::IsOutSurf1Box),
+             R"#(Returns TRUE if theP is out of the box built from the points on 1st surface)#"  , py::arg("theP"))
+        .def("IsOutSurf2Box",
+             (Standard_Boolean (IntSurf_LineOn2S::*)( const gp_Pnt2d &  ) ) static_cast<Standard_Boolean (IntSurf_LineOn2S::*)( const gp_Pnt2d &  ) >(&IntSurf_LineOn2S::IsOutSurf2Box),
+             R"#(Returns TRUE if theP is out of the box built from the points on 2nd surface)#"  , py::arg("theP"))
+        .def("IsOutBox",
+             (Standard_Boolean (IntSurf_LineOn2S::*)( const gp_Pnt &  ) ) static_cast<Standard_Boolean (IntSurf_LineOn2S::*)( const gp_Pnt &  ) >(&IntSurf_LineOn2S::IsOutBox),
+             R"#(Returns TRUE if theP is out of the box built from 3D-points.)#"  , py::arg("theP"))
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IntSurf_LineOn2S::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IntSurf_LineOn2S::*)() const>(&IntSurf_LineOn2S::DynamicType),
              R"#(None)#" )
-        .def("Add",
-             (void (IntSurf_LineOn2S::*)( const IntSurf_PntOn2S &  ) ) static_cast<void (IntSurf_LineOn2S::*)( const IntSurf_PntOn2S &  ) >(&IntSurf_LineOn2S::Add),
-             R"#(Adds a point in the line.)#"  , py::arg("P"))
         .def("NbPoints",
              (Standard_Integer (IntSurf_LineOn2S::*)() const) static_cast<Standard_Integer (IntSurf_LineOn2S::*)() const>(&IntSurf_LineOn2S::NbPoints),
              R"#(Returns the number of points in the line.)#" )
@@ -238,9 +256,6 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
         .def("Value",
              (void (IntSurf_LineOn2S::*)( const Standard_Integer ,  const IntSurf_PntOn2S &  ) ) static_cast<void (IntSurf_LineOn2S::*)( const Standard_Integer ,  const IntSurf_PntOn2S &  ) >(&IntSurf_LineOn2S::Value),
              R"#(Replaces the point of range Index in the line.)#"  , py::arg("Index"),  py::arg("P"))
-        .def("SetUV",
-             (void (IntSurf_LineOn2S::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntSurf_LineOn2S::*)( const Standard_Integer ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Real  ) >(&IntSurf_LineOn2S::SetUV),
-             R"#(Sets the parametric coordinates on one of the surfaces of the point of range Index in the line.)#"  , py::arg("Index"),  py::arg("OnFirst"),  py::arg("U"),  py::arg("V"))
         .def("Clear",
              (void (IntSurf_LineOn2S::*)() ) static_cast<void (IntSurf_LineOn2S::*)() >(&IntSurf_LineOn2S::Clear),
              R"#(None)#" )
@@ -254,13 +269,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntSurf_PathPoint , shared_ptr<IntSurf_PathPoint>  >>(m.attr("IntSurf_PathPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("U"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntSurf_PathPoint::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntSurf_PathPoint::*)( const gp_Pnt & ,  const Standard_Real ,  const Standard_Real  ) >(&IntSurf_PathPoint::SetValue),
@@ -341,12 +358,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntSurf_PathPointTool , shared_ptr<IntSurf_PathPointTool>>(m,"IntSurf_PathPointTool");
 
     static_cast<py::class_<IntSurf_PathPointTool , shared_ptr<IntSurf_PathPointTool>  >>(m.attr("IntSurf_PathPointTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -376,12 +396,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
                     []( const IntSurf_PathPoint & PStart,const Standard_Integer Mult ){ Standard_Real  U; Standard_Real  V; IntSurf_PathPointTool::Parameters(PStart,Mult,U,V); return std::make_tuple(U,V); },
                     R"#(Parametric coordinates associated to the multiplicity. An exception is raised if Mult<=0 or Mult>multiplicity.)#"  , py::arg("PStart"),  py::arg("Mult"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntSurf_PntOn2S , shared_ptr<IntSurf_PntOn2S>  >>(m.attr("IntSurf_PntOn2S"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntSurf_PntOn2S::*)( const gp_Pnt &  ) ) static_cast<void (IntSurf_PntOn2S::*)( const gp_Pnt &  ) >(&IntSurf_PntOn2S::SetValue),
@@ -444,17 +466,19 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntSurf_Quadric , shared_ptr<IntSurf_Quadric>  >>(m.attr("IntSurf_Quadric"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pln & >()  , py::arg("P") )
         .def(py::init< const gp_Cylinder & >()  , py::arg("C") )
         .def(py::init< const gp_Sphere & >()  , py::arg("S") )
         .def(py::init< const gp_Cone & >()  , py::arg("C") )
         .def(py::init< const gp_Torus & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntSurf_Quadric::*)( const gp_Pln &  ) ) static_cast<void (IntSurf_Quadric::*)( const gp_Pln &  ) >(&IntSurf_Quadric::SetValue),
@@ -538,12 +562,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntSurf_QuadricTool , shared_ptr<IntSurf_QuadricTool>>(m,"IntSurf_QuadricTool");
 
     static_cast<py::class_<IntSurf_QuadricTool , shared_ptr<IntSurf_QuadricTool>  >>(m.attr("IntSurf_QuadricTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -561,14 +588,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
                     []( const IntSurf_Quadric & Quad,const Standard_Real X,const Standard_Real Y,const Standard_Real Z,gp_Vec & Grad ){ Standard_Real  Val; IntSurf_QuadricTool::ValueAndGradient(Quad,X,Y,Z,Val,Grad); return std::make_tuple(Val); },
                     R"#(Returns the value and the gradient.)#"  , py::arg("Quad"),  py::arg("X"),  py::arg("Y"),  py::arg("Z"),  py::arg("Grad"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntSurf_Transition , shared_ptr<IntSurf_Transition>  >>(m.attr("IntSurf_Transition"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean,const IntSurf_TypeTrans >()  , py::arg("Tangent"),  py::arg("Type") )
         .def(py::init< const Standard_Boolean,const IntSurf_Situation,const Standard_Boolean >()  , py::arg("Tangent"),  py::arg("Situ"),  py::arg("Oppos") )
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IntSurf_Transition::*)( const Standard_Boolean ,  const IntSurf_TypeTrans  ) ) static_cast<void (IntSurf_Transition::*)( const Standard_Boolean ,  const IntSurf_TypeTrans  ) >(&IntSurf_Transition::SetValue),
@@ -616,39 +645,39 @@ py::module m = static_cast<py::module>(main_module.attr("IntSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IntSurf_SequenceOfCouple.hxx
-// ./opencascade/IntSurf_Transition.hxx
 // ./opencascade/IntSurf_SequenceOfPntOn2S.hxx
-// ./opencascade/IntSurf_InteriorPointTool.hxx
-// ./opencascade/IntSurf_SequenceOfPathPoint.hxx
 // ./opencascade/IntSurf_PathPoint.hxx
-// ./opencascade/IntSurf_Situation.hxx
-// ./opencascade/IntSurf_Allocator.hxx
-// ./opencascade/IntSurf_LineOn2S.hxx
-// ./opencascade/IntSurf_ListOfPntOn2S.hxx
-// ./opencascade/IntSurf_Couple.hxx
-// ./opencascade/IntSurf_PathPointTool.hxx
-// ./opencascade/IntSurf_Quadric.hxx
-// ./opencascade/IntSurf.hxx
 // ./opencascade/IntSurf_TypeTrans.hxx
-// ./opencascade/IntSurf_PntOn2S.hxx
-// ./opencascade/IntSurf_QuadricTool.hxx
-// ./opencascade/IntSurf_InteriorPoint.hxx
 // ./opencascade/IntSurf_ListIteratorOfListOfPntOn2S.hxx
+// ./opencascade/IntSurf_Couple.hxx
+// ./opencascade/IntSurf_ListOfPntOn2S.hxx
+// ./opencascade/IntSurf_InteriorPointTool.hxx
+// ./opencascade/IntSurf_PntOn2S.hxx
+// ./opencascade/IntSurf.hxx
+// ./opencascade/IntSurf_SequenceOfPathPoint.hxx
+// ./opencascade/IntSurf_LineOn2S.hxx
+// ./opencascade/IntSurf_Situation.hxx
 // ./opencascade/IntSurf_SequenceOfInteriorPoint.hxx
+// ./opencascade/IntSurf_QuadricTool.hxx
+// ./opencascade/IntSurf_PathPointTool.hxx
+// ./opencascade/IntSurf_InteriorPoint.hxx
+// ./opencascade/IntSurf_Allocator.hxx
+// ./opencascade/IntSurf_SequenceOfCouple.hxx
+// ./opencascade/IntSurf_Quadric.hxx
+// ./opencascade/IntSurf_Transition.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<IntSurf_Couple>(m,"IntSurf_SequenceOfCouple");  
     register_template_NCollection_Sequence<IntSurf_PntOn2S>(m,"IntSurf_SequenceOfPntOn2S");  
-    register_template_NCollection_Sequence<IntSurf_PathPoint>(m,"IntSurf_SequenceOfPathPoint");  
     register_template_NCollection_List<IntSurf_PntOn2S>(m,"IntSurf_ListOfPntOn2S");  
+    register_template_NCollection_Sequence<IntSurf_PathPoint>(m,"IntSurf_SequenceOfPathPoint");  
     register_template_NCollection_Sequence<IntSurf_InteriorPoint>(m,"IntSurf_SequenceOfInteriorPoint");  
+    register_template_NCollection_Sequence<IntSurf_Couple>(m,"IntSurf_SequenceOfCouple");  
 
 
 // exceptions

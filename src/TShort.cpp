@@ -23,11 +23,11 @@ namespace py = pybind11;
 #include <TShort_SequenceOfShortReal.hxx>
 
 // template related includes
-// ./opencascade/TShort_Array1OfShortReal.hxx
-#include "NCollection.hxx"
 // ./opencascade/TShort_SequenceOfShortReal.hxx
 #include "NCollection.hxx"
 // ./opencascade/TShort_Array2OfShortReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/TShort_Array1OfShortReal.hxx
 #include "NCollection.hxx"
 
 
@@ -49,9 +49,12 @@ py::module m = static_cast<py::module>(main_module.attr("TShort"));
 
 
     static_cast<py::class_<TShort_HArray1OfShortReal ,opencascade::handle<TShort_HArray1OfShortReal>  , TShort_Array1OfShortReal , Standard_Transient >>(m.attr("TShort_HArray1OfShortReal"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const TShort_Array1OfShortReal::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Standard_ShortReal> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TShort_Array1OfShortReal & (TShort_HArray1OfShortReal::*)() const) static_cast<const TShort_Array1OfShortReal & (TShort_HArray1OfShortReal::*)() const>(&TShort_HArray1OfShortReal::Array1),
@@ -72,14 +75,16 @@ py::module m = static_cast<py::module>(main_module.attr("TShort"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TShort_HArray2OfShortReal ,opencascade::handle<TShort_HArray2OfShortReal>  , TShort_Array2OfShortReal , Standard_Transient >>(m.attr("TShort_HArray2OfShortReal"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const TShort_Array2OfShortReal::value_type & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<Standard_ShortReal> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const TShort_Array2OfShortReal & (TShort_HArray2OfShortReal::*)() const) static_cast<const TShort_Array2OfShortReal & (TShort_HArray2OfShortReal::*)() const>(&TShort_HArray2OfShortReal::Array2),
@@ -100,13 +105,15 @@ py::module m = static_cast<py::module>(main_module.attr("TShort"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TShort_HSequenceOfShortReal ,opencascade::handle<TShort_HSequenceOfShortReal>  , TShort_SequenceOfShortReal , Standard_Transient >>(m.attr("TShort_HSequenceOfShortReal"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<Standard_ShortReal> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const TShort_SequenceOfShortReal & (TShort_HSequenceOfShortReal::*)() const) static_cast<const TShort_SequenceOfShortReal & (TShort_HSequenceOfShortReal::*)() const>(&TShort_HSequenceOfShortReal::Sequence),
@@ -133,23 +140,23 @@ py::module m = static_cast<py::module>(main_module.attr("TShort"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TShort_HArray1OfShortReal.hxx
-// ./opencascade/TShort_HSequenceOfShortReal.hxx
 // ./opencascade/TShort_HArray2OfShortReal.hxx
-// ./opencascade/TShort_Array1OfShortReal.hxx
 // ./opencascade/TShort_SequenceOfShortReal.hxx
+// ./opencascade/TShort_HSequenceOfShortReal.hxx
 // ./opencascade/TShort_Array2OfShortReal.hxx
+// ./opencascade/TShort_Array1OfShortReal.hxx
+// ./opencascade/TShort_HArray1OfShortReal.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<Standard_ShortReal>(m,"TShort_Array1OfShortReal");  
     register_template_NCollection_Sequence<Standard_ShortReal>(m,"TShort_SequenceOfShortReal");  
     register_template_NCollection_Array2<Standard_ShortReal>(m,"TShort_Array2OfShortReal");  
+    register_template_NCollection_Array1<Standard_ShortReal>(m,"TShort_Array1OfShortReal");  
 
 
 // exceptions

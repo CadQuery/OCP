@@ -36,9 +36,12 @@ py::module m = static_cast<py::module>(main_module.attr("Precision"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Precision , shared_ptr<Precision>>(m,"Precision");
 
     static_cast<py::class_<Precision , shared_ptr<Precision>  >>(m.attr("Precision"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -98,7 +101,7 @@ py::module m = static_cast<py::module>(main_module.attr("Precision"));
                     R"#(Returns a big number that can be considered as infinite. Use -Infinite() for a negative big number.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

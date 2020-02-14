@@ -36,9 +36,12 @@ py::module m = static_cast<py::module>(main_module.attr("ElCLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ElCLib , shared_ptr<ElCLib>>(m,"ElCLib");
 
     static_cast<py::class_<ElCLib , shared_ptr<ElCLib>  >>(m.attr("ElCLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -404,7 +407,7 @@ py::module m = static_cast<py::module>(main_module.attr("ElCLib"));
                     []( const Standard_Real UFirst,const Standard_Real ULast,const Standard_Real Precision ){ Standard_Real  U1; Standard_Real  U2; ElCLib::AdjustPeriodic(UFirst,ULast,Precision,U1,U2); return std::make_tuple(U1,U2); },
                     R"#(Adjust U1 and U2 in the parametric range UFirst Ulast of a periodic curve, where ULast - UFirst is its period. To do this, this function: - sets U1 in the range [ UFirst, ULast ] by adding/removing the period to/from the value U1, then - sets U2 in the range [ U1, U1 + period ] by adding/removing the period to/from the value U2. Precision is used to test the equalities.)#"  , py::arg("UFirst"),  py::arg("ULast"),  py::arg("Precision"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

@@ -50,9 +50,12 @@ py::module m = static_cast<py::module>(main_module.attr("XmlObjMgt"));
 
 // classes
 
+    // default constructor
     register_default_constructor<XmlObjMgt , shared_ptr<XmlObjMgt>>(m,"XmlObjMgt");
 
     static_cast<py::class_<XmlObjMgt , shared_ptr<XmlObjMgt>  >>(m.attr("XmlObjMgt"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -91,13 +94,15 @@ py::module m = static_cast<py::module>(main_module.attr("XmlObjMgt"));
                     R"#(None)#"  , py::arg("theString"),  py::arg("theValue"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlObjMgt_Array1 , shared_ptr<XmlObjMgt_Array1>  >>(m.attr("XmlObjMgt_Array1"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("Low"),  py::arg("Up") )
         .def(py::init<  const LDOM_Element &, const LDOMString & >()  , py::arg("theParent"),  py::arg("theName") )
+    // custom constructors
     // methods
         .def("CreateArrayElement",
              (void (XmlObjMgt_Array1::*)( LDOM_Element & ,   const LDOMString &  ) ) static_cast<void (XmlObjMgt_Array1::*)( LDOM_Element & ,   const LDOMString &  ) >(&XmlObjMgt_Array1::CreateArrayElement),
@@ -136,12 +141,15 @@ py::module m = static_cast<py::module>(main_module.attr("XmlObjMgt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<XmlObjMgt_GP , shared_ptr<XmlObjMgt_GP>>(m,"XmlObjMgt_GP");
 
     static_cast<py::class_<XmlObjMgt_GP , shared_ptr<XmlObjMgt_GP>  >>(m.attr("XmlObjMgt_GP"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -165,14 +173,16 @@ py::module m = static_cast<py::module>(main_module.attr("XmlObjMgt"));
                     R"#(None)#"  , py::arg("aStr"),  py::arg("T"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<XmlObjMgt_Persistent , shared_ptr<XmlObjMgt_Persistent>  >>(m.attr("XmlObjMgt_Persistent"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const LDOM_Element & >()  , py::arg("theElement") )
         .def(py::init<  const LDOM_Element &, const LDOMString & >()  , py::arg("theElement"),  py::arg("theRef") )
+    // custom constructors
     // methods
         .def("CreateElement",
              (void (XmlObjMgt_Persistent::*)( LDOM_Element & ,   const LDOMString & ,  const Standard_Integer  ) ) static_cast<void (XmlObjMgt_Persistent::*)( LDOM_Element & ,   const LDOMString & ,  const Standard_Integer  ) >(&XmlObjMgt_Persistent::CreateElement),
@@ -202,18 +212,64 @@ py::module m = static_cast<py::module>(main_module.attr("XmlObjMgt"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<XmlObjMgt_RRelocationTable , shared_ptr<XmlObjMgt_RRelocationTable>>(m,"XmlObjMgt_RRelocationTable");
+
+    static_cast<py::class_<XmlObjMgt_RRelocationTable , shared_ptr<XmlObjMgt_RRelocationTable>  >>(m.attr("XmlObjMgt_RRelocationTable"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("GetHeaderData",
+             (const opencascade::handle<Storage_HeaderData> & (XmlObjMgt_RRelocationTable::*)() const) static_cast<const opencascade::handle<Storage_HeaderData> & (XmlObjMgt_RRelocationTable::*)() const>(&XmlObjMgt_RRelocationTable::GetHeaderData),
+             R"#(Returns a handle to the header data of the file that is begin read)#" )
+        .def("SetHeaderData",
+             (void (XmlObjMgt_RRelocationTable::*)( const opencascade::handle<Storage_HeaderData> &  ) ) static_cast<void (XmlObjMgt_RRelocationTable::*)( const opencascade::handle<Storage_HeaderData> &  ) >(&XmlObjMgt_RRelocationTable::SetHeaderData),
+             R"#(Sets the storage header data.)#"  , py::arg("theHeaderData"))
+        .def("Clear",
+             (void (XmlObjMgt_RRelocationTable::*)( const Standard_Boolean  ) ) static_cast<void (XmlObjMgt_RRelocationTable::*)( const Standard_Boolean  ) >(&XmlObjMgt_RRelocationTable::Clear),
+             R"#(None)#"  , py::arg("doReleaseMemory")=static_cast<const Standard_Boolean>(Standard_True))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<XmlObjMgt_SRelocationTable , shared_ptr<XmlObjMgt_SRelocationTable>>(m,"XmlObjMgt_SRelocationTable");
+
+    static_cast<py::class_<XmlObjMgt_SRelocationTable , shared_ptr<XmlObjMgt_SRelocationTable>  >>(m.attr("XmlObjMgt_SRelocationTable"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("GetHeaderData",
+             (const opencascade::handle<Storage_HeaderData> & (XmlObjMgt_SRelocationTable::*)() const) static_cast<const opencascade::handle<Storage_HeaderData> & (XmlObjMgt_SRelocationTable::*)() const>(&XmlObjMgt_SRelocationTable::GetHeaderData),
+             R"#(Returns a handle to the header data of the file that is begin read)#" )
+        .def("SetHeaderData",
+             (void (XmlObjMgt_SRelocationTable::*)( const opencascade::handle<Storage_HeaderData> &  ) ) static_cast<void (XmlObjMgt_SRelocationTable::*)( const opencascade::handle<Storage_HeaderData> &  ) >(&XmlObjMgt_SRelocationTable::SetHeaderData),
+             R"#(Sets the storage header data.)#"  , py::arg("theHeaderData"))
+        .def("Clear",
+             (void (XmlObjMgt_SRelocationTable::*)( const Standard_Boolean  ) ) static_cast<void (XmlObjMgt_SRelocationTable::*)( const Standard_Boolean  ) >(&XmlObjMgt_SRelocationTable::Clear),
+             R"#(None)#"  , py::arg("doReleaseMemory")=static_cast<const Standard_Boolean>(Standard_True))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/XmlObjMgt_Array1.hxx
-// ./opencascade/XmlObjMgt_SRelocationTable.hxx
 // ./opencascade/XmlObjMgt_DOMString.hxx
-// ./opencascade/XmlObjMgt_RRelocationTable.hxx
 // ./opencascade/XmlObjMgt_Document.hxx
+// ./opencascade/XmlObjMgt_RRelocationTable.hxx
 // ./opencascade/XmlObjMgt_Persistent.hxx
+// ./opencascade/XmlObjMgt_SRelocationTable.hxx
 // ./opencascade/XmlObjMgt.hxx
 // ./opencascade/XmlObjMgt_GP.hxx
+// ./opencascade/XmlObjMgt_Array1.hxx
 // ./opencascade/XmlObjMgt_Element.hxx
 
 // operators

@@ -13,38 +13,12 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <IGESDraw_NetworkSubfigureDef.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <IGESGraph_TextDisplayTemplate.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDraw_ConnectPoint.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDraw_RectArraySubfigure.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESGeom_TransformationMatrix.hxx>
-#include <gp_Pnt2d.hxx>
+#include <IGESGeom_Plane.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <IGESData_TransfEntity.hxx>
 #include <gp_XYZ.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDraw_PerspectiveView.hxx>
+#include <IGESDraw_CircArraySubfigure.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -55,6 +29,31 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDraw_NetworkSubfigureDef.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Vec.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Pnt2d.hxx>
+#include <IGESData_TransfEntity.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESDraw_DrawingWithRotation.hxx>
 #include <IGESData_IGESReaderData.hxx>
@@ -68,88 +67,19 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESData_IGESEntity.hxx>
+#include <IGESDraw_View.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
 #include <IGESDraw_Drawing.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDraw_SegmentedViewsVisible.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESGeom_Plane.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <IGESData_TransfEntity.hxx>
-#include <gp_XYZ.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDraw_ViewsVisible.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <IGESData_IGESEntity.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDraw_LabelDisplay.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDraw_ViewsVisibleWithAttr.hxx>
-#include <IGESData_IGESReaderData.hxx>
-#include <IGESData_ParamReader.hxx>
-#include <IGESData_IGESWriter.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IGESData_DirChecker.hxx>
-#include <Interface_ShareTool.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CopyTool.hxx>
-#include <IGESData_IGESDumper.hxx>
-#include <Message_Messenger.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Pnt2d.hxx>
-#include <IGESData_TransfEntity.hxx>
-#include <Standard_DomainError.hxx>
-#include <IGESDraw_View.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -173,7 +103,7 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDraw_CircArraySubfigure.hxx>
+#include <IGESDraw_ViewsVisible.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -184,10 +114,9 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <gp_Pnt2d.hxx>
-#include <gp_XYZ.hxx>
+#include <IGESGeom_TransformationMatrix.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDraw_NetworkSubfigureDef.hxx>
+#include <IGESDraw_SegmentedViewsVisible.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -199,7 +128,7 @@ namespace py = pybind11;
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
 #include <Standard_DomainError.hxx>
-#include <IGESDraw_NetworkSubfigure.hxx>
+#include <IGESDraw_ViewsVisibleWithAttr.hxx>
 #include <IGESData_IGESReaderData.hxx>
 #include <IGESData_ParamReader.hxx>
 #include <IGESData_IGESWriter.hxx>
@@ -210,9 +139,6 @@ namespace py = pybind11;
 #include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <IGESGraph_TextDisplayTemplate.hxx>
-#include <gp_Pnt.hxx>
 #include <IGESDraw_Protocol.hxx>
 #include <IGESDraw_ConnectPoint.hxx>
 #include <IGESDraw_NetworkSubfigureDef.hxx>
@@ -249,9 +175,83 @@ namespace py = pybind11;
 #include <TCollection_HAsciiString.hxx>
 #include <IGESGraph_TextDisplayTemplate.hxx>
 #include <gp_Pnt.hxx>
-#include <IGESData_IGESEntity.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <IGESGraph_TextDisplayTemplate.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_XYZ.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDraw_RectArraySubfigure.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
 #include <IGESData_IGESDumper.hxx>
 #include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDraw_ConnectPoint.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDraw_LabelDisplay.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESData_IGESEntity.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <IGESDraw_NetworkSubfigureDef.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <IGESGraph_TextDisplayTemplate.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDraw_PerspectiveView.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <Standard_DomainError.hxx>
+#include <IGESDraw_NetworkSubfigure.hxx>
+#include <IGESData_IGESReaderData.hxx>
+#include <IGESData_ParamReader.hxx>
+#include <IGESData_IGESWriter.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IGESData_DirChecker.hxx>
+#include <Interface_ShareTool.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CopyTool.hxx>
+#include <IGESData_IGESDumper.hxx>
+#include <Message_Messenger.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Pnt2d.hxx>
+#include <gp_XYZ.hxx>
+#include <gp_Pnt.hxx>
 
 // module includes
 #include <IGESDraw.hxx>
@@ -293,9 +293,9 @@ namespace py = pybind11;
 #include <IGESDraw_ViewsVisibleWithAttr.hxx>
 
 // template related includes
-// ./opencascade/IGESDraw_Array1OfConnectPoint.hxx
-#include "NCollection.hxx"
 // ./opencascade/IGESDraw_Array1OfViewKindEntity.hxx
+#include "NCollection.hxx"
+// ./opencascade/IGESDraw_Array1OfConnectPoint.hxx
 #include "NCollection.hxx"
 
 
@@ -315,9 +315,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESDraw , shared_ptr<IGESDraw>>(m,"IGESDraw");
 
     static_cast<py::class_<IGESDraw , shared_ptr<IGESDraw>  >>(m.attr("IGESDraw"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -329,12 +332,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(Returns the Protocol for this Package)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_CircArraySubfigure ,opencascade::handle<IGESDraw_CircArraySubfigure>  , IGESData_IGESEntity >>(m.attr("IGESDraw_CircArraySubfigure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_CircArraySubfigure::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const gp_XYZ & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESDraw_CircArraySubfigure::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const gp_XYZ & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESDraw_CircArraySubfigure::Init),
@@ -388,12 +393,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ConnectPoint ,opencascade::handle<IGESDraw_ConnectPoint>  , IGESData_IGESEntity >>(m.attr("IGESDraw_ConnectPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_ConnectPoint::*)( const gp_XYZ & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<void (IGESDraw_ConnectPoint::*)( const gp_XYZ & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESDraw_ConnectPoint::Init),
@@ -462,12 +469,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_Drawing ,opencascade::handle<IGESDraw_Drawing>  , IGESData_IGESEntity >>(m.attr("IGESDraw_Drawing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_Drawing::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColgp_HArray1OfXY> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDraw_Drawing::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColgp_HArray1OfXY> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDraw_Drawing::Init),
@@ -509,12 +518,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_DrawingWithRotation ,opencascade::handle<IGESDraw_DrawingWithRotation>  , IGESData_IGESEntity >>(m.attr("IGESDraw_DrawingWithRotation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_DrawingWithRotation::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColgp_HArray1OfXY> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDraw_DrawingWithRotation::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColgp_HArray1OfXY> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDraw_DrawingWithRotation::Init),
@@ -559,12 +570,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_GeneralModule ,opencascade::handle<IGESDraw_GeneralModule>  , IGESData_GeneralModule >>(m.attr("IGESDraw_GeneralModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnSharedCase",
              (void (IGESDraw_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const) static_cast<void (IGESDraw_GeneralModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  Interface_EntityIterator &  ) const>(&IGESDraw_GeneralModule::OwnSharedCase),
@@ -606,14 +619,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_HArray1OfConnectPoint ,opencascade::handle<IGESDraw_HArray1OfConnectPoint>  , IGESDraw_Array1OfConnectPoint , Standard_Transient >>(m.attr("IGESDraw_HArray1OfConnectPoint"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESDraw_ConnectPoint> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESDraw_ConnectPoint> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESDraw_Array1OfConnectPoint & (IGESDraw_HArray1OfConnectPoint::*)() const) static_cast<const IGESDraw_Array1OfConnectPoint & (IGESDraw_HArray1OfConnectPoint::*)() const>(&IGESDraw_HArray1OfConnectPoint::Array1),
@@ -634,14 +650,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_HArray1OfViewKindEntity ,opencascade::handle<IGESDraw_HArray1OfViewKindEntity>  , IGESDraw_Array1OfViewKindEntity , Standard_Transient >>(m.attr("IGESDraw_HArray1OfViewKindEntity"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<IGESData_ViewKindEntity> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<IGESData_ViewKindEntity> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const IGESDraw_Array1OfViewKindEntity & (IGESDraw_HArray1OfViewKindEntity::*)() const) static_cast<const IGESDraw_Array1OfViewKindEntity & (IGESDraw_HArray1OfViewKindEntity::*)() const>(&IGESDraw_HArray1OfViewKindEntity::Array1),
@@ -662,12 +681,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_LabelDisplay ,opencascade::handle<IGESDraw_LabelDisplay>  , IGESData_LabelDisplayEntity >>(m.attr("IGESDraw_LabelDisplay"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_LabelDisplay::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDraw_LabelDisplay::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColgp_HArray1OfXYZ> & ,  const opencascade::handle<IGESDimen_HArray1OfLeaderArrow> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDraw_LabelDisplay::Init),
@@ -706,12 +727,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_NetworkSubfigure ,opencascade::handle<IGESDraw_NetworkSubfigure>  , IGESData_IGESEntity >>(m.attr("IGESDraw_NetworkSubfigure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_NetworkSubfigure::*)( const opencascade::handle<IGESDraw_NetworkSubfigureDef> & ,  const gp_XYZ & ,  const gp_XYZ & ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<IGESDraw_HArray1OfConnectPoint> &  ) ) static_cast<void (IGESDraw_NetworkSubfigure::*)( const opencascade::handle<IGESDraw_NetworkSubfigureDef> & ,  const gp_XYZ & ,  const gp_XYZ & ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<IGESDraw_HArray1OfConnectPoint> &  ) >(&IGESDraw_NetworkSubfigure::Init),
@@ -759,12 +782,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_NetworkSubfigureDef ,opencascade::handle<IGESDraw_NetworkSubfigureDef>  , IGESData_IGESEntity >>(m.attr("IGESDraw_NetworkSubfigureDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_NetworkSubfigureDef::*)( const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<IGESDraw_HArray1OfConnectPoint> &  ) ) static_cast<void (IGESDraw_NetworkSubfigureDef::*)( const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> & ,  const Standard_Integer ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<IGESGraph_TextDisplayTemplate> & ,  const opencascade::handle<IGESDraw_HArray1OfConnectPoint> &  ) >(&IGESDraw_NetworkSubfigureDef::Init),
@@ -815,12 +840,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_PerspectiveView ,opencascade::handle<IGESDraw_PerspectiveView>  , IGESData_ViewKindEntity >>(m.attr("IGESDraw_PerspectiveView"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_PerspectiveView::*)( const Standard_Integer ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const Standard_Real ,  const gp_XY & ,  const gp_XY & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IGESDraw_PerspectiveView::*)( const Standard_Integer ,  const Standard_Real ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const gp_XYZ & ,  const Standard_Real ,  const gp_XY & ,  const gp_XY & ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&IGESDraw_PerspectiveView::Init),
@@ -889,12 +916,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_Planar ,opencascade::handle<IGESDraw_Planar>  , IGESData_IGESEntity >>(m.attr("IGESDraw_Planar"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_Planar::*)( const Standard_Integer ,  const opencascade::handle<IGESGeom_TransformationMatrix> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDraw_Planar::*)( const Standard_Integer ,  const opencascade::handle<IGESGeom_TransformationMatrix> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDraw_Planar::Init),
@@ -927,12 +956,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_Protocol ,opencascade::handle<IGESDraw_Protocol>  , IGESData_Protocol >>(m.attr("IGESDraw_Protocol"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NbResources",
              (Standard_Integer (IGESDraw_Protocol::*)() const) static_cast<Standard_Integer (IGESDraw_Protocol::*)() const>(&IGESDraw_Protocol::NbResources),
@@ -956,12 +987,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ReadWriteModule ,opencascade::handle<IGESDraw_ReadWriteModule>  , IGESData_ReadWriteModule >>(m.attr("IGESDraw_ReadWriteModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseIGES",
              (Standard_Integer (IGESDraw_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const) static_cast<Standard_Integer (IGESDraw_ReadWriteModule::*)( const Standard_Integer ,  const Standard_Integer  ) const>(&IGESDraw_ReadWriteModule::CaseIGES),
@@ -985,12 +1018,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_RectArraySubfigure ,opencascade::handle<IGESDraw_RectArraySubfigure>  , IGESData_IGESEntity >>(m.attr("IGESDraw_RectArraySubfigure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_RectArraySubfigure::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const gp_XYZ & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESDraw_RectArraySubfigure::*)( const opencascade::handle<IGESData_IGESEntity> & ,  const Standard_Real ,  const gp_XYZ & ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Integer ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESDraw_RectArraySubfigure::Init),
@@ -1050,12 +1085,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_SegmentedViewsVisible ,opencascade::handle<IGESDraw_SegmentedViewsVisible>  , IGESData_ViewKindEntity >>(m.attr("IGESDraw_SegmentedViewsVisible"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_SegmentedViewsVisible::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESGraph_HArray1OfColor> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfLineFontEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) ) static_cast<void (IGESDraw_SegmentedViewsVisible::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESGraph_HArray1OfColor> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfLineFontEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> &  ) >(&IGESDraw_SegmentedViewsVisible::Init),
@@ -1112,12 +1149,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_SpecificModule ,opencascade::handle<IGESDraw_SpecificModule>  , IGESData_SpecificModule >>(m.attr("IGESDraw_SpecificModule"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("OwnDump",
              (void (IGESDraw_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const) static_cast<void (IGESDraw_SpecificModule::*)( const Standard_Integer ,  const opencascade::handle<IGESData_IGESEntity> & ,  const IGESData_IGESDumper & ,  const opencascade::handle<Message_Messenger> & ,  const Standard_Integer  ) const>(&IGESDraw_SpecificModule::OwnDump),
@@ -1138,12 +1177,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolCircArraySubfigure , shared_ptr<IGESDraw_ToolCircArraySubfigure>  >>(m.attr("IGESDraw_ToolCircArraySubfigure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolCircArraySubfigure::*)( const opencascade::handle<IGESDraw_CircArraySubfigure> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolCircArraySubfigure::*)( const opencascade::handle<IGESDraw_CircArraySubfigure> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolCircArraySubfigure::ReadOwnParams),
@@ -1170,12 +1211,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolConnectPoint , shared_ptr<IGESDraw_ToolConnectPoint>  >>(m.attr("IGESDraw_ToolConnectPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolConnectPoint::*)( const opencascade::handle<IGESDraw_ConnectPoint> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolConnectPoint::*)( const opencascade::handle<IGESDraw_ConnectPoint> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolConnectPoint::ReadOwnParams),
@@ -1202,12 +1245,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolDrawing , shared_ptr<IGESDraw_ToolDrawing>  >>(m.attr("IGESDraw_ToolDrawing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolDrawing::*)( const opencascade::handle<IGESDraw_Drawing> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolDrawing::*)( const opencascade::handle<IGESDraw_Drawing> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolDrawing::ReadOwnParams),
@@ -1237,12 +1282,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolDrawingWithRotation , shared_ptr<IGESDraw_ToolDrawingWithRotation>  >>(m.attr("IGESDraw_ToolDrawingWithRotation"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolDrawingWithRotation::*)( const opencascade::handle<IGESDraw_DrawingWithRotation> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolDrawingWithRotation::*)( const opencascade::handle<IGESDraw_DrawingWithRotation> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolDrawingWithRotation::ReadOwnParams),
@@ -1272,12 +1319,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolLabelDisplay , shared_ptr<IGESDraw_ToolLabelDisplay>  >>(m.attr("IGESDraw_ToolLabelDisplay"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolLabelDisplay::*)( const opencascade::handle<IGESDraw_LabelDisplay> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolLabelDisplay::*)( const opencascade::handle<IGESDraw_LabelDisplay> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolLabelDisplay::ReadOwnParams),
@@ -1304,12 +1353,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolNetworkSubfigure , shared_ptr<IGESDraw_ToolNetworkSubfigure>  >>(m.attr("IGESDraw_ToolNetworkSubfigure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolNetworkSubfigure::*)( const opencascade::handle<IGESDraw_NetworkSubfigure> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolNetworkSubfigure::*)( const opencascade::handle<IGESDraw_NetworkSubfigure> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolNetworkSubfigure::ReadOwnParams),
@@ -1336,12 +1387,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolNetworkSubfigureDef , shared_ptr<IGESDraw_ToolNetworkSubfigureDef>  >>(m.attr("IGESDraw_ToolNetworkSubfigureDef"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolNetworkSubfigureDef::*)( const opencascade::handle<IGESDraw_NetworkSubfigureDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolNetworkSubfigureDef::*)( const opencascade::handle<IGESDraw_NetworkSubfigureDef> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolNetworkSubfigureDef::ReadOwnParams),
@@ -1368,12 +1421,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolPerspectiveView , shared_ptr<IGESDraw_ToolPerspectiveView>  >>(m.attr("IGESDraw_ToolPerspectiveView"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolPerspectiveView::*)( const opencascade::handle<IGESDraw_PerspectiveView> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolPerspectiveView::*)( const opencascade::handle<IGESDraw_PerspectiveView> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolPerspectiveView::ReadOwnParams),
@@ -1400,12 +1455,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolPlanar , shared_ptr<IGESDraw_ToolPlanar>  >>(m.attr("IGESDraw_ToolPlanar"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolPlanar::*)( const opencascade::handle<IGESDraw_Planar> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolPlanar::*)( const opencascade::handle<IGESDraw_Planar> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolPlanar::ReadOwnParams),
@@ -1435,12 +1492,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolRectArraySubfigure , shared_ptr<IGESDraw_ToolRectArraySubfigure>  >>(m.attr("IGESDraw_ToolRectArraySubfigure"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolRectArraySubfigure::*)( const opencascade::handle<IGESDraw_RectArraySubfigure> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolRectArraySubfigure::*)( const opencascade::handle<IGESDraw_RectArraySubfigure> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolRectArraySubfigure::ReadOwnParams),
@@ -1467,12 +1526,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolSegmentedViewsVisible , shared_ptr<IGESDraw_ToolSegmentedViewsVisible>  >>(m.attr("IGESDraw_ToolSegmentedViewsVisible"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolSegmentedViewsVisible::*)( const opencascade::handle<IGESDraw_SegmentedViewsVisible> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolSegmentedViewsVisible::*)( const opencascade::handle<IGESDraw_SegmentedViewsVisible> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolSegmentedViewsVisible::ReadOwnParams),
@@ -1499,12 +1560,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolView , shared_ptr<IGESDraw_ToolView>  >>(m.attr("IGESDraw_ToolView"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolView::*)( const opencascade::handle<IGESDraw_View> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolView::*)( const opencascade::handle<IGESDraw_View> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolView::ReadOwnParams),
@@ -1531,12 +1594,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolViewsVisible , shared_ptr<IGESDraw_ToolViewsVisible>  >>(m.attr("IGESDraw_ToolViewsVisible"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolViewsVisible::*)( const opencascade::handle<IGESDraw_ViewsVisible> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolViewsVisible::*)( const opencascade::handle<IGESDraw_ViewsVisible> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolViewsVisible::ReadOwnParams),
@@ -1575,12 +1640,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ToolViewsVisibleWithAttr , shared_ptr<IGESDraw_ToolViewsVisibleWithAttr>  >>(m.attr("IGESDraw_ToolViewsVisibleWithAttr"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadOwnParams",
              (void (IGESDraw_ToolViewsVisibleWithAttr::*)( const opencascade::handle<IGESDraw_ViewsVisibleWithAttr> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const) static_cast<void (IGESDraw_ToolViewsVisibleWithAttr::*)( const opencascade::handle<IGESDraw_ViewsVisibleWithAttr> & ,  const opencascade::handle<IGESData_IGESReaderData> & ,  IGESData_ParamReader &  ) const>(&IGESDraw_ToolViewsVisibleWithAttr::ReadOwnParams),
@@ -1619,12 +1686,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_View ,opencascade::handle<IGESDraw_View>  , IGESData_ViewKindEntity >>(m.attr("IGESDraw_View"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_View::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> &  ) ) static_cast<void (IGESDraw_View::*)( const Standard_Integer ,  const Standard_Real ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> & ,  const opencascade::handle<IGESGeom_Plane> &  ) >(&IGESDraw_View::Init),
@@ -1699,12 +1768,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ViewsVisible ,opencascade::handle<IGESDraw_ViewsVisible>  , IGESData_ViewKindEntity >>(m.attr("IGESDraw_ViewsVisible"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_ViewsVisible::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDraw_ViewsVisible::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDraw_ViewsVisible::Init),
@@ -1740,12 +1811,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESDraw_ViewsVisibleWithAttr ,opencascade::handle<IGESDraw_ViewsVisibleWithAttr>  , IGESData_ViewKindEntity >>(m.attr("IGESDraw_ViewsVisibleWithAttr"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESDraw_ViewsVisibleWithAttr::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfLineFontEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESGraph_HArray1OfColor> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) ) static_cast<void (IGESDraw_ViewsVisibleWithAttr::*)( const opencascade::handle<IGESDraw_HArray1OfViewKindEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESBasic_HArray1OfLineFontEntity> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESGraph_HArray1OfColor> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<IGESData_HArray1OfIGESEntity> &  ) >(&IGESDraw_ViewsVisibleWithAttr::Init),
@@ -1802,53 +1875,53 @@ py::module m = static_cast<py::module>(main_module.attr("IGESDraw"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESDraw_HArray1OfViewKindEntity.hxx
-// ./opencascade/IGESDraw_NetworkSubfigure.hxx
-// ./opencascade/IGESDraw_ToolConnectPoint.hxx
-// ./opencascade/IGESDraw_Array1OfConnectPoint.hxx
-// ./opencascade/IGESDraw_ToolRectArraySubfigure.hxx
-// ./opencascade/IGESDraw_Planar.hxx
-// ./opencascade/IGESDraw_DrawingWithRotation.hxx
-// ./opencascade/IGESDraw_ToolPerspectiveView.hxx
-// ./opencascade/IGESDraw_ToolDrawingWithRotation.hxx
-// ./opencascade/IGESDraw_HArray1OfConnectPoint.hxx
-// ./opencascade/IGESDraw_Protocol.hxx
-// ./opencascade/IGESDraw_Array1OfViewKindEntity.hxx
-// ./opencascade/IGESDraw_ReadWriteModule.hxx
-// ./opencascade/IGESDraw_ToolDrawing.hxx
-// ./opencascade/IGESDraw_LabelDisplay.hxx
-// ./opencascade/IGESDraw_ToolSegmentedViewsVisible.hxx
-// ./opencascade/IGESDraw_SegmentedViewsVisible.hxx
 // ./opencascade/IGESDraw_View.hxx
-// ./opencascade/IGESDraw_ToolViewsVisible.hxx
-// ./opencascade/IGESDraw_GeneralModule.hxx
-// ./opencascade/IGESDraw_ToolLabelDisplay.hxx
-// ./opencascade/IGESDraw_ToolViewsVisibleWithAttr.hxx
-// ./opencascade/IGESDraw_RectArraySubfigure.hxx
+// ./opencascade/IGESDraw_ToolCircArraySubfigure.hxx
+// ./opencascade/IGESDraw_HArray1OfViewKindEntity.hxx
+// ./opencascade/IGESDraw_ToolNetworkSubfigureDef.hxx
+// ./opencascade/IGESDraw_SpecificModule.hxx
 // ./opencascade/IGESDraw_PerspectiveView.hxx
 // ./opencascade/IGESDraw_ViewsVisibleWithAttr.hxx
+// ./opencascade/IGESDraw_GeneralModule.hxx
+// ./opencascade/IGESDraw_ToolDrawingWithRotation.hxx
 // ./opencascade/IGESDraw_ToolView.hxx
+// ./opencascade/IGESDraw_ToolDrawing.hxx
 // ./opencascade/IGESDraw_ToolPlanar.hxx
-// ./opencascade/IGESDraw_ToolCircArraySubfigure.hxx
-// ./opencascade/IGESDraw_Drawing.hxx
-// ./opencascade/IGESDraw_ToolNetworkSubfigureDef.hxx
-// ./opencascade/IGESDraw_ToolNetworkSubfigure.hxx
-// ./opencascade/IGESDraw_ConnectPoint.hxx
-// ./opencascade/IGESDraw_ViewsVisible.hxx
+// ./opencascade/IGESDraw_ToolViewsVisible.hxx
+// ./opencascade/IGESDraw_Planar.hxx
+// ./opencascade/IGESDraw_Array1OfViewKindEntity.hxx
+// ./opencascade/IGESDraw_ToolSegmentedViewsVisible.hxx
+// ./opencascade/IGESDraw_SegmentedViewsVisible.hxx
+// ./opencascade/IGESDraw_ToolViewsVisibleWithAttr.hxx
 // ./opencascade/IGESDraw.hxx
+// ./opencascade/IGESDraw_ConnectPoint.hxx
 // ./opencascade/IGESDraw_NetworkSubfigureDef.hxx
+// ./opencascade/IGESDraw_ViewsVisible.hxx
+// ./opencascade/IGESDraw_Drawing.hxx
+// ./opencascade/IGESDraw_ToolRectArraySubfigure.hxx
+// ./opencascade/IGESDraw_ToolConnectPoint.hxx
+// ./opencascade/IGESDraw_RectArraySubfigure.hxx
+// ./opencascade/IGESDraw_Array1OfConnectPoint.hxx
+// ./opencascade/IGESDraw_ToolLabelDisplay.hxx
+// ./opencascade/IGESDraw_HArray1OfConnectPoint.hxx
+// ./opencascade/IGESDraw_ReadWriteModule.hxx
+// ./opencascade/IGESDraw_NetworkSubfigure.hxx
+// ./opencascade/IGESDraw_ToolPerspectiveView.hxx
+// ./opencascade/IGESDraw_ToolNetworkSubfigure.hxx
 // ./opencascade/IGESDraw_CircArraySubfigure.hxx
-// ./opencascade/IGESDraw_SpecificModule.hxx
+// ./opencascade/IGESDraw_Protocol.hxx
+// ./opencascade/IGESDraw_DrawingWithRotation.hxx
+// ./opencascade/IGESDraw_LabelDisplay.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<opencascade::handle<IGESDraw_ConnectPoint> >(m,"IGESDraw_Array1OfConnectPoint");  
     register_template_NCollection_Array1<opencascade::handle<IGESData_ViewKindEntity> >(m,"IGESDraw_Array1OfViewKindEntity");  
+    register_template_NCollection_Array1<opencascade::handle<IGESDraw_ConnectPoint> >(m,"IGESDraw_Array1OfConnectPoint");  
 
 
 // exceptions

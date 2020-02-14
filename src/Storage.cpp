@@ -13,31 +13,7 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Standard_Persistent.hxx>
 #include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_StreamFormatError.hxx>
-#include <Storage_StreamWriteError.hxx>
-#include <Storage_CallBack.hxx>
-#include <Storage_HeaderData.hxx>
-#include <Storage_RootData.hxx>
-#include <Storage_TypeData.hxx>
-#include <Storage_InternalData.hxx>
-#include <Storage_Schema.hxx>
-#include <Standard_Persistent.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <Standard_Persistent.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <Standard_Persistent.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_Schema.hxx>
-#include <Storage_BaseDriver.hxx>
-#include <Standard_Persistent.hxx>
 #include <Storage_Schema.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Storage_BaseDriver.hxx>
@@ -52,11 +28,35 @@ namespace py = pybind11;
 #include <Storage_InternalData.hxx>
 #include <Storage_TypedCallBack.hxx>
 #include <Storage_Schema.hxx>
+#include <Storage_BaseDriver.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_BaseDriver.hxx>
+#include <Standard_Persistent.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_CallBack.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_BaseDriver.hxx>
+#include <Standard_Persistent.hxx>
+#include <Standard_Persistent.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_BaseDriver.hxx>
 #include <Storage_CallBack.hxx>
 #include <Storage_StreamFormatError.hxx>
 #include <Storage_HeaderData.hxx>
 #include <Storage_TypeData.hxx>
 #include <Storage_RootData.hxx>
+#include <Storage_HeaderData.hxx>
+#include <Storage_RootData.hxx>
+#include <Storage_TypeData.hxx>
+#include <Storage_InternalData.hxx>
+#include <Storage_Schema.hxx>
+#include <Standard_Persistent.hxx>
+#include <Storage_StreamFormatError.hxx>
+#include <Storage_StreamWriteError.hxx>
+#include <Standard_Persistent.hxx>
+#include <Storage_Schema.hxx>
+#include <Storage_BaseDriver.hxx>
 
 // module includes
 #include <Storage.hxx>
@@ -99,17 +99,17 @@ namespace py = pybind11;
 #include <Storage_TypedCallBack.hxx>
 
 // template related includes
-// ./opencascade/Storage_MapOfCallBack.hxx
+// ./opencascade/Storage_SeqOfRoot.hxx
 #include "NCollection.hxx"
 // ./opencascade/Storage_MapOfPers.hxx
 #include "NCollection.hxx"
-// ./opencascade/Storage_PType.hxx
-#include "NCollection.hxx"
-// ./opencascade/Storage_SeqOfRoot.hxx
+// ./opencascade/Storage_MapOfCallBack.hxx
 #include "NCollection.hxx"
 // ./opencascade/Storage_PArray.hxx
 #include "NCollection.hxx"
 // ./opencascade/Storage_ArrayOfSchema.hxx
+#include "NCollection.hxx"
+// ./opencascade/Storage_PType.hxx
 #include "NCollection.hxx"
 // ./opencascade/Storage_ArrayOfCallBack.hxx
 #include "NCollection.hxx"
@@ -131,6 +131,7 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
     class Py_Storage_BaseDriver : public Storage_BaseDriver{
     public:
         using Storage_BaseDriver::Storage_BaseDriver;
+        
         
         // public pure virtual
         Storage_Error Open(const TCollection_AsciiString & aName,const Storage_OpenMode aMode) override { PYBIND11_OVERLOAD_PURE(Storage_Error,Storage_BaseDriver,Open,aName,aMode) };
@@ -215,6 +216,7 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
     public:
         using Storage_CallBack::Storage_CallBack;
         
+        
         // public pure virtual
         opencascade::handle<Standard_Persistent> New() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Standard_Persistent>,Storage_CallBack,New,) };
         void Add(const opencascade::handle<Standard_Persistent> & aPers,const opencascade::handle<Storage_Schema> & aSchema) const  override { PYBIND11_OVERLOAD_PURE(void,Storage_CallBack,Add,aPers,aSchema) };
@@ -231,9 +233,12 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Storage , shared_ptr<Storage>>(m,"Storage");
 
     static_cast<py::class_<Storage , shared_ptr<Storage>  >>(m.attr("Storage"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -242,11 +247,13 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(returns the version of Storage's read/write routines)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_BaseDriver , shared_ptr<Storage_BaseDriver> ,Py_Storage_BaseDriver >>(m.attr("Storage_BaseDriver"))
+    // constructors
+    // custom constructors
     // methods
         .def("Open",
              (Storage_Error (Storage_BaseDriver::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) ) static_cast<Storage_Error (Storage_BaseDriver::*)( const TCollection_AsciiString & ,  const Storage_OpenMode  ) >(&Storage_BaseDriver::Open),
@@ -477,13 +484,15 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#"  , py::arg("theIStream"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_Bucket , shared_ptr<Storage_Bucket>  >>(m.attr("Storage_Bucket"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Integer >()  , py::arg("theSpaceSize") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (Storage_Bucket::*)() ) static_cast<void (Storage_Bucket::*)() >(&Storage_Bucket::Clear),
@@ -492,12 +501,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_BucketIterator , shared_ptr<Storage_BucketIterator>  >>(m.attr("Storage_BucketIterator"))
+    // constructors
         .def(py::init< Storage_BucketOfPersistent * >()  , py::arg("") )
+    // custom constructors
     // methods
         .def("Init",
              (void (Storage_BucketIterator::*)( Storage_BucketOfPersistent *  ) ) static_cast<void (Storage_BucketIterator::*)( Storage_BucketOfPersistent *  ) >(&Storage_BucketIterator::Init),
@@ -518,12 +529,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_BucketOfPersistent , shared_ptr<Storage_BucketOfPersistent>  >>(m.attr("Storage_BucketOfPersistent"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theBucketSize")=static_cast<const Standard_Integer>(300000),  py::arg("theBucketNumber")=static_cast<const Standard_Integer>(100) )
+    // custom constructors
     // methods
         .def("Length",
              (Standard_Integer (Storage_BucketOfPersistent::*)() const) static_cast<Standard_Integer (Storage_BucketOfPersistent::*)() const>(&Storage_BucketOfPersistent::Length),
@@ -541,11 +554,13 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_CallBack ,opencascade::handle<Storage_CallBack> ,Py_Storage_CallBack , Standard_Transient >>(m.attr("Storage_CallBack"))
+    // constructors
+    // custom constructors
     // methods
         .def("New",
              (opencascade::handle<Standard_Persistent> (Storage_CallBack::*)() const) static_cast<opencascade::handle<Standard_Persistent> (Storage_CallBack::*)() const>(&Storage_CallBack::New),
@@ -572,12 +587,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_Data ,opencascade::handle<Storage_Data>  , Standard_Transient >>(m.attr("Storage_Data"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ErrorStatus",
              (Storage_Error (Storage_Data::*)() const) static_cast<Storage_Error (Storage_Data::*)() const>(&Storage_Data::ErrorStatus),
@@ -691,14 +708,17 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_HArrayOfCallBack ,opencascade::handle<Storage_HArrayOfCallBack>  , Storage_ArrayOfCallBack , Standard_Transient >>(m.attr("Storage_HArrayOfCallBack"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Storage_CallBack> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Storage_CallBack> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Storage_ArrayOfCallBack & (Storage_HArrayOfCallBack::*)() const) static_cast<const Storage_ArrayOfCallBack & (Storage_HArrayOfCallBack::*)() const>(&Storage_HArrayOfCallBack::Array1),
@@ -719,14 +739,17 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_HArrayOfSchema ,opencascade::handle<Storage_HArrayOfSchema>  , Storage_ArrayOfSchema , Standard_Transient >>(m.attr("Storage_HArrayOfSchema"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Storage_Schema> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Storage_Schema> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Storage_ArrayOfSchema & (Storage_HArrayOfSchema::*)() const) static_cast<const Storage_ArrayOfSchema & (Storage_HArrayOfSchema::*)() const>(&Storage_HArrayOfSchema::Array1),
@@ -747,14 +770,17 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_HPArray ,opencascade::handle<Storage_HPArray>  , Storage_PArray , Standard_Transient >>(m.attr("Storage_HPArray"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<Standard_Persistent> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<Standard_Persistent> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Storage_PArray & (Storage_HPArray::*)() const) static_cast<const Storage_PArray & (Storage_HPArray::*)() const>(&Storage_HPArray::Array1),
@@ -775,13 +801,15 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_HSeqOfRoot ,opencascade::handle<Storage_HSeqOfRoot>  , Storage_SeqOfRoot , Standard_Transient >>(m.attr("Storage_HSeqOfRoot"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Storage_Root> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const Storage_SeqOfRoot & (Storage_HSeqOfRoot::*)() const) static_cast<const Storage_SeqOfRoot & (Storage_HSeqOfRoot::*)() const>(&Storage_HSeqOfRoot::Sequence),
@@ -808,12 +836,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_HeaderData ,opencascade::handle<Storage_HeaderData>  , Standard_Transient >>(m.attr("Storage_HeaderData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Read",
              (Standard_Boolean (Storage_HeaderData::*)( Storage_BaseDriver &  ) ) static_cast<Standard_Boolean (Storage_HeaderData::*)( Storage_BaseDriver &  ) >(&Storage_HeaderData::Read),
@@ -900,12 +930,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_InternalData ,opencascade::handle<Storage_InternalData>  , Standard_Transient >>(m.attr("Storage_InternalData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ReadArray",
              (opencascade::handle<Storage_HPArray> (Storage_InternalData::*)() ) static_cast<opencascade::handle<Storage_HPArray> (Storage_InternalData::*)() >(&Storage_InternalData::ReadArray),
@@ -926,14 +958,16 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_Root ,opencascade::handle<Storage_Root>  , Standard_Transient >>(m.attr("Storage_Root"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString &,const opencascade::handle<Standard_Persistent> & >()  , py::arg("theName"),  py::arg("theObject") )
         .def(py::init< const TCollection_AsciiString &,const Standard_Integer,const TCollection_AsciiString & >()  , py::arg("theName"),  py::arg("theRef"),  py::arg("theType") )
+    // custom constructors
     // methods
         .def("SetName",
              (void (Storage_Root::*)( const TCollection_AsciiString &  ) ) static_cast<void (Storage_Root::*)( const TCollection_AsciiString &  ) >(&Storage_Root::SetName),
@@ -972,12 +1006,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_RootData ,opencascade::handle<Storage_RootData>  , Standard_Transient >>(m.attr("Storage_RootData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Read",
              (Standard_Boolean (Storage_RootData::*)( Storage_BaseDriver &  ) ) static_cast<Standard_Boolean (Storage_RootData::*)( Storage_BaseDriver &  ) >(&Storage_RootData::Read),
@@ -1025,12 +1061,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_Schema ,opencascade::handle<Storage_Schema>  , Standard_Transient >>(m.attr("Storage_Schema"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetVersion",
              (void (Storage_Schema::*)( const TCollection_AsciiString &  ) ) static_cast<void (Storage_Schema::*)( const TCollection_AsciiString &  ) >(&Storage_Schema::SetVersion),
@@ -1114,12 +1152,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_TypeData ,opencascade::handle<Storage_TypeData>  , Standard_Transient >>(m.attr("Storage_TypeData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Read",
              (Standard_Boolean (Storage_TypeData::*)( Storage_BaseDriver &  ) ) static_cast<Standard_Boolean (Storage_TypeData::*)( Storage_BaseDriver &  ) >(&Storage_TypeData::Read),
@@ -1167,13 +1207,15 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_TypedCallBack ,opencascade::handle<Storage_TypedCallBack>  , Standard_Transient >>(m.attr("Storage_TypedCallBack"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TCollection_AsciiString &,const opencascade::handle<Storage_CallBack> & >()  , py::arg("aTypeName"),  py::arg("aCallBack") )
+    // custom constructors
     // methods
         .def("SetType",
              (void (Storage_TypedCallBack::*)( const TCollection_AsciiString &  ) ) static_cast<void (Storage_TypedCallBack::*)( const TCollection_AsciiString &  ) >(&Storage_TypedCallBack::SetType),
@@ -1206,12 +1248,14 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Storage_DefaultCallBack ,opencascade::handle<Storage_DefaultCallBack>  , Storage_CallBack >>(m.attr("Storage_DefaultCallBack"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("New",
              (opencascade::handle<Standard_Persistent> (Storage_DefaultCallBack::*)() const) static_cast<opencascade::handle<Standard_Persistent> (Storage_DefaultCallBack::*)() const>(&Storage_DefaultCallBack::New),
@@ -1238,56 +1282,56 @@ py::module m = static_cast<py::module>(main_module.attr("Storage"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Storage_StreamUnknownTypeError.hxx
-// ./opencascade/Storage_MapOfCallBack.hxx
-// ./opencascade/Storage_DefaultCallBack.hxx
-// ./opencascade/Storage_InternalData.hxx
-// ./opencascade/Storage_BaseDriver.hxx
-// ./opencascade/Storage_TypedCallBack.hxx
-// ./opencascade/Storage_MapOfPers.hxx
-// ./opencascade/Storage_Data.hxx
-// ./opencascade/Storage_StreamExtCharParityError.hxx
-// ./opencascade/Storage_DataMapIteratorOfMapOfCallBack.hxx
-// ./opencascade/Storage_HPArray.hxx
-// ./opencascade/Storage_HArrayOfCallBack.hxx
-// ./opencascade/Storage_StreamTypeMismatchError.hxx
-// ./opencascade/Storage_Macros.hxx
-// ./opencascade/Storage_Position.hxx
-// ./opencascade/Storage_HArrayOfSchema.hxx
 // ./opencascade/Storage_DataMapIteratorOfMapOfPers.hxx
-// ./opencascade/Storage_StreamWriteError.hxx
-// ./opencascade/Storage_StreamModeError.hxx
-// ./opencascade/Storage_OpenMode.hxx
-// ./opencascade/Storage_PType.hxx
-// ./opencascade/Storage_HeaderData.hxx
-// ./opencascade/Storage_StreamFormatError.hxx
-// ./opencascade/Storage_SolveMode.hxx
-// ./opencascade/Storage_StreamReadError.hxx
-// ./opencascade/Storage_HSeqOfRoot.hxx
-// ./opencascade/Storage_CallBack.hxx
-// ./opencascade/Storage_Error.hxx
-// ./opencascade/Storage_TypeData.hxx
-// ./opencascade/Storage_SeqOfRoot.hxx
-// ./opencascade/Storage_Root.hxx
-// ./opencascade/Storage_RootData.hxx
-// ./opencascade/Storage_PArray.hxx
-// ./opencascade/Storage_ArrayOfSchema.hxx
-// ./opencascade/Storage.hxx
-// ./opencascade/Storage_ArrayOfCallBack.hxx
 // ./opencascade/Storage_BucketOfPersistent.hxx
+// ./opencascade/Storage_StreamTypeMismatchError.hxx
+// ./opencascade/Storage_SeqOfRoot.hxx
+// ./opencascade/Storage_InternalData.hxx
+// ./opencascade/Storage_StreamUnknownTypeError.hxx
+// ./opencascade/Storage_HArrayOfCallBack.hxx
+// ./opencascade/Storage.hxx
+// ./opencascade/Storage_SolveMode.hxx
+// ./opencascade/Storage_TypeData.hxx
+// ./opencascade/Storage_HPArray.hxx
+// ./opencascade/Storage_MapOfPers.hxx
+// ./opencascade/Storage_DataMapIteratorOfMapOfCallBack.hxx
+// ./opencascade/Storage_StreamExtCharParityError.hxx
+// ./opencascade/Storage_HeaderData.hxx
+// ./opencascade/Storage_StreamWriteError.hxx
+// ./opencascade/Storage_Root.hxx
+// ./opencascade/Storage_MapOfCallBack.hxx
+// ./opencascade/Storage_TypedCallBack.hxx
+// ./opencascade/Storage_PArray.hxx
+// ./opencascade/Storage_HArrayOfSchema.hxx
+// ./opencascade/Storage_ArrayOfSchema.hxx
+// ./opencascade/Storage_Macros.hxx
+// ./opencascade/Storage_RootData.hxx
+// ./opencascade/Storage_DefaultCallBack.hxx
 // ./opencascade/Storage_Schema.hxx
+// ./opencascade/Storage_Data.hxx
+// ./opencascade/Storage_StreamReadError.hxx
+// ./opencascade/Storage_OpenMode.hxx
+// ./opencascade/Storage_Error.hxx
+// ./opencascade/Storage_StreamModeError.hxx
+// ./opencascade/Storage_HSeqOfRoot.hxx
+// ./opencascade/Storage_Position.hxx
+// ./opencascade/Storage_PType.hxx
+// ./opencascade/Storage_ArrayOfCallBack.hxx
+// ./opencascade/Storage_BaseDriver.hxx
+// ./opencascade/Storage_CallBack.hxx
+// ./opencascade/Storage_StreamFormatError.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_IndexedDataMap<TCollection_AsciiString, Standard_Integer, TCollection_AsciiString>(m,"Storage_PType");  
     register_template_NCollection_Sequence<opencascade::handle<Storage_Root> >(m,"Storage_SeqOfRoot");  
     register_template_NCollection_Array1<opencascade::handle<Standard_Persistent> >(m,"Storage_PArray");  
     register_template_NCollection_Array1<opencascade::handle<Storage_Schema> >(m,"Storage_ArrayOfSchema");  
+    register_template_NCollection_IndexedDataMap<TCollection_AsciiString, Standard_Integer, TCollection_AsciiString>(m,"Storage_PType");  
     register_template_NCollection_Array1<opencascade::handle<Storage_CallBack> >(m,"Storage_ArrayOfCallBack");  
 
 

@@ -51,6 +51,7 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
     public:
         using GccInt_Bisec::GccInt_Bisec;
         
+        
         // public pure virtual
         GccInt_IType ArcType() const  override { PYBIND11_OVERLOAD_PURE(GccInt_IType,GccInt_Bisec,ArcType,) };
         
@@ -66,6 +67,8 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
 
 
     static_cast<py::class_<GccInt_Bisec ,opencascade::handle<GccInt_Bisec> ,Py_GccInt_Bisec , Standard_Transient >>(m.attr("GccInt_Bisec"))
+    // constructors
+    // custom constructors
     // methods
         .def("ArcType",
              (GccInt_IType (GccInt_Bisec::*)() const) static_cast<GccInt_IType (GccInt_Bisec::*)() const>(&GccInt_Bisec::ArcType),
@@ -101,12 +104,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccInt_BCirc ,opencascade::handle<GccInt_BCirc>  , GccInt_Bisec >>(m.attr("GccInt_BCirc"))
+    // constructors
         .def(py::init< const gp_Circ2d & >()  , py::arg("Circ") )
+    // custom constructors
     // methods
         .def("Circle",
              (gp_Circ2d (GccInt_BCirc::*)() const) static_cast<gp_Circ2d (GccInt_BCirc::*)() const>(&GccInt_BCirc::Circle),
@@ -127,12 +132,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccInt_BElips ,opencascade::handle<GccInt_BElips>  , GccInt_Bisec >>(m.attr("GccInt_BElips"))
+    // constructors
         .def(py::init< const gp_Elips2d & >()  , py::arg("Ellipse") )
+    // custom constructors
     // methods
         .def("Ellipse",
              (gp_Elips2d (GccInt_BElips::*)() const) static_cast<gp_Elips2d (GccInt_BElips::*)() const>(&GccInt_BElips::Ellipse),
@@ -153,12 +160,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccInt_BHyper ,opencascade::handle<GccInt_BHyper>  , GccInt_Bisec >>(m.attr("GccInt_BHyper"))
+    // constructors
         .def(py::init< const gp_Hypr2d & >()  , py::arg("Hyper") )
+    // custom constructors
     // methods
         .def("Hyperbola",
              (gp_Hypr2d (GccInt_BHyper::*)() const) static_cast<gp_Hypr2d (GccInt_BHyper::*)() const>(&GccInt_BHyper::Hyperbola),
@@ -179,12 +188,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccInt_BLine ,opencascade::handle<GccInt_BLine>  , GccInt_Bisec >>(m.attr("GccInt_BLine"))
+    // constructors
         .def(py::init< const gp_Lin2d & >()  , py::arg("Line") )
+    // custom constructors
     // methods
         .def("Line",
              (gp_Lin2d (GccInt_BLine::*)() const) static_cast<gp_Lin2d (GccInt_BLine::*)() const>(&GccInt_BLine::Line),
@@ -205,12 +216,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccInt_BParab ,opencascade::handle<GccInt_BParab>  , GccInt_Bisec >>(m.attr("GccInt_BParab"))
+    // constructors
         .def(py::init< const gp_Parab2d & >()  , py::arg("Parab") )
+    // custom constructors
     // methods
         .def("Parabola",
              (gp_Parab2d (GccInt_BParab::*)() const) static_cast<gp_Parab2d (GccInt_BParab::*)() const>(&GccInt_BParab::Parabola),
@@ -231,12 +244,14 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GccInt_BPoint ,opencascade::handle<GccInt_BPoint>  , GccInt_Bisec >>(m.attr("GccInt_BPoint"))
+    // constructors
         .def(py::init< const gp_Pnt2d & >()  , py::arg("Point") )
+    // custom constructors
     // methods
         .def("Point",
              (gp_Pnt2d (GccInt_BPoint::*)() const) static_cast<gp_Pnt2d (GccInt_BPoint::*)() const>(&GccInt_BPoint::Point),
@@ -257,18 +272,18 @@ py::module m = static_cast<py::module>(main_module.attr("GccInt"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GccInt_BElips.hxx
-// ./opencascade/GccInt_IType.hxx
-// ./opencascade/GccInt_Bisec.hxx
+// ./opencascade/GccInt_BHyper.hxx
+// ./opencascade/GccInt_BLine.hxx
 // ./opencascade/GccInt_BPoint.hxx
 // ./opencascade/GccInt_BCirc.hxx
-// ./opencascade/GccInt_BLine.hxx
-// ./opencascade/GccInt_BHyper.hxx
+// ./opencascade/GccInt_BElips.hxx
 // ./opencascade/GccInt_BParab.hxx
+// ./opencascade/GccInt_IType.hxx
+// ./opencascade/GccInt_Bisec.hxx
 
 // operators
 

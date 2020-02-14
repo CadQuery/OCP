@@ -52,9 +52,12 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAdaptor"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Geom2dAdaptor , shared_ptr<Geom2dAdaptor>>(m,"Geom2dAdaptor");
 
     static_cast<py::class_<Geom2dAdaptor , shared_ptr<Geom2dAdaptor>  >>(m.attr("Geom2dAdaptor"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -63,15 +66,20 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAdaptor"));
                     R"#(Inherited from GHCurve. Provides a curve handled by reference. Creates a 2d curve from a HCurve2d. This cannot process the OtherCurves.)#"  , py::arg("HC"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dAdaptor_Curve , shared_ptr<Geom2dAdaptor_Curve>  , Adaptor2d_Curve2d >>(m.attr("Geom2dAdaptor_Curve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom2d_Curve> & >()  , py::arg("C") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("UFirst"),  py::arg("ULast") )
+    // custom constructors
     // methods
+        .def("Reset",
+             (void (Geom2dAdaptor_Curve::*)() ) static_cast<void (Geom2dAdaptor_Curve::*)() >(&Geom2dAdaptor_Curve::Reset),
+             R"#(Reset currently loaded curve (undone Load()).)#" )
         .def("Load",
              (void (Geom2dAdaptor_Curve::*)( const opencascade::handle<Geom2d_Curve> &  ) ) static_cast<void (Geom2dAdaptor_Curve::*)( const opencascade::handle<Geom2d_Curve> &  ) >(&Geom2dAdaptor_Curve::Load),
              R"#(None)#"  , py::arg("C"))
@@ -190,13 +198,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dAdaptor_GHCurve ,opencascade::handle<Geom2dAdaptor_GHCurve>  , Adaptor2d_HCurve2d >>(m.attr("Geom2dAdaptor_GHCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dAdaptor_Curve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (Geom2dAdaptor_GHCurve::*)( const Geom2dAdaptor_Curve &  ) ) static_cast<void (Geom2dAdaptor_GHCurve::*)( const Geom2dAdaptor_Curve &  ) >(&Geom2dAdaptor_GHCurve::Set),
@@ -220,15 +230,17 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dAdaptor_HCurve ,opencascade::handle<Geom2dAdaptor_HCurve>  , Geom2dAdaptor_GHCurve >>(m.attr("Geom2dAdaptor_HCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dAdaptor_Curve & >()  , py::arg("AS") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> & >()  , py::arg("S") )
         .def(py::init< const opencascade::handle<Geom2d_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("UFirst"),  py::arg("ULast") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (Geom2dAdaptor_HCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (Geom2dAdaptor_HCurve::*)() const>(&Geom2dAdaptor_HCurve::DynamicType),
@@ -243,13 +255,13 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
 // ./opencascade/Geom2dAdaptor_Curve.hxx
-// ./opencascade/Geom2dAdaptor.hxx
 // ./opencascade/Geom2dAdaptor_HCurve.hxx
+// ./opencascade/Geom2dAdaptor.hxx
 // ./opencascade/Geom2dAdaptor_GHCurve.hxx
 
 // operators

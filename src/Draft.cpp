@@ -13,23 +13,23 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Standard_NoMoreObject.hxx>
+#include <TopoDS_Edge.hxx>
 #include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
+#include <StdFail_NotDone.hxx>
+#include <gp_Pln.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Curve.hxx>
 #include <TopoDS_Face.hxx>
 #include <gp_Dir.hxx>
 #include <Draft_Modification.hxx>
 #include <Draft_FaceInfo.hxx>
 #include <Draft_EdgeInfo.hxx>
 #include <Draft_VertexInfo.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Standard_NoMoreObject.hxx>
-#include <TopoDS_Edge.hxx>
-#include <StdFail_NotDone.hxx>
-#include <gp_Pln.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
 
 // module includes
 #include <Draft.hxx>
@@ -43,11 +43,11 @@ namespace py = pybind11;
 #include <Draft_VertexInfo.hxx>
 
 // template related includes
+// ./opencascade/Draft_IndexedDataMapOfVertexVertexInfo.hxx
+#include "NCollection.hxx"
 // ./opencascade/Draft_IndexedDataMapOfEdgeEdgeInfo.hxx
 #include "NCollection.hxx"
 // ./opencascade/Draft_IndexedDataMapOfFaceFaceInfo.hxx
-#include "NCollection.hxx"
-// ./opencascade/Draft_IndexedDataMapOfVertexVertexInfo.hxx
 #include "NCollection.hxx"
 
 
@@ -67,9 +67,12 @@ py::module m = static_cast<py::module>(main_module.attr("Draft"));
 
 // classes
 
+    // default constructor
     register_default_constructor<Draft , shared_ptr<Draft>>(m,"Draft");
 
     static_cast<py::class_<Draft , shared_ptr<Draft>  >>(m.attr("Draft"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -78,13 +81,15 @@ py::module m = static_cast<py::module>(main_module.attr("Draft"));
                     R"#(Returns the draft angle of the face <F> using the direction <Direction>. The method is valid for : - Plane faces, - Cylindrical or conical faces, when the direction of the axis of the surface is colinear with the direction. Otherwise, the exception DomainError is raised.)#"  , py::arg("F"),  py::arg("Direction"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Draft_EdgeInfo , shared_ptr<Draft_EdgeInfo>  >>(m.attr("Draft_EdgeInfo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean >()  , py::arg("HasNewGeometry") )
+    // custom constructors
     // methods
         .def("Add",
              (void (Draft_EdgeInfo::*)( const TopoDS_Face &  ) ) static_cast<void (Draft_EdgeInfo::*)( const TopoDS_Face &  ) >(&Draft_EdgeInfo::Add),
@@ -141,13 +146,15 @@ py::module m = static_cast<py::module>(main_module.attr("Draft"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Draft_FaceInfo , shared_ptr<Draft_FaceInfo>  >>(m.attr("Draft_FaceInfo"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Boolean >()  , py::arg("S"),  py::arg("HasNewGeometry") )
+    // custom constructors
     // methods
         .def("RootFace",
              (void (Draft_FaceInfo::*)( const TopoDS_Face &  ) ) static_cast<void (Draft_FaceInfo::*)( const TopoDS_Face &  ) >(&Draft_FaceInfo::RootFace),
@@ -183,12 +190,14 @@ py::module m = static_cast<py::module>(main_module.attr("Draft"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Draft_Modification ,opencascade::handle<Draft_Modification>  , BRepTools_Modification >>(m.attr("Draft_Modification"))
+    // constructors
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (Draft_Modification::*)() ) static_cast<void (Draft_Modification::*)() >(&Draft_Modification::Clear),
@@ -251,12 +260,14 @@ py::module m = static_cast<py::module>(main_module.attr("Draft"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Draft_VertexInfo , shared_ptr<Draft_VertexInfo>  >>(m.attr("Draft_VertexInfo"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Add",
              (void (Draft_VertexInfo::*)( const TopoDS_Edge &  ) ) static_cast<void (Draft_VertexInfo::*)( const TopoDS_Edge &  ) >(&Draft_VertexInfo::Add),
@@ -289,26 +300,26 @@ py::module m = static_cast<py::module>(main_module.attr("Draft"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/Draft_IndexedDataMapOfVertexVertexInfo.hxx
+// ./opencascade/Draft_VertexInfo.hxx
 // ./opencascade/Draft_EdgeInfo.hxx
+// ./opencascade/Draft_Modification.hxx
+// ./opencascade/Draft_FaceInfo.hxx
+// ./opencascade/Draft_ErrorStatus.hxx
 // ./opencascade/Draft.hxx
 // ./opencascade/Draft_IndexedDataMapOfEdgeEdgeInfo.hxx
-// ./opencascade/Draft_FaceInfo.hxx
-// ./opencascade/Draft_VertexInfo.hxx
 // ./opencascade/Draft_IndexedDataMapOfFaceFaceInfo.hxx
-// ./opencascade/Draft_IndexedDataMapOfVertexVertexInfo.hxx
-// ./opencascade/Draft_Modification.hxx
-// ./opencascade/Draft_ErrorStatus.hxx
 
 // operators
 
 // register typdefs
+    register_template_NCollection_IndexedDataMap<TopoDS_Vertex, Draft_VertexInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfVertexVertexInfo");  
     register_template_NCollection_IndexedDataMap<TopoDS_Edge, Draft_EdgeInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfEdgeEdgeInfo");  
     register_template_NCollection_IndexedDataMap<TopoDS_Face, Draft_FaceInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfFaceFaceInfo");  
-    register_template_NCollection_IndexedDataMap<TopoDS_Vertex, Draft_VertexInfo, TopTools_ShapeMapHasher>(m,"Draft_IndexedDataMapOfVertexVertexInfo");  
 
 
 // exceptions

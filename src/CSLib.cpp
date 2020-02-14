@@ -42,9 +42,12 @@ py::module m = static_cast<py::module>(main_module.attr("CSLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<CSLib , shared_ptr<CSLib>>(m,"CSLib");
 
     static_cast<py::class_<CSLib , shared_ptr<CSLib>  >>(m.attr("CSLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -71,12 +74,15 @@ py::module m = static_cast<py::module>(main_module.attr("CSLib"));
                     []( const Standard_Integer MaxOrder, const NCollection_Array2<gp_Vec> & DerNUV,const Standard_Real MagTol,const Standard_Real U,const Standard_Real V,const Standard_Real Umin,const Standard_Real Umax,const Standard_Real Vmin,const Standard_Real Vmax,CSLib_NormalStatus & theStatus,gp_Dir & Normal ){ Standard_Integer  OrderU; Standard_Integer  OrderV; CSLib::Normal(MaxOrder,DerNUV,MagTol,U,V,Umin,Umax,Vmin,Vmax,theStatus,Normal,OrderU,OrderV); return std::make_tuple(OrderU,OrderV); },
                     R"#(find the first order k0 of deriviative of NUV where: foreach order < k0 all the derivatives of NUV are null all the derivatives of NUV corresponding to the order k0 are collinear and have the same sens. In this case, normal at U,V is unique.)#"  , py::arg("MaxOrder"),  py::arg("DerNUV"),  py::arg("MagTol"),  py::arg("U"),  py::arg("V"),  py::arg("Umin"),  py::arg("Umax"),  py::arg("Vmin"),  py::arg("Vmax"),  py::arg("theStatus"),  py::arg("Normal"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CSLib_Class2d , shared_ptr<CSLib_Class2d>  >>(m.attr("CSLib_Class2d"))
-        .def(py::init<  const NCollection_Array1<gp_Pnt2d> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("TP"),  py::arg("aTolu"),  py::arg("aTolv"),  py::arg("umin"),  py::arg("vmin"),  py::arg("umax"),  py::arg("vmax") )
+    // constructors
+        .def(py::init<  const NCollection_Array1<gp_Pnt2d> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("thePnts2d"),  py::arg("theTolU"),  py::arg("theTolV"),  py::arg("theUMin"),  py::arg("theVMin"),  py::arg("theUMax"),  py::arg("theVMax") )
+        .def(py::init<  const NCollection_Sequence<gp_Pnt2d> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("thePnts2d"),  py::arg("theTolU"),  py::arg("theTolV"),  py::arg("theUMin"),  py::arg("theVMin"),  py::arg("theUMax"),  py::arg("theVMax") )
+    // custom constructors
     // methods
         .def("SiDans",
              (Standard_Integer (CSLib_Class2d::*)( const gp_Pnt2d &  ) const) static_cast<Standard_Integer (CSLib_Class2d::*)( const gp_Pnt2d &  ) const>(&CSLib_Class2d::SiDans),
@@ -90,22 +96,18 @@ py::module m = static_cast<py::module>(main_module.attr("CSLib"));
         .def("InternalSiDansOuOn",
              (Standard_Integer (CSLib_Class2d::*)( const Standard_Real ,  const Standard_Real  ) const) static_cast<Standard_Integer (CSLib_Class2d::*)( const Standard_Real ,  const Standard_Real  ) const>(&CSLib_Class2d::InternalSiDansOuOn),
              R"#(None)#"  , py::arg("X"),  py::arg("Y"))
-        .def("Copy",
-             (const CSLib_Class2d & (CSLib_Class2d::*)( const CSLib_Class2d &  ) const) static_cast<const CSLib_Class2d & (CSLib_Class2d::*)( const CSLib_Class2d &  ) const>(&CSLib_Class2d::Copy),
-             R"#(None)#"  , py::arg("Other"))
-        .def("Destroy",
-             (void (CSLib_Class2d::*)() ) static_cast<void (CSLib_Class2d::*)() >(&CSLib_Class2d::Destroy),
-             R"#(None)#" )
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<CSLib_NormalPolyDef , shared_ptr<CSLib_NormalPolyDef>  , math_FunctionWithDerivative >>(m.attr("CSLib_NormalPolyDef"))
+    // constructors
         .def(py::init< const Standard_Integer, const NCollection_Array1<Standard_Real> & >()  , py::arg("k0"),  py::arg("li") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (CSLib_NormalPolyDef::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (CSLib_NormalPolyDef::*)( const Standard_Real ,  Standard_Real &  ) >(&CSLib_NormalPolyDef::Value),
@@ -120,15 +122,15 @@ py::module m = static_cast<py::module>(main_module.attr("CSLib"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/CSLib_DerivativeStatus.hxx
 // ./opencascade/CSLib_NormalStatus.hxx
 // ./opencascade/CSLib.hxx
-// ./opencascade/CSLib_NormalPolyDef.hxx
 // ./opencascade/CSLib_Class2d.hxx
+// ./opencascade/CSLib_NormalPolyDef.hxx
+// ./opencascade/CSLib_DerivativeStatus.hxx
 
 // operators
 

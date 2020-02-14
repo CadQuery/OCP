@@ -13,9 +13,21 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <ShapeCustom_RestrictionParameters.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <gp_Pnt.hxx>
 #include <Geom2d_Line.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom2d_BSplineCurve.hxx>
+#include <ShapeExtend_BasicMsgRegistrator.hxx>
+#include <TopoDS_Shape.hxx>
+#include <Message_Msg.hxx>
 #include <TopoDS_Face.hxx>
 #include <Geom_Surface.hxx>
 #include <TopLoc_Location.hxx>
@@ -23,6 +35,30 @@ namespace py = pybind11;
 #include <Geom_Curve.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <gp_Pnt.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <gp_Pnt.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <gp_Pnt.hxx>
+#include <Geom2d_Curve.hxx>
+#include <TopoDS_Face.hxx>
+#include <Geom_Surface.hxx>
+#include <TopLoc_Location.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Geom_Curve.hxx>
+#include <TopoDS_Vertex.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom_Surface.hxx>
 #include <BRepTools_Modification.hxx>
@@ -41,42 +77,6 @@ namespace py = pybind11;
 #include <ShapeCustom_ConvertToRevolution.hxx>
 #include <ShapeCustom_SweptToElementary.hxx>
 #include <ShapeCustom_ConvertToBSpline.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Pnt.hxx>
-#include <Geom2d_Curve.hxx>
-#include <ShapeCustom_RestrictionParameters.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Pnt.hxx>
-#include <ShapeExtend_BasicMsgRegistrator.hxx>
-#include <TopoDS_Shape.hxx>
-#include <Message_Msg.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <Geom2d_Curve.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Surface.hxx>
-#include <TopLoc_Location.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Geom_Curve.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <gp_Pnt.hxx>
-#include <Geom2d_Curve.hxx>
 #include <TopoDS_Face.hxx>
 #include <Geom_Surface.hxx>
 #include <TopLoc_Location.hxx>
@@ -120,8 +120,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
     public:
         using ShapeCustom_Modification::ShapeCustom_Modification;
         
+        
         // public pure virtual
         
+        Standard_Boolean NewSurface(const TopoDS_Face & F,opencascade::handle<Geom_Surface> & S,TopLoc_Location & L,Standard_Real & Tol,Standard_Boolean & RevWires,Standard_Boolean & RevFace) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepTools_Modification,NewSurface,F,S,L,Tol,RevWires,RevFace) };
+        Standard_Boolean NewCurve(const TopoDS_Edge & E,opencascade::handle<Geom_Curve> & C,TopLoc_Location & L,Standard_Real & Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepTools_Modification,NewCurve,E,C,L,Tol) };
+        Standard_Boolean NewPoint(const TopoDS_Vertex & V,gp_Pnt & P,Standard_Real & Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepTools_Modification,NewPoint,V,P,Tol) };
+        Standard_Boolean NewCurve2d(const TopoDS_Edge & E,const TopoDS_Face & F,const TopoDS_Edge & NewE,const TopoDS_Face & NewF,opencascade::handle<Geom2d_Curve> & C,Standard_Real & Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepTools_Modification,NewCurve2d,E,F,NewE,NewF,C,Tol) };
+        Standard_Boolean NewParameter(const TopoDS_Vertex & V,const TopoDS_Edge & E,Standard_Real & P,Standard_Real & Tol) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,BRepTools_Modification,NewParameter,V,E,P,Tol) };
+        GeomAbs_Shape Continuity(const TopoDS_Edge & E,const TopoDS_Face & F1,const TopoDS_Face & F2,const TopoDS_Edge & NewE,const TopoDS_Face & NewF1,const TopoDS_Face & NewF2) override { PYBIND11_OVERLOAD_PURE(GeomAbs_Shape,BRepTools_Modification,Continuity,E,F1,F2,NewE,NewF1,NewF2) };
         
         // protected pure virtual
         
@@ -132,9 +139,12 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ShapeCustom , shared_ptr<ShapeCustom>>(m,"ShapeCustom");
 
     static_cast<py::class_<ShapeCustom , shared_ptr<ShapeCustom>  >>(m.attr("ShapeCustom"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -161,13 +171,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(Returns a new shape with all surfaces of linear extrusion, revolution, offset, and planar surfaces converted according to flags to Geom_BSplineSurface (with same parameterisation).)#"  , py::arg("S"),  py::arg("extrMode"),  py::arg("revolMode"),  py::arg("offsetMode"),  py::arg("planeMode")=static_cast<const Standard_Boolean>(Standard_False))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_Curve , shared_ptr<ShapeCustom_Curve>  >>(m.attr("ShapeCustom_Curve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeCustom_Curve::*)( const opencascade::handle<Geom_Curve> &  ) ) static_cast<void (ShapeCustom_Curve::*)( const opencascade::handle<Geom_Curve> &  ) >(&ShapeCustom_Curve::Init),
@@ -179,12 +191,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<ShapeCustom_Curve2d , shared_ptr<ShapeCustom_Curve2d>>(m,"ShapeCustom_Curve2d");
 
     static_cast<py::class_<ShapeCustom_Curve2d , shared_ptr<ShapeCustom_Curve2d>  >>(m.attr("ShapeCustom_Curve2d"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -199,11 +214,13 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(Try to remove knots from bspline where local derivatives are the same. Remove knots with given precision. Returns false if Bsplien was not modified)#"  , py::arg("theBSpline2d"),  py::arg("theTolerance"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_Modification ,opencascade::handle<ShapeCustom_Modification> ,Py_ShapeCustom_Modification , BRepTools_Modification >>(m.attr("ShapeCustom_Modification"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetMsgRegistrator",
              (void (ShapeCustom_Modification::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) ) static_cast<void (ShapeCustom_Modification::*)( const opencascade::handle<ShapeExtend_BasicMsgRegistrator> &  ) >(&ShapeCustom_Modification::SetMsgRegistrator),
@@ -227,12 +244,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_RestrictionParameters ,opencascade::handle<ShapeCustom_RestrictionParameters>  , Standard_Transient >>(m.attr("ShapeCustom_RestrictionParameters"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GMaxDegree",
              (Standard_Integer & (ShapeCustom_RestrictionParameters::*)() ) static_cast<Standard_Integer & (ShapeCustom_RestrictionParameters::*)() >(&ShapeCustom_RestrictionParameters::GMaxDegree),
@@ -343,13 +362,15 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_Surface , shared_ptr<ShapeCustom_Surface>  >>(m.attr("ShapeCustom_Surface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (ShapeCustom_Surface::*)( const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (ShapeCustom_Surface::*)( const opencascade::handle<Geom_Surface> &  ) >(&ShapeCustom_Surface::Init),
@@ -370,12 +391,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_TrsfModification ,opencascade::handle<ShapeCustom_TrsfModification>  , BRepTools_TrsfModification >>(m.attr("ShapeCustom_TrsfModification"))
+    // constructors
         .def(py::init< const gp_Trsf & >()  , py::arg("T") )
+    // custom constructors
     // methods
         .def("NewSurface",
              (Standard_Boolean (ShapeCustom_TrsfModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (ShapeCustom_TrsfModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&ShapeCustom_TrsfModification::NewSurface),
@@ -405,14 +428,16 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_BSplineRestriction ,opencascade::handle<ShapeCustom_BSplineRestriction>  , ShapeCustom_Modification >>(m.attr("ShapeCustom_BSplineRestriction"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean >()  , py::arg("anApproxSurfaceFlag"),  py::arg("anApproxCurve3dFlag"),  py::arg("anApproxCurve2dFlag"),  py::arg("aTol3d"),  py::arg("aTol2d"),  py::arg("aContinuity3d"),  py::arg("aContinuity2d"),  py::arg("aMaxDegree"),  py::arg("aNbMaxSeg"),  py::arg("Degree"),  py::arg("Rational") )
         .def(py::init< const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Real,const GeomAbs_Shape,const GeomAbs_Shape,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean,const opencascade::handle<ShapeCustom_RestrictionParameters> & >()  , py::arg("anApproxSurfaceFlag"),  py::arg("anApproxCurve3dFlag"),  py::arg("anApproxCurve2dFlag"),  py::arg("aTol3d"),  py::arg("aTol2d"),  py::arg("aContinuity3d"),  py::arg("aContinuity2d"),  py::arg("aMaxDegree"),  py::arg("aNbMaxSeg"),  py::arg("Degree"),  py::arg("Rational"),  py::arg("aModes") )
+    // custom constructors
     // methods
         .def("NewSurface",
              (Standard_Boolean (ShapeCustom_BSplineRestriction::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (ShapeCustom_BSplineRestriction::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&ShapeCustom_BSplineRestriction::NewSurface),
@@ -556,12 +581,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_ConvertToBSpline ,opencascade::handle<ShapeCustom_ConvertToBSpline>  , ShapeCustom_Modification >>(m.attr("ShapeCustom_ConvertToBSpline"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetExtrusionMode",
              (void (ShapeCustom_ConvertToBSpline::*)( const Standard_Boolean  ) ) static_cast<void (ShapeCustom_ConvertToBSpline::*)( const Standard_Boolean  ) >(&ShapeCustom_ConvertToBSpline::SetExtrusionMode),
@@ -606,12 +633,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_ConvertToRevolution ,opencascade::handle<ShapeCustom_ConvertToRevolution>  , ShapeCustom_Modification >>(m.attr("ShapeCustom_ConvertToRevolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NewSurface",
              (Standard_Boolean (ShapeCustom_ConvertToRevolution::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (ShapeCustom_ConvertToRevolution::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&ShapeCustom_ConvertToRevolution::NewSurface),
@@ -644,12 +673,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_DirectModification ,opencascade::handle<ShapeCustom_DirectModification>  , ShapeCustom_Modification >>(m.attr("ShapeCustom_DirectModification"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NewSurface",
              (Standard_Boolean (ShapeCustom_DirectModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (ShapeCustom_DirectModification::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&ShapeCustom_DirectModification::NewSurface),
@@ -682,12 +713,14 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<ShapeCustom_SweptToElementary ,opencascade::handle<ShapeCustom_SweptToElementary>  , ShapeCustom_Modification >>(m.attr("ShapeCustom_SweptToElementary"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("NewSurface",
              (Standard_Boolean (ShapeCustom_SweptToElementary::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) ) static_cast<Standard_Boolean (ShapeCustom_SweptToElementary::*)( const TopoDS_Face & ,  opencascade::handle<Geom_Surface> & ,  TopLoc_Location & ,  Standard_Real & ,  Standard_Boolean & ,  Standard_Boolean &  ) >(&ShapeCustom_SweptToElementary::NewSurface),
@@ -720,22 +753,22 @@ py::module m = static_cast<py::module>(main_module.attr("ShapeCustom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
+// ./opencascade/ShapeCustom_BSplineRestriction.hxx
 // ./opencascade/ShapeCustom_Curve2d.hxx
-// ./opencascade/ShapeCustom_RestrictionParameters.hxx
+// ./opencascade/ShapeCustom_Modification.hxx
+// ./opencascade/ShapeCustom_ConvertToRevolution.hxx
+// ./opencascade/ShapeCustom_Curve.hxx
 // ./opencascade/ShapeCustom_SweptToElementary.hxx
+// ./opencascade/ShapeCustom_RestrictionParameters.hxx
+// ./opencascade/ShapeCustom_DirectModification.hxx
+// ./opencascade/ShapeCustom_TrsfModification.hxx
 // ./opencascade/ShapeCustom_Surface.hxx
 // ./opencascade/ShapeCustom.hxx
-// ./opencascade/ShapeCustom_DirectModification.hxx
-// ./opencascade/ShapeCustom_BSplineRestriction.hxx
-// ./opencascade/ShapeCustom_Modification.hxx
-// ./opencascade/ShapeCustom_TrsfModification.hxx
-// ./opencascade/ShapeCustom_Curve.hxx
 // ./opencascade/ShapeCustom_ConvertToBSpline.hxx
-// ./opencascade/ShapeCustom_ConvertToRevolution.hxx
 
 // operators
 

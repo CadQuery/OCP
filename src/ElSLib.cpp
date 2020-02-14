@@ -37,9 +37,12 @@ py::module m = static_cast<py::module>(main_module.attr("ElSLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<ElSLib , shared_ptr<ElSLib>>(m,"ElSLib");
 
     static_cast<py::class_<ElSLib , shared_ptr<ElSLib>  >>(m.attr("ElSLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -273,7 +276,7 @@ py::module m = static_cast<py::module>(main_module.attr("ElSLib"));
                     []( const gp_Ax3 & Pos,const Standard_Real MajorRadius,const Standard_Real MinorRadius,const gp_Pnt & P ){ Standard_Real  U; Standard_Real  V; ElSLib::TorusParameters(Pos,MajorRadius,MinorRadius,P,U,V); return std::make_tuple(U,V); },
                     R"#(parametrization P (U, V) = Location + (MajorRadius + MinorRadius * Cos(U)) * (Cos(V) * XDirection - Sin(V) * YDirection) + MinorRadius * Sin(U) * ZDirection)#"  , py::arg("Pos"),  py::arg("MajorRadius"),  py::arg("MinorRadius"),  py::arg("P"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

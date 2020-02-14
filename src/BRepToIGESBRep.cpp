@@ -53,7 +53,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGESBRep"));
 
 
     static_cast<py::class_<BRepToIGESBRep_Entity , shared_ptr<BRepToIGESBRep_Entity>  , BRepToIGES_BREntity >>(m.attr("BRepToIGESBRep_Entity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepToIGESBRep_Entity::*)() ) static_cast<void (BRepToIGESBRep_Entity::*)() >(&BRepToIGESBRep_Entity::Clear),
@@ -107,7 +109,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepToIGESBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

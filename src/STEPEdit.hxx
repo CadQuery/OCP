@@ -10,8 +10,6 @@ namespace py = pybind11;
 #include <Standard_Handle.hxx>
 
 // includes to resolve forward declarations
-#include <IFSelect_EditForm.hxx>
-#include <Interface_InterfaceModel.hxx>
 #include <Interface_Protocol.hxx>
 #include <StepData_StepModel.hxx>
 #include <IFSelect_Signature.hxx>
@@ -20,18 +18,20 @@ namespace py = pybind11;
 #include <STEPEdit_EditSDR.hxx>
 #include <IFSelect_EditForm.hxx>
 #include <Interface_InterfaceModel.hxx>
+#include <IFSelect_EditForm.hxx>
+#include <Interface_InterfaceModel.hxx>
 
 // module includes
-#include <STEPEdit_EditSDR.hxx>
 #include <STEPEdit.hxx>
 #include <STEPEdit_EditContext.hxx>
+#include <STEPEdit_EditSDR.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/STEPEdit_EditSDR.hxx
 // ./opencascade/STEPEdit.hxx
 // ./opencascade/STEPEdit_EditContext.hxx
+// ./opencascade/STEPEdit_EditSDR.hxx
 
 // user-defined post

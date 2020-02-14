@@ -12,24 +12,24 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
-#include <StdObject_Location.hxx>
 #include <StdObject_gp_Axes.hxx>
-#include <StdObject_gp_Curves.hxx>
-#include <StdObject_gp_Surfaces.hxx>
-#include <StdObject_gp_Vectors.hxx>
-#include <StdObject_Shape.hxx>
 #include <StdObject_gp_Trsfs.hxx>
+#include <StdObject_gp_Surfaces.hxx>
+#include <StdObject_Shape.hxx>
+#include <StdObject_gp_Curves.hxx>
+#include <StdObject_Location.hxx>
+#include <StdObject_gp_Vectors.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/StdObject_Location.hxx
 // ./opencascade/StdObject_gp_Axes.hxx
-// ./opencascade/StdObject_gp_Curves.hxx
-// ./opencascade/StdObject_gp_Surfaces.hxx
-// ./opencascade/StdObject_gp_Vectors.hxx
-// ./opencascade/StdObject_Shape.hxx
 // ./opencascade/StdObject_gp_Trsfs.hxx
+// ./opencascade/StdObject_gp_Surfaces.hxx
+// ./opencascade/StdObject_Shape.hxx
+// ./opencascade/StdObject_gp_Curves.hxx
+// ./opencascade/StdObject_Location.hxx
+// ./opencascade/StdObject_gp_Vectors.hxx
 
 // user-defined post

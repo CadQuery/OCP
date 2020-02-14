@@ -13,23 +13,23 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <TFunction_Scope.hxx>
+#include <TDF_Label.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_RelocationTable.hxx>
+#include <TDF_DataSet.hxx>
+#include <TFunction_Logbook.hxx>
 #include <Standard_GUID.hxx>
 #include <TFunction_Logbook.hxx>
 #include <TFunction_Driver.hxx>
 #include <TFunction_GraphNode.hxx>
+#include <TFunction_Scope.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_Label.hxx>
 #include <TDF_RelocationTable.hxx>
 #include <TDF_DataSet.hxx>
-#include <TFunction_Logbook.hxx>
-#include <TDF_Label.hxx>
 #include <Standard_GUID.hxx>
 #include <TDF_RelocationTable.hxx>
-#include <TDF_DataSet.hxx>
 
 // module includes
 #include <TFunction_Array1OfDataMapOfGUIDDriver.hxx>
@@ -51,8 +51,6 @@ namespace py = pybind11;
 #include <TFunction_Scope.hxx>
 
 // template related includes
-// ./opencascade/TFunction_Array1OfDataMapOfGUIDDriver.hxx
-#include "NCollection.hxx"
 // ./opencascade/TFunction_DataMapOfGUIDDriver.hxx
 #include "NCollection.hxx"
 // ./opencascade/TFunction_DataMapOfLabelListOfLabel.hxx
@@ -62,6 +60,8 @@ namespace py = pybind11;
 // ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
 #include "NCollection.hxx"
 // ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
+#include "NCollection.hxx"
+// ./opencascade/TFunction_Array1OfDataMapOfGUIDDriver.hxx
 #include "NCollection.hxx"
 
 
@@ -82,6 +82,7 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
     public:
         using TFunction_Driver::TFunction_Driver;
         
+        
         // public pure virtual
         Standard_Integer Execute(opencascade::handle<TFunction_Logbook> & log) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,TFunction_Driver,Execute,log) };
         
@@ -97,6 +98,8 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
 
 
     static_cast<py::class_<TFunction_Driver ,opencascade::handle<TFunction_Driver> ,Py_TFunction_Driver , Standard_Transient >>(m.attr("TFunction_Driver"))
+    // constructors
+    // custom constructors
     // methods
         .def("Init",
              (void (TFunction_Driver::*)( const TDF_Label &  ) ) static_cast<void (TFunction_Driver::*)( const TDF_Label &  ) >(&TFunction_Driver::Init),
@@ -135,12 +138,14 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_DriverTable ,opencascade::handle<TFunction_DriverTable>  , Standard_Transient >>(m.attr("TFunction_DriverTable"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddDriver",
              (Standard_Boolean (TFunction_DriverTable::*)( const Standard_GUID & ,  const opencascade::handle<TFunction_Driver> & ,  const Standard_Integer  ) ) static_cast<Standard_Boolean (TFunction_DriverTable::*)( const Standard_GUID & ,  const opencascade::handle<TFunction_Driver> & ,  const Standard_Integer  ) >(&TFunction_DriverTable::AddDriver),
@@ -176,12 +181,14 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_Function ,opencascade::handle<TFunction_Function>  , TDF_Attribute >>(m.attr("TFunction_Function"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("GetDriverGUID",
              (const Standard_GUID & (TFunction_Function::*)() const) static_cast<const Standard_GUID & (TFunction_Function::*)() const>(&TFunction_Function::GetDriverGUID),
@@ -238,12 +245,14 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_GraphNode ,opencascade::handle<TFunction_GraphNode>  , TDF_Attribute >>(m.attr("TFunction_GraphNode"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddPrevious",
              (Standard_Boolean (TFunction_GraphNode::*)( const Standard_Integer  ) ) static_cast<Standard_Boolean (TFunction_GraphNode::*)( const Standard_Integer  ) >(&TFunction_GraphNode::AddPrevious),
@@ -324,14 +333,17 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_HArray1OfDataMapOfGUIDDriver ,opencascade::handle<TFunction_HArray1OfDataMapOfGUIDDriver>  , TFunction_Array1OfDataMapOfGUIDDriver , Standard_Transient >>(m.attr("TFunction_HArray1OfDataMapOfGUIDDriver"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const NCollection_DataMap<Standard_GUID, opencascade::handle<TFunction_Driver>, Standard_GUID> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<TFunction_DataMapOfGUIDDriver> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const TFunction_Array1OfDataMapOfGUIDDriver & (TFunction_HArray1OfDataMapOfGUIDDriver::*)() const) static_cast<const TFunction_Array1OfDataMapOfGUIDDriver & (TFunction_HArray1OfDataMapOfGUIDDriver::*)() const>(&TFunction_HArray1OfDataMapOfGUIDDriver::Array1),
@@ -352,13 +364,15 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_IFunction , shared_ptr<TFunction_IFunction>  >>(m.attr("TFunction_IFunction"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TDF_Label & >()  , py::arg("L") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TFunction_IFunction::*)( const TDF_Label &  ) ) static_cast<void (TFunction_IFunction::*)( const TDF_Label &  ) >(&TFunction_IFunction::Init),
@@ -412,13 +426,15 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(Updates dependencies for all functions of the scope. It returns false in case of an error. An empty constructor.)#"  , py::arg("Access"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_Iterator , shared_ptr<TFunction_Iterator>  >>(m.attr("TFunction_Iterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TDF_Label & >()  , py::arg("Access") )
+    // custom constructors
     // methods
         .def("Init",
              (void (TFunction_Iterator::*)( const TDF_Label &  ) ) static_cast<void (TFunction_Iterator::*)( const TDF_Label &  ) >(&TFunction_Iterator::Init),
@@ -454,12 +470,14 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_Logbook ,opencascade::handle<TFunction_Logbook>  , TDF_Attribute >>(m.attr("TFunction_Logbook"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (TFunction_Logbook::*)() ) static_cast<void (TFunction_Logbook::*)() >(&TFunction_Logbook::Clear),
@@ -543,12 +561,14 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(Returns the GUID for logbook attribute.)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<TFunction_Scope ,opencascade::handle<TFunction_Scope>  , TDF_Attribute >>(m.attr("TFunction_Scope"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddFunction",
              (Standard_Boolean (TFunction_Scope::*)( const TDF_Label &  ) ) static_cast<Standard_Boolean (TFunction_Scope::*)( const TDF_Label &  ) >(&TFunction_Scope::AddFunction),
@@ -623,34 +643,34 @@ py::module m = static_cast<py::module>(main_module.attr("TFunction"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/TFunction_DataMapIteratorOfDataMapOfLabelListOfLabel.hxx
-// ./opencascade/TFunction_Iterator.hxx
-// ./opencascade/TFunction_Scope.hxx
-// ./opencascade/TFunction_Array1OfDataMapOfGUIDDriver.hxx
-// ./opencascade/TFunction_DataMapIteratorOfDataMapOfGUIDDriver.hxx
-// ./opencascade/TFunction_DriverTable.hxx
-// ./opencascade/TFunction_ExecutionStatus.hxx
 // ./opencascade/TFunction_DataMapOfGUIDDriver.hxx
-// ./opencascade/TFunction_IFunction.hxx
-// ./opencascade/TFunction_Logbook.hxx
-// ./opencascade/TFunction_DoubleMapIteratorOfDoubleMapOfIntegerLabel.hxx
-// ./opencascade/TFunction_Function.hxx
-// ./opencascade/TFunction_HArray1OfDataMapOfGUIDDriver.hxx
+// ./opencascade/TFunction_ExecutionStatus.hxx
 // ./opencascade/TFunction_DataMapOfLabelListOfLabel.hxx
-// ./opencascade/TFunction_Driver.hxx
 // ./opencascade/TFunction_GraphNode.hxx
+// ./opencascade/TFunction_Driver.hxx
+// ./opencascade/TFunction_DataMapIteratorOfDataMapOfGUIDDriver.hxx
+// ./opencascade/TFunction_IFunction.hxx
 // ./opencascade/TFunction_DoubleMapOfIntegerLabel.hxx
+// ./opencascade/TFunction_DataMapIteratorOfDataMapOfLabelListOfLabel.hxx
+// ./opencascade/TFunction_DoubleMapIteratorOfDoubleMapOfIntegerLabel.hxx
+// ./opencascade/TFunction_Iterator.hxx
+// ./opencascade/TFunction_DriverTable.hxx
+// ./opencascade/TFunction_Array1OfDataMapOfGUIDDriver.hxx
+// ./opencascade/TFunction_Logbook.hxx
+// ./opencascade/TFunction_HArray1OfDataMapOfGUIDDriver.hxx
+// ./opencascade/TFunction_Function.hxx
+// ./opencascade/TFunction_Scope.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<TFunction_DataMapOfGUIDDriver>(m,"TFunction_Array1OfDataMapOfGUIDDriver");  
     register_template_NCollection_DataMap<TDF_Label, TDF_LabelList, TDF_LabelMapHasher>(m,"TFunction_DataMapOfLabelListOfLabel");  
     register_template_NCollection_DoubleMap<Standard_Integer, TDF_Label, TColStd_MapIntegerHasher, TDF_LabelMapHasher>(m,"TFunction_DoubleMapOfIntegerLabel");  
+    register_template_NCollection_Array1<TFunction_DataMapOfGUIDDriver>(m,"TFunction_Array1OfDataMapOfGUIDDriver");  
 
 
 // exceptions

@@ -14,22 +14,22 @@ namespace py = pybind11;
 
 // includes to resolve forward declarations
 #include <BRepAdaptor_Curve.hxx>
-#include <BRepLProp_CurveTool.hxx>
-#include <BRepLProp_SurfaceTool.hxx>
-#include <BRepLProp_CLProps.hxx>
-#include <BRepLProp_SLProps.hxx>
-#include <LProp_BadContinuity.hxx>
-#include <LProp_NotDefined.hxx>
-#include <BRepLProp_SurfaceTool.hxx>
+#include <gp_Pnt.hxx>
+#include <gp_Vec.hxx>
 #include <LProp_BadContinuity.hxx>
 #include <LProp_NotDefined.hxx>
 #include <BRepLProp_CurveTool.hxx>
+#include <LProp_BadContinuity.hxx>
+#include <LProp_NotDefined.hxx>
+#include <BRepLProp_SurfaceTool.hxx>
 #include <BRepAdaptor_Surface.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
 #include <BRepAdaptor_Curve.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Vec.hxx>
+#include <BRepLProp_CurveTool.hxx>
+#include <BRepLProp_SurfaceTool.hxx>
+#include <BRepLProp_CLProps.hxx>
+#include <BRepLProp_SLProps.hxx>
 
 // module includes
 #include <BRepLProp.hxx>
@@ -57,9 +57,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepLProp , shared_ptr<BRepLProp>>(m,"BRepLProp");
 
     static_cast<py::class_<BRepLProp , shared_ptr<BRepLProp>  >>(m.attr("BRepLProp"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -71,14 +74,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
                     R"#(The same as preciding but using the standard tolerances from package Precision.)#"  , py::arg("C1"),  py::arg("C2"),  py::arg("u1"),  py::arg("u2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLProp_CLProps , shared_ptr<BRepLProp_CLProps>  >>(m.attr("BRepLProp_CLProps"))
+    // constructors
         .def(py::init< const BRepAdaptor_Curve &,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const BRepAdaptor_Curve &,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("C"),  py::arg("U"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetParameter",
              (void (BRepLProp_CLProps::*)( const Standard_Real  ) ) static_cast<void (BRepLProp_CLProps::*)( const Standard_Real  ) >(&BRepLProp_CLProps::SetParameter),
@@ -117,12 +122,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepLProp_CurveTool , shared_ptr<BRepLProp_CurveTool>>(m,"BRepLProp_CurveTool");
 
     static_cast<py::class_<BRepLProp_CurveTool , shared_ptr<BRepLProp_CurveTool>  >>(m.attr("BRepLProp_CurveTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -149,14 +157,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
                     R"#(returns the last parameter bound of the curve. FirstParameter must be less than LastParamenter.)#"  , py::arg("C"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepLProp_SLProps , shared_ptr<BRepLProp_SLProps>  >>(m.attr("BRepLProp_SLProps"))
+    // constructors
         .def(py::init< const BRepAdaptor_Surface &,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("U"),  py::arg("V"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const BRepAdaptor_Surface &,const Standard_Integer,const Standard_Real >()  , py::arg("S"),  py::arg("N"),  py::arg("Resolution") )
         .def(py::init< const Standard_Integer,const Standard_Real >()  , py::arg("N"),  py::arg("Resolution") )
+    // custom constructors
     // methods
         .def("SetSurface",
              (void (BRepLProp_SLProps::*)( const BRepAdaptor_Surface &  ) ) static_cast<void (BRepLProp_SLProps::*)( const BRepAdaptor_Surface &  ) >(&BRepLProp_SLProps::SetSurface),
@@ -225,12 +235,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepLProp_SurfaceTool , shared_ptr<BRepLProp_SurfaceTool>>(m,"BRepLProp_SurfaceTool");
 
     static_cast<py::class_<BRepLProp_SurfaceTool , shared_ptr<BRepLProp_SurfaceTool>  >>(m.attr("BRepLProp_SurfaceTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -254,15 +267,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepLProp"));
                     []( const BRepAdaptor_Surface & S ){ Standard_Real  U1; Standard_Real  V1; Standard_Real  U2; Standard_Real  V2; BRepLProp_SurfaceTool::Bounds(S,U1,V1,U2,V2); return std::make_tuple(U1,V1,U2,V2); },
                     R"#(returns the bounds of the Surface.)#"  , py::arg("S"))
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepLProp.hxx
-// ./opencascade/BRepLProp_SLProps.hxx
-// ./opencascade/BRepLProp_CLProps.hxx
-// ./opencascade/BRepLProp_SurfaceTool.hxx
 // ./opencascade/BRepLProp_CurveTool.hxx
+// ./opencascade/BRepLProp_CLProps.hxx
+// ./opencascade/BRepLProp_SLProps.hxx
+// ./opencascade/BRepLProp_SurfaceTool.hxx
+// ./opencascade/BRepLProp.hxx
 
 // operators
 

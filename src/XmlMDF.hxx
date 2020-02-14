@@ -13,7 +13,9 @@ namespace py = pybind11;
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
-#include <TCollection_ExtendedString.hxx>
+#include <Message_Messenger.hxx>
+#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>
 #include <Message_Messenger.hxx>
 #include <TDF_Attribute.hxx>
 #include <XmlObjMgt_Persistent.hxx>
@@ -24,33 +26,30 @@ namespace py = pybind11;
 #include <XmlMDF_TagSourceDriver.hxx>
 #include <XmlMDF_ReferenceDriver.hxx>
 #include <XmlMDF_ADriverTable.hxx>
-#include <Message_Messenger.hxx>
-#include <TDF_Attribute.hxx>
-#include <XmlObjMgt_Persistent.hxx>
 
 // module includes
-#include <XmlMDF_DataMapIteratorOfMapOfDriver.hxx>
 #include <XmlMDF_ADriver.hxx>
-#include <XmlMDF_MapOfDriver.hxx>
 #include <XmlMDF_TagSourceDriver.hxx>
 #include <XmlMDF_ADriverTable.hxx>
-#include <XmlMDF.hxx>
 #include <XmlMDF_DataMapIteratorOfTypeADriverMap.hxx>
+#include <XmlMDF_DataMapIteratorOfMapOfDriver.hxx>
 #include <XmlMDF_ReferenceDriver.hxx>
 #include <XmlMDF_TypeADriverMap.hxx>
+#include <XmlMDF_MapOfDriver.hxx>
+#include <XmlMDF.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/XmlMDF_DataMapIteratorOfMapOfDriver.hxx
 // ./opencascade/XmlMDF_ADriver.hxx
-// ./opencascade/XmlMDF_MapOfDriver.hxx
 // ./opencascade/XmlMDF_TagSourceDriver.hxx
 // ./opencascade/XmlMDF_ADriverTable.hxx
-// ./opencascade/XmlMDF.hxx
 // ./opencascade/XmlMDF_DataMapIteratorOfTypeADriverMap.hxx
+// ./opencascade/XmlMDF_DataMapIteratorOfMapOfDriver.hxx
 // ./opencascade/XmlMDF_ReferenceDriver.hxx
 // ./opencascade/XmlMDF_TypeADriverMap.hxx
+// ./opencascade/XmlMDF_MapOfDriver.hxx
+// ./opencascade/XmlMDF.hxx
 
 // user-defined post

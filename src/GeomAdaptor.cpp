@@ -16,6 +16,26 @@ namespace py = pybind11;
 #include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
+#include <GeomAdaptor_Surface.hxx>
+#include <gp_Lin.hxx>
+#include <gp_Circ.hxx>
+#include <gp_Elips.hxx>
+#include <gp_Hypr.hxx>
+#include <gp_Parab.hxx>
+#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_OffsetCurve.hxx>
+#include <Adaptor3d_HCurve.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_HSurface.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Torus.hxx>
+#include <Geom_BezierSurface.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <gp_Pln.hxx>
 #include <gp_Cylinder.hxx>
@@ -26,16 +46,6 @@ namespace py = pybind11;
 #include <Geom_BSplineSurface.hxx>
 #include <gp_Ax1.hxx>
 #include <Adaptor3d_HCurve.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <GeomAdaptor_Surface.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Circ.hxx>
-#include <gp_Elips.hxx>
-#include <gp_Hypr.hxx>
-#include <gp_Parab.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom_OffsetCurve.hxx>
 #include <Geom_Curve.hxx>
 #include <Adaptor3d_Curve.hxx>
 #include <Geom_Surface.hxx>
@@ -46,16 +56,10 @@ namespace py = pybind11;
 #include <GeomAdaptor_HSurface.hxx>
 #include <GeomAdaptor_GHCurve.hxx>
 #include <GeomAdaptor_HCurve.hxx>
-#include <Adaptor3d_HCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
-#include <Adaptor3d_HSurface.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Cylinder.hxx>
-#include <gp_Cone.hxx>
-#include <gp_Sphere.hxx>
-#include <gp_Torus.hxx>
-#include <Geom_BezierSurface.hxx>
-#include <Geom_BSplineSurface.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Standard_NoSuchObject.hxx>
+#include <Adaptor3d_HCurve.hxx>
 #include <Standard_NoSuchObject.hxx>
 #include <Adaptor3d_HSurface.hxx>
 #include <gp_Pln.hxx>
@@ -66,10 +70,6 @@ namespace py = pybind11;
 #include <Geom_BezierSurface.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <gp_Ax1.hxx>
-#include <Adaptor3d_HCurve.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
-#include <Standard_NoSuchObject.hxx>
 
 // module includes
 #include <GeomAdaptor.hxx>
@@ -103,9 +103,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomAdaptor , shared_ptr<GeomAdaptor>>(m,"GeomAdaptor");
 
     static_cast<py::class_<GeomAdaptor , shared_ptr<GeomAdaptor>  >>(m.attr("GeomAdaptor"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -117,15 +120,20 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
                     R"#(Build a Geom_Surface using the informations from the Surface from Adaptor3d)#"  , py::arg("theS"),  py::arg("theTrimFlag")=static_cast<const Standard_Boolean>(Standard_True))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_Curve , shared_ptr<GeomAdaptor_Curve>  , Adaptor3d_Curve >>(m.attr("GeomAdaptor_Curve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Curve> & >()  , py::arg("C") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("C"),  py::arg("UFirst"),  py::arg("ULast") )
+    // custom constructors
     // methods
+        .def("Reset",
+             (void (GeomAdaptor_Curve::*)() ) static_cast<void (GeomAdaptor_Curve::*)() >(&GeomAdaptor_Curve::Reset),
+             R"#(Reset currently loaded curve (undone Load()).)#" )
         .def("Load",
              (void (GeomAdaptor_Curve::*)( const opencascade::handle<Geom_Curve> &  ) ) static_cast<void (GeomAdaptor_Curve::*)( const opencascade::handle<Geom_Curve> &  ) >(&GeomAdaptor_Curve::Load),
              R"#(None)#"  , py::arg("C"))
@@ -244,13 +252,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_GHCurve ,opencascade::handle<GeomAdaptor_GHCurve>  , Adaptor3d_HCurve >>(m.attr("GeomAdaptor_GHCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomAdaptor_Curve & >()  , py::arg("C") )
+    // custom constructors
     // methods
         .def("Set",
              (void (GeomAdaptor_GHCurve::*)( const GeomAdaptor_Curve &  ) ) static_cast<void (GeomAdaptor_GHCurve::*)( const GeomAdaptor_Curve &  ) >(&GeomAdaptor_GHCurve::Set),
@@ -277,13 +287,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_GHSurface ,opencascade::handle<GeomAdaptor_GHSurface>  , Adaptor3d_HSurface >>(m.attr("GeomAdaptor_GHSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomAdaptor_Surface & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Set",
              (void (GeomAdaptor_GHSurface::*)( const GeomAdaptor_Surface &  ) ) static_cast<void (GeomAdaptor_GHSurface::*)( const GeomAdaptor_Surface &  ) >(&GeomAdaptor_GHSurface::Set),
@@ -307,13 +319,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_HSurfaceOfLinearExtrusion ,opencascade::handle<GeomAdaptor_HSurfaceOfLinearExtrusion>  , Adaptor3d_HSurface >>(m.attr("GeomAdaptor_HSurfaceOfLinearExtrusion"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomAdaptor_SurfaceOfLinearExtrusion & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Set",
              (void (GeomAdaptor_HSurfaceOfLinearExtrusion::*)( const GeomAdaptor_SurfaceOfLinearExtrusion &  ) ) static_cast<void (GeomAdaptor_HSurfaceOfLinearExtrusion::*)( const GeomAdaptor_SurfaceOfLinearExtrusion &  ) >(&GeomAdaptor_HSurfaceOfLinearExtrusion::Set),
@@ -337,13 +351,15 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_HSurfaceOfRevolution ,opencascade::handle<GeomAdaptor_HSurfaceOfRevolution>  , Adaptor3d_HSurface >>(m.attr("GeomAdaptor_HSurfaceOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomAdaptor_SurfaceOfRevolution & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Set",
              (void (GeomAdaptor_HSurfaceOfRevolution::*)( const GeomAdaptor_SurfaceOfRevolution &  ) ) static_cast<void (GeomAdaptor_HSurfaceOfRevolution::*)( const GeomAdaptor_SurfaceOfRevolution &  ) >(&GeomAdaptor_HSurfaceOfRevolution::Set),
@@ -367,14 +383,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_Surface , shared_ptr<GeomAdaptor_Surface>  , Adaptor3d_Surface >>(m.attr("GeomAdaptor_Surface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Geom_Surface> & >()  , py::arg("S") )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("UFirst"),  py::arg("ULast"),  py::arg("VFirst"),  py::arg("VLast"),  py::arg("TolU")=static_cast<const Standard_Real>(0.0),  py::arg("TolV")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("Load",
              (void (GeomAdaptor_Surface::*)( const opencascade::handle<Geom_Surface> &  ) ) static_cast<void (GeomAdaptor_Surface::*)( const opencascade::handle<Geom_Surface> &  ) >(&GeomAdaptor_Surface::Load),
@@ -554,15 +572,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_HCurve ,opencascade::handle<GeomAdaptor_HCurve>  , GeomAdaptor_GHCurve >>(m.attr("GeomAdaptor_HCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomAdaptor_Curve & >()  , py::arg("AS") )
         .def(py::init< const opencascade::handle<Geom_Curve> & >()  , py::arg("S") )
         .def(py::init< const opencascade::handle<Geom_Curve> &,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("UFirst"),  py::arg("ULast") )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (GeomAdaptor_HCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (GeomAdaptor_HCurve::*)() const>(&GeomAdaptor_HCurve::DynamicType),
@@ -577,15 +597,17 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_HSurface ,opencascade::handle<GeomAdaptor_HSurface>  , GeomAdaptor_GHSurface >>(m.attr("GeomAdaptor_HSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const GeomAdaptor_Surface & >()  , py::arg("AS") )
         .def(py::init< const opencascade::handle<Geom_Surface> & >()  , py::arg("S") )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("UFirst"),  py::arg("ULast"),  py::arg("VFirst"),  py::arg("VLast"),  py::arg("TolU")=static_cast<const Standard_Real>(0.0),  py::arg("TolV")=static_cast<const Standard_Real>(0.0) )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (GeomAdaptor_HSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (GeomAdaptor_HSurface::*)() const>(&GeomAdaptor_HSurface::DynamicType),
@@ -600,14 +622,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_SurfaceOfLinearExtrusion , shared_ptr<GeomAdaptor_SurfaceOfLinearExtrusion>  , GeomAdaptor_Surface >>(m.attr("GeomAdaptor_SurfaceOfLinearExtrusion"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("C") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const gp_Dir & >()  , py::arg("C"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("Load",
              (void (GeomAdaptor_SurfaceOfLinearExtrusion::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) ) static_cast<void (GeomAdaptor_SurfaceOfLinearExtrusion::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) >(&GeomAdaptor_SurfaceOfLinearExtrusion::Load),
@@ -724,14 +748,16 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<GeomAdaptor_SurfaceOfRevolution , shared_ptr<GeomAdaptor_SurfaceOfRevolution>  , GeomAdaptor_Surface >>(m.attr("GeomAdaptor_SurfaceOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> & >()  , py::arg("C") )
         .def(py::init< const opencascade::handle<Adaptor3d_HCurve> &,const gp_Ax1 & >()  , py::arg("C"),  py::arg("V") )
+    // custom constructors
     // methods
         .def("Load",
              (void (GeomAdaptor_SurfaceOfRevolution::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) ) static_cast<void (GeomAdaptor_SurfaceOfRevolution::*)( const opencascade::handle<Adaptor3d_HCurve> &  ) >(&GeomAdaptor_SurfaceOfRevolution::Load),
@@ -851,21 +877,21 @@ py::module m = static_cast<py::module>(main_module.attr("GeomAdaptor"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/GeomAdaptor_GHCurve.hxx
-// ./opencascade/GeomAdaptor_SurfaceOfLinearExtrusion.hxx
+// ./opencascade/GeomAdaptor_HSurfaceOfLinearExtrusion.hxx
 // ./opencascade/GeomAdaptor_Curve.hxx
-// ./opencascade/GeomAdaptor.hxx
+// ./opencascade/GeomAdaptor_HSurface.hxx
 // ./opencascade/GeomAdaptor_SurfaceOfRevolution.hxx
 // ./opencascade/GeomAdaptor_Surface.hxx
-// ./opencascade/GeomAdaptor_GHSurface.hxx
-// ./opencascade/GeomAdaptor_HCurve.hxx
+// ./opencascade/GeomAdaptor.hxx
+// ./opencascade/GeomAdaptor_GHCurve.hxx
 // ./opencascade/GeomAdaptor_HSurfaceOfRevolution.hxx
-// ./opencascade/GeomAdaptor_HSurfaceOfLinearExtrusion.hxx
-// ./opencascade/GeomAdaptor_HSurface.hxx
+// ./opencascade/GeomAdaptor_GHSurface.hxx
+// ./opencascade/GeomAdaptor_SurfaceOfLinearExtrusion.hxx
+// ./opencascade/GeomAdaptor_HCurve.hxx
 
 // operators
 

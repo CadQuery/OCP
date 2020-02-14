@@ -44,7 +44,9 @@ py::module m = static_cast<py::module>(main_module.attr("BRepIntCurveSurface"));
 
 
     static_cast<py::class_<BRepIntCurveSurface_Inter , shared_ptr<BRepIntCurveSurface_Inter>  >>(m.attr("BRepIntCurveSurface_Inter"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepIntCurveSurface_Inter::*)( const TopoDS_Shape & ,  const GeomAdaptor_Curve & ,  const Standard_Real  ) ) static_cast<void (BRepIntCurveSurface_Inter::*)( const TopoDS_Shape & ,  const GeomAdaptor_Curve & ,  const Standard_Real  ) >(&BRepIntCurveSurface_Inter::Init),
@@ -92,7 +94,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepIntCurveSurface"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

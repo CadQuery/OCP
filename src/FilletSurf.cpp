@@ -18,15 +18,9 @@ namespace py = pybind11;
 #include <BRepAdaptor_HSurface.hxx>
 #include <Adaptor3d_TopolTool.hxx>
 #include <BRepAdaptor_HCurve2d.hxx>
-#include <Geom_Surface.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom_TrimmedCurve.hxx>
 #include <StdFail_NotDone.hxx>
-#include <Geom_Surface.hxx>
-#include <TopoDS_Face.hxx>
-#include <Geom_Curve.hxx>
 #include <Geom2d_Curve.hxx>
 #include <Geom_TrimmedCurve.hxx>
 
@@ -58,7 +52,9 @@ py::module m = static_cast<py::module>(main_module.attr("FilletSurf"));
 
 
     static_cast<py::class_<FilletSurf_Builder , shared_ptr<FilletSurf_Builder>  >>(m.attr("FilletSurf_Builder"))
+    // constructors
         .def(py::init< const TopoDS_Shape &, const NCollection_List<TopoDS_Shape> &,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("E"),  py::arg("R"),  py::arg("Ta")=static_cast<const Standard_Real>(1.0e-2),  py::arg("Tapp3d")=static_cast<const Standard_Real>(1.0e-4),  py::arg("Tapp2d")=static_cast<const Standard_Real>(1.0e-5) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (FilletSurf_Builder::*)() ) static_cast<void (FilletSurf_Builder::*)() >(&FilletSurf_Builder::Perform),
@@ -127,12 +123,14 @@ py::module m = static_cast<py::module>(main_module.attr("FilletSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<FilletSurf_InternalBuilder , shared_ptr<FilletSurf_InternalBuilder>  , ChFi3d_FilBuilder >>(m.attr("FilletSurf_InternalBuilder"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const ChFi3d_FilletShape,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("S"),  py::arg("FShape")=static_cast<const ChFi3d_FilletShape>(ChFi3d_Polynomial),  py::arg("Ta")=static_cast<const Standard_Real>(1.0e-2),  py::arg("Tapp3d")=static_cast<const Standard_Real>(1.0e-4),  py::arg("Tapp2d")=static_cast<const Standard_Real>(1.0e-5) )
+    // custom constructors
     // methods
         .def("Add",
              (Standard_Integer (FilletSurf_InternalBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,  const Standard_Real  ) ) static_cast<Standard_Integer (FilletSurf_InternalBuilder::*)(  const NCollection_List<TopoDS_Shape> & ,  const Standard_Real  ) >(&FilletSurf_InternalBuilder::Add),
@@ -201,15 +199,15 @@ py::module m = static_cast<py::module>(main_module.attr("FilletSurf"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/FilletSurf_ErrorTypeStatus.hxx
 // ./opencascade/FilletSurf_StatusDone.hxx
+// ./opencascade/FilletSurf_StatusType.hxx
+// ./opencascade/FilletSurf_ErrorTypeStatus.hxx
 // ./opencascade/FilletSurf_InternalBuilder.hxx
 // ./opencascade/FilletSurf_Builder.hxx
-// ./opencascade/FilletSurf_StatusType.hxx
 
 // operators
 

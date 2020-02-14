@@ -13,6 +13,14 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <TopOpeBRepBuild_HBuilder.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Edge.hxx>
+#include <Adaptor3d_Curve.hxx>
+#include <TopoDS_Edge.hxx>
+#include <gp_Pln.hxx>
+#include <Geom_Surface.hxx>
+#include <TopoDS_Wire.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Edge.hxx>
 #include <BRepAlgo_BooleanOperation.hxx>
@@ -25,56 +33,24 @@ namespace py = pybind11;
 #include <BRepAlgo_Image.hxx>
 #include <BRepAlgo_AsDes.hxx>
 #include <BRepAlgo_FaceRestrictor.hxx>
-#include <BRepAlgo_BooleanOperations.hxx>
-#include <BRepAlgo_DSAccess.hxx>
-#include <BRepAlgo_EdgeConnector.hxx>
 #include <BRepAlgo_NormalProjection.hxx>
-#include <TopoDS_Wire.hxx>
-#include <StdFail_NotDone.hxx>
-#include <TopoDS_Edge.hxx>
-#include <Adaptor3d_Curve.hxx>
-#include <TopOpeBRepBuild_HBuilder.hxx>
-#include <BRepAlgo_EdgeConnector.hxx>
-#include <BRepAlgo_BooleanOperations.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopOpeBRepBuild_HBuilder.hxx>
-#include <TopOpeBRepBuild_HBuilder.hxx>
-#include <TopoDS_Edge.hxx>
-#include <gp_Pln.hxx>
-#include <Geom_Surface.hxx>
 
 // module includes
 #include <BRepAlgo.hxx>
 #include <BRepAlgo_AsDes.hxx>
 #include <BRepAlgo_BooleanOperation.hxx>
-#include <BRepAlgo_BooleanOperations.hxx>
 #include <BRepAlgo_CheckStatus.hxx>
 #include <BRepAlgo_Common.hxx>
 #include <BRepAlgo_Cut.hxx>
-#include <BRepAlgo_DataMapIteratorOfDataMapOfShapeBoolean.hxx>
-#include <BRepAlgo_DataMapIteratorOfDataMapOfShapeInterference.hxx>
-#include <BRepAlgo_DataMapOfShapeBoolean.hxx>
-#include <BRepAlgo_DataMapOfShapeInterference.hxx>
-#include <BRepAlgo_DSAccess.hxx>
-#include <BRepAlgo_EdgeConnector.hxx>
 #include <BRepAlgo_FaceRestrictor.hxx>
 #include <BRepAlgo_Fuse.hxx>
 #include <BRepAlgo_Image.hxx>
 #include <BRepAlgo_Loop.hxx>
 #include <BRepAlgo_NormalProjection.hxx>
 #include <BRepAlgo_Section.hxx>
-#include <BRepAlgo_SequenceOfSequenceOfInteger.hxx>
 #include <BRepAlgo_Tool.hxx>
 
 // template related includes
-// ./opencascade/BRepAlgo_DataMapOfShapeBoolean.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepAlgo_DataMapOfShapeBoolean.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepAlgo_SequenceOfSequenceOfInteger.hxx
-#include "NCollection.hxx"
-// ./opencascade/BRepAlgo_DataMapOfShapeInterference.hxx
-#include "NCollection.hxx"
 
 
 // user-defined pre
@@ -93,9 +69,12 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
 
 // classes
 
+    // default constructor
     register_default_constructor<BRepAlgo , shared_ptr<BRepAlgo>>(m,"BRepAlgo");
 
     static_cast<py::class_<BRepAlgo , shared_ptr<BRepAlgo>  >>(m.attr("BRepAlgo"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -116,12 +95,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
                     R"#(Checks if the shape is "correct". If not, returns <Standard_False>, else returns <Standard_True>. This method differs from the previous one in the fact that no geometric contols (intersection of wires, pcurve validity) are performed.)#"  , py::arg("S"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_AsDes ,opencascade::handle<BRepAlgo_AsDes>  , Standard_Transient >>(m.attr("BRepAlgo_AsDes"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepAlgo_AsDes::*)() ) static_cast<void (BRepAlgo_AsDes::*)() >(&BRepAlgo_AsDes::Clear),
@@ -169,11 +150,13 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_BooleanOperation , shared_ptr<BRepAlgo_BooleanOperation>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepAlgo_BooleanOperation"))
+    // constructors
+    // custom constructors
     // methods
         .def("PerformDS",
              (void (BRepAlgo_BooleanOperation::*)() ) static_cast<void (BRepAlgo_BooleanOperation::*)() >(&BRepAlgo_BooleanOperation::PerformDS),
@@ -200,204 +183,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepAlgo_BooleanOperations , shared_ptr<BRepAlgo_BooleanOperations>  >>(m.attr("BRepAlgo_BooleanOperations"))
-        .def(py::init<  >()  )
-    // methods
-        .def("Shapes2d",
-             (void (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_BooleanOperations::Shapes2d),
-             R"#(S1 is a Shell with ALL faces supported by the SAME S2 is an Edge INCLUDED in that surface with pcurve. this avoids a time-consuming 3D operation, compared to Shapes.)#"  , py::arg("S1"),  py::arg("S2"))
-        .def("Shapes",
-             (void (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_BooleanOperations::Shapes),
-             R"#(Defines the arguments.)#"  , py::arg("S1"),  py::arg("S2"))
-        .def("SetApproxParameters",
-             (void (BRepAlgo_BooleanOperations::*)( const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepAlgo_BooleanOperations::*)( const Standard_Integer ,  const Standard_Real ,  const Standard_Real  ) >(&BRepAlgo_BooleanOperations::SetApproxParameters),
-             R"#(Sets different parameters for the curve approximations : NbPntMax : Maximum number of points to be approximated at the same time in one curve. Tol3D, Tol2D : Tolerances to be reached by the approximation. RelativeTol : The given tolerances are relative.)#"  , py::arg("NbPntMax"),  py::arg("Tol3D"),  py::arg("Tol2D"))
-        .def("Define",
-             (void (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) ) static_cast<void (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape & ,  const TopoDS_Shape & ,  opencascade::handle<TopOpeBRepDS_HDataStructure> &  ) >(&BRepAlgo_BooleanOperations::Define),
-             R"#(None)#"  , py::arg("S1"),  py::arg("S2"),  py::arg("HDS"))
-        .def("Common",
-             (const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() ) static_cast<const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::Common),
-             R"#(returns the common part of the shapes.)#" )
-        .def("Fus",
-             (const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() ) static_cast<const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::Fus),
-             R"#(returns the fuse part of the shapes.)#" )
-        .def("Cut",
-             (const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() ) static_cast<const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::Cut),
-             R"#(returns the cut part of the shapes.)#" )
-        .def("Section",
-             (const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() ) static_cast<const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::Section),
-             R"#(returns the intersection of the shapes.)#" )
-        .def("Shape",
-             (const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() ) static_cast<const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::Shape),
-             R"#(returns the result of the boolean operation.)#" )
-        .def("ShapeFrom",
-             (const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Shape & (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape &  ) >(&BRepAlgo_BooleanOperations::ShapeFrom),
-             R"#(Returns the shape(s) resulting of the boolean operation issued from the shape <S>.)#"  , py::arg("S"))
-        .def("Modified",
-             (const TopTools_ListOfShape & (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape &  ) >(&BRepAlgo_BooleanOperations::Modified),
-             R"#(Returns the list of the descendant shapes of the shape <S>.)#"  , py::arg("S"))
-        .def("IsDeleted",
-             (Standard_Boolean (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepAlgo_BooleanOperations::*)( const TopoDS_Shape &  ) >(&BRepAlgo_BooleanOperations::IsDeleted),
-             R"#(Returns the fact that the shape <S> has been deleted or not by the boolean operation.)#"  , py::arg("S"))
-        .def("DataStructure",
-             (const opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_BooleanOperations::*)() const) static_cast<const opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_BooleanOperations::*)() const>(&BRepAlgo_BooleanOperations::DataStructure),
-             R"#(None)#" )
-        .def("ChangeDataStructure",
-             (opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_BooleanOperations::*)() ) static_cast<opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::ChangeDataStructure),
-             R"#(None)#" )
-        .def("Builder",
-             (const opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_BooleanOperations::*)() const) static_cast<const opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_BooleanOperations::*)() const>(&BRepAlgo_BooleanOperations::Builder),
-             R"#(None)#" )
-        .def("ChangeBuilder",
-             (opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_BooleanOperations::*)() ) static_cast<opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::ChangeBuilder),
-             R"#(None)#" )
-        .def("DataStructureAccess",
-             (BRepAlgo_DSAccess & (BRepAlgo_BooleanOperations::*)() ) static_cast<BRepAlgo_DSAccess & (BRepAlgo_BooleanOperations::*)() >(&BRepAlgo_BooleanOperations::DataStructureAccess),
-             R"#(returns the member myDSA. It is useful to then access the method GetSectionEdgeSet (wich is a member of DSAccess))#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepAlgo_DSAccess , shared_ptr<BRepAlgo_DSAccess>  >>(m.attr("BRepAlgo_DSAccess"))
-        .def(py::init<  >()  )
-    // methods
-        .def("Init",
-             (void (BRepAlgo_DSAccess::*)() ) static_cast<void (BRepAlgo_DSAccess::*)() >(&BRepAlgo_DSAccess::Init),
-             R"#(Clears the internal data structure, including the)#" )
-        .def("Load",
-             (void (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::Load),
-             R"#(Loads the shape in DS.)#"  , py::arg("S"))
-        .def("Load",
-             (void (BRepAlgo_DSAccess::*)( TopoDS_Shape & ,  TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_DSAccess::*)( TopoDS_Shape & ,  TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::Load),
-             R"#(Loads two shapes in the DS without intersecting them.)#"  , py::arg("S1"),  py::arg("S2"))
-        .def("Intersect",
-             (void (BRepAlgo_DSAccess::*)() ) static_cast<void (BRepAlgo_DSAccess::*)() >(&BRepAlgo_DSAccess::Intersect),
-             R"#(Intersects two shapes at input and loads the DS with their intersection. Clears the TopOpeBRepBuild_HBuilder if necessary)#" )
-        .def("Intersect",
-             (void (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::Intersect),
-             R"#(Intersects the faces contained in two given shapes and loads them in the DS. Clears the TopOpeBRepBuild_HBuilder if necessary)#"  , py::arg("S1"),  py::arg("S2"))
-        .def("SameDomain",
-             (void (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::SameDomain),
-             R"#(This method does the same thing as the previous, but faster. There is no intersection face/face 3D. The faces have the same support(surface). No test of tangency (that is why it is faster). Intersects in 2d the faces tangent F1 anf F2.)#"  , py::arg("S1"),  py::arg("S2"))
-        .def("GetSectionEdgeSet",
-             (const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::GetSectionEdgeSet),
-             R"#(returns compounds of Edge connected with section, which contains sections between faces contained in S1 and S2. returns an empty list of Shape if S1 or S2 do not contain face. calls GetSectionEdgeSet() if it has not already been done)#"  , py::arg("S1"),  py::arg("S2"))
-        .def("GetSectionEdgeSet",
-             (const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)() ) static_cast<const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)() >(&BRepAlgo_DSAccess::GetSectionEdgeSet),
-             R"#(returns all compounds of edges connected with section contained in the DS)#" )
-        .def("IsWire",
-             (Standard_Boolean (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::IsWire),
-             R"#(NYI)#"  , py::arg("Compound"))
-        .def("Wire",
-             (const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::Wire),
-             R"#(NYI)#"  , py::arg("Compound"))
-        .def("SectionVertex",
-             (const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::SectionVertex),
-             R"#(NYI returns the vertex of section, which contains the section between face S1 and edge S2 (returns an empty Shape if S1 is not a face or if S2 is not an edge))#"  , py::arg("S1"),  py::arg("S2"))
-        .def("SuppressEdgeSet",
-             (void (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::SuppressEdgeSet),
-             R"#(Invalidates a complete line of section. All Edges connected by Vertex or a Wire. Can be a group of connected Edges, which do not form a standard Wire.)#"  , py::arg("Compound"))
-        .def("ChangeEdgeSet",
-             (void (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_DSAccess::*)( const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::ChangeEdgeSet),
-             R"#(Modifies a line of section. <New> -- should be a Group of Edges connected by Vertex. -- Can be a Wire. Can be a group of connected Edges that do not form a standard Wire. <New> should be sub-groupn of <Old>)#"  , py::arg("Old"),  py::arg("New"))
-        .def("SuppressSectionVertex",
-             (void (BRepAlgo_DSAccess::*)( const TopoDS_Vertex &  ) ) static_cast<void (BRepAlgo_DSAccess::*)( const TopoDS_Vertex &  ) >(&BRepAlgo_DSAccess::SuppressSectionVertex),
-             R"#(NYI Make invalid a Vertex of section. The Vertex shoud be reconstructed from a point.)#"  , py::arg("V"))
-        .def("Merge",
-             (const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopAbs_State ,  const TopAbs_State  ) ) static_cast<const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopAbs_State ,  const TopAbs_State  ) >(&BRepAlgo_DSAccess::Merge),
-             R"#(None)#"  , py::arg("state1"),  py::arg("state2"))
-        .def("Merge",
-             (const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopAbs_State  ) ) static_cast<const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopAbs_State  ) >(&BRepAlgo_DSAccess::Merge),
-             R"#(None)#"  , py::arg("state1"))
-        .def("Propagate",
-             (const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopAbs_State ,  const TopoDS_Shape & ,  const TopoDS_Shape &  ) ) static_cast<const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopAbs_State ,  const TopoDS_Shape & ,  const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::Propagate),
-             R"#(NYI Propagation of a state starting from the shape FromShape = edge or vertex of section, face or Coumpound de section. LoadShape is either S1, or S2 (see the method Load). Propagation from FromShape, on the states <what> of LoadShape. Return a Wire in 2d, a Shell in 3d. Specifications are incomplete, to be redefined for the typologies correpsonding to <FromShape> and the result : exemple : FromShape resultat vertex wire (or edge) edge of section face (or shell) compound of section shell ... ...)#"  , py::arg("what"),  py::arg("FromShape"),  py::arg("LoadShape"))
-        .def("PropagateFromSection",
-             (const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) ) static_cast<const TopoDS_Shape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::PropagateFromSection),
-             R"#(SectionShape est soit un Vertex de section(NYI), soit une Edge de section. Propagation des shapes de section en partant de SectionShape. return un Compound de section.)#"  , py::arg("SectionShape"))
-        .def("Modified",
-             (const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) ) static_cast<const TopTools_ListOfShape & (BRepAlgo_DSAccess::*)( const TopoDS_Shape &  ) >(&BRepAlgo_DSAccess::Modified),
-             R"#(Returns the list of the descendant shapes of the shape <S>.)#"  , py::arg("S"))
-        .def("Check",
-             (BRepAlgo_CheckStatus (BRepAlgo_DSAccess::*)() ) static_cast<BRepAlgo_CheckStatus (BRepAlgo_DSAccess::*)() >(&BRepAlgo_DSAccess::Check),
-             R"#(NYI coherence of the internal Data Structure.)#" )
-        .def("DS",
-             (const opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_DSAccess::*)() const) static_cast<const opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_DSAccess::*)() const>(&BRepAlgo_DSAccess::DS),
-             R"#(None)#" )
-        .def("ChangeDS",
-             (opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_DSAccess::*)() ) static_cast<opencascade::handle<TopOpeBRepDS_HDataStructure> & (BRepAlgo_DSAccess::*)() >(&BRepAlgo_DSAccess::ChangeDS),
-             R"#(None)#" )
-        .def("Builder",
-             (const opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_DSAccess::*)() const) static_cast<const opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_DSAccess::*)() const>(&BRepAlgo_DSAccess::Builder),
-             R"#(None)#" )
-        .def("ChangeBuilder",
-             (opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_DSAccess::*)() ) static_cast<opencascade::handle<TopOpeBRepBuild_HBuilder> & (BRepAlgo_DSAccess::*)() >(&BRepAlgo_DSAccess::ChangeBuilder),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
-;
-
-
-    static_cast<py::class_<BRepAlgo_EdgeConnector ,opencascade::handle<BRepAlgo_EdgeConnector>  , Standard_Transient >>(m.attr("BRepAlgo_EdgeConnector"))
-        .def(py::init<  >()  )
-    // methods
-        .def("Add",
-             (void (BRepAlgo_EdgeConnector::*)( const TopoDS_Edge &  ) ) static_cast<void (BRepAlgo_EdgeConnector::*)( const TopoDS_Edge &  ) >(&BRepAlgo_EdgeConnector::Add),
-             R"#(None)#"  , py::arg("e"))
-        .def("Add",
-             (void (BRepAlgo_EdgeConnector::*)( NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepAlgo_EdgeConnector::*)( NCollection_List<TopoDS_Shape> &  ) >(&BRepAlgo_EdgeConnector::Add),
-             R"#(None)#"  , py::arg("LOEdge"))
-        .def("AddStart",
-             (void (BRepAlgo_EdgeConnector::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_EdgeConnector::*)( const TopoDS_Shape &  ) >(&BRepAlgo_EdgeConnector::AddStart),
-             R"#(None)#"  , py::arg("e"))
-        .def("AddStart",
-             (void (BRepAlgo_EdgeConnector::*)( NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepAlgo_EdgeConnector::*)( NCollection_List<TopoDS_Shape> &  ) >(&BRepAlgo_EdgeConnector::AddStart),
-             R"#(None)#"  , py::arg("LOEdge"))
-        .def("ClearStartElement",
-             (void (BRepAlgo_EdgeConnector::*)() ) static_cast<void (BRepAlgo_EdgeConnector::*)() >(&BRepAlgo_EdgeConnector::ClearStartElement),
-             R"#(None)#" )
-        .def("MakeBlock",
-             (TopTools_ListOfShape & (BRepAlgo_EdgeConnector::*)() ) static_cast<TopTools_ListOfShape & (BRepAlgo_EdgeConnector::*)() >(&BRepAlgo_EdgeConnector::MakeBlock),
-             R"#(returns a list of wire non standard)#" )
-        .def("Done",
-             (void (BRepAlgo_EdgeConnector::*)() ) static_cast<void (BRepAlgo_EdgeConnector::*)() >(&BRepAlgo_EdgeConnector::Done),
-             R"#(None)#" )
-        .def("IsDone",
-             (Standard_Boolean (BRepAlgo_EdgeConnector::*)() const) static_cast<Standard_Boolean (BRepAlgo_EdgeConnector::*)() const>(&BRepAlgo_EdgeConnector::IsDone),
-             R"#(NYI returns true if proceeded to MakeBlock())#" )
-        .def("IsWire",
-             (Standard_Boolean (BRepAlgo_EdgeConnector::*)( const TopoDS_Shape &  ) ) static_cast<Standard_Boolean (BRepAlgo_EdgeConnector::*)( const TopoDS_Shape &  ) >(&BRepAlgo_EdgeConnector::IsWire),
-             R"#(NYI returns true if W is a Wire standard. W must belong to the list returned by MakeBlock.)#"  , py::arg("W"))
-        .def("DynamicType",
-             (const opencascade::handle<Standard_Type> & (BRepAlgo_EdgeConnector::*)() const) static_cast<const opencascade::handle<Standard_Type> & (BRepAlgo_EdgeConnector::*)() const>(&BRepAlgo_EdgeConnector::DynamicType),
-             R"#(None)#" )
-    // methods using call by reference i.s.o. return
-    // static methods
-        .def_static("get_type_name_s",
-                    (const char * (*)() ) static_cast<const char * (*)() >(&BRepAlgo_EdgeConnector::get_type_name),
-                    R"#(None)#" )
-        .def_static("get_type_descriptor_s",
-                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&BRepAlgo_EdgeConnector::get_type_descriptor),
-                    R"#(None)#" )
-    // static methods using call by reference i.s.o. return
-    // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_FaceRestrictor , shared_ptr<BRepAlgo_FaceRestrictor>  >>(m.attr("BRepAlgo_FaceRestrictor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepAlgo_FaceRestrictor::*)( const TopoDS_Face & ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (BRepAlgo_FaceRestrictor::*)( const TopoDS_Face & ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&BRepAlgo_FaceRestrictor::Init),
@@ -427,12 +220,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_Image , shared_ptr<BRepAlgo_Image>  >>(m.attr("BRepAlgo_Image"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetRoot",
              (void (BRepAlgo_Image::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_Image::*)( const TopoDS_Shape &  ) >(&BRepAlgo_Image::SetRoot),
@@ -486,12 +281,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_Loop , shared_ptr<BRepAlgo_Loop>  >>(m.attr("BRepAlgo_Loop"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepAlgo_Loop::*)( const TopoDS_Face &  ) ) static_cast<void (BRepAlgo_Loop::*)( const TopoDS_Face &  ) >(&BRepAlgo_Loop::Init),
@@ -533,13 +330,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_NormalProjection , shared_ptr<BRepAlgo_NormalProjection>  >>(m.attr("BRepAlgo_NormalProjection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepAlgo_NormalProjection::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_NormalProjection::*)( const TopoDS_Shape &  ) >(&BRepAlgo_NormalProjection::Init),
@@ -590,12 +389,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<BRepAlgo_Tool , shared_ptr<BRepAlgo_Tool>>(m,"BRepAlgo_Tool");
 
     static_cast<py::class_<BRepAlgo_Tool , shared_ptr<BRepAlgo_Tool>  >>(m.attr("BRepAlgo_Tool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -604,49 +406,57 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
                     R"#(Remove the non valid part of an offsetshape 1 - Remove all the free boundary and the faces connex to such edges. 2 - Remove all the shapes not valid in the result (according to the side of offseting) in this verion only the first point is implemented.)#"  , py::arg("S"),  py::arg("Boundary"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_Common , shared_ptr<BRepAlgo_Common>  , BRepAlgo_BooleanOperation >>(m.attr("BRepAlgo_Common"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("S1"),  py::arg("S2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_Cut , shared_ptr<BRepAlgo_Cut>  , BRepAlgo_BooleanOperation >>(m.attr("BRepAlgo_Cut"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("S1"),  py::arg("S2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_Fuse , shared_ptr<BRepAlgo_Fuse>  , BRepAlgo_BooleanOperation >>(m.attr("BRepAlgo_Fuse"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("S1"),  py::arg("S2") )
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepAlgo_Section , shared_ptr<BRepAlgo_Section>  , BRepAlgo_BooleanOperation >>(m.attr("BRepAlgo_Section"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("Sh1"),  py::arg("Sh2"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const TopoDS_Shape &,const gp_Pln &,const Standard_Boolean >()  , py::arg("Sh"),  py::arg("Pl"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const TopoDS_Shape &,const opencascade::handle<Geom_Surface> &,const Standard_Boolean >()  , py::arg("Sh"),  py::arg("Sf"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const TopoDS_Shape &,const Standard_Boolean >()  , py::arg("Sf"),  py::arg("Sh"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<Geom_Surface> &,const opencascade::handle<Geom_Surface> &,const Standard_Boolean >()  , py::arg("Sf1"),  py::arg("Sf2"),  py::arg("PerformNow")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init1",
              (void (BRepAlgo_Section::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepAlgo_Section::*)( const TopoDS_Shape &  ) >(&BRepAlgo_Section::Init1),
@@ -688,37 +498,27 @@ py::module m = static_cast<py::module>(main_module.attr("BRepAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepAlgo_DataMapOfShapeBoolean.hxx
-// ./opencascade/BRepAlgo.hxx
-// ./opencascade/BRepAlgo_Cut.hxx
-// ./opencascade/BRepAlgo_FaceRestrictor.hxx
-// ./opencascade/BRepAlgo_Common.hxx
-// ./opencascade/BRepAlgo_NormalProjection.hxx
-// ./opencascade/BRepAlgo_DSAccess.hxx
-// ./opencascade/BRepAlgo_EdgeConnector.hxx
-// ./opencascade/BRepAlgo_BooleanOperations.hxx
-// ./opencascade/BRepAlgo_AsDes.hxx
-// ./opencascade/BRepAlgo_DataMapIteratorOfDataMapOfShapeBoolean.hxx
-// ./opencascade/BRepAlgo_SequenceOfSequenceOfInteger.hxx
 // ./opencascade/BRepAlgo_BooleanOperation.hxx
+// ./opencascade/BRepAlgo_NormalProjection.hxx
+// ./opencascade/BRepAlgo_Cut.hxx
 // ./opencascade/BRepAlgo_Loop.hxx
-// ./opencascade/BRepAlgo_Tool.hxx
-// ./opencascade/BRepAlgo_Image.hxx
-// ./opencascade/BRepAlgo_CheckStatus.hxx
 // ./opencascade/BRepAlgo_Section.hxx
-// ./opencascade/BRepAlgo_DataMapOfShapeInterference.hxx
-// ./opencascade/BRepAlgo_DataMapIteratorOfDataMapOfShapeInterference.hxx
+// ./opencascade/BRepAlgo_AsDes.hxx
+// ./opencascade/BRepAlgo_CheckStatus.hxx
+// ./opencascade/BRepAlgo_FaceRestrictor.hxx
 // ./opencascade/BRepAlgo_Fuse.hxx
+// ./opencascade/BRepAlgo.hxx
+// ./opencascade/BRepAlgo_Common.hxx
+// ./opencascade/BRepAlgo_Image.hxx
+// ./opencascade/BRepAlgo_Tool.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_DataMap<TopoDS_Shape, Standard_Boolean, TopTools_ShapeMapHasher>(m,"BRepAlgo_DataMapOfShapeBoolean");  
-    register_template_NCollection_Sequence<TColStd_SequenceOfInteger>(m,"BRepAlgo_SequenceOfSequenceOfInteger");  
 
 
 // exceptions

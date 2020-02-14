@@ -13,67 +13,19 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <Interface_InterfaceError.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Transfer_ResultFromTransient.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Interface_CheckIterator.hxx>
+#include <Transfer_ProcessForFinder.hxx>
+#include <Transfer_ActorOfProcessForFinder.hxx>
+#include <Transfer_ProcessForTransient.hxx>
+#include <Transfer_IteratorOfProcessForTransient.hxx>
+#include <Transfer_SimpleBinderOfTransient.hxx>
 #include <Transfer_ProcessForFinder.hxx>
 #include <Transfer_IteratorOfProcessForFinder.hxx>
 #include <Transfer_SimpleBinderOfTransient.hxx>
-#include <Interface_InterfaceError.hxx>
 #include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Transfer_ProcessForFinder.hxx>
-#include <Transfer_ActorOfProcessForFinder.hxx>
-#include <Transfer_ProcessForFinder.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <Transfer_Finder.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Transfer_TransferFailure.hxx>
-#include <Transfer_TransferFailure.hxx>
+#include <Interface_HGraph.hxx>
+#include <Interface_Graph.hxx>
+#include <Message_Messenger.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <Transfer_TransferIterator.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <Transfer_FinderProcess.hxx>
-#include <Transfer_ProcessForTransient.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Message_Messenger.hxx>
-#include <Transfer_ActorOfProcessForFinder.hxx>
-#include <Message_ProgressIndicator.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Transfer_TransferFailure.hxx>
-#include <Transfer_IteratorOfProcessForFinder.hxx>
-#include <Message_Msg.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CheckIterator.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <Message_Messenger.hxx>
-#include <Transfer_ActorOfProcessForTransient.hxx>
-#include <Message_ProgressIndicator.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Transfer_TransferFailure.hxx>
-#include <Transfer_IteratorOfProcessForTransient.hxx>
-#include <Message_Msg.hxx>
-#include <Interface_Check.hxx>
-#include <Interface_CheckIterator.hxx>
-#include <Transfer_TransferFailure.hxx>
-#include <Interface_Check.hxx>
-#include <Transfer_Binder.hxx>
-#include <Interface_Check.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <Transfer_ProcessForTransient.hxx>
-#include <Transfer_ActorOfProcessForTransient.hxx>
-#include <Interface_Check.hxx>
-#include <Transfer_TransferFailure.hxx>
 #include <Transfer_TransientProcess.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <Standard_NoSuchObject.hxx>
@@ -82,17 +34,65 @@ namespace py = pybind11;
 #include <Interface_Protocol.hxx>
 #include <Interface_Graph.hxx>
 #include <Interface_EntityIterator.hxx>
+#include <Transfer_TransferFailure.hxx>
+#include <Standard_TypeMismatch.hxx>
+#include <Transfer_Finder.hxx>
+#include <Interface_InterfaceError.hxx>
 #include <Interface_InterfaceModel.hxx>
-#include <Interface_HGraph.hxx>
-#include <Interface_Graph.hxx>
-#include <Message_Messenger.hxx>
-#include <Interface_EntityIterator.hxx>
+#include <Interface_Protocol.hxx>
+#include <Transfer_TransientProcess.hxx>
 #include <Transfer_DataInfo.hxx>
-#include <Transfer_ProcessForTransient.hxx>
-#include <Transfer_IteratorOfProcessForTransient.hxx>
-#include <Transfer_SimpleBinderOfTransient.hxx>
 #include <Transfer_TransientMapper.hxx>
 #include <Message_Messenger.hxx>
+#include <Transfer_TransferFailure.hxx>
+#include <Transfer_Binder.hxx>
+#include <Interface_Check.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Protocol.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Transfer_ProcessForTransient.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Interface_Check.hxx>
+#include <Transfer_TransferFailure.hxx>
+#include <Message_Messenger.hxx>
+#include <Transfer_ActorOfProcessForTransient.hxx>
+#include <Message_ProgressIndicator.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Transfer_TransferFailure.hxx>
+#include <Transfer_IteratorOfProcessForTransient.hxx>
+#include <Message_Msg.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Message_Messenger.hxx>
+#include <Transfer_ActorOfProcessForFinder.hxx>
+#include <Message_ProgressIndicator.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Transfer_TransferFailure.hxx>
+#include <Transfer_IteratorOfProcessForFinder.hxx>
+#include <Message_Msg.hxx>
+#include <Interface_Check.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Transfer_ResultFromTransient.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Transfer_ProcessForTransient.hxx>
+#include <Transfer_ActorOfProcessForTransient.hxx>
+#include <Transfer_ProcessForFinder.hxx>
+#include <Transfer_FinderProcess.hxx>
+#include <Interface_Check.hxx>
+#include <Transfer_TransferFailure.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Transfer_TransferIterator.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Protocol.hxx>
+#include <Transfer_FinderProcess.hxx>
 
 // module includes
 #include <Transfer_ActorDispatch.hxx>
@@ -160,6 +160,7 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     public:
         using Transfer_Binder::Transfer_Binder;
         
+        
         // public pure virtual
         opencascade::handle<Standard_Type> ResultType() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Standard_Type>,Transfer_Binder,ResultType,) };
         Standard_CString ResultTypeName() const  override { PYBIND11_OVERLOAD_PURE(Standard_CString,Transfer_Binder,ResultTypeName,) };
@@ -174,6 +175,7 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     class Py_Transfer_Finder : public Transfer_Finder{
     public:
         using Transfer_Finder::Transfer_Finder;
+        
         
         // public pure virtual
         Standard_Boolean Equates(const opencascade::handle<Transfer_Finder> & other) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,Transfer_Finder,Equates,other) };
@@ -190,7 +192,9 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
 
 
     static_cast<py::class_<Transfer_ActorOfProcessForFinder ,opencascade::handle<Transfer_ActorOfProcessForFinder>  , Standard_Transient >>(m.attr("Transfer_ActorOfProcessForFinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Recognize",
              (Standard_Boolean (Transfer_ActorOfProcessForFinder::*)( const opencascade::handle<Transfer_Finder> &  ) ) static_cast<Standard_Boolean (Transfer_ActorOfProcessForFinder::*)( const opencascade::handle<Transfer_Finder> &  ) >(&Transfer_ActorOfProcessForFinder::Recognize),
@@ -229,12 +233,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ActorOfProcessForTransient ,opencascade::handle<Transfer_ActorOfProcessForTransient>  , Standard_Transient >>(m.attr("Transfer_ActorOfProcessForTransient"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Recognize",
              (Standard_Boolean (Transfer_ActorOfProcessForTransient::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<Standard_Boolean (Transfer_ActorOfProcessForTransient::*)( const opencascade::handle<Standard_Transient> &  ) >(&Transfer_ActorOfProcessForTransient::Recognize),
@@ -273,11 +279,13 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_Binder ,opencascade::handle<Transfer_Binder> ,Py_Transfer_Binder , Standard_Transient >>(m.attr("Transfer_Binder"))
+    // constructors
+    // custom constructors
     // methods
         .def("Merge",
              (void (Transfer_Binder::*)( const opencascade::handle<Transfer_Binder> &  ) ) static_cast<void (Transfer_Binder::*)( const opencascade::handle<Transfer_Binder> &  ) >(&Transfer_Binder::Merge),
@@ -337,12 +345,15 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Transfer_DataInfo , shared_ptr<Transfer_DataInfo>>(m,"Transfer_DataInfo");
 
     static_cast<py::class_<Transfer_DataInfo , shared_ptr<Transfer_DataInfo>  >>(m.attr("Transfer_DataInfo"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -354,12 +365,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(Returns Type Name (string) Allows to name type of non-handled objects)#"  , py::arg("ent"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_DispatchControl ,opencascade::handle<Transfer_DispatchControl>  , Interface_CopyControl >>(m.attr("Transfer_DispatchControl"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Transfer_TransientProcess> & >()  , py::arg("model"),  py::arg("TP") )
+    // custom constructors
     // methods
         .def("TransientProcess",
              (const opencascade::handle<Transfer_TransientProcess> & (Transfer_DispatchControl::*)() const) static_cast<const opencascade::handle<Transfer_TransientProcess> & (Transfer_DispatchControl::*)() const>(&Transfer_DispatchControl::TransientProcess),
@@ -389,28 +402,33 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<Transfer_FindHasher , shared_ptr<Transfer_FindHasher>>(m,"Transfer_FindHasher");
 
     static_cast<py::class_<Transfer_FindHasher , shared_ptr<Transfer_FindHasher>  >>(m.attr("Transfer_FindHasher"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
         .def_static("HashCode_s",
-                    (Standard_Integer (*)( const opencascade::handle<Transfer_Finder> & ,  const Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Transfer_Finder> & ,  const Standard_Integer  ) >(&Transfer_FindHasher::HashCode),
-                    R"#(Returns a HashCode in the range <0,Upper> for a Finder : asks the Finder its HashCode then transforms it to be in the required range)#"  , py::arg("K"),  py::arg("Upper"))
+                    (Standard_Integer (*)( const opencascade::handle<Transfer_Finder> & ,  Standard_Integer  ) ) static_cast<Standard_Integer (*)( const opencascade::handle<Transfer_Finder> & ,  Standard_Integer  ) >(&Transfer_FindHasher::HashCode),
+                    R"#(Returns hash code for the given finder, in the range [1, theUpperBound]. Asks the finder its hash code, then transforms it to be in the required range)#"  , py::arg("theFinder"),  py::arg("theUpperBound"))
         .def_static("IsEqual_s",
                     (Standard_Boolean (*)( const opencascade::handle<Transfer_Finder> & ,  const opencascade::handle<Transfer_Finder> &  ) ) static_cast<Standard_Boolean (*)( const opencascade::handle<Transfer_Finder> & ,  const opencascade::handle<Transfer_Finder> &  ) >(&Transfer_FindHasher::IsEqual),
                     R"#(Returns True if two keys are the same. The test does not work on the Finders themselves but by calling their methods Equates)#"  , py::arg("K1"),  py::arg("K2"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_Finder ,opencascade::handle<Transfer_Finder> ,Py_Transfer_Finder , Standard_Transient >>(m.attr("Transfer_Finder"))
+    // constructors
+    // custom constructors
     // methods
         .def("GetHashCode",
              (Standard_Integer (Transfer_Finder::*)() const) static_cast<Standard_Integer (Transfer_Finder::*)() const>(&Transfer_Finder::GetHashCode),
@@ -485,13 +503,15 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_HSequenceOfBinder ,opencascade::handle<Transfer_HSequenceOfBinder>  , Transfer_SequenceOfBinder , Standard_Transient >>(m.attr("Transfer_HSequenceOfBinder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Transfer_Binder> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const Transfer_SequenceOfBinder & (Transfer_HSequenceOfBinder::*)() const) static_cast<const Transfer_SequenceOfBinder & (Transfer_HSequenceOfBinder::*)() const>(&Transfer_HSequenceOfBinder::Sequence),
@@ -518,13 +538,15 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_HSequenceOfFinder ,opencascade::handle<Transfer_HSequenceOfFinder>  , Transfer_SequenceOfFinder , Standard_Transient >>(m.attr("Transfer_HSequenceOfFinder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<Transfer_Finder> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const Transfer_SequenceOfFinder & (Transfer_HSequenceOfFinder::*)() const) static_cast<const Transfer_SequenceOfFinder & (Transfer_HSequenceOfFinder::*)() const>(&Transfer_HSequenceOfFinder::Sequence),
@@ -551,12 +573,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_MapContainer ,opencascade::handle<Transfer_MapContainer>  , Standard_Transient >>(m.attr("Transfer_MapContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetMapObjects",
              (void (Transfer_MapContainer::*)( NCollection_DataMap<opencascade::handle<Standard_Transient>, opencascade::handle<Standard_Transient>, TColStd_MapTransientHasher> &  ) ) static_cast<void (Transfer_MapContainer::*)( NCollection_DataMap<opencascade::handle<Standard_Transient>, opencascade::handle<Standard_Transient>, TColStd_MapTransientHasher> &  ) >(&Transfer_MapContainer::SetMapObjects),
@@ -577,13 +601,15 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ProcessForFinder ,opencascade::handle<Transfer_ProcessForFinder>  , Standard_Transient >>(m.attr("Transfer_ProcessForFinder"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("nb")=static_cast<const Standard_Integer>(10000) )
         .def(py::init< const opencascade::handle<Message_Messenger> &,const Standard_Integer >()  , py::arg("printer"),  py::arg("nb")=static_cast<const Standard_Integer>(10000) )
+    // custom constructors
     // methods
         .def("Clear",
              (void (Transfer_ProcessForFinder::*)() ) static_cast<void (Transfer_ProcessForFinder::*)() >(&Transfer_ProcessForFinder::Clear),
@@ -787,13 +813,15 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ProcessForTransient ,opencascade::handle<Transfer_ProcessForTransient>  , Standard_Transient >>(m.attr("Transfer_ProcessForTransient"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("nb")=static_cast<const Standard_Integer>(10000) )
         .def(py::init< const opencascade::handle<Message_Messenger> &,const Standard_Integer >()  , py::arg("printer"),  py::arg("nb")=static_cast<const Standard_Integer>(10000) )
+    // custom constructors
     // methods
         .def("Clear",
              (void (Transfer_ProcessForTransient::*)() ) static_cast<void (Transfer_ProcessForTransient::*)() >(&Transfer_ProcessForTransient::Clear),
@@ -997,12 +1025,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ResultFromModel ,opencascade::handle<Transfer_ResultFromModel>  , Standard_Transient >>(m.attr("Transfer_ResultFromModel"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (Transfer_ResultFromModel::*)( const opencascade::handle<Interface_InterfaceModel> &  ) ) static_cast<void (Transfer_ResultFromModel::*)( const opencascade::handle<Interface_InterfaceModel> &  ) >(&Transfer_ResultFromModel::SetModel),
@@ -1074,12 +1104,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ResultFromTransient ,opencascade::handle<Transfer_ResultFromTransient>  , Standard_Transient >>(m.attr("Transfer_ResultFromTransient"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetStart",
              (void (Transfer_ResultFromTransient::*)( const opencascade::handle<Standard_Transient> &  ) ) static_cast<void (Transfer_ResultFromTransient::*)( const opencascade::handle<Standard_Transient> &  ) >(&Transfer_ResultFromTransient::SetStart),
@@ -1142,14 +1174,16 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_TransferDispatch , shared_ptr<Transfer_TransferDispatch>  , Interface_CopyTool >>(m.attr("Transfer_TransferDispatch"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Interface_GeneralLib & >()  , py::arg("amodel"),  py::arg("lib") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> & >()  , py::arg("amodel"),  py::arg("protocol") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("amodel") )
+    // custom constructors
     // methods
         .def("TransientProcess",
              (opencascade::handle<Transfer_TransientProcess> (Transfer_TransferDispatch::*)() const) static_cast<opencascade::handle<Transfer_TransientProcess> (Transfer_TransferDispatch::*)() const>(&Transfer_TransferDispatch::TransientProcess),
@@ -1161,12 +1195,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_TransferInput , shared_ptr<Transfer_TransferInput>  >>(m.attr("Transfer_TransferInput"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Entities",
              (Interface_EntityIterator (Transfer_TransferInput::*)( Transfer_TransferIterator &  ) const) static_cast<Interface_EntityIterator (Transfer_TransferInput::*)( Transfer_TransferIterator &  ) const>(&Transfer_TransferInput::Entities),
@@ -1187,12 +1223,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_TransferIterator , shared_ptr<Transfer_TransferIterator>  >>(m.attr("Transfer_TransferIterator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddItem",
              (void (Transfer_TransferIterator::*)( const opencascade::handle<Transfer_Binder> &  ) ) static_cast<void (Transfer_TransferIterator::*)( const opencascade::handle<Transfer_Binder> &  ) >(&Transfer_TransferIterator::AddItem),
@@ -1255,13 +1293,15 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_TransferOutput , shared_ptr<Transfer_TransferOutput>  >>(m.attr("Transfer_TransferOutput"))
+    // constructors
         .def(py::init< const opencascade::handle<Transfer_ActorOfTransientProcess> &,const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("actor"),  py::arg("amodel") )
         .def(py::init< const opencascade::handle<Transfer_TransientProcess> &,const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("proc"),  py::arg("amodel") )
+    // custom constructors
     // methods
         .def("Model",
              (opencascade::handle<Interface_InterfaceModel> (Transfer_TransferOutput::*)() const) static_cast<opencascade::handle<Interface_InterfaceModel> (Transfer_TransferOutput::*)() const>(&Transfer_TransferOutput::Model),
@@ -1291,12 +1331,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ActorOfFinderProcess ,opencascade::handle<Transfer_ActorOfFinderProcess>  , Transfer_ActorOfProcessForFinder >>(m.attr("Transfer_ActorOfFinderProcess"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ModeTrans",
              (Standard_Integer & (Transfer_ActorOfFinderProcess::*)() ) static_cast<Standard_Integer & (Transfer_ActorOfFinderProcess::*)() >(&Transfer_ActorOfFinderProcess::ModeTrans),
@@ -1323,12 +1365,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ActorOfTransientProcess ,opencascade::handle<Transfer_ActorOfTransientProcess>  , Transfer_ActorOfProcessForTransient >>(m.attr("Transfer_ActorOfTransientProcess"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Transferring",
              (opencascade::handle<Transfer_Binder> (Transfer_ActorOfTransientProcess::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Transfer_ProcessForTransient> &  ) ) static_cast<opencascade::handle<Transfer_Binder> (Transfer_ActorOfTransientProcess::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Transfer_ProcessForTransient> &  ) >(&Transfer_ActorOfTransientProcess::Transferring),
@@ -1352,12 +1396,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_FinderProcess ,opencascade::handle<Transfer_FinderProcess>  , Transfer_ProcessForFinder >>(m.attr("Transfer_FinderProcess"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("nb")=static_cast<const Standard_Integer>(10000) )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (Transfer_FinderProcess::*)( const opencascade::handle<Interface_InterfaceModel> &  ) ) static_cast<void (Transfer_FinderProcess::*)( const opencascade::handle<Interface_InterfaceModel> &  ) >(&Transfer_FinderProcess::SetModel),
@@ -1390,12 +1436,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_IteratorOfProcessForFinder , shared_ptr<Transfer_IteratorOfProcessForFinder>  , Transfer_TransferIterator >>(m.attr("Transfer_IteratorOfProcessForFinder"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("withstarts") )
+    // custom constructors
     // methods
         .def("Add",
              (void (Transfer_IteratorOfProcessForFinder::*)( const opencascade::handle<Transfer_Binder> &  ) ) static_cast<void (Transfer_IteratorOfProcessForFinder::*)( const opencascade::handle<Transfer_Binder> &  ) >(&Transfer_IteratorOfProcessForFinder::Add),
@@ -1416,12 +1464,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_IteratorOfProcessForTransient , shared_ptr<Transfer_IteratorOfProcessForTransient>  , Transfer_TransferIterator >>(m.attr("Transfer_IteratorOfProcessForTransient"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("withstarts") )
+    // custom constructors
     // methods
         .def("Add",
              (void (Transfer_IteratorOfProcessForTransient::*)( const opencascade::handle<Transfer_Binder> &  ) ) static_cast<void (Transfer_IteratorOfProcessForTransient::*)( const opencascade::handle<Transfer_Binder> &  ) >(&Transfer_IteratorOfProcessForTransient::Add),
@@ -1442,12 +1492,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_MultipleBinder ,opencascade::handle<Transfer_MultipleBinder>  , Transfer_Binder >>(m.attr("Transfer_MultipleBinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IsMultiple",
              (Standard_Boolean (Transfer_MultipleBinder::*)() const) static_cast<Standard_Boolean (Transfer_MultipleBinder::*)() const>(&Transfer_MultipleBinder::IsMultiple),
@@ -1486,12 +1538,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_SimpleBinderOfTransient ,opencascade::handle<Transfer_SimpleBinderOfTransient>  , Transfer_Binder >>(m.attr("Transfer_SimpleBinderOfTransient"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ResultType",
              (opencascade::handle<Standard_Type> (Transfer_SimpleBinderOfTransient::*)() const) static_cast<opencascade::handle<Standard_Type> (Transfer_SimpleBinderOfTransient::*)() const>(&Transfer_SimpleBinderOfTransient::ResultType),
@@ -1521,13 +1575,15 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_TransientListBinder ,opencascade::handle<Transfer_TransientListBinder>  , Transfer_Binder >>(m.attr("Transfer_TransientListBinder"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<TColStd_HSequenceOfTransient> & >()  , py::arg("list") )
+    // custom constructors
     // methods
         .def("IsMultiple",
              (Standard_Boolean (Transfer_TransientListBinder::*)() const) static_cast<Standard_Boolean (Transfer_TransientListBinder::*)() const>(&Transfer_TransientListBinder::IsMultiple),
@@ -1566,12 +1622,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_TransientMapper ,opencascade::handle<Transfer_TransientMapper>  , Transfer_Finder >>(m.attr("Transfer_TransientMapper"))
+    // constructors
         .def(py::init< const opencascade::handle<Standard_Transient> & >()  , py::arg("akey") )
+    // custom constructors
     // methods
         .def("Value",
              (const opencascade::handle<Standard_Transient> & (Transfer_TransientMapper::*)() const) static_cast<const opencascade::handle<Standard_Transient> & (Transfer_TransientMapper::*)() const>(&Transfer_TransientMapper::Value),
@@ -1598,12 +1656,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_TransientProcess ,opencascade::handle<Transfer_TransientProcess>  , Transfer_ProcessForTransient >>(m.attr("Transfer_TransientProcess"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("nb")=static_cast<const Standard_Integer>(10000) )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (Transfer_TransientProcess::*)( const opencascade::handle<Interface_InterfaceModel> &  ) ) static_cast<void (Transfer_TransientProcess::*)( const opencascade::handle<Interface_InterfaceModel> &  ) >(&Transfer_TransientProcess::SetModel),
@@ -1666,12 +1726,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_VoidBinder ,opencascade::handle<Transfer_VoidBinder>  , Transfer_Binder >>(m.attr("Transfer_VoidBinder"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("ResultType",
              (opencascade::handle<Standard_Type> (Transfer_VoidBinder::*)() const) static_cast<opencascade::handle<Standard_Type> (Transfer_VoidBinder::*)() const>(&Transfer_VoidBinder::ResultType),
@@ -1692,14 +1754,16 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_ActorDispatch ,opencascade::handle<Transfer_ActorDispatch>  , Transfer_ActorOfTransientProcess >>(m.attr("Transfer_ActorDispatch"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const Interface_GeneralLib & >()  , py::arg("amodel"),  py::arg("lib") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> & >()  , py::arg("amodel"),  py::arg("protocol") )
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("amodel") )
+    // custom constructors
     // methods
         .def("AddActor",
              (void (Transfer_ActorDispatch::*)( const opencascade::handle<Transfer_ActorOfTransientProcess> &  ) ) static_cast<void (Transfer_ActorDispatch::*)( const opencascade::handle<Transfer_ActorOfTransientProcess> &  ) >(&Transfer_ActorDispatch::AddActor),
@@ -1723,12 +1787,14 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Transfer_BinderOfTransientInteger ,opencascade::handle<Transfer_BinderOfTransientInteger>  , Transfer_SimpleBinderOfTransient >>(m.attr("Transfer_BinderOfTransientInteger"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetInteger",
              (void (Transfer_BinderOfTransientInteger::*)( const Standard_Integer  ) ) static_cast<void (Transfer_BinderOfTransientInteger::*)( const Standard_Integer  ) >(&Transfer_BinderOfTransientInteger::SetInteger),
@@ -1749,50 +1815,50 @@ py::module m = static_cast<py::module>(main_module.attr("Transfer"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Transfer_ActorDispatch.hxx
-// ./opencascade/Transfer_ResultFromModel.hxx
-// ./opencascade/Transfer_ActorOfProcessForFinder.hxx
-// ./opencascade/Transfer_TransferDispatch.hxx
-// ./opencascade/Transfer_IteratorOfProcessForFinder.hxx
-// ./opencascade/Transfer_TransferDeadLoop.hxx
-// ./opencascade/Transfer_ActorOfFinderProcess.hxx
-// ./opencascade/Transfer_HSequenceOfFinder.hxx
-// ./opencascade/Transfer_FindHasher.hxx
-// ./opencascade/Transfer_DispatchControl.hxx
-// ./opencascade/Transfer_MultipleBinder.hxx
-// ./opencascade/Transfer_UndefMode.hxx
-// ./opencascade/Transfer_TransferInput.hxx
-// ./opencascade/Transfer_TransferMapOfProcessForTransient.hxx
-// ./opencascade/Transfer_ActorOfTransientProcess.hxx
+// ./opencascade/Transfer_TransferMapOfProcessForFinder.hxx
 // ./opencascade/Transfer_Finder.hxx
-// ./opencascade/Transfer_ProcessForFinder.hxx
-// ./opencascade/Transfer_TransientListBinder.hxx
+// ./opencascade/Transfer_IteratorOfProcessForFinder.hxx
+// ./opencascade/Transfer_ActorOfProcessForTransient.hxx
 // ./opencascade/Transfer_TransferFailure.hxx
-// ./opencascade/Transfer_ProcessForTransient.hxx
-// ./opencascade/Transfer_SimpleBinderOfTransient.hxx
-// ./opencascade/Transfer_TransferIterator.hxx
-// ./opencascade/Transfer_ResultFromTransient.hxx
-// ./opencascade/Transfer_IteratorOfProcessForTransient.hxx
-// ./opencascade/Transfer_SequenceOfBinder.hxx
-// ./opencascade/Transfer_StatusExec.hxx
-// ./opencascade/Transfer_StatusResult.hxx
-// ./opencascade/Transfer_Binder.hxx
-// ./opencascade/Transfer_TransferOutput.hxx
+// ./opencascade/Transfer_ActorOfProcessForFinder.hxx
 // ./opencascade/Transfer_TransientProcess.hxx
-// ./opencascade/Transfer_DataInfo.hxx
-// ./opencascade/Transfer_HSequenceOfBinder.hxx
+// ./opencascade/Transfer_TransferOutput.hxx
+// ./opencascade/Transfer_MultipleBinder.hxx
 // ./opencascade/Transfer_MapContainer.hxx
+// ./opencascade/Transfer_TransientListBinder.hxx
+// ./opencascade/Transfer_FindHasher.hxx
+// ./opencascade/Transfer_TransferDispatch.hxx
+// ./opencascade/Transfer_SequenceOfBinder.hxx
+// ./opencascade/Transfer_TransientMapper.hxx
+// ./opencascade/Transfer_HSequenceOfFinder.hxx
+// ./opencascade/Transfer_FinderProcess.hxx
+// ./opencascade/Transfer_SimpleBinderOfTransient.hxx
 // ./opencascade/Transfer_VoidBinder.hxx
 // ./opencascade/Transfer_SequenceOfFinder.hxx
-// ./opencascade/Transfer_TransientMapper.hxx
-// ./opencascade/Transfer_ActorOfProcessForTransient.hxx
-// ./opencascade/Transfer_FinderProcess.hxx
-// ./opencascade/Transfer_TransferMapOfProcessForFinder.hxx
+// ./opencascade/Transfer_ResultFromTransient.hxx
+// ./opencascade/Transfer_ActorDispatch.hxx
+// ./opencascade/Transfer_HSequenceOfBinder.hxx
+// ./opencascade/Transfer_TransferMapOfProcessForTransient.hxx
+// ./opencascade/Transfer_DataInfo.hxx
 // ./opencascade/Transfer_BinderOfTransientInteger.hxx
+// ./opencascade/Transfer_DispatchControl.hxx
+// ./opencascade/Transfer_ActorOfTransientProcess.hxx
+// ./opencascade/Transfer_Binder.hxx
+// ./opencascade/Transfer_ProcessForTransient.hxx
+// ./opencascade/Transfer_ProcessForFinder.hxx
+// ./opencascade/Transfer_ResultFromModel.hxx
+// ./opencascade/Transfer_TransferDeadLoop.hxx
+// ./opencascade/Transfer_IteratorOfProcessForTransient.hxx
+// ./opencascade/Transfer_ActorOfFinderProcess.hxx
+// ./opencascade/Transfer_TransferIterator.hxx
+// ./opencascade/Transfer_TransferInput.hxx
+// ./opencascade/Transfer_StatusResult.hxx
+// ./opencascade/Transfer_UndefMode.hxx
+// ./opencascade/Transfer_StatusExec.hxx
 
 // operators
 

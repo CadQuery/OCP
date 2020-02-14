@@ -13,7 +13,74 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <IGESToBRep_ToolContainer.hxx>
+#include <IGESData_IGESModel.hxx>
+#include <IGESToBRep_Actor.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Transfer_TransientProcess.hxx>
+#include <TopoDS_Shape.hxx>
+#include <IGESGeom_RuledSurface.hxx>
+#include <IGESGeom_SurfaceOfRevolution.hxx>
+#include <IGESGeom_TabulatedCylinder.hxx>
+#include <IGESGeom_OffsetSurface.hxx>
+#include <IGESGeom_TrimmedSurface.hxx>
+#include <IGESGeom_BoundedSurface.hxx>
+#include <IGESGeom_Plane.hxx>
+#include <IGESSolid_PlaneSurface.hxx>
+#include <IGESBasic_SingleParent.hxx>
+#include <gp_Pln.hxx>
+#include <gp_Trsf.hxx>
+#include <gp_Trsf2d.hxx>
+#include <Geom_Curve.hxx>
+#include <Geom2d_Curve.hxx>
+#include <IGESGeom_BSplineCurve.hxx>
+#include <IGESGeom_CircularArc.hxx>
+#include <IGESGeom_ConicArc.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <IGESGeom_CopiousData.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <IGESGeom_Line.hxx>
+#include <IGESGeom_SplineCurve.hxx>
+#include <Geom_Transformation.hxx>
+#include <IGESGeom_TransformationMatrix.hxx>
+#include <ShapeExtend_WireData.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <IGESSolid_VertexList.hxx>
+#include <IGESSolid_EdgeList.hxx>
+#include <IGESSolid_Loop.hxx>
+#include <TopoDS_Face.hxx>
+#include <gp_Trsf2d.hxx>
+#include <IGESSolid_Face.hxx>
+#include <IGESSolid_Shell.hxx>
+#include <IGESSolid_ManifoldSolid.hxx>
 #include <IGESToBRep_IGESBoundary.hxx>
+#include <TopoDS_Shape.hxx>
+#include <TopoDS_Face.hxx>
+#include <gp_Trsf2d.hxx>
+#include <TopoDS_Vertex.hxx>
+#include <IGESGeom_Point.hxx>
+#include <IGESGeom_CompositeCurve.hxx>
+#include <IGESGeom_OffsetCurve.hxx>
+#include <IGESGeom_CurveOnSurface.hxx>
+#include <IGESGeom_Boundary.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Geom_Surface.hxx>
+#include <Geom_Plane.hxx>
+#include <IGESSolid_PlaneSurface.hxx>
+#include <Geom_CylindricalSurface.hxx>
+#include <IGESSolid_CylindricalSurface.hxx>
+#include <Geom_ConicalSurface.hxx>
+#include <IGESSolid_ConicalSurface.hxx>
+#include <Geom_SphericalSurface.hxx>
+#include <IGESSolid_SphericalSurface.hxx>
+#include <Geom_ToroidalSurface.hxx>
+#include <IGESSolid_ToroidalSurface.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <IGESGeom_SplineSurface.hxx>
+#include <IGESGeom_BSplineSurface.hxx>
 #include <IGESToBRep_AlgoContainer.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <TopoDS_Shape.hxx>
@@ -30,77 +97,10 @@ namespace py = pybind11;
 #include <IGESToBRep_Actor.hxx>
 #include <IGESToBRep_AlgoContainer.hxx>
 #include <IGESToBRep_ToolContainer.hxx>
-#include <ShapeExtend_WireData.hxx>
-#include <IGESData_IGESModel.hxx>
-#include <IGESToBRep_Actor.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <IGESSolid_VertexList.hxx>
-#include <IGESSolid_EdgeList.hxx>
-#include <IGESSolid_Loop.hxx>
-#include <TopoDS_Face.hxx>
-#include <gp_Trsf2d.hxx>
-#include <IGESSolid_Face.hxx>
-#include <IGESSolid_Shell.hxx>
-#include <IGESSolid_ManifoldSolid.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Transfer_TransientProcess.hxx>
-#include <IGESToBRep_ToolContainer.hxx>
-#include <TopoDS_Shape.hxx>
-#include <IGESGeom_RuledSurface.hxx>
-#include <IGESGeom_SurfaceOfRevolution.hxx>
-#include <IGESGeom_TabulatedCylinder.hxx>
-#include <IGESGeom_OffsetSurface.hxx>
-#include <IGESGeom_TrimmedSurface.hxx>
-#include <IGESGeom_BoundedSurface.hxx>
-#include <IGESGeom_Plane.hxx>
-#include <IGESSolid_PlaneSurface.hxx>
-#include <IGESBasic_SingleParent.hxx>
-#include <gp_Pln.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Trsf2d.hxx>
 #include <Geom_Surface.hxx>
 #include <IGESData_IGESModel.hxx>
 #include <TopoDS_Shape.hxx>
 #include <Message_Msg.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Face.hxx>
-#include <gp_Trsf2d.hxx>
-#include <TopoDS_Vertex.hxx>
-#include <IGESGeom_Point.hxx>
-#include <IGESGeom_CompositeCurve.hxx>
-#include <IGESGeom_OffsetCurve.hxx>
-#include <IGESGeom_CurveOnSurface.hxx>
-#include <IGESGeom_Boundary.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <Geom_Curve.hxx>
-#include <Geom2d_Curve.hxx>
-#include <IGESGeom_BSplineCurve.hxx>
-#include <IGESGeom_CircularArc.hxx>
-#include <IGESGeom_ConicArc.hxx>
-#include <Geom_BSplineCurve.hxx>
-#include <IGESGeom_CopiousData.hxx>
-#include <Geom2d_BSplineCurve.hxx>
-#include <IGESGeom_Line.hxx>
-#include <IGESGeom_SplineCurve.hxx>
-#include <Geom_Transformation.hxx>
-#include <IGESGeom_TransformationMatrix.hxx>
-#include <Geom_Surface.hxx>
-#include <Geom_Plane.hxx>
-#include <IGESSolid_PlaneSurface.hxx>
-#include <Geom_CylindricalSurface.hxx>
-#include <IGESSolid_CylindricalSurface.hxx>
-#include <Geom_ConicalSurface.hxx>
-#include <IGESSolid_ConicalSurface.hxx>
-#include <Geom_SphericalSurface.hxx>
-#include <IGESSolid_SphericalSurface.hxx>
-#include <Geom_ToroidalSurface.hxx>
-#include <IGESSolid_ToroidalSurface.hxx>
-#include <Geom_BSplineSurface.hxx>
-#include <IGESGeom_SplineSurface.hxx>
-#include <IGESGeom_BSplineSurface.hxx>
 
 // module includes
 #include <IGESToBRep.hxx>
@@ -135,9 +135,12 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IGESToBRep , shared_ptr<IGESToBRep>>(m,"IGESToBRep");
 
     static_cast<py::class_<IGESToBRep , shared_ptr<IGESToBRep>  >>(m.attr("IGESToBRep"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -176,12 +179,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
                     R"#(None)#"  , py::arg("fromedge"),  py::arg("toedge"),  py::arg("face"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_Actor ,opencascade::handle<IGESToBRep_Actor>  , Transfer_ActorOfTransientProcess >>(m.attr("IGESToBRep_Actor"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (IGESToBRep_Actor::*)( const opencascade::handle<Interface_InterfaceModel> &  ) ) static_cast<void (IGESToBRep_Actor::*)( const opencascade::handle<Interface_InterfaceModel> &  ) >(&IGESToBRep_Actor::SetModel),
@@ -214,12 +219,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_AlgoContainer ,opencascade::handle<IGESToBRep_AlgoContainer>  , Standard_Transient >>(m.attr("IGESToBRep_AlgoContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetToolContainer",
              (void (IGESToBRep_AlgoContainer::*)( const opencascade::handle<IGESToBRep_ToolContainer> &  ) ) static_cast<void (IGESToBRep_AlgoContainer::*)( const opencascade::handle<IGESToBRep_ToolContainer> &  ) >(&IGESToBRep_AlgoContainer::SetToolContainer),
@@ -246,14 +253,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_CurveAndSurface , shared_ptr<IGESToBRep_CurveAndSurface>  >>(m.attr("IGESToBRep_CurveAndSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("eps"),  py::arg("epsGeom"),  py::arg("epsCoeff"),  py::arg("mode"),  py::arg("modeapprox"),  py::arg("optimized") )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESToBRep_CurveAndSurface::*)() ) static_cast<void (IGESToBRep_CurveAndSurface::*)() >(&IGESToBRep_CurveAndSurface::Init),
@@ -460,13 +469,15 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_IGESBoundary ,opencascade::handle<IGESToBRep_IGESBoundary>  , Standard_Transient >>(m.attr("IGESToBRep_IGESBoundary"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
+    // custom constructors
     // methods
         .def("Init",
              (void (IGESToBRep_IGESBoundary::*)( const IGESToBRep_CurveAndSurface & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const TopoDS_Face & ,  const gp_Trsf2d & ,  const Standard_Real ,  const Standard_Integer  ) ) static_cast<void (IGESToBRep_IGESBoundary::*)( const IGESToBRep_CurveAndSurface & ,  const opencascade::handle<IGESData_IGESEntity> & ,  const TopoDS_Face & ,  const gp_Trsf2d & ,  const Standard_Real ,  const Standard_Integer  ) >(&IGESToBRep_IGESBoundary::Init),
@@ -511,12 +522,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_Reader , shared_ptr<IGESToBRep_Reader>  >>(m.attr("IGESToBRep_Reader"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("LoadFile",
              (Standard_Integer (IGESToBRep_Reader::*)( const Standard_CString  ) ) static_cast<Standard_Integer (IGESToBRep_Reader::*)( const Standard_CString  ) >(&IGESToBRep_Reader::LoadFile),
@@ -567,12 +580,14 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_ToolContainer ,opencascade::handle<IGESToBRep_ToolContainer>  , Standard_Transient >>(m.attr("IGESToBRep_ToolContainer"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("IGESBoundary",
              (opencascade::handle<IGESToBRep_IGESBoundary> (IGESToBRep_ToolContainer::*)() const) static_cast<opencascade::handle<IGESToBRep_IGESBoundary> (IGESToBRep_ToolContainer::*)() const>(&IGESToBRep_ToolContainer::IGESBoundary),
@@ -590,14 +605,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_BRepEntity , shared_ptr<IGESToBRep_BRepEntity>  , IGESToBRep_CurveAndSurface >>(m.attr("IGESToBRep_BRepEntity"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("eps"),  py::arg("epsGeom"),  py::arg("epsCoeff"),  py::arg("mode"),  py::arg("modeapprox"),  py::arg("optimized") )
+    // custom constructors
     // methods
         .def("TransferBRepEntity",
              (TopoDS_Shape (IGESToBRep_BRepEntity::*)( const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<TopoDS_Shape (IGESToBRep_BRepEntity::*)( const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESToBRep_BRepEntity::TransferBRepEntity),
@@ -624,14 +641,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_BasicCurve , shared_ptr<IGESToBRep_BasicCurve>  , IGESToBRep_CurveAndSurface >>(m.attr("IGESToBRep_BasicCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("eps"),  py::arg("epsGeom"),  py::arg("epsCoeff"),  py::arg("mode"),  py::arg("modeapprox"),  py::arg("optimized") )
+    // custom constructors
     // methods
         .def("TransferBasicCurve",
              (opencascade::handle<Geom_Curve> (IGESToBRep_BasicCurve::*)( const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<opencascade::handle<Geom_Curve> (IGESToBRep_BasicCurve::*)( const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESToBRep_BasicCurve::TransferBasicCurve),
@@ -682,14 +701,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_BasicSurface , shared_ptr<IGESToBRep_BasicSurface>  , IGESToBRep_CurveAndSurface >>(m.attr("IGESToBRep_BasicSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("eps"),  py::arg("epsGeom"),  py::arg("epsCoeff"),  py::arg("mode"),  py::arg("modeapprox"),  py::arg("optimized") )
+    // custom constructors
     // methods
         .def("TransferBasicSurface",
              (opencascade::handle<Geom_Surface> (IGESToBRep_BasicSurface::*)( const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<opencascade::handle<Geom_Surface> (IGESToBRep_BasicSurface::*)( const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESToBRep_BasicSurface::TransferBasicSurface),
@@ -719,15 +740,17 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_TopoCurve , shared_ptr<IGESToBRep_TopoCurve>  , IGESToBRep_CurveAndSurface >>(m.attr("IGESToBRep_TopoCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
         .def(py::init< const IGESToBRep_TopoCurve & >()  , py::arg("CS") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("eps"),  py::arg("epsGeom"),  py::arg("epsCoeff"),  py::arg("mode"),  py::arg("modeapprox"),  py::arg("optimized") )
+    // custom constructors
     // methods
         .def("TransferTopoCurve",
              (TopoDS_Shape (IGESToBRep_TopoCurve::*)( const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<TopoDS_Shape (IGESToBRep_TopoCurve::*)( const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESToBRep_TopoCurve::TransferTopoCurve),
@@ -799,14 +822,16 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IGESToBRep_TopoSurface , shared_ptr<IGESToBRep_TopoSurface>  , IGESToBRep_CurveAndSurface >>(m.attr("IGESToBRep_TopoSurface"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IGESToBRep_CurveAndSurface & >()  , py::arg("CS") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("eps"),  py::arg("epsGeom"),  py::arg("epsCoeff"),  py::arg("mode"),  py::arg("modeapprox"),  py::arg("optimized") )
+    // custom constructors
     // methods
         .def("TransferTopoSurface",
              (TopoDS_Shape (IGESToBRep_TopoSurface::*)( const opencascade::handle<IGESData_IGESEntity> &  ) ) static_cast<TopoDS_Shape (IGESToBRep_TopoSurface::*)( const opencascade::handle<IGESData_IGESEntity> &  ) >(&IGESToBRep_TopoSurface::TransferTopoSurface),
@@ -845,22 +870,22 @@ py::module m = static_cast<py::module>(main_module.attr("IGESToBRep"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IGESToBRep_ToolContainer.hxx
-// ./opencascade/IGESToBRep.hxx
-// ./opencascade/IGESToBRep_IGESBoundary.hxx
-// ./opencascade/IGESToBRep_Reader.hxx
-// ./opencascade/IGESToBRep_BRepEntity.hxx
-// ./opencascade/IGESToBRep_Actor.hxx
 // ./opencascade/IGESToBRep_AlgoContainer.hxx
+// ./opencascade/IGESToBRep_Reader.hxx
+// ./opencascade/IGESToBRep_Actor.hxx
 // ./opencascade/IGESToBRep_TopoSurface.hxx
-// ./opencascade/IGESToBRep_CurveAndSurface.hxx
-// ./opencascade/IGESToBRep_TopoCurve.hxx
 // ./opencascade/IGESToBRep_BasicCurve.hxx
+// ./opencascade/IGESToBRep_IGESBoundary.hxx
+// ./opencascade/IGESToBRep_BRepEntity.hxx
+// ./opencascade/IGESToBRep_ToolContainer.hxx
+// ./opencascade/IGESToBRep_TopoCurve.hxx
 // ./opencascade/IGESToBRep_BasicSurface.hxx
+// ./opencascade/IGESToBRep.hxx
+// ./opencascade/IGESToBRep_CurveAndSurface.hxx
 
 // operators
 

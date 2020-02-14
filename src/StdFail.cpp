@@ -41,11 +41,11 @@ py::module m = static_cast<py::module>(main_module.attr("StdFail"));
 // classes
 
 // functions
-// ./opencascade/StdFail_UndefinedValue.hxx
-// ./opencascade/StdFail_InfiniteSolutions.hxx
 // ./opencascade/StdFail_UndefinedDerivative.hxx
-// ./opencascade/StdFail_NotDone.hxx
+// ./opencascade/StdFail_InfiniteSolutions.hxx
 // ./opencascade/StdFail_Undefined.hxx
+// ./opencascade/StdFail_UndefinedValue.hxx
+// ./opencascade/StdFail_NotDone.hxx
 
 // operators
 

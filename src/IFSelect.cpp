@@ -13,23 +13,155 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_Signature.hxx>
+#include <IFSelect_SignCounter.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_SignCounter.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
+#include <IFSelect_SessionPilot.hxx>
+#include <IFSelect_IntParam.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_IntParam.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
+#include <IFSelect_WorkSession.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CopyTool.hxx>
+#include <Interface_TypedValue.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_ShareOut.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <IFSelect_ShareOutResult.hxx>
+#include <IFSelect_WorkLibrary.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CopyTool.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_CopyControl.hxx>
+#include <IFSelect_Transformer.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <IFSelect_Selection.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <IFSelect_SelectionIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
+#include <Standard_OutOfRange.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_Editor.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_ListEditor.hxx>
+#include <Message_Messenger.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_Signature.hxx>
+#include <IFSelect_Selection.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CopyControl.hxx>
+#include <Interface_CopyTool.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IFSelect_GeneralModifier.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Protocol.hxx>
+#include <IFSelect_ContextWrite.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_CopyTool.hxx>
+#include <Message_Messenger.hxx>
 #include <IFSelect_IntParam.hxx>
 #include <Standard_DomainError.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <IFSelect_SelectionIterator.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <IFSelect_IntParam.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Interface_Graph.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
+#include <IFSelect_SelectDeduct.hxx>
 #include <Interface_Graph.hxx>
+#include <IFSelect_SelectionIterator.hxx>
+#include <IFSelect_EditForm.hxx>
+#include <IFSelect_ContextModif.hxx>
 #include <Interface_InterfaceModel.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CopyTool.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Interface_CheckIterator.hxx>
+#include <Interface_TypedValue.hxx>
+#include <IFSelect_EditForm.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <Interface_TypedValue.hxx>
+#include <Message_Messenger.hxx>
+#include <IFSelect_EditForm.hxx>
+#include <IFSelect_ListEditor.hxx>
 #include <Interface_InterfaceModel.hxx>
+#include <IFSelect_ShareOut.hxx>
+#include <IFSelect_WorkLibrary.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_HGraph.hxx>
+#include <Interface_GTool.hxx>
+#include <IFSelect_ModelCopier.hxx>
+#include <IFSelect_Signature.hxx>
+#include <Interface_Graph.hxx>
+#include <IFSelect_IntParam.hxx>
+#include <IFSelect_Selection.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <IFSelect_SelectionIterator.hxx>
+#include <IFSelect_SignCounter.hxx>
+#include <IFSelect_Dispatch.hxx>
+#include <IFSelect_GeneralModifier.hxx>
+#include <IFSelect_Modifier.hxx>
+#include <IFSelect_Transformer.hxx>
+#include <IFSelect_PacketList.hxx>
+#include <Message_Messenger.hxx>
+#include <IFSelect_SignatureList.hxx>
 #include <IFSelect_WorkSession.hxx>
 #include <IFSelect_Signature.hxx>
 #include <IFSelect_SignMultiple.hxx>
@@ -107,246 +239,114 @@ namespace py = pybind11;
 #include <IFSelect_SessionPilot.hxx>
 #include <IFSelect_Act.hxx>
 #include <IFSelect_Functions.hxx>
-#include <IFSelect_SelectDeduct.hxx>
+#include <IFSelect_SessionFile.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_EntityIterator.hxx>
 #include <Interface_Graph.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <IFSelect_Selection.hxx>
+#include <IFSelect_Dispatch.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_Signature.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_EntityIterator.hxx>
 #include <IFSelect_IntParam.hxx>
 #include <Standard_OutOfRange.hxx>
 #include <Interface_InterfaceError.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Interface_Graph.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <IFSelect_SelectionIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_SessionFile.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_SessionFile.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_ShareOut.hxx>
-#include <IFSelect_Dispatch.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <IFSelect_PacketList.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
+#include <IFSelect_ContextModif.hxx>
+#include <Interface_InterfaceModel.hxx>
 #include <Interface_Protocol.hxx>
-#include <Interface_CheckIterator.hxx>
-#include <Interface_InterfaceModel.hxx>
+#include <Interface_CopyTool.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_SelectionIterator.hxx>
-#include <IFSelect_Signature.hxx>
-#include <Interface_Graph.hxx>
+#include <IFSelect_SessionFile.hxx>
+#include <TCollection_AsciiString.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <Interface_InterfaceModel.hxx>
+#include <Interface_Graph.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Interface_InterfaceModel.hxx>
+#include <Message_Messenger.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
 #include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <IFSelect_SelectionIterator.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_Graph.hxx>
+#include <IFGraph_SubPartsIterator.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <IFSelect_Selection.hxx>
 #include <Interface_InterfaceError.hxx>
-#include <IFSelect_SelectionIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
-#include <IFSelect_Selection.hxx>
-#include <Interface_CopyControl.hxx>
 #include <IFSelect_Modifier.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CheckIterator.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_CopyTool.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CopyControl.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IFSelect_GeneralModifier.hxx>
-#include <Standard_OutOfRange.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
+#include <IFSelect_WorkSession.hxx>
+#include <IFSelect_Dispatch.hxx>
 #include <IFSelect_SelectPointed.hxx>
 #include <Interface_InterfaceError.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Interface_Graph.hxx>
 #include <IFSelect_SelectionIterator.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_TypedValue.hxx>
-#include <IFSelect_EditForm.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_ShareOut.hxx>
-#include <Interface_CheckIterator.hxx>
-#include <IFSelect_ShareOutResult.hxx>
-#include <IFSelect_WorkLibrary.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <IFSelect_WorkSession.hxx>
-#include <IFSelect_WorkLibrary.hxx>
-#include <IFSelect_SignCounter.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <IFSelect_ContextWrite.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Message_Messenger.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_Signature.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_IntParam.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CopyTool.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_Editor.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_ListEditor.hxx>
-#include <Message_Messenger.hxx>
-#include <Interface_TypedValue.hxx>
-#include <Message_Messenger.hxx>
-#include <IFSelect_EditForm.hxx>
-#include <IFSelect_ListEditor.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_CopyControl.hxx>
-#include <IFSelect_Transformer.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_Signature.hxx>
 #include <IFSelect_Selection.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_EntityIterator.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_IntParam.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <Interface_InterfaceError.hxx>
+#include <Interface_CopyControl.hxx>
 #include <IFSelect_Modifier.hxx>
+#include <Interface_Graph.hxx>
+#include <Interface_Protocol.hxx>
+#include <Interface_CheckIterator.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_CopyTool.hxx>
 #include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_InterfaceModel.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <IFSelect_SelectionIterator.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <Interface_Protocol.hxx>
 #include <IFSelect_AppliedModifiers.hxx>
 #include <Interface_HGraph.hxx>
 #include <IFSelect_GeneralModifier.hxx>
 #include <Interface_Graph.hxx>
-#include <IFSelect_Signature.hxx>
-#include <IFSelect_SignCounter.hxx>
-#include <Interface_Graph.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_WorkSession.hxx>
-#include <IFSelect_Dispatch.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_SelectionIterator.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Message_Messenger.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <IFSelect_EditForm.hxx>
-#include <IFSelect_ContextModif.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_CopyTool.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <IFSelect_Selection.hxx>
-#include <IFSelect_Dispatch.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <IFSelect_ShareOut.hxx>
-#include <IFSelect_WorkLibrary.hxx>
-#include <Interface_Protocol.hxx>
-#include <Interface_InterfaceModel.hxx>
-#include <Interface_HGraph.hxx>
-#include <Interface_GTool.hxx>
-#include <IFSelect_ModelCopier.hxx>
+#include <IFSelect_Dispatch.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <IFSelect_PacketList.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
+#include <TCollection_AsciiString.hxx>
+#include <Interface_InterfaceError.hxx>
+#include <Interface_EntityIterator.hxx>
+#include <Interface_Graph.hxx>
 #include <IFSelect_Signature.hxx>
 #include <Interface_Graph.hxx>
-#include <IFSelect_IntParam.hxx>
-#include <IFSelect_Selection.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <IFSelect_SelectionIterator.hxx>
-#include <IFSelect_SignCounter.hxx>
-#include <IFSelect_Dispatch.hxx>
-#include <IFSelect_GeneralModifier.hxx>
-#include <IFSelect_Modifier.hxx>
-#include <IFSelect_Transformer.hxx>
-#include <IFSelect_PacketList.hxx>
-#include <Message_Messenger.hxx>
-#include <IFSelect_SignatureList.hxx>
 #include <IFSelect_WorkSession.hxx>
+#include <IFSelect_WorkLibrary.hxx>
+#include <IFSelect_SignCounter.hxx>
 #include <Interface_EntityIterator.hxx>
 #include <Interface_Graph.hxx>
 #include <Interface_InterfaceModel.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <IFSelect_SessionPilot.hxx>
-#include <IFSelect_SignCounter.hxx>
-#include <Interface_InterfaceError.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <Interface_Graph.hxx>
-#include <IFGraph_SubPartsIterator.hxx>
 
 // module includes
 #include <IFSelect.hxx>
@@ -440,13 +440,13 @@ namespace py = pybind11;
 #include <IFSelect_WorkSession.hxx>
 
 // template related includes
-// ./opencascade/IFSelect_TSeqOfDispatch.hxx
-#include "NCollection.hxx"
-// ./opencascade/IFSelect_SequenceOfAppliedModifiers.hxx
-#include "NCollection.hxx"
 // ./opencascade/IFSelect_TSeqOfSelection.hxx
 #include "NCollection.hxx"
 // ./opencascade/IFSelect_SequenceOfInterfaceModel.hxx
+#include "NCollection.hxx"
+// ./opencascade/IFSelect_SequenceOfAppliedModifiers.hxx
+#include "NCollection.hxx"
+// ./opencascade/IFSelect_TSeqOfDispatch.hxx
 #include "NCollection.hxx"
 // ./opencascade/IFSelect_SequenceOfGeneralModifier.hxx
 #include "NCollection.hxx"
@@ -469,6 +469,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_Activator::IFSelect_Activator;
         
+        
         // public pure virtual
         IFSelect_ReturnStatus Do(const Standard_Integer number,const opencascade::handle<IFSelect_SessionPilot> & pilot) override { PYBIND11_OVERLOAD_PURE(IFSelect_ReturnStatus,IFSelect_Activator,Do,number,pilot) };
         Standard_CString Help(const Standard_Integer number) const  override { PYBIND11_OVERLOAD_PURE(Standard_CString,IFSelect_Activator,Help,number) };
@@ -484,6 +485,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_Dispatch::IFSelect_Dispatch;
         
+        
         // public pure virtual
         TCollection_AsciiString Label() const  override { PYBIND11_OVERLOAD_PURE(TCollection_AsciiString,IFSelect_Dispatch,Label,) };
         void Packets(const Interface_Graph & G,IFGraph_SubPartsIterator & packs) const  override { PYBIND11_OVERLOAD_PURE(void,IFSelect_Dispatch,Packets,G,packs) };
@@ -498,6 +500,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_Editor : public IFSelect_Editor{
     public:
         using IFSelect_Editor::IFSelect_Editor;
+        
         
         // public pure virtual
         TCollection_AsciiString Label() const  override { PYBIND11_OVERLOAD_PURE(TCollection_AsciiString,IFSelect_Editor,Label,) };
@@ -517,6 +520,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_GeneralModifier::IFSelect_GeneralModifier;
         
+        
         // public pure virtual
         TCollection_AsciiString Label() const  override { PYBIND11_OVERLOAD_PURE(TCollection_AsciiString,IFSelect_GeneralModifier,Label,) };
         
@@ -530,6 +534,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_Selection : public IFSelect_Selection{
     public:
         using IFSelect_Selection::IFSelect_Selection;
+        
         
         // public pure virtual
         Interface_EntityIterator RootResult(const Interface_Graph & G) const  override { PYBIND11_OVERLOAD_PURE(Interface_EntityIterator,IFSelect_Selection,RootResult,G) };
@@ -547,6 +552,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_SessionDumper::IFSelect_SessionDumper;
         
+        
         // public pure virtual
         Standard_Boolean WriteOwn(IFSelect_SessionFile & file,const opencascade::handle<Standard_Transient> & item) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IFSelect_SessionDumper,WriteOwn,file,item) };
         Standard_Boolean ReadOwn(IFSelect_SessionFile & file,const TCollection_AsciiString & type,opencascade::handle<Standard_Transient> & item) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IFSelect_SessionDumper,ReadOwn,file,type,item) };
@@ -562,8 +568,10 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_Signature::IFSelect_Signature;
         
+        
         // public pure virtual
         
+        Standard_CString Value(const opencascade::handle<Standard_Transient> & ent,const opencascade::handle<Interface_InterfaceModel> & model) const  override { PYBIND11_OVERLOAD_PURE(Standard_CString,Interface_SignType,Value,ent,model) };
         
         // protected pure virtual
         
@@ -574,6 +582,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_Transformer : public IFSelect_Transformer{
     public:
         using IFSelect_Transformer::IFSelect_Transformer;
+        
         
         // public pure virtual
         Standard_Boolean Perform(const Interface_Graph & G,const opencascade::handle<Interface_Protocol> & protocol,Interface_CheckIterator & checks,opencascade::handle<Interface_InterfaceModel> & newmod) override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IFSelect_Transformer,Perform,G,protocol,checks,newmod) };
@@ -591,6 +600,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_WorkLibrary::IFSelect_WorkLibrary;
         
+        
         // public pure virtual
         Standard_Integer ReadFile(const Standard_CString name,opencascade::handle<Interface_InterfaceModel> & model,const opencascade::handle<Interface_Protocol> & protocol) const  override { PYBIND11_OVERLOAD_PURE(Standard_Integer,IFSelect_WorkLibrary,ReadFile,name,model,protocol) };
         Standard_Boolean WriteFile(IFSelect_ContextWrite & ctx) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IFSelect_WorkLibrary,WriteFile,ctx) };
@@ -607,6 +617,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_Modifier::IFSelect_Modifier;
         
+        
         // public pure virtual
         void Perform(IFSelect_ContextModif & ctx,const opencascade::handle<Interface_InterfaceModel> & target,const opencascade::handle<Interface_Protocol> & protocol,Interface_CopyTool & TC) const  override { PYBIND11_OVERLOAD_PURE(void,IFSelect_Modifier,Perform,ctx,target,protocol,TC) };
         
@@ -621,6 +632,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_SelectBase : public IFSelect_SelectBase{
     public:
         using IFSelect_SelectBase::IFSelect_SelectBase;
+        
         
         // public pure virtual
         
@@ -637,6 +649,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_SelectCombine::IFSelect_SelectCombine;
         
+        
         // public pure virtual
         
         Interface_EntityIterator RootResult(const Interface_Graph & G) const  override { PYBIND11_OVERLOAD_PURE(Interface_EntityIterator,IFSelect_Selection,RootResult,G) };
@@ -651,6 +664,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_SelectControl : public IFSelect_SelectControl{
     public:
         using IFSelect_SelectControl::IFSelect_SelectControl;
+        
         
         // public pure virtual
         
@@ -667,6 +681,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_SelectDeduct::IFSelect_SelectDeduct;
         
+        
         // public pure virtual
         
         Interface_EntityIterator RootResult(const Interface_Graph & G) const  override { PYBIND11_OVERLOAD_PURE(Interface_EntityIterator,IFSelect_Selection,RootResult,G) };
@@ -681,6 +696,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_SelectAnyList : public IFSelect_SelectAnyList{
     public:
         using IFSelect_SelectAnyList::IFSelect_SelectAnyList;
+        
         
         // public pure virtual
         void KeepInputEntity(Interface_EntityIterator & iter) const  override { PYBIND11_OVERLOAD_PURE(void,IFSelect_SelectAnyList,KeepInputEntity,iter) };
@@ -700,6 +716,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_SelectExplore::IFSelect_SelectExplore;
         
+        
         // public pure virtual
         Standard_Boolean Explore(const Standard_Integer level,const opencascade::handle<Standard_Transient> & ent,const Interface_Graph & G,Interface_EntityIterator & explored) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IFSelect_SelectExplore,Explore,level,ent,G,explored) };
         TCollection_AsciiString ExploreLabel() const  override { PYBIND11_OVERLOAD_PURE(TCollection_AsciiString,IFSelect_SelectExplore,ExploreLabel,) };
@@ -716,6 +733,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     public:
         using IFSelect_SelectExtract::IFSelect_SelectExtract;
         
+        
         // public pure virtual
         Standard_Boolean Sort(const Standard_Integer rank,const opencascade::handle<Standard_Transient> & ent,const opencascade::handle<Interface_InterfaceModel> & model) const  override { PYBIND11_OVERLOAD_PURE(Standard_Boolean,IFSelect_SelectExtract,Sort,rank,ent,model) };
         TCollection_AsciiString ExtractLabel() const  override { PYBIND11_OVERLOAD_PURE(TCollection_AsciiString,IFSelect_SelectExtract,ExtractLabel,) };
@@ -731,6 +749,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_SelectAnyType : public IFSelect_SelectAnyType{
     public:
         using IFSelect_SelectAnyType::IFSelect_SelectAnyType;
+        
         
         // public pure virtual
         opencascade::handle<Standard_Type> TypeForMatch() const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Standard_Type>,IFSelect_SelectAnyType,TypeForMatch,) };
@@ -749,6 +768,7 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     class Py_IFSelect_SelectInList : public IFSelect_SelectInList{
     public:
         using IFSelect_SelectInList::IFSelect_SelectInList;
+        
         
         // public pure virtual
         opencascade::handle<Standard_Transient> ListedEntity(const Standard_Integer num,const opencascade::handle<Standard_Transient> & ent) const  override { PYBIND11_OVERLOAD_PURE(opencascade::handle<Standard_Transient>,IFSelect_SelectInList,ListedEntity,num,ent) };
@@ -769,9 +789,12 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
 
 // classes
 
+    // default constructor
     register_default_constructor<IFSelect , shared_ptr<IFSelect>>(m,"IFSelect");
 
     static_cast<py::class_<IFSelect , shared_ptr<IFSelect>  >>(m.attr("IFSelect"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -783,11 +806,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(Restore the state of a WorkSession from IFSelect, by using a SessionFile from IFSelect. Returns True if Done, False in case of Error on Writing. <file> gives the name of the File to be used (this avoids to export the class SessionFile).)#"  , py::arg("WS"),  py::arg("file"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Activator ,opencascade::handle<IFSelect_Activator> ,Py_IFSelect_Activator , Standard_Transient >>(m.attr("IFSelect_Activator"))
+    // constructors
+    // custom constructors
     // methods
         .def("Add",
              (void (IFSelect_Activator::*)( const Standard_Integer ,  const Standard_CString  ) const) static_cast<void (IFSelect_Activator::*)( const Standard_Integer ,  const Standard_CString  ) const>(&IFSelect_Activator::Add),
@@ -838,12 +863,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_AppliedModifiers ,opencascade::handle<IFSelect_AppliedModifiers>  , Standard_Transient >>(m.attr("IFSelect_AppliedModifiers"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("nbmax"),  py::arg("nbent") )
+    // custom constructors
     // methods
         .def("AddModif",
              (Standard_Boolean (IFSelect_AppliedModifiers::*)( const opencascade::handle<IFSelect_GeneralModifier> &  ) ) static_cast<Standard_Boolean (IFSelect_AppliedModifiers::*)( const opencascade::handle<IFSelect_GeneralModifier> &  ) >(&IFSelect_AppliedModifiers::AddModif),
@@ -879,13 +906,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ContextModif , shared_ptr<IFSelect_ContextModif>  >>(m.attr("IFSelect_ContextModif"))
+    // constructors
         .def(py::init< const Interface_Graph &,const Interface_CopyTool &,const Standard_CString >()  , py::arg("graph"),  py::arg("TC"),  py::arg("filename")=static_cast<const Standard_CString>("") )
         .def(py::init< const Interface_Graph &,const Standard_CString >()  , py::arg("graph"),  py::arg("filename")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("Select",
              (void (IFSelect_ContextModif::*)( Interface_EntityIterator &  ) ) static_cast<void (IFSelect_ContextModif::*)( Interface_EntityIterator &  ) >(&IFSelect_ContextModif::Select),
@@ -975,13 +1004,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ContextWrite , shared_ptr<IFSelect_ContextWrite>  >>(m.attr("IFSelect_ContextWrite"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> &,const opencascade::handle<Interface_Protocol> &,const opencascade::handle<IFSelect_AppliedModifiers> &,const Standard_CString >()  , py::arg("model"),  py::arg("proto"),  py::arg("applieds"),  py::arg("filename") )
         .def(py::init< const opencascade::handle<Interface_HGraph> &,const opencascade::handle<Interface_Protocol> &,const opencascade::handle<IFSelect_AppliedModifiers> &,const Standard_CString >()  , py::arg("hgraph"),  py::arg("proto"),  py::arg("applieds"),  py::arg("filename") )
+    // custom constructors
     // methods
         .def("Model",
              (opencascade::handle<Interface_InterfaceModel> (IFSelect_ContextWrite::*)() const) static_cast<opencascade::handle<Interface_InterfaceModel> (IFSelect_ContextWrite::*)() const>(&IFSelect_ContextWrite::Model),
@@ -1050,11 +1081,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Dispatch ,opencascade::handle<IFSelect_Dispatch> ,Py_IFSelect_Dispatch , Standard_Transient >>(m.attr("IFSelect_Dispatch"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetRootName",
              (void (IFSelect_Dispatch::*)( const opencascade::handle<TCollection_HAsciiString> &  ) ) static_cast<void (IFSelect_Dispatch::*)( const opencascade::handle<TCollection_HAsciiString> &  ) >(&IFSelect_Dispatch::SetRootName),
@@ -1108,13 +1141,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_EditForm ,opencascade::handle<IFSelect_EditForm>  , Standard_Transient >>(m.attr("IFSelect_EditForm"))
+    // constructors
         .def(py::init< const opencascade::handle<IFSelect_Editor> &,const Standard_Boolean,const Standard_Boolean,const Standard_CString >()  , py::arg("editor"),  py::arg("readonly"),  py::arg("undoable"),  py::arg("label")=static_cast<const Standard_CString>("") )
         .def(py::init< const opencascade::handle<IFSelect_Editor> &, const NCollection_Sequence<Standard_Integer> &,const Standard_Boolean,const Standard_Boolean,const Standard_CString >()  , py::arg("editor"),  py::arg("nums"),  py::arg("readonly"),  py::arg("undoable"),  py::arg("label")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("EditKeepStatus",
              (Standard_Boolean & (IFSelect_EditForm::*)() ) static_cast<Standard_Boolean & (IFSelect_EditForm::*)() >(&IFSelect_EditForm::EditKeepStatus),
@@ -1255,11 +1290,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Editor ,opencascade::handle<IFSelect_Editor> ,Py_IFSelect_Editor , Standard_Transient >>(m.attr("IFSelect_Editor"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetValue",
              (void (IFSelect_Editor::*)( const Standard_Integer ,  const opencascade::handle<Interface_TypedValue> & ,  const Standard_CString ,  const IFSelect_EditValue  ) ) static_cast<void (IFSelect_Editor::*)( const Standard_Integer ,  const opencascade::handle<Interface_TypedValue> & ,  const Standard_CString ,  const IFSelect_EditValue  ) >(&IFSelect_Editor::SetValue),
@@ -1340,12 +1377,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IFSelect_Functions , shared_ptr<IFSelect_Functions>>(m,"IFSelect_Functions");
 
     static_cast<py::class_<IFSelect_Functions , shared_ptr<IFSelect_Functions>  >>(m.attr("IFSelect_Functions"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -1366,11 +1406,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(Defines and loads all basic functions (as ActFunc))#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_GeneralModifier ,opencascade::handle<IFSelect_GeneralModifier> ,Py_IFSelect_GeneralModifier , Standard_Transient >>(m.attr("IFSelect_GeneralModifier"))
+    // constructors
+    // custom constructors
     // methods
         .def("MayChangeGraph",
              (Standard_Boolean (IFSelect_GeneralModifier::*)() const) static_cast<Standard_Boolean (IFSelect_GeneralModifier::*)() const>(&IFSelect_GeneralModifier::MayChangeGraph),
@@ -1412,13 +1454,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_HSeqOfSelection ,opencascade::handle<IFSelect_HSeqOfSelection>  , IFSelect_TSeqOfSelection , Standard_Transient >>(m.attr("IFSelect_HSeqOfSelection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init<  const NCollection_Sequence<opencascade::handle<IFSelect_Selection> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Sequence",
              (const IFSelect_TSeqOfSelection & (IFSelect_HSeqOfSelection::*)() const) static_cast<const IFSelect_TSeqOfSelection & (IFSelect_HSeqOfSelection::*)() const>(&IFSelect_HSeqOfSelection::Sequence),
@@ -1445,12 +1489,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_IntParam ,opencascade::handle<IFSelect_IntParam>  , Standard_Transient >>(m.attr("IFSelect_IntParam"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetStaticName",
              (void (IFSelect_IntParam::*)( const Standard_CString  ) ) static_cast<void (IFSelect_IntParam::*)( const Standard_CString  ) >(&IFSelect_IntParam::SetStaticName),
@@ -1474,13 +1520,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ListEditor ,opencascade::handle<IFSelect_ListEditor>  , Standard_Transient >>(m.attr("IFSelect_ListEditor"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Interface_TypedValue> &,const Standard_Integer >()  , py::arg("def"),  py::arg("max")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("LoadModel",
              (void (IFSelect_ListEditor::*)( const opencascade::handle<Interface_InterfaceModel> &  ) ) static_cast<void (IFSelect_ListEditor::*)( const opencascade::handle<Interface_InterfaceModel> &  ) >(&IFSelect_ListEditor::LoadModel),
@@ -1543,12 +1591,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ModelCopier ,opencascade::handle<IFSelect_ModelCopier>  , Standard_Transient >>(m.attr("IFSelect_ModelCopier"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetShareOut",
              (void (IFSelect_ModelCopier::*)( const opencascade::handle<IFSelect_ShareOut> &  ) ) static_cast<void (IFSelect_ModelCopier::*)( const opencascade::handle<IFSelect_ShareOut> &  ) >(&IFSelect_ModelCopier::SetShareOut),
@@ -1626,12 +1676,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_PacketList ,opencascade::handle<IFSelect_PacketList>  , Standard_Transient >>(m.attr("IFSelect_PacketList"))
+    // constructors
         .def(py::init< const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("model") )
+    // custom constructors
     // methods
         .def("SetName",
              (void (IFSelect_PacketList::*)( const Standard_CString  ) ) static_cast<void (IFSelect_PacketList::*)( const Standard_CString  ) >(&IFSelect_PacketList::SetName),
@@ -1682,11 +1734,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Selection ,opencascade::handle<IFSelect_Selection> ,Py_IFSelect_Selection , Standard_Transient >>(m.attr("IFSelect_Selection"))
+    // constructors
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_Selection::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_Selection::*)( const Interface_Graph &  ) const>(&IFSelect_Selection::RootResult),
@@ -1716,13 +1770,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectionIterator , shared_ptr<IFSelect_SelectionIterator>  >>(m.attr("IFSelect_SelectionIterator"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<IFSelect_Selection> & >()  , py::arg("sel") )
+    // custom constructors
     // methods
         .def("AddFromIter",
              (void (IFSelect_SelectionIterator::*)( IFSelect_SelectionIterator &  ) ) static_cast<void (IFSelect_SelectionIterator::*)( IFSelect_SelectionIterator &  ) >(&IFSelect_SelectionIterator::AddFromIter),
@@ -1746,11 +1802,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SessionDumper ,opencascade::handle<IFSelect_SessionDumper> ,Py_IFSelect_SessionDumper , Standard_Transient >>(m.attr("IFSelect_SessionDumper"))
+    // constructors
+    // custom constructors
     // methods
         .def("Next",
              (opencascade::handle<IFSelect_SessionDumper> (IFSelect_SessionDumper::*)() const) static_cast<opencascade::handle<IFSelect_SessionDumper> (IFSelect_SessionDumper::*)() const>(&IFSelect_SessionDumper::Next),
@@ -1777,13 +1835,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SessionFile , shared_ptr<IFSelect_SessionFile>  >>(m.attr("IFSelect_SessionFile"))
+    // constructors
         .def(py::init< const opencascade::handle<IFSelect_WorkSession> & >()  , py::arg("WS") )
         .def(py::init< const opencascade::handle<IFSelect_WorkSession> &,const Standard_CString >()  , py::arg("WS"),  py::arg("filename") )
+    // custom constructors
     // methods
         .def("ClearLines",
              (void (IFSelect_SessionFile::*)() ) static_cast<void (IFSelect_SessionFile::*)() >(&IFSelect_SessionFile::ClearLines),
@@ -1894,12 +1954,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ShareOut ,opencascade::handle<IFSelect_ShareOut>  , Standard_Transient >>(m.attr("IFSelect_ShareOut"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (IFSelect_ShareOut::*)( const Standard_Boolean  ) ) static_cast<void (IFSelect_ShareOut::*)( const Standard_Boolean  ) >(&IFSelect_ShareOut::Clear),
@@ -2004,15 +2066,17 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ShareOutResult , shared_ptr<IFSelect_ShareOutResult>  >>(m.attr("IFSelect_ShareOutResult"))
+    // constructors
         .def(py::init< const opencascade::handle<IFSelect_ShareOut> &,const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("sho"),  py::arg("mod") )
         .def(py::init< const opencascade::handle<IFSelect_ShareOut> &,const Interface_Graph & >()  , py::arg("sho"),  py::arg("G") )
         .def(py::init< const opencascade::handle<IFSelect_Dispatch> &,const opencascade::handle<Interface_InterfaceModel> & >()  , py::arg("disp"),  py::arg("mod") )
         .def(py::init< const opencascade::handle<IFSelect_Dispatch> &,const Interface_Graph & >()  , py::arg("disp"),  py::arg("G") )
+    // custom constructors
     // methods
         .def("ShareOut",
              (opencascade::handle<IFSelect_ShareOut> (IFSelect_ShareOutResult::*)() const) static_cast<opencascade::handle<IFSelect_ShareOut> (IFSelect_ShareOutResult::*)() const>(&IFSelect_ShareOutResult::ShareOut),
@@ -2066,11 +2130,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Signature ,opencascade::handle<IFSelect_Signature> ,Py_IFSelect_Signature , Interface_SignType >>(m.attr("IFSelect_Signature"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetIntCase",
              (void (IFSelect_Signature::*)( const Standard_Boolean ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) ) static_cast<void (IFSelect_Signature::*)( const Standard_Boolean ,  const Standard_Integer ,  const Standard_Boolean ,  const Standard_Integer  ) >(&IFSelect_Signature::SetIntCase),
@@ -2112,12 +2178,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SignatureList ,opencascade::handle<IFSelect_SignatureList>  , Standard_Transient >>(m.attr("IFSelect_SignatureList"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("withlist")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("SetList",
              (void (IFSelect_SignatureList::*)( const Standard_Boolean  ) ) static_cast<void (IFSelect_SignatureList::*)( const Standard_Boolean  ) >(&IFSelect_SignatureList::SetList),
@@ -2180,11 +2248,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Transformer ,opencascade::handle<IFSelect_Transformer> ,Py_IFSelect_Transformer , Standard_Transient >>(m.attr("IFSelect_Transformer"))
+    // constructors
+    // custom constructors
     // methods
         .def("Perform",
              (Standard_Boolean (IFSelect_Transformer::*)( const Interface_Graph & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CheckIterator & ,  opencascade::handle<Interface_InterfaceModel> &  ) ) static_cast<Standard_Boolean (IFSelect_Transformer::*)( const Interface_Graph & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CheckIterator & ,  opencascade::handle<Interface_InterfaceModel> &  ) >(&IFSelect_Transformer::Perform),
@@ -2211,11 +2281,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_WorkLibrary ,opencascade::handle<IFSelect_WorkLibrary> ,Py_IFSelect_WorkLibrary , Standard_Transient >>(m.attr("IFSelect_WorkLibrary"))
+    // constructors
+    // custom constructors
     // methods
         .def("ReadFile",
              (Standard_Integer (IFSelect_WorkLibrary::*)( const Standard_CString ,  opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> &  ) const) static_cast<Standard_Integer (IFSelect_WorkLibrary::*)( const Standard_CString ,  opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> &  ) const>(&IFSelect_WorkLibrary::ReadFile),
@@ -2257,12 +2329,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_WorkSession ,opencascade::handle<IFSelect_WorkSession>  , Standard_Transient >>(m.attr("IFSelect_WorkSession"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetErrorHandle",
              (void (IFSelect_WorkSession::*)( const Standard_Boolean  ) ) static_cast<void (IFSelect_WorkSession::*)( const Standard_Boolean  ) >(&IFSelect_WorkSession::SetErrorHandle),
@@ -2766,12 +2840,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Act ,opencascade::handle<IFSelect_Act>  , IFSelect_Activator >>(m.attr("IFSelect_Act"))
+    // constructors
         .def(py::init< const Standard_CString,const Standard_CString,const IFSelect_ActFunc >()  , py::arg("name"),  py::arg("help"),  py::arg("func") )
+    // custom constructors
     // methods
         .def("Do",
              (IFSelect_ReturnStatus (IFSelect_Act::*)( const Standard_Integer ,  const opencascade::handle<IFSelect_SessionPilot> &  ) ) static_cast<IFSelect_ReturnStatus (IFSelect_Act::*)( const Standard_Integer ,  const opencascade::handle<IFSelect_SessionPilot> &  ) >(&IFSelect_Act::Do),
@@ -2801,12 +2877,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_BasicDumper ,opencascade::handle<IFSelect_BasicDumper>  , IFSelect_SessionDumper >>(m.attr("IFSelect_BasicDumper"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("WriteOwn",
              (Standard_Boolean (IFSelect_BasicDumper::*)( IFSelect_SessionFile & ,  const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Boolean (IFSelect_BasicDumper::*)( IFSelect_SessionFile & ,  const opencascade::handle<Standard_Transient> &  ) const>(&IFSelect_BasicDumper::WriteOwn),
@@ -2827,12 +2905,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_CheckCounter ,opencascade::handle<IFSelect_CheckCounter>  , IFSelect_SignatureList >>(m.attr("IFSelect_CheckCounter"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("withlist")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("SetSignature",
              (void (IFSelect_CheckCounter::*)( const opencascade::handle<MoniTool_SignText> &  ) ) static_cast<void (IFSelect_CheckCounter::*)( const opencascade::handle<MoniTool_SignText> &  ) >(&IFSelect_CheckCounter::SetSignature),
@@ -2856,12 +2936,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_DispGlobal ,opencascade::handle<IFSelect_DispGlobal>  , IFSelect_Dispatch >>(m.attr("IFSelect_DispGlobal"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (IFSelect_DispGlobal::*)() const) static_cast<TCollection_AsciiString (IFSelect_DispGlobal::*)() const>(&IFSelect_DispGlobal::Label),
@@ -2885,12 +2967,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_DispPerCount ,opencascade::handle<IFSelect_DispPerCount>  , IFSelect_Dispatch >>(m.attr("IFSelect_DispPerCount"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Count",
              (opencascade::handle<IFSelect_IntParam> (IFSelect_DispPerCount::*)() const) static_cast<opencascade::handle<IFSelect_IntParam> (IFSelect_DispPerCount::*)() const>(&IFSelect_DispPerCount::Count),
@@ -2923,12 +3007,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_DispPerFiles ,opencascade::handle<IFSelect_DispPerFiles>  , IFSelect_Dispatch >>(m.attr("IFSelect_DispPerFiles"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Count",
              (opencascade::handle<IFSelect_IntParam> (IFSelect_DispPerFiles::*)() const) static_cast<opencascade::handle<IFSelect_IntParam> (IFSelect_DispPerFiles::*)() const>(&IFSelect_DispPerFiles::Count),
@@ -2961,12 +3047,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_DispPerOne ,opencascade::handle<IFSelect_DispPerOne>  , IFSelect_Dispatch >>(m.attr("IFSelect_DispPerOne"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Label",
              (TCollection_AsciiString (IFSelect_DispPerOne::*)() const) static_cast<TCollection_AsciiString (IFSelect_DispPerOne::*)() const>(&IFSelect_DispPerOne::Label),
@@ -2990,12 +3078,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_DispPerSignature ,opencascade::handle<IFSelect_DispPerSignature>  , IFSelect_Dispatch >>(m.attr("IFSelect_DispPerSignature"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SignCounter",
              (opencascade::handle<IFSelect_SignCounter> (IFSelect_DispPerSignature::*)() const) static_cast<opencascade::handle<IFSelect_SignCounter> (IFSelect_DispPerSignature::*)() const>(&IFSelect_DispPerSignature::SignCounter),
@@ -3028,11 +3118,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_Modifier ,opencascade::handle<IFSelect_Modifier> ,Py_IFSelect_Modifier , IFSelect_GeneralModifier >>(m.attr("IFSelect_Modifier"))
+    // constructors
+    // custom constructors
     // methods
         .def("Perform",
              (void (IFSelect_Modifier::*)( IFSelect_ContextModif & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CopyTool &  ) const) static_cast<void (IFSelect_Modifier::*)( IFSelect_ContextModif & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CopyTool &  ) const>(&IFSelect_Modifier::Perform),
@@ -3050,12 +3142,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ParamEditor ,opencascade::handle<IFSelect_ParamEditor>  , IFSelect_Editor >>(m.attr("IFSelect_ParamEditor"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_CString >()  , py::arg("nbmax")=static_cast<const Standard_Integer>(100),  py::arg("label")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("AddValue",
              (void (IFSelect_ParamEditor::*)( const opencascade::handle<Interface_TypedValue> & ,  const Standard_CString  ) ) static_cast<void (IFSelect_ParamEditor::*)( const opencascade::handle<Interface_TypedValue> & ,  const Standard_CString  ) >(&IFSelect_ParamEditor::AddValue),
@@ -3094,11 +3188,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectBase ,opencascade::handle<IFSelect_SelectBase> ,Py_IFSelect_SelectBase , IFSelect_Selection >>(m.attr("IFSelect_SelectBase"))
+    // constructors
+    // custom constructors
     // methods
         .def("FillIterator",
              (void (IFSelect_SelectBase::*)( IFSelect_SelectionIterator &  ) const) static_cast<void (IFSelect_SelectBase::*)( IFSelect_SelectionIterator &  ) const>(&IFSelect_SelectBase::FillIterator),
@@ -3116,11 +3212,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectCombine ,opencascade::handle<IFSelect_SelectCombine> ,Py_IFSelect_SelectCombine , IFSelect_Selection >>(m.attr("IFSelect_SelectCombine"))
+    // constructors
+    // custom constructors
     // methods
         .def("NbInputs",
              (Standard_Integer (IFSelect_SelectCombine::*)() const) static_cast<Standard_Integer (IFSelect_SelectCombine::*)() const>(&IFSelect_SelectCombine::NbInputs),
@@ -3156,11 +3254,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectControl ,opencascade::handle<IFSelect_SelectControl> ,Py_IFSelect_SelectControl , IFSelect_Selection >>(m.attr("IFSelect_SelectControl"))
+    // constructors
+    // custom constructors
     // methods
         .def("MainInput",
              (opencascade::handle<IFSelect_Selection> (IFSelect_SelectControl::*)() const) static_cast<opencascade::handle<IFSelect_Selection> (IFSelect_SelectControl::*)() const>(&IFSelect_SelectControl::MainInput),
@@ -3193,11 +3293,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectDeduct ,opencascade::handle<IFSelect_SelectDeduct> ,Py_IFSelect_SelectDeduct , IFSelect_Selection >>(m.attr("IFSelect_SelectDeduct"))
+    // constructors
+    // custom constructors
     // methods
         .def("SetInput",
              (void (IFSelect_SelectDeduct::*)( const opencascade::handle<IFSelect_Selection> &  ) ) static_cast<void (IFSelect_SelectDeduct::*)( const opencascade::handle<IFSelect_Selection> &  ) >(&IFSelect_SelectDeduct::SetInput),
@@ -3233,12 +3335,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SessionPilot ,opencascade::handle<IFSelect_SessionPilot>  , IFSelect_Activator >>(m.attr("IFSelect_SessionPilot"))
+    // constructors
         .def(py::init< const Standard_CString >()  , py::arg("prompt")=static_cast<const Standard_CString>("") )
+    // custom constructors
     // methods
         .def("Session",
              (opencascade::handle<IFSelect_WorkSession> (IFSelect_SessionPilot::*)() const) static_cast<opencascade::handle<IFSelect_WorkSession> (IFSelect_SessionPilot::*)() const>(&IFSelect_SessionPilot::Session),
@@ -3331,12 +3435,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SignCategory ,opencascade::handle<IFSelect_SignCategory>  , IFSelect_Signature >>(m.attr("IFSelect_SignCategory"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_CString (IFSelect_SignCategory::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_CString (IFSelect_SignCategory::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IFSelect_SignCategory::Value),
@@ -3354,13 +3460,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SignCounter ,opencascade::handle<IFSelect_SignCounter>  , IFSelect_SignatureList >>(m.attr("IFSelect_SignCounter"))
+    // constructors
         .def(py::init< const Standard_Boolean,const Standard_Boolean >()  , py::arg("withmap")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("withlist")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const opencascade::handle<IFSelect_Signature> &,const Standard_Boolean,const Standard_Boolean >()  , py::arg("matcher"),  py::arg("withmap")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("withlist")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Signature",
              (opencascade::handle<IFSelect_Signature> (IFSelect_SignCounter::*)() const) static_cast<opencascade::handle<IFSelect_Signature> (IFSelect_SignCounter::*)() const>(&IFSelect_SignCounter::Signature),
@@ -3420,12 +3528,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SignMultiple ,opencascade::handle<IFSelect_SignMultiple>  , IFSelect_Signature >>(m.attr("IFSelect_SignMultiple"))
+    // constructors
         .def(py::init< const Standard_CString >()  , py::arg("name") )
+    // custom constructors
     // methods
         .def("Add",
              (void (IFSelect_SignMultiple::*)( const opencascade::handle<IFSelect_Signature> & ,  const Standard_Integer ,  const Standard_Boolean  ) ) static_cast<void (IFSelect_SignMultiple::*)( const opencascade::handle<IFSelect_Signature> & ,  const Standard_Integer ,  const Standard_Boolean  ) >(&IFSelect_SignMultiple::Add),
@@ -3449,12 +3559,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SignType ,opencascade::handle<IFSelect_SignType>  , IFSelect_Signature >>(m.attr("IFSelect_SignType"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("nopk")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_CString (IFSelect_SignType::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_CString (IFSelect_SignType::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IFSelect_SignType::Value),
@@ -3472,12 +3584,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SignValidity ,opencascade::handle<IFSelect_SignValidity>  , IFSelect_Signature >>(m.attr("IFSelect_SignValidity"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_CString (IFSelect_SignValidity::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_CString (IFSelect_SignValidity::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IFSelect_SignValidity::Value),
@@ -3498,12 +3612,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_TransformStandard ,opencascade::handle<IFSelect_TransformStandard>  , IFSelect_Transformer >>(m.attr("IFSelect_TransformStandard"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetCopyOption",
              (void (IFSelect_TransformStandard::*)( const Standard_Boolean  ) ) static_cast<void (IFSelect_TransformStandard::*)( const Standard_Boolean  ) >(&IFSelect_TransformStandard::SetCopyOption),
@@ -3569,12 +3685,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_GraphCounter ,opencascade::handle<IFSelect_GraphCounter>  , IFSelect_SignCounter >>(m.attr("IFSelect_GraphCounter"))
+    // constructors
         .def(py::init< const Standard_Boolean,const Standard_Boolean >()  , py::arg("withmap")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("withlist")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Applied",
              (opencascade::handle<IFSelect_SelectDeduct> (IFSelect_GraphCounter::*)() const) static_cast<opencascade::handle<IFSelect_SelectDeduct> (IFSelect_GraphCounter::*)() const>(&IFSelect_GraphCounter::Applied),
@@ -3598,12 +3716,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ModifEditForm ,opencascade::handle<IFSelect_ModifEditForm>  , IFSelect_Modifier >>(m.attr("IFSelect_ModifEditForm"))
+    // constructors
         .def(py::init< const opencascade::handle<IFSelect_EditForm> & >()  , py::arg("editform") )
+    // custom constructors
     // methods
         .def("EditForm",
              (opencascade::handle<IFSelect_EditForm> (IFSelect_ModifEditForm::*)() const) static_cast<opencascade::handle<IFSelect_EditForm> (IFSelect_ModifEditForm::*)() const>(&IFSelect_ModifEditForm::EditForm),
@@ -3627,12 +3747,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_ModifReorder ,opencascade::handle<IFSelect_ModifReorder>  , IFSelect_Modifier >>(m.attr("IFSelect_ModifReorder"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("rootlast")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IFSelect_ModifReorder::*)( IFSelect_ContextModif & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CopyTool &  ) const) static_cast<void (IFSelect_ModifReorder::*)( IFSelect_ContextModif & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const opencascade::handle<Interface_Protocol> & ,  Interface_CopyTool &  ) const>(&IFSelect_ModifReorder::Perform),
@@ -3653,11 +3775,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectAnyList ,opencascade::handle<IFSelect_SelectAnyList> ,Py_IFSelect_SelectAnyList , IFSelect_SelectDeduct >>(m.attr("IFSelect_SelectAnyList"))
+    // constructors
+    // custom constructors
     // methods
         .def("KeepInputEntity",
              (void (IFSelect_SelectAnyList::*)( Interface_EntityIterator &  ) const) static_cast<void (IFSelect_SelectAnyList::*)( Interface_EntityIterator &  ) const>(&IFSelect_SelectAnyList::KeepInputEntity),
@@ -3720,12 +3844,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectDiff ,opencascade::handle<IFSelect_SelectDiff>  , IFSelect_SelectControl >>(m.attr("IFSelect_SelectDiff"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectDiff::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectDiff::*)( const Interface_Graph &  ) const>(&IFSelect_SelectDiff::RootResult),
@@ -3746,12 +3872,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectEntityNumber ,opencascade::handle<IFSelect_SelectEntityNumber>  , IFSelect_SelectBase >>(m.attr("IFSelect_SelectEntityNumber"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetNumber",
              (void (IFSelect_SelectEntityNumber::*)( const opencascade::handle<IFSelect_IntParam> &  ) ) static_cast<void (IFSelect_SelectEntityNumber::*)( const opencascade::handle<IFSelect_IntParam> &  ) >(&IFSelect_SelectEntityNumber::SetNumber),
@@ -3778,11 +3906,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectExplore ,opencascade::handle<IFSelect_SelectExplore> ,Py_IFSelect_SelectExplore , IFSelect_SelectDeduct >>(m.attr("IFSelect_SelectExplore"))
+    // constructors
+    // custom constructors
     // methods
         .def("Level",
              (Standard_Integer (IFSelect_SelectExplore::*)() const) static_cast<Standard_Integer (IFSelect_SelectExplore::*)() const>(&IFSelect_SelectExplore::Level),
@@ -3812,11 +3942,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectExtract ,opencascade::handle<IFSelect_SelectExtract> ,Py_IFSelect_SelectExtract , IFSelect_SelectDeduct >>(m.attr("IFSelect_SelectExtract"))
+    // constructors
+    // custom constructors
     // methods
         .def("IsDirect",
              (Standard_Boolean (IFSelect_SelectExtract::*)() const) static_cast<Standard_Boolean (IFSelect_SelectExtract::*)() const>(&IFSelect_SelectExtract::IsDirect),
@@ -3852,12 +3984,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectIntersection ,opencascade::handle<IFSelect_SelectIntersection>  , IFSelect_SelectCombine >>(m.attr("IFSelect_SelectIntersection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectIntersection::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectIntersection::*)( const Interface_Graph &  ) const>(&IFSelect_SelectIntersection::RootResult),
@@ -3878,12 +4012,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectModelEntities ,opencascade::handle<IFSelect_SelectModelEntities>  , IFSelect_SelectBase >>(m.attr("IFSelect_SelectModelEntities"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectModelEntities::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectModelEntities::*)( const Interface_Graph &  ) const>(&IFSelect_SelectModelEntities::RootResult),
@@ -3907,12 +4043,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectModelRoots ,opencascade::handle<IFSelect_SelectModelRoots>  , IFSelect_SelectBase >>(m.attr("IFSelect_SelectModelRoots"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectModelRoots::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectModelRoots::*)( const Interface_Graph &  ) const>(&IFSelect_SelectModelRoots::RootResult),
@@ -3933,12 +4071,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectPointed ,opencascade::handle<IFSelect_SelectPointed>  , IFSelect_SelectBase >>(m.attr("IFSelect_SelectPointed"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Clear",
              (void (IFSelect_SelectPointed::*)() ) static_cast<void (IFSelect_SelectPointed::*)() >(&IFSelect_SelectPointed::Clear),
@@ -4004,12 +4144,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectShared ,opencascade::handle<IFSelect_SelectShared>  , IFSelect_SelectDeduct >>(m.attr("IFSelect_SelectShared"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectShared::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectShared::*)( const Interface_Graph &  ) const>(&IFSelect_SelectShared::RootResult),
@@ -4030,12 +4172,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectSharing ,opencascade::handle<IFSelect_SelectSharing>  , IFSelect_SelectDeduct >>(m.attr("IFSelect_SelectSharing"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectSharing::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectSharing::*)( const Interface_Graph &  ) const>(&IFSelect_SelectSharing::RootResult),
@@ -4056,12 +4200,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectSuite ,opencascade::handle<IFSelect_SelectSuite>  , IFSelect_SelectDeduct >>(m.attr("IFSelect_SelectSuite"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("AddInput",
              (Standard_Boolean (IFSelect_SelectSuite::*)( const opencascade::handle<IFSelect_Selection> &  ) ) static_cast<Standard_Boolean (IFSelect_SelectSuite::*)( const opencascade::handle<IFSelect_Selection> &  ) >(&IFSelect_SelectSuite::AddInput),
@@ -4100,12 +4246,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectUnion ,opencascade::handle<IFSelect_SelectUnion>  , IFSelect_SelectCombine >>(m.attr("IFSelect_SelectUnion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectUnion::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectUnion::*)( const Interface_Graph &  ) const>(&IFSelect_SelectUnion::RootResult),
@@ -4126,12 +4274,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SignAncestor ,opencascade::handle<IFSelect_SignAncestor>  , IFSelect_SignType >>(m.attr("IFSelect_SignAncestor"))
+    // constructors
         .def(py::init< const Standard_Boolean >()  , py::arg("nopk")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Matches",
              (Standard_Boolean (IFSelect_SignAncestor::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) const) static_cast<Standard_Boolean (IFSelect_SignAncestor::*)( const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> & ,  const TCollection_AsciiString & ,  const Standard_Boolean  ) const>(&IFSelect_SignAncestor::Matches),
@@ -4149,11 +4299,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectAnyType ,opencascade::handle<IFSelect_SelectAnyType> ,Py_IFSelect_SelectAnyType , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectAnyType"))
+    // constructors
+    // custom constructors
     // methods
         .def("TypeForMatch",
              (opencascade::handle<Standard_Type> (IFSelect_SelectAnyType::*)() const) static_cast<opencascade::handle<Standard_Type> (IFSelect_SelectAnyType::*)() const>(&IFSelect_SelectAnyType::TypeForMatch),
@@ -4174,12 +4326,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectErrorEntities ,opencascade::handle<IFSelect_SelectErrorEntities>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectErrorEntities"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Sort",
              (Standard_Boolean (IFSelect_SelectErrorEntities::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (IFSelect_SelectErrorEntities::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IFSelect_SelectErrorEntities::Sort),
@@ -4200,12 +4354,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectFlag ,opencascade::handle<IFSelect_SelectFlag>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectFlag"))
+    // constructors
         .def(py::init< const Standard_CString >()  , py::arg("flagname") )
+    // custom constructors
     // methods
         .def("FlagName",
              (Standard_CString (IFSelect_SelectFlag::*)() const) static_cast<Standard_CString (IFSelect_SelectFlag::*)() const>(&IFSelect_SelectFlag::FlagName),
@@ -4232,11 +4388,13 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectInList ,opencascade::handle<IFSelect_SelectInList> ,Py_IFSelect_SelectInList , IFSelect_SelectAnyList >>(m.attr("IFSelect_SelectInList"))
+    // constructors
+    // custom constructors
     // methods
         .def("ListedEntity",
              (opencascade::handle<Standard_Transient> (IFSelect_SelectInList::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> &  ) const) static_cast<opencascade::handle<Standard_Transient> (IFSelect_SelectInList::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> &  ) const>(&IFSelect_SelectInList::ListedEntity),
@@ -4257,12 +4415,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectRange ,opencascade::handle<IFSelect_SelectRange>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectRange"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetRange",
              (void (IFSelect_SelectRange::*)( const opencascade::handle<IFSelect_IntParam> & ,  const opencascade::handle<IFSelect_IntParam> &  ) ) static_cast<void (IFSelect_SelectRange::*)( const opencascade::handle<IFSelect_IntParam> & ,  const opencascade::handle<IFSelect_IntParam> &  ) >(&IFSelect_SelectRange::SetRange),
@@ -4313,12 +4473,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectRootComps ,opencascade::handle<IFSelect_SelectRootComps>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectRootComps"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectRootComps::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectRootComps::*)( const Interface_Graph &  ) const>(&IFSelect_SelectRootComps::RootResult),
@@ -4342,12 +4504,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectRoots ,opencascade::handle<IFSelect_SelectRoots>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectRoots"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("RootResult",
              (Interface_EntityIterator (IFSelect_SelectRoots::*)( const Interface_Graph &  ) const) static_cast<Interface_EntityIterator (IFSelect_SelectRoots::*)( const Interface_Graph &  ) const>(&IFSelect_SelectRoots::RootResult),
@@ -4371,12 +4535,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectSent ,opencascade::handle<IFSelect_SelectSent>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectSent"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Boolean >()  , py::arg("sentcount")=static_cast<const Standard_Integer>(1),  py::arg("atleast")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("SentCount",
              (Standard_Integer (IFSelect_SelectSent::*)() const) static_cast<Standard_Integer (IFSelect_SelectSent::*)() const>(&IFSelect_SelectSent::SentCount),
@@ -4406,14 +4572,16 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectSignature ,opencascade::handle<IFSelect_SelectSignature>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectSignature"))
+    // constructors
         .def(py::init< const opencascade::handle<IFSelect_Signature> &,const Standard_CString,const Standard_Boolean >()  , py::arg("matcher"),  py::arg("signtext"),  py::arg("exact")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<IFSelect_Signature> &,const TCollection_AsciiString &,const Standard_Boolean >()  , py::arg("matcher"),  py::arg("signtext"),  py::arg("exact")=static_cast<const Standard_Boolean>(Standard_True) )
         .def(py::init< const opencascade::handle<IFSelect_SignCounter> &,const Standard_CString,const Standard_Boolean >()  , py::arg("matcher"),  py::arg("signtext"),  py::arg("exact")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Signature",
              (opencascade::handle<IFSelect_Signature> (IFSelect_SelectSignature::*)() const) static_cast<opencascade::handle<IFSelect_Signature> (IFSelect_SelectSignature::*)() const>(&IFSelect_SelectSignature::Signature),
@@ -4449,12 +4617,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectSignedShared ,opencascade::handle<IFSelect_SelectSignedShared>  , IFSelect_SelectExplore >>(m.attr("IFSelect_SelectSignedShared"))
+    // constructors
         .def(py::init< const opencascade::handle<IFSelect_Signature> &,const Standard_CString,const Standard_Boolean,const Standard_Integer >()  , py::arg("matcher"),  py::arg("signtext"),  py::arg("exact")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("level")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("Signature",
              (opencascade::handle<IFSelect_Signature> (IFSelect_SelectSignedShared::*)() const) static_cast<opencascade::handle<IFSelect_Signature> (IFSelect_SelectSignedShared::*)() const>(&IFSelect_SelectSignedShared::Signature),
@@ -4484,12 +4654,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectSignedSharing ,opencascade::handle<IFSelect_SelectSignedSharing>  , IFSelect_SelectExplore >>(m.attr("IFSelect_SelectSignedSharing"))
+    // constructors
         .def(py::init< const opencascade::handle<IFSelect_Signature> &,const Standard_CString,const Standard_Boolean,const Standard_Integer >()  , py::arg("matcher"),  py::arg("signtext"),  py::arg("exact")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("level")=static_cast<const Standard_Integer>(0) )
+    // custom constructors
     // methods
         .def("Signature",
              (opencascade::handle<IFSelect_Signature> (IFSelect_SelectSignedSharing::*)() const) static_cast<opencascade::handle<IFSelect_Signature> (IFSelect_SelectSignedSharing::*)() const>(&IFSelect_SelectSignedSharing::Signature),
@@ -4519,12 +4691,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectUnknownEntities ,opencascade::handle<IFSelect_SelectUnknownEntities>  , IFSelect_SelectExtract >>(m.attr("IFSelect_SelectUnknownEntities"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Sort",
              (Standard_Boolean (IFSelect_SelectUnknownEntities::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const) static_cast<Standard_Boolean (IFSelect_SelectUnknownEntities::*)( const Standard_Integer ,  const opencascade::handle<Standard_Transient> & ,  const opencascade::handle<Interface_InterfaceModel> &  ) const>(&IFSelect_SelectUnknownEntities::Sort),
@@ -4545,12 +4719,14 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectIncorrectEntities ,opencascade::handle<IFSelect_SelectIncorrectEntities>  , IFSelect_SelectFlag >>(m.attr("IFSelect_SelectIncorrectEntities"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (IFSelect_SelectIncorrectEntities::*)() const) static_cast<const opencascade::handle<Standard_Type> & (IFSelect_SelectIncorrectEntities::*)() const>(&IFSelect_SelectIncorrectEntities::DynamicType),
@@ -4565,13 +4741,15 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IFSelect_SelectType ,opencascade::handle<IFSelect_SelectType>  , IFSelect_SelectAnyType >>(m.attr("IFSelect_SelectType"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const opencascade::handle<Standard_Type> & >()  , py::arg("atype") )
+    // custom constructors
     // methods
         .def("SetType",
              (void (IFSelect_SelectType::*)( const opencascade::handle<Standard_Type> &  ) ) static_cast<void (IFSelect_SelectType::*)( const opencascade::handle<Standard_Type> &  ) >(&IFSelect_SelectType::SetType),
@@ -4595,107 +4773,107 @@ py::module m = static_cast<py::module>(main_module.attr("IFSelect"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IFSelect_SelectRange.hxx
-// ./opencascade/IFSelect_SelectBase.hxx
-// ./opencascade/IFSelect_SelectEntityNumber.hxx
-// ./opencascade/IFSelect_SelectExtract.hxx
-// ./opencascade/IFSelect_CheckCounter.hxx
-// ./opencascade/IFSelect_ListEditor.hxx
-// ./opencascade/IFSelect_ActFunc.hxx
-// ./opencascade/IFSelect_AppliedModifiers.hxx
-// ./opencascade/IFSelect.hxx
-// ./opencascade/IFSelect_GraphCounter.hxx
-// ./opencascade/IFSelect_SelectAnyList.hxx
-// ./opencascade/IFSelect_Selection.hxx
-// ./opencascade/IFSelect_SelectSharing.hxx
-// ./opencascade/IFSelect_TSeqOfDispatch.hxx
-// ./opencascade/IFSelect_SessionDumper.hxx
-// ./opencascade/IFSelect_PrintFail.hxx
-// ./opencascade/IFSelect_BasicDumper.hxx
-// ./opencascade/IFSelect_ReturnStatus.hxx
-// ./opencascade/IFSelect_SequenceOfAppliedModifiers.hxx
-// ./opencascade/IFSelect_ShareOutResult.hxx
-// ./opencascade/IFSelect_SelectUnion.hxx
-// ./opencascade/IFSelect_Transformer.hxx
-// ./opencascade/IFSelect_SignMultiple.hxx
-// ./opencascade/IFSelect_SelectControl.hxx
-// ./opencascade/IFSelect_SelectSignedSharing.hxx
-// ./opencascade/IFSelect_SelectErrorEntities.hxx
-// ./opencascade/IFSelect_SignType.hxx
-// ./opencascade/IFSelect_SelectType.hxx
-// ./opencascade/IFSelect_Dispatch.hxx
-// ./opencascade/IFSelect_SelectFlag.hxx
-// ./opencascade/IFSelect_TSeqOfSelection.hxx
-// ./opencascade/IFSelect_DispPerOne.hxx
-// ./opencascade/IFSelect_TransformStandard.hxx
-// ./opencascade/IFSelect_ContextModif.hxx
-// ./opencascade/IFSelect_SelectInList.hxx
-// ./opencascade/IFSelect_HSeqOfSelection.hxx
-// ./opencascade/IFSelect_SelectSent.hxx
-// ./opencascade/IFSelect_SequenceOfInterfaceModel.hxx
-// ./opencascade/IFSelect_SelectDiff.hxx
-// ./opencascade/IFSelect_SelectExplore.hxx
-// ./opencascade/IFSelect_SelectDeduct.hxx
-// ./opencascade/IFSelect_SequenceOfGeneralModifier.hxx
-// ./opencascade/IFSelect_SelectShared.hxx
-// ./opencascade/IFSelect_IntParam.hxx
-// ./opencascade/IFSelect_ParamEditor.hxx
-// ./opencascade/IFSelect_ModelCopier.hxx
-// ./opencascade/IFSelect_SessionPilot.hxx
-// ./opencascade/IFSelect_WorkLibrary.hxx
-// ./opencascade/IFSelect_PacketList.hxx
-// ./opencascade/IFSelect_SignAncestor.hxx
-// ./opencascade/IFSelect_SelectSignedShared.hxx
-// ./opencascade/IFSelect_EditValue.hxx
-// ./opencascade/IFSelect_SelectModelEntities.hxx
 // ./opencascade/IFSelect_SelectIntersection.hxx
-// ./opencascade/IFSelect_DispPerCount.hxx
-// ./opencascade/IFSelect_Modifier.hxx
-// ./opencascade/IFSelect_SelectIncorrectEntities.hxx
-// ./opencascade/IFSelect_SelectUnknownEntities.hxx
-// ./opencascade/IFSelect_SelectModelRoots.hxx
-// ./opencascade/IFSelect_EditForm.hxx
-// ./opencascade/IFSelect_Editor.hxx
-// ./opencascade/IFSelect_SelectPointed.hxx
-// ./opencascade/IFSelect_SignValidity.hxx
-// ./opencascade/IFSelect_RemainMode.hxx
-// ./opencascade/IFSelect_Signature.hxx
-// ./opencascade/IFSelect_SignCounter.hxx
-// ./opencascade/IFSelect_SelectSuite.hxx
-// ./opencascade/IFSelect_SelectRoots.hxx
-// ./opencascade/IFSelect_DispPerFiles.hxx
-// ./opencascade/IFSelect_DispGlobal.hxx
-// ./opencascade/IFSelect_Act.hxx
-// ./opencascade/IFSelect_ShareOut.hxx
-// ./opencascade/IFSelect_ContextWrite.hxx
 // ./opencascade/IFSelect_SelectSignature.hxx
-// ./opencascade/IFSelect_Functions.hxx
-// ./opencascade/IFSelect_SignCategory.hxx
-// ./opencascade/IFSelect_SelectionIterator.hxx
-// ./opencascade/IFSelect_SelectCombine.hxx
-// ./opencascade/IFSelect_SelectAnyType.hxx
-// ./opencascade/IFSelect_ModifReorder.hxx
-// ./opencascade/IFSelect_SignatureList.hxx
-// ./opencascade/IFSelect_ModifEditForm.hxx
-// ./opencascade/IFSelect_GeneralModifier.hxx
-// ./opencascade/IFSelect_PrintCount.hxx
-// ./opencascade/IFSelect_WorkSession.hxx
-// ./opencascade/IFSelect_SessionFile.hxx
-// ./opencascade/IFSelect_SelectRootComps.hxx
-// ./opencascade/IFSelect_Activator.hxx
+// ./opencascade/IFSelect_PacketList.hxx
+// ./opencascade/IFSelect_CheckCounter.hxx
 // ./opencascade/IFSelect_DispPerSignature.hxx
+// ./opencascade/IFSelect_Activator.hxx
+// ./opencascade/IFSelect_SelectEntityNumber.hxx
+// ./opencascade/IFSelect_DispPerFiles.hxx
+// ./opencascade/IFSelect_HSeqOfSelection.hxx
+// ./opencascade/IFSelect_SessionFile.hxx
+// ./opencascade/IFSelect_Modifier.hxx
+// ./opencascade/IFSelect_ListEditor.hxx
+// ./opencascade/IFSelect_SelectRootComps.hxx
+// ./opencascade/IFSelect_ModelCopier.hxx
+// ./opencascade/IFSelect_PrintCount.hxx
+// ./opencascade/IFSelect_SelectPointed.hxx
+// ./opencascade/IFSelect_Dispatch.hxx
+// ./opencascade/IFSelect_SelectInList.hxx
+// ./opencascade/IFSelect_SelectType.hxx
+// ./opencascade/IFSelect_PrintFail.hxx
+// ./opencascade/IFSelect_TSeqOfSelection.hxx
+// ./opencascade/IFSelect_SelectAnyType.hxx
+// ./opencascade/IFSelect_SelectExtract.hxx
+// ./opencascade/IFSelect_SelectErrorEntities.hxx
+// ./opencascade/IFSelect_EditForm.hxx
+// ./opencascade/IFSelect_SignAncestor.hxx
+// ./opencascade/IFSelect_SignCounter.hxx
+// ./opencascade/IFSelect_SelectModelEntities.hxx
+// ./opencascade/IFSelect_ContextModif.hxx
+// ./opencascade/IFSelect_SignValidity.hxx
+// ./opencascade/IFSelect_SelectUnknownEntities.hxx
+// ./opencascade/IFSelect_WorkLibrary.hxx
+// ./opencascade/IFSelect_SelectIncorrectEntities.hxx
+// ./opencascade/IFSelect_RemainMode.hxx
+// ./opencascade/IFSelect_SelectRange.hxx
+// ./opencascade/IFSelect_SequenceOfInterfaceModel.hxx
+// ./opencascade/IFSelect_SelectModelRoots.hxx
+// ./opencascade/IFSelect_DispPerCount.hxx
+// ./opencascade/IFSelect_SelectUnion.hxx
+// ./opencascade/IFSelect_GraphCounter.hxx
+// ./opencascade/IFSelect_SelectBase.hxx
+// ./opencascade/IFSelect_ModifEditForm.hxx
+// ./opencascade/IFSelect_ParamEditor.hxx
+// ./opencascade/IFSelect_Editor.hxx
+// ./opencascade/IFSelect_WorkSession.hxx
+// ./opencascade/IFSelect.hxx
+// ./opencascade/IFSelect_BasicDumper.hxx
+// ./opencascade/IFSelect_SelectFlag.hxx
+// ./opencascade/IFSelect_Transformer.hxx
+// ./opencascade/IFSelect_Act.hxx
+// ./opencascade/IFSelect_ReturnStatus.hxx
+// ./opencascade/IFSelect_DispPerOne.hxx
+// ./opencascade/IFSelect_SelectRoots.hxx
+// ./opencascade/IFSelect_SignMultiple.hxx
+// ./opencascade/IFSelect_IntParam.hxx
+// ./opencascade/IFSelect_GeneralModifier.hxx
+// ./opencascade/IFSelect_ActFunc.hxx
+// ./opencascade/IFSelect_SelectSignedSharing.hxx
+// ./opencascade/IFSelect_SelectAnyList.hxx
+// ./opencascade/IFSelect_ModifReorder.hxx
+// ./opencascade/IFSelect_SessionDumper.hxx
+// ./opencascade/IFSelect_SelectExplore.hxx
+// ./opencascade/IFSelect_Signature.hxx
+// ./opencascade/IFSelect_AppliedModifiers.hxx
+// ./opencascade/IFSelect_SignatureList.hxx
+// ./opencascade/IFSelect_SelectShared.hxx
+// ./opencascade/IFSelect_Selection.hxx
+// ./opencascade/IFSelect_DispGlobal.hxx
+// ./opencascade/IFSelect_SequenceOfAppliedModifiers.hxx
+// ./opencascade/IFSelect_ShareOut.hxx
+// ./opencascade/IFSelect_Functions.hxx
+// ./opencascade/IFSelect_SelectDeduct.hxx
+// ./opencascade/IFSelect_TransformStandard.hxx
+// ./opencascade/IFSelect_TSeqOfDispatch.hxx
+// ./opencascade/IFSelect_SignType.hxx
+// ./opencascade/IFSelect_SequenceOfGeneralModifier.hxx
+// ./opencascade/IFSelect_SignCategory.hxx
+// ./opencascade/IFSelect_SelectSharing.hxx
+// ./opencascade/IFSelect_SelectControl.hxx
+// ./opencascade/IFSelect_ContextWrite.hxx
+// ./opencascade/IFSelect_ShareOutResult.hxx
+// ./opencascade/IFSelect_SelectDiff.hxx
+// ./opencascade/IFSelect_EditValue.hxx
+// ./opencascade/IFSelect_SelectionIterator.hxx
+// ./opencascade/IFSelect_SelectSuite.hxx
+// ./opencascade/IFSelect_SelectSignedShared.hxx
+// ./opencascade/IFSelect_SelectCombine.hxx
+// ./opencascade/IFSelect_SessionPilot.hxx
+// ./opencascade/IFSelect_SelectSent.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<opencascade::handle<IFSelect_Dispatch> >(m,"IFSelect_TSeqOfDispatch");  
-    register_template_NCollection_Sequence<opencascade::handle<IFSelect_AppliedModifiers> >(m,"IFSelect_SequenceOfAppliedModifiers");  
     register_template_NCollection_Sequence<opencascade::handle<IFSelect_Selection> >(m,"IFSelect_TSeqOfSelection");  
     register_template_NCollection_Sequence<opencascade::handle<Interface_InterfaceModel> >(m,"IFSelect_SequenceOfInterfaceModel");  
+    register_template_NCollection_Sequence<opencascade::handle<IFSelect_AppliedModifiers> >(m,"IFSelect_SequenceOfAppliedModifiers");  
+    register_template_NCollection_Sequence<opencascade::handle<IFSelect_Dispatch> >(m,"IFSelect_TSeqOfDispatch");  
     register_template_NCollection_Sequence<opencascade::handle<IFSelect_GeneralModifier> >(m,"IFSelect_SequenceOfGeneralModifier");  
 
 

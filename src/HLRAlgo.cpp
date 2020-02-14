@@ -13,9 +13,9 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <HLRAlgo_EdgeStatus.hxx>
 #include <gp_Ax2.hxx>
 #include <gp_Lin.hxx>
+#include <HLRAlgo_EdgeStatus.hxx>
 #include <HLRAlgo_EdgeStatus.hxx>
 
 // module includes
@@ -56,17 +56,17 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/HLRAlgo_InterferenceList.hxx
 #include "NCollection.hxx"
+// ./opencascade/HLRAlgo_ListOfBPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRAlgo_ListOfBPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/HLRAlgo_Array1OfPHDat.hxx
+#include "NCollection.hxx"
 // ./opencascade/HLRAlgo_Array1OfPISeg.hxx
 #include "NCollection.hxx"
 // ./opencascade/HLRAlgo_Array1OfPINod.hxx
 #include "NCollection.hxx"
-// ./opencascade/HLRAlgo_ListOfBPoint.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRAlgo_ListOfBPoint.hxx
-#include "NCollection.hxx"
 // ./opencascade/HLRAlgo_Array1OfTData.hxx
-#include "NCollection.hxx"
-// ./opencascade/HLRAlgo_Array1OfPHDat.hxx
 #include "NCollection.hxx"
 
 
@@ -86,9 +86,12 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
 
 // classes
 
+    // default constructor
     register_default_constructor<HLRAlgo , shared_ptr<HLRAlgo>>(m,"HLRAlgo");
 
     static_cast<py::class_<HLRAlgo , shared_ptr<HLRAlgo>  >>(m.attr("HLRAlgo"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -118,11 +121,12 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#"  , py::arg("IMin"),  py::arg("IMax"),  py::arg("OMin"),  py::arg("OMax"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_BiPoint , shared_ptr<HLRAlgo_BiPoint>  >>(m.attr("HLRAlgo_BiPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("X1"),  py::arg("Y1"),  py::arg("Z1"),  py::arg("X2"),  py::arg("Y2"),  py::arg("Z2"),  py::arg("XT1"),  py::arg("YT1"),  py::arg("ZT1"),  py::arg("XT2"),  py::arg("YT2"),  py::arg("ZT2"),  py::arg("Index"),  py::arg("reg1"),  py::arg("regn"),  py::arg("outl"),  py::arg("intl") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("X1"),  py::arg("Y1"),  py::arg("Z1"),  py::arg("X2"),  py::arg("Y2"),  py::arg("Z2"),  py::arg("XT1"),  py::arg("YT1"),  py::arg("ZT1"),  py::arg("XT2"),  py::arg("YT2"),  py::arg("ZT2"),  py::arg("Index"),  py::arg("flag") )
@@ -130,6 +134,7 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("X1"),  py::arg("Y1"),  py::arg("Z1"),  py::arg("X2"),  py::arg("Y2"),  py::arg("Z2"),  py::arg("XT1"),  py::arg("YT1"),  py::arg("ZT1"),  py::arg("XT2"),  py::arg("YT2"),  py::arg("ZT2"),  py::arg("Index"),  py::arg("i1"),  py::arg("i1p1"),  py::arg("i1p2"),  py::arg("flag") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean >()  , py::arg("X1"),  py::arg("Y1"),  py::arg("Z1"),  py::arg("X2"),  py::arg("Y2"),  py::arg("Z2"),  py::arg("XT1"),  py::arg("YT1"),  py::arg("ZT1"),  py::arg("XT2"),  py::arg("YT2"),  py::arg("ZT2"),  py::arg("Index"),  py::arg("i1"),  py::arg("i1p1"),  py::arg("i1p2"),  py::arg("i2"),  py::arg("i2p1"),  py::arg("i2p2"),  py::arg("reg1"),  py::arg("regn"),  py::arg("outl"),  py::arg("intl") )
         .def(py::init< const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("X1"),  py::arg("Y1"),  py::arg("Z1"),  py::arg("X2"),  py::arg("Y2"),  py::arg("Z2"),  py::arg("XT1"),  py::arg("YT1"),  py::arg("ZT1"),  py::arg("XT2"),  py::arg("YT2"),  py::arg("ZT2"),  py::arg("Index"),  py::arg("i1"),  py::arg("i1p1"),  py::arg("i1p2"),  py::arg("i2"),  py::arg("i2p1"),  py::arg("i2p2"),  py::arg("flag") )
+    // custom constructors
     // methods
         .def("Rg1Line",
              (Standard_Boolean (HLRAlgo_BiPoint::*)() const) static_cast<Standard_Boolean (HLRAlgo_BiPoint::*)() const>(&HLRAlgo_BiPoint::Rg1Line),
@@ -171,12 +176,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_Coincidence , shared_ptr<HLRAlgo_Coincidence>  >>(m.attr("HLRAlgo_Coincidence"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set2D",
              (void (HLRAlgo_Coincidence::*)( const Standard_Integer ,  const Standard_Real  ) ) static_cast<void (HLRAlgo_Coincidence::*)( const Standard_Integer ,  const Standard_Real  ) >(&HLRAlgo_Coincidence::Set2D),
@@ -194,12 +201,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_EdgeIterator , shared_ptr<HLRAlgo_EdgeIterator>  >>(m.attr("HLRAlgo_EdgeIterator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("InitHidden",
              (void (HLRAlgo_EdgeIterator::*)( HLRAlgo_EdgeStatus &  ) ) static_cast<void (HLRAlgo_EdgeIterator::*)( HLRAlgo_EdgeStatus &  ) >(&HLRAlgo_EdgeIterator::InitHidden),
@@ -247,13 +256,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_EdgeStatus , shared_ptr<HLRAlgo_EdgeStatus>  >>(m.attr("HLRAlgo_EdgeStatus"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_ShortReal,const Standard_Real,const Standard_ShortReal >()  , py::arg("Start"),  py::arg("TolStart"),  py::arg("End"),  py::arg("TolEnd") )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (HLRAlgo_EdgeStatus::*)( const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  ) ) static_cast<void (HLRAlgo_EdgeStatus::*)( const Standard_Real ,  const Standard_ShortReal ,  const Standard_Real ,  const Standard_ShortReal  ) >(&HLRAlgo_EdgeStatus::Initialize),
@@ -292,12 +303,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_EdgesBlock ,opencascade::handle<HLRAlgo_EdgesBlock>  , Standard_Transient >>(m.attr("HLRAlgo_EdgesBlock"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbEdges") )
+    // custom constructors
     // methods
         .def("NbEdges",
              (Standard_Integer (HLRAlgo_EdgesBlock::*)() const) static_cast<Standard_Integer (HLRAlgo_EdgesBlock::*)() const>(&HLRAlgo_EdgesBlock::NbEdges),
@@ -357,14 +370,17 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_HArray1OfPHDat ,opencascade::handle<HLRAlgo_HArray1OfPHDat>  , HLRAlgo_Array1OfPHDat , Standard_Transient >>(m.attr("HLRAlgo_HArray1OfPHDat"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const HLRAlgo_PolyHidingData & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<HLRAlgo_PolyHidingData> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const HLRAlgo_Array1OfPHDat & (HLRAlgo_HArray1OfPHDat::*)() const) static_cast<const HLRAlgo_Array1OfPHDat & (HLRAlgo_HArray1OfPHDat::*)() const>(&HLRAlgo_HArray1OfPHDat::Array1),
@@ -385,14 +401,17 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_HArray1OfPINod ,opencascade::handle<HLRAlgo_HArray1OfPINod>  , HLRAlgo_Array1OfPINod , Standard_Transient >>(m.attr("HLRAlgo_HArray1OfPINod"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<HLRAlgo_PolyInternalNode> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<HLRAlgo_PolyInternalNode> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const HLRAlgo_Array1OfPINod & (HLRAlgo_HArray1OfPINod::*)() const) static_cast<const HLRAlgo_Array1OfPINod & (HLRAlgo_HArray1OfPINod::*)() const>(&HLRAlgo_HArray1OfPINod::Array1),
@@ -413,14 +432,17 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_HArray1OfPISeg ,opencascade::handle<HLRAlgo_HArray1OfPISeg>  , HLRAlgo_Array1OfPISeg , Standard_Transient >>(m.attr("HLRAlgo_HArray1OfPISeg"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const HLRAlgo_Array1OfPISeg::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<HLRAlgo_PolyInternalSegment> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const HLRAlgo_Array1OfPISeg & (HLRAlgo_HArray1OfPISeg::*)() const) static_cast<const HLRAlgo_Array1OfPISeg & (HLRAlgo_HArray1OfPISeg::*)() const>(&HLRAlgo_HArray1OfPISeg::Array1),
@@ -441,14 +463,17 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_HArray1OfTData ,opencascade::handle<HLRAlgo_HArray1OfTData>  , HLRAlgo_Array1OfTData , Standard_Transient >>(m.attr("HLRAlgo_HArray1OfTData"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const HLRAlgo_Array1OfTData::value_type & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<HLRAlgo_TriangleData> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const HLRAlgo_Array1OfTData & (HLRAlgo_HArray1OfTData::*)() const) static_cast<const HLRAlgo_Array1OfTData & (HLRAlgo_HArray1OfTData::*)() const>(&HLRAlgo_HArray1OfTData::Array1),
@@ -469,13 +494,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_Interference , shared_ptr<HLRAlgo_Interference>  >>(m.attr("HLRAlgo_Interference"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const HLRAlgo_Intersection &,const HLRAlgo_Coincidence &,const TopAbs_Orientation,const TopAbs_Orientation,const TopAbs_Orientation >()  , py::arg("Inters"),  py::arg("Bound"),  py::arg("Orient"),  py::arg("Trans"),  py::arg("BTrans") )
+    // custom constructors
     // methods
         .def("Intersection",
              (void (HLRAlgo_Interference::*)( const HLRAlgo_Intersection &  ) ) static_cast<void (HLRAlgo_Interference::*)( const HLRAlgo_Intersection &  ) >(&HLRAlgo_Interference::Intersection),
@@ -517,13 +544,15 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_Intersection , shared_ptr<HLRAlgo_Intersection>  >>(m.attr("HLRAlgo_Intersection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopAbs_Orientation,const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Real,const Standard_ShortReal,const TopAbs_State >()  , py::arg("Ori"),  py::arg("Lev"),  py::arg("SegInd"),  py::arg("Ind"),  py::arg("P"),  py::arg("Tol"),  py::arg("S") )
+    // custom constructors
     // methods
         .def("Orientation",
              (void (HLRAlgo_Intersection::*)( const TopAbs_Orientation  ) ) static_cast<void (HLRAlgo_Intersection::*)( const TopAbs_Orientation  ) >(&HLRAlgo_Intersection::Orientation),
@@ -613,12 +642,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_PolyAlgo ,opencascade::handle<HLRAlgo_PolyAlgo>  , Standard_Transient >>(m.attr("HLRAlgo_PolyAlgo"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (HLRAlgo_PolyAlgo::*)( const opencascade::handle<TColStd_HArray1OfTransient> &  ) ) static_cast<void (HLRAlgo_PolyAlgo::*)( const opencascade::handle<TColStd_HArray1OfTransient> &  ) >(&HLRAlgo_PolyAlgo::Init),
@@ -684,12 +715,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_PolyData ,opencascade::handle<HLRAlgo_PolyData>  , Standard_Transient >>(m.attr("HLRAlgo_PolyData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HNodes",
              (void (HLRAlgo_PolyData::*)( const opencascade::handle<TColgp_HArray1OfXYZ> &  ) ) static_cast<void (HLRAlgo_PolyData::*)( const opencascade::handle<TColgp_HArray1OfXYZ> &  ) >(&HLRAlgo_PolyData::HNodes),
@@ -758,12 +791,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_PolyHidingData , shared_ptr<HLRAlgo_PolyHidingData>  >>(m.attr("HLRAlgo_PolyHidingData"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Set",
              (void (HLRAlgo_PolyHidingData::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (HLRAlgo_PolyHidingData::*)( const Standard_Integer ,  const Standard_Integer ,  const Standard_Integer ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&HLRAlgo_PolyHidingData::Set),
@@ -778,12 +813,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_PolyInternalData ,opencascade::handle<HLRAlgo_PolyInternalData>  , Standard_Transient >>(m.attr("HLRAlgo_PolyInternalData"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("nbNod"),  py::arg("nbTri") )
+    // custom constructors
     // methods
         .def("Dump",
              (void (HLRAlgo_PolyInternalData::*)() const) static_cast<void (HLRAlgo_PolyInternalData::*)() const>(&HLRAlgo_PolyInternalData::Dump),
@@ -879,12 +916,14 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_PolyInternalNode ,opencascade::handle<HLRAlgo_PolyInternalNode>  , Standard_Transient >>(m.attr("HLRAlgo_PolyInternalNode"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Indices",
              (HLRAlgo_PolyInternalNode::NodeIndices & (HLRAlgo_PolyInternalNode::*)() ) static_cast<HLRAlgo_PolyInternalNode::NodeIndices & (HLRAlgo_PolyInternalNode::*)() >(&HLRAlgo_PolyInternalNode::Indices),
@@ -905,12 +944,28 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<HLRAlgo_PolyInternalSegment , shared_ptr<HLRAlgo_PolyInternalSegment>>(m,"HLRAlgo_PolyInternalSegment");
+
+    static_cast<py::class_<HLRAlgo_PolyInternalSegment , shared_ptr<HLRAlgo_PolyInternalSegment>  >>(m.attr("HLRAlgo_PolyInternalSegment"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_PolyShellData ,opencascade::handle<HLRAlgo_PolyShellData>  , Standard_Transient >>(m.attr("HLRAlgo_PolyShellData"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("nbFace") )
+    // custom constructors
     // methods
         .def("UpdateHiding",
              (void (HLRAlgo_PolyShellData::*)( const Standard_Integer  ) ) static_cast<void (HLRAlgo_PolyShellData::*)( const Standard_Integer  ) >(&HLRAlgo_PolyShellData::UpdateHiding),
@@ -955,16 +1010,18 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_Projector , shared_ptr<HLRAlgo_Projector>  >>(m.attr("HLRAlgo_Projector"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Ax2 & >()  , py::arg("CS") )
         .def(py::init< const gp_Ax2 &,const Standard_Real >()  , py::arg("CS"),  py::arg("Focus") )
         .def(py::init< const gp_Trsf &,const Standard_Boolean,const Standard_Real >()  , py::arg("T"),  py::arg("Persp"),  py::arg("Focus") )
         .def(py::init< const gp_Trsf &,const Standard_Boolean,const Standard_Real,const gp_Vec2d &,const gp_Vec2d &,const gp_Vec2d & >()  , py::arg("T"),  py::arg("Persp"),  py::arg("Focus"),  py::arg("v1"),  py::arg("v2"),  py::arg("v3") )
+    // custom constructors
     // methods
         .def("Set",
              (void (HLRAlgo_Projector::*)( const gp_Trsf & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (HLRAlgo_Projector::*)( const gp_Trsf & ,  const Standard_Boolean ,  const Standard_Real  ) >(&HLRAlgo_Projector::Set),
@@ -1033,12 +1090,28 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<HLRAlgo_TriangleData , shared_ptr<HLRAlgo_TriangleData>>(m,"HLRAlgo_TriangleData");
+
+    static_cast<py::class_<HLRAlgo_TriangleData , shared_ptr<HLRAlgo_TriangleData>  >>(m.attr("HLRAlgo_TriangleData"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<HLRAlgo_WiresBlock ,opencascade::handle<HLRAlgo_WiresBlock>  , Standard_Transient >>(m.attr("HLRAlgo_WiresBlock"))
+    // constructors
         .def(py::init< const Standard_Integer >()  , py::arg("NbWires") )
+    // custom constructors
     // methods
         .def("NbWires",
              (Standard_Integer (HLRAlgo_WiresBlock::*)() const) static_cast<Standard_Integer (HLRAlgo_WiresBlock::*)() const>(&HLRAlgo_WiresBlock::NbWires),
@@ -1068,51 +1141,51 @@ py::module m = static_cast<py::module>(main_module.attr("HLRAlgo"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/HLRAlgo_PolyAlgo.hxx
-// ./opencascade/HLRAlgo_WiresBlock.hxx
-// ./opencascade/HLRAlgo_PolyMask.hxx
-// ./opencascade/HLRAlgo_EdgeIterator.hxx
-// ./opencascade/HLRAlgo_InterferenceList.hxx
-// ./opencascade/HLRAlgo_HArray1OfPISeg.hxx
-// ./opencascade/HLRAlgo_PolyInternalSegment.hxx
-// ./opencascade/HLRAlgo.hxx
-// ./opencascade/HLRAlgo_BiPoint.hxx
-// ./opencascade/HLRAlgo_Coincidence.hxx
-// ./opencascade/HLRAlgo_HArray1OfTData.hxx
+// ./opencascade/HLRAlgo_EdgeStatus.hxx
+// ./opencascade/HLRAlgo_PolyShellData.hxx
 // ./opencascade/HLRAlgo_ListIteratorOfInterferenceList.hxx
-// ./opencascade/HLRAlgo_Projector.hxx
+// ./opencascade/HLRAlgo_PolyInternalNode.hxx
+// ./opencascade/HLRAlgo_HArray1OfPISeg.hxx
+// ./opencascade/HLRAlgo_HArray1OfPHDat.hxx
+// ./opencascade/HLRAlgo_EdgesBlock.hxx
+// ./opencascade/HLRAlgo_Coincidence.hxx
 // ./opencascade/HLRAlgo_PolyInternalData.hxx
+// ./opencascade/HLRAlgo_TriangleData.hxx
+// ./opencascade/HLRAlgo_PolyMask.hxx
+// ./opencascade/HLRAlgo_InterferenceList.hxx
+// ./opencascade/HLRAlgo_Projector.hxx
+// ./opencascade/HLRAlgo_PolyInternalSegment.hxx
+// ./opencascade/HLRAlgo_ListOfBPoint.hxx
+// ./opencascade/HLRAlgo_PolyHidingData.hxx
+// ./opencascade/HLRAlgo_EdgeIterator.hxx
 // ./opencascade/HLRAlgo_PolyData.hxx
+// ./opencascade/HLRAlgo_Array1OfPHDat.hxx
+// ./opencascade/HLRAlgo_HArray1OfPINod.hxx
+// ./opencascade/HLRAlgo_ListIteratorOfListOfBPoint.hxx
 // ./opencascade/HLRAlgo_Intersection.hxx
+// ./opencascade/HLRAlgo_BiPoint.hxx
+// ./opencascade/HLRAlgo_WiresBlock.hxx
 // ./opencascade/HLRAlgo_Array1OfPISeg.hxx
 // ./opencascade/HLRAlgo_Array1OfPINod.hxx
-// ./opencascade/HLRAlgo_PolyShellData.hxx
 // ./opencascade/HLRAlgo_Interference.hxx
-// ./opencascade/HLRAlgo_HArray1OfPHDat.hxx
-// ./opencascade/HLRAlgo_PolyHidingData.hxx
-// ./opencascade/HLRAlgo_ListOfBPoint.hxx
+// ./opencascade/HLRAlgo_PolyAlgo.hxx
+// ./opencascade/HLRAlgo.hxx
 // ./opencascade/HLRAlgo_Array1OfTData.hxx
-// ./opencascade/HLRAlgo_ListIteratorOfListOfBPoint.hxx
-// ./opencascade/HLRAlgo_EdgesBlock.hxx
-// ./opencascade/HLRAlgo_TriangleData.hxx
-// ./opencascade/HLRAlgo_Array1OfPHDat.hxx
-// ./opencascade/HLRAlgo_PolyInternalNode.hxx
-// ./opencascade/HLRAlgo_EdgeStatus.hxx
-// ./opencascade/HLRAlgo_HArray1OfPINod.hxx
+// ./opencascade/HLRAlgo_HArray1OfTData.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_List<HLRAlgo_Interference>(m,"HLRAlgo_InterferenceList");  
+    register_template_NCollection_List<HLRAlgo_BiPoint>(m,"HLRAlgo_ListOfBPoint");  
+    register_template_NCollection_Array1<HLRAlgo_PolyHidingData>(m,"HLRAlgo_Array1OfPHDat");  
     register_template_NCollection_Array1<HLRAlgo_PolyInternalSegment>(m,"HLRAlgo_Array1OfPISeg");  
     register_template_NCollection_Array1<opencascade::handle<HLRAlgo_PolyInternalNode> >(m,"HLRAlgo_Array1OfPINod");  
-    register_template_NCollection_List<HLRAlgo_BiPoint>(m,"HLRAlgo_ListOfBPoint");  
     register_template_NCollection_Array1<HLRAlgo_TriangleData>(m,"HLRAlgo_Array1OfTData");  
-    register_template_NCollection_Array1<HLRAlgo_PolyHidingData>(m,"HLRAlgo_Array1OfPHDat");  
 
 
 // exceptions

@@ -13,21 +13,21 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <BRepBuilderAPI_Sewing.hxx>
-#include <TopoDS_Edge.hxx>
-#include <gp_Pln.hxx>
+#include <StdFail_NotDone.hxx>
 #include <StdFail_NotDone.hxx>
 #include <TopoDS_Wire.hxx>
 #include <StdFail_NotDone.hxx>
 #include <gp_Ax2.hxx>
 #include <Law_Function.hxx>
+#include <StdFail_NotDone.hxx>
+#include <TopoDS_Edge.hxx>
 #include <TopoDS_Wire.hxx>
 #include <TopoDS_Vertex.hxx>
 #include <Geom_BSplineSurface.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StdFail_NotDone.hxx>
 #include <Geom_Surface.hxx>
-#include <StdFail_NotDone.hxx>
+#include <gp_Pln.hxx>
+#include <BRepBuilderAPI_Sewing.hxx>
 #include <TopoDS_Edge.hxx>
 
 // module includes
@@ -49,9 +49,9 @@ namespace py = pybind11;
 #include <BRepOffsetAPI_ThruSections.hxx>
 
 // template related includes
-// ./opencascade/BRepOffsetAPI_SequenceOfSequenceOfShape.hxx
-#include "NCollection.hxx"
 // ./opencascade/BRepOffsetAPI_SequenceOfSequenceOfReal.hxx
+#include "NCollection.hxx"
+// ./opencascade/BRepOffsetAPI_SequenceOfSequenceOfShape.hxx
 #include "NCollection.hxx"
 
 
@@ -73,8 +73,10 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
 
 
     static_cast<py::class_<BRepOffsetAPI_DraftAngle , shared_ptr<BRepOffsetAPI_DraftAngle>  , BRepBuilderAPI_ModifyShape >>(m.attr("BRepOffsetAPI_DraftAngle"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Clear",
              (void (BRepOffsetAPI_DraftAngle::*)() ) static_cast<void (BRepOffsetAPI_DraftAngle::*)() >(&BRepOffsetAPI_DraftAngle::Clear),
@@ -122,12 +124,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_FindContigousEdges , shared_ptr<BRepOffsetAPI_FindContigousEdges>  >>(m.attr("BRepOffsetAPI_FindContigousEdges"))
+    // constructors
         .def(py::init< const Standard_Real,const Standard_Boolean >()  , py::arg("tolerance")=static_cast<const Standard_Real>(1.0e-06),  py::arg("option")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepOffsetAPI_FindContigousEdges::*)( const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (BRepOffsetAPI_FindContigousEdges::*)( const Standard_Real ,  const Standard_Boolean  ) >(&BRepOffsetAPI_FindContigousEdges::Init),
@@ -172,12 +176,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakeDraft , shared_ptr<BRepOffsetAPI_MakeDraft>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_MakeDraft"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const gp_Dir &,const Standard_Real >()  , py::arg("Shape"),  py::arg("Dir"),  py::arg("Angle") )
+    // custom constructors
     // methods
         .def("SetOptions",
              (void (BRepOffsetAPI_MakeDraft::*)( const BRepBuilderAPI_TransitionMode ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepOffsetAPI_MakeDraft::*)( const BRepBuilderAPI_TransitionMode ,  const Standard_Real ,  const Standard_Real  ) >(&BRepOffsetAPI_MakeDraft::SetOptions),
@@ -204,14 +210,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakeEvolved , shared_ptr<BRepOffsetAPI_MakeEvolved>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_MakeEvolved"))
+    // constructors
         .def(py::init<  >()  )
-        .def(py::init< const TopoDS_Wire &,const TopoDS_Wire &,const GeomAbs_JoinType,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Real >()  , py::arg("Spine"),  py::arg("Profil"),  py::arg("Join")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("AxeProf")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Solid")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("ProfOnSpine")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Tol")=static_cast<const Standard_Real>(0.0000001) )
-        .def(py::init< const TopoDS_Face &,const TopoDS_Wire &,const GeomAbs_JoinType,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Real >()  , py::arg("Spine"),  py::arg("Profil"),  py::arg("Join")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("AxeProf")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("Solid")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("ProfOnSpine")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Tol")=static_cast<const Standard_Real>(0.0000001) )
+        .def(py::init< const TopoDS_Shape &,const TopoDS_Wire &,const GeomAbs_JoinType,const Standard_Boolean,const Standard_Boolean,const Standard_Boolean,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("theSpine"),  py::arg("theProfile"),  py::arg("theJoinType")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("theIsAxeProf")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("theIsSolid")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theIsProfOnSpine")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theTol")=static_cast<const Standard_Real>(0.0000001),  py::arg("theIsVolume")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("theRunInParallel")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Evolved",
              (const BRepFill_Evolved & (BRepOffsetAPI_MakeEvolved::*)() const) static_cast<const BRepFill_Evolved & (BRepOffsetAPI_MakeEvolved::*)() const>(&BRepOffsetAPI_MakeEvolved::Evolved),
@@ -232,12 +239,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakeFilling , shared_ptr<BRepOffsetAPI_MakeFilling>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_MakeFilling"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Boolean,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("Degree")=static_cast<const Standard_Integer>(3),  py::arg("NbPtsOnCur")=static_cast<const Standard_Integer>(15),  py::arg("NbIter")=static_cast<const Standard_Integer>(2),  py::arg("Anisotropie")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Tol2d")=static_cast<const Standard_Real>(0.00001),  py::arg("Tol3d")=static_cast<const Standard_Real>(0.0001),  py::arg("TolAng")=static_cast<const Standard_Real>(0.01),  py::arg("TolCurv")=static_cast<const Standard_Real>(0.1),  py::arg("MaxDeg")=static_cast<const Standard_Integer>(8),  py::arg("MaxSegments")=static_cast<const Standard_Integer>(9) )
+    // custom constructors
     // methods
         .def("SetConstrParam",
              (void (BRepOffsetAPI_MakeFilling::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (BRepOffsetAPI_MakeFilling::*)( const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real  ) >(&BRepOffsetAPI_MakeFilling::SetConstrParam),
@@ -297,14 +306,16 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakeOffset , shared_ptr<BRepOffsetAPI_MakeOffset>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_MakeOffset"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Face &,const GeomAbs_JoinType,const Standard_Boolean >()  , py::arg("Spine"),  py::arg("Join")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("IsOpenResult")=static_cast<const Standard_Boolean>(Standard_False) )
         .def(py::init< const TopoDS_Wire &,const GeomAbs_JoinType,const Standard_Boolean >()  , py::arg("Spine"),  py::arg("Join")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("IsOpenResult")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepOffsetAPI_MakeOffset::*)( const TopoDS_Face & ,  const GeomAbs_JoinType ,  const Standard_Boolean  ) ) static_cast<void (BRepOffsetAPI_MakeOffset::*)( const TopoDS_Face & ,  const GeomAbs_JoinType ,  const Standard_Boolean  ) >(&BRepOffsetAPI_MakeOffset::Init),
@@ -328,13 +339,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakeOffsetShape , shared_ptr<BRepOffsetAPI_MakeOffsetShape>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_MakeOffsetShape"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &,const Standard_Real,const Standard_Real,const BRepOffset_Mode,const Standard_Boolean,const Standard_Boolean,const GeomAbs_JoinType,const Standard_Boolean >()  , py::arg("S"),  py::arg("Offset"),  py::arg("Tol"),  py::arg("Mode")=static_cast<const BRepOffset_Mode>(BRepOffset_Skin),  py::arg("Intersection")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("SelfInter")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Join")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("RemoveIntEdges")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("PerformBySimple",
              (void (BRepOffsetAPI_MakeOffsetShape::*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (BRepOffsetAPI_MakeOffsetShape::*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&BRepOffsetAPI_MakeOffsetShape::PerformBySimple),
@@ -361,13 +374,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakePipe , shared_ptr<BRepOffsetAPI_MakePipe>  , BRepPrimAPI_MakeSweep >>(m.attr("BRepOffsetAPI_MakePipe"))
+    // constructors
         .def(py::init< const TopoDS_Wire &,const TopoDS_Shape & >()  , py::arg("Spine"),  py::arg("Profile") )
         .def(py::init< const TopoDS_Wire &,const TopoDS_Shape &,const GeomFill_Trihedron,const Standard_Boolean >()  , py::arg("Spine"),  py::arg("Profile"),  py::arg("aMode"),  py::arg("ForceApproxC1")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("Pipe",
              (const BRepFill_Pipe & (BRepOffsetAPI_MakePipe::*)() const) static_cast<const BRepFill_Pipe & (BRepOffsetAPI_MakePipe::*)() const>(&BRepOffsetAPI_MakePipe::Pipe),
@@ -394,12 +409,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakePipeShell , shared_ptr<BRepOffsetAPI_MakePipeShell>  , BRepPrimAPI_MakeSweep >>(m.attr("BRepOffsetAPI_MakePipeShell"))
+    // constructors
         .def(py::init< const TopoDS_Wire & >()  , py::arg("Spine") )
+    // custom constructors
     // methods
         .def("SetMode",
              (void (BRepOffsetAPI_MakePipeShell::*)( const Standard_Boolean  ) ) static_cast<void (BRepOffsetAPI_MakePipeShell::*)( const Standard_Boolean  ) >(&BRepOffsetAPI_MakePipeShell::SetMode),
@@ -454,7 +471,7 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
              R"#(Set the flag that indicates attempt to approximate a C1-continuous surface if a swept surface proved to be C0.)#"  , py::arg("ForceApproxC1"))
         .def("SetTransitionMode",
              (void (BRepOffsetAPI_MakePipeShell::*)( const BRepBuilderAPI_TransitionMode  ) ) static_cast<void (BRepOffsetAPI_MakePipeShell::*)( const BRepBuilderAPI_TransitionMode  ) >(&BRepOffsetAPI_MakePipeShell::SetTransitionMode),
-             R"#(Sets the transition mode to manage discontinuities on the swept shape caused by fractures on the spine. The transition mode can be BRepBuilderAPI_Transformed (default value), BRepBuilderAPI_RightCorner, BRepBuilderAPI_RoundCorner: - RepBuilderAPI_Transformed: discontinuities are treated by modification of the sweeping mode. The pipe is "transformed" at the fractures of the spine. This mode assumes building a self-intersected shell. - BRepBuilderAPI_RightCorner: discontinuities are treated like right corner. Two pieces of the pipe corresponding to two adjacent segments of the spine are extended and intersected at a fracture of the spine. - BRepBuilderAPI_RoundCorner: discontinuities are treated like round corner. The corner is treated as rotation of the profile around an axis which passes through the point of the spine?s fracture. This axis is based on cross product of directions tangent to the adjacent segments of the spine at their common point. Warnings The mode BRepBuilderAPI_RightCorner provides a valid result if intersection of two pieces of the pipe (corresponding to two adjacent segments of the spine) in the neighborhood of the spine?s fracture is connected and planar. This condition can be violated if the spine is non-linear in some neighborhood of the fracture or if the profile was set with a scaling law. The last mode, BRepBuilderAPI_RoundCorner, will assuredly provide a good result only if a profile was set with option WithCorrection = True, i.e. it is strictly orthogonal to the spine.)#"  , py::arg("Mode")=static_cast<const BRepBuilderAPI_TransitionMode>(BRepBuilderAPI_Transformed))
+             R"#(Sets the transition mode to manage discontinuities on the swept shape caused by fractures on the spine. The transition mode can be BRepBuilderAPI_Transformed (default value), BRepBuilderAPI_RightCorner, BRepBuilderAPI_RoundCorner: - RepBuilderAPI_Transformed: discontinuities are treated by modification of the sweeping mode. The pipe is "transformed" at the fractures of the spine. This mode assumes building a self-intersected shell. - BRepBuilderAPI_RightCorner: discontinuities are treated like right corner. Two pieces of the pipe corresponding to two adjacent segments of the spine are extended and intersected at a fracture of the spine. - BRepBuilderAPI_RoundCorner: discontinuities are treated like round corner. The corner is treated as rotation of the profile around an axis which passes through the point of the spine's fracture. This axis is based on cross product of directions tangent to the adjacent segments of the spine at their common point. Warnings The mode BRepBuilderAPI_RightCorner provides a valid result if intersection of two pieces of the pipe (corresponding to two adjacent segments of the spine) in the neighborhood of the spine?s fracture is connected and planar. This condition can be violated if the spine is non-linear in some neighborhood of the fracture or if the profile was set with a scaling law. The last mode, BRepBuilderAPI_RoundCorner, will assuredly provide a good result only if a profile was set with option WithCorrection = True, i.e. it is strictly orthogonal to the spine.)#"  , py::arg("Mode")=static_cast<const BRepBuilderAPI_TransitionMode>(BRepBuilderAPI_Transformed))
         .def("Simulate",
              (void (BRepOffsetAPI_MakePipeShell::*)( const Standard_Integer ,  NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepOffsetAPI_MakePipeShell::*)( const Standard_Integer ,  NCollection_List<TopoDS_Shape> &  ) >(&BRepOffsetAPI_MakePipeShell::Simulate),
              R"#(Simulates the resulting shape by calculating its cross-sections. The spine is devided by this cross-sections into (NumberOfSection - 1) equal parts, the number of cross-sections is NumberOfSection. The cross-sections are wires and they are returned in the list Result. This gives a rapid preview of the resulting shape, which will be obtained using the settings you have provided. Raises NotDone if <me> it is not Ready)#"  , py::arg("NumberOfSection"),  py::arg("Result"))
@@ -479,16 +496,21 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
         .def("Profiles",
              (void (BRepOffsetAPI_MakePipeShell::*)( NCollection_List<TopoDS_Shape> &  ) ) static_cast<void (BRepOffsetAPI_MakePipeShell::*)( NCollection_List<TopoDS_Shape> &  ) >(&BRepOffsetAPI_MakePipeShell::Profiles),
              R"#(Returns the list of original profiles)#"  , py::arg("theProfiles"))
+        .def("Spine",
+             (const TopoDS_Wire & (BRepOffsetAPI_MakePipeShell::*)() ) static_cast<const TopoDS_Wire & (BRepOffsetAPI_MakePipeShell::*)() >(&BRepOffsetAPI_MakePipeShell::Spine),
+             R"#(Returns the spine)#" )
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MiddlePath , shared_ptr<BRepOffsetAPI_MiddlePath>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_MiddlePath"))
+    // constructors
         .def(py::init< const TopoDS_Shape &,const TopoDS_Shape &,const TopoDS_Shape & >()  , py::arg("aShape"),  py::arg("StartShape"),  py::arg("EndShape") )
+    // custom constructors
     // methods
         .def("Build",
              (void (BRepOffsetAPI_MiddlePath::*)() ) static_cast<void (BRepOffsetAPI_MiddlePath::*)() >(&BRepOffsetAPI_MiddlePath::Build),
@@ -497,13 +519,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_NormalProjection , shared_ptr<BRepOffsetAPI_NormalProjection>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_NormalProjection"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape & >()  , py::arg("S") )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepOffsetAPI_NormalProjection::*)( const TopoDS_Shape &  ) ) static_cast<void (BRepOffsetAPI_NormalProjection::*)( const TopoDS_Shape &  ) >(&BRepOffsetAPI_NormalProjection::Init),
@@ -548,12 +572,14 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_ThruSections , shared_ptr<BRepOffsetAPI_ThruSections>  , BRepBuilderAPI_MakeShape >>(m.attr("BRepOffsetAPI_ThruSections"))
+    // constructors
         .def(py::init< const Standard_Boolean,const Standard_Boolean,const Standard_Real >()  , py::arg("isSolid")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("ruled")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("pres3d")=static_cast<const Standard_Real>(1.0e-06) )
+    // custom constructors
     // methods
         .def("Init",
              (void (BRepOffsetAPI_ThruSections::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (BRepOffsetAPI_ThruSections::*)( const Standard_Boolean ,  const Standard_Boolean ,  const Standard_Real  ) >(&BRepOffsetAPI_ThruSections::Init),
@@ -619,13 +645,15 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<BRepOffsetAPI_MakeThickSolid , shared_ptr<BRepOffsetAPI_MakeThickSolid>  , BRepOffsetAPI_MakeOffsetShape >>(m.attr("BRepOffsetAPI_MakeThickSolid"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const TopoDS_Shape &, const NCollection_List<TopoDS_Shape> &,const Standard_Real,const Standard_Real,const BRepOffset_Mode,const Standard_Boolean,const Standard_Boolean,const GeomAbs_JoinType,const Standard_Boolean >()  , py::arg("S"),  py::arg("ClosingFaces"),  py::arg("Offset"),  py::arg("Tol"),  py::arg("Mode")=static_cast<const BRepOffset_Mode>(BRepOffset_Skin),  py::arg("Intersection")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("SelfInter")=static_cast<const Standard_Boolean>(Standard_False),  py::arg("Join")=static_cast<const GeomAbs_JoinType>(GeomAbs_Arc),  py::arg("RemoveIntEdges")=static_cast<const Standard_Boolean>(Standard_False) )
+    // custom constructors
     // methods
         .def("MakeThickSolidBySimple",
              (void (BRepOffsetAPI_MakeThickSolid::*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (BRepOffsetAPI_MakeThickSolid::*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&BRepOffsetAPI_MakeThickSolid::MakeThickSolidBySimple),
@@ -643,32 +671,32 @@ py::module m = static_cast<py::module>(main_module.attr("BRepOffsetAPI"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/BRepOffsetAPI_MakeThickSolid.hxx
+// ./opencascade/BRepOffsetAPI_MakeFilling.hxx
+// ./opencascade/BRepOffsetAPI_MakeEvolved.hxx
 // ./opencascade/BRepOffsetAPI_MiddlePath.hxx
-// ./opencascade/BRepOffsetAPI_FindContigousEdges.hxx
-// ./opencascade/BRepOffsetAPI_DraftAngle.hxx
-// ./opencascade/BRepOffsetAPI_Sewing.hxx
-// ./opencascade/BRepOffsetAPI_MakeOffsetShape.hxx
 // ./opencascade/BRepOffsetAPI_MakeOffset.hxx
 // ./opencascade/BRepOffsetAPI_MakePipeShell.hxx
-// ./opencascade/BRepOffsetAPI_MakeEvolved.hxx
-// ./opencascade/BRepOffsetAPI_ThruSections.hxx
-// ./opencascade/BRepOffsetAPI_MakeFilling.hxx
-// ./opencascade/BRepOffsetAPI_SequenceOfSequenceOfShape.hxx
-// ./opencascade/BRepOffsetAPI_MakePipe.hxx
-// ./opencascade/BRepOffsetAPI_SequenceOfSequenceOfReal.hxx
-// ./opencascade/BRepOffsetAPI_MakeDraft.hxx
+// ./opencascade/BRepOffsetAPI_MakeOffsetShape.hxx
 // ./opencascade/BRepOffsetAPI_NormalProjection.hxx
+// ./opencascade/BRepOffsetAPI_ThruSections.hxx
+// ./opencascade/BRepOffsetAPI_MakeDraft.hxx
+// ./opencascade/BRepOffsetAPI_Sewing.hxx
+// ./opencascade/BRepOffsetAPI_MakeThickSolid.hxx
+// ./opencascade/BRepOffsetAPI_DraftAngle.hxx
+// ./opencascade/BRepOffsetAPI_SequenceOfSequenceOfReal.hxx
+// ./opencascade/BRepOffsetAPI_SequenceOfSequenceOfShape.hxx
+// ./opencascade/BRepOffsetAPI_FindContigousEdges.hxx
+// ./opencascade/BRepOffsetAPI_MakePipe.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Sequence<TopTools_SequenceOfShape>(m,"BRepOffsetAPI_SequenceOfSequenceOfShape");  
     register_template_NCollection_Sequence<TColStd_SequenceOfReal>(m,"BRepOffsetAPI_SequenceOfSequenceOfReal");  
+    register_template_NCollection_Sequence<TopTools_SequenceOfShape>(m,"BRepOffsetAPI_SequenceOfSequenceOfShape");  
 
 
 // exceptions

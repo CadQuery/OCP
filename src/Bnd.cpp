@@ -15,18 +15,14 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 #include <gp_Ax1.hxx>
 #include <gp_Ax3.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <gp_Pnt.hxx>
-#include <gp_Dir.hxx>
-#include <gp_Trsf.hxx>
-#include <gp_Lin.hxx>
-#include <gp_Pln.hxx>
 #include <Standard_NullValue.hxx>
 #include <Standard_MultiplyDefined.hxx>
+#include <Standard_NullValue.hxx>
+#include <Standard_MultiplyDefined.hxx>
+#include <gp_Pln.hxx>
 #include <gp_Ax1.hxx>
 #include <gp_Ax3.hxx>
-#include <Standard_NullValue.hxx>
-#include <Standard_MultiplyDefined.hxx>
+#include <gp_Lin.hxx>
 #include <gp_Pln.hxx>
 
 // module includes
@@ -48,15 +44,16 @@ namespace py = pybind11;
 #include <Bnd_Range.hxx>
 #include <Bnd_SeqOfBox.hxx>
 #include <Bnd_Sphere.hxx>
+#include <Bnd_Tools.hxx>
 
 // template related includes
-// ./opencascade/Bnd_Array1OfBox.hxx
-#include "NCollection.hxx"
 // ./opencascade/Bnd_Array1OfBox2d.hxx
+#include "NCollection.hxx"
+// ./opencascade/Bnd_Array1OfSphere.hxx
 #include "NCollection.hxx"
 // ./opencascade/Bnd_SeqOfBox.hxx
 #include "NCollection.hxx"
-// ./opencascade/Bnd_Array1OfSphere.hxx
+// ./opencascade/Bnd_Array1OfBox.hxx
 #include "NCollection.hxx"
 
 
@@ -78,8 +75,10 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
 
 
     static_cast<py::class_<Bnd_B2d , shared_ptr<Bnd_B2d>  >>(m.attr("Bnd_B2d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XY &,const gp_XY & >()  , py::arg("theCenter"),  py::arg("theHSize") )
+    // custom constructors
     // methods
         .def("IsVoid",
              (Standard_Boolean (Bnd_B2d::*)() const) static_cast<Standard_Boolean (Bnd_B2d::*)() const>(&Bnd_B2d::IsVoid),
@@ -148,13 +147,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_B2f , shared_ptr<Bnd_B2f>  >>(m.attr("Bnd_B2f"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XY &,const gp_XY & >()  , py::arg("theCenter"),  py::arg("theHSize") )
+    // custom constructors
     // methods
         .def("IsVoid",
              (Standard_Boolean (Bnd_B2f::*)() const) static_cast<Standard_Boolean (Bnd_B2f::*)() const>(&Bnd_B2f::IsVoid),
@@ -223,13 +224,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_B3d , shared_ptr<Bnd_B3d>  >>(m.attr("Bnd_B3d"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XYZ &,const gp_XYZ & >()  , py::arg("theCenter"),  py::arg("theHSize") )
+    // custom constructors
     // methods
         .def("IsVoid",
              (Standard_Boolean (Bnd_B3d::*)() const) static_cast<Standard_Boolean (Bnd_B3d::*)() const>(&Bnd_B3d::IsVoid),
@@ -298,13 +301,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_B3f , shared_ptr<Bnd_B3f>  >>(m.attr("Bnd_B3f"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XYZ &,const gp_XYZ & >()  , py::arg("theCenter"),  py::arg("theHSize") )
+    // custom constructors
     // methods
         .def("IsVoid",
              (Standard_Boolean (Bnd_B3f::*)() const) static_cast<Standard_Boolean (Bnd_B3f::*)() const>(&Bnd_B3f::IsVoid),
@@ -373,12 +378,14 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_BoundSortBox , shared_ptr<Bnd_BoundSortBox>  >>(m.attr("Bnd_BoundSortBox"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Bnd_BoundSortBox::*)( const Bnd_Box & ,  const opencascade::handle<Bnd_HArray1OfBox> &  ) ) static_cast<void (Bnd_BoundSortBox::*)( const Bnd_Box & ,  const opencascade::handle<Bnd_HArray1OfBox> &  ) >(&Bnd_BoundSortBox::Initialize),
@@ -408,12 +415,14 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_BoundSortBox2d , shared_ptr<Bnd_BoundSortBox2d>  >>(m.attr("Bnd_BoundSortBox2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Initialize",
              (void (Bnd_BoundSortBox2d::*)( const Bnd_Box2d & ,  const opencascade::handle<Bnd_HArray1OfBox2d> &  ) ) static_cast<void (Bnd_BoundSortBox2d::*)( const Bnd_Box2d & ,  const opencascade::handle<Bnd_HArray1OfBox2d> &  ) >(&Bnd_BoundSortBox2d::Initialize),
@@ -437,12 +446,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_Box , shared_ptr<Bnd_Box>  >>(m.attr("Bnd_Box"))
+    // constructors
         .def(py::init<  >()  )
+        .def(py::init< const gp_Pnt,const gp_Pnt >()  , py::arg("theMin"),  py::arg("theMax") )
+    // custom constructors
     // methods
         .def("SetWhole",
              (void (Bnd_Box::*)() ) static_cast<void (Bnd_Box::*)() >(&Bnd_Box::SetWhole),
@@ -495,6 +507,9 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
         .def("OpenZmax",
              (void (Bnd_Box::*)() ) static_cast<void (Bnd_Box::*)() >(&Bnd_Box::OpenZmax),
              R"#(The Box will be infinitely long in the Zmax direction.)#" )
+        .def("IsOpen",
+             (Standard_Boolean (Bnd_Box::*)() const) static_cast<Standard_Boolean (Bnd_Box::*)() const>(&Bnd_Box::IsOpen),
+             R"#(Returns true if this bounding box has at least one open direction.)#" )
         .def("IsOpenXmin",
              (Standard_Boolean (Bnd_Box::*)() const) static_cast<Standard_Boolean (Bnd_Box::*)() const>(&Bnd_Box::IsOpenXmin),
              R"#(Returns true if this bounding box is open in the Xmin direction.)#" )
@@ -576,6 +591,15 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
         .def("SquareExtent",
              (Standard_Real (Bnd_Box::*)() const) static_cast<Standard_Real (Bnd_Box::*)() const>(&Bnd_Box::SquareExtent),
              R"#(Computes the squared diagonal of me.)#" )
+        .def("FinitePart",
+             (Bnd_Box (Bnd_Box::*)() const) static_cast<Bnd_Box (Bnd_Box::*)() const>(&Bnd_Box::FinitePart),
+             R"#(Returns a finite part of an infinite bounding box (returns self if this is already finite box). This can be a Void box in case if its sides has been defined as infinite (Open) without adding any finite points. WARNING! This method relies on Open flags, the infinite points added using Add() method will be returned as is.)#" )
+        .def("HasFinitePart",
+             (Standard_Boolean (Bnd_Box::*)() const) static_cast<Standard_Boolean (Bnd_Box::*)() const>(&Bnd_Box::HasFinitePart),
+             R"#(Returns TRUE if this box has finite part.)#" )
+        .def("DumpJson",
+             (void (Bnd_Box::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Bnd_Box::*)( std::ostream & ,  const Standard_Integer  ) const>(&Bnd_Box::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
         .def("Get",
              []( Bnd_Box &self   ){ Standard_Real  theXmin; Standard_Real  theYmin; Standard_Real  theZmin; Standard_Real  theXmax; Standard_Real  theYmax; Standard_Real  theZmax; self.Get(theXmin,theYmin,theZmin,theXmax,theYmax,theZmax); return std::make_tuple(theXmin,theYmin,theZmin,theXmax,theYmax,theZmax); },
@@ -583,12 +607,14 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_Box2d , shared_ptr<Bnd_Box2d>  >>(m.attr("Bnd_Box2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("SetWhole",
              (void (Bnd_Box2d::*)() ) static_cast<void (Bnd_Box2d::*)() >(&Bnd_Box2d::SetWhole),
@@ -687,14 +713,17 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_HArray1OfBox ,opencascade::handle<Bnd_HArray1OfBox>  , Bnd_Array1OfBox , Standard_Transient >>(m.attr("Bnd_HArray1OfBox"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const Bnd_Box & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Bnd_Box> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Bnd_Array1OfBox & (Bnd_HArray1OfBox::*)() const) static_cast<const Bnd_Array1OfBox & (Bnd_HArray1OfBox::*)() const>(&Bnd_HArray1OfBox::Array1),
@@ -715,14 +744,17 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_HArray1OfBox2d ,opencascade::handle<Bnd_HArray1OfBox2d>  , Bnd_Array1OfBox2d , Standard_Transient >>(m.attr("Bnd_HArray1OfBox2d"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const Bnd_Box2d & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Bnd_Box2d> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Bnd_Array1OfBox2d & (Bnd_HArray1OfBox2d::*)() const) static_cast<const Bnd_Array1OfBox2d & (Bnd_HArray1OfBox2d::*)() const>(&Bnd_HArray1OfBox2d::Array1),
@@ -743,14 +775,17 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_HArray1OfSphere ,opencascade::handle<Bnd_HArray1OfSphere>  , Bnd_Array1OfSphere , Standard_Transient >>(m.attr("Bnd_HArray1OfSphere"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const Bnd_Sphere & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<Bnd_Sphere> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const Bnd_Array1OfSphere & (Bnd_HArray1OfSphere::*)() const) static_cast<const Bnd_Array1OfSphere & (Bnd_HArray1OfSphere::*)() const>(&Bnd_HArray1OfSphere::Array1),
@@ -771,18 +806,20 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_OBB , shared_ptr<Bnd_OBB>  >>(m.attr("Bnd_OBB"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Pnt &,const gp_Dir &,const gp_Dir &,const gp_Dir &,const Standard_Real,const Standard_Real,const Standard_Real >()  , py::arg("theCenter"),  py::arg("theXDirection"),  py::arg("theYDirection"),  py::arg("theZDirection"),  py::arg("theHXSize"),  py::arg("theHYSize"),  py::arg("theHZSize") )
         .def(py::init< const Bnd_Box & >()  , py::arg("theBox") )
+    // custom constructors
     // methods
         .def("ReBuild",
-             (void (Bnd_OBB::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> *  ) ) static_cast<void (Bnd_OBB::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> *  ) >(&Bnd_OBB::ReBuild),
-             R"#(Created new OBB covering every point in theListOfPoints. Tolerance of every such point is set by *theListOfTolerances array. If this array is not void (not null-pointer) then the resulted Bnd_OBB will be enlarged using tolerances of points lying on the box surface.)#"  , py::arg("theListOfPoints"),  py::arg("theListOfTolerances")=static_cast< const NCollection_Array1<Standard_Real> *>(0))
+             (void (Bnd_OBB::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> * ,  const Standard_Boolean  ) ) static_cast<void (Bnd_OBB::*)(  const NCollection_Array1<gp_Pnt> & ,   const NCollection_Array1<Standard_Real> * ,  const Standard_Boolean  ) >(&Bnd_OBB::ReBuild),
+             R"#(Creates new OBB covering every point in theListOfPoints. Tolerance of every such point is set by *theListOfTolerances array. If this array is not void (not null-pointer) then the resulted Bnd_OBB will be enlarged using tolerances of points lying on the box surface. <theIsOptimal> flag defines the mode in which the OBB will be built. Constructing Optimal box takes more time, but the resulting box is usually more tight. In case of construction of Optimal OBB more possible axes are checked.)#"  , py::arg("theListOfPoints"),  py::arg("theListOfTolerances")=static_cast< const NCollection_Array1<Standard_Real> *>(0),  py::arg("theIsOptimal")=static_cast<const Standard_Boolean>(Standard_False))
         .def("SetCenter",
              (void (Bnd_OBB::*)( const gp_Pnt &  ) ) static_cast<void (Bnd_OBB::*)( const gp_Pnt &  ) >(&Bnd_OBB::SetCenter),
              R"#(Sets the center of OBB)#"  , py::arg("theCenter"))
@@ -795,6 +832,9 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
         .def("SetZComponent",
              (void (Bnd_OBB::*)( const gp_Dir & ,  const Standard_Real  ) ) static_cast<void (Bnd_OBB::*)( const gp_Dir & ,  const Standard_Real  ) >(&Bnd_OBB::SetZComponent),
              R"#(Sets the Z component of OBB - direction and size)#"  , py::arg("theZDirection"),  py::arg("theHZSize"))
+        .def("Position",
+             (gp_Ax3 (Bnd_OBB::*)() const) static_cast<gp_Ax3 (Bnd_OBB::*)() const>(&Bnd_OBB::Position),
+             R"#(Returns the local coordinates system of this oriented box. So that applying it to axis-aligned box ((-XHSize, -YHSize, -ZHSize), (XHSize, YHSize, ZHSize)) will produce this oriented box.)#" )
         .def("Center",
              (const gp_XYZ & (Bnd_OBB::*)() const) static_cast<const gp_XYZ & (Bnd_OBB::*)() const>(&Bnd_OBB::Center),
              R"#(Returns the center of OBB)#" )
@@ -852,17 +892,22 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
         .def("Add",
              (void (Bnd_OBB::*)( const gp_Pnt &  ) ) static_cast<void (Bnd_OBB::*)( const gp_Pnt &  ) >(&Bnd_OBB::Add),
              R"#(Rebuilds this in order to include all previous objects (which it was created from) and theP.)#"  , py::arg("theP"))
+        .def("DumpJson",
+             (void (Bnd_OBB::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Bnd_OBB::*)( std::ostream & ,  const Standard_Integer  ) const>(&Bnd_OBB::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_Range , shared_ptr<Bnd_Range>  >>(m.attr("Bnd_Range"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("theMin"),  py::arg("theMax") )
+    // custom constructors
     // methods
         .def("Common",
              (void (Bnd_Range::*)( const Bnd_Range &  ) ) static_cast<void (Bnd_Range::*)( const Bnd_Range &  ) >(&Bnd_Range::Common),
@@ -891,6 +936,9 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
         .def("GetBounds",
              (Standard_Boolean (Bnd_Range::*)( Standard_Real & ,  Standard_Real &  ) const) static_cast<Standard_Boolean (Bnd_Range::*)( Standard_Real & ,  Standard_Real &  ) const>(&Bnd_Range::GetBounds),
              R"#(Obtain first and last boundary of <this>. If <this> is VOID the method returns false.)#"  , py::arg("theFirstPar"),  py::arg("theLastPar"))
+        .def("GetIntermediatePoint",
+             (Standard_Boolean (Bnd_Range::*)( const Standard_Real ,  Standard_Real &  ) const) static_cast<Standard_Boolean (Bnd_Range::*)( const Standard_Real ,  Standard_Real &  ) const>(&Bnd_Range::GetIntermediatePoint),
+             R"#(Obtain theParameter satisfied to the equation (theParameter-MIN)/(MAX-MIN) == theLambda. * theLambda == 0 --> MIN boundary will be returned; * theLambda == 0.5 --> Middle point will be returned; * theLambda == 1 --> MAX boundary will be returned; * theLambda < 0 --> the value less than MIN will be returned; * theLambda > 1 --> the value greater than MAX will be returned. If <this> is VOID the method returns false.)#"  , py::arg("theLambda"),  py::arg("theParameter"))
         .def("Delta",
              (Standard_Real (Bnd_Range::*)() const) static_cast<Standard_Real (Bnd_Range::*)() const>(&Bnd_Range::Delta),
              R"#(Returns range value (MAX-MIN). Returns negative value for VOID range.)#" )
@@ -909,23 +957,34 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
         .def("Shift",
              (void (Bnd_Range::*)( const Standard_Real  ) ) static_cast<void (Bnd_Range::*)( const Standard_Real  ) >(&Bnd_Range::Shift),
              R"#(Shifts <*this> by theVal)#"  , py::arg("theVal"))
+        .def("TrimFrom",
+             (void (Bnd_Range::*)( const Standard_Real  ) ) static_cast<void (Bnd_Range::*)( const Standard_Real  ) >(&Bnd_Range::TrimFrom),
+             R"#(Trims the First value in range by the given lower limit. Marks range as Void if the given Lower value is greater than range Max.)#"  , py::arg("theValLower"))
+        .def("TrimTo",
+             (void (Bnd_Range::*)( const Standard_Real  ) ) static_cast<void (Bnd_Range::*)( const Standard_Real  ) >(&Bnd_Range::TrimTo),
+             R"#(Trim the Last value in range by the given Upper limit. Marks range as Void if the given Upper value is smaller than range Max.)#"  , py::arg("theValUpper"))
         .def("IsOut",
              (Standard_Boolean (Bnd_Range::*)( Standard_Real  ) const) static_cast<Standard_Boolean (Bnd_Range::*)( Standard_Real  ) const>(&Bnd_Range::IsOut),
              R"#(Returns True if the value is out of this range.)#"  , py::arg("theValue"))
         .def("IsOut",
              (Standard_Boolean (Bnd_Range::*)( const Bnd_Range &  ) const) static_cast<Standard_Boolean (Bnd_Range::*)( const Bnd_Range &  ) const>(&Bnd_Range::IsOut),
              R"#(Returns True if the given range is out of this range.)#"  , py::arg("theRange"))
+        .def("DumpJson",
+             (void (Bnd_Range::*)( std::ostream & ,  const Standard_Integer  ) const) static_cast<void (Bnd_Range::*)( std::ostream & ,  const Standard_Integer  ) const>(&Bnd_Range::DumpJson),
+             R"#(Dumps the content of me into the stream)#"  , py::arg("theOStream"),  py::arg("theDepth")=static_cast<const Standard_Integer>(- 1))
     // methods using call by reference i.s.o. return
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Bnd_Sphere , shared_ptr<Bnd_Sphere>  >>(m.attr("Bnd_Sphere"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_XYZ &,const Standard_Real,const Standard_Integer,const Standard_Integer >()  , py::arg("theCntr"),  py::arg("theRad"),  py::arg("theU"),  py::arg("theV") )
+    // custom constructors
     // methods
         .def("U",
              (Standard_Integer (Bnd_Sphere::*)() const) static_cast<Standard_Integer (Bnd_Sphere::*)() const>(&Bnd_Sphere::U),
@@ -994,36 +1053,57 @@ py::module m = static_cast<py::module>(main_module.attr("Bnd"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
+;
+
+    // default constructor
+    register_default_constructor<Bnd_Tools , shared_ptr<Bnd_Tools>>(m,"Bnd_Tools");
+
+    static_cast<py::class_<Bnd_Tools , shared_ptr<Bnd_Tools>  >>(m.attr("Bnd_Tools"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("Bnd2BVH_s",
+                    (BVH_Box<Standard_Real, 2> (*)( const Bnd_Box2d &  ) ) static_cast<BVH_Box<Standard_Real, 2> (*)( const Bnd_Box2d &  ) >(&Bnd_Tools::Bnd2BVH),
+                    R"#(Converts the given Bnd_Box2d to BVH_Box)#"  , py::arg("theBox"))
+        .def_static("Bnd2BVH_s",
+                    (BVH_Box<Standard_Real, 3> (*)( const Bnd_Box &  ) ) static_cast<BVH_Box<Standard_Real, 3> (*)( const Bnd_Box &  ) >(&Bnd_Tools::Bnd2BVH),
+                    R"#(Converts the given Bnd_Box to BVH_Box)#"  , py::arg("theBox"))
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/Bnd_B3d.hxx
-// ./opencascade/Bnd_Box.hxx
-// ./opencascade/Bnd_Array1OfBox.hxx
-// ./opencascade/Bnd_Array1OfBox2d.hxx
-// ./opencascade/Bnd_Range.hxx
-// ./opencascade/Bnd_SeqOfBox.hxx
-// ./opencascade/Bnd_Array1OfSphere.hxx
-// ./opencascade/Bnd_B2f.hxx
-// ./opencascade/Bnd_BoundSortBox2d.hxx
-// ./opencascade/Bnd_HArray1OfBox2d.hxx
-// ./opencascade/Bnd_HArray1OfBox.hxx
-// ./opencascade/Bnd_OBB.hxx
 // ./opencascade/Bnd_B3f.hxx
-// ./opencascade/Bnd_B2d.hxx
-// ./opencascade/Bnd_HArray1OfSphere.hxx
-// ./opencascade/Bnd_Sphere.hxx
+// ./opencascade/Bnd_BoundSortBox2d.hxx
+// ./opencascade/Bnd_Array1OfBox2d.hxx
+// ./opencascade/Bnd_Array1OfSphere.hxx
 // ./opencascade/Bnd_BoundSortBox.hxx
+// ./opencascade/Bnd_SeqOfBox.hxx
+// ./opencascade/Bnd_Array1OfBox.hxx
+// ./opencascade/Bnd_Tools.hxx
+// ./opencascade/Bnd_B3d.hxx
+// ./opencascade/Bnd_HArray1OfSphere.hxx
+// ./opencascade/Bnd_HArray1OfBox2d.hxx
 // ./opencascade/Bnd_Box2d.hxx
+// ./opencascade/Bnd_Sphere.hxx
+// ./opencascade/Bnd_HArray1OfBox.hxx
+// ./opencascade/Bnd_B2f.hxx
+// ./opencascade/Bnd_Range.hxx
+// ./opencascade/Bnd_B2d.hxx
+// ./opencascade/Bnd_Box.hxx
+// ./opencascade/Bnd_OBB.hxx
 
 // operators
 
 // register typdefs
-    register_template_NCollection_Array1<Bnd_Box>(m,"Bnd_Array1OfBox");  
     register_template_NCollection_Array1<Bnd_Box2d>(m,"Bnd_Array1OfBox2d");  
-    register_template_NCollection_Sequence<Bnd_Box>(m,"Bnd_SeqOfBox");  
     register_template_NCollection_Array1<Bnd_Sphere>(m,"Bnd_Array1OfSphere");  
+    register_template_NCollection_Sequence<Bnd_Box>(m,"Bnd_SeqOfBox");  
+    register_template_NCollection_Array1<Bnd_Box>(m,"Bnd_Array1OfBox");  
 
 
 // exceptions

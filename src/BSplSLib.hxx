@@ -12,16 +12,16 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
-#include <BSplSLib.hxx>
 #include <BSplSLib_Cache.hxx>
+#include <BSplSLib.hxx>
 #include <BSplSLib_EvaluatorFunction.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/BSplSLib.hxx
 // ./opencascade/BSplSLib_Cache.hxx
+// ./opencascade/BSplSLib.hxx
 // ./opencascade/BSplSLib_EvaluatorFunction.hxx
 
 // user-defined post

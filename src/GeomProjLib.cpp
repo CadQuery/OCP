@@ -41,9 +41,12 @@ py::module m = static_cast<py::module>(main_module.attr("GeomProjLib"));
 
 // classes
 
+    // default constructor
     register_default_constructor<GeomProjLib , shared_ptr<GeomProjLib>>(m,"GeomProjLib");
 
     static_cast<py::class_<GeomProjLib , shared_ptr<GeomProjLib>  >>(m.attr("GeomProjLib"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -73,7 +76,7 @@ py::module m = static_cast<py::module>(main_module.attr("GeomProjLib"));
                     R"#(Constructs the 3d-curves from the projection of the curve <Curve> on the plane <Plane> along the direction <Dir>. If <KeepParametrization> is true, the parametrization of the Projected Curve <PC> will be the same as the parametrization of the initial curve <C>. It meens: proj(C(u)) = PC(u) for each u. Otherwize, the parametrization may change.)#"  , py::arg("Curve"),  py::arg("Plane"),  py::arg("Dir"),  py::arg("KeepParametrization"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

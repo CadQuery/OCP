@@ -13,68 +13,49 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
-#include <StepGeom_CartesianTransformationOperator3d.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianTransformationOperator.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Vector.hxx>
-#include <StepGeom_Direction.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepGeom_Pcurve.hxx>
-#include <StepGeom_Surface.hxx>
-#include <StepGeom_Surface.hxx>
-#include <StepRepr_DefinitionalRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Curve.hxx>
-#include <StepGeom_Vector.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Curve.hxx>
-#include <StepGeom_BoundaryCurve.hxx>
-#include <StepGeom_DegeneratePcurve.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianTransformationOperator.hxx>
+#include <StepGeom_BSplineCurveWithKnots.hxx>
+#include <StepGeom_RationalBSplineCurve.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
-#include <StepGeom_Pcurve.hxx>
-#include <StepGeom_SurfaceCurve.hxx>
-#include <StepGeom_CompositeCurveOnSurface.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepGeom_Vector.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Curve.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_QuasiUniformCurve.hxx>
 #include <StepGeom_RationalBSplineCurve.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Surface.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_QuasiUniformSurface.hxx>
-#include <StepGeom_RationalBSplineSurface.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
 #include <StepGeom_CartesianPoint.hxx>
+#include <StepGeom_Vector.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Axis2Placement2d.hxx>
-#include <StepGeom_Axis2Placement3d.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianTransformationOperator.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Surface.hxx>
+#include <StepRepr_DefinitionalRepresentation.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Surface.hxx>
+#include <StepRepr_DefinitionalRepresentation.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_BezierSurface.hxx>
+#include <StepGeom_RationalBSplineSurface.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_BSplineSurfaceWithKnots.hxx>
 #include <StepGeom_RationalBSplineSurface.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
@@ -82,75 +63,94 @@ namespace py = pybind11;
 #include <StepRepr_GlobalUnitAssignedContext.hxx>
 #include <StepRepr_GlobalUncertaintyAssignedContext.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Axis2Placement3d.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Vector.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_BoundedCurve.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_UniformSurface.hxx>
+#include <StepGeom_RationalBSplineSurface.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
+#include <StepGeom_Vector.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Curve.hxx>
 #include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_BezierCurve.hxx>
+#include <StepGeom_RationalBSplineCurve.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Axis1Placement.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Curve.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Surface.hxx>
+#include <StepRepr_DefinitionalRepresentation.hxx>
+#include <StepGeom_Curve.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepGeom_Direction.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepData_SelectMember.hxx>
+#include <StepGeom_CartesianPoint.hxx>
+#include <StepGeom_Curve.hxx>
 #include <StepGeom_GeometricRepresentationContext.hxx>
 #include <StepRepr_GlobalUnitAssignedContext.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
+#include <StepGeom_CartesianTransformationOperator3d.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_BoundaryCurve.hxx>
+#include <StepGeom_DegeneratePcurve.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_Surface.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Direction.hxx>
-#include <StepGeom_CartesianPoint.hxx>
+#include <StepGeom_Axis2Placement3d.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_BezierCurve.hxx>
-#include <StepGeom_RationalBSplineCurve.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_BSplineCurveWithKnots.hxx>
-#include <StepGeom_RationalBSplineCurve.hxx>
-#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_CartesianTransformationOperator.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_Curve.hxx>
+#include <StepGeom_Axis2Placement2d.hxx>
+#include <StepGeom_Axis2Placement3d.hxx>
+#include <StepGeom_Pcurve.hxx>
+#include <StepGeom_SurfaceCurve.hxx>
+#include <StepGeom_CompositeCurveOnSurface.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_UniformSurface.hxx>
+#include <StepGeom_GeometricRepresentationContext.hxx>
+#include <StepRepr_ParametricRepresentationContext.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_QuasiUniformSurface.hxx>
 #include <StepGeom_RationalBSplineSurface.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepGeom_BoundedSurface.hxx>
+#include <StepGeom_Pcurve.hxx>
+#include <StepGeom_Surface.hxx>
+#include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <TCollection_HAsciiString.hxx>
 #include <StepGeom_UniformCurve.hxx>
 #include <StepGeom_RationalBSplineCurve.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepGeom_BoundedCurve.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Surface.hxx>
-#include <StepRepr_DefinitionalRepresentation.hxx>
-#include <StepGeom_Axis1Placement.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Curve.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_BSplineSurfaceWithKnots.hxx>
-#include <StepGeom_RationalBSplineSurface.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_BoundedSurface.hxx>
-#include <StepGeom_Direction.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_CartesianPoint.hxx>
-#include <StepGeom_GeometricRepresentationContext.hxx>
-#include <StepRepr_ParametricRepresentationContext.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Axis2Placement3d.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Axis2Placement3d.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepGeom_Surface.hxx>
-#include <StepRepr_DefinitionalRepresentation.hxx>
-#include <TCollection_HAsciiString.hxx>
-#include <StepData_SelectMember.hxx>
-#include <StepGeom_CartesianPoint.hxx>
 
 // module includes
 #include <StepGeom_Array1OfBoundaryCurve.hxx>
@@ -273,19 +273,19 @@ namespace py = pybind11;
 #include "NCollection.hxx"
 // ./opencascade/StepGeom_Array1OfTrimmingSelect.hxx
 #include "NCollection.hxx"
-// ./opencascade/StepGeom_Array1OfCartesianPoint.hxx
-#include "NCollection.hxx"
 // ./opencascade/StepGeom_Array1OfSurfaceBoundary.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepGeom_Array1OfPcurveOrSurface.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepGeom_Array1OfCompositeCurveSegment.hxx
-#include "NCollection.hxx"
-// ./opencascade/StepGeom_Array1OfCurve.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepGeom_Array2OfSurfacePatch.hxx
 #include "NCollection.hxx"
 // ./opencascade/StepGeom_Array1OfBoundaryCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepGeom_Array1OfCompositeCurveSegment.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepGeom_Array1OfCartesianPoint.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepGeom_Array1OfCurve.hxx
+#include "NCollection.hxx"
+// ./opencascade/StepGeom_Array1OfPcurveOrSurface.hxx
 #include "NCollection.hxx"
 
 
@@ -307,7 +307,9 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
 
 
     static_cast<py::class_<StepGeom_Axis2Placement , shared_ptr<StepGeom_Axis2Placement>  , StepData_SelectType >>(m.attr("StepGeom_Axis2Placement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepGeom_Axis2Placement::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepGeom_Axis2Placement::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepGeom_Axis2Placement::CaseNum),
@@ -322,12 +324,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CompositeCurveSegment ,opencascade::handle<StepGeom_CompositeCurveSegment>  , Standard_Transient >>(m.attr("StepGeom_CompositeCurveSegment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CompositeCurveSegment::*)( const StepGeom_TransitionCode ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Curve> &  ) ) static_cast<void (StepGeom_CompositeCurveSegment::*)( const StepGeom_TransitionCode ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Curve> &  ) >(&StepGeom_CompositeCurveSegment::Init),
@@ -363,12 +367,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CurveOnSurface , shared_ptr<StepGeom_CurveOnSurface>  , StepData_SelectType >>(m.attr("StepGeom_CurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepGeom_CurveOnSurface::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepGeom_CurveOnSurface::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepGeom_CurveOnSurface::CaseNum),
@@ -386,12 +392,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx ,opencascade::handle<StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx>  , StepRepr_RepresentationContext >>(m.attr("StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> & ,  const opencascade::handle<StepRepr_GlobalUnitAssignedContext> & ,  const opencascade::handle<StepRepr_GlobalUncertaintyAssignedContext> &  ) ) static_cast<void (StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> & ,  const opencascade::handle<StepRepr_GlobalUnitAssignedContext> & ,  const opencascade::handle<StepRepr_GlobalUncertaintyAssignedContext> &  ) >(&StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx::Init),
@@ -460,12 +468,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_GeometricRepresentationContext ,opencascade::handle<StepGeom_GeometricRepresentationContext>  , StepRepr_RepresentationContext >>(m.attr("StepGeom_GeometricRepresentationContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_GeometricRepresentationContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer  ) ) static_cast<void (StepGeom_GeometricRepresentationContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer  ) >(&StepGeom_GeometricRepresentationContext::Init),
@@ -489,12 +499,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext ,opencascade::handle<StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext>  , StepRepr_RepresentationContext >>(m.attr("StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> & ,  const opencascade::handle<StepRepr_GlobalUnitAssignedContext> &  ) ) static_cast<void (StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> & ,  const opencascade::handle<StepRepr_GlobalUnitAssignedContext> &  ) >(&StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext::Init),
@@ -545,12 +557,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_GeometricRepresentationContextAndParametricRepresentationContext ,opencascade::handle<StepGeom_GeometricRepresentationContextAndParametricRepresentationContext>  , StepRepr_RepresentationContext >>(m.attr("StepGeom_GeometricRepresentationContextAndParametricRepresentationContext"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_GeometricRepresentationContextAndParametricRepresentationContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> & ,  const opencascade::handle<StepRepr_ParametricRepresentationContext> &  ) ) static_cast<void (StepGeom_GeometricRepresentationContextAndParametricRepresentationContext::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_GeometricRepresentationContext> & ,  const opencascade::handle<StepRepr_ParametricRepresentationContext> &  ) >(&StepGeom_GeometricRepresentationContextAndParametricRepresentationContext::Init),
@@ -589,12 +603,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_GeometricRepresentationItem ,opencascade::handle<StepGeom_GeometricRepresentationItem>  , StepRepr_RepresentationItem >>(m.attr("StepGeom_GeometricRepresentationItem"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_GeometricRepresentationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_GeometricRepresentationItem::*)() const>(&StepGeom_GeometricRepresentationItem::DynamicType),
@@ -609,14 +625,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray1OfBoundaryCurve ,opencascade::handle<StepGeom_HArray1OfBoundaryCurve>  , StepGeom_Array1OfBoundaryCurve , Standard_Transient >>(m.attr("StepGeom_HArray1OfBoundaryCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepGeom_BoundaryCurve> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepGeom_BoundaryCurve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepGeom_Array1OfBoundaryCurve & (StepGeom_HArray1OfBoundaryCurve::*)() const) static_cast<const StepGeom_Array1OfBoundaryCurve & (StepGeom_HArray1OfBoundaryCurve::*)() const>(&StepGeom_HArray1OfBoundaryCurve::Array1),
@@ -637,14 +656,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray1OfCartesianPoint ,opencascade::handle<StepGeom_HArray1OfCartesianPoint>  , StepGeom_Array1OfCartesianPoint , Standard_Transient >>(m.attr("StepGeom_HArray1OfCartesianPoint"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepGeom_CartesianPoint> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepGeom_CartesianPoint> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepGeom_Array1OfCartesianPoint & (StepGeom_HArray1OfCartesianPoint::*)() const) static_cast<const StepGeom_Array1OfCartesianPoint & (StepGeom_HArray1OfCartesianPoint::*)() const>(&StepGeom_HArray1OfCartesianPoint::Array1),
@@ -665,14 +687,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray1OfCompositeCurveSegment ,opencascade::handle<StepGeom_HArray1OfCompositeCurveSegment>  , StepGeom_Array1OfCompositeCurveSegment , Standard_Transient >>(m.attr("StepGeom_HArray1OfCompositeCurveSegment"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepGeom_CompositeCurveSegment> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepGeom_CompositeCurveSegment> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepGeom_Array1OfCompositeCurveSegment & (StepGeom_HArray1OfCompositeCurveSegment::*)() const) static_cast<const StepGeom_Array1OfCompositeCurveSegment & (StepGeom_HArray1OfCompositeCurveSegment::*)() const>(&StepGeom_HArray1OfCompositeCurveSegment::Array1),
@@ -693,14 +718,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray1OfCurve ,opencascade::handle<StepGeom_HArray1OfCurve>  , StepGeom_Array1OfCurve , Standard_Transient >>(m.attr("StepGeom_HArray1OfCurve"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const opencascade::handle<StepGeom_Curve> & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<opencascade::handle<StepGeom_Curve> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepGeom_Array1OfCurve & (StepGeom_HArray1OfCurve::*)() const) static_cast<const StepGeom_Array1OfCurve & (StepGeom_HArray1OfCurve::*)() const>(&StepGeom_HArray1OfCurve::Array1),
@@ -721,14 +749,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray1OfPcurveOrSurface ,opencascade::handle<StepGeom_HArray1OfPcurveOrSurface>  , StepGeom_Array1OfPcurveOrSurface , Standard_Transient >>(m.attr("StepGeom_HArray1OfPcurveOrSurface"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepGeom_PcurveOrSurface & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepGeom_PcurveOrSurface> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepGeom_Array1OfPcurveOrSurface & (StepGeom_HArray1OfPcurveOrSurface::*)() const) static_cast<const StepGeom_Array1OfPcurveOrSurface & (StepGeom_HArray1OfPcurveOrSurface::*)() const>(&StepGeom_HArray1OfPcurveOrSurface::Array1),
@@ -749,14 +780,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray1OfSurfaceBoundary ,opencascade::handle<StepGeom_HArray1OfSurfaceBoundary>  , StepGeom_Array1OfSurfaceBoundary , Standard_Transient >>(m.attr("StepGeom_HArray1OfSurfaceBoundary"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepGeom_SurfaceBoundary & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepGeom_SurfaceBoundary> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepGeom_Array1OfSurfaceBoundary & (StepGeom_HArray1OfSurfaceBoundary::*)() const) static_cast<const StepGeom_Array1OfSurfaceBoundary & (StepGeom_HArray1OfSurfaceBoundary::*)() const>(&StepGeom_HArray1OfSurfaceBoundary::Array1),
@@ -777,14 +811,17 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray1OfTrimmingSelect ,opencascade::handle<StepGeom_HArray1OfTrimmingSelect>  , StepGeom_Array1OfTrimmingSelect , Standard_Transient >>(m.attr("StepGeom_HArray1OfTrimmingSelect"))
+    // constructors
+        .def(py::init<  >()  )
         .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
         .def(py::init< const Standard_Integer,const Standard_Integer, const StepGeom_TrimmingSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array1<StepGeom_TrimmingSelect> & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array1",
              (const StepGeom_Array1OfTrimmingSelect & (StepGeom_HArray1OfTrimmingSelect::*)() const) static_cast<const StepGeom_Array1OfTrimmingSelect & (StepGeom_HArray1OfTrimmingSelect::*)() const>(&StepGeom_HArray1OfTrimmingSelect::Array1),
@@ -805,14 +842,16 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray2OfCartesianPoint ,opencascade::handle<StepGeom_HArray2OfCartesianPoint>  , StepGeom_Array2OfCartesianPoint , Standard_Transient >>(m.attr("StepGeom_HArray2OfCartesianPoint"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const opencascade::handle<StepGeom_CartesianPoint> & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<opencascade::handle<StepGeom_CartesianPoint> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const StepGeom_Array2OfCartesianPoint & (StepGeom_HArray2OfCartesianPoint::*)() const) static_cast<const StepGeom_Array2OfCartesianPoint & (StepGeom_HArray2OfCartesianPoint::*)() const>(&StepGeom_HArray2OfCartesianPoint::Array2),
@@ -833,14 +872,16 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_HArray2OfSurfacePatch ,opencascade::handle<StepGeom_HArray2OfSurfacePatch>  , StepGeom_Array2OfSurfacePatch , Standard_Transient >>(m.attr("StepGeom_HArray2OfSurfacePatch"))
+    // constructors
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp") )
         .def(py::init< const Standard_Integer,const Standard_Integer,const Standard_Integer,const Standard_Integer, const opencascade::handle<StepGeom_SurfacePatch> & >()  , py::arg("theRowLow"),  py::arg("theRowUpp"),  py::arg("theColLow"),  py::arg("theColUpp"),  py::arg("theValue") )
         .def(py::init<  const NCollection_Array2<opencascade::handle<StepGeom_SurfacePatch> > & >()  , py::arg("theOther") )
+    // custom constructors
     // methods
         .def("Array2",
              (const StepGeom_Array2OfSurfacePatch & (StepGeom_HArray2OfSurfacePatch::*)() const) static_cast<const StepGeom_Array2OfSurfacePatch & (StepGeom_HArray2OfSurfacePatch::*)() const>(&StepGeom_HArray2OfSurfacePatch::Array2),
@@ -861,12 +902,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_PcurveOrSurface , shared_ptr<StepGeom_PcurveOrSurface>  , StepData_SelectType >>(m.attr("StepGeom_PcurveOrSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepGeom_PcurveOrSurface::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepGeom_PcurveOrSurface::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepGeom_PcurveOrSurface::CaseNum),
@@ -881,12 +924,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SurfaceBoundary , shared_ptr<StepGeom_SurfaceBoundary>  , StepData_SelectType >>(m.attr("StepGeom_SurfaceBoundary"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepGeom_SurfaceBoundary::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepGeom_SurfaceBoundary::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepGeom_SurfaceBoundary::CaseNum),
@@ -901,12 +946,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SurfacePatch ,opencascade::handle<StepGeom_SurfacePatch>  , Standard_Transient >>(m.attr("StepGeom_SurfacePatch"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_SurfacePatch::*)( const opencascade::handle<StepGeom_BoundedSurface> & ,  const StepGeom_TransitionCode ,  const StepGeom_TransitionCode ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (StepGeom_SurfacePatch::*)( const opencascade::handle<StepGeom_BoundedSurface> & ,  const StepGeom_TransitionCode ,  const StepGeom_TransitionCode ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&StepGeom_SurfacePatch::Init),
@@ -954,12 +1001,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_TrimmingMember ,opencascade::handle<StepGeom_TrimmingMember>  , StepData_SelectReal >>(m.attr("StepGeom_TrimmingMember"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("HasName",
              (Standard_Boolean (StepGeom_TrimmingMember::*)() const) static_cast<Standard_Boolean (StepGeom_TrimmingMember::*)() const>(&StepGeom_TrimmingMember::HasName),
@@ -983,12 +1032,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_TrimmingSelect , shared_ptr<StepGeom_TrimmingSelect>  , StepData_SelectType >>(m.attr("StepGeom_TrimmingSelect"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepGeom_TrimmingSelect::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepGeom_TrimmingSelect::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepGeom_TrimmingSelect::CaseNum),
@@ -1012,12 +1063,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_VectorOrDirection , shared_ptr<StepGeom_VectorOrDirection>  , StepData_SelectType >>(m.attr("StepGeom_VectorOrDirection"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("CaseNum",
              (Standard_Integer (StepGeom_VectorOrDirection::*)( const opencascade::handle<Standard_Transient> &  ) const) static_cast<Standard_Integer (StepGeom_VectorOrDirection::*)( const opencascade::handle<Standard_Transient> &  ) const>(&StepGeom_VectorOrDirection::CaseNum),
@@ -1032,12 +1085,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CartesianTransformationOperator ,opencascade::handle<StepGeom_CartesianTransformationOperator>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepGeom_CartesianTransformationOperator"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CartesianTransformationOperator::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const Standard_Real  ) ) static_cast<void (StepGeom_CartesianTransformationOperator::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const Standard_Real  ) >(&StepGeom_CartesianTransformationOperator::Init),
@@ -1097,12 +1152,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Curve ,opencascade::handle<StepGeom_Curve>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepGeom_Curve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_Curve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_Curve::*)() const>(&StepGeom_Curve::DynamicType),
@@ -1117,12 +1174,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Direction ,opencascade::handle<StepGeom_Direction>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepGeom_Direction"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Direction::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (StepGeom_Direction::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&StepGeom_Direction::Init),
@@ -1152,12 +1211,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Placement ,opencascade::handle<StepGeom_Placement>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepGeom_Placement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Placement::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) ) static_cast<void (StepGeom_Placement::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) >(&StepGeom_Placement::Init),
@@ -1181,12 +1242,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Point ,opencascade::handle<StepGeom_Point>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepGeom_Point"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_Point::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_Point::*)() const>(&StepGeom_Point::DynamicType),
@@ -1201,12 +1264,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_ReparametrisedCompositeCurveSegment ,opencascade::handle<StepGeom_ReparametrisedCompositeCurveSegment>  , StepGeom_CompositeCurveSegment >>(m.attr("StepGeom_ReparametrisedCompositeCurveSegment"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_ReparametrisedCompositeCurveSegment::*)( const StepGeom_TransitionCode ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Real  ) ) static_cast<void (StepGeom_ReparametrisedCompositeCurveSegment::*)( const StepGeom_TransitionCode ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Real  ) >(&StepGeom_ReparametrisedCompositeCurveSegment::Init),
@@ -1230,12 +1295,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Surface ,opencascade::handle<StepGeom_Surface>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepGeom_Surface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_Surface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_Surface::*)() const>(&StepGeom_Surface::DynamicType),
@@ -1250,12 +1317,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Vector ,opencascade::handle<StepGeom_Vector>  , StepGeom_GeometricRepresentationItem >>(m.attr("StepGeom_Vector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Vector::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Real  ) ) static_cast<void (StepGeom_Vector::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Real  ) >(&StepGeom_Vector::Init),
@@ -1285,12 +1354,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Axis1Placement ,opencascade::handle<StepGeom_Axis1Placement>  , StepGeom_Placement >>(m.attr("StepGeom_Axis1Placement"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Axis1Placement::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) ) static_cast<void (StepGeom_Axis1Placement::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) >(&StepGeom_Axis1Placement::Init),
@@ -1320,12 +1391,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Axis2Placement2d ,opencascade::handle<StepGeom_Axis2Placement2d>  , StepGeom_Placement >>(m.attr("StepGeom_Axis2Placement2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Axis2Placement2d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) ) static_cast<void (StepGeom_Axis2Placement2d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) >(&StepGeom_Axis2Placement2d::Init),
@@ -1355,12 +1428,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Axis2Placement3d ,opencascade::handle<StepGeom_Axis2Placement3d>  , StepGeom_Placement >>(m.attr("StepGeom_Axis2Placement3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Axis2Placement3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) ) static_cast<void (StepGeom_Axis2Placement3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) >(&StepGeom_Axis2Placement3d::Init),
@@ -1402,12 +1477,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BoundedCurve ,opencascade::handle<StepGeom_BoundedCurve>  , StepGeom_Curve >>(m.attr("StepGeom_BoundedCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_BoundedCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_BoundedCurve::*)() const>(&StepGeom_BoundedCurve::DynamicType),
@@ -1422,12 +1499,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BoundedSurface ,opencascade::handle<StepGeom_BoundedSurface>  , StepGeom_Surface >>(m.attr("StepGeom_BoundedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_BoundedSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_BoundedSurface::*)() const>(&StepGeom_BoundedSurface::DynamicType),
@@ -1442,12 +1521,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CartesianPoint ,opencascade::handle<StepGeom_CartesianPoint>  , StepGeom_Point >>(m.attr("StepGeom_CartesianPoint"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CartesianPoint::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (StepGeom_CartesianPoint::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&StepGeom_CartesianPoint::Init),
@@ -1483,12 +1564,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CartesianTransformationOperator2d ,opencascade::handle<StepGeom_CartesianTransformationOperator2d>  , StepGeom_CartesianTransformationOperator >>(m.attr("StepGeom_CartesianTransformationOperator2d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_CartesianTransformationOperator2d::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_CartesianTransformationOperator2d::*)() const>(&StepGeom_CartesianTransformationOperator2d::DynamicType),
@@ -1503,12 +1586,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CartesianTransformationOperator3d ,opencascade::handle<StepGeom_CartesianTransformationOperator3d>  , StepGeom_CartesianTransformationOperator >>(m.attr("StepGeom_CartesianTransformationOperator3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CartesianTransformationOperator3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) ) static_cast<void (StepGeom_CartesianTransformationOperator3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const Standard_Boolean ,  const Standard_Real ,  const Standard_Boolean ,  const opencascade::handle<StepGeom_Direction> &  ) >(&StepGeom_CartesianTransformationOperator3d::Init),
@@ -1538,12 +1623,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Conic ,opencascade::handle<StepGeom_Conic>  , StepGeom_Curve >>(m.attr("StepGeom_Conic"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Conic::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement &  ) ) static_cast<void (StepGeom_Conic::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement &  ) >(&StepGeom_Conic::Init),
@@ -1567,12 +1654,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CurveReplica ,opencascade::handle<StepGeom_CurveReplica>  , StepGeom_Curve >>(m.attr("StepGeom_CurveReplica"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CurveReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator> &  ) ) static_cast<void (StepGeom_CurveReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator> &  ) >(&StepGeom_CurveReplica::Init),
@@ -1602,12 +1691,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_DegeneratePcurve ,opencascade::handle<StepGeom_DegeneratePcurve>  , StepGeom_Point >>(m.attr("StepGeom_DegeneratePcurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_DegeneratePcurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepRepr_DefinitionalRepresentation> &  ) ) static_cast<void (StepGeom_DegeneratePcurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepRepr_DefinitionalRepresentation> &  ) >(&StepGeom_DegeneratePcurve::Init),
@@ -1637,12 +1728,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_ElementarySurface ,opencascade::handle<StepGeom_ElementarySurface>  , StepGeom_Surface >>(m.attr("StepGeom_ElementarySurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_ElementarySurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) ) static_cast<void (StepGeom_ElementarySurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> &  ) >(&StepGeom_ElementarySurface::Init),
@@ -1666,12 +1759,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Line ,opencascade::handle<StepGeom_Line>  , StepGeom_Curve >>(m.attr("StepGeom_Line"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Line::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const opencascade::handle<StepGeom_Vector> &  ) ) static_cast<void (StepGeom_Line::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_CartesianPoint> & ,  const opencascade::handle<StepGeom_Vector> &  ) >(&StepGeom_Line::Init),
@@ -1701,12 +1796,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_OffsetCurve3d ,opencascade::handle<StepGeom_OffsetCurve3d>  , StepGeom_Curve >>(m.attr("StepGeom_OffsetCurve3d"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_OffsetCurve3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Real ,  const StepData_Logical ,  const opencascade::handle<StepGeom_Direction> &  ) ) static_cast<void (StepGeom_OffsetCurve3d::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Real ,  const StepData_Logical ,  const opencascade::handle<StepGeom_Direction> &  ) >(&StepGeom_OffsetCurve3d::Init),
@@ -1748,12 +1845,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_OffsetSurface ,opencascade::handle<StepGeom_OffsetSurface>  , StepGeom_Surface >>(m.attr("StepGeom_OffsetSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_OffsetSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Real ,  const StepData_Logical  ) ) static_cast<void (StepGeom_OffsetSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Real ,  const StepData_Logical  ) >(&StepGeom_OffsetSurface::Init),
@@ -1789,12 +1888,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_OrientedSurface ,opencascade::handle<StepGeom_OrientedSurface>  , StepGeom_Surface >>(m.attr("StepGeom_OrientedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_OrientedSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean  ) ) static_cast<void (StepGeom_OrientedSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Boolean  ) >(&StepGeom_OrientedSurface::Init),
@@ -1818,12 +1919,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Pcurve ,opencascade::handle<StepGeom_Pcurve>  , StepGeom_Curve >>(m.attr("StepGeom_Pcurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Pcurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepRepr_DefinitionalRepresentation> &  ) ) static_cast<void (StepGeom_Pcurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepRepr_DefinitionalRepresentation> &  ) >(&StepGeom_Pcurve::Init),
@@ -1853,12 +1956,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_PointOnCurve ,opencascade::handle<StepGeom_PointOnCurve>  , StepGeom_Point >>(m.attr("StepGeom_PointOnCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_PointOnCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Real  ) ) static_cast<void (StepGeom_PointOnCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const Standard_Real  ) >(&StepGeom_PointOnCurve::Init),
@@ -1888,12 +1993,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_PointOnSurface ,opencascade::handle<StepGeom_PointOnSurface>  , StepGeom_Point >>(m.attr("StepGeom_PointOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_PointOnSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepGeom_PointOnSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Real ,  const Standard_Real  ) >(&StepGeom_PointOnSurface::Init),
@@ -1929,12 +2036,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_PointReplica ,opencascade::handle<StepGeom_PointReplica>  , StepGeom_Point >>(m.attr("StepGeom_PointReplica"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_PointReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Point> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator> &  ) ) static_cast<void (StepGeom_PointReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Point> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator> &  ) >(&StepGeom_PointReplica::Init),
@@ -1964,12 +2073,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SurfaceCurve ,opencascade::handle<StepGeom_SurfaceCurve>  , StepGeom_Curve >>(m.attr("StepGeom_SurfaceCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_SurfaceCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_HArray1OfPcurveOrSurface> & ,  const StepGeom_PreferredSurfaceCurveRepresentation  ) ) static_cast<void (StepGeom_SurfaceCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_HArray1OfPcurveOrSurface> & ,  const StepGeom_PreferredSurfaceCurveRepresentation  ) >(&StepGeom_SurfaceCurve::Init),
@@ -2011,12 +2122,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SurfaceReplica ,opencascade::handle<StepGeom_SurfaceReplica>  , StepGeom_Surface >>(m.attr("StepGeom_SurfaceReplica"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_SurfaceReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator3d> &  ) ) static_cast<void (StepGeom_SurfaceReplica::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepGeom_CartesianTransformationOperator3d> &  ) >(&StepGeom_SurfaceReplica::Init),
@@ -2046,12 +2159,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SweptSurface ,opencascade::handle<StepGeom_SweptSurface>  , StepGeom_Surface >>(m.attr("StepGeom_SweptSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_SweptSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> &  ) ) static_cast<void (StepGeom_SweptSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> &  ) >(&StepGeom_SweptSurface::Init),
@@ -2075,12 +2190,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BSplineCurve ,opencascade::handle<StepGeom_BSplineCurve>  , StepGeom_BoundedCurve >>(m.attr("StepGeom_BSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical  ) ) static_cast<void (StepGeom_BSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical  ) >(&StepGeom_BSplineCurve::Init),
@@ -2134,12 +2251,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BSplineSurface ,opencascade::handle<StepGeom_BSplineSurface>  , StepGeom_BoundedSurface >>(m.attr("StepGeom_BSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical  ) ) static_cast<void (StepGeom_BSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical  ) >(&StepGeom_BSplineSurface::Init),
@@ -2208,12 +2327,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Circle ,opencascade::handle<StepGeom_Circle>  , StepGeom_Conic >>(m.attr("StepGeom_Circle"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Circle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real  ) ) static_cast<void (StepGeom_Circle::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real  ) >(&StepGeom_Circle::Init),
@@ -2237,12 +2358,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CompositeCurve ,opencascade::handle<StepGeom_CompositeCurve>  , StepGeom_BoundedCurve >>(m.attr("StepGeom_CompositeCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CompositeCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray1OfCompositeCurveSegment> & ,  const StepData_Logical  ) ) static_cast<void (StepGeom_CompositeCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray1OfCompositeCurveSegment> & ,  const StepData_Logical  ) >(&StepGeom_CompositeCurve::Init),
@@ -2278,12 +2401,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_ConicalSurface ,opencascade::handle<StepGeom_ConicalSurface>  , StepGeom_ElementarySurface >>(m.attr("StepGeom_ConicalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_ConicalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepGeom_ConicalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real  ) >(&StepGeom_ConicalSurface::Init),
@@ -2313,12 +2438,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CurveBoundedSurface ,opencascade::handle<StepGeom_CurveBoundedSurface>  , StepGeom_BoundedSurface >>(m.attr("StepGeom_CurveBoundedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CurveBoundedSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepGeom_HArray1OfSurfaceBoundary> & ,  const Standard_Boolean  ) ) static_cast<void (StepGeom_CurveBoundedSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepGeom_HArray1OfSurfaceBoundary> & ,  const Standard_Boolean  ) >(&StepGeom_CurveBoundedSurface::Init),
@@ -2354,12 +2481,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CylindricalSurface ,opencascade::handle<StepGeom_CylindricalSurface>  , StepGeom_ElementarySurface >>(m.attr("StepGeom_CylindricalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_CylindricalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real  ) ) static_cast<void (StepGeom_CylindricalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real  ) >(&StepGeom_CylindricalSurface::Init),
@@ -2383,12 +2512,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Ellipse ,opencascade::handle<StepGeom_Ellipse>  , StepGeom_Conic >>(m.attr("StepGeom_Ellipse"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Ellipse::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepGeom_Ellipse::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real ,  const Standard_Real  ) >(&StepGeom_Ellipse::Init),
@@ -2418,12 +2549,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_EvaluatedDegeneratePcurve ,opencascade::handle<StepGeom_EvaluatedDegeneratePcurve>  , StepGeom_DegeneratePcurve >>(m.attr("StepGeom_EvaluatedDegeneratePcurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_EvaluatedDegeneratePcurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepRepr_DefinitionalRepresentation> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) ) static_cast<void (StepGeom_EvaluatedDegeneratePcurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const opencascade::handle<StepRepr_DefinitionalRepresentation> & ,  const opencascade::handle<StepGeom_CartesianPoint> &  ) >(&StepGeom_EvaluatedDegeneratePcurve::Init),
@@ -2447,12 +2580,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Hyperbola ,opencascade::handle<StepGeom_Hyperbola>  , StepGeom_Conic >>(m.attr("StepGeom_Hyperbola"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Hyperbola::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepGeom_Hyperbola::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real ,  const Standard_Real  ) >(&StepGeom_Hyperbola::Init),
@@ -2482,12 +2617,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_IntersectionCurve ,opencascade::handle<StepGeom_IntersectionCurve>  , StepGeom_SurfaceCurve >>(m.attr("StepGeom_IntersectionCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_IntersectionCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_IntersectionCurve::*)() const>(&StepGeom_IntersectionCurve::DynamicType),
@@ -2502,12 +2639,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Parabola ,opencascade::handle<StepGeom_Parabola>  , StepGeom_Conic >>(m.attr("StepGeom_Parabola"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Parabola::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real  ) ) static_cast<void (StepGeom_Parabola::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const StepGeom_Axis2Placement & ,  const Standard_Real  ) >(&StepGeom_Parabola::Init),
@@ -2531,12 +2670,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Plane ,opencascade::handle<StepGeom_Plane>  , StepGeom_ElementarySurface >>(m.attr("StepGeom_Plane"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_Plane::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_Plane::*)() const>(&StepGeom_Plane::DynamicType),
@@ -2551,12 +2692,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_Polyline ,opencascade::handle<StepGeom_Polyline>  , StepGeom_BoundedCurve >>(m.attr("StepGeom_Polyline"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_Polyline::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> &  ) ) static_cast<void (StepGeom_Polyline::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> &  ) >(&StepGeom_Polyline::Init),
@@ -2586,12 +2729,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_RectangularCompositeSurface ,opencascade::handle<StepGeom_RectangularCompositeSurface>  , StepGeom_BoundedSurface >>(m.attr("StepGeom_RectangularCompositeSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_RectangularCompositeSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray2OfSurfacePatch> &  ) ) static_cast<void (StepGeom_RectangularCompositeSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_HArray2OfSurfacePatch> &  ) >(&StepGeom_RectangularCompositeSurface::Init),
@@ -2624,12 +2769,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_RectangularTrimmedSurface ,opencascade::handle<StepGeom_RectangularTrimmedSurface>  , StepGeom_BoundedSurface >>(m.attr("StepGeom_RectangularTrimmedSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_RectangularTrimmedSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) ) static_cast<void (StepGeom_RectangularTrimmedSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Surface> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean ,  const Standard_Boolean  ) >(&StepGeom_RectangularTrimmedSurface::Init),
@@ -2689,12 +2836,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SeamCurve ,opencascade::handle<StepGeom_SeamCurve>  , StepGeom_SurfaceCurve >>(m.attr("StepGeom_SeamCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_SeamCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_SeamCurve::*)() const>(&StepGeom_SeamCurve::DynamicType),
@@ -2709,12 +2858,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SphericalSurface ,opencascade::handle<StepGeom_SphericalSurface>  , StepGeom_ElementarySurface >>(m.attr("StepGeom_SphericalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_SphericalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real  ) ) static_cast<void (StepGeom_SphericalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real  ) >(&StepGeom_SphericalSurface::Init),
@@ -2738,12 +2889,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SurfaceCurveAndBoundedCurve ,opencascade::handle<StepGeom_SurfaceCurveAndBoundedCurve>  , StepGeom_SurfaceCurve >>(m.attr("StepGeom_SurfaceCurveAndBoundedCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("BoundedCurve",
              (opencascade::handle<StepGeom_BoundedCurve> & (StepGeom_SurfaceCurveAndBoundedCurve::*)() ) static_cast<opencascade::handle<StepGeom_BoundedCurve> & (StepGeom_SurfaceCurveAndBoundedCurve::*)() >(&StepGeom_SurfaceCurveAndBoundedCurve::BoundedCurve),
@@ -2761,12 +2914,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SurfaceOfLinearExtrusion ,opencascade::handle<StepGeom_SurfaceOfLinearExtrusion>  , StepGeom_SweptSurface >>(m.attr("StepGeom_SurfaceOfLinearExtrusion"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_SurfaceOfLinearExtrusion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_Vector> &  ) ) static_cast<void (StepGeom_SurfaceOfLinearExtrusion::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_Vector> &  ) >(&StepGeom_SurfaceOfLinearExtrusion::Init),
@@ -2790,12 +2945,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_SurfaceOfRevolution ,opencascade::handle<StepGeom_SurfaceOfRevolution>  , StepGeom_SweptSurface >>(m.attr("StepGeom_SurfaceOfRevolution"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_SurfaceOfRevolution::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_Axis1Placement> &  ) ) static_cast<void (StepGeom_SurfaceOfRevolution::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_Axis1Placement> &  ) >(&StepGeom_SurfaceOfRevolution::Init),
@@ -2819,12 +2976,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_ToroidalSurface ,opencascade::handle<StepGeom_ToroidalSurface>  , StepGeom_ElementarySurface >>(m.attr("StepGeom_ToroidalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_ToroidalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (StepGeom_ToroidalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real  ) >(&StepGeom_ToroidalSurface::Init),
@@ -2854,12 +3013,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_TrimmedCurve ,opencascade::handle<StepGeom_TrimmedCurve>  , StepGeom_BoundedCurve >>(m.attr("StepGeom_TrimmedCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_TrimmedCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_HArray1OfTrimmingSelect> & ,  const opencascade::handle<StepGeom_HArray1OfTrimmingSelect> & ,  const Standard_Boolean ,  const StepGeom_TrimmingPreference  ) ) static_cast<void (StepGeom_TrimmedCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Curve> & ,  const opencascade::handle<StepGeom_HArray1OfTrimmingSelect> & ,  const opencascade::handle<StepGeom_HArray1OfTrimmingSelect> & ,  const Standard_Boolean ,  const StepGeom_TrimmingPreference  ) >(&StepGeom_TrimmedCurve::Init),
@@ -2919,12 +3080,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BSplineCurveWithKnots ,opencascade::handle<StepGeom_BSplineCurveWithKnots>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_BSplineCurveWithKnots"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BSplineCurveWithKnots::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const StepGeom_KnotType  ) ) static_cast<void (StepGeom_BSplineCurveWithKnots::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const StepGeom_KnotType  ) >(&StepGeom_BSplineCurveWithKnots::Init),
@@ -2972,12 +3135,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve ,opencascade::handle<StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BSplineCurveWithKnots> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) ) static_cast<void (StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BSplineCurveWithKnots> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) >(&StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve::Init),
@@ -3052,12 +3217,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BSplineSurfaceWithKnots ,opencascade::handle<StepGeom_BSplineSurfaceWithKnots>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_BSplineSurfaceWithKnots"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BSplineSurfaceWithKnots::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const StepGeom_KnotType  ) ) static_cast<void (StepGeom_BSplineSurfaceWithKnots::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfInteger> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const opencascade::handle<TColStd_HArray1OfReal> & ,  const StepGeom_KnotType  ) >(&StepGeom_BSplineSurfaceWithKnots::Init),
@@ -3129,12 +3296,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface ,opencascade::handle<StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BSplineSurfaceWithKnots> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) ) static_cast<void (StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BSplineSurfaceWithKnots> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) >(&StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface::Init),
@@ -3236,12 +3405,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BezierCurve ,opencascade::handle<StepGeom_BezierCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_BezierCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_BezierCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_BezierCurve::*)() const>(&StepGeom_BezierCurve::DynamicType),
@@ -3256,12 +3427,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BezierCurveAndRationalBSplineCurve ,opencascade::handle<StepGeom_BezierCurveAndRationalBSplineCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_BezierCurveAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BezierCurveAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BezierCurve> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) ) static_cast<void (StepGeom_BezierCurveAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BezierCurve> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) >(&StepGeom_BezierCurveAndRationalBSplineCurve::Init),
@@ -3306,12 +3479,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BezierSurface ,opencascade::handle<StepGeom_BezierSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_BezierSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_BezierSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_BezierSurface::*)() const>(&StepGeom_BezierSurface::DynamicType),
@@ -3326,12 +3501,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BezierSurfaceAndRationalBSplineSurface ,opencascade::handle<StepGeom_BezierSurfaceAndRationalBSplineSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_BezierSurfaceAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_BezierSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BezierSurface> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) ) static_cast<void (StepGeom_BezierSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_BezierSurface> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) >(&StepGeom_BezierSurfaceAndRationalBSplineSurface::Init),
@@ -3379,12 +3556,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_CompositeCurveOnSurface ,opencascade::handle<StepGeom_CompositeCurveOnSurface>  , StepGeom_CompositeCurve >>(m.attr("StepGeom_CompositeCurveOnSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_CompositeCurveOnSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_CompositeCurveOnSurface::*)() const>(&StepGeom_CompositeCurveOnSurface::DynamicType),
@@ -3399,12 +3578,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_DegenerateToroidalSurface ,opencascade::handle<StepGeom_DegenerateToroidalSurface>  , StepGeom_ToroidalSurface >>(m.attr("StepGeom_DegenerateToroidalSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_DegenerateToroidalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) ) static_cast<void (StepGeom_DegenerateToroidalSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const opencascade::handle<StepGeom_Axis2Placement3d> & ,  const Standard_Real ,  const Standard_Real ,  const Standard_Boolean  ) >(&StepGeom_DegenerateToroidalSurface::Init),
@@ -3428,12 +3609,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_QuasiUniformCurve ,opencascade::handle<StepGeom_QuasiUniformCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_QuasiUniformCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_QuasiUniformCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_QuasiUniformCurve::*)() const>(&StepGeom_QuasiUniformCurve::DynamicType),
@@ -3448,12 +3631,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_QuasiUniformCurveAndRationalBSplineCurve ,opencascade::handle<StepGeom_QuasiUniformCurveAndRationalBSplineCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_QuasiUniformCurveAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_QuasiUniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_QuasiUniformCurve> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) ) static_cast<void (StepGeom_QuasiUniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_QuasiUniformCurve> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) >(&StepGeom_QuasiUniformCurveAndRationalBSplineCurve::Init),
@@ -3498,12 +3683,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_QuasiUniformSurface ,opencascade::handle<StepGeom_QuasiUniformSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_QuasiUniformSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_QuasiUniformSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_QuasiUniformSurface::*)() const>(&StepGeom_QuasiUniformSurface::DynamicType),
@@ -3518,12 +3705,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface ,opencascade::handle<StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_QuasiUniformSurface> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) ) static_cast<void (StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_QuasiUniformSurface> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) >(&StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface::Init),
@@ -3571,12 +3760,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_RationalBSplineCurve ,opencascade::handle<StepGeom_RationalBSplineCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_RationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_RationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) ) static_cast<void (StepGeom_RationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray1OfReal> &  ) >(&StepGeom_RationalBSplineCurve::Init),
@@ -3606,12 +3797,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_RationalBSplineSurface ,opencascade::handle<StepGeom_RationalBSplineSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_RationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_RationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray2OfReal> &  ) ) static_cast<void (StepGeom_RationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<TColStd_HArray2OfReal> &  ) >(&StepGeom_RationalBSplineSurface::Init),
@@ -3644,12 +3837,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_UniformCurve ,opencascade::handle<StepGeom_UniformCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_UniformCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_UniformCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_UniformCurve::*)() const>(&StepGeom_UniformCurve::DynamicType),
@@ -3664,12 +3859,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_UniformCurveAndRationalBSplineCurve ,opencascade::handle<StepGeom_UniformCurveAndRationalBSplineCurve>  , StepGeom_BSplineCurve >>(m.attr("StepGeom_UniformCurveAndRationalBSplineCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_UniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_UniformCurve> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) ) static_cast<void (StepGeom_UniformCurveAndRationalBSplineCurve::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray1OfCartesianPoint> & ,  const StepGeom_BSplineCurveForm ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_UniformCurve> & ,  const opencascade::handle<StepGeom_RationalBSplineCurve> &  ) >(&StepGeom_UniformCurveAndRationalBSplineCurve::Init),
@@ -3714,12 +3911,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_UniformSurface ,opencascade::handle<StepGeom_UniformSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_UniformSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_UniformSurface::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_UniformSurface::*)() const>(&StepGeom_UniformSurface::DynamicType),
@@ -3734,12 +3933,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_UniformSurfaceAndRationalBSplineSurface ,opencascade::handle<StepGeom_UniformSurfaceAndRationalBSplineSurface>  , StepGeom_BSplineSurface >>(m.attr("StepGeom_UniformSurfaceAndRationalBSplineSurface"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Init",
              (void (StepGeom_UniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_UniformSurface> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) ) static_cast<void (StepGeom_UniformSurfaceAndRationalBSplineSurface::*)( const opencascade::handle<TCollection_HAsciiString> & ,  const Standard_Integer ,  const Standard_Integer ,  const opencascade::handle<StepGeom_HArray2OfCartesianPoint> & ,  const StepGeom_BSplineSurfaceForm ,  const StepData_Logical ,  const StepData_Logical ,  const StepData_Logical ,  const opencascade::handle<StepGeom_UniformSurface> & ,  const opencascade::handle<StepGeom_RationalBSplineSurface> &  ) >(&StepGeom_UniformSurfaceAndRationalBSplineSurface::Init),
@@ -3787,12 +3988,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_BoundaryCurve ,opencascade::handle<StepGeom_BoundaryCurve>  , StepGeom_CompositeCurveOnSurface >>(m.attr("StepGeom_BoundaryCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_BoundaryCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_BoundaryCurve::*)() const>(&StepGeom_BoundaryCurve::DynamicType),
@@ -3807,12 +4010,14 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<StepGeom_OuterBoundaryCurve ,opencascade::handle<StepGeom_OuterBoundaryCurve>  , StepGeom_BoundaryCurve >>(m.attr("StepGeom_OuterBoundaryCurve"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (StepGeom_OuterBoundaryCurve::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepGeom_OuterBoundaryCurve::*)() const>(&StepGeom_OuterBoundaryCurve::DynamicType),
@@ -3827,137 +4032,137 @@ py::module m = static_cast<py::module>(main_module.attr("StepGeom"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/StepGeom_SurfaceReplica.hxx
-// ./opencascade/StepGeom_Direction.hxx
-// ./opencascade/StepGeom_BSplineSurfaceForm.hxx
-// ./opencascade/StepGeom_RationalBSplineSurface.hxx
-// ./opencascade/StepGeom_CurveReplica.hxx
-// ./opencascade/StepGeom_Axis1Placement.hxx
-// ./opencascade/StepGeom_Placement.hxx
-// ./opencascade/StepGeom_VectorOrDirection.hxx
-// ./opencascade/StepGeom_CartesianTransformationOperator3d.hxx
-// ./opencascade/StepGeom_Point.hxx
-// ./opencascade/StepGeom_TrimmingMember.hxx
-// ./opencascade/StepGeom_PcurveOrSurface.hxx
-// ./opencascade/StepGeom_Pcurve.hxx
-// ./opencascade/StepGeom_HArray1OfTrimmingSelect.hxx
-// ./opencascade/StepGeom_ReparametrisedCompositeCurveSegment.hxx
-// ./opencascade/StepGeom_SeamCurve.hxx
-// ./opencascade/StepGeom_SurfaceOfLinearExtrusion.hxx
-// ./opencascade/StepGeom_SurfaceBoundary.hxx
-// ./opencascade/StepGeom_Conic.hxx
-// ./opencascade/StepGeom_UniformCurve.hxx
-// ./opencascade/StepGeom_BoundedSurface.hxx
-// ./opencascade/StepGeom_Polyline.hxx
-// ./opencascade/StepGeom_PointReplica.hxx
-// ./opencascade/StepGeom_CylindricalSurface.hxx
-// ./opencascade/StepGeom_CurveOnSurface.hxx
-// ./opencascade/StepGeom_Line.hxx
-// ./opencascade/StepGeom_Ellipse.hxx
-// ./opencascade/StepGeom_Circle.hxx
-// ./opencascade/StepGeom_Array2OfCartesianPoint.hxx
-// ./opencascade/StepGeom_BezierSurface.hxx
-// ./opencascade/StepGeom_BoundaryCurve.hxx
-// ./opencascade/StepGeom_CompositeCurveSegment.hxx
-// ./opencascade/StepGeom_ToroidalSurface.hxx
-// ./opencascade/StepGeom_OrientedSurface.hxx
-// ./opencascade/StepGeom_QuasiUniformCurveAndRationalBSplineCurve.hxx
-// ./opencascade/StepGeom_PointOnSurface.hxx
-// ./opencascade/StepGeom_CompositeCurve.hxx
-// ./opencascade/StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface.hxx
-// ./opencascade/StepGeom_BezierCurve.hxx
-// ./opencascade/StepGeom_Axis2Placement2d.hxx
-// ./opencascade/StepGeom_TrimmedCurve.hxx
-// ./opencascade/StepGeom_Array1OfTrimmingSelect.hxx
-// ./opencascade/StepGeom_Axis2Placement.hxx
-// ./opencascade/StepGeom_QuasiUniformCurve.hxx
-// ./opencascade/StepGeom_BSplineCurveWithKnots.hxx
-// ./opencascade/StepGeom_BezierSurfaceAndRationalBSplineSurface.hxx
-// ./opencascade/StepGeom_UniformSurface.hxx
-// ./opencascade/StepGeom_HArray2OfSurfacePatch.hxx
-// ./opencascade/StepGeom_HArray1OfPcurveOrSurface.hxx
-// ./opencascade/StepGeom_SurfaceCurve.hxx
-// ./opencascade/StepGeom_TrimmingPreference.hxx
-// ./opencascade/StepGeom_HArray2OfCartesianPoint.hxx
-// ./opencascade/StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx.hxx
-// ./opencascade/StepGeom_CurveBoundedSurface.hxx
-// ./opencascade/StepGeom_DegenerateToroidalSurface.hxx
-// ./opencascade/StepGeom_BSplineCurveForm.hxx
-// ./opencascade/StepGeom_CompositeCurveOnSurface.hxx
-// ./opencascade/StepGeom_Array1OfCartesianPoint.hxx
-// ./opencascade/StepGeom_RectangularCompositeSurface.hxx
-// ./opencascade/StepGeom_Curve.hxx
-// ./opencascade/StepGeom_Array1OfSurfaceBoundary.hxx
-// ./opencascade/StepGeom_PointOnCurve.hxx
-// ./opencascade/StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext.hxx
-// ./opencascade/StepGeom_HArray1OfCurve.hxx
-// ./opencascade/StepGeom_CartesianPoint.hxx
-// ./opencascade/StepGeom_ConicalSurface.hxx
-// ./opencascade/StepGeom_Hyperbola.hxx
-// ./opencascade/StepGeom_BSplineSurfaceWithKnots.hxx
-// ./opencascade/StepGeom_Array1OfPcurveOrSurface.hxx
-// ./opencascade/StepGeom_Plane.hxx
-// ./opencascade/StepGeom_CartesianTransformationOperator.hxx
-// ./opencascade/StepGeom_BSplineSurface.hxx
-// ./opencascade/StepGeom_RationalBSplineCurve.hxx
-// ./opencascade/StepGeom_Array1OfCompositeCurveSegment.hxx
-// ./opencascade/StepGeom_BezierCurveAndRationalBSplineCurve.hxx
-// ./opencascade/StepGeom_Array1OfCurve.hxx
-// ./opencascade/StepGeom_HArray1OfBoundaryCurve.hxx
-// ./opencascade/StepGeom_HArray1OfCartesianPoint.hxx
-// ./opencascade/StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve.hxx
-// ./opencascade/StepGeom_GeometricRepresentationContext.hxx
-// ./opencascade/StepGeom_SweptSurface.hxx
-// ./opencascade/StepGeom_HArray1OfSurfaceBoundary.hxx
-// ./opencascade/StepGeom_UniformSurfaceAndRationalBSplineSurface.hxx
-// ./opencascade/StepGeom_OffsetSurface.hxx
-// ./opencascade/StepGeom_Array2OfSurfacePatch.hxx
-// ./opencascade/StepGeom_UniformCurveAndRationalBSplineCurve.hxx
-// ./opencascade/StepGeom_SurfaceCurveAndBoundedCurve.hxx
-// ./opencascade/StepGeom_Vector.hxx
-// ./opencascade/StepGeom_Array1OfBoundaryCurve.hxx
-// ./opencascade/StepGeom_EvaluatedDegeneratePcurve.hxx
 // ./opencascade/StepGeom_Surface.hxx
-// ./opencascade/StepGeom_SurfaceOfRevolution.hxx
-// ./opencascade/StepGeom_GeometricRepresentationItem.hxx
-// ./opencascade/StepGeom_CartesianTransformationOperator2d.hxx
-// ./opencascade/StepGeom_QuasiUniformSurface.hxx
-// ./opencascade/StepGeom_HArray1OfCompositeCurveSegment.hxx
+// ./opencascade/StepGeom_BezierCurve.hxx
+// ./opencascade/StepGeom_BSplineCurveWithKnotsAndRationalBSplineCurve.hxx
+// ./opencascade/StepGeom_ToroidalSurface.hxx
+// ./opencascade/StepGeom_PointOnCurve.hxx
+// ./opencascade/StepGeom_Hyperbola.hxx
+// ./opencascade/StepGeom_HArray1OfBoundaryCurve.hxx
+// ./opencascade/StepGeom_Ellipse.hxx
+// ./opencascade/StepGeom_Array2OfCartesianPoint.hxx
+// ./opencascade/StepGeom_Axis2Placement2d.hxx
+// ./opencascade/StepGeom_HArray1OfPcurveOrSurface.hxx
+// ./opencascade/StepGeom_DegenerateToroidalSurface.hxx
+// ./opencascade/StepGeom_Array1OfTrimmingSelect.hxx
+// ./opencascade/StepGeom_Curve.hxx
 // ./opencascade/StepGeom_OffsetCurve3d.hxx
+// ./opencascade/StepGeom_CartesianTransformationOperator3d.hxx
+// ./opencascade/StepGeom_CompositeCurve.hxx
+// ./opencascade/StepGeom_GeometricRepresentationContext.hxx
+// ./opencascade/StepGeom_BSplineCurveWithKnots.hxx
+// ./opencascade/StepGeom_RationalBSplineSurface.hxx
 // ./opencascade/StepGeom_PreferredSurfaceCurveRepresentation.hxx
-// ./opencascade/StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface.hxx
-// ./opencascade/StepGeom_BSplineCurve.hxx
-// ./opencascade/StepGeom_RectangularTrimmedSurface.hxx
-// ./opencascade/StepGeom_SurfacePatch.hxx
-// ./opencascade/StepGeom_Axis2Placement3d.hxx
-// ./opencascade/StepGeom_TransitionCode.hxx
-// ./opencascade/StepGeom_OuterBoundaryCurve.hxx
-// ./opencascade/StepGeom_IntersectionCurve.hxx
-// ./opencascade/StepGeom_GeometricRepresentationContextAndParametricRepresentationContext.hxx
-// ./opencascade/StepGeom_SphericalSurface.hxx
+// ./opencascade/StepGeom_HArray2OfCartesianPoint.hxx
+// ./opencascade/StepGeom_CompositeCurveOnSurface.hxx
+// ./opencascade/StepGeom_QuasiUniformCurveAndRationalBSplineCurve.hxx
+// ./opencascade/StepGeom_Line.hxx
 // ./opencascade/StepGeom_Parabola.hxx
-// ./opencascade/StepGeom_ElementarySurface.hxx
+// ./opencascade/StepGeom_CurveReplica.hxx
+// ./opencascade/StepGeom_Pcurve.hxx
+// ./opencascade/StepGeom_Array1OfSurfaceBoundary.hxx
 // ./opencascade/StepGeom_DegeneratePcurve.hxx
-// ./opencascade/StepGeom_BoundedCurve.hxx
-// ./opencascade/StepGeom_KnotType.hxx
+// ./opencascade/StepGeom_CartesianPoint.hxx
+// ./opencascade/StepGeom_BezierSurfaceAndRationalBSplineSurface.hxx
+// ./opencascade/StepGeom_QuasiUniformSurface.hxx
+// ./opencascade/StepGeom_BSplineSurfaceWithKnotsAndRationalBSplineSurface.hxx
+// ./opencascade/StepGeom_Circle.hxx
+// ./opencascade/StepGeom_QuasiUniformCurve.hxx
+// ./opencascade/StepGeom_TrimmingPreference.hxx
+// ./opencascade/StepGeom_BezierSurface.hxx
+// ./opencascade/StepGeom_GeomRepContextAndGlobUnitAssCtxAndGlobUncertaintyAssCtx.hxx
+// ./opencascade/StepGeom_BSplineSurfaceForm.hxx
+// ./opencascade/StepGeom_ElementarySurface.hxx
+// ./opencascade/StepGeom_CartesianTransformationOperator2d.hxx
+// ./opencascade/StepGeom_Point.hxx
+// ./opencascade/StepGeom_CartesianTransformationOperator.hxx
+// ./opencascade/StepGeom_HArray1OfCurve.hxx
+// ./opencascade/StepGeom_RectangularCompositeSurface.hxx
+// ./opencascade/StepGeom_VectorOrDirection.hxx
+// ./opencascade/StepGeom_Direction.hxx
+// ./opencascade/StepGeom_SurfaceCurveAndBoundedCurve.hxx
+// ./opencascade/StepGeom_OffsetSurface.hxx
+// ./opencascade/StepGeom_HArray1OfCartesianPoint.hxx
+// ./opencascade/StepGeom_Array2OfSurfacePatch.hxx
+// ./opencascade/StepGeom_Placement.hxx
+// ./opencascade/StepGeom_UniformSurface.hxx
+// ./opencascade/StepGeom_HArray1OfSurfaceBoundary.hxx
+// ./opencascade/StepGeom_GeometricRepresentationItem.hxx
+// ./opencascade/StepGeom_BSplineSurface.hxx
+// ./opencascade/StepGeom_UniformSurfaceAndRationalBSplineSurface.hxx
+// ./opencascade/StepGeom_Array1OfBoundaryCurve.hxx
+// ./opencascade/StepGeom_CylindricalSurface.hxx
+// ./opencascade/StepGeom_SurfaceOfLinearExtrusion.hxx
+// ./opencascade/StepGeom_BSplineCurve.hxx
+// ./opencascade/StepGeom_HArray1OfCompositeCurveSegment.hxx
+// ./opencascade/StepGeom_BoundedSurface.hxx
+// ./opencascade/StepGeom_Vector.hxx
+// ./opencascade/StepGeom_Array1OfCompositeCurveSegment.hxx
+// ./opencascade/StepGeom_UniformCurve.hxx
+// ./opencascade/StepGeom_Conic.hxx
+// ./opencascade/StepGeom_BezierCurveAndRationalBSplineCurve.hxx
+// ./opencascade/StepGeom_SurfaceOfRevolution.hxx
+// ./opencascade/StepGeom_EvaluatedDegeneratePcurve.hxx
+// ./opencascade/StepGeom_SweptSurface.hxx
+// ./opencascade/StepGeom_BoundaryCurve.hxx
+// ./opencascade/StepGeom_RationalBSplineCurve.hxx
+// ./opencascade/StepGeom_Axis1Placement.hxx
+// ./opencascade/StepGeom_IntersectionCurve.hxx
+// ./opencascade/StepGeom_Axis2Placement3d.hxx
+// ./opencascade/StepGeom_Array1OfCartesianPoint.hxx
 // ./opencascade/StepGeom_TrimmingSelect.hxx
+// ./opencascade/StepGeom_ReparametrisedCompositeCurveSegment.hxx
+// ./opencascade/StepGeom_GeometricRepresentationContextAndGlobalUnitAssignedContext.hxx
+// ./opencascade/StepGeom_TransitionCode.hxx
+// ./opencascade/StepGeom_TrimmingMember.hxx
+// ./opencascade/StepGeom_SurfaceCurve.hxx
+// ./opencascade/StepGeom_ConicalSurface.hxx
+// ./opencascade/StepGeom_BSplineCurveForm.hxx
+// ./opencascade/StepGeom_Array1OfCurve.hxx
+// ./opencascade/StepGeom_SurfaceReplica.hxx
+// ./opencascade/StepGeom_SurfaceBoundary.hxx
+// ./opencascade/StepGeom_Plane.hxx
+// ./opencascade/StepGeom_TrimmedCurve.hxx
+// ./opencascade/StepGeom_BoundedCurve.hxx
+// ./opencascade/StepGeom_HArray2OfSurfacePatch.hxx
+// ./opencascade/StepGeom_PointOnSurface.hxx
+// ./opencascade/StepGeom_SphericalSurface.hxx
+// ./opencascade/StepGeom_BSplineSurfaceWithKnots.hxx
+// ./opencascade/StepGeom_PointReplica.hxx
+// ./opencascade/StepGeom_OuterBoundaryCurve.hxx
+// ./opencascade/StepGeom_CompositeCurveSegment.hxx
+// ./opencascade/StepGeom_Axis2Placement.hxx
+// ./opencascade/StepGeom_HArray1OfTrimmingSelect.hxx
+// ./opencascade/StepGeom_SeamCurve.hxx
+// ./opencascade/StepGeom_CurveOnSurface.hxx
+// ./opencascade/StepGeom_KnotType.hxx
+// ./opencascade/StepGeom_Polyline.hxx
+// ./opencascade/StepGeom_GeometricRepresentationContextAndParametricRepresentationContext.hxx
+// ./opencascade/StepGeom_QuasiUniformSurfaceAndRationalBSplineSurface.hxx
+// ./opencascade/StepGeom_SurfacePatch.hxx
+// ./opencascade/StepGeom_PcurveOrSurface.hxx
+// ./opencascade/StepGeom_RectangularTrimmedSurface.hxx
+// ./opencascade/StepGeom_OrientedSurface.hxx
+// ./opencascade/StepGeom_CurveBoundedSurface.hxx
+// ./opencascade/StepGeom_UniformCurveAndRationalBSplineCurve.hxx
+// ./opencascade/StepGeom_Array1OfPcurveOrSurface.hxx
 
 // operators
 
 // register typdefs
     register_template_NCollection_Array2<opencascade::handle<StepGeom_CartesianPoint> >(m,"StepGeom_Array2OfCartesianPoint");  
     register_template_NCollection_Array1<StepGeom_TrimmingSelect>(m,"StepGeom_Array1OfTrimmingSelect");  
-    register_template_NCollection_Array1<opencascade::handle<StepGeom_CartesianPoint> >(m,"StepGeom_Array1OfCartesianPoint");  
     register_template_NCollection_Array1<StepGeom_SurfaceBoundary>(m,"StepGeom_Array1OfSurfaceBoundary");  
-    register_template_NCollection_Array1<StepGeom_PcurveOrSurface>(m,"StepGeom_Array1OfPcurveOrSurface");  
-    register_template_NCollection_Array1<opencascade::handle<StepGeom_CompositeCurveSegment> >(m,"StepGeom_Array1OfCompositeCurveSegment");  
-    register_template_NCollection_Array1<opencascade::handle<StepGeom_Curve> >(m,"StepGeom_Array1OfCurve");  
     register_template_NCollection_Array2<opencascade::handle<StepGeom_SurfacePatch> >(m,"StepGeom_Array2OfSurfacePatch");  
     register_template_NCollection_Array1<opencascade::handle<StepGeom_BoundaryCurve> >(m,"StepGeom_Array1OfBoundaryCurve");  
+    register_template_NCollection_Array1<opencascade::handle<StepGeom_CompositeCurveSegment> >(m,"StepGeom_Array1OfCompositeCurveSegment");  
+    register_template_NCollection_Array1<opencascade::handle<StepGeom_CartesianPoint> >(m,"StepGeom_Array1OfCartesianPoint");  
+    register_template_NCollection_Array1<opencascade::handle<StepGeom_Curve> >(m,"StepGeom_Array1OfCurve");  
+    register_template_NCollection_Array1<StepGeom_PcurveOrSurface>(m,"StepGeom_Array1OfPcurveOrSurface");  
 
 
 // exceptions

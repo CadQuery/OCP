@@ -13,35 +13,35 @@ namespace py = pybind11;
 
 
 // includes to resolve forward declarations
+#include <gp_Lin2d.hxx>
+#include <IntRes2d_Domain.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <gp_Hypr2d.hxx>
 #include <IntCurve_PConic.hxx>
 #include <gp_Pnt2d.hxx>
-#include <gp_Vec2d.hxx>
+#include <gp_Elips2d.hxx>
+#include <gp_Circ2d.hxx>
+#include <gp_Parab2d.hxx>
+#include <gp_Hypr2d.hxx>
+#include <gp_Lin2d.hxx>
+#include <IntCurve_PConic.hxx>
+#include <IntCurve_PConicTool.hxx>
 #include <IntCurve_IConicTool.hxx>
 #include <IntCurve_PConic.hxx>
 #include <IntCurve_PConicTool.hxx>
 #include <IntCurve_ProjectOnPConicTool.hxx>
 #include <IntCurve_MyImpParToolOfIntImpConicParConic.hxx>
 #include <IntRes2d_Domain.hxx>
-#include <gp_Lin2d.hxx>
-#include <IntRes2d_Domain.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <gp_Elips2d.hxx>
-#include <gp_Lin2d.hxx>
-#include <gp_Circ2d.hxx>
-#include <gp_Parab2d.hxx>
-#include <gp_Hypr2d.hxx>
-#include <IntCurve_PConic.hxx>
-#include <IntCurve_PConicTool.hxx>
 #include <IntCurve_PConic.hxx>
 #include <gp_Pnt2d.hxx>
+#include <gp_Vec2d.hxx>
 #include <gp_Elips2d.hxx>
+#include <gp_Lin2d.hxx>
 #include <gp_Circ2d.hxx>
 #include <gp_Parab2d.hxx>
 #include <gp_Hypr2d.hxx>
-#include <gp_Lin2d.hxx>
 
 // module includes
 #include <IntCurve_IConicTool.hxx>
@@ -74,6 +74,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
 
 
     static_cast<py::class_<IntCurve_IConicTool , shared_ptr<IntCurve_IConicTool>  >>(m.attr("IntCurve_IConicTool"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntCurve_IConicTool & >()  , py::arg("IT") )
         .def(py::init< const gp_Elips2d & >()  , py::arg("E") )
@@ -81,6 +82,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
         .def(py::init< const gp_Circ2d & >()  , py::arg("C") )
         .def(py::init< const gp_Parab2d & >()  , py::arg("P") )
         .def(py::init< const gp_Hypr2d & >()  , py::arg("H") )
+    // custom constructors
     // methods
         .def("Value",
              (gp_Pnt2d (IntCurve_IConicTool::*)( const Standard_Real  ) const) static_cast<gp_Pnt2d (IntCurve_IConicTool::*)( const Standard_Real  ) const>(&IntCurve_IConicTool::Value),
@@ -104,11 +106,12 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurve_IntConicConic , shared_ptr<IntCurve_IntConicConic>  , IntRes2d_Intersection >>(m.attr("IntCurve_IntConicConic"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const gp_Lin2d &,const IntRes2d_Domain &,const gp_Lin2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("L1"),  py::arg("D1"),  py::arg("L2"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Lin2d &,const IntRes2d_Domain &,const gp_Circ2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("L"),  py::arg("DL"),  py::arg("C"),  py::arg("DC"),  py::arg("TolConf"),  py::arg("Tol") )
@@ -125,6 +128,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
         .def(py::init< const gp_Parab2d &,const IntRes2d_Domain &,const gp_Parab2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("P1"),  py::arg("D1"),  py::arg("P2"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Parab2d &,const IntRes2d_Domain &,const gp_Hypr2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("P"),  py::arg("DP"),  py::arg("H"),  py::arg("DH"),  py::arg("TolConf"),  py::arg("Tol") )
         .def(py::init< const gp_Hypr2d &,const IntRes2d_Domain &,const gp_Hypr2d &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("H1"),  py::arg("D1"),  py::arg("H2"),  py::arg("D2"),  py::arg("TolConf"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntCurve_IntConicConic::*)( const gp_Lin2d & ,  const IntRes2d_Domain & ,  const gp_Lin2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntCurve_IntConicConic::*)( const gp_Lin2d & ,  const IntRes2d_Domain & ,  const gp_Lin2d & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) >(&IntCurve_IntConicConic::Perform),
@@ -175,13 +179,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurve_IntImpConicParConic , shared_ptr<IntCurve_IntImpConicParConic>  , IntRes2d_Intersection >>(m.attr("IntCurve_IntImpConicParConic"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const IntCurve_IConicTool &,const IntRes2d_Domain &,const IntCurve_PConic &,const IntRes2d_Domain &,const Standard_Real,const Standard_Real >()  , py::arg("ITool"),  py::arg("Dom1"),  py::arg("PCurve"),  py::arg("Dom2"),  py::arg("TolConf"),  py::arg("Tol") )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntCurve_IntImpConicParConic::*)( const IntCurve_IConicTool & ,  const IntRes2d_Domain & ,  const IntCurve_PConic & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntCurve_IntImpConicParConic::*)( const IntCurve_IConicTool & ,  const IntRes2d_Domain & ,  const IntCurve_PConic & ,  const IntRes2d_Domain & ,  const Standard_Real ,  const Standard_Real  ) >(&IntCurve_IntImpConicParConic::Perform),
@@ -199,12 +205,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurve_MyImpParToolOfIntImpConicParConic , shared_ptr<IntCurve_MyImpParToolOfIntImpConicParConic>  , math_FunctionWithDerivative >>(m.attr("IntCurve_MyImpParToolOfIntImpConicParConic"))
+    // constructors
         .def(py::init< const IntCurve_IConicTool &,const IntCurve_PConic & >()  , py::arg("IT"),  py::arg("PC") )
+    // custom constructors
     // methods
         .def("Value",
              (Standard_Boolean (IntCurve_MyImpParToolOfIntImpConicParConic::*)( const Standard_Real ,  Standard_Real &  ) ) static_cast<Standard_Boolean (IntCurve_MyImpParToolOfIntImpConicParConic::*)( const Standard_Real ,  Standard_Real &  ) >(&IntCurve_MyImpParToolOfIntImpConicParConic::Value),
@@ -219,17 +227,19 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurve_PConic , shared_ptr<IntCurve_PConic>  >>(m.attr("IntCurve_PConic"))
+    // constructors
         .def(py::init< const IntCurve_PConic & >()  , py::arg("PC") )
         .def(py::init< const gp_Elips2d & >()  , py::arg("E") )
         .def(py::init< const gp_Circ2d & >()  , py::arg("C") )
         .def(py::init< const gp_Parab2d & >()  , py::arg("P") )
         .def(py::init< const gp_Hypr2d & >()  , py::arg("H") )
         .def(py::init< const gp_Lin2d & >()  , py::arg("L") )
+    // custom constructors
     // methods
         .def("SetEpsX",
              (void (IntCurve_PConic::*)( const Standard_Real  ) ) static_cast<void (IntCurve_PConic::*)( const Standard_Real  ) >(&IntCurve_PConic::SetEpsX),
@@ -277,12 +287,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntCurve_PConicTool , shared_ptr<IntCurve_PConicTool>>(m,"IntCurve_PConicTool");
 
     static_cast<py::class_<IntCurve_PConicTool , shared_ptr<IntCurve_PConicTool>  >>(m.attr("IntCurve_PConicTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -306,12 +319,15 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
                     R"#(None)#"  , py::arg("C"),  py::arg("U"),  py::arg("P"),  py::arg("T"),  py::arg("N"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
+    // default constructor
     register_default_constructor<IntCurve_ProjectOnPConicTool , shared_ptr<IntCurve_ProjectOnPConicTool>>(m,"IntCurve_ProjectOnPConicTool");
 
     static_cast<py::class_<IntCurve_ProjectOnPConicTool , shared_ptr<IntCurve_ProjectOnPConicTool>  >>(m.attr("IntCurve_ProjectOnPConicTool"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -323,15 +339,17 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
                     R"#(Returns the parameter V of the point on the parametric curve corresponding to the Point Pnt. The Correspondance between Pnt and the point P(V) on the parametric curve must be coherent with the way of determination of the signed distance between a point and the implicit curve. Tol is the tolerance on the distance between a point and the parametrised curve. LowParameter and HighParameter give the boundaries of the interval in wich the parameter certainly lies. These parameters are given to implement a more efficient algoritm. So, it is not necessary to check that the returned value verifies LowParameter <= Value <= HighParameter.)#"  , py::arg("C"),  py::arg("Pnt"),  py::arg("LowParameter"),  py::arg("HighParameter"),  py::arg("Tol"))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Interval , shared_ptr<Interval>  >>(m.attr("Interval"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("a"),  py::arg("b") )
         .def(py::init< const IntRes2d_Domain & >()  , py::arg("Domain") )
         .def(py::init< const Standard_Real,const Standard_Boolean,const Standard_Real,const Standard_Boolean >()  , py::arg("a"),  py::arg("hf"),  py::arg("b"),  py::arg("hl") )
+    // custom constructors
     // methods
         .def("Length",
              (Standard_Real (Interval::*)() ) static_cast<Standard_Real (Interval::*)() >(&Interval::Length),
@@ -343,14 +361,16 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<PeriodicInterval , shared_ptr<PeriodicInterval>  >>(m.attr("PeriodicInterval"))
+    // constructors
         .def(py::init< const IntRes2d_Domain & >()  , py::arg("Domain") )
         .def(py::init<  >()  )
         .def(py::init< const Standard_Real,const Standard_Real >()  , py::arg("a"),  py::arg("b") )
+    // custom constructors
     // methods
         .def("SetNull",
              (void (PeriodicInterval::*)() ) static_cast<void (PeriodicInterval::*)() >(&PeriodicInterval::SetNull),
@@ -380,16 +400,10 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/IntCurve_PConicTool.hxx
-// ./opencascade/IntCurve_IntImpConicParConic.hxx
-// ./opencascade/IntCurve_IntConicConic.hxx
-// ./opencascade/IntCurve_IConicTool.hxx
-// ./opencascade/IntCurve_MyImpParToolOfIntImpConicParConic.hxx
-// ./opencascade/IntCurve_ProjectOnPConicTool.hxx
 // ./opencascade/IntCurve_IntConicConic_Tool.hxx
     m.def("Determine_Transition_LC", 
           (void (*)( const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const Standard_Real  ))  static_cast<void (*)( const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const IntRes2d_Position ,  gp_Vec2d & ,  const gp_Vec2d & ,  IntRes2d_Transition & ,  const Standard_Real  )>(&Determine_Transition_LC),
@@ -397,7 +411,13 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurve"));
     m.def("NormalizeOnCircleDomain", 
           (Standard_Real (*)( const Standard_Real ,  const IntRes2d_Domain &  ))  static_cast<Standard_Real (*)( const Standard_Real ,  const IntRes2d_Domain &  )>(&NormalizeOnCircleDomain),
           R"#(None)#"  , py::arg("Param"),  py::arg("Domain"));
+// ./opencascade/IntCurve_IntConicConic.hxx
+// ./opencascade/IntCurve_ProjectOnPConicTool.hxx
 // ./opencascade/IntCurve_PConic.hxx
+// ./opencascade/IntCurve_MyImpParToolOfIntImpConicParConic.hxx
+// ./opencascade/IntCurve_IntImpConicParConic.hxx
+// ./opencascade/IntCurve_PConicTool.hxx
+// ./opencascade/IntCurve_IConicTool.hxx
 
 // operators
 

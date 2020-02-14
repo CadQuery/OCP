@@ -12,14 +12,14 @@ namespace py = pybind11;
 // includes to resolve forward declarations
 
 // module includes
-#include <RWStl_Reader.hxx>
 #include <RWStl.hxx>
+#include <RWStl_Reader.hxx>
 
 // user-defined pre
 #include "OCP_specific.inc"
 
 // Class template handling functions
-// ./opencascade/RWStl_Reader.hxx
 // ./opencascade/RWStl.hxx
+// ./opencascade/RWStl_Reader.hxx
 
 // user-defined post

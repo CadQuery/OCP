@@ -47,7 +47,9 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurvesFace"));
 
 
     static_cast<py::class_<IntCurvesFace_Intersector , shared_ptr<IntCurvesFace_Intersector>  >>(m.attr("IntCurvesFace_Intersector"))
+    // constructors
         .def(py::init< const TopoDS_Face &,const Standard_Real,const Standard_Boolean,const Standard_Boolean >()  , py::arg("F"),  py::arg("aTol"),  py::arg("aRestr")=static_cast<const Standard_Boolean>(Standard_True),  py::arg("UseBToler")=static_cast<const Standard_Boolean>(Standard_True) )
+    // custom constructors
     // methods
         .def("Perform",
              (void (IntCurvesFace_Intersector::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<void (IntCurvesFace_Intersector::*)( const gp_Lin & ,  const Standard_Real ,  const Standard_Real  ) >(&IntCurvesFace_Intersector::Perform),
@@ -137,12 +139,14 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurvesFace"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<IntCurvesFace_ShapeIntersector , shared_ptr<IntCurvesFace_ShapeIntersector>  >>(m.attr("IntCurvesFace_ShapeIntersector"))
+    // constructors
         .def(py::init<  >()  )
+    // custom constructors
     // methods
         .def("Load",
              (void (IntCurvesFace_ShapeIntersector::*)( const TopoDS_Shape & ,  const Standard_Real  ) ) static_cast<void (IntCurvesFace_ShapeIntersector::*)( const TopoDS_Shape & ,  const Standard_Real  ) >(&IntCurvesFace_ShapeIntersector::Load),
@@ -220,7 +224,7 @@ py::module m = static_cast<py::module>(main_module.attr("IntCurvesFace"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

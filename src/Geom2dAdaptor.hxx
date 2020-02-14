@@ -26,8 +26,8 @@ namespace py = pybind11;
 
 // module includes
 #include <Geom2dAdaptor_Curve.hxx>
-#include <Geom2dAdaptor.hxx>
 #include <Geom2dAdaptor_HCurve.hxx>
+#include <Geom2dAdaptor.hxx>
 #include <Geom2dAdaptor_GHCurve.hxx>
 
 // user-defined pre
@@ -35,8 +35,8 @@ namespace py = pybind11;
 
 // Class template handling functions
 // ./opencascade/Geom2dAdaptor_Curve.hxx
-// ./opencascade/Geom2dAdaptor.hxx
 // ./opencascade/Geom2dAdaptor_HCurve.hxx
+// ./opencascade/Geom2dAdaptor.hxx
 // ./opencascade/Geom2dAdaptor_GHCurve.hxx
 
 // user-defined post

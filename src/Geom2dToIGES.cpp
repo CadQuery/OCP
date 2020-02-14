@@ -51,8 +51,10 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
 
 
     static_cast<py::class_<Geom2dToIGES_Geom2dEntity , shared_ptr<Geom2dToIGES_Geom2dEntity>  >>(m.attr("Geom2dToIGES_Geom2dEntity"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("GE") )
+    // custom constructors
     // methods
         .def("SetModel",
              (void (Geom2dToIGES_Geom2dEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) ) static_cast<void (Geom2dToIGES_Geom2dEntity::*)( const opencascade::handle<IGESData_IGESModel> &  ) >(&Geom2dToIGES_Geom2dEntity::SetModel),
@@ -70,13 +72,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dToIGES_Geom2dCurve , shared_ptr<Geom2dToIGES_Geom2dCurve>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dCurve"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
+    // custom constructors
     // methods
         .def("Transfer2dCurve",
              (opencascade::handle<IGESData_IGESEntity> (Geom2dToIGES_Geom2dCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real  ) ) static_cast<opencascade::handle<IGESData_IGESEntity> (Geom2dToIGES_Geom2dCurve::*)( const opencascade::handle<Geom2d_Curve> & ,  const Standard_Real ,  const Standard_Real  ) >(&Geom2dToIGES_Geom2dCurve::Transfer2dCurve),
@@ -85,13 +89,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dToIGES_Geom2dPoint , shared_ptr<Geom2dToIGES_Geom2dPoint>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dPoint"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
+    // custom constructors
     // methods
         .def("Transfer2dPoint",
              (opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_Point> &  ) ) static_cast<opencascade::handle<IGESGeom_Point> (Geom2dToIGES_Geom2dPoint::*)( const opencascade::handle<Geom2d_Point> &  ) >(&Geom2dToIGES_Geom2dPoint::Transfer2dPoint),
@@ -103,13 +109,15 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<Geom2dToIGES_Geom2dVector , shared_ptr<Geom2dToIGES_Geom2dVector>  , Geom2dToIGES_Geom2dEntity >>(m.attr("Geom2dToIGES_Geom2dVector"))
+    // constructors
         .def(py::init<  >()  )
         .def(py::init< const Geom2dToIGES_Geom2dEntity & >()  , py::arg("G2dE") )
+    // custom constructors
     // methods
         .def("Transfer2dVector",
              (opencascade::handle<IGESGeom_Direction> (Geom2dToIGES_Geom2dVector::*)( const opencascade::handle<Geom2d_Vector> &  ) ) static_cast<opencascade::handle<IGESGeom_Direction> (Geom2dToIGES_Geom2dVector::*)( const opencascade::handle<Geom2d_Vector> &  ) >(&Geom2dToIGES_Geom2dVector::Transfer2dVector),
@@ -124,7 +132,7 @@ py::module m = static_cast<py::module>(main_module.attr("Geom2dToIGES"));
     // static methods
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions

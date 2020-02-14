@@ -38,6 +38,7 @@ py::module m = static_cast<py::module>(main_module.attr("RWStl"));
     public:
         using RWStl_Reader::RWStl_Reader;
         
+        
         // public pure virtual
         Standard_Integer AddNode(const gp_XYZ & thePnt) override { PYBIND11_OVERLOAD_PURE(Standard_Integer,RWStl_Reader,AddNode,thePnt) };
         void AddTriangle(Standard_Integer theN1,Standard_Integer theN2,Standard_Integer theN3) override { PYBIND11_OVERLOAD_PURE(void,RWStl_Reader,AddTriangle,theN1,theN2,theN3) };
@@ -52,9 +53,12 @@ py::module m = static_cast<py::module>(main_module.attr("RWStl"));
 
 // classes
 
+    // default constructor
     register_default_constructor<RWStl , shared_ptr<RWStl>>(m,"RWStl");
 
     static_cast<py::class_<RWStl , shared_ptr<RWStl>  >>(m.attr("RWStl"))
+    // constructors
+    // custom constructors
     // methods
     // methods using call by reference i.s.o. return
     // static methods
@@ -78,11 +82,13 @@ py::module m = static_cast<py::module>(main_module.attr("RWStl"));
                     R"#(Read triangulation from an Ascii STL file In case of error, returns Null handle.)#"  , py::arg("thePath"),  py::arg("theProgInd")=static_cast<const opencascade::handle<Message_ProgressIndicator> &>(Handle ( Message_ProgressIndicator ) ( )))
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 
     static_cast<py::class_<RWStl_Reader ,opencascade::handle<RWStl_Reader> ,Py_RWStl_Reader , Standard_Transient >>(m.attr("RWStl_Reader"))
+    // constructors
+    // custom constructors
     // methods
         .def("DynamicType",
              (const opencascade::handle<Standard_Type> & (RWStl_Reader::*)() const) static_cast<const opencascade::handle<Standard_Type> & (RWStl_Reader::*)() const>(&RWStl_Reader::DynamicType),
@@ -112,12 +118,12 @@ py::module m = static_cast<py::module>(main_module.attr("RWStl"));
                     R"#(None)#" )
     // static methods using call by reference i.s.o. return
     // operators
-    // Additional methods
+    // additional methods and static methods
 ;
 
 // functions
-// ./opencascade/RWStl_Reader.hxx
 // ./opencascade/RWStl.hxx
+// ./opencascade/RWStl_Reader.hxx
 
 // operators
 
