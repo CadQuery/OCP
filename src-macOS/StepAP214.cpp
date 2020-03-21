@@ -1,0 +1,1953 @@
+
+// std lib related includes
+#include <tuple>
+
+// pybind 11 related includes
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
+
+namespace py = pybind11;
+
+
+// Standard Handle
+#include <Standard_Handle.hxx>
+
+
+// includes to resolve forward declarations
+#include <StepBasic_Approval.hxx>
+#include <StepBasic_DocumentRelationship.hxx>
+#include <StepRepr_ExternallyDefinedRepresentation.hxx>
+#include <StepRepr_MappedItem.hxx>
+#include <StepRepr_MaterialDesignation.hxx>
+#include <StepVisual_PresentationArea.hxx>
+#include <StepVisual_PresentationView.hxx>
+#include <StepBasic_ProductCategory.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <StepRepr_PropertyDefinition.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_RepresentationRelationship.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepBasic_ApprovalPersonOrganization.hxx>
+#include <StepAP214_AppliedPersonAndOrganizationAssignment.hxx>
+#include <StepAP214_AppliedOrganizationAssignment.hxx>
+#include <StepGeom_GeometricRepresentationItem.hxx>
+#include <StepBasic_GroupRelationship.hxx>
+#include <StepRepr_MappedItem.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepRepr_PropertyDefinitionRepresentation.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <StepRepr_RepresentationRelationshipWithTransformation.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepRepr_ShapeAspectRelationship.hxx>
+#include <StepRepr_ShapeRepresentationRelationship.hxx>
+#include <StepVisual_StyledItem.hxx>
+#include <StepShape_TopologicalRepresentationItem.hxx>
+#include <StepBasic_Product.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <StepBasic_ProductDefinitionWithAssociatedDocuments.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_ExternallyDefinedRepresentation.hxx>
+#include <StepAP214_AutoDesignDocumentReference.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_IdentificationRole.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <StepAP214_Protocol.hxx>
+#include <StepAP214_AutoDesignDateAndPersonItem.hxx>
+#include <StepAP214_AutoDesignDateAndTimeItem.hxx>
+#include <StepAP214_AutoDesignDatedItem.hxx>
+#include <StepAP214_AutoDesignGeneralOrgItem.hxx>
+#include <StepAP214_AutoDesignOrganizationItem.hxx>
+#include <StepAP214_AutoDesignGroupedItem.hxx>
+#include <StepAP214_AutoDesignPresentedItemSelect.hxx>
+#include <StepAP214_AutoDesignReferencingItem.hxx>
+#include <StepAP214_DateAndTimeItem.hxx>
+#include <StepAP214_DateItem.hxx>
+#include <StepAP214_ApprovalItem.hxx>
+#include <StepAP214_OrganizationItem.hxx>
+#include <StepAP214_DocumentReferenceItem.hxx>
+#include <StepAP214_GroupItem.hxx>
+#include <StepAP214_PersonAndOrganizationItem.hxx>
+#include <StepAP214_PresentedItemSelect.hxx>
+#include <StepAP214_SecurityClassificationItem.hxx>
+#include <StepAP214_Protocol.hxx>
+#include <StepAP214_AutoDesignApprovalAssignment.hxx>
+#include <StepAP214_AutoDesignActualDateAndTimeAssignment.hxx>
+#include <StepAP214_AutoDesignNominalDateAndTimeAssignment.hxx>
+#include <StepAP214_AutoDesignActualDateAssignment.hxx>
+#include <StepAP214_AutoDesignNominalDateAssignment.hxx>
+#include <StepAP214_AutoDesignGroupAssignment.hxx>
+#include <StepAP214_AutoDesignOrganizationAssignment.hxx>
+#include <StepAP214_AutoDesignDateAndPersonAssignment.hxx>
+#include <StepAP214_AutoDesignPersonAndOrganizationAssignment.hxx>
+#include <StepAP214_AutoDesignPresentedItem.hxx>
+#include <StepAP214_AutoDesignSecurityClassificationAssignment.hxx>
+#include <StepAP214_AutoDesignDocumentReference.hxx>
+#include <StepAP214_AppliedApprovalAssignment.hxx>
+#include <StepAP214_AppliedDateAndTimeAssignment.hxx>
+#include <StepAP214_AppliedDateAssignment.hxx>
+#include <StepAP214_AppliedGroupAssignment.hxx>
+#include <StepAP214_AppliedOrganizationAssignment.hxx>
+#include <StepAP214_AppliedPersonAndOrganizationAssignment.hxx>
+#include <StepAP214_AppliedPresentedItem.hxx>
+#include <StepAP214_AppliedSecurityClassificationAssignment.hxx>
+#include <StepAP214_AppliedDocumentReference.hxx>
+#include <StepAP214_AppliedExternalIdentificationAssignment.hxx>
+#include <StepAP214_Class.hxx>
+#include <StepAP214_ExternalIdentificationItem.hxx>
+#include <StepAP214_ExternallyDefinedClass.hxx>
+#include <StepAP214_ExternallyDefinedGeneralProperty.hxx>
+#include <StepAP214_RepItemGroup.hxx>
+#include <StepRepr_AssemblyComponentUsageSubstitute.hxx>
+#include <StepBasic_DocumentFile.hxx>
+#include <StepRepr_MaterialDesignation.hxx>
+#include <StepVisual_MechanicalDesignGeometricPresentationRepresentation.hxx>
+#include <StepVisual_PresentationArea.hxx>
+#include <StepBasic_Product.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <StepRepr_PropertyDefinition.hxx>
+#include <StepShape_ShapeRepresentation.hxx>
+#include <StepBasic_SecurityClassification.hxx>
+#include <StepRepr_ConfigurationItem.hxx>
+#include <StepBasic_Date.hxx>
+#include <StepBasic_Document.hxx>
+#include <StepBasic_Effectivity.hxx>
+#include <StepBasic_Group.hxx>
+#include <StepBasic_GroupRelationship.hxx>
+#include <StepBasic_ProductDefinitionFormationRelationship.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_ShapeAspectRelationship.hxx>
+#include <StepBasic_Organization.hxx>
+#include <StepBasic_OrganizationRole.hxx>
+#include <StepBasic_SecurityClassification.hxx>
+#include <StepBasic_SecurityClassification.hxx>
+#include <StepBasic_ApprovalPersonOrganization.hxx>
+#include <StepAP214_AutoDesignDateAndPersonAssignment.hxx>
+#include <StepBasic_ProductDefinitionEffectivity.hxx>
+#include <StepAP214_AutoDesignOrganizationAssignment.hxx>
+#include <StepBasic_Product.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_ProductDefinitionFormation.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepAP214_AutoDesignDocumentReference.hxx>
+#include <StepRepr_ExternallyDefinedRepresentation.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <StepBasic_ProductDefinitionWithAssociatedDocuments.hxx>
+#include <StepBasic_Date.hxx>
+#include <StepBasic_DateRole.hxx>
+#include <StepBasic_Document.hxx>
+#include <StepBasic_PhysicallyModeledProductDefinition.hxx>
+#include <StepBasic_Document.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Action.hxx>
+#include <StepRepr_AssemblyComponentUsage.hxx>
+#include <StepRepr_ConfigurationDesign.hxx>
+#include <StepRepr_ConfigurationEffectivity.hxx>
+#include <StepVisual_DraughtingModel.hxx>
+#include <StepBasic_GeneralProperty.hxx>
+#include <StepRepr_MakeFromUsageOption.hxx>
+#include <StepRepr_ProductConcept.hxx>
+#include <StepRepr_ProductDefinitionUsage.hxx>
+#include <StepBasic_VersionedActionRequest.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepRepr_DescriptiveRepresentationItem.hxx>
+#include <StepRepr_MaterialDesignation.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <StepRepr_PropertyDefinition.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepRepr_ShapeAspectRelationship.hxx>
+#include <StepAP214_AppliedExternalIdentificationAssignment.hxx>
+#include <StepRepr_AssemblyComponentUsage.hxx>
+#include <StepBasic_CharacterizedObject.hxx>
+#include <StepShape_DimensionalSize.hxx>
+#include <StepBasic_ExternallyDefinedItem.hxx>
+#include <StepBasic_Group.hxx>
+#include <StepBasic_GroupRelationship.hxx>
+#include <StepBasic_ProductCategory.hxx>
+#include <StepRepr_MeasureRepresentationItem.hxx>
+#include <StepBasic_ProductDefinitionContext.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepAP214_AppliedOrganizationAssignment.hxx>
+#include <StepAP214_AppliedSecurityClassificationAssignment.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepAP214_AppliedOrganizationAssignment.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepAP214_AppliedSecurityClassificationAssignment.hxx>
+#include <StepShape_AdvancedBrepShapeRepresentation.hxx>
+#include <StepShape_CsgShapeRepresentation.hxx>
+#include <StepShape_FacetedBrepShapeRepresentation.hxx>
+#include <StepShape_GeometricallyBoundedSurfaceShapeRepresentation.hxx>
+#include <StepShape_GeometricallyBoundedWireframeShapeRepresentation.hxx>
+#include <StepShape_ManifoldSurfaceShapeRepresentation.hxx>
+#include <StepRepr_Representation.hxx>
+#include <StepRepr_RepresentationItem.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepShape_ShapeRepresentation.hxx>
+#include <StepVisual_TemplateInstance.hxx>
+#include <StepBasic_PersonAndOrganization.hxx>
+#include <StepBasic_PersonAndOrganizationRole.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepRepr_ProductDefinitionShape.hxx>
+#include <StepRepr_RepresentationRelationship.hxx>
+#include <StepRepr_ShapeAspect.hxx>
+#include <StepBasic_DocumentRelationship.hxx>
+#include <StepBasic_Date.hxx>
+#include <StepBasic_DateRole.hxx>
+#include <StepBasic_Organization.hxx>
+#include <StepBasic_OrganizationRole.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepBasic_ApprovalPersonOrganization.hxx>
+#include <StepAP214_AutoDesignDateAndPersonAssignment.hxx>
+#include <StepBasic_ProductDefinitionEffectivity.hxx>
+#include <StepBasic_DateAndTime.hxx>
+#include <StepBasic_DateTimeRole.hxx>
+#include <StepBasic_DateAndTime.hxx>
+#include <StepBasic_DateTimeRole.hxx>
+#include <StepBasic_ExternallyDefinedItem.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_SourceItem.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <StepBasic_ExternallyDefinedItem.hxx>
+#include <TCollection_HAsciiString.hxx>
+#include <StepBasic_SourceItem.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <StepBasic_DateAndTime.hxx>
+#include <StepBasic_DateTimeRole.hxx>
+#include <StepBasic_ApprovalPersonOrganization.hxx>
+#include <StepAP214_AppliedPersonAndOrganizationAssignment.hxx>
+#include <StepAP214_AppliedOrganizationAssignment.hxx>
+#include <StepAP214_AppliedSecurityClassificationAssignment.hxx>
+#include <StepBasic_Date.hxx>
+#include <StepBasic_DateRole.hxx>
+#include <StepBasic_DocumentFile.hxx>
+#include <StepAP214_AppliedOrganizationAssignment.hxx>
+#include <StepAP214_AppliedPersonAndOrganizationAssignment.hxx>
+#include <StepAP214_ExternallyDefinedClass.hxx>
+#include <StepAP214_ExternallyDefinedGeneralProperty.hxx>
+#include <StepBasic_Approval.hxx>
+#include <StepBasic_ApprovalStatus.hxx>
+#include <StepBasic_ExternalSource.hxx>
+#include <StepBasic_OrganizationalAddress.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_SecurityClassification.hxx>
+#include <StepBasic_VersionedActionRequest.hxx>
+#include <StepGeom_TrimmedCurve.hxx>
+#include <StepBasic_DateAndTimeAssignment.hxx>
+#include <StepBasic_DateAssignment.hxx>
+#include <StepBasic_Group.hxx>
+#include <StepBasic_PersonAndOrganization.hxx>
+#include <StepBasic_PersonAndOrganizationRole.hxx>
+#include <StepBasic_ProductDefinitionRelationship.hxx>
+#include <StepBasic_ProductDefinition.hxx>
+#include <StepBasic_PersonAndOrganization.hxx>
+#include <StepBasic_PersonAndOrganizationRole.hxx>
+#include <StepBasic_Group.hxx>
+#include <StepBasic_Document.hxx>
+#include <TCollection_HAsciiString.hxx>
+
+// module includes
+#include <StepAP214.hxx>
+#include <StepAP214_AppliedApprovalAssignment.hxx>
+#include <StepAP214_AppliedDateAndTimeAssignment.hxx>
+#include <StepAP214_AppliedDateAssignment.hxx>
+#include <StepAP214_AppliedDocumentReference.hxx>
+#include <StepAP214_AppliedExternalIdentificationAssignment.hxx>
+#include <StepAP214_AppliedGroupAssignment.hxx>
+#include <StepAP214_AppliedOrganizationAssignment.hxx>
+#include <StepAP214_AppliedPersonAndOrganizationAssignment.hxx>
+#include <StepAP214_AppliedPresentedItem.hxx>
+#include <StepAP214_AppliedSecurityClassificationAssignment.hxx>
+#include <StepAP214_ApprovalItem.hxx>
+#include <StepAP214_Array1OfApprovalItem.hxx>
+#include <StepAP214_Array1OfAutoDesignDateAndPersonItem.hxx>
+#include <StepAP214_Array1OfAutoDesignDateAndTimeItem.hxx>
+#include <StepAP214_Array1OfAutoDesignDatedItem.hxx>
+#include <StepAP214_Array1OfAutoDesignGeneralOrgItem.hxx>
+#include <StepAP214_Array1OfAutoDesignGroupedItem.hxx>
+#include <StepAP214_Array1OfAutoDesignPresentedItemSelect.hxx>
+#include <StepAP214_Array1OfAutoDesignReferencingItem.hxx>
+#include <StepAP214_Array1OfDateAndTimeItem.hxx>
+#include <StepAP214_Array1OfDateItem.hxx>
+#include <StepAP214_Array1OfDocumentReferenceItem.hxx>
+#include <StepAP214_Array1OfExternalIdentificationItem.hxx>
+#include <StepAP214_Array1OfGroupItem.hxx>
+#include <StepAP214_Array1OfOrganizationItem.hxx>
+#include <StepAP214_Array1OfPersonAndOrganizationItem.hxx>
+#include <StepAP214_Array1OfPresentedItemSelect.hxx>
+#include <StepAP214_Array1OfSecurityClassificationItem.hxx>
+#include <StepAP214_AutoDesignActualDateAndTimeAssignment.hxx>
+#include <StepAP214_AutoDesignActualDateAssignment.hxx>
+#include <StepAP214_AutoDesignApprovalAssignment.hxx>
+#include <StepAP214_AutoDesignDateAndPersonAssignment.hxx>
+#include <StepAP214_AutoDesignDateAndPersonItem.hxx>
+#include <StepAP214_AutoDesignDateAndTimeItem.hxx>
+#include <StepAP214_AutoDesignDatedItem.hxx>
+#include <StepAP214_AutoDesignDocumentReference.hxx>
+#include <StepAP214_AutoDesignGeneralOrgItem.hxx>
+#include <StepAP214_AutoDesignGroupAssignment.hxx>
+#include <StepAP214_AutoDesignGroupedItem.hxx>
+#include <StepAP214_AutoDesignNominalDateAndTimeAssignment.hxx>
+#include <StepAP214_AutoDesignNominalDateAssignment.hxx>
+#include <StepAP214_AutoDesignOrganizationAssignment.hxx>
+#include <StepAP214_AutoDesignOrganizationItem.hxx>
+#include <StepAP214_AutoDesignPersonAndOrganizationAssignment.hxx>
+#include <StepAP214_AutoDesignPresentedItem.hxx>
+#include <StepAP214_AutoDesignPresentedItemSelect.hxx>
+#include <StepAP214_AutoDesignReferencingItem.hxx>
+#include <StepAP214_AutoDesignSecurityClassificationAssignment.hxx>
+#include <StepAP214_Class.hxx>
+#include <StepAP214_DateAndTimeItem.hxx>
+#include <StepAP214_DateItem.hxx>
+#include <StepAP214_DocumentReferenceItem.hxx>
+#include <StepAP214_ExternalIdentificationItem.hxx>
+#include <StepAP214_ExternallyDefinedClass.hxx>
+#include <StepAP214_ExternallyDefinedGeneralProperty.hxx>
+#include <StepAP214_GroupItem.hxx>
+#include <StepAP214_HArray1OfApprovalItem.hxx>
+#include <StepAP214_HArray1OfAutoDesignDateAndPersonItem.hxx>
+#include <StepAP214_HArray1OfAutoDesignDateAndTimeItem.hxx>
+#include <StepAP214_HArray1OfAutoDesignDatedItem.hxx>
+#include <StepAP214_HArray1OfAutoDesignGeneralOrgItem.hxx>
+#include <StepAP214_HArray1OfAutoDesignGroupedItem.hxx>
+#include <StepAP214_HArray1OfAutoDesignPresentedItemSelect.hxx>
+#include <StepAP214_HArray1OfAutoDesignReferencingItem.hxx>
+#include <StepAP214_HArray1OfDateAndTimeItem.hxx>
+#include <StepAP214_HArray1OfDateItem.hxx>
+#include <StepAP214_HArray1OfDocumentReferenceItem.hxx>
+#include <StepAP214_HArray1OfExternalIdentificationItem.hxx>
+#include <StepAP214_HArray1OfGroupItem.hxx>
+#include <StepAP214_HArray1OfOrganizationItem.hxx>
+#include <StepAP214_HArray1OfPersonAndOrganizationItem.hxx>
+#include <StepAP214_HArray1OfPresentedItemSelect.hxx>
+#include <StepAP214_HArray1OfSecurityClassificationItem.hxx>
+#include <StepAP214_OrganizationItem.hxx>
+#include <StepAP214_PersonAndOrganizationItem.hxx>
+#include <StepAP214_PresentedItemSelect.hxx>
+#include <StepAP214_Protocol.hxx>
+#include <StepAP214_RepItemGroup.hxx>
+#include <StepAP214_SecurityClassificationItem.hxx>
+
+// template related includes
+// ./opencascade/StepAP214_Array1OfAutoDesignPresentedItemSelect.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfExternalIdentificationItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfAutoDesignDateAndPersonItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfSecurityClassificationItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfPersonAndOrganizationItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfPresentedItemSelect.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfAutoDesignReferencingItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfAutoDesignGroupedItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfAutoDesignGeneralOrgItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfDocumentReferenceItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfDateItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfGroupItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfOrganizationItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfApprovalItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfAutoDesignDateAndTimeItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfDateAndTimeItem.hxx
+#include "NCollection_tmpl.hxx"
+// ./opencascade/StepAP214_Array1OfAutoDesignDatedItem.hxx
+#include "NCollection_tmpl.hxx"
+
+
+// user-defined pre
+#include "OCP_specific.inc"
+
+// user-defined inclusion per module
+
+// Module definiiton
+void register_StepAP214(py::module &main_module) {
+
+
+py::module m = static_cast<py::module>(main_module.attr("StepAP214"));
+
+
+//Python trampoline classes
+
+// classes
+
+    // default constructor
+    register_default_constructor<StepAP214 , shared_ptr<StepAP214>>(m,"StepAP214");
+
+    static_cast<py::class_<StepAP214 , shared_ptr<StepAP214> >>(m.attr("StepAP214"))
+    // constructors
+    // custom constructors
+    // methods
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedApprovalAssignment ,opencascade::handle<StepAP214_AppliedApprovalAssignment> , StepBasic_ApprovalAssignment>>(m.attr("StepAP214_AppliedApprovalAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedApprovalAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedApprovalAssignment::*)() const>(&StepAP214_AppliedApprovalAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedApprovalAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedDateAndTimeAssignment ,opencascade::handle<StepAP214_AppliedDateAndTimeAssignment> , StepBasic_DateAndTimeAssignment>>(m.attr("StepAP214_AppliedDateAndTimeAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedDateAndTimeAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedDateAndTimeAssignment::*)() const>(&StepAP214_AppliedDateAndTimeAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedDateAndTimeAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedDateAssignment ,opencascade::handle<StepAP214_AppliedDateAssignment> , StepBasic_DateAssignment>>(m.attr("StepAP214_AppliedDateAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedDateAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedDateAssignment::*)() const>(&StepAP214_AppliedDateAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedDateAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedDocumentReference ,opencascade::handle<StepAP214_AppliedDocumentReference> , StepBasic_DocumentReference>>(m.attr("StepAP214_AppliedDocumentReference"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedDocumentReference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedDocumentReference::*)() const>(&StepAP214_AppliedDocumentReference::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedDocumentReference::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedExternalIdentificationAssignment ,opencascade::handle<StepAP214_AppliedExternalIdentificationAssignment> , StepBasic_ExternalIdentificationAssignment>>(m.attr("StepAP214_AppliedExternalIdentificationAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedExternalIdentificationAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedExternalIdentificationAssignment::*)() const>(&StepAP214_AppliedExternalIdentificationAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedExternalIdentificationAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedGroupAssignment ,opencascade::handle<StepAP214_AppliedGroupAssignment> , StepBasic_GroupAssignment>>(m.attr("StepAP214_AppliedGroupAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedGroupAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedGroupAssignment::*)() const>(&StepAP214_AppliedGroupAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedGroupAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedOrganizationAssignment ,opencascade::handle<StepAP214_AppliedOrganizationAssignment> , StepBasic_OrganizationAssignment>>(m.attr("StepAP214_AppliedOrganizationAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedOrganizationAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedOrganizationAssignment::*)() const>(&StepAP214_AppliedOrganizationAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedOrganizationAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedPersonAndOrganizationAssignment ,opencascade::handle<StepAP214_AppliedPersonAndOrganizationAssignment> , StepBasic_PersonAndOrganizationAssignment>>(m.attr("StepAP214_AppliedPersonAndOrganizationAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedPersonAndOrganizationAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedPersonAndOrganizationAssignment::*)() const>(&StepAP214_AppliedPersonAndOrganizationAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedPersonAndOrganizationAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedPresentedItem ,opencascade::handle<StepAP214_AppliedPresentedItem> , StepVisual_PresentedItem>>(m.attr("StepAP214_AppliedPresentedItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedPresentedItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedPresentedItem::*)() const>(&StepAP214_AppliedPresentedItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedPresentedItem::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AppliedSecurityClassificationAssignment ,opencascade::handle<StepAP214_AppliedSecurityClassificationAssignment> , StepBasic_SecurityClassificationAssignment>>(m.attr("StepAP214_AppliedSecurityClassificationAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AppliedSecurityClassificationAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AppliedSecurityClassificationAssignment::*)() const>(&StepAP214_AppliedSecurityClassificationAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AppliedSecurityClassificationAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_ApprovalItem , shared_ptr<StepAP214_ApprovalItem> , StepData_SelectType>>(m.attr("StepAP214_ApprovalItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_ApprovalItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_ApprovalItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_ApprovalItem::CaseNum),
+             R"#(Recognizes a ApprovalItem Kind Entity that is : 1 -> AssemblyComponentUsageSubstitute 2 -> DocumentFile 3 -> MaterialDesignation 4 -> MechanicalDesignGeometricPresentationRepresentation 5 -> PresentationArea 6 -> Product 7 -> ProductDefinition 8 -> ProductDefinitionFormation 9 -> ProductDefinitionRelationship 10 -> PropertyDefinition 11 -> ShapeRepresentation 12 -> SecurityClassification 13 -> ConfigurationItem 14 -> Date 15 -> Document 16 -> Effectivity 17 -> Group 18 -> GroupRelationship 19 -> ProductDefinitionFormationRelationship 20 -> Representation 21 -> ShapeAspectRelationship 0 else)#"  , py::arg("ent"))
+        .def("AssemblyComponentUsageSubstitute",
+             (opencascade::handle<StepRepr_AssemblyComponentUsageSubstitute> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepRepr_AssemblyComponentUsageSubstitute> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::AssemblyComponentUsageSubstitute),
+             R"#(returns Value as a AssemblyComponentUsageSubstitute (Null if another type))#" )
+        .def("DocumentFile",
+             (opencascade::handle<StepBasic_DocumentFile> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_DocumentFile> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::DocumentFile),
+             R"#(returns Value as a DocumentFile (Null if another type))#" )
+        .def("MaterialDesignation",
+             (opencascade::handle<StepRepr_MaterialDesignation> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepRepr_MaterialDesignation> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::MaterialDesignation),
+             R"#(returns Value as a MaterialDesignation (Null if another type))#" )
+        .def("MechanicalDesignGeometricPresentationRepresentation",
+             (opencascade::handle<StepVisual_MechanicalDesignGeometricPresentationRepresentation> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepVisual_MechanicalDesignGeometricPresentationRepresentation> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::MechanicalDesignGeometricPresentationRepresentation),
+             R"#(returns Value as a MechanicalDesignGeometricPresentationRepresentation (Null if another type))#" )
+        .def("PresentationArea",
+             (opencascade::handle<StepVisual_PresentationArea> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepVisual_PresentationArea> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::PresentationArea),
+             R"#(returns Value as a PresentationArea (Null if another type))#" )
+        .def("Product",
+             (opencascade::handle<StepBasic_Product> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_Product> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::Product),
+             R"#(returns Value as a Product (Null if another type))#" )
+        .def("ProductDefinition",
+             (opencascade::handle<StepBasic_ProductDefinition> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_ProductDefinition> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::ProductDefinition),
+             R"#(returns Value as a ProductDefinition (Null if another type))#" )
+        .def("ProductDefinitionFormation",
+             (opencascade::handle<StepBasic_ProductDefinitionFormation> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_ProductDefinitionFormation> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::ProductDefinitionFormation),
+             R"#(returns Value as a ProductDefinitionFormation (Null if another type))#" )
+        .def("ProductDefinitionRelationship",
+             (opencascade::handle<StepBasic_ProductDefinitionRelationship> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_ProductDefinitionRelationship> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::ProductDefinitionRelationship),
+             R"#(returns Value as aProductDefinitionRelationship (Null if another type))#" )
+        .def("PropertyDefinition",
+             (opencascade::handle<StepRepr_PropertyDefinition> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepRepr_PropertyDefinition> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::PropertyDefinition),
+             R"#(returns Value as a PropertyDefinition (Null if another type))#" )
+        .def("ShapeRepresentation",
+             (opencascade::handle<StepShape_ShapeRepresentation> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepShape_ShapeRepresentation> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::ShapeRepresentation),
+             R"#(returns Value as a ShapeRepresentation (Null if another type))#" )
+        .def("SecurityClassification",
+             (opencascade::handle<StepBasic_SecurityClassification> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_SecurityClassification> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::SecurityClassification),
+             R"#(returns Value as a SecurityClassification (Null if another type))#" )
+        .def("ConfigurationItem",
+             (opencascade::handle<StepRepr_ConfigurationItem> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepRepr_ConfigurationItem> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::ConfigurationItem),
+             R"#(returns Value as a ConfigurationItem (Null if another type))#" )
+        .def("Date",
+             (opencascade::handle<StepBasic_Date> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_Date> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::Date),
+             R"#(returns Value as a Date (Null if another type))#" )
+        .def("Document",
+             (opencascade::handle<StepBasic_Document> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_Document> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::Document),
+             R"#(returns Value as a Document (Null if another type))#" )
+        .def("Effectivity",
+             (opencascade::handle<StepBasic_Effectivity> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_Effectivity> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::Effectivity),
+             R"#(returns Value as a Effectivity (Null if another type))#" )
+        .def("Group",
+             (opencascade::handle<StepBasic_Group> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_Group> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::Group),
+             R"#(returns Value as a Group (Null if another type))#" )
+        .def("GroupRelationship",
+             (opencascade::handle<StepBasic_GroupRelationship> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_GroupRelationship> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::GroupRelationship),
+             R"#(returns Value as a GroupRelationship (Null if another type))#" )
+        .def("ProductDefinitionFormationRelationship",
+             (opencascade::handle<StepBasic_ProductDefinitionFormationRelationship> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepBasic_ProductDefinitionFormationRelationship> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::ProductDefinitionFormationRelationship),
+             R"#(returns Value as a ProductDefinitionFormationRelationship (Null if another type))#" )
+        .def("Representation",
+             (opencascade::handle<StepRepr_Representation> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepRepr_Representation> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::Representation),
+             R"#(returns Value as a Representation (Null if another type))#" )
+        .def("ShapeAspectRelationship",
+             (opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP214_ApprovalItem::*)() const) static_cast<opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP214_ApprovalItem::*)() const>(&StepAP214_ApprovalItem::ShapeAspectRelationship),
+             R"#(returns Value as a ShapeAspectRelationship (Null if another type))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignActualDateAndTimeAssignment ,opencascade::handle<StepAP214_AutoDesignActualDateAndTimeAssignment> , StepBasic_DateAndTimeAssignment>>(m.attr("StepAP214_AutoDesignActualDateAndTimeAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignActualDateAndTimeAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignActualDateAndTimeAssignment::*)() const>(&StepAP214_AutoDesignActualDateAndTimeAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignActualDateAndTimeAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignActualDateAssignment ,opencascade::handle<StepAP214_AutoDesignActualDateAssignment> , StepBasic_DateAssignment>>(m.attr("StepAP214_AutoDesignActualDateAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignActualDateAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignActualDateAssignment::*)() const>(&StepAP214_AutoDesignActualDateAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignActualDateAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignApprovalAssignment ,opencascade::handle<StepAP214_AutoDesignApprovalAssignment> , StepBasic_ApprovalAssignment>>(m.attr("StepAP214_AutoDesignApprovalAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignApprovalAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignApprovalAssignment::*)() const>(&StepAP214_AutoDesignApprovalAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignApprovalAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignDateAndPersonAssignment ,opencascade::handle<StepAP214_AutoDesignDateAndPersonAssignment> , StepBasic_PersonAndOrganizationAssignment>>(m.attr("StepAP214_AutoDesignDateAndPersonAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignDateAndPersonAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignDateAndPersonAssignment::*)() const>(&StepAP214_AutoDesignDateAndPersonAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignDateAndPersonAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignDateAndPersonItem , shared_ptr<StepAP214_AutoDesignDateAndPersonItem> , StepData_SelectType>>(m.attr("StepAP214_AutoDesignDateAndPersonItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignDateAndPersonItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignDateAndPersonItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignDateAndPersonItem::CaseNum),
+             R"#(Recognizes a AutoDesignDateAndPersonItem Kind Entity that is : 1 AutoDesignOrganizationAssignment from StepAP214, 2 Product from StepBasic, 3 ProductDefinition from StepBasic, 4 ProductDefinitionFormation from StepBasic, 5 Representation from StepRepr, 6 AutoDesignDocumentReference from StepAP214, 7 ExternallyDefinedRepresentation from StepRepr, 8 ProductDefinitionRelationship from StepBasic, 9 ProductDefinitionWithAssociatedDocuments from StepBasic 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignDateAndTimeItem , shared_ptr<StepAP214_AutoDesignDateAndTimeItem> , StepData_SelectType>>(m.attr("StepAP214_AutoDesignDateAndTimeItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignDateAndTimeItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignDateAndTimeItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignDateAndTimeItem::CaseNum),
+             R"#(Recognizes a AutoDesignDateAndTimeItem Kind Entity that is : 1 -> ApprovalPersonOrganization 2 -> AutoDesignDateAndPersonAssignment 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignDatedItem , shared_ptr<StepAP214_AutoDesignDatedItem> , StepData_SelectType>>(m.attr("StepAP214_AutoDesignDatedItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignDatedItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignDatedItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignDatedItem::CaseNum),
+             R"#(Recognizes a AutoDesignDatedItem Kind Entity that is : 1 -> ApprovalPersonOrganization 2 -> AutoDesignDateAndPersonAssignment 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignDocumentReference ,opencascade::handle<StepAP214_AutoDesignDocumentReference> , StepBasic_DocumentReference>>(m.attr("StepAP214_AutoDesignDocumentReference"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignDocumentReference::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignDocumentReference::*)() const>(&StepAP214_AutoDesignDocumentReference::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignDocumentReference::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignGeneralOrgItem , shared_ptr<StepAP214_AutoDesignGeneralOrgItem> , StepData_SelectType>>(m.attr("StepAP214_AutoDesignGeneralOrgItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignGeneralOrgItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignGeneralOrgItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignGeneralOrgItem::CaseNum),
+             R"#(Recognizes a AutoDesignGeneralOrgItem Kind Entity that is : 1 Product from StepBasic, 2 ProductDefinition from StepBasic, 3 ProductDefinitionFormation from StepBasic, 4 ProductDefinitionRelationship from StepBasic, 5 ProductDefinitionWithAssociatedDocuments from StepBasic, 6 Representation from StepRepr 7 ExternallyDefinedRepresentation from StepRepr, 8 AutoDesignDocumentReference from StepAP214, 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignGroupAssignment ,opencascade::handle<StepAP214_AutoDesignGroupAssignment> , StepBasic_GroupAssignment>>(m.attr("StepAP214_AutoDesignGroupAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignGroupAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignGroupAssignment::*)() const>(&StepAP214_AutoDesignGroupAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignGroupAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignGroupedItem , shared_ptr<StepAP214_AutoDesignGroupedItem> , StepData_SelectType>>(m.attr("StepAP214_AutoDesignGroupedItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignGroupedItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignGroupedItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignGroupedItem::CaseNum),
+             R"#(Recognizes a AutoDesignGroupedItem Kind Entity that is : 1 -> AdvancedBrepShapeRepresentation 2 -> CsgShapeRepresentation 3 -> FacetedBrepShapeRepresentation 4 -> GeometricallyBoundedSurfaceShapeRepresentation 5 -> GeometricallyBoundedWireframeShapeRepresentation 6 -> ManifoldSurfaceShapeRepresentation 7 -> Representation 8 -> RepresentationItem 9 -> ShapeAspect 10 -> ShapeRepresentation 11 -> TemplateInstance 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignNominalDateAndTimeAssignment ,opencascade::handle<StepAP214_AutoDesignNominalDateAndTimeAssignment> , StepBasic_DateAndTimeAssignment>>(m.attr("StepAP214_AutoDesignNominalDateAndTimeAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignNominalDateAndTimeAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignNominalDateAndTimeAssignment::*)() const>(&StepAP214_AutoDesignNominalDateAndTimeAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignNominalDateAndTimeAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignNominalDateAssignment ,opencascade::handle<StepAP214_AutoDesignNominalDateAssignment> , StepBasic_DateAssignment>>(m.attr("StepAP214_AutoDesignNominalDateAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignNominalDateAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignNominalDateAssignment::*)() const>(&StepAP214_AutoDesignNominalDateAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignNominalDateAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignOrganizationAssignment ,opencascade::handle<StepAP214_AutoDesignOrganizationAssignment> , StepBasic_OrganizationAssignment>>(m.attr("StepAP214_AutoDesignOrganizationAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignOrganizationAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignOrganizationAssignment::*)() const>(&StepAP214_AutoDesignOrganizationAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignOrganizationAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignPersonAndOrganizationAssignment ,opencascade::handle<StepAP214_AutoDesignPersonAndOrganizationAssignment> , StepBasic_PersonAndOrganizationAssignment>>(m.attr("StepAP214_AutoDesignPersonAndOrganizationAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignPersonAndOrganizationAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignPersonAndOrganizationAssignment::*)() const>(&StepAP214_AutoDesignPersonAndOrganizationAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignPersonAndOrganizationAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignPresentedItem ,opencascade::handle<StepAP214_AutoDesignPresentedItem> , StepVisual_PresentedItem>>(m.attr("StepAP214_AutoDesignPresentedItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignPresentedItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignPresentedItem::*)() const>(&StepAP214_AutoDesignPresentedItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignPresentedItem::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignPresentedItemSelect , shared_ptr<StepAP214_AutoDesignPresentedItemSelect> , StepData_SelectType>>(m.attr("StepAP214_AutoDesignPresentedItemSelect"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignPresentedItemSelect::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignPresentedItemSelect::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignPresentedItemSelect::CaseNum),
+             R"#(Recognizes a AutoDesignPresentedItemSelect Kind Entity that is : 1 -> ProductDefinition, 2 -> ProductDefinitionRelationship, 3 -> ProductDefinitionShape 4 -> RepresentationRelationship 5 -> ShapeAspect 6 -> DocumentRelationship, 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignReferencingItem , shared_ptr<StepAP214_AutoDesignReferencingItem> , StepData_SelectType>>(m.attr("StepAP214_AutoDesignReferencingItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignReferencingItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignReferencingItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignReferencingItem::CaseNum),
+             R"#(Recognizes a AutoDesignReferencingItem Kind Entity that is : 1 Approval from StepBasic, 2 DocumentRelationship from StepBasic, 3 ExternallyDefinedRepresentation from StepRepr, 4 MappedItem from StepRepr, 5 MaterialDesignation from StepRepr, 6 PresentationArea from StepVisual, 7 PresentationView from StepVisual, 8 ProductCategory from StepBasic, 9 ProductDefinition from StepBasic, 10 ProductDefinitionRelationship from StepBasic, 11 PropertyDefinition from StepBasic, 12 Representation from StepRepr, 13 RepresentationRelationship from StepRepr, 14 ShapeAspect from StepRepr 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignSecurityClassificationAssignment ,opencascade::handle<StepAP214_AutoDesignSecurityClassificationAssignment> , StepBasic_SecurityClassificationAssignment>>(m.attr("StepAP214_AutoDesignSecurityClassificationAssignment"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignSecurityClassificationAssignment::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_AutoDesignSecurityClassificationAssignment::*)() const>(&StepAP214_AutoDesignSecurityClassificationAssignment::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_AutoDesignSecurityClassificationAssignment::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_Class ,opencascade::handle<StepAP214_Class> , StepBasic_Group>>(m.attr("StepAP214_Class"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_Class::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_Class::*)() const>(&StepAP214_Class::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_Class::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_DocumentReferenceItem , shared_ptr<StepAP214_DocumentReferenceItem> , StepData_SelectType>>(m.attr("StepAP214_DocumentReferenceItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_DocumentReferenceItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_DocumentReferenceItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_DocumentReferenceItem::CaseNum),
+             R"#(Recognizes a DocumentReferenceItem Kind Entity that is :)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_ExternalIdentificationItem , shared_ptr<StepAP214_ExternalIdentificationItem> , StepData_SelectType>>(m.attr("StepAP214_ExternalIdentificationItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_ExternalIdentificationItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_ExternalIdentificationItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_ExternalIdentificationItem::CaseNum),
+             R"#(Recognizes a kind of ExternalIdentificationItem select type 1 -> DocumentFile from StepBasic 2 -> ExternallyDefinedClass from StepAP214 3 -> ExternallyDefinedGeneralProperty from StepAP214 4 -> ProductDefinition from StepBasic 5 -> AppliedOrganizationAssignment from AP214 6 -> AppliedPersonAndOrganizationAssignment from AP214 7 -> Approval from StepBasic 8 -> ApprovalStatus from StepBasic 9 -> ExternalSource from StepBasic 10 -> OrganizationalAddress from StepBasic 11 -> SecurityClassification from StepBasic 12 -> TrimmedCurve from StepGeom 13 -> VersionedActionRequest from StepBasic 14 -> DateAndTimeAssignment from StepBasic 15 -> DateAssignment from StepBasic 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_ExternallyDefinedGeneralProperty ,opencascade::handle<StepAP214_ExternallyDefinedGeneralProperty> , StepBasic_GeneralProperty>>(m.attr("StepAP214_ExternallyDefinedGeneralProperty"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_ExternallyDefinedGeneralProperty::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_ExternallyDefinedGeneralProperty::*)() const>(&StepAP214_ExternallyDefinedGeneralProperty::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_ExternallyDefinedGeneralProperty::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_GroupItem , shared_ptr<StepAP214_GroupItem> , StepData_SelectType>>(m.attr("StepAP214_GroupItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_GroupItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_GroupItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_GroupItem::CaseNum),
+             R"#(Recognizes a GroupItem Kind Entity that is : 1 -> GeometricRepresentationItem 2 -> GroupRelationship 3 -> MappedItem 4 -> ProductDefinition 5 -> ProductDefinitionFormation 6 -> PropertyDefinitionRepresentation 7 -> Representation 8 -> RepresentationItem 9 -> RepresentationRelationshipWithTransformation 10 -> ShapeAspect 11 -> ShapeAspectRelationship 12 -> ShapeRepresentationRelationship 13 -> StyledItem 14 -> TopologicalRepresentationItem 0 else)#"  , py::arg("ent"))
+        .def("GeometricRepresentationItem",
+             (opencascade::handle<StepGeom_GeometricRepresentationItem> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepGeom_GeometricRepresentationItem> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::GeometricRepresentationItem),
+             R"#(returns Value as a GeometricRepresentationItem (Null if another type))#" )
+        .def("GroupRelationship",
+             (opencascade::handle<StepBasic_GroupRelationship> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepBasic_GroupRelationship> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::GroupRelationship),
+             R"#(returns Value as a GroupRelationship (Null if another type))#" )
+        .def("MappedItem",
+             (opencascade::handle<StepRepr_MappedItem> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_MappedItem> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::MappedItem),
+             R"#(returns Value as a MappedItem (Null if another type))#" )
+        .def("ProductDefinition",
+             (opencascade::handle<StepBasic_ProductDefinition> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepBasic_ProductDefinition> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::ProductDefinition),
+             R"#(returns Value as a ProductDefinition (Null if another type))#" )
+        .def("ProductDefinitionFormation",
+             (opencascade::handle<StepBasic_ProductDefinitionFormation> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepBasic_ProductDefinitionFormation> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::ProductDefinitionFormation),
+             R"#(returns Value as a ProductDefinitionFormation (Null if another type))#" )
+        .def("PropertyDefinitionRepresentation",
+             (opencascade::handle<StepRepr_PropertyDefinitionRepresentation> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_PropertyDefinitionRepresentation> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::PropertyDefinitionRepresentation),
+             R"#(returns Value as a PropertyDefinitionRepresentation (Null if another type))#" )
+        .def("Representation",
+             (opencascade::handle<StepRepr_Representation> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_Representation> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::Representation),
+             R"#(returns Value as a Representation (Null if another type))#" )
+        .def("RepresentationItem",
+             (opencascade::handle<StepRepr_RepresentationItem> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_RepresentationItem> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::RepresentationItem),
+             R"#(returns Value as a RepresentationItem (Null if another type))#" )
+        .def("RepresentationRelationshipWithTransformation",
+             (opencascade::handle<StepRepr_RepresentationRelationshipWithTransformation> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_RepresentationRelationshipWithTransformation> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::RepresentationRelationshipWithTransformation),
+             R"#(returns Value as a RepresentationRelationshipWithTransformation (Null if another type))#" )
+        .def("ShapeAspect",
+             (opencascade::handle<StepRepr_ShapeAspect> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_ShapeAspect> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::ShapeAspect),
+             R"#(returns Value as a ShapeAspect (Null if another type))#" )
+        .def("ShapeAspectRelationship",
+             (opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_ShapeAspectRelationship> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::ShapeAspectRelationship),
+             R"#(returns Value as a ShapeAspectRelationship (Null if another type))#" )
+        .def("ShapeRepresentationRelationship",
+             (opencascade::handle<StepRepr_ShapeRepresentationRelationship> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepRepr_ShapeRepresentationRelationship> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::ShapeRepresentationRelationship),
+             R"#(returns Value as a ShapeRepresentationRelationship (Null if another type))#" )
+        .def("StyledItem",
+             (opencascade::handle<StepVisual_StyledItem> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepVisual_StyledItem> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::StyledItem),
+             R"#(returns Value as a StyledItem (Null if another type))#" )
+        .def("TopologicalRepresentationItem",
+             (opencascade::handle<StepShape_TopologicalRepresentationItem> (StepAP214_GroupItem::*)() const) static_cast<opencascade::handle<StepShape_TopologicalRepresentationItem> (StepAP214_GroupItem::*)() const>(&StepAP214_GroupItem::TopologicalRepresentationItem),
+             R"#(returns Value as a TopologicalRepresentationItem (Null if another type))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfApprovalItem ,opencascade::handle<StepAP214_HArray1OfApprovalItem> , StepAP214_Array1OfApprovalItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfApprovalItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_ApprovalItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_ApprovalItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfApprovalItem & (StepAP214_HArray1OfApprovalItem::*)() const) static_cast<const StepAP214_Array1OfApprovalItem & (StepAP214_HArray1OfApprovalItem::*)() const>(&StepAP214_HArray1OfApprovalItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfApprovalItem & (StepAP214_HArray1OfApprovalItem::*)() ) static_cast<StepAP214_Array1OfApprovalItem & (StepAP214_HArray1OfApprovalItem::*)() >(&StepAP214_HArray1OfApprovalItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfApprovalItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfApprovalItem::*)() const>(&StepAP214_HArray1OfApprovalItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfApprovalItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfApprovalItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfAutoDesignDateAndPersonItem ,opencascade::handle<StepAP214_HArray1OfAutoDesignDateAndPersonItem> , StepAP214_Array1OfAutoDesignDateAndPersonItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfAutoDesignDateAndPersonItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_AutoDesignDateAndPersonItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_AutoDesignDateAndPersonItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfAutoDesignDateAndPersonItem & (StepAP214_HArray1OfAutoDesignDateAndPersonItem::*)() const) static_cast<const StepAP214_Array1OfAutoDesignDateAndPersonItem & (StepAP214_HArray1OfAutoDesignDateAndPersonItem::*)() const>(&StepAP214_HArray1OfAutoDesignDateAndPersonItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfAutoDesignDateAndPersonItem & (StepAP214_HArray1OfAutoDesignDateAndPersonItem::*)() ) static_cast<StepAP214_Array1OfAutoDesignDateAndPersonItem & (StepAP214_HArray1OfAutoDesignDateAndPersonItem::*)() >(&StepAP214_HArray1OfAutoDesignDateAndPersonItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignDateAndPersonItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignDateAndPersonItem::*)() const>(&StepAP214_HArray1OfAutoDesignDateAndPersonItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfAutoDesignDateAndPersonItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfAutoDesignDateAndPersonItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfAutoDesignDateAndTimeItem ,opencascade::handle<StepAP214_HArray1OfAutoDesignDateAndTimeItem> , StepAP214_Array1OfAutoDesignDateAndTimeItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfAutoDesignDateAndTimeItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_AutoDesignDateAndTimeItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_AutoDesignDateAndTimeItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfAutoDesignDateAndTimeItem & (StepAP214_HArray1OfAutoDesignDateAndTimeItem::*)() const) static_cast<const StepAP214_Array1OfAutoDesignDateAndTimeItem & (StepAP214_HArray1OfAutoDesignDateAndTimeItem::*)() const>(&StepAP214_HArray1OfAutoDesignDateAndTimeItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfAutoDesignDateAndTimeItem & (StepAP214_HArray1OfAutoDesignDateAndTimeItem::*)() ) static_cast<StepAP214_Array1OfAutoDesignDateAndTimeItem & (StepAP214_HArray1OfAutoDesignDateAndTimeItem::*)() >(&StepAP214_HArray1OfAutoDesignDateAndTimeItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignDateAndTimeItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignDateAndTimeItem::*)() const>(&StepAP214_HArray1OfAutoDesignDateAndTimeItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfAutoDesignDateAndTimeItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfAutoDesignDateAndTimeItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfAutoDesignDatedItem ,opencascade::handle<StepAP214_HArray1OfAutoDesignDatedItem> , StepAP214_Array1OfAutoDesignDatedItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfAutoDesignDatedItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_AutoDesignDatedItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_AutoDesignDatedItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfAutoDesignDatedItem & (StepAP214_HArray1OfAutoDesignDatedItem::*)() const) static_cast<const StepAP214_Array1OfAutoDesignDatedItem & (StepAP214_HArray1OfAutoDesignDatedItem::*)() const>(&StepAP214_HArray1OfAutoDesignDatedItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfAutoDesignDatedItem & (StepAP214_HArray1OfAutoDesignDatedItem::*)() ) static_cast<StepAP214_Array1OfAutoDesignDatedItem & (StepAP214_HArray1OfAutoDesignDatedItem::*)() >(&StepAP214_HArray1OfAutoDesignDatedItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignDatedItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignDatedItem::*)() const>(&StepAP214_HArray1OfAutoDesignDatedItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfAutoDesignDatedItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfAutoDesignDatedItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfAutoDesignGeneralOrgItem ,opencascade::handle<StepAP214_HArray1OfAutoDesignGeneralOrgItem> , StepAP214_Array1OfAutoDesignGeneralOrgItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfAutoDesignGeneralOrgItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_AutoDesignGeneralOrgItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_AutoDesignGeneralOrgItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfAutoDesignGeneralOrgItem & (StepAP214_HArray1OfAutoDesignGeneralOrgItem::*)() const) static_cast<const StepAP214_Array1OfAutoDesignGeneralOrgItem & (StepAP214_HArray1OfAutoDesignGeneralOrgItem::*)() const>(&StepAP214_HArray1OfAutoDesignGeneralOrgItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfAutoDesignGeneralOrgItem & (StepAP214_HArray1OfAutoDesignGeneralOrgItem::*)() ) static_cast<StepAP214_Array1OfAutoDesignGeneralOrgItem & (StepAP214_HArray1OfAutoDesignGeneralOrgItem::*)() >(&StepAP214_HArray1OfAutoDesignGeneralOrgItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignGeneralOrgItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignGeneralOrgItem::*)() const>(&StepAP214_HArray1OfAutoDesignGeneralOrgItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfAutoDesignGeneralOrgItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfAutoDesignGeneralOrgItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfAutoDesignGroupedItem ,opencascade::handle<StepAP214_HArray1OfAutoDesignGroupedItem> , StepAP214_Array1OfAutoDesignGroupedItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfAutoDesignGroupedItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_AutoDesignGroupedItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_AutoDesignGroupedItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfAutoDesignGroupedItem & (StepAP214_HArray1OfAutoDesignGroupedItem::*)() const) static_cast<const StepAP214_Array1OfAutoDesignGroupedItem & (StepAP214_HArray1OfAutoDesignGroupedItem::*)() const>(&StepAP214_HArray1OfAutoDesignGroupedItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfAutoDesignGroupedItem & (StepAP214_HArray1OfAutoDesignGroupedItem::*)() ) static_cast<StepAP214_Array1OfAutoDesignGroupedItem & (StepAP214_HArray1OfAutoDesignGroupedItem::*)() >(&StepAP214_HArray1OfAutoDesignGroupedItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignGroupedItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignGroupedItem::*)() const>(&StepAP214_HArray1OfAutoDesignGroupedItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfAutoDesignGroupedItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfAutoDesignGroupedItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfAutoDesignPresentedItemSelect ,opencascade::handle<StepAP214_HArray1OfAutoDesignPresentedItemSelect> , StepAP214_Array1OfAutoDesignPresentedItemSelect, Standard_Transient>>(m.attr("StepAP214_HArray1OfAutoDesignPresentedItemSelect"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_AutoDesignPresentedItemSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_AutoDesignPresentedItemSelect> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfAutoDesignPresentedItemSelect & (StepAP214_HArray1OfAutoDesignPresentedItemSelect::*)() const) static_cast<const StepAP214_Array1OfAutoDesignPresentedItemSelect & (StepAP214_HArray1OfAutoDesignPresentedItemSelect::*)() const>(&StepAP214_HArray1OfAutoDesignPresentedItemSelect::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfAutoDesignPresentedItemSelect & (StepAP214_HArray1OfAutoDesignPresentedItemSelect::*)() ) static_cast<StepAP214_Array1OfAutoDesignPresentedItemSelect & (StepAP214_HArray1OfAutoDesignPresentedItemSelect::*)() >(&StepAP214_HArray1OfAutoDesignPresentedItemSelect::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignPresentedItemSelect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignPresentedItemSelect::*)() const>(&StepAP214_HArray1OfAutoDesignPresentedItemSelect::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfAutoDesignPresentedItemSelect::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfAutoDesignPresentedItemSelect::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfAutoDesignReferencingItem ,opencascade::handle<StepAP214_HArray1OfAutoDesignReferencingItem> , StepAP214_Array1OfAutoDesignReferencingItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfAutoDesignReferencingItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_AutoDesignReferencingItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_AutoDesignReferencingItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfAutoDesignReferencingItem & (StepAP214_HArray1OfAutoDesignReferencingItem::*)() const) static_cast<const StepAP214_Array1OfAutoDesignReferencingItem & (StepAP214_HArray1OfAutoDesignReferencingItem::*)() const>(&StepAP214_HArray1OfAutoDesignReferencingItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfAutoDesignReferencingItem & (StepAP214_HArray1OfAutoDesignReferencingItem::*)() ) static_cast<StepAP214_Array1OfAutoDesignReferencingItem & (StepAP214_HArray1OfAutoDesignReferencingItem::*)() >(&StepAP214_HArray1OfAutoDesignReferencingItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignReferencingItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfAutoDesignReferencingItem::*)() const>(&StepAP214_HArray1OfAutoDesignReferencingItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfAutoDesignReferencingItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfAutoDesignReferencingItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfDateAndTimeItem ,opencascade::handle<StepAP214_HArray1OfDateAndTimeItem> , StepAP214_Array1OfDateAndTimeItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfDateAndTimeItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_DateAndTimeItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_DateAndTimeItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfDateAndTimeItem & (StepAP214_HArray1OfDateAndTimeItem::*)() const) static_cast<const StepAP214_Array1OfDateAndTimeItem & (StepAP214_HArray1OfDateAndTimeItem::*)() const>(&StepAP214_HArray1OfDateAndTimeItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfDateAndTimeItem & (StepAP214_HArray1OfDateAndTimeItem::*)() ) static_cast<StepAP214_Array1OfDateAndTimeItem & (StepAP214_HArray1OfDateAndTimeItem::*)() >(&StepAP214_HArray1OfDateAndTimeItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfDateAndTimeItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfDateAndTimeItem::*)() const>(&StepAP214_HArray1OfDateAndTimeItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfDateAndTimeItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfDateAndTimeItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfDateItem ,opencascade::handle<StepAP214_HArray1OfDateItem> , StepAP214_Array1OfDateItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfDateItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_DateItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_DateItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfDateItem & (StepAP214_HArray1OfDateItem::*)() const) static_cast<const StepAP214_Array1OfDateItem & (StepAP214_HArray1OfDateItem::*)() const>(&StepAP214_HArray1OfDateItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfDateItem & (StepAP214_HArray1OfDateItem::*)() ) static_cast<StepAP214_Array1OfDateItem & (StepAP214_HArray1OfDateItem::*)() >(&StepAP214_HArray1OfDateItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfDateItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfDateItem::*)() const>(&StepAP214_HArray1OfDateItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfDateItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfDateItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfDocumentReferenceItem ,opencascade::handle<StepAP214_HArray1OfDocumentReferenceItem> , StepAP214_Array1OfDocumentReferenceItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfDocumentReferenceItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_DocumentReferenceItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_DocumentReferenceItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfDocumentReferenceItem & (StepAP214_HArray1OfDocumentReferenceItem::*)() const) static_cast<const StepAP214_Array1OfDocumentReferenceItem & (StepAP214_HArray1OfDocumentReferenceItem::*)() const>(&StepAP214_HArray1OfDocumentReferenceItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfDocumentReferenceItem & (StepAP214_HArray1OfDocumentReferenceItem::*)() ) static_cast<StepAP214_Array1OfDocumentReferenceItem & (StepAP214_HArray1OfDocumentReferenceItem::*)() >(&StepAP214_HArray1OfDocumentReferenceItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfDocumentReferenceItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfDocumentReferenceItem::*)() const>(&StepAP214_HArray1OfDocumentReferenceItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfDocumentReferenceItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfDocumentReferenceItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfExternalIdentificationItem ,opencascade::handle<StepAP214_HArray1OfExternalIdentificationItem> , StepAP214_Array1OfExternalIdentificationItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfExternalIdentificationItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_ExternalIdentificationItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_ExternalIdentificationItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfExternalIdentificationItem & (StepAP214_HArray1OfExternalIdentificationItem::*)() const) static_cast<const StepAP214_Array1OfExternalIdentificationItem & (StepAP214_HArray1OfExternalIdentificationItem::*)() const>(&StepAP214_HArray1OfExternalIdentificationItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfExternalIdentificationItem & (StepAP214_HArray1OfExternalIdentificationItem::*)() ) static_cast<StepAP214_Array1OfExternalIdentificationItem & (StepAP214_HArray1OfExternalIdentificationItem::*)() >(&StepAP214_HArray1OfExternalIdentificationItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfExternalIdentificationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfExternalIdentificationItem::*)() const>(&StepAP214_HArray1OfExternalIdentificationItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfExternalIdentificationItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfExternalIdentificationItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfGroupItem ,opencascade::handle<StepAP214_HArray1OfGroupItem> , StepAP214_Array1OfGroupItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfGroupItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_GroupItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_GroupItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfGroupItem & (StepAP214_HArray1OfGroupItem::*)() const) static_cast<const StepAP214_Array1OfGroupItem & (StepAP214_HArray1OfGroupItem::*)() const>(&StepAP214_HArray1OfGroupItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfGroupItem & (StepAP214_HArray1OfGroupItem::*)() ) static_cast<StepAP214_Array1OfGroupItem & (StepAP214_HArray1OfGroupItem::*)() >(&StepAP214_HArray1OfGroupItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfGroupItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfGroupItem::*)() const>(&StepAP214_HArray1OfGroupItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfGroupItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfGroupItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfOrganizationItem ,opencascade::handle<StepAP214_HArray1OfOrganizationItem> , StepAP214_Array1OfOrganizationItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfOrganizationItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_OrganizationItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_OrganizationItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfOrganizationItem & (StepAP214_HArray1OfOrganizationItem::*)() const) static_cast<const StepAP214_Array1OfOrganizationItem & (StepAP214_HArray1OfOrganizationItem::*)() const>(&StepAP214_HArray1OfOrganizationItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfOrganizationItem & (StepAP214_HArray1OfOrganizationItem::*)() ) static_cast<StepAP214_Array1OfOrganizationItem & (StepAP214_HArray1OfOrganizationItem::*)() >(&StepAP214_HArray1OfOrganizationItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfOrganizationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfOrganizationItem::*)() const>(&StepAP214_HArray1OfOrganizationItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfOrganizationItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfOrganizationItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfPersonAndOrganizationItem ,opencascade::handle<StepAP214_HArray1OfPersonAndOrganizationItem> , StepAP214_Array1OfPersonAndOrganizationItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfPersonAndOrganizationItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_PersonAndOrganizationItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_PersonAndOrganizationItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfPersonAndOrganizationItem & (StepAP214_HArray1OfPersonAndOrganizationItem::*)() const) static_cast<const StepAP214_Array1OfPersonAndOrganizationItem & (StepAP214_HArray1OfPersonAndOrganizationItem::*)() const>(&StepAP214_HArray1OfPersonAndOrganizationItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfPersonAndOrganizationItem & (StepAP214_HArray1OfPersonAndOrganizationItem::*)() ) static_cast<StepAP214_Array1OfPersonAndOrganizationItem & (StepAP214_HArray1OfPersonAndOrganizationItem::*)() >(&StepAP214_HArray1OfPersonAndOrganizationItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfPersonAndOrganizationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfPersonAndOrganizationItem::*)() const>(&StepAP214_HArray1OfPersonAndOrganizationItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfPersonAndOrganizationItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfPersonAndOrganizationItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfPresentedItemSelect ,opencascade::handle<StepAP214_HArray1OfPresentedItemSelect> , StepAP214_Array1OfPresentedItemSelect, Standard_Transient>>(m.attr("StepAP214_HArray1OfPresentedItemSelect"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_PresentedItemSelect & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_PresentedItemSelect> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfPresentedItemSelect & (StepAP214_HArray1OfPresentedItemSelect::*)() const) static_cast<const StepAP214_Array1OfPresentedItemSelect & (StepAP214_HArray1OfPresentedItemSelect::*)() const>(&StepAP214_HArray1OfPresentedItemSelect::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfPresentedItemSelect & (StepAP214_HArray1OfPresentedItemSelect::*)() ) static_cast<StepAP214_Array1OfPresentedItemSelect & (StepAP214_HArray1OfPresentedItemSelect::*)() >(&StepAP214_HArray1OfPresentedItemSelect::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfPresentedItemSelect::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfPresentedItemSelect::*)() const>(&StepAP214_HArray1OfPresentedItemSelect::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfPresentedItemSelect::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfPresentedItemSelect::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_HArray1OfSecurityClassificationItem ,opencascade::handle<StepAP214_HArray1OfSecurityClassificationItem> , StepAP214_Array1OfSecurityClassificationItem, Standard_Transient>>(m.attr("StepAP214_HArray1OfSecurityClassificationItem"))
+    // constructors
+        .def(py::init<  >()  )
+        .def(py::init< const Standard_Integer,const Standard_Integer >()  , py::arg("theLower"),  py::arg("theUpper") )
+        .def(py::init< const Standard_Integer,const Standard_Integer, const StepAP214_SecurityClassificationItem & >()  , py::arg("theLower"),  py::arg("theUpper"),  py::arg("theValue") )
+        .def(py::init<  const NCollection_Array1<StepAP214_SecurityClassificationItem> & >()  , py::arg("theOther") )
+    // custom constructors
+    // methods
+        .def("Array1",
+             (const StepAP214_Array1OfSecurityClassificationItem & (StepAP214_HArray1OfSecurityClassificationItem::*)() const) static_cast<const StepAP214_Array1OfSecurityClassificationItem & (StepAP214_HArray1OfSecurityClassificationItem::*)() const>(&StepAP214_HArray1OfSecurityClassificationItem::Array1),
+             R"#(None)#" )
+        .def("ChangeArray1",
+             (StepAP214_Array1OfSecurityClassificationItem & (StepAP214_HArray1OfSecurityClassificationItem::*)() ) static_cast<StepAP214_Array1OfSecurityClassificationItem & (StepAP214_HArray1OfSecurityClassificationItem::*)() >(&StepAP214_HArray1OfSecurityClassificationItem::ChangeArray1),
+             R"#(None)#" )
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfSecurityClassificationItem::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_HArray1OfSecurityClassificationItem::*)() const>(&StepAP214_HArray1OfSecurityClassificationItem::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_HArray1OfSecurityClassificationItem::get_type_name),
+                    R"#(None)#" )
+        .def_static("get_type_descriptor_s",
+                    (const opencascade::handle<Standard_Type> & (*)() ) static_cast<const opencascade::handle<Standard_Type> & (*)() >(&StepAP214_HArray1OfSecurityClassificationItem::get_type_descriptor),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_PresentedItemSelect , shared_ptr<StepAP214_PresentedItemSelect> , StepData_SelectType>>(m.attr("StepAP214_PresentedItemSelect"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_PresentedItemSelect::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_PresentedItemSelect::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_PresentedItemSelect::CaseNum),
+             R"#(Recognizes a PresentedItemSelect Kind Entity that is : 1 -> ProductDefinition, 2 -> ProductDefinitionRelationship, 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_Protocol ,opencascade::handle<StepAP214_Protocol> , StepData_Protocol>>(m.attr("StepAP214_Protocol"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("TypeNumber",
+             (Standard_Integer (StepAP214_Protocol::*)( const opencascade::handle<Standard_Type> & ) const) static_cast<Standard_Integer (StepAP214_Protocol::*)( const opencascade::handle<Standard_Type> & ) const>(&StepAP214_Protocol::TypeNumber),
+             R"#(Returns a Case Number for each of the StepAP214 Entities)#"  , py::arg("atype"))
+        .def("SchemaName",
+             (Standard_CString (StepAP214_Protocol::*)() const) static_cast<Standard_CString (StepAP214_Protocol::*)() const>(&StepAP214_Protocol::SchemaName),
+             R"#(None)#" )
+        .def("NbResources",
+             (Standard_Integer (StepAP214_Protocol::*)() const) static_cast<Standard_Integer (StepAP214_Protocol::*)() const>(&StepAP214_Protocol::NbResources),
+             R"#(Returns count of Protocol used as Resources (level one))#" )
+        .def("Resource",
+             (opencascade::handle<Interface_Protocol> (StepAP214_Protocol::*)( const Standard_Integer ) const) static_cast<opencascade::handle<Interface_Protocol> (StepAP214_Protocol::*)( const Standard_Integer ) const>(&StepAP214_Protocol::Resource),
+             R"#(Returns a Resource, given its rank (between 1 and NbResources))#"  , py::arg("num"))
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_Protocol::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_Protocol::*)() const>(&StepAP214_Protocol::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_Protocol::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_RepItemGroup ,opencascade::handle<StepAP214_RepItemGroup> , StepBasic_Group>>(m.attr("StepAP214_RepItemGroup"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_RepItemGroup::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_RepItemGroup::*)() const>(&StepAP214_RepItemGroup::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_RepItemGroup::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_AutoDesignOrganizationItem , shared_ptr<StepAP214_AutoDesignOrganizationItem> , StepAP214_AutoDesignGeneralOrgItem>>(m.attr("StepAP214_AutoDesignOrganizationItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_AutoDesignOrganizationItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_AutoDesignOrganizationItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_AutoDesignOrganizationItem::CaseNum),
+             R"#(None)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_DateAndTimeItem , shared_ptr<StepAP214_DateAndTimeItem> , StepAP214_ApprovalItem>>(m.attr("StepAP214_DateAndTimeItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_DateAndTimeItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_DateAndTimeItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_DateAndTimeItem::CaseNum),
+             R"#(Recognizes a DateAndTimeItem Kind Entity that is : 1 -> ApprovalPersonOrganization 2 -> AppliedDateAndPersonAssignment 3 -> AppliedOrganizationAssignment 4 -> AssemblyComponentUsageSubstitute 5 -> DocumentFile 6 -> Effectivity 7 -> MaterialDesignation 8 -> MechanicalDesignGeometricPresentationRepresentation 9 -> PresentationArea 10 -> Product 11 -> ProductDefinition 12 -> ProductDefinitionFormation 13 -> ProductDefinitionRelationship 14 -> PropertyDefinition 15 -> ShapeRepresentation 16 -> SecurityClassification 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_DateItem , shared_ptr<StepAP214_DateItem> , StepAP214_ApprovalItem>>(m.attr("StepAP214_DateItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_DateItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_DateItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_DateItem::CaseNum),
+             R"#(Recognizes a DateItem Kind Entity that is : 1 -> ApprovalPersonOrganization 2 -> AppliedDateAndPersonAssignment 3 -> AppliedOrganizationAssignment 4 -> AssemblyComponentUsageSubstitute 5 -> DocumentFile 6 -> Effectivity 7 -> MaterialDesignation 8 -> MechanicalDesignGeometricPresentationRepresentation 9 -> PresentationArea 10 -> Product 11 -> ProductDefinition 12 -> ProductDefinitionFormation 13 -> ProductDefinitionRelationship 14 -> PropertyDefinition 15 -> ShapeRepresentation 16 -> AppliedSecurityClassificationAssignment 17 -> Document 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_ExternallyDefinedClass ,opencascade::handle<StepAP214_ExternallyDefinedClass> , StepAP214_Class>>(m.attr("StepAP214_ExternallyDefinedClass"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("DynamicType",
+             (const opencascade::handle<Standard_Type> & (StepAP214_ExternallyDefinedClass::*)() const) static_cast<const opencascade::handle<Standard_Type> & (StepAP214_ExternallyDefinedClass::*)() const>(&StepAP214_ExternallyDefinedClass::DynamicType),
+             R"#(None)#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+        .def_static("get_type_name_s",
+                    (const char * (*)() ) static_cast<const char * (*)() >(&StepAP214_ExternallyDefinedClass::get_type_name),
+                    R"#(None)#" )
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_OrganizationItem , shared_ptr<StepAP214_OrganizationItem> , StepAP214_ApprovalItem>>(m.attr("StepAP214_OrganizationItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_OrganizationItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_OrganizationItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_OrganizationItem::CaseNum),
+             R"#(Recognizes a OrganizationItem Kind Entity that is :)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_PersonAndOrganizationItem , shared_ptr<StepAP214_PersonAndOrganizationItem> , StepAP214_ApprovalItem>>(m.attr("StepAP214_PersonAndOrganizationItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_PersonAndOrganizationItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_PersonAndOrganizationItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_PersonAndOrganizationItem::CaseNum),
+             R"#(Recognizes a APersonAndOrganizationItem Kind Entity that is : 1 -> AppliedOrganizationAssignment 2 -> AssemblyComponentUsageSubstitute 3 -> DocumentFile 4 -> MaterialDesignation 5 -> MechanicalDesignGeometricPresentationRepresentation 6 -> PresentationArea 7 -> Product 8 -> ProductDefinition 9 -> ProductDefinitionFormation 10 -> ProductDefinitionRelationship 11 -> PropertyDefinition 12 -> ShapeRepresentation 13 -> SecurityClassification 14 -> AppliedSecurityClassificationAssignment 15 -> Approval 0 else)#"  , py::arg("ent"))
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+
+    static_cast<py::class_<StepAP214_SecurityClassificationItem , shared_ptr<StepAP214_SecurityClassificationItem> , StepAP214_ApprovalItem>>(m.attr("StepAP214_SecurityClassificationItem"))
+    // constructors
+    // custom constructors
+    // methods
+        .def("CaseNum",
+             (Standard_Integer (StepAP214_SecurityClassificationItem::*)( const opencascade::handle<Standard_Transient> & ) const) static_cast<Standard_Integer (StepAP214_SecurityClassificationItem::*)( const opencascade::handle<Standard_Transient> & ) const>(&StepAP214_SecurityClassificationItem::CaseNum),
+             R"#(Recognizes a SecurityClassificationItem Kind Entity that is : 1 -> Action 2 -> AssemblyComponentUsage 3 -> AssemblyComponentUsageSubstitute 4 -> ConfigurationDesign 5 -> ConfigurationEffectivity 6 -> Document 7 -> DocumentFile 8 -> DraughtingModel 9 -> GeneralProperty 10 -> MakeFromUsageOption 11 -> MaterialDesignation 12 -> MechanicalDesignGeometricPresentationRepresentation 13 -> PresentationArea 14 -> Product 15 -> ProductConcept 16 -> ProductDefinition 17 -> ProductDefinitionFormation 18 -> ProductDefinitionRelationship 19 -> ProductDefinitionUsage 20 -> PropertyDefinition 21 -> ShapeRepresentation 22 -> VersionedActionRequest 0 else)#"  , py::arg("ent"))
+        .def("Action",
+             (opencascade::handle<StepBasic_Action> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepBasic_Action> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::Action),
+             R"#(returns Value as a Action (Null if another type))#" )
+        .def("AssemblyComponentUsage",
+             (opencascade::handle<StepRepr_AssemblyComponentUsage> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepRepr_AssemblyComponentUsage> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::AssemblyComponentUsage),
+             R"#(returns Value as a AssemblyComponentUsage (Null if another type))#" )
+        .def("ConfigurationDesign",
+             (opencascade::handle<StepRepr_ConfigurationDesign> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepRepr_ConfigurationDesign> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::ConfigurationDesign),
+             R"#(returns Value as a ConfigurationDesign (Null if another type))#" )
+        .def("ConfigurationEffectivity",
+             (opencascade::handle<StepRepr_ConfigurationEffectivity> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepRepr_ConfigurationEffectivity> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::ConfigurationEffectivity),
+             R"#(returns Value as a ConfigurationEffectivity (Null if another type))#" )
+        .def("DraughtingModel",
+             (opencascade::handle<StepVisual_DraughtingModel> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepVisual_DraughtingModel> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::DraughtingModel),
+             R"#(returns Value as a DraughtingModel (Null if another type))#" )
+        .def("GeneralProperty",
+             (opencascade::handle<StepBasic_GeneralProperty> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepBasic_GeneralProperty> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::GeneralProperty),
+             R"#(returns Value as a GeneralProperty (Null if another type))#" )
+        .def("MakeFromUsageOption",
+             (opencascade::handle<StepRepr_MakeFromUsageOption> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepRepr_MakeFromUsageOption> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::MakeFromUsageOption),
+             R"#(returns Value as a MakeFromUsageOption (Null if another type))#" )
+        .def("ProductConcept",
+             (opencascade::handle<StepRepr_ProductConcept> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepRepr_ProductConcept> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::ProductConcept),
+             R"#(returns Value as a ProductConcept (Null if another type))#" )
+        .def("ProductDefinitionUsage",
+             (opencascade::handle<StepRepr_ProductDefinitionUsage> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepRepr_ProductDefinitionUsage> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::ProductDefinitionUsage),
+             R"#(returns Value as a ProductDefinitionUsage (Null if another type))#" )
+        .def("VersionedActionRequest",
+             (opencascade::handle<StepBasic_VersionedActionRequest> (StepAP214_SecurityClassificationItem::*)() const) static_cast<opencascade::handle<StepBasic_VersionedActionRequest> (StepAP214_SecurityClassificationItem::*)() const>(&StepAP214_SecurityClassificationItem::VersionedActionRequest),
+             R"#(returns Value as a VersionedActionRequest (Null if another type))#" )
+    // methods using call by reference i.s.o. return
+    // static methods
+    // static methods using call by reference i.s.o. return
+    // operators
+    // additional methods and static methods
+;
+
+// functions
+// ./opencascade/StepAP214_AutoDesignPresentedItem.hxx
+// ./opencascade/StepAP214_Array1OfAutoDesignPresentedItemSelect.hxx
+// ./opencascade/StepAP214_AutoDesignReferencingItem.hxx
+// ./opencascade/StepAP214_DateAndTimeItem.hxx
+// ./opencascade/StepAP214_Array1OfExternalIdentificationItem.hxx
+// ./opencascade/StepAP214_GroupItem.hxx
+// ./opencascade/StepAP214_AppliedPresentedItem.hxx
+// ./opencascade/StepAP214_AutoDesignGeneralOrgItem.hxx
+// ./opencascade/StepAP214_AppliedExternalIdentificationAssignment.hxx
+// ./opencascade/StepAP214.hxx
+// ./opencascade/StepAP214_Array1OfAutoDesignDateAndPersonItem.hxx
+// ./opencascade/StepAP214_Array1OfSecurityClassificationItem.hxx
+// ./opencascade/StepAP214_ApprovalItem.hxx
+// ./opencascade/StepAP214_AppliedOrganizationAssignment.hxx
+// ./opencascade/StepAP214_Array1OfPersonAndOrganizationItem.hxx
+// ./opencascade/StepAP214_AppliedSecurityClassificationAssignment.hxx
+// ./opencascade/StepAP214_AutoDesignSecurityClassificationAssignment.hxx
+// ./opencascade/StepAP214_AutoDesignDateAndTimeItem.hxx
+// ./opencascade/StepAP214_AutoDesignDateAndPersonItem.hxx
+// ./opencascade/StepAP214_AppliedDateAssignment.hxx
+// ./opencascade/StepAP214_Class.hxx
+// ./opencascade/StepAP214_AutoDesignOrganizationItem.hxx
+// ./opencascade/StepAP214_AutoDesignDocumentReference.hxx
+// ./opencascade/StepAP214_HArray1OfApprovalItem.hxx
+// ./opencascade/StepAP214_SecurityClassificationItem.hxx
+// ./opencascade/StepAP214_DocumentReferenceItem.hxx
+// ./opencascade/StepAP214_Array1OfPresentedItemSelect.hxx
+// ./opencascade/StepAP214_HArray1OfAutoDesignGroupedItem.hxx
+// ./opencascade/StepAP214_HArray1OfDocumentReferenceItem.hxx
+// ./opencascade/StepAP214_RepItemGroup.hxx
+// ./opencascade/StepAP214_AppliedApprovalAssignment.hxx
+// ./opencascade/StepAP214_PersonAndOrganizationItem.hxx
+// ./opencascade/StepAP214_OrganizationItem.hxx
+// ./opencascade/StepAP214_AutoDesignGroupedItem.hxx
+// ./opencascade/StepAP214_AutoDesignDateAndPersonAssignment.hxx
+// ./opencascade/StepAP214_HArray1OfAutoDesignPresentedItemSelect.hxx
+// ./opencascade/StepAP214_Array1OfAutoDesignReferencingItem.hxx
+// ./opencascade/StepAP214_AutoDesignPresentedItemSelect.hxx
+// ./opencascade/StepAP214_Array1OfAutoDesignGroupedItem.hxx
+// ./opencascade/StepAP214_AutoDesignActualDateAssignment.hxx
+// ./opencascade/StepAP214_AutoDesignOrganizationAssignment.hxx
+// ./opencascade/StepAP214_AutoDesignApprovalAssignment.hxx
+// ./opencascade/StepAP214_AutoDesignDatedItem.hxx
+// ./opencascade/StepAP214_AutoDesignNominalDateAndTimeAssignment.hxx
+// ./opencascade/StepAP214_Array1OfAutoDesignGeneralOrgItem.hxx
+// ./opencascade/StepAP214_HArray1OfOrganizationItem.hxx
+// ./opencascade/StepAP214_Array1OfDocumentReferenceItem.hxx
+// ./opencascade/StepAP214_HArray1OfAutoDesignReferencingItem.hxx
+// ./opencascade/StepAP214_Array1OfDateItem.hxx
+// ./opencascade/StepAP214_Array1OfGroupItem.hxx
+// ./opencascade/StepAP214_AutoDesignActualDateAndTimeAssignment.hxx
+// ./opencascade/StepAP214_HArray1OfAutoDesignDateAndTimeItem.hxx
+// ./opencascade/StepAP214_ExternallyDefinedClass.hxx
+// ./opencascade/StepAP214_HArray1OfAutoDesignGeneralOrgItem.hxx
+// ./opencascade/StepAP214_ExternallyDefinedGeneralProperty.hxx
+// ./opencascade/StepAP214_AppliedDateAndTimeAssignment.hxx
+// ./opencascade/StepAP214_HArray1OfPersonAndOrganizationItem.hxx
+// ./opencascade/StepAP214_HArray1OfDateItem.hxx
+// ./opencascade/StepAP214_HArray1OfDateAndTimeItem.hxx
+// ./opencascade/StepAP214_Array1OfOrganizationItem.hxx
+// ./opencascade/StepAP214_DateItem.hxx
+// ./opencascade/StepAP214_AutoDesignNominalDateAssignment.hxx
+// ./opencascade/StepAP214_Array1OfApprovalItem.hxx
+// ./opencascade/StepAP214_ExternalIdentificationItem.hxx
+// ./opencascade/StepAP214_Protocol.hxx
+// ./opencascade/StepAP214_HArray1OfAutoDesignDatedItem.hxx
+// ./opencascade/StepAP214_AppliedGroupAssignment.hxx
+// ./opencascade/StepAP214_HArray1OfSecurityClassificationItem.hxx
+// ./opencascade/StepAP214_AppliedPersonAndOrganizationAssignment.hxx
+// ./opencascade/StepAP214_PresentedItemSelect.hxx
+// ./opencascade/StepAP214_Array1OfAutoDesignDateAndTimeItem.hxx
+// ./opencascade/StepAP214_HArray1OfAutoDesignDateAndPersonItem.hxx
+// ./opencascade/StepAP214_HArray1OfPresentedItemSelect.hxx
+// ./opencascade/StepAP214_HArray1OfGroupItem.hxx
+// ./opencascade/StepAP214_HArray1OfExternalIdentificationItem.hxx
+// ./opencascade/StepAP214_Array1OfDateAndTimeItem.hxx
+// ./opencascade/StepAP214_AutoDesignPersonAndOrganizationAssignment.hxx
+// ./opencascade/StepAP214_AutoDesignGroupAssignment.hxx
+// ./opencascade/StepAP214_Array1OfAutoDesignDatedItem.hxx
+// ./opencascade/StepAP214_AppliedDocumentReference.hxx
+
+// Additional functions
+
+// operators
+
+// register typdefs
+    register_template_NCollection_Array1<StepAP214_AutoDesignPresentedItemSelect>(m,"StepAP214_Array1OfAutoDesignPresentedItemSelect");
+    register_template_NCollection_Array1<StepAP214_ExternalIdentificationItem>(m,"StepAP214_Array1OfExternalIdentificationItem");
+    register_template_NCollection_Array1<StepAP214_AutoDesignDateAndPersonItem>(m,"StepAP214_Array1OfAutoDesignDateAndPersonItem");
+    register_template_NCollection_Array1<StepAP214_SecurityClassificationItem>(m,"StepAP214_Array1OfSecurityClassificationItem");
+    register_template_NCollection_Array1<StepAP214_PersonAndOrganizationItem>(m,"StepAP214_Array1OfPersonAndOrganizationItem");
+    register_template_NCollection_Array1<StepAP214_PresentedItemSelect>(m,"StepAP214_Array1OfPresentedItemSelect");
+    register_template_NCollection_Array1<StepAP214_AutoDesignReferencingItem>(m,"StepAP214_Array1OfAutoDesignReferencingItem");
+    register_template_NCollection_Array1<StepAP214_AutoDesignGroupedItem>(m,"StepAP214_Array1OfAutoDesignGroupedItem");
+    register_template_NCollection_Array1<StepAP214_AutoDesignGeneralOrgItem>(m,"StepAP214_Array1OfAutoDesignGeneralOrgItem");
+    register_template_NCollection_Array1<StepAP214_DocumentReferenceItem>(m,"StepAP214_Array1OfDocumentReferenceItem");
+    register_template_NCollection_Array1<StepAP214_DateItem>(m,"StepAP214_Array1OfDateItem");
+    register_template_NCollection_Array1<StepAP214_GroupItem>(m,"StepAP214_Array1OfGroupItem");
+    register_template_NCollection_Array1<StepAP214_OrganizationItem>(m,"StepAP214_Array1OfOrganizationItem");
+    register_template_NCollection_Array1<StepAP214_ApprovalItem>(m,"StepAP214_Array1OfApprovalItem");
+    register_template_NCollection_Array1<StepAP214_AutoDesignDateAndTimeItem>(m,"StepAP214_Array1OfAutoDesignDateAndTimeItem");
+    register_template_NCollection_Array1<StepAP214_DateAndTimeItem>(m,"StepAP214_Array1OfDateAndTimeItem");
+    register_template_NCollection_Array1<StepAP214_AutoDesignDatedItem>(m,"StepAP214_Array1OfAutoDesignDatedItem");
+
+
+// exceptions
+
+// user-defined post-inclusion per module in the body
+
+};
+
+// user-defined post-inclusion per module
+
+// user-defined post
