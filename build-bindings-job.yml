@@ -64,6 +64,8 @@ jobs:
       python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
       python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
     displayName: 'Generate'
+    env:
+      PYTHONPATH: pywrap
 
   - task: CopyFiles@2
     inputs:
