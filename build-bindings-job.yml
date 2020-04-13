@@ -16,6 +16,9 @@ jobs:
   variables:
     n_cores: 2
   steps:
+  - checkout: self
+    submodules: true
+  
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
     - bash: sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
       displayName: 'Install g++8 and gl headers'
