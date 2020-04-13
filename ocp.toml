@@ -1,0 +1,844 @@
+name = "OCP"
+input_folder = "./opencascade"
+output_folder = "./OCP"
+
+additional_files = ["FindOpenCascade.cmake"]
+
+pats = ["{}_*.hxx","{}.hxx"]
+
+modules = ["Standard",
+"gp",
+"math",
+"BVH",
+"NCollection",
+"TColgp",
+"OSD",
+"Quantity",
+"Storage",
+"FSD",
+"MMgt",
+"TCollection",
+"TColStd",
+"Message",
+"StdFail",
+"TShort",
+"Plugin",
+"Resource",
+"Units",
+"UnitsAPI",
+"TopLoc",
+"Poly",
+"Precision",
+"Expr",
+"ExprIntrp",
+"GeomAbs",
+"PLib",
+"BSplCLib",
+"BSplSLib",
+"Bnd",
+"CSLib",
+"Convert",
+"ElCLib",
+"ElSLib",
+"Adaptor2d",
+"Geom2d",
+"Geom2dAdaptor",
+"Geom2dEvaluator",
+"LProp",
+"Geom2dLProp",
+"TColGeom2d",
+"Adaptor3d",
+"AdvApprox",
+"GProp",
+"Geom",
+"GeomAdaptor",
+"GeomEvaluator",
+"GeomLProp",
+"LProp3d",
+"TColGeom",
+"TopAbs",
+"AdvApp2Var",
+"AppCont",
+"AppParCurves",
+"Approx",
+"AppDef",
+"BndLib",
+"CPnts",
+"Extrema",
+"FEmTool",
+"GC",
+"GCE2d",
+"GCPnts",
+"Geom2dConvert",
+"GeomConvert",
+"GeomLib",
+"GeomProjLib",
+"GeomTools",
+"Hermit",
+"IntAna",
+"IntAna2d",
+"ProjLib",
+"gce",
+"TopoDS",
+"BRep",
+"BRepAdaptor",
+"BRepLProp",
+"TopTools",
+"BRepTools",
+"BinTools",
+"TopExp",
+"AppBlend",
+#"ApproxInt",
+"FairCurve",
+"GccAna",
+"GccEnt",
+"GccInt",
+"Geom2dAPI",
+"Geom2dGcc",
+"IntRes2d",
+"Intf",
+"Geom2dInt",
+"Geom2dHatch",
+"GeomAPI",
+"GeomFill",
+"GeomInt",
+"GeomPlate",
+"Hatch",
+"HatchGen",
+"IntCurve",
+"IntCurveSurface",
+"IntImp",
+"IntImpParGen",
+"IntPatch",
+"IntPolyh",
+"IntStart",
+"IntSurf",
+#"IntWalk",
+"Law",
+"LocalAnalysis",
+"NLPlate",
+"Plate",
+"TopClass",
+"TopTrans",
+"BRepApprox",
+"BRepBndLib",
+"BRepBuilderAPI",
+"BRepCheck",
+"BRepClass",
+"BRepClass3d",
+"BRepExtrema",
+"BRepGProp",
+"BRepIntCurveSurface",
+"BRepLib",
+"BRepMAT2d",
+"BRepTopAdaptor",
+"Bisector",
+"IntCurvesFace",
+"MAT",
+"MAT2d",
+"BRepPrim",
+"BRepPrimAPI",
+"BRepSweep",
+"Sweep",
+"ShapeAlgo",
+"ShapeAnalysis",
+"ShapeBuild",
+"ShapeConstruct",
+"ShapeCustom",
+"ShapeExtend",
+"ShapeFix",
+"ShapeProcess",
+"ShapeProcessAPI",
+"ShapeUpgrade",
+"Contap",
+"HLRAlgo",
+"HLRAppli",
+"HLRBRep",
+"HLRTopoBRep",
+"Intrv",
+"TopBas",
+"TopCnx",
+"BRepMesh",
+"XBRepMesh",
+"BOPAlgo",
+"BOPDS",
+"BOPTools",
+"BRepAlgoAPI",
+"IntTools",
+"BRepAlgo",
+"BRepFill",
+"BRepProj",
+"TopOpeBRep",
+"TopOpeBRepBuild",
+"TopOpeBRepDS",
+"TopOpeBRepTool",
+"BRepFeat",
+"LocOpe",
+"Blend",
+"BRepBlend",
+"BRepFilletAPI",
+"BlendFunc",
+"ChFi2d",
+"ChFi3d",
+"ChFiDS",
+#"ChFiKPart",
+"FilletSurf",
+"BRepOffset",
+"BRepOffsetAPI",
+"BiTgte",
+"Draft",
+"Aspect",
+"Font",
+"Image",
+"InterfaceGraphic",
+"SelectBasics",
+#"TColQuantity",
+"Graphic3d",
+"Prs3d",
+"PrsMgr",
+"SelectMgr",
+"AIS",
+"DsgPrs",
+"Select3D",
+"StdPrs",
+"StdSelect",
+"V3d",
+"OpenGl",
+"MeshVS",
+"NIS",
+"Voxel",
+"CDM",
+"CDF",
+"LDOM",
+"PCDM",
+"UTL",
+"TDF",
+"TDataStd",
+"TDocStd",
+"AppStdL",
+"TFunction",
+"BinLDrivers",
+"BinMDF",
+"BinMDataStd",
+"BinMDocStd",
+"BinMFunction",
+"BinObjMgt",
+"AppStd",
+"TDataXtd",
+"TNaming",
+"TObj",
+"XmlLDrivers",
+"XmlMDF",
+"XmlMDataStd",
+"XmlMDocStd",
+"XmlMFunction",
+"XmlObjMgt",
+"StdLDrivers",
+"StdObjMgt",
+"StdLPersistent",
+"BinDrivers",
+"BinMDataXtd",
+"BinMNaming",
+"BinTObjDrivers",
+"TPrsStd",
+"XmlDrivers",
+"XmlMDataXtd",
+"XmlMNaming",
+"XmlTObjDrivers",
+"StdDrivers",
+"StdObject",
+"StdPersistent",
+#"ShapePersistent", #Need to implement inner typdefs parsing to wrap this properly
+"StdStorage",
+"RWStl",
+"StlAPI",
+"RWStepBasic",
+"RWStepGeom",
+"RWStepRepr",
+"RWStepShape",
+"StepBasic",
+"StepGeom",
+"StepRepr",
+"StepShape",
+"RWStepDimTol",
+"RWStepVisual",
+"StepDimTol",
+"StepVisual",
+"RWStepElement",
+"RWStepFEA",
+"StepElement",
+"StepFEA",
+"GeomToStep",
+"RWStepAP203",
+"RWStepAP214",
+"RWStepAP242",
+"STEPConstruct",
+"STEPControl",
+"STEPEdit",
+"STEPSelections",
+"StepAP203",
+"StepAP209",
+"StepAP214",
+"StepAP242",
+"StepToGeom",
+"StepToTopoDS",
+"TopoDSToStep",
+"BRepToIGES",
+"BRepToIGESBRep",
+"Geom2dToIGES",
+"GeomToIGES",
+"IGESAppli",
+"IGESBasic",
+"IGESControl",
+"IGESConvGeom",
+"IGESData",
+"IGESDefs",
+"IGESDimen",
+"IGESDraw",
+"IGESFile",
+"IGESGeom",
+"IGESGraph",
+"IGESSelect",
+"IGESSolid",
+"IGESToBRep",
+#Missed modules
+"Interface",
+"Transfer",
+"StepData",
+"XSControl",
+"IFSelect",
+"IFGraph"
+]
+
+exclude = ["Standard_Handle.hxx","Standard",
+           "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
+           "Geom2dToIGES","BRepGProp_Gauss.hxx","BRepLib_CheckCurveOnSurface.hxx",
+           "BVH_Types.hxx","BVH_RadixSorter.hxx","BVH_IndexedBoxSet.hxx",
+           "Aspect_VKeySet.hxx","BOPTools_PairSelector.hxx","AIS_DataMapOfSelStat.hxx",
+           "AIS_DataMapIteratorOfDataMapOfSelStat.hxx","BOPDS_Iterator.hxx","BOPDS_IteratorSI.hxx",
+           "BRepBlend_AppSurface.hxx","BRepMesh_BaseMeshAlgo.hxx","BRepMesh_ConstrainedBaseMeshAlgo.hxx",
+           "BRepMesh_CustomBaseMeshAlgo.hxx","BRepMesh_CustomDelaunayBaseMeshAlgo.hxx",
+           "BRepMesh_DefaultRangeSplitter.hxx","BRepMesh_DelaunayBaseMeshAlgo.hxx",
+           "BRepMesh_DelaunayDeflectionControlMeshAlgo.hxx","BRepMesh_DelaunayNodeInsertionMeshAlgo.hxx",
+           "BRepMesh_NodeInsertionMeshAlgo.hxx","BRepMesh_BoundaryParamsRangeSplitter.hxx",
+           "BRepMesh_ConeRangeSplitter.hxx","BRepMesh_CylinderRangeSplitter.hxx",
+           "BRepMesh_NURBSRangeSplitter.hxx","BRepMesh_SphereRangeSplitter.hxx",
+           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx"]
+
+exceptions = ["Standard_Failure"]
+
+
+module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
+
+byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean"]
+
+parsing_header = '''#include <Standard_Handle.hxx>
+#undef Standard_NODISCARD
+#define Standard_NODISCARD
+'''
+
+[Linux]
+    modules = ["Xw"]
+
+[Windows]
+    modules = ["WNT"]
+    exclude_classes = ["Handle_*"]
+
+[OSX]
+    modules = ["Cocoa"]
+    prefix = "/usr/local/miniconda/envs/cpp-py-bindgen"
+    includes = ['/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0',
+                '/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0/x86_64-apple-darwin19',
+                '/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0/backward',
+                '/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/include',
+                '/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/include-fixed',
+                '/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include',
+                '/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks',
+                '/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks//OpenGL.framework/Versions/A/Headers/',
+                '/usr/local/include']
+
+[Operators]
+
+    "operator*" = ["__mul__","__rmul__"]
+    "operator*=" = ["__imul__"]
+    "operator/" = ["__truediv__"]
+    "operator/=" = ["__itruediv__"]
+    "operator+" = ["__add__"]
+    "operator+=" = ["__iadd__"]
+    "operator-" = ["__sub__"]
+    "operator-=" = ["__isub__"]
+    "operator^" = ["__pow__"]
+    "operator^=" = ["__ipow__"]
+
+[Extras]
+
+    include_pre = "OCP_specific.inc"
+
+[Symbols]
+
+    path = "symbols.dat"
+    path_mangled = "symbols_mangled.dat"
+    path_mangled_msvc = "symbols_mangled_win.dat"
+
+[Modules]
+
+    [Modules.gp]
+
+        exclude_typedefs = ["gp","gp_TrsfNLerp"]
+
+    [Modules.Standard]
+
+        exclude_functions = ["HashCode"]
+        exclude_methods = ["Standard_Dump::DumpCharacterValues","Standard_Dump::DumpRealValues",
+            "Standard_CLocaleSentry::GetCLocale"]
+
+    [Modules.Resource]
+
+        exclude_classes = ["Resource_NoSuchResource",]
+
+    [Modules.NCollection]
+
+        include_header_pre = "const size_t DefaultBlockSize = 24600;"
+        exclude_classes = ["NCollection","NCollection_ListNode"]
+
+    [Modules.OSD]
+
+        exclude_functions = ["OSD","OSD_OpenStream"]
+        exclude_classes = ["OSD",]
+        exclude_methods = ["OSD::RealToCString","OSD_SharedLibrary::DlSymb"]
+
+    [Modules.Storage]
+
+        exclude_classes = ["Storage_StreamExtCharParityError","Storage_StreamTypeMismatchError",
+            "Storage_StreamUnknownTypeError","Storage_Bucket","Storage_BucketOfPersistent"]
+        exclude_typedefs = ["Storage","Storage_MapOfCallBack","Storage_MapOfPers"]
+
+    [Modules.TCollection]
+
+        exclude_methods = ["TCollection_ExtendedString::ToUTF8CString"]
+
+    [Modules.TColStd]
+
+        exclude_typedefs = ["TColStd_DataMapOfIntegerTransient","TColStd","TColStd_DataMapOfTransientTransient","TColStd_IndexedDataMapOfTransientTransient"]
+
+    [Modules.Plugin]
+
+        exclude_typedefs = ["Plugin","Plugin_MapOfFunctions"]
+
+    [Modules.Units]
+
+        exclude_methods = ["UnitsMethods::RadianToDegree","UnitsMethods::DegreeToRadian","UnitsMethods::MirrorPCurve"]
+
+    [Modules.Poly]
+
+        exclude_classes = ["Poly_MakeLoops","Poly",]
+        exclude_methods = ["Poly_CoherentTriangulation::FindTriangle","Poly_CoherentTriangulation::RemoveDegenerated"]
+
+    [Modules.Expr]
+
+        exclude_classes = ["ExprIntrp",]
+
+    [Modules.BSplCLib]
+
+        exclude_methods = ["BSplCLib::DN",]
+
+
+    [Modules.TopoDS]
+
+        exclude_typedefs = ["TopoDS_ListOfShape"]
+
+    [Modules.IntPolyh]
+
+        exclude_typedefs = ["IntPolyh_ArrayOfEdges","IntPolyh_ArrayOfTriangles","IntPolyh_ArrayOfPointNormal","IntPolyh_ArrayOfSectionLines","IntPolyh","IntPolyh_ArrayOfTangentZones","IntPolyh_ArrayOfPoints"]
+
+    [Modules.BRepBuilderAPI]
+
+        exclude_typedefs = ["BRepBuilderAPI_CellFilter","BRepBuilderAPI_BndBoxTree"]
+         exclude_methods = ["BRepBuilderAPI_FastSewing::GetStatuses"]
+
+
+    [Modules.MAT2d]
+
+        exclude_typedefs = ["MAT2d_DataMapOfIntegerConnexion"]
+
+    [Modules.BRepExtrema]
+
+        exclude_typedefs = ["BRepExtrema_MapOfIntegerPackedMapOfInteger"]
+
+     [Modules.MAT]
+
+        exclude_typedefs = ["MAT_DataMapOfIntegerBisector","MAT_DataMapOfIntegerArc","MAT","MAT_DataMapOfIntegerNode","MAT_DataMapOfIntegerBasicElt"]
+
+    [Modules.BRepCheck]
+
+        exclude_typedefs = ["BRepCheck_DataMapOfShapeResult"]
+
+    [Modules.BRepClass3d]
+
+        exclude_typedefs = ["BRepClass3d_BndBoxTree"]
+        exclude_classes = ["BRepClass3d_BndBoxTreeSelectorPoint",
+                           "BRepClass3d_BndBoxTreeSelectorLine"]
+
+
+    [Modules.BRepAlgo]
+
+        exclude_typedefs = ["BRepAlgo_DataMapOfShapeInterference"]
+
+    [Modules.HLRBRep]
+
+        exclude_classes = ["HLRBRep_CLPropsATool",]
+
+    [Modules.TopOpeBRepDS]
+
+        exclude_functions = ["FDSSDM_s1s2makesordor","FUN_scanloi"]
+        exclude_typedefs = ["TopOpeBRepDS_ShapeSurface"]
+
+    [Modules.BRepAlgoAPI]
+
+        include_header_pre = "#include <BOPAlgo_Builder.hxx>"
+        exclude_methods = ["BRepAlgoAPI_BuilderAlgo::Builder",] #this will be fixed by the include
+        exclude_typedefs = ["TopOpeBRepDS_ShapeSurface"]
+        
+        [Modules.BRepAlgoAPI.Classes]
+
+        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo]
+
+        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods]
+
+        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.RunParallel]
+
+            body = "[]( BRepAlgoAPI_Algo & self){ return self.RunParallel(); }"
+            help = "Returns the flag of parallel processing."
+            arguments  = []
+            
+        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.SetRunParallel]
+
+            body = "[]( BRepAlgoAPI_Algo & self , const Standard_Boolean theFlag){ self.SetRunParallel(theFlag); }"
+            help = "Set the flag of parallel processing."
+            arguments  = ["thFlag"]
+            
+        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.FuzzyValue]
+
+            body = "[]( BRepAlgoAPI_Algo & self){ return self.FuzzyValue(); }"
+            help = "Returns the additional tolerance."
+            arguments  = []
+            
+        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.SetFuzzyValue]
+
+            body = "[]( BRepAlgoAPI_Algo & self , const Standard_Real theFuzz){ self.SetFuzzyValue(theFuzz); }"
+            help = "Sets the additional tolerance."
+            arguments  = ["theFuzz"]
+            
+        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.SetUseOBB]
+
+            body = "[]( BRepAlgoAPI_Algo & self , const Standard_Boolean theFlag){ self.SetUseOBB(theFlag); }"
+            help = "Set the flag of parallel processing."
+            arguments  = ["thFlag"]
+
+    [Modules.TopOpeBRep]
+
+        exclude_methods = ["TopOpeBRep_DSFiller::PShapeClassifier","TopOpeBRep_FaceEdgeFiller::PShapeClassifier","TopOpeBRep_FacesFiller::PShapeClassifier"]
+        exclude_typedefs = ["TopOpeBRep_DataMapOfTopolTool"]
+
+
+    [Modules.BRepFill]
+
+        exclude_typedefs = ["BRepFill_DataMapOfShapeHArray2OfShape"]
+
+    [Modules.ChFi3d]
+    #error: invalid use of incomplete type ‘class Geom_BSplineCurve’
+        exclude_functions = ["ChFi3d_ApproxByC2","ChFi3d_SearchPivot","ChFi3d_EnlargeFace",
+            "ChFi3d_InPeriod","ChFi3d_Boite","ChFi3d_SetPointTolerance"]
+
+
+    [Modules.BOPDS]
+
+        exclude_typedefs = ["BOPDS_DataMapOfPaveBlockCommonBlock"]
+
+    [Modules.BRepMesh]
+
+        include_header_pre = "#include <IMeshData_Wire.hxx>"
+        exclude_classes = ["BRepMesh_Triangle","BRepMesh_Delaun","BRepMesh_DefaultRangeSplitter"] #constructor with int&[3]
+        exclude_methods = ["BRepMesh_GeomTool::IntLinLin",
+        "BRepMesh_DataStructureOfDelaun::ElementNodes","BRepMesh_MeshTool::AddTriangle",
+        "BRepMesh_ConeRangeSplitter::GetSplitSteps",
+        "BRepMesh_Delaun::FreeEdges","BRepMesh_Delaun::ProcessConstraints",
+        "BRepMesh_DefaultRangeSplitter::computeTolerance","BRepMesh_DefaultRangeSplitter::computeDelta",
+        "BRepMesh_Delaun::Frontier","BRepMesh_GeomTool::CellsCount"]
+
+    [Modules.TopOpeBRepTool]
+
+        exclude_typedefs = ["TopOpeBRepTool_IndexedDataMapOfSolidClassifier"]
+
+    [Modules.BOPTools]
+
+        exclude_typedefs = ["BOPTools_BoxBndTree","BOPTools_PairSelector","BOPTools_Box2dTree","BOPTools_BoxPairSelector","BOPTools_Box2dPairSelector"]
+
+    [Modules.Aspect]
+
+        include_header_pre = "struct __GLXFBConfigRec {};"
+        exclude_methods = ["Aspect_NeutralWindow::NativeFBConfig","Aspect_Window::NativeFBConfig","Aspect_NeutralWindow::SetNativeHandles","Aspect_DisplayConnection::GetDisplay","Aspect_DisplayConnection::Init"]
+
+        [Modules.Aspect.Classes.Aspect_DisplayConnection]
+
+            exclude_constructors = [2]
+
+    [Modules.SelectMgr]
+
+        exclude_typedefs = ["SelectMgr_IndexedMapOfOwner","SelectMgr_MapOfObjectSensitives","SelectMgr_FrustumCache","SelectMgr_IndexedMapOfHSensitive"]
+
+    [Modules.OpenGl]
+
+        include_header_pre = """#include <Message_Messenger.hxx>
+struct NSOpenGLContext {};"""
+        include_body_pre = 'py::class_<NSOpenGLContext>(m, "NSOpenGLContext");'
+        exclude_methods = ["OpenGl_GlCore11::glGetPointerv","OpenGl_RaytraceGeometry::Clear",
+                           "OpenGl_View::ChangeGraduatedTrihedron","OpenGl_View::LayerList"]
+        exclude_typedefs = ["OpenGl_SequenceOfLayers","OpenGl_SetterList","OpenGl_MapOfHatchStylesAndIds","OpenGl_MapOfZLayerSettings","OpenGl_IndexedMapOfStructure","OpenGl_MapOfShaderPrograms","OpenGl_IndexedMapOfStructure","OpenGl_LayerSeqIds"]
+        exclude_classes = ["OpenGl_GraduatedTrihedron","OpenGl_LayerList","OpenGl_VariableSetterSelector","OpenGl_RaytraceGeometry"]
+
+    [Modules.StdSelect]
+
+        include_header_pre = "#include <Prs3d_Projector.hxx>"
+        exclude_typedefs = ["StdSelect_IndexedDataMapOfOwnerPrs"]
+
+    [Modules.Xw]
+
+        include_header_pre = "struct __GLXFBConfigRec {};"
+        include_body_pre = 'py::class_<__GLXFBConfigRec>(m, "__GLXFBConfigRec");'
+
+    [Modules.MeshVS]
+
+        exclude_typedefs = ["MeshVS_NodePair","MeshVS_DataMapOfIntegerOwner","MeshVS_DataMapOfHArray1OfSequenceOfInteger","MeshVS_DataMapOfIntegerMeshEntityOwner"]
+
+    [Modules.AIS]
+
+        include_header_pre = """#include <Media_PlayerContext.hxx>
+auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
+        include_body_pre = "py::class_<AIS_Manipulator::OptionsForAttach>(m,\"AIS_Manipulator_OptionsForAttach\");"
+        exclude_typedefs = ["AIS_DataMapOfShapeDrawer","AIS_DataMapOfIOStatus","AIS_DataMapOfILC","AIS_IndexedDataMapOfOwnerPrs"]
+
+    [Modules.Font]
+
+        exclude_classes = ["Font_BRepFont"]
+        include_header_pre = "struct FT_LibraryRec_ {};"
+
+        [Modules.Font.Classes]
+
+        [Modules.Font.Classes.Font_BRepTextBuilder]
+
+        [Modules.Font.Classes.Font_BRepTextBuilder.additional_methods]
+
+        [Modules.Font.Classes.Font_BRepTextBuilder.additional_methods.Perform]
+
+            body = "[]( Font_BRepTextBuilder & self , const char* path, double size, Font_FontAspect aspect, const char* text){ auto font = Font_BRepFont(path,aspect,size); return self.Perform(font,text);}"
+            help = "Render text as BRep shape."
+            arguments  = ["Font path","Font size","Font style","Text"]
+
+    [Modules.Select3D]
+
+        exclude_typedefs = ["Select3D_IndexedMapOfEntity","Graphic3d_Vec3d","Select3D_BndBox3d"]  #couldn't deduce template parameter ‘Hasher’
+
+
+    [Modules.Graphic3d]
+
+        include_header_pre = """#include <Media_PlayerContext.hxx>
+struct NSOpenGLContext {};"""
+        exclude_typedefs = ["Graphic3d_IndexedMapOfView","Graphic3d_IndexedMapOfAddress","Graphic3d_MapOfStructure","Graphic3d_NMapOfTransient","Graphic3d_MapOfObject","Graphic3d_Vec4u","Graphic3d_Vec2u","Graphic3d_Vec3u","Graphic3d_Vec3d","Graphic3d_MapOfAspectsToAspects"]
+        exclude_methods = ["Graphic3d_BvhCStructureSet::Size","Graphic3d_BvhCStructureSet::Box",
+            "Graphic3d_BvhCStructureSet::Center","Graphic3d_BvhCStructureSet::Swap",
+            "Graphic3d_BvhCStructureSetTrsfPers::Size","Graphic3d_BvhCStructureSetTrsfPers::Box",
+            "Graphic3d_BvhCStructureSetTrsfPers::Center","Graphic3d_BvhCStructureSetTrsfPers::Swap",
+            "Graphic3d_Layer::CullableTrsfPersStructuresBVH","Graphic3d_Layer::CullableStructuresBVH"]
+        exclude_classes = ["Graphic3d_BvhCStructureSet","Graphic3d_BvhCStructureSetTrsfPers"]
+
+    [Modules.AdvApprox]
+
+        exclude_classes = ["AdvApprox_EvaluatorFunction"]
+        exclude_methods = ['AdvApprox_EvaluatorFunction::Evaluate']
+
+    [Modules.BVH]
+
+        exclude_typedefs = ["BVH_PrimitiveSet3d"]
+
+    [Modules.TDocStd]
+
+        include_header_pre = """#include <PCDM_RetrievalDriver.hxx>
+#include <PCDM_StorageDriver.hxx>"""
+
+    [Modules.XmlMDF]
+
+        exclude_typedefs = ["XmlMDF_MapOfDriver","XmlMDF_TypeADriverMap"]
+
+    [Modules.StdStorage]
+
+        exclude_typedefs = ["StdStorage_MapOfRoots"]
+        exclude_classes = ["StdStorage_Bucket","StdStorage_BucketOfPersistent"]
+        exclude_methods = ["StdStorage_TypeData::Instantiator"]
+
+    [Modules.BinMDF]
+
+        exclude_typedefs = ["BinMDF_TypeADriverMap","BinMDF_TypeIdMap"]
+
+    [Modules.CDM]
+
+        exclude_typedefs = ["CDM_PresentationDirectory"]
+
+    [Modules.TDataStd]
+
+        exclude_typedefs = ["TDataStd_DataMapOfStringHArray1OfReal","TDataStd_DataMapOfStringHArray1OfInteger"]
+
+    [Modules.StdLDrivers]
+
+        include_header_pre = "#include <CDM_Document.hxx>"
+
+    [Modules.TFunction]
+
+        exclude_typedefs = ["TFunction_DataMapOfGUIDDriver"]
+
+    [Modules.TObj]
+
+        include_header_pre = """#include <TDF_RelocationTable.hxx>
+#include <TDF_DeltaOnModification.hxx>"""
+        exclude_typedefs = ["TObj_DataMapOfObjectHSequenceOcafObjects"]
+
+    [Modules.StdObjMgt]
+
+        exclude_typedefs = ["StdObjMgt_TransientPersistentMap"]
+
+    [Modules.TNaming]
+
+        exclude_typedefs = ["TNaming_DataMapOfShapePtrRefShape"]
+        exclude_methods = ["TNaming_RefShape::FirstUse"]
+
+    [Modules.TDF]
+
+        exclude_typedefs = ["TDF_AttributeDataMap","TDF_AttributeDoubleMap"]
+        exclude_classes = ["TDF_LabelNode"]
+
+    [Modules.XmlTObjDrivers]
+
+        include_header_pre = """#include <TDF_Attribute.hxx>
+#include <XmlObjMgt_Persistent.hxx>"""
+
+    [Modules.TPrsStd]
+
+        exclude_typedefs = ["TPrsStd_DataMapOfGUIDDriver"]
+
+    [Modules.STEPConstruct]
+
+        exclude_typedefs = ["STEPConstruct_DataMapOfAsciiStringTransient","STEPConstruct_DataMapOfPointTransient"]
+
+    [Modules.RWStl]
+
+        exclude_methods = ["RWStl_Reader::ReadAscii"]
+
+    [Modules.StepShape]
+
+        include_header_pre = """#include <StepRepr_RepresentationContext.hxx>"""
+
+    [Modules.Transfer]
+
+        exclude_typedefs = ["Transfer_TransferMapOfProcessForFinder","Transfer_TransferMapOfProcessForTransient"]
+
+    [Modules.ShapeFix]
+
+        include_header_pre_top = "#include <TColStd_HArray1OfReal.hxx>"
+
+    [Modules.BRepBlend]
+
+        exclude_methods = ["BRepBlend_AppSurface::TolReached"]
+
+    [Modules.StdPersistent]
+
+        include_header_pre = """using ItemLocation = StdPersistent_TopLoc::ItemLocation;
+using Datum3D = StdPersistent_TopLoc::Datum3D;"""
+
+    [Modules.AppCont]
+
+        exclude_methods = ["AppCont_Function::PeriodInformation"]
+        exclude_functions = ["InvMMatrix","MMatrix","IBPMatrix","IBTMatrix","VBernstein"]
+
+    [Modules.ShapePersistent]
+
+        include_header_pre = """using Curve3D = ShapePersistent_BRep::Curve3D;
+using CurveOn2Surfaces = ShapePersistent_BRep::CurveOn2Surfaces;
+using CurveOnClosedSurface = ShapePersistent_BRep::CurveOnClosedSurface;
+using CurveOnSurface = ShapePersistent_BRep::CurveOnSurface;
+using CurveRepresentation = ShapePersistent_BRep::CurveRepresentation;
+using GCurve = ShapePersistent_BRep::GCurve;
+using PointOnCurve = ShapePersistent_BRep::PointOnCurve;
+using PointOnCurveOnSurface = ShapePersistent_BRep::PointOnCurveOnSurface;
+using PointOnSurface = ShapePersistent_BRep::PointOnSurface;
+using PointRepresentation = ShapePersistent_BRep::PointRepresentation;
+using PointsOnSurface = ShapePersistent_BRep::PointsOnSurface;
+using Polygon3D = ShapePersistent_BRep::Polygon3D;
+using PolygonOnClosedSurface = ShapePersistent_BRep::PolygonOnClosedSurface;
+using PolygonOnClosedTriangulation = ShapePersistent_BRep::PolygonOnClosedTriangulation;
+using PolygonOnSurface = ShapePersistent_BRep::PolygonOnSurface;
+using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
+#include <Geom2d_AxisPlacement.hxx>
+#include <Geom2d_BSplineCurve.hxx>
+#include <Geom2d_BezierCurve.hxx>
+#include <Geom2d_BoundedCurve.hxx>
+#include <Geom2d_CartesianPoint.hxx>
+#include <Geom2d_Circle.hxx>
+#include <Geom2d_Conic.hxx>
+#include <Geom2d_Curve.hxx>
+#include <Geom2d_Direction.hxx>
+#include <Geom2d_Ellipse.hxx>
+#include <Geom2d_Geometry.hxx>
+#include <Geom2d_Hyperbola.hxx>
+#include <Geom2d_Line.hxx>
+#include <Geom2d_OffsetCurve.hxx>
+#include <Geom2d_Parabola.hxx>
+#include <Geom2d_Point.hxx>
+#include <Geom2d_Transformation.hxx>
+#include <Geom2d_TrimmedCurve.hxx>
+#include <Geom2d_UndefinedDerivative.hxx>
+#include <Geom2d_UndefinedValue.hxx>
+#include <Geom2d_Vector.hxx>
+#include <Geom2d_VectorWithMagnitude.hxx>
+"""
+
+    [Modules.IntAna]
+
+        exclude_methods = ["IntAna_Quadric::SpecialPoints"]
+
+    [Modules.CDF]
+
+        include_header_pre = "#include <Resource_Manager.hxx>"
+
+    [Modules.Image]
+
+        exclude_methods = ["Image_AlienPixMap::Load"]
+
+    [Modules.Prs3d]
+
+        include_header_pre = "#include <Graphic3d_StructureManager.hxx>"
+
+    [Modules.WNT]
+
+        include_header_pre = "#include <Aspect_DisplayConnection.hxx>"
+
+    [Modules.Cocoa]
+
+        include_header_pre = """#include <Aspect_DisplayConnection.hxx>
+struct NSView {};"""
+
+    [Modules.StepData]
+
+        exclude_classes = ["StepData_EnumTool"]
+
+    [Modules.LDOM]
+
+        exclude_classes = ["LDOMString","LDOM_MemManager","LDOM_BasicText"]
+        exclude_methods = ["LDOM_BasicAttribute::SetValue"]
+
+    [Modules.PCDM]
+
+        exclude_classes = ["PCDM_DOMHeaderParser"]
+
+    [Modules.ShapeAnalysis]
+
+        exclude_classes = ["ShapeAnalysis_BoxBndTreeSelector"]

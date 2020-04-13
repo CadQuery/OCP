@@ -1,0 +1,171 @@
+parameters:
+  name: 'Generate bindings'
+  vmImage: 'Ubuntu-16.04'
+  py_maj: '3'
+  py_min: '6'
+  config_file: 'ocp.toml'
+  conda_bld: '3.16.3'
+  conda_env_file: 'env.yml'
+  CXX: g++-8
+
+jobs:
+- job: ${{ parameters.name }}
+  timeoutInMinutes: 360
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  variables:
+    n_cores: 2
+  steps:
+  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
+    - bash: sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+      displayName: 'Install g++8 and gl headers'
+
+  - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - bash: |
+        ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
+      displayName: 'Find GL headers'
+
+  - template: conda-enable.yml@templates
+    parameters:
+      vmImage: ${{ parameters.vmImage }}
+
+  - bash: |
+      conda env create -f ${{ parameters.conda_env_file }}
+    displayName: 'Prepare conda environment'
+
+  - bash: |
+      source activate cpp-py-bindgen && \
+      conda info -a && \
+      conda list && \
+      which python && \
+      env
+    displayName: 'Conda env sanity checks'
+    
+  - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - bash: |
+        source activate cpp-py-bindgen && \
+        echo | clang -v -E -x c - && \
+        cd $CONDA_PREFIX && \
+        find . -name type_traits\* && \
+        sudo find /usr/local/ -name type_traits\*
+      displayName: 'Mac header check'
+
+  - bash: |
+      source activate cpp-py-bindgen && \
+      OUTPUT=`python -c'import toml; print(toml.load("${{ parameters.config_file }}")["output_folder"])'`  && \
+      echo $OUTPUT && \
+      echo "##vso[task.setvariable variable=OUTPUT;isOutput=true]$OUTPUT"
+    displayName: 'Read output dir from the config file'
+    name: 'conf'
+
+  - bash: |
+      source activate cpp-py-bindgen && \
+      python -m bindgen -n $(n_cores) parse ${{ parameters.config_file }} out.pkl && \
+      python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
+      python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
+    displayName: 'Generate'
+
+  - task: CopyFiles@2
+    inputs:
+      contents: 'out*.pkl'
+      targetFolder: $(conf.OUTPUT)
+    displayName: 'Copy pkl outputs'
+    
+  - publish:  $(conf.OUTPUT)
+    artifact: OCP_src_${{ parameters.vmImage }}
+    
+- job: ${{ parameters.name }}_${{ parameters.py_maj }}_${{ parameters.py_min }}
+  timeoutInMinutes: 360
+  dependsOn: ${{ parameters.name }} 
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  variables:
+    n_cores: 2
+    OCP_src: OCP_src_${{ parameters.vmImage }}
+  steps:
+  - download: current
+    artifact: OCP_src_${{ parameters.vmImage }}
+    
+  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
+    - bash: sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+      displayName: 'Install g++8 and gl headers'
+
+  - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - bash: |
+        sudo find /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ && \
+        ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
+      displayName: 'Search for GL'
+
+  - ${{ if contains(parameters.vmImage, 'win') }}:
+    - bash: ls "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build"
+      displayName: 'Find vcvars64'
+
+  - template: conda-enable.yml@templates
+    parameters:
+      vmImage: ${{ parameters.vmImage }}
+
+  - bash: |
+      conda env create -f ${{ parameters.conda_env_file }}
+    displayName: 'Prepare conda environment'
+
+  - bash: |
+      source activate cpp-py-bindgen && \
+      conda info -a && \
+      conda list && \
+      which python && \
+      env
+    displayName: 'Conda env sanity checks'
+    
+  - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - bash: |
+        source activate cpp-py-bindgen && \
+        echo | clang -v -E -x c - && \
+        cd $CONDA_PREFIX && \
+        find . -name type_traits\* && \
+        sudo find /usr/local/ -name type_traits\*
+      displayName: 'Mac header check'
+  
+  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
+    - bash: |
+        source activate cpp-py-bindgen && \
+        cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
+        cmake --build build -j $(n_cores) -- -k 0 && \
+        rm -rf build/CMakeFiles
+      displayName: 'Compile'
+      env:
+        CXX: ${{ parameters.CXX }}
+
+  - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - bash: |
+        source activate cpp-py-bindgen && \
+        cp -rf opencascade $CONDA_PREFIX/include && \
+        cat $CONDA_PREFIX/include/opencascade/OpenGl_HaltonSampler.hxx  &&\
+        cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Debug && \
+        cmake --build build -j $(n_cores) -- -k 0 && \
+        rm -rf build/CMakeFiles
+      displayName: 'Compile'
+      env:
+        CXX: "clang++"     
+
+  - ${{ if contains(parameters.vmImage, 'win') }}:
+    - script: |
+        call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
+        call activate cpp-py-bindgen
+        cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release
+        cmake --build build -j $(n_cores) -- -k 0
+        rmdir /S /Q build\CMakeFiles
+      displayName: 'Compile'
+      env:
+        CXX: "cl.exe"
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: 'build'
+      artifactName: OCP_${{ parameters.vmImage }}
+    displayName: 'Publish compilation result'
+
+  - bash: |
+      source activate cpp-py-bindgen && \
+      cd build && \
+      LD_DEBUG=libs python -c"import OCP"
+    displayName: 'Test'
