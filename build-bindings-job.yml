@@ -59,6 +59,7 @@ jobs:
     name: 'conf'
 
   - bash: |
+      ls && env && \
       source activate cpp-py-bindgen && \
       python -m bindgen -n $(n_cores) parse ${{ parameters.config_file }} out.pkl && \
       python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
