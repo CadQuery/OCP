@@ -1,0 +1,3 @@
+[submodule "pywrap"]
+	path = pywrap
+	url = https://github.com/CadQuery/pywrap.git
