@@ -1,6 +1,6 @@
 # OCP
 
-[![Build Status](https://dev.azure.com/cadquery/pywrap/_apis/build/status/CadQuery.OCP?branchName=master)](https://dev.azure.com/cadquery/OCP/_build/latest?definitionId=5&branchName=master)
+[![Build Status](https://dev.azure.com/cadquery/OCP/_apis/build/status/CadQuery.OCP?branchName=master)](https://dev.azure.com/cadquery/OCP/_build/latest?definitionId=5&branchName=master)
 
 Python wrapper for OCCT7.4 generated using pywrap.
 
