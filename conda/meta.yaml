@@ -1,0 +1,24 @@
+package:
+  name: OCP
+  version: 7.4
+
+source:
+  path: ..
+
+build:
+  string: {{ environ.get('BUILD_STRING') }}-{{ 'py'+environ.get('PYTHON_VERSION') }}
+  script: cp OCP.cpython-*.* {{ environ.get('SP_DIR') }}
+
+requirements:
+  run:
+    - python {{ environ.get('PYTHON_VERSION') }}
+    - occt 7.4.* 
+
+test:
+  requires:
+    - python 
+  imports:
+    - OCP
+
+about:
+  summary: Python wrapper for OCCT
