@@ -163,6 +163,14 @@ jobs:
       displayName: 'Compile'
       env:
         CXX: "cl.exe"
+        
+  - bash: |
+        source activate cpp-py-bindgen && \
+        copy build/OCP.cpython*.* . && \
+        conda build -c conda-forge conda
+      displayName: 'Build conda package'
+      env:
+        BUILD_STRING: "1"
 
   - task: PublishBuildArtifacts@1
     inputs:
