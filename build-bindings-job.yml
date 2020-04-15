@@ -168,9 +168,9 @@ jobs:
         source activate cpp-py-bindgen && \
         copy build/OCP.cpython*.* . && \
         conda build -c conda-forge conda
-      displayName: 'Build conda package'
-      env:
-        BUILD_STRING: "1"
+    displayName: 'Build conda package'
+    env:
+      BUILD_STRING: "1"
 
   - task: PublishBuildArtifacts@1
     inputs:
