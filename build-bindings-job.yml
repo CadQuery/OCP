@@ -166,7 +166,7 @@ jobs:
         
   - bash: |
         source activate cpp-py-bindgen && \
-        copy build/OCP.cpython*.* . && \
+        cp build/OCP.cpython*.* . && \
         conda build -c conda-forge conda
     displayName: 'Build conda package'
     env:
