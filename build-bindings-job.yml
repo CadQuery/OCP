@@ -33,7 +33,6 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
-      conda install -y conda-build && \
       conda env create -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
@@ -164,15 +163,6 @@ jobs:
       displayName: 'Compile'
       env:
         CXX: "cl.exe"
-        
-  - bash: |
-        source activate cpp-py-bindgen && \
-        cp build/OCP.cpython*.* . && \
-        conda build -c conda-forge conda
-    displayName: 'Build conda package'
-    env:
-      BUILD_STRING: "1"
-      PYTHON_VERSION: ${{ parameters.py_maj }}.${{ parameters.py_min }}
 
   - task: PublishBuildArtifacts@1
     inputs:
@@ -185,3 +175,14 @@ jobs:
       cd build && \
       LD_DEBUG=libs python -c"import OCP"
     displayName: 'Test'
+    
+  - bash: |
+        source activate cpp-py-bindgen && \
+        conda install -y conda-build && \
+        cp build/OCP.cpython*.* . && \
+        conda build --token $TOKEN --user cadquery -c conda-forge conda
+    displayName: 'Build conda package'
+    env:
+      BUILD_STRING: "1"
+      PYTHON_VERSION: ${{ parameters.py_maj }}.${{ parameters.py_min }}
+      TOKEN: $(anaconda.TOKEN)
