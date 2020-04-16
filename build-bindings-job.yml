@@ -33,6 +33,7 @@ jobs:
       vmImage: ${{ parameters.vmImage }}
 
   - bash: |
+      conda install -y conda-build && \
       conda env create -f ${{ parameters.conda_env_file }}
     displayName: 'Prepare conda environment'
 
@@ -171,6 +172,7 @@ jobs:
     displayName: 'Build conda package'
     env:
       BUILD_STRING: "1"
+      PYTHON_VERSION: ${{ parameters.py_maj }}.${{ parameters.py_min }}
 
   - task: PublishBuildArtifacts@1
     inputs:
