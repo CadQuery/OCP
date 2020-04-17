@@ -178,7 +178,7 @@ jobs:
     
   - bash: |
         source activate cpp-py-bindgen && \
-        conda install -y conda-build && \
+        conda install -y conda-build anaconda && \
         cp build/OCP.cpython*.* . && \
         conda build --token $TOKEN --user cadquery -c conda-forge conda
     displayName: 'Build conda package'
