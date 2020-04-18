@@ -7,7 +7,7 @@ source:
 
 build:
   string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
-  script: mkdir -p {{ environ.get('SP_DIR') }} && cp OCP.cpython-*.* {{ environ.get('SP_DIR') }}
+  script: mkdir -p {{ environ.get('SP_DIR') }} && cp OCP.cp*-*.* {{ environ.get('SP_DIR') }}
 
 requirements:
   run:
