@@ -21,6 +21,7 @@ jobs:
   parameters:
     name: Windows
     vmImage: 'windows-2019'
+    conda_bld: 3.17
 - template: build-bindings-job.yml
   parameters:
     name: OSX
