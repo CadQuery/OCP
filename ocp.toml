@@ -842,3 +842,19 @@ struct NSView {};"""
     [Modules.ShapeAnalysis]
 
         exclude_classes = ["ShapeAnalysis_BoxBndTreeSelector"]
+        
+    [Modules.V3d]
+    
+        exclude_methods = ["V3d_View::ChangeRenderingParams"]
+        
+        [Modules.V3d.Classes]
+
+        [Modules.V3d.Classes.V3d_View]
+
+        [Modules.V3d.Classes.V3d_View.additional_methods]
+
+        [Modules.V3d.Classes.V3d_View.additional_methods.ChangeRenderingParams]
+        
+        body = "[]( V3d_View & self){ return self.ChangeRenderingParams();}"
+        help = "Returns reference to current rendering parameters and effect settings."
+        return_policy = "py::return_value_policy::reference_internal"
