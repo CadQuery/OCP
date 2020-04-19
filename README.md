@@ -12,3 +12,10 @@ Python wrapper for OCCT7.4 generated using pywrap.
 
 ## Non-goals
 * Provide additional functionality not present in OCCT
+
+## Installation
+The easiest way to get started is to use conda:
+```
+conda install -c conda-forge -c cadquery ocp
+```
+Building from sources is also possible, for details take a look at `azure-pipelines.yml'.
