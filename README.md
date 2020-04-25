@@ -1,6 +1,7 @@
 # OCP
 
 [![Build Status](https://dev.azure.com/cadquery/OCP/_apis/build/status/CadQuery.OCP?branchName=master)](https://dev.azure.com/cadquery/OCP/_build/latest?definitionId=5&branchName=master)
+[![Anaconda-Server Badge](https://anaconda.org/cadquery/ocp/badges/installer/conda.svg)](https://conda.anaconda.org/cadquery)
 
 Python wrapper for OCCT7.4 generated using pywrap.
 
