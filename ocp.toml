@@ -498,12 +498,6 @@ parsing_header = '''#include <Standard_Handle.hxx>
         include_header_pre = "#include <BOPAlgo_Builder.hxx>"
         exclude_methods = ["BRepAlgoAPI_BuilderAlgo::Builder",] #this will be fixed by the include
         exclude_typedefs = ["TopOpeBRepDS_ShapeSurface"]
-        
-        [Modules.BRepAlgoAPI.Classes]
-
-        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo]
-
-        [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods]
 
         [Modules.BRepAlgoAPI.Classes.BRepAlgoAPI_Algo.additional_methods.RunParallel]
 
@@ -622,12 +616,6 @@ auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
 
         exclude_classes = ["Font_BRepFont"]
         include_header_pre = "struct FT_LibraryRec_ {};"
-
-        [Modules.Font.Classes]
-
-        [Modules.Font.Classes.Font_BRepTextBuilder]
-
-        [Modules.Font.Classes.Font_BRepTextBuilder.additional_methods]
 
         [Modules.Font.Classes.Font_BRepTextBuilder.additional_methods.Perform]
 
@@ -852,12 +840,6 @@ struct NSView {};"""
     [Modules.V3d]
     
         exclude_methods = ["V3d_View::ChangeRenderingParams"]
-        
-        [Modules.V3d.Classes]
-
-        [Modules.V3d.Classes.V3d_View]
-
-        [Modules.V3d.Classes.V3d_View.additional_methods]
 
         [Modules.V3d.Classes.V3d_View.additional_methods.ChangeRenderingParams]
         
