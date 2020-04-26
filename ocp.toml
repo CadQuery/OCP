@@ -826,6 +826,12 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
         include_header_pre = """#include <Aspect_DisplayConnection.hxx>
 struct NSView {};"""
 
+        [[Modules.Cocoa.Classes.Cocoa_Window.additional_constructors]]
+
+            body = "[](void* ptr){ return Cocoa_Window(reinterpret_cast<NSView*>(ptr)); }"
+            help = "Creates a wrapper over existing NSView handle."
+            arguments  = ["NSView*"]
+
     [Modules.StepData]
 
         exclude_classes = ["StepData_EnumTool"]
