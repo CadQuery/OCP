@@ -183,6 +183,7 @@ jobs:
         cp build/OCP.cp*-*.* . && \
         conda build --token $TOKEN --user cadquery -c conda-forge conda
     displayName: 'Build conda package'
+    condition: ne(variables['Build.Reason'], 'PullRequest')
     env:
       BUILD_STRING: "1"
       PYTHON_VERSION: ${{ parameters.py_maj }}.${{ parameters.py_min }}
