@@ -339,13 +339,16 @@ parsing_header = '''#include <Standard_Handle.hxx>
 
 [Linux]
     modules = ["Xw"]
+    symbols = "symbols_mangled_linux.dat"
 
 [Windows]
     modules = ["WNT"]
     exclude_classes = ["Handle_*"]
+    symbols = "symbols_mangled_win.dat"
 
 [OSX]
     modules = ["Cocoa"]
+    symbols = "symbols_mangled_mac.dat"
     prefix = "/usr/local/miniconda/envs/cpp-py-bindgen"
     includes = ['/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0',
                 '/usr/local/Cellar/gcc@8/8.3.0_2/lib/gcc/8/gcc/x86_64-apple-darwin19/8.3.0/../../../../../../include/c++/8.3.0/x86_64-apple-darwin19',
@@ -373,12 +376,6 @@ parsing_header = '''#include <Standard_Handle.hxx>
 [Extras]
 
     include_pre = "OCP_specific.inc"
-
-[Symbols]
-
-    path = "symbols.dat"
-    path_mangled = "symbols_mangled.dat"
-    path_mangled_msvc = "symbols_mangled_win.dat"
 
 [Modules]
 
@@ -839,6 +836,7 @@ struct NSView {};"""
         
     [Modules.V3d]
     
+        include_header_pre = """struct NSOpenGLContext {}; //OSX related"""
         exclude_methods = ["V3d_View::ChangeRenderingParams"]
 
         [Modules.V3d.Classes.V3d_View.additional_methods.ChangeRenderingParams]
