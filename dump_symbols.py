@@ -21,9 +21,13 @@ for name,libs in {'linux' : libs_linux,'mac' : libs_mac, 'win' : libs_win}.items
     for lib in libs:
         p = lief.parse(lib)
         
-        if hasattr(p, 'exported_symbols'):
+        if name=='linux':
             for s in p.exported_symbols:
                 exported_symbols.append(f'{s.name}\n')
+        elif name=='mac':
+            for s in p.symbols:
+                if s.type>1:
+                    exported_symbols.append(f'{s.name}\n')
         else:
             for s in p.exported_functions:
                 exported_symbols.append(f'{s}\n')
