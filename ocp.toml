@@ -307,7 +307,14 @@ modules = ["Standard",
 "StepData",
 "XSControl",
 "IFSelect",
-"IFGraph"
+"IFGraph",
+"STEPCAFControl",
+"XCAFApp",
+"XCAFDimTolObjects",
+"XCAFDoc",
+"XCAFNoteObjects",
+"XCAFPrs",
+"XCAFView"
 ]
 
 exclude = ["Standard_Handle.hxx","Standard",
@@ -844,3 +851,19 @@ struct NSView {};"""
         body = "[]( V3d_View & self){ return self.ChangeRenderingParams();}"
         help = "Returns reference to current rendering parameters and effect settings."
         return_policy = "py::return_value_policy::reference_internal"
+        
+    [Modules.STEPCAFControl]
+    
+        include_header_pre = "#include <XCAFDoc_ShapeTool.hxx>"        
+        exclude_typedefs = ["STEPCAFControl_DataMapOfShapePD","STEPCAFControl_DataMapOfShapePD",
+            "STEPCAFControl_DataMapOfSDRExternFile","STEPCAFControl_DataMapOfSDRExternFile",
+            "STEPCAFControl_DataMapOfPDExternFile","STEPCAFControl_DataMapOfLabelExternFile",
+            "STEPCAFControl_DataMapOfShapeSDR"]
+            
+    [Modules.XCAFDimTolObjects]
+    
+        exclude_typedefs = ["XCAFDimTolObjects_DataMapOfToleranceDatum"]
+        
+    [Modules.XCAFPrs]
+    
+        exclude_typedefs = ["XCAFPrs_DataMapOfStyleTransient"]
