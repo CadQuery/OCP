@@ -116,8 +116,8 @@ jobs:
         vmImage: ${{ parameters.vmImage }}
   
     - bash: |
-        sed s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > ${{ parameters.conda_env_file }} && \
-        conda env create -f ${{ parameters.conda_env_file }}
+        sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.yml && \
+        conda env create -f _env.yml
       displayName: 'Prepare conda environment'
   
     - bash: |
