@@ -867,3 +867,7 @@ struct NSView {};"""
     [Modules.XCAFPrs]
     
         exclude_typedefs = ["XCAFPrs_DataMapOfStyleTransient"]
+        
+    [Modules.XCAFDoc]
+    
+        include_header_pre = "#include <XCAFDoc_Note.hxx>"
