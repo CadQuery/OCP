@@ -116,6 +116,7 @@ jobs:
         vmImage: ${{ parameters.vmImage }}
   
     - bash: |
+        sed s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > ${{ parameters.conda_env_file }} && \
         conda env create -f ${{ parameters.conda_env_file }}
       displayName: 'Prepare conda environment'
   
@@ -123,7 +124,6 @@ jobs:
         source activate cpp-py-bindgen && \
         conda info -a && \
         conda list && \
-        conda install python=${{ parameters.py_maj }}.${{ py_min }} && \
         which python && \
         env
       displayName: 'Conda env sanity checks'
