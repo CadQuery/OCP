@@ -30,6 +30,11 @@ jobs:
     - bash: |
         ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
       displayName: 'Find GL headers'
+  
+  - ${{ if contains(parameters.vmImage, 'win') }}:
+    - script: |
+        choco install --accept-license -y Ninja llvm
+      displayName: 'Install clang'
 
   - template: conda-enable.yml@templates
     parameters:
