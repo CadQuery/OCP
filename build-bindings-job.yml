@@ -189,11 +189,23 @@ jobs:
       
     - bash: |
           source activate cpp-py-bindgen && \
-          conda install -y conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          conda install -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
           cp build/OCP.cp*-*.* . && \
           conda build --token $TOKEN --user cadquery -c conda-forge conda
       displayName: 'Build conda package'
       condition: ne(variables['Build.Reason'], 'PullRequest')
+      env:
+        BUILD_STRING: "1"
+        PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
+        TOKEN: $(anaconda.TOKEN)
+        
+    - bash: |
+          source activate cpp-py-bindgen && \
+          conda install -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          cp build/OCP.cp*-*.* . && \
+          conda build -c conda-forge conda
+      displayName: 'Build conda package'
+      condition: eq(variables['Build.Reason'], 'PullRequest')
       env:
         BUILD_STRING: "1"
         PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
