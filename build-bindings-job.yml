@@ -188,8 +188,8 @@ jobs:
       displayName: 'Test'
       
     - bash: |
-          source activate cpp-py-bindgen && \
-          conda install -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          source activate build && \
           cp build/OCP.cp*-*.* . && \
           conda build --token $TOKEN --user cadquery -c conda-forge conda
       displayName: 'Build conda package'
@@ -200,8 +200,8 @@ jobs:
         TOKEN: $(anaconda.TOKEN)
         
     - bash: |
-          source activate cpp-py-bindgen && \
-          conda install -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
+          source activate build && \
           cp build/OCP.cp*-*.* . && \
           conda build -c conda-forge conda
       displayName: 'Build conda package'
