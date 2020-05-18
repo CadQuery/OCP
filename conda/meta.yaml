@@ -10,6 +10,9 @@ build:
   script: mkdir -p {{ environ.get('SP_DIR') }} && cp OCP.cp*-*.* {{ environ.get('SP_DIR') }}
 
 requirements:
+  host:
+    - python {{ environ.get('PYTHON_VERSION') }}
+    - occt 7.4.*
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
     - occt 7.4.* 
