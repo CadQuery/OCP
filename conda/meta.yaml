@@ -7,9 +7,11 @@ source:
 
 build:
   string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
-  script: mkdir -p {{ environ.get('SP_DIR') }} && cp OCP.cp*-*.* {{ environ.get('SP_DIR') }}
+  script: cmake -E make_directory {{ environ.get('SP_DIR') }} && cmake -E copy OCP.cp*-*.* {{ environ.get('SP_DIR') }}
 
 requirements:
+  build:
+    - cmake 3.16
   host:
     - python {{ environ.get('PYTHON_VERSION') }}
     - occt 7.4.*
