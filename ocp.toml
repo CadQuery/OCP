@@ -870,4 +870,5 @@ struct NSView {};"""
       
     [Modules.XCAFDoc]
         
-        include_header_pre = "#undef GetObject"
+        include_header_pre = """#undef GetObject
+#include <XCAFDoc_Note.hxx>"""
