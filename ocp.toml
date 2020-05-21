@@ -867,8 +867,11 @@ struct NSView {};"""
     [Modules.XCAFPrs]
     
         exclude_typedefs = ["XCAFPrs_DataMapOfStyleTransient"]
-      
-    [Modules.XCAFDoc]
         
-        include_header_pre = """#undef GetObject
-#include <XCAFDoc_Note.hxx>"""
+    [Modules.AdvApp2Var]
+
+        include_header_pre_top ="""#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+"""
