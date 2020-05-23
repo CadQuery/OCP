@@ -7,7 +7,6 @@ source:
 
 build:
   string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
-  script: cmake -E make_directory {{ environ.get('SP_DIR') }} && cmake -E copy OCP.cp*-*.* {{ environ.get('SP_DIR') }}
 
 requirements:
   build:
