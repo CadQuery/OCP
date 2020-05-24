@@ -875,3 +875,7 @@ struct NSView {};"""
 #include <windows.h>
 #endif
 """
+
+    [Modules.BOPAlgo]
+    
+        include_header_pre = "#include <BOPDS_Iterator.hxx>"
