@@ -1,2 +1,4 @@
+@echo on
 setlocal enableextensions
-mkdir %SP_DIR% && copy OCP.cp*-*.* %SP_DIR%
+if not exist %SP_DIR% mkdir %SP_DIR%
+copy OCP.cp*-*.* %SP_DIR%
