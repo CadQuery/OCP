@@ -4,6 +4,7 @@ parameters:
   py_maj: '3'
   py_min: '7'
   py_min_build:
+  - 6
   - 7
   - 8
   config_file: 'ocp.toml'
