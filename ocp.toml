@@ -844,13 +844,6 @@ struct NSView {};"""
     [Modules.V3d]
     
         include_header_pre = """struct NSOpenGLContext {}; //OSX related"""
-        exclude_methods = ["V3d_View::ChangeRenderingParams"]
-
-        [Modules.V3d.Classes.V3d_View.additional_methods.ChangeRenderingParams]
-        
-        body = "[]( V3d_View & self){ return self.ChangeRenderingParams();}"
-        help = "Returns reference to current rendering parameters and effect settings."
-        return_policy = "py::return_value_policy::reference_internal"
         
     [Modules.STEPCAFControl]
     
