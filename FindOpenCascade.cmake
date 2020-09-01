@@ -48,7 +48,9 @@ set ( OCCT_MODULES
     TKSTEPBase
     TKSTL
     TKXDESTEP
-    TKXCAF)
+    TKXCAF
+    TKBinXCAF
+    TKXmlXCAF)
 
 
 add_library( OPENCASCADE INTERFACE )
