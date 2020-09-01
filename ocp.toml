@@ -314,7 +314,9 @@ modules = ["Standard",
 "XCAFDoc",
 "XCAFNoteObjects",
 "XCAFPrs",
-"XCAFView"
+"XCAFView",
+"BinXCAFDrivers",
+"XmlXCAFDrivers"
 ]
 
 exclude = ["Standard_Handle.hxx","Standard",
