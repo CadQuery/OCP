@@ -316,7 +316,9 @@ modules = ["Standard",
 "XCAFPrs",
 "XCAFView",
 "BinXCAFDrivers",
-"XmlXCAFDrivers"
+"XmlXCAFDrivers",
+"Vrml",
+"VrmlAPI"
 ]
 
 exclude = ["Standard_Handle.hxx","Standard",
