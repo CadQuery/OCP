@@ -316,7 +316,9 @@ modules = ["Standard",
 "XCAFPrs",
 "XCAFView",
 "BinXCAFDrivers",
-"XmlXCAFDrivers"
+"XmlXCAFDrivers",
+"Vrml",
+"VrmlAPI"
 ]
 
 exclude = ["Standard_Handle.hxx","Standard",
@@ -875,3 +877,7 @@ struct NSView {};"""
     [Modules.BOPAlgo]
     
         include_header_pre = "#include <BOPDS_Iterator.hxx>"
+    
+    [Modules.VrmlAPI]
+    
+        include_header_pre = "#include <VrmlConverter_Drawer.hxx>"
