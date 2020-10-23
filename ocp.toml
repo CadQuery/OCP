@@ -318,8 +318,8 @@ modules = ["Standard",
 "BinXCAFDrivers",
 "XmlXCAFDrivers",
 "Vrml",
-"VrmlAPI"
-]
+"VrmlAPI",
+"RWGltf"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
