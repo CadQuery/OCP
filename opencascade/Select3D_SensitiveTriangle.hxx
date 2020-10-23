@@ -62,10 +62,16 @@ public:
   //! will be applied
   Standard_EXPORT virtual Select3D_BndBox3d BoundingBox() Standard_OVERRIDE;
 
+  //! Returns TRUE if BVH tree is in invalidated state
+  virtual Standard_Boolean ToBuildBVH() const Standard_OVERRIDE { return Standard_False; }
+
   //! Returns the amount of points
-  virtual Standard_Integer NbSubElements() Standard_OVERRIDE { return 3; }
+  virtual Standard_Integer NbSubElements() const Standard_OVERRIDE { return 3; }
 
   virtual gp_Pnt CenterOfGeometry() const Standard_OVERRIDE { return myCentroid; }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
   DEFINE_STANDARD_RTTIEXT(Select3D_SensitiveTriangle,Select3D_SensitiveEntity)
 

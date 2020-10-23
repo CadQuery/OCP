@@ -66,7 +66,10 @@ public:
   //! The structure itself is conserved.
   //! The transformation and the attributes of <me> are conserved.
   //! The childs of <me> are conserved.
-  Standard_EXPORT virtual void Clear (const Standard_Boolean WithDestruction = Standard_True);
+  virtual void Clear (const Standard_Boolean WithDestruction = Standard_True)
+  {
+    clear (WithDestruction);
+  }
   
   //! Suppresses the structure <me>.
   //! It will be erased at the next screen update.
@@ -78,9 +81,8 @@ public:
   //! Returns the current display priority for this structure.
   Standard_Integer DisplayPriority() const { return myCStructure->Priority; }
   
-  //! Erases the structure <me> in all the views
-  //! of the visualiser.
-  Standard_EXPORT virtual void Erase();
+  //! Erases this structure in all the views of the visualiser.
+  virtual void Erase() { erase(); }
   
   //! Highlights the structure in all the views with the given style
   //! @param theStyle [in] the style (type of highlighting: box/color, color and opacity)
@@ -173,38 +175,12 @@ public:
   {
     //
   }
-  
-  //! Returns the new Structure defined for the new visualization
-  virtual Handle(Graphic3d_Structure) Compute (const Handle(Graphic3d_DataStructureManager)& theProjector)
-  {
-    (void )theProjector;
-    return this;
-  }
-  
-  //! Returns the new Structure defined for the new visualization
-  virtual Handle(Graphic3d_Structure) Compute (const Handle(Graphic3d_DataStructureManager)& theProjector,
-                                               const Handle(Geom_Transformation)& theTrsf)
-  {
-    (void )theProjector;
-    (void )theTrsf;
-    return this;
-  }
 
   //! Returns the new Structure defined for the new visualization
-  virtual void Compute (const Handle(Graphic3d_DataStructureManager)& theProjector,
-                        Handle(Graphic3d_Structure)& theStructure)
+  virtual void computeHLR (const Handle(Graphic3d_Camera)& theProjector,
+                           Handle(Graphic3d_Structure)& theStructure)
   {
     (void )theProjector;
-    (void )theStructure;
-  }
-  
-  //! Returns the new Structure defined for the new visualization
-  virtual void Compute (const Handle(Graphic3d_DataStructureManager)& theProjector,
-                        const Handle(Geom_Transformation)& theTrsf,
-                        Handle(Graphic3d_Structure)& theStructure)
-  {
-    (void )theProjector;
-    (void )theTrsf;
     (void )theStructure;
   }
 
@@ -370,13 +346,13 @@ public:
   }
 
   //! Return local transformation.
-  const Handle(Geom_Transformation)& Transformation() const { return myCStructure->Transformation(); }
+  const Handle(TopLoc_Datum3D)& Transformation() const { return myCStructure->Transformation(); }
 
   //! Modifies the current local transformation
-  Standard_EXPORT void SetTransformation (const Handle(Geom_Transformation)& theTrsf);
+  Standard_EXPORT void SetTransformation (const Handle(TopLoc_Datum3D)& theTrsf);
 
   Standard_DEPRECATED("This method is deprecated - SetTransformation() should be called instead")
-  void Transform (const Handle(Geom_Transformation)& theTrsf) { SetTransformation (theTrsf); }
+  void Transform (const Handle(TopLoc_Datum3D)& theTrsf) { SetTransformation (theTrsf); }
 
   //! Modifies the current transform persistence (pan, zoom or rotate)
   Standard_EXPORT void SetTransformPersistence (const Handle(Graphic3d_TransformPers)& theTrsfPers);
@@ -401,7 +377,7 @@ public:
   void GraphicDisconnect (const Handle(Graphic3d_Structure)& theDaughter) { myCStructure->Disconnect (*theDaughter->myCStructure); }
 
   //! Internal method which sets new transformation without calling graphic manager callbacks.
-  void GraphicTransform (const Handle(Geom_Transformation)& theTrsf) { myCStructure->SetTransformation (theTrsf); }
+  void GraphicTransform (const Handle(TopLoc_Datum3D)& theTrsf) { myCStructure->SetTransformation (theTrsf); }
 
   //! Returns the identification number of this structure.
   Standard_Integer Identification() const { return myCStructure->Id; }
@@ -432,6 +408,9 @@ public:
   //! Returns the low-level structure
   const Handle(Graphic3d_CStructure)& CStructure() const { return myCStructure; }
 
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+
 protected:
 
   //! Transforms boundaries with <theTrsf> transformation.
@@ -450,6 +429,12 @@ protected:
   
   //! Removes the given ancestor structure.
   Standard_EXPORT Standard_Boolean RemoveAncestor (Graphic3d_Structure* theAncestor);
+
+  //! Clears all the groups of primitives in the structure.
+  Standard_EXPORT void clear (const Standard_Boolean WithDestruction);
+
+  //! Erases this structure in all the views of the visualiser.
+  Standard_EXPORT void erase();
 
 private:
 

@@ -23,11 +23,10 @@
 class PrsMgr_PresentationManager;
 class PrsMgr_PresentableObject;
 class Quantity_Color;
-class Geom_Transformation;
+class Graphic3d_Camera;
 class Prs3d_Drawer;
 class Graphic3d_Structure;
 class Graphic3d_DataStructureManager;
-class Prs3d_Projector;
 
 DEFINE_STANDARD_HANDLE(PrsMgr_Presentation, Graphic3d_Structure)
 
@@ -80,6 +79,9 @@ public:
   //! Compute structure using presentation manager.
   Standard_EXPORT virtual void Compute() Standard_OVERRIDE;
 
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
+
 protected:
 
   //! Main constructor.
@@ -90,20 +92,8 @@ protected:
   //! Displays myStructure.
   Standard_EXPORT void display (const Standard_Boolean theIsHighlight);
 
-  Standard_EXPORT virtual Handle(Graphic3d_Structure) Compute (const Handle(Graphic3d_DataStructureManager)& theProjector) Standard_OVERRIDE;
-
-  Standard_EXPORT virtual Handle(Graphic3d_Structure) Compute (const Handle(Graphic3d_DataStructureManager)& theProjector,
-                                                               const Handle(Geom_Transformation)& theTrsf) Standard_OVERRIDE;
-
-  Standard_EXPORT virtual void Compute (const Handle(Graphic3d_DataStructureManager)& theProjector,
-                                        Handle(Graphic3d_Structure)& theGivenStruct) Standard_OVERRIDE;
-
-  Standard_EXPORT virtual void Compute (const Handle(Graphic3d_DataStructureManager)& theProjector,
-                                        const Handle(Geom_Transformation)& theTrsf,
-                                        Handle(Graphic3d_Structure)& theGivenStruct) Standard_OVERRIDE;
-
-  Standard_EXPORT static Handle(Prs3d_Projector) Projector (const Handle(Graphic3d_DataStructureManager)& theProjector);
-
+  Standard_EXPORT virtual void computeHLR (const Handle(Graphic3d_Camera)& theProjector,
+                                           Handle(Graphic3d_Structure)& theGivenStruct) Standard_OVERRIDE;
 protected:
 
   Handle(PrsMgr_PresentationManager) myPresentationManager;

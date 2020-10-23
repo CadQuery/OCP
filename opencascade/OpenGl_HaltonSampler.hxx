@@ -23,7 +23,6 @@
 
 #include <algorithm>
 #include <vector>
-#include <random>
 
 //! Compute points of the Halton sequence with with digit-permutations for different bases.
 class OpenGl_HaltonSampler
@@ -105,7 +104,7 @@ private:
     return (myPerm3[theIndex % 243u] * 14348907u
           + myPerm3[(theIndex / 243u)      % 243u] * 59049u
           + myPerm3[(theIndex / 59049u)    % 243u] * 243u
-          + myPerm3[(theIndex / 14348907u) % 243u]) * float(0.999999999999999f / 3486784401u); // Results in [0,1).
+          + myPerm3[(theIndex / 14348907u) % 243u]) * float(0.999999999999999 / 3486784401u); // Results in [0,1).
   }
 
   float halton5 (unsigned theIndex) const
@@ -113,7 +112,7 @@ private:
     return (myPerm5[theIndex % 125u] * 1953125u
           + myPerm5[(theIndex / 125u)     % 125u] * 15625u
           + myPerm5[(theIndex / 15625u)   % 125u] * 125u
-          + myPerm5[(theIndex / 1953125u) % 125u]) * float(0.999999999999999f / 244140625u); // Results in [0,1).
+          + myPerm5[(theIndex / 1953125u) % 125u]) * float(0.999999999999999 / 244140625u); // Results in [0,1).
   }
 
 private:
@@ -181,7 +180,7 @@ void OpenGl_HaltonSampler::initRandom (Random_number_generator& theRand)
     {
       aPerms[aBase][i] = i;
     }
-    std::shuffle (aPerms[aBase].begin(), aPerms[aBase].end(),std::mt19937(std::random_device()()));
+    std::random_shuffle (aPerms[aBase].begin(), aPerms[aBase].end(), theRand);
   }
   initTables (aPerms);
 }

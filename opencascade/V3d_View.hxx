@@ -224,13 +224,33 @@ public:
                                            const Aspect_FillMethod theFillStyle = Aspect_FM_CENTERED,
                                            const Standard_Boolean theToUpdate = Standard_False);
 
+  //! Defines the background texture of the view by supplying the texture and fill method (centered by default)
+  Standard_EXPORT void SetBackgroundImage (const Handle(Graphic3d_Texture2D)& theTexture,
+                                           const Aspect_FillMethod theFillStyle = Aspect_FM_CENTERED,
+                                           const Standard_Boolean theToUpdate = Standard_False);
+
   //! Defines the textured background fill method of the view.
   Standard_EXPORT void SetBgImageStyle (const Aspect_FillMethod theFillStyle,
                                         const Standard_Boolean theToUpdate = Standard_False);
 
-  //! Sets environment cubemap as interactive background.
+  //! Sets environment cubemap as background.
+  //! @param theCubeMap cubemap source to be set as background
+  //! @param theToUpdatePBREnv defines whether IBL maps will be generated or not (see 'GeneratePBREnvironment')
   Standard_EXPORT void SetBackgroundCubeMap (const Handle(Graphic3d_CubeMap)& theCubeMap,
+                                             Standard_Boolean                 theToUpdatePBREnv = Standard_True,
                                              Standard_Boolean                 theToUpdate = Standard_False);
+
+  //! Generates PBR specular probe and irradiance map
+  //! in order to provide environment indirect illumination in PBR shading model (Image Based Lighting).
+  //! The source of environment data is background cubemap.
+  //! If PBR is unavailable it does nothing.
+  //! If PBR is available but there is no cubemap being set to background it clears all IBL maps (see 'ClearPBREnvironment').
+  Standard_EXPORT void GeneratePBREnvironment (Standard_Boolean theToUpdate = Standard_False);
+
+  //! Fills PBR specular probe and irradiance map with white color.
+  //! So that environment indirect illumination will be constant and will be fully controlled by ambient light sources.
+  //! If PBR is unavailable it does nothing.
+  Standard_EXPORT void ClearPBREnvironment (Standard_Boolean theToUpdate = Standard_False);
 
   //! Definition of an axis from its origin and
   //! its orientation .
@@ -692,23 +712,11 @@ public:
   //! Returns the current visualisation mode.
   Standard_EXPORT V3d_TypeOfVisualization Visualization() const;
 
-  //! Returns True if One light more can be
-  //! activated in this View.
-  Standard_EXPORT Standard_Boolean IfMoreLights() const;
+  //! Returns a list of active lights.
+  const V3d_ListOfLight& ActiveLights() const { return myActiveLights; }
 
   //! Return iterator for defined lights.
   V3d_ListOfLightIterator ActiveLightIterator() const { return V3d_ListOfLightIterator (myActiveLights); }
-
-  //! initializes an iteration on the active Lights.
-  void InitActiveLights() { myActiveLightsIterator.Initialize (myActiveLights); }
-
-  //! returns true if there are more active Light(s) to return.
-  Standard_Boolean MoreActiveLights() const { return myActiveLightsIterator.More(); }
-
-  //! Go to the next active Light (if there is not, ActiveLight will raise an exception)
-  void NextActiveLights() { myActiveLightsIterator.Next(); }
-
-  const Handle(V3d_Light)& ActiveLight() const { return myActiveLightsIterator.Value(); }
 
   //! Returns the MAX number of light associated to the view.
   Standard_EXPORT Standard_Integer LightLimit() const;
@@ -952,7 +960,32 @@ public:
   //! Returns the Objects number and the gravity center of ALL viewable points in the view
   Standard_EXPORT gp_Pnt GravityPoint() const;
 
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+
   DEFINE_STANDARD_RTTIEXT(V3d_View,Standard_Transient)
+
+public: //! @name deprecated methods
+
+  //! Returns True if One light more can be
+  //! activated in this View.
+  Standard_DEPRECATED ("Deprecated method - ActiveLights() should be used instead")
+  Standard_EXPORT Standard_Boolean IfMoreLights() const;
+
+  //! initializes an iteration on the active Lights.
+  Standard_DEPRECATED ("Deprecated method - ActiveLights() should be used instead")
+  void InitActiveLights() { myActiveLightsIterator.Initialize (myActiveLights); }
+
+  //! returns true if there are more active Light(s) to return.
+  Standard_DEPRECATED ("Deprecated method - ActiveLights() should be used instead")
+  Standard_Boolean MoreActiveLights() const { return myActiveLightsIterator.More(); }
+
+  //! Go to the next active Light (if there is not, ActiveLight will raise an exception)
+  Standard_DEPRECATED ("Deprecated method - ActiveLights() should be used instead")
+  void NextActiveLights() { myActiveLightsIterator.Next(); }
+
+  Standard_DEPRECATED ("Deprecated method - ActiveLights() should be used instead")
+  const Handle(V3d_Light)& ActiveLight() const { return myActiveLightsIterator.Value(); }
 
 protected:
 
@@ -1001,7 +1034,6 @@ protected:
   gp_Dir myCamStartOpUp;
   gp_Dir myCamStartOpDir;
   gp_Pnt myCamStartOpEye;
-  Standard_Real myCamStartOpBnd[6];
   gp_Pnt myCamStartOpCenter;
   Handle(Graphic3d_Camera) myDefaultCamera;
   Handle(Graphic3d_CView) myView;

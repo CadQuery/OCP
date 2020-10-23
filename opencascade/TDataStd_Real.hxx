@@ -22,7 +22,7 @@
 
 #include <Standard_Real.hxx>
 #include <TDataStd_RealEnum.hxx>
-#include <TDF_Attribute.hxx>
+#include <TDF_DerivedAttribute.hxx>
 #include <Standard_Boolean.hxx>
 #include <Standard_OStream.hxx>
 #include <Standard_GUID.hxx>
@@ -99,6 +99,9 @@ public:
   
   Standard_EXPORT virtual Standard_OStream& Dump (Standard_OStream& anOS) const Standard_OVERRIDE;
 
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
+
 
 
 
@@ -106,17 +109,10 @@ public:
 
 protected:
 
-
-
-
-private:
-
-
   Standard_Real myValue;
   //! An obsolete field that will be removed in next versions.
   TDataStd_RealEnum myDimension;
   Standard_GUID myID;
-
 };
 
 

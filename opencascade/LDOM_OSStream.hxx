@@ -102,6 +102,8 @@ public:
   //! Constructor
   Standard_EXPORT LDOM_OSStream(const Standard_Integer theMaxBuf);
 
+  Standard_EXPORT virtual ~LDOM_OSStream();
+
   Standard_CString str () const {return myBuffer.str();}
 
   Standard_Integer Length () const { return myBuffer.Length(); }
@@ -110,6 +112,23 @@ public:
 
  private:
   LDOM_SBuffer myBuffer;
+
+public:
+  // byte order mark defined at the start of a stream
+  enum BOMType {
+    BOM_UNDEFINED,
+    BOM_UTF8,
+    BOM_UTF16BE,
+    BOM_UTF16LE,
+    BOM_UTF32BE,
+    BOM_UTF32LE,
+    BOM_UTF7,
+    BOM_UTF1,
+    BOM_UTFEBCDIC,
+    BOM_SCSU,
+    BOM_BOCU1,
+    BOM_GB18030
+  };
 };
 
 #endif

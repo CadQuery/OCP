@@ -31,7 +31,7 @@ public:
   Standard_EXPORT Select3D_SensitivePoint (const Handle(SelectMgr_EntityOwner)& theOwnerId, const gp_Pnt& thePoint);
 
   //! Returns the amount of sub-entities in sensitive
-  Standard_EXPORT virtual Standard_Integer NbSubElements() Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
 
   Standard_EXPORT virtual Handle(Select3D_SensitiveEntity) GetConnected() Standard_OVERRIDE;
 
@@ -49,6 +49,12 @@ public:
   //! Returns bounding box of the point. If location
   //! transformation is set, it will be applied
   Standard_EXPORT virtual Select3D_BndBox3d BoundingBox() Standard_OVERRIDE;
+
+  //! Returns TRUE if BVH tree is in invalidated state
+  virtual Standard_Boolean ToBuildBVH() const Standard_OVERRIDE { return Standard_False; }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 private:
 

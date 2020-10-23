@@ -31,6 +31,7 @@
 #include <Graphic3d_SequenceOfHClipPlane.hxx>
 #include <Graphic3d_SequenceOfStructure.hxx>
 #include <Graphic3d_Structure.hxx>
+#include <Graphic3d_Texture2Dmanual.hxx>
 #include <Graphic3d_TextureEnv.hxx>
 #include <Graphic3d_TypeOfAnswer.hxx>
 #include <Graphic3d_TypeOfBackfacingModel.hxx>
@@ -45,6 +46,7 @@
 #include <Standard_Transient.hxx>
 #include <TColStd_IndexedDataMapOfStringString.hxx>
 
+class Aspect_XRSession;
 class Graphic3d_CView;
 class Graphic3d_GraphicDriver;
 class Graphic3d_Layer;
@@ -90,7 +92,7 @@ public:
   Standard_Boolean IsRemoved() const { return myIsRemoved; }
 
   //! Returns camera object of the view.
-  virtual const Handle(Graphic3d_Camera)& Camera() const { return myCamera; }
+  virtual const Handle(Graphic3d_Camera)& Camera() const Standard_OVERRIDE { return myCamera; }
 
   //! Sets camera used by the view.
   virtual void SetCamera (const Handle(Graphic3d_Camera)& theCamera) { myCamera = theCamera; }
@@ -193,7 +195,7 @@ private:
 
   //! Transforms the structure in the view.
   Standard_EXPORT void SetTransform (const Handle(Graphic3d_Structure)& theStructure,
-                                     const Handle(Geom_Transformation)& theTrsf);
+                                     const Handle(TopLoc_Datum3D)& theTrsf);
 
   //! Suppress the highlighting on the structure <AStructure>
   //! in the view <me>.
@@ -362,11 +364,16 @@ public:
   //! Sets gradient background fill colors.
   virtual void SetGradientBackground (const Aspect_GradientBackground& theBackground) = 0;
 
-  //! Returns background image texture file path.
-  virtual TCollection_AsciiString BackgroundImage() = 0;
+  //! Returns background image texture map.
+  virtual Handle(Graphic3d_TextureMap) BackgroundImage() = 0;
 
-  //! Sets background image texture file path.
-  virtual void SetBackgroundImage (const TCollection_AsciiString& theFilePath) = 0;
+  //! Sets image texture or environment cubemap as backround.
+  //! @param theTextureMap [in] source to set a background;
+  //!                           should be either Graphic3d_Texture2D or Graphic3d_CubeMap
+  //! @param theToUpdatePBREnv [in] defines whether IBL maps will be generated or not
+  //!                               (see GeneratePBREnvironment())
+  virtual void SetBackgroundImage (const Handle(Graphic3d_TextureMap)& theTextureMap,
+                                   Standard_Boolean theToUpdatePBREnv = Standard_True) = 0;
 
   //! Returns background image fill style.
   virtual Aspect_FillMethod BackgroundImageStyle() const = 0;
@@ -377,8 +384,18 @@ public:
   //! Returns cubemap being setted last time on background.
   virtual Handle(Graphic3d_CubeMap) BackgroundCubeMap() const = 0;
 
-  //! Sets environment cubemap as background.
-  virtual void SetBackgroundCubeMap (const Handle(Graphic3d_CubeMap)& theCubeMap) = 0;
+  //! Generates PBR specular probe and irradiance map
+  //! in order to provide environment indirect illumination in PBR shading model (Image Based Lighting).
+  //! The source of environment data is background cubemap.
+  //! If PBR is unavailable it does nothing.
+  //! If PBR is available but there is no cubemap being set to background it clears all IBL maps (see 'ClearPBREnvironment').
+  virtual void GeneratePBREnvironment() = 0;
+
+  //! Fills PBR specular probe and irradiance map with white color.
+  //! So that environment indirect illumination will be constant
+  //! and will be fully controlled by ambient light sources.
+  //! If PBR is unavailable it does nothing.
+  virtual void ClearPBREnvironment() = 0;
 
   //! Returns environment texture set for the view.
   virtual Handle(Graphic3d_TextureEnv) TextureEnv() const = 0; 
@@ -411,14 +428,92 @@ public:
   //! The format of returned information (e.g. key-value layout)
   //! is NOT part of this API and can be changed at any time.
   //! Thus application should not parse returned information to weed out specific parameters.
-  virtual void DiagnosticInformation (TColStd_IndexedDataMapOfStringString& theDict,
-                                      Graphic3d_DiagnosticInfo theFlags) const = 0;
+  Standard_EXPORT virtual void DiagnosticInformation (TColStd_IndexedDataMapOfStringString& theDict,
+                                                      Graphic3d_DiagnosticInfo theFlags) const = 0;
 
   //! Returns string with statistic performance info.
   virtual TCollection_AsciiString StatisticInformation() const = 0;
 
   //! Fills in the dictionary with statistic performance info.
   virtual void StatisticInformation (TColStd_IndexedDataMapOfStringString& theDict) const = 0;
+
+public:
+
+  //! Return unit scale factor defined as scale factor for m (meters); 1.0 by default.
+  //! Normally, view definition is unitless, however some operations like VR input requires proper units mapping.
+  Standard_Real UnitFactor() const { return myUnitFactor; }
+
+  //! Set unit scale factor.
+  Standard_EXPORT void SetUnitFactor (Standard_Real theFactor);
+
+  //! Return XR session.
+  const Handle(Aspect_XRSession)& XRSession() const { return myXRSession; }
+
+  //! Set XR session.
+  void SetXRSession (const Handle(Aspect_XRSession)& theSession) { myXRSession = theSession; }
+
+  //! Return TRUE if there is active XR session.
+  Standard_EXPORT bool IsActiveXR() const;
+
+  //! Initialize XR session.
+  Standard_EXPORT virtual bool InitXR();
+
+  //! Release XR session.
+  Standard_EXPORT virtual void ReleaseXR();
+
+  //! Process input.
+  Standard_EXPORT virtual void ProcessXRInput();
+
+  //! Compute PosedXRCamera() based on current XR head pose and make it active.
+  Standard_EXPORT void SetupXRPosedCamera();
+
+  //! Set current camera back to BaseXRCamera() and copy temporary modifications of PosedXRCamera().
+  //! Calls SynchronizeXRPosedToBaseCamera() beforehand.
+  Standard_EXPORT void UnsetXRPosedCamera();
+
+  //! Returns transient XR camera position with tracked head orientation applied.
+  const Handle(Graphic3d_Camera)& PosedXRCamera() const { return myPosedXRCamera; }
+
+  //! Sets transient XR camera position with tracked head orientation applied.
+  void SetPosedXRCamera (const Handle(Graphic3d_Camera)& theCamera) { myPosedXRCamera = theCamera; }
+
+  //! Returns anchor camera definition (without tracked head orientation).
+  const Handle(Graphic3d_Camera)& BaseXRCamera() const { return myBaseXRCamera; }
+
+  //! Sets anchor camera definition.
+  void SetBaseXRCamera (const Handle(Graphic3d_Camera)& theCamera) { myBaseXRCamera = theCamera; }
+
+  //! Convert XR pose to world space.
+  //! @param theTrsfXR [in] transformation defined in VR local coordinate system,
+  //!                       oriented as Y-up, X-right and -Z-forward
+  //! @return transformation defining orientation of XR pose in world space
+  gp_Trsf PoseXRToWorld (const gp_Trsf& thePoseXR) const
+  {
+    const Handle(Graphic3d_Camera)& anOrigin = myBaseXRCamera;
+    const gp_Ax3 anAxVr    (gp::Origin(),  gp::DZ(), gp::DX());
+    const gp_Ax3 aCameraCS (anOrigin->Eye().XYZ(), -anOrigin->Direction(), -anOrigin->SideRight());
+    gp_Trsf aTrsfCS;
+    aTrsfCS.SetTransformation (aCameraCS, anAxVr);
+    return aTrsfCS * thePoseXR;
+  }
+
+  //! Recomputes PosedXRCamera() based on BaseXRCamera() and head orientation.
+  Standard_EXPORT void SynchronizeXRBaseToPosedCamera();
+
+  //! Checks if PosedXRCamera() has been modified since SetupXRPosedCamera()
+  //! and copies these modifications to BaseXRCamera().
+  Standard_EXPORT void SynchronizeXRPosedToBaseCamera();
+
+  //! Compute camera position based on XR pose.
+  Standard_EXPORT void ComputeXRPosedCameraFromBase (Graphic3d_Camera& theCam,
+                                                     const gp_Trsf& theXRTrsf) const;
+
+  //! Update based camera from posed camera by applying reversed transformation.
+  Standard_EXPORT void ComputeXRBaseCameraFromPosed (const Graphic3d_Camera& theCamPosed,
+                                                     const gp_Trsf& thePoseTrsf);
+
+  //! Turn XR camera direction using current (head) eye position as anchor.
+  Standard_EXPORT void TurnViewXRCamera (const gp_Trsf& theTrsfTurn);
 
 public: //! @name obsolete Graduated Trihedron functionality
 
@@ -439,6 +534,9 @@ public: //! @name obsolete Graduated Trihedron functionality
     (void )theMin;
     (void )theMax;
   }
+  
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 private:
 
@@ -473,6 +571,13 @@ protected:
   Standard_Boolean myIsRemoved;
   Graphic3d_TypeOfShadingModel  myShadingModel;
   Graphic3d_TypeOfVisualization myVisualization;
+
+  Handle(Aspect_XRSession) myXRSession;
+  Handle(Graphic3d_Camera) myBackXRCamera;       //!< camera projection parameters to restore after closing XR session (FOV, aspect and similar)
+  Handle(Graphic3d_Camera) myBaseXRCamera;       //!< neutral camera orientation defining coordinate system in which head tracking is defined
+  Handle(Graphic3d_Camera) myPosedXRCamera;      //!< transient XR camera orientation with tracked head orientation applied (based on myBaseXRCamera)
+  Handle(Graphic3d_Camera) myPosedXRCameraCopy;  //!< neutral camera orientation copy at the beginning of processing input
+  Standard_Real            myUnitFactor;         //!< unit scale factor defined as scale factor for m (meters)
 
 protected:
 

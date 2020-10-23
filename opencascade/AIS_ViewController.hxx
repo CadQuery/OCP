@@ -16,6 +16,8 @@
 
 #include <Aspect_VKeySet.hxx>
 #include <Aspect_TouchMap.hxx>
+#include <Aspect_XRHapticActionData.hxx>
+#include <Aspect_XRTrackedDeviceRole.hxx>
 #include <AIS_DragAction.hxx>
 #include <AIS_MouseGesture.hxx>
 #include <AIS_NavigationMode.hxx>
@@ -28,6 +30,7 @@
 #include <NCollection_Array1.hxx>
 #include <OSD_Timer.hxx>
 #include <Precision.hxx>
+#include <Quantity_ColorRGBA.hxx>
 #include <Standard_Mutex.hxx>
 
 class AIS_AnimationCamera;
@@ -35,7 +38,11 @@ class AIS_InteractiveObject;
 class AIS_InteractiveContext;
 class AIS_Point;
 class AIS_RubberBand;
+class AIS_XRTrackedDevice;
+class Graphic3d_Camera;
+class SelectMgr_EntityOwner;
 class V3d_View;
+class WNT_HIDSpaceMouse;
 
 //! Auxiliary structure for handling viewer events between GUI and Rendering threads.
 //!
@@ -50,6 +57,9 @@ public:
 
   //! Empty constructor.
   Standard_EXPORT AIS_ViewController();
+
+  //! Destructor.
+  Standard_EXPORT virtual ~AIS_ViewController();
 
   //! Return input buffer.
   const AIS_ViewInputBuffer& InputBuffer (AIS_ViewInputBufferType theType) const { return theType == AIS_ViewInputBufferType_UI ? myUI : myGL; }
@@ -196,6 +206,18 @@ public: //! @name global parameters
 
   //! Reset previous position of MoveTo.
   void ResetPreviousMoveTo() { myPrevMoveTo = Graphic3d_Vec2i (-1); }
+
+  //! Return TRUE to display auxiliary tracked XR devices (like tracking stations).
+  bool ToDisplayXRAuxDevices() const { return myToDisplayXRAuxDevices; }
+
+  //! Set if auxiliary tracked XR devices should be displayed.
+  void SetDisplayXRAuxDevices (bool theToDisplay) { myToDisplayXRAuxDevices = theToDisplay; }
+
+  //! Return TRUE to display XR hand controllers.
+  bool ToDisplayXRHands() const { return myToDisplayXRHands; }
+
+  //! Set if tracked XR hand controllers should be displayed.
+  void SetDisplayXRHands (bool theToDisplay) { myToDisplayXRHands = theToDisplay; }
 
 public: //! @name keyboard input
 
@@ -408,6 +430,50 @@ public: //! @name multi-touch input
   Standard_EXPORT virtual void UpdateTouchPoint (Standard_Size theId,
                                                  const Graphic3d_Vec2d& thePnt);
 
+public: //! @name 3d mouse input
+
+  //! Return acceleration ratio for translation event; 2.0 by default.
+  float Get3dMouseTranslationScale() const { return my3dMouseAccelTrans; }
+
+  //! Set acceleration ratio for translation event.
+  void Set3dMouseTranslationScale (float theScale) { my3dMouseAccelTrans = theScale; }
+
+  //! Return acceleration ratio for rotation event; 4.0 by default.
+  float Get3dMouseRotationScale() const { return my3dMouseAccelRotate; }
+
+  //! Set acceleration ratio for rotation event.
+  void Set3dMouseRotationScale (float theScale) { my3dMouseAccelRotate = theScale; }
+
+  //! Return quadric acceleration flag; TRUE by default.
+  bool To3dMousePreciseInput() const { return my3dMouseIsQuadric; }
+
+  //! Set quadric acceleration flag.
+  void Set3dMousePreciseInput (bool theIsQuadric) { my3dMouseIsQuadric = theIsQuadric; }
+
+  //! Return 3d mouse rotation axes (tilt/roll/spin) ignore flag; (FALSE, FALSE, FALSE) by default.
+  const NCollection_Vec3<bool>& Get3dMouseIsNoRotate() const { return my3dMouseNoRotate; }
+
+  //! Return 3d mouse rotation axes (tilt/roll/spin) ignore flag; (FALSE, FALSE, FALSE) by default.
+  NCollection_Vec3<bool>& Change3dMouseIsNoRotate() { return my3dMouseNoRotate; }
+
+  //! Return 3d mouse rotation axes (tilt/roll/spin) reverse flag; (TRUE, FALSE, FALSE) by default.
+  const NCollection_Vec3<bool>& Get3dMouseToReverse() const { return my3dMouseToReverse; }
+
+  //! Return 3d mouse rotation axes (tilt/roll/spin) reverse flag; (TRUE, FALSE, FALSE) by default.
+  NCollection_Vec3<bool>& Change3dMouseToReverse() { return my3dMouseToReverse; }
+
+  //! Process 3d mouse input event (redirects to translation, rotation and keys).
+  Standard_EXPORT virtual bool Update3dMouse (const WNT_HIDSpaceMouse& theEvent);
+
+  //! Process 3d mouse input translation event.
+  Standard_EXPORT virtual bool update3dMouseTranslation (const WNT_HIDSpaceMouse& theEvent);
+
+  //! Process 3d mouse input rotation event.
+  Standard_EXPORT virtual bool update3dMouseRotation (const WNT_HIDSpaceMouse& theEvent);
+
+  //! Process 3d mouse input keys event.
+  Standard_EXPORT virtual bool update3dMouseKeys (const WNT_HIDSpaceMouse& theEvent);
+
 public:
 
   //! Return event time (e.g. current time).
@@ -468,9 +534,25 @@ public:
   Standard_EXPORT virtual gp_Pnt GravityPoint (const Handle(AIS_InteractiveContext)& theCtx,
                                                const Handle(V3d_View)& theView);
 
+  //! Modify view camera to fit all objects.
+  //! Default implementation fits either all visible and all selected objects (swapped on each call).
+  Standard_EXPORT virtual void FitAllAuto (const Handle(AIS_InteractiveContext)& theCtx,
+                                           const Handle(V3d_View)& theView);
+
 public:
 
-  //! Perform camera actions.
+  //! Handle hot-keys defining new camera orientation (Aspect_VKey_ViewTop and similar keys).
+  //! Default implementation starts an animated transaction from the current to the target camera orientation, when specific action key was pressed.
+  //! This method is expected to be called from rendering thread.
+  Standard_EXPORT virtual void handleViewOrientationKeys (const Handle(AIS_InteractiveContext)& theCtx,
+                                                          const Handle(V3d_View)& theView);
+
+  //! Perform navigation (Aspect_VKey_NavForward and similar keys).
+  //! This method is expected to be called from rendering thread.
+  Standard_EXPORT virtual AIS_WalkDelta handleNavigationKeys (const Handle(AIS_InteractiveContext)& theCtx,
+                                                              const Handle(V3d_View)& theView);
+
+  //! Perform immediate camera actions (rotate/zoom/pan) on gesture progress.
   //! This method is expected to be called from rendering thread.
   Standard_EXPORT virtual void handleCameraActions (const Handle(AIS_InteractiveContext)& theCtx,
                                                     const Handle(V3d_View)& theView,
@@ -544,6 +626,40 @@ public:
   //! This method is expected to be called from rendering thread.
   Standard_EXPORT virtual void handleViewRedraw (const Handle(AIS_InteractiveContext)& theCtx,
                                                  const Handle(V3d_View)& theView);
+
+public:
+
+  //! Perform XR input.
+  //! This method is expected to be called from rendering thread.
+  Standard_EXPORT virtual void handleXRInput (const Handle(AIS_InteractiveContext)& theCtx,
+                                              const Handle(V3d_View)& theView,
+                                              const AIS_WalkDelta& theWalk);
+
+  //! Handle trackpad view turn action.
+  Standard_EXPORT virtual void handleXRTurnPad (const Handle(AIS_InteractiveContext)& theCtx,
+                                                const Handle(V3d_View)& theView);
+
+  //! Handle trackpad teleportation action.
+  Standard_EXPORT virtual void handleXRTeleport (const Handle(AIS_InteractiveContext)& theCtx,
+                                                 const Handle(V3d_View)& theView);
+
+  //! Handle picking on trigger click.
+  Standard_EXPORT virtual void handleXRPicking (const Handle(AIS_InteractiveContext)& theCtx,
+                                                const Handle(V3d_View)& theView);
+
+  //! Perform dynamic highlighting for active hand.
+  Standard_EXPORT virtual void handleXRHighlight (const Handle(AIS_InteractiveContext)& theCtx,
+                                                  const Handle(V3d_View)& theView);
+
+  //! Display auxiliary XR presentations.
+  Standard_EXPORT virtual void handleXRPresentations (const Handle(AIS_InteractiveContext)& theCtx,
+                                                      const Handle(V3d_View)& theView);
+
+  //! Perform picking with/without dynamic highlighting for XR pose.
+  Standard_EXPORT virtual Standard_Integer handleXRMoveTo (const Handle(AIS_InteractiveContext)& theCtx,
+                                                           const Handle(V3d_View)& theView,
+                                                           const gp_Trsf& thePose,
+                                                           const Standard_Boolean theToHighlight);
 
 protected:
 
@@ -622,9 +738,27 @@ protected:
 
   Handle(AIS_AnimationCamera) myViewAnimation;    //!< view animation
   Handle(AIS_RubberBand) myRubberBand;            //!< Rubber-band presentation
+  Handle(SelectMgr_EntityOwner) myDragOwner;      //!< detected owner of currently dragged object
   Handle(AIS_InteractiveObject) myDragObject;     //!< currently dragged object
   Graphic3d_Vec2i     myPrevMoveTo;               //!< previous position of MoveTo event in 3D viewer
   Standard_Boolean    myHasHlrOnBeforeRotation;   //!< flag for restoring Computed mode after rotation
+
+protected: //! @name XR input variables
+
+  NCollection_Array1<Handle(AIS_XRTrackedDevice)> myXRPrsDevices; //!< array of XR tracked devices presentations
+  Handle(Graphic3d_Camera)   myXRCameraTmp;       //!< temporary camera
+  Quantity_Color             myXRLaserTeleColor;  //!< color of teleport laser
+  Quantity_Color             myXRLaserPickColor;  //!< color of picking  laser
+  Aspect_XRTrackedDeviceRole myXRLastTeleportHand;//!< active hand for teleport
+  Aspect_XRTrackedDeviceRole myXRLastPickingHand; //!< active hand for picking objects
+  Aspect_XRHapticActionData  myXRTeleportHaptic;  //!< vibration on picking teleport destination
+  Aspect_XRHapticActionData  myXRPickingHaptic;   //!< vibration on dynamic highlighting
+  Aspect_XRHapticActionData  myXRSelectHaptic;    //!< vibration on selection
+  Standard_Real       myXRLastPickDepthLeft;      //!< last picking depth for left  hand
+  Standard_Real       myXRLastPickDepthRight;     //!< last picking depth for right hand
+  Standard_Real       myXRTurnAngle;              //!< discrete turn angle for XR trackpad
+  Standard_Boolean    myToDisplayXRAuxDevices;    //!< flag to display auxiliary tracked XR devices
+  Standard_Boolean    myToDisplayXRHands;         //!< flag to display XR hands
 
 protected: //! @name keyboard input variables
 
@@ -647,6 +781,7 @@ protected: //! @name mouse input variables
   Aspect_VKeyMouse    myMousePressed;             //!< active mouse buttons
   Aspect_VKeyFlags    myMouseModifiers;           //!< active key modifiers passed with last mouse event
   Standard_Integer    myMouseSingleButton;        //!< index of mouse button pressed alone (>0)
+  Standard_Boolean    myMouseStopDragOnUnclick;   //!< queue stop dragging even with at next mouse unclick
 
 protected: //! @name multi-touch input variables
 
@@ -664,6 +799,15 @@ protected: //! @name multi-touch input variables
   Standard_Boolean    myUpdateStartPointPan;      //!< flag indicating that new anchor  point should be picked for starting panning    gesture
   Standard_Boolean    myUpdateStartPointRot;      //!< flag indicating that new gravity point should be picked for starting rotation   gesture
   Standard_Boolean    myUpdateStartPointZRot;     //!< flag indicating that new gravity point should be picked for starting Z-rotation gesture
+
+protected: //! @name 3d mouse input variables
+
+  bool                   my3dMouseButtonState[32];//!< cached button state
+  NCollection_Vec3<bool> my3dMouseNoRotate;       //!< ignore  3d mouse rotation axes
+  NCollection_Vec3<bool> my3dMouseToReverse;      //!< reverse 3d mouse rotation axes
+  float                  my3dMouseAccelTrans;     //!< acceleration ratio for translation event
+  float                  my3dMouseAccelRotate;    //!< acceleration ratio for rotation event
+  bool                   my3dMouseIsQuadric;      //!< quadric acceleration
 
 protected: //! @name rotation/panning transient state variables
 

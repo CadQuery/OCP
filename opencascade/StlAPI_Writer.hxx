@@ -16,12 +16,8 @@
 #ifndef _StlAPI_Writer_HeaderFile
 #define _StlAPI_Writer_HeaderFile
 
-#include <Poly_Triangulation.hxx>
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_CString.hxx>
+#include <Message_ProgressScope.hxx>
+#include <Message_ProgressIndicator.hxx>
 
 class TopoDS_Shape;
 
@@ -45,7 +41,8 @@ public:
   //! Converts a given shape to STL format and writes it to file with a given filename.
   //! \return the error state.
   Standard_EXPORT Standard_Boolean Write (const TopoDS_Shape& theShape,
-                                          const Standard_CString theFileName);
+                                          const Standard_CString theFileName,
+                                          const Message_ProgressRange& theProgress = Message_ProgressRange());
 
 private:
   Standard_Boolean myASCIIMode;

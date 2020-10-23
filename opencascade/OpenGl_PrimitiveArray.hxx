@@ -58,6 +58,13 @@ public:
   //! Release OpenGL resources (VBOs)
   Standard_EXPORT virtual void Release (OpenGl_Context* theContext) Standard_OVERRIDE;
 
+  //! Returns estimated GPU memory usage for holding data without considering overheads and allocation alignment rules.
+  Standard_EXPORT virtual Standard_Size EstimatedDataSize() const Standard_OVERRIDE;
+
+  //! Increment draw calls statistics.
+  Standard_EXPORT virtual void UpdateDrawStats (Graphic3d_FrameStatsDataTmp& theStats,
+                                                bool theIsDetailed) const Standard_OVERRIDE;
+
   //! Return true if VBOs initialization has been performed.
   //! VBO initialization is performed during first Render() call.
   //! Notice that this flag does not indicate VBOs validity.
@@ -98,6 +105,9 @@ public:
 
   //! Returns attributes VBO.
   const Handle(OpenGl_VertexBuffer)& AttributesVbo() const { return myVboAttribs; }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 

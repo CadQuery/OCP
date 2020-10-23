@@ -36,7 +36,7 @@ public:
   //! Creates instances of all available selecting volume types
   Standard_EXPORT SelectMgr_SelectingVolumeManager (Standard_Boolean theToAllocateFrustums = Standard_True);
 
-  virtual ~SelectMgr_SelectingVolumeManager() {};
+  virtual ~SelectMgr_SelectingVolumeManager() {}
 
   //! IMPORTANT: Scaling makes sense only for frustum built on a single point!
   //!            Note that this method does not perform any checks on type of the frustum.
@@ -158,7 +158,6 @@ public:
   //! Throws exception if active selection type is not Point.
   Standard_EXPORT virtual gp_Pnt DetectedPoint (const Standard_Real theDepth) const Standard_OVERRIDE;
 
-  //! Is used for rectangular selection only
   //! If theIsToAllow is false, only fully included sensitives will be detected, otherwise the algorithm will
   //! mark both included and overlapped entities as matched
   Standard_EXPORT virtual void AllowOverlapDetection (const Standard_Boolean theIsToAllow);
@@ -173,10 +172,12 @@ public:
 
   //! Valid for point selection only!
   //! Computes depth range for clipping planes.
-  //! @param theViewPlanes global view planes
-  //! @param theObjPlanes  object planes
+  //! @param theViewPlanes  [in] global view planes
+  //! @param theObjPlanes   [in] object planes
+  //! @param theWorldSelMgr [in] selection volume in world space for computing clipping plane ranges
   Standard_EXPORT void SetViewClipping (const Handle(Graphic3d_SequenceOfHClipPlane)& theViewPlanes,
-                                        const Handle(Graphic3d_SequenceOfHClipPlane)& theObjPlanes);
+                                        const Handle(Graphic3d_SequenceOfHClipPlane)& theObjPlanes,
+                                        const SelectMgr_SelectingVolumeManager* theWorldSelMgr);
 
   //! Copy clipping planes from another volume manager.
   Standard_EXPORT void SetViewClipping (const SelectMgr_SelectingVolumeManager& theOther);
@@ -235,6 +236,9 @@ public:
 
     return mySelectingVolumes[myActiveSelectionType / 2]->GetPlanes (thePlaneEquations);
   }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 private:
   enum { Frustum, FrustumSet, VolumeTypesNb };       //!< Defines the amount of available selecting volumes

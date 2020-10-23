@@ -55,7 +55,7 @@ public:
                                                    const Standard_Boolean theIsInterior);
 
   //! Returns the amount of nodes in triangulation
-  Standard_EXPORT virtual Standard_Integer NbSubElements() Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
 
   Standard_EXPORT Handle(Select3D_SensitiveEntity) GetConnected() Standard_OVERRIDE;
 
@@ -92,6 +92,9 @@ public:
   Standard_EXPORT virtual gp_GTrsf InvInitLocation() const Standard_OVERRIDE;
 
   const TopLoc_Location& GetInitLocation() const { return myInitLocation; }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 

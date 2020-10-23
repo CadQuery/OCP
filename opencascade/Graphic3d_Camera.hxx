@@ -16,6 +16,8 @@
 #ifndef _Graphic3d_Camera_HeaderFile
 #define _Graphic3d_Camera_HeaderFile
 
+#include <Aspect_Eye.hxx>
+#include <Aspect_FrustumLRBT.hxx>
 #include <Graphic3d_CameraTile.hxx>
 #include <Graphic3d_Mat4d.hxx>
 #include <Graphic3d_Mat4.hxx>
@@ -76,6 +78,23 @@ private:
 
     //! Return true if Projection was not invalidated.
     Standard_Boolean IsProjectionValid()  const { return myIsProjectionValid;  }
+    
+    //! Dumps the content of me into the stream
+    void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const
+    {
+      if (IsOrientationValid())
+      {
+        OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &Orientation)
+      }
+      if (IsProjectionValid())
+      {
+        OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &MProjection)
+        OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &LProjection)
+        OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &RProjection)
+      }
+      OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myIsOrientationValid)
+      OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myIsProjectionValid)
+    }
 
   public:
 
@@ -185,6 +204,12 @@ public:
   //! Return a copy of orthogonalized up direction vector.
   Standard_EXPORT gp_Dir OrthogonalizedUp() const;
 
+  //! Right side direction.
+  gp_Dir SideRight() const
+  {
+    return -(gp_Vec (Direction()) ^ gp_Vec (OrthogonalizedUp()));
+  }
+
   //! Get camera Eye position.
   //! @return camera eye location.
   const gp_Pnt& Eye() const { return myEye; }
@@ -284,15 +309,26 @@ public:
   }
 
   //! Set Field Of View (FOV) in y axis for perspective projection.
+  //! Field of View in x axis is automatically scaled from view aspect ratio.
   //! @param theFOVy [in] the FOV in degrees.
   Standard_EXPORT void SetFOVy (const Standard_Real theFOVy);
 
   //! Get Field Of View (FOV) in y axis.
   //! @return the FOV value in degrees.
-  Standard_Real FOVy() const
-  {
-    return myFOVy;
-  }
+  Standard_Real FOVy() const { return myFOVy; }
+
+  //! Get Field Of View (FOV) in x axis.
+  //! @return the FOV value in degrees.
+  Standard_Real FOVx() const { return myFOVx; }
+
+  //! Get Field Of View (FOV) restriction for 2D on-screen elements; 180 degrees by default.
+  //! When 2D FOV is smaller than FOVy or FOVx, 2D elements defined within offset from view corner
+  //! will be extended to fit into specified 2D FOV.
+  //! This can be useful to make 2D elements sharply visible, like in case of HMD normally having extra large FOVy.
+  Standard_Real FOV2d() const { return myFOV2d; }
+
+  //! Set Field Of View (FOV) restriction for 2D on-screen elements.
+  Standard_EXPORT void SetFOV2d (Standard_Real theFOV);
 
   //! Estimate Z-min and Z-max planes of projection volume to match the
   //! displayed objects. The methods ensures that view volume will
@@ -427,6 +463,24 @@ public:
   //! @return values in form of gp_Pnt (Width, Height, Depth).
   Standard_EXPORT gp_XYZ ViewDimensions (const Standard_Real theZValue) const;
 
+  //! Return offset to the view corner in NDC space within dimension X for 2d on-screen elements, which is normally 0.5.
+  //! Can be clamped when FOVx exceeds FOV2d.
+  Standard_Real NDC2dOffsetX() const
+  {
+    return myFOV2d >= myFOVx
+         ? 0.5
+         : 0.5 * myFOV2d / myFOVx;
+  }
+
+  //! Return offset to the view corner in NDC space within dimension X for 2d on-screen elements, which is normally 0.5.
+  //! Can be clamped when FOVy exceeds FOV2d.
+  Standard_Real NDC2dOffsetY() const
+  {
+    return myFOV2d >= myFOVy
+         ? 0.5
+         : 0.5 * myFOV2d / myFOVy;
+  }
+
   //! Calculate WCS frustum planes for the camera projection volume.
   //! Frustum is a convex volume determined by six planes directing
   //! inwards.
@@ -552,14 +606,98 @@ public:
   //! The matrix will be updated on request.
   Standard_EXPORT void InvalidateOrientation();
 
+public:
+
+  //! Get stereo projection matrices.
+  //! @param theProjL      [out] left  eye projection matrix
+  //! @param theHeadToEyeL [out] left  head to eye translation matrix
+  //! @param theProjR      [out] right eye projection matrix
+  //! @param theHeadToEyeR [out] right head to eye translation matrix
+  Standard_EXPORT void StereoProjection (Graphic3d_Mat4d& theProjL,
+                                         Graphic3d_Mat4d& theHeadToEyeL,
+                                         Graphic3d_Mat4d& theProjR,
+                                         Graphic3d_Mat4d& theHeadToEyeR) const;
+
+  //! Get stereo projection matrices.
+  //! @param theProjL      [out] left  eye projection matrix
+  //! @param theHeadToEyeL [out] left  head to eye translation matrix
+  //! @param theProjR      [out] right eye projection matrix
+  //! @param theHeadToEyeR [out] right head to eye translation matrix
+  Standard_EXPORT void StereoProjectionF (Graphic3d_Mat4& theProjL,
+                                          Graphic3d_Mat4& theHeadToEyeL,
+                                          Graphic3d_Mat4& theProjR,
+                                          Graphic3d_Mat4& theHeadToEyeR) const;
+
+  //! Unset all custom frustums and projection matrices.
+  Standard_EXPORT void ResetCustomProjection();
+
+  //! Return TRUE if custom stereo frustums are set.
+  bool IsCustomStereoFrustum() const { return myIsCustomFrustomLR; }
+
+  //! Set custom stereo frustums.
+  //! These can be retrieved from APIs like OpenVR.
+  Standard_EXPORT void SetCustomStereoFrustums (const Aspect_FrustumLRBT<Standard_Real>& theFrustumL,
+                                                const Aspect_FrustumLRBT<Standard_Real>& theFrustumR);
+
+  //! Return TRUE if custom stereo projection matrices are set.
+  bool IsCustomStereoProjection() const { return myIsCustomProjMatLR; }
+
+  //! Set custom stereo projection matrices.
+  //! @param theProjL      [in] left  eye projection matrix
+  //! @param theHeadToEyeL [in] left  head to eye translation matrix
+  //! @param theProjR      [in] right eye projection matrix
+  //! @param theHeadToEyeR [in] right head to eye translation matrix
+  Standard_EXPORT void SetCustomStereoProjection (const Graphic3d_Mat4d& theProjL,
+                                                  const Graphic3d_Mat4d& theHeadToEyeL,
+                                                  const Graphic3d_Mat4d& theProjR,
+                                                  const Graphic3d_Mat4d& theHeadToEyeR);
+
+  //! Return TRUE if custom projection matrix is set.
+  bool IsCustomMonoProjection() const { return myIsCustomProjMatM; }
+
+  //! Set custom projection matrix.
+  Standard_EXPORT void SetCustomMonoProjection (const Graphic3d_Mat4d& theProj);
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+
 //! @name Managing projection and orientation cache
 private:
+
+  //! Get stereo projection matrices.
+  //! @param theProjL      [out] left  eye projection matrix
+  //! @param theHeadToEyeL [out] left  head to eye translation matrix
+  //! @param theProjR      [out] right eye projection matrix
+  //! @param theHeadToEyeR [out] right head to eye translation matrix
+  template <typename Elem_t>
+  Standard_EXPORT void stereoProjection (NCollection_Mat4<Elem_t>& theProjL,
+                                         NCollection_Mat4<Elem_t>& theHeadToEyeL,
+                                         NCollection_Mat4<Elem_t>& theProjR,
+                                         NCollection_Mat4<Elem_t>& theHeadToEyeR) const;
+
+  //! Compute projection matrices.
+  //! @param theProjM [out] mono projection matrix
+  //! @param theProjL [out] left  eye projection matrix
+  //! @param theProjR [out] right eye projection matrix
+  //! @param theToAddHeadToEye [in] flag to pre-multiply head-to-eye translation
+  template <typename Elem_t>
+  Standard_EXPORT void computeProjection (NCollection_Mat4<Elem_t>& theProjM,
+                                          NCollection_Mat4<Elem_t>& theProjL,
+                                          NCollection_Mat4<Elem_t>& theProjR,
+                                          bool theToAddHeadToEye) const;
 
   //! Compute projection matrices.
   //! @param theMatrices [in] the matrices data container.
   template <typename Elem_t>
-  Standard_EXPORT
-    TransformMatrices<Elem_t>& UpdateProjection (TransformMatrices<Elem_t>& theMatrices) const;
+  TransformMatrices<Elem_t>& UpdateProjection (TransformMatrices<Elem_t>& theMatrices) const
+  {
+    if (!theMatrices.IsProjectionValid())
+    {
+      theMatrices.InitProjection();
+      computeProjection (theMatrices.MProjection, theMatrices.LProjection, theMatrices.RProjection, true);
+    }
+    return theMatrices;
+  }
 
   //! Compute orientation matrix.
   //! @param theMatrices [in] the matrices data container.
@@ -569,68 +707,44 @@ private:
 
 private:
 
-  //! Compose orthographic projection matrix for
-  //! the passed camera volume mapping.
-  //! @param theLeft [in] the left mapping (clipping) coordinate.
-  //! @param theRight [in] the right mapping (clipping) coordinate.
-  //! @param theBottom [in] the bottom mapping (clipping) coordinate.
-  //! @param theTop [in] the top mapping (clipping) coordinate.
-  //! @param theNear [in] the near mapping (clipping) coordinate.
-  //! @param theFar [in] the far mapping (clipping) coordinate.
-  //! @param theOutMx [out] the projection matrix.
+  //! Compose orthographic projection matrix for the passed camera volume mapping.
+  //! @param theOutMx [out] the projection matrix
+  //! @param theLRBT [in] the left/right/bottom/top mapping (clipping) coordinates
+  //! @param theNear [in] the near mapping (clipping) coordinate
+  //! @param theFar [in] the far mapping (clipping) coordinate
   template <typename Elem_t>
-  static void 
-    OrthoProj (const Elem_t              theLeft,
-               const Elem_t              theRight,
-               const Elem_t              theBottom,
-               const Elem_t              theTop,
-               const Elem_t              theNear,
-               const Elem_t              theFar,
-               NCollection_Mat4<Elem_t>& theOutMx);
+  static void orthoProj (NCollection_Mat4<Elem_t>& theOutMx,
+                         const Aspect_FrustumLRBT<Elem_t>& theLRBT,
+                         const Elem_t theNear,
+                         const Elem_t theFar);
 
-  //! Compose perspective projection matrix for
-  //! the passed camera volume mapping.
-  //! @param theLeft [in] the left mapping (clipping) coordinate.
-  //! @param theRight [in] the right mapping (clipping) coordinate.
-  //! @param theBottom [in] the bottom mapping (clipping) coordinate.
-  //! @param theTop [in] the top mapping (clipping) coordinate.
-  //! @param theNear [in] the near mapping (clipping) coordinate.
-  //! @param theFar [in] the far mapping (clipping) coordinate.
-  //! @param theOutMx [out] the projection matrix.
+  //! Compose perspective projection matrix for the passed camera volume mapping.
+  //! @param theOutMx [out] the projection matrix
+  //! @param theLRBT [in] the left/right/bottom/top mapping (clipping) coordinates
+  //! @param theNear [in] the near mapping (clipping) coordinate
+  //! @param theFar [in] the far mapping (clipping) coordinate
   template <typename Elem_t>
-  static void
-    PerspectiveProj (const Elem_t              theLeft,
-                     const Elem_t              theRight,
-                     const Elem_t              theBottom,
-                     const Elem_t              theTop,
-                     const Elem_t              theNear,
-                     const Elem_t              theFar,
-                     NCollection_Mat4<Elem_t>& theOutMx);
+  static void perspectiveProj (NCollection_Mat4<Elem_t>& theOutMx,
+                               const Aspect_FrustumLRBT<Elem_t>& theLRBT,
+                               const Elem_t theNear,
+                               const Elem_t theFar);
 
   //! Compose projection matrix for L/R stereo eyes.
-  //! @param theLeft [in] the left mapping (clipping) coordinate.
-  //! @param theRight [in] the right mapping (clipping) coordinate.
-  //! @param theBottom [in] the bottom mapping (clipping) coordinate.
-  //! @param theTop [in] the top mapping (clipping) coordinate.
-  //! @param theNear [in] the near mapping (clipping) coordinate.
-  //! @param theFar [in] the far mapping (clipping) coordinate.
-  //! @param theIOD [in] the Intraocular distance.
-  //! @param theZFocus [in] the z coordinate of off-axis
-  //! projection plane with zero parallax.
-  //! @param theIsLeft [in] boolean flag to choose between L/R eyes.
-  //! @param theOutMx [out] the projection matrix.
+  //! @param theOutMx [out] the projection matrix
+  //! @param theLRBT [in] the left/right/bottom/top mapping (clipping) coordinates
+  //! @param theNear [in] the near mapping (clipping) coordinate
+  //! @param theFar [in] the far mapping (clipping) coordinate
+  //! @param theIOD [in] the Intraocular distance
+  //! @param theZFocus [in] the z coordinate of off-axis projection plane with zero parallax
+  //! @param theEyeIndex [in] choose between L/R eyes
   template <typename Elem_t>
-  static void
-    StereoEyeProj (const Elem_t              theLeft,
-                   const Elem_t              theRight,
-                   const Elem_t              theBottom,
-                   const Elem_t              theTop,
-                   const Elem_t              theNear,
-                   const Elem_t              theFar,
-                   const Elem_t              theIOD,
-                   const Elem_t              theZFocus,
-                   const Standard_Boolean    theIsLeft,
-                   NCollection_Mat4<Elem_t>& theOutMx);
+  static void stereoEyeProj (NCollection_Mat4<Elem_t>& theOutMx,
+                             const Aspect_FrustumLRBT<Elem_t>& theLRBT,
+                             const Elem_t theNear,
+                             const Elem_t theFar,
+                             const Elem_t theIOD,
+                             const Elem_t theZFocus,
+                             const Aspect_Eye theEyeIndex);
 
   //! Construct "look at" orientation transformation.
   //! Reference point differs for perspective and ortho modes 
@@ -667,7 +781,8 @@ public:
   //! Fill array of current view frustum corners.
   //! The size of this array is equal to FrustumVerticesNB.
   //! The order of vertices is as defined in FrustumVert_* enumeration.
-  Standard_EXPORT void FrustumPoints (NCollection_Array1<Graphic3d_Vec3d>& thePoints) const;
+  Standard_EXPORT void FrustumPoints (NCollection_Array1<Graphic3d_Vec3d>& thePoints,
+                                      const Graphic3d_Mat4d& theModelWorld = Graphic3d_Mat4d()) const;
 
 private:
 
@@ -680,6 +795,8 @@ private:
 
   Projection    myProjType; //!< Projection type used for rendering.
   Standard_Real myFOVy;     //!< Field Of View in y axis.
+  Standard_Real myFOVx;     //!< Field Of View in x axis.
+  Standard_Real myFOV2d;    //!< Field Of View limit for 2d on-screen elements
   Standard_Real myFOVyTan;  //!< Field Of View as Tan(DTR_HALF * myFOVy)
   Standard_Real myZNear;    //!< Distance to near clipping plane.
   Standard_Real myZFar;     //!< Distance to far clipping plane.
@@ -693,6 +810,17 @@ private:
   IODType       myIODType; //!< Intraocular distance definition type.
 
   Graphic3d_CameraTile myTile;//!< Tile defining sub-area for drawing
+
+  Graphic3d_Mat4d  myCustomProjMatM;
+  Graphic3d_Mat4d  myCustomProjMatL;
+  Graphic3d_Mat4d  myCustomProjMatR;
+  Graphic3d_Mat4d  myCustomHeadToEyeMatL;
+  Graphic3d_Mat4d  myCustomHeadToEyeMatR;
+  Aspect_FrustumLRBT<Standard_Real> myCustomFrustumL; //!< left  custom frustum
+  Aspect_FrustumLRBT<Standard_Real> myCustomFrustumR; //!< right custom frustum
+  Standard_Boolean myIsCustomProjMatM;  //!< flag indicating usage of custom projection matrix
+  Standard_Boolean myIsCustomProjMatLR; //!< flag indicating usage of custom stereo projection matrices
+  Standard_Boolean myIsCustomFrustomLR; //!< flag indicating usage of custom stereo frustums
 
   mutable TransformMatrices<Standard_Real>      myMatricesD;
   mutable TransformMatrices<Standard_ShortReal> myMatricesF;

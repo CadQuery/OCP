@@ -46,7 +46,7 @@ public:
   const gp_Pnt& EndPoint() const { return myEnd; }
 
   //! Returns the amount of points
-  Standard_EXPORT virtual Standard_Integer NbSubElements() Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
 
   Standard_EXPORT virtual Handle(Select3D_SensitiveEntity) GetConnected() Standard_OVERRIDE;
 
@@ -62,6 +62,9 @@ public:
   //! transformation is set, it will be applied
   Standard_EXPORT virtual Select3D_BndBox3d BoundingBox() Standard_OVERRIDE;
 
+  //! Returns TRUE if BVH tree is in invalidated state
+  virtual Standard_Boolean ToBuildBVH() const Standard_OVERRIDE { return Standard_False; }
+
 public:
 
   //! changes the start Point of the Segment;
@@ -69,6 +72,9 @@ public:
 
   //! changes the end point of the segment
   void EndPoint (const gp_Pnt& thePnt) { myEnd = thePnt; }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 private:
 

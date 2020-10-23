@@ -15,10 +15,11 @@
 #define _Graphic3d_ZLayerSettings_HeaderFile
 
 #include <gp_XYZ.hxx>
-#include <Geom_Transformation.hxx>
+#include <TopLoc_Datum3D.hxx>
 #include <Graphic3d_LightSet.hxx>
 #include <Graphic3d_PolygonOffset.hxx>
 #include <Precision.hxx>
+#include <Standard_Dump.hxx>
 #include <TCollection_AsciiString.hxx>
 
 enum Graphic3d_ZLayerSetting
@@ -62,7 +63,7 @@ struct Graphic3d_ZLayerSettings
   const gp_XYZ& Origin() const { return myOrigin; }
 
   //! Return the transformation to the origin.
-  const Handle(Geom_Transformation)& OriginTransformation() const { return myOriginTrsf; }
+  const Handle(TopLoc_Datum3D)& OriginTransformation() const { return myOriginTrsf; }
 
   //! Set the origin of all objects within the layer.
   void SetOrigin (const gp_XYZ& theOrigin)
@@ -71,8 +72,9 @@ struct Graphic3d_ZLayerSettings
     myOriginTrsf.Nullify();
     if (!theOrigin.IsEqual (gp_XYZ(0.0, 0.0, 0.0), gp::Resolution()))
     {
-      myOriginTrsf = new Geom_Transformation();
-      myOriginTrsf->SetTranslation (theOrigin);
+      gp_Trsf aTrsf;
+      aTrsf.SetTranslation (theOrigin);
+      myOriginTrsf = new TopLoc_Datum3D (aTrsf);
     }
   }
 
@@ -208,11 +210,34 @@ struct Graphic3d_ZLayerSettings
     myPolygonOffset.Units  =-1.0f;
   }
 
+  //! Dumps the content of me into the stream
+  void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const
+  {
+    OCCT_DUMP_CLASS_BEGIN (theOStream, Graphic3d_ZLayerSettings)
+
+    OCCT_DUMP_FIELD_VALUE_STRING (theOStream, myName)
+    OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, myOriginTrsf.get())
+    OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &myOrigin)
+
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myCullingDistance)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myCullingSize)
+
+    OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &myPolygonOffset)
+
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myIsImmediate)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myToRaytrace)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myUseEnvironmentTexture)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myToEnableDepthTest)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myToEnableDepthWrite)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myToClearDepth)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myToRenderInDepthPrepass)
+  }
+
 protected:
 
   TCollection_AsciiString     myName;                  //!< user-provided name
   Handle(Graphic3d_LightSet)  myLights;                //!< lights list
-  Handle(Geom_Transformation) myOriginTrsf;            //!< transformation to the origin
+  Handle(TopLoc_Datum3D)      myOriginTrsf;            //!< transformation to the origin
   gp_XYZ                      myOrigin;                //!< the origin of all objects within the layer
   Standard_Real               myCullingDistance;       //!< distance to discard objects
   Standard_Real               myCullingSize;           //!< size to discard objects

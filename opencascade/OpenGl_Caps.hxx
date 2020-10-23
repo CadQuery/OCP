@@ -27,7 +27,9 @@ class OpenGl_Caps : public Standard_Transient
 
 public: //! @name flags to disable particular functionality, should be used only for testing purposes!
 
-  Standard_Boolean vboDisable;        //!< flag permits VBO usage, will significantly affect performance (OFF by default)
+  Standard_Boolean sRGBDisable;       //!< Disables sRGB rendering (OFF by default)
+  Standard_Boolean compressedTexturesDisable; //!< Disables uploading of compressed texture formats native to GPU (OFF by default)
+  Standard_Boolean vboDisable;        //!< disallow VBO usage for debugging purposes (OFF by default)
   Standard_Boolean pntSpritesDisable; //!< flag permits Point Sprites usage, will significantly affect performance (OFF by default)
   Standard_Boolean keepArrayData;     //!< Disables freeing CPU memory after building VBOs (OFF by default)
   Standard_Boolean ffpEnable;         //!< Enables FFP (fixed-function pipeline), do not use built-in GLSL programs (OFF by default)
@@ -123,6 +125,19 @@ public: //! @name context creation parameters
    */
   Standard_Integer contextMajorVersionUpper;
   Standard_Integer contextMinorVersionUpper;
+
+  /**
+   * Define if 2D texture UV coordinates are defined top-down or bottom-up. FALSE by default.
+   *
+   * Proper rendering requires image texture uploading and UV texture coordinates being consistent,
+   * otherwise texture mapping might appear vertically flipped.
+   * Historically, OCCT used image library loading images bottom-up,
+   * so that applications have to generate UV accordingly (flip V when necessary, V' = 1.0 - V).
+   *
+   * Graphic driver now compares this flag with image layout reported by Image_PixMap::IsTopDown(),
+   * and in case of mismatch applies implicit texture coordinates conversion in GLSL program.
+   */
+  Standard_Boolean isTopDownTextureUV;
 
 public: //! @name flags to activate verbose output
 

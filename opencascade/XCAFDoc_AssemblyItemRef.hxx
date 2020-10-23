@@ -35,7 +35,7 @@ class XCAFDoc_AssemblyItemRef : public TDF_Attribute
 
 public:
 
-  DEFINE_STANDARD_RTTIEXT(XCAFDoc_AssemblyItemRef, TDF_Attribute);
+  DEFINE_STANDARD_RTTIEXT(XCAFDoc_AssemblyItemRef, TDF_Attribute)
 
   Standard_EXPORT static const Standard_GUID& GetID();
 
@@ -132,6 +132,9 @@ public:
 
   //! Reverts the reference to empty state.
   Standard_EXPORT void ClearExtraRef();
+  
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 public:
 

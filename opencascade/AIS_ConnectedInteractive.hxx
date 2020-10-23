@@ -52,19 +52,19 @@ public:
   
   //! Establishes the connection between the Connected
   //! Interactive Object, anotherIobj, and its reference.
-  void Connect (const Handle(AIS_InteractiveObject)& theAnotherObj) { connect (theAnotherObj, Handle(Geom_Transformation)()); }
+  void Connect (const Handle(AIS_InteractiveObject)& theAnotherObj) { connect (theAnotherObj, Handle(TopLoc_Datum3D)()); }
 
   //! Establishes the connection between the Connected
   //! Interactive Object, anotherIobj, and its reference.
   //! Locates instance in aLocation.
   void Connect (const Handle(AIS_InteractiveObject)& theAnotherObj,
-                                const gp_Trsf& theLocation)  { connect (theAnotherObj, new Geom_Transformation (theLocation)); }
+                const gp_Trsf& theLocation)  { connect (theAnotherObj, new TopLoc_Datum3D (theLocation)); }
 
   //! Establishes the connection between the Connected
   //! Interactive Object, anotherIobj, and its reference.
   //! Locates instance in aLocation.
   void Connect (const Handle(AIS_InteractiveObject)& theAnotherObj,
-                const Handle(Geom_Transformation)& theLocation) { connect (theAnotherObj, theLocation); }
+                const Handle(TopLoc_Datum3D)& theLocation) { connect (theAnotherObj, theLocation); }
 
   //! Returns true if there is a connection established
   //! between the presentation and its source reference.
@@ -105,18 +105,10 @@ protected:
   //! a transformation if there's one stored.
   Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& aPresentationManager, const Handle(Prs3d_Presentation)& aPresentation, const Standard_Integer aMode) Standard_OVERRIDE;
 
-  //! Computes the presentation according to a point of view
-  //! given by <aProjector>.
-  //! To be Used when the associated degenerated Presentations
-  //! have been transformed by <aTrsf> which is not a Pure
-  //! Translation. The HLR Prs can't be deducted automatically
-  //! WARNING :<aTrsf> must be applied
-  //! to the object to display before computation  !!!
-  Standard_EXPORT virtual void Compute (const Handle(Prs3d_Projector)& aProjector, const Handle(Geom_Transformation)& aTrsf, const Handle(Prs3d_Presentation)& aPresentation) Standard_OVERRIDE;
-
-  //! Computes the presentation according to a point of view
-  //! given by <aProjector>.
-  Standard_EXPORT virtual void Compute (const Handle(Prs3d_Projector)& aProjector, const Handle(Prs3d_Presentation)& aPresentation) Standard_OVERRIDE;
+  //! Computes the presentation according to a point of view.
+  Standard_EXPORT virtual void computeHLR (const Handle(Graphic3d_Camera)& theProjector,
+                                           const Handle(TopLoc_Datum3D)& theTrsf,
+                                           const Handle(Prs3d_Presentation)& thePrs) Standard_OVERRIDE;
 
   //! Generates sensitive entities by copying
   //! them from myReference selection, creates and sets an entity
@@ -130,12 +122,8 @@ protected:
 
   Standard_EXPORT void updateShape (const Standard_Boolean WithLocation = Standard_True);
 
-  //! Computes the presentation according to a point of view
-  //! given by <aProjector>.
-  Standard_EXPORT void Compute (const Handle(Prs3d_Projector)& aProjector, const Handle(Prs3d_Presentation)& aPresentation, const TopoDS_Shape& aShape);
-
   Standard_EXPORT void connect (const Handle(AIS_InteractiveObject)& theAnotherObj,
-                                const Handle(Geom_Transformation)& theLocation);
+                                const Handle(TopLoc_Datum3D)& theLocation);
 
 protected:
 

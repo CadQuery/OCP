@@ -28,10 +28,12 @@ enum Image_Format
   Image_Format_BGRA,        //!< same as RGBA but with different components order
   Image_Format_GrayF,       //!< 1 float  (4-bytes) per pixel (1-component plane), intensity of the color
   Image_Format_AlphaF,      //!< 1 float  (4-bytes) per pixel (1-component plane), transparency
+  Image_Format_RGF,         //!< 2 floats (8-bytes) RG image plane
   Image_Format_RGBF,        //!< 3 floats (12-bytes) RGB image plane
   Image_Format_BGRF,        //!< same as RGBF but with different components order
   Image_Format_RGBAF,       //!< 4 floats (16-bytes) RGBA image plane
   Image_Format_BGRAF,       //!< same as RGBAF but with different components order
 };
+enum { Image_Format_NB = Image_Format_BGRAF + 1 };
 
 #endif // _Image_Format_HeaderFile

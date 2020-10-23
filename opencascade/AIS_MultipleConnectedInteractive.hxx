@@ -38,7 +38,7 @@ public:
   //! Locates instance in theLocation and applies specified transformation persistence mode.
   //! @return created instance object (AIS_ConnectedInteractive or AIS_MultipleConnectedInteractive)
   Handle(AIS_InteractiveObject) Connect (const Handle(AIS_InteractiveObject)& theAnotherObj,
-                                         const Handle(Geom_Transformation)& theLocation,
+                                         const Handle(TopLoc_Datum3D)& theLocation,
                                          const Handle(Graphic3d_TransformPers)& theTrsfPers)
   {
     return connect (theAnotherObj, theLocation, theTrsfPers);
@@ -56,17 +56,6 @@ public:
   
   //! Clears all the connections to objects.
   Standard_EXPORT void DisconnectAll();
-  
-  //! computes the presentation according to a point of view
-  //! given by <aProjector>.
-  //! To be Used when the associated degenerated Presentations
-  //! have been transformed by <aTrsf> which is not a Pure
-  //! Translation. The HLR Prs can't be deducted automatically
-  //! WARNING :<aTrsf> must be applied
-  //! to the object to display before computation  !!!
-  Standard_EXPORT virtual void Compute (const Handle(Prs3d_Projector)& aProjector, const Handle(Geom_Transformation)& aTrsf, const Handle(Prs3d_Presentation)& aPresentation) Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual void Compute (const Handle(Prs3d_Projector)& aProjector, const Handle(Prs3d_Presentation)& aPresentation) Standard_OVERRIDE;
   
   //! Informs the graphic context that the interactive Object
   //! may be decomposed into sub-shapes for dynamic selection.
@@ -97,7 +86,7 @@ public: // short aliases to Connect() method
   Handle(AIS_InteractiveObject) Connect (const Handle(AIS_InteractiveObject)& theAnotherObj,
                                          const gp_Trsf& theLocation)
   {
-    return connect (theAnotherObj, new Geom_Transformation (theLocation), theAnotherObj->TransformPersistence());
+    return connect (theAnotherObj, new TopLoc_Datum3D (theLocation), theAnotherObj->TransformPersistence());
   }
 
   //! Establishes the connection between the Connected Interactive Object, theInteractive, and its reference.
@@ -107,7 +96,7 @@ public: // short aliases to Connect() method
                                          const gp_Trsf& theLocation,
                                          const Handle(Graphic3d_TransformPers)& theTrsfPers)
   {
-    return connect (theAnotherObj, new Geom_Transformation (theLocation), theTrsfPers);
+    return connect (theAnotherObj, new TopLoc_Datum3D (theLocation), theTrsfPers);
   }
 
   Standard_DEPRECATED("This method is deprecated - Connect() taking Graphic3d_TransformPers should be called instead")
@@ -116,7 +105,7 @@ public: // short aliases to Connect() method
                                          const Graphic3d_TransModeFlags& theTrsfPersFlag,
                                          const gp_Pnt& theTrsfPersPoint)
   {
-    return connect (theInteractive, new Geom_Transformation (theLocation), Graphic3d_TransformPers::FromDeprecatedParams (theTrsfPersFlag, theTrsfPersPoint));
+    return connect (theInteractive, new TopLoc_Datum3D (theLocation), Graphic3d_TransformPers::FromDeprecatedParams (theTrsfPersFlag, theTrsfPersPoint));
   }
 
 protected:
@@ -133,7 +122,7 @@ protected:
   //! Locates instance in theLocation and applies specified transformation persistence mode.
   //! @return created instance object (AIS_ConnectedInteractive or AIS_MultipleConnectedInteractive)
   Standard_EXPORT virtual Handle(AIS_InteractiveObject) connect (const Handle(AIS_InteractiveObject)& theInteractive,
-                                                                 const Handle(Geom_Transformation)& theLocation,
+                                                                 const Handle(TopLoc_Datum3D)& theLocation,
                                                                  const Handle(Graphic3d_TransformPers)& theTrsfPers);
 
 private:

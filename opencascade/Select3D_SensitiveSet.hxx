@@ -75,6 +75,9 @@ public:
   //! but element by element
   Standard_EXPORT virtual void BVH() Standard_OVERRIDE;
 
+  //! Returns TRUE if BVH tree is in invalidated state
+  virtual Standard_Boolean ToBuildBVH() const Standard_OVERRIDE { return myContent.IsDirty(); }
+
   //! Sets the method (builder) used to construct BVH.
   void SetBuilder (const Handle(Select3D_BVHBuilder3d)& theBuilder) { myContent.SetBuilder (theBuilder); }
 
@@ -95,6 +98,9 @@ public:
 
   //! Returns a number of nodes in 1 BVH leaf
   Standard_Integer GetLeafNodeSize() const { return myContent.Builder()->LeafNodeSize(); }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 
@@ -132,6 +138,22 @@ protected:
   //! Calculates distance from the 3d projection of used-picked screen point to center of the geometry
   virtual Standard_Real distanceToCOG (SelectBasics_SelectingVolumeManager& theMgr) = 0;
 
+  //! Process elements overlapped by the selection volume
+  //! @param theMgr selection manager
+  //! @param theFirstElem index of the first element
+  //! @param theLastElem index of the last element
+  //! @param theIsFullInside when TRUE indicates that entire BVH node is already inside selection volume
+  //! @param thePickResult [OUT] picking result (for picking by ray)
+  //! @param theMatchesNb [OUT] number of processed elements
+  //! @return FALSE if some element is outside the selection volume (if IsOverlapAllowed is FALSE); TRUE otherwise
+  Standard_EXPORT Standard_Boolean processElements (SelectBasics_SelectingVolumeManager& theMgr,
+                                                    Standard_Integer theFirstElem,
+                                                    Standard_Integer theLastElem,
+                                                    Standard_Boolean theIsFullInside,
+                                                    Standard_Boolean theToCheckAllInside,
+                                                    SelectBasics_PickResult& thePickResult,
+                                                    Standard_Integer& theMatchesNb);
+
 protected:
 
   //! The purpose of this class is to provide a link between BVH_PrimitiveSet
@@ -141,7 +163,11 @@ protected:
   public:
 
     //! Empty constructor.
-    BvhPrimitiveSet() : BVH_PrimitiveSet3d (Handle(Select3D_BVHBuilder3d)()) {}
+    BvhPrimitiveSet()
+    : BVH_PrimitiveSet3d(Handle(Select3D_BVHBuilder3d)()),
+      mySensitiveSet(NULL)
+    {
+    }
 
     //! Destructor.
     ~BvhPrimitiveSet() {}
@@ -172,6 +198,10 @@ protected:
 
     //! Returns the tree built for set of sensitives
     const opencascade::handle<BVH_Tree<Standard_Real, 3> >& GetBVH() { return BVH(); }
+
+    //! Dumps the content of me into the stream
+    void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const
+    { (void)theOStream; (void)theDepth; }
 
   protected:
     Select3D_SensitiveSet* mySensitiveSet; //!< Set of sensitive entities

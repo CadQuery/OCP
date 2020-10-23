@@ -209,17 +209,17 @@ public: //! @name object transformation
   //! Return the local transformation.
   //! Note that the local transformation of the object having Transformation Persistence
   //! is applied within Local Coordinate system defined by this Persistence.
-  const Handle(Geom_Transformation)& LocalTransformationGeom() const { return myLocalTransformation; }
+  const Handle(TopLoc_Datum3D)& LocalTransformationGeom() const { return myLocalTransformation; }
 
   //! Sets local transformation to theTransformation.
   //! Note that the local transformation of the object having Transformation Persistence
   //! is applied within Local Coordinate system defined by this Persistence.
-  void SetLocalTransformation (const gp_Trsf& theTrsf) { setLocalTransformation (new Geom_Transformation (theTrsf)); }
+  void SetLocalTransformation (const gp_Trsf& theTrsf) { setLocalTransformation (new TopLoc_Datum3D (theTrsf)); }
 
   //! Sets local transformation to theTransformation.
   //! Note that the local transformation of the object having Transformation Persistence
   //! is applied within Local Coordinate system defined by this Persistence.
-  void SetLocalTransformation (const Handle(Geom_Transformation)& theTrsf) { setLocalTransformation (theTrsf); }
+  void SetLocalTransformation (const Handle(TopLoc_Datum3D)& theTrsf) { setLocalTransformation (theTrsf); }
 
   //! Returns true if object has a transformation that is different from the identity.
   Standard_Boolean HasTransformation() const { return !myTransformation.IsNull() && myTransformation->Form() != gp_Identity; }
@@ -227,7 +227,7 @@ public: //! @name object transformation
   //! Return the transformation taking into account transformation of parent object(s).
   //! Note that the local transformation of the object having Transformation Persistence
   //! is applied within Local Coordinate system defined by this Persistence.
-  const Handle(Geom_Transformation)& TransformationGeom() const { return myTransformation; }
+  const Handle(TopLoc_Datum3D)& TransformationGeom() const { return myTransformation; }
 
   //! Return the local transformation.
   //! Note that the local transformation of the object having Transformation Persistence
@@ -247,7 +247,7 @@ public: //! @name object transformation
   const gp_GTrsf& InversedTransformation() const { return myInvTransformation; }
 
   //! Return combined parent transformation.
-  const Handle(Geom_Transformation)& CombinedParentTransformation() const { return myCombinedParentTransform; }
+  const Handle(TopLoc_Datum3D)& CombinedParentTransformation() const { return myCombinedParentTransform; }
 
   //! resets local transformation to identity.
   Standard_EXPORT virtual void ResetTransformation();
@@ -341,21 +341,16 @@ protected: //! @name interface methods
                                         const Handle(Prs3d_Presentation)& thePrs,
                                         const Standard_Integer theMode) = 0;
 
-  //! Calculates the 3D view presentation.
+  //! Calculates hidden line removal presentation for specific camera position.
   //! Each of the views in the viewer and every modification such as rotation, for example, entails recalculation.
-  //! It must be redefined to implement hidden line removal for the object. The user never calls this method himself.
-  //! This is done via the InteractiveContext object and is dependent on the point of view from which the object is displayed.
-  Standard_EXPORT virtual void Compute (const Handle(Prs3d_Projector)& theProjector,
-                                        const Handle(Prs3d_Presentation)& thePrs);
-
-  //! Calculates the 3D view presentation.
-  //! A point of view is provided by the projector, and the geometric transformation which has transformed associated presentable objects is specified by transformation.
-  //! This function is to be used in case where a hidden line removal display cannot be calculated automatically.
-  //! This occurs when associated presentable objects have been transformed geometrically, but not translated.
+  //! Default implementation throws Standard_NotImplemented exception
   //! Warning! The transformation must be applied to the object before computation.
-  Standard_EXPORT virtual void Compute (const Handle(Prs3d_Projector)& theProjector,
-                                        const Handle(Geom_Transformation)& theTrsf,
-                                        const Handle(Prs3d_Presentation)& thePrs);
+  //! @param theProjector [in] view orientation
+  //! @param theTrsf [in] additional transformation, or NULL if undefined
+  //! @param thePrs  [in] presentation to fill
+  Standard_EXPORT virtual void computeHLR (const Handle(Graphic3d_Camera)& theProjector,
+                                           const Handle(TopLoc_Datum3D)& theTrsf,
+                                           const Handle(Prs3d_Presentation)& thePrs);
 
   //! Recomputes invalidated presentations of the object.
   //! @param theToIncludeHidden if TRUE, then even hidden invalidated presentations will be updated
@@ -369,10 +364,10 @@ protected: //! @name interface methods
 
   //! Sets myCombinedParentTransform to theTransformation. Thus object receives transformation
   //! from parent node and able to derive its own.
-  Standard_EXPORT virtual void SetCombinedParentTransform (const Handle(Geom_Transformation)& theTrsf);
+  Standard_EXPORT virtual void SetCombinedParentTransform (const Handle(TopLoc_Datum3D)& theTrsf);
 
   //! Sets local transformation to theTransformation.
-  Standard_EXPORT virtual void setLocalTransformation (const Handle(Geom_Transformation)& theTransformation);
+  Standard_EXPORT virtual void setLocalTransformation (const Handle(TopLoc_Datum3D)& theTransformation);
 
   //! Return the identity transformation.
   Standard_EXPORT static const gp_Trsf& getIdentityTrsf();
@@ -480,7 +475,7 @@ public: //! @name simplified presentation properties API
   Standard_EXPORT virtual void UnsetAttributes();
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, const Standard_Integer theDepth = -1) const;
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 public: //! @name deprecated methods
 
@@ -564,9 +559,9 @@ protected:
   Handle(Prs3d_Drawer)                   myHilightDrawer;           //!< (optional) custom presentation attributes for highlighting selected object
   Handle(Prs3d_Drawer)                   myDynHilightDrawer;        //!< (optional) custom presentation attributes for highlighting detected object
   Handle(Graphic3d_TransformPers)        myTransformPersistence;    //!< transformation persistence
-  Handle(Geom_Transformation)            myLocalTransformation;     //!< local transformation relative to parent object
-  Handle(Geom_Transformation)            myTransformation;          //!< absolute transformation of this object (combined parents + local transformations)
-  Handle(Geom_Transformation)            myCombinedParentTransform; //!< transformation of parent object (combined for all parents)
+  Handle(TopLoc_Datum3D)                 myLocalTransformation;     //!< local transformation relative to parent object
+  Handle(TopLoc_Datum3D)                 myTransformation;          //!< absolute transformation of this object (combined parents + local transformations)
+  Handle(TopLoc_Datum3D)                 myCombinedParentTransform; //!< transformation of parent object (combined for all parents)
   PrsMgr_ListOfPresentableObjects        myChildren;                //!< list of children
   gp_GTrsf                               myInvTransformation;       //!< inversion of absolute transformation (combined parents + local transformations)
   PrsMgr_TypeOfPresentation3d            myTypeOfPresentation3d;    //!< presentation type

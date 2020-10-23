@@ -33,7 +33,7 @@ public:
   Standard_EXPORT void Add (const Handle(Select3D_SensitiveEntity)& theSensitive);
 
   //! Returns the amount of sub-entities
-  Standard_EXPORT virtual Standard_Integer NbSubElements() Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
 
   Standard_EXPORT virtual Handle(Select3D_SensitiveEntity) GetConnected() Standard_OVERRIDE;
 
@@ -67,6 +67,9 @@ public:
   //! Swaps items with indexes theIdx1 and theIdx2 in the vector
   Standard_EXPORT virtual void Swap (const Standard_Integer theIdx1,
                                      const Standard_Integer theIdx2) Standard_OVERRIDE;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
   DEFINE_STANDARD_RTTIEXT(Select3D_SensitiveWire,Select3D_SensitiveSet)
 

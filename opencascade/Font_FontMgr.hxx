@@ -30,6 +30,7 @@
 
 class Font_SystemFont;
 class TCollection_HAsciiString;
+class NCollection_Buffer;
 
 DEFINE_STANDARD_HANDLE(Font_FontMgr, Standard_Transient)
 
@@ -100,9 +101,11 @@ public:
   //! @param theStrictLevel [in]       search strict level for using aliases and fallback
   //! @param theFontAspect  [in] [out] font aspect to find (considered only if family name is not found);
   //!                                  can be modified if specified font alias refers to another style (compatibility with obsolete aliases)
+  //! @param theDoFailMsg   [in]       put error message on failure into default messenger
   Standard_EXPORT Handle(Font_SystemFont) FindFont (const TCollection_AsciiString& theFontName,
                                                     Font_StrictLevel theStrictLevel,
-                                                    Font_FontAspect& theFontAspect) const;
+                                                    Font_FontAspect& theFontAspect,
+                                                    Standard_Boolean theDoFailMsg = Standard_True) const;
 
   //! Tries to find font by given parameters.
   Handle(Font_SystemFont) FindFont (const TCollection_AsciiString& theFontName,
@@ -118,13 +121,32 @@ public:
   Standard_EXPORT Handle(Font_SystemFont) FindFallbackFont (Font_UnicodeSubset theSubset,
                                                             Font_FontAspect theFontAspect) const;
 
+  //! Read font file and retrieve information from it (the list of font faces).
+  Standard_EXPORT Standard_Boolean CheckFont (NCollection_Sequence<Handle(Font_SystemFont)>& theFonts,
+                                              const TCollection_AsciiString& theFontPath) const;
+
   //! Read font file and retrieve information from it.
   Standard_EXPORT Handle(Font_SystemFont) CheckFont (const Standard_CString theFontPath) const;
   
   //! Register new font.
   //! If there is existing entity with the same name and properties but different path
   //! then font will be overridden or ignored depending on theToOverride flag.
-  Standard_EXPORT Standard_Boolean RegisterFont (const Handle(Font_SystemFont)& theFont, const Standard_Boolean theToOverride);
+  Standard_EXPORT Standard_Boolean RegisterFont (const Handle(Font_SystemFont)& theFont,
+                                                 const Standard_Boolean theToOverride);
+
+  //! Register new fonts.
+  Standard_Boolean RegisterFonts (const NCollection_Sequence<Handle(Font_SystemFont)>& theFonts,
+                                  const Standard_Boolean theToOverride)
+  {
+    Standard_Boolean isRegistered = Standard_False;
+    for (NCollection_Sequence<Handle(Font_SystemFont)>::Iterator aFontIter (theFonts); aFontIter.More(); aFontIter.Next())
+    {
+      isRegistered = RegisterFont (aFontIter.Value(), theToOverride) || isRegistered;
+    }
+    return isRegistered;
+  }
+
+public:
 
   //! Return flag for tracing font aliases usage via Message_Trace messages; TRUE by default.
   Standard_Boolean ToTraceAliases() const { return myToTraceAliases; }
@@ -133,13 +155,60 @@ public:
   //! Can be disabled to avoid redundant messages with Message_Trace level.
   void SetTraceAliases (Standard_Boolean theToTrace) { myToTraceAliases = theToTrace; }
 
+  //! Return font names with defined aliases.
+  //! @param theAliases [out] alias names
+  Standard_EXPORT void GetAllAliases (TColStd_SequenceOfHAsciiString& theAliases) const;
+
+  //! Return aliases to specified font name.
+  //! @param theFontNames [out] font names associated with alias name
+  //! @param theAliasName [in]  alias name
+  Standard_EXPORT void GetFontAliases (TColStd_SequenceOfHAsciiString& theFontNames,
+                                       const TCollection_AsciiString& theAliasName) const;
+
+  //! Register font alias.
+  //!
+  //! Font alias allows using predefined short-cuts like Font_NOF_MONOSPACE or Font_NOF_SANS_SERIF,
+  //! and defining several fallback fonts like Font_NOF_CJK ("cjk") or "courier" for fonts,
+  //! which availability depends on system.
+  //!
+  //! By default, Font_FontMgr registers standard aliases, which could be extended or replaced by application
+  //! basing on better knowledge of the system or basing on additional fonts packaged with application itself.
+  //! Aliases are defined "in advance", so that they could point to non-existing fonts,
+  //! and they are resolved dynamically on request - first existing font is returned in case of multiple aliases to the same name.
+  //!
+  //! @param theAliasName [in] alias name or name of another font to be used as alias
+  //! @param theFontName  [in] font to be used as substitution for alias
+  //! @return FALSE if alias has been already registered
+  Standard_EXPORT bool AddFontAlias (const TCollection_AsciiString& theAliasName,
+                                     const TCollection_AsciiString& theFontName);
+
+  //! Unregister font alias.
+  //! @param theAliasName [in] alias name or name of another font to be used as alias;
+  //!                          all aliases will be removed in case of empty name
+  //! @param theFontName  [in] font to be used as substitution for alias;
+  //!                          all fonts will be removed in case of empty name
+  //! @return TRUE if alias has been removed
+  Standard_EXPORT bool RemoveFontAlias (const TCollection_AsciiString& theAliasName,
+                                        const TCollection_AsciiString& theFontName);
+
+public:
+
+  //! Collects available fonts paths.
+  Standard_EXPORT void InitFontDataBase();
+
+  //! Clear registry. Can be used for testing purposes.
+  Standard_EXPORT void ClearFontDataBase();
+
+  //! Return DejaVu font as embed a single fallback font.
+  //! It can be used in cases when there is no own font file.
+  //! Note: result buffer is readonly and should not be changed,
+  //!       any data modification can lead to unpredictable consequences.
+  Standard_EXPORT static Handle(NCollection_Buffer) EmbedFallbackFont();
+
 private:
   
   //! Creates empty font manager object
   Standard_EXPORT Font_FontMgr();
-  
-  //! Collects available fonts paths.
-  Standard_EXPORT void InitFontDataBase();
 
 private:
 

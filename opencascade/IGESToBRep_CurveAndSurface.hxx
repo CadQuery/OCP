@@ -24,13 +24,14 @@
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
+#include <Message_ProgressRange.hxx>
+
 class Geom_Surface;
 class IGESData_IGESModel;
 class Transfer_TransientProcess;
 class TopoDS_Shape;
 class IGESData_IGESEntity;
 class Message_Msg;
-
 
 //! Provides methods to transfer CurveAndSurface from IGES to CASCADE.
 class IGESToBRep_CurveAndSurface 
@@ -44,10 +45,6 @@ public:
   //! epsilons  set  to  1.E-04,  myModeTopo  to  True,  the
   //! optimization of  the continuity to False.
   Standard_EXPORT IGESToBRep_CurveAndSurface();
-  
-  //! Creates a tool CurveAndSurface ready to run and sets its
-  //! fields as CS's.
-  Standard_EXPORT IGESToBRep_CurveAndSurface(const IGESToBRep_CurveAndSurface& CS);
   
   //! Creates a tool CurveAndSurface ready to run.
   Standard_EXPORT IGESToBRep_CurveAndSurface(const Standard_Real eps, const Standard_Real epsGeom, const Standard_Real epsCoeff, const Standard_Boolean mode, const Standard_Boolean modeapprox, const Standard_Boolean optimized);
@@ -146,12 +143,14 @@ public:
   //! Returns the result of the transfert of any IGES Curve
   //! or Surface Entity.  If  the transfer has  failed,  this
   //! member return a NullEntity.
-  Standard_EXPORT TopoDS_Shape TransferCurveAndSurface (const Handle(IGESData_IGESEntity)& start);
+  Standard_EXPORT TopoDS_Shape TransferCurveAndSurface (const Handle(IGESData_IGESEntity)& start,
+                                                        const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   //! Returns the result of the transfert the geometry of
   //! any IGESEntity.  If  the transfer has  failed,  this
   //! member return a NullEntity.
-  Standard_EXPORT TopoDS_Shape TransferGeometry (const Handle(IGESData_IGESEntity)& start);
+  Standard_EXPORT TopoDS_Shape TransferGeometry (const Handle(IGESData_IGESEntity)& start,
+                                                 const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   //! Records a new Fail message
     void SendFail (const Handle(IGESData_IGESEntity)& start, const Message_Msg& amsg);

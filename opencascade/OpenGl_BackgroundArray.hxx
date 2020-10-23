@@ -34,7 +34,8 @@ public:
   Standard_EXPORT OpenGl_BackgroundArray (const Graphic3d_TypeOfBackground theType);
 
   //! Render primitives to the window
-  Standard_EXPORT virtual void Render (const Handle(OpenGl_Workspace)& theWorkspace) const Standard_OVERRIDE;
+  Standard_EXPORT void Render (const Handle(OpenGl_Workspace)& theWorkspace,
+                               Graphic3d_Camera::Projection theProjection) const;
 
   //! Check if background parameters are set properly
   Standard_EXPORT bool IsDefined() const;
@@ -79,7 +80,7 @@ protected:
   Standard_EXPORT Standard_Boolean init (const Handle(OpenGl_Workspace)& theWorkspace) const;
 
   //! Initializes gradient arrays.
-  Standard_EXPORT Standard_Boolean createGradientArray() const;
+  Standard_EXPORT Standard_Boolean createGradientArray (const Handle(OpenGl_Context)& theCtx) const;
 
   //! Initializes texture arrays.
   //! @param theWorkspace OpenGl workspace that stores texture in the current enabled face aspect.
@@ -92,9 +93,10 @@ protected:
   //! on next rendering stage array data is to be updated.
   Standard_EXPORT void invalidateData();
 
+  using OpenGl_PrimitiveArray::Render;
+
 protected:
 
-  Graphic3d_TransformPers           myTrsfPers;       //!< transformation persistence
   Graphic3d_TypeOfBackground        myType;           //!< Type of background: texture or gradient.
   Aspect_FillMethod                 myFillMethod;     //!< Texture parameters
   mutable OpenGl_GradientParameters myGradientParams; //!< Gradient parameters

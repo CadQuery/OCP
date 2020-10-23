@@ -22,6 +22,7 @@
 
 #include <Graphic3d_ShaderObject.hxx>
 #include <Graphic3d_ShaderProgram.hxx>
+#include <Graphic3d_TextureSetBits.hxx>
 
 #include <OpenGl_Vec.hxx>
 #include <OpenGl_Matrix.hxx>
@@ -62,8 +63,10 @@ enum OpenGl_StateVariable
   // Material state
   OpenGl_OCCT_TEXTURE_ENABLE,
   OpenGl_OCCT_DISTINGUISH_MODE,
-  OpenGl_OCCT_FRONT_MATERIAL,
-  OpenGl_OCCT_BACK_MATERIAL,
+  OpenGl_OCCT_PBR_FRONT_MATERIAL,
+  OpenGl_OCCT_PBR_BACK_MATERIAL,
+  OpenGl_OCCT_COMMON_FRONT_MATERIAL,
+  OpenGl_OCCT_COMMON_BACK_MATERIAL,
   OpenGl_OCCT_ALPHA_CUTOFF,
   OpenGl_OCCT_COLOR,
 
@@ -87,6 +90,9 @@ enum OpenGl_StateVariable
   // Parameters of outline (silhouette) shader
   OpenGl_OCCT_ORTHO_SCALE,
   OpenGl_OCCT_SILHOUETTE_THICKNESS,
+
+  // PBR state
+  OpenGl_OCCT_NB_SPEC_IBL_LEVELS,
 
   // DON'T MODIFY THIS ITEM (insert new items before it)
   OpenGl_OCCT_NUMBER_OF_STATE_VARIABLES
@@ -253,6 +259,9 @@ public:
 
   //! Fetches uniform variables from proxy shader program.
   Standard_EXPORT Standard_Boolean ApplyVariables (const Handle(OpenGl_Context)& theCtx);
+  
+  //! @return proxy shader program.
+  const Handle(Graphic3d_ShaderProgram)& Proxy() const { return myProxy; }
 
   //! @return true if current object was initialized
   inline bool IsValid() const
@@ -288,6 +297,9 @@ public:
 
   //! Return true if Fragment Shader color should output the weighted OIT coverage; FALSE by default.
   Standard_Boolean HasWeightOitOutput() const { return myHasWeightOitOutput; }
+
+  //! Return texture units declared within the program, @sa Graphic3d_TextureSetBits.
+  Standard_Integer TextureSetBits() const { return myTextureSetBits; }
 
 private:
 
@@ -651,6 +663,7 @@ protected:
   Standard_Integer                myNbLightsMax;   //!< length of array of light sources (THE_MAX_LIGHTS)
   Standard_Integer                myNbClipPlanesMax; //!< length of array of clipping planes (THE_MAX_CLIP_PLANES)
   Standard_Integer                myNbFragOutputs; //!< length of array of Fragment Shader outputs (THE_NB_FRAG_OUTPUTS)
+  Standard_Integer                myTextureSetBits;//!< texture units declared within the program, @sa Graphic3d_TextureSetBits
   Standard_Boolean                myHasAlphaTest;  //!< flag indicating that Fragment Shader should perform alpha-test
   Standard_Boolean                myHasWeightOitOutput; //!< flag indicating that Fragment Shader includes weighted OIT coverage
   Standard_Boolean                myHasTessShader; //!< flag indicating that program defines tessellation stage

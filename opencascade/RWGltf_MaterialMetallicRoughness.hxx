@@ -17,6 +17,7 @@
 
 #include <Graphic3d_Vec.hxx>
 #include <Quantity_ColorRGBA.hxx>
+#include <RWGltf_GltfAlphaMode.hxx>
 #include <Standard_Transient.hxx>
 #include <TCollection_AsciiString.hxx>
 
@@ -38,12 +39,18 @@ public:
   Graphic3d_Vec3          EmissiveFactor;           //!< emissive color; [0.0, 0.0, 0.0] by default
   Standard_ShortReal      Metallic;                 //!< metalness  (or scale factor to the texture) within range [0.0, 1.0]; 1.0 by default
   Standard_ShortReal      Roughness;                //!< roughness  (or scale factor to the texture) within range [0.0, 1.0]; 1.0 by default
+  Standard_ShortReal      AlphaCutOff;              //!< alpha cutoff value; 0.5 by default
+  RWGltf_GltfAlphaMode    AlphaMode;                //!< alpha mode; RWGltf_GltfAlphaMode_Opaque by default
+  Standard_Boolean        IsDoubleSided;            //!< specifies whether the material is double sided; FALSE by default
 
- RWGltf_MaterialMetallicRoughness()
+  RWGltf_MaterialMetallicRoughness()
   : BaseColor (1.0f, 1.0f, 1.0f, 1.0f),
     EmissiveFactor (0.0f, 0.0f, 0.0f),
-    Metallic  (0.0f),
-    Roughness (0.0f) {}
+    Metallic  (1.0f),
+    Roughness (1.0f),
+    AlphaCutOff (0.5f),
+    AlphaMode (RWGltf_GltfAlphaMode_Opaque),
+    IsDoubleSided (Standard_False) {}
 
 };
 

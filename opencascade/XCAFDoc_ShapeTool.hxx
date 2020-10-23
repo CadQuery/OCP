@@ -22,7 +22,8 @@
 #include <XCAFDoc_DataMapOfShapeLabel.hxx>
 #include <Standard_Boolean.hxx>
 #include <TDataStd_NamedData.hxx>
-#include <TDF_Attribute.hxx>
+#include <TDataStd_GenericEmpty.hxx>
+#include <TDF_LabelMap.hxx>
 #include <TDF_LabelSequence.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
@@ -39,7 +40,7 @@ class XCAFDoc_GraphNode;
 
 
 class XCAFDoc_ShapeTool;
-DEFINE_STANDARD_HANDLE(XCAFDoc_ShapeTool, TDF_Attribute)
+DEFINE_STANDARD_HANDLE(XCAFDoc_ShapeTool, TDataStd_GenericEmpty)
 
 //! A tool to store shapes in an XDE
 //! document in the form of assembly structure, and to maintain this structure.
@@ -102,7 +103,7 @@ DEFINE_STANDARD_HANDLE(XCAFDoc_ShapeTool, TDF_Attribute)
 //! aLabel = STool->FindShape(aShape [,findInstance]);
 //! if (aLabel.IsNull())
 //! { ... no label found for this shape ... }
-class XCAFDoc_ShapeTool : public TDF_Attribute
+class XCAFDoc_ShapeTool : public TDataStd_GenericEmpty
 {
 
 public:
@@ -331,12 +332,6 @@ public:
   
   Standard_EXPORT const Standard_GUID& ID() const Standard_OVERRIDE;
   
-  Standard_EXPORT void Restore (const Handle(TDF_Attribute)& with) Standard_OVERRIDE;
-  
-  Standard_EXPORT Handle(TDF_Attribute) NewEmpty() const Standard_OVERRIDE;
-  
-  Standard_EXPORT void Paste (const Handle(TDF_Attribute)& into, const Handle(TDF_RelocationTable)& RT) const Standard_OVERRIDE;
-  
   //! Returns True if the label is a label of external references, i.e.
   //! there are some reference on the no-step files, which are
   //! described in document only their names
@@ -424,12 +419,12 @@ public:
   //! @param theToCreate [in] create and assign attribute if it doesn't exist
   //! @return Handle to the NamedData attribute or Null if there is none
   Standard_EXPORT Handle(TDataStd_NamedData) GetNamedProperties(const TopoDS_Shape& theShape, const Standard_Boolean theToCreate = Standard_False) const;
+  
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
-  DEFINE_STANDARD_RTTIEXT(XCAFDoc_ShapeTool,TDF_Attribute)
 
-protected:
-
-
+  DEFINE_DERIVED_ATTRIBUTE(XCAFDoc_ShapeTool,TDataStd_GenericEmpty)
 
 
 private:
@@ -438,7 +433,8 @@ private:
   //! associated compound is updated. Returns true if the assembly item is
   //! modified, false -- otherwise.
   Standard_EXPORT Standard_Boolean updateComponent(const TDF_Label& theAssmLabel,
-                                                   TopoDS_Shape&    theUpdatedShape) const;
+                                                   TopoDS_Shape&    theUpdatedShape,
+                                                   TDF_LabelMap&    theUpdated) const;
 
   //! Adds a new top-level (creates and returns a new label)
   //! For internal use. Used by public method AddShape.
