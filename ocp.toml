@@ -334,7 +334,7 @@ exclude = ["Standard_Handle.hxx","Standard",
            "BRepMesh_NodeInsertionMeshAlgo.hxx","BRepMesh_BoundaryParamsRangeSplitter.hxx",
            "BRepMesh_ConeRangeSplitter.hxx","BRepMesh_CylinderRangeSplitter.hxx",
            "BRepMesh_NURBSRangeSplitter.hxx","BRepMesh_SphereRangeSplitter.hxx",
-           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx"]
+           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx"]
 
 exceptions = ["Standard_Failure"]
 
@@ -602,7 +602,6 @@ struct NSOpenGLContext {};"""
 
     [Modules.StdSelect]
 
-        include_header_pre = "#include <Prs3d_Projector.hxx>"
         exclude_typedefs = ["StdSelect_IndexedDataMapOfOwnerPrs"]
 
     [Modules.Xw]
@@ -863,7 +862,8 @@ struct NSView {};"""
         exclude_typedefs = ["XCAFDimTolObjects_DataMapOfToleranceDatum"]
         
     [Modules.XCAFPrs]
-    
+        
+        include_header_pre = "#include <Image_SupportedFormats.hxx>"
         exclude_typedefs = ["XCAFPrs_DataMapOfStyleTransient"]
         
     [Modules.AdvApp2Var]
