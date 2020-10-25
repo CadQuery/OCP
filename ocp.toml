@@ -605,6 +605,7 @@ struct NSOpenGLContext {};"""
 
     [Modules.StdSelect]
 
+        include_header_pre = "#include <V3d_Viewer.hxx>"
         exclude_typedefs = ["StdSelect_IndexedDataMapOfOwnerPrs"]
 
     [Modules.Xw]
@@ -904,4 +905,5 @@ using std::basic_istream;"""
     [Modules.RWGltf]
 
         include_header_pre = """#include <istream>
-using std::basic_istream;"""
+using std::basic_istream;
+using rapidjson::BasicOStreamWrapper;"""
