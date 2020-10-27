@@ -334,8 +334,8 @@ exclude = ["Standard_Handle.hxx","Standard",
            "BRepMesh_NodeInsertionMeshAlgo.hxx","BRepMesh_BoundaryParamsRangeSplitter.hxx",
            "BRepMesh_ConeRangeSplitter.hxx","BRepMesh_CylinderRangeSplitter.hxx",
            "BRepMesh_NURBSRangeSplitter.hxx","BRepMesh_SphereRangeSplitter.hxx",
-           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx",
-           "BVH_Box.hxx","BVH_tools.hxx"]
+           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx"]
+#           "BVH_Box.hxx","BVH_tools.hxx"
 
 exceptions = ["Standard_Failure"]
 
@@ -899,7 +899,7 @@ using std::basic_istream;"""
 
         [Modules.Message.Classes.Message_ProgressScope]
 
-            exclude_constructors = [3]
+            exclude_constructors = [2]
 
 
     [Modules.RWGltf]
