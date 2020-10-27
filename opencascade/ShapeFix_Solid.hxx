@@ -31,7 +31,7 @@ class TopoDS_Solid;
 class Message_ProgressScope;
 class TopoDS_Shell;
 class ShapeExtend_BasicMsgRegistrator;
-
+class Message_ProgressRange;
 // resolve name collisions with X11 headers
 #ifdef Status
   #undef Status
