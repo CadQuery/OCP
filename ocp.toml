@@ -661,7 +661,8 @@ struct NSOpenGLContext {};"""
 
     [Modules.BVH]
 
-        exclude_typedefs = ["BVH_PrimitiveSet3d","BVH_BaseBox"]
+        exclude_typedefs = ["BVH_PrimitiveSet3d"]
+        exclude_class_templates = ["BVH_BaseBox"]
 
     [Modules.TDocStd]
 
