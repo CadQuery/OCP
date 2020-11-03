@@ -663,6 +663,7 @@ struct NSOpenGLContext {};"""
 
         exclude_typedefs = ["BVH_PrimitiveSet3d"]
         exclude_class_templates = ["BVH_BaseBox"]
+        exclude_class_template_methods = ["BVH_Tools::PointBoxProjection"]
 
     [Modules.TDocStd]
 
