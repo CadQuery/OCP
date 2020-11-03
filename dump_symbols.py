@@ -5,10 +5,10 @@ from path import Path
 prefix = sys.argv[1]
 
 prefix_mac = (Path(prefix) / 'lib_mac').expand()
-libs_mac = prefix_mac.glob('libTK*.7.4.0.dylib')
+libs_mac = prefix_mac.glob('libTK*.7.5.0.dylib')
 
 prefix_linux = (Path(prefix) / 'lib_linux').expand()
-libs_linux = prefix_linux.glob('libTK*.so.7.4.0')
+libs_linux = prefix_linux.glob('libTK*.so.7.5.0')
 
 prefix_win = (Path(prefix) / 'lib_win').expand()
 libs_win = prefix_win.glob('TK*.dll')
