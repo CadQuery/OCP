@@ -400,7 +400,7 @@ parsing_header = '''#include <Standard_Handle.hxx>
 
         exclude_functions = ["HashCode"]
         exclude_methods = ["Standard_Dump::DumpCharacterValues","Standard_Dump::DumpRealValues",
-            "Standard_CLocaleSentry::GetCLocale"]
+            "Standard_CLocaleSentry::GetCLocale","Standard_Dump::InitRealValues"]
 
     [Modules.Resource]
 
@@ -596,6 +596,7 @@ parsing_header = '''#include <Standard_Handle.hxx>
 
         include_header_pre = """#include <Message_Messenger.hxx>
 #include <Image_SupportedFormats.hxx>
+#include <Image_CompressedPixMap.hxx>
 struct NSOpenGLContext {};"""
         include_body_pre = 'py::class_<NSOpenGLContext>(m, "NSOpenGLContext");'
         exclude_methods = ["OpenGl_GlCore11::glGetPointerv","OpenGl_RaytraceGeometry::Clear",
@@ -628,6 +629,7 @@ auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
     [Modules.Font]
 
         exclude_classes = ["Font_BRepFont"]
+        exclude_methods = ["Font_FTFont::renderGlyphOutline"]
         include_header_pre = "struct FT_LibraryRec_ {};"
 
         [Modules.Font.Classes.Font_BRepTextBuilder.additional_methods.Perform]
@@ -897,12 +899,16 @@ struct NSView {};"""
         include_header_pre = """#include <istream>
 using std::basic_istream;"""
 
+    [Modules.XSControl]
+    
+        include_header_pre = """#include <istream>
+using std::basic_istream;"""
+
     [Modules.Message]
 
         [Modules.Message.Classes.Message_ProgressScope]
 
             exclude_constructors = [2]
-
 
     [Modules.RWGltf]
 
