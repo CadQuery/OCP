@@ -562,7 +562,7 @@ parsing_header = '''#include <Standard_Handle.hxx>
     [Modules.BRepMesh]
 
         include_header_pre = "#include <IMeshData_Wire.hxx>"
-        exclude_classes = ["BRepMesh_Triangle","BRepMesh_Delaun","BRepMesh_DefaultRangeSplitter"] #constructor with int&[3]
+        exclude_classes = ["BRepMesh_Triangle","BRepMesh_Delaun","BRepMesh_DefaultRangeSplitter","BRepMesh_Context"] #constructor with int&[3]
         exclude_methods = ["BRepMesh_GeomTool::IntLinLin",
         "BRepMesh_DataStructureOfDelaun::ElementNodes","BRepMesh_MeshTool::AddTriangle",
         "BRepMesh_ConeRangeSplitter::GetSplitSteps",
