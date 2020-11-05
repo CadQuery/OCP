@@ -1,6 +1,6 @@
 package:
   name: ocp
-  version: 7.4
+  version: 7.5beta
 
 source:
   path: ..
@@ -13,10 +13,10 @@ requirements:
     - cmake 3.16
   host:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt 7.4.*
+    - occt 7.5.*
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt 7.4.* 
+    - occt 7.5.* 
 
 test:
   requires:
