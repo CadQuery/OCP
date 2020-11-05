@@ -23,6 +23,7 @@
 
 #include <algorithm>
 #include <vector>
+#include <random>
 
 //! Compute points of the Halton sequence with with digit-permutations for different bases.
 class OpenGl_HaltonSampler
@@ -180,7 +181,7 @@ void OpenGl_HaltonSampler::initRandom (Random_number_generator& theRand)
     {
       aPerms[aBase][i] = i;
     }
-    std::random_shuffle (aPerms[aBase].begin(), aPerms[aBase].end(), theRand);
+    std::shuffle (aPerms[aBase].begin(), aPerms[aBase].end(),std::mt19937(std::random_device()()));
   }
   initTables (aPerms);
 }
