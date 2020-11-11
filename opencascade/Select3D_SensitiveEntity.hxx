@@ -70,7 +70,7 @@ public:
   //! Returns the number of sub-entities or elements in sensitive entity.
   //! Is used to determine if entity is complex and needs to pre-build BVH at the creation of sensitive entity step
   //! or is light-weighted so the tree can be build on demand with unnoticeable delay.
-  virtual Standard_Integer NbSubElements() = 0;
+  virtual Standard_Integer NbSubElements() const = 0;
 
   //! Returns bounding box of a sensitive with transformation applied
   virtual Select3D_BndBox3d BoundingBox() = 0;
@@ -81,6 +81,9 @@ public:
   //! Builds BVH tree for a sensitive if needed
   virtual void BVH() {}
 
+  //! Returns TRUE if BVH tree is in invalidated state
+  virtual Standard_Boolean ToBuildBVH() const { return Standard_True; }
+
   //! Clears up all resources and memory
   virtual void Clear() { Set (Handle(SelectMgr_EntityOwner)()); }
 
@@ -90,6 +93,9 @@ public:
   //! Returns inversed location transformation matrix if the shape corresponding to this entity has init location set.
   //! Otherwise, returns identity matrix.
   virtual gp_GTrsf InvInitLocation() const { return gp_GTrsf(); }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 protected:
 

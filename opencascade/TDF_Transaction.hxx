@@ -93,26 +93,20 @@ public:
   //! Returns true if the transaction is open.
     Standard_Boolean IsOpen() const;
 
-
-
-
-protected:
-
-
-
-
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 private:
 
-  
   //! Private to avoid copy.
-  Standard_EXPORT TDF_Transaction(const TDF_Transaction& aTrans);
+  TDF_Transaction(const TDF_Transaction& aTrans);
+  TDF_Transaction& operator= (const TDF_Transaction& theOther);
 
+private:
 
   Handle(TDF_Data) myDF;
-  Standard_Integer myUntilTransaction;
   TCollection_AsciiString myName;
-
+  Standard_Integer myUntilTransaction;
 
 };
 

@@ -30,7 +30,9 @@
 #include <SelectMgr_SelectableObjectSet.hxx>
 #include <SelectMgr_StateOfSelection.hxx>
 #include <SelectMgr_ToleranceMap.hxx>
+#include <SelectMgr_TypeOfDepthTolerance.hxx>
 #include <Standard_OStream.hxx>
+#include <SelectMgr_BVHThreadPool.hxx>
 
 class SelectMgr_SelectionManager;
 class SelectMgr_SensitiveEntitySet;
@@ -85,12 +87,20 @@ public:
   //! Empties all the tables, removes all selections...
   Standard_EXPORT void Clear();
 
-  //! returns the Sensitivity of picking
+  //! Returns custom pixel tolerance value.
+  Standard_Integer CustomPixelTolerance() const { return myTolerances.CustomTolerance(); }
+
+  //! Sets the pixel tolerance <theTolerance>.
+  Standard_EXPORT void SetPixelTolerance (const Standard_Integer theTolerance);
+
+  //! Returns the largest sensitivity of picking
   Standard_Real Sensitivity() const { return myTolerances.Tolerance(); }
 
+  //! Returns the largest pixel tolerance.
+  Standard_Integer PixelTolerance() const { return myTolerances.Tolerance(); }
+
   //! Sorts the detected entites by priority and distance.
-  //!          to be redefined if other criterion are used...
-  Standard_EXPORT void SortResult();
+  Standard_EXPORT virtual void SortResult();
 
   //! Returns the picked element with the highest priority,
   //! and which is the closest to the last successful mouse position.
@@ -101,13 +111,32 @@ public:
          : Picked (1);
   }
 
-  //! Set preference of selecting one object for OnePicked() method:
-  //! - If True, objects with less depth (distance fron the view plane) are
-  //!   preferred regardless of priority (priority is used then to choose among
-  //!   objects with similar depth),
-  //! - If False, objects with higher priority are preferred regardless of the
-  //!   depth which is used to choose among objects of the same priority.
-  void SetPickClosest (const Standard_Boolean theToPreferClosest) { preferclosest = theToPreferClosest; }
+  //! Return the flag determining precedence of picked depth (distance from eye to entity) over entity priority in sorted results; TRUE by default.
+  //! When flag is TRUE, priority will be considered only if entities have the same depth  within the tolerance.
+  //! When flag is FALSE, entities with higher priority will be in front regardless of their depth (like x-ray).
+  bool ToPickClosest() const { return myToPreferClosest; }
+
+  //! Set flag determining precedence of picked depth over entity priority in sorted results.
+  void SetPickClosest (bool theToPreferClosest) { myToPreferClosest = theToPreferClosest; }
+
+  //! Return the type of tolerance for considering two entities having a similar depth (distance from eye to entity);
+  //! SelectMgr_TypeOfDepthTolerance_SensitivityFactor by default.
+  SelectMgr_TypeOfDepthTolerance DepthToleranceType() const { return myDepthTolType; }
+
+  //! Return the tolerance for considering two entities having a similar depth (distance from eye to entity).
+  Standard_Real DepthTolerance() const { return myDepthTolerance; }
+
+  //! Set the tolerance for considering two entities having a similar depth (distance from eye to entity).
+  //! @param theType [in] type of tolerance value
+  //! @param theTolerance [in] tolerance value in 3D scale (SelectMgr_TypeOfDepthTolerance_Uniform)
+  //!                          or in pixels (SelectMgr_TypeOfDepthTolerance_UniformPixels);
+  //!                          value is ignored in case of SelectMgr_TypeOfDepthTolerance_SensitivityFactor
+  void SetDepthTolerance (SelectMgr_TypeOfDepthTolerance theType,
+                          Standard_Real theTolerance)
+  {
+    myDepthTolType   = theType;
+    myDepthTolerance = theTolerance;
+  }
 
   //! Returns the number of detected owners.
   Standard_Integer NbPicked() const { return mystored.Extent(); }
@@ -201,6 +230,9 @@ public:
   //! Returns instance of selecting volume manager of the viewer selector
   SelectMgr_SelectingVolumeManager& GetManager() { return mySelectingVolumeMgr; }
 
+  //! Return map of selectable objects.
+  const SelectMgr_SelectableObjectSet& SelectableObjects() const { return mySelectableObjects; }
+
   //! Marks all added sensitive entities of all objects as non-selectable
   Standard_EXPORT void ResetSelectionActivationStatus();
 
@@ -210,7 +242,7 @@ public:
   Standard_EXPORT void AllowOverlapDetection (const Standard_Boolean theIsToAllow);
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, const Standard_Integer theDepth = -1) const;
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 public:
 
@@ -247,6 +279,23 @@ public:
   //! Returns sensitive entity that was detected during the previous run of selection algorithm
   Standard_DEPRECATED("Deprecated method DetectedEntity() should be replaced by DetectedEntity(int)")
   Standard_EXPORT const Handle(Select3D_SensitiveEntity)& DetectedEntity() const;
+
+public:
+
+  //! Enables/disables building BVH for sensitives in separate threads
+  Standard_EXPORT void SetToPrebuildBVH(Standard_Boolean theToPrebuild, Standard_Integer theThreadsNum = -1);
+
+  //! Queues a sensitive entity to build its BVH
+  Standard_EXPORT void QueueBVHBuild(const Handle(Select3D_SensitiveEntity)& theEntity);
+
+  //! Waits BVH threads finished building
+  Standard_EXPORT void WaitForBVHBuild();
+
+  //! Returns TRUE if building BVH for sensitives in separate threads is enabled
+  Standard_Boolean ToPrebuildBVH() const
+  {
+    return myToPrebuildBVH;
+  }
 
 protected:
 
@@ -327,7 +376,9 @@ private: // implementation of deprecated methods
 
 protected:
 
-  Standard_Boolean                              preferclosest;
+  Standard_Real                                 myDepthTolerance;
+  SelectMgr_TypeOfDepthTolerance                myDepthTolType;
+  Standard_Boolean                              myToPreferClosest;
   Standard_Boolean                              myToUpdateTolerance;
   SelectMgr_IndexedDataMapOfOwnerCriterion      mystored;
   SelectMgr_SelectingVolumeManager              mySelectingVolumeMgr;
@@ -339,12 +390,12 @@ protected:
   gp_Dir                                        myCameraDir;
   Standard_Real                                 myCameraScale;
 
-private:
+  Standard_Boolean                              myToPrebuildBVH;
+  Handle(SelectMgr_BVHThreadPool)               myBVHThreadPool;
 
   Handle(TColStd_HArray1OfInteger)             myIndexes;
   Standard_Integer                             myCurRank;
   Standard_Boolean                             myIsLeftChildQueuedFirst;
-  Standard_Integer                             myEntityIdx;
   SelectMgr_MapOfObjectSensitives              myMapOfObjectSensitives;
 
 };

@@ -65,7 +65,7 @@ public:
   Standard_EXPORT virtual void Disconnect (Graphic3d_CStructure& theStructure) Standard_OVERRIDE;
 
   //! Synchronize structure transformation
-  Standard_EXPORT virtual void SetTransformation (const Handle(Geom_Transformation)& theTrsf) Standard_OVERRIDE;
+  Standard_EXPORT virtual void SetTransformation (const Handle(TopLoc_Datum3D)& theTrsf) Standard_OVERRIDE;
 
   //! Set transformation persistence.
   Standard_EXPORT virtual void SetTransformPersistence (const Handle(Graphic3d_TransformPers)& theTrsfPers) Standard_OVERRIDE;
@@ -100,10 +100,10 @@ public:
   Standard_EXPORT void Clear (const Handle(OpenGl_Context)& theGlCtx);
 
   //! Renders the structure.
-  virtual void Render  (const Handle(OpenGl_Workspace)& theWorkspace) const;
+  Standard_EXPORT virtual void Render  (const Handle(OpenGl_Workspace)& theWorkspace) const;
 
   //! Releases structure resources.
-  virtual void Release (const Handle(OpenGl_Context)& theGlCtx);
+  Standard_EXPORT virtual void Release (const Handle(OpenGl_Context)& theGlCtx);
 
   //! This method releases GL resources without actual elements destruction.
   //! As result structure could be correctly destroyed layer without GL context
@@ -127,6 +127,9 @@ public:
 
   //! Update render transformation matrix.
   Standard_EXPORT virtual void updateLayerTransformation() Standard_OVERRIDE;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 

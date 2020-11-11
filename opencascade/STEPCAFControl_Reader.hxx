@@ -70,7 +70,10 @@ public:
   //! Creates a reader tool and attaches it to an already existing Session
   //! Clears the session if it was not yet set for STEP
   Standard_EXPORT STEPCAFControl_Reader(const Handle(XSControl_WorkSession)& WS, const Standard_Boolean scratch = Standard_True);
-  
+
+  //! Destructor.
+  Standard_EXPORT virtual ~STEPCAFControl_Reader();
+
   //! Clears the internal data structures and attaches to a new session
   //! Clears the session if it was not yet set for STEP
   Standard_EXPORT void Init (const Handle(XSControl_WorkSession)& WS, const Standard_Boolean scratch = Standard_True);
@@ -86,18 +89,25 @@ public:
   //! Translates currently loaded STEP file into the document
   //! Returns True if succeeded, and False in case of fail
   //! Provided for use like single-file reader
-  Standard_EXPORT Standard_Boolean TransferOneRoot (const Standard_Integer num, Handle(TDocStd_Document)& doc);
+  Standard_EXPORT Standard_Boolean TransferOneRoot (const Standard_Integer num,
+                                                    Handle(TDocStd_Document)& doc,
+                                                    const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   //! Translates currently loaded STEP file into the document
   //! Returns True if succeeded, and False in case of fail
   //! Provided for use like single-file reader
-  Standard_EXPORT Standard_Boolean Transfer (Handle(TDocStd_Document)& doc);
+  Standard_EXPORT Standard_Boolean Transfer (Handle(TDocStd_Document)& doc,
+                                             const Message_ProgressRange& theProgress = Message_ProgressRange());
   
-  Standard_EXPORT Standard_Boolean Perform (const TCollection_AsciiString& filename, Handle(TDocStd_Document)& doc);
+  Standard_EXPORT Standard_Boolean Perform (const TCollection_AsciiString& filename,
+                                            Handle(TDocStd_Document)& doc,
+                                            const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   //! Translate STEP file given by filename into the document
   //! Return True if succeeded, and False in case of fail
-  Standard_EXPORT Standard_Boolean Perform (const Standard_CString filename, Handle(TDocStd_Document)& doc);
+  Standard_EXPORT Standard_Boolean Perform (const Standard_CString filename,
+                                            Handle(TDocStd_Document)& doc,
+                                            const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   //! Returns data on external files
   //! Returns Null handle if no external files are read
@@ -130,13 +140,6 @@ public:
   Standard_EXPORT void SetNameMode (const Standard_Boolean namemode);
   
   Standard_EXPORT Standard_Boolean GetNameMode() const;
-
-  //! Return the encoding of STEP file for converting names into UNICODE.
-  //! Initialized from "read.stepcaf.codepage" variable by constructor, which is Resource_UTF8 by default.
-  Resource_FormatType SourceCodePage() const { return mySourceCodePage; }
-
-  //! Return the encoding of STEP file for converting names into UNICODE.
-  void SetSourceCodePage (Resource_FormatType theCode) { mySourceCodePage = theCode; }
 
   //! Set LayerMode for indicate read Layers or not.
   Standard_EXPORT void SetLayerMode (const Standard_Boolean layermode);
@@ -181,7 +184,12 @@ protected:
   //! Returns True if succeeded, and False in case of fail
   //! If asOne is True, in case of multiple results composes
   //! them into assembly. Fills sequence of produced labels
-  Standard_EXPORT Standard_Boolean Transfer (STEPControl_Reader& rd, const Standard_Integer num, Handle(TDocStd_Document)& doc, TDF_LabelSequence& Lseq, const Standard_Boolean asOne = Standard_False);
+  Standard_EXPORT Standard_Boolean Transfer (STEPControl_Reader& rd,
+                                             const Standard_Integer num,
+                                             Handle(TDocStd_Document)& doc,
+                                             TDF_LabelSequence& Lseq,
+                                             const Standard_Boolean asOne = Standard_False,
+                                             const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   //! Add a shape to a document
   //! Depending on a case, this shape can be added as one, or
@@ -191,7 +199,10 @@ protected:
   
   //! Reads (or if returns already read) extern file with
   //! given name
-  Standard_EXPORT Handle(STEPCAFControl_ExternFile) ReadExternFile (const Standard_CString file, const Standard_CString fullpath, Handle(TDocStd_Document)& doc);
+  Standard_EXPORT Handle(STEPCAFControl_ExternFile) ReadExternFile (const Standard_CString file,
+                                                                    const Standard_CString fullpath,
+                                                                    Handle(TDocStd_Document)& doc,
+                                   const Message_ProgressRange& theProgress = Message_ProgressRange());
   
   //! Reads style assignments from STEP model and sets
   //! corresponding color assignments in the DECAF document
@@ -283,7 +294,6 @@ private:
 
   STEPControl_Reader myReader;
   NCollection_DataMap<TCollection_AsciiString, Handle(STEPCAFControl_ExternFile)> myFiles;
-  Resource_FormatType mySourceCodePage;
   Standard_Boolean myColorMode;
   Standard_Boolean myNameMode;
   Standard_Boolean myLayerMode;

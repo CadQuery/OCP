@@ -141,13 +141,13 @@ public:
         && myWorldViewState  == theOther.myWorldViewState;
   }
 
-  //! Copy world view projection state.
-  void operator = (const Graphic3d_WorldViewProjState& theOther)
+  //! Dumps the content of me into the stream
+  void DumpJson (Standard_OStream& theOStream, Standard_Integer) const
   {
-    myIsValid         = theOther.myIsValid;
-    myCamera          = theOther.myCamera;
-    myProjectionState = theOther.myProjectionState;
-    myWorldViewState  = theOther.myWorldViewState;
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myIsValid)
+    OCCT_DUMP_FIELD_VALUE_POINTER (theOStream, myCamera)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myProjectionState)
+    OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myWorldViewState)
   }
 
 private:

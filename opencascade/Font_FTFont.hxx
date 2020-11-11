@@ -29,6 +29,7 @@
 // forward declarations to avoid including of FreeType headers
 typedef struct FT_FaceRec_* FT_Face;
 typedef struct FT_Vector_   FT_Vector;
+typedef struct FT_Outline_ FT_Outline;
 class Font_FTLibrary;
 
 //! Font initialization parameters.
@@ -155,11 +156,13 @@ public:
   //! Initialize the font from the given file path.
   //! @param theFontPath path to the font
   //! @param theParams   initialization parameters
+  //! @param theFaceId   face id within the file (0 by default)
   //! @return true on success
   bool Init (const TCollection_AsciiString& theFontPath,
-             const Font_FTFontParams& theParams)
+             const Font_FTFontParams& theParams,
+             const Standard_Integer theFaceId = 0)
   {
-    return Init (Handle(NCollection_Buffer)(), theFontPath, theParams);
+    return Init (Handle(NCollection_Buffer)(), theFontPath, theParams, theFaceId);
   }
 
   //! Initialize the font from the given file path or memory buffer.
@@ -167,10 +170,12 @@ public:
   //!                    when NULL, function will attempt to open theFileName file
   //! @param theFileName optional path to the font
   //! @param theParams   initialization parameters
+  //! @param theFaceId   face id within the file (0 by default)
   //! @return true on success
   Standard_EXPORT bool Init (const Handle(NCollection_Buffer)& theData,
                              const TCollection_AsciiString& theFileName,
-                             const Font_FTFontParams& theParams);
+                             const Font_FTFontParams& theParams,
+                             const Standard_Integer theFaceId = 0);
 
   //! Find (using Font_FontMgr) and initialize the font from the given name.
   //! @param theFontName    the font name
@@ -227,6 +232,12 @@ public:
     return myFontParams.PointSize;
   }
 
+  //! Return glyph scaling along X-axis.
+  float WidthScaling() const
+  {
+    return myWidthScaling;
+  }
+
   //! Setup glyph scaling along X-axis.
   //! By default glyphs are not scaled (scaling factor = 1.0)
   void SetWidthScaling (const float theScaleFactor)
@@ -277,6 +288,14 @@ public:
 
 public:
 
+  //! Computes outline contour for the symbol.
+  //! @param theUChar    [in] the character to be loaded as current one
+  //! @param theOutline  [out] outline contour
+  //! @return true on success
+  Standard_EXPORT const FT_Outline* renderGlyphOutline(const Standard_Utf32Char theChar);
+
+public:
+
   //! Initialize the font.
   //! @param theFontPath   path to the font
   //! @param thePointSize  the face size in points (1/72 inch)
@@ -290,7 +309,7 @@ public:
     Font_FTFontParams aParams;
     aParams.PointSize  = thePointSize;
     aParams.Resolution = theResolution;
-    return Init (theFontPath.ToCString(), aParams);
+    return Init (theFontPath.ToCString(), aParams, 0);
   }
 
   //! Initialize the font.

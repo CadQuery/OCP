@@ -24,6 +24,8 @@
 #include <Font_FontAspect.hxx>
 #include <TCollection_ExtendedString.hxx>
 
+class Font_TextFormatter;
+
 //! Presentation of the text.
 class AIS_TextLabel : public AIS_InteractiveObject
 {
@@ -31,6 +33,9 @@ public:
 
   //! Default constructor
   Standard_EXPORT AIS_TextLabel();
+
+  //! Return TRUE for supported display mode.
+  virtual Standard_Boolean AcceptDisplayMode (const Standard_Integer theMode) const Standard_OVERRIDE { return theMode == 0; }
 
   //! Setup color of entire text.
   Standard_EXPORT virtual void SetColor (const Quantity_Color& theColor) Standard_OVERRIDE;
@@ -80,6 +85,15 @@ public:
   //! Returns position.
   Standard_EXPORT const gp_Pnt& Position() const;
 
+  //! Returns the label text.
+  const TCollection_ExtendedString& Text() const { return myText; }
+
+  //! Returns the font of the label text.
+  Standard_EXPORT const TCollection_AsciiString& FontName() const;
+
+  //! Returns the font aspect of the label text.
+  Standard_EXPORT Font_FontAspect FontAspect() const;
+
   //! Returns label orientation in the model 3D space.
   Standard_EXPORT const gp_Ax2& Orientation3D() const;
 
@@ -89,6 +103,12 @@ public:
   Standard_EXPORT void SetFlipping (const Standard_Boolean theIsFlipping);
 
   Standard_EXPORT Standard_Boolean HasFlipping() const;
+
+  //! Returns flag if text uses position as point of attach
+  Standard_Boolean HasOwnAnchorPoint() const { return myHasOwnAnchorPoint; }
+
+  //! Set flag if text uses position as point of attach
+  void SetOwnAnchorPoint (const Standard_Boolean theOwnAnchorPoint) { myHasOwnAnchorPoint = theOwnAnchorPoint; }
 
   //! Define the display type of the text.
   //!
@@ -103,7 +123,13 @@ public:
   //! and the colour of backgroubd for the TODT_DEKALE TextDisplayType.
   Standard_EXPORT void SetColorSubTitle (const Quantity_Color& theColor);
 
-private:
+  //! Returns text presentation formatter; NULL by default, which means standard text formatter will be used.
+  const Handle(Font_TextFormatter)& TextFormatter() const { return myFormatter; }
+
+  //! Setup text formatter for presentation. It's empty by default.
+  void SetTextFormatter (const Handle(Font_TextFormatter)& theFormatter) { myFormatter = theFormatter; }
+
+protected:
 
   //! Compute
   Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& thePresentationManager,
@@ -114,13 +140,24 @@ private:
   Standard_EXPORT virtual void ComputeSelection (const Handle(SelectMgr_Selection)& theSelection,
                                                  const Standard_Integer             theMode) Standard_OVERRIDE;
 
+  //! Calculate label center, width and height
+  Standard_EXPORT Standard_Boolean calculateLabelParams (const gp_Pnt& thePosition,
+                                                         gp_Pnt& theCenterOfLabel,
+                                                         Standard_Real& theWidth,
+                                                         Standard_Real& theHeight) const;
+
+  //! Calculate label transformation
+  Standard_EXPORT gp_Trsf calculateLabelTrsf (const gp_Pnt& thePosition,
+                                              gp_Pnt& theCenterOfLabel) const;
+
 protected:
 
+  Handle(Font_TextFormatter) myFormatter;
+
   TCollection_ExtendedString myText;
-  TCollection_AsciiString    myFont;
-  Font_FontAspect            myFontAspect;
   gp_Ax2                     myOrientation3D;
   Standard_Boolean           myHasOrientation3D;
+  Standard_Boolean           myHasOwnAnchorPoint;
   Standard_Boolean           myHasFlipping;
 
 public:

@@ -189,6 +189,45 @@ public: //! @name Geometry management API
   //! The value should be within [0, 0.5] range.
   Standard_EXPORT void SetRoundRadius (const Standard_Real theValue);
 
+  //! Returns radius of axes of the trihedron; 1.0 by default.
+  Standard_Real AxesRadius() const { return myAxesRadius; }
+
+  //! Sets radius of axes of the trihedron.
+  void SetAxesRadius (const Standard_Real theRadius)
+  {
+    if (Abs (myAxesRadius - theRadius) > Precision::Confusion())
+    {
+      myAxesRadius = theRadius;
+      SetToUpdate();
+    }
+  }
+
+  //! Returns radius of cone of axes of the trihedron; 3.0 by default.
+  Standard_Real AxesConeRadius() const { return myAxesConeRadius; }
+
+  //! Sets radius of cone of axes of the trihedron.
+  void SetAxesConeRadius (Standard_Real theRadius)
+  {
+    if (Abs (myAxesConeRadius - theRadius) > Precision::Confusion())
+    {
+      myAxesConeRadius = theRadius;
+      SetToUpdate();
+    }
+  }
+
+  //! Returns radius of sphere (central point) of the trihedron; 4.0 by default.
+  Standard_Real AxesSphereRadius() const { return myAxesSphereRadius; }
+
+  //! Sets radius of sphere (central point) of the trihedron.
+  void SetAxesSphereRadius (Standard_Real theRadius)
+  {
+    if (Abs (myAxesSphereRadius - theRadius) > Precision::Confusion())
+    {
+      myAxesSphereRadius = theRadius;
+      SetToUpdate();
+    }
+  }
+
   //! @return TRUE if trihedron is drawn; TRUE by default.
   Standard_Boolean ToDrawAxes() const { return myToDisplayAxes; }
 
@@ -412,7 +451,7 @@ public:
   //! Sets the material for the interactive object.
   virtual void UnsetMaterial() Standard_OVERRIDE
   {
-    Graphic3d_MaterialAspect aMat (Graphic3d_NOM_UserDefined);
+    Graphic3d_MaterialAspect aMat (Graphic3d_NameOfMaterial_UserDefined);
     aMat.SetColor (Quantity_NOC_WHITE);
     aMat.SetAmbientColor (Quantity_NOC_GRAY60);
     myDrawer->ShadingAspect()->SetMaterial (aMat);
@@ -426,11 +465,11 @@ public:
 public: //! @name animation methods
 
   //! Return duration of animation in seconds; 0.5 sec by default
-  Standard_Real Duration() const { return myDuration; }
+  Standard_EXPORT Standard_Real Duration() const;
 
   //! Set duration of animation.
   //! @param theValue [in] input value of duration in seconds
-  void SetDuration (Standard_Real theValue) { myDuration = theValue; }
+  Standard_EXPORT void SetDuration (Standard_Real theValue);
 
   //! Return TRUE if new camera Up direction should be always set to default value for a new camera Direction; FALSE by default.
   //! When this flag is FALSE, the new camera Up will be set as current Up orthogonalized to the new camera Direction,
@@ -621,6 +660,9 @@ protected:
   Standard_Real                 myBoxEdgeGap;        //!< gap between box side and box edge
   Standard_Real                 myBoxFacetExtension; //!< box facet extension
   Standard_Real                 myAxesPadding;       //!< Padding between box and axes
+  Standard_Real                 myAxesRadius;        //!< radius of axes of the trihedron; 1.0 by default
+  Standard_Real                 myAxesConeRadius;    //!< radius of cone of axes of the trihedron; 3.0 by default
+  Standard_Real                 myAxesSphereRadius;  //!< radius of sphere (central point) of the trihedron; 4.0 by default
   Standard_Real                 myCornerMinSize;     //!< minimal size of box corner
   Standard_Real                 myRoundRadius;       //!< relative round radius within [0; 0.5] range
   Standard_Boolean              myToDisplayAxes;     //!< trihedron visibility
@@ -633,7 +675,6 @@ protected: //! @name Animation options
   Handle(AIS_AnimationCamera)   myViewAnimation;     //!< Camera animation object
   Handle(Graphic3d_Camera)      myStartState;        //!< Start state of view camera
   Handle(Graphic3d_Camera)      myEndState;          //!< End state of view camera
-  Standard_Real                 myDuration;          //!< Duration of animation. By default it is half a second
   Standard_Boolean              myToAutoStartAnim;   //!< start animation automatically on click
   Standard_Boolean              myIsFixedAnimation;  //!< fixed-loop animation
   Standard_Boolean              myToFitSelected;     //!< fit selected or fit entire scene

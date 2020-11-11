@@ -92,23 +92,13 @@ public:
 
   //! Sets a local value for deviation coefficient for this specific shape.
   Standard_EXPORT Standard_Boolean SetOwnDeviationCoefficient();
-  
-  //! Sets a local value for HLR deviation coefficient for this specific shape.
-  Standard_EXPORT Standard_Boolean SetOwnHLRDeviationCoefficient();
-  
+
   //! Sets a local value for deviation angle for this specific shape.
   Standard_EXPORT Standard_Boolean SetOwnDeviationAngle();
   
-  //! Sets a local value for HLR deviation angle for this specific shape.
-  Standard_EXPORT Standard_Boolean SetOwnHLRDeviationAngle();
-  
   //! Sets a local value for deviation coefficient for this specific shape.
   Standard_EXPORT void SetOwnDeviationCoefficient (const Standard_Real aCoefficient);
-  
-  //! sets myOwnHLRDeviationCoefficient field in Prs3d_Drawer &
-  //! recomputes presentation
-  Standard_EXPORT void SetOwnHLRDeviationCoefficient (const Standard_Real aCoefficient);
-  
+
   //! this compute a new angle and Deviation from the value anAngle
   //! and set the values stored in myDrawer with these that become local to the shape
   Standard_EXPORT void SetAngleAndDeviation (const Standard_Real anAngle);
@@ -119,35 +109,16 @@ public:
   //! sets myOwnDeviationAngle field in Prs3d_Drawer & recomputes presentation
   Standard_EXPORT void SetOwnDeviationAngle (const Standard_Real anAngle);
   
-  //! this compute a new Angle and Deviation from the value anAngle for HLR
-  //! and set the values stored in myDrawer for with these that become local to the shape
-  Standard_EXPORT void SetHLRAngleAndDeviation (const Standard_Real anAngle);
-  
-  //! sets myOwnHLRDeviationAngle field in Prs3d_Drawer & recomputes presentation
-  Standard_EXPORT void SetOwnHLRDeviationAngle (const Standard_Real anAngle);
-  
   //! Returns true and the values of the deviation
   //! coefficient aCoefficient and the previous deviation
   //! coefficient aPreviousCoefficient. If these values are
   //! not already set, false is returned.
   Standard_EXPORT Standard_Boolean OwnDeviationCoefficient (Standard_Real& aCoefficient, Standard_Real& aPreviousCoefficient) const;
   
-  //! Returns   true and the values of the HLR deviation
-  //! coefficient aCoefficient and the previous HLR
-  //! deviation coefficient aPreviousCoefficient. If these
-  //! values are not already set, false is returned.
-  Standard_EXPORT Standard_Boolean OwnHLRDeviationCoefficient (Standard_Real& aCoefficient, Standard_Real& aPreviousCoefficient) const;
-  
   //! Returns true and the values of the deviation angle
   //! anAngle and the previous deviation angle aPreviousAngle.
   //! If these values are not already set, false is returned.
   Standard_EXPORT Standard_Boolean OwnDeviationAngle (Standard_Real& anAngle, Standard_Real& aPreviousAngle) const;
-  
-  //! Returns true and the values   of the HLR deviation
-  //! angle anAngle and of the previous HLR deviation
-  //! angle aPreviousAngle. If these values are not
-  //! already set, false is returned.
-  Standard_EXPORT Standard_Boolean OwnHLRDeviationAngle (Standard_Real& anAngle, Standard_Real& aPreviousAngle) const;
   
   //! Sets the type of HLR algorithm used by the shape
   void SetTypeOfHLR (const Prs3d_TypeOfHLR theTypeOfHLR) {  myDrawer->SetTypeOfHLR (theTypeOfHLR); }
@@ -282,20 +253,21 @@ protected:
                                         const Standard_Integer theMode) Standard_OVERRIDE;
 
   //! Compute projected presentation.
-  virtual void Compute (const Handle(Prs3d_Projector)& theProjector,
-                        const Handle(Prs3d_Presentation)& thePrs) Standard_OVERRIDE
+  virtual void computeHLR (const Handle(Graphic3d_Camera)& theProjector,
+                           const Handle(TopLoc_Datum3D)& theTrsf,
+                           const Handle(Prs3d_Presentation)& thePrs) Standard_OVERRIDE
   {
-    computeHlrPresentation (theProjector, thePrs, myshape, myDrawer);
-  }
-
-  //! Compute projected presentation with transformation.
-  virtual void Compute (const Handle(Prs3d_Projector)& theProjector,
-                        const Handle(Geom_Transformation)& theTrsf,
-                        const Handle(Prs3d_Presentation)& thePrs) Standard_OVERRIDE
-  {
-    const TopLoc_Location& aLoc = myshape.Location();
-    const TopoDS_Shape aShape = myshape.Located (TopLoc_Location (theTrsf->Trsf()) * aLoc);
-    computeHlrPresentation (theProjector, thePrs, aShape, myDrawer);
+    if (!theTrsf.IsNull()
+      && theTrsf->Form() != gp_Identity)
+    {
+      const TopLoc_Location& aLoc = myshape.Location();
+      const TopoDS_Shape aShape = myshape.Located (TopLoc_Location (theTrsf->Trsf()) * aLoc);
+      computeHlrPresentation (theProjector, thePrs, aShape, myDrawer);
+    }
+    else
+    {
+      computeHlrPresentation (theProjector, thePrs, myshape, myDrawer);
+    }
   }
 
   //! Compute selection.
@@ -320,10 +292,13 @@ protected:
 public:
 
   //! Compute HLR presentation for specified shape.
-  Standard_EXPORT static void computeHlrPresentation (const Handle(Prs3d_Projector)& theProjector,
+  Standard_EXPORT static void computeHlrPresentation (const Handle(Graphic3d_Camera)& theProjector,
                                                       const Handle(Prs3d_Presentation)& thePrs,
                                                       const TopoDS_Shape& theShape,
                                                       const Handle(Prs3d_Drawer)& theDrawer);
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 

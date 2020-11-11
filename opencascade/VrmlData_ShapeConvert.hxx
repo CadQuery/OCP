@@ -28,7 +28,7 @@ class VrmlData_Coordinate;
 class TopoDS_Face;
 class Poly_Polygon3D;
 class Poly_Triangulation;
-class XCAFDoc_ColorTool;
+class XCAFPrs_Style;
 class TDocStd_Document;
 class TDF_Label;
 
@@ -61,7 +61,9 @@ class VrmlData_ShapeConvert
   inline VrmlData_ShapeConvert (VrmlData_Scene&     theScene,
                                 const Standard_Real theScale = 1.)
     : myScene (theScene),
-      myScale (theScale)
+      myScale (theScale),
+      myDeflection(0.0),
+      myDeflAngle(0.0)
   {}
 
   /**
@@ -129,9 +131,8 @@ class VrmlData_ShapeConvert
                  const TDF_Label& theLabel,
                  const Handle(TDocStd_Document)& theDoc);
 
-  Handle(VrmlData_Appearance) makeMaterialFromColor(const TDF_Label& theColorL,
-                                                    const Handle(XCAFDoc_ColorTool)& theColorTool) const;
-
+  Handle(VrmlData_Appearance) makeMaterialFromStyle (const XCAFPrs_Style& theStyle,
+                                                     const TDF_Label& theAttribLab) const;
 
  private:
   // ---------- PRIVATE FIELDS ----------

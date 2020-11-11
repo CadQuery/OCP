@@ -14,26 +14,20 @@
 #ifndef _StdPrs_HLRFace_H__
 #define _StdPrs_HLRFace_H__
 
-#include <Prs3d_Root.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <Prs3d_Drawer.hxx>
-#include <Prs3d_Projector.hxx>
+#include <StdPrs_HLRShapeI.hxx>
 
-// Computes the presentation of objects with
-// removal of their hidden lines for a specific
-// projector. The exact algorithm is used.
-
-class StdPrs_HLRShape: public Prs3d_Root
+//! Computes the presentation of objects with removal of their hidden lines for a specific projector.
+//! The exact algorithm is used.
+class StdPrs_HLRShape : public StdPrs_HLRShapeI
 {
+  DEFINE_STANDARD_RTTIEXT(StdPrs_HLRShape, StdPrs_HLRShapeI)
 public:
 
-  DEFINE_STANDARD_ALLOC
-
-  Standard_EXPORT static void Add
-                       (const Handle(Prs3d_Presentation)& thePresentation,
-                        const TopoDS_Shape&               theShape,
-                        const Handle(Prs3d_Drawer)&       theDrawer,
-                        const Handle(Prs3d_Projector)&    theProjector);
+  //! Compute presentation for specified shape.
+  Standard_EXPORT virtual void ComputeHLR (const Handle(Prs3d_Presentation)& thePrs,
+                                           const TopoDS_Shape& theShape,
+                                           const Handle(Prs3d_Drawer)& theDrawer,
+                                           const Handle(Graphic3d_Camera)& theProjector) const Standard_OVERRIDE;
 
 };
 #endif

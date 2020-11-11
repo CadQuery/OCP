@@ -58,7 +58,7 @@ public:
   Standard_EXPORT virtual void Unmap() const = 0;
 
   //! Apply the resizing to the window <me>.
-  Standard_EXPORT virtual Aspect_TypeOfResize DoResize() const = 0;
+  Standard_EXPORT virtual Aspect_TypeOfResize DoResize() = 0;
 
   //! Apply the mapping change to the window <me>.
   //! and returns TRUE if the window is mapped at screen.
@@ -114,6 +114,9 @@ public:
   //! on platforms implementing thread-unsafe connections to display.
   //! NULL can be passed instead otherwise.
   virtual void InvalidateContent (const Handle(Aspect_DisplayConnection)& theDisp) { (void )theDisp; }
+  
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
   DEFINE_STANDARD_RTTIEXT(Aspect_Window,Standard_Transient)
 

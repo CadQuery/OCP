@@ -15,6 +15,7 @@
 #ifndef _RWMesh_CafReader_HeaderFile
 #define _RWMesh_CafReader_HeaderFile
 
+#include <Message_ProgressRange.hxx>
 #include <NCollection_IndexedMap.hxx>
 #include <RWMesh_CoordinateSystemConverter.hxx>
 #include <RWMesh_NodeAttributes.hxx>
@@ -22,8 +23,10 @@
 #include <TDF_Label.hxx>
 #include <TopTools_SequenceOfShape.hxx>
 
-class Message_ProgressIndicator;
 class TDocStd_Document;
+class XCAFDoc_ShapeTool;
+class XCAFDoc_ColorTool;
+class XCAFDoc_VisMaterialTool;
 
 //! Extended status bits.
 enum RWMesh_CafReaderStatusEx
@@ -45,6 +48,17 @@ enum RWMesh_CafReaderStatusEx
 class RWMesh_CafReader : public Standard_Transient
 {
   DEFINE_STANDARD_RTTIEXT(RWMesh_CafReader, Standard_Transient)
+public:
+
+  //! Structure holding tools for filling the document.
+  struct CafDocumentTools
+  {
+    Handle(XCAFDoc_ShapeTool)       ShapeTool;
+    Handle(XCAFDoc_ColorTool)       ColorTool;
+    Handle(XCAFDoc_VisMaterialTool) VisMaterialTool;
+    NCollection_DataMap<TopoDS_Shape, TDF_Label, TopTools_ShapeMapHasher> ComponentMap;
+  };
+
 public:
 
   //! Empty constructor.
@@ -137,7 +151,7 @@ public:
   //! Read the data from specified file.
   //! The Document instance should be set beforehand.
   bool Perform (const TCollection_AsciiString& theFile,
-                const Handle(Message_ProgressIndicator)& theProgress)
+                const Message_ProgressRange& theProgress)
   {
     return perform (theFile, theProgress, Standard_False);
   }
@@ -161,7 +175,7 @@ public:
   //! The main purpose is collecting metadata and external references - for copying model into a new location, for example.
   //! Can be NOT implemented (unsupported by format / reader).
   Standard_Boolean ProbeHeader (const TCollection_AsciiString& theFile,
-                                const Handle(Message_ProgressIndicator)& theProgress = Handle(Message_ProgressIndicator)())
+                                const Message_ProgressRange& theProgress = Message_ProgressRange())
   {
     return perform (theFile, theProgress, Standard_True);
   }
@@ -174,12 +188,12 @@ protected:
   //! @param optional   progress indicator
   //! @param theToProbe flag indicating that mesh data should be skipped and only basing information to be read
   Standard_EXPORT virtual Standard_Boolean perform (const TCollection_AsciiString& theFile,
-                                                    const Handle(Message_ProgressIndicator)& theProgress,
+                                                    const Message_ProgressRange& theProgress,
                                                     const Standard_Boolean theToProbe);
 
   //! Read the mesh from specified file - interface to be implemented by sub-classes.
   Standard_EXPORT virtual Standard_Boolean performMesh (const TCollection_AsciiString& theFile,
-                                                        const Handle(Message_ProgressIndicator)& theProgress,
+                                                        const Message_ProgressRange& theProgress,
                                                         const Standard_Boolean theToProbe) = 0;
 
 //! @name tools for filling XDE document
@@ -189,9 +203,33 @@ protected:
   Standard_EXPORT void fillDocument();
 
   //! Append new shape into the document (recursively).
-  Standard_EXPORT Standard_Boolean addShapeIntoDoc (const TopoDS_Shape& theShape,
+  Standard_EXPORT Standard_Boolean addShapeIntoDoc (CafDocumentTools& theTools,
+                                                    const TopoDS_Shape& theShape,
                                                     const TDF_Label& theLabel,
                                                     const TCollection_AsciiString& theParentName);
+
+  //! Append new sub-shape into the document (recursively).
+  Standard_EXPORT Standard_Boolean addSubShapeIntoDoc (CafDocumentTools& theTools,
+                                                       const TopoDS_Shape& theShape,
+                                                       const TDF_Label& theParentLabel,
+                                                       const RWMesh_NodeAttributes& theAttribs);
+
+  //! Put name attribute onto the label.
+  Standard_EXPORT void setShapeName (const TDF_Label& theLabel,
+                                     const TopAbs_ShapeEnum theShapeType,
+                                     const TCollection_AsciiString& theName,
+                                     const TDF_Label& theParentLabel,
+                                     const TCollection_AsciiString& theParentName);
+
+  //! Put color and material attributes onto the label.
+  Standard_EXPORT void setShapeStyle (const CafDocumentTools& theTools,
+                                      const TDF_Label& theLabel,
+                                      const XCAFPrs_Style& theStyle);
+
+  //! Put name data (metadata) attribute onto the label.
+  Standard_EXPORT void setShapeNamedData (const CafDocumentTools& theTools,
+                                          const TDF_Label& theLabel,
+                                          const Handle(TDataStd_NamedData)& theNameData);
 
   //! Generate names for root labels starting from specified index.
   Standard_EXPORT void generateNames (const TCollection_AsciiString& theFile,

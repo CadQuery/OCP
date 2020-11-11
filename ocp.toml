@@ -318,8 +318,8 @@ modules = ["Standard",
 "BinXCAFDrivers",
 "XmlXCAFDrivers",
 "Vrml",
-"VrmlAPI"
-]
+"VrmlAPI",
+"RWGltf"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -334,7 +334,8 @@ exclude = ["Standard_Handle.hxx","Standard",
            "BRepMesh_NodeInsertionMeshAlgo.hxx","BRepMesh_BoundaryParamsRangeSplitter.hxx",
            "BRepMesh_ConeRangeSplitter.hxx","BRepMesh_CylinderRangeSplitter.hxx",
            "BRepMesh_NURBSRangeSplitter.hxx","BRepMesh_SphereRangeSplitter.hxx",
-           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx"]
+           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx"]
+#           "BVH_Box.hxx","BVH_tools.hxx"
 
 exceptions = ["Standard_Failure"]
 
@@ -399,7 +400,7 @@ parsing_header = '''#include <Standard_Handle.hxx>
 
         exclude_functions = ["HashCode"]
         exclude_methods = ["Standard_Dump::DumpCharacterValues","Standard_Dump::DumpRealValues",
-            "Standard_CLocaleSentry::GetCLocale"]
+            "Standard_CLocaleSentry::GetCLocale","Standard_Dump::InitRealValues"]
 
     [Modules.Resource]
 
@@ -561,7 +562,7 @@ parsing_header = '''#include <Standard_Handle.hxx>
     [Modules.BRepMesh]
 
         include_header_pre = "#include <IMeshData_Wire.hxx>"
-        exclude_classes = ["BRepMesh_Triangle","BRepMesh_Delaun","BRepMesh_DefaultRangeSplitter"] #constructor with int&[3]
+        exclude_classes = ["BRepMesh_Triangle","BRepMesh_Delaun","BRepMesh_DefaultRangeSplitter","BRepMesh_Context"] #constructor with int&[3]
         exclude_methods = ["BRepMesh_GeomTool::IntLinLin",
         "BRepMesh_DataStructureOfDelaun::ElementNodes","BRepMesh_MeshTool::AddTriangle",
         "BRepMesh_ConeRangeSplitter::GetSplitSteps",
@@ -581,6 +582,7 @@ parsing_header = '''#include <Standard_Handle.hxx>
 
         include_header_pre = "struct __GLXFBConfigRec {};"
         exclude_methods = ["Aspect_NeutralWindow::NativeFBConfig","Aspect_Window::NativeFBConfig","Aspect_NeutralWindow::SetNativeHandles","Aspect_DisplayConnection::GetDisplay","Aspect_DisplayConnection::Init"]
+        exclude_typedefs = ["Aspect_XRActionSetMap","Aspect_XRActionMap"]
 
         [Modules.Aspect.Classes.Aspect_DisplayConnection]
 
@@ -593,6 +595,8 @@ parsing_header = '''#include <Standard_Handle.hxx>
     [Modules.OpenGl]
 
         include_header_pre = """#include <Message_Messenger.hxx>
+#include <Image_SupportedFormats.hxx>
+#include <Image_CompressedPixMap.hxx>
 struct NSOpenGLContext {};"""
         include_body_pre = 'py::class_<NSOpenGLContext>(m, "NSOpenGLContext");'
         exclude_methods = ["OpenGl_GlCore11::glGetPointerv","OpenGl_RaytraceGeometry::Clear",
@@ -602,7 +606,7 @@ struct NSOpenGLContext {};"""
 
     [Modules.StdSelect]
 
-        include_header_pre = "#include <Prs3d_Projector.hxx>"
+        include_header_pre = "#include <V3d_Viewer.hxx>"
         exclude_typedefs = ["StdSelect_IndexedDataMapOfOwnerPrs"]
 
     [Modules.Xw]
@@ -617,6 +621,7 @@ struct NSOpenGLContext {};"""
     [Modules.AIS]
 
         include_header_pre = """#include <Media_PlayerContext.hxx>
+#include <WNT_HIDSpaceMouse.hxx>
 auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
         include_body_pre = "py::class_<AIS_Manipulator::OptionsForAttach>(m,\"AIS_Manipulator_OptionsForAttach\");"
         exclude_typedefs = ["AIS_DataMapOfShapeDrawer","AIS_DataMapOfIOStatus","AIS_DataMapOfILC","AIS_IndexedDataMapOfOwnerPrs"]
@@ -624,6 +629,7 @@ auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
     [Modules.Font]
 
         exclude_classes = ["Font_BRepFont"]
+        exclude_methods = ["Font_FTFont::renderGlyphOutline"]
         include_header_pre = "struct FT_LibraryRec_ {};"
 
         [Modules.Font.Classes.Font_BRepTextBuilder.additional_methods.Perform]
@@ -641,7 +647,8 @@ auto OptionsForAttach = [](){return AIS_Manipulator::OptionsForAttach();};"""
 
         include_header_pre = """#include <Media_PlayerContext.hxx>
 struct NSOpenGLContext {};"""
-        exclude_typedefs = ["Graphic3d_IndexedMapOfView","Graphic3d_IndexedMapOfAddress","Graphic3d_MapOfStructure","Graphic3d_NMapOfTransient","Graphic3d_MapOfObject","Graphic3d_Vec4u","Graphic3d_Vec2u","Graphic3d_Vec3u","Graphic3d_Vec3d","Graphic3d_MapOfAspectsToAspects"]
+        exclude_typedefs = ["Graphic3d_IndexedMapOfView","Graphic3d_IndexedMapOfAddress","Graphic3d_MapOfStructure","Graphic3d_NMapOfTransient","Graphic3d_MapOfObject","Graphic3d_Vec4u","Graphic3d_Vec2u","Graphic3d_Vec3u","Graphic3d_Vec3d","Graphic3d_MapOfAspectsToAspects",
+            "Graphic3d_BndBox4d","Graphic3d_BndBox3d","Graphic3d_BndBox4f"]
         exclude_methods = ["Graphic3d_BvhCStructureSet::Size","Graphic3d_BvhCStructureSet::Box",
             "Graphic3d_BvhCStructureSet::Center","Graphic3d_BvhCStructureSet::Swap",
             "Graphic3d_BvhCStructureSetTrsfPers::Size","Graphic3d_BvhCStructureSetTrsfPers::Box",
@@ -657,6 +664,8 @@ struct NSOpenGLContext {};"""
     [Modules.BVH]
 
         exclude_typedefs = ["BVH_PrimitiveSet3d"]
+        exclude_class_templates = ["BVH_BaseBox"]
+        exclude_class_template_methods = ["BVH_Tools::PointBoxProjection"]
 
     [Modules.TDocStd]
 
@@ -679,7 +688,7 @@ struct NSOpenGLContext {};"""
 
     [Modules.CDM]
 
-        exclude_typedefs = ["CDM_PresentationDirectory"]
+        exclude_typedefs = ["CDM_PresentationDirectory","CDM_MetaDataLookUpTable"]
 
     [Modules.TDataStd]
 
@@ -712,6 +721,7 @@ struct NSOpenGLContext {};"""
 
         exclude_typedefs = ["TDF_AttributeDataMap","TDF_AttributeDoubleMap"]
         exclude_classes = ["TDF_LabelNode"]
+        exclude_methods = ["TDF_DerivedAttribute::Register"]
 
     [Modules.XmlTObjDrivers]
 
@@ -812,7 +822,8 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
 
     [Modules.Prs3d]
 
-        include_header_pre = "#include <Graphic3d_StructureManager.hxx>"
+        include_header_pre = """#include <Graphic3d_StructureManager.hxx>
+#include <Graphic3d_Text.hxx>"""
 
     [Modules.WNT]
 
@@ -863,7 +874,9 @@ struct NSView {};"""
         exclude_typedefs = ["XCAFDimTolObjects_DataMapOfToleranceDatum"]
         
     [Modules.XCAFPrs]
-    
+        
+        include_header_pre = """#include <Image_SupportedFormats.hxx>
+#include <Image_CompressedPixMap.hxx>"""
         exclude_typedefs = ["XCAFPrs_DataMapOfStyleTransient"]
         
     [Modules.AdvApp2Var]
@@ -881,3 +894,25 @@ struct NSView {};"""
     [Modules.VrmlAPI]
     
         include_header_pre = "#include <VrmlConverter_Drawer.hxx>"
+    
+    [Modules.IFSelect]
+
+        include_header_pre = """#include <istream>
+using std::basic_istream;"""
+
+    [Modules.XSControl]
+    
+        include_header_pre = """#include <istream>
+using std::basic_istream;"""
+
+    [Modules.Message]
+
+        [Modules.Message.Classes.Message_ProgressScope]
+
+            exclude_constructors = [2]
+
+    [Modules.RWGltf]
+
+        include_header_pre = """#include <istream>
+using std::basic_istream;
+using rapidjson::BasicOStreamWrapper;"""

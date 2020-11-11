@@ -26,6 +26,7 @@
 #include <Standard_Boolean.hxx>
 #include <XmlObjMgt_Element.hxx>
 #include <Standard_Integer.hxx>
+
 class XmlMDF_ADriverTable;
 class TCollection_ExtendedString;
 class CDM_Document;
@@ -45,9 +46,13 @@ public:
   
   Standard_EXPORT XmlLDrivers_DocumentStorageDriver(const TCollection_ExtendedString& theCopyright);
   
-  Standard_EXPORT virtual void Write (const Handle(CDM_Document)& theDocument, const TCollection_ExtendedString& theFileName) Standard_OVERRIDE;
+  Standard_EXPORT virtual void Write (const Handle(CDM_Document)& theDocument, 
+                                      const TCollection_ExtendedString& theFileName,
+                                      const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
 
-  Standard_EXPORT virtual void Write (const Handle(CDM_Document)& theDocument, Standard_OStream& theOStream) Standard_OVERRIDE;
+  Standard_EXPORT virtual void Write (const Handle(CDM_Document)& theDocument, 
+                                      Standard_OStream& theOStream,
+                                      const Message_ProgressRange& theRange = Message_ProgressRange()) Standard_OVERRIDE;
   
   Standard_EXPORT virtual Handle(XmlMDF_ADriverTable) AttributeDrivers (const Handle(Message_Messenger)& theMsgDriver);
 
@@ -59,17 +64,25 @@ public:
 protected:
 
   
-  Standard_EXPORT virtual Standard_Boolean WriteToDomDocument (const Handle(CDM_Document)& theDocument, XmlObjMgt_Element& thePDoc);
+  Standard_EXPORT virtual Standard_Boolean WriteToDomDocument
+                                (const Handle(CDM_Document)& theDocument, 
+                                 XmlObjMgt_Element& thePDoc,
+                                 const Message_ProgressRange& theRange = Message_ProgressRange());
   
-  Standard_EXPORT virtual Standard_Integer MakeDocument (const Handle(CDM_Document)& theDocument, XmlObjMgt_Element& thePDoc);
+  Standard_EXPORT virtual Standard_Integer MakeDocument
+                                (const Handle(CDM_Document)& theDocument,
+                                 XmlObjMgt_Element& thePDoc, 
+                                 const Message_ProgressRange& theRange = Message_ProgressRange());
   
-  Standard_EXPORT void AddNamespace (const TCollection_AsciiString& thePrefix, const TCollection_AsciiString& theURI);
+  Standard_EXPORT void AddNamespace (const TCollection_AsciiString& thePrefix,
+                                     const TCollection_AsciiString& theURI);
   
-  Standard_EXPORT virtual Standard_Boolean WriteShapeSection (XmlObjMgt_Element& thePDoc);
+  Standard_EXPORT virtual Standard_Boolean WriteShapeSection
+                                (XmlObjMgt_Element& thePDoc, 
+                                 const Message_ProgressRange& theRange = Message_ProgressRange());
 
   Handle(XmlMDF_ADriverTable) myDrivers;
-  XmlObjMgt_SRelocationTable myRelocTable;
-
+  XmlObjMgt_SRelocationTable  myRelocTable;
 
 private:
 

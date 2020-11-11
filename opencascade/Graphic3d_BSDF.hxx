@@ -19,6 +19,8 @@
 #include <Graphic3d_Vec3.hxx>
 #include <Graphic3d_Vec4.hxx>
 
+class Graphic3d_PBRMaterial;
+
 //! Type of the Fresnel model.
 enum Graphic3d_FresnelModel
 {
@@ -86,6 +88,9 @@ public:
   {
     return myFresnelType;
   }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 protected:
 
@@ -169,6 +174,9 @@ public:
                                                      const Standard_ShortReal theAbsorptionCoeff,
                                                      const Standard_ShortReal theRefractionIndex);
 
+  //! Creates BSDF from PBR metallic-roughness material.
+  static Standard_EXPORT Graphic3d_BSDF CreateMetallicRoughness (const Graphic3d_PBRMaterial& thePbr);
+
 public:
 
   //! Creates uninitialized BSDF.
@@ -179,6 +187,9 @@ public:
 
   //! Performs comparison of two BSDFs.
   Standard_EXPORT bool operator== (const Graphic3d_BSDF& theOther) const;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 };
 

@@ -16,14 +16,6 @@
 #ifndef _Prs3d_ToolSphere_HeaderFile
 #define _Prs3d_ToolSphere_HeaderFile
 
-#include <Graphic3d_ArrayOfPrimitives.hxx>
-#include <Graphic3d_ArrayOfTriangles.hxx>
-#include <Poly_Triangulation.hxx>
-#include <Prs3d_Root.hxx>
-#include <Prs3d_Drawer.hxx>
-#include <SelectMgr_Selection.hxx>
-#include <Standard.hxx>
-#include <Standard_Handle.hxx>
 #include <Prs3d_ToolQuadric.hxx>
 
 //! Standard presentation algorithm that outputs graphical primitives for spherical surface.
@@ -31,14 +23,22 @@ class Prs3d_ToolSphere : public Prs3d_ToolQuadric
 {
 public:
 
-  //! Generate primitives for 3D quadric surface and return a filled array.
+  //! Generate primitives for 3D quadric surface.
+  //! @param theRadius   [in] sphere radius
+  //! @param theNbSlices [in] number of slices within U parameter
+  //! @param theNbStacks [in] number of stacks within V parameter
+  //! @param theTrsf     [in] optional transformation to apply
+  //! @return generated triangulation
   Standard_EXPORT static Handle(Graphic3d_ArrayOfTriangles) Create (const Standard_Real    theRadius,
                                                                     const Standard_Integer theNbSlices,
                                                                     const Standard_Integer theNbStacks,
                                                                     const gp_Trsf&         theTrsf);
 public:
 
-  //! Initializes the algorithm.
+  //! Initializes the algorithm creating a sphere.
+  //! @param theRadius   [in] sphere radius
+  //! @param theNbSlices [in] number of slices within U parameter
+  //! @param theNbStacks [in] number of stacks within V parameter
   Standard_EXPORT Prs3d_ToolSphere (const Standard_Real    theRadius,
                                     const Standard_Integer theNbSlices,
                                     const Standard_Integer theNbStacks);
@@ -46,14 +46,14 @@ public:
 protected:
 
   //! Computes vertex at given parameter location of the surface.
-  Standard_EXPORT virtual gp_Pnt Vertex (const Standard_Real theU, const Standard_Real theV) Standard_OVERRIDE;
+  Standard_EXPORT virtual gp_Pnt Vertex (const Standard_Real theU, const Standard_Real theV) const Standard_OVERRIDE;
 
   //! Computes normal at given parameter location of the surface.
-  Standard_EXPORT virtual gp_Dir Normal (const Standard_Real theU, const Standard_Real theV) Standard_OVERRIDE;
+  Standard_EXPORT virtual gp_Dir Normal (const Standard_Real theU, const Standard_Real theV) const Standard_OVERRIDE;
 
 protected:
 
-  Standard_Real myRadius;
+  Standard_Real myRadius; //!< sphere radius
 
 };
 

@@ -56,7 +56,16 @@ class SelectMgr_Frustum : public SelectMgr_BaseFrustum
 {
 public:
 
-  SelectMgr_Frustum() : SelectMgr_BaseFrustum() {};
+  SelectMgr_Frustum() : SelectMgr_BaseFrustum()
+  {
+    memset (myMaxOrthoVertsProjections, 0, sizeof (myMaxOrthoVertsProjections));
+    memset (myMinOrthoVertsProjections, 0, sizeof (myMinOrthoVertsProjections));
+    memset (myMaxVertsProjections, 0, sizeof (myMaxVertsProjections));
+    memset (myMinVertsProjections, 0, sizeof (myMinVertsProjections));
+  }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 

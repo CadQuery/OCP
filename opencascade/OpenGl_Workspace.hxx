@@ -148,9 +148,20 @@ public:
   //! Assign new aspects (will be applied within ApplyAspects()).
   Standard_EXPORT const OpenGl_Aspects* SetAspects (const OpenGl_Aspects* theAspect);
 
+  //! Return TextureSet from set Aspects or Environment texture.
+  const Handle(OpenGl_TextureSet)& TextureSet() const
+  {
+    const Handle(OpenGl_TextureSet)& aTextureSet = myAspectsSet->TextureSet (myGlContext, ToHighlight());
+    return !aTextureSet.IsNull()
+          || myAspectsSet->Aspect()->ToMapTexture()
+          ? aTextureSet
+          : myEnvironmentTexture;
+  }
+
   //! Apply aspects.
+  //! @param theToBindTextures flag to bind texture set defined by applied aspect
   //! @return aspect set by SetAspects()
-  Standard_EXPORT const OpenGl_Aspects* ApplyAspects();
+  Standard_EXPORT const OpenGl_Aspects* ApplyAspects (bool theToBindTextures = true);
 
   //! Clear the applied aspect state to default values.
   void ResetAppliedAspect();
@@ -194,6 +205,9 @@ public:
   //! Returns environment texture.
   const Handle(OpenGl_TextureSet)& EnvironmentTexture() const { return myEnvironmentTexture; }
 
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+  
 protected: //! @name protected fields
 
   OpenGl_View*           myView;

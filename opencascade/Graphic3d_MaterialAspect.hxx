@@ -17,6 +17,7 @@
 #define _Graphic3d_MaterialAspect_HeaderFile
 
 #include <Graphic3d_BSDF.hxx>
+#include <Graphic3d_PBRMaterial.hxx>
 #include <Graphic3d_NameOfMaterial.hxx>
 #include <Graphic3d_TypeOfMaterial.hxx>
 #include <Graphic3d_TypeOfReflection.hxx>
@@ -34,7 +35,7 @@ public:
   DEFINE_STANDARD_ALLOC
 
   //! Returns the number of predefined textures.
-  static Standard_Integer NumberOfMaterials() { return Graphic3d_NOM_DEFAULT; }
+  static Standard_Integer NumberOfMaterials() { return Graphic3d_NameOfMaterial_DEFAULT; }
 
   //! Returns the name of the predefined material of specified rank within range [1, NumberOfMaterials()].
   Standard_EXPORT static Standard_CString MaterialName (const Standard_Integer theRank);
@@ -49,10 +50,10 @@ public:
   Standard_EXPORT static Standard_Boolean MaterialFromName (const Standard_CString theName,
                                                             Graphic3d_NameOfMaterial& theMat);
 
-  //! Returns the material for specified name or Graphic3d_NOM_DEFAULT if name is unknown.
+  //! Returns the material for specified name or Graphic3d_NameOfMaterial_DEFAULT if name is unknown.
   static Graphic3d_NameOfMaterial MaterialFromName (const Standard_CString theName)
   {
-    Graphic3d_NameOfMaterial aMat = Graphic3d_NOM_DEFAULT;
+    Graphic3d_NameOfMaterial aMat = Graphic3d_NameOfMaterial_DEFAULT;
     MaterialFromName (theName, aMat);
     return aMat;
   }
@@ -86,7 +87,7 @@ public:
   {
     // if a component of a "standard" material change, the
     // result is no more standard (a blue gold is not a gold)
-    myMaterialName = Graphic3d_NOM_UserDefined;
+    myMaterialName = Graphic3d_NameOfMaterial_UserDefined;
     myStringName   = theName;
   }
 
@@ -170,6 +171,12 @@ public:
   //! Modifies the BSDF (bidirectional scattering distribution function).
   void SetBSDF (const Graphic3d_BSDF& theBSDF) { myBSDF = theBSDF; }
 
+  //! Returns physically based representation of material
+  const Graphic3d_PBRMaterial& PBRMaterial () const { return myPBRMaterial; }
+
+  //! Modifies the physically based representation of material
+  void SetPBRMaterial (const Graphic3d_PBRMaterial& thePBRMaterial) { myPBRMaterial = thePBRMaterial; }
+
   //! Returns TRUE if the reflection mode is active, FALSE otherwise.
   Standard_Boolean ReflectionMode (const Graphic3d_TypeOfReflection theType) const
   {
@@ -197,6 +204,7 @@ public:
     return myTransparencyCoef == theOther.myTransparencyCoef
         && myRefractionIndex  == theOther.myRefractionIndex
         && myBSDF             == theOther.myBSDF
+        && myPBRMaterial      == theOther.myPBRMaterial
         && myShininess        == theOther.myShininess
         && myColors[Graphic3d_TOR_AMBIENT]  == theOther.myColors[Graphic3d_TOR_AMBIENT]
         && myColors[Graphic3d_TOR_DIFFUSE]  == theOther.myColors[Graphic3d_TOR_DIFFUSE]
@@ -206,6 +214,9 @@ public:
 
   //! Returns TRUE if this material is identical to specified one.
   Standard_Boolean operator== (const Graphic3d_MaterialAspect& theOther) const { return IsEqual (theOther); }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 public:
 
@@ -237,9 +248,9 @@ private:
   {
     // if a component of a "standard" material change, the
     // result is no more standard (a blue gold is not a gold)
-    if (myMaterialName != Graphic3d_NOM_UserDefined)
+    if (myMaterialName != Graphic3d_NameOfMaterial_UserDefined)
     {
-      myMaterialName = Graphic3d_NOM_UserDefined;
+      myMaterialName = Graphic3d_NameOfMaterial_UserDefined;
       myStringName   = "UserDefined";
     }
   }
@@ -247,6 +258,7 @@ private:
 private:
 
   Graphic3d_BSDF           myBSDF;
+  Graphic3d_PBRMaterial    myPBRMaterial;
   TCollection_AsciiString  myStringName;
   Quantity_Color           myColors[Graphic3d_TypeOfReflection_NB];
   Standard_ShortReal       myTransparencyCoef;

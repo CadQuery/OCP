@@ -53,7 +53,7 @@ public:
   //! - Equation (0.0, 0.0, 1.0, 0)
   //! - IsOn (True),
   //! - IsCapping (False),
-  //! - Material (Graphic3d_NOM_DEFAULT),
+  //! - Material (Graphic3d_NameOfMaterial_DEFAULT),
   //! - Texture (NULL),
   //! - HatchStyle (Aspect_HS_HORIZONTAL),
   //! - IsHatchOn (False)
@@ -376,6 +376,9 @@ public:
                                    1.0);
     return !IsPointOutHalfspace (aMinPnt);
   }
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 public: // @name modification counters
 

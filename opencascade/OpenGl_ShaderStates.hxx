@@ -53,7 +53,7 @@ public:
   Standard_EXPORT void Set (const OpenGl_Mat4& theProjectionMatrix);
 
   //! Returns current projection matrix.
-  Standard_EXPORT const OpenGl_Mat4& ProjectionMatrix() const;
+  const OpenGl_Mat4& ProjectionMatrix() const { return myProjectionMatrix; }
 
   //! Returns inverse of current projection matrix.
   Standard_EXPORT const OpenGl_Mat4& ProjectionMatrixInverse() const;
@@ -62,7 +62,7 @@ private:
 
   OpenGl_Mat4         myProjectionMatrix;        //!< OCCT projection matrix
   mutable OpenGl_Mat4 myProjectionMatrixInverse; //!< Inverse of OCCT projection matrix
-  bool                myInverseNeedUpdate;       //!< Is inversed matrix outdated?
+  mutable bool        myInverseNeedUpdate;       //!< Is inversed matrix outdated?
 
 };
 
@@ -78,7 +78,7 @@ public:
   Standard_EXPORT void Set (const OpenGl_Mat4& theModelWorldMatrix);
 
   //! Returns current model-world matrix.
-  Standard_EXPORT const OpenGl_Mat4& ModelWorldMatrix() const;
+  const OpenGl_Mat4& ModelWorldMatrix() const { return myModelWorldMatrix; }
 
   //! Returns inverse of current model-world matrix.
   Standard_EXPORT const OpenGl_Mat4& ModelWorldMatrixInverse() const;
@@ -87,7 +87,7 @@ private:
 
   OpenGl_Mat4         myModelWorldMatrix;        //!< OCCT model-world matrix
   mutable OpenGl_Mat4 myModelWorldMatrixInverse; //!< Inverse of OCCT model-world matrix
-  bool                myInverseNeedUpdate;       //!< Is inversed matrix outdated?
+  mutable bool        myInverseNeedUpdate;       //!< Is inversed matrix outdated?
   
 };
 
@@ -103,7 +103,7 @@ public:
   Standard_EXPORT void Set (const OpenGl_Mat4& theWorldViewMatrix);
 
   //! Returns current world-view matrix.
-  Standard_EXPORT const OpenGl_Mat4& WorldViewMatrix() const;
+  const OpenGl_Mat4& WorldViewMatrix() const { return myWorldViewMatrix; }
 
   //! Returns inverse of current world-view matrix.
   Standard_EXPORT const OpenGl_Mat4& WorldViewMatrixInverse() const;
@@ -112,7 +112,7 @@ private:
 
   OpenGl_Mat4         myWorldViewMatrix;        //!< OCCT world-view matrix
   mutable OpenGl_Mat4 myWorldViewMatrixInverse; //!< Inverse of OCCT world-view matrix
-  bool                myInverseNeedUpdate;      //!< Is inversed matrix outdated?
+  mutable bool        myInverseNeedUpdate;      //!< Is inversed matrix outdated?
 
 };
 
@@ -122,7 +122,7 @@ class OpenGl_LightSourceState : public OpenGl_StateInterface
 public:
 
   //! Creates uninitialized state of light sources.
-  OpenGl_LightSourceState() {}
+  OpenGl_LightSourceState() : mySpecIBLMapLevels (0) {}
 
   //! Sets new light sources.
   void Set (const Handle(Graphic3d_LightSet)& theLightSources) { myLightSources = theLightSources; }
@@ -130,9 +130,17 @@ public:
   //! Returns current list of light sources.
   const Handle(Graphic3d_LightSet)& LightSources() const { return myLightSources; }
 
+  //! Returns number of mipmap levels used in specular IBL map.
+  //! 0 by default or in case of using non-PBR shading model.
+  Standard_Integer SpecIBLMapLevels() const { return mySpecIBLMapLevels; }
+
+  //! Sets number of mipmap levels used in specular IBL map.
+  void SetSpecIBLMapLevels(Standard_Integer theSpecIBLMapLevels) { mySpecIBLMapLevels = theSpecIBLMapLevels; }
+
 private:
 
-  Handle(Graphic3d_LightSet) myLightSources; //!< List of OCCT light sources
+  Handle(Graphic3d_LightSet) myLightSources;     //!< List of OCCT light sources
+  Standard_Integer           mySpecIBLMapLevels; //!< Number of mipmap levels used in specular IBL map (0 by default or in case of using non-PBR shading model)
 
 };
 

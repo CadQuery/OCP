@@ -238,7 +238,34 @@ public:
   Aspect_TypeOfLine LineType() const { return myLineType; }
 
   //! Modifies the line type
-  void SetLineType (Aspect_TypeOfLine theType) { myLineType = theType; }
+  void SetLineType (Aspect_TypeOfLine theType)
+  {
+    myLineType = theType;
+    myLinePattern = DefaultLinePatternForType (theType);
+  }
+
+  //! Return custom stipple line pattern; 0xFFFF by default.
+  uint16_t LinePattern() const { return myLinePattern; }
+
+  //! Modifies the stipple line pattern, and changes line type to Aspect_TOL_USERDEFINED for non-standard pattern.
+  void SetLinePattern (uint16_t thePattern)
+  {
+    myLineType = DefaultLineTypeForPattern (thePattern);
+    myLinePattern = thePattern;
+  }
+
+  //! Return a multiplier for each bit in the line stipple pattern within [1, 256] range; 1 by default.
+  uint16_t LineStippleFactor() const { return myLineFactor; }
+
+  //! Set a multiplier for each bit in the line stipple pattern.
+  void SetLineStippleFactor (uint16_t theFactor)
+  {
+    if (theFactor == 0 || theFactor > 256)
+    {
+      throw Standard_OutOfRange ("Graphic3d_Aspects::SetLineStippleFactor(), bad factor value");
+    }
+    myLineFactor = theFactor;
+  }
 
   //! Return width for edges in pixels; 1.0 by default.
   Standard_ShortReal LineWidth() const { return myLineWidth; }
@@ -252,6 +279,36 @@ public:
       throw Standard_OutOfRange ("Bad value for EdgeLineWidth");
     }
     myLineWidth = theWidth;
+  }
+
+  //! Return stipple line pattern for line type.
+  static uint16_t DefaultLinePatternForType (Aspect_TypeOfLine theType)
+  {
+    switch (theType)
+    {
+      case Aspect_TOL_DASH:        return 0xFFC0;
+      case Aspect_TOL_DOT:         return 0xCCCC;
+      case Aspect_TOL_DOTDASH:     return 0xFF18;
+      case Aspect_TOL_EMPTY:       return 0x0000;
+      case Aspect_TOL_SOLID:       return 0xFFFF;
+      case Aspect_TOL_USERDEFINED: return 0xFF24;
+    }
+    return 0xFFFF;
+  }
+
+  //! Return line type for stipple line pattern.
+  static Aspect_TypeOfLine DefaultLineTypeForPattern (uint16_t thePattern)
+  {
+    switch (thePattern)
+    {
+      case 0x0000: return Aspect_TOL_EMPTY;
+      case 0xFFC0: return Aspect_TOL_DASH;
+      case 0xCCCC: return Aspect_TOL_DOT;
+      case 0xFF18: return Aspect_TOL_DOTDASH;
+      case 0xFFFF: return Aspect_TOL_SOLID;
+      case 0xFF24: return Aspect_TOL_USERDEFINED;
+    }
+    return Aspect_TOL_USERDEFINED;
   }
 
 //! @name parameters specific to Point (Marker) primitive rendering
@@ -388,7 +445,7 @@ public:
   Aspect_TypeOfLine EdgeLineType() const { return myLineType; }
 
   //! Modifies the edge line type (same as SetLineType())
-  void SetEdgeLineType (Aspect_TypeOfLine theType) { myLineType = theType; }
+  void SetEdgeLineType (Aspect_TypeOfLine theType) { SetLineType (theType); }
 
   //! Return width for edges in pixels (same as LineWidth()).
   Standard_ShortReal EdgeWidth() const { return myLineWidth; }
@@ -459,6 +516,8 @@ public:
         && myLineType  == theOther.myLineType
         && myEdgeColor == theOther.myEdgeColor
         && myLineWidth == theOther.myLineWidth
+        && myLineFactor == theOther.myLineFactor
+        && myLinePattern == theOther.myLinePattern
         && myMarkerType == theOther.myMarkerType
         && myMarkerScale == theOther.myMarkerScale
         && myHatchStyle == theOther.myHatchStyle
@@ -478,7 +537,8 @@ public:
   }
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, const Standard_Integer theDepth = -1) const;
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+
 
 protected:
 
@@ -502,6 +562,8 @@ protected:
 
   Aspect_TypeOfLine            myLineType;
   Standard_ShortReal           myLineWidth;
+  uint16_t                     myLineFactor;
+  uint16_t                     myLinePattern;
 
   Aspect_TypeOfMarker          myMarkerType;
   Standard_ShortReal           myMarkerScale;

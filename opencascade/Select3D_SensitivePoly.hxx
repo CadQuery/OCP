@@ -56,7 +56,7 @@ public:
                                           const Standard_Integer theNbPnts = 6);
 
   //! Returns the amount of segments in poly
-  Standard_EXPORT virtual Standard_Integer NbSubElements() Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
 
   //! Returns the 3D points of the array used at construction time.
   void Points3D (Handle(TColgp_HArray1OfPnt)& theHArrayOfPnt)
@@ -67,6 +67,22 @@ public:
     {
       theHArrayOfPnt->SetValue (anIndex, myPolyg.Pnt (anIndex-1));
     }
+  }
+
+  //! Return array bounds.
+  void ArrayBounds (Standard_Integer& theLow,
+                    Standard_Integer& theUp) const
+  {
+    theLow = 0;
+    theUp = myPolyg.Size() - 1;
+  }
+
+  //! Return point.
+  gp_Pnt GetPoint3d (const Standard_Integer thePntIdx) const
+  {
+    return (thePntIdx >= 0 && thePntIdx < myPolyg.Size())
+         ? myPolyg.Pnt (thePntIdx)
+         : gp_Pnt();
   }
 
   //! Returns bounding box of a polygon. If location
@@ -91,6 +107,9 @@ public:
   //! Swaps items with indexes theIdx1 and theIdx2 in the vector
   Standard_EXPORT virtual void Swap (const Standard_Integer theIdx1,
                                      const Standard_Integer theIdx2) Standard_OVERRIDE;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 

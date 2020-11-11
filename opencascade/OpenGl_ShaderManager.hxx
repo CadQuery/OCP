@@ -22,6 +22,7 @@
 #include <NCollection_DataMap.hxx>
 #include <NCollection_Sequence.hxx>
 
+#include <OpenGl_PBREnvironment.hxx>
 #include <OpenGl_SetOfShaderPrograms.hxx>
 #include <OpenGl_ShaderStates.hxx>
 #include <OpenGl_Aspects.hxx>
@@ -49,6 +50,9 @@ public:
 
   //! Release all resources.
   Standard_EXPORT void clear();
+
+  //! Fetch sRGB state from caps and invalidates programs, if necessary.
+  Standard_EXPORT void UpdateSRgbState();
 
   //! Return local camera transformation.
   const gp_XYZ& LocalOrigin() const { return myLocalOrigin; }
@@ -113,19 +117,19 @@ public:
                                     Standard_Boolean theEnableMeshEdges,
                                     const Handle(OpenGl_ShaderProgram)& theCustomProgram)
   {
-    if (!theCustomProgram.IsNull()
-     || myContext->caps->ffpEnable)
-    {
-      return bindProgramWithState (theCustomProgram);
-    }
-
     const Graphic3d_TypeOfShadingModel aShadeModelOnFace = theShadingModel != Graphic3d_TOSM_UNLIT
                                                         && (theTextures.IsNull() || theTextures->IsModulate())
                                                         ? theShadingModel
                                                         : Graphic3d_TOSM_UNLIT;
+    if (!theCustomProgram.IsNull()
+     || myContext->caps->ffpEnable)
+    {
+      return bindProgramWithState (theCustomProgram, aShadeModelOnFace);
+    }
+
     const Standard_Integer aBits = getProgramBits (theTextures, theAlphaMode, theInteriorStyle, theHasVertColor, theEnableEnvMap, theEnableMeshEdges);
     Handle(OpenGl_ShaderProgram)& aProgram = getStdProgram (aShadeModelOnFace, aBits);
-    return bindProgramWithState (aProgram);
+    return bindProgramWithState (aProgram, aShadeModelOnFace);
   }
 
   //! Bind program for line rendering
@@ -139,7 +143,7 @@ public:
     if (!theCustomProgram.IsNull()
      || myContext->caps->ffpEnable)
     {
-      return bindProgramWithState (theCustomProgram);
+      return bindProgramWithState (theCustomProgram, theShadingModel);
     }
 
     Standard_Integer aBits = getProgramBits (theTextures, theAlphaMode, Aspect_IS_SOLID, theHasVertColor, false, false);
@@ -149,7 +153,7 @@ public:
     }
 
     Handle(OpenGl_ShaderProgram)& aProgram = getStdProgram (theShadingModel, aBits);
-    return bindProgramWithState (aProgram);
+    return bindProgramWithState (aProgram, theShadingModel);
   }
 
   //! Bind program for point rendering
@@ -165,7 +169,7 @@ public:
     if (!theCustomProgram.IsNull()
      || myContext->caps->ffpEnable)
     {
-      return bindProgramWithState (theCustomProgram);
+      return bindProgramWithState (theCustomProgram, Graphic3d_TOSM_UNLIT);
     }
 
     if (myFontProgram.IsNull())
@@ -173,7 +177,7 @@ public:
       prepareStdProgramFont();
     }
 
-    return bindProgramWithState (myFontProgram);
+    return bindProgramWithState (myFontProgram, Graphic3d_TOSM_UNLIT);
   }
 
   //! Bind program for outline rendering
@@ -194,19 +198,14 @@ public:
     {
       prepareStdProgramUnlit (aProgram, aBits, true);
     }
-    return bindProgramWithState (aProgram);
+    return bindProgramWithState (aProgram, Graphic3d_TOSM_UNLIT);
   }
 
   //! Bind program for FBO blit operation.
-  Standard_Boolean BindFboBlitProgram()
-  {
-    if (myBlitProgram.IsNull())
-    {
-      prepareStdProgramFboBlit();
-    }
-    return !myBlitProgram.IsNull()
-         && myContext->BindProgram (myBlitProgram);
-  }
+  //! @param theNbSamples       [in] number of samples within source MSAA texture
+  //! @param theIsFallback_sRGB [in] flag indicating that destination buffer is not sRGB-ready
+  Standard_EXPORT Standard_Boolean BindFboBlitProgram (Standard_Integer theNbSamples,
+                                                       Standard_Boolean theIsFallback_sRGB);
 
   //! Bind program for blended order-independent transparency buffers compositing.
   Standard_Boolean BindOitCompositingProgram (const Standard_Boolean theIsMSAAEnabled)
@@ -245,14 +244,41 @@ public:
     {
       prepareStdProgramBoundBox();
     }
-    return bindProgramWithState (myBoundBoxProgram);
+    return bindProgramWithState (myBoundBoxProgram, Graphic3d_TOSM_UNLIT);
   }
 
   //! Returns bounding box vertex buffer.
   const Handle(OpenGl_VertexBuffer)& BoundBoxVertBuffer() const { return myBoundBoxVertBuffer; }
 
+  //! Bind program for IBL maps generation in PBR pipeline.
+  Standard_Boolean BindPBREnvBakingProgram()
+  {
+    if (myPBREnvBakingProgram.IsNull())
+    {
+      preparePBREnvBakingProgram();
+    }
+    return myContext->BindProgram (myPBREnvBakingProgram);
+  }
+
   //! Generates shader program to render environment cubemap as background.
   Standard_EXPORT const Handle(Graphic3d_ShaderProgram)& GetBgCubeMapProgram ();
+
+  //! Resets PBR shading models to corresponding non-PBR ones if PBR is not allowed.
+  static Graphic3d_TypeOfShadingModel PBRShadingModelFallback (Graphic3d_TypeOfShadingModel theShadingModel,
+                                                               Standard_Boolean             theIsPbrAllowed = Standard_False)
+  {
+    if (theIsPbrAllowed)
+    {
+      return theShadingModel;
+    }
+
+    switch (theShadingModel)
+    {
+      case Graphic3d_TOSM_PBR:       return Graphic3d_TOSM_FRAGMENT;
+      case Graphic3d_TOSM_PBR_FACET: return Graphic3d_TOSM_FACET;
+      default: return theShadingModel;
+    }
+  }
 
 public:
 
@@ -260,7 +286,8 @@ public:
   const OpenGl_LightSourceState& LightSourceState() const { return myLightSourceState; }
 
   //! Updates state of OCCT light sources.
-  Standard_EXPORT void UpdateLightSourceStateTo (const Handle(Graphic3d_LightSet)& theLights);
+  Standard_EXPORT void UpdateLightSourceStateTo (const Handle(Graphic3d_LightSet)& theLights,
+                                                 Standard_Integer                  theSpecIBLMapLevels = 0);
 
   //! Invalidate state of OCCT light sources.
   Standard_EXPORT void UpdateLightSourceState();
@@ -427,7 +454,8 @@ public:
 public:
 
   //! Pushes current state of OCCT graphics parameters to specified program.
-  Standard_EXPORT void PushState (const Handle(OpenGl_ShaderProgram)& theProgram) const;
+  Standard_EXPORT void PushState (const Handle(OpenGl_ShaderProgram)& theProgram,
+                                  Graphic3d_TypeOfShadingModel theShadingModel = Graphic3d_TOSM_UNLIT) const;
 
 public:
 
@@ -445,6 +473,7 @@ public:
 
   //! Choose Shading Model for filled primitives.
   //! Fallbacks to FACET model if there are no normal attributes.
+  //! Fallbacks to corresponding non-PBR models if PBR is unavailable.
   Graphic3d_TypeOfShadingModel ChooseFaceShadingModel (Graphic3d_TypeOfShadingModel theCustomModel,
                                                        bool theHasNodalNormals) const
   {
@@ -462,12 +491,17 @@ public:
       case Graphic3d_TOSM_VERTEX:
       case Graphic3d_TOSM_FRAGMENT:
         return theHasNodalNormals ? aModel : Graphic3d_TOSM_FACET;
+      case Graphic3d_TOSM_PBR:
+        return PBRShadingModelFallback (theHasNodalNormals ? aModel : Graphic3d_TOSM_PBR_FACET, IsPbrAllowed());
+      case Graphic3d_TOSM_PBR_FACET:
+        return PBRShadingModelFallback (aModel, IsPbrAllowed());
     }
     return Graphic3d_TOSM_UNLIT;
   }
 
   //! Choose Shading Model for line primitives.
   //! Fallbacks to UNLIT model if there are no normal attributes.
+  //! Fallbacks to corresponding non-PBR models if PBR is unavailable.
   Graphic3d_TypeOfShadingModel ChooseLineShadingModel (Graphic3d_TypeOfShadingModel theCustomModel,
                                                        bool theHasNodalNormals) const
   {
@@ -485,6 +519,10 @@ public:
       case Graphic3d_TOSM_VERTEX:
       case Graphic3d_TOSM_FRAGMENT:
         return theHasNodalNormals ? aModel : Graphic3d_TOSM_UNLIT;
+      case Graphic3d_TOSM_PBR:
+        return PBRShadingModelFallback (theHasNodalNormals ? aModel : Graphic3d_TOSM_UNLIT, IsPbrAllowed());
+      case Graphic3d_TOSM_PBR_FACET:
+        return Graphic3d_TOSM_UNLIT;
     }
     return Graphic3d_TOSM_UNLIT;
   }
@@ -581,6 +619,10 @@ protected:
            && theTextures->HasNonPointSprite())
     {
       aBits |= OpenGl_PO_TextureRGB;
+      if ((theTextures->TextureSetBits() & Graphic3d_TextureSetBits_Normal) != 0)
+      {
+        aBits |= OpenGl_PO_TextureNormal;
+      }
     }
     if (theHasVertColor
      && theInteriorStyle != Aspect_IS_HIDDENLINE)
@@ -600,7 +642,7 @@ protected:
                                                Standard_Integer theBits)
   {
     if (theShadingModel == Graphic3d_TOSM_UNLIT
-     || (theBits & OpenGl_PO_TextureEnv) != 0)
+     || (theBits & OpenGl_PO_HasTextures) == OpenGl_PO_TextureEnv)
     {
       // If environment map is enabled lighting calculations are
       // not needed (in accordance with default OCCT behavior)
@@ -631,7 +673,9 @@ protected:
   Standard_EXPORT Standard_Boolean prepareStdProgramFont();
 
   //! Prepare standard GLSL program for FBO blit operation.
-  Standard_EXPORT Standard_Boolean prepareStdProgramFboBlit();
+  Standard_EXPORT Standard_Boolean prepareStdProgramFboBlit (Handle(OpenGl_ShaderProgram)& theProgram,
+                                                             Standard_Integer theNbSamples,
+                                                             Standard_Boolean theIsFallback_sRGB);
 
   //! Prepare standard GLSL programs for OIT compositing operation.
   Standard_EXPORT Standard_Boolean prepareStdProgramOitCompositing (const Standard_Boolean theMsaa);
@@ -648,11 +692,13 @@ protected:
   {
     switch (theShadingModel)
     {
-      case Graphic3d_TOSM_UNLIT:    return prepareStdProgramUnlit  (theProgram, theBits, false);
-      case Graphic3d_TOSM_FACET:    return prepareStdProgramPhong  (theProgram, theBits, true);
-      case Graphic3d_TOSM_VERTEX:   return prepareStdProgramGouraud(theProgram, theBits);
+      case Graphic3d_TOSM_UNLIT:     return prepareStdProgramUnlit  (theProgram, theBits, false);
+      case Graphic3d_TOSM_FACET:     return prepareStdProgramPhong  (theProgram, theBits, true);
+      case Graphic3d_TOSM_VERTEX:    return prepareStdProgramGouraud(theProgram, theBits);
       case Graphic3d_TOSM_DEFAULT:
-      case Graphic3d_TOSM_FRAGMENT: return prepareStdProgramPhong  (theProgram, theBits, false);
+      case Graphic3d_TOSM_FRAGMENT:  return prepareStdProgramPhong  (theProgram, theBits, false);
+      case Graphic3d_TOSM_PBR:       return prepareStdProgramPhong  (theProgram, theBits, false, true);
+      case Graphic3d_TOSM_PBR_FACET: return prepareStdProgramPhong  (theProgram, theBits, true, true);
     }
     return false;
   }
@@ -663,18 +709,25 @@ protected:
 
   //! Prepare standard GLSL program with per-pixel lighting.
   //! @param theIsFlatNormal when TRUE, the Vertex normals will be ignored and Face normal will be computed instead
+  //! @param theIsPBR when TRUE, the PBR pipeline will be activated
   Standard_EXPORT Standard_Boolean prepareStdProgramPhong (Handle(OpenGl_ShaderProgram)& theProgram,
                                                            const Standard_Integer        theBits,
-                                                           const Standard_Boolean        theIsFlatNormal = false);
+                                                           const Standard_Boolean        theIsFlatNormal = false,
+                                                           const Standard_Boolean        theIsPBR = false);
 
   //! Define computeLighting GLSL function depending on current lights configuration
   //! @param theNbLights     [out] number of defined light sources
   //! @param theHasVertColor [in]  flag to use getVertColor() instead of Ambient and Diffuse components of active material
+  //! @param theIsPBR        [in]  flag to activate PBR pipeline
+  //! @param theHasEmissive  [in]  flag to include emissive
   Standard_EXPORT TCollection_AsciiString stdComputeLighting (Standard_Integer& theNbLights,
-                                                              Standard_Boolean  theHasVertColor);
+                                                              Standard_Boolean  theHasVertColor,
+                                                              Standard_Boolean  theIsPBR,
+                                                              Standard_Boolean  theHasEmissive = true);
 
   //! Bind specified program to current context and apply state.
-  Standard_EXPORT Standard_Boolean bindProgramWithState (const Handle(OpenGl_ShaderProgram)& theProgram);
+  Standard_EXPORT Standard_Boolean bindProgramWithState (const Handle(OpenGl_ShaderProgram)& theProgram,
+                                                         Graphic3d_TypeOfShadingModel theShadingModel);
 
   //! Set pointer myLightPrograms to active lighting programs set from myMapOfLightPrograms
   Standard_EXPORT void switchLightPrograms();
@@ -697,30 +750,26 @@ protected:
                                                               OpenGl_ShaderObject::ShaderVariableList& theStageInOuts,
                                                               Standard_Integer theBits);
 
+  //! Prepare GLSL source for IBL generation used in PBR pipeline.
+  Standard_EXPORT Standard_Boolean preparePBREnvBakingProgram();
+
+  //! Checks whether one of PBR shading models is set as default model.
+  Standard_Boolean IsPbrAllowed() const { return myShadingModel == Graphic3d_TOSM_PBR
+                                              || myShadingModel == Graphic3d_TOSM_PBR_FACET; }
+
 protected:
 
   //! Packed properties of light source
   struct OpenGl_ShaderLightParameters
   {
-    OpenGl_Vec4 Color;
-    OpenGl_Vec4 Position;
-    OpenGl_Vec4 Direction;
-    OpenGl_Vec4 Parameters;
+    OpenGl_Vec4 Color;      //!< RGB color + Intensity (in .w)
+    OpenGl_Vec4 Position;   //!< XYZ Direction or Position + IsHeadlight (in .w)
+    OpenGl_Vec4 Direction;  //!< spot light XYZ direction + Range (in .w)
+    OpenGl_Vec4 Parameters; //!< same as Graphic3d_CLight::PackedParams()
 
     //! Returns packed (serialized) representation of light source properties
     const OpenGl_Vec4* Packed() const { return reinterpret_cast<const OpenGl_Vec4*> (this); }
     static Standard_Integer NbOfVec4() { return 4; }
-  };
-
-  //! Packed light source type information
-  struct OpenGl_ShaderLightType
-  {
-    Standard_Integer Type;
-    Standard_Integer IsHeadlight;
-
-    //! Returns packed (serialized) representation of light source type
-    const OpenGl_Vec2i* Packed() const { return reinterpret_cast<const OpenGl_Vec2i*> (this); }
-    static Standard_Integer NbOfVec2i() { return 1; }
   };
 
   //! Fake OpenGL program for tracking FFP state in the way consistent to programmable pipeline.
@@ -763,18 +812,23 @@ protected:
   Handle(OpenGl_SetOfPrograms)       myUnlitPrograms;      //!< programs matrix without lighting
   Handle(OpenGl_SetOfPrograms)       myOutlinePrograms;    //!< programs matrix without lighting for outline presentation
   Handle(OpenGl_ShaderProgram)       myFontProgram;        //!< standard program for textured text
-  Handle(OpenGl_ShaderProgram)       myBlitProgram;        //!< standard program for FBO blit emulation
+  NCollection_Array1<Handle(OpenGl_ShaderProgram)>
+                                     myBlitPrograms[2];    //!< standard program for FBO blit emulation
   Handle(OpenGl_ShaderProgram)       myBoundBoxProgram;    //!< standard program for bounding box
   Handle(OpenGl_ShaderProgram)       myOitCompositingProgram[2]; //!< standard program for OIT compositing (default and MSAA).
   OpenGl_MapOfShaderPrograms         myMapOfLightPrograms; //!< map of lighting programs depending on lights configuration
 
+  Handle(OpenGl_ShaderProgram)       myPBREnvBakingProgram;//!< program for IBL maps generation used in PBR pipeline
   Handle(Graphic3d_ShaderProgram)    myBgCubeMapProgram;   //!< program for background cubemap rendering
 
   Handle(OpenGl_ShaderProgram)       myStereoPrograms[Graphic3d_StereoMode_NB]; //!< standard stereo programs
 
   Handle(OpenGl_VertexBuffer)        myBoundBoxVertBuffer; //!< bounding box vertex buffer
 
+  mutable Handle(OpenGl_PBREnvironment) myPBREnvironment;  //!< manager of IBL maps used in PBR pipeline
+
   OpenGl_Context*                    myContext;            //!< OpenGL context
+  Standard_Boolean                   mySRgbState;          //!< track sRGB state
 
 protected:
 
@@ -789,7 +843,7 @@ protected:
   gp_XYZ                             myLocalOrigin;        //!< local camera transformation
   Standard_Boolean                   myHasLocalOrigin;     //!< flag indicating that local camera transformation has been set
 
-  mutable NCollection_Array1<OpenGl_ShaderLightType>       myLightTypeArray;
+  mutable NCollection_Array1<Standard_Integer>             myLightTypeArray;
   mutable NCollection_Array1<OpenGl_ShaderLightParameters> myLightParamsArray;
   mutable NCollection_Array1<OpenGl_Vec4>                  myClipPlaneArray;
   mutable NCollection_Array1<OpenGl_Vec4d>                 myClipPlaneArrayFfp;

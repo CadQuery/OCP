@@ -49,181 +49,32 @@
   // macOS 10.4 deprecated OpenGL framework - suppress useless warnings
   #define GL_SILENCE_DEPRECATION
   #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
-    #include <OpenGLES/ES2/gl.h>
+    #include <OpenGLES/ES3/gl.h>
   #else
     #include <OpenGL/gl.h>
   #endif
   #define __X_GL_H // prevent chaotic gl.h inclusions to avoid compile errors
-#elif defined(HAVE_GLES2) || defined(OCCT_UWP) || defined(__ANDROID__) || defined(__QNX__)
+#elif defined(HAVE_GLES2) || defined(OCCT_UWP) || defined(__ANDROID__) || defined(__QNX__) || defined(__EMSCRIPTEN__)
   #if defined(_WIN32)
     // Angle OpenGL ES headers do not define function prototypes even for core functions,
     // however OCCT is expected to be linked against libGLESv2
     #define GL_GLEXT_PROTOTYPES
   #endif
-  #include <GLES2/gl2.h>
-  //#include <GLES3/gl3.h>
+  #include <GLES3/gl3.h>
 #else
   #include <GL/gl.h>
 #endif
 
-#if defined(GL_ES_VERSION_2_0)
-  // define items to unify code paths with desktop OpenGL
-  typedef double GLdouble;
-  typedef double GLclampd;
-  typedef uint64_t GLuint64;
-  #define GL_NONE 0
-
-  // OpenGL ES 3.0+ or GL_OES_element_index_uint extension
-  #define GL_UNSIGNED_INT 0x1405
-
-  // OpenGL ES 3.1+
-  #define GL_TEXTURE_2D_MULTISAMPLE 0x9100
-  #define GL_MAX_SAMPLES  0x8D57
-
-  // OpenGL ES 3.2+ or GL_EXT_texture_buffer for OpenGL ES 3.1+
-  #define GL_TEXTURE_BUFFER 0x8C2A
-
-  // in core since OpenGL ES 3.0, extension GL_EXT_texture_rg
-  #define GL_RED   0x1903
-  #define GL_R8    0x8229
-  // in core since OpenGL ES 3.0, extension GL_OES_rgb8_rgba8
-  #define GL_RGB8  0x8051
-  #define GL_RGBA8 0x8058
-  #define GL_LUMINANCE8 0x8040
-  // GL_EXT_texture_format_BGRA8888
-  #define GL_BGRA_EXT 0x80E1 // same as GL_BGRA on desktop
-
-  #define GL_R16      0x822A
-  #define GL_R16F     0x822D
-  #define GL_R32F     0x822E
-  #define GL_RGB16F   0x881B
-  #define GL_RGBA32F  0x8814
-  #define GL_RGB32F   0x8815
-  #define GL_RGBA16F  0x881A
-  #define GL_RGB16F   0x881B
-  #define GL_RGB4     0x804F
-  #define GL_RGB5     0x8050
-  #define GL_RGB8     0x8051
-  #define GL_RGB10    0x8052
-  #define GL_RGB12    0x8053
-  #define GL_RGB16    0x8054
-  #define GL_RGBA8    0x8058
-  #define GL_RGB10_A2 0x8059
-  #define GL_RGBA12   0x805A
-  #define GL_RGBA16   0x805B
-  #define GL_ALPHA8   0x803C
-  #define GL_ALPHA16  0x803E
-
-  #define GL_RG          0x8227
-  #define GL_RG8         0x822B
-  #define GL_RG16        0x822C
-  #define GL_RG16F       0x822F
-  #define GL_RG32F       0x8230
-  #define GL_RG_INTEGER  0x8228
-  #define GL_RED_INTEGER 0x8D94
-
-  #define GL_R8I      0x8231
-  #define GL_R8UI     0x8232
-  #define GL_R16I     0x8233
-  #define GL_R16UI    0x8234
-  #define GL_R32I     0x8235
-  #define GL_R32UI    0x8236
-  #define GL_RG8I     0x8237
-  #define GL_RG8UI    0x8238
-  #define GL_RG16I    0x8239
-  #define GL_RG16UI   0x823A
-  #define GL_RG32I    0x823B
-  #define GL_RG32UI   0x823C
-  #define GL_RG8_SNORM 0x8F95
-  #define GL_RGBA32UI 0x8D70
-  #define GL_RGB32UI  0x8D71
-  #define GL_RGBA16UI 0x8D76
-  #define GL_RGB16UI  0x8D77
-  #define GL_RGBA8UI  0x8D7C
-  #define GL_RGB8UI   0x8D7D
-  #define GL_RGBA32I  0x8D82
-  #define GL_RGB32I   0x8D83
-  #define GL_RGBA16I  0x8D88
-  #define GL_RGB16I   0x8D89
-  #define GL_RGBA8I   0x8D8E
-  #define GL_RGB8I    0x8D8F
-
-  // GL_OES_packed_depth_stencil
-  #define GL_DEPTH_STENCIL                  0x84F9
-  #define GL_UNSIGNED_INT_24_8              0x84FA
-  #define GL_DEPTH24_STENCIL8               0x88F0
-
-  // OpenGL ES 3.0+
-  #define GL_DEPTH_COMPONENT24              0x81A6
-  #define GL_DEPTH_COMPONENT32F             0x8CAC
-  #define GL_DEPTH32F_STENCIL8              0x8CAD
-  #define GL_FLOAT_32_UNSIGNED_INT_24_8_REV 0x8DAD
-
-  #define GL_READ_FRAMEBUFFER               0x8CA8
-  #define GL_DRAW_FRAMEBUFFER               0x8CA9
-
-  #define GL_TEXTURE_3D                     0x806F
-  #define GL_TEXTURE_WRAP_R                 0x8072
-
-  // GL_EXT_texture_filter_anisotropic
-  #define GL_TEXTURE_MAX_ANISOTROPY_EXT     0x84FE
-  #define GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT 0x84FF
-
-  // debug ARB extension
-  #define GL_DEBUG_OUTPUT               0x92E0
-  #define GL_DEBUG_OUTPUT_SYNCHRONOUS   0x8242
-  #define GL_DEBUG_NEXT_LOGGED_MESSAGE_LENGTH 0x8243
-  #define GL_DEBUG_CALLBACK_FUNCTION    0x8244
-  #define GL_DEBUG_CALLBACK_USER_PARAM  0x8245
-  #define GL_DEBUG_SOURCE_API           0x8246
-  #define GL_DEBUG_SOURCE_WINDOW_SYSTEM 0x8247
-  #define GL_DEBUG_SOURCE_SHADER_COMPILER 0x8248
-  #define GL_DEBUG_SOURCE_THIRD_PARTY   0x8249
-  #define GL_DEBUG_SOURCE_APPLICATION   0x824A
-  #define GL_DEBUG_SOURCE_OTHER         0x824B
-  #define GL_DEBUG_TYPE_ERROR           0x824C
-  #define GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR 0x824D
-  #define GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR  0x824E
-  #define GL_DEBUG_TYPE_PORTABILITY     0x824F
-  #define GL_DEBUG_TYPE_PERFORMANCE     0x8250
-  #define GL_DEBUG_TYPE_OTHER           0x8251
-  #define GL_MAX_DEBUG_MESSAGE_LENGTH   0x9143
-  #define GL_MAX_DEBUG_LOGGED_MESSAGES  0x9144
-  #define GL_DEBUG_LOGGED_MESSAGES      0x9145
-  #define GL_DEBUG_SEVERITY_HIGH        0x9146
-  #define GL_DEBUG_SEVERITY_MEDIUM      0x9147
-  #define GL_DEBUG_SEVERITY_LOW         0x9148
-
-  // GL_ARB_draw_buffers (GL_EXT_draw_buffers) extension
-  #define GL_MAX_COLOR_ATTACHMENTS      0x8CDF
-  #define GL_MAX_DRAW_BUFFERS           0x8824
-
-  // OpenGL ES 3.0+ or OES_texture_half_float
-  #define GL_HALF_FLOAT                 0x140B
-  #define GL_HALF_FLOAT_OES             0x8D61
-
-  // OpenGL ES 3.1+
-  #define GL_COMPUTE_SHADER             0x91B9
-
-  // OpenGL ES 3.2+
-  #define GL_GEOMETRY_SHADER            0x8DD9
-  #define GL_TESS_CONTROL_SHADER        0x8E88
-  #define GL_TESS_EVALUATION_SHADER     0x8E87
-  #define GL_LINES_ADJACENCY            0x000A
-  #define GL_LINE_STRIP_ADJACENCY       0x000B
-  #define GL_TRIANGLES_ADJACENCY        0x000C
-  #define GL_TRIANGLE_STRIP_ADJACENCY   0x000D
-  #define GL_PATCHES                    0x000E
-#endif
-
-#if !defined(HAVE_EGL) && (defined(__ANDROID__) || defined(__QNX__) || defined(HAVE_GLES2) || defined(OCCT_UWP))
+#if !defined(HAVE_EGL) && (defined(__ANDROID__) || defined(__QNX__) || defined(__EMSCRIPTEN__) || defined(HAVE_GLES2) || defined(OCCT_UWP))
   #define HAVE_EGL
 #endif
 
 #include <InterfaceGraphic.hxx>
 
-// GL version can be defined by system gl.h header
-#if !defined(GL_ES_VERSION_2_0)
+#if defined(GL_ES_VERSION_2_0)
+  #include <OpenGl_GLESExtensions.hxx>
+#else
+  // GL version can be defined by system gl.h header
   #undef GL_VERSION_1_2
   #undef GL_VERSION_1_3
   #undef GL_VERSION_1_4
@@ -253,87 +104,87 @@ public: //! @name OpenGL ES 1.1
 
 #if defined(GL_ES_VERSION_2_0)
 
-  inline void glActiveTexture (GLenum texture)
+  inline void glActiveTexture (GLenum texture) const
   {
     ::glActiveTexture (texture);
   }
 
-  inline void glCompressedTexImage2D (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const GLvoid *data)
+  inline void glCompressedTexImage2D (GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const GLvoid *data) const
   {
     ::glCompressedTexImage2D (target, level, internalformat, width, height, border, imageSize, data);
   }
 
-  inline void glCompressedTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const GLvoid *data)
+  inline void glCompressedTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const GLvoid *data) const
   {
     ::glCompressedTexSubImage2D (target, level, xoffset, yoffset, width, height, format, imageSize, data);
   }
 
-  inline void glBindBuffer (GLenum target, GLuint buffer)
+  inline void glBindBuffer (GLenum target, GLuint buffer) const
   {
     ::glBindBuffer (target, buffer);
   }
 
-  inline void glBufferData (GLenum target, GLsizeiptr size, const void* data, GLenum usage)
+  inline void glBufferData (GLenum target, GLsizeiptr size, const void* data, GLenum usage) const
   {
     ::glBufferData (target, size, data, usage);
   }
 
-  inline void glBufferSubData (GLenum target, GLintptr offset, GLsizeiptr size, const void* data)
+  inline void glBufferSubData (GLenum target, GLintptr offset, GLsizeiptr size, const void* data) const
   {
     ::glBufferSubData (target, offset, size, data);
   }
 
-  inline void glDeleteBuffers (GLsizei n, const GLuint *buffers)
+  inline void glDeleteBuffers (GLsizei n, const GLuint *buffers) const
   {
     ::glDeleteBuffers (n, buffers);
   }
 
-  inline void glDeleteTextures (GLsizei n, const GLuint *textures)
+  inline void glDeleteTextures (GLsizei n, const GLuint *textures) const
   {
     ::glDeleteTextures (n, textures);
   }
 
-  inline void glDepthFunc (GLenum func)
+  inline void glDepthFunc (GLenum func) const
   {
     ::glDepthFunc (func);
   }
 
-  inline void glDepthMask (GLboolean flag)
+  inline void glDepthMask (GLboolean flag) const
   {
     ::glDepthMask (flag);
   }
 
-  inline void glDepthRangef (GLfloat n, GLfloat f)
+  inline void glDepthRangef (GLfloat n, GLfloat f) const
   {
     ::glDepthRangef (n, f);
   }
 
-  inline void glGenBuffers (GLsizei n, GLuint *buffers)
+  inline void glGenBuffers (GLsizei n, GLuint *buffers) const
   {
     ::glGenBuffers (n, buffers);
   }
 
-  inline void glGenTextures (GLsizei n, GLuint *textures)
+  inline void glGenTextures (GLsizei n, GLuint *textures) const
   {
     ::glGenTextures (n, textures);
   }
 
-  inline void glGetBufferParameteriv (GLenum target, GLenum pname, GLint* params)
+  inline void glGetBufferParameteriv (GLenum target, GLenum pname, GLint* params) const
   {
     ::glGetBufferParameteriv (target, pname, params);
   }
 
-  inline GLboolean glIsBuffer (GLuint buffer)
+  inline GLboolean glIsBuffer (GLuint buffer) const
   {
     return ::glIsBuffer (buffer);
   }
 
-  inline void glSampleCoverage (GLfloat value, GLboolean invert)
+  inline void glSampleCoverage (GLfloat value, GLboolean invert) const
   {
     ::glSampleCoverage (value, invert);
   }
 
-  inline void glMultiDrawElements (GLenum theMode, const GLsizei* theCount, GLenum theType, const void* const* theIndices, GLsizei theDrawCount)
+  inline void glMultiDrawElements (GLenum theMode, const GLsizei* theCount, GLenum theType, const void* const* theIndices, GLsizei theDrawCount) const
   {
     if (theCount   == NULL
      || theIndices == NULL)
@@ -352,497 +203,653 @@ public: //! @name OpenGL ES 1.1
 public: //! @name OpenGL ES 2.0
 
 #if defined(GL_ES_VERSION_2_0)
-  inline void glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
+  inline void glBlendColor (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) const
   {
     ::glBlendColor (red, green, blue, alpha);
   }
 
-  inline void glBlendEquation (GLenum mode)
+  inline void glBlendEquation (GLenum mode) const
   {
     ::glBlendEquation (mode);
   }
 
-  inline void glBlendFuncSeparate (GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha)
+  inline void glBlendFuncSeparate (GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha) const
   {
     ::glBlendFuncSeparate (sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
   }
 
-  inline void glBlendEquationSeparate (GLenum modeRGB, GLenum modeAlpha)
+  inline void glBlendEquationSeparate (GLenum modeRGB, GLenum modeAlpha) const
   {
     ::glBlendEquationSeparate (modeRGB, modeAlpha);
   }
 
-  inline void glStencilOpSeparate (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass)
+  inline void glStencilOpSeparate (GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass) const
   {
     ::glStencilOpSeparate (face, sfail, dpfail, dppass);
   }
 
-  inline void glStencilFuncSeparate (GLenum face, GLenum func, GLint ref, GLuint mask)
+  inline void glStencilFuncSeparate (GLenum face, GLenum func, GLint ref, GLuint mask) const
   {
     ::glStencilFuncSeparate (face, func, ref, mask);
   }
 
-  inline void glStencilMaskSeparate (GLenum face, GLuint mask)
+  inline void glStencilMaskSeparate (GLenum face, GLuint mask) const
   {
     ::glStencilMaskSeparate (face, mask);
   }
 
-  inline void glAttachShader (GLuint program, GLuint shader)
+  inline void glAttachShader (GLuint program, GLuint shader) const
   {
     ::glAttachShader (program, shader);
   }
 
-  inline void glBindAttribLocation (GLuint program, GLuint index, const GLchar *name)
+  inline void glBindAttribLocation (GLuint program, GLuint index, const GLchar *name) const
   {
     ::glBindAttribLocation (program, index, name);
   }
 
-  inline void glBindFramebuffer (GLenum target, GLuint framebuffer)
+  inline void glBindFramebuffer (GLenum target, GLuint framebuffer) const
   {
     ::glBindFramebuffer (target, framebuffer);
   }
 
-  inline void glBindRenderbuffer (GLenum target, GLuint renderbuffer)
+  inline void glBindRenderbuffer (GLenum target, GLuint renderbuffer) const
   {
     ::glBindRenderbuffer (target, renderbuffer);
   }
 
-  inline GLenum glCheckFramebufferStatus (GLenum target)
+  inline GLenum glCheckFramebufferStatus (GLenum target) const
   {
     return ::glCheckFramebufferStatus (target);
   }
 
-  inline void glCompileShader (GLuint shader)
+  inline void glCompileShader (GLuint shader) const
   {
     ::glCompileShader (shader);
   }
 
-  inline GLuint glCreateProgram()
+  inline GLuint glCreateProgram() const
   {
     return ::glCreateProgram();
   }
 
-  inline GLuint glCreateShader (GLenum type)
+  inline GLuint glCreateShader (GLenum type) const
   {
     return ::glCreateShader (type);
   }
 
-  inline void glDeleteFramebuffers (GLsizei n, const GLuint *framebuffers)
+  inline void glDeleteFramebuffers (GLsizei n, const GLuint *framebuffers) const
   {
     ::glDeleteFramebuffers (n, framebuffers);
   }
 
-  inline void glDeleteProgram (GLuint program)
+  inline void glDeleteProgram (GLuint program) const
   {
     ::glDeleteProgram (program);
   }
 
-  inline void glDeleteRenderbuffers (GLsizei n, const GLuint *renderbuffers)
+  inline void glDeleteRenderbuffers (GLsizei n, const GLuint *renderbuffers) const
   {
     ::glDeleteRenderbuffers (n, renderbuffers);
   }
 
-  inline void glDeleteShader (GLuint shader)
+  inline void glDeleteShader (GLuint shader) const
   {
     ::glDeleteShader (shader);
   }
 
-  inline void glDetachShader (GLuint program, GLuint shader)
+  inline void glDetachShader (GLuint program, GLuint shader) const
   {
     ::glDetachShader (program, shader);
   }
 
-  inline void glDisableVertexAttribArray (GLuint index)
+  inline void glDisableVertexAttribArray (GLuint index) const
   {
     ::glDisableVertexAttribArray (index);
   }
 
-  inline void glEnableVertexAttribArray (GLuint index)
+  inline void glEnableVertexAttribArray (GLuint index) const
   {
     ::glEnableVertexAttribArray (index);
   }
 
-  inline void glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer)
+  inline void glFramebufferRenderbuffer (GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer) const
   {
     ::glFramebufferRenderbuffer (target, attachment, renderbuffertarget, renderbuffer);
   }
 
-  inline void glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level)
+  inline void glFramebufferTexture2D (GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level) const
   {
     ::glFramebufferTexture2D (target, attachment, textarget, texture, level);
   }
 
-  inline void glGenerateMipmap (GLenum target)
+  inline void glGenerateMipmap (GLenum target) const
   {
     ::glGenerateMipmap (target);
   }
 
-  inline void glGenFramebuffers (GLsizei n, GLuint *framebuffers)
+  inline void glGenFramebuffers (GLsizei n, GLuint *framebuffers) const
   {
     ::glGenFramebuffers (n, framebuffers);
   }
 
-  inline void glGenRenderbuffers (GLsizei n, GLuint *renderbuffers)
+  inline void glGenRenderbuffers (GLsizei n, GLuint *renderbuffers) const
   {
     ::glGenRenderbuffers (n, renderbuffers);
   }
 
-  inline void glGetActiveAttrib (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint* size, GLenum *type, GLchar *name)
+  inline void glGetActiveAttrib (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint* size, GLenum *type, GLchar *name) const
   {
     ::glGetActiveAttrib (program, index, bufSize, length, size, type, name);
   }
 
-  inline void glGetActiveUniform (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint* size, GLenum *type, GLchar *name)
+  inline void glGetActiveUniform (GLuint program, GLuint index, GLsizei bufSize, GLsizei *length, GLint* size, GLenum *type, GLchar *name) const
   {
     ::glGetActiveUniform (program, index, bufSize, length, size, type, name);
   }
 
-  inline void glGetAttachedShaders (GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders)
+  inline void glGetAttachedShaders (GLuint program, GLsizei maxCount, GLsizei *count, GLuint *shaders) const
   {
     ::glGetAttachedShaders (program, maxCount, count, shaders);
   }
 
-  inline GLint glGetAttribLocation (GLuint program, const GLchar *name)
+  inline GLint glGetAttribLocation (GLuint program, const GLchar *name) const
   {
     return ::glGetAttribLocation (program, name);
   }
 
-  inline void glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GLenum pname, GLint* params)
+  inline void glGetFramebufferAttachmentParameteriv (GLenum target, GLenum attachment, GLenum pname, GLint* params) const
   {
     ::glGetFramebufferAttachmentParameteriv (target, attachment, pname, params);
   }
 
-  inline void glGetProgramiv (GLuint program, GLenum pname, GLint* params)
+  inline void glGetProgramiv (GLuint program, GLenum pname, GLint* params) const
   {
     ::glGetProgramiv (program, pname, params);
   }
 
-  inline void glGetProgramInfoLog (GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog)
+  inline void glGetProgramInfoLog (GLuint program, GLsizei bufSize, GLsizei *length, GLchar *infoLog) const
   {
     ::glGetProgramInfoLog (program, bufSize, length, infoLog);
   }
 
-  inline void glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint* params)
+  inline void glGetRenderbufferParameteriv (GLenum target, GLenum pname, GLint* params) const
   {
     ::glGetRenderbufferParameteriv (target, pname, params);
   }
 
-  inline void glGetShaderiv (GLuint shader, GLenum pname, GLint* params)
+  inline void glGetShaderiv (GLuint shader, GLenum pname, GLint* params) const
   {
     ::glGetShaderiv (shader, pname, params);
   }
 
-  inline void glGetShaderInfoLog (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog)
+  inline void glGetShaderInfoLog (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog) const
   {
     ::glGetShaderInfoLog (shader, bufSize, length, infoLog);
   }
 
-  inline void glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint* range, GLint* precision)
+  inline void glGetShaderPrecisionFormat (GLenum shadertype, GLenum precisiontype, GLint* range, GLint* precision) const
   {
     ::glGetShaderPrecisionFormat (shadertype, precisiontype, range, precision);
   }
 
-  inline void glGetShaderSource (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source)
+  inline void glGetShaderSource (GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *source) const
   {
     ::glGetShaderSource (shader, bufSize, length, source);
   }
 
-  inline void glGetUniformfv (GLuint program, GLint location, GLfloat* params)
+  inline void glGetUniformfv (GLuint program, GLint location, GLfloat* params) const
   {
     ::glGetUniformfv (program, location, params);
   }
 
-  inline void glGetUniformiv (GLuint program, GLint location, GLint* params)
+  inline void glGetUniformiv (GLuint program, GLint location, GLint* params) const
   {
     ::glGetUniformiv (program, location, params);
   }
 
-  GLint glGetUniformLocation (GLuint program, const GLchar *name)
+  GLint glGetUniformLocation (GLuint program, const GLchar *name) const
   {
     return ::glGetUniformLocation (program, name);
   }
 
-  inline void glGetVertexAttribfv (GLuint index, GLenum pname, GLfloat* params)
+  inline void glGetVertexAttribfv (GLuint index, GLenum pname, GLfloat* params) const
   {
     ::glGetVertexAttribfv (index, pname, params);
   }
 
-  inline void glGetVertexAttribiv (GLuint index, GLenum pname, GLint* params)
+  inline void glGetVertexAttribiv (GLuint index, GLenum pname, GLint* params) const
   {
     ::glGetVertexAttribiv (index, pname, params);
   }
 
-  inline void glGetVertexAttribPointerv (GLuint index, GLenum pname, void* *pointer)
+  inline void glGetVertexAttribPointerv (GLuint index, GLenum pname, void* *pointer) const
   {
     ::glGetVertexAttribPointerv (index, pname, pointer);
   }
 
-  inline GLboolean glIsFramebuffer (GLuint framebuffer)
+  inline GLboolean glIsFramebuffer (GLuint framebuffer) const
   {
     return ::glIsFramebuffer (framebuffer);
   }
 
-  inline GLboolean glIsProgram (GLuint program)
+  inline GLboolean glIsProgram (GLuint program) const
   {
     return ::glIsProgram (program);
   }
 
-  inline GLboolean glIsRenderbuffer (GLuint renderbuffer)
+  inline GLboolean glIsRenderbuffer (GLuint renderbuffer) const
   {
     return ::glIsRenderbuffer (renderbuffer);
   }
 
-  inline GLboolean glIsShader (GLuint shader)
+  inline GLboolean glIsShader (GLuint shader) const
   {
     return ::glIsShader (shader);
   }
 
-  inline void glLinkProgram (GLuint program)
+  inline void glLinkProgram (GLuint program) const
   {
     ::glLinkProgram (program);
   }
 
-  inline void glReleaseShaderCompiler()
+  inline void glReleaseShaderCompiler() const
   {
     ::glReleaseShaderCompiler();
   }
 
-  inline void glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height)
+  inline void glRenderbufferStorage (GLenum target, GLenum internalformat, GLsizei width, GLsizei height) const
   {
     ::glRenderbufferStorage (target, internalformat, width, height);
   }
 
-  inline void glShaderBinary (GLsizei count, const GLuint *shaders, GLenum binaryformat, const void* binary, GLsizei length)
+  inline void glShaderBinary (GLsizei count, const GLuint *shaders, GLenum binaryformat, const void* binary, GLsizei length) const
   {
     ::glShaderBinary (count, shaders, binaryformat, binary, length);
   }
 
-  inline void glShaderSource (GLuint shader, GLsizei count, const GLchar** string, const GLint* length)
+  inline void glShaderSource (GLuint shader, GLsizei count, const GLchar** string, const GLint* length) const
   {
     ::glShaderSource (shader, count, string, length);
   }
 
-  inline void glUniform1f (GLint location, GLfloat v0)
+  inline void glUniform1f (GLint location, GLfloat v0) const
   {
     ::glUniform1f (location, v0);
   }
 
-  inline void glUniform1fv (GLint location, GLsizei count, const GLfloat* value)
+  inline void glUniform1fv (GLint location, GLsizei count, const GLfloat* value) const
   {
     ::glUniform1fv (location, count, value);
   }
 
-  inline void glUniform1i (GLint location, GLint v0)
+  inline void glUniform1i (GLint location, GLint v0) const
   {
     ::glUniform1i (location, v0);
   }
 
-  inline void glUniform1iv (GLint location, GLsizei count, const GLint* value)
+  inline void glUniform1iv (GLint location, GLsizei count, const GLint* value) const
   {
     ::glUniform1iv (location, count, value);
   }
 
-  inline void glUniform2f (GLint location, GLfloat v0, GLfloat v1)
+  inline void glUniform2f (GLint location, GLfloat v0, GLfloat v1) const
   {
     ::glUniform2f (location, v0, v1);
   }
 
-  inline void glUniform2fv (GLint location, GLsizei count, const GLfloat* value)
+  inline void glUniform2fv (GLint location, GLsizei count, const GLfloat* value) const
   {
     ::glUniform2fv (location, count, value);
   }
 
-  inline void glUniform2i (GLint location, GLint v0, GLint v1)
+  inline void glUniform2i (GLint location, GLint v0, GLint v1) const
   {
     ::glUniform2i (location, v0, v1);
   }
 
-  inline void glUniform2iv (GLint location, GLsizei count, const GLint* value)
+  inline void glUniform2iv (GLint location, GLsizei count, const GLint* value) const
   {
     ::glUniform2iv (location, count, value);
   }
 
-  inline void glUniform3f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2)
+  inline void glUniform3f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2) const
   {
     ::glUniform3f (location, v0, v1, v2);
   }
 
-  inline void glUniform3fv (GLint location, GLsizei count, const GLfloat* value)
+  inline void glUniform3fv (GLint location, GLsizei count, const GLfloat* value) const
   {
     ::glUniform3fv (location, count, value);
   }
 
-  inline void glUniform3i (GLint location, GLint v0, GLint v1, GLint v2)
+  inline void glUniform3i (GLint location, GLint v0, GLint v1, GLint v2) const
   {
     ::glUniform3i (location, v0, v1, v2);
   }
 
-  inline void glUniform3iv (GLint location, GLsizei count, const GLint* value)
+  inline void glUniform3iv (GLint location, GLsizei count, const GLint* value) const
   {
     ::glUniform3iv (location, count, value);
   }
 
-  inline void glUniform4f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3)
+  inline void glUniform4f (GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) const
   {
     ::glUniform4f (location, v0, v1, v2, v3);
   }
 
-  inline void glUniform4fv (GLint location, GLsizei count, const GLfloat* value)
+  inline void glUniform4fv (GLint location, GLsizei count, const GLfloat* value) const
   {
     ::glUniform4fv (location, count, value);
   }
 
-  inline void glUniform4i (GLint location, GLint v0, GLint v1, GLint v2, GLint v3)
+  inline void glUniform4i (GLint location, GLint v0, GLint v1, GLint v2, GLint v3) const
   {
     ::glUniform4i (location, v0, v1, v2, v3);
   }
 
-  inline void glUniform4iv (GLint location, GLsizei count, const GLint* value)
+  inline void glUniform4iv (GLint location, GLsizei count, const GLint* value) const
   {
     ::glUniform4iv (location, count, value);
   }
 
-  inline void glUniformMatrix2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value)
+  inline void glUniformMatrix2fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value) const
   {
     ::glUniformMatrix2fv (location, count, transpose, value);
   }
 
-  inline void glUniformMatrix3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value)
+  inline void glUniformMatrix3fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value) const
   {
     ::glUniformMatrix3fv (location, count, transpose, value);
   }
 
-  inline void glUniformMatrix4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value)
+  inline void glUniformMatrix4fv (GLint location, GLsizei count, GLboolean transpose, const GLfloat* value) const
   {
     ::glUniformMatrix4fv (location, count, transpose, value);
   }
 
-  inline void glUseProgram (GLuint program)
+  inline void glUseProgram (GLuint program) const
   {
     ::glUseProgram (program);
   }
 
-  inline void glValidateProgram (GLuint program)
+  inline void glValidateProgram (GLuint program) const
   {
     ::glValidateProgram (program);
   }
 
-  inline void glVertexAttrib1f (GLuint index, GLfloat x)
+  inline void glVertexAttrib1f (GLuint index, GLfloat x) const
   {
     ::glVertexAttrib1f (index, x);
   }
 
-  inline void glVertexAttrib1fv (GLuint index, const GLfloat* v)
+  inline void glVertexAttrib1fv (GLuint index, const GLfloat* v) const
   {
     ::glVertexAttrib1fv (index, v);
   }
 
-  inline void glVertexAttrib2f (GLuint index, GLfloat x, GLfloat y)
+  inline void glVertexAttrib2f (GLuint index, GLfloat x, GLfloat y) const
   {
     ::glVertexAttrib2f (index, x, y);
   }
 
-  inline void glVertexAttrib2fv (GLuint index, const GLfloat* v)
+  inline void glVertexAttrib2fv (GLuint index, const GLfloat* v) const
   {
     ::glVertexAttrib2fv (index, v);
   }
 
-  inline void glVertexAttrib3f (GLuint index, GLfloat x, GLfloat y, GLfloat z)
+  inline void glVertexAttrib3f (GLuint index, GLfloat x, GLfloat y, GLfloat z) const
   {
     ::glVertexAttrib3f (index, x, y, z);
   }
 
-  inline void glVertexAttrib3fv (GLuint index, const GLfloat* v)
+  inline void glVertexAttrib3fv (GLuint index, const GLfloat* v) const
   {
     ::glVertexAttrib3fv (index, v);
   }
 
-  inline void glVertexAttrib4f (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+  inline void glVertexAttrib4f (GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w) const
   {
     ::glVertexAttrib4f (index, x, y, z, w);
   }
 
-  inline void glVertexAttrib4fv (GLuint index, const GLfloat* v)
+  inline void glVertexAttrib4fv (GLuint index, const GLfloat* v) const
   {
     ::glVertexAttrib4fv (index, v);
   }
 
-  inline void glVertexAttribPointer (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer)
+  inline void glVertexAttribPointer (GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer) const
   {
     ::glVertexAttribPointer (index, size, type, normalized, stride, pointer);
   }
 
 public: //! @name OpenGL ES 3.0
 
-  typedef void (APIENTRY *glBlitFramebuffer_t)(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter);
-  glBlitFramebuffer_t glBlitFramebuffer;
-
-  typedef void (APIENTRY *glTexImage3D_t)(GLenum target, GLint level, GLint internalFormat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const GLvoid* data);
-  glTexImage3D_t glTexImage3D;
-
-  typedef void (APIENTRY *glDrawBuffers_t)(GLsizei n, const GLenum* bufs);
-  glDrawBuffers_t glDrawBuffers;
-
-  typedef void (APIENTRY *glGenSamplers_t)(GLsizei count, GLuint* samplers);
-  glGenSamplers_t glGenSamplers;
-
-  typedef void (APIENTRY *glDeleteSamplers_t)(GLsizei count, const GLuint* samplers);
-  glDeleteSamplers_t glDeleteSamplers;
-
-  typedef GLboolean (APIENTRY *glIsSampler_t)(GLuint sampler);
-  glIsSampler_t glIsSampler;
-
-  typedef void (APIENTRY *glBindSampler_t)(GLuint unit, GLuint sampler);
-  glBindSampler_t glBindSampler;
-
-  typedef void (APIENTRY *glSamplerParameteri_t)(GLuint sampler, GLenum pname, GLint param);
-  glSamplerParameteri_t glSamplerParameteri;
-
-  typedef void (APIENTRY *glSamplerParameteriv_t)(GLuint sampler, GLenum pname, const GLint* param);
-  glSamplerParameteriv_t glSamplerParameteriv;
-
-  typedef void (APIENTRY *glSamplerParameterf_t)(GLuint sampler, GLenum pname, GLfloat param);
-  glSamplerParameterf_t glSamplerParameterf;
-
-  typedef void (APIENTRY *glSamplerParameterfv_t)(GLuint sampler, GLenum pname, const GLfloat* param);
-  glSamplerParameterfv_t glSamplerParameterfv;
-
-  typedef void (APIENTRY *glGetSamplerParameteriv_t)(GLuint sampler, GLenum pname, GLint* params);
-  glGetSamplerParameteriv_t glGetSamplerParameteriv;
-
-  typedef void (APIENTRY *glGetSamplerParameterfv_t)(GLuint sampler, GLenum pname, GLfloat* params);
-  glGetSamplerParameterfv_t glGetSamplerParameterfv;
+  opencascade::PFNGLREADBUFFERPROC glReadBuffer;
+  opencascade::PFNGLDRAWRANGEELEMENTSPROC glDrawRangeElements;
+  opencascade::PFNGLTEXIMAGE3DPROC glTexImage3D;
+  opencascade::PFNGLTEXSUBIMAGE3DPROC glTexSubImage3D;
+  opencascade::PFNGLCOPYTEXSUBIMAGE3DPROC glCopyTexSubImage3D;
+  opencascade::PFNGLCOMPRESSEDTEXIMAGE3DPROC glCompressedTexImage3D;
+  opencascade::PFNGLCOMPRESSEDTEXSUBIMAGE3DPROC glCompressedTexSubImage3D;
+  opencascade::PFNGLGENQUERIESPROC glGenQueries;
+  opencascade::PFNGLDELETEQUERIESPROC glDeleteQueries;
+  opencascade::PFNGLISQUERYPROC    glIsQuery;
+  opencascade::PFNGLBEGINQUERYPROC glBeginQuery;
+  opencascade::PFNGLENDQUERYPROC   glEndQuery;
+  opencascade::PFNGLGETQUERYIVPROC glGetQueryiv;
+  opencascade::PFNGLGETQUERYOBJECTUIVPROC glGetQueryObjectuiv;
+  opencascade::PFNGLUNMAPBUFFERPROC glUnmapBuffer;
+  opencascade::PFNGLGETBUFFERPOINTERVPROC glGetBufferPointerv;
+  opencascade::PFNGLDRAWBUFFERSPROC glDrawBuffers;
+  opencascade::PFNGLUNIFORMMATRIX2X3FVPROC glUniformMatrix2x3fv;
+  opencascade::PFNGLUNIFORMMATRIX3X2FVPROC glUniformMatrix3x2fv;
+  opencascade::PFNGLUNIFORMMATRIX2X4FVPROC glUniformMatrix2x4fv;
+  opencascade::PFNGLUNIFORMMATRIX4X2FVPROC glUniformMatrix4x2fv;
+  opencascade::PFNGLUNIFORMMATRIX3X4FVPROC glUniformMatrix3x4fv;
+  opencascade::PFNGLUNIFORMMATRIX4X3FVPROC glUniformMatrix4x3fv;
+  opencascade::PFNGLBLITFRAMEBUFFERPROC glBlitFramebuffer;
+  opencascade::PFNGLRENDERBUFFERSTORAGEMULTISAMPLEPROC glRenderbufferStorageMultisample;
+  opencascade::PFNGLFRAMEBUFFERTEXTURELAYERPROC glFramebufferTextureLayer;
+  opencascade::PFNGLMAPBUFFERRANGEPROC  glMapBufferRange;
+  opencascade::PFNGLFLUSHMAPPEDBUFFERRANGEPROC glFlushMappedBufferRange;
+  opencascade::PFNGLBINDVERTEXARRAYPROC glBindVertexArray;
+  opencascade::PFNGLDELETEVERTEXARRAYSPROC glDeleteVertexArrays;
+  opencascade::PFNGLGENVERTEXARRAYSPROC glGenVertexArrays;
+  opencascade::PFNGLISVERTEXARRAYPROC   glIsVertexArray;
+  opencascade::PFNGLGETINTEGERI_VPROC   glGetIntegeri_v;
+  opencascade::PFNGLBEGINTRANSFORMFEEDBACKPROC glBeginTransformFeedback;
+  opencascade::PFNGLENDTRANSFORMFEEDBACKPROC glEndTransformFeedback;
+  opencascade::PFNGLBINDBUFFERRANGEPROC glBindBufferRange;
+  opencascade::PFNGLBINDBUFFERBASEPROC  glBindBufferBase;
+  opencascade::PFNGLTRANSFORMFEEDBACKVARYINGSPROC glTransformFeedbackVaryings;
+  opencascade::PFNGLGETTRANSFORMFEEDBACKVARYINGPROC glGetTransformFeedbackVarying;
+  opencascade::PFNGLVERTEXATTRIBIPOINTERPROC glVertexAttribIPointer;
+  opencascade::PFNGLGETVERTEXATTRIBIIVPROC   glGetVertexAttribIiv;
+  opencascade::PFNGLGETVERTEXATTRIBIUIVPROC  glGetVertexAttribIuiv;
+  opencascade::PFNGLVERTEXATTRIBI4IPROC   glVertexAttribI4i;
+  opencascade::PFNGLVERTEXATTRIBI4UIPROC  glVertexAttribI4ui;
+  opencascade::PFNGLVERTEXATTRIBI4IVPROC  glVertexAttribI4iv;
+  opencascade::PFNGLVERTEXATTRIBI4UIVPROC glVertexAttribI4uiv;
+  opencascade::PFNGLGETUNIFORMUIVPROC glGetUniformuiv;
+  opencascade::PFNGLGETFRAGDATALOCATIONPROC glGetFragDataLocation;
+  opencascade::PFNGLUNIFORM1UIPROC glUniform1ui;
+  opencascade::PFNGLUNIFORM2UIPROC glUniform2ui;
+  opencascade::PFNGLUNIFORM3UIPROC glUniform3ui;
+  opencascade::PFNGLUNIFORM4UIPROC glUniform4ui;
+  opencascade::PFNGLUNIFORM1UIVPROC glUniform1uiv;
+  opencascade::PFNGLUNIFORM2UIVPROC glUniform2uiv;
+  opencascade::PFNGLUNIFORM3UIVPROC glUniform3uiv;
+  opencascade::PFNGLUNIFORM4UIVPROC glUniform4uiv;
+  opencascade::PFNGLCLEARBUFFERIVPROC  glClearBufferiv;
+  opencascade::PFNGLCLEARBUFFERUIVPROC glClearBufferuiv;
+  opencascade::PFNGLCLEARBUFFERFVPROC  glClearBufferfv;
+  opencascade::PFNGLCLEARBUFFERFIPROC  glClearBufferfi;
+  opencascade::PFNGLGETSTRINGIPROC glGetStringi;
+  opencascade::PFNGLCOPYBUFFERSUBDATAPROC glCopyBufferSubData;
+  opencascade::PFNGLGETUNIFORMINDICESPROC glGetUniformIndices;
+  opencascade::PFNGLGETACTIVEUNIFORMSIVPROC  glGetActiveUniformsiv;
+  opencascade::PFNGLGETUNIFORMBLOCKINDEXPROC glGetUniformBlockIndex;
+  opencascade::PFNGLGETACTIVEUNIFORMBLOCKIVPROC   glGetActiveUniformBlockiv;
+  opencascade::PFNGLGETACTIVEUNIFORMBLOCKNAMEPROC glGetActiveUniformBlockName;
+  opencascade::PFNGLUNIFORMBLOCKBINDINGPROC   glUniformBlockBinding;
+  opencascade::PFNGLDRAWARRAYSINSTANCEDPROC   glDrawArraysInstanced;
+  opencascade::PFNGLDRAWELEMENTSINSTANCEDPROC glDrawElementsInstanced;
+  opencascade::PFNGLFENCESYNCPROC      glFenceSync;
+  opencascade::PFNGLISSYNCPROC         glIsSync;
+  opencascade::PFNGLDELETESYNCPROC     glDeleteSync;
+  opencascade::PFNGLCLIENTWAITSYNCPROC glClientWaitSync;
+  opencascade::PFNGLWAITSYNCPROC       glWaitSync;
+  opencascade::PFNGLGETINTEGER64VPROC  glGetInteger64v;
+  opencascade::PFNGLGETSYNCIVPROC      glGetSynciv;
+  opencascade::PFNGLGETINTEGER64I_VPROC glGetInteger64i_v;
+  opencascade::PFNGLGETBUFFERPARAMETERI64VPROC glGetBufferParameteri64v;
+  opencascade::PFNGLGENSAMPLERSPROC glGenSamplers;
+  opencascade::PFNGLDELETESAMPLERSPROC glDeleteSamplers;
+  opencascade::PFNGLISSAMPLERPROC   glIsSampler;
+  opencascade::PFNGLBINDSAMPLERPROC glBindSampler;
+  opencascade::PFNGLSAMPLERPARAMETERIPROC  glSamplerParameteri;
+  opencascade::PFNGLSAMPLERPARAMETERIVPROC glSamplerParameteriv;
+  opencascade::PFNGLSAMPLERPARAMETERFPROC  glSamplerParameterf;
+  opencascade::PFNGLSAMPLERPARAMETERFVPROC glSamplerParameterfv;
+  opencascade::PFNGLGETSAMPLERPARAMETERIVPROC glGetSamplerParameteriv;
+  opencascade::PFNGLGETSAMPLERPARAMETERFVPROC glGetSamplerParameterfv;
+  opencascade::PFNGLVERTEXATTRIBDIVISORPROC glVertexAttribDivisor;
+  opencascade::PFNGLBINDTRANSFORMFEEDBACKPROC glBindTransformFeedback;
+  opencascade::PFNGLDELETETRANSFORMFEEDBACKSPROC glDeleteTransformFeedbacks;
+  opencascade::PFNGLGENTRANSFORMFEEDBACKSPROC glGenTransformFeedbacks;
+  opencascade::PFNGLISTRANSFORMFEEDBACKPROC glIsTransformFeedback;
+  opencascade::PFNGLPAUSETRANSFORMFEEDBACKPROC glPauseTransformFeedback;
+  opencascade::PFNGLRESUMETRANSFORMFEEDBACKPROC glResumeTransformFeedback;
+  opencascade::PFNGLGETPROGRAMBINARYPROC glGetProgramBinary;
+  opencascade::PFNGLPROGRAMBINARYPROC glProgramBinary;
+  opencascade::PFNGLPROGRAMPARAMETERIPROC glProgramParameteri;
+  opencascade::PFNGLINVALIDATEFRAMEBUFFERPROC glInvalidateFramebuffer;
+  opencascade::PFNGLINVALIDATESUBFRAMEBUFFERPROC glInvalidateSubFramebuffer;
+  opencascade::PFNGLTEXSTORAGE2DPROC glTexStorage2D;
+  opencascade::PFNGLTEXSTORAGE3DPROC glTexStorage3D;
+  opencascade::PFNGLGETINTERNALFORMATIVPROC glGetInternalformativ;
 
 public: //! @name OpenGL ES 3.1
 
-  typedef void (APIENTRY *glTexStorage2DMultisample_t)(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations);
-  glTexStorage2DMultisample_t glTexStorage2DMultisample;
+  opencascade::PFNGLDISPATCHCOMPUTEPROC glDispatchCompute;
+  opencascade::PFNGLDISPATCHCOMPUTEINDIRECTPROC glDispatchComputeIndirect;
+  opencascade::PFNGLDRAWARRAYSINDIRECTPROC glDrawArraysIndirect;
+  opencascade::PFNGLDRAWELEMENTSINDIRECTPROC glDrawElementsIndirect;
+  opencascade::PFNGLFRAMEBUFFERPARAMETERIPROC glFramebufferParameteri;
+  opencascade::PFNGLGETFRAMEBUFFERPARAMETERIVPROC glGetFramebufferParameteriv;
+  opencascade::PFNGLGETPROGRAMINTERFACEIVPROC glGetProgramInterfaceiv;
+  opencascade::PFNGLGETPROGRAMRESOURCEINDEXPROC glGetProgramResourceIndex;
+  opencascade::PFNGLGETPROGRAMRESOURCENAMEPROC glGetProgramResourceName;
+  opencascade::PFNGLGETPROGRAMRESOURCEIVPROC glGetProgramResourceiv;
+  opencascade::PFNGLGETPROGRAMRESOURCELOCATIONPROC glGetProgramResourceLocation;
+  opencascade::PFNGLUSEPROGRAMSTAGESPROC glUseProgramStages;
+  opencascade::PFNGLACTIVESHADERPROGRAMPROC glActiveShaderProgram;
+  opencascade::PFNGLCREATESHADERPROGRAMVPROC glCreateShaderProgramv;
+  opencascade::PFNGLBINDPROGRAMPIPELINEPROC glBindProgramPipeline;
+  opencascade::PFNGLDELETEPROGRAMPIPELINESPROC glDeleteProgramPipelines;
+  opencascade::PFNGLGENPROGRAMPIPELINESPROC glGenProgramPipelines;
+  opencascade::PFNGLISPROGRAMPIPELINEPROC glIsProgramPipeline;
+  opencascade::PFNGLGETPROGRAMPIPELINEIVPROC glGetProgramPipelineiv;
+  opencascade::PFNGLPROGRAMUNIFORM1IPROC glProgramUniform1i;
+  opencascade::PFNGLPROGRAMUNIFORM2IPROC glProgramUniform2i;
+  opencascade::PFNGLPROGRAMUNIFORM3IPROC glProgramUniform3i;
+  opencascade::PFNGLPROGRAMUNIFORM4IPROC glProgramUniform4i;
+  opencascade::PFNGLPROGRAMUNIFORM1UIPROC glProgramUniform1ui;
+  opencascade::PFNGLPROGRAMUNIFORM2UIPROC glProgramUniform2ui;
+  opencascade::PFNGLPROGRAMUNIFORM3UIPROC glProgramUniform3ui;
+  opencascade::PFNGLPROGRAMUNIFORM4UIPROC glProgramUniform4ui;
+  opencascade::PFNGLPROGRAMUNIFORM1FPROC glProgramUniform1f;
+  opencascade::PFNGLPROGRAMUNIFORM2FPROC glProgramUniform2f;
+  opencascade::PFNGLPROGRAMUNIFORM3FPROC glProgramUniform3f;
+  opencascade::PFNGLPROGRAMUNIFORM4FPROC glProgramUniform4f;
+  opencascade::PFNGLPROGRAMUNIFORM1IVPROC glProgramUniform1iv;
+  opencascade::PFNGLPROGRAMUNIFORM2IVPROC glProgramUniform2iv;
+  opencascade::PFNGLPROGRAMUNIFORM3IVPROC glProgramUniform3iv;
+  opencascade::PFNGLPROGRAMUNIFORM4IVPROC glProgramUniform4iv;
+  opencascade::PFNGLPROGRAMUNIFORM1UIVPROC glProgramUniform1uiv;
+  opencascade::PFNGLPROGRAMUNIFORM2UIVPROC glProgramUniform2uiv;
+  opencascade::PFNGLPROGRAMUNIFORM3UIVPROC glProgramUniform3uiv;
+  opencascade::PFNGLPROGRAMUNIFORM4UIVPROC glProgramUniform4uiv;
+  opencascade::PFNGLPROGRAMUNIFORM1FVPROC glProgramUniform1fv;
+  opencascade::PFNGLPROGRAMUNIFORM2FVPROC glProgramUniform2fv;
+  opencascade::PFNGLPROGRAMUNIFORM3FVPROC glProgramUniform3fv;
+  opencascade::PFNGLPROGRAMUNIFORM4FVPROC glProgramUniform4fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX2FVPROC glProgramUniformMatrix2fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX3FVPROC glProgramUniformMatrix3fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX4FVPROC glProgramUniformMatrix4fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX2X3FVPROC glProgramUniformMatrix2x3fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX3X2FVPROC glProgramUniformMatrix3x2fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX2X4FVPROC glProgramUniformMatrix2x4fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX4X2FVPROC glProgramUniformMatrix4x2fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX3X4FVPROC glProgramUniformMatrix3x4fv;
+  opencascade::PFNGLPROGRAMUNIFORMMATRIX4X3FVPROC glProgramUniformMatrix4x3fv;
+  opencascade::PFNGLVALIDATEPROGRAMPIPELINEPROC glValidateProgramPipeline;
+  opencascade::PFNGLGETPROGRAMPIPELINEINFOLOGPROC glGetProgramPipelineInfoLog;
+  opencascade::PFNGLBINDIMAGETEXTUREPROC glBindImageTexture;
+  opencascade::PFNGLGETBOOLEANI_VPROC glGetBooleani_v;
+  opencascade::PFNGLMEMORYBARRIERPROC glMemoryBarrier;
+  opencascade::PFNGLMEMORYBARRIERBYREGIONPROC glMemoryBarrierByRegion;
+  opencascade::PFNGLTEXSTORAGE2DMULTISAMPLEPROC glTexStorage2DMultisample;
+  opencascade::PFNGLGETMULTISAMPLEFVPROC glGetMultisamplefv;
+  opencascade::PFNGLSAMPLEMASKIPROC glSampleMaski;
+  opencascade::PFNGLGETTEXLEVELPARAMETERIVPROC glGetTexLevelParameteriv;
+  opencascade::PFNGLGETTEXLEVELPARAMETERFVPROC glGetTexLevelParameterfv;
+  opencascade::PFNGLBINDVERTEXBUFFERPROC glBindVertexBuffer;
+  opencascade::PFNGLVERTEXATTRIBFORMATPROC glVertexAttribFormat;
+  opencascade::PFNGLVERTEXATTRIBIFORMATPROC glVertexAttribIFormat;
+  opencascade::PFNGLVERTEXATTRIBBINDINGPROC glVertexAttribBinding;
+  opencascade::PFNGLVERTEXBINDINGDIVISORPROC glVertexBindingDivisor;
 
 public: //! @name OpenGL ES 3.2
 
-  typedef void (APIENTRY *glTexBuffer_t)(GLenum target, GLenum internalFormat, GLuint buffer);
-  glTexBuffer_t glTexBuffer;
+  opencascade::PFNGLBLENDBARRIERPROC glBlendBarrier;
+  opencascade::PFNGLCOPYIMAGESUBDATAPROC glCopyImageSubData;
+  opencascade::PFNGLPUSHDEBUGGROUPPROC glPushDebugGroup;
+  opencascade::PFNGLPOPDEBUGGROUPPROC glPopDebugGroup;
+  opencascade::PFNGLOBJECTLABELPROC glObjectLabel;
+  opencascade::PFNGLGETOBJECTLABELPROC glGetObjectLabel;
+  opencascade::PFNGLOBJECTPTRLABELPROC glObjectPtrLabel;
+  opencascade::PFNGLGETOBJECTPTRLABELPROC glGetObjectPtrLabel;
+  opencascade::PFNGLGETPOINTERVPROC glGetPointerv;
+  opencascade::PFNGLENABLEIPROC  glEnablei;
+  opencascade::PFNGLDISABLEIPROC glDisablei;
+  opencascade::PFNGLBLENDEQUATIONIPROC glBlendEquationi;
+  opencascade::PFNGLBLENDEQUATIONSEPARATEIPROC glBlendEquationSeparatei;
+  opencascade::PFNGLBLENDFUNCIPROC glBlendFunci;
+  opencascade::PFNGLBLENDFUNCSEPARATEIPROC glBlendFuncSeparatei;
+  opencascade::PFNGLCOLORMASKIPROC glColorMaski;
+  opencascade::PFNGLISENABLEDIPROC glIsEnabledi;
+  opencascade::PFNGLDRAWELEMENTSBASEVERTEXPROC glDrawElementsBaseVertex;
+  opencascade::PFNGLDRAWRANGEELEMENTSBASEVERTEXPROC glDrawRangeElementsBaseVertex;
+  opencascade::PFNGLDRAWELEMENTSINSTANCEDBASEVERTEXPROC glDrawElementsInstancedBaseVertex;
+  opencascade::PFNGLFRAMEBUFFERTEXTUREPROC glFramebufferTexture;
+  opencascade::PFNGLPRIMITIVEBOUNDINGBOXPROC glPrimitiveBoundingBox;
+  opencascade::PFNGLGETGRAPHICSRESETSTATUSPROC glGetGraphicsResetStatus;
+  opencascade::PFNGLREADNPIXELSPROC glReadnPixels;
+  opencascade::PFNGLGETNUNIFORMFVPROC glGetnUniformfv;
+  opencascade::PFNGLGETNUNIFORMIVPROC glGetnUniformiv;
+  opencascade::PFNGLGETNUNIFORMUIVPROC glGetnUniformuiv;
+  opencascade::PFNGLMINSAMPLESHADINGPROC glMinSampleShading;
+  opencascade::PFNGLPATCHPARAMETERIPROC glPatchParameteri;
+  opencascade::PFNGLTEXPARAMETERIIVPROC glTexParameterIiv;
+  opencascade::PFNGLTEXPARAMETERIUIVPROC glTexParameterIuiv;
+  opencascade::PFNGLGETTEXPARAMETERIIVPROC glGetTexParameterIiv;
+  opencascade::PFNGLGETTEXPARAMETERIUIVPROC glGetTexParameterIuiv;
+  opencascade::PFNGLSAMPLERPARAMETERIIVPROC glSamplerParameterIiv;
+  opencascade::PFNGLSAMPLERPARAMETERIUIVPROC glSamplerParameterIuiv;
+  opencascade::PFNGLGETSAMPLERPARAMETERIIVPROC glGetSamplerParameterIiv;
+  opencascade::PFNGLGETSAMPLERPARAMETERIUIVPROC glGetSamplerParameterIuiv;
+  opencascade::PFNGLTEXBUFFERPROC glTexBuffer;
+  opencascade::PFNGLTEXBUFFERRANGEPROC glTexBufferRange;
+  opencascade::PFNGLTEXSTORAGE3DMULTISAMPLEPROC glTexStorage3DMultisample;
 
-public: //! @name GL_KHR_debug (optional)
+public: //! @name GL_KHR_debug (optional) or OpenGL ES 3.2+
 
-  typedef void   (APIENTRY  *GLDEBUGPROCARB)(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
-
-  typedef void   (APIENTRYP glDebugMessageControl_t ) (GLenum source, GLenum type, GLenum severity, GLsizei count, const GLuint* ids, GLboolean enabled);
-  typedef void   (APIENTRYP glDebugMessageInsert_t  ) (GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* buf);
-  typedef void   (APIENTRYP glDebugMessageCallback_t) (GLDEBUGPROCARB callback, const void* userParam);
-  typedef GLuint (APIENTRYP glGetDebugMessageLog_t  ) (GLuint   count,
-                                                       GLsizei  bufSize,
-                                                       GLenum*  sources,
-                                                       GLenum*  types,
-                                                       GLuint*  ids,
-                                                       GLenum*  severities,
-                                                       GLsizei* lengths,
-                                                       GLchar*  messageLog);
-
-  glDebugMessageControl_t  glDebugMessageControl;
-  glDebugMessageInsert_t   glDebugMessageInsert;
-  glDebugMessageCallback_t glDebugMessageCallback;
-  glGetDebugMessageLog_t   glGetDebugMessageLog;
+  opencascade::PFNGLDEBUGMESSAGECONTROLPROC  glDebugMessageControl;
+  opencascade::PFNGLDEBUGMESSAGEINSERTPROC   glDebugMessageInsert;
+  opencascade::PFNGLDEBUGMESSAGECALLBACKPROC glDebugMessageCallback;
+  opencascade::PFNGLGETDEBUGMESSAGELOGPROC   glGetDebugMessageLog;
 
 #else // OpenGL ES vs. desktop
 

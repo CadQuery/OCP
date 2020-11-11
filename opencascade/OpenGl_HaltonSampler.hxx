@@ -23,9 +23,8 @@
 
 #include <algorithm>
 #include <vector>
-#include <random>
 
-//! Compute points of the Halton sequence with with digit-permutations for different bases.
+//! Compute points of the Halton sequence with digit-permutations for different bases.
 class OpenGl_HaltonSampler
 {
 public:
@@ -36,19 +35,13 @@ public:
 public:
 
   //! Init the permutation arrays using Faure-permutations.
-  //! Alternatively, initRandom() can be called before the sampling functionality can be used.
-  void initFaure();
-
-  //! Init the permutation arrays using randomized permutations.
-  //! Alternatively, initFaure() can be called before the sampling functionality can be used.
-  //! The client needs to specify a random number generator function object that can be used to generate a random sequence of integers.
-  //! That is: if f is a random number generator and N is a positive integer,
-  //! then f(N) will return an integer less than N and greater than or equal to 0.
-  template <typename Random_number_generator>
-  void initRandom (Random_number_generator& theRand);
+  OpenGl_HaltonSampler()
+  {
+    initFaure();
+  }
 
   //! Return the Halton sample for the given dimension (component) and index.
-  //! The client must have called initRandom or initFaure() at least once before.
+  //! The client must have called initFaure() at least once before.
   //! dimension must be smaller than the value returned by get_num_dimensions().
   float sample (unsigned theDimension, unsigned theIndex) const
   {
@@ -62,6 +55,9 @@ public:
   }
 
 private:
+
+  //! Init the permutation arrays using Faure-permutations.
+  void initFaure();
 
   static unsigned short invert (unsigned short theBase, unsigned short theDigits,
                                 unsigned short theIndex, const std::vector<unsigned short>& thePerm)
@@ -105,7 +101,7 @@ private:
     return (myPerm3[theIndex % 243u] * 14348907u
           + myPerm3[(theIndex / 243u)      % 243u] * 59049u
           + myPerm3[(theIndex / 59049u)    % 243u] * 243u
-          + myPerm3[(theIndex / 14348907u) % 243u]) * float(0.999999999999999f / 3486784401u); // Results in [0,1).
+          + myPerm3[(theIndex / 14348907u) % 243u]) * float(0.999999999999999 / 3486784401u); // Results in [0,1).
   }
 
   float halton5 (unsigned theIndex) const
@@ -113,7 +109,7 @@ private:
     return (myPerm5[theIndex % 125u] * 1953125u
           + myPerm5[(theIndex / 125u)     % 125u] * 15625u
           + myPerm5[(theIndex / 15625u)   % 125u] * 125u
-          + myPerm5[(theIndex / 1953125u) % 125u]) * float(0.999999999999999f / 244140625u); // Results in [0,1).
+          + myPerm5[(theIndex / 1953125u) % 125u]) * float(0.999999999999999 / 244140625u); // Results in [0,1).
   }
 
 private:
@@ -156,32 +152,6 @@ inline void OpenGl_HaltonSampler::initFaure()
         aPerms[aBase][b + i] = 2 * aPerms[b][i] + 1;
       }
     }
-  }
-  initTables (aPerms);
-}
-
-template <typename Random_number_generator>
-void OpenGl_HaltonSampler::initRandom (Random_number_generator& theRand)
-{
-  const unsigned THE_MAX_BASE = 5u;
-  std::vector<std::vector<unsigned short> > aPerms(THE_MAX_BASE + 1);
-  for (unsigned k = 1; k <= 3; ++k) // Keep identity permutations for base 1, 2, 3.
-  {
-    aPerms[k].resize (k);
-    for (unsigned i = 0; i < k; ++i)
-    {
-      aPerms[k][i] = i;
-    }
-  }
-
-  for (unsigned aBase = 4; aBase <= THE_MAX_BASE; ++aBase)
-  {
-    aPerms[aBase].resize (aBase);
-    for (unsigned i = 0; i < aBase; ++i)
-    {
-      aPerms[aBase][i] = i;
-    }
-    std::shuffle (aPerms[aBase].begin(), aPerms[aBase].end(),std::mt19937(std::random_device()()));
   }
   initTables (aPerms);
 }

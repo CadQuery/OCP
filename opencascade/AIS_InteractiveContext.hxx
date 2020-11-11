@@ -32,6 +32,7 @@
 #include <Prs3d_Drawer.hxx>
 #include <Prs3d_TypeOfHighlight.hxx>
 #include <PrsMgr_PresentationManager3d.hxx>
+#include <SelectMgr_AndOrFilter.hxx>
 #include <SelectMgr_IndexedMapOfOwner.hxx>
 #include <SelectMgr_ListOfFilter.hxx>
 #include <SelectMgr_PickingStrategy.hxx>
@@ -46,7 +47,6 @@
 
 class SelectMgr_SelectionManager;
 class V3d_Viewer;
-class SelectMgr_OrFilter;
 class V3d_View;
 class TopLoc_Location;
 class TCollection_ExtendedString;
@@ -736,6 +736,15 @@ public: //! @name management of active Selection Modes
 
 public: //! @name Selection Filters management
 
+  //! @return the context selection filter type.
+  SelectMgr_FilterType FilterType() const { return myFilters->FilterType(); }
+
+  //! Sets the context selection filter type.
+  //! SelectMgr_TypeFilter_OR selection filter is used by default.
+  //! @param theFilterType the filter type.
+  void SetFilterType (const SelectMgr_FilterType theFilterType)
+  { myFilters->SetFilterType (theFilterType); }
+
   //! Returns the list of filters active in a local context.
   Standard_EXPORT const SelectMgr_ListOfFilter& Filters() const;
 
@@ -971,23 +980,6 @@ public: //! @name tessellation deviation properties for automatic triangulation
   Standard_EXPORT void SetAngleAndDeviation (const Handle(AIS_InteractiveObject)& theIObj,
                                              const Standard_Real                  theAngle,
                                              const Standard_Boolean               theToUpdateViewer);
-  
-
-  //! Sets the deviation coefficient aCoefficient for removal of hidden lines created by different viewpoints in different presentations.
-  //! The Default value is 0.02.
-  Standard_EXPORT void SetHLRDeviationCoefficient (const Handle(AIS_InteractiveObject)& theIObj,
-                                                   const Standard_Real                  theCoefficient,
-                                                   const Standard_Boolean               theToUpdateViewer);
-  
-  Standard_EXPORT void SetHLRDeviationAngle (const Handle(AIS_InteractiveObject)& theIObj,
-                                             const Standard_Real                  theAngle,
-                                             const Standard_Boolean               theToUpdateViewer);
-  
-  //! Computes a HLRAngle and a HLRDeviationCoefficient by means of the angle anAngle
-  //! and sets the corresponding methods in the default drawing tool with these values.
-  Standard_EXPORT void SetHLRAngleAndDeviation (const Handle(AIS_InteractiveObject)& theIObj,
-                                                const Standard_Real                  theAngle,
-                                                const Standard_Boolean               theToUpdateViewer);
 
   //! Sets the deviation coefficient theCoefficient.
   //! Drawings of curves or patches are made with respect to a maximal chordal deviation.
@@ -1017,40 +1009,10 @@ public: //! @name tessellation deviation properties for automatic triangulation
   //! This deviation will be: SizeOfObject * DeviationCoefficient.
   Standard_EXPORT Standard_Real DeviationCoefficient() const;
 
-  //! default 12 degrees
+  //! default 20 degrees
   Standard_EXPORT void SetDeviationAngle (const Standard_Real anAngle);
 
   Standard_EXPORT Standard_Real DeviationAngle() const;
-  
-  //! Sets the deviation coefficient aCoefficient for removal of hidden lines created by different viewpoints in different presentations.
-  //! The Default value is 0.02.
-  Standard_EXPORT void SetHLRDeviationCoefficient (const Standard_Real aCoefficient);
-
-  //! Returns the real number value of the hidden line removal deviation coefficient.
-  //! A Deviation coefficient is used in the shading display mode.
-  //! The shape is seen decomposed into triangles.
-  //! These are used to calculate reflection of light from the surface of the object.
-  //! The triangles are formed from chords of the curves in the shape.
-  //! The deviation coefficient give the highest value of the angle with which a chord can deviate from a tangent to a curve.
-  //! If this limit is reached, a new triangle is begun.
-  //! To find the hidden lines, hidden line display mode entails recalculation of the view at each different projector perspective.
-  //! Because hidden lines entail calculations of more than usual complexity to decompose them into these triangles,
-  //! a deviation coefficient allowing greater tolerance is used.
-  //! This increases efficiency in calculation.
-  //! The Default value is 0.02.
-  Standard_EXPORT Standard_Real HLRDeviationCoefficient() const;
-
-  //! Sets the HLR angle.
-  Standard_EXPORT void SetHLRAngle (const Standard_Real theAngle);
-
-  //! Returns the real number value of the deviation angle in hidden line removal views in this interactive context.
-  //! The default value is 20*PI/180.
-  Standard_EXPORT Standard_Real HLRAngle() const;
-
-  //! compute with theAngle a HLRAngle and a HLRDeviationCoefficient
-  //! and set them in myHLRAngle and in myHLRDeviationCoefficient of myDefaultDrawer;
-  //! theAngle is in radian; ( 1 deg < angle in deg < 20 deg)
-  Standard_EXPORT void SetHLRAngleAndDeviation (const Standard_Real theAngle);
 
 public: //! @name HLR (Hidden Line Removal) display attributes
 
@@ -1216,6 +1178,9 @@ public: //! @name sub-intensity management (deprecated)
   //! @param theSelection an instance of the selection
   void SetSelection (const Handle(AIS_Selection)& theSelection) { mySelection = theSelection; }
 
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+
 protected: //! @name internal methods
 
   Standard_EXPORT void GetDefModes (const Handle(AIS_InteractiveObject)& anIobj, Standard_Integer& Dmode, Standard_Integer& HiMod, Standard_Integer& SelMode) const;
@@ -1376,14 +1341,7 @@ protected: //! @name internal methods
     if (myLastPicked.IsNull())
       return;
 
-    if (myLastPicked->IsAutoHilight())
-    {
-      myMainPM->ClearImmediateDraw();
-    }
-    else
-    {
-      myLastPicked->Selectable()->ClearDynamicHighlight (myMainPM);
-    }
+    myLastPicked->Selectable()->ClearDynamicHighlight (myMainPM);
   }
 
   //! Bind/Unbind status to object and its children
@@ -1405,7 +1363,8 @@ protected: //! @name internal fields
   Handle(SelectMgr_EntityOwner) myLastPicked;
   Standard_Boolean myToHilightSelected;
   Handle(AIS_Selection) mySelection;
-  Handle(SelectMgr_OrFilter) myFilters;
+  Handle(SelectMgr_AndOrFilter) myFilters; //!< context filter (the content active filters
+                                           //!  can be applied with AND or OR operation)
   Handle(Prs3d_Drawer) myDefaultDrawer;
   Handle(Prs3d_Drawer) myStyles[Prs3d_TypeOfHighlight_NB];
   TColStd_SequenceOfInteger myDetectedSeq;

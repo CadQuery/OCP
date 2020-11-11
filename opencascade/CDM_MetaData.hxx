@@ -45,11 +45,21 @@ class CDM_MetaData : public Standard_Transient
 
 public:
 
-  
-  Standard_EXPORT static Handle(CDM_MetaData) LookUp (const TCollection_ExtendedString& aFolder, const TCollection_ExtendedString& aName, const TCollection_ExtendedString& aPath, const TCollection_ExtendedString& aFileName, const Standard_Boolean ReadOnly);
-  
-  Standard_EXPORT static Handle(CDM_MetaData) LookUp (const TCollection_ExtendedString& aFolder, const TCollection_ExtendedString& aName, const TCollection_ExtendedString& aPath, const TCollection_ExtendedString& aVersion, const TCollection_ExtendedString& aFileName, const Standard_Boolean ReadOnly);
-  
+  Standard_EXPORT static Handle(CDM_MetaData) LookUp (CDM_MetaDataLookUpTable& theLookUpTable,
+                                                      const TCollection_ExtendedString& aFolder,
+                                                      const TCollection_ExtendedString& aName,
+                                                      const TCollection_ExtendedString& aPath,
+                                                      const TCollection_ExtendedString& aFileName,
+                                                      const Standard_Boolean ReadOnly);
+
+  Standard_EXPORT static Handle(CDM_MetaData) LookUp (CDM_MetaDataLookUpTable& theLookUpTable,
+                                                      const TCollection_ExtendedString& aFolder,
+                                                      const TCollection_ExtendedString& aName,
+                                                      const TCollection_ExtendedString& aPath,
+                                                      const TCollection_ExtendedString& aVersion,
+                                                      const TCollection_ExtendedString& aFileName,
+                                                      const Standard_Boolean ReadOnly);
+
   Standard_EXPORT Standard_Boolean IsRetrieved() const;
   
   Standard_EXPORT Handle(CDM_Document) Document() const;
@@ -84,6 +94,9 @@ Standard_OStream& operator << (Standard_OStream& anOStream);
   Standard_EXPORT void SetIsReadOnly();
   
   Standard_EXPORT void UnsetIsReadOnly();
+  
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 
 friend class CDM_Reference;
@@ -98,23 +111,26 @@ friend
 
   DEFINE_STANDARD_RTTIEXT(CDM_MetaData,Standard_Transient)
 
-protected:
-
-
-
-
 private:
 
-  
-  Standard_EXPORT CDM_MetaData(const TCollection_ExtendedString& aFolder, const TCollection_ExtendedString& aName, const TCollection_ExtendedString& aPath, const TCollection_ExtendedString& aFileName, const Standard_Boolean ReadOnly);
-  
-  Standard_EXPORT CDM_MetaData(const TCollection_ExtendedString& aFolder, const TCollection_ExtendedString& aName, const TCollection_ExtendedString& aPath, const TCollection_ExtendedString& aVersion, const TCollection_ExtendedString& aFileName, const Standard_Boolean ReadOnly);
-  
-  Standard_EXPORT void SetDocument (const Handle(CDM_Document)& aDocument);
-  
-  Standard_EXPORT static const CDM_MetaDataLookUpTable& LookUpTable();
-  
-  Standard_EXPORT Standard_Integer DocumentVersion (const Handle(CDM_Application)& anApplication);
+  CDM_MetaData (const TCollection_ExtendedString& aFolder,
+                const TCollection_ExtendedString& aName,
+                const TCollection_ExtendedString& aPath,
+                const TCollection_ExtendedString& aFileName,
+                const Standard_Boolean ReadOnly);
+
+  CDM_MetaData (const TCollection_ExtendedString& aFolder,
+                const TCollection_ExtendedString& aName,
+                const TCollection_ExtendedString& aPath,
+                const TCollection_ExtendedString& aVersion,
+                const TCollection_ExtendedString& aFileName,
+                const Standard_Boolean ReadOnly);
+
+  void SetDocument (const Handle(CDM_Document)& aDocument);
+
+  Standard_Integer DocumentVersion (const Handle(CDM_Application)& anApplication);
+
+private:
 
   Standard_Boolean myIsRetrieved;
   CDM_DocumentPointer myDocument;

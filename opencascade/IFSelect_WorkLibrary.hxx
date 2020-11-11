@@ -31,8 +31,6 @@ class IFSelect_ContextWrite;
 class Interface_EntityIterator;
 class Interface_CopyTool;
 class Standard_Transient;
-class Message_Messenger;
-
 
 class IFSelect_WorkLibrary;
 DEFINE_STANDARD_HANDLE(IFSelect_WorkLibrary, Standard_Transient)
@@ -63,6 +61,16 @@ public:
   //! and recognize the Entities)
   Standard_EXPORT virtual Standard_Integer ReadFile (const Standard_CString name, Handle(Interface_InterfaceModel)& model, const Handle(Interface_Protocol)& protocol) const = 0;
   
+  //! Interface to read a data from the specified stream.
+  //! @param model is the resulting Model, which has to be created by this method. 
+  //!        In case of error, model must be returned Null
+  //! Return value is a status: 0 - OK, 1 - read failure, -1 - stream failure.
+  //! 
+  //! Default implementation returns 1 (error).
+  Standard_EXPORT virtual Standard_Integer ReadStream (const Standard_CString theName, std::istream& theIStream, 
+                                                       Handle(Interface_InterfaceModel)& model, 
+                                                       const Handle(Interface_Protocol)& protocol) const;
+
   //! Gives the way to Write a File from a Model.
   //! <ctx> contains all necessary informations : the model, the
   //! protocol, the file name, and the list of File Modifiers to be
@@ -98,10 +106,10 @@ public:
   //! for each norm. <model> helps to identify, number ... entities.
   //! <level> is to be interpreted for each norm (because of the
   //! formats which can be very different)
-  Standard_EXPORT virtual void DumpEntity (const Handle(Interface_InterfaceModel)& model, const Handle(Interface_Protocol)& protocol, const Handle(Standard_Transient)& entity, const Handle(Message_Messenger)& S, const Standard_Integer level) const = 0;
+  Standard_EXPORT virtual void DumpEntity (const Handle(Interface_InterfaceModel)& model, const Handle(Interface_Protocol)& protocol, const Handle(Standard_Transient)& entity, Standard_OStream& S, const Standard_Integer level) const = 0;
   
   //! Calls deferred DumpEntity with the recorded default level
-  Standard_EXPORT void DumpEntity (const Handle(Interface_InterfaceModel)& model, const Handle(Interface_Protocol)& protocol, const Handle(Standard_Transient)& entity, const Handle(Message_Messenger)& S) const;
+  Standard_EXPORT void DumpEntity (const Handle(Interface_InterfaceModel)& model, const Handle(Interface_Protocol)& protocol, const Handle(Standard_Transient)& entity, Standard_OStream& S) const;
   
   //! Records a default level and a maximum value for level
   //! level for DumpEntity can go between 0 and <max>

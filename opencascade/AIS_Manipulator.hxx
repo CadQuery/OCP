@@ -30,7 +30,8 @@
 #include <V3d_View.hxx>
 #include <Standard_Version.hxx>
 #include <Standard_DefineHandle.hxx>
-NCOLLECTION_HSEQUENCE(AIS_ManipulatorObjectSequence, Handle(AIS_InteractiveObject));
+
+NCOLLECTION_HSEQUENCE(AIS_ManipulatorObjectSequence, Handle(AIS_InteractiveObject))
 
 DEFINE_STANDARD_HANDLE (AIS_Manipulator, AIS_InteractiveObject)
 
@@ -92,10 +93,6 @@ DEFINE_STANDARD_HANDLE (AIS_Manipulator, AIS_InteractiveObject)
 //! aManipulator->Detach();
 //! @endcode
 //! The last method erases manipulator object.
-//! @warning
-//! On construction an instance of AIS_Manipulator object is bound to Graphic3d_ZLayerId_Topmost layer,
-//! so make sure to call for your AIS_InteractiveContext the method MainSelector()->SetPickClosest (Standard_False)
-//! otherwise you may notice issues with activation of modes.
 class AIS_Manipulator : public AIS_InteractiveObject
 {
 public:
@@ -162,6 +159,20 @@ public:
   }
 
 public:
+  //! Drag object in the viewer.
+  //! @param theCtx      [in] interactive context
+  //! @param theView     [in] active View
+  //! @param theOwner    [in] the owner of detected entity
+  //! @param theDragFrom [in] drag start point
+  //! @param theDragTo   [in] drag end point
+  //! @param theAction   [in] drag action
+  //! @return FALSE if object rejects dragging action (e.g. AIS_DragAction_Start)
+  Standard_EXPORT virtual Standard_Boolean ProcessDragging (const Handle(AIS_InteractiveContext)& theCtx,
+                                                            const Handle(V3d_View)& theView,
+                                                            const Handle(SelectMgr_EntityOwner)& theOwner,
+                                                            const Graphic3d_Vec2i& theDragFrom,
+                                                            const Graphic3d_Vec2i& theDragTo,
+                                                            const AIS_DragAction theAction) Standard_OVERRIDE;
 
   //! Init start (reference) transformation.
   //! @warning It is used in chain with StartTransform-Transform(gp_Trsf)-StopTransform
@@ -259,6 +270,8 @@ public: //! @name Setters for parameters
 
   AIS_ManipulatorMode ActiveMode() const { return myCurrentMode; }
 
+  Standard_Integer ActiveAxisIndex() const { return myCurrentIndex; }
+
   //! @return poition of manipulator interactive object.
   const gp_Ax2& Position() const { return myPosition; }
 
@@ -354,7 +367,7 @@ protected:
   //! without need for recomputing presentation.
   //! @warning Invokes debug assertion in debug to catch incompatible usage of the
   //! method, silently does nothing in release mode.
-  Standard_EXPORT virtual void setLocalTransformation (const Handle(Geom_Transformation)& theTrsf) Standard_OVERRIDE;
+  Standard_EXPORT virtual void setLocalTransformation (const Handle(TopLoc_Datum3D)& theTrsf) Standard_OVERRIDE;
   using AIS_InteractiveObject::SetLocalTransformation; // hide visibility
 
 protected: //! @name Auxiliary classes to fill presentation with proper primitives
@@ -517,7 +530,7 @@ protected: //! @name Auxiliary classes to fill presentation with proper primitiv
       }
     }
 
-    void Transform (const Handle(Geom_Transformation)& theTransformation)
+    void Transform (const Handle(TopLoc_Datum3D)& theTransformation)
     {
       if (!myHighlightTranslator.IsNull())
       {

@@ -113,7 +113,7 @@ public:
                                                     SelectBasics_PickResult& thePickResult) Standard_OVERRIDE;
 
   //! Returns the amount of sub-entities
-  Standard_EXPORT virtual Standard_Integer NbSubElements() Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
 
   Standard_EXPORT virtual Handle(Select3D_SensitiveEntity) GetConnected() Standard_OVERRIDE;
 
@@ -142,6 +142,9 @@ public:
 
   //! Returns the length of vector of sensitive entities
   Standard_EXPORT virtual Standard_Integer Size() const Standard_OVERRIDE;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 protected:
 

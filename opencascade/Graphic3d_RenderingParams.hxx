@@ -60,19 +60,20 @@ public:
     //
     PerfCounters_Triangles   = 0x040, //!< count Triangles
     PerfCounters_Points      = 0x080, //!< count Points
+    PerfCounters_Lines       = 0x100, //!< count Line segments
     //
-    PerfCounters_EstimMem    = 0x100, //!< estimated GPU memory usage
+    PerfCounters_EstimMem    = 0x200, //!< estimated GPU memory usage
     //
-    PerfCounters_FrameTime   = 0x200, //!< frame CPU utilization time (rendering thread); @sa Graphic3d_FrameStatsTimer
-    PerfCounters_FrameTimeMax= 0x400, //!< maximum frame times
+    PerfCounters_FrameTime   = 0x400, //!< frame CPU utilization time (rendering thread); @sa Graphic3d_FrameStatsTimer
+    PerfCounters_FrameTimeMax= 0x800, //!< maximum frame times
     //
-    PerfCounters_SkipImmediate = 0x800, //!< do not include immediate viewer updates (e.g. lazy updates without redrawing entire view content)
+    PerfCounters_SkipImmediate = 0x1000, //!< do not include immediate viewer updates (e.g. lazy updates without redrawing entire view content)
     //! show basic statistics
     PerfCounters_Basic = PerfCounters_FrameRate | PerfCounters_CPU | PerfCounters_Layers | PerfCounters_Structures,
     //! extended (verbose) statistics
     PerfCounters_Extended = PerfCounters_Basic
                           | PerfCounters_Groups | PerfCounters_GroupArrays
-                          | PerfCounters_Triangles | PerfCounters_Points
+                          | PerfCounters_Triangles | PerfCounters_Points | PerfCounters_Lines
                           | PerfCounters_EstimMem,
     //! all counters
     PerfCounters_All = PerfCounters_Extended
@@ -95,6 +96,13 @@ public:
   : Method                      (Graphic3d_RM_RASTERIZATION),
     TransparencyMethod          (Graphic3d_RTM_BLEND_UNORDERED),
     LineFeather                 (1.0f),
+    // PBR parameters
+    PbrEnvPow2Size              (9),
+    PbrEnvSpecMapNbLevels       (6),
+    PbrEnvBakingDiffNbSamples   (1024),
+    PbrEnvBakingSpecNbSamples   (256),
+    PbrEnvBakingProbability     (0.99f),
+    //
     OitDepthFactor              (0.0f),
     NbMsaaSamples               (0),
     RenderResolutionScale       (1.0f),
@@ -102,12 +110,14 @@ public:
     ToEnableAlphaToCoverage     (Standard_True),
     // ray tracing parameters
     IsGlobalIlluminationEnabled (Standard_False),
+    SamplesPerPixel(0),
     RaytracingDepth             (THE_DEFAULT_DEPTH),
     IsShadowEnabled             (Standard_True),
     IsReflectionEnabled         (Standard_False),
     IsAntialiasingEnabled       (Standard_False),
     IsTransparentShadowEnabled  (Standard_False),
     UseEnvironmentMapBackground (Standard_False),
+    ToIgnoreNormalMapInRayTracing (Standard_False),
     CoherentPathTracingMode     (Standard_False),
     AdaptiveScreenSampling      (Standard_False),
     AdaptiveScreenSamplingAtomic(Standard_False),
@@ -125,8 +135,10 @@ public:
     WhitePoint                  (1.f),
     // stereoscopic parameters
     StereoMode (Graphic3d_StereoMode_QuadBuffer),
+    HmdFov2d (30.0f),
     AnaglyphFilter (Anaglyph_RedCyan_Optimized),
     ToReverseStereo (Standard_False),
+    ToMirrorComposer (Standard_True),
     //
     StatsPosition (new Graphic3d_TransformPers (Graphic3d_TMF_2d, Aspect_TOTP_LEFT_UPPER,  Graphic3d_Vec2i (20, 20))),
     ChartPosition (new Graphic3d_TransformPers (Graphic3d_TMF_2d, Aspect_TOTP_RIGHT_UPPER, Graphic3d_Vec2i (20, 20))),
@@ -164,6 +176,9 @@ public:
   {
     return Resolution / static_cast<Standard_ShortReal> (THE_DEFAULT_RESOLUTION);
   }
+  
+  //! Dumps the content of me into the stream
+  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 public:
 
@@ -171,6 +186,15 @@ public:
   Graphic3d_RenderTransparentMethod TransparencyMethod;          //!< specifies rendering method for transparent graphics
   Standard_ShortReal                LineFeather;                 //!< line feater width in pixels (> 0.0), 1.0 by default;
                                                                  //!  high values produce blurred results, small values produce sharp (aliased) edges
+
+  Standard_Integer                  PbrEnvPow2Size;              //!< size of IBL maps side can be calculated as 2^PbrEnvPow2Size (> 0), 9 by default
+  Standard_Integer                  PbrEnvSpecMapNbLevels;       //!< number of levels used in specular IBL map (> 1), 6 by default
+  Standard_Integer                  PbrEnvBakingDiffNbSamples;   //!< number of samples used in Monte-Carlo integration during diffuse IBL map's
+                                                                 //!  spherical harmonics coefficients generation (> 0), 1024 by default
+  Standard_Integer                  PbrEnvBakingSpecNbSamples;   //!< number of samples used in Monte-Carlo integration during specular IBL map's generation (> 0), 256 by default
+  Standard_ShortReal                PbrEnvBakingProbability;     //!< controls strength of samples reducing strategy during specular IBL map's generation
+                                                                 //!  (see 'SpecIBLMapSamplesFactor' function for detail explanation) [0.0, 1.0], 0.99 by default
+
   Standard_ShortReal                OitDepthFactor;              //!< scalar factor [0-1] controlling influence of depth of a fragment to its final coverage
   Standard_Integer                  NbMsaaSamples;               //!< number of MSAA samples (should be within 0..GL_MAX_SAMPLES, power-of-two number), 0 by default
   Standard_ShortReal                RenderResolutionScale;       //!< rendering resolution scale factor, 1 by default;
@@ -186,6 +210,7 @@ public:
   Standard_Boolean                  IsAntialiasingEnabled;       //!< enables/disables adaptive anti-aliasing, False by default
   Standard_Boolean                  IsTransparentShadowEnabled;  //!< enables/disables light propagation through transparent media, False by default
   Standard_Boolean                  UseEnvironmentMapBackground; //!< enables/disables environment map background
+  Standard_Boolean                  ToIgnoreNormalMapInRayTracing; //!< enables/disables normal map ignoring during path tracing; FALSE by default
   Standard_Boolean                  CoherentPathTracingMode;     //!< enables/disables 'coherent' tracing mode (single RNG seed within 16x16 image blocks)
   Standard_Boolean                  AdaptiveScreenSampling;      //!< enables/disables adaptive screen sampling mode for path tracing, FALSE by default
   Standard_Boolean                  AdaptiveScreenSamplingAtomic;//!< enables/disables usage of atomic float operations within adaptive screen sampling, FALSE by default
@@ -206,10 +231,12 @@ public:
   Standard_ShortReal                WhitePoint;                  //!< white point value used in filmic tone mapping (path tracing), 1.0 by default
 
   Graphic3d_StereoMode              StereoMode;                  //!< stereoscopic output mode, Graphic3d_StereoMode_QuadBuffer by default
+  Standard_ShortReal                HmdFov2d;                    //!< sharp field of view range in degrees for displaying on-screen 2D elements, 30.0 by default;
   Anaglyph                          AnaglyphFilter;              //!< filter for anaglyph output, Anaglyph_RedCyan_Optimized by default
   Graphic3d_Mat4                    AnaglyphLeft;                //!< left  anaglyph filter (in normalized colorspace), Color = AnaglyphRight * theColorRight + AnaglyphLeft * theColorLeft;
   Graphic3d_Mat4                    AnaglyphRight;               //!< right anaglyph filter (in normalized colorspace), Color = AnaglyphRight * theColorRight + AnaglyphLeft * theColorLeft;
   Standard_Boolean                  ToReverseStereo;             //!< flag to reverse stereo pair, FALSE by default
+  Standard_Boolean                  ToMirrorComposer;            //!< if output device is an external composer - mirror rendering results in window in addition to sending frame to composer, TRUE by default
 
   Handle(Graphic3d_TransformPers)   StatsPosition;               //!< location of stats, upper-left position by default
   Handle(Graphic3d_TransformPers)   ChartPosition;               //!< location of stats chart, upper-right position by default

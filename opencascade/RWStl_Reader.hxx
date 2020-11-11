@@ -16,8 +16,11 @@
 #ifndef _RWStl_Reader_HeaderFile
 #define _RWStl_Reader_HeaderFile
 
-#include <Message_ProgressIndicator.hxx>
 #include <gp_XYZ.hxx>
+#include <Standard_ReadLineBuffer.hxx>
+#include <Standard_IStream.hxx>
+
+class Message_ProgressRange;
 
 //! An abstract class implementing procedure to read STL file.
 //!
@@ -39,19 +42,22 @@ public:
   //! Format is recognized automatically by analysis of the file header.
   //! Returns true if success, false on error or user break.
   Standard_EXPORT Standard_Boolean Read (const char* theFile,
-                                         const Handle(Message_ProgressIndicator)& theProgress);
+                                         const Message_ProgressRange& theProgress);
 
   //! Guess whether the stream is an Ascii STL file, by analysis of the first bytes (~200).
-  //! The function attempts to put back the read symbols to the stream which thus must support ungetc().
+  //! If the stream does not support seekg() then the parameter isSeekgAvailable should
+  //! be passed as 'false', in this case the function attempts to put back the read symbols
+  //! to the stream which thus must support ungetc().
   //! Returns true if the stream seems to contain Ascii STL.
-  Standard_EXPORT Standard_Boolean IsAscii (Standard_IStream& theStream);
+  Standard_EXPORT Standard_Boolean IsAscii (Standard_IStream& theStream,
+                                            const bool isSeekgAvailable);
 
   //! Reads STL data from binary stream.
   //! The stream must be opened in binary mode.
   //! Stops after reading the number of triangles recorded in the file header.
   //! Returns true if success, false on error or user break.
   Standard_EXPORT Standard_Boolean ReadBinary (Standard_IStream& theStream,
-                                               const Handle(Message_ProgressIndicator)& theProgress);
+                                               const Message_ProgressRange& theProgress);
 
   //! Reads data from the stream assumed to contain Ascii STL data.
   //! The stream can be opened either in binary or in Ascii mode.
@@ -61,8 +67,9 @@ public:
   //! If theUntilPos is non-zero, reads not more than until that position.
   //! Returns true if success, false on error or user break.
   Standard_EXPORT Standard_Boolean ReadAscii (Standard_IStream& theStream,
+                                              Standard_ReadLineBuffer& theBuffer,
                                               const std::streampos theUntilPos,
-                                              const Handle(Message_ProgressIndicator)& theProgress);
+                                              const Message_ProgressRange& theProgress);
 
 public:
 
