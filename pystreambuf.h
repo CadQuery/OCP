@@ -202,7 +202,7 @@ class streambuf : public std::basic_streambuf<char>
         throw std::invalid_argument(
           "That Python file object has no 'write' attribute");
       }
-      farthest_pptr = std::max(farthest_pptr, pptr());
+      farthest_pptr = (std::max)(farthest_pptr, pptr());
       off_type n_written = (off_type)(farthest_pptr - pbase());
       py::bytes chunk(pbase(), n_written);
       py_write(chunk);
@@ -229,7 +229,7 @@ class streambuf : public std::basic_streambuf<char>
     */
     virtual int sync() {
       int result = 0;
-      farthest_pptr = std::max(farthest_pptr, pptr());
+      farthest_pptr = (std::max)(farthest_pptr, pptr());
       if (farthest_pptr && farthest_pptr > pbase()) {
         off_type delta = pptr() - farthest_pptr;
         int_type status = overflow();
@@ -357,7 +357,7 @@ class streambuf : public std::basic_streambuf<char>
         buf_begin = reinterpret_cast<std::streamsize>(pbase());
         buf_cur = reinterpret_cast<std::streamsize>(pptr());
         buf_end = reinterpret_cast<std::streamsize>(epptr());
-        farthest_pptr = std::max(farthest_pptr, pptr());
+        farthest_pptr = (std::max)(farthest_pptr, pptr());
         upper_bound = reinterpret_cast<std::streamsize>(farthest_pptr) + 1;
       }
       else {
