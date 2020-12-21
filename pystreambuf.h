@@ -417,7 +417,6 @@ class streambuf : public std::basic_streambuf<char>
     };
 };
 
-std::size_t streambuf::default_buffer_size = 1024;
 
 struct streambuf_capsule
 {
