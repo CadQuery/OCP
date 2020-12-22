@@ -60,3 +60,5 @@ template<typename T> using shared_ptr_nodelete = shared_ptr<T,nodelete>;
 
 PYBIND11_DECLARE_HOLDER_TYPE(T, shared_ptr<T>);
 PYBIND11_DECLARE_HOLDER_TYPE(T, shared_ptr_nodelete<T>);
+
+#include "pystreambuf.h"

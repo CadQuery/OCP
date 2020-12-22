@@ -2,7 +2,7 @@ name = "OCP"
 input_folder = "./opencascade"
 output_folder = "./OCP"
 
-additional_files = ["FindOpenCascade.cmake"]
+additional_files = ["FindOpenCascade.cmake","pystreambuf.h"]
 
 pats = ["{}_*.hxx","{}.hxx"]
 
