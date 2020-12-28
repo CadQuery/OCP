@@ -694,6 +694,10 @@ struct NSOpenGLContext {};"""
         exclude_typedefs = ["BVH_PrimitiveSet3d"]
         exclude_class_templates = ["BVH_BaseBox"]
         exclude_class_template_methods = ["BVH_Tools::PointBoxProjection"]
+        
+        [Modules.BVH.parsing_headers]
+        
+            "BVH_Ray.hxx" = "#include <BVH_Types.hxx>"
 
     [Modules.TDocStd]
 
@@ -792,6 +796,10 @@ struct NSOpenGLContext {};"""
     [Modules.ShapeFix]
 
         include_header_pre_top = "#include <TColStd_HArray1OfReal.hxx>"
+        
+        [Modules.ShapeFix.parsing_headers]
+        
+            "ShapeFix_Solid.hxx" = "#include <Message_ProgressRange.hxx>"
 
     [Modules.BRepBlend]
 
@@ -879,6 +887,10 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
 
         include_header_pre = """#include <Graphic3d_StructureManager.hxx>
 #include <Graphic3d_Text.hxx>"""
+
+        [Modules.Prs3d.parsing_headers]
+
+            "Prs3d_Point.hxx" = "#include <Prs3d_Presentation.hxx>"
 
     [Modules.WNT]
 
@@ -1034,6 +1046,8 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.StdPrs.parsing_headers]
                
             "StdPrs_HLRShape.hxx" = "#include <TopoDS_Shape.hxx>"
+            "StdPrs_Vertex.hxx" = "#include <Prs3d_Presentation.hxx>"
+            "StdPrs_Point.hxx" = "#include <Prs3d_Presentation.hxx>"
       
     [Modules.Interface]
     
