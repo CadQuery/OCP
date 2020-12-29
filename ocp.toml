@@ -348,6 +348,7 @@ byref_types_smart_ptr = ["opencascade::handle"]
 parsing_header = '''#include <Standard_Handle.hxx>
 #undef Standard_NODISCARD
 #define Standard_NODISCARD
+#pragma clang diagnostic ignored "-Wunused-variable -Wmacro-redefined"
 '''
 
 [Linux]
@@ -408,6 +409,8 @@ parsing_header = '''#include <Standard_Handle.hxx>
 
     [Modules.NCollection]
 
+        include_header_pre_top = """#include <gp_XYZ.hxx>
+#include <gp_XY.hxx>"""
         include_header_pre = "const size_t DefaultBlockSize = 24600;"
         exclude_classes = ["NCollection","NCollection_ListNode"]
         
