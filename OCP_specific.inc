@@ -1,5 +1,7 @@
 #pragma once
 #include <Standard_Handle.hxx>
+#include <gp_XYZ.hxx>
+#include <gp_XY.hxx>
 #include <type_traits>
 #include <memory>
 
