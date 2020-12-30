@@ -348,7 +348,7 @@ byref_types_smart_ptr = ["opencascade::handle"]
 parsing_header = '''#include <Standard_Handle.hxx>
 #undef Standard_NODISCARD
 #define Standard_NODISCARD
-#pragma clang diagnostic ignored "-Wunused-variable -Wmacro-redefined"
+#pragma clang diagnostic ignored "-Wmacro-redefined"
 '''
 
 [Linux]
