@@ -996,6 +996,10 @@ using std::basic_istream;"""
 using std::basic_istream;
 using rapidjson::BasicOStreamWrapper;"""
 
+        [Modules.RWGltf.parsing_headers]
+
+            "RWGltf_GltfOStreamWriter.hxx" = "#include <rapidjson/rapidjson.h>"
+
     
     [Modules.BRepApprox_SurfaceTool]
 
