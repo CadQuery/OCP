@@ -19,4 +19,13 @@ The easiest way to get started is to use conda:
 ```
 conda install -c conda-forge -c cadquery ocp
 ```
-Building from sources is also possible, for details take a look at `azure-pipelines.yml`.
+Building from sources is also possible,
+```
+pywrap all ocp.toml
+cmake -S OCP -B build
+cmake --build build
+```
+but you might need to specify additional headers and libclang location for pywrap:
+```
+pywrap -i path1/include -i path2/include -l path/to/libclang.so all ocp.toml
+```
