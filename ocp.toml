@@ -345,7 +345,8 @@ module_mapping = "lambda x: Path(x).splitpath()[-1].split('.')[0].split('_')[0]"
 byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean"]
 byref_types_smart_ptr = ["opencascade::handle"]
 
-parsing_header = '''#include <Standard_Handle.hxx>
+parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
+#include <Standard_Handle.hxx>
 #undef Standard_NODISCARD
 #define Standard_NODISCARD
 '''
@@ -408,8 +409,15 @@ parsing_header = '''#include <Standard_Handle.hxx>
 
     [Modules.NCollection]
 
+        include_header_pre_top = """#include <gp_XYZ.hxx>
+#include <gp_XY.hxx>"""
         include_header_pre = "const size_t DefaultBlockSize = 24600;"
         exclude_classes = ["NCollection","NCollection_ListNode"]
+        
+        [Modules.NCollection.parsing_headers]
+        
+            "NCollection_CellFilter.hxx" = """#include <gp_XYZ.hxx>
+#include <gp_XY.hxx>"""
 
     [Modules.OSD]
 
@@ -497,6 +505,10 @@ parsing_header = '''#include <Standard_Handle.hxx>
     [Modules.HLRBRep]
 
         exclude_classes = ["HLRBRep_CLPropsATool",]
+        
+        [Modules.HLRBRep.parsing_headers]
+        
+            "HLRBRep_CLPropsATool.hxx" = "#include <HLRBRep_Curve.hxx>"
 
     [Modules.TopOpeBRepDS]
 
@@ -548,6 +560,11 @@ parsing_header = '''#include <Standard_Handle.hxx>
     [Modules.BRepFill]
 
         exclude_typedefs = ["BRepFill_DataMapOfShapeHArray2OfShape"]
+        
+        [Modules.BRepFill.parsing_headers]
+        
+            "BRepFill_Sweep.hxx" = "#include <TopTools_HArray1OfShape.hxx>"
+            "BRepFill_TrimShellCorner.hxx" = "#include <TopoDS_Vertex.hxx>"
 
     [Modules.ChFi3d]
     #error: invalid use of incomplete type ‘class Geom_BSplineCurve’
@@ -558,6 +575,11 @@ parsing_header = '''#include <Standard_Handle.hxx>
     [Modules.BOPDS]
 
         exclude_typedefs = ["BOPDS_DataMapOfPaveBlockCommonBlock"]
+        
+        [Modules.BOPDS.parsing_headers]
+        
+            "BOPDS_DataMapOfPaveBlockListOfInteger.hxx" = "#include <BOPDS_PaveBlock.hxx>"
+            "BOPDS_DataMapOfIntegerListOfPaveBlock.hxx" = "#include <TColStd_MapIntegerHasher.hxx>"
 
     [Modules.BRepMesh]
 
@@ -577,6 +599,10 @@ parsing_header = '''#include <Standard_Handle.hxx>
     [Modules.BOPTools]
 
         exclude_typedefs = ["BOPTools_BoxBndTree","BOPTools_PairSelector","BOPTools_Box2dTree","BOPTools_BoxPairSelector","BOPTools_Box2dPairSelector"]
+        
+        [Modules.BOPTools.parsing_headers]
+        
+            "BOPTools_SetMapHasher.hxx" = "#include <BOPTools_Set.hxx>"
 
     [Modules.Aspect]
 
@@ -603,6 +629,11 @@ struct NSOpenGLContext {};"""
                            "OpenGl_View::ChangeGraduatedTrihedron","OpenGl_View::LayerList"]
         exclude_typedefs = ["OpenGl_SequenceOfLayers","OpenGl_SetterList","OpenGl_MapOfHatchStylesAndIds","OpenGl_MapOfZLayerSettings","OpenGl_IndexedMapOfStructure","OpenGl_MapOfShaderPrograms","OpenGl_IndexedMapOfStructure","OpenGl_LayerSeqIds"]
         exclude_classes = ["OpenGl_GraduatedTrihedron","OpenGl_LayerList","OpenGl_VariableSetterSelector","OpenGl_RaytraceGeometry"]
+        
+        [Modules.OpenGl.parsing_headers]
+        
+            "OpenGl_LayerList.hxx" = "#include <OpenGl_FrameBuffer.hxx>"
+            "OpenGl_ShaderObject.hxx" = "#include <NCollection_Sequence.hxx>"
 
     [Modules.StdSelect]
 
@@ -666,6 +697,10 @@ struct NSOpenGLContext {};"""
         exclude_typedefs = ["BVH_PrimitiveSet3d"]
         exclude_class_templates = ["BVH_BaseBox"]
         exclude_class_template_methods = ["BVH_Tools::PointBoxProjection"]
+        
+        [Modules.BVH.parsing_headers]
+        
+            "BVH_Ray.hxx" = "#include <BVH_Types.hxx>"
 
     [Modules.TDocStd]
 
@@ -688,7 +723,12 @@ struct NSOpenGLContext {};"""
 
     [Modules.CDM]
 
-        exclude_typedefs = ["CDM_PresentationDirectory","CDM_MetaDataLookUpTable"]
+        exclude_typedefs = ["CDM_PresentationDirectory", "CDM_MetaDataLookUpTable"]
+        
+        [Modules.CDM.parsing_headers]
+        
+            "CDM_MetaDataLookUpTable.hxx" = "#include <CDM_MetaData.hxx>"
+            "CDM_DataMapIteratorOfMetaDataLookUpTable.hxx" = "#include <CDM_MetaData.hxx>"
 
     [Modules.TDataStd]
 
@@ -716,6 +756,10 @@ struct NSOpenGLContext {};"""
 
         exclude_typedefs = ["TNaming_DataMapOfShapePtrRefShape"]
         exclude_methods = ["TNaming_RefShape::FirstUse"]
+        
+        [Modules.TNaming.parsing_headers]
+        
+            "TNaming_NCollections.hxx" = "#include <TopoDS_Shape.hxx>"
 
     [Modules.TDF]
 
@@ -735,6 +779,10 @@ struct NSOpenGLContext {};"""
     [Modules.STEPConstruct]
 
         exclude_typedefs = ["STEPConstruct_DataMapOfAsciiStringTransient","STEPConstruct_DataMapOfPointTransient"]
+    
+        [Modules.STEPConstruct.parsing_headers]
+        
+            "STEPConstruct_PointHasher.hxx" = "#include <gp_Pnt.hxx>"
 
     [Modules.RWStl]
 
@@ -751,10 +799,19 @@ struct NSOpenGLContext {};"""
     [Modules.ShapeFix]
 
         include_header_pre_top = "#include <TColStd_HArray1OfReal.hxx>"
+        
+        [Modules.ShapeFix.parsing_headers]
+        
+            "ShapeFix_Solid.hxx" = "#include <Message_ProgressRange.hxx>"
 
     [Modules.BRepBlend]
 
         exclude_methods = ["BRepBlend_AppSurface::TolReached"]
+        
+        [Modules.BRepBlend.parsing_headers]
+        
+            "BRepBlend_HCurve2dTool.hxx" = "#include <Adaptor2d_HCurve2d.hxx>"
+            "BRepBlend_HCurveTool.hxx" = "#include <Adaptor3d_HCurve.hxx>"
 
     [Modules.StdPersistent]
 
@@ -811,6 +868,15 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
     [Modules.IntAna]
 
         exclude_methods = ["IntAna_Quadric::SpecialPoints"]
+        
+        [Modules.IntAna.parsing_headers]
+        
+            "IntAna_Quadric.hxx" = """#include <gp_Pln.hxx>
+#include <gp_Sphere.hxx>
+#include <gp_Cylinder.hxx>
+#include <gp_Cone.hxx>
+#include <gp_Ax3.hxx>
+#include <gp_Pnt.hxx>"""
 
     [Modules.CDF]
 
@@ -824,6 +890,10 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
 
         include_header_pre = """#include <Graphic3d_StructureManager.hxx>
 #include <Graphic3d_Text.hxx>"""
+
+        [Modules.Prs3d.parsing_headers]
+
+            "Prs3d_Point.hxx" = "#include <Prs3d_Presentation.hxx>"
 
     [Modules.WNT]
 
@@ -852,6 +922,11 @@ struct NSView {};"""
     [Modules.PCDM]
 
         exclude_classes = ["PCDM_DOMHeaderParser"]
+        
+        [Modules.PCDM.parsing_headers]
+        
+            "PCDM_ReadWriter.hxx" = "#include <Standard_IStream.hxx>"
+            "PCDM_ReadWriter_1.hxx" = "#include <Standard_IStream.hxx>"
 
     [Modules.ShapeAnalysis]
 
@@ -868,6 +943,10 @@ struct NSView {};"""
             "STEPCAFControl_DataMapOfSDRExternFile","STEPCAFControl_DataMapOfSDRExternFile",
             "STEPCAFControl_DataMapOfPDExternFile","STEPCAFControl_DataMapOfLabelExternFile",
             "STEPCAFControl_DataMapOfShapeSDR"]
+        
+        [Modules.STEPCAFControl.parsing_headers]
+        
+            "STEPCAFControl_Writer.hxx" = "#include <NCollection_Vector.hxx>"
             
     [Modules.XCAFDimTolObjects]
     
@@ -916,3 +995,69 @@ using std::basic_istream;"""
         include_header_pre = """#include <istream>
 using std::basic_istream;
 using rapidjson::BasicOStreamWrapper;"""
+
+        [Modules.RWGltf.parsing_headers]
+
+            "RWGltf_GltfOStreamWriter.hxx" = "#include <rapidjson/rapidjson.h>"
+
+    
+    [Modules.BRepApprox_SurfaceTool]
+
+        [Modules.BRepApprox.parsing_headers]
+        
+            "BRepApprox_SurfaceTool.hxx" = "#include <BRepAdaptor_Surface.hxx>"
+            
+    [Modules.IntPatch]
+    
+        [Modules.IntPatch.parsing_headers]
+        
+            "IntPatch_PolyhedronTool.hxx" = "#include <IntPatch_Polyhedron.hxx>"
+            
+    [Modules.ShapeConstruct]
+    
+        [Modules.ShapeConstruct.parsing_headers]
+        
+            "ShapeConstruct_ProjectCurveOnSurface.hxx" = "#include <TColStd_HArray1OfReal.hxx>"
+    
+    [Modules.HLRAlgo]
+    
+        [Modules.HLRAlgo.parsing_headers]
+            
+            "HLRAlgo_HArray1OfPHDat.hxx" = "#include <gp_XYZ.hxx>"
+            "HLRAlgo_Array1OfPHDat.hxx" = "#include <gp_XYZ.hxx>"
+            "HLRAlgo_PolyHidingData.hxx" = "#include <gp_XYZ.hxx>"
+            "HLRAlgo_PolyShellData.hxx" = "#include <HLRAlgo_PolyData.hxx>"
+    
+    [Modules.ShapeUpgrade]
+    
+        [Modules.ShapeUpgrade.parsing_headers]        
+            
+            "ShapeUpgrade_UnifySameDomain.hxx" = "#include <Precision.hxx>"
+    
+    [Modules.IntTools]
+    
+        [Modules.IntTools.parsing_headers]
+                
+            "IntTools_SurfaceRangeSampleMapHasher.hxx" = "#include <IntTools_SurfaceRangeSample.hxx>"
+            "IntTools_CurveRangeSampleMapHasher.hxx" = "#include <IntTools_CurveRangeSample.hxx>"
+            "IntTools_EdgeFace.hxx" = "#include <Precision.hxx>"
+     
+    [Modules.BRepOffset]
+    
+        [Modules.BRepOffset.parsing_headers]       
+            
+            "BRepOffset_Inter2d.hxx" = "#include <TopoDS_Edge.hxx>"
+     
+    [Modules.StdPrs]
+    
+        [Modules.StdPrs.parsing_headers]
+               
+            "StdPrs_HLRShape.hxx" = "#include <TopoDS_Shape.hxx>"
+            "StdPrs_Vertex.hxx" = "#include <Prs3d_Presentation.hxx>"
+            "StdPrs_Point.hxx" = "#include <Prs3d_Presentation.hxx>"
+      
+    [Modules.Interface]
+    
+        [Modules.Interface.parsing_headers]      
+            
+            "Interface_ValueInterpret.hxx" = "#include <Interface_TypedValue.hxx>"
