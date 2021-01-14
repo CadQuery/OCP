@@ -136,6 +136,9 @@ namespace py = pybind11;
   Note: references are to the C++ standard (the numbers between parentheses
   at the end of references are margin markers).
 */
+
+namespace pystream{
+
 class streambuf : public std::basic_streambuf<char>
 {
   private:
@@ -522,6 +525,8 @@ struct istream : private streambuf_capsule, streambuf::istream
   }
 };
 
+};
+
 namespace pybind11 { namespace detail {
     template <> struct type_caster<std::istream> {
     public:
@@ -530,15 +535,15 @@ namespace pybind11 { namespace detail {
               return false;
             }
 
-						obj = py::reinterpret_borrow<object>(src);
-            value = std::unique_ptr<istream>(new istream(obj, 0));
+			obj = py::reinterpret_borrow<object>(src);
+            value = std::unique_ptr<pystream::istream>(new pystream::istream(obj, 0));
 
             return true;
         }
 
     protected:
-				py::object obj;
-        std::unique_ptr<istream> value;
+		py::object obj;
+        std::unique_ptr<pystream::istream> value;
 
     public:
         static constexpr auto name = _("io.BytesIO");
@@ -557,15 +562,15 @@ namespace pybind11 { namespace detail {
               return false;
             }
 
-						obj = py::reinterpret_borrow<object>(src);
-            value = std::unique_ptr<ostream>(new ostream(obj, 0));
+			obj = py::reinterpret_borrow<object>(src);
+            value = std::unique_ptr<pystream::ostream>(new pystream::ostream(obj, 0));
 
             return true;
         }
 
     protected:
-				py::object obj;
-        std::unique_ptr<ostream> value;
+		py::object obj;
+        std::unique_ptr<pystream::ostream> value;
 
     public:
         static constexpr auto name = _("io.BytesIO");

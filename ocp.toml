@@ -2,7 +2,7 @@ name = "OCP"
 input_folder = "./opencascade"
 output_folder = "./OCP"
 
-additional_files = ["FindOpenCascade.cmake","pystreambuf.h"]
+additional_files = ["FindOpenCascade.cmake","pystreambuf.h","vtk_pybind.h"]
 
 pats = ["{}_*.hxx","{}.hxx"]
 
@@ -319,7 +319,11 @@ modules = ["Standard",
 "XmlXCAFDrivers",
 "Vrml",
 "VrmlAPI",
-"RWGltf"]
+"RWGltf",
+"IVtk",
+"IVtkOCC",
+"IVtkTools",
+"IVtkVTK"]
 
 exclude = ["Standard_Handle.hxx","Standard",
            "math_GaussPoints.hxx","NCollection_Shared.hxx","OSD_WNT.hxx",
@@ -334,7 +338,8 @@ exclude = ["Standard_Handle.hxx","Standard",
            "BRepMesh_NodeInsertionMeshAlgo.hxx","BRepMesh_BoundaryParamsRangeSplitter.hxx",
            "BRepMesh_ConeRangeSplitter.hxx","BRepMesh_CylinderRangeSplitter.hxx",
            "BRepMesh_NURBSRangeSplitter.hxx","BRepMesh_SphereRangeSplitter.hxx",
-           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx"]
+           "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx",
+           "IVtk_IShapePickerAlgo.hxx"]
 #           "BVH_Box.hxx","BVH_tools.hxx"
 
 exceptions = ["Standard_Failure"]
@@ -472,7 +477,7 @@ parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
     [Modules.BRepBuilderAPI]
 
         exclude_typedefs = ["BRepBuilderAPI_CellFilter","BRepBuilderAPI_BndBoxTree"]
-         exclude_methods = ["BRepBuilderAPI_FastSewing::GetStatuses"]
+        exclude_methods = ["BRepBuilderAPI_FastSewing::GetStatuses"]
 
 
     [Modules.MAT2d]
@@ -1061,3 +1066,26 @@ using rapidjson::BasicOStreamWrapper;"""
         [Modules.Interface.parsing_headers]      
             
             "Interface_ValueInterpret.hxx" = "#include <Interface_TypedValue.hxx>"
+            
+    [Modules.IVtkVTK]
+    
+        include_header_pre = """#include <vtkRenderer.h>
+#include "vtk_pybind.h" """
+            
+    [Modules.IVtkTools]
+    
+        include_header_pre = """#undef Handle
+#include <vtkRenderer.h>
+#include <vtkActor.h>
+#include <vtkInformationObjectBaseKey.h>"""
+
+        exclude_methods = ["IVtkTools_ShapePicker::Pick","IVtkTools_ShapePicker::pick",
+        "IVtkTools_SubPolyDataFilter::PrintSelf", "IVtkTools_DisplayModeFilter::PrintSelf"]
+
+    [Modules.IVtk]
+    
+        exclude_typedefs = ["IVtk_PointIdList"]
+        
+    [Modules.IVtkOCC]
+
+        exclude_methods = ["IVtkOCC_ShapePickerAlgo::Pick", "IVtkOCC_ViewerSelector::Pick"]
