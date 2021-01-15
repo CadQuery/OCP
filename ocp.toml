@@ -1,6 +1,7 @@
 name = "OCP"
 input_folder = "./opencascade"
 output_folder = "./OCP"
+template_path = "./templates"
 
 additional_files = ["FindOpenCascade.cmake","pystreambuf.h","vtk_pybind.h"]
 
