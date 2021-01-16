@@ -66,15 +66,38 @@ jobs:
     displayName: 'Read output dir from the config file'
     name: 'conf'
 
-  - bash: |
-      ls && env && \
-      source activate cpp-py-bindgen && \
-      python -m bindgen -n $(n_cores) parse ${{ parameters.config_file }} out.pkl && \
-      python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
-      python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
-    displayName: 'Generate'
-    env:
-      PYTHONPATH: pywrap
+  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
+    - bash: |
+        ls && env && \
+        source activate cpp-py-bindgen && \
+        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i $CONDA_PREFIX/include/vtk-9.0/ -i $CONDA_PREFIX/lib/clang/10.0.1/include/ parse ${{ parameters.config_file }} out.pkl && \
+        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
+        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
+      displayName: 'Generate'
+      env:
+        PYTHONPATH: pywrap
+  
+  - ${{ if contains(parameters.vmImage, 'mac') }}:
+    - bash: |
+        ls && env && \
+        source activate cpp-py-bindgen && \
+        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i $CONDA_PREFIX/include/vtk-9.0/ -i $CONDA_PREFIX/lib/clang/10.0.1/include/ -i $CONDA_PREFIX/include/c++/v1/ parse ${{ parameters.config_file }} out.pkl && \
+        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
+        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
+      displayName: 'Generate'
+      env:
+        PYTHONPATH: pywrap
+  
+  - ${{ if contains(parameters.vmImage, 'win') }}:
+    - bash: |
+        ls && env && \
+        source activate cpp-py-bindgen && \
+        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/Library/include/ -i $CONDA_PREFIX/Library/include/vtk-9.0/ -i $CONDA_PREFIX/Library/include/clang/ parse ${{ parameters.config_file }} out.pkl && \
+        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
+        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
+      displayName: 'Generate'
+      env:
+        PYTHONPATH: pywrap
 
   - task: CopyFiles@2
     inputs:
@@ -146,7 +169,7 @@ jobs:
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
           source activate cpp-py-bindgen && \
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD_LIBRARIES="$CONDA_PREFIX/lib/libvtkWrappingPythonCore-9.0.so.9.0.1" -DCMAKE_CXX_FLAGS=-I\ $CONDA_PREFIX/include/vtk-9.0 && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'

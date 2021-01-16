@@ -1,0 +1,64 @@
+cmake_minimum_required( VERSION 3.16 )
+project( {{ name }}
+         LANGUAGES CXX )
+
+list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
+
+if(WIN32)
+  set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/python.exe" )
+  add_compile_definitions( _hypot=hypot _AMD64_ _WINDOWS)
+  execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from sys import version_info as vi; print(f'{vi.major}{vi.minor}')"
+                  OUTPUT_VARIABLE PYTHON_VER )
+  string(STRIP ${PYTHON_VER} PYTHON_VER)
+  set( PYTHON_LIBRARY $ENV{CONDA_PREFIX}/libs/python${PYTHON_VER}.lib )
+else()
+  set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/bin/python" )
+endif()
+
+find_package( pybind11 REQUIRED )
+find_package( OpenCascade REQUIRED COMPONENTS OPENCASCADE )
+find_package( VTK 9.0 REQUIRED COMPONENTS WrappingPythonCore RenderingCore CommonDataModel CommonExecutionModel)
+
+#clang-cl related workaround
+if(WIN32)
+  set( PYTHON_LIBRARY $ENV{CONDA_PREFIX}/libs/python${PYTHON_VER}.lib )
+endif()
+
+include_directories( ${PROJECT_SOURCE_DIR} )
+file( GLOB CPP_FILES ${PROJECT_SOURCE_DIR}/*.cpp )
+
+add_library( {{ name }} MODULE ${CPP_FILES} )
+
+target_link_libraries( {{ name }} PRIVATE OPENCASCADE pybind11::pybind11 VTK::WrappingPythonCore VTK::RenderingCore VTK::CommonDataModel VTK::CommonExecutionModel)
+set_target_properties( {{ name }}
+                       PROPERTIES
+                       CXX_STANDARD 17
+                       INTERPROCEDURAL_OPTIMIZATION FALSE
+                       PREFIX "${PYTHON_MODULE_PREFIX}"
+                       SUFFIX "${PYTHON_MODULE_EXTENSION}" )
+
+if(WIN32)
+  target_compile_options( {{ name }} PRIVATE /bigobj )
+  target_compile_definitions( {{ name }} PRIVATE 
+                              "Standard_EXPORT="
+                              "Standard_EXPORTEXTERN="
+                              "Standard_EXPORTEXTERNC=extern \"C\""
+                              "Standard_IMPORT=extern"
+                              "Standard_IMPORTC=extern \"C\""
+                              "_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING")
+  target_link_libraries( {{ name }} PRIVATE opengl32 )
+  target_link_libraries( {{ name }} PRIVATE ${PYTHON_LIBRARY} )
+else()
+  set_target_properties( {{ name }}
+                         PROPERTIES
+                         CMAKE_CXX_FLAGS_RELEASE "-O3 "
+                         COMPILE_FLAGS "-fpermissive -fvisibility=hidden -fvisibility-inlines-hidden" )
+endif()
+
+if(UNIX AND NOT APPLE)
+  target_link_options( {{ name }} PRIVATE "LINKER:--allow-multiple-definition")
+endif()
+
+if(APPLE)
+  target_link_libraries( {{ name }} PRIVATE "-undefined dynamic_lookup")
+endif()
