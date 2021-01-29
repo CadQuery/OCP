@@ -29,7 +29,6 @@
 class ShapeFix_Shell;
 class TopoDS_Solid;
 class Message_ProgressScope;
-class Message_ProgressRange;
 class TopoDS_Shell;
 class ShapeExtend_BasicMsgRegistrator;
 
