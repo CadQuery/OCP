@@ -30,7 +30,7 @@ for name,libs in {'linux' : libs_linux,'mac' : libs_mac, 'win' : libs_win}.items
                     exported_symbols.append(f'{s.name}\n')
         else:
             for s in p.exported_functions:
-                exported_symbols.append(f'{s}\n')
+                exported_symbols.append(f'{s.name}\n')
             
     with open(f'symbols_mangled_{name}.dat','w') as f:
         f.writelines(exported_symbols)
