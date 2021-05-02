@@ -546,7 +546,7 @@ namespace pybind11 { namespace detail {
         std::unique_ptr<pystream::istream> value;
 
     public:
-        static constexpr auto name = _("io.BytesIO");
+        static constexpr auto name = _("io.StringIO");
         static handle cast(std::istream &src, return_value_policy policy, handle parent) {
             return none().release();
         }
@@ -573,7 +573,7 @@ namespace pybind11 { namespace detail {
         std::unique_ptr<pystream::ostream> value;
 
     public:
-        static constexpr auto name = _("io.BytesIO");
+        static constexpr auto name = _("io.StringIO");
         static handle cast(std::ostream &src, return_value_policy policy, handle parent) {
             return none().release();
         }
