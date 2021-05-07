@@ -263,10 +263,11 @@ class streambuf : public std::basic_streambuf<char>
       }
       farthest_pptr = (std::max)(farthest_pptr, pptr());
       off_type n_written = (off_type)(farthest_pptr - pbase());
-      py::str chunk(pbase(), n_written);
+      py::bytes chunk(pbase(), n_written);
       py_write(chunk);
       if (!traits_type::eq_int_type(c, traits_type::eof())) {
-        py_write(traits_type::to_char_type(c));
+        char cs[2] = {traits_type::to_char_type(c)};
+        py_write(py::bytes(cs));
         n_written++;
       }
       if (n_written) {
@@ -546,7 +547,7 @@ namespace pybind11 { namespace detail {
         std::unique_ptr<pystream::istream> value;
 
     public:
-        static constexpr auto name = _("io.StringIO");
+        static constexpr auto name = _("io.BytesIO");
         static handle cast(std::istream &src, return_value_policy policy, handle parent) {
             return none().release();
         }
@@ -573,7 +574,7 @@ namespace pybind11 { namespace detail {
         std::unique_ptr<pystream::ostream> value;
 
     public:
-        static constexpr auto name = _("io.StringIO");
+        static constexpr auto name = _("io.BytesIO");
         static handle cast(std::ostream &src, return_value_policy policy, handle parent) {
             return none().release();
         }
