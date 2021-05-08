@@ -266,7 +266,8 @@ class streambuf : public std::basic_streambuf<char>
       py::bytes chunk(pbase(), n_written);
       py_write(chunk);
       if (!traits_type::eq_int_type(c, traits_type::eof())) {
-        py_write(traits_type::to_char_type(c));
+        char cs[2] = {traits_type::to_char_type(c)};
+        py_write(py::bytes(cs));
         n_written++;
       }
       if (n_written) {
