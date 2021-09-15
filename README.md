@@ -19,7 +19,7 @@ The easiest way to get started is to use conda:
 ```
 conda install -c conda-forge -c cadquery ocp
 ```
-Building from sources is also possible,
+Building from sources is also possible using https://github.com/CadQuery/pywrap
 ```
 pywrap all ocp.toml
 cmake -S OCP -B build
