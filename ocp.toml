@@ -771,7 +771,14 @@ struct NSOpenGLContext {};"""
 
         exclude_typedefs = ["TDF_AttributeDataMap","TDF_AttributeDoubleMap"]
         exclude_classes = ["TDF_LabelNode"]
-        exclude_methods = ["TDF_DerivedAttribute::Register"]
+        exclude_methods = ["TDF_DerivedAttribute::Register", "TDF_Label::FindAttribute"]
+        
+        [Modules.TDF.Classes.TDF_Label.additional_methods.FindAttribute]
+
+            body = "[]( TDF_Label & self , const Standard_GUID& anID, TDF_Attribute& anAttribute){ Handle(TDF_Attribute) dummy_attr; auto rv = self.FindAttribute(anID, dummy_attr); anAttribute.Restore(dummy_attr); return rv;}"
+            help = "Finds an attributes according to an ID."
+            arguments  = ["GUID","Attribute"]
+
 
     [Modules.XmlTObjDrivers]
 
