@@ -4,25 +4,25 @@ project( {{ name }}
 
 list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 
-if(WIN32)
-  set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/python.exe" )
-  add_compile_definitions( _hypot=hypot _AMD64_ _WINDOWS)
-  execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from sys import version_info as vi; print(f'{vi.major}{vi.minor}')"
-                  OUTPUT_VARIABLE PYTHON_VER )
-  string(STRIP ${PYTHON_VER} PYTHON_VER)
-  set( PYTHON_LIBRARY $ENV{CONDA_PREFIX}/libs/python${PYTHON_VER}.lib )
-else()
-  set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/bin/python" )
+SET(PYTHON_EXECUTABLE "" CACHE PATH "Pyhon executble")
+SET(PYTHON_LIBRARY "" CACHE PATH "Python library path - only relevant on windows")
+
+if(DEFINED ENV{CONDA_PREFIX})
+    if(WIN32)
+      set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/python.exe" CACHE PATH "Pyhon executble" FORCE)
+      add_compile_definitions( _hypot=hypot _AMD64_ _WINDOWS)
+      execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from sys import version_info as vi; print(f'{vi.major}{vi.minor}')"
+                      OUTPUT_VARIABLE PYTHON_VER )
+      string(STRIP ${PYTHON_VER} PYTHON_VER)
+      set( PYTHON_LIBRARY $ENV{CONDA_PREFIX}/libs/python${PYTHON_VER}.lib CACHE PATH "Python library path - only relevant on windows" FORCE)
+    else()
+      set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/bin/python" CACHE PATH "Pyhon executble" FORCE)
+    endif()
 endif()
 
 find_package( pybind11 REQUIRED )
 find_package( OpenCascade REQUIRED COMPONENTS OPENCASCADE )
 find_package( VTK 9.0 REQUIRED COMPONENTS WrappingPythonCore RenderingCore CommonDataModel CommonExecutionModel)
-
-#clang-cl related workaround
-if(WIN32)
-  set( PYTHON_LIBRARY $ENV{CONDA_PREFIX}/libs/python${PYTHON_VER}.lib )
-endif()
 
 include_directories( ${PROJECT_SOURCE_DIR} )
 file( GLOB CPP_FILES ${PROJECT_SOURCE_DIR}/*.cpp )
