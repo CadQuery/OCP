@@ -4,12 +4,12 @@ project( {{ name }}
 
 list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 
-SET(PYTHON_EXECUTABLE "" CACHE PATH "Pyhon executble")
+SET(PYTHON_EXECUTABLE "" CACHE PATH "Pyhon executable")
 SET(PYTHON_LIBRARY "" CACHE PATH "Python library path - only relevant on windows")
 
 if(DEFINED ENV{CONDA_PREFIX})
     if(WIN32)
-      set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/python.exe" CACHE PATH "Pyhon executble" FORCE)
+      set( PYTHON_EXECUTABLE "$ENV{CONDA_PREFIX}/python.exe" CACHE PATH "Pyhon executable" FORCE)
       add_compile_definitions( _hypot=hypot _AMD64_ _WINDOWS)
       execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from sys import version_info as vi; print(f'{vi.major}{vi.minor}')"
                       OUTPUT_VARIABLE PYTHON_VER )
