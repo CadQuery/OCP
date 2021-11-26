@@ -1,8 +1,14 @@
 include( FindPackageHandleStandardArgs )
 
-find_path( OPENCASCADE_INCLUDE_DIR Standard.hxx PATHS
-           $ENV{CONDA_PREFIX}/include/opencascade
-           $ENV{CONDA_PREFIX}/Library/include/opencascade )
+SET(OCCT_INCLUDE_PATH "" CACHE PATH "OCCT include path")
+SET(OCCT_LIBRARY_PATH "" CACHE PATH "OCCT library path")
+
+find_path(
+    OPENCASCADE_INCLUDE_DIR Standard.hxx PATHS
+    $ENV{CONDA_PREFIX}/include/opencascade
+    $ENV{CONDA_PREFIX}/Library/include/opencascade
+    ${OCCT_INCLUDE_PATH}
+)
 
 set ( OCCT_MODULES
     TKMath
@@ -60,8 +66,12 @@ add_library( OPENCASCADE INTERFACE )
 
 foreach( MOD ${OCCT_MODULES})
 
-     find_library( OPENCASCADE_LIB_${MOD} NAMES ${MOD} PATHS
-                   $ENV{CONDA_PREFIX}/lib  $ENV{CONDA_PREFIX}/Library/lib )
+     find_library(
+         OPENCASCADE_LIB_${MOD} NAMES ${MOD} PATHS
+         ${OCCT_LIBRARY_PATH}
+         $ENV{CONDA_PREFIX}/lib
+         $ENV{CONDA_PREFIX}/Library/lib
+     )
 
      add_library( OPENCASCADE_${MOD} UNKNOWN IMPORTED)
      set_target_properties( OPENCASCADE_${MOD}

@@ -1,6 +1,6 @@
 parameters:
   name: 'Generate bindings'
-  vmImage: 'Ubuntu-16.04'
+  vmImage: 'ubuntu-latest'
   py_maj: '3'
   py_min: '7'
   py_min_build:
