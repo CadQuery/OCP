@@ -14,6 +14,8 @@
 #ifndef _XCAFDoc_VisMaterial_HeaderFile
 #define _XCAFDoc_VisMaterial_HeaderFile
 
+#include <Graphic3d_AlphaMode.hxx>
+#include <Graphic3d_TypeOfBackfacingModel.hxx>
 #include <TDF_Attribute.hxx>
 #include <XCAFDoc_VisMaterialCommon.hxx>
 #include <XCAFDoc_VisMaterialPBR.hxx>
@@ -67,29 +69,41 @@ public:
   //! Fill in graphic aspects.
   Standard_EXPORT void FillAspect (const Handle(Graphic3d_Aspects)& theAspect) const;
 
-  //! Return TRUE if metal-roughness PBR material is defined.
+  //! Return TRUE if metal-roughness PBR material is defined; FALSE by default.
   Standard_Boolean HasPbrMaterial() const { return myPbrMat.IsDefined; }
 
   //! Return metal-roughness PBR material.
+  //! Note that default constructor creates an empty material (@sa XCAFDoc_VisMaterialPBR::IsDefined).
   const XCAFDoc_VisMaterialPBR& PbrMaterial() const { return myPbrMat; }
 
   //! Setup metal-roughness PBR material.
   Standard_EXPORT void SetPbrMaterial (const XCAFDoc_VisMaterialPBR& theMaterial);
 
   //! Setup undefined metal-roughness PBR material.
-  void UnsetPbrMaterial() { SetPbrMaterial (XCAFDoc_VisMaterialPBR()); }
+  void UnsetPbrMaterial()
+  {
+    XCAFDoc_VisMaterialPBR anEmpty;
+    anEmpty.IsDefined = false;
+    SetPbrMaterial (anEmpty);
+  }
 
-  //! Return TRUE if common material is defined.
+  //! Return TRUE if common material is defined; FALSE by default.
   Standard_Boolean HasCommonMaterial() const { return myCommonMat.IsDefined; }
 
   //! Return common material.
+  //! Note that default constructor creates an empty material (@sa XCAFDoc_VisMaterialCommon::IsDefined).
   const XCAFDoc_VisMaterialCommon& CommonMaterial() const { return myCommonMat; }
 
   //! Setup common material.
   Standard_EXPORT void SetCommonMaterial (const XCAFDoc_VisMaterialCommon& theMaterial);
 
   //! Setup undefined common material.
-  void UnsetCommonMaterial() { SetCommonMaterial (XCAFDoc_VisMaterialCommon()); }
+  void UnsetCommonMaterial()
+  {
+    XCAFDoc_VisMaterialCommon anEmpty;
+    anEmpty.IsDefined = false;
+    SetCommonMaterial (anEmpty);
+  }
 
   //! Return base color.
   Standard_EXPORT Quantity_ColorRGBA BaseColor() const;
@@ -104,11 +118,20 @@ public:
   Standard_EXPORT void SetAlphaMode (Graphic3d_AlphaMode theMode,
                                      Standard_ShortReal  theCutOff = 0.5f);
 
-  //! Specifies whether the material is double sided; TRUE by default.
-  Standard_Boolean IsDoubleSided() const { return myIsDoubleSided; }
+  //! Returns if the material is double or single sided; Graphic3d_TypeOfBackfacingModel_Auto by default.
+  Graphic3d_TypeOfBackfacingModel FaceCulling() const { return myFaceCulling; }
 
-  //! Specifies whether the material is double sided.
-  Standard_EXPORT void SetDoubleSided (Standard_Boolean theIsDoubleSided);
+  //! Specifies whether the material is double or single sided.
+  Standard_EXPORT void SetFaceCulling (Graphic3d_TypeOfBackfacingModel theFaceCulling);
+
+  Standard_DEPRECATED("Deprecated method, FaceCulling() should be used instead")
+  Standard_Boolean IsDoubleSided() const { return myFaceCulling == Graphic3d_TypeOfBackfacingModel_DoubleSided; }
+
+  Standard_DEPRECATED("Deprecated method, SetFaceCulling() should be used instead")
+  void SetDoubleSided (Standard_Boolean theIsDoubleSided)
+  {
+    SetFaceCulling (theIsDoubleSided ? Graphic3d_TypeOfBackfacingModel_DoubleSided : Graphic3d_TypeOfBackfacingModel_Auto);
+  }
 
   //! Return material name / tag (transient data, not stored in the document).
   const Handle(TCollection_HAsciiString)& RawName() const { return myRawName; }
@@ -124,7 +147,7 @@ public:
     {
       return true;
     }
-    return theOther->myIsDoubleSided == myIsDoubleSided
+    return theOther->myFaceCulling == myFaceCulling
         && theOther->myAlphaCutOff == myAlphaCutOff
         && theOther->myAlphaMode == myAlphaMode
         && theOther->myCommonMat.IsEqual (myCommonMat)
@@ -165,7 +188,7 @@ private:
   XCAFDoc_VisMaterialCommon        myCommonMat;     //!< common material definition
   Graphic3d_AlphaMode              myAlphaMode;     //!< alpha mode; Graphic3d_AlphaMode_BlendAuto by default
   Standard_ShortReal               myAlphaCutOff;   //!< alpha cutoff value; 0.5 by default
-  Standard_Boolean                 myIsDoubleSided; //!< specifies whether the material is double sided; TRUE by default
+  Graphic3d_TypeOfBackfacingModel  myFaceCulling;   //!< specifies whether the material is double/single sided
 
 };
 

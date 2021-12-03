@@ -21,6 +21,8 @@
 
 #include <TDataStd_GenericEmpty.hxx>
 #include <Standard_Boolean.hxx>
+#include <UnitsMethods_LengthUnit.hxx>
+
 class Standard_GUID;
 class TDF_Label;
 class TDocStd_Document;
@@ -94,31 +96,87 @@ public:
 
   //! Creates (if it does not exist) ShapeTool attribute on ShapesLabel().
   Standard_EXPORT static Handle(XCAFDoc_ShapeTool) ShapeTool (const TDF_Label& acces);
+
+  //! Checks for the ShapeTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckShapeTool(const TDF_Label& theAcces);
   
   //! Creates (if it does not exist) ColorTool attribute on ColorsLabel().
   Standard_EXPORT static Handle(XCAFDoc_ColorTool) ColorTool (const TDF_Label& acces);
+
+  //! Checks for the ColorTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckColorTool(const TDF_Label& theAcces);
 
   //! Creates (if it does not exist) XCAFDoc_VisMaterialTool attribute on VisMaterialLabel().
   //! Should not be confused with MaterialTool() defining physical/manufacturing materials.
   Standard_EXPORT static Handle(XCAFDoc_VisMaterialTool) VisMaterialTool (const TDF_Label& theLabel);
 
+  //! Checks for the VisMaterialTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckVisMaterialTool(const TDF_Label& theAcces);
+
   //! Creates (if it does not exist) LayerTool attribute on LayersLabel().
   Standard_EXPORT static Handle(XCAFDoc_LayerTool) LayerTool (const TDF_Label& acces);
   
+  //! Checks for the LayerTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckLayerTool(const TDF_Label& theAcces);
+
   //! Creates (if it does not exist) DimTolTool attribute on DGTsLabel().
   Standard_EXPORT static Handle(XCAFDoc_DimTolTool) DimTolTool (const TDF_Label& acces);
+
+  //! Checks for the DimTolTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckDimTolTool(const TDF_Label& theAcces);
   
   //! Creates (if it does not exist) DimTolTool attribute on DGTsLabel().
   Standard_EXPORT static Handle(XCAFDoc_MaterialTool) MaterialTool (const TDF_Label& acces);
 
+  //! Checks for the MaterialTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckMaterialTool(const TDF_Label& theAcces);
+
   //! Creates (if it does not exist) ViewTool attribute on ViewsLabel().
   Standard_EXPORT static Handle(XCAFDoc_ViewTool) ViewTool(const TDF_Label& acces);
+
+  //! Checks for the ViewTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckViewTool(const TDF_Label& theAcces);
   
   //! Creates (if it does not exist) ClippingPlaneTool attribute on ClippingPlanesLabel().
   Standard_EXPORT static Handle(XCAFDoc_ClippingPlaneTool) ClippingPlaneTool(const TDF_Label& acces);
 
+  //! Checks for the ClippingPlaneTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckClippingPlaneTool(const TDF_Label& theAcces);
+
   //! Creates (if it does not exist) NotesTool attribute on NotesLabel().
   Standard_EXPORT static Handle(XCAFDoc_NotesTool) NotesTool(const TDF_Label& acces);
+
+  //! Checks for the NotesTool attribute on the label's document
+  //! Returns TRUE if Tool exists, ELSE if it has not been created
+  Standard_EXPORT static Standard_Boolean CheckNotesTool(const TDF_Label& theAcces);
+
+  //! Returns value of current internal unit for the document
+  //! converted to base unit type.
+  Standard_EXPORT static Standard_Boolean GetLengthUnit(const Handle(TDocStd_Document)& theDoc,
+                                                        Standard_Real& theResut,
+                                                        const UnitsMethods_LengthUnit theBaseUnit);
+
+  //! Returns value of current internal unit for the document in meter
+  Standard_EXPORT static Standard_Boolean GetLengthUnit(const Handle(TDocStd_Document)& theDoc,
+                                                        Standard_Real& theResut);
+
+  //! Sets value of current internal unit to the document in meter
+  Standard_EXPORT static void SetLengthUnit(const Handle(TDocStd_Document)& theDoc,
+                                            const Standard_Real theUnitValue);
+
+  //! Sets value of current internal unit to the document
+  //! @param theUnitValue must be represented in the base unit type
+  Standard_EXPORT static void SetLengthUnit(const Handle(TDocStd_Document)& theDoc,
+                                            const Standard_Real theUnitValue,
+                                            const UnitsMethods_LengthUnit theBaseUnit);
 
 public:
 

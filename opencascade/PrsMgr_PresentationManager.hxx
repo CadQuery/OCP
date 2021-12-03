@@ -17,17 +17,10 @@
 #ifndef _PrsMgr_PresentationManager_HeaderFile
 #define _PrsMgr_PresentationManager_HeaderFile
 
-#include <Graphic3d_NameOfMaterial.hxx>
 #include <Graphic3d_StructureManager.hxx>
 #include <Graphic3d_ZLayerId.hxx>
-#include <Standard_Transient.hxx>
 #include <PrsMgr_ListOfPresentations.hxx>
 #include <Quantity_Color.hxx>
-#include <Quantity_NameOfColor.hxx>
-#include <Standard.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Integer.hxx>
-#include <Standard_Type.hxx>
 
 class Graphic3d_Structure;
 typedef Graphic3d_Structure Prs3d_Presentation;
@@ -36,7 +29,6 @@ class TopLoc_Datum3D;
 class Prs3d_Drawer;
 class PrsMgr_Presentation;
 class PrsMgr_PresentableObject;
-class Standard_NoSuchObject;
 class V3d_Viewer;
 
 DEFINE_STANDARD_HANDLE(PrsMgr_PresentationManager, Standard_Transient)
@@ -61,7 +53,7 @@ public:
   //! Presentation manager with the given mode.
   //! If @theMode is -1, then erases all presentations of the object.
   Standard_EXPORT void Erase (const Handle(PrsMgr_PresentableObject)& thePrsObject, const Standard_Integer theMode = 0);
-  
+
 
   //! Clears the presentation of the presentable object thePrsObject in this framework with the display mode theMode.
   Standard_EXPORT virtual void Clear (const Handle(PrsMgr_PresentableObject)& thePrsObject, const Standard_Integer theMode = 0);
@@ -72,13 +64,10 @@ public:
   //! Removes highlighting from the presentation of the presentable object.
   Standard_EXPORT void Unhighlight (const Handle(PrsMgr_PresentableObject)& thePrsObject);
 
-  Standard_DEPRECATED("Deprecated method Unhighlight() - argument theMode will be ignored")
-  void Unhighlight (const Handle(PrsMgr_PresentableObject)& thePrsObject, const Standard_Integer theMode) { Unhighlight (thePrsObject); (void )theMode; }
-
   //! Sets the display priority theNewPrior of the
   //! presentable object thePrsObject in this framework with the display mode theMode.
   Standard_EXPORT void SetDisplayPriority (const Handle(PrsMgr_PresentableObject)& thePrsObject, const Standard_Integer theMode, const Standard_Integer theNewPrior) const;
-  
+
 
   //! Returns the display priority of the presentable object
   //! thePrsObject in this framework with the display mode theMode.

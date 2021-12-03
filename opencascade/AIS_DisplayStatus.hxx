@@ -17,12 +17,9 @@
 #ifndef _AIS_DisplayStatus_HeaderFile
 #define _AIS_DisplayStatus_HeaderFile
 
+#include <PrsMgr_DisplayStatus.hxx>
+
 //! To give the display status of an Interactive Object.
-enum AIS_DisplayStatus
-{
-  AIS_DS_Displayed, //!< the Interactive Object is displayed in the main viewer
-  AIS_DS_Erased,    //!< the Interactive Object is hidden in main viewer
-  AIS_DS_None       //!< the Interactive Object is nowhere displayed
-};
+typedef PrsMgr_DisplayStatus AIS_DisplayStatus;
 
 #endif // _AIS_DisplayStatus_HeaderFile

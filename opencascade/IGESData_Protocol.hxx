@@ -24,7 +24,6 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Type.hxx>
 #include <Standard_Boolean.hxx>
-class Interface_Protocol;
 class Interface_InterfaceModel;
 class Standard_Transient;
 
@@ -33,7 +32,7 @@ class IGESData_Protocol;
 DEFINE_STANDARD_HANDLE(IGESData_Protocol, Interface_Protocol)
 
 //! Description of basic Protocol for IGES
-//! This comprises treatement of IGESModel and Recognition of
+//! This comprises treatment of IGESModel and Recognition of
 //! Undefined-FreeFormat-Entity
 class IGESData_Protocol : public Interface_Protocol
 {

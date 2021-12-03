@@ -24,8 +24,6 @@
 #include <IGESData_TransfEntity.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_Real.hxx>
-class Standard_DimensionMismatch;
-class Standard_OutOfRange;
 class gp_GTrsf;
 
 
@@ -60,7 +58,7 @@ public:
   Standard_EXPORT void SetFormNumber (const Standard_Integer form);
   
   //! returns individual Data
-  //! Errro if I not in [1-3] or J not in [1-4]
+  //! Error if I not in [1-3] or J not in [1-4]
   Standard_EXPORT Standard_Real Data (const Standard_Integer I, const Standard_Integer J) const;
   
   //! returns the transformation matrix

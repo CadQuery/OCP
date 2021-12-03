@@ -17,9 +17,10 @@
 #include <OpenGl_GlCore44.hxx>
 
 //! OpenGL 4.5 definition.
-template<typename theBaseClass_t>
-struct OpenGl_TmplCore45 : public theBaseClass_t
+struct OpenGl_GlCore45 : public OpenGl_GlCore44
 {
+private:
+  typedef OpenGl_GlCore44 theBaseClass_t;
 
 public: //! @name OpenGL 4.5 additives to 4.4
 
@@ -133,27 +134,9 @@ public: //! @name OpenGL 4.5 additives to 4.4
   using theBaseClass_t::glGetnUniformiv;
   using theBaseClass_t::glGetnUniformuiv;
   using theBaseClass_t::glReadnPixels;
-  using theBaseClass_t::glGetnMapdv;
-  using theBaseClass_t::glGetnMapfv;
-  using theBaseClass_t::glGetnMapiv;
-  using theBaseClass_t::glGetnPixelMapfv;
-  using theBaseClass_t::glGetnPixelMapuiv;
-  using theBaseClass_t::glGetnPixelMapusv;
-  using theBaseClass_t::glGetnPolygonStipple;
-  using theBaseClass_t::glGetnColorTable;
-  using theBaseClass_t::glGetnConvolutionFilter;
-  using theBaseClass_t::glGetnSeparableFilter;
-  using theBaseClass_t::glGetnHistogram;
-  using theBaseClass_t::glGetnMinmax;
   using theBaseClass_t::glTextureBarrier;
 #endif
 
 };
-
-//! OpenGL 4.5 compatibility profile.
-typedef OpenGl_TmplCore45<OpenGl_GlCore44Back> OpenGl_GlCore45Back;
-
-//! OpenGL 4.5 core profile.
-typedef OpenGl_TmplCore45<OpenGl_GlCore44>     OpenGl_GlCore45;
 
 #endif // _OpenGl_GlCore45_Header

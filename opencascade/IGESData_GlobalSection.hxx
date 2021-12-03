@@ -30,7 +30,6 @@ class Interface_ParamSet;
 class Interface_Check;
 class gp_XYZ;
 
-
 //! Description of a global section (corresponds to file header)
 //! used as well in IGESModel, IGESReader and IGESWriter
 //! Warning : From IGES-5.1, a parameter is added : LastChangeDate (concerns
@@ -52,19 +51,19 @@ public:
   //! undefined parameters do not change default values when defined
   //! Fills Check about Corrections or Fails
   Standard_EXPORT void Init (const Handle(Interface_ParamSet)& params, Handle(Interface_Check)& ach);
-  
+
   //! Copies data referenced by Handle (that is, Strings)
-  //! usefull to "isolate" a GlobalSection after copy by "="
+  //! useful to "isolate" a GlobalSection after copy by "="
   //! (from a Model to another Model for instance)
   Standard_EXPORT void CopyRefs();
-  
+
   //! Returns all contained data in the form of a ParamSet
   //! Remark : Strings are given under Hollerith form
   Standard_EXPORT Handle(Interface_ParamSet) Params() const;
   
   //! Returns a string withpout its Hollerith marks (nnnH ahead).
   //! Remark : all strings stored in GlobalSection are expurged
-  //! from Hollerith informations (without nnnH)
+  //! from Hollerith information (without nnnH)
   //! If <astr> is not Hollerith form, it is simply copied
   Standard_EXPORT Handle(TCollection_HAsciiString) TranslatedFromHollerith (const Handle(TCollection_HAsciiString)& astr) const;
   
@@ -106,6 +105,9 @@ public:
   
   //! Returns the scale used in the IGES file.
   Standard_EXPORT Standard_Real Scale() const;
+
+  //! Returns the system length unit
+  Standard_EXPORT Standard_Real CascadeUnit() const;
   
   //! Returns the unit flag that was used to write the IGES file.
   Standard_EXPORT Standard_Integer UnitFlag() const;
@@ -204,6 +206,8 @@ public:
   
   Standard_EXPORT void SetReceiveName (const Handle(TCollection_HAsciiString)& val);
   
+  Standard_EXPORT void SetCascadeUnit(const Standard_Real theUnit);
+
   Standard_EXPORT void SetScale (const Standard_Real val);
   
   Standard_EXPORT void SetUnitFlag (const Standard_Integer val);
@@ -251,6 +255,7 @@ private:
   Standard_Integer theMaxDigitsDouble;
   Handle(TCollection_HAsciiString) theReceiveName;
   Standard_Real theScale;
+  Standard_Real theCascadeUnit;
   Standard_Integer theUnitFlag;
   Handle(TCollection_HAsciiString) theUnitName;
   Standard_Integer theLineWeightGrad;

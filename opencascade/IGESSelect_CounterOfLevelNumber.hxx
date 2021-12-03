@@ -44,7 +44,7 @@ public:
   //! <withmap> and <withlist> are transmitted to SignCounter
   Standard_EXPORT IGESSelect_CounterOfLevelNumber(const Standard_Boolean withmap = Standard_True, const Standard_Boolean withlist = Standard_False);
   
-  //! Resets already memorized informations : also numeric data
+  //! Resets already memorized information : also numeric data
   Standard_EXPORT virtual void Clear() Standard_OVERRIDE;
   
   //! Adds an entity by considering its lrvrl number(s)
@@ -52,7 +52,7 @@ public:
   //! i.e. LevelList gives "LEVEL LIST", others (no level or
   //! positive level) displays level number on 7 digits (C : %7d)
   //! Remark : an entity attached to a Level List is added for
-  //! " LEVEL LIST", and for each of its constituant levels
+  //! " LEVEL LIST", and for each of its constituent levels
   Standard_EXPORT virtual void AddSign (const Handle(Standard_Transient)& ent, const Handle(Interface_InterfaceModel)& model) Standard_OVERRIDE;
   
   //! The internal action to record a new level number, positive,

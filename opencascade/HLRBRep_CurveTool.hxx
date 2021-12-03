@@ -35,9 +35,6 @@
 #include <gp_Elips2d.hxx>
 #include <gp_Hypr2d.hxx>
 #include <gp_Parab2d.hxx>
-class Standard_OutOfRange;
-class Standard_NoSuchObject;
-class Standard_DomainError;
 class gp_Pnt2d;
 class gp_Vec2d;
 class Geom2d_BezierCurve;
@@ -65,7 +62,7 @@ public:
   //! Stores in <T> the  parameters bounding the intervals
   //! of continuity <S>.
   //!
-  //! The array must provide  enough room to  accomodate
+  //! The array must provide  enough room to  accommodate
   //! for the parameters. i.e. T.Length() > NbIntervals()
     static void Intervals (const Standard_Address C, TColStd_Array1OfReal& T);
   

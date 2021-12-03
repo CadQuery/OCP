@@ -68,7 +68,7 @@ public:
   const Standard_GUID& GetDriverGUID() const { return myDriverGUID; }
 
   //! Sets the driver for this function as that
-  //! indentified by the GUID guid.
+  //! identified by the GUID guid.
   Standard_EXPORT void SetDriverGUID (const Standard_GUID& guid);
 
   //! Returns true if the execution failed
@@ -94,6 +94,9 @@ public:
   Standard_EXPORT virtual void References (const Handle(TDF_DataSet)& aDataSet) const Standard_OVERRIDE;
   
   Standard_EXPORT virtual Standard_OStream& Dump (Standard_OStream& anOS) const Standard_OVERRIDE;
+
+  //! Dumps the content of me into the stream
+  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
   DEFINE_STANDARD_RTTIEXT(TFunction_Function,TDF_Attribute)
 

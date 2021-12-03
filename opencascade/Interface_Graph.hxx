@@ -29,7 +29,6 @@
 #include <TColStd_HArray1OfListOfInteger.hxx>
 #include <TColStd_HSequenceOfTransient.hxx>
 
-class Standard_DomainError;
 class Interface_GeneralLib;
 class Interface_Protocol;
 class Interface_GTool;
@@ -230,7 +229,7 @@ public:
   //! another Graph from <me>
   Standard_EXPORT const Handle(TColStd_HArray1OfListOfInteger)& SharingTable() const;
   
-  //! Returns mode resposible for computation of statuses;
+  //! Returns mode responsible for computation of statuses;
   Standard_EXPORT Standard_Boolean ModeStat() const;
 
 

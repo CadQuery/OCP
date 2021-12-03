@@ -25,12 +25,9 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Real.hxx>
 #include <Standard_Boolean.hxx>
-class Standard_OutOfRange;
-class Standard_NullObject;
 class IGESDefs_AttributeDef;
 class Standard_Transient;
 class TCollection_HAsciiString;
-class IGESData_IGESEntity;
 
 
 class IGESDefs_AttributeTable;
@@ -38,7 +35,7 @@ DEFINE_STANDARD_HANDLE(IGESDefs_AttributeTable, IGESData_IGESEntity)
 
 //! defines IGES Attribute Table, Type <422> Form <0, 1>
 //! in package IGESDefs
-//! This class is used to represent an occurence of
+//! This class is used to represent an occurrence of
 //! Attribute Table. This Class may be independent
 //! or dependent or pointed at by other Entities.
 class IGESDefs_AttributeTable : public IGESData_IGESEntity

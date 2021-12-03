@@ -22,13 +22,6 @@
 
 class BinMDF_ADriverTable;
 class Message_Messenger;
-class BinMXCAFDoc_CentroidDriver;
-class BinMXCAFDoc_ColorDriver;
-class BinMXCAFDoc_GraphNodeDriver;
-class BinMXCAFDoc_LocationDriver;
-class BinMXCAFDoc_DatumDriver;
-class BinMXCAFDoc_DimTolDriver;
-class BinMXCAFDoc_MaterialDriver;
 
 
 
@@ -59,6 +52,7 @@ private:
 friend class BinMXCAFDoc_CentroidDriver;
 friend class BinMXCAFDoc_ColorDriver;
 friend class BinMXCAFDoc_GraphNodeDriver;
+friend class BinMXCAFDoc_LengthUnitDriver;
 friend class BinMXCAFDoc_LocationDriver;
 friend class BinMXCAFDoc_DatumDriver;
 friend class BinMXCAFDoc_DimTolDriver;

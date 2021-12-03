@@ -26,8 +26,6 @@
 #include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 class Interface_InterfaceModel;
-class Standard_DomainError;
-class Standard_OutOfRange;
 class Interface_GeneralLib;
 class Interface_GTool;
 class Interface_Protocol;
@@ -60,7 +58,7 @@ public:
   //! Same as above, but works with the GTool of the Model
   Standard_EXPORT Interface_ShareFlags(const Handle(Interface_InterfaceModel)& amodel);
   
-  //! Creates a ShareFlags by querying informations from a Graph
+  //! Creates a ShareFlags by querying information from a Graph
   //! (remark that Graph also has a method IsShared)
   Standard_EXPORT Interface_ShareFlags(const Interface_Graph& agraph);
   

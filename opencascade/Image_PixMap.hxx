@@ -13,10 +13,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Image_PixMap_H__
-#define _Image_PixMap_H__
+#ifndef Image_PixMap_HeaderFile
+#define Image_PixMap_HeaderFile
 
-#include <Image_Format.hxx>
+#include <Image_CompressedFormat.hxx>
 #include <Image_PixMapData.hxx>
 #include <Standard_Transient.hxx>
 #include <Quantity_ColorRGBA.hxx>
@@ -48,8 +48,17 @@ public:
   //! Convert image to Black/White.
   Standard_EXPORT static void ToBlackWhite (Image_PixMap& theImage);
 
+  //! Reverse line order as it draws it from bottom to top.
+  Standard_EXPORT static bool FlipY (Image_PixMap& theImage);
+
   //! Return default image data allocator.
   Standard_EXPORT static const Handle(NCollection_BaseAllocator)& DefaultAllocator();
+
+  //! Return string representation of pixel format.
+  Standard_EXPORT static Standard_CString ImageFormatToString (Image_Format theFormat);
+
+  //! Return string representation of compressed pixel format.
+  Standard_EXPORT static Standard_CString ImageFormatToString (Image_CompressedFormat theFormat);
 
 public: // high-level API
 
@@ -296,23 +305,33 @@ public: //! @name low-level API for batch-processing (pixels reading / compariso
 
 public:
 
-  Standard_DEPRECATED("This member is deprecated, use Image_Format enumeration instead")
-  typedef Image_Format ImgFormat;
-  static const Image_Format ImgUNKNOWN = Image_Format_UNKNOWN;
-  static const Image_Format ImgGray    = Image_Format_Gray;
-  static const Image_Format ImgAlpha   = Image_Format_Alpha;
-  static const Image_Format ImgRGB     = Image_Format_RGB;
-  static const Image_Format ImgBGR     = Image_Format_BGR;
-  static const Image_Format ImgRGB32   = Image_Format_RGB32;
-  static const Image_Format ImgBGR32   = Image_Format_BGR32;
-  static const Image_Format ImgRGBA    = Image_Format_RGBA;
-  static const Image_Format ImgBGRA    = Image_Format_BGRA;
-  static const Image_Format ImgGrayF   = Image_Format_GrayF;
-  static const Image_Format ImgAlphaF  = Image_Format_AlphaF;
-  static const Image_Format ImgRGBF    = Image_Format_RGBF;
-  static const Image_Format ImgBGRF    = Image_Format_BGRF;
-  static const Image_Format ImgRGBAF   = Image_Format_RGBAF;
-  static const Image_Format ImgBGRAF   = Image_Format_BGRAF;
+  //! Convert 16-bit half-float value into 32-bit float (simple conversion).
+  static float ConvertFromHalfFloat (const uint16_t theHalf)
+  {
+    union FloatUint32 { float Float32; uint32_t UInt32; };
+
+    const uint32_t e = (theHalf & 0x7C00) >> 10; // exponent
+    const uint32_t m = (theHalf & 0x03FF) << 13; // mantissa
+    FloatUint32 mf, aRes;
+    mf.Float32 = (float )m;
+    const uint32_t v = mf.UInt32 >> 23; // evil log2 bit hack to count leading zeros in denormalized format
+    aRes.UInt32 = (theHalf & 0x8000)<<16 | (e != 0) * ((e + 112) << 23 | m) | ((e == 0) & (m != 0)) * ((v - 37) << 23 | ((m << (150 - v)) & 0x007FE000)); // sign : normalized : denormalized
+    return aRes.Float32;
+  }
+
+  //! Convert 32-bit float value into IEEE-754 16-bit floating-point format without infinity:
+  //! 1-5-10, exp-15, +-131008.0, +-6.1035156E-5, +-5.9604645E-8, 3.311 digits.
+  static uint16_t ConvertToHalfFloat (const float theFloat)
+  {
+    union FloatUint32 { float Float32; uint32_t UInt32; };
+    FloatUint32 anInput;
+    anInput.Float32 = theFloat;
+    const uint32_t b = anInput.UInt32 + 0x00001000; // round-to-nearest-even: add last bit after truncated mantissa
+    const uint32_t e = (b & 0x7F800000) >> 23; // exponent
+    const uint32_t m =  b & 0x007FFFFF; // mantissa; in line below: 0x007FF000 = 0x00800000-0x00001000 = decimal indicator flag - initial rounding
+    return (uint16_t)((b & 0x80000000) >> 16 | (e > 112) * ((((e - 112) << 10) & 0x7C00) | m >> 13)
+         | ((e < 113) & (e > 101)) * ((((0x007FF000 + m) >> (125 - e)) + 1) >> 1) | (e > 143) * 0x7FFF); // sign : normalized : denormalized : saturate
+  }
 
 protected:
 

@@ -27,13 +27,7 @@
 #include <Standard_Transient.hxx>
 #include <Standard_Boolean.hxx>
 #include <Interface_ParamType.hxx>
-class Standard_OutOfRange;
-class Standard_NoSuchObject;
-class Interface_InterfaceMismatch;
-class Interface_InterfaceError;
-class Standard_Transient;
 class TCollection_HAsciiString;
-class Interface_EntityList;
 class Interface_CopyTool;
 
 
@@ -93,7 +87,7 @@ public:
   //! Returns Entity corresponding to a Param, given its rank
   Standard_EXPORT Handle(Standard_Transient) ParamEntity (const Standard_Integer num) const;
   
-  //! Returns litteral value of a Parameter, given its rank
+  //! Returns literal value of a Parameter, given its rank
   Standard_EXPORT Handle(TCollection_HAsciiString) ParamValue (const Standard_Integer num) const;
   
   //! Manages reservation for parameters (internal use)

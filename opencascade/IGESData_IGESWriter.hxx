@@ -35,8 +35,6 @@
 #include <Standard_OStream.hxx>
 
 class IGESData_IGESModel;
-class Interface_InterfaceMismatch;
-class Interface_FloatWriter;
 class IGESData_Protocol;
 class IGESData_GlobalSection;
 class IGESData_IGESEntity;
@@ -75,7 +73,7 @@ public:
   //! 0 (D) : Normal IGES, 10 : FNES
   Standard_EXPORT Standard_Integer& WriteMode();
   
-  //! Sends an additionnal Starting Line : this is the way used to
+  //! Sends an additional Starting Line : this is the way used to
   //! send comments in an IGES File (at beginning of the file).
   //! If the line is more than 72 char.s long, it is splited into
   //! as many lines as required to send it completely
@@ -106,7 +104,7 @@ public:
   //! error if does not follow Entities sending
   Standard_EXPORT void SectionT();
   
-  //! translates directory part of an Entity into a litteral DirPart
+  //! translates directory part of an Entity into a literal DirPart
   //! Some infos are computed after sending parameters
   //! Error if not in sections DP or Stage not "Dir"
   Standard_EXPORT void DirPart (const Handle(IGESData_IGESEntity)& anent);
@@ -174,7 +172,7 @@ public:
   
   //! Writes result on an output defined as an OStream
   //! resolves stored infos at this time; in particular, numbers of
-  //! lines used to adress P-section from D-section and final totals
+  //! lines used to address P-section from D-section and final totals
   //! Takes WriteMode into account
   Standard_EXPORT Standard_Boolean Print (Standard_OStream& S) const;
 

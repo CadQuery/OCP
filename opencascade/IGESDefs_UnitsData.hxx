@@ -25,8 +25,6 @@
 #include <IGESData_IGESEntity.hxx>
 #include <Standard_Integer.hxx>
 #include <Standard_Real.hxx>
-class Standard_DimensionMismatch;
-class Standard_OutOfRange;
 class TCollection_HAsciiString;
 
 
@@ -64,7 +62,7 @@ public:
   //! raises exception if UnitNum <= 0 or UnitNum > NbUnits()
   Standard_EXPORT Handle(TCollection_HAsciiString) UnitValue (const Standard_Integer UnitNum) const;
   
-  //! returns the multiplicative scale factor to be apllied to the
+  //! returns the multiplicative scale factor to be applied to the
   //! UnitNum'th unit being defined
   //! raises exception if UnitNum <= 0 or UnitNum > NbUnits()
   Standard_EXPORT Standard_Real ScaleFactor (const Standard_Integer UnitNum) const;

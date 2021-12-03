@@ -24,8 +24,6 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
 class IFSelect_IntParam;
-class Standard_OutOfRange;
-class Interface_InterfaceError;
 class Interface_EntityIterator;
 class Standard_Transient;
 class Interface_Graph;
@@ -118,7 +116,7 @@ public:
   //! Called by RootResult
   Standard_EXPORT virtual void FillResult (const Standard_Integer n1, const Standard_Integer n2, const Handle(Standard_Transient)& ent, Interface_EntityIterator& res) const = 0;
   
-  //! Returns a text defining the criterium : "Componants of List "
+  //! Returns a text defining the criterium : "Components of List "
   //! then Specific List Label, then, following cases :
   //! " From .. Until .." or "From .." or "Until .." or "Rank no .."
   //! Specific type is given by deferred method ListLabel

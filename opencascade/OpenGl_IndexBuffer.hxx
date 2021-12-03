@@ -12,28 +12,31 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_IndexBuffer_H__
-#define _OpenGl_IndexBuffer_H__
+#ifndef OpenGl_IndexBuffer_HeaderFile
+#define OpenGl_IndexBuffer_HeaderFile
 
-#include <OpenGl_VertexBuffer.hxx>
+#include <OpenGl_Buffer.hxx>
 
 //! Index buffer is just a VBO with special target (GL_ELEMENT_ARRAY_BUFFER).
-class OpenGl_IndexBuffer : public OpenGl_VertexBuffer
+class OpenGl_IndexBuffer : public OpenGl_Buffer
 {
 public:
 
+  //! Empty constructor.
   Standard_EXPORT OpenGl_IndexBuffer();
-  Standard_EXPORT virtual GLenum GetTarget() const Standard_OVERRIDE;
+
+  //! Return buffer object target (GL_ELEMENT_ARRAY_BUFFER).
+  Standard_EXPORT virtual unsigned int GetTarget() const Standard_OVERRIDE;
 
   //! Dumps the content of me into the stream
   Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
 
 public:
 
-  DEFINE_STANDARD_RTTIEXT(OpenGl_IndexBuffer,OpenGl_VertexBuffer) // Type definition
+  DEFINE_STANDARD_RTTIEXT(OpenGl_IndexBuffer, OpenGl_Buffer)
 
 };
 
-DEFINE_STANDARD_HANDLE(OpenGl_IndexBuffer, OpenGl_VertexBuffer)
+DEFINE_STANDARD_HANDLE(OpenGl_IndexBuffer, OpenGl_Buffer)
 
 #endif // _OpenGl_IndexBuffer_H__

@@ -77,7 +77,7 @@ public:
   virtual Standard_Integer Signature() const Standard_OVERRIDE { return 4; }
 
   //! Returns datum as the type of Interactive Object.
-  virtual AIS_KindOfInteractive Type() const Standard_OVERRIDE { return AIS_KOI_Datum; }
+  virtual AIS_KindOfInteractive Type() const Standard_OVERRIDE { return AIS_KindOfInteractive_Datum; }
 
   //! Allows you to provide settings for the color aColor.
   Standard_EXPORT virtual void SetColor (const Quantity_Color& theColor) Standard_OVERRIDE;
@@ -88,11 +88,14 @@ public:
 
 protected:
 
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& aPresentationManager, const Handle(Prs3d_Presentation)& aPresentation, const Standard_Integer aMode = 0) Standard_OVERRIDE;
+  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager)& theprsMgr,
+                                        const Handle(Prs3d_Presentation)& thePrs,
+                                        const Standard_Integer theMode) Standard_OVERRIDE;
 
 private:
 
-  Standard_EXPORT void ComputeSelection (const Handle(SelectMgr_Selection)& aSelection, const Standard_Integer aMode) Standard_OVERRIDE;
+  Standard_EXPORT virtual void ComputeSelection (const Handle(SelectMgr_Selection)& theSel,
+                                                 const Standard_Integer theMode) Standard_OVERRIDE;
 
 private:
 

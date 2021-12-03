@@ -26,19 +26,15 @@
 #include <Standard_Transient.hxx>
 #include <Standard_Boolean.hxx>
 class TCollection_HAsciiString;
-class Interface_InterfaceError;
-class Standard_OutOfRange;
-class Standard_Transient;
 class IFSelect_Dispatch;
 class IFSelect_GeneralModifier;
 class IFSelect_Modifier;
 class TCollection_AsciiString;
 
-
 class IFSelect_ShareOut;
 DEFINE_STANDARD_HANDLE(IFSelect_ShareOut, Standard_Transient)
 
-//! This class gathers the informations required to produce one or
+//! This class gathers the information required to produce one or
 //! several file(s) from the content of an InterfaceModel (passing
 //! through the creation of intermediate Models).
 //!
@@ -66,20 +62,19 @@ class IFSelect_ShareOut : public Standard_Transient
 
 public:
 
-  
   //! Creates an empty ShareOut
   Standard_EXPORT IFSelect_ShareOut();
   
   //! Removes in one operation all the Dispatches with their Idents
-  //! Also clears all informations about Names, and all Results but
-  //! naming informations which are :
+  //! Also clears all information about Names, and all Results but
+  //! naming information which are :
   //! - kept if <onlydisp> is True.
   //! - cleared if <onlydisp> is False (complete clearing)
   //! If <onlydisp> is True, that's all. Else, clears also Modifiers
   Standard_EXPORT void Clear (const Standard_Boolean onlydisp);
   
   //! Clears all data produced (apart from Dispatches, etc...)
-  //! if <alsoname> is True, all is cleared. Else, informations
+  //! if <alsoname> is True, all is cleared. Else, information
   //! about produced Names are kept (to maintain unicity of naming
   //! across clearings)
   Standard_EXPORT void ClearResult (const Standard_Boolean alsoname);
@@ -94,10 +89,10 @@ public:
   
   //! Returns the rank of last run item (ClearResult resets it to 0)
   Standard_EXPORT Standard_Integer LastRun() const;
-  
-  //! Records a new alue for the rank of last run item
+
+  //! Records a new value for the rank of last run item
   Standard_EXPORT void SetLastRun (const Standard_Integer last);
-  
+
   //! Returns the count of Dispatches
   Standard_EXPORT Standard_Integer NbDispatches() const;
   
@@ -211,7 +206,7 @@ public:
   //! Returns the Default Root Name. Can be empty.
   Standard_EXPORT Handle(TCollection_HAsciiString) DefaultRootName() const;
   
-  //! Returns the general Extension. Can be empty (not recommanded)
+  //! Returns the general Extension. Can be empty (not recommended)
   Standard_EXPORT Handle(TCollection_HAsciiString) Extension() const;
   
   //! Computes the complete file name for a Packet of a Dispatch,
@@ -226,18 +221,10 @@ public:
   //! Error if no Root is defined for this <idnum>
   Standard_EXPORT TCollection_AsciiString FileName (const Standard_Integer dnum, const Standard_Integer pnum, const Standard_Integer nbpack = 0);
 
-
-
-
   DEFINE_STANDARD_RTTIEXT(IFSelect_ShareOut,Standard_Transient)
-
-protected:
-
-
 
 
 private:
-
 
   IFSelect_TSeqOfDispatch thedisps;
   IFSelect_SequenceOfGeneralModifier themodelmodifiers;
@@ -248,13 +235,6 @@ private:
   Standard_Integer thenbdefs;
   Standard_Integer thelastrun;
 
-
 };
-
-
-
-
-
-
 
 #endif // _IFSelect_ShareOut_HeaderFile

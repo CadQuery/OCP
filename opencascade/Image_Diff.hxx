@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _Image_Diff_H__
-#define _Image_Diff_H__
+#ifndef Image_Diff_HeaderFile
+#define Image_Diff_HeaderFile
 
 #include <Image_PixMap.hxx>
 #include <TCollection_AsciiString.hxx>
@@ -26,7 +26,7 @@
 //! It uses the following methods to ignore the difference between images:
 //!  - Black/White comparison. It makes the images 2-colored before the comparison.
 //!  - Equality with tolerance. Colors of two pixels are considered the same if the
-//!    differnce of their color is less than a tolerance.
+//!    difference of their color is less than a tolerance.
 //!  - Border filter. The algorithm ignores alone independent pixels,
 //!    which are different on both images, ignores the "border effect" -
 //!    the difference caused by triangles located at angle about 0 or 90 degrees to the user.
@@ -63,7 +63,7 @@ public:
   //! An empty constructor. Init() should be called for initialization.
   Standard_EXPORT Image_Diff();
 
-  //! Desctructor.
+  //! Destructor.
   Standard_EXPORT virtual ~Image_Diff();
 
   //! Initialize algorithm by two images.
@@ -101,10 +101,10 @@ public:
   //! It returns -1 if algorithm not initialized before.
   Standard_EXPORT Standard_Integer Compare();
 
-  //! Saves a difference between two images as white pixels on black backgroud.
+  //! Saves a difference between two images as white pixels on black background.
   Standard_EXPORT Standard_Boolean SaveDiffImage (Image_PixMap& theDiffImage) const;
 
-  //! Saves a difference between two images as white pixels on black backgroud.
+  //! Saves a difference between two images as white pixels on black background.
   Standard_EXPORT Standard_Boolean SaveDiffImage (const TCollection_AsciiString& theDiffPath) const;
 
 protected:

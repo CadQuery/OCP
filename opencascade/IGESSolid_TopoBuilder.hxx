@@ -32,7 +32,6 @@ class IGESData_IGESEntity;
 class IGESSolid_Loop;
 class IGESSolid_EdgeList;
 class IGESSolid_VertexList;
-class Standard_DomainError;
 class gp_XYZ;
 
 
@@ -92,7 +91,7 @@ public:
   //! Defines an Edge(UV), to be added in the current Loop by EndEdge
   //! <edgetype> gives the type of the edge
   //! <edge3d> identifies the Edge(3D) used as support
-  //! The EdgeList is allways the current one
+  //! The EdgeList is always the current one
   //! <orientation gives the orientation flag
   //! It is then necessary to :
   //! - give the parametric curves

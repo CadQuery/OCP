@@ -31,7 +31,7 @@ class TColStd_HPackedMapOfInteger;
 //! The presentation supports two display modes:
 //! - Points.
 //! - Bounding box for highlighting.
-//! Presentation provides selection by bouding box.
+//! Presentation provides selection by bounding box.
 //! Selection and consequently highlighting can disabled by
 //! setting default selection mode to -1. There will be no way
 //! to select object from interactive view. Any calls to
@@ -106,9 +106,9 @@ public:
 protected:
 
   //! Prepare presentation for this object.
-  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager3d)& thePrsMgr,
-                                        const Handle(Prs3d_Presentation)&           thePrs,
-                                        const Standard_Integer                      theMode) Standard_OVERRIDE;
+  Standard_EXPORT virtual void Compute (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
+                                        const Handle(Prs3d_Presentation)& thePrs,
+                                        const Standard_Integer theMode) Standard_OVERRIDE;
 
   //! Prepare selection for this object.
   Standard_EXPORT virtual void ComputeSelection (const Handle(SelectMgr_Selection)& theSelection,
@@ -146,7 +146,7 @@ public:
   Standard_EXPORT virtual Standard_Boolean IsForcedHilight() const Standard_OVERRIDE;
 
   //! Handle dynamic highlighting.
-  Standard_EXPORT virtual void HilightWithColor (const Handle(PrsMgr_PresentationManager3d)& thePrsMgr,
+  Standard_EXPORT virtual void HilightWithColor (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
                                                  const Handle(Prs3d_Drawer)& theStyle,
                                                  const Standard_Integer theMode) Standard_OVERRIDE;
 

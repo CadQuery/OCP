@@ -23,19 +23,16 @@
 #include <Graphic3d_MapOfStructure.hxx>
 #include <Graphic3d_SequenceOfGroup.hxx>
 #include <Graphic3d_SequenceOfHClipPlane.hxx>
-#include <Graphic3d_TypeOfComposition.hxx>
 #include <Graphic3d_TypeOfConnection.hxx>
 #include <Graphic3d_TypeOfStructure.hxx>
 #include <Graphic3d_TransformPers.hxx>
 #include <Graphic3d_TransModeFlags.hxx>
-#include <Graphic3d_Vertex.hxx>
 #include <Graphic3d_ZLayerId.hxx>
 #include <NCollection_IndexedMap.hxx>
 
 class Graphic3d_StructureManager;
 class Graphic3d_DataStructureManager;
 class Bnd_Box;
-class gp_Pnt;
 
 DEFINE_STANDARD_HANDLE(Graphic3d_Structure, Standard_Transient)
 
@@ -279,7 +276,7 @@ public:
   //! method returns boundaries taking into account infinite state
   //! of the structure. This approach generally used for application
   //! specific fit operation (e.g. fitting the model into screen,
-  //! not taking into accout infinite helper elements).
+  //! not taking into account infinite helper elements).
   //! Warning: If the structure <me> is empty then the empty box is returned,
   //! If the structure <me> is infinite then the whole box is returned.
   Standard_EXPORT Bnd_Box MinMaxValues (const Standard_Boolean theToIgnoreInfiniteFlag = Standard_False) const;
@@ -376,9 +373,6 @@ public:
   //! Modifies the current local transformation
   Standard_EXPORT void SetTransformation (const Handle(TopLoc_Datum3D)& theTrsf);
 
-  Standard_DEPRECATED("This method is deprecated - SetTransformation() should be called instead")
-  void Transform (const Handle(TopLoc_Datum3D)& theTrsf) { SetTransformation (theTrsf); }
-
   //! Modifies the current transform persistence (pan, zoom or rotate)
   Standard_EXPORT void SetTransformPersistence (const Handle(Graphic3d_TransformPers)& theTrsfPers);
 
@@ -423,7 +417,7 @@ public:
   //! Returns the identification number of this structure.
   Standard_Integer Identification() const { return myCStructure->Id; }
   
-  //! Prints informations about the network associated
+  //! Prints information about the network associated
   //! with the structure <AStructure>.
   Standard_EXPORT static void PrintNetwork (const Handle(Graphic3d_Structure)& AStructure, const Graphic3d_TypeOfConnection AType);
   

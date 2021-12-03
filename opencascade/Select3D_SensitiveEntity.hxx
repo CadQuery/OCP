@@ -24,10 +24,10 @@
 #include <Select3D_BndBox3d.hxx>
 #include <SelectBasics_SelectingVolumeManager.hxx>
 #include <SelectBasics_PickResult.hxx>
-#include <SelectBasics_SensitiveEntity.hxx>
 #include <SelectMgr_SelectingVolumeManager.hxx>
 #include <TopLoc_Location.hxx>
 
+class Graphic3d_TransformPers;
 class SelectMgr_EntityOwner;
 
 //! Abstract framework to define 3D sensitive entities.
@@ -51,7 +51,7 @@ public:
   //! Allows to manage sensitivity of a particular sensitive entity
   void SetSensitivityFactor (const Standard_Integer theNewSens)
   {
-    Standard_ASSERT_RAISE (theNewSens > 0, "Error! Selection sensitivity have positive value.");
+    Standard_ASSERT_RAISE (theNewSens >= 0, "Error! Selection sensitivity should not be negative value.");
     mySFactor = theNewSens;
   }
 
@@ -94,6 +94,12 @@ public:
   //! Otherwise, returns identity matrix.
   virtual gp_GTrsf InvInitLocation() const { return gp_GTrsf(); }
 
+  //! Return transformation persistence.
+  const Handle(Graphic3d_TransformPers)& TransformPersistence() const { return myTrsfPers; }
+
+  //! Set transformation persistence.
+  virtual void SetTransformPersistence (const Handle(Graphic3d_TransformPers)& theTrsfPers) { myTrsfPers = theTrsfPers; }
+
   //! Dumps the content of me into the stream
   Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
@@ -104,13 +110,14 @@ protected:
 protected:
 
   Handle(SelectMgr_EntityOwner) myOwnerId;
+  Handle(Graphic3d_TransformPers) myTrsfPers;
   Standard_Integer mySFactor;
 
 };
 
 DEFINE_STANDARD_HANDLE(Select3D_SensitiveEntity, Standard_Transient)
 
-// for porting old code
+Standard_DEPRECATED("Deprecated alias - Select3D_SensitiveEntity should be used instead")
 typedef Select3D_SensitiveEntity SelectBasics_SensitiveEntity;
 
 #endif // _Select3D_SensitiveEntity_HeaderFile

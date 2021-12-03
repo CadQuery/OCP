@@ -27,6 +27,7 @@
 #include <Standard_Transient.hxx>
 #include <TDF_Label.hxx>
 #include <Standard_OStream.hxx>
+#include <NCollection_DataMap.hxx>
 class Standard_NoMoreObject;
 class TDF_Transaction;
 class TDF_LabelNode;
@@ -37,9 +38,8 @@ class TDF_Label;
 class TDF_Data;
 DEFINE_STANDARD_HANDLE(TDF_Data, Standard_Transient)
 
-//! This class is used to manipulate a complete
-//! independant, self sufficient data structure and
-//! its services:
+//! This class is used to manipulate a complete independent,
+//! self sufficient data structure and its services:
 //!
 //! Access to the root label;
 //!
@@ -48,8 +48,7 @@ DEFINE_STANDARD_HANDLE(TDF_Data, Standard_Transient)
 //! Generation and use of Delta, depending on the time.
 //! This class uses a special allocator
 //! (see LabelNodeAllocator() method)
-//! for more efficient allocation of
-//! objects in memory.
+//! for more efficient allocation of objects in memory.
 class TDF_Data : public Standard_Transient
 {
 
@@ -71,10 +70,9 @@ public:
   //! Returns true if <aDelta> is applicable HERE and NOW.
   Standard_EXPORT Standard_Boolean IsApplicable (const Handle(TDF_Delta)& aDelta) const;
   
-  //! Apply <aDelta> to undo a set of attribute
-  //! modifications.
+  //! Apply <aDelta> to undo a set of attribute modifications.
   //!
-  //! Optionnal <withDelta> set to True indiquates a
+  //! Optional <withDelta> set to True indicates a
   //! Delta Set must be generated. (See above)
   Standard_EXPORT Handle(TDF_Delta) Undo (const Handle(TDF_Delta)& aDelta, const Standard_Boolean withDelta = Standard_False);
   
@@ -100,6 +98,27 @@ Standard_OStream& operator<< (Standard_OStream& anOS) const
   //! returns modification mode.
     Standard_Boolean IsModificationAllowed() const;
   
+  //! Initializes a mechanism for fast access to the labels by their entries.
+  //! The fast access is useful for large documents and often access to the labels 
+  //! via entries. Internally, a table of entry - label is created, 
+  //! which allows to obtain a label by its entry in a very fast way.
+  //! If the mechanism is turned off, the internal table is cleaned.
+  //! New labels are added to the table, if the mechanism is on
+  //! (no need to re-initialize the mechanism).
+  Standard_EXPORT void SetAccessByEntries (const Standard_Boolean aSet);
+
+  //! Returns a status of mechanism for fast access to the labels via entries.
+  Standard_Boolean IsAccessByEntries() const { return myAccessByEntries; }
+
+  //! Returns a label by an entry.
+  //! Returns Standard_False, if such a label doesn't exist
+  //! or mechanism for fast access to the label by entry is not initialized.
+  Standard_Boolean GetLabel (const TCollection_AsciiString& anEntry, TDF_Label& aLabel) { return myAccessByEntriesTable.Find(anEntry, aLabel); }
+
+  //! An internal method. It is used internally on creation of new labels.
+  //! It adds a new label into internal table for fast access to the labels by entry.
+  Standard_EXPORT void RegisterLabel (const TDF_Label& aLabel);
+
   //! Returns TDF_HAllocator, which is an
   //! incremental allocator used by
   //! TDF_LabelNode.
@@ -162,7 +181,7 @@ private:
   //!
   //! Raises if there is no current transaction.
   //!
-  //! Optionnal <withDelta> set to True indiquates a
+  //! Optional <withDelta> set to True indicates a
   //! Delta must be generated.
   Standard_EXPORT Handle(TDF_Delta) CommitTransaction (const Standard_Boolean withDelta = Standard_False);
   
@@ -198,8 +217,8 @@ private:
   TColStd_ListOfInteger myTimes;
   TDF_HAllocator myLabelNodeAllocator;
   Standard_Boolean myAllowModification;
-
-
+  Standard_Boolean myAccessByEntries;
+  NCollection_DataMap<TCollection_AsciiString, TDF_Label> myAccessByEntriesTable;
 };
 
 

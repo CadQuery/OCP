@@ -30,9 +30,6 @@
 #include <IGESData_HArray1OfIGESEntity.hxx>
 class IGESData_IGESEntity;
 class ShapeExtend_WireData;
-class IGESToBRep_CurveAndSurface;
-class TopoDS_Face;
-class gp_Trsf2d;
 
 
 class IGESToBRep_IGESBoundary;
@@ -72,7 +69,7 @@ public:
   //! and may contain pcurves)
     Handle(ShapeExtend_WireData) WireData3d() const;
   
-  //! Returns the the wire from 2D curves (edges contain pcurves
+  //! Returns the wire from 2D curves (edges contain pcurves
   //! only)
     Handle(ShapeExtend_WireData) WireData2d() const;
   

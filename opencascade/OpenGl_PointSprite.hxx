@@ -12,8 +12,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_PointSprite_H__
-#define _OpenGl_PointSprite_H__
+#ifndef OpenGl_PointSprite_HeaderFile
+#define OpenGl_PointSprite_HeaderFile
 
 #include <OpenGl_Texture.hxx>
 
@@ -38,6 +38,13 @@ public:
 
   //! Returns TRUE for point sprite texture.
   virtual bool IsPointSprite() const Standard_OVERRIDE { return true; }
+
+  //! @return true if current object was initialized
+  virtual bool IsValid() const Standard_OVERRIDE
+  {
+    return myBitmapList != 0
+        || myTextureId != NO_TEXTURE;
+  }
 
   //! @return true if this is display list bitmap
   inline Standard_Boolean IsDisplayList() const

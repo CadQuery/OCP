@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_GraduatedTrihedron_Header
-#define _OpenGl_GraduatedTrihedron_Header
+#ifndef OpenGl_GraduatedTrihedron_HeaderFile
+#define OpenGl_GraduatedTrihedron_HeaderFile
 
 #include <Graphic3d_GraduatedTrihedron.hxx>
 #include <gp_Ax1.hxx>
@@ -81,7 +81,8 @@ private:
 
   public:
 
-    Axis (const Graphic3d_AxisAspect& theAspect = Graphic3d_AxisAspect(),
+    Axis (const Graphic3d_GraduatedTrihedron::AxisAspect& theAspect =
+                Graphic3d_GraduatedTrihedron::AxisAspect(),
           const OpenGl_Vec3& theDirection = OpenGl_Vec3 (1.0f, 0.0f, 0.0f));
 
     ~Axis();
@@ -163,7 +164,7 @@ private:
 
   //! Render line from the transformed primitive array myLine
   //! @param theWorkspace [in] the OpenGl Workspace
-  //! @param theMat [in] theMat that containes base transformation and is used for appling
+  //! @param theMat [in] theMat that contains base transformation and is used for applying
   //!        translation and rotation
   //! @param thaTx the X for vector of translation
   //! @param thaTy the Y for vector of translation
@@ -179,7 +180,7 @@ private:
   //! @param theWorkspace [in] the OpenGl Workspace
   //! @param theIndex [in] index of axis
   //! @param theGridAxes [in] grid axes
-  //! @param theMat [in] theMat that containes base transformation and is used for appling
+  //! @param theMat [in] theMat that contains base transformation and is used for applying
   //!        translation and rotation
   void renderGridPlane (const Handle(OpenGl_Workspace)& theWorkspace,
                         const Standard_Integer& theIndex,
@@ -190,7 +191,7 @@ private:
   //! Render the axis of input index
   //! @param theWorkspace [in] the OpenGl Workspace
   //! @param theIndex [in] index of axis
-  //! @param theMat [in] theMat that containes base transformation and is used for appling
+  //! @param theMat [in] theMat that contains base transformation and is used for applying
   //!        translation and rotation
   void renderAxis (const Handle(OpenGl_Workspace)& theWorkspace,
                    const Standard_Integer& theIndex,
@@ -198,7 +199,7 @@ private:
 
   //! Render grid labels, tickmark lines and labels
   //! @param theWorkspace [in] the OpenGl Workspace
-  //! @param theMat [in] theMat that containes base transformation and is used for appling
+  //! @param theMat [in] theMat that contains base transformation and is used for applying
   //!        translation and rotation
   //! @param theIndex [in] index of axis
   //! @param theGridAxes [in] grid axes

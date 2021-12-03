@@ -25,7 +25,6 @@
 #include <HLRBRep_EdgeInterferenceTool.hxx>
 #include <Standard_Boolean.hxx>
 #include <TopAbs_Orientation.hxx>
-class HLRBRep_EdgeInterferenceTool;
 class HLRAlgo_Intersection;
 
 
@@ -51,8 +50,7 @@ public:
   //! Returns the current vertex
   Standard_EXPORT const HLRAlgo_Intersection& Current() const;
   
-  //! Returns True  if the current  vertex  is is on the
-  //! boundary of the edge.
+  //! Returns True if the current vertex is on the boundary of the edge.
   Standard_EXPORT Standard_Boolean IsBoundary() const;
   
   //! Returns  True   if   the current    vertex  is  an

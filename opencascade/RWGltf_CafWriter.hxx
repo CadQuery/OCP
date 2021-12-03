@@ -22,6 +22,7 @@
 #include <RWGltf_GltfFace.hxx>
 #include <RWGltf_WriterTrsfFormat.hxx>
 #include <RWMesh_CoordinateSystemConverter.hxx>
+#include <RWMesh_NameFormat.hxx>
 #include <XCAFPrs_Style.hxx>
 
 #include <memory>
@@ -66,6 +67,18 @@ public:
   //! Set preferred transformation format for writing into glTF file.
   void SetTransformationFormat (RWGltf_WriterTrsfFormat theFormat) { myTrsfFormat = theFormat; }
 
+  //! Return name format for exporting Nodes; RWMesh_NameFormat_InstanceOrProduct by default.
+  RWMesh_NameFormat NodeNameFormat() const { return myNodeNameFormat; }
+
+  //! Set name format for exporting Nodes.
+  void SetNodeNameFormat (RWMesh_NameFormat theFormat) { myNodeNameFormat = theFormat; }
+
+  //! Return name format for exporting Meshes; RWMesh_NameFormat_Product by default.
+  RWMesh_NameFormat MeshNameFormat() const { return myMeshNameFormat; }
+
+  //! Set name format for exporting Meshes.
+  void SetMeshNameFormat (RWMesh_NameFormat theFormat) { myMeshNameFormat = theFormat; }
+
   //! Return TRUE to export UV coordinates even if there are no mapped texture; FALSE by default.
   bool IsForcedUVExport() const { return myIsForcedUVExport; }
 
@@ -77,6 +90,29 @@ public:
 
   //! Set default material definition to be used for nodes with only color defined.
   void SetDefaultStyle (const XCAFPrs_Style& theStyle) { myDefaultStyle = theStyle; }
+
+  //! Return flag to write image textures into GLB file (binary gltf export); TRUE by default.
+  //! When set to FALSE, texture images will be written as separate files.
+  //! Has no effect on writing into non-binary format.
+  Standard_Boolean ToEmbedTexturesInGlb() { return myToEmbedTexturesInGlb; }
+
+  //! Set flag to write image textures into GLB file (binary gltf export).
+  void SetToEmbedTexturesInGlb (Standard_Boolean theToEmbedTexturesInGlb) { myToEmbedTexturesInGlb = theToEmbedTexturesInGlb; }
+
+  //! Return flag to merge faces within a single part; FALSE by default.
+  bool ToMergeFaces() const { return myToMergeFaces; }
+
+  //! Set flag to merge faces within a single part.
+  //! May reduce JSON size thanks to smaller number of primitive arrays.
+  void SetMergeFaces (bool theToMerge) { myToMergeFaces = theToMerge; }
+
+  //! Return flag to prefer keeping 16-bit indexes while merging face; FALSE by default.
+  bool ToSplitIndices16() const { return myToSplitIndices16; }
+
+  //! Set flag to prefer keeping 16-bit indexes while merging face.
+  //! Has effect only with ToMergeFaces() option turned ON.
+  //! May reduce binary data size thanks to smaller triangle indexes.
+  void SetSplitIndices16 (bool theToSplit) { myToSplitIndices16 = theToSplit; }
 
   //! Write glTF file and associated binary file.
   //! Triangulation data should be precomputed within shapes!
@@ -136,6 +172,14 @@ protected:
 
   //! Return TRUE if face mesh should be skipped (e.g. because it is invalid or empty).
   Standard_EXPORT virtual Standard_Boolean toSkipFaceMesh (const RWMesh_FaceIterator& theFaceIter);
+
+  //! Generate name for specified labels.
+  //! @param[in] theFormat   name format to apply
+  //! @param[in] theLabel    instance label
+  //! @param[in] theRefLabel product label
+  Standard_EXPORT virtual TCollection_AsciiString formatName (RWMesh_NameFormat theFormat,
+                                                              const TDF_Label& theLabel,
+                                                              const TDF_Label& theRefLabel) const;
 
   //! Write mesh nodes into binary file.
   //! @param theGltfFace [out] glTF face definition
@@ -221,20 +265,25 @@ protected:
   //! Write RWGltf_GltfRootElement_Images section.
   //! @param theSceneNodeMap [in] ordered map of scene nodes
   //! @param theMaterialMap [out] map of materials, filled with image files used by textures
-  Standard_EXPORT virtual void writeImages (const RWGltf_GltfSceneNodeMap& theSceneNodeMap,
-                                            RWGltf_GltfMaterialMap& theMaterialMap);
+  Standard_EXPORT virtual void writeImages (const RWGltf_GltfSceneNodeMap& theSceneNodeMap);
 
   //! Write RWGltf_GltfRootElement_Materials section.
   //! @param theSceneNodeMap [in] ordered map of scene nodes
   //! @param theMaterialMap [out] map of materials, filled with materials
-  Standard_EXPORT virtual void writeMaterials (const RWGltf_GltfSceneNodeMap& theSceneNodeMap,
-                                               RWGltf_GltfMaterialMap& theMaterialMap);
+  Standard_EXPORT virtual void writeMaterials (const RWGltf_GltfSceneNodeMap& theSceneNodeMap);
 
   //! Write RWGltf_GltfRootElement_Meshes section.
   //! @param theSceneNodeMap [in] ordered map of scene nodes
   //! @param theMaterialMap  [in] map of materials
-  Standard_EXPORT virtual void writeMeshes (const RWGltf_GltfSceneNodeMap& theSceneNodeMap,
-                                            const RWGltf_GltfMaterialMap& theMaterialMap);
+  Standard_EXPORT virtual void writeMeshes (const RWGltf_GltfSceneNodeMap& theSceneNodeMap);
+
+  //! Write a primitive array to RWGltf_GltfRootElement_Meshes section.
+  //! @param[in]     theGltfFace     face to write
+  //! @param[in]     theName         primitive array name
+  //! @param[in,out] theToStartPrims flag indicating that primitive array has been started
+  Standard_EXPORT virtual void writePrimArray (const RWGltf_GltfFace& theGltfFace,
+                                               const TCollection_AsciiString& theName,
+                                               bool& theToStartPrims);
 
   //! Write RWGltf_GltfRootElement_Nodes section.
   //! @param theDocument     [in] input document
@@ -249,7 +298,7 @@ protected:
                                            NCollection_Sequence<Standard_Integer>& theSceneRootNodeInds);
 
   //! Write RWGltf_GltfRootElement_Samplers section.
-  Standard_EXPORT virtual void writeSamplers (const RWGltf_GltfMaterialMap& theMaterialMap);
+  Standard_EXPORT virtual void writeSamplers();
 
   //! Write RWGltf_GltfRootElement_Scene section.
   //! @param theDefSceneId [in] index of default scene (0)
@@ -265,8 +314,35 @@ protected:
   //! Write RWGltf_GltfRootElement_Textures section.
   //! @param theSceneNodeMap [in] ordered map of scene nodes
   //! @param theMaterialMap [out] map of materials, filled with textures
-  Standard_EXPORT virtual void writeTextures (const RWGltf_GltfSceneNodeMap& theSceneNodeMap,
-                                              RWGltf_GltfMaterialMap& theMaterialMap);
+  Standard_EXPORT virtual void writeTextures (const RWGltf_GltfSceneNodeMap& theSceneNodeMap);
+
+protected:
+
+  //! Shape + Style pair.
+  struct RWGltf_StyledShape
+  {
+    TopoDS_Shape  Shape;
+    XCAFPrs_Style Style;
+
+    RWGltf_StyledShape() {}
+    explicit RWGltf_StyledShape (const TopoDS_Shape& theShape) : Shape (theShape) {}
+    explicit RWGltf_StyledShape (const TopoDS_Shape&  theShape,
+                                 const XCAFPrs_Style& theStyle) : Shape (theShape), Style (theStyle) {}
+  public:
+    //! Computes a hash code.
+    static Standard_Integer HashCode (const RWGltf_StyledShape& theShape, Standard_Integer theUpperBound)
+    {
+      return theShape.Shape.HashCode (theUpperBound);
+    }
+    //! Equality comparison.
+    static Standard_Boolean IsEqual (const RWGltf_StyledShape& theS1, const RWGltf_StyledShape& theS2)
+    {
+      return theS1.Shape.IsSame (theS2.Shape)
+          && theS1.Style.IsEqual(theS2.Style);
+    }
+  };
+
+  typedef NCollection_IndexedDataMap<RWGltf_StyledShape, Handle(RWGltf_GltfFaceList), RWGltf_StyledShape> ShapeToGltfFaceMap;
 
 protected:
 
@@ -274,19 +350,24 @@ protected:
   TCollection_AsciiString                       myBinFileNameFull;   //!< output file with binary data (full  path)
   TCollection_AsciiString                       myBinFileNameShort;  //!< output file with binary data (short path)
   RWGltf_WriterTrsfFormat                       myTrsfFormat;        //!< transformation format to write into glTF file
+  RWMesh_NameFormat                             myNodeNameFormat;    //!< name format for exporting Nodes
+  RWMesh_NameFormat                             myMeshNameFormat;    //!< name format for exporting Meshes
   Standard_Boolean                              myIsBinary;          //!< flag to write into binary glTF format (.glb)
   Standard_Boolean                              myIsForcedUVExport;  //!< export UV coordinates even if there are no mapped texture
+  Standard_Boolean                              myToEmbedTexturesInGlb; //!< flag to write image textures into GLB file
+  Standard_Boolean                              myToMergeFaces;      //!< flag to merge faces within a single part
+  Standard_Boolean                              myToSplitIndices16;  //!< flag to prefer keeping 16-bit indexes while merging face
   RWMesh_CoordinateSystemConverter              myCSTrsf;            //!< transformation from OCCT to glTF coordinate system
   XCAFPrs_Style                                 myDefaultStyle;      //!< default material definition to be used for nodes with only color defined
 
   opencascade::std::shared_ptr<RWGltf_GltfOStreamWriter>
                                                 myWriter;            //!< JSON writer
+  Handle(RWGltf_GltfMaterialMap)                myMaterialMap;       //!< map of defined materials
   RWGltf_GltfBufferView                         myBuffViewPos;       //!< current buffer view with nodes positions
   RWGltf_GltfBufferView                         myBuffViewNorm;      //!< current buffer view with nodes normals
   RWGltf_GltfBufferView                         myBuffViewTextCoord; //!< current buffer view with nodes UV coordinates
   RWGltf_GltfBufferView                         myBuffViewInd;       //!< current buffer view with triangulation indexes
-  NCollection_DataMap<TopoDS_Shape, RWGltf_GltfFace,
-                      TopTools_ShapeMapHasher>  myBinDataMap;        //!< map for TopoDS_Face to glTF face (merging duplicates)
+  ShapeToGltfFaceMap                            myBinDataMap;        //!< map for TopoDS_Face to glTF face (merging duplicates)
   int64_t                                       myBinDataLen64;      //!< length of binary file
 
 };

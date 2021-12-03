@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_Context_H__
-#define _OpenGl_Context_H__
+#ifndef OpenGl_Context_HeaderFile
+#define OpenGl_Context_HeaderFile
 
 #include <Aspect_Handle.hxx>
 #include <Aspect_HatchStyle.hxx>
@@ -73,68 +73,23 @@ struct OpenGl_ArbSamplerObject;
 struct OpenGl_ArbTexBindless;
 struct OpenGl_ExtGS;
 
-template<typename theBaseClass_t> struct OpenGl_TmplCore12;
-typedef OpenGl_TmplCore12<OpenGl_GlCore11>     OpenGl_GlCore12;
-typedef OpenGl_TmplCore12<OpenGl_GlCore11Fwd>  OpenGl_GlCore12Fwd;
-
+struct OpenGl_GlCore12;
 struct OpenGl_GlCore13;
-struct OpenGl_GlCore13Fwd;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore14;
-typedef OpenGl_TmplCore14<OpenGl_GlCore13>     OpenGl_GlCore14;
-typedef OpenGl_TmplCore14<OpenGl_GlCore13Fwd>  OpenGl_GlCore14Fwd;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore15;
-typedef OpenGl_TmplCore15<OpenGl_GlCore14>     OpenGl_GlCore15;
-typedef OpenGl_TmplCore15<OpenGl_GlCore14Fwd>  OpenGl_GlCore15Fwd;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore20;
-typedef OpenGl_TmplCore20<OpenGl_GlCore15>     OpenGl_GlCore20;
-typedef OpenGl_TmplCore20<OpenGl_GlCore15Fwd>  OpenGl_GlCore20Fwd;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore21;
-typedef OpenGl_TmplCore21<OpenGl_GlCore20>     OpenGl_GlCore21;
-typedef OpenGl_TmplCore21<OpenGl_GlCore20Fwd>  OpenGl_GlCore21Fwd;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore30;
-typedef OpenGl_TmplCore30<OpenGl_GlCore21>     OpenGl_GlCore30;
-typedef OpenGl_TmplCore30<OpenGl_GlCore21Fwd>  OpenGl_GlCore30Fwd;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore31;
-typedef OpenGl_TmplCore31<OpenGl_GlCore30>     OpenGl_GlCore31Back;
-typedef OpenGl_TmplCore31<OpenGl_GlCore30Fwd>  OpenGl_GlCore31;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore32;
-typedef OpenGl_TmplCore32<OpenGl_GlCore31Back> OpenGl_GlCore32Back;
-typedef OpenGl_TmplCore32<OpenGl_GlCore31>     OpenGl_GlCore32;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore33;
-typedef OpenGl_TmplCore33<OpenGl_GlCore32Back> OpenGl_GlCore33Back;
-typedef OpenGl_TmplCore33<OpenGl_GlCore32>     OpenGl_GlCore33;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore40;
-typedef OpenGl_TmplCore40<OpenGl_GlCore33Back> OpenGl_GlCore40Back;
-typedef OpenGl_TmplCore40<OpenGl_GlCore33>     OpenGl_GlCore40;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore41;
-typedef OpenGl_TmplCore41<OpenGl_GlCore40Back> OpenGl_GlCore41Back;
-typedef OpenGl_TmplCore41<OpenGl_GlCore40>     OpenGl_GlCore41;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore42;
-typedef OpenGl_TmplCore42<OpenGl_GlCore41Back> OpenGl_GlCore42Back;
-typedef OpenGl_TmplCore42<OpenGl_GlCore41>     OpenGl_GlCore42;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore43;
-typedef OpenGl_TmplCore43<OpenGl_GlCore42Back> OpenGl_GlCore43Back;
-typedef OpenGl_TmplCore43<OpenGl_GlCore42>     OpenGl_GlCore43;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore44;
-typedef OpenGl_TmplCore44<OpenGl_GlCore43Back> OpenGl_GlCore44Back;
-typedef OpenGl_TmplCore44<OpenGl_GlCore43>     OpenGl_GlCore44;
-
-template<typename theBaseClass_t> struct OpenGl_TmplCore45;
-typedef OpenGl_TmplCore45<OpenGl_GlCore44Back> OpenGl_GlCore45Back;
-typedef OpenGl_TmplCore45<OpenGl_GlCore44>     OpenGl_GlCore45;
+struct OpenGl_GlCore14;
+struct OpenGl_GlCore15;
+struct OpenGl_GlCore20;
+struct OpenGl_GlCore21;
+struct OpenGl_GlCore30;
+struct OpenGl_GlCore31;
+struct OpenGl_GlCore32;
+struct OpenGl_GlCore33;
+struct OpenGl_GlCore40;
+struct OpenGl_GlCore41;
+struct OpenGl_GlCore42;
+struct OpenGl_GlCore43;
+struct OpenGl_GlCore44;
+struct OpenGl_GlCore45;
+struct OpenGl_GlCore46;
 
 class Graphic3d_Camera;
 class Graphic3d_PresentationAttributes;
@@ -170,24 +125,15 @@ DEFINE_STANDARD_HANDLE(OpenGl_Context, Standard_Transient)
 //!   }
 //! @endcode
 //!
-//! Current implementation provide access to OpenGL core functionality up to 4.4 version (core12, core13, core14, core15, fields core20)
+//! Current implementation provide access to OpenGL core functionality up to 4.6 version (core12, core13, core14, etc.)
 //! as well as several extensions (arbTBO, arbFBO, etc.).
 //!
 //! OpenGL context might be initialized in Core Profile. In this case deprecated functionality become unavailable.
-//! To make code easily adaptable to wide range of OpenGL versions, function sets related to each version has two kinds of suffixes:
-//!  - "back" for version 3.2+.
-//!     Represents function set for Backward-Compatible Profile.
-//!     Function sets without this suffix represents core profile.
-//!  - "fwd"  for version 3.0-.
-//!     Represents non-deprecated function set of earlier OpenGL versions, which are still available within OpenGL 3.2 Core Profile.
-//!     Function sets without this suffix represents complete list of functions related to specific OpenGL version.
-//!
 //! To select which core** function set should be used in specific case:
 //!  - Determine the minimal OpenGL version required for implemented functionality and use it to access all functions.
 //!    For example, if algorithm requires OpenGL 2.1+, it is better to write core20fwd->glEnable() rather than core11fwd->glEnable() for uniformity.
-//!  - If functionality will work within Core Profile, use function sets with appropriate suffix.
 //!  - Validate minimal requirements at initialization/creation time and omit checks within code where algorithm should be already initialized.
-//!    Properly escape code incompatible with Core Profile. The simplest way to check Core Profile is "if (core11 == NULL)".
+//!    Properly escape code incompatible with Core Profile. The simplest way to check Core Profile is "if (core11ffp == NULL)".
 //!
 //! Simplified extensions classification:
 //!  - prefixed with NV, AMD, ATI are vendor-specific (however may be provided by other vendors in some cases);
@@ -205,12 +151,13 @@ DEFINE_STANDARD_HANDLE(OpenGl_Context, Standard_Transient)
 //! model -> world -> view -> projection
 //! These matrices might be changed for local transformation, transform persistent using direct access to
 //! current matrix of ModelWorldState, WorldViewState and ProjectionState
-//! After, these matrices should be applyed using ApplyModelWorldMatrix, ApplyWorldViewMatrix,
+//! After, these matrices should be applied using ApplyModelWorldMatrix, ApplyWorldViewMatrix,
 //! ApplyModelViewMatrix or ApplyProjectionMatrix.
 class OpenGl_Context : public Standard_Transient
 {
   DEFINE_STANDARD_RTTIEXT(OpenGl_Context, Standard_Transient)
   friend class OpenGl_Window;
+  friend struct OpenGl_GlFunctions;
 public:
 
   typedef NCollection_Shared< NCollection_DataMap<TCollection_AsciiString, Handle(OpenGl_Resource)> > OpenGl_ResourcesMap;
@@ -231,6 +178,18 @@ public:
     }
     return theThreshold;
   }
+
+  //! Format GL constant as hex value 0xABCD.
+  Standard_EXPORT static TCollection_AsciiString FormatGlEnumHex (int theGlEnum);
+
+  //! Format pointer as hex value 0xABCD.
+  Standard_EXPORT static TCollection_AsciiString FormatPointer (const void* thePtr);
+
+  //! Format size value.
+  Standard_EXPORT static TCollection_AsciiString FormatSize (Standard_Size theSize);
+
+  //! Return text description of GL error.
+  Standard_EXPORT static TCollection_AsciiString FormatGlError (int theGlError);
 
 public:
 
@@ -257,53 +216,75 @@ public:
     return myIsInitialized;
   }
 
-#if defined(HAVE_EGL)
   //! Initialize class from specified surface and rendering context. Method should be called only once.
+  //! The meaning of parameters is platform-specific.
+  //!
+  //! EGL:
+  //! @code
+  //!   Handle(Aspect_Window) theAspWin;
+  //!   EGLSurface theEglSurf = eglCreateWindowSurface (theEglDisp, anEglConfig, (EGLNativeWindowType )theAspWin->NativeHandle(), NULL);
+  //!   EGLDisplay theEglDisp = eglGetDisplay (EGL_DEFAULT_DISPLAY);
+  //!   EGLContext theEglCtx  = eglCreateContext ((EGLDisplay )theEglDisp, anEglConfig, EGL_NO_CONTEXT, anEglCtxAttribs);
+  //!   Handle(OpenGl_Context) aGlCtx = new OpenGl_Context();
+  //!   aGlCtx->Init ((Aspect_Drawable )theEglSurf, (Aspect_Display )theEglDisp,  (Aspect_RenderingContext )theEglCtx);
+  //! @endcode
+  //!
+  //! Windows (Win32):
+  //! @code
+  //!   Handle(WNT_Window) theAspWin;
+  //!   HWND  theWindow   = (HWND )theAspWin->NativeHandle();
+  //!   HDC   theDevCtx   = GetDC(theWindow);
+  //!   HGLRC theGContext = wglCreateContext (theDevCtx);
+  //!   Handle(OpenGl_Context) aGlCtx = new OpenGl_Context();
+  //!   aGlCtx->Init ((Aspect_Drawable )theWindow, (Aspect_Display )theDevCtx, (Aspect_RenderingContext )theGContext);
+  //! @endcode
+  //!
+  //! Linux (Xlib):
+  //! @code
+  //!   Handle(Xw_Window) theAspWin;
+  //!   Window     theXWindow = (Window )theAspWin->NativeHandle();
+  //!   Display*   theXDisp   = (Display* )theAspWin->DisplayConnection()->GetDisplayAspect();
+  //!   GLXContext theGlxCtx  = glXCreateContext (theXDisp, aVis.get(), NULL, GL_TRUE);
+  //!   Handle(OpenGl_Context) aGlCtx = new OpenGl_Context();
+  //!   aGlCtx->Init ((Aspect_Drawable )theXWindow, (Aspect_Display )theXDisp,  (Aspect_RenderingContext )theGlxCtx);
+  //! @endcode
+  //!
+  //! @param theSurface [in] surface / window          (EGLSurface | HWND  | GLXDrawable/Window)
+  //! @param theDisplay [in] display or device context (EGLDisplay | HDC   | Display*)
+  //! @param theContext [in] rendering context         (EGLContext | HGLRC | GLXContext | EAGLContext* | NSOpenGLContext*)
+  //! @param theIsCoreProfile [in] flag indicating that passed GL rendering context has been created with Core Profile
   //! @return false if OpenGL context can not be bound to specified surface
-  Standard_EXPORT Standard_Boolean Init (const Aspect_Drawable         theEglSurface,
-                                         const Aspect_Display          theEglDisplay,
-                                         const Aspect_RenderingContext theEglContext,
-                                         const Standard_Boolean        theIsCoreProfile = Standard_False);
-#elif defined(_WIN32)
-  //! Initialize class from specified window and rendering context. Method should be called only once.
-  //! @return false if OpenGL context can not be bound to specified window
-  Standard_EXPORT Standard_Boolean Init (const Aspect_Handle           theWindow,
-                                         const Aspect_Handle           theWindowDC,
-                                         const Aspect_RenderingContext theGContext,
+  Standard_EXPORT Standard_Boolean Init (const Aspect_Drawable         theSurface,
+                                         const Aspect_Display          theDisplay,
+                                         const Aspect_RenderingContext theContext,
                                          const Standard_Boolean        theIsCoreProfile = Standard_False);
 
-  //! @return the window handle (HWND) currently bound to this OpenGL context
-  inline Aspect_Handle Window() const
-  {
-    return myWindow;
-  }
+  //! Return window handle currently bound to this OpenGL context (EGLSurface | HWND | GLXDrawable).
+  Aspect_Drawable Window() const { return myWindow; }
 
-#elif defined(__APPLE__) && !defined(MACOSX_USE_GLX)
+  //! Return display / window device context (EGLDisplay | HDC | Display*).
+  Aspect_Display GetDisplay() const { return myDisplay; }
+
+  //! Return rendering context (EGLContext | HGLRC | GLXContext | EAGLContext* | NSOpenGLContext*).
+  Aspect_RenderingContext RenderingContext() const { return myGContext; }
+
+#if defined(__APPLE__) && !defined(HAVE_XLIB)
   #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
 
   //! Initialize class from specified OpenGL ES context (EAGLContext). Method should be called only once.
-  Standard_EXPORT Standard_Boolean Init (EAGLContext*                  theGContext,
-                                         const Standard_Boolean        theIsCoreProfile = Standard_False);
-  #else
-
-  //! Initialize class from specified OpenGL context (NSOpenGLContext). Method should be called only once.
-  Standard_EXPORT Standard_Boolean Init (NSOpenGLContext*              theGContext,
-                                         const Standard_Boolean        theIsCoreProfile = Standard_False);
-  #endif
-#else
-
-  //! Initialize class from specified window and rendering context. Method should be called only once.
-  //! @return false if OpenGL context can not be bound to specified window
-  Standard_EXPORT Standard_Boolean Init (const Aspect_Drawable         theWindow,
-                                         const Aspect_Display          theDisplay,
-                                         const Aspect_RenderingContext theGContext,
-                                         const Standard_Boolean        theIsCoreProfile = Standard_False);
-
-  //! @return the window handle (GLXDrawable) currently bound to this OpenGL context
-  inline Aspect_Drawable Window() const
+  Standard_Boolean Init (EAGLContext*           theGContext,
+                         const Standard_Boolean theIsCoreProfile = Standard_False)
   {
-    return myWindow;
+    return Init ((Aspect_Drawable )0, (Aspect_Display )0, (Aspect_RenderingContext )theGContext, theIsCoreProfile);
   }
+  #else
+  //! Initialize class from specified OpenGL context (NSOpenGLContext). Method should be called only once.
+  Standard_Boolean Init (NSOpenGLContext*       theGContext,
+                         const Standard_Boolean theIsCoreProfile = Standard_False)
+  {
+    return Init ((Aspect_Drawable )0, (Aspect_Display )0, (Aspect_RenderingContext )theGContext, theIsCoreProfile);
+  }
+  #endif
 #endif
 
   //! Read OpenGL version information from active context.
@@ -630,6 +611,15 @@ public:
   //! Returns texture unit where Specular IBL map is expected to be bound, or 0 if PBR is unavailable.
   Graphic3d_TextureUnit PBRSpecIBLMapTexUnit() const { return myPBRSpecIBLMapTexUnit; }
 
+  //! Returns texture unit where shadow map is expected to be bound, or 0 if unavailable.
+  Graphic3d_TextureUnit ShadowMapTexUnit() const { return myShadowMapTexUnit; }
+
+  //! Returns texture unit for occDepthPeelingDepth within enabled Depth Peeling.
+  Graphic3d_TextureUnit DepthPeelingDepthTexUnit() const { return myDepthPeelingDepthTexUnit; }
+
+  //! Returns texture unit for occDepthPeelingFrontColor within enabled Depth Peeling.
+  Graphic3d_TextureUnit DepthPeelingFrontColorTexUnit() const { return myDepthPeelingFrontColorTexUnit; }
+
   //! Returns true if VBO is supported and permitted.
   inline bool ToUseVbo() const
   {
@@ -805,9 +795,16 @@ public: //! @name methods to alter or retrieve current state
   Standard_EXPORT void SetFrameBufferSRGB (bool theIsFbo, bool theIsFboSRgb = true);
 
   //! Return cached flag indicating writing into color buffer is enabled or disabled (glColorMask).
-  bool ColorMask() const { return myColorMask; }
+  const NCollection_Vec4<bool>& ColorMaskRGBA() const { return myColorMask; }
 
   //! Enable/disable writing into color buffer (wrapper for glColorMask).
+  Standard_EXPORT void SetColorMaskRGBA (const NCollection_Vec4<bool>& theToWriteColor);
+
+  //! Return cached flag indicating writing into color buffer is enabled or disabled (glColorMask).
+  bool ColorMask() const { return myColorMask.r(); }
+
+  //! Enable/disable writing into color buffer (wrapper for glColorMask).
+  //! Alpha component writes will be disabled unconditionally in case of caps->buffersOpaqueAlpha.
   Standard_EXPORT bool SetColorMask (bool theToWriteColor);
 
   //! Return TRUE if GL_SAMPLE_ALPHA_TO_COVERAGE usage is allowed.
@@ -1022,42 +1019,39 @@ private:
 
 public: //! @name core profiles
 
-  OpenGl_GlCore11*     core11;     //!< OpenGL 1.1 core functionality
+  OpenGl_GlCore11*     core11ffp;  //!< OpenGL 1.1 core functionality
   OpenGl_GlCore11Fwd*  core11fwd;  //!< OpenGL 1.1 without deprecated entry points
-  OpenGl_GlCore15*     core15;     //!< OpenGL 1.5 core functionality
-  OpenGl_GlCore15Fwd*  core15fwd;  //!< OpenGL 1.5 without deprecated entry points
-  OpenGl_GlCore20*     core20;     //!< OpenGL 2.0 core functionality (includes 1.5)
-  OpenGl_GlCore20Fwd*  core20fwd;  //!< OpenGL 2.0 without deprecated entry points
-  OpenGl_GlCore30*     core30;     //!< OpenGL 3.0 core functionality
-  OpenGl_GlCore30Fwd*  core30fwd;  //!< OpenGL 3.0 without deprecated entry points
+  OpenGl_GlCore15*     core15;     //!< OpenGL 1.5 without deprecated entry points
+  OpenGl_GlCore20*     core20;     //!< OpenGL 2.0 without deprecated entry points
+  OpenGl_GlCore30*     core30;     //!< OpenGL 3.0 without deprecated entry points
   OpenGl_GlCore32*     core32;     //!< OpenGL 3.2 core profile
-  OpenGl_GlCore32Back* core32back; //!< OpenGL 3.2 backward compatibility profile
   OpenGl_GlCore33*     core33;     //!< OpenGL 3.3 core profile
-  OpenGl_GlCore33Back* core33back; //!< OpenGL 3.3 backward compatibility profile
   OpenGl_GlCore41*     core41;     //!< OpenGL 4.1 core profile
-  OpenGl_GlCore41Back* core41back; //!< OpenGL 4.1 backward compatibility profile
   OpenGl_GlCore42*     core42;     //!< OpenGL 4.2 core profile
-  OpenGl_GlCore42Back* core42back; //!< OpenGL 4.2 backward compatibility profile
   OpenGl_GlCore43*     core43;     //!< OpenGL 4.3 core profile
-  OpenGl_GlCore43Back* core43back; //!< OpenGL 4.3 backward compatibility profile
   OpenGl_GlCore44*     core44;     //!< OpenGL 4.4 core profile
-  OpenGl_GlCore44Back* core44back; //!< OpenGL 4.4 backward compatibility profile
   OpenGl_GlCore45*     core45;     //!< OpenGL 4.5 core profile
-  OpenGl_GlCore45Back* core45back; //!< OpenGL 4.5 backward compatibility profile
+  OpenGl_GlCore46*     core46;     //!< OpenGL 4.6 core profile
+
+  OpenGl_GlCore15*     core15fwd;  //!< obsolete entry left for code portability; core15 should be used instead
+  OpenGl_GlCore20*     core20fwd;  //!< obsolete entry left for code portability; core20 should be used instead
 
   Handle(OpenGl_Caps) caps; //!< context options
 
 public: //! @name extensions
 
   Standard_Boolean       hasGetBufferData;   //!< flag indicating if GetBufferSubData() is supported
+  Standard_Boolean       hasPackRowLength;   //!< supporting of GL_PACK_ROW_LENGTH   parameters (any desktop OpenGL; OpenGL ES 3.0)
+  Standard_Boolean       hasUnpackRowLength; //!< supporting of GL_UNPACK_ROW_LENGTH parameters (any desktop OpenGL; OpenGL ES 3.0)
   Standard_Boolean       hasHighp;           //!< highp in GLSL ES fragment shader is supported
   Standard_Boolean       hasUintIndex;       //!< GLuint for index buffer is supported (always available on desktop; on OpenGL ES - since 3.0 or as extension GL_OES_element_index_uint)
   Standard_Boolean       hasTexRGBA8;        //!< always available on desktop; on OpenGL ES - since 3.0 or as extension GL_OES_rgb8_rgba8
   Standard_Boolean       hasTexFloatLinear;  //!< texture-filterable state for 32-bit floating texture formats (always on desktop, GL_OES_texture_float_linear within OpenGL ES)
-  Standard_Boolean       hasTexSRGB;         //!< sRGB texture    formats (desktop OpenGL 2.1, OpenGL ES 3.0 or GL_EXT_texture_sRGB)
+  Standard_Boolean       hasTexSRGB;         //!< sRGB texture    formats (desktop OpenGL 2.1, OpenGL ES 3.0 or OpenGL ES 2.0 + GL_EXT_sRGB)
   Standard_Boolean       hasFboSRGB;         //!< sRGB FBO render targets (desktop OpenGL 2.1, OpenGL ES 3.0)
   Standard_Boolean       hasSRGBControl;     //!< sRGB write control (any desktop OpenGL, OpenGL ES + GL_EXT_sRGB_write_control extension)
-  OpenGl_FeatureFlag     hasFlatShading;     //!< Complex flag indicating support of Flat shading (Graphic3d_TOSM_FACET) (always available on desktop; on OpenGL ES - since 3.0 or as extension GL_OES_standard_derivatives)
+  Standard_Boolean       hasFboRenderMipmap; //!< FBO render target could be non-zero mipmap level of texture
+  OpenGl_FeatureFlag     hasFlatShading;     //!< Complex flag indicating support of Flat shading (Graphic3d_TypeOfShadingModel_Phong) (always available on desktop; on OpenGL ES - since 3.0 or as extension GL_OES_standard_derivatives)
   OpenGl_FeatureFlag     hasGlslBitwiseOps;  //!< GLSL supports bitwise operations; OpenGL 3.0 / OpenGL ES 3.0 (GLSL 130 / GLSL ES 300) or OpenGL 2.1 + GL_EXT_gpu_shader4
   OpenGl_FeatureFlag     hasDrawBuffers;     //!< Complex flag indicating support of multiple draw buffers (desktop OpenGL 2.0, OpenGL ES 3.0, GL_ARB_draw_buffers, GL_EXT_draw_buffers)
   OpenGl_FeatureFlag     hasFloatBuffer;     //!< Complex flag indicating support of float color buffer format (desktop OpenGL 3.0, GL_ARB_color_buffer_float, GL_EXT_color_buffer_float)
@@ -1071,12 +1065,14 @@ public: //! @name extensions
   OpenGl_ArbSamplerObject* arbSamplerObject; //!< GL_ARB_sampler_objects (on desktop OpenGL - since 3.3 or as extension GL_ARB_sampler_objects; on OpenGL ES - since 3.0)
   OpenGl_ArbTexBindless* arbTexBindless;     //!< GL_ARB_bindless_texture
   OpenGl_ArbTBO*         arbTBO;             //!< GL_ARB_texture_buffer_object (on desktop OpenGL - since 3.1 or as extension GL_ARB_texture_buffer_object; on OpenGL ES - since 3.2)
-  Standard_Boolean       arbTboRGB32;        //!< GL_ARB_texture_buffer_object_rgb32 (3-component TBO), in core since 4.0
-  OpenGl_ArbIns*         arbIns;             //!< GL_ARB_draw_instanced (on desktop OpenGL - since 3.1 or as extebsion GL_ARB_draw_instanced; on OpenGL ES - since 3.0 or as extension GL_ANGLE_instanced_arrays to WebGL 1.0)
+  Standard_Boolean       arbTboRGB32;        //!< GL_ARB_texture_buffer_object_rgb32 (3-component TBO), in core since 4.0 (on OpenGL ES - since 3.2)
+  Standard_Boolean       arbClipControl;     //!< GL_ARB_clip_control, in core since 4.5
+  OpenGl_ArbIns*         arbIns;             //!< GL_ARB_draw_instanced (on desktop OpenGL - since 3.1 or as extension GL_ARB_draw_instanced; on OpenGL ES - since 3.0 or as extension GL_ANGLE_instanced_arrays to WebGL 1.0)
   OpenGl_ArbDbg*         arbDbg;             //!< GL_ARB_debug_output (on desktop OpenGL - since 4.3 or as extension GL_ARB_debug_output; on OpenGL ES - since 3.2 or as extension GL_KHR_debug)
   OpenGl_ArbFBO*         arbFBO;             //!< GL_ARB_framebuffer_object
   OpenGl_ArbFBOBlit*     arbFBOBlit;         //!< glBlitFramebuffer function, moved out from OpenGl_ArbFBO structure for compatibility with OpenGL ES 2.0
   Standard_Boolean       arbSampleShading;   //!< GL_ARB_sample_shading
+  Standard_Boolean       arbDepthClamp;      //!< GL_ARB_depth_clamp (on desktop OpenGL - since 3.2 or as extensions GL_ARB_depth_clamp,NV_depth_clamp; unavailable on OpenGL ES)
   Standard_Boolean       extFragDepth;       //!< GL_EXT_frag_depth on OpenGL ES 2.0 (gl_FragDepthEXT built-in variable, before OpenGL ES 3.0)
   Standard_Boolean       extDrawBuffers;     //!< GL_EXT_draw_buffers
   OpenGl_ExtGS*          extGS;              //!< GL_EXT_geometry_shader4
@@ -1096,25 +1092,9 @@ public: //! @name public properties tracking current state
 
 private: // system-dependent fields
 
-#if defined(HAVE_EGL)
-  Aspect_Drawable         myWindow;   //!< EGL surface                   : EGLSurface
-  Aspect_Display          myDisplay;  //!< EGL connection to the Display : EGLDisplay
-  Aspect_RenderingContext myGContext; //!< EGL rendering context         : EGLContext
-#elif defined(_WIN32)
-  Aspect_Handle           myWindow;   //!< window handle (owner of GL context) : HWND
-  Aspect_Handle           myWindowDC; //!< Device Descriptor handle : HDC
-  Aspect_RenderingContext myGContext; //!< Rendering Context handle : HGLRC
-#elif defined(__APPLE__) && !defined(MACOSX_USE_GLX)
-  #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
-  EAGLContext*            myGContext;    //!< Rendering Context handle
-  #else
-  NSOpenGLContext*        myGContext; //!< Rendering Context handle
-  #endif
-#else
-  Aspect_Drawable         myWindow;   //!< window handle (owner of GL context) : GLXDrawable
-  Aspect_Display          myDisplay;  //!< connection to the X-server : Display*
-  Aspect_RenderingContext myGContext; //!< X-GLX rendering context : GLXContext
-#endif
+  Aspect_Drawable         myWindow;   //!< surface           EGLSurface | HWND  | GLXDrawable
+  Aspect_Display          myDisplay;  //!< display           EGLDisplay | HDC   | Display*
+  Aspect_RenderingContext myGContext; //!< rendering context EGLContext | HGLRC | GLXContext | EAGLContext* | NSOpenGLContext*
 
 private: // context info
 
@@ -1161,6 +1141,10 @@ private: // context info
   Graphic3d_TextureUnit myPBRDiffIBLMapSHTexUnit; //!< sampler2D occDiffIBLMapSHCoeffs, texture unit where diffuse (irradiance) IBL map's spherical harmonics coefficients is expected to  be binded
                                                   //!  (0 if PBR is not supported)
   Graphic3d_TextureUnit myPBRSpecIBLMapTexUnit;   //!< samplerCube occSpecIBLMap, texture unit where specular IBL map is expected to  be binded (0 if PBR is not supported)
+  Graphic3d_TextureUnit myShadowMapTexUnit;       //!< sampler2D occShadowMapSampler
+
+  Graphic3d_TextureUnit myDepthPeelingDepthTexUnit;      //!< sampler2D occDepthPeelingDepth, texture unit for Depth Peeling lookups
+  Graphic3d_TextureUnit myDepthPeelingFrontColorTexUnit; //!< sampler2D occDepthPeelingFrontColor, texture unit for Depth Peeling lookups
 
   Handle(OpenGl_ShaderManager) myShaderManager; //! support object for managing shader programs
 
@@ -1190,7 +1174,7 @@ private: //! @name fields tracking current state
   NCollection_Array1<Standard_Integer>
                                 myDrawBuffers;     //!< current draw buffers
   unsigned int                  myDefaultVao;      //!< default Vertex Array Object
-  Standard_Boolean              myColorMask;       //!< flag indicating writing into color buffer is enabled or disabled (glColorMask)
+  NCollection_Vec4<bool>        myColorMask;       //!< flag indicating writing into color buffer is enabled or disabled (glColorMask)
   Standard_Boolean              myAllowAlphaToCov; //!< flag allowing   GL_SAMPLE_ALPHA_TO_COVERAGE usage
   Standard_Boolean              myAlphaToCoverage; //!< flag indicating GL_SAMPLE_ALPHA_TO_COVERAGE state
   Standard_Boolean              myIsGlDebugCtx;    //!< debug context initialization state
@@ -1205,8 +1189,7 @@ private: //! @name fields tracking current state
   Standard_ShortReal            myLineFeather;     //!< line feater width in pixels
   Standard_ShortReal            myRenderScale;     //!< scaling factor for rendering resolution
   Standard_ShortReal            myRenderScaleInv;  //!< scaling factor for rendering resolution (inverted value)
-  OpenGl_Material               myMatFront;        //!< current front material state (cached to reduce GL context updates)
-  OpenGl_Material               myMatBack;         //!< current back  material state
+  OpenGl_Material               myMaterial;        //!< current front/back material state (cached to reduce GL context updates)
 
 private:
 

@@ -59,11 +59,6 @@ public:
     return (theMode & (Graphic3d_TMF_TriedronPers | Graphic3d_TMF_2d)) != 0;
   }
 
-  //! Create Graphic3d_TransformPers instance from deprecated parameters set
-  //! decoding 2D corner + offset parameters from 3D point.
-  Standard_EXPORT static Handle(Graphic3d_TransformPers) FromDeprecatedParams (Graphic3d_TransModeFlags theFlag,
-                                                                               const gp_Pnt&            thePoint);
-
 public:
 
   //! Set transformation persistence.
@@ -77,6 +72,10 @@ public:
     else if (IsTrihedronOr2d (theMode))
     {
       SetPersistence (theMode, Aspect_TOTP_LEFT_LOWER, Graphic3d_Vec2i (0, 0));
+    }
+    else if (theMode == Graphic3d_TMF_CameraPers)
+    {
+      myMode = theMode;
     }
     else
     {
@@ -224,6 +223,24 @@ public:
 
 public:
 
+  //! Find scale value based on the camera position and view dimensions
+  //! @param theCamera [in] camera definition
+  //! @param theViewportWidth [in] the width of viewport.
+  //! @param theViewportHeight [in] the height of viewport.
+  virtual Standard_Real persistentScale (const Handle(Graphic3d_Camera)& theCamera,
+                                         const Standard_Integer /*theViewportWidth*/,
+                                         const Standard_Integer theViewportHeight) const
+  {
+    // use total size when tiling is active
+    const Standard_Integer aVPSizeY = theCamera->Tile().IsValid() ? theCamera->Tile().TotalSize.y() : theViewportHeight;
+
+    gp_Vec aVecToEye (theCamera->Direction());
+    gp_Vec aVecToObj (theCamera->Eye(), gp_Pnt (myParams.Params3d.PntX, myParams.Params3d.PntY, myParams.Params3d.PntZ));
+    const Standard_Real aFocus = aVecToObj.Dot (aVecToEye);
+    const gp_XYZ aViewDim = theCamera->ViewDimensions (aFocus);
+    return Abs(aViewDim.Y()) / Standard_Real(aVPSizeY);
+  }
+
   //! Apply transformation to bounding box of presentation.
   //! @param theCamera [in] camera definition
   //! @param theProjection [in] the projection transformation matrix.
@@ -276,12 +293,14 @@ public:
   //! @param theWorldView  world-view matrix to modify
   //! @param theViewportWidth  viewport width
   //! @param theViewportHeight viewport height
+  //! @param theAnchor if not NULL, overrides anchor point
   template<class T>
   void Apply (const Handle(Graphic3d_Camera)& theCamera,
               const NCollection_Mat4<T>& theProjection,
               NCollection_Mat4<T>& theWorldView,
               const Standard_Integer theViewportWidth,
-              const Standard_Integer theViewportHeight) const;
+              const Standard_Integer theViewportHeight,
+              const gp_Pnt* theAnchor = NULL) const;
 
   //! Dumps the content of me into the stream
   Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
@@ -330,7 +349,8 @@ void Graphic3d_TransformPers::Apply (const Handle(Graphic3d_Camera)& theCamera,
                                      const NCollection_Mat4<T>& theProjection,
                                      NCollection_Mat4<T>& theWorldView,
                                      const Standard_Integer theViewportWidth,
-                                     const Standard_Integer theViewportHeight) const
+                                     const Standard_Integer theViewportHeight,
+                                     const gp_Pnt* theAnchor) const
 {
   (void )theViewportWidth;
   (void )theProjection;
@@ -428,11 +448,23 @@ void Graphic3d_TransformPers::Apply (const Handle(Graphic3d_Camera)& theCamera,
     Graphic3d_TransformUtils::Scale     (theWorldView, T(aScale),      T(aScale),      T(aScale));
     return;
   }
+  else if ((myMode & Graphic3d_TMF_CameraPers) != 0)
+  {
+    theWorldView.InitIdentity();
+  }
   else
   {
     // Compute reference point for transformation in untransformed projection space.
     NCollection_Mat4<Standard_Real> aWorldView = theCamera->OrientationMatrix();
-    Graphic3d_TransformUtils::Translate (aWorldView, myParams.Params3d.PntX, myParams.Params3d.PntY, myParams.Params3d.PntZ);
+    if (theAnchor != NULL)
+    {
+      Graphic3d_TransformUtils::Translate (aWorldView, theAnchor->X(), theAnchor->Y(), theAnchor->Z());
+    }
+    else
+    {
+      Graphic3d_TransformUtils::Translate (aWorldView, myParams.Params3d.PntX, myParams.Params3d.PntY, myParams.Params3d.PntZ);
+    }
+
     if ((myMode & Graphic3d_TMF_RotatePers) != 0)
     {
       // lock rotation by nullifying rotation component
@@ -452,11 +484,7 @@ void Graphic3d_TransformPers::Apply (const Handle(Graphic3d_Camera)& theCamera,
     if ((myMode & Graphic3d_TMF_ZoomPers) != 0)
     {
       // lock zooming
-      gp_Vec aVecToEye (theCamera->Direction());
-      gp_Vec aVecToObj (theCamera->Eye(), gp_Pnt (myParams.Params3d.PntX, myParams.Params3d.PntY, myParams.Params3d.PntZ));
-      const Standard_Real aFocus = aVecToObj.Dot (aVecToEye);
-      const gp_XYZ aViewDim = theCamera->ViewDimensions (aFocus);
-      const Standard_Real aScale = Abs(aViewDim.Y()) / Standard_Real(aVPSizeY);
+      Standard_Real aScale = persistentScale (theCamera, theViewportWidth, theViewportHeight);
       Graphic3d_TransformUtils::Scale (aWorldView, aScale, aScale, aScale);
     }
     theWorldView.ConvertFrom (aWorldView);

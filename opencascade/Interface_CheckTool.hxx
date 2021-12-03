@@ -25,13 +25,11 @@
 #include <Standard_Integer.hxx>
 #include <Standard_Boolean.hxx>
 class Interface_GTool;
-class Interface_CheckFailure;
 class Interface_InterfaceModel;
 class Interface_Protocol;
 class Interface_Graph;
 class Interface_HGraph;
 class Standard_Transient;
-class Interface_ShareTool;
 class Interface_Check;
 class Interface_CheckIterator;
 class Interface_EntityIterator;
@@ -84,10 +82,10 @@ public:
   //! Checks if any Error has been detected (CheckList not empty)
   //! Returns normally if none, raises exception if some exists.
   //! It reuses the last computations from other checking methods,
-  //! unless the argument <resest> is given True
+  //! unless the argument <reset> is given True
   Standard_EXPORT void CheckSuccess (const Standard_Boolean reset = Standard_False);
   
-  //! Returns list of all "remarkable" informations, which include :
+  //! Returns list of all "remarkable" information, which include :
   //! - GlobalCheck, if not empty
   //! - Error Checks, for all Errors (Verify + Analyse)
   //! - also Corrected Entities
@@ -102,7 +100,7 @@ public:
   //! AnalyseCheckList + VerifyCheckList
   Standard_EXPORT Interface_CheckIterator CheckList();
   
-  //! Returns list of errors dectected at Analyse time (syntactic)
+  //! Returns list of errors detected at Analyse time (syntactic)
   //! (note that GlobalCheck is not in this list)
   Standard_EXPORT Interface_CheckIterator AnalyseCheckList();
   

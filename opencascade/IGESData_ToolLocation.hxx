@@ -26,7 +26,6 @@
 #include <Standard_Transient.hxx>
 #include <Standard_Boolean.hxx>
 class IGESData_IGESModel;
-class Standard_DomainError;
 class IGESData_Protocol;
 class IGESData_IGESEntity;
 class gp_GTrsf;
@@ -82,7 +81,7 @@ public:
   //! <parent> (it must be the Parent itself, not the Associativity)
   Standard_EXPORT void SetParentAssoc (const Handle(IGESData_IGESEntity)& parent, const Handle(IGESData_IGESEntity)& child);
   
-  //! Resets all informations about dependences for <child>
+  //! Resets all information about dependences for <child>
   Standard_EXPORT void ResetDependences (const Handle(IGESData_IGESEntity)& child);
   
   //! Unitary action which defines Entities referenced by <ent>
@@ -141,7 +140,7 @@ public:
   //! Calls ConvertLocation (see below)
   Standard_EXPORT Standard_Boolean AnalyseLocation (const gp_GTrsf& loc, gp_Trsf& result) const;
   
-  //! Convertion of a Location, from GTrsf form to Trsf form
+  //! Conversion of a Location, from GTrsf form to Trsf form
   //! Works with a precision given as argument.
   //! Returns True if the Conversion is possible, (hence, <result>
   //! contains the converted location), False else

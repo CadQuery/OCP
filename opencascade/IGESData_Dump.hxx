@@ -11,6 +11,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#ifndef IGESData_Dump_HeaderFile
+#define IGESData_Dump_HeaderFile
+
 //		       --------------------------
 //			    IGESData_Dump.hxx
 //		       --------------------------
@@ -25,7 +28,7 @@
 
 //  ###############################################################
 //  Macros to help Dumping Parts of IGES Entities
-//  (for usefull and repetitive cases but which apply to different classes
+//  (for useful and repetitive cases but which apply to different classes
 //   but with similar signatures, such as Arrays)
 //  Remember that the class IGESDumper processes itself individual dump of
 //  IGESEntity
@@ -307,3 +310,5 @@ if (str.IsNull()) S << "(undefined)";\
     }\
   }\
 }
+
+#endif

@@ -33,13 +33,11 @@
 #include <Standard_Character.hxx>
 #include <TColStd_HSequenceOfHAsciiString.hxx>
 class TCollection_HAsciiString;
-class Standard_Transient;
-class Interface_InterfaceError;
 
 class Interface_Static;
 DEFINE_STANDARD_HANDLE(Interface_Static, Interface_TypedValue)
 
-//! This class gives a way to manage meaningfull static variables,
+//! This class gives a way to manage meaningful static variables,
 //! used as "global" parameters in various procedures.
 //!
 //! A Static brings a specification (its type, constraints if any)
@@ -69,7 +67,7 @@ public:
 
   
   //! Creates and records a Static, with a family and a name
-  //! family can report to a name of ressource or to a system or
+  //! family can report to a name of resource or to a system or
   //! internal definition. The name must be unique.
   //!
   //! type gives the type of the parameter, default is free text

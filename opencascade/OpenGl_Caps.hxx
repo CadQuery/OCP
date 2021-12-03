@@ -13,8 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#ifndef _OpenGl_Caps_H__
-#define _OpenGl_Caps_H__
+#ifndef OpenGl_Caps_HeaderFile
+#define OpenGl_Caps_HeaderFile
 
 #include <Standard_Type.hxx>
 #include <Standard_Transient.hxx>
@@ -36,6 +36,7 @@ public: //! @name flags to disable particular functionality, should be used only
   Standard_Boolean usePolygonMode;    //!< Enables Polygon Mode instead of built-in GLSL programs (OFF by default; unsupported on OpenGL ES)
   Standard_Boolean useSystemBuffer;   //!< Enables usage of system backbuffer for blitting (OFF by default on desktop OpenGL and ON on OpenGL ES for testing)
   Standard_Integer swapInterval;      //!< controls swap interval - 0 for VSync off and 1 for VSync on, 1 by default
+  Standard_Boolean useZeroToOneDepth; //!< use [0, 1] depth range instead of [-1, 1] range, when possible (OFF by default)
 
 public: //! @name context creation parameters
 
@@ -47,6 +48,17 @@ public: //! @name context creation parameters
    * OFF by default.
    */
   Standard_Boolean buffersNoSwap;
+
+  /**
+   * Specify whether alpha component within color buffer should be written or not.
+   * With alpha write enabled, background is considered transparent by default
+   * and overridden by alpha value of last drawn object
+   * (e.g. it could be opaque or not in case of transparent material).
+   * With alpha writes disabled, color buffer will be kept opaque.
+   *
+   * ON by default.
+   */
+  Standard_Boolean buffersOpaqueAlpha;
 
   /**
    * Request stereoscopic context (with Quad Buffer). This flag requires support in OpenGL driver.
@@ -102,7 +114,7 @@ public: //! @name context creation parameters
    * but some limit functionality to OpenGL 2.1 (e.g. OS X) when core profile is not explicitly requested.
    *
    * Requires OpenGL 3.2+ drivers.
-   * Has no effect on OpenGL ES 2.0+ drivers (which do not provie FFP compatibility).
+   * Has no effect on OpenGL ES 2.0+ drivers (which do not provide FFP compatibility).
    * Interacts with ffpEnable option, which should be disabled within core profile.
    *
    * ON by default.
