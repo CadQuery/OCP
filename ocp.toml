@@ -340,7 +340,9 @@ exclude = ["Standard_Handle.hxx","Standard",
            "BRepMesh_ConeRangeSplitter.hxx","BRepMesh_CylinderRangeSplitter.hxx",
            "BRepMesh_NURBSRangeSplitter.hxx","BRepMesh_SphereRangeSplitter.hxx",
            "BRepMesh_TorusRangeSplitter.hxx","BRepMesh_UVParamRangeSplitter.hxx","OpenGl_GLESExtensions.hxx",
-           "IVtk_IShapePickerAlgo.hxx"]
+           "IVtk_IShapePickerAlgo.hxx","ProjLib_HCompProjectedCurve.hxx","ProjLib_HProjectedCurve.hxx",
+           "OSD_StreamBuffer.hxx"
+           ]
 #           "BVH_Box.hxx","BVH_tools.hxx"
 
 exceptions = ["Standard_Failure"]
@@ -352,6 +354,9 @@ byref_types = ["Standard_Real","Standard_Integer","Standard_Boolean"]
 byref_types_smart_ptr = ["opencascade::handle"]
 
 parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
+class Adaptor2d_Curve2d;
+class Adaptor3d_Curve;
+class Adaptor3d_Surface;
 #include <Standard_Handle.hxx>
 #undef Standard_NODISCARD
 #define Standard_NODISCARD
@@ -428,8 +433,14 @@ parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
     [Modules.OSD]
 
         exclude_functions = ["OSD","OSD_OpenStream"]
-        exclude_classes = ["OSD",]
-        exclude_methods = ["OSD::RealToCString","OSD_SharedLibrary::DlSymb"]
+        exclude_classes = ["OSD","OSD_FileSystem","OSD_CachedFileSystem","OSD_FileSystemSelector","OSD_LocalFileSystem"]
+        exclude_methods = ["OSD_SharedLibrary::DlSymb"]
+        #"OSD_FileSystem::IsOpenIStream","OSD_FileSystem::IsOpenOStream","OSD_FileSystem::OpenOStream","OSD_FileSystem::OpenIStream",
+        #"OSD_CachedFileSystem::IsOpenIStream","OSD_CachedFileSystem::IsOpenOStream","OSD_CachedFileSystem::OpenOStream","OSD_CachedFileSystem::OpenIStream",
+        #"OSD_FileSystemSelector::IsOpenIStream","OSD_FileSystemSelector::IsOpenOStream","OSD_FileSystemSelector::OpenOStream","OSD_FileSystemSelector::OpenIStream",
+        #"OSD_LocalFileSystem::IsOpenIStream","OSD_LocalFileSystem::IsOpenOStream","OSD_LocalFileSystem::OpenOStream","OSD_LocalFileSystem::OpenIStream"]
+        
+        include_body_pre = 'py::class_<OSD_FileSystem, opencascade::handle<OSD_FileSystem>>(m, "OSD_FileSystem");'
 
     [Modules.Storage]
 
@@ -454,7 +465,8 @@ parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
         exclude_methods = ["UnitsMethods::RadianToDegree","UnitsMethods::DegreeToRadian","UnitsMethods::MirrorPCurve"]
 
     [Modules.Poly]
-
+    
+        include_header_pre = "#include <OSD_FileSystem.hxx>"
         exclude_classes = ["Poly_MakeLoops","Poly",]
         exclude_methods = ["Poly_CoherentTriangulation::FindTriangle","Poly_CoherentTriangulation::RemoveDegenerated"]
 
@@ -495,7 +507,7 @@ parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
 
     [Modules.BRepCheck]
 
-        exclude_typedefs = ["BRepCheck_DataMapOfShapeResult"]
+        exclude_typedefs = ["BRepCheck_DataMapOfShapeResult", "BRepCheck_IndexedDataMapOfShapeResult","BRepCheck_DataMapOfShapeListOfStatus"]
 
     [Modules.BRepClass3d]
 
@@ -612,7 +624,7 @@ parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
 
     [Modules.Aspect]
 
-        include_header_pre = "struct __GLXFBConfigRec {};"
+        include_header_pre = "struct __GLXFBConfigRec {}; struct WNT_HIDSpaceMouse {}; struct Aspect_XVisualInfo {};"
         exclude_methods = ["Aspect_NeutralWindow::NativeFBConfig","Aspect_Window::NativeFBConfig","Aspect_NeutralWindow::SetNativeHandles","Aspect_DisplayConnection::GetDisplay","Aspect_DisplayConnection::Init"]
         exclude_typedefs = ["Aspect_XRActionSetMap","Aspect_XRActionMap"]
 
@@ -629,10 +641,13 @@ parsing_header = '''#pragma clang diagnostic ignored "-Wmacro-redefined"
         include_header_pre = """#include <Message_Messenger.hxx>
 #include <Image_SupportedFormats.hxx>
 #include <Image_CompressedPixMap.hxx>
+#include <Graphic3d_StructureManager.hxx>
 struct NSOpenGLContext {};"""
         include_body_pre = 'py::class_<NSOpenGLContext>(m, "NSOpenGLContext");'
         exclude_methods = ["OpenGl_GlCore11::glGetPointerv","OpenGl_RaytraceGeometry::Clear",
-                           "OpenGl_View::ChangeGraduatedTrihedron","OpenGl_View::LayerList"]
+                           "OpenGl_View::ChangeGraduatedTrihedron","OpenGl_View::LayerList",
+                           "OpenGl_DepthPeeling::DetachDepthTexture", "OpenGl_DepthPeeling::DepthPeelFbosOit",
+                           "OpenGl_DepthPeeling::FrontBackColorFbosOit"]
         exclude_typedefs = ["OpenGl_SequenceOfLayers","OpenGl_SetterList","OpenGl_MapOfHatchStylesAndIds","OpenGl_MapOfZLayerSettings","OpenGl_IndexedMapOfStructure","OpenGl_MapOfShaderPrograms","OpenGl_IndexedMapOfStructure","OpenGl_LayerSeqIds"]
         exclude_classes = ["OpenGl_GraduatedTrihedron","OpenGl_LayerList","OpenGl_VariableSetterSelector","OpenGl_RaytraceGeometry"]
         
@@ -648,7 +663,7 @@ struct NSOpenGLContext {};"""
 
     [Modules.Xw]
 
-        include_header_pre = "struct __GLXFBConfigRec {};"
+        include_header_pre = "struct __GLXFBConfigRec {}; union _XEvent {long pad[24];};"
         include_body_pre = 'py::class_<__GLXFBConfigRec>(m, "__GLXFBConfigRec");'
 
     [Modules.MeshVS]
@@ -692,6 +707,10 @@ struct NSOpenGLContext {};"""
             "Graphic3d_BvhCStructureSetTrsfPers::Center","Graphic3d_BvhCStructureSetTrsfPers::Swap",
             "Graphic3d_Layer::CullableTrsfPersStructuresBVH","Graphic3d_Layer::CullableStructuresBVH"]
         exclude_classes = ["Graphic3d_BvhCStructureSet","Graphic3d_BvhCStructureSetTrsfPers"]
+        
+        [Modules.Graphic3d.parsing_headers]
+        
+            "Graphic3d_WorldViewProjState.hxx" = "#include <Standard_OStream.hxx>"
 
     [Modules.AdvApprox]
 
@@ -711,7 +730,8 @@ struct NSOpenGLContext {};"""
     [Modules.TDocStd]
 
         include_header_pre = """#include <PCDM_RetrievalDriver.hxx>
-#include <PCDM_StorageDriver.hxx>"""
+#include <PCDM_StorageDriver.hxx>
+#include <PCDM_ReaderFilter.hxx>"""
 
     [Modules.XmlMDF]
 
@@ -742,7 +762,8 @@ struct NSOpenGLContext {};"""
 
     [Modules.StdLDrivers]
 
-        include_header_pre = "#include <CDM_Document.hxx>"
+        include_header_pre = """#include <CDM_Document.hxx>
+#include <PCDM_ReaderFilter.hxx>"""
 
     [Modules.TFunction]
 
@@ -893,9 +914,13 @@ using PolygonOnTriangulation = ShapePersistent_BRep::PolygonOnTriangulation;
 
     [Modules.CDF]
 
-        include_header_pre = "#include <Resource_Manager.hxx>"
+        include_header_pre = """#include <Resource_Manager.hxx>
+#include <PCDM_ReaderFilter.hxx>"""
 
     [Modules.Image]
+    
+        include_header_pre = """#include <ostream>
+using std::basic_ostream;"""
 
         exclude_methods = ["Image_AlienPixMap::Load"]
 
@@ -981,7 +1006,9 @@ struct NSView {};"""
 
     [Modules.BOPAlgo]
     
-        include_header_pre = "#include <BOPDS_Iterator.hxx>"
+        include_header_pre = """#include <BOPDS_Iterator.hxx>
+#include <BOPDS_DS.hxx>
+"""
     
     [Modules.VrmlAPI]
     
@@ -998,6 +1025,8 @@ using std::basic_istream;"""
 using std::basic_istream;"""
 
     [Modules.Message]
+    
+        exclude_classes = ["Message_LazyProgressScope"]
 
         [Modules.Message.Classes.Message_ProgressScope]
 
@@ -1008,6 +1037,9 @@ using std::basic_istream;"""
         include_header_pre = """#include <istream>
 using std::basic_istream;
 using rapidjson::BasicOStreamWrapper;"""
+
+        exclude_methods = ["RWGltf_GltfMaterialMap::AddGlbImages"]
+        exclude_typedefs = ["RWGltf_GltfFaceList"]
 
         [Modules.RWGltf.parsing_headers]
 
@@ -1097,3 +1129,38 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.IVtkOCC]
 
         exclude_methods = ["IVtkOCC_ShapePickerAlgo::Pick", "IVtkOCC_ViewerSelector::Pick"]
+
+    [Modules.BinLDrivers]
+
+        include_header_pre = "#include <PCDM_ReaderFilter.hxx>"
+        
+    [Modules.BinObjMgt]
+        
+        exclude_methods = ["BinObjMgt_Persistent::GetOStream", "BinObjMgt_Persistent::GetIStream"]
+        
+    [Modules.GeomAdaptor]
+    
+        include_header_pre = """#include <Geom_BezierCurve.hxx>
+#include <Geom_BSplineCurve.hxx>
+#include <Geom_OffsetCurve.hxx>
+"""
+
+    [Modules.GeomInt]
+    
+        include_header_pre = """#include <Geom2d_BSplineCurve.hxx>"""
+        
+    [Modules.StepToGeom]
+    
+        include_header_pre = """#include <StepKinematics_SpatialRotation.hxx>"""
+        
+    [Modules.XmlDrivers]
+
+        include_header_pre = "#include <PCDM_ReaderFilter.hxx>"
+
+    [Modules.XmlLDrivers]
+
+        include_header_pre = "#include <PCDM_ReaderFilter.hxx>"
+        
+    [Modules.BRepTools]
+    
+        include_header_pre = "#include <OSD_FileSystem.hxx>"
