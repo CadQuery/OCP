@@ -25,7 +25,7 @@ jobs:
     submodules: true
   
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: sudo apt-get update && apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+    - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
       displayName: 'Install gl headers'
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
@@ -71,7 +71,7 @@ jobs:
     - bash: |
         ls && env && \
         source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i $CONDA_PREFIX/include/vtk-9.1/ -i $CONDA_PREFIX/lib/clang/10.0.1/include/ parse ${{ parameters.config_file }} out.pkl && \
+        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i `ls -d $CONDA_PREFIX/include/vtk-9*/` -i $CONDA_PREFIX/lib/clang/10.0.1/include/ parse ${{ parameters.config_file }} out.pkl && \
         python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
         python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
       displayName: 'Generate'
@@ -82,7 +82,7 @@ jobs:
     - bash: |
         ls && env && \
         source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i $CONDA_PREFIX/include/vtk-9.1/ -i $CONDA_PREFIX/lib/clang/10.0.1/include/ -i $CONDA_PREFIX/include/c++/v1/ parse ${{ parameters.config_file }} out.pkl && \
+        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i `ls -d $CONDA_PREFIX/include/vtk-9*/` -i $CONDA_PREFIX/lib/clang/10.0.1/include/ -i $CONDA_PREFIX/include/c++/v1/ parse ${{ parameters.config_file }} out.pkl && \
         python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
         python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
       displayName: 'Generate'
@@ -93,7 +93,7 @@ jobs:
     - bash: |
         ls && env && \
         source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/Library/include/ -i $CONDA_PREFIX/Library/include/vtk-9.1/ -i $CONDA_PREFIX/Library/include/clang/ parse ${{ parameters.config_file }} out.pkl && \
+        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/Library/include/ -i `ls -d $CONDA_PREFIX/Library/include/vtk-9*/` -i $CONDA_PREFIX/Library/include/clang/ parse ${{ parameters.config_file }} out.pkl && \
         python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
         python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
       displayName: 'Generate'
