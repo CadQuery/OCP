@@ -2,7 +2,7 @@ parameters:
   name: 'Generate bindings'
   vmImage: 'ubuntu-latest'
   py_maj: '3'
-  py_min: '7'
+  py_min: '9'
   py_min_build:
   - 6
   - 7
@@ -24,10 +24,6 @@ jobs:
   - checkout: self
     submodules: true
   
-  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-      displayName: 'Install g++8 and gl headers'
-
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
         ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
@@ -123,7 +119,7 @@ jobs:
       artifact: OCP_src_${{ parameters.vmImage }}
       
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-      - bash: sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+      - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
         displayName: 'Install g++8 and gl headers'
   
     - ${{ if contains(parameters.vmImage, 'mac') }}:
