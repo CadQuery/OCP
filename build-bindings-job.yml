@@ -93,7 +93,7 @@ jobs:
     - bash: |
         ls && env && \
         source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/Library/include/ -i `ls -d $CONDA_PREFIX/Library/include/vtk-9*/` -i $CONDA_PREFIX/Library/include/clang/ parse ${{ parameters.config_file }} out.pkl && \
+        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/Library/include/ -i `ls -d $CONDA_PREFIX/Library/include/vtk-9.1/` -i $CONDA_PREFIX/Library/include/clang/ parse ${{ parameters.config_file }} out.pkl && \
         python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
         python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
       displayName: 'Generate'
