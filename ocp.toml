@@ -624,7 +624,12 @@ class Adaptor3d_Surface;
 
     [Modules.Aspect]
 
-        include_header_pre = "struct __GLXFBConfigRec {}; struct Aspect_XVisualInfo {};"
+        include_header_pre = """struct __GLXFBConfigRec {};
+struct Aspect_XVisualInfo {};
+#ifndef _WIN32
+    struct WNT_HIDSpaceMouse {};
+#endif
+"""
         exclude_methods = ["Aspect_NeutralWindow::NativeFBConfig","Aspect_Window::NativeFBConfig","Aspect_NeutralWindow::SetNativeHandles","Aspect_DisplayConnection::GetDisplay","Aspect_DisplayConnection::Init"]
         exclude_typedefs = ["Aspect_XRActionSetMap","Aspect_XRActionMap"]
 
