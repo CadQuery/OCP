@@ -941,12 +941,14 @@ using std::basic_ostream;"""
     [Modules.WNT]
 
         include_header_pre = """#include <Aspect_DisplayConnection.hxx>
-struct __GLXFBConfigRec {};"""
+struct __GLXFBConfigRec {};
+struct tagMSG {};"""
 
     [Modules.Cocoa]
 
         include_header_pre = """#include <Aspect_DisplayConnection.hxx>
-struct NSView {};"""
+struct NSView {};
+struct __GLXFBConfigRec {};"""
 
         [[Modules.Cocoa.Classes.Cocoa_Window.additional_constructors]]
 
