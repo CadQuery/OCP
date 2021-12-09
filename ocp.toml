@@ -942,7 +942,8 @@ using std::basic_ostream;"""
 
         include_header_pre = """#include <Aspect_DisplayConnection.hxx>
 struct __GLXFBConfigRec {};
-struct tagMSG {};"""
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>"""
 
     [Modules.Cocoa]
 
