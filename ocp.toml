@@ -940,10 +940,12 @@ using std::basic_ostream;"""
 
     [Modules.WNT]
 
+        include_header_pre_top ="""#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+"""
+
         include_header_pre = """#include <Aspect_DisplayConnection.hxx>
-struct __GLXFBConfigRec {};
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>"""
+struct __GLXFBConfigRec {};"""
 
     [Modules.Cocoa]
 
