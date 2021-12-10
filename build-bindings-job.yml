@@ -169,7 +169,7 @@ jobs:
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
           source activate cpp-py-bindgen && \
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD_LIBRARIES="$CONDA_PREFIX/lib/libvtkWrappingPythonCore-9.0.so.9.0.1" -DCMAKE_CXX_FLAGS=-I\ $CONDA_PREFIX/include/vtk-9.0 && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
@@ -181,7 +181,7 @@ jobs:
           source activate cpp-py-bindgen && \
           cp -rf opencascade $CONDA_PREFIX/include && \
           cat $CONDA_PREFIX/include/opencascade/OpenGl_HaltonSampler.hxx  &&\
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Debug && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
