@@ -18,6 +18,7 @@ jobs:
 - template: build-bindings-job.yml
   parameters:
     name: Linux
+    vmImage: 'ubuntu-18.04'
 - template: build-bindings-job.yml
   parameters:
     name: Windows
