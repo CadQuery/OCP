@@ -71,44 +71,11 @@ jobs:
       pip install -e pywrap && \
       cmake -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
-    name: 'pywrap_cmake'
-
-  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: |
-        ls && env && \
-        source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i `ls -d $CONDA_PREFIX/include/vtk-9*/` -i $CONDA_PREFIX/lib/clang/12.0.1/include/ parse ${{ parameters.config_file }} out.pkl && \
-        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
-        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
-      displayName: 'Generate'
-      env:
-        PYTHONPATH: pywrap
-  
-  - ${{ if contains(parameters.vmImage, 'mac') }}:
-    - bash: |
-        ls && env && \
-        source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i `ls -d $CONDA_PREFIX/include/vtk-9*/` -i $CONDA_PREFIX/lib/clang/12.0.1/include/ -i $CONDA_PREFIX/include/c++/v1/ parse ${{ parameters.config_file }} out.pkl && \
-        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
-        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
-      displayName: 'Generate'
-      env:
-        PYTHONPATH: pywrap
-  
-  - ${{ if contains(parameters.vmImage, 'win') }}:
-    - bash: |
-        ls && env && \
-        source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/Library/include/ -i `ls -d $CONDA_PREFIX/Library/include/vtk-9.0/` -i $CONDA_PREFIX/Library/include/clang/ parse ${{ parameters.config_file }} out.pkl && \
-        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
-        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
-      displayName: 'Generate'
-      env:
-        PYTHONPATH: pywrap
+    name: 'Generate'
 
   - task: CopyFiles@2
     inputs:
-      contents: 'out*.pkl'
+      contents: '*.pkl'
       targetFolder: $(conf.OUTPUT)
     displayName: 'Copy pkl outputs'
     
