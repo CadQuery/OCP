@@ -12,7 +12,7 @@ message( STATUS "Running pywrap")
 
 execute_process(
     COMMAND
-        python -m bindgen 
+        pywrap
         -n ${N} 
         -i $ENV{CONDA_PREFIX}/include/ 
         -i $ENV{CONDA_PREFIX}/include/vtk-${VTK_VERSION_MAJOR}.${VTK_VERSION_MINOR}/ 

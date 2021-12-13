@@ -68,6 +68,7 @@ jobs:
     
   - bash: |
       source activate cpp-py-bindgen && \
+      pip install -e pywrap && \
       cmake -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'pywrap_cmake'
