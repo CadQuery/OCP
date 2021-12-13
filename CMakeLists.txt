@@ -1,8 +1,7 @@
 cmake_minimum_required( VERSION 3.16 )
 project( OCP )
 
-include(ProcessorCount)
-ProcessorCount(N)
+set( N_PROC 2 CACHE STRING "Number of processes used for generating code")
 
 find_package(LLVM REQUIRED )
 find_package(VTK REQUIRED )
@@ -19,7 +18,7 @@ endif()
 execute_process(
     COMMAND
         pywrap
-        -n ${N} 
+        -n ${N_PROC} 
         -i $ENV{CONDA_PREFIX}/include/ 
         -i $ENV{CONDA_PREFIX}${WIN_PREFIX}/include/vtk-${VTK_VERSION_MAJOR}.${VTK_VERSION_MINOR}/ 
         -i $ENV{CONDA_PREFIX}${WIN_PREFIX}/lib/clang/${LLVM_VERSION}/include/
