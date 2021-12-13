@@ -10,9 +10,9 @@ find_package(VTK REQUIRED )
 message( STATUS "${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES}")
 message( STATUS "Running pywrap")
 
-if(PLATFORM_ID EQUAL "Windows")
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     set(WIN_PREFIX /Library)
-elif(PLATFORM_ID EQUAL "Apple")
+elif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set(CXX_INCLUDES -i $ENV{CONDA_PREFIX}/include/c++/v1/ )
 endif()
 
