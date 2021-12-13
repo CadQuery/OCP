@@ -12,7 +12,7 @@ message( STATUS "Running pywrap")
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     set(WIN_PREFIX /Library)
-elif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set(CXX_INCLUDES -i $ENV{CONDA_PREFIX}/include/c++/v1/ )
 endif()
 
