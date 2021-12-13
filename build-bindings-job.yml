@@ -65,6 +65,12 @@ jobs:
       echo "##vso[task.setvariable variable=OUTPUT;isOutput=true]$OUTPUT"
     displayName: 'Read output dir from the config file'
     name: 'conf'
+    
+  - bash: |
+      source activate cpp-py-bindgen && \
+      cmake -B new -S . -G Ninja
+    displayName: 'CMake based pywrap call'
+    name: 'pywrap-cmake'
 
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
     - bash: |
