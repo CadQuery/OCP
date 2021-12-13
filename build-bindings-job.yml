@@ -70,7 +70,7 @@ jobs:
       source activate cpp-py-bindgen && \
       cmake -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
-    name: 'pywrap-cmake'
+    name: 'pywrap_cmake'
 
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
     - bash: |
