@@ -626,7 +626,7 @@ class Adaptor3d_Surface;
 
         include_header_pre = """struct __GLXFBConfigRec {};
 struct Aspect_XVisualInfo {};
-#ifndef _WIN32
+#ifndef WIN32
     struct WNT_HIDSpaceMouse {};
 #endif
 """
