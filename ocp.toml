@@ -626,9 +626,7 @@ class Adaptor3d_Surface;
 
         include_header_pre = """struct __GLXFBConfigRec {};
 struct Aspect_XVisualInfo {};
-#ifdef WIN32
-    #include <WNT_HIDSpaceMouse.hxx>
-#endif
+#include <WNT_HIDSpaceMouse.hxx>
 """
         exclude_methods = ["Aspect_NeutralWindow::NativeFBConfig","Aspect_Window::NativeFBConfig","Aspect_NeutralWindow::SetNativeHandles","Aspect_DisplayConnection::GetDisplay","Aspect_DisplayConnection::Init"]
         exclude_typedefs = ["Aspect_XRActionSetMap","Aspect_XRActionMap"]
