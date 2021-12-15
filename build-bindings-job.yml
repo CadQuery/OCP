@@ -24,7 +24,7 @@ jobs:
     submodules: true
   
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+    - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
       displayName: 'Install gl headers'
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
