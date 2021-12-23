@@ -20,7 +20,8 @@ set(ENV{PYTHONPATH} ${CMAKE_SOURCE_DIR}/pywrap )
 
 execute_process(
     COMMAND
-        pywrap
+        python
+        -m bindgen
         -n ${N_PROC}
         -i $ENV{CONDA_PREFIX}${WIN_PREFIX}/include/
         -i $ENV{CONDA_PREFIX}${WIN_PREFIX}/include/vtk-${VTK_VERSION_MAJOR}.${VTK_VERSION_MINOR}/
