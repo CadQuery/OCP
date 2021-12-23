@@ -2,9 +2,8 @@ parameters:
   name: 'Generate bindings'
   vmImage: 'ubuntu-latest'
   py_maj: '3'
-  py_min: '7'
+  py_min: '9'
   py_min_build:
-  - 6
   - 7
   - 8
   - 9
@@ -25,8 +24,8 @@ jobs:
     submodules: true
   
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
-      displayName: 'Install g++8 and gl headers'
+    - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+      displayName: 'Install gl headers'
 
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
@@ -66,43 +65,17 @@ jobs:
       echo "##vso[task.setvariable variable=OUTPUT;isOutput=true]$OUTPUT"
     displayName: 'Read output dir from the config file'
     name: 'conf'
-
-  - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-    - bash: |
-        ls && env && \
-        source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i $CONDA_PREFIX/include/vtk-9.0/ -i $CONDA_PREFIX/lib/clang/10.0.1/include/ parse ${{ parameters.config_file }} out.pkl && \
-        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
-        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
-      displayName: 'Generate'
-      env:
-        PYTHONPATH: pywrap
-  
-  - ${{ if contains(parameters.vmImage, 'mac') }}:
-    - bash: |
-        ls && env && \
-        source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/include/ -i $CONDA_PREFIX/include/vtk-9.0/ -i $CONDA_PREFIX/lib/clang/10.0.1/include/ -i $CONDA_PREFIX/include/c++/v1/ parse ${{ parameters.config_file }} out.pkl && \
-        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
-        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
-      displayName: 'Generate'
-      env:
-        PYTHONPATH: pywrap
-  
-  - ${{ if contains(parameters.vmImage, 'win') }}:
-    - bash: |
-        ls && env && \
-        source activate cpp-py-bindgen && \
-        python -m bindgen -n $(n_cores) -i $CONDA_PREFIX/Library/include/ -i $CONDA_PREFIX/Library/include/vtk-9.0/ -i $CONDA_PREFIX/Library/include/clang/ parse ${{ parameters.config_file }} out.pkl && \
-        python -m bindgen -n $(n_cores) transform ${{ parameters.config_file }} out.pkl out_f.pkl && \
-        python -m bindgen -n $(n_cores) generate ${{ parameters.config_file }} out_f.pkl
-      displayName: 'Generate'
-      env:
-        PYTHONPATH: pywrap
+    
+  - bash: |
+      source activate cpp-py-bindgen && \
+      pip install -e pywrap && \
+      cmake -B new -S . -G Ninja
+    displayName: 'CMake based pywrap call'
+    name: 'Generate'
 
   - task: CopyFiles@2
     inputs:
-      contents: 'out*.pkl'
+      contents: '*.pkl'
       targetFolder: $(conf.OUTPUT)
     displayName: 'Copy pkl outputs'
     
@@ -123,7 +96,7 @@ jobs:
       artifact: OCP_src_${{ parameters.vmImage }}
       
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
-      - bash: sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+      - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
         displayName: 'Install g++8 and gl headers'
   
     - ${{ if contains(parameters.vmImage, 'mac') }}:
@@ -170,7 +143,7 @@ jobs:
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
           source activate cpp-py-bindgen && \
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD_LIBRARIES="$CONDA_PREFIX/lib/libvtkWrappingPythonCore-9.0.so.9.0.1" -DCMAKE_CXX_FLAGS=-I\ $CONDA_PREFIX/include/vtk-9.0 && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
@@ -182,7 +155,7 @@ jobs:
           source activate cpp-py-bindgen && \
           cp -rf opencascade $CONDA_PREFIX/include && \
           cat $CONDA_PREFIX/include/opencascade/OpenGl_HaltonSampler.hxx  &&\
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Debug && \
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release && \
           cmake --build build -j $(n_cores) -- -k 0 && \
           rm -rf build/CMakeFiles
         displayName: 'Compile'
