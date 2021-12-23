@@ -22,7 +22,7 @@ endif()
 
 find_package( pybind11 REQUIRED )
 find_package( OpenCascade REQUIRED COMPONENTS OPENCASCADE )
-find_package( VTK 9.0 REQUIRED COMPONENTS WrappingPythonCore RenderingCore CommonDataModel CommonExecutionModel)
+find_package( VTK 9 REQUIRED COMPONENTS WrappingPythonCore RenderingCore CommonDataModel CommonExecutionModel )
 
 include_directories( ${PROJECT_SOURCE_DIR} )
 file( GLOB CPP_FILES ${PROJECT_SOURCE_DIR}/*.cpp )
