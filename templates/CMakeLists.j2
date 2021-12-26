@@ -53,7 +53,7 @@ if(WIN32)
   get_target_property(LINKER_OPTIONS {{ name }} LINK_OPTIONS )
   message( STATUS ${LINKER_OPTIONS})
 
-  list( FILTER LINKER_OPTIONS EXCLUDE "/PDB.*")
+  list( FILTER LINKER_OPTIONS EXCLUDE REGEX "/PDB.*")
 
   set_target_properties( {{ name }} PROPERTIES LINK_OPTIONS ${LINKER_OPTIONS} )
   message( STATUS ${LINKER_OPTIONS} )
@@ -74,4 +74,4 @@ if(APPLE)
 endif()
 
 
-install( TARGET {{ name }} DESTINATION ${PYTHON_SP_DIR} )
+install( TARGETS {{ name }} DESTINATION ${PYTHON_SP_DIR} )
