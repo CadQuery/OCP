@@ -6,7 +6,7 @@ list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 
 SET(PYTHON_EXECUTABLE "" CACHE PATH "Pyhon executable")
 SET(PYTHON_LIBRARY "" CACHE PATH "Python library path - only relevant on windows")
-SET(PYTHON_SP_DIR "" CACHE PATH "Python site-packages directory")
+SET(PYTHON_SP_DIR "$ENV{CONDA_PREFIX}" CACHE PATH "Python site-packages directory")
 
 if(DEFINED ENV{CONDA_PREFIX})
     if(WIN32)
@@ -49,14 +49,7 @@ if(WIN32)
                               "_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING")
   target_link_libraries( {{ name }} PRIVATE opengl32 )
   target_link_libraries( {{ name }} PRIVATE ${PYTHON_LIBRARY} )
-
-  get_target_property(LINKER_OPTIONS {{ name }} LINK_OPTIONS )
-  message( STATUS ${LINKER_OPTIONS})
-
-  list( FILTER LINKER_OPTIONS EXCLUDE REGEX "/PDB.*")
-
-  set_target_properties( {{ name }} PROPERTIES LINK_OPTIONS ${LINKER_OPTIONS} )
-  message( STATUS ${LINKER_OPTIONS} )
+  target_link_options( {{ name }} PRIVATE "/INCREMENTAL" )
 
 else()
   set_target_properties( {{ name }}
