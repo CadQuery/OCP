@@ -49,7 +49,7 @@ if(WIN32)
                               "_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING")
   target_link_libraries( {{ name }} PRIVATE opengl32 )
   target_link_libraries( {{ name }} PRIVATE ${PYTHON_LIBRARY} )
-  target_link_options( {{ name }} PRIVATE "/INCREMENTAL" )
+  # target_link_options( {{ name }} PRIVATE "/INCREMENTAL" )
 
 else()
   set_target_properties( {{ name }}
