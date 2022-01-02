@@ -1,22 +1,48 @@
+{% set OCCT_VER = "7.5.3" %}
+{% set OCP_TWEAK = "0" %}
+
 package:
   name: ocp
-  version: 7.5.3
+  version: {{OCCT_VER}}.{{OCP_TWEAK}}
 
 source:
   path: ..
 
 build:
   string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
+  script:>
+    cmake -B bld -S . -G Ninja &&
+    cmake --build bld &&
+    cmake --install bld --prefix {{ environ.get('PREFIX') }}
 
 requirements:
   build:
     - cmake 3.16
+    - clangdev
+    - python-clang
+    - boost=1.74.0
+    - occt={{ OCCT_VER }}
+    - pybind11>=2.6.*
+    - python
+    - joblib
+    - toml
+    - cmake>=3.16
+    - ninja
+    - click
+    - jinja2
+    - logzero
+    - pandas
+    - path
+    - pyparsing
+    - schema
+    - tqdm
+    - toposort
   host:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt 7.5.3
+    - occt {{OCCT_VER}}
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt 7.5.3
+    - occt {{OCCT_VER}}
 
 test:
   requires:

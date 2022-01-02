@@ -6,7 +6,7 @@ list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 
 SET(PYTHON_EXECUTABLE "" CACHE PATH "Pyhon executable")
 SET(PYTHON_LIBRARY "" CACHE PATH "Python library path - only relevant on windows")
-SET(PYTHON_SP_DIR "$ENV{CONDA_PREFIX}" CACHE PATH "Python site-packages directory")
+SET(PYTHON_SP_DIR "site-packages" CACHE PATH "Python site-packages directory")
 
 if(DEFINED ENV{CONDA_PREFIX})
     if(WIN32)
