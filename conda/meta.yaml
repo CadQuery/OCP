@@ -11,10 +11,14 @@ source:
 build:
   string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
   script:
+    {% if not os.path.exists('bld') %}
+    - cmake -B bld -S . -G Ninja && cmake --build bld
+    {% endif %}
     - cmake --install bld --prefix {{ environ.get('STDLIB_DIR') }}
 
 requirements:
   build:
+    - {{ compiler('cxx') }}
     - cmake 3.16
     - clangdev
     - python-clang
