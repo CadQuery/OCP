@@ -10,10 +10,8 @@ source:
 
 build:
   string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
-  script:>
-    cmake -B bld -S . -G Ninja &&
-    cmake --build bld &&
-    cmake --install bld --prefix {{ environ.get('PREFIX') }}
+  script:
+    - cmake -B bld -S . -G Ninja && cmake --build bld && cmake --install bld --prefix {{ environ.get('PREFIX') }}
 
 requirements:
   build:
