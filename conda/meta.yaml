@@ -25,7 +25,7 @@ requirements:
     - boost=1.74.0
     - occt={{ OCCT_VER }}
     - pybind11>=2.6.*
-    - python
+    - python {{ environ.get('PYTHON_VERSION') }}
     - joblib
     - toml
     - cmake>=3.16
