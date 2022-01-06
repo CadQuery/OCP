@@ -6,6 +6,7 @@ list( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR} )
 
 SET(PYTHON_EXECUTABLE "" CACHE PATH "Pyhon executable")
 SET(PYTHON_LIBRARY "" CACHE PATH "Python library path - only relevant on windows")
+SET(PYTHON_SP_DIR "site-packages" CACHE PATH "Python site-packages directory")
 
 if(DEFINED ENV{CONDA_PREFIX})
     if(WIN32)
@@ -39,7 +40,7 @@ set_target_properties( {{ name }}
 
 if(WIN32)
   target_compile_options( {{ name }} PRIVATE /bigobj )
-  target_compile_definitions( {{ name }} PRIVATE 
+  target_compile_definitions( {{ name }} PRIVATE
                               "Standard_EXPORT="
                               "Standard_EXPORTEXTERN="
                               "Standard_EXPORTEXTERNC=extern \"C\""
@@ -48,6 +49,7 @@ if(WIN32)
                               "_SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING")
   target_link_libraries( {{ name }} PRIVATE opengl32 )
   target_link_libraries( {{ name }} PRIVATE ${PYTHON_LIBRARY} )
+
 else()
   set_target_properties( {{ name }}
                          PROPERTIES
@@ -62,3 +64,6 @@ endif()
 if(APPLE)
   target_link_libraries( {{ name }} PRIVATE "-undefined dynamic_lookup")
 endif()
+
+
+install( TARGETS {{ name }} LIBRARY DESTINATION ${PYTHON_SP_DIR} )
