@@ -1,26 +1,53 @@
+{% set OCCT_VER = "7.5.3" %}
+{% set OCP_TWEAK = "0" %}
+
 package:
   name: ocp
-  version: 7.5.2beta
+  version: {{OCCT_VER}}.{{OCP_TWEAK}}
 
 source:
   path: ..
 
 build:
   string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
+  script:
+    {% if not os.path.exists('build') %}
+    - cmake -B build -S . -G Ninja && cmake --build build
+    {% endif %}
+    - cmake --install build --prefix {{ environ.get('STDLIB_DIR') }}
 
 requirements:
   build:
     - cmake 3.16
+    - clangdev
+    - python-clang
+    - boost=1.74.0
+    - occt={{ OCCT_VER }}
+    - pybind11>=2.6.*
+    - python {{ environ.get('PYTHON_VERSION') }}
+    - joblib
+    - toml
+    - cmake>=3.16
+    - ninja
+    - click
+    - jinja2
+    - logzero
+    - pandas
+    - path
+    - pyparsing
+    - schema
+    - tqdm
+    - toposort
   host:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt 7.5.2
+    - occt {{OCCT_VER}}
   run:
     - python {{ environ.get('PYTHON_VERSION') }}
-    - occt 7.5.2 
+    - occt {{OCCT_VER}}
 
 test:
   requires:
-    - python 
+    - python
   imports:
     - OCP
 
