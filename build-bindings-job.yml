@@ -7,6 +7,7 @@ parameters:
   - 7
   - 8
   - 9
+  - 10
   config_file: 'ocp.toml'
   conda_bld: '3.16.3'
   conda_env_file: 'env.yml'
@@ -22,7 +23,7 @@ jobs:
   steps:
   - checkout: self
     submodules: true
-  
+
   - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
     - bash: sudo apt-get update && sudo apt-get install mesa-common-dev libegl1-mesa-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
       displayName: 'Install gl headers'
@@ -48,7 +49,7 @@ jobs:
       which python && \
       env
     displayName: 'Conda env sanity checks'
-    
+
   - ${{ if contains(parameters.vmImage, 'mac') }}:
     - bash: |
         source activate cpp-py-bindgen && \
@@ -65,10 +66,9 @@ jobs:
       echo "##vso[task.setvariable variable=OUTPUT;isOutput=true]$OUTPUT"
     displayName: 'Read output dir from the config file'
     name: 'conf'
-    
+
   - bash: |
       source activate cpp-py-bindgen && \
-      pip install -e pywrap && \
       cmake -B new -S . -G Ninja
     displayName: 'CMake based pywrap call'
     name: 'Generate'
@@ -78,14 +78,14 @@ jobs:
       contents: '*.pkl'
       targetFolder: $(conf.OUTPUT)
     displayName: 'Copy pkl outputs'
-    
+
   - publish:  $(conf.OUTPUT)
     artifact: OCP_src_${{ parameters.vmImage }}
 
-- ${{ each py_min in parameters.py_min_build }}:   
+- ${{ each py_min in parameters.py_min_build }}:
   - job: ${{ parameters.name }}_${{ parameters.py_maj }}_${{ py_min }}
     timeoutInMinutes: 360
-    dependsOn: ${{ parameters.name }} 
+    dependsOn: ${{ parameters.name }}
     pool:
       vmImage: ${{ parameters.vmImage }}
     variables:
@@ -94,35 +94,35 @@ jobs:
     steps:
     - download: current
       artifact: OCP_src_${{ parameters.vmImage }}
-      
+
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: sudo apt-get update && sudo apt-get install ${{ parameters.CXX }} mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
         displayName: 'Install g++8 and gl headers'
-  
+
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
           sudo find /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ && \
           ln -s "$(xcrun --sdk macosx --show-sdk-path)/System/Library/Frameworks/OpenGL.framework/Headers" /usr/local/include/OpenGL
         displayName: 'Search for GL'
-  
+
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - bash: ls "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build"
         displayName: 'Find vcvars64'
-        
+
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - script: |
           choco install --accept-license -y Ninja llvm
         displayName: 'Install clang'
-  
+
     - template: conda-enable.yml@templates
       parameters:
         vmImage: ${{ parameters.vmImage }}
-  
+
     - bash: |
         sed -e s/python=.../python=${{ parameters.py_maj }}.${{ py_min }}/  ${{ parameters.conda_env_file }} > _env.yml && \
         conda env create -f _env.yml
       displayName: 'Prepare conda environment'
-  
+
     - bash: |
         source activate cpp-py-bindgen && \
         conda info -a && \
@@ -130,7 +130,7 @@ jobs:
         which python && \
         env
       displayName: 'Conda env sanity checks'
-      
+
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
           source activate cpp-py-bindgen && \
@@ -139,7 +139,7 @@ jobs:
           find . -name type_traits\* && \
           sudo find /usr/local/ -name type_traits\*
         displayName: 'Mac header check'
-    
+
     - ${{ if contains(parameters.vmImage, 'Ubuntu') }}:
       - bash: |
           source activate cpp-py-bindgen && \
@@ -149,7 +149,7 @@ jobs:
         displayName: 'Compile'
         env:
           CXX: ${{ parameters.CXX }}
-  
+
     - ${{ if contains(parameters.vmImage, 'mac') }}:
       - bash: |
           source activate cpp-py-bindgen && \
@@ -160,31 +160,31 @@ jobs:
           rm -rf build/CMakeFiles
         displayName: 'Compile'
         env:
-          CXX: "clang++"     
-  
+          CXX: "clang++"
+
     - ${{ if contains(parameters.vmImage, 'win') }}:
       - script: |
           call "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat"
           call activate cpp-py-bindgen
-          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX%
-          cmake --build build -j $(n_cores) -- -k 0
+          cmake -B build -S "../$(OCP_src)" -G Ninja -DCMAKE_BUILD_TYPE=Release -DPython3_FIND_STRATEGY=LOCATION -DPython3_ROOT_DIR=%CONDA_PREFIX% -DCMAKE_LINKER=lld-link.exe
+          cmake --build build -j $(n_cores) -- -v -k 0
           rmdir /S /Q build\CMakeFiles
         displayName: 'Compile'
         env:
           CXX: "cl.exe"
-  
+
     - task: PublishBuildArtifacts@1
       inputs:
         pathtoPublish: 'build'
         artifactName: OCP_${{ parameters.vmImage }}
       displayName: 'Publish compilation result'
-  
+
     - bash: |
         source activate cpp-py-bindgen && \
         cd build && \
         LD_DEBUG=libs python -c"import OCP"
       displayName: 'Test'
-      
+
     - bash: |
           conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
           source activate build && \
@@ -196,7 +196,7 @@ jobs:
         BUILD_STRING: "1"
         PYTHON_VERSION: ${{ parameters.py_maj }}.${{ py_min }}
         TOKEN: $(anaconda.TOKEN)
-        
+
     - bash: |
           conda create -n build -y python=3.6 conda-build=${{ parameters.conda_bld }} anaconda-client && \
           source activate build && \
