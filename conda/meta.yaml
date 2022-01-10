@@ -19,12 +19,11 @@ build:
 
 requirements:
   build:
-    - cmake 3.16
     - clangdev
     - python-clang
     - boost=1.74.0
     - occt={{ OCCT_VER }}
-    - pybind11=2.6.*
+    - pybind11>=2.6.*
     - python {{ environ.get('PYTHON_VERSION') }}
     - joblib
     - toml
