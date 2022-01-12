@@ -9,7 +9,8 @@ source:
   path: ..
 
 build:
-  string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
+#  string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
+  number: 2
   script:
     {% if not os.path.exists('build') %}
     - cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
