@@ -9,16 +9,16 @@ source:
   path: ..
 
 build:
-  string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
+  number: 2
   script:
     {% if not os.path.exists('build') %}
-    - cmake -B build -S . -G Ninja && cmake --build build
+    - cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
+    - cmake --build build
     {% endif %}
     - cmake --install build --prefix {{ environ.get('STDLIB_DIR') }}
 
 requirements:
   build:
-    - cmake 3.16
     - clangdev
     - python-clang
     - boost=1.74.0
@@ -46,8 +46,6 @@ requirements:
     - occt {{OCCT_VER}}
 
 test:
-  requires:
-    - python
   imports:
     - OCP
 
