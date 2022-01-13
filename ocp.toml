@@ -582,7 +582,8 @@ class Adaptor3d_Surface;
         [Modules.BRepFill.parsing_headers]
         
             "BRepFill_Sweep.hxx" = "#include <TopTools_HArray1OfShape.hxx>"
-            "BRepFill_TrimShellCorner.hxx" = "#include <TopoDS_Vertex.hxx>"
+            "BRepFill_TrimShellCorner.hxx" = """#include <TopoDS_Vertex.hxx>
+#include <gp_Pln.hxx>"""
 
     [Modules.ChFi3d]
     #error: invalid use of incomplete type ‘class Geom_BSplineCurve’
@@ -658,6 +659,8 @@ struct NSOpenGLContext {};"""
         
             "OpenGl_LayerList.hxx" = "#include <OpenGl_FrameBuffer.hxx>"
             "OpenGl_ShaderObject.hxx" = "#include <NCollection_Sequence.hxx>"
+            "OpenGl_SetOfShaderPrograms.hxx" = """#include <TCollection_AsciiString.hxx>
+include <Graphic3d_Buffer.hxx>"""
 
     [Modules.StdSelect]
 
@@ -713,7 +716,8 @@ struct NSOpenGLContext {};"""
         
         [Modules.Graphic3d.parsing_headers]
         
-            "Graphic3d_WorldViewProjState.hxx" = "#include <Standard_OStream.hxx>"
+            "Graphic3d_WorldViewProjState.hxx" = """"#include <Standard_OStream.hxx>
+#include <Standard_Dump.hxx>"""
 
     [Modules.AdvApprox]
 
@@ -844,11 +848,6 @@ struct NSOpenGLContext {};"""
     [Modules.BRepBlend]
 
         exclude_methods = ["BRepBlend_AppSurface::TolReached"]
-        
-        [Modules.BRepBlend.parsing_headers]
-        
-            "BRepBlend_HCurve2dTool.hxx" = "#include <Adaptor2d_HCurve2d.hxx>"
-            "BRepBlend_HCurveTool.hxx" = "#include <Adaptor3d_HCurve.hxx>"
 
     [Modules.StdPersistent]
 
@@ -1175,3 +1174,41 @@ using rapidjson::BasicOStreamWrapper;"""
     [Modules.BRepTools]
     
         include_header_pre = "#include <OSD_FileSystem.hxx>"
+        
+    [Modules.BRepTopAdaptor]
+    
+        [Modules.BRepTopAdaptor.parsing_headers]
+        
+        "BRepTopAdaptor_HVertex.hxx" = "#include <BRepAdaptor_Curve2d.hxx>"
+
+    [Modules.IGESAppli]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.IGESBasic]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.IGESDefs]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.IGESDimen]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.IGESDraw]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.IGESGeom]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.IGESGraph]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
+
+    [Modules.IGESSolid]
+
+        module_parsing_header = "#include <Standard_OStream.hxx>"
