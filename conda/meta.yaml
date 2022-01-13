@@ -9,10 +9,10 @@ source:
   path: ..
 
 build:
-  string: {{ environ.get('BUILD_STRING') }}_{{ 'py'+environ.get('PYTHON_VERSION') }}
+  number: 2
   script:
     {% if not os.path.exists('build') %}
-    - cmake -B build -S . -G Ninja -DN_PROC={{ environ.get('CPU_COUNT') }} -DCMAKE_BUILD_TYPE=Release
+    - cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
     - cmake --build build
     {% endif %}
     - cmake --install build --prefix {{ environ.get('STDLIB_DIR') }}
@@ -45,8 +45,6 @@ requirements:
     - {{ pin_compatible('vtk', max_pin='x.x') }}
 
 test:
-  requires:
-    - python
   imports:
     - OCP
 
