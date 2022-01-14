@@ -582,8 +582,7 @@ class Adaptor3d_Surface;
         [Modules.BRepFill.parsing_headers]
         
             "BRepFill_Sweep.hxx" = "#include <TopTools_HArray1OfShape.hxx>"
-            "BRepFill_TrimShellCorner.hxx" = """#include <TopoDS_Vertex.hxx>
-#include <gp_Pln.hxx>"""
+            "BRepFill_TrimShellCorner.hxx" = "#include <TopoDS_Vertex.hxx>"
 
     [Modules.ChFi3d]
     #error: invalid use of incomplete type ‘class Geom_BSplineCurve’
@@ -659,8 +658,6 @@ struct NSOpenGLContext {};"""
         
             "OpenGl_LayerList.hxx" = "#include <OpenGl_FrameBuffer.hxx>"
             "OpenGl_ShaderObject.hxx" = "#include <NCollection_Sequence.hxx>"
-            "OpenGl_SetOfShaderPrograms.hxx" = """#include <TCollection_AsciiString.hxx>
-include <Graphic3d_Buffer.hxx>"""
 
     [Modules.StdSelect]
 
@@ -715,8 +712,8 @@ struct NSOpenGLContext {};"""
         exclude_classes = ["Graphic3d_BvhCStructureSet","Graphic3d_BvhCStructureSetTrsfPers"]
         
         [Modules.Graphic3d.parsing_headers]
-        
-            "Graphic3d_WorldViewProjState.hxx" = """"#include <Standard_OStream.hxx>
+
+             "Graphic3d_WorldViewProjState.hxx" = """"#include <Standard_OStream.hxx>
 #include <Standard_Dump.hxx>"""
 
     [Modules.AdvApprox]
@@ -1176,12 +1173,12 @@ using rapidjson::BasicOStreamWrapper;"""
         include_header_pre = "#include <OSD_FileSystem.hxx>"
         
     [Modules.BRepTopAdaptor]
-    
+
         [Modules.BRepTopAdaptor.parsing_headers]
-        
+
         "BRepTopAdaptor_HVertex.hxx" = "#include <BRepAdaptor_Curve2d.hxx>"
 
-    [Modules.IGESAppli]
+   [Modules.IGESAppli]
 
         module_parsing_header = "#include <Standard_OStream.hxx>"
 
