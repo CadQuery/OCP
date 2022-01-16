@@ -582,7 +582,8 @@ class Adaptor3d_Surface;
         [Modules.BRepFill.parsing_headers]
         
             "BRepFill_Sweep.hxx" = "#include <TopTools_HArray1OfShape.hxx>"
-            "BRepFill_TrimShellCorner.hxx" = "#include <TopoDS_Vertex.hxx>"
+            "BRepFill_TrimShellCorner.hxx" = """#include <TopoDS_Vertex.hxx>
+#include <gp_Pln.hxx>"""
 
     [Modules.ChFi3d]
     #error: invalid use of incomplete type ‘class Geom_BSplineCurve’
@@ -658,6 +659,9 @@ struct NSOpenGLContext {};"""
         
             "OpenGl_LayerList.hxx" = "#include <OpenGl_FrameBuffer.hxx>"
             "OpenGl_ShaderObject.hxx" = "#include <NCollection_Sequence.hxx>"
+            "OpenGl_BufferCompatT.hxx" = "#include <Graphic3d_Buffer.hxx>"
+            "OpenGl_VertexBufferCompat.hxx" = "#include <Graphic3d_Buffer.hxx>"
+            "OpenGl_SetOfShaderPrograms.hxx" = "#include <TCollection_AsciiString.hxx>"
 
     [Modules.StdSelect]
 
@@ -713,7 +717,7 @@ struct NSOpenGLContext {};"""
         
         [Modules.Graphic3d.parsing_headers]
 
-             "Graphic3d_WorldViewProjState.hxx" = """"#include <Standard_OStream.hxx>
+             "Graphic3d_WorldViewProjState.hxx" = """#include <Standard_OStream.hxx>
 #include <Standard_Dump.hxx>"""
 
     [Modules.AdvApprox]
