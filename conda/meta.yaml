@@ -9,7 +9,7 @@ source:
   path: ..
 
 build:
-  number: 2
+  number: 3
   script:
     {% if not os.path.exists('build') %}
     - cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
@@ -48,6 +48,9 @@ requirements:
 test:
   imports:
     - OCP
+    - OCP.WNT # [win]
+    - OCP.Xw # [linux]
+    - OCP.Cocoa # [osx]
 
 about:
   summary: Python wrapper for OCCT
