@@ -9,7 +9,7 @@ source:
   path: ..
 
 build:
-  number: 2
+  number: 0
   script:
     {% if not os.path.exists('build') %}
     - cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release
